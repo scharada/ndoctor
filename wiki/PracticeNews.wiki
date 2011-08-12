@@ -1,5 +1,4 @@
-#summary One-sentence summary of this page.
-
+#labels Phase-Requirements
 = Introduction =
 
 This system allows to post news visible by all the client of the medical practice.
