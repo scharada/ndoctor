@@ -1,5 +1,4 @@
- * [Tools Tools]
- * Design
+  * Design
    * [GeneralDesign General Design]
    * [PluginDesign Plugin Design]
  * Requirements
@@ -20,6 +19,7 @@
    * [Statistics Statistics]
    * [Administration Administration]
  * Implementation
+  * [Tools Tools]
  * QA
  * Deploy
  * Support
