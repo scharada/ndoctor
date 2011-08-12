@@ -1,5 +1,4 @@
-#summary One-sentence summary of this page.
-
+#labels Phase-Requirements
 = Introduction =
 
 This manager has several charts to have an overview of the data nDoctor manages.
