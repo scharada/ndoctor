@@ -1,5 +1,4 @@
-#summary One-sentence summary of this page.
-
+#labels Phase-Requirements
 = Introduction =
 
 This manager keep tracks of the pathologies of the patient.
