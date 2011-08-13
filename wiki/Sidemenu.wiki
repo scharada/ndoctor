@@ -1,8 +1,8 @@
-  * Design
-   * Domain
-    * [GlobalDomain Whole domain]
-   * [GeneralDesign General Design]
-   * [PluginDesign Plugin Design]
+ * Design
+  * Domain
+   * [GlobalDomain Whole domain]
+  * [GeneralDesign General Design]
+  * [PluginDesign Plugin Design]
  * Requirements
   * [Gui Graphic user interface]
   * [UserSession User's session]
