@@ -6,3 +6,30 @@ The documentation of nDoctor is divided into these points:
  * *QA*             : Testing plans and QA strategies
  * *Deploy*         : How to install and configure the program
  * *Support*        : Plans for user support and advocacy
+
+= Table of content =
+  * Design
+   * [GeneralDesign General Design]
+   * [PluginDesign Plugin Design]
+ * Requirements
+  * [Gui Graphic user interface]
+  * [UserSession User's session]
+   * [PatientSession Patient's session]
+    * [PatientData Patient's data]
+    * [BMI BMI record]
+    * [Family Family]
+    * [MedicalRecord Medical record]
+    * [Pictures Pictures]
+    * [Prescriptions Prescriptions]
+    * [PathologyRecord Pathologies record]
+   * [Calendar Calendar]
+   * [News News]
+    * [VendorNews Vendor's news]
+    * [PracticeNews Medical practice's news]
+   * [Statistics Statistics]
+   * [Administration Administration]
+ * Implementation
+  * [Tools Tools]
+ * QA
+ * Deploy
+ * Support
