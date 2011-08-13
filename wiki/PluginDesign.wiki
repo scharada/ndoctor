@@ -1,21 +1,15 @@
 #labels Phase-Design
-= Plugins - Client Side=
+= Plugins =
 
 The module manager has these two main roles:
  * It loads plugins from the repository. MEF (Managed Extensibility Framework) was chosen to manage the plugins. 
- * It checks if the services the plugin will call exists in the server. 
 
 The plugin repository is a directory _Plugins_ in the application root. Each plugin has:
  * It own directory that contains
   * The plugin dll and all the needed files
-  * a _.pic_ file that contains the dependency information.
+  * a config file that contains the dependency information.
 
-The _.pic_ file is a XML file that contains:
- * The Guid that represents the component used at server side.
- * The Version the component should have
- * A constraint that will modify the scope of the version. The constraint can be
-  * *Strict*, that's a plugin is selected only if the component has the specified version
-  * *Minimum*, that's a plugin is selected if the component has at least the specified version
+The config file is a XML file that contains the configuration of the plugin
 
 == Class diagrams ==
 https://lh6.googleusercontent.com/-x4v6IkzERHs/TkZ2v9XsfzI/AAAAAAAAAB8/FXc27hVEww0/Plugins%252520design.jpg
