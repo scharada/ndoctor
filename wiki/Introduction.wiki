@@ -1,12 +1,3 @@
-The documentation of nDoctor is divided into these points:
-
- * *Design*         : Project design and key concerns
- * *Requirements*   : Project vision and requirements
- * *Implementation* : Developers' guide
- * *QA*             : Testing plans and QA strategies
- * *Deploy*         : How to install and configure the program
- * *Support*        : Plans for user support and advocacy
-
 = Table of content =
   * Design
    * [GeneralDesign General Design]
@@ -33,3 +24,13 @@ The documentation of nDoctor is divided into these points:
  * QA
  * Deploy
  * Support
+
+= Index =
+The documentation of nDoctor is divided into these points:
+
+ * *Design*         : Project design and key concerns
+ * *Requirements*   : Project vision and requirements
+ * *Implementation* : Developers' guide
+ * *QA*             : Testing plans and QA strategies
+ * *Deploy*         : How to install and configure the program
+ * *Support*        : Plans for user support and advocacy
