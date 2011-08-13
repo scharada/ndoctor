@@ -1,19 +1,19 @@
 #labels Phase-Design
 = General design =
 
-The application is build as a client-server software. The data processing is done at the server side and the client displays data and send the commands to the server that executes the work.
+The application is built on the MVVM pattern and supports plugins.
 
-The server exposes services via WCF and used shared memory. The GUI is built with WPF.
+== Concepts ==
 
-= Concepts =
+ * Components: The components are pieces of business logic. It consumes the entities nHibernates provides to the data transformation that has to be done and gives the result to WCF services throught DTO objects.
+ * nHibernate: Make the link between the server and the database. It hides the database implementation. 
 
- * Server side
-  * WCF Services: It just exposes the services to the client.
-  * Components: The components are pieces of business logic. It consumes the entities nHibernates provides to the data transformation that has to be done and gives the result to WCF services throught DTO objects.
-  * nHibernate: Make the link between the server and the database. It hides the database implementation. 
- * Client side
-  * It just displays the data the way it should be using the MVVM pattern
+== Plugins ==
 
-= Schema =
+A plugin is a piece of business logic. It contains the GUI and the component to manipulate the business data.
+
+Each plugin should know about the entities and nHibernate.
+
+== Schema ==
 
 https://docs.google.com/drawings/pub?id=19iMsxDBIwGX0Pa48jpxdX1gqahMZeG0Xduqrthc12qc&w=960&h=720&cht=bvg&nonsense=something_that_ends_with.png
