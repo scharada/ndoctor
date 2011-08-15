@@ -9,17 +9,11 @@ https://docs.google.com/drawings/pub?id=16q9kqDSYWS153EoiLeCXgO8G4xI8b0xxJWUj9t4
 
 The GUI is divided into different parts
  # The main menu: It contains all the application wide menu such as:  
-  # File: All the menus that don't fit the other menus.
+  # Home: Contains a menu group to manage a patient session and another menu group to manage the patient's managers
   # View: Provides features to manage the view, it allows to display or hide some windows or menus.
   # Session: Provides options to manage the sessions (create, delete, search users...).
   # Tools: Contains tools to improve the user experience of nDoctor.
   # Help: Contains help information about nDoctor.
- # The contextual menu: this menu changes depending on the selected workbench. It should be a toolbox or a contextual menu if it is a ribbon menu (as in Ms Office)
- # The side menu: It displays all the installed modules.
- # The module menu: It contains all the items of the selected module.
- # The logbox: Provide non interactive logs. That's, information about the state of the application.
-
-Here is the list of the Gui items:
+ # The contextual menu: this menu changes depending on the selected workbench. It should be a toolbox or a contextual menu if it is a ribbon menu (as in Ms Office) 
+ # The status: Provide non interactive logs. That's, information about the state of the application.
  # Workbench: it is the workbench of the selected item of the selected module. Here you manage the data of nDoctor.
- # Module: it is a collection of items. That's a group of item with the same meaning.
- # Item: it is the smallest part of the Gui. This concept represents the features of a module.
