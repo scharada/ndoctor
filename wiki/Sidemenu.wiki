@@ -1,6 +1,7 @@
  * Design
   * Domain
    * [GlobalDomain Whole domain]
+   * [UserDomain User]
   * [GeneralDesign General Design]
   * [PluginDesign Plugin Design]
  * Requirements
