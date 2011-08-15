@@ -10,8 +10,6 @@ https://docs.google.com/drawings/pub?id=16q9kqDSYWS153EoiLeCXgO8G4xI8b0xxJWUj9t4
 The GUI is divided into different parts
  # The main menu: It contains all the application wide menu such as:  
   # Home: Contains a menu group to manage a patient session and another menu group to manage the patient's managers
-  # View: Provides features to manage the view, it allows to display or hide some windows or menus.
-  # Session: Provides options to manage the sessions (create, delete, search users...).
   # Tools: Contains tools to improve the user experience of nDoctor.
   # Help: Contains help information about nDoctor.
  # The contextual menu: this menu changes depending on the selected workbench. It should be a toolbox or a contextual menu if it is a ribbon menu (as in Ms Office) 
