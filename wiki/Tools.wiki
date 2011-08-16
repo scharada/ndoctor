@@ -8,3 +8,4 @@ Here's the list of all tools used to develop nDoctor
  * [http://pencil.evolus.vn/en-US/Home.aspx Pencil] to draw the GUI sketches
  * [http://www.nunit.org nUnit] for the unit tests
  * [http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=11877 WPF Ribbon]
+ * [http://structuremap.net/structuremap/ StructureMap] to manage dependency injection
