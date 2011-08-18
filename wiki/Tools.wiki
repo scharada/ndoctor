@@ -10,3 +10,4 @@ Here's the list of all tools used to develop nDoctor
  * [http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=11877 WPF Ribbon]
  * [http://structuremap.net/structuremap/ StructureMap] to manage dependency injection
  * [http://visualstudiogallery.msdn.microsoft.com/5647a099-77c9-4a49-91c3-94001828e99e?SRC=VSIDE License Header Manager] to manage the headers in the source files.
+ * [http://www.microsoft.com/download/en/details.aspx?id=11877 Microsoft Ribbon for WPF]
