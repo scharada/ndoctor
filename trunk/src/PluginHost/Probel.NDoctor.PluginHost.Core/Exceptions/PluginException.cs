@@ -12,7 +12,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+    along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 namespace Probel.NDoctor.PluginHost.Core.Exceptions
 {
@@ -36,7 +36,7 @@ namespace Probel.NDoctor.PluginHost.Core.Exceptions
         }
 
         public PluginException(string message, Exception inner)
-            : base(Messages.Msg_PluginException + " " + message, inner)
+            : base(Messages.Ex_PluginException + " " + message, inner)
         {
         }
 

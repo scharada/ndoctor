@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,8 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Msg_ApplicationStarted" xml:space="preserve">
-    <value>Application démarée</value>
-    <comment>Application started</comment>
+  <data name="Ex_AppConfigurationException" xml:space="preserve">
+    <value>Une erreur est apparue lors de la configuration initiale de l'application.  {0}</value>
+    <comment>An error occured during the initial configuration. {0}</comment>
+  </data>
+  <data name="Msg_ConfiguringNHibernate" xml:space="preserve">
+    <value>Configuration de nHibernate...</value>
+    <comment>Configuring nHibernate...</comment>
+  </data>
+  <data name="Msg_ConfiguringPlugins" xml:space="preserve">
+    <value>Configuration des plugins...</value>
+    <comment>Configuring plugins...</comment>
+  </data>
+  <data name="Msg_ErrorOccuredOnNHibernateConfig" xml:space="preserve">
+    <value>Une erreur est apparue lors de la configuration de nHibernate.</value>
+    <comment>An error occured when configuring nHibernate.</comment>
+  </data>
+  <data name="Msg_ErrorOccuredOnPluginConfig" xml:space="preserve">
+    <value>Une erreur est apparue lors de la configuration des plugins.</value>
+    <comment>An error occured when configuring the plugins.</comment>
+  </data>
+  <data name="Msg_Ready" xml:space="preserve">
+    <value>Prêt.</value>
+    <comment>Ready.</comment>
   </data>
 </root>

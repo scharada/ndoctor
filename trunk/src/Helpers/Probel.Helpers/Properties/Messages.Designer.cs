@@ -63,9 +63,9 @@ namespace Probel.Helpers.Properties {
         /// <summary>
         ///   Looks up a localized string similar to An assertion failed..
         /// </summary>
-        internal static string Msg_AssertException {
+        internal static string Ex_AssertException {
             get {
-                return ResourceManager.GetString("Msg_AssertException", resourceCulture);
+                return ResourceManager.GetString("Ex_AssertException", resourceCulture);
             }
         }
     }

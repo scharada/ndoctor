@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Probel.Helpers.Test", "Help
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Probel.NDoctor.TestPlugin", "Plugins\Probel.NDoctor.TestPlugin\Probel.NDoctor.TestPlugin.csproj", "{2516A466-5393-4F04-93FF-90F33D653B86}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Probel.NDoctor.Domain.DAL", "Probel.NDoctor.Domain.DAL\Probel.NDoctor.Domain.DAL.csproj", "{3F41BBAB-4D85-46B7-894D-A6CC52E4EB3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +105,16 @@ Global
 		{2516A466-5393-4F04-93FF-90F33D653B86}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{2516A466-5393-4F04-93FF-90F33D653B86}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{2516A466-5393-4F04-93FF-90F33D653B86}.Release|x86.ActiveCfg = Release|Any CPU
+		{3F41BBAB-4D85-46B7-894D-A6CC52E4EB3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F41BBAB-4D85-46B7-894D-A6CC52E4EB3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F41BBAB-4D85-46B7-894D-A6CC52E4EB3E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3F41BBAB-4D85-46B7-894D-A6CC52E4EB3E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3F41BBAB-4D85-46B7-894D-A6CC52E4EB3E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3F41BBAB-4D85-46B7-894D-A6CC52E4EB3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F41BBAB-4D85-46B7-894D-A6CC52E4EB3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F41BBAB-4D85-46B7-894D-A6CC52E4EB3E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3F41BBAB-4D85-46B7-894D-A6CC52E4EB3E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3F41BBAB-4D85-46B7-894D-A6CC52E4EB3E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,5 +127,6 @@ Global
 		{1C0022BB-704E-4871-8998-7867DBC464E9} = {1EBCD093-1FE9-4426-8870-CBB6FB200C9F}
 		{2516A466-5393-4F04-93FF-90F33D653B86} = {2FBB4A49-C4D6-4EF8-BBFA-4DFF8EB99E3E}
 		{6EBEDE6E-8DFB-4B2E-9C04-57DD1E535FDB} = {41D8E2F6-7E09-4F6D-850E-B7CAFA2040B1}
+		{3F41BBAB-4D85-46B7-894D-A6CC52E4EB3E} = {41D8E2F6-7E09-4F6D-850E-B7CAFA2040B1}
 	EndGlobalSection
 EndGlobal

@@ -12,16 +12,15 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+    along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 namespace Probel.NDoctor.Domain.BLL
 {
     /// <summary>
     /// Represents on of the practices managed by nDoctor
     /// </summary>
-    public class Practice 
+    public class Practice
     {
-
         #region Properties
 
         /// <summary>
@@ -30,10 +29,21 @@ namespace Probel.NDoctor.Domain.BLL
         /// <value>
         /// The address.
         /// </value>
-        public Address Address
+        public virtual Address Address
         {
             get;
             set;
+        }
+
+        /// <summary>
+        /// Gets or sets a unique id.
+        /// </summary>
+        /// <value>
+        /// The id.
+        /// </value>
+        public virtual int Id
+        {
+            get; set;
         }
 
         /// <summary>
@@ -42,7 +52,7 @@ namespace Probel.NDoctor.Domain.BLL
         /// <value>
         /// The name.
         /// </value>
-        public string Name
+        public virtual string Name
         {
             get;
             set;
@@ -54,7 +64,7 @@ namespace Probel.NDoctor.Domain.BLL
         /// <value>
         /// The notes.
         /// </value>
-        public string Notes
+        public virtual string Notes
         {
             get;
             set;
@@ -66,7 +76,7 @@ namespace Probel.NDoctor.Domain.BLL
         /// <value>
         /// The phone.
         /// </value>
-        public string Phone
+        public virtual string Phone
         {
             get;
             set;

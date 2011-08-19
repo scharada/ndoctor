@@ -12,36 +12,66 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+    along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System.Collections.Generic;
 namespace Probel.NDoctor.Domain.BLL
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// Represents a role in nDoctor. A role has several tasks and determines what a user can do
     /// </summary>
-    public class Role 
+    public class Role
     {
-        /// <summary>
-        /// Gets or sets the tasks the role has.
-        /// </summary>
-        /// <value>
-        /// The tasks.
-        /// </value>
-        public List<Task> Tasks { get; set; }
+        #region Properties
+
         /// <summary>
         /// Gets or sets the description of the role.
         /// </summary>
         /// <value>
         /// The description.
         /// </value>
-        public string Description { get; set; }
+        public virtual string Description
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets a unique id.
+        /// </summary>
+        /// <value>
+        /// The id.
+        /// </value>
+        public virtual int Id
+        {
+            get; set;
+        }
+
         /// <summary>
         /// Gets or sets the name of the role.
         /// </summary>
         /// <value>
         /// The name.
         /// </value>
-        public string Name { get; set; }
+        public virtual string Name
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the tasks the role has.
+        /// </summary>
+        /// <value>
+        /// The tasks.
+        /// </value>
+        public virtual List<Task> Tasks
+        {
+            get;
+            set;
+        }
+
+        #endregion Properties
     }
 }

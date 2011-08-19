@@ -12,7 +12,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+    along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 namespace Probel.NDoctor.Domain.BLL
 {
@@ -21,42 +21,20 @@ namespace Probel.NDoctor.Domain.BLL
     /// </summary>
     public class User : Person
     {
-        /// <summary>
-        /// Gets or sets the header that will be displayed in the prescriptions or
-        /// other places where a header is needed.
-        /// </summary>
-        /// <value>
-        /// The header.
-        /// </value>
-        public string Header { get; set; }
+        #region Properties
+
         /// <summary>
         /// Gets or sets the role the current user is assigned to.
         /// </summary>
         /// <value>
         /// The assigned role.
         /// </value>
-        public Role AssignedRole { get; set; }
-        /// <summary>
-        /// Gets or sets the practice whereon the current user work.
-        /// </summary>
-        /// <value>
-        /// The practice.
-        /// </value>
-        public Practice Practice { get; set; }
-        /// <summary>
-        /// Gets or sets the login of the user.
-        /// </summary>
-        /// <value>
-        /// The login.
-        /// </value>
-        public string Login { get; set; }
-        /// <summary>
-        /// Gets or sets the password of the user.
-        /// </summary>
-        /// <value>
-        /// The password.
-        /// </value>
-        public string Password { get; set; }
+        public virtual Role AssignedRole
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// Gets or sets a string representing how the name of the user should
         /// be displayed.
@@ -64,6 +42,72 @@ namespace Probel.NDoctor.Domain.BLL
         /// <value>
         /// The name of the displayed.
         /// </value>
-        public string DisplayedName { get; set; }
+        public virtual string DisplayedName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the header that will be displayed in the prescriptions or
+        /// other places where a header is needed.
+        /// </summary>
+        /// <value>
+        /// The header.
+        /// </value>
+        public virtual string Header
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets a unique id.
+        /// </summary>
+        /// <value>
+        /// The id.
+        /// </value>
+        public virtual int Id
+        {
+            get; set;
+        }
+
+        /// <summary>
+        /// Gets or sets the login of the user.
+        /// </summary>
+        /// <value>
+        /// The login.
+        /// </value>
+        public virtual string Login
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the password of the user.
+        /// </summary>
+        /// <value>
+        /// The password.
+        /// </value>
+        public virtual string Password
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the practice whereon the current user work.
+        /// </summary>
+        /// <value>
+        /// The practice.
+        /// </value>
+        public virtual Practice Practice
+        {
+            get;
+            set;
+        }
+
+        #endregion Properties
     }
 }

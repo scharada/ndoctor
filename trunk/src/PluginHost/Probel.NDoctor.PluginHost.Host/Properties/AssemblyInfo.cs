@@ -14,7 +14,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+    along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #endregion Header
@@ -59,18 +59,5 @@ using System.Windows;
     // app, or any theme specific resource dictionaries)
 )]
 
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
-
 // Log4net
-[assembly: log4net.Config.XmlConfigurator(ConfigFile = "Probel.NDoctor.PluginHost.Host.log4net.config", Watch = true)]
+[assembly: log4net.Config.XmlConfigurator(ConfigFile = "Probel.NDoctor.PluginHost.Host.exe.log4net", Watch = true)]

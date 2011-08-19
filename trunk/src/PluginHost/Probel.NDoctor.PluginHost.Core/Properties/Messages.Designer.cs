@@ -61,20 +61,20 @@ namespace Probel.NDoctor.PluginHost.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occured during the setup of the plugins..
+        /// </summary>
+        internal static string Ex_PluginException {
+            get {
+                return ResourceManager.GetString("Ex_PluginException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Managers.
         /// </summary>
         internal static string Msg_GroupManager {
             get {
                 return ResourceManager.GetString("Msg_GroupManager", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occured during the setup of the plugins..
-        /// </summary>
-        internal static string Msg_PluginException {
-            get {
-                return ResourceManager.GetString("Msg_PluginException", resourceCulture);
             }
         }
     }

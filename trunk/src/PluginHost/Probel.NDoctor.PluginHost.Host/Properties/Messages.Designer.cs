@@ -61,11 +61,56 @@ namespace Probel.NDoctor.PluginHost.Host.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Application started.
+        ///   Looks up a localized string similar to An error occured during the initial configuration. {0}.
         /// </summary>
-        internal static string Msg_ApplicationStarted {
+        internal static string Ex_AppConfigurationException {
             get {
-                return ResourceManager.GetString("Msg_ApplicationStarted", resourceCulture);
+                return ResourceManager.GetString("Ex_AppConfigurationException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configuring nHibernate....
+        /// </summary>
+        internal static string Msg_ConfiguringNHibernate {
+            get {
+                return ResourceManager.GetString("Msg_ConfiguringNHibernate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configuring plugins....
+        /// </summary>
+        internal static string Msg_ConfiguringPlugins {
+            get {
+                return ResourceManager.GetString("Msg_ConfiguringPlugins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occured when configuring nHibernate..
+        /// </summary>
+        internal static string Msg_ErrorOccuredOnNHibernateConfig {
+            get {
+                return ResourceManager.GetString("Msg_ErrorOccuredOnNHibernateConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occured when configuring the plugins. {0}.
+        /// </summary>
+        internal static string Msg_ErrorOccuredOnPluginConfig {
+            get {
+                return ResourceManager.GetString("Msg_ErrorOccuredOnPluginConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ready..
+        /// </summary>
+        internal static string Msg_Ready {
+            get {
+                return ResourceManager.GetString("Msg_Ready", resourceCulture);
             }
         }
     }

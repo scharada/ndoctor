@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,13 +12,8 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+    along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-// The following code is inspired by the work of Josh Smith
-// http://joshsmithonwpf.wordpress.com/
-
-#endregion Header
-
 namespace Probel.NDoctor.PluginHost.Core
 {
     using System;

@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,7 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Msg_ApplicationStarted" xml:space="preserve">
-    <value>Application started</value>
+  <data name="Ex_AppConfigurationException" xml:space="preserve">
+    <value>An error occured during the initial configuration. {0}</value>
+  </data>
+  <data name="Msg_ConfiguringNHibernate" xml:space="preserve">
+    <value>Configuring nHibernate...</value>
+  </data>
+  <data name="Msg_ConfiguringPlugins" xml:space="preserve">
+    <value>Configuring plugins...</value>
+  </data>
+  <data name="Msg_ErrorOccuredOnNHibernateConfig" xml:space="preserve">
+    <value>An error occured when configuring nHibernate.</value>
+  </data>
+  <data name="Msg_ErrorOccuredOnPluginConfig" xml:space="preserve">
+    <value>An error occured when configuring the plugins. {0}</value>
+  </data>
+  <data name="Msg_Ready" xml:space="preserve">
+    <value>Ready.</value>
   </data>
 </root>
