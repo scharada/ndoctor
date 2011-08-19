@@ -140,13 +140,13 @@
       <Project>{6EBEDE6E-8DFB-4B2E-9C04-57DD1E535FDB}</Project>
       <Name>Progebel.NDoctor.Domain.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Domain\Probel.NDoctor.Domain.DAL\Probel.NDoctor.Domain.DAL.csproj">
+      <Project>{3F41BBAB-4D85-46B7-894D-A6CC52E4EB3E}</Project>
+      <Name>Probel.NDoctor.Domain.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Helpers\Probel.Helpers\Probel.Helpers.csproj">
       <Project>{18F7EA3E-0BF5-430F-9B1D-258BDAB6304E}</Project>
       <Name>Probel.Helpers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Probel.NDoctor.Domain.DAL\Probel.NDoctor.Domain.DAL.csproj">
-      <Project>{3F41BBAB-4D85-46B7-894D-A6CC52E4EB3E}</Project>
-      <Name>Probel.NDoctor.Domain.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Probel.NDoctor.PluginHost.Core\Probel.NDoctor.PluginHost.Core.csproj">
       <Project>{4273D14E-3361-4146-A20B-254F7CB4D3D2}</Project>

@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Probel.Helpers.Test", "Help
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Probel.NDoctor.TestPlugin", "Plugins\Probel.NDoctor.TestPlugin\Probel.NDoctor.TestPlugin.csproj", "{2516A466-5393-4F04-93FF-90F33D653B86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Probel.NDoctor.Domain.DAL", "Probel.NDoctor.Domain.DAL\Probel.NDoctor.Domain.DAL.csproj", "{3F41BBAB-4D85-46B7-894D-A6CC52E4EB3E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Probel.NDoctor.Domain.DAL", "Domain\Probel.NDoctor.Domain.DAL\Probel.NDoctor.Domain.DAL.csproj", "{3F41BBAB-4D85-46B7-894D-A6CC52E4EB3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
