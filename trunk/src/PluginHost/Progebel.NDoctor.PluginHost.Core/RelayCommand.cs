@@ -21,7 +21,7 @@
 
 #endregion Header
 
-namespace Progebel.NDoctor.PluginHost.Core
+namespace Probel.NDoctor.PluginHost.Core
 {
     using System;
     using System.Windows.Input;

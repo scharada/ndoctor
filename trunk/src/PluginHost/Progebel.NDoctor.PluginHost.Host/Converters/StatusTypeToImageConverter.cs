@@ -14,14 +14,14 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Progebel.NDoctor.PluginHost.Host.Converters
+namespace Probel.NDoctor.PluginHost.Host.Converters
 {
     using System;
     using System.Windows.Data;
     using System.Windows.Media.Imaging;
 
-    using Progebel.Helpers.Assertion;
-    using Progebel.NDoctor.PluginHost.Core;
+    using Probel.Helpers.Assertion;
+    using Probel.NDoctor.PluginHost.Core;
 
     public class StatusTypeToImageConverter : IValueConverter
     {
@@ -50,7 +50,7 @@ namespace Progebel.NDoctor.PluginHost.Host.Converters
                     break;
             }
 
-            return new BitmapImage(new Uri("/Progebel.NDoctor.PluginHost.Host;component/" + path, UriKind.Relative));
+            return new BitmapImage(new Uri("/Probel.NDoctor.PluginHost.Host;component/" + path, UriKind.Relative));
         }
 
         [Obsolete("Do not use this feature, it is not implemented.")]

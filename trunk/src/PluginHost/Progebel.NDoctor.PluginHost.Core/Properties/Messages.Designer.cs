@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Progebel.NDoctor.PluginHost.Core.Properties {
+namespace Probel.NDoctor.PluginHost.Core.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Progebel.NDoctor.PluginHost.Core.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Progebel.NDoctor.PluginHost.Core.Properties.Messages", typeof(Messages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Probel.NDoctor.PluginHost.Core.Properties.Messages", typeof(Messages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

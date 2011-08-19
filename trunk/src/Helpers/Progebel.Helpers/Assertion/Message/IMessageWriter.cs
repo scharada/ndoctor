@@ -14,9 +14,9 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Progebel.Helpers.Assertion.Message
+namespace Probel.Helpers.Assertion.Message
 {
-    using Progebel.Helpers.Assertion.Constraint;
+    using Probel.Helpers.Assertion.Constraint;
 
     /// <summary>
     /// It formats the assertion message into a generic way.S

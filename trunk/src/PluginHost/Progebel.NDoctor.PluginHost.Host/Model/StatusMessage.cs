@@ -14,9 +14,9 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Progebel.NDoctor.PluginHost.Host.Model
+namespace Probel.NDoctor.PluginHost.Host.Model
 {
-    using Progebel.NDoctor.PluginHost.Core;
+    using Probel.NDoctor.PluginHost.Core;
 
     /// <summary>
     /// Represents a status message displayed in the status bar

@@ -8,8 +8,8 @@
     <ProjectGuid>{D1CF7F78-2D53-4F67-B064-67E2FBD4A989}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Progebel.Helpers.Test</RootNamespace>
-    <AssemblyName>Progebel.Helpers.Test</AssemblyName>
+    <RootNamespace>Probel.Helpers.Test</RootNamespace>
+    <AssemblyName>Probel.Helpers.Test</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Progebel.NDoctor.PluginHost.Core
+namespace Probel.NDoctor.PluginHost.Core
 {
     using System;
 
@@ -63,6 +63,11 @@ namespace Progebel.NDoctor.PluginHost.Core
         #region Methods
 
         /// <summary>
+        /// Save the state of the plugin.
+        /// </summary>
+        void Save();
+
+        /// <summary>
         /// Setups the plugin. Typically, loads the plugin in memory
         /// </summary>
         void Setup();
@@ -71,11 +76,6 @@ namespace Progebel.NDoctor.PluginHost.Core
         /// Displays the plugin into the GUI.
         /// </summary>
         void Show();
-
-        /// <summary>
-        /// Save the state of the plugin.
-        /// </summary>
-        void Save();
 
         void Validate(Version databaseVersion);
 

@@ -14,14 +14,14 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Progebel.NDoctor.TestPlugin
+namespace Probel.NDoctor.TestPlugin
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.Composition;
 
-    using Progebel.NDoctor.PluginHost.Core;
-    using Progebel.NDoctor.TestPlugin.Properties;
+    using Probel.NDoctor.PluginHost.Core;
+    using Probel.NDoctor.TestPlugin.Properties;
 
     [Export(typeof(IPlugin))]
     public class CustomPlugin : Plugin
@@ -70,18 +70,19 @@ namespace Progebel.NDoctor.TestPlugin
         #region Methods
 
         /// <summary>
-        /// Display the plugin with an error message saying the plugin is on error.
-        /// </summary>
-        protected override void DisplayGuiOnError()
-        {
-            throw new ApplicationException("The plugin 'CustomPlugin' is on error");
-        }
-        /// <summary>
         /// Save the state of the plugin.
         /// </summary>
         public override void Save()
         {
             // Do nothing
+        }
+
+        /// <summary>
+        /// Display the plugin with an error message saying the plugin is on error.
+        /// </summary>
+        protected override void DisplayGuiOnError()
+        {
+            throw new ApplicationException("The plugin 'CustomPlugin' is on error");
         }
 
         #endregion Methods

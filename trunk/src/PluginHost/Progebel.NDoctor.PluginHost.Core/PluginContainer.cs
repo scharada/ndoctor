@@ -14,14 +14,14 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Progebel.NDoctor.PluginHost.Core
+namespace Probel.NDoctor.PluginHost.Core
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    using Progebel.Helpers.Assertion;
-    using Progebel.NDoctor.PluginHost.Core.Exceptions;
+    using Probel.Helpers.Assertion;
+    using Probel.NDoctor.PluginHost.Core.Exceptions;
 
     public class PluginContainer
     {

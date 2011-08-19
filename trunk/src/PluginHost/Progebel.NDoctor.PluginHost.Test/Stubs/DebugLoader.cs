@@ -14,11 +14,11 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Progebel.NDoctor.PluginHost.Test.Stubs
+namespace Probel.NDoctor.PluginHost.Test.Stubs
 {
     using System.Collections.Generic;
 
-    using Progebel.NDoctor.PluginHost.Core;
+    using Probel.NDoctor.PluginHost.Core;
 
     public class DebugLoader : IPluginLoader
     {

@@ -14,12 +14,12 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Progebel.NDoctor.PluginHost.Core.Exceptions
+namespace Probel.NDoctor.PluginHost.Core.Exceptions
 {
     using System;
     using System.Runtime.Serialization;
 
-    using Progebel.NDoctor.PluginHost.Core.Properties;
+    using Probel.NDoctor.PluginHost.Core.Properties;
 
     [Serializable]
     public class PluginException : Exception

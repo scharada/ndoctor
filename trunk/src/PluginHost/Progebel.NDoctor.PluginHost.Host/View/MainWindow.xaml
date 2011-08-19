@@ -1,15 +1,15 @@
-﻿<ribbon:RibbonWindow x:Class="Progebel.NDoctor.PluginHost.Host.View.MainWindow"
+﻿<ribbon:RibbonWindow x:Class="Probel.NDoctor.PluginHost.Host.View.MainWindow"
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                      
 		xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
-        xmlns:ViewModel="clr-namespace:Progebel.NDoctor.PluginHost.Host.ViewModel"
-        xmlns:Model="clr-namespace:Progebel.NDoctor.PluginHost.Host.Model"
-        xmlns:Converter="clr-namespace:Progebel.NDoctor.PluginHost.Host.Converters"
+        xmlns:ViewModel="clr-namespace:Probel.NDoctor.PluginHost.Host.ViewModel"
+        xmlns:Model="clr-namespace:Probel.NDoctor.PluginHost.Host.Model"
+        xmlns:Converter="clr-namespace:Probel.NDoctor.PluginHost.Host.Converters"
                      
 		Title="nDoctor"
 		x:Name="RibbonWindow"
-		Width="640" Height="480" Initialized="RibbonWindow_Initialized" Icon="/Progebel.NDoctor.PluginHost.Host;component/Images/Icon.ico">
+		Width="640" Height="480" Initialized="RibbonWindow_Initialized" Icon="/Probel.NDoctor.PluginHost.Host;component/Images/Icon.ico">
     
     <Window.Resources>
         <Converter:StatusTypeToImageConverter x:Key="statusconverter" />
@@ -26,11 +26,11 @@
                        Grid.Row="0">
             <ribbon:Ribbon.ApplicationMenu>
                 <ribbon:RibbonApplicationMenu x:Name="RibbonApplicationMenu" 
-											  SmallImageSource="/Progebel.NDoctor.PluginHost.Host;component/Images\ApplicationMenu.png">
+											  SmallImageSource="/Probel.NDoctor.PluginHost.Host;component/Images\ApplicationMenu.png">
                     <ribbon:RibbonSeparator />
                     <ribbon:RibbonApplicationMenuItem Header="Quit"
                                               Command="Model:Commands.Shutdown"
-                                              ImageSource="/Progebel.NDoctor.PluginHost.Host;component/Images\Exit.png"/>
+                                              ImageSource="/Probel.NDoctor.PluginHost.Host;component/Images\Exit.png"/>
                 </ribbon:RibbonApplicationMenu>
             </ribbon:Ribbon.ApplicationMenu>
 
@@ -38,15 +38,15 @@
 							  Header="Home">
                 <ribbon:RibbonGroup x:Name="SessionGroup" 
 									Header="Session">
-                    <ribbon:RibbonButton LargeImageSource="/Progebel.NDoctor.PluginHost.Host;component/Images\Save.png"
+                    <ribbon:RibbonButton LargeImageSource="/Probel.NDoctor.PluginHost.Host;component/Images\Save.png"
 										 Label="Save session" />
-                    <ribbon:RibbonButton SmallImageSource="/Progebel.NDoctor.PluginHost.Host;component/Images\Search.png"
+                    <ribbon:RibbonButton SmallImageSource="/Probel.NDoctor.PluginHost.Host;component/Images\Search.png"
 										  Label="Find Patient"/>
-                    <ribbon:RibbonButton SmallImageSource="/Progebel.NDoctor.PluginHost.Host;component/Images\Close.png"
+                    <ribbon:RibbonButton SmallImageSource="/Probel.NDoctor.PluginHost.Host;component/Images\Close.png"
 										 Label="Close session"/>
-                    <ribbon:RibbonButton SmallImageSource="/Progebel.NDoctor.PluginHost.Host;component/Images\NewUser.png"
+                    <ribbon:RibbonButton SmallImageSource="/Probel.NDoctor.PluginHost.Host;component/Images\NewUser.png"
 										 Label="New patient" />
-                    <ribbon:RibbonButton SmallImageSource="/Progebel.NDoctor.PluginHost.Host;component/Images\Delete.png"
+                    <ribbon:RibbonButton SmallImageSource="/Probel.NDoctor.PluginHost.Host;component/Images\Delete.png"
 										 Label="Delete patient" />
                 </ribbon:RibbonGroup>
                 <ribbon:RibbonGroup x:Name="ManagersGroup" 
@@ -58,7 +58,7 @@
                               ContextualTabGroupHeader="Context"
                               Visibility="Hidden">
                 <ribbon:RibbonGroup x:Name="ContextGroup">
-                    <ribbon:RibbonButton LargeImageSource="/Progebel.NDoctor.PluginHost.Host;component/Images\Save.png"
+                    <ribbon:RibbonButton LargeImageSource="/Probel.NDoctor.PluginHost.Host;component/Images\Save.png"
 										 Label="Save session" />
                 </ribbon:RibbonGroup>
             </ribbon:RibbonTab>

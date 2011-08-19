@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Progebel.NDoctor.PluginHost.Host.View
+namespace Probel.NDoctor.PluginHost.Host.View
 {
     using System;
     using System.Windows;
@@ -22,8 +22,8 @@ namespace Progebel.NDoctor.PluginHost.Host.View
 
     using Microsoft.Windows.Controls.Ribbon;
 
-    using Progebel.NDoctor.PluginHost.Core;
-    using Progebel.NDoctor.PluginHost.Host.ViewModel;
+    using Probel.NDoctor.PluginHost.Core;
+    using Probel.NDoctor.PluginHost.Host.ViewModel;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml

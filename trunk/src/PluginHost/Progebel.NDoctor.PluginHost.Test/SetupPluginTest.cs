@@ -14,15 +14,15 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Progebel.NDoctor.PluginHost.Test
+namespace Probel.NDoctor.PluginHost.Test
 {
     using System;
     using System.Collections.Generic;
 
     using NUnit.Framework;
 
-    using Progebel.NDoctor.PluginHost.Core;
-    using Progebel.NDoctor.PluginHost.Test.Stubs;
+    using Probel.NDoctor.PluginHost.Core;
+    using Probel.NDoctor.PluginHost.Test.Stubs;
 
     using Rhino.Mocks;
 

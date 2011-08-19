@@ -14,13 +14,13 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Progebel.NDoctor.PluginHost.Core
+namespace Probel.NDoctor.PluginHost.Core
 {
     using System;
     using System.Windows.Controls;
 
-    using Progebel.Helpers.Assertion;
-    using Progebel.NDoctor.PluginHost.Core.Properties;
+    using Probel.Helpers.Assertion;
+    using Probel.NDoctor.PluginHost.Core.Properties;
 
     public abstract class Plugin : IPlugin
     {
@@ -131,6 +131,11 @@ namespace Progebel.NDoctor.PluginHost.Core
         #region Methods
 
         /// <summary>
+        /// Save the state of the plugin.
+        /// </summary>
+        public abstract void Save();
+
+        /// <summary>
         /// Displays the plugin into the GUI.
         /// </summary>
         public virtual void Setup()
@@ -173,11 +178,6 @@ namespace Progebel.NDoctor.PluginHost.Core
         /// Display the plugin with an error message saying the plugin is on error.
         /// </summary>
         protected abstract void DisplayGuiOnError();
-
-        /// <summary>
-        /// Save the state of the plugin.
-        /// </summary>
-        public abstract void Save();
 
         /// <summary>
         /// Display the gui items of the plugin into the host.

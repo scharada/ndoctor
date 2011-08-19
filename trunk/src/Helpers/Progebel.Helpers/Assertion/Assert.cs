@@ -14,12 +14,12 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Progebel.Helpers.Assertion
+namespace Probel.Helpers.Assertion
 {
     using System;
 
-    using Progebel.Helpers.Assertion.Constraint;
-    using Progebel.Helpers.Assertion.Message;
+    using Probel.Helpers.Assertion.Constraint;
+    using Probel.Helpers.Assertion.Message;
 
     /// <summary>
     /// Makes assertions in the code to check the values

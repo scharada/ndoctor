@@ -14,15 +14,15 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Progebel.Helpers.Test
+namespace Probel.Helpers.Test
 {
     using System;
 
     using NUnit.Framework;
 
-    using ContractAssert = Progebel.Helpers.Assertion.Assert;
+    using ContractAssert = Probel.Helpers.Assertion.Assert;
 
-    using ContractException = Progebel.Helpers.Assertion.AssertionException;
+    using ContractException = Probel.Helpers.Assertion.AssertionException;
 
     using NUnitAssert = NUnit.Framework.Assert;
 
@@ -89,7 +89,7 @@ namespace Progebel.Helpers.Test
         [Test]
         public void TestIsFalseConstraint_Failed()
         {
-            Progebel.Helpers.Assertion.Assert.IsFalse(true);
+            Probel.Helpers.Assertion.Assert.IsFalse(true);
         }
 
         [Test]
@@ -141,13 +141,13 @@ namespace Progebel.Helpers.Test
         [Test]
         public void TestOfTypeConstraint_Failed()
         {
-            Progebel.Helpers.Assertion.Assert.OfType(typeof(DateTime), 4);
+            Probel.Helpers.Assertion.Assert.OfType(typeof(DateTime), 4);
         }
 
         [Test]
         public void TestOfTypeConstraint_Succeeded()
         {
-            Progebel.Helpers.Assertion.Assert.OfType(typeof(DateTime), DateTime.Now);
+            Probel.Helpers.Assertion.Assert.OfType(typeof(DateTime), DateTime.Now);
         }
 
         #endregion Methods

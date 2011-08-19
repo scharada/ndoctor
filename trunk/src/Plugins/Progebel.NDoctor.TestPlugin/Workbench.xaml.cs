@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Progebel.NDoctor.TestPlugin
+namespace Probel.NDoctor.TestPlugin
 {
     using System;
     using System.Windows.Controls;

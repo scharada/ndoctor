@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Progebel.NDoctor.PluginHost.Host.Properties {
+namespace Probel.NDoctor.PluginHost.Host.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

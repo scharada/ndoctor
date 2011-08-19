@@ -1,11 +1,14 @@
-﻿
-using System.Windows;
-using System.Windows.Input;
-using Progebel.NDoctor.PluginHost.Core;
-namespace Progebel.NDoctor.PluginHost.Host.Model
+﻿namespace Probel.NDoctor.PluginHost.Host.Model
 {
+    using System.Windows;
+    using System.Windows.Input;
+
+    using Probel.NDoctor.PluginHost.Core;
+
     public static class Commands
     {
+        #region Properties
+
         public static ICommand Shutdown
         {
             get
@@ -13,5 +16,7 @@ namespace Progebel.NDoctor.PluginHost.Host.Model
                 return new RelayCommand(() => Application.Current.Shutdown(), () => true);
             }
         }
+
+        #endregion Properties
     }
 }

@@ -26,11 +26,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Progebel.NDoctor.TestPlugin")]
+[assembly: AssemblyTitle("Probel.NDoctor.TestPlugin")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("Progebel.NDoctor.TestPlugin")]
+[assembly: AssemblyProduct("Probel.NDoctor.TestPlugin")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

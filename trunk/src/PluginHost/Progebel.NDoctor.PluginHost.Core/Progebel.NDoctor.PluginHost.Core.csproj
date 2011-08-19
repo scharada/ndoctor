@@ -8,8 +8,8 @@
     <ProjectGuid>{4273D14E-3361-4146-A20B-254F7CB4D3D2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Progebel.NDoctor.PluginHost.Core</RootNamespace>
-    <AssemblyName>Progebel.NDoctor.PluginHost.Core</AssemblyName>
+    <RootNamespace>Probel.NDoctor.PluginHost.Core</RootNamespace>
+    <AssemblyName>Probel.NDoctor.PluginHost.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>

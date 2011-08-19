@@ -14,12 +14,13 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Progebel.NDoctor.PluginHost.Host.ViewModel
+namespace Probel.NDoctor.PluginHost.Host.ViewModel
 {
-    using Progebel.NDoctor.PluginHost.Core;
-    using Progebel.NDoctor.PluginHost.Host.Model;
+    using Probel.NDoctor.Domain.BLL;
+    using Probel.NDoctor.PluginHost.Core;
+    using Probel.NDoctor.PluginHost.Host.Model;
 
-    public class StatusMessageVM : ViewModelBase
+    public class StatusMessageVM : Entity
     {
         #region Fields
 

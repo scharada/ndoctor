@@ -14,11 +14,11 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Progebel.NDoctor.PluginHost.Test.Stubs
+namespace Probel.NDoctor.PluginHost.Test.Stubs
 {
     using System;
 
-    using Progebel.NDoctor.PluginHost.Core;
+    using Probel.NDoctor.PluginHost.Core;
 
     public class PluginStub : Plugin
     {
@@ -43,15 +43,15 @@ namespace Progebel.NDoctor.PluginHost.Test.Stubs
 
         #region Methods
 
-        protected override void DisplayGuiOnError()
-        {
-            //Do nothing
-        }
-
         /// <summary>
         /// Save the state of the plugin.
         /// </summary>
         public override void Save()
+        {
+            //Do nothing
+        }
+
+        protected override void DisplayGuiOnError()
         {
             //Do nothing
         }
