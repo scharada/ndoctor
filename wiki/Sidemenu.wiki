@@ -2,6 +2,7 @@
   * Domain
    * [GlobalDomain Whole domain]
    * [UserDomain User]
+   * [PatientDomain Patient]
   * [GeneralDesign General Design]
   * [PluginDesign Plugin Design]
  * Requirements
