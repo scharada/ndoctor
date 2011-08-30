@@ -12,6 +12,6 @@ The plugin repository is a directory _Plugins_ in the application root. Each plu
 The config file is a XML file that contains the configuration of the plugin
 
 == Class diagrams ==
-https://lh5.googleusercontent.com/-xKDudSjahLk/Tl0MoaVSLCI/AAAAAAAAADU/JfVC_UqN2Ts/Plugins%252520design.jpg
+https://lh5.googleusercontent.com/-rtaujoR02b0/Tl0NafXWkFI/AAAAAAAAADo/c1lRvPsF8R8/Plugins%252520design.jpg
 == Sequence diagrams ==
 https://lh4.googleusercontent.com/-n1ngLNw1JmE/Tl0MoTpBtqI/AAAAAAAAADY/3Tc1RXgbih4/Load%252520Plugins.jpg
