@@ -2,7 +2,6 @@
 = Introduction =
 Here's the list of all tools used to develop nDoctor
 
-
 = Tools =
  * [http://staruml.sourceforge.net/en/ StarUml] 
  * [http://pencil.evolus.vn/en-US/Home.aspx Pencil] 
@@ -17,6 +16,8 @@ Here's the list of all tools used to develop nDoctor
  * [http://www.voidtools.com/ Everything]
  * [http://getgreenshot.org/ Greenshot]
  * [http://www.7-zip.org/ 7-Zip]
+ * [http://www.sqlite.org/ SQLite]
+
 = API =
  * [http://structuremap.net/structuremap/ StructureMap]
  * [http://automapper.codeplex.com/ Automapper] 
@@ -31,6 +32,3 @@ Here's the list of all tools used to develop nDoctor
  * [http://visualstudiogallery.msdn.microsoft.com/d0d33361-18e2-46c0-8ff2-4adea1e34fef Productivity Poser Tools]
  * [http://visualstudiogallery.msdn.microsoft.com/c8164c71-0836-4471-80ce-633383031099 Visual NUnit 2010]
  * [http://submain.com/products/ghostdoc.aspx Ghostdoc]
-
-= Miscellaneous =
- * [http://www.sqlite.org/ SQLite]
