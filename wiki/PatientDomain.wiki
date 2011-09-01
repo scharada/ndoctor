@@ -1,3 +1,3 @@
 #labels Phase-Design
 = Class Diagram =
-https://lh6.googleusercontent.com/-rphSUO-ypAE/Tlu3kLnCwPI/AAAAAAAAADE/IAHzz82iB5g/Patient%252520Domain.jpg
+https://lh6.googleusercontent.com/-yaf2KDUvxXM/Tl_5135zpcI/AAAAAAAAAFQ/kq46-7JqaCA/Patient%252520Domain.jpg
