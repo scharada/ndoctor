@@ -4,10 +4,33 @@ Here's the list of all tools used to develop nDoctor
 
 
 = Tools =
- * [http://staruml.sourceforge.net/en/ StarUml] is used for the UML schemas
- * [http://pencil.evolus.vn/en-US/Home.aspx Pencil] to draw the GUI sketches
- * [http://www.nunit.org nUnit] for the unit tests
- * [http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=11877 WPF Ribbon]
- * [http://structuremap.net/structuremap/ StructureMap] to manage dependency injection
- * [http://visualstudiogallery.msdn.microsoft.com/5647a099-77c9-4a49-91c3-94001828e99e?SRC=VSIDE License Header Manager] to manage the headers in the source files.
+ * [http://staruml.sourceforge.net/en/ StarUml] 
+ * [http://pencil.evolus.vn/en-US/Home.aspx Pencil] 
+ * [http://www.nunit.org nUnit] 
  * [http://www.microsoft.com/download/en/details.aspx?id=11877 Microsoft Ribbon for WPF]
+ * [http://notepad-plus-plus.org/ Notepad++]
+ * [http://www.nunit.org/index.php nUnit]
+ * [http://staruml.sourceforge.net/en/ StarUML]
+ * [http://winmerge.org/ WinMerge]
+ * [http://tortoisesvn.tigris.org/ TortoiseSVN]
+ * [http://technet.microsoft.com/en-gb/sysinternals/bb896653.aspx Process Explorer]
+ * [http://www.voidtools.com/ Everything]
+ * [http://getgreenshot.org/ Greenshot]
+ * [http://www.7-zip.org/ 7-Zip]
+= API =
+ * [http://structuremap.net/structuremap/ StructureMap]
+ * [http://automapper.codeplex.com/ Automapper] 
+ * [http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=11877 WPF Ribbon]
+ * [http://community.jboss.org/wiki/NHibernateForNET nHibernate]
+
+= Visual studio plugins =
+ * [http://ankhsvn.open.collab.net/ AnkhSVN] 
+ * [http://visualstudiogallery.msdn.microsoft.com/5647a099-77c9-4a49-91c3-94001828e99e?SRC=VSIDE License Header Manager]
+ * [http://nuget.codeplex.com/ NuGet] 
+ * [http://visualstudiogallery.msdn.microsoft.com/e5f41ad9-4edc-4912-bca3-91147db95b99 Power Command For Visual Studio 2010]
+ * [http://visualstudiogallery.msdn.microsoft.com/d0d33361-18e2-46c0-8ff2-4adea1e34fef Productivity Poser Tools]
+ * [http://visualstudiogallery.msdn.microsoft.com/c8164c71-0836-4471-80ce-633383031099 Visual NUnit 2010]
+ * [http://submain.com/products/ghostdoc.aspx Ghostdoc]
+
+= Miscellaneous =
+ * [http://www.sqlite.org/ SQLite]
