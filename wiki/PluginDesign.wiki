@@ -3,7 +3,7 @@
 
 The plugin module has these roles
  * It loads the plugins from the repository.
- * It validates the plugins. Tha's, it checks if the version of the plugin is compatible with the version of the plugins host.
+ * It validates the plugins. That's, it checks if the version of the plugin is compatible with the version of the plugins host.
 
 The plugin repository is a directory _Plugins_ in the application root. Each plugin has:
  * Its own directory that contains
