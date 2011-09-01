@@ -13,7 +13,7 @@ The config file is a XML file that contains the configuration of the plugin
 
 == Class diagrams ==
 https://lh5.googleusercontent.com/-JCz7TurlDzg/Tl_5F6r-UUI/AAAAAAAAAE8/9C3TlkbMniU/Plugins%252520design.jpg
-== Visual studio diagram ==
-https://lh6.googleusercontent.com/-mocR7DWk_-M/Tl_7FjjQrBI/AAAAAAAAAFc/pfxSE-xlyXo/Plugins.png
 == Sequence diagrams ==
 https://lh6.googleusercontent.com/-cENM_6zWfxM/Tl_3-8InfHI/AAAAAAAAAEE/EcGh0d_nfsA/Load%252520Plugins.jpg
+== Visual studio diagram ==
+https://lh6.googleusercontent.com/-mocR7DWk_-M/Tl_7FjjQrBI/AAAAAAAAAFc/pfxSE-xlyXo/Plugins.png
