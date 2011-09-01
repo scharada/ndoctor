@@ -1,9 +1,10 @@
-= Table of content =
-  * Design
-   * Domain
-    * [GlobalDomain Whole domain]
-   * [GeneralDesign General Design]
-   * [PluginDesign Plugin Design]
+ * Design
+  * Domain
+   * [GlobalDomain Whole domain]
+   * [UserDomain User]
+   * [PatientDomain Patient]
+  * [GeneralDesign General Design]
+  * [PluginDesign Plugin Design]
  * Requirements
   * [Gui Graphic user interface]
   * [UserSession User's session]
@@ -26,13 +27,3 @@
  * QA
  * Deploy
  * Support
-
-= Index =
-The documentation of nDoctor is divided into these points:
-
- * *Design*         : Project design and key concerns
- * *Requirements*   : Project vision and requirements
- * *Implementation* : Developers' guide
- * *QA*             : Testing plans and QA strategies
- * *Deploy*         : How to install and configure the program
- * *Support*        : Plans for user support and advocacy
