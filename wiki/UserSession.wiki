@@ -9,8 +9,8 @@ When the application user has logged into the application, it opens a _User sess
 It should contain:
 
  * a menu to change the user's information. This information is:
-  * User's name
-  * User' surname
+  * User name
+  * User surname
   * The header that will be used in the printable documents *(Not printable)*
   * The default fee the patient should pay for a meeting *(Not printable)*
   * The address of the user's practice
