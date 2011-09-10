@@ -9,25 +9,25 @@ A *task* is an action the connected user can perform or not depending the assign
 A *role* is a batch of tasks. A user has an assigned role that allows him/her to execute certain tasks.
 
 = Tasks list =
- # UsePatientDataManagerReadOnly
- # UsePatientDataManagerReadWrite
- # UseBmiRecordManagerReadOnly
- # UseBmiRecordManageReadWrite
- # UseFamilyManagerReadOnly
- # UseFamilyManagerWrite
- # UseMedicalRecordManagerReadOnly
- # UseMedicalRecordManagerReadWrite
- # UsePictureManagerReadOnly 
- # UsePictureManagerReadWrite
- # UsePrescriptionManagerReadOnly
- # UsePrescriptionManagerReadWrite
- # UsePathologyMangerReadOnly
- # UsePathologyMangerReadWrite
- # UserCalendarReadOnly
- # UseCalendarReadWrite
- # UseAdministrationManagerReadOnly
- # UseAdministrationManagerReadWrite
- # UseStatisticsManagerReadOnly
- # UseVendorNewsManagerReadOnly
- # UseMedicalPracticeNewsManagerReadOnly
- # UseMedicalPracticeNewsManagerReadWrite
+ # Use Patient Data Manager Read Only
+ # Use Patient Data Manager Read Write
+ # Use BmiRecord Manager Read Only
+ # Use BmiRecord Manage Read Write
+ # Use Family Manager Read Only
+ # Use Family Manager Write
+ # Use Medical Record Manager Read Only
+ # Use Medical Record Manager Read Write
+ # Use Picture Manager Read Only 
+ # Use Picture Manager Read Write
+ # Use Prescription Manager Read Only
+ # Use Prescription Manager Read Write
+ # Use Pathology Manger Read Only
+ # Use Pathology Manger Read Write
+ # Use rCalendar Read Only
+ # Use Calendar Read Write
+ # Use Administration Manager Read Only
+ # Use Administration Manager Read Write
+ # Use Statistics Manager Read Only
+ # Use Vendor News ManagerReadOnly
+ # Use Medical Practice News Manager Read Only
+ # Use Medical Practice News Manager Read Write
