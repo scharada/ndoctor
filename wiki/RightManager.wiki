@@ -28,6 +28,6 @@ A *role* is a batch of tasks. A user has an assigned role that allows him/her to
  # Use Administration Manager Read Only
  # Use Administration Manager Read Write
  # Use Statistics Manager Read Only
- # Use Vendor News ManagerReadOnly
+ # Use Vendor News Manager Read Only
  # Use Medical Practice News Manager Read Only
  # Use Medical Practice News Manager Read Write
