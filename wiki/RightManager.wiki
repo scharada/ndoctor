@@ -1,0 +1,11 @@
+#labels Phase-Requirements
+= Introduction =
+This module allows the user that has the right to utilise this plugin to administrate the rights of the application.
+
+= Rights Hierarchy =
+
+The role manager h is divided into two parts: the roles and the tasks.
+
+A *task* is an action the connected user can perform or not depending the assigned *role* he/she has.
+
+A *role* is a batch of tasks. A user has an assigned role that allows him/her to execute certain tasks.
