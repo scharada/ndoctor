@@ -22,6 +22,8 @@
     * [PracticeNews Medical practice's news]
    * [Statistics Statistics]
    * [Administration Administration]
+    * [PluginsManager Plugins manager]
+    * [RightManager Rights manager]
  * Implementation
   * [Tools Tools]
  * QA
