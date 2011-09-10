@@ -18,3 +18,7 @@ This manages all the data nDoctor uses indirectly.
  # Medical record tag
  # Picture tag
  # Pathology types
+
+= Miscellaneous administration = 
+ # Plugin management
+ # Right management
