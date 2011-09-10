@@ -11,8 +11,8 @@ A *role* is a batch of tasks. A user has an assigned role that allows him/her to
 = Tasks list =
  # Use Patient Data Manager Read Only
  # Use Patient Data Manager Read Write
- # Use BmiRecord Manager Read Only
- # Use BmiRecord Manage Read Write
+ # Use Bmi Record Manager Read Only
+ # Use Bmi Record Manage Read Write
  # Use Family Manager Read Only
  # Use Family Manager Write
  # Use Medical Record Manager Read Only
