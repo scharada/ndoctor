@@ -18,14 +18,3 @@ It should contain:
   * The mobile phone number
   * The email
  * a menu to print a card with all this information.
- * a system to load plugins.
- * a system to manage the rights of the user.
- * a list of modules.
-
-= The sub modules =
-Here's the list of the default modules a user session has
- # Patient's session
- # Calendar
- # News system
- # Data's statistics
- # Administration module.
