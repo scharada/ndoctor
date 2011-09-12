@@ -9,25 +9,26 @@ A *task* is an action the connected user can perform or not depending the assign
 A *role* is a batch of tasks. A user has an assigned role that allows him/her to execute certain tasks.
 
 = Tasks list =
- # Patient Data Manager Read Only           => PatientDataR
- # Patient Data Manager Read Write          => PatientDataRW
- # Bmi Record Manager Read Only             => BmiRecordR
- # Bmi Record Manage Read Write             => BmiRecordRW
- # Family Manager Read Only                 => FamilyR
- # Family Manager Write                     => FamilyRW
- # Medical Record Manager Read Only         => MedicalRecordR
- # Medical Record Manager Read Write        => MedicalRecordRW
- # Picture Manager Read Only                => PictureR
- # Picture Manager Read Write               => PictureRW
- # Prescription Manager Read Only           => PrescriptionR
- # Prescription Manager Read Write          => PrescriptionRW
- # Pathology Manger Read Only               => PathologyR
- # Pathology Manger Read Write              => PathologyRW
- # Calendar Read Only                       => CalendarR
- # Calendar Read Write                      => CalendarRW
- # Administration Manager Read Only         => AdministrationR
- # Administration Manager Read Write        => AdministrationRW
- # Statistics Manager Read Only             => StatisticsR
- # Vendor News Manager Read Only            => VendorNewsR
- # Medical Practice News Manager Read Only  => ApplicationNewR
- # Medical Practice News Manager Read Write => ApplicationNewRW
+||  *Nr* || *Id*             || *Name*                                   ||
+||  1    || PatientDataR     || Patient Data Manager Read Only           ||
+||  2    || PatientDataRW    || Patient Data Manager Read Write          ||
+||  3    || BmiRecordR       || Bmi Record Manager Read Only             ||
+||  4    || BmiRecordRW      || Bmi Record Manage Read Write             ||
+||  5    || FamilyR          || Family Manager Read Only                 ||
+||  6    || FamilyRW         || Family Manager Write                     ||
+||  7    || MedicalRecordR   || Medical Record Manager Read Only         ||
+||  8    || MedicalRecordRW  || Medical Record Manager Read Write        ||
+||  9    || PictureR          || Picture Manager Read Only                ||
+|| 10    || PictureRW        || Picture Manager Read Write               ||
+|| 11    || PrescriptionR    || Prescription Manager Read Only           ||
+|| 12    || PrescriptionRW   || Prescription Manager Read Write          ||
+|| 13    || PathologyR       || Pathology Manger Read Only               ||
+|| 14    || PathologyRW      || Pathology Manger Read Write              ||
+|| 15    || CalendarR        || Calendar Read Only                       ||
+|| 16    || CalendarRW       || Calendar Read Write                      ||
+|| 17    || AdministrationR  || Administration Manager Read Only         ||
+|| 18    || AdministrationRW || Administration Manager Read Write        ||
+|| 19    || StatisticsR      || Statistics Manager Read Only             ||
+|| 20    || VendorNewsR      || Vendor News Manager Read Only            ||
+|| 21    || ApplicationNewR  || Medical Practice News Manager Read Only  ||
+|| 22    || ApplicationNewRW || Medical Practice News Manager Read Write ||
