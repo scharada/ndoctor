@@ -9,25 +9,25 @@ A *task* is an action the connected user can perform or not depending the assign
 A *role* is a batch of tasks. A user has an assigned role that allows him/her to execute certain tasks.
 
 = Tasks list =
- # Patient Data Manager Read Only
- # Patient Data Manager Read Write
- # Bmi Record Manager Read Only
- # Bmi Record Manage Read Write
- # Family Manager Read Only
- # Family Manager Write
- # Medical Record Manager Read Only
- # Medical Record Manager Read Write
- # Picture Manager Read Only 
- # Picture Manager Read Write
- # Prescription Manager Read Only
- # Prescription Manager Read Write
- # Pathology Manger Read Only
- # Pathology Manger Read Write
- # Calendar Read Only
- # Calendar Read Write
- # Administration Manager Read Only
- # Administration Manager Read Write
- # Statistics Manager Read Only
- # Vendor News Manager Read Only
- # Medical Practice News Manager Read Only
- # Medical Practice News Manager Read Write
+ # Patient Data Manager Read Only           => PatientDataR
+ # Patient Data Manager Read Write          => PatientDataRW
+ # Bmi Record Manager Read Only             => BmiRecordR
+ # Bmi Record Manage Read Write             => BmiRecordRW
+ # Family Manager Read Only                 => FamilyR
+ # Family Manager Write                     => FamilyRW
+ # Medical Record Manager Read Only         => MedicalRecordR
+ # Medical Record Manager Read Write        => MedicalRecordRW
+ # Picture Manager Read Only                => PictureR
+ # Picture Manager Read Write               => PictureRW
+ # Prescription Manager Read Only           => PrescriptionR
+ # Prescription Manager Read Write          => PrescriptionRW
+ # Pathology Manger Read Only               => PathologyR
+ # Pathology Manger Read Write              => PathologyRW
+ # Calendar Read Only                       => CalendarR
+ # Calendar Read Write                      => CalendarRW
+ # Administration Manager Read Only         => AdministrationR
+ # Administration Manager Read Write        => AdministrationRW
+ # Statistics Manager Read Only             => StatisticsR
+ # Vendor News Manager Read Only            => VendorNewsR
+ # Medical Practice News Manager Read Only  => ApplicationNewR
+ # Medical Practice News Manager Read Write => ApplicationNewRW
