@@ -3,6 +3,7 @@
    * [GlobalDomain Whole domain]
    * [UserDomain User]
    * [PatientDomain Patient]
+   * [BmiDomain Bmi]
   * [GeneralDesign General Design]
   * [PluginDesign Plugin Design]
  * Requirements
