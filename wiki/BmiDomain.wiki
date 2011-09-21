@@ -1,0 +1,5 @@
+#summary One-sentence summary of this page.
+
+= Class diagram =
+
+https://lh4.googleusercontent.com/-quWOFpacX-Y/TnocOrJDxgI/AAAAAAAAAFw/h0onrlgeEJo/Bmi%252520Domain.jpg
