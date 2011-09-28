@@ -26,7 +26,7 @@
     * [PluginsManager Plugins manager]
     * [RightManager Rights manager]
  * Implementation
-  * [CodeRules Coding rules]
+  * [CodingConventions Coding conventions]
   * [Tools Tools]
  * QA
  * Deploy
