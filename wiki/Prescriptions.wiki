@@ -6,8 +6,11 @@ This manager manages prescriptions and prescription document.
 A prescription is a drug to take and a remark (how the drug should be taken). This manager allows the user to creates prescriptions, print them and store them into the database. A prescription document is a batch of prescriptions. 
 
 = GUI=
-
+== Create new prescriptions ==
 https://docs.google.com/drawings/pub?id=1dLMAxLa8pWUtkXXmSKXOjfLl8KA5Xzwhx-_W2SfN4Z4&w=640&h=480&nonsense=something_that_ends_with.png
+
+== Read prescriptions ==
+https://lh6.googleusercontent.com/-92gi5xwFEls/TpGlLyPhpWI/AAAAAAAAAF4/QI57lWiOsuw/s512/PrescriptionManager%252520%25255BRead%25255D.png
 
 = Features =
 This manager:
