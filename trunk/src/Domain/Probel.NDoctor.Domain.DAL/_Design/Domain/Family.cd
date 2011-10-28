@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.Patient">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <Members>
+      <Method Name="Patient" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AASiAAAABBAAAAIhgAAAAAQgAAAAAAAIEAAgAAQAAAA=</HashCode>
+      <FileName>Entities\Patient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.Relation" Collapsed="true">
+    <Position X="4" Y="1.75" Width="1.5" />
+    <AssociationLine Name="LeftSide" Type="Probel.NDoctor.Domain.DAL.Entities.Patient">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.163" Y="-0.333" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAACAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Entities\Relation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="LeftSide" />
+      <Property Name="RightSide" />
+      <Property Name="Type" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.RelationType">
+    <Position X="6.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\RelationType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

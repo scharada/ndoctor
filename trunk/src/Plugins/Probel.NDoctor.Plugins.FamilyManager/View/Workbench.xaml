@@ -1,0 +1,50 @@
+﻿<Page x:Name="page"
+      x:Class="Probel.NDoctor.Plugins.FamilyManager.View.Workbench"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dto="clr-namespace:Probel.NDoctor.Domain.DTO.Objects;assembly=Probel.NDoctor.Domain.DTO"
+      xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.FamilyManager.View"
+      xmlns:text="clar-namespace:Probel.NDoctor.Plugins.FamilyManager.Translations"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+	Title="Workbench">
+    <StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="26"/>
+                <RowDefinition Height="26"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button   Grid.Column="0" 
+                      Content="{Binding BtnFather}"
+                      Command="{Binding GetFatherRecordCommand}"/>
+
+                <Button   Grid.Column="1" 
+                      Content="{Binding BtnMother}"
+                      Command="{Binding GetMotherRecordCommand}"/>
+
+                <ComboBox Grid.Column="2" 
+                      IsEnabled="{Binding ChildrenEnabled}"
+                      ItemsSource="{Binding Path=Family.Children}"
+                      DisplayMemberPath="DisplayedName"
+                      SelectedItem="{Binding Path=SelectedChild}"/>
+            </Grid>
+
+            <Label Grid.Row="1" 
+               Content="{Binding Path=SelectedMember.DisplayedName}"               
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"/>
+
+            <ctrl:MedicalCabinetView Grid.Row="2"
+                                         DataContext="{Binding Path=MedicalCabinetViewModel}"/>
+        </Grid>
+    </StackPanel>
+</Page>
