@@ -33,6 +33,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
+    using Probel.NDoctor.Plugins.UserSession.Helpers;
 
     public class AddUserViewModel : BaseViewModel
     {
@@ -137,7 +138,11 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                 }
                 this.Host.WriteStatus(StatusType.Info, Messages.Msg_UserAdded);
 
-                if (this.Host.CanNavigateBack) this.Host.NavigateBack();
+                if (this.Host.CanNavigateBack)
+                {
+                    Notifyer.OnUserAdded(this);
+                    this.Host.NavigateBack();
+                }
                 else this.Host.Navigate(new AddUserView());
             }
             catch (Exception ex)

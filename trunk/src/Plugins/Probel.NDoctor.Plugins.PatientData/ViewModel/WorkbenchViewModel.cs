@@ -127,7 +127,12 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         public Tuple<string, Gender> SelectedGender
         {
-            get { return new Tuple<string, Gender>(this.Patient.Gender.Translate(), this.Patient.Gender); }
+            get
+            {
+                return (this.Patient != null)
+                    ? new Tuple<string, Gender>(this.Patient.Gender.Translate(), this.Patient.Gender)
+                    : new Tuple<string, Gender>(Gender.Female.Translate(), Gender.Female);
+            }
             set
             {
                 this.Patient.Gender = value.Item2;

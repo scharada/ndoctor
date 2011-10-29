@@ -41,7 +41,7 @@
                   ItemsSource="{Binding Users, Mode=TwoWay}" 
                   DisplayMemberPath="DisplayedName" 
                   SelectedItem="{Binding Path=SelectedUser, Mode=TwoWay}"
-                  Visibility="{Binding Path=Users.Count, Converter={StaticResource visibilityConverter}}"
+                  Visibility="{Binding Path=Users.Count, Converter={StaticResource visibilityConverter}, UpdateSourceTrigger=PropertyChanged}"
         />
 
         <Button Content="{Binding Source={x:Static Member=text:ConnectionText.MsgCreateAdministrator}}"

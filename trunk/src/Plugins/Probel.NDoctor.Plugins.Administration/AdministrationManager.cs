@@ -116,7 +116,7 @@ namespace Probel.NDoctor.Plugins.Administration
         /// </summary>
         private void BuildContextMenu()
         {
-            this.Logger.WarnFormat("BuildContextMenu is not configured [{0}]", this.GetType());
+            //No context menu
         }
 
         private bool CanNavigate()

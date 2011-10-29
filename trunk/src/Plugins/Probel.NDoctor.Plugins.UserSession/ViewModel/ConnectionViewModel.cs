@@ -26,8 +26,10 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using Probel.NDoctor.Plugins.UserSession.View;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.Helpers.Conversions;
 
     using StructureMap;
+    using Probel.NDoctor.Plugins.UserSession.Helpers;
 
     public class ConnectionViewModel : BaseViewModel
     {
@@ -44,9 +46,12 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         public ConnectionViewModel()
             : base()
         {
+            this.Users = new ObservableCollection<LightUserDto>();
+
             this.ConnectCommand = new RelayCommand(() => this.Connect());
             this.NivigateAddUserCommand = new RelayCommand(() => this.NavigateToAddUer());
 
+            Notifyer.UserAdded += (sender, e) => this.Refresh();
             this.Refresh();
         }
 
@@ -104,7 +109,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             using (component.UnitOfWork)
             {
                 var users = this.component.GetAllUsers();
-                this.Users = new ObservableCollection<LightUserDto>(users);
+                this.Users.Refill(users);
             }
         }
 
