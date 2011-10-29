@@ -32,16 +32,16 @@ namespace Probel.NDoctor.Plugins.PatientSession.Translations
             get { return Messages.Title_ButtonSearch; }
         }
 
+        public static string TitleMostUsed
+        {
+            get { return Messages.Title_MostUsed; }
+        }
+
         public static string TitleWatermark
         {
             get { return Messages.Title_SearchWatermark; }
         }
 
         #endregion Properties
-
-        public static string TitleMostUsed
-        {
-            get { return Messages.Title_MostUsed; }
-        }
     }
 }

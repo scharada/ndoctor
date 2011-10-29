@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -15,19 +17,28 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System;
+#endregion Header
 
 namespace Probel.NDoctor.Plugins.UserSession.Helpers
 {
+    using System;
+
     /// <summary>
     /// Notifies the whole plugin when event occur
     /// </summary>
     public static class Notifyer
     {
+        #region Events
+
         /// <summary>
         /// Occurs when a user is added.
         /// </summary>
         public static event EventHandler UserAdded;
+
+        #endregion Events
+
+        #region Methods
+
         /// <summary>
         /// Called when a user is added.
         /// </summary>
@@ -37,5 +48,7 @@ namespace Probel.NDoctor.Plugins.UserSession.Helpers
             if (UserAdded != null)
                 UserAdded(sender, EventArgs.Empty);
         }
+
+        #endregion Methods
     }
 }
