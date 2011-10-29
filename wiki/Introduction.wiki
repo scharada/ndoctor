@@ -1,0 +1,5 @@
+= In a word... =
+
+nDoctor is an application to manage a medical practice.
+
+[Sidemenu Start reading documentation here...]
