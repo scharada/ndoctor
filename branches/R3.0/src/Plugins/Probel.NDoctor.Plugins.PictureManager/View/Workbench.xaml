@@ -1,0 +1,98 @@
+﻿<Page x:Class="Probel.NDoctor.Plugins.PictureManager.View.Workbench"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:conv="clr-namespace:Probel.NDoctor.View.Plugins.Converters;assembly=Probel.NDoctor.View.Plugins" 
+      xmlns:dto="clr-namespace:Probel.NDoctor.Domain.DTO.Objects;assembly=Probel.NDoctor.Domain.DTO"
+      xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PictureManager.Translations"
+      xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PictureManager.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+	Title="Workbench">
+    <Page.Resources>
+        <conv:ByteArrayToImageConverter x:Key="bytesToImage"/>
+
+        <DataTemplate DataType="{x:Type dto:PictureDto}">
+            <Image Source="{Binding Bitmap, Converter={StaticResource bytesToImage},UpdateSourceTrigger=PropertyChanged}" 
+                   Width="150" 
+                   Height="150"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+        </DataTemplate>
+
+    </Page.Resources>
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Right">
+            <Grid DockPanel.Dock="Top" Width="175">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="26"/>
+                    <RowDefinition Height="26"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <ComboBox Grid.Row="0"  
+					      DisplayMemberPath="Name"
+					      SelectedValuePath="Name"
+                          SelectedItem="{Binding Path=FilterTag}"
+					      ItemsSource="{Binding Path=Tags, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Grid.Row="1" 
+                        Content="{Binding Source={x:Static Member=text:WorkbenchText.TitleSearch}}" 
+                        Command="{Binding FilterPictureCommand}" />
+
+                <ListBox  Grid.Row="2" Grid.ColumnSpan="2"
+                          ItemsSource="{Binding Pictures}"
+                          SelectedItem="{Binding SelectedPicture, Mode=OneWayToSource}"
+                          IsSynchronizedWithCurrentItem="True"/>
+            </Grid>
+        </DockPanel>
+        <Expander DockPanel.Dock="Top"
+                  ExpandDirection="Up"
+                  IsExpanded="{Binding Path=IsInformationExpanded}"
+                  Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderInformation}}">
+            <Grid Height="150">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="26"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox  Grid.Column="0"
+                               DisplayMemberPath="Name"
+                               SelectedValuePath="Name"
+                               SelectedItem="{Binding Path=SelectedTag}"
+                               ItemsSource="{Binding Path=Tags, UpdateSourceTrigger=PropertyChanged}"/>
+                    <ctrl:AddTagView Grid.Column="1"/>
+                </Grid>
+
+                <TextBlock Grid.Row="0" 
+                       Grid.Column="1" 
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center"
+                       Text="{Binding Path=TitleCreationDate}"/>
+
+                <TextBlock Grid.Row="0"
+                       Grid.Column="2" 
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center"
+                       Text="{Binding Path=TitleLastUpdate}"/>
+
+                <TextBox   Grid.Row="1" Grid.ColumnSpan="3" 
+                       Text="{Binding Path=SelectedPicture.Notes, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+            </Grid>
+        </Expander>
+        <Image DockPanel.Dock="Left" 
+               Source="{Binding SelectedPicture.Bitmap, Converter={StaticResource bytesToImage}}"/>
+    </DockPanel>
+</Page>

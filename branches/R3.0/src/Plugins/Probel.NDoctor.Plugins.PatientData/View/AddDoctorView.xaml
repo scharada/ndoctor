@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="Probel.NDoctor.Plugins.PatientData.View.AddDoctorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PatientData.Translations"
+             xmlns:vm="clr-namespace:Probel.NDoctor.Plugins.PatientData.ViewModel"
+             xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PatientData.View"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    <StackPanel>
+        <TextBlock>
+            <Hyperlink Command="{Binding Path=OpenPopupCommand}">
+                <TextBlock Text="{Binding Source={x:Static Member=text:AddDoctorText.TitleAddDoctor}}"/>
+            </Hyperlink>
+        </TextBlock>
+        <Popup IsOpen="{Binding Path=IsPopupOpened}"
+               StaysOpen="False"
+               AllowsTransparency="True">
+            <StackPanel Background="{x:Static SystemColors.InfoBrush}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="60"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0"
+                             Text="{Binding Criteria, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <ctrl:CreateDoctorView Grid.Column="1"/>
+
+                    <Button Grid.Column="2"
+                            Content="{Binding Source={x:Static Member=text:AddDoctorText.BtnSearch}}"
+                            Command="{Binding Path=SearchCommand}"/>
+
+                </Grid>
+                <ListView ItemsSource="{Binding Path=FoundDoctors}"
+                          SelectedItem="{Binding Path=SelectedDoctor}">
+                    <ListView.Resources>
+                        <DataTemplate DataType="{x:Type vm:LightDoctorViewModel}">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0"
+                                           Content="{Binding Source={x:Static Member=text:AddDoctorText.TitleFullName}}"/>
+                                    <Label Grid.Column="1"
+                                           Content="{Binding Path=DisplayedName}"/>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0"
+                                           Content="{Binding Source={x:Static Member=text:AddDoctorText.TitleSpecialisation}}"/>
+                                    <Label Grid.Column="1"
+                                           Content="{Binding Path=Specialisation.Name}"/>
+                                </Grid>
+                                <Button Command="{Binding Path=AddDoctorCommand}" 
+                                        Content="{Binding Source={x:Static Member=text:AddDoctorText.BtnAddDoctor}}"
+                                        Visibility="{Binding Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.Resources>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </StackPanel>
+        </Popup>
+    </StackPanel>
+</UserControl>

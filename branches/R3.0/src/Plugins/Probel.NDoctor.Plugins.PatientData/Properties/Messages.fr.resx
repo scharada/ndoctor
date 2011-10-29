@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Ex_PatientLoadException" xml:space="preserve">
+    <value>Impossible de charger le patient. {0}</value>
+    <comment>Impossible to load the patient. {0}</comment>
+  </data>
+  <data name="Menu_Actions" xml:space="preserve">
+    <value>Actions</value>
+    <comment>Actions</comment>
+  </data>
+  <data name="Menu_File" xml:space="preserve">
+    <value>Fichier</value>
+    <comment>File</comment>
+  </data>
+  <data name="Msg_DataSaved" xml:space="preserve">
+    <value>Informations sauvées</value>
+    <comment>Data saved</comment>
+  </data>
+  <data name="Title_AddressBox" xml:space="preserve">
+    <value>Boîte</value>
+    <comment>Box nr</comment>
+  </data>
+  <data name="Title_AddressPostalCode" xml:space="preserve">
+    <value>Code postal</value>
+    <comment>Postal code</comment>
+  </data>
+  <data name="Title_AddressStreet" xml:space="preserve">
+    <value>Rue</value>
+    <comment>Street</comment>
+  </data>
+  <data name="Title_AddressStreetNr" xml:space="preserve">
+    <value>Numéro</value>
+    <comment>Nr</comment>
+  </data>
+  <data name="Title_Birthdate" xml:space="preserve">
+    <value>Date de naissance</value>
+    <comment>Birthdate</comment>
+  </data>
+  <data name="Title_SeparatorContactData" xml:space="preserve">
+    <value>Informations de contact</value>
+    <comment>Contact data</comment>
+  </data>
+  <data name="Title_ContextMenu" xml:space="preserve">
+    <value>Information patient</value>
+    <comment>Patient data</comment>
+  </data>
+  <data name="Title_DateInscription" xml:space="preserve">
+    <value>Inscription</value>
+    <comment>Inscription</comment>
+  </data>
+  <data name="Title_DateLastUpdate" xml:space="preserve">
+    <value>Dernière màj</value>
+    <comment>Last update</comment>
+  </data>
+  <data name="Title_Doctors" xml:space="preserve">
+    <value>Médecins</value>
+    <comment>Doctors</comment>
+  </data>
+  <data name="Title_Fee" xml:space="preserve">
+    <value>Honoraires</value>
+    <comment>Fee</comment>
+  </data>
+  <data name="Title_FirstName" xml:space="preserve">
+    <value>Prénom</value>
+    <comment>First name</comment>
+  </data>
+  <data name="Title_Gender" xml:space="preserve">
+    <value>Sexe</value>
+    <comment>Gender</comment>
+  </data>
+  <data name="Title_Insurance" xml:space="preserve">
+    <value>Mutuelle</value>
+    <comment>Insurance</comment>
+  </data>
+  <data name="Title_LastName" xml:space="preserve">
+    <value>Nom</value>
+    <comment>Last name</comment>
+  </data>
+  <data name="Title_SeparatorMiscellaneous" xml:space="preserve">
+    <value>Divers</value>
+    <comment>Miscellaneous</comment>
+  </data>
+  <data name="Title_PatientDataManager" xml:space="preserve">
+    <value>Information patient</value>
+    <comment>Patient manager</comment>
+  </data>
+  <data name="Title_PlaceOfBirth" xml:space="preserve">
+    <value>Lieu de naissance</value>
+    <comment>Place of birth</comment>
+  </data>
+  <data name="Title_Practice" xml:space="preserve">
+    <value>Cabinet médical</value>
+    <comment>Medical practice</comment>
+  </data>
+  <data name="Title_PrivateMobile" xml:space="preserve">
+    <value>Gsm privé</value>
+    <comment>Mobile</comment>
+  </data>
+  <data name="Title_PrivatePhone" xml:space="preserve">
+    <value>Tél. privé</value>
+    <comment>Phone</comment>
+  </data>
+  <data name="Title_Profession" xml:space="preserve">
+    <value>Profession</value>
+    <comment>Profession</comment>
+  </data>
+  <data name="Title_ProMobile" xml:space="preserve">
+    <value>Gsm professionnel</value>
+    <comment>Prof. mobile</comment>
+  </data>
+  <data name="Title_ProPhone" xml:space="preserve">
+    <value>Tél. professionnel</value>
+    <comment>Prof. phone</comment>
+  </data>
+  <data name="Title_Reason" xml:space="preserve">
+    <value>Raison</value>
+    <comment>Reason</comment>
+  </data>
+  <data name="Title_Reputation" xml:space="preserve">
+    <value>Réputation</value>
+    <comment>Reputation</comment>
+  </data>
+  <data name="Title_Save" xml:space="preserve">
+    <value>Sauver</value>
+    <comment>Save</comment>
+  </data>
+  <data name="Title_SeparatorPersonalData" xml:space="preserve">
+    <value>Informations personnelles</value>
+    <comment>Personal data</comment>
+  </data>
+  <data name="Title_SeparatorPicture" xml:space="preserve">
+    <value>Photo</value>
+    <comment>Picture</comment>
+  </data>
+  <data name="Title_AddressCity" xml:space="preserve">
+    <value>Ville</value>
+    <comment>City</comment>
+  </data>
+  <data name="Title_TabAddress" xml:space="preserve">
+    <value>Adresse</value>
+    <comment>Address</comment>
+  </data>
+  <data name="Title_TabContact" xml:space="preserve">
+    <value>Contact</value>
+    <comment>Contact</comment>
+  </data>
+  <data name="Title_EmailPrivate" xml:space="preserve">
+    <value>Email privé</value>
+    <comment>Email</comment>
+  </data>
+  <data name="Title_EmailPro" xml:space="preserve">
+    <value>Email prof.</value>
+    <comment>Email prof.</comment>
+  </data>
+  <data name="Msg_ChangePicture" xml:space="preserve">
+    <value>Changer de photo...</value>
+    <comment>Change picture...</comment>
+  </data>
+  <data name="Msg_RecordComplete" xml:space="preserve">
+    <value>Le dossier est complet</value>
+    <comment>Record is complete</comment>
+  </data>
+  <data name="Msg_GenderFemale" xml:space="preserve">
+    <value>Femme</value>
+    <comment>Female</comment>
+  </data>
+  <data name="Msg_GenderMale" xml:space="preserve">
+    <value>Homme</value>
+    <comment>Male</comment>
+  </data>
+  <data name="Msg_ErrorSave" xml:space="preserve">
+    <value>Impossible de sauver le patient. {0}</value>
+    <comment>Impossible to save the patient. {0}</comment>
+  </data>
+  <data name="Header_DoctorSpecialisation" xml:space="preserve">
+    <value>Spécialisation</value>
+    <comment>Specialisation</comment>
+  </data>
+  <data name="Header_DotorName" xml:space="preserve">
+    <value>Nom</value>
+    <comment>Name</comment>
+  </data>
+  <data name="Btn_Search" xml:space="preserve">
+    <value>Chercher</value>
+    <comment>Search</comment>
+  </data>
+  <data name="Title_AddDoctor" xml:space="preserve">
+    <value>Ajouter un médecin à ce patient...</value>
+    <comment>Add a doctor to this patient...</comment>
+  </data>
+  <data name="Title_FullName" xml:space="preserve">
+    <value>Nom</value>
+    <comment>Name</comment>
+  </data>
+  <data name="Title_Specialisation" xml:space="preserve">
+    <value>Spécialisation</value>
+    <comment>Specialisation</comment>
+  </data>
+  <data name="Msg_AskAddDoctor" xml:space="preserve">
+    <value>Voulez-vous ajouter ce médecin à ce patient?</value>
+    <comment>Do you want to add this doctor to this patient?</comment>
+  </data>
+  <data name="Msg_DoctorAded" xml:space="preserve">
+    <value>Médecin ajouté au patient.</value>
+    <comment>Doctor added to the patient.</comment>
+  </data>
+  <data name="Msg_ErrorAddDoctor" xml:space="preserve">
+    <value>Une erreur est survenue pendant l'ajout d'un médecin au patient</value>
+    <comment>An error occured while adding a doctor to the patient</comment>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Question</value>
+    <comment>Question</comment>
+  </data>
+  <data name="Btn_AddDoctor" xml:space="preserve">
+    <value>Lier au patient</value>
+    <comment>Link to patient</comment>
+  </data>
+  <data name="Title_RemoveDoctor" xml:space="preserve">
+    <value>Annuler le lien entre le patient et le médecin</value>
+    <comment>Remove the link between the patient and the doctor</comment>
+  </data>
+  <data name="Msg_AskRemoveLink" xml:space="preserve">
+    <value>Voulez-vous retirer ce lien entre le patient et le médecin?</value>
+    <comment>Do you want to remove the link between the patient and the doctor?</comment>
+  </data>
+  <data name="Msg_DoctorRemoved" xml:space="preserve">
+    <value>Lien retiré</value>
+    <comment>Link removed</comment>
+  </data>
+  <data name="Msg_ErrorRemovingDoctor" xml:space="preserve">
+    <value>Une erreur est survenue pendant la suppression d'un lien</value>
+    <comment>An error occured while removing the link</comment>
+  </data>
+  <data name="Title_New" xml:space="preserve">
+    <value>Nouv.</value>
+    <comment>New</comment>
+  </data>
+  <data name="Btn_Add" xml:space="preserve">
+    <value>Ajouter</value>
+    <comment>Add</comment>
+  </data>
+  <data name="Msg_ErrorOccured" xml:space="preserve">
+    <value>Une erreur est survenue. Vérifier les logs pour plus d'informations.</value>
+    <comment>An error occured. Check the logs for further information.</comment>
+  </data>
+  <data name="Title_OperationDone" xml:space="preserve">
+    <value>L'opération s'est déroulée avec succès.</value>
+    <comment>The operation succeeded.</comment>
+  </data>
+  <data name="Title_Data" xml:space="preserve">
+    <value>Informations</value>
+    <comment>Data</comment>
+  </data>
+  <data name="Title_Name" xml:space="preserve">
+    <value>Nom</value>
+    <comment>Name</comment>
+  </data>
+  <data name="Title_Notes" xml:space="preserve">
+    <value>Notes</value>
+    <comment>Notes</comment>
+  </data>
+  <data name="Title_Phone" xml:space="preserve">
+    <value>Tél.</value>
+    <comment>Phone</comment>
+  </data>
+</root>

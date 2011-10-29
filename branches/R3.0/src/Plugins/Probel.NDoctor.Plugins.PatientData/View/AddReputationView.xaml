@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Probel.NDoctor.Plugins.PatientData.View.AddReputationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                          xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PatientData.Translations"
+             mc:Ignorable="d">
+    <StackPanel>
+        <Button Command="{Binding Path=ShowPopupCommand}" Width="20" Height="20">
+            <Image Source="/Probel.NDoctor.Plugins.PatientData;Component/Images/Plus.png"/>
+        </Button>
+        <Popup IsOpen="{Binding IsPopupOpened}"
+               StaysOpen="False"
+               AllowsTransparency="True">
+            <StackPanel>
+                <TextBox Text="{Binding Path=Reputation.Name, UpdateSourceTrigger=PropertyChanged}"
+                         MinWidth="100"/>
+                <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnAdd}}"
+                        Command="{Binding Path=AddCommand}"/>
+            </StackPanel>
+        </Popup>
+    </StackPanel>
+</UserControl>
