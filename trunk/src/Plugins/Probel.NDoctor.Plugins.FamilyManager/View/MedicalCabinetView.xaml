@@ -6,39 +6,42 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:bhv="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
+    xmlns:ctrl="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
 	mc:Ignorable="d"
 	d:DesignHeight="300"
 	d:DesignWidth="300">
-	<StackPanel>
-		<Grid>
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition
+    <DockPanel>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
 					Width="*" />
-				<ColumnDefinition
+                <ColumnDefinition
 					Width="*" />
-			</Grid.ColumnDefinitions>
-			<Grid.RowDefinitions>
-				<RowDefinition
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition
 					Height="26" />
-			</Grid.RowDefinitions>
-			
-			<ComboBox
+            </Grid.RowDefinitions>
+
+            <ComboBox
 				Grid.Row="0"
 				Grid.Column="0"
 				ItemsSource="{Binding Path=MedicalRecordCabinet.Folders}"
 				SelectedItem="{Binding Path=SelectedFolder}"
 				DisplayMemberPath="Name"
 				SelectedIndex="0" />
-			
-			<ComboBox
+
+            <ComboBox
 				Grid.Row="0"
 				Grid.Column="1"
 				ItemsSource="{Binding Path=SelectedFolder.Records}"
 				SelectedItem="{Binding Path=SelectedRecord}"
 				DisplayMemberPath="Name"
 				SelectedIndex="0" />
-		</Grid>
-		<WebBrowser
-			bhv:WebBrowserBehaviour.Html="{Binding Path=SelectedRecord.Html}" />
-	</StackPanel>
+        </Grid>
+        <ScrollViewer>
+            <ctrl:RichTextBox IsReadOnly="True"
+                              Text="{Binding Path=SelectedRecord.Html}"/>
+        </ScrollViewer>
+    </DockPanel>
 </UserControl>

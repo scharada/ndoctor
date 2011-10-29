@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D66CE619-F9E3-4875-80D7-4C5710977E00}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Probel.NDoctor.View.Core</RootNamespace>
     <AssemblyName>Probel.NDoctor.View.Core</AssemblyName>

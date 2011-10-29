@@ -10,8 +10,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
 	Title="Workbench">
-    <StackPanel>
-        <Grid>
+    <DockPanel>
+        <Grid DockPanel.Dock="Top">
             <Grid.RowDefinitions>
                 <RowDefinition Height="26"/>
                 <RowDefinition Height="26"/>
@@ -42,9 +42,7 @@
                Content="{Binding Path=SelectedMember.DisplayedName}"               
                HorizontalAlignment="Center"
                VerticalAlignment="Center"/>
-
-            <ctrl:MedicalCabinetView Grid.Row="2"
-                                         DataContext="{Binding Path=MedicalCabinetViewModel}"/>
         </Grid>
-    </StackPanel>
+        <ctrl:MedicalCabinetView DataContext="{Binding Path=MedicalCabinetViewModel}"/>
+    </DockPanel>
 </Page>

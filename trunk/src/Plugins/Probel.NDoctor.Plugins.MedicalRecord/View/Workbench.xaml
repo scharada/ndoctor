@@ -81,11 +81,13 @@
                 </TreeView.ItemContainerStyle>
             </TreeView>
         </DockPanel>
-        <ctrl:RichTextBox DockPanel.Dock="Right"
+        <ScrollViewer>
+            <ctrl:RichTextBox DockPanel.Dock="Right"
                           Text="{Binding Path=SelectedRecord.Html, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-            <ctrl:RichTextBoxFormatBarManager.FormatBar>
-                <ctrl:RichTextBoxFormatBar />
-            </ctrl:RichTextBoxFormatBarManager.FormatBar>
-        </ctrl:RichTextBox>
+                <ctrl:RichTextBoxFormatBarManager.FormatBar>
+                    <ctrl:RichTextBoxFormatBar />
+                </ctrl:RichTextBoxFormatBarManager.FormatBar>
+            </ctrl:RichTextBox>
+        </ScrollViewer>
     </DockPanel>
 </Page>

@@ -179,13 +179,19 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                     var user = this.component.LoadUser(Host.ConnectedUser);
                     this.User = user;
 
-                    this.SelectedPractice = (from p in this.Practices
-                                             where p.Id == this.User.Practice.Id
-                                             select p).FirstOrDefault();
+                    if (this.User.Practice != null)
+                    {
+                        this.SelectedPractice = (from p in this.Practices
+                                                 where p.Id == this.User.Practice.Id
+                                                 select p).FirstOrDefault();
+                    }
 
-                    this.SelectedRole = (from r in this.Roles
-                                         where r.Id == this.User.AssignedRole.Id
-                                         select r).FirstOrDefault();
+                    if (this.User.AssignedRole != null)
+                    {
+                        this.SelectedRole = (from r in this.Roles
+                                             where r.Id == this.User.AssignedRole.Id
+                                             select r).FirstOrDefault();
+                    }
 
                     this.Host.WriteStatus(StatusType.Info, Messages.Msg_Ready);
                 }

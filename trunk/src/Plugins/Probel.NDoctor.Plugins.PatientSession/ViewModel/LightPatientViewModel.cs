@@ -32,6 +32,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
+    using System.Windows;
 
     public class LightPatientViewModel : LightPatientDto
     {
@@ -50,6 +51,11 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             {
                 PluginContext.Host.SelectedPatient = this;
                 this.IncrementCounter();
+
+                MessageBox.Show(Messages.Msg_PatientSelected
+                    , Messages.Information
+                    , MessageBoxButton.OK
+                    , MessageBoxImage.Information);
             });
             this.component = ObjectFactory.GetInstance<IPatientSessionComponent>();
         }

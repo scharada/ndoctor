@@ -125,6 +125,10 @@
     <value>An error occured while adding a new patient</value>
     <comment>An error occured while adding a new patient</comment>
   </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+    <comment>Information</comment>
+  </data>
   <data name="Menu_Select" xml:space="preserve">
     <value>Select</value>
     <comment>Select</comment>
@@ -132,6 +136,10 @@
   <data name="Msg_PatientAdded" xml:space="preserve">
     <value>Patient added.</value>
     <comment>Patient added.</comment>
+  </data>
+  <data name="Msg_PatientSelected" xml:space="preserve">
+    <value>Patient selected</value>
+    <comment>Patient selected</comment>
   </data>
   <data name="Msg_SearchExecuted" xml:space="preserve">
     <value>{0} patient(s) found.</value>

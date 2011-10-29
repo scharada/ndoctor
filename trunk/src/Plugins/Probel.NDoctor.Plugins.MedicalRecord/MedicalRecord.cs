@@ -173,7 +173,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         {
             using (this.component.UnitOfWork)
             {
-                this.ViewModel.Cabinet.ForEachRecord(x => x.Html = this.ViewModel.SelectedRecord.Html
+                this.ViewModel.Cabinet.ForEachRecord(x =>
+                {
+                    x.Html = this.ViewModel.SelectedRecord.Html;
+                    x.State = State.Updated;
+                }
                     , s => s.Id == this.ViewModel.SelectedRecord.Id);
 
                 this.ViewModel.Save();

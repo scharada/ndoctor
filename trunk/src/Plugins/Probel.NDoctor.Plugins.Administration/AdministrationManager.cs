@@ -121,7 +121,7 @@ namespace Probel.NDoctor.Plugins.Administration
 
         private bool CanNavigate()
         {
-            return this.Host.SelectedPatient != null;
+            return true;
         }
 
         private void ConfigureAutoMapper()
