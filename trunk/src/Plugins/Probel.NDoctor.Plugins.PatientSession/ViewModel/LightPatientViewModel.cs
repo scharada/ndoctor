@@ -22,6 +22,7 @@
 namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 {
     using System.Collections.Generic;
+    using System.Windows;
     using System.Windows.Input;
 
     using AutoMapper;
@@ -32,7 +33,6 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
-    using System.Windows;
 
     public class LightPatientViewModel : LightPatientDto
     {

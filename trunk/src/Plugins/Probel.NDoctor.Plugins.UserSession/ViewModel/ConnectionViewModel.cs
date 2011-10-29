@@ -20,16 +20,16 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using System.Windows;
     using System.Windows.Input;
 
+    using Probel.Helpers.Conversions;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.UserSession.Helpers;
     using Probel.NDoctor.Plugins.UserSession.Properties;
     using Probel.NDoctor.Plugins.UserSession.View;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.Helpers.Conversions;
 
     using StructureMap;
-    using Probel.NDoctor.Plugins.UserSession.Helpers;
 
     public class ConnectionViewModel : BaseViewModel
     {
