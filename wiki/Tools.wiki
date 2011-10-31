@@ -33,3 +33,10 @@ Here's the list of tools used to develop nDoctor
  * [http://visualstudiogallery.msdn.microsoft.com/d0d33361-18e2-46c0-8ff2-4adea1e34fef Productivity Power Tools]
  * [http://visualstudiogallery.msdn.microsoft.com/c8164c71-0836-4471-80ce-633383031099 Visual NUnit 2010]
  * [http://submain.com/products/ghostdoc.aspx Ghostdoc]
+
+= Architecture tools =
+ * [http://www.mono-project.com/Gendarme Gendarme]
+ * [http://msdn.microsoft.com/en-us/library/bb429476%28v=vs.80%29.aspx FxCop]
+ * [http://archive.msdn.microsoft.com/sourceanalysis StyleCop]
+ * Visual Studio's code metrics]
+ * Visual Studio's code analysis]
