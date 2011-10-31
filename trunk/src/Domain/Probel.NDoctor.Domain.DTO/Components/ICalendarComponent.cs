@@ -19,7 +19,7 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Domain.DAL.Components
+namespace Probel.NDoctor.Domain.DTO.Components
 {
     using System;
     using System.Collections.Generic;

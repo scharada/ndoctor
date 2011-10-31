@@ -47,6 +47,9 @@
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.3.2.0.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -80,7 +83,7 @@
     <Compile Include="Components\BaseComponent.cs" />
     <Compile Include="Components\BmiComponent.cs" />
     <Compile Include="Components\PictureComponent.cs" />
-    <Compile Include="Components\SQLComponent.cs" />
+    <Compile Include="Components\DebugComponent.cs" />
     <Compile Include="Components\MedicalRecordComponent.cs" />
     <Compile Include="Components\PatientDataComponent.cs" />
     <Compile Include="Components\PatientSessionComponent.cs" />
@@ -107,7 +110,6 @@
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Task.cs" />
     <Compile Include="Entities\User.cs" />
-    <Compile Include="Exceptions\ExistingItemException.cs" />
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
     <Compile Include="Exceptions\DetachedEntityException.cs" />
     <Compile Include="Exceptions\NullSessionFactoryException.cs" />

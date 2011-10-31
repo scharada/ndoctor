@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="StructureMap">
+      <HintPath>..\..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -43,9 +46,12 @@
       <Link>Version.cs</Link>
     </Compile>
     <Compile Include="Collections\TagCategoryCollection.cs" />
+    <Compile Include="Components\ComponentFactory.cs" />
     <Compile Include="Components\IAdministrationComponent.cs" />
     <Compile Include="Components\ICalendarComponent.cs" />
     <Compile Include="Components\IPrescriptionComponent.cs" />
+    <Compile Include="Exceptions\DALNotConfiguredException.cs" />
+    <Compile Include="Exceptions\ExistingItemException.cs" />
     <Compile Include="Helpers\ConvertSlotDurationAndTimeSpan.cs" />
     <Compile Include="Helpers\SlotDuration.cs" />
     <Compile Include="Helpers\TimeSlotCollection.cs" />
@@ -131,6 +137,7 @@
       <LastGenOutput>Messages.fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

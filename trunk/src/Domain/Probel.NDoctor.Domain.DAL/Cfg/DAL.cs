@@ -26,19 +26,24 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
     using NHibernate;
     using NHibernate.Tool.hbm2ddl;
 
+    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Exceptions;
     using Probel.NDoctor.Domain.DAL.Mappings;
     using Probel.NDoctor.Domain.DAL.Properties;
+    using Probel.NDoctor.Domain.DTO.Components;
+
+    using StructureMap;
 
     using NHConfiguration = NHibernate.Cfg.Configuration;
+    using log4net;
 
     public class DAL
     {
         #region Fields
 
         private static ISessionFactory sessionFactory;
-
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(DAL));
         private IPersistenceConfigurer persistenceConfigurer;
         private Action<NHConfiguration> setupConfiguration;
 
@@ -124,6 +129,49 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
             Mapping.Configure();
             this.IsConfigured = true;
+        }
+
+        static DAL()
+        {
+            Logger.Debug("Configuring StructureMap for the plugins...");
+            ObjectFactory.Configure(x =>
+            {
+                x.For<IAdministrationComponent>().Add<AdministrationComponent>();
+                x.SelectConstructor<AdministrationComponent>(() => new AdministrationComponent());
+
+                x.For<IBmiComponent>().Add<BmiComponent>();
+                x.SelectConstructor<BmiComponent>(() => new BmiComponent());
+
+                x.For<ICalendarComponent>().Add<CalendarComponent>();
+                x.SelectConstructor<CalendarComponent>(() => new CalendarComponent());
+
+                x.For<IFamilyComponent>().Add<FamilyComponent>();
+                x.SelectConstructor<FamilyComponent>(() => new FamilyComponent());
+
+                x.For<IMedicalRecordComponent>().Add<MedicalRecordComponent>();
+                x.SelectConstructor<MedicalRecordComponent>(() => new MedicalRecordComponent());
+
+                x.For<IPathologyComponent>().Add<PathologyComponent>();
+                x.SelectConstructor<PathologyComponent>(() => new PathologyComponent());
+
+                x.For<IPatientDataComponent>().Add<PatientDataComponent>();
+                x.SelectConstructor<PatientDataComponent>(() => new PatientDataComponent());
+
+                x.For<IPatientSessionComponent>().Add<PatientSessionComponent>();
+                x.SelectConstructor<PatientSessionComponent>(() => new PatientSessionComponent());
+
+                x.For<IPictureComponent>().Add<PictureComponent>();
+                x.SelectConstructor<PictureComponent>(() => new PictureComponent());
+
+                x.For<IPrescriptionComponent>().Add<PrescriptionComponent>();
+                x.SelectConstructor<PrescriptionComponent>(() => new PrescriptionComponent());
+
+                x.For<IUserSessionComponent>().Add<UserSessionComponent>();
+                x.SelectConstructor<UserSessionComponent>(() => new UserSessionComponent());
+
+                x.For<IDebugComponent>().Add<DebugComponent>();
+                x.SelectConstructor<DebugComponent>(() => new DebugComponent());
+            });
         }
 
         private AutoPersistenceModel CreateModel()

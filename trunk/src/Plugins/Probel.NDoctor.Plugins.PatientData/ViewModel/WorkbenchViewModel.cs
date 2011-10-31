@@ -35,8 +35,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class WorkbenchViewModel : BaseViewModel
     {
         #region Fields
@@ -55,7 +53,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         public WorkbenchViewModel()
             : base()
         {
-            this.component = ObjectFactory.GetInstance<IPatientDataComponent>();
+            this.component = ComponentFactory.PatientDataComponent;
             Notifyer.DoctorLinkChanged += (sender, e) => this.Refresh();
 
             this.InitialiseCollections();

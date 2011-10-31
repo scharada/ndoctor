@@ -34,8 +34,6 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.NDoctor.Plugins.Administration.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class PathologyViewModel : PathologyDto
     {
         #region Fields
@@ -49,7 +47,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         public PathologyViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IAdministrationComponent>();
+            if (!Designer.IsDesignMode) this.component = ComponentFactory.AdministrationComponent;
             this.errorHandler = new ErrorHandler(this);
 
             this.Tags = new ObservableCollection<TagDto>();

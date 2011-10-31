@@ -10,15 +10,12 @@
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class IllnessPeriodViewModel : IllnessPeriodDto
     {
         #region Fields
 
-        private IPathologyComponent component = ObjectFactory.GetInstance<IPathologyComponent>();
+        private IPathologyComponent component = ComponentFactory.PathologyComponent;
         private bool isSelected;
-        private WorkbenchViewModel parent;
 
         #endregion Fields
 

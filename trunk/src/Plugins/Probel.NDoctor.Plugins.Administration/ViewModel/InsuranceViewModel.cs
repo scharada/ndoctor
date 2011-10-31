@@ -33,8 +33,6 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.NDoctor.Plugins.Administration.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class InsuranceViewModel : InsuranceDto
     {
         #region Fields
@@ -48,7 +46,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         public InsuranceViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IAdministrationComponent>();
+            if (!Designer.IsDesignMode) this.component = ComponentFactory.AdministrationComponent;
             this.errorHandler = new ErrorHandler(this);
             this.UpdateCommand = new RelayCommand(() => this.Update(), () => this.CanUpdate());
         }

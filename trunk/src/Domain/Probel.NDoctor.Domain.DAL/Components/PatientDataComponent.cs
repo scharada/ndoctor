@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DAL.Exceptions;
     using Probel.NDoctor.Domain.DAL.Helpers;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     public class PatientDataComponent : BaseComponent, IPatientDataComponent

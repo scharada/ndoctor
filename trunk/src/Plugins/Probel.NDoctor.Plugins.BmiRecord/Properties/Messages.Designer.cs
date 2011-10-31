@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Plugins.BmiRecord.Properties
-{
-
-
+namespace Probel.NDoctor.Plugins.BmiRecord.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -183,6 +183,15 @@ namespace Probel.NDoctor.Plugins.BmiRecord.Properties
         internal static string Msg_Error {
             get {
                 return ResourceManager.GetString("Msg_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occured while initialisating the plugin.
+        /// </summary>
+        internal static string Msg_ErrorInit {
+            get {
+                return ResourceManager.GetString("Msg_ErrorInit", resourceCulture);
             }
         }
         

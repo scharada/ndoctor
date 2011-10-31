@@ -43,9 +43,6 @@
     </Reference>
     <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="RibbonControlsLibrary, Version=4.0.0.11019, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="StructureMap">
-      <HintPath>..\..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
@@ -139,10 +136,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Domain\Probel.NDoctor.Domain.DAL\Probel.NDoctor.Domain.DAL.csproj">
-      <Project>{96B7A128-8A98-4B49-A3CB-30AE783236E9}</Project>
-      <Name>Probel.NDoctor.Domain.DAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Domain\Probel.NDoctor.Domain.DTO\Probel.NDoctor.Domain.DTO.csproj">
       <Project>{DB2E15D4-BA31-457B-BF73-71208922A0A0}</Project>
       <Name>Probel.NDoctor.Domain.DTO</Name>

@@ -12,13 +12,11 @@
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class RemoveFamilyViewModel : BaseViewModel
     {
         #region Fields
 
-        private IFamilyComponent component = ObjectFactory.GetInstance<IFamilyComponent>();
+        private IFamilyComponent component = ComponentFactory.FamilyComponent;
         private LightPatientViewModel selectedPatient;
 
         #endregion Fields

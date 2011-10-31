@@ -15,13 +15,11 @@
     using Probel.NDoctor.Plugins.FamilyManager.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class LightPatientViewModel : LightPatientDto
     {
         #region Fields
 
-        private IFamilyComponent component = ObjectFactory.GetInstance<IFamilyComponent>();
+        private IFamilyComponent component = ComponentFactory.FamilyComponent;
         private bool isSelected = false;
         private Tuple<FamilyRelations, string> selectedRelation;
         private LightPatientDto sessionPatient;

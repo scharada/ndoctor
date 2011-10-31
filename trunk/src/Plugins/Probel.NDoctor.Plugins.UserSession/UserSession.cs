@@ -24,7 +24,6 @@ namespace Probel.NDoctor.Plugins.UserSession
     using AutoMapper;
 
     using Probel.Helpers.Strings;
-    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.UserSession.Controls;
@@ -35,8 +34,6 @@ namespace Probel.NDoctor.Plugins.UserSession
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-
-    using StructureMap;
 
     /// <summary>
     /// When the application user has logged into the application, it opens a User session that contains the modules the logged user can use. 
@@ -102,9 +99,7 @@ namespace Probel.NDoctor.Plugins.UserSession
         {
             this.ConfigureAutoMapper();
 
-            this.ConfigureStructureMap();
-
-            this.component = ObjectFactory.GetInstance<IUserSessionComponent>();
+            this.component = ComponentFactory.UserSessionComponent;
 
             TranslateExtension.ResourceManager = Messages.ResourceManager;
 
@@ -137,15 +132,6 @@ namespace Probel.NDoctor.Plugins.UserSession
         {
             Mapper.CreateMap<UserDto, BusinessCardViewModel>();
             Mapper.CreateMap<BusinessCardViewModel, UserDto>();
-        }
-
-        private void ConfigureStructureMap()
-        {
-            ObjectFactory.Configure(x =>
-            {
-                x.For<IUserSessionComponent>().Add<UserSessionComponent>();
-                x.SelectConstructor<UserSessionComponent>(() => new UserSessionComponent());
-            });
         }
 
         private void InitialiseConnectionPage()
@@ -223,7 +209,7 @@ namespace Probel.NDoctor.Plugins.UserSession
         {
             try
             {
-                var component = ObjectFactory.GetInstance<IUserSessionComponent>();
+                var component = ComponentFactory.UserSessionComponent;
                 var viewmodel = this.updateUserPage.DataContext as UpdateUserViewModel;
 
                 using (component.UnitOfWork)

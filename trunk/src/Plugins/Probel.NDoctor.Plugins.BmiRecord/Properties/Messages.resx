@@ -173,6 +173,10 @@
     <value>An error occured</value>
     <comment>An error occured</comment>
   </data>
+  <data name="Msg_ErrorInit" xml:space="preserve">
+    <value>An error occured while initialisating the plugin</value>
+    <comment>An error occured while initialisating the plugin</comment>
+  </data>
   <data name="Msg_ErrorOccured" xml:space="preserve">
     <value>Une erreur est survenue. Vérifiez les logs pour plus d'informations</value>
     <comment>An error occured. Check the logs for furher information</comment>

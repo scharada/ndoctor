@@ -155,10 +155,6 @@
     <value>The nHibernate session factory is not configured.</value>
     <comment>The nHibernate session factory is not configured.</comment>
   </data>
-  <data name="Ex_ExistingItemException" xml:space="preserve">
-    <value>The item you want to create already exist in the database.</value>
-    <comment>The item you want to create already exist in the database.</comment>
-  </data>
   <data name="Ex_EntityNotFoundException" xml:space="preserve">
     <value>The specified item doesn't exist in the database</value>
     <comment>The specified item doesn't exist in the database</comment>

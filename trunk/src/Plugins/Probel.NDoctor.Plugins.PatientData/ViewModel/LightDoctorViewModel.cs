@@ -31,8 +31,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.Plugins.PatientData.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class LightDoctorViewModel : LightDoctorDto
     {
         #region Fields
@@ -47,7 +45,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         public LightDoctorViewModel()
         {
-            this.component = ObjectFactory.GetInstance<IPatientDataComponent>();
+            this.component = ComponentFactory.PatientDataComponent;
             this.errorHandler = new ErrorHandler(this);
             this.AddDoctorCommand = new RelayCommand(() => this.AddDoctor());
             this.RemoveLinkCommand = new RelayCommand(() => this.RemoveLink());

@@ -33,19 +33,17 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
     using Probel.Helpers.Conversions;
     using Probel.Helpers.Data;
-    using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class DateRangeViewModel : DateRange, INotifyPropertyChanged, IErrorHandler
     {
         #region Fields
 
-        private ICalendarComponent component = ObjectFactory.GetInstance<ICalendarComponent>();
+        private ICalendarComponent component = ComponentFactory.CalendarComponent;
         private ErrorHandler errorHandler;
         private bool isSelected = false;
         private LightPatientDto patient;

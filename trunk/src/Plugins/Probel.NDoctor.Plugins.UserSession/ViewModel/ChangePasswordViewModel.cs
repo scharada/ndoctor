@@ -24,8 +24,6 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class ChangePasswordViewModel : BaseViewModel
     {
         #region Fields
@@ -43,7 +41,7 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
         public ChangePasswordViewModel()
         {
             this.IsPopupOpened = false;
-            this.component = ObjectFactory.GetInstance<IUserSessionComponent>();
+            this.component = ComponentFactory.UserSessionComponent;
             this.SaveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
             this.OpenPopupCommand = new RelayCommand(() => this.IsPopupOpened = true);
         }

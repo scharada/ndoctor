@@ -25,15 +25,13 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using System.Windows.Input;
 
     using Probel.Helpers.WPF;
-    using Probel.NDoctor.Domain.DAL.Exceptions;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PatientData.Helpers;
     using Probel.NDoctor.Plugins.PatientData.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-
-    using StructureMap;
 
     public class AddReputationViewModel : BaseViewModel
     {
@@ -56,7 +54,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
             if (!Designer.IsDesignMode)
             {
-                this.component = ObjectFactory.GetInstance<IPatientDataComponent>();
+                this.component = ComponentFactory.PatientDataComponent;
             }
         }
 

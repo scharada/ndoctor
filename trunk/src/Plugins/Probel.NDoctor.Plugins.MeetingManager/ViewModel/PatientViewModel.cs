@@ -29,20 +29,18 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
     using Probel.Helpers.Conversions;
     using Probel.Helpers.Data;
-    using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class PatientViewModel : BaseViewModel
     {
         #region Fields
 
-        private ICalendarComponent component = ObjectFactory.GetInstance<ICalendarComponent>();
+        private ICalendarComponent component = ComponentFactory.CalendarComponent;
         private DateTime fromDate;
         private bool isSelected;
         private LightPatientDto patient;

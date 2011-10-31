@@ -24,7 +24,6 @@ namespace Probel.NDoctor.Plugins.Administration
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
-    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.Administration.Properties;
@@ -34,8 +33,6 @@ namespace Probel.NDoctor.Plugins.Administration
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
 
-    using StructureMap;
-
     [Export(typeof(IPlugin))]
     public class AdministrationManager : Plugin
     {
@@ -43,7 +40,6 @@ namespace Probel.NDoctor.Plugins.Administration
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.Administration;component/Images\{0}.png";
 
-        private RibbonContextualTabGroupData contextualMenu;
         private ICommand navigateCommand;
         private Workbench workbench;
 
@@ -57,7 +53,6 @@ namespace Probel.NDoctor.Plugins.Administration
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
 
-            this.ConfigureStructureMap();
             this.ConfigureAutoMapper();
         }
 
@@ -146,15 +141,6 @@ namespace Probel.NDoctor.Plugins.Administration
 
             Mapper.CreateMap<InsuranceDto, InsuranceViewModel>();
             Mapper.CreateMap<InsuranceViewModel, InsuranceDto>();
-        }
-
-        private void ConfigureStructureMap()
-        {
-            ObjectFactory.Configure(x =>
-            {
-                x.For<IAdministrationComponent>().Add<AdministrationComponent>();
-                x.SelectConstructor<IAdministrationComponent>(() => new AdministrationComponent());
-            });
         }
 
         private void Navigate()

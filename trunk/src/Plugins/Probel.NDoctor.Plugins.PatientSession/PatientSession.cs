@@ -28,7 +28,6 @@ namespace Probel.NDoctor.Plugins.PatientSession
     using AutoMapper;
 
     using Probel.Helpers.Strings;
-    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PatientSession.Properties;
@@ -37,8 +36,6 @@ namespace Probel.NDoctor.Plugins.PatientSession
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-
-    using StructureMap;
 
     [Export(typeof(IPlugin))]
     public class PatientSession : Plugin
@@ -62,7 +59,6 @@ namespace Probel.NDoctor.Plugins.PatientSession
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
             this.ConfigureAutoMapper();
-            this.ConfigureStructureMap();
         }
 
         #endregion Constructors
@@ -108,15 +104,6 @@ namespace Probel.NDoctor.Plugins.PatientSession
         {
             Mapper.CreateMap<LightPatientDto, LightPatientViewModel>();
             Mapper.CreateMap<LightPatientViewModel, LightPatientDto>();
-        }
-
-        private void ConfigureStructureMap()
-        {
-            ObjectFactory.Configure(x =>
-            {
-                x.For<IPatientSessionComponent>().Add<PatientSessionComponent>();
-                x.SelectConstructor<PatientSessionComponent>(() => new PatientSessionComponent());
-            });
         }
 
         #endregion Methods

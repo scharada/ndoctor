@@ -27,7 +27,6 @@ namespace Probel.NDoctor.Plugins.DebugTools
     using System.Reflection;
     using System.Text;
 
-    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View.Plugins;
 
@@ -36,7 +35,7 @@ namespace Probel.NDoctor.Plugins.DebugTools
     {
         #region Fields
 
-        private SQLComponent component = new SQLComponent();
+        private IDebugComponent component = ComponentFactory.DebugComponent;
 
         #endregion Fields
 

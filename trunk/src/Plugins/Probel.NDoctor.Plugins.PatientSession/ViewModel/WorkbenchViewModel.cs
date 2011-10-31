@@ -35,8 +35,6 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class WorkbenchViewModel : BaseViewModel
     {
         #region Fields
@@ -59,7 +57,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             this.TodayPatients = new ObservableCollection<LightPatientViewModel>();
             this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());
 
-            this.component = ObjectFactory.GetInstance<IPatientSessionComponent>();
+            this.component = ComponentFactory.PatientSessionComponent;
         }
 
         #endregion Constructors

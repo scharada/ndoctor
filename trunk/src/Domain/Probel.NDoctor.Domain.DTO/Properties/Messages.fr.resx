@@ -137,6 +137,18 @@
     <value>Impossible de convertir "{0}" en heure</value>
     <comment>Impossible to convert "{0}" into time</comment>
   </data>
+  <data name="Ex_DALNotConfiguredException" xml:space="preserve">
+    <value>La couche d'accès aux données n'est pas configurée. Il est fort probable que StructureMap n'est pas configuré dans cette librairie.</value>
+    <comment>The data access layer is not configured. It is possible you forget to configure StructureMap in this library.</comment>
+  </data>
+  <data name="Ex_DALNotConfiguredException_Configurator" xml:space="preserve">
+    <value>Le configurateur de la couche d'accès aux données n'est pas configurée.</value>
+    <comment>The data access layer's configurator is not set.</comment>
+  </data>
+  <data name="Ex_ExistingItemException" xml:space="preserve">
+    <value>L'élément que vous voulez enregistrer dans la base de données existe déjà.</value>
+    <comment>The item you want to create already exist in the database.</comment>
+  </data>
   <data name="Gender_Female" xml:space="preserve">
     <value>Femme</value>
     <comment>Female</comment>

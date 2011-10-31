@@ -16,13 +16,11 @@
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class AddPrescriptionViewModel : BaseViewModel
     {
         #region Fields
 
-        private IPrescriptionComponent component = ObjectFactory.GetInstance<IPrescriptionComponent>();
+        private IPrescriptionComponent component = ComponentFactory.PrescriptionComponent;
         private string criteria;
         private PrescriptionDto currentPrescription;
         private PrescriptionDocumentDto prescriptionDocumentToCreate;

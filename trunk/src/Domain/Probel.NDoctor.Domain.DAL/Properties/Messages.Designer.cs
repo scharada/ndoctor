@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Domain.DAL.Properties
-{
-
-
+namespace Probel.NDoctor.Domain.DAL.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -129,15 +129,6 @@ namespace Probel.NDoctor.Domain.DAL.Properties
         internal static string Ex_EntityNotFoundException_NoRelationRightSide {
             get {
                 return ResourceManager.GetString("Ex_EntityNotFoundException_NoRelationRightSide", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The item you want to create already exist in the database..
-        /// </summary>
-        internal static string Ex_ExistingItemException {
-            get {
-                return ResourceManager.GetString("Ex_ExistingItemException", resourceCulture);
             }
         }
         

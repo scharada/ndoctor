@@ -39,8 +39,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class WorkbenchViewModel : BaseViewModel
     {
         #region Fields
@@ -63,7 +61,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         {
             this.IsInformationExpanded = false;
             this.SelectedPicture = new PictureDto();
-            this.component = ObjectFactory.GetInstance<IPictureComponent>();
+            this.component = ComponentFactory.PictureComponent;
 
             this.AddPictureCommand = new RelayCommand(() => AddPicture(), () => this.Host.SelectedPatient != null);
             this.SaveCommand = new RelayCommand(() => Save(), () => CheckSave());

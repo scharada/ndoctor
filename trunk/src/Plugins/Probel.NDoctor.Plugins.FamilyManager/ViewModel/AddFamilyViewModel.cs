@@ -13,13 +13,11 @@
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class AddFamilyViewModel : BaseViewModel
     {
         #region Fields
 
-        private IFamilyComponent component = ObjectFactory.GetInstance<IFamilyComponent>();
+        private IFamilyComponent component = ComponentFactory.FamilyComponent;
         private string criteria;
         private LightPatientViewModel selectedPatient;
 

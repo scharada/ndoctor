@@ -11,13 +11,11 @@
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class IllnessPeriodToAddViewModel : IllnessPeriodDto
     {
         #region Fields
 
-        private IPathologyComponent component = ObjectFactory.GetInstance<IPathologyComponent>();
+        private IPathologyComponent component = ComponentFactory.PathologyComponent;
         private ErrorHandler errorHandler = null;
         private bool isSelected;
 

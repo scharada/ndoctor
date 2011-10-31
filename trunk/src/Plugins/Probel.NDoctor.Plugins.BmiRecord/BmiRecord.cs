@@ -28,7 +28,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord
     using AutoMapper;
 
     using Probel.Helpers.Strings;
-    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
@@ -37,8 +36,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-
-    using StructureMap;
 
     [Export(typeof(IPlugin))]
     public class BmiRecord : Plugin
@@ -66,10 +63,9 @@ namespace Probel.NDoctor.Plugins.BmiRecord
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
 
-            this.ConfigureStructureMap();
             this.ConfigureAutoMapper();
 
-            this.component = ObjectFactory.GetInstance<IBmiComponent>();
+            this.component = ComponentFactory.BmiComponent;
         }
 
         #endregion Constructors
@@ -106,15 +102,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord
         {
             Mapper.CreateMap<BmiViewModel, BmiDto>();
             Mapper.CreateMap<BmiDto, BmiViewModel>();
-        }
-
-        private void ConfigureStructureMap()
-        {
-            ObjectFactory.Configure(x =>
-            {
-                x.For<IBmiComponent>().Add<BmiComponent>();
-                x.SelectConstructor<BmiComponent>(() => new BmiComponent());
-            });
         }
 
         private void Navigate()

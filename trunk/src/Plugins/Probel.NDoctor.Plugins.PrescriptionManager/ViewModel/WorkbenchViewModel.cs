@@ -32,8 +32,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     /// <summary>
     /// Workbench's ViewModel of the plugin
     /// </summary>
@@ -41,7 +39,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     {
         #region Fields
 
-        private IPrescriptionComponent component = ObjectFactory.GetInstance<IPrescriptionComponent>();
+        private IPrescriptionComponent component = ComponentFactory.PrescriptionComponent;
         private DateTime endCriteria;
         private PrescriptionDocumentDto selectPrescriptionDocument;
         private DateTime startCriteria;

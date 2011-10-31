@@ -32,13 +32,11 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class AddPatientViewModel : BaseViewModel
     {
         #region Fields
 
-        private IPatientSessionComponent component = ObjectFactory.GetInstance<IPatientSessionComponent>();
+        private IPatientSessionComponent component = ComponentFactory.PatientSessionComponent;
         private LightPatientDto patient;
 
         #endregion Fields

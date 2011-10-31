@@ -24,6 +24,7 @@ namespace Probel.NDoctor.Domain.Test.Helpers
 
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     [TestFixture]

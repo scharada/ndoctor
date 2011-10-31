@@ -31,8 +31,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class BmiViewModel : BmiDto
     {
         #region Fields
@@ -47,7 +45,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
         public BmiViewModel()
         {
             this.errorHandler = new ErrorHandler(this);
-            this.component = ObjectFactory.GetInstance<IBmiComponent>();
+            this.component = ComponentFactory.BmiComponent;
             this.DeleteCommand = new RelayCommand(() => this.Delete());
         }
 

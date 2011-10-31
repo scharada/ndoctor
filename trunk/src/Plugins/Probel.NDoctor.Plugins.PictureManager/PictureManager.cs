@@ -28,7 +28,6 @@ namespace Probel.NDoctor.Plugins.PictureManager
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
-    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Plugins.PictureManager.Properties;
     using Probel.NDoctor.Plugins.PictureManager.View;
@@ -36,8 +35,6 @@ namespace Probel.NDoctor.Plugins.PictureManager
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-
-    using StructureMap;
 
     [Export(typeof(IPlugin))]
     public class PictureManager : Plugin
@@ -64,7 +61,6 @@ namespace Probel.NDoctor.Plugins.PictureManager
             : base(version, host)
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
-            this.ConfigureStructureMap();
         }
 
         #endregion Constructors
@@ -135,15 +131,6 @@ namespace Probel.NDoctor.Plugins.PictureManager
         private bool CanNavigate()
         {
             return this.Host.SelectedPatient != null;
-        }
-
-        private void ConfigureStructureMap()
-        {
-            ObjectFactory.Configure(x =>
-            {
-                x.For<IPictureComponent>().Add<PictureComponent>();
-                x.SelectConstructor<PictureComponent>(() => new PictureComponent());
-            });
         }
 
         private ICommand GetAddPicCommand()

@@ -33,13 +33,11 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class AddUserViewModel : BaseViewModel
     {
         #region Fields
 
-        private IUserSessionComponent component = ObjectFactory.GetInstance<IUserSessionComponent>();
+        private IUserSessionComponent component = ComponentFactory.UserSessionComponent;
         private string password;
         private string passwordCheck;
         private LightUserDto user = new LightUserDto();

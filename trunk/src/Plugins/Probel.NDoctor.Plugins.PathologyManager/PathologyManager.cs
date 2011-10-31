@@ -24,7 +24,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
-    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
@@ -33,8 +32,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-
-    using StructureMap;
 
     [Export(typeof(IPlugin))]
     public class PathologyManager : Plugin
@@ -55,8 +52,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager
             : base(version, host)
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
-
-            this.ConfigureStructureMap();
             this.ConfigureAutoMapper();
         }
 
@@ -130,15 +125,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager
 
             Mapper.CreateMap<PathologyDto, IllnessPeriodToAddViewModel>()
                 .ForMember(src => src.Pathology, opt => opt.MapFrom(dest => dest));
-        }
-
-        private void ConfigureStructureMap()
-        {
-            ObjectFactory.Configure(x =>
-            {
-                x.For<IPathologyComponent>().Add<PathologyComponent>();
-                x.SelectConstructor<PathologyComponent>(() => new PathologyComponent());
-            });
         }
 
         private void Navigate()

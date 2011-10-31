@@ -32,8 +32,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class AddBmiViewModel : BaseViewModel
     {
         #region Fields
@@ -48,7 +46,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
 
         public AddBmiViewModel()
         {
-            if (!Designer.IsDesignMode) ObjectFactory.GetInstance<IBmiComponent>();
+            if (!Designer.IsDesignMode) this.component = ComponentFactory.BmiComponent;
 
             this.AddCommand = new RelayCommand(() => this.AddBmi(), () => this.CanAddBmi());
         }

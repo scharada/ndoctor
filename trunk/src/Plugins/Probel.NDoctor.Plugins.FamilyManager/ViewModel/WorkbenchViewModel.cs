@@ -29,8 +29,6 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     /// <summary>
     /// Workbench's ViewModel of the plugin
     /// </summary>
@@ -39,8 +37,8 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
         #region Fields
 
         private FamilyDto family;
-        private IFamilyComponent familyComponent = ObjectFactory.GetInstance<IFamilyComponent>();
-        private IMedicalRecordComponent medicalRecordComponent = ObjectFactory.GetInstance<IMedicalRecordComponent>();
+        private IFamilyComponent familyComponent = ComponentFactory.FamilyComponent;
+        private IMedicalRecordComponent medicalRecordComponent = ComponentFactory.MedicalRecordComponent;
         private LightPatientDto selectedChild;
         private LightPatientDto selectedMember;
 

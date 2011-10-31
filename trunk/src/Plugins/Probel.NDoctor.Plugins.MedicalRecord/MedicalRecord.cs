@@ -30,7 +30,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
-    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MedicalRecord.Dto;
@@ -41,8 +40,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
 
-    using StructureMap;
-
     [Export(typeof(IPlugin))]
     public class MedicalRecord : Plugin
     {
@@ -50,7 +47,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.MedicalRecord;component/Images\{0}.png";
 
-        private MedicalRecordComponent component = new MedicalRecordComponent();
+        private IMedicalRecordComponent component = ComponentFactory.MedicalRecordComponent;
         private RibbonContextualTabGroupData contextualMenu;
         private ICommand navigateCommand;
         private ICommand saveCommand;
@@ -65,8 +62,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             : base(version, host)
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
-
-            this.ConfigureStructureMap();
             this.ConfigureAutoMapper();
         }
 
@@ -142,15 +137,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             Mapper.CreateMap<MedicalRecordCabinetDto, TitledMedicalRecordCabinetDto>();
             Mapper.CreateMap<MedicalRecordDto, TitledMedicalRecordDto>();
             Mapper.CreateMap<MedicalRecordFolderDto, TitledMedicalRecordFolderDto>();
-        }
-
-        private void ConfigureStructureMap()
-        {
-            ObjectFactory.Configure(x =>
-            {
-                x.For<IMedicalRecordComponent>().Add<MedicalRecordComponent>();
-                x.SelectConstructor<MedicalRecordComponent>(() => new MedicalRecordComponent());
-            });
         }
 
         private void NavigateAdd()

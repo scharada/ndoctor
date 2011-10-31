@@ -32,8 +32,6 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.NDoctor.Plugins.PatientSession.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class LightPatientViewModel : LightPatientDto
     {
         #region Fields
@@ -57,7 +55,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
                     , MessageBoxButton.OK
                     , MessageBoxImage.Information);
             });
-            this.component = ObjectFactory.GetInstance<IPatientSessionComponent>();
+            this.component = ComponentFactory.PatientSessionComponent;
         }
 
         #endregion Constructors

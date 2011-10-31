@@ -28,8 +28,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class WorkbenchViewModel : BaseViewModel
     {
         #region Fields
@@ -37,7 +35,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         private ICommand addFolderCommand;
         private ICommand addRecordCommand;
         private TitledMedicalRecordCabinetDto cabinet;
-        private IMedicalRecordComponent component = ObjectFactory.GetInstance<IMedicalRecordComponent>();
+        private IMedicalRecordComponent component = ComponentFactory.MedicalRecordComponent;
         private TitledMedicalRecordDto recordToAdd;
         private TitledMedicalRecordDto selectedRecord;
         private IList<TagDto> tags = new List<TagDto>();

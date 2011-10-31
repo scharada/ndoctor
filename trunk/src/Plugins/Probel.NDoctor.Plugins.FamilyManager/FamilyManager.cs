@@ -25,7 +25,6 @@ namespace Probel.NDoctor.Plugins.FamilyManager
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
-    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.FamilyManager.Properties;
@@ -34,8 +33,6 @@ namespace Probel.NDoctor.Plugins.FamilyManager
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-
-    using StructureMap;
 
     [Export(typeof(IPlugin))]
     public class FamilyManager : Plugin
@@ -59,8 +56,6 @@ namespace Probel.NDoctor.Plugins.FamilyManager
             : base(version, host)
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
-
-            this.ConfigureStructureMap();
             this.ConfigureAutoMapper();
         }
 
@@ -189,18 +184,6 @@ namespace Probel.NDoctor.Plugins.FamilyManager
         private void ConfigureAutoMapper()
         {
             Mapper.CreateMap<LightPatientDto, LightPatientViewModel>();
-        }
-
-        private void ConfigureStructureMap()
-        {
-            ObjectFactory.Configure(x =>
-            {
-                x.For<IFamilyComponent>().Add<FamilyComponent>();
-                x.SelectConstructor<FamilyComponent>(() => new FamilyComponent());
-
-                x.For<IMedicalRecordComponent>().Add<MedicalRecordComponent>();
-                x.SelectConstructor<MedicalRecordComponent>(() => new MedicalRecordComponent());
-            });
         }
 
         private void Navigate()

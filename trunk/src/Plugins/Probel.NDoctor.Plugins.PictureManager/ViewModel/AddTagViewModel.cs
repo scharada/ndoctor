@@ -25,15 +25,13 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using System.Windows.Input;
 
     using Probel.Helpers.WPF;
-    using Probel.NDoctor.Domain.DAL.Exceptions;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PictureManager.Helpers;
     using Probel.NDoctor.Plugins.PictureManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-
-    using StructureMap;
 
     public class AddTagViewModel : BaseViewModel
     {
@@ -51,7 +49,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         {
             this.SelectedTag = new TagDto() { Category = TagCategory.Picture };
 
-            if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IPictureComponent>();
+            if (!Designer.IsDesignMode) this.component = ComponentFactory.PictureComponent;
 
             this.ShowPopupCommand = new RelayCommand(() => this.IsPopupOpened = true);
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());

@@ -25,15 +25,13 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using System.Windows.Input;
 
     using Probel.Helpers.WPF;
-    using Probel.NDoctor.Domain.DAL.Exceptions;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-
-    using StructureMap;
 
     public class AddDrugTypeViewModel : BaseViewModel
     {
@@ -49,7 +47,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
         public AddDrugTypeViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IPrescriptionComponent>();
+            if (!Designer.IsDesignMode) this.component = ComponentFactory.PrescriptionComponent;
 
             this.SelectedTag = new TagDto() { Category = TagCategory.Drug };
 

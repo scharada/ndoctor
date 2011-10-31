@@ -34,8 +34,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class AddDoctorViewModel : BaseViewModel
     {
         #region Fields
@@ -51,7 +49,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         public AddDoctorViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IPatientDataComponent>();
+            if (!Designer.IsDesignMode) this.component = ComponentFactory.PatientDataComponent;
 
             this.FoundDoctors = new ObservableCollection<LightDoctorViewModel>();
             this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());

@@ -137,6 +137,18 @@
     <value>Impossible to convert "{0}" into time</value>
     <comment>Impossible to convert "{0}" into time</comment>
   </data>
+  <data name="Ex_DALNotConfiguredException" xml:space="preserve">
+    <value>The data access layer is not configured. It is possible you forget to configure StructureMap in this library.</value>
+    <comment>The data access layer is not configured. It is possible you forget to configure StructureMap in this library.</comment>
+  </data>
+  <data name="Ex_DALNotConfiguredException_Configurator" xml:space="preserve">
+    <value>The data access layer's configurator is not set.</value>
+    <comment>The data access layer's configurator is not set.</comment>
+  </data>
+  <data name="Ex_ExistingItemException" xml:space="preserve">
+    <value>The item you want to create already exist in the database.</value>
+    <comment>The item you want to create already exist in the database.</comment>
+  </data>
   <data name="Gender_Female" xml:space="preserve">
     <value>Female</value>
     <comment>Female</comment>

@@ -14,13 +14,11 @@
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
-
     public class IllnessPeriodListViewModel : BaseViewModel
     {
         #region Fields
 
-        private IFamilyComponent component = ObjectFactory.GetInstance<IFamilyComponent>();
+        private IFamilyComponent component = ComponentFactory.FamilyComponent;
         private string criteria;
         private IllnessPeriodToAddViewModel selectedPathology;
 

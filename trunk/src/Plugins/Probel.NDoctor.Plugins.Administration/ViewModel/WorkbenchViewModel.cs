@@ -36,8 +36,6 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins;
 
-    using StructureMap;
-
     /// <summary>
     /// Workbench's ViewModel of the plugin
     /// </summary>
@@ -58,7 +56,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         /// <param name="host">The host.</param>
         public WorkbenchViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IAdministrationComponent>();
+            if (!Designer.IsDesignMode) this.component = ComponentFactory.AdministrationComponent;
 
             this.Insurances = new ObservableCollection<InsuranceViewModel>();
             this.Practices = new ObservableCollection<PracticeViewModel>();

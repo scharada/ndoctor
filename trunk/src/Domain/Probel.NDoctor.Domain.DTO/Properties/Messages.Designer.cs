@@ -106,6 +106,33 @@ namespace Probel.NDoctor.Domain.DTO.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The data access layer is not configured. It is possible you forget to configure StructureMap in this library..
+        /// </summary>
+        internal static string Ex_DALNotConfiguredException {
+            get {
+                return ResourceManager.GetString("Ex_DALNotConfiguredException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The data access layer&apos;s configurator is not set..
+        /// </summary>
+        internal static string Ex_DALNotConfiguredException_Configurator {
+            get {
+                return ResourceManager.GetString("Ex_DALNotConfiguredException_Configurator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The item you want to create already exist in the database..
+        /// </summary>
+        internal static string Ex_ExistingItemException {
+            get {
+                return ResourceManager.GetString("Ex_ExistingItemException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Female.
         /// </summary>
         internal static string Gender_Female {
