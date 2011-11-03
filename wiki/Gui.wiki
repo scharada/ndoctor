@@ -12,6 +12,6 @@ The GUI is divided into different parts
   # Home: Contains a menu group to manage a patient session and another menu group to manage the patient's managers
   # Tools: Contains tools to improve the user experience of nDoctor.
   # Help: Contains help information about nDoctor.
- # The contextual menu: this menu changes depending on the selected workbench. It should be a toolbox or a contextual menu if it is a ribbon menu (as in Ms Office) 
+ # The contextual menu: this menu changes depending on the selected workbench.
  # The status: Provide non interactive logs. That's, information about the state of the application.
  # Workbench: it is the workbench of the selected item of the selected module. Here you manage the data of nDoctor.
