@@ -17,4 +17,3 @@ It should contain:
   * The phone number
   * The mobile phone number
   * The email
- * a menu to print a card with all this information.
