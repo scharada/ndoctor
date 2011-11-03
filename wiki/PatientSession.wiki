@@ -1,24 +1,4 @@
 #labels Phase-Requirements
 = Introduction =
 
-nDoctor is meant to manage patient's data. This data are encapsulated into a patient session. In other words, it should provide an interface to browse between all the modules that manage the patient data.
-
-
-= Details =
-
-The modules provided by default by the patient session are:
- # a patient's data manager
- # a BMI manager
- # a family manager
- # a medical record manager
- # a medical pictures manager
- # a prescription manager
- # a pathologies manager
- # a list of plugins (each plugin is considered as a manager)
-
-= Features =
-
-The patient session should provide:
- * a memento system. That's the user can rollback at any time to the state the session was when it was opened.
- * a _close_ feature that saves all the changes and close the patient session.
- * a global _save_ feature that saves the sate of all the managers. The _save_ feature should be present *only* in the patient session. Therefore the manager *shouldn't* have a visible _save_ button or menu!
+A patient session is a plug-in that offers features to create, update and load a patient session to be used by all the patient managers.
