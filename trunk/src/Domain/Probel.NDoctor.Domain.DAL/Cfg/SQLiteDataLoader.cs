@@ -34,7 +34,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
         private const string ATTACHED_DB = "zxcvbnmInitialData";
 
-        private readonly string InitialDataFilename = DatabaseCreator.InitialDataFilename;
+        private readonly string InitialDataFilename = SQLiteDatabaseCreator.InitialDataFilename;
 
         private static log4net.ILog Log = log4net.LogManager.GetLogger(typeof(SQLiteDataLoader));
 

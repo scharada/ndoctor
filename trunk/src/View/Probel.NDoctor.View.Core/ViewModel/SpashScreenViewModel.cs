@@ -204,13 +204,13 @@ namespace Probel.NDoctor.View.Core.ViewModel
         private void ConfigureNHibernate()
         {
             this.Logger.Info("Configuring nHibernate...");
-            var path = ConfigurationManager.AppSettings["Database"];
-            if (!File.Exists(path) && !this.CreateDatabase) throw new FileNotFoundException(Messages.Msg_ErrorDatabaseNotFound);
+            var file = ConfigurationManager.AppSettings["Database"];
+            if (!File.Exists(file) && !this.CreateDatabase) throw new FileNotFoundException(Messages.Msg_ErrorDatabaseNotFound);
 
-            this.Logger.DebugFormat("Database path: {0}", path);
+            this.Logger.DebugFormat("Database path: {0}", file);
             this.LogDatabaseCreation();
 
-            new Database().ConfigureUsingFile(path, this.CreateDatabase);
+            new SQLiteDatabase().ConfigureUsingFile(file, this.CreateDatabase);
         }
 
         private void ConfigurePlugins()

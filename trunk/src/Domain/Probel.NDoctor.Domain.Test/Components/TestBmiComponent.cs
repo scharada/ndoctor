@@ -94,7 +94,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         /// <returns></returns>
         protected override BmiComponent GetComponentInstance()
         {
-            return new BmiComponent(Database.Scope.OpenSession());
+            return new BmiComponent(SQLiteDatabase.Scope.OpenSession());
         }
 
         #endregion Methods

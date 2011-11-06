@@ -105,7 +105,7 @@ namespace Probel.NDoctor.Domain.Test.Component
 
         protected override UserSessionComponent GetComponentInstance()
         {
-            return new UserSessionComponent(Database.Scope.OpenSession());
+            return new UserSessionComponent(SQLiteDatabase.Scope.OpenSession());
         }
 
         #endregion Methods

@@ -30,7 +30,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [Test]
         public void CanFillData()
         {
-            var c = new PatientSessionComponent(Database.Scope.OpenSession());
+            var c = new PatientSessionComponent(SQLiteDatabase.Scope.OpenSession());
             var patient = c.GetPatientLightById(3);
             Assert.NotNull(patient, "A patient with the id '3' should exist in the database");
 
@@ -59,7 +59,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         /// <returns></returns>
         protected override PatientDataComponent GetComponentInstance()
         {
-            return new PatientDataComponent(Database.Scope.OpenSession());
+            return new PatientDataComponent(SQLiteDatabase.Scope.OpenSession());
         }
 
         #endregion Methods

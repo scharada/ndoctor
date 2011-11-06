@@ -33,7 +33,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
     {
         #region Fields
 
-        public static readonly string InitialDataFilename = DatabaseCreator.InitialDataFilename;
+        public static readonly string InitialDataFilename = SQLiteDatabaseCreator.InitialDataFilename;
 
         private const string CONNECTION_STRING = "Data Source=:memory:;Version=3;New=True;";
 

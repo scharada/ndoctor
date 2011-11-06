@@ -46,7 +46,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         /// <returns></returns>
         protected override FamilyComponent GetComponentInstance()
         {
-            return new FamilyComponent(Database.Scope.OpenSession());
+            return new FamilyComponent(SQLiteDatabase.Scope.OpenSession());
         }
 
         #endregion Methods

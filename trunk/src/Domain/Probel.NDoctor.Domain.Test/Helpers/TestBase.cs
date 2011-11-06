@@ -91,7 +91,7 @@ namespace Probel.NDoctor.Domain.Test.Helpers
         /// <returns></returns>
         protected object Transaction(Func<object> function)
         {
-            using (var session = Database.Scope.OpenSession())
+            using (var session = SQLiteDatabase.Scope.OpenSession())
             {
                 object result = null;
                 using (var tx = session.Transaction)
@@ -111,12 +111,11 @@ namespace Probel.NDoctor.Domain.Test.Helpers
 
         private void ConfigureDatabase()
         {
-            var creator = new DatabaseCreator();
+            var creator = new SQLiteDatabaseCreator();
 
             if (!creator.DatabaseExists) creator.Create();
 
-            var database = new Database();
-            database.ConfigureInMemory();
+            new SQLiteDatabase().ConfigureInMemory();
         }
 
         #endregion Methods

@@ -996,7 +996,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         private void OpenSession()
         {
             if (Session == null || !Session.IsOpen)
-                this.Session = Database.SessionFactory.OpenSession();
+                this.Session = SQLiteDatabase.SessionFactory.OpenSession();
             else throw new DalSessionException(Messages.Msg_ErrorSessionAlreadyOpenException);
         }
 

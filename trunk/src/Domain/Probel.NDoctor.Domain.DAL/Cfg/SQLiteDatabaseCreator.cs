@@ -30,13 +30,13 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
     using Probel.NDoctor.Domain.DAL.Components;
 
-    public class DatabaseCreator
+    public class SQLiteDatabaseCreator
     {
         #region Fields
 
         public static readonly string InitialDataFilename = Path.Combine(Path.GetTempPath(), "NDoctorTest.db");
 
-        private readonly ILog Logger = LogManager.GetLogger(typeof(DatabaseCreator));
+        private readonly ILog Logger = LogManager.GetLogger(typeof(SQLiteDatabaseCreator));
 
         #endregion Fields
 
@@ -66,9 +66,9 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
         /// </summary>
         public void Create()
         {
-            if (File.Exists(InitialDataFilename)) File.Delete(InitialDataFilename);
+            if (this.DatabaseExists) File.Delete(InitialDataFilename);
 
-            new Database().ConfigureUsingFile(InitialDataFilename, true);
+            new SQLiteDatabase().ConfigureUsingFile(InitialDataFilename, true);
             var sql = this.GetScript();
             var component = new DebugComponent();
 

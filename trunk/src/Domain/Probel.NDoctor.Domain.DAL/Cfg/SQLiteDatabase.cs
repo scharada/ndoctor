@@ -39,11 +39,11 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
     using NHConfiguration = NHibernate.Cfg.Configuration;
 
-    public class Database
+    public class SQLiteDatabase
     {
         #region Fields
 
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(Database));
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(SQLiteDatabase));
 
         private static ISessionFactory sessionFactory;
 
@@ -54,7 +54,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
         #region Constructors
 
-        static Database()
+        static SQLiteDatabase()
         {
             Logger.Debug("Configuring StructureMap for the plugins...");
             ObjectFactory.Configure(x =>

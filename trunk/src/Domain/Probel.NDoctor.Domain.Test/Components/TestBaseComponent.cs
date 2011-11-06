@@ -282,7 +282,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         /// <returns></returns>
         protected override BaseComponent GetComponentInstance()
         {
-            return new MockBaseComponent(Probel.NDoctor.Domain.DAL.Cfg.Database.Scope.OpenSession());
+            return new MockBaseComponent(Probel.NDoctor.Domain.DAL.Cfg.SQLiteDatabase.Scope.OpenSession());
         }
 
         private PracticeDto CreatePractice(string uniqueName)

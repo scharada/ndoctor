@@ -66,7 +66,7 @@
     <Compile Include="..\..\Version.cs">
       <Link>Version.cs</Link>
     </Compile>
-    <Compile Include="Cfg\DatabaseCreator.cs" />
+    <Compile Include="Cfg\SQLiteDatabaseCreator.cs" />
     <Compile Include="Cfg\SQLiteDataLoader.cs" />
     <Compile Include="Cfg\SQLiteDatabaseScope.cs" />
     <Compile Include="Components\AdministrationComponent.cs" />
@@ -106,7 +106,7 @@
     <Compile Include="Helpers\TestTools.cs" />
     <Compile Include="Exceptions\DalSessionException.cs" />
     <Compile Include="Cfg\CustomAutomappingConfiguration.cs" />
-    <Compile Include="Cfg\Database.cs" />
+    <Compile Include="Cfg\SQLiteDatabase.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Person.cs" />

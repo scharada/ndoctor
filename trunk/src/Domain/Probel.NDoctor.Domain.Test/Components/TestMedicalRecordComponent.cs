@@ -64,23 +64,23 @@ namespace Probel.NDoctor.Domain.Test.Component
 
         protected override MedicalRecordComponent GetComponentInstance()
         {
-            return new MedicalRecordComponent(Database.Scope.OpenSession());
+            return new MedicalRecordComponent(SQLiteDatabase.Scope.OpenSession());
         }
 
         private object ExecuteNonQuery(string sql)
         {
-            using (var tx = Database.Scope.OpenSession().Transaction)
+            using (var tx = SQLiteDatabase.Scope.OpenSession().Transaction)
             {
-                var query = Database.Scope.OpenSession().CreateQuery(sql);
+                var query = SQLiteDatabase.Scope.OpenSession().CreateQuery(sql);
                 return query.UniqueResult();
             }
         }
 
         private void ExecuteSql(string sql)
         {
-            using (var tx = Database.Scope.OpenSession().Transaction)
+            using (var tx = SQLiteDatabase.Scope.OpenSession().Transaction)
             {
-                var query = Database.Scope.OpenSession().CreateQuery(sql);
+                var query = SQLiteDatabase.Scope.OpenSession().CreateQuery(sql);
                 query.ExecuteUpdate();
                 tx.Commit();
             }

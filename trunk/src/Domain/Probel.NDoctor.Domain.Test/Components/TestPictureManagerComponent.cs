@@ -51,7 +51,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         /// <returns></returns>
         protected override PictureComponent GetComponentInstance()
         {
-            return new PictureComponent(Database.Scope.OpenSession());
+            return new PictureComponent(SQLiteDatabase.Scope.OpenSession());
         }
 
         #endregion Methods

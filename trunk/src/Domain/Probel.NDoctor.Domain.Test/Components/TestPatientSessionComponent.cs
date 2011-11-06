@@ -72,7 +72,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         /// <returns></returns>
         protected override PatientSessionComponent GetComponentInstance()
         {
-            return new PatientSessionComponent(Database.Scope.OpenSession());
+            return new PatientSessionComponent(SQLiteDatabase.Scope.OpenSession());
         }
 
         #endregion Methods
