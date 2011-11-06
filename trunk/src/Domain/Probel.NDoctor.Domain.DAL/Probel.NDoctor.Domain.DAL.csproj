@@ -60,11 +60,15 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Version.cs">
       <Link>Version.cs</Link>
     </Compile>
+    <Compile Include="Cfg\DatabaseCreator.cs" />
+    <Compile Include="Cfg\SQLiteDataLoader.cs" />
+    <Compile Include="Cfg\SQLiteDatabaseScope.cs" />
     <Compile Include="Components\AdministrationComponent.cs" />
     <Compile Include="Components\FamilyComponent.cs" />
     <Compile Include="Components\CalendarComponent.cs" />
@@ -102,7 +106,7 @@
     <Compile Include="Helpers\TestTools.cs" />
     <Compile Include="Exceptions\DalSessionException.cs" />
     <Compile Include="Cfg\CustomAutomappingConfiguration.cs" />
-    <Compile Include="Cfg\DAL.cs" />
+    <Compile Include="Cfg\Database.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Person.cs" />
@@ -151,6 +155,11 @@
       <Project>{DB2E15D4-BA31-457B-BF73-71208922A0A0}</Project>
       <Name>Probel.NDoctor.Domain.DTO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\tools\scripts\InsertUsers.sql">
+      <Link>InsertUsers.sql</Link>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

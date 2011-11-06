@@ -23,6 +23,8 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
     using FluentNHibernate.Cfg.Db;
     using FluentNHibernate.Conventions.Helpers;
 
+    using log4net;
+
     using NHibernate;
     using NHibernate.Tool.hbm2ddl;
 
@@ -36,20 +38,74 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
     using StructureMap;
 
     using NHConfiguration = NHibernate.Cfg.Configuration;
-    using log4net;
 
-    public class DAL
+    public class Database
     {
         #region Fields
 
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(Database));
+
         private static ISessionFactory sessionFactory;
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(DAL));
+
         private IPersistenceConfigurer persistenceConfigurer;
         private Action<NHConfiguration> setupConfiguration;
 
         #endregion Fields
 
+        #region Constructors
+
+        static Database()
+        {
+            Logger.Debug("Configuring StructureMap for the plugins...");
+            ObjectFactory.Configure(x =>
+            {
+                x.For<IAdministrationComponent>().Add<AdministrationComponent>();
+                x.SelectConstructor<AdministrationComponent>(() => new AdministrationComponent());
+
+                x.For<IBmiComponent>().Add<BmiComponent>();
+                x.SelectConstructor<BmiComponent>(() => new BmiComponent());
+
+                x.For<ICalendarComponent>().Add<CalendarComponent>();
+                x.SelectConstructor<CalendarComponent>(() => new CalendarComponent());
+
+                x.For<IFamilyComponent>().Add<FamilyComponent>();
+                x.SelectConstructor<FamilyComponent>(() => new FamilyComponent());
+
+                x.For<IMedicalRecordComponent>().Add<MedicalRecordComponent>();
+                x.SelectConstructor<MedicalRecordComponent>(() => new MedicalRecordComponent());
+
+                x.For<IPathologyComponent>().Add<PathologyComponent>();
+                x.SelectConstructor<PathologyComponent>(() => new PathologyComponent());
+
+                x.For<IPatientDataComponent>().Add<PatientDataComponent>();
+                x.SelectConstructor<PatientDataComponent>(() => new PatientDataComponent());
+
+                x.For<IPatientSessionComponent>().Add<PatientSessionComponent>();
+                x.SelectConstructor<PatientSessionComponent>(() => new PatientSessionComponent());
+
+                x.For<IPictureComponent>().Add<PictureComponent>();
+                x.SelectConstructor<PictureComponent>(() => new PictureComponent());
+
+                x.For<IPrescriptionComponent>().Add<PrescriptionComponent>();
+                x.SelectConstructor<PrescriptionComponent>(() => new PrescriptionComponent());
+
+                x.For<IUserSessionComponent>().Add<UserSessionComponent>();
+                x.SelectConstructor<UserSessionComponent>(() => new UserSessionComponent());
+
+                x.For<IDebugComponent>().Add<DebugComponent>();
+                x.SelectConstructor<DebugComponent>(() => new DebugComponent());
+            });
+        }
+
+        #endregion Constructors
+
         #region Properties
+
+        public static SQLiteDatabaseScope Scope
+        {
+            get;
+            private set;
+        }
 
         public bool IsConfigured
         {
@@ -92,6 +148,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                     .ShowSql();
 
             this.Configure();
+            Scope = new SQLiteDatabaseScope(this.Configuration, SessionFactory);
         }
 
         public void ConfigureUsingFile(string path, bool create)
@@ -129,49 +186,6 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
             Mapping.Configure();
             this.IsConfigured = true;
-        }
-
-        static DAL()
-        {
-            Logger.Debug("Configuring StructureMap for the plugins...");
-            ObjectFactory.Configure(x =>
-            {
-                x.For<IAdministrationComponent>().Add<AdministrationComponent>();
-                x.SelectConstructor<AdministrationComponent>(() => new AdministrationComponent());
-
-                x.For<IBmiComponent>().Add<BmiComponent>();
-                x.SelectConstructor<BmiComponent>(() => new BmiComponent());
-
-                x.For<ICalendarComponent>().Add<CalendarComponent>();
-                x.SelectConstructor<CalendarComponent>(() => new CalendarComponent());
-
-                x.For<IFamilyComponent>().Add<FamilyComponent>();
-                x.SelectConstructor<FamilyComponent>(() => new FamilyComponent());
-
-                x.For<IMedicalRecordComponent>().Add<MedicalRecordComponent>();
-                x.SelectConstructor<MedicalRecordComponent>(() => new MedicalRecordComponent());
-
-                x.For<IPathologyComponent>().Add<PathologyComponent>();
-                x.SelectConstructor<PathologyComponent>(() => new PathologyComponent());
-
-                x.For<IPatientDataComponent>().Add<PatientDataComponent>();
-                x.SelectConstructor<PatientDataComponent>(() => new PatientDataComponent());
-
-                x.For<IPatientSessionComponent>().Add<PatientSessionComponent>();
-                x.SelectConstructor<PatientSessionComponent>(() => new PatientSessionComponent());
-
-                x.For<IPictureComponent>().Add<PictureComponent>();
-                x.SelectConstructor<PictureComponent>(() => new PictureComponent());
-
-                x.For<IPrescriptionComponent>().Add<PrescriptionComponent>();
-                x.SelectConstructor<PrescriptionComponent>(() => new PrescriptionComponent());
-
-                x.For<IUserSessionComponent>().Add<UserSessionComponent>();
-                x.SelectConstructor<UserSessionComponent>(() => new UserSessionComponent());
-
-                x.For<IDebugComponent>().Add<DebugComponent>();
-                x.SelectConstructor<DebugComponent>(() => new DebugComponent());
-            });
         }
 
         private AutoPersistenceModel CreateModel()

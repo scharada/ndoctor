@@ -646,6 +646,18 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets the patient with the specified id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns></returns>
+        public LightPatientDto GetPatientLightById(long id)
+        {
+            this.CheckSession();
+            var patient = this.Session.Get<Patient>(id);
+            return Mapper.Map<Patient, LightPatientDto>(patient);
+        }
+
+        /// <summary>
         /// Gets the user by id.
         /// </summary>
         /// <param name="id">The id.</param>
@@ -984,7 +996,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         private void OpenSession()
         {
             if (Session == null || !Session.IsOpen)
-                this.Session = DAL.SessionFactory.OpenSession();
+                this.Session = Database.SessionFactory.OpenSession();
             else throw new DalSessionException(Messages.Msg_ErrorSessionAlreadyOpenException);
         }
 

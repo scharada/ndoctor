@@ -22,6 +22,7 @@ namespace Probel.NDoctor.Domain.Test.Component
 
     using NUnit.Framework;
 
+    using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -104,7 +105,7 @@ namespace Probel.NDoctor.Domain.Test.Component
 
         protected override UserSessionComponent GetComponentInstance()
         {
-            return new UserSessionComponent(this.Database.Session);
+            return new UserSessionComponent(Database.Scope.OpenSession());
         }
 
         #endregion Methods

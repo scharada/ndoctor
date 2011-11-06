@@ -20,8 +20,8 @@ namespace Probel.NDoctor.Domain.Test.Component
 
     using NUnit.Framework;
 
+    using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Components;
-    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.Test.Helpers;
 
@@ -35,33 +35,33 @@ namespace Probel.NDoctor.Domain.Test.Component
         [Test]
         public void CanAddBmiEntry()
         {
-            var patients = this.Component.FindPatientsByNameLight("Patient", SearchOn.FirstAndLastName);
-            Assert.Greater(patients.Count, 1, "No patient were found");
+            var foundPatient = this.Component.GetPatientLightById(3);
+            Assert.NotNull(foundPatient, "No patient were found");
 
-            var patient = this.Component.GetPatientWithBmiHistory(patients[0]);
+            var patient = this.Component.GetPatientWithBmiHistory(foundPatient);
             var before = patient.BmiHistory.Count;
 
-            this.Component.AddBmi(new BmiDto() { Date = DateTime.Now, Height = 180, Weight = 85 }, patients[0]);
+            this.Component.AddBmi(new BmiDto() { Date = DateTime.Now, Height = 180, Weight = 85 }, foundPatient);
 
-            patients = this.Component.FindPatientsByNameLight("Patient", SearchOn.FirstAndLastName);
-            Assert.Greater(patients.Count, 1, "No patient were found after add");
+            foundPatient = this.Component.GetPatientLightById(3);
+            Assert.NotNull(foundPatient, "No patient were found after add");
 
-            patient = this.Component.GetPatientWithBmiHistory(patients[0]);
+            patient = this.Component.GetPatientWithBmiHistory(foundPatient);
             Assert.AreEqual(patient.BmiHistory.Count, before + 1);
         }
 
         [Test]
         public void CanDeleteBmyEntry()
         {
-            var patients = this.Component.FindPatientsByNameLight("patient", SearchOn.FirstAndLastName);
-            Assert.Greater(patients.Count, 1, "No patient were found");
+            var foundPatient = this.Component.GetPatientLightById(3);
+            Assert.NotNull(foundPatient, "No patient were found");
 
-            var patient = this.Component.GetPatientWithBmiHistory(patients[0]);
+            var patient = this.Component.GetPatientWithBmiHistory(foundPatient);
             Assert.GreaterOrEqual(patient.BmiHistory.Count, 10);
 
             var count = this.Component.GetPatientWithBmiHistory(patient).BmiHistory.Count;
 
-            var dateTime = DateTime.Today.AddDays(-4);
+            var dateTime = new DateTime(2000, 01, 01).Date;
             this.Component.AddBmi(new BmiDto() { Date = dateTime, Height = 10, Weight = 10 }, patient);
             this.Component.AddBmi(new BmiDto() { Date = dateTime, Height = 10, Weight = 10 }, patient);
             this.Component.AddBmi(new BmiDto() { Date = dateTime, Height = 10, Weight = 10 }, patient);
@@ -71,17 +71,17 @@ namespace Probel.NDoctor.Domain.Test.Component
                 , this.Component.GetPatientWithBmiHistory(patient).BmiHistory.Count
                 , "The count is not the expected one after insertion");
 
-            this.Component.DeleteBmiWithDate(patient, dateTime);
+            this.Transaction(() => this.Component.DeleteBmiWithDate(patient, dateTime));
 
             Assert.AreEqual(count
                 , this.Component.GetPatientWithBmiHistory(patient).BmiHistory.Count
-                , "The count is not the expected one after deletion");
+                , "The count is not the expected one after delete");
         }
 
         [Test]
         public void CanGetBmiHistory()
         {
-            var patients = this.Component.FindPatientsByNameLight("patient", SearchOn.FirstAndLastName);
+            var patients = this.Component.GetAllPatientsLight();
             Assert.Greater(patients.Count, 1, "No patient were found");
 
             var patient = this.Component.GetPatientWithBmiHistory(patients[0]);
@@ -94,7 +94,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         /// <returns></returns>
         protected override BmiComponent GetComponentInstance()
         {
-            return new BmiComponent(this.Database.Session);
+            return new BmiComponent(Database.Scope.OpenSession());
         }
 
         #endregion Methods

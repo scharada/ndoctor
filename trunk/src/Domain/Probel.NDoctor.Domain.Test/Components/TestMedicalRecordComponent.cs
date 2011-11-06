@@ -17,9 +17,11 @@
 namespace Probel.NDoctor.Domain.Test.Component
 {
     using System;
+    using System.Linq;
 
     using NUnit.Framework;
 
+    using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.Test.Helpers;
@@ -44,7 +46,7 @@ namespace Probel.NDoctor.Domain.Test.Component
             this.Transaction(() => this.Component.Create(record, patients[0]));
 
             var cardCountAfter = (long)this.ExecuteNonQuery(sql);
-            Assert.AreEqual(cardCountBefore + 1, cardCountAfter, "The medical record wasn't added");
+            Assert.Greater(cardCountAfter, cardCountBefore, "The medical record wasn't added");
         }
 
         [Test]
@@ -62,23 +64,23 @@ namespace Probel.NDoctor.Domain.Test.Component
 
         protected override MedicalRecordComponent GetComponentInstance()
         {
-            return new MedicalRecordComponent(this.Database.Session);
+            return new MedicalRecordComponent(Database.Scope.OpenSession());
         }
 
         private object ExecuteNonQuery(string sql)
         {
-            using (var tx = this.Database.Session.Transaction)
+            using (var tx = Database.Scope.OpenSession().Transaction)
             {
-                var query = this.Database.Session.CreateQuery(sql);
+                var query = Database.Scope.OpenSession().CreateQuery(sql);
                 return query.UniqueResult();
             }
         }
 
         private void ExecuteSql(string sql)
         {
-            using (var tx = this.Database.Session.Transaction)
+            using (var tx = Database.Scope.OpenSession().Transaction)
             {
-                var query = this.Database.Session.CreateQuery(sql);
+                var query = Database.Scope.OpenSession().CreateQuery(sql);
                 query.ExecuteUpdate();
                 tx.Commit();
             }

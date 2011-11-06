@@ -76,7 +76,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
             foundPatient.MedicalRecords.Add(recEntity);
 
-            this.Session.SaveOrUpdate(foundPatient);
+            this.Session.Save(foundPatient);
+            this.Session.Flush();
         }
 
         /// <summary>

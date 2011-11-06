@@ -260,6 +260,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         IList<LightUserDto> GetAllUsers();
 
         /// <summary>
+        /// Gets the patient with the specified id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns></returns>
+        LightPatientDto GetPatientLightById(long id);
+
+        /// <summary>
         /// Gets the user by id.
         /// </summary>
         /// <param name="id">The id.</param>

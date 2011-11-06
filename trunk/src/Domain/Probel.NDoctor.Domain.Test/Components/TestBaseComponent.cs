@@ -39,78 +39,56 @@ namespace Probel.NDoctor.Domain.Test.Component
             var countBefore = this.Component.GetAllDoctorsLight().Count;
             var uniqueName = Guid.NewGuid().ToString();
 
-            var item = Mapper.Map<Doctor, LightDoctorDto>(Create.ADoctor(Create.Address(), Create.ASpecialisation(), uniqueName));
+            var item = Mapper.Map<Doctor, LightDoctorDto>(Create.Doctor(Create.Address(), Create.Specialisation(), uniqueName));
 
             this.Transaction(() => this.Component.Create(item));
 
             var countAfter = this.Component.GetAllDoctorsLight().Count;
-            Assert.AreEqual(countBefore + 1, countAfter, "The practice wasn't added");
+            Assert.AreEqual(countBefore + 1, countAfter, "The doctor wasn't added");
 
-            var result = this.Component.FindDoctorsByNameLight(uniqueName, SearchOn.LastName);
-            Assert.AreEqual(1, result.Count, "The practice wasn't found");
-
-            this.Transaction(() => this.Component.Remove(new LightDoctorDto() { Id = result[0].Id }));
-
-            countAfter = this.Component.GetAllDoctorsLight().Count;
-            Assert.AreEqual(countAfter, countBefore, "The insurance wasn't deleted");
+            this.Transaction(() => this.Component.Remove(item));
+            Assert.AreEqual(countBefore, countAfter - 1, "The doctor wasn't deleted");
         }
 
         [Test]
         public void CanCreateAndDeletePatient()
         {
-            int countBefore, countAfter = 0;
+            var countBefore = this.Component.GetAllPatientsLight().Count;
+            var uniqueName = Guid.NewGuid().ToString();
 
-            countBefore = this.Component.GetAllPatientsLight().Count;
-
-            var item = Mapper.Map<Patient, PatientDto>(Create.Patient());
-
-            var uniqueName = item.FirstName;
+            var item = Mapper.Map<Patient, LightPatientDto>(Create.Patient());
 
             this.Transaction(() => this.Component.Create(item));
 
-            countAfter = this.Component.GetAllPatientsLight().Count;
+            var countAfter = this.Component.GetAllPatientsLight().Count;
             Assert.AreEqual(countBefore + 1, countAfter, "The patient wasn't added");
 
-            var result = this.Component.FindPatientsByNameLight(uniqueName, SearchOn.FirstAndLastName);
-            Assert.AreEqual(1, result.Count, "The patient wasn't found");
-
-            this.Transaction(() => this.Component.Remove(new PatientDto() { Id = result[0].Id }));
-
-            countAfter = this.Component.GetAllPatientsLight().Count;
-            Assert.AreEqual(countAfter, countBefore, "The patient wasn't deleted");
+            this.Transaction(() => this.Component.Remove(item));
+            Assert.AreEqual(countBefore, countAfter - 1, "The patient wasn't deleted");
         }
 
         [Test]
         public void CanCreateAndDeleteTag()
         {
-            var tagType = TagCategory.Doctor;
-
-            int countBefore, countAfter = 0;
+            var countBefore = this.Component.GetAllTags().Count;
             var uniqueName = Guid.NewGuid().ToString();
 
-            countBefore = this.Component.GetAllTags().Count;
-
-            var item = Mapper.Map<Tag, TagDto>(Create.ATag(tagType, uniqueName));
+            var item = Mapper.Map<Tag, TagDto>(Create.Tag(TagCategory.Patient));
 
             this.Transaction(() => this.Component.Create(item));
 
-            countAfter = this.Component.GetAllTags().Count;
+            var countAfter = this.Component.GetAllTags().Count;
             Assert.AreEqual(countBefore + 1, countAfter, "The tag wasn't added");
 
-            var result = this.Component.FindTags(uniqueName, tagType);
-            Assert.AreEqual(1, result.Count, "The tag wasn't found");
-
-            this.Transaction(() => this.Component.Remove(new TagDto() { Id = result[0].Id }));
-
-            countAfter = this.Component.GetAllTags().Count;
-            Assert.AreEqual(countAfter, countBefore, "The tag wasn't deleted");
+            this.Transaction(() => this.Component.Remove(item));
+            Assert.AreEqual(countBefore, countAfter - 1, "The tag wasn't deleted");
         }
 
         [Test]
         public void CanGetAllDoctors()
         {
             var result = this.Component.GetAllDoctorsLight();
-            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(3, result.Count);
         }
 
         [Test]
@@ -205,7 +183,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [Test]
         public void CanGetAllTagsForPatientWithName()
         {
-            var result = this.Component.FindTags("Some tag", TagCategory.Patient);
+            var result = this.Component.FindTags("Patient category 1", TagCategory.Patient);
 
             foreach (var item in result) Assert.AreEqual(item.Category, TagCategory.Patient);
 
@@ -222,21 +200,21 @@ namespace Probel.NDoctor.Domain.Test.Component
         [Test]
         public void CanGetDoctorOnFirstAndLastName()
         {
-            var result = this.Component.FindDoctorsByNameLight("ert", SearchOn.FirstAndLastName);
-            Assert.AreEqual(2, result.Count);
+            var result = this.Component.FindDoctorsByNameLight("Docteur", SearchOn.FirstAndLastName);
+            Assert.AreEqual(3, result.Count);
         }
 
         [Test]
         public void CanGetDoctorOnFirstName()
         {
-            var result = this.Component.FindDoctorsByNameLight("ert", SearchOn.FirstName);
-            Assert.AreEqual(2, result.Count);
+            var result = this.Component.FindDoctorsByNameLight("Docteur", SearchOn.FirstName);
+            Assert.AreEqual(3, result.Count);
         }
 
         [Test]
         public void CanGetDoctorOnLastName()
         {
-            var result = this.Component.FindDoctorsByNameLight("pont", SearchOn.LastName);
+            var result = this.Component.FindDoctorsByNameLight("Dupont", SearchOn.LastName);
             Assert.AreEqual(1, result.Count);
         }
 
@@ -247,29 +225,29 @@ namespace Probel.NDoctor.Domain.Test.Component
             Assert.AreEqual(1, specialisations.Count, "Only one specialisation 'Dentist' should exist");
 
             var result = this.Component.FindDoctorsBySpecialisationLight(specialisations[0]);
-            Assert.AreEqual(2, result.Count, "2 doctors with this specialisation are expected");
+            Assert.AreEqual(3, result.Count, "3 doctors with this specialisation are expected");
         }
 
         [Test]
         public void CanGetPatientOnFirstAndLastName()
         {
-            var result = this.Component.FindPatientsByNameLight("patient", SearchOn.FirstAndLastName);
+            var result = this.Component.FindPatientsByNameLight("e", SearchOn.FirstAndLastName);
             Assert.NotNull(result);
-            Assert.AreEqual(9, result.Count);
+            Assert.AreEqual(10, result.Count);
         }
 
         [Test]
         public void CanGetPatientOnFirstName()
         {
-            var result = this.Component.FindPatientsByNameLight("patient", SearchOn.FirstName);
+            var result = this.Component.FindPatientsByNameLight("e", SearchOn.FirstName);
             Assert.NotNull(result);
-            Assert.AreEqual(9, result.Count);
+            Assert.AreEqual(10, result.Count);
         }
 
         [Test]
         public void CanGetPatientOnLastName()
         {
-            var result = this.Component.FindPatientsByNameLight("pont", SearchOn.LastName);
+            var result = this.Component.FindPatientsByNameLight("dupont", SearchOn.LastName);
             Assert.NotNull(result);
             Assert.AreEqual(1, result.Count);
         }
@@ -280,7 +258,7 @@ namespace Probel.NDoctor.Domain.Test.Component
             var user = this.Component.GetUserById(1);
 
             Assert.NotNull(user, "The user 'Robert Dupont' should be in the database");
-            Assert.AreEqual("User Robert", user.FirstName);
+            Assert.AreEqual("Docteur Robert", user.FirstName);
             Assert.AreEqual("Dupont", user.LastName);
         }
 
@@ -304,7 +282,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         /// <returns></returns>
         protected override BaseComponent GetComponentInstance()
         {
-            return new MockBaseComponent(this.Database.Session);
+            return new MockBaseComponent(Probel.NDoctor.Domain.DAL.Cfg.Database.Scope.OpenSession());
         }
 
         private PracticeDto CreatePractice(string uniqueName)

@@ -148,7 +148,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Probel.NDoctor.View.Core.exe.log4net">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

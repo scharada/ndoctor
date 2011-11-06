@@ -28,6 +28,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using System.Windows.Input;
 
     using Probel.Helpers.Strings;
+    using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.View.Core.Model;
     using Probel.NDoctor.View.Core.Properties;
@@ -37,7 +38,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Plugins.MenuData;
 
     using StructureMap;
-    using Probel.NDoctor.Domain.DAL.Cfg;
 
     public class SpashScreenViewModel : BaseViewModel
     {
@@ -210,7 +210,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             this.Logger.DebugFormat("Database path: {0}", path);
             this.LogDatabaseCreation();
 
-            new DAL().ConfigureUsingFile(path, this.CreateDatabase);
+            new Database().ConfigureUsingFile(path, this.CreateDatabase);
         }
 
         private void ConfigurePlugins()

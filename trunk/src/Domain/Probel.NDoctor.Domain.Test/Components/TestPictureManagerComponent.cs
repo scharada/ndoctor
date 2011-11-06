@@ -18,6 +18,7 @@ namespace Probel.NDoctor.Domain.Test.Component
 {
     using NUnit.Framework;
 
+    using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.Test.Helpers;
@@ -50,7 +51,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         /// <returns></returns>
         protected override PictureComponent GetComponentInstance()
         {
-            return new PictureComponent(this.Database.Session);
+            return new PictureComponent(Database.Scope.OpenSession());
         }
 
         #endregion Methods

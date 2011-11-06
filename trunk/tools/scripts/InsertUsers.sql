@@ -1,4 +1,5 @@
 ﻿--begin transaction;
+--begin transaction;
 -- Tags
 INSERT INTO Tag(Id, Category, Name) VALUES(1 , 'MedicalRecord', 'Medical record Type A');
 INSERT INTO Tag(Id, Category, Name) VALUES(2 , 'MedicalRecord', 'Medical record Type B');
@@ -70,8 +71,8 @@ INSERT INTO Person(Id, LastUpdate, Gender, FirstName, LastName, ProMail, ProMobi
 INSERT INTO Person(Id, LastUpdate, Gender, FirstName, LastName, ProMail, ProMobile,ProPhone, AddressBoxNumber, AddressCity, AddressPostalCode, AddressStreet, AddressStreetNumber, IsComplete, Tag_id) VALUES (14,'2007-01-01', 'Male'  , 'Vincent', 'Proulouxe', 'some@mail.com', '0476/79.98.97','085/25.58.75', 'box', 'Liege', '4000', 'rue Darchis', '56', 1, 7);
 INSERT INTO Person(Id, LastUpdate, Gender, FirstName, LastName, ProMail, ProMobile,ProPhone, AddressBoxNumber, AddressCity, AddressPostalCode, AddressStreet, AddressStreetNumber, IsComplete, Tag_id) VALUES (15,'2007-01-01', 'Male'  , 'Docteur Vincent', 'Scalplou', 'some@mail.com', '0476/79.98.97','085/25.58.75', 'box', 'Liege', '4000', 'rue Darchis', '56', 1, 7);
 -- Doctors
-INSERT INTO Person(Id, LastUpdate, Gender, FirstName, LastName, ProMail, ProMobile,ProPhone, AddressBoxNumber, AddressCity, AddressPostalCode, AddressStreet, AddressStreetNumber, IsComplete) VALUES (5,'2007-01-01', 'Male', 'Doctor Robert', 'Dupont', 'some@mail.com', '0476/79.98.97','085/25.58.75', 'box', 'Liege', '4000', 'rue Darchis', '56', 1);
-INSERT INTO Person(Id, LastUpdate, Gender, FirstName, LastName, ProMail, ProMobile,ProPhone, AddressBoxNumber, AddressCity, AddressPostalCode, AddressStreet, AddressStreetNumber, IsComplete) VALUES (6,'2007-01-01', 'Female', 'Doctor Lucie', 'Jravniou', 'some@mail.com', '0476/79.98.97','085/25.58.75', 'box', 'Liege', '4000', 'rue Darchis', '56', 1);
+INSERT INTO Person(Id, LastUpdate, Gender, FirstName, LastName, ProMail, ProMobile,ProPhone, AddressBoxNumber, AddressCity, AddressPostalCode, AddressStreet, AddressStreetNumber, IsComplete) VALUES (5,'2007-01-01', 'Male', 'Docteur Robert', 'Dupont', 'some@mail.com', '0476/79.98.97','085/25.58.75', 'box', 'Liege', '4000', 'rue Darchis', '56', 1);
+INSERT INTO Person(Id, LastUpdate, Gender, FirstName, LastName, ProMail, ProMobile,ProPhone, AddressBoxNumber, AddressCity, AddressPostalCode, AddressStreet, AddressStreetNumber, IsComplete) VALUES (6,'2007-01-01', 'Female', 'Docteur Lucie', 'Jravniou', 'some@mail.com', '0476/79.98.97','085/25.58.75', 'box', 'Liege', '4000', 'rue Darchis', '56', 1);
 
 INSERT INTO User(person_id, password, Header, Practice_id, AssignedRole_id, IsDefault) VALUES (1, 'aze', 'Some header', 1, 1, 1);
 INSERT INTO User(person_id, password, Header, Practice_id, AssignedRole_id, IsDefault) VALUES (2, 'aze', 'Some header', 2, 1, 0);
@@ -102,29 +103,41 @@ INSERT INTO DoctorsToPatients(Patient_Id, Doctor_Id) VALUES(8,5);
 INSERT INTO DoctorsToPatients(Patient_Id, Doctor_Id) VALUES(9,6);
 INSERT INTO DoctorsToPatients(Patient_Id, Doctor_Id) VALUES(9,5);
 
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-01', 180, 80, 7);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-02', 180, 81, 7);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-03', 180, 82, 7);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-04', 180, 83, 7);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-05', 180, 84, 7);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-06', 180, 85, 7);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-07', 180, 86, 7);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-08', 180, 87, 7);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-09', 180, 88, 7);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-10', 180, 89, 7);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-11', 180, 90, 7);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-01', 180, 80, 7);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-02', 180, 81, 7);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-03', 180, 82, 7);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-04', 180, 83, 7);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-05', 180, 84, 7);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-06', 180, 85, 7);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-07', 180, 86, 7);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-08', 180, 87, 7);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-09', 180, 88, 7);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-10', 180, 89, 7);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-11', 180, 90, 7);
                                                                                
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-01', 180, 80, 4);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-02', 180, 81, 4);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-03', 180, 82, 4);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-04', 180, 83, 4);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-05', 180, 84, 4);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-06', 180, 85, 4);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-07', 180, 86, 4);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-08', 180, 87, 4);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-09', 180, 88, 4);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-10', 180, 89, 4);
-INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-11', 180, 90, 4);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-01', 180, 80, 4);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-02', 180, 81, 4);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-03', 180, 82, 4);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-04', 180, 83, 4);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-05', 180, 84, 4);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-06', 180, 85, 4);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-07', 180, 86, 4);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-08', 180, 87, 4);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-09', 180, 88, 4);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-10', 180, 89, 4);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-11', 180, 90, 4);
+
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-01', 180, 80, 3);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-02', 180, 81, 3);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-03', 180, 82, 3);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-04', 180, 83, 3);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-05', 180, 84, 3);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-06', 180, 85, 3);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-07', 180, 86, 3);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-08', 180, 87, 3);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-09', 180, 88, 3);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-10', 180, 89, 3);
+INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2011-11-11', 180, 90, 3);
 
 INSERT INTO MedicalRecord(Id, CreationDate, Name, Html, Tag_Id, Patient_Id) VALUES(1, '2010-01-01', 'Title 1', '<h1>Demonstration Title</h1>" Hello world as a medical record 1 <h1>text</h1>', 1, 3);
 INSERT INTO MedicalRecord(Id, CreationDate, Name, Html, Tag_Id, Patient_Id) VALUES(2, '2010-01-01', 'Title 1 bis', '<h1>Demonstration Title</h1>" Hello world as a medical record 1 bis <h1>text</h1>', 1, 3);

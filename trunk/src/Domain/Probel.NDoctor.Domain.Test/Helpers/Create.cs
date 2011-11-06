@@ -41,25 +41,7 @@ namespace Probel.NDoctor.Domain.Test.Helpers
 
         public static Doctor ADoctor(Address address, Tag specialisation)
         {
-            return ADoctor(address, specialisation, Guid.NewGuid().ToString());
-        }
-
-        public static Doctor ADoctor(Address address, Tag specialisation, string lastName)
-        {
-            return new Doctor()
-            {
-                Address = address,
-                Counter = 0,
-                FirstName = Guid.NewGuid().ToString(),
-                Gender = Gender.Male,
-                LastName = lastName,
-                LastUpdate = DateTime.Now,
-                ProMail = Guid.NewGuid().ToString(),
-                ProMobile = Guid.NewGuid().ToString(),
-                ProPhone = Guid.NewGuid().ToString(),
-                Specialisation = specialisation,
-                Tag = specialisation,
-            };
+            return Doctor(address, specialisation, Guid.NewGuid().ToString());
         }
 
         public static Insurance AnInsurance(string name)
@@ -143,11 +125,6 @@ namespace Probel.NDoctor.Domain.Test.Helpers
             };
         }
 
-        public static Tag ASpecialisation()
-        {
-            return ASpecialisation(Guid.NewGuid().ToString());
-        }
-
         public static Tag ATag(TagCategory type, string name)
         {
             return new Tag()
@@ -185,6 +162,24 @@ namespace Probel.NDoctor.Domain.Test.Helpers
             return robertDupont;
         }
 
+        public static Doctor Doctor(Address address, Tag specialisation, string lastName)
+        {
+            return new Doctor()
+            {
+                Address = address,
+                Counter = 0,
+                FirstName = Guid.NewGuid().ToString(),
+                Gender = Gender.Male,
+                LastName = lastName,
+                LastUpdate = DateTime.Now,
+                ProMail = Guid.NewGuid().ToString(),
+                ProMobile = Guid.NewGuid().ToString(),
+                ProPhone = Guid.NewGuid().ToString(),
+                Specialisation = specialisation,
+                Tag = specialisation,
+            };
+        }
+
         public static Role GetRole(Task task)
         {
             var role = new Role()
@@ -199,6 +194,16 @@ namespace Probel.NDoctor.Domain.Test.Helpers
         public static Insurance Insurance()
         {
             return AnInsurance(Guid.NewGuid().ToString());
+        }
+
+        public static Patient Patient()
+        {
+            return Create.Patient(Create.Address()
+                , Create.Tag(TagCategory.Patient)
+                , Create.Reputation()
+                , Create.Insurance()
+                , Create.Practice()
+                , Create.Profession());
         }
 
         public static Patient Patient(Address address, Tag tag, Reputation reputation, Insurance insurance, Practice practice, Profession profession)
@@ -229,13 +234,6 @@ namespace Probel.NDoctor.Domain.Test.Helpers
                 Reputation = reputation,
                 Tag = tag,
             };
-        }
-
-        public static Patient Patient()
-        {
-            return Create.Patient(Create.Address()
-                , Create.Tag(TagCategory.Patient), Create.Reputation(), Create.Insurance()
-                , Create.Practice(Create.Address()), Create.Profession());
         }
 
         public static Patient PatientWithFamily()
@@ -273,6 +271,11 @@ namespace Probel.NDoctor.Domain.Test.Helpers
             return patient;
         }
 
+        public static Practice Practice()
+        {
+            return Practice(Create.Address());
+        }
+
         public static Practice Practice(Address address)
         {
             return APractice(address, Guid.NewGuid().ToString());
@@ -286,6 +289,11 @@ namespace Probel.NDoctor.Domain.Test.Helpers
         public static Reputation Reputation()
         {
             return AReputation(Guid.NewGuid().ToString());
+        }
+
+        public static Tag Specialisation()
+        {
+            return ASpecialisation(Guid.NewGuid().ToString());
         }
 
         /// <summary>

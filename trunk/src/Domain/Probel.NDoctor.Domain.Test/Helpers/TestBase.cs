@@ -24,31 +24,15 @@ namespace Probel.NDoctor.Domain.Test.Helpers
 
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Entities;
-    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     [TestFixture]
     [Category("Database")]
-    public abstract class TestBase<T> : IDisposable
+    public abstract class TestBase<T>
     {
-        #region Constructors
-
-        public TestBase()
-        {
-            this.Database = new InMemoryDatabase();
-        }
-
-        #endregion Constructors
-
         #region Properties
 
         protected T Component
-        {
-            get;
-            private set;
-        }
-
-        protected InMemoryDatabase Database
         {
             get;
             private set;
@@ -58,24 +42,18 @@ namespace Probel.NDoctor.Domain.Test.Helpers
 
         #region Methods
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            this.Database.Dispose();
-        }
-
         [TestFixtureSetUp]
         public void FixtureSetup()
         {
             this.ConfigureAutoMapper();
-            new DAL().ConfigureInMemory();
-            this.Component = this.GetComponentInstance();
-            //Build.Database(this.Database.Session);
-            DbBuilder.Create(this.Database.Session);
-
             this.PostFixtureSetup();
+        }
+
+        [SetUp]
+        public void SetupTest()
+        {
+            this.ConfigureDatabase();
+            this.Component = this.GetComponentInstance();
         }
 
         /// <summary>
@@ -113,19 +91,32 @@ namespace Probel.NDoctor.Domain.Test.Helpers
         /// <returns></returns>
         protected object Transaction(Func<object> function)
         {
-            object result = null;
-            using (var tx = this.Database.Session.Transaction)
+            using (var session = Database.Scope.OpenSession())
             {
-                tx.Begin();
-                result = function();
-                tx.Commit();
+                object result = null;
+                using (var tx = session.Transaction)
+                {
+                    tx.Begin();
+                    result = function();
+                    tx.Commit();
+                }
+                return result;
             }
-            return result;
         }
 
         private void ConfigureAutoMapper()
         {
             Mapper.CreateMap<User, UserDto>();
+        }
+
+        private void ConfigureDatabase()
+        {
+            var creator = new DatabaseCreator();
+
+            if (!creator.DatabaseExists) creator.Create();
+
+            var database = new Database();
+            database.ConfigureInMemory();
         }
 
         #endregion Methods

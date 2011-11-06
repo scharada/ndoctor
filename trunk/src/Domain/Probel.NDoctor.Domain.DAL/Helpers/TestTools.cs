@@ -28,7 +28,7 @@ namespace Probel.NDoctor.Domain.DAL.Helpers
         /// <param name="component">The component.</param>
         public static void NullifySession(BaseComponent component)
         {
-            component.SetSession(null);
+            if (component != null) component.SetSession(null);
         }
 
         #endregion Methods
