@@ -15,7 +15,7 @@ set "root=%prj%\Plugins"
 echo prj: %prj%
 echo root:%root%
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-set "releaseMode=Release"
+set "releaseMode=Debug"
 set "pluginName=Debug"
 set "return=start"
 
