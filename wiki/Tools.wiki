@@ -23,6 +23,8 @@ Here's the list of tools used to develop nDoctor
  * [http://community.jboss.org/wiki/NHibernateForNET nHibernate]
  * [http://www.microsoft.com/download/en/details.aspx?id=11877 Microsoft Ribbon for WPF]
  * [http://nini.sourceforge.net/ Nini <Not used anymore>]
+ * [http://wpf.codeplex.com/ WPF Toolkit]
+ * [http://wpftoolkit.codeplex.com/ WPF Toolkit extended]
 
 = Visual studio plugins =
  * [http://ankhsvn.open.collab.net/ AnkhSVN] 
