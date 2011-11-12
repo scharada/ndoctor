@@ -19,7 +19,6 @@ Here's the list of tools used to develop nDoctor
  * [http://structuremap.net/structuremap/ StructureMap]
  * [http://automapper.codeplex.com/ Automapper] 
  * [http://wpf.codeplex.com/ WPF Toolkit]
- * [http://wpftoolkit.codeplex.com Extended WPF Toolkit]
  * [http://community.jboss.org/wiki/NHibernateForNET nHibernate]
  * [http://www.microsoft.com/download/en/details.aspx?id=11877 Microsoft Ribbon for WPF]
  * [http://nini.sourceforge.net/ Nini <Not used anymore>]
