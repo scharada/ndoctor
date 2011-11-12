@@ -112,10 +112,6 @@
       <Project>{DB2E15D4-BA31-457B-BF73-71208922A0A0}</Project>
       <Name>Probel.NDoctor.Domain.DTO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ExtTools\SmithHtmlEditor\SmithHtmlEditor\SmithHtmlEditor.csproj">
-      <Project>{84BADDA1-AB3A-4064-B87E-178D7446901D}</Project>
-      <Name>SmithHtmlEditor</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Helpers\Probel.Helpers.WPF\Probel.Helpers.WPF.csproj">
       <Project>{625CC14F-559B-4004-A814-4C9DFF5DF503}</Project>
       <Name>Probel.Helpers.WPF</Name>
