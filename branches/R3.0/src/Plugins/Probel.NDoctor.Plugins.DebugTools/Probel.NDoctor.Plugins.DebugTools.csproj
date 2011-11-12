@@ -55,6 +55,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DebugControl.xaml.cs">
+      <DependentUpon>DebugControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Messages.fr.Designer.cs">
       <DependentUpon>Messages.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -125,6 +128,12 @@
     <EmbeddedResource Include="..\..\..\tools\scripts\InsertUsers.sql">
       <Link>InsertUsers.sql</Link>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="DebugControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

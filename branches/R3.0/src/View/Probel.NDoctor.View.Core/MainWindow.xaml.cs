@@ -17,9 +17,12 @@
 namespace Probel.NDoctor.View.Core
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
     using System.Windows.Controls;
+
+    using AvalonDock;
 
     using log4net;
 
@@ -181,6 +184,23 @@ namespace Probel.NDoctor.View.Core
         public void Add(RibbonContextualTabGroupData contextTab)
         {
             this.Dispatcher.Invoke((Action)delegate { App.RibbonData.ContextualTabGroupDataCollection.Add(contextTab); });
+        }
+
+        /// <summary>
+        /// Adds a new side menu window
+        /// </summary>
+        /// <param name="title">The title of the side menu.</param>
+        /// <param name="control">The control that will be inserted into the side menu.</param>
+        public void AddDockablePane(string title, UserControl control)
+        {
+            var dockable = new DockableContent()
+            {
+                Title = title,
+                Content = control,
+                IsCloseable = false,
+                DockableStyle = DockableStyle.AutoHide,
+            };
+            dockable.Show(this.dockManger);
         }
 
         /// <summary>

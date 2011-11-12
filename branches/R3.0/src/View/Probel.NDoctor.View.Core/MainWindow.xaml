@@ -1,10 +1,13 @@
 ﻿<ribbon:RibbonWindow x:Class="Probel.NDoctor.View.Core.MainWindow"
+                     
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
 		xmlns:menu="clr-namespace:Probel.NDoctor.View.Plugins.MenuData;assembly=Probel.NDoctor.View.Plugins"           
 		xmlns:data="clr-namespace:Probel.NDoctor.View.Core"
         xmlns:converter="clr-namespace:Probel.NDoctor.View.Plugins.Converters;assembly=Probel.NDoctor.View.Plugins"
+        xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock"
+                     
 		Title="{Binding Path=WindowTitle}"
 		Width="1024" Height="768" 
         WindowStartupLocation="CenterScreen" 
@@ -131,7 +134,22 @@
 					ItemsSource="{Binding ControlDataCollection}" />
             </ribbon:Ribbon.ApplicationMenu>
         </ribbon:Ribbon>
-        <Frame x:Name="workbench" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+        <ad:DockingManager x:Name="dockManger"
+                           Grid.Row="1">
+            <ad:ResizingPanel Orientation="Vertical">
+                <ad:ResizingPanel Orientation="Horizontal">
+                    <ad:DockablePane x:Name="sideMenu"
+                                     ad:ResizingPanel.ResizeWidth="250">     
+                    </ad:DockablePane>
+                    <ad:DocumentPane ShowHeader="False">
+                        <ad:DocumentContent>
+                            <Frame x:Name="workbench" 
+                                   NavigationUIVisibility="Hidden"/>
+                        </ad:DocumentContent>
+                    </ad:DocumentPane>
+                </ad:ResizingPanel>
+            </ad:ResizingPanel>
+        </ad:DockingManager>
         <StatusBar Grid.Row="3">
             <StatusBarItem DockPanel.Dock="Right">
                 <TextBlock Text="{Binding Path=ConnectedPatientText}"/>

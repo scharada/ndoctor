@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Plugins>
-  <Plugin name="Debug Tools"            path="DebugTools"          activated="false"/>
+  <Plugin name="Debug Tools"            path="DebugTools"          activated="true"/>
   <Plugin name="User session"           path="UserSession"         activated="true"/>
   <Plugin name="Patient session"        path="PatientSession"      activated="true"/>
   <Plugin name="Patient data"           path="PatientData"         activated="true"/>

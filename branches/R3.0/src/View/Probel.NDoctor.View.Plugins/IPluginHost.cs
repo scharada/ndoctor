@@ -19,6 +19,8 @@ namespace Probel.NDoctor.View.Plugins
     using System;
     using System.Windows.Controls;
 
+    using AvalonDock;
+
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -108,6 +110,13 @@ namespace Probel.NDoctor.View.Plugins
         /// </summary>
         /// <param name="contextTab">The context tab.</param>
         void Add(RibbonContextualTabGroupData contextTab);
+
+        /// <summary>
+        /// Adds a new side menu window
+        /// </summary>
+        /// <param name="title">The title of the side menu.</param>
+        /// <param name="control">The control that will be inserted into the side menu.</param>
+        void AddDockablePane(string title, UserControl control);
 
         /// <summary>
         /// Adds the specified button in the specified group in home menu.
