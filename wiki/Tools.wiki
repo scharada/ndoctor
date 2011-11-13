@@ -33,6 +33,7 @@ Here's the list of tools used to develop nDoctor
  * [http://visualstudiogallery.msdn.microsoft.com/c8164c71-0836-4471-80ce-633383031099 Visual NUnit 2010]
  * [http://submain.com/products/ghostdoc.aspx Ghostdoc]
  * [http://www.narrange.net/ nArrange]
+ * [http://visualstudiogallery.msdn.microsoft.com/B08B0375-139E-41D7-AF9B-FAEE50F68392?SRC=VSIDE Snippet Designer]
 
 = Architecture tools =
  * [http://www.mono-project.com/Gendarme Gendarme]
