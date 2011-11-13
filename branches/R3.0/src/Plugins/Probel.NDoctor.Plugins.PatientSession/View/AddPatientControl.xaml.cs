@@ -28,7 +28,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.View
     /// <summary>
     /// Interaction logic for AddParentView.xaml
     /// </summary>
-    public partial class AddPatientControl : Page
+    public partial class AddPatientControl : UserControl
     {
         #region Constructors
 

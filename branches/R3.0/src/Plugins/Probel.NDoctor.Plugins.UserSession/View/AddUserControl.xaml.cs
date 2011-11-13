@@ -28,7 +28,7 @@ namespace Probel.NDoctor.Plugins.UserSession.View
     /// <summary>
     /// Interaction logic for AddUserView.xaml
     /// </summary>
-    public partial class AddUserControl : Page
+    public partial class AddUserControl : UserControl
     {
         #region Constructors
 

@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -16,9 +14,6 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-#endregion Header
-
 namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 {
     using System;
@@ -30,6 +25,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using Probel.NDoctor.Plugins.UserSession.Helpers;
     using Probel.NDoctor.Plugins.UserSession.Properties;
     using Probel.NDoctor.Plugins.UserSession.View;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
@@ -143,7 +139,13 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                     Notifyer.OnUserAdded(this);
                     this.Host.NavigateBack();
                 }
-                else this.Host.Navigate(new AddUserView());
+                else
+                {
+                    ChildWindowContext.Content = new AddUserControl();
+                    ChildWindowContext.WindowState = Microsoft.Windows.Controls.WindowState.Open;
+                    ChildWindowContext.IsModal = false;
+                    ChildWindowContext.Caption = Messages.Title_ButtonAddUser;
+                }
             }
             catch (Exception ex)
             {

@@ -92,8 +92,8 @@
     <Compile Include="Translations\WorkbenchText.cs" />
     <Compile Include="ViewModel\AddPatientViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
-    <Compile Include="View\AddPatientView.xaml.cs">
-      <DependentUpon>AddPatientView.xaml</DependentUpon>
+    <Compile Include="View\AddPatientControl.xaml.cs">
+      <DependentUpon>AddPatientControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SearchPatientControl.xaml.cs">
       <DependentUpon>SearchPatientControl.xaml</DependentUpon>
@@ -144,7 +144,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="View\AddPatientView.xaml">
+    <Page Include="View\AddPatientControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

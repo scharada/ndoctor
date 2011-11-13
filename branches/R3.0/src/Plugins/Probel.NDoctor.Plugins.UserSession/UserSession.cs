@@ -23,6 +23,8 @@ namespace Probel.NDoctor.Plugins.UserSession
 
     using AutoMapper;
 
+    using Microsoft.Windows.Controls;
+
     using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
@@ -101,7 +103,6 @@ namespace Probel.NDoctor.Plugins.UserSession
         public override void Initialise()
         {
             this.ConfigureAutoMapper();
-
             this.ConfigureStructureMap();
 
             this.component = ObjectFactory.GetInstance<IUserSessionComponent>();
@@ -129,7 +130,7 @@ namespace Probel.NDoctor.Plugins.UserSession
         {
             this.updateCommand = new RelayCommand(() => this.UpdateUser());
             this.printCommand = new RelayCommand(() => this.PrintBusinessCard());
-            this.addCommand = new RelayCommand(() => this.Host.Navigate(new AddUserView()));
+            this.addCommand = new RelayCommand(() => this.NavigateAddUser());
             this.showUpdateUserCommand = new RelayCommand(() => this.NavigateToUpdateUser());
         }
 
@@ -191,6 +192,14 @@ namespace Probel.NDoctor.Plugins.UserSession
             this.Host.Add(this.contextualMenu);
 
             #endregion
+        }
+
+        private void NavigateAddUser()
+        {
+            ChildWindowContext.Content = new AddUserControl();
+            ChildWindowContext.WindowState = WindowState.Open;
+            ChildWindowContext.IsModal = false;
+            ChildWindowContext.Caption = Messages.Title_ButtonAddUser;
         }
 
         private void NavigateToUpdateUser()

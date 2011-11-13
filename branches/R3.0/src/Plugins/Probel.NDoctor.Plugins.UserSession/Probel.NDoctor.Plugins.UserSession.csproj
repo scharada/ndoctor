@@ -88,8 +88,8 @@
     <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\ConnectionViewModel.cs" />
     <Compile Include="ViewModel\UpdateUserViewModel.cs" />
-    <Compile Include="View\AddUserView.xaml.cs">
-      <DependentUpon>AddUserView.xaml</DependentUpon>
+    <Compile Include="View\AddUserControl.xaml.cs">
+      <DependentUpon>AddUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ChangePasswordView.xaml.cs">
       <DependentUpon>ChangePasswordView.xaml</DependentUpon>
@@ -135,6 +135,10 @@
       <Project>{DB2E15D4-BA31-457B-BF73-71208922A0A0}</Project>
       <Name>Probel.NDoctor.Domain.DTO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Helpers\Probel.Helpers.WPF\Probel.Helpers.WPF.csproj">
+      <Project>{031C3942-6CE3-4999-89A7-D6DAAD781645}</Project>
+      <Name>Probel.Helpers.WPF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Helpers\Probel.Helpers\Probel.Helpers.csproj">
       <Project>{18F7EA3E-0BF5-430F-9B1D-258BDAB6304E}</Project>
       <Name>Probel.Helpers</Name>
@@ -153,7 +157,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\AddUserView.xaml">
+    <Page Include="View\AddUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

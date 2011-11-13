@@ -84,6 +84,7 @@
     <Compile Include="Helpers\Languages.cs" />
     <Compile Include="Helpers\PasswordBoxAssistant.cs" />
     <Compile Include="Helpers\TranslateExtension.cs" />
+    <Compile Include="Helpers\ChildWindowContext.cs" />
     <Compile Include="Model\Commands.cs" />
     <Compile Include="Properties\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -97,6 +98,7 @@
     </Compile>
     <Compile Include="Translations\SettingsText.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\ChildWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\SpashScreenViewModel.cs" />

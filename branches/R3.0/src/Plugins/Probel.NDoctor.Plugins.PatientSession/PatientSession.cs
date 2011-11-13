@@ -27,6 +27,8 @@ namespace Probel.NDoctor.Plugins.PatientSession
 
     using AutoMapper;
 
+    using Microsoft.Windows.Controls;
+
     using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
@@ -34,6 +36,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
     using Probel.NDoctor.Plugins.PatientSession.Properties;
     using Probel.NDoctor.Plugins.PatientSession.View;
     using Probel.NDoctor.Plugins.PatientSession.ViewModel;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
@@ -48,7 +51,6 @@ namespace Probel.NDoctor.Plugins.PatientSession
         private const string searchUri = @"\Probel.NDoctor.Plugins.PatientSession;component/Images\{0}.png";
 
         private ICommand addCommand;
-        private AddPatientView addPatientView;
 
         #endregion Fields
 
@@ -73,7 +75,6 @@ namespace Probel.NDoctor.Plugins.PatientSession
         /// </summary>
         public override void Initialise()
         {
-            this.Host.Invoke(() => this.addPatientView = new AddPatientView()); ;
             this.Host.Invoke(() =>
             {
                 this.Host.AddDockablePane(Messages.Title_MostUsed, new TopTenControl());
@@ -85,7 +86,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
 
         private void BuildButtons()
         {
-            this.addCommand = new RelayCommand(() => this.Host.Navigate(this.addPatientView));
+            this.addCommand = new RelayCommand(() => this.NavigateAddPatient());
             var addButton = new RibbonButtonData(Messages.Title_ButtonAddPatient, this.addCommand)
             {
                 SmallImage = new Uri(searchUri.StringFormat("Add"), UriKind.Relative),
@@ -107,6 +108,14 @@ namespace Probel.NDoctor.Plugins.PatientSession
                 x.For<IPatientSessionComponent>().Add<PatientSessionComponent>();
                 x.SelectConstructor<PatientSessionComponent>(() => new PatientSessionComponent());
             });
+        }
+
+        private void NavigateAddPatient()
+        {
+            ChildWindowContext.Content = new AddPatientControl();
+            ChildWindowContext.WindowState = WindowState.Open;
+            ChildWindowContext.IsModal = false;
+            ChildWindowContext.Caption = Messages.Title_AddPatient;
         }
 
         #endregion Methods

@@ -49,7 +49,6 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             this.Users = new ObservableCollection<LightUserDto>();
 
             this.ConnectCommand = new RelayCommand(() => this.Connect());
-            this.NivigateAddUserCommand = new RelayCommand(() => this.NavigateToAddUer());
 
             Notifyer.UserAdded += (sender, e) => this.Refresh();
             this.Refresh();
@@ -63,12 +62,6 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         /// Gets the connect command.
         /// </summary>
         public ICommand ConnectCommand
-        {
-            get;
-            private set;
-        }
-
-        public ICommand NivigateAddUserCommand
         {
             get;
             private set;
@@ -135,12 +128,6 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                     , MessageBoxButton.OK
                     , MessageBoxImage.Asterisk);
             }
-        }
-
-        private void NavigateToAddUer()
-        {
-            var page = new AddUserView();
-            this.Host.Navigate(page);
         }
 
         #endregion Methods
