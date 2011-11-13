@@ -118,11 +118,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             this.Host.AddInHome(navigateButton, Groups.Managers);
         }
 
-        private bool CanSave()
-        {
-            return this.ViewModel != null && this.ViewModel.SelectedRecord != null;
-        }
-
         private void BuildContextMenu()
         {
             var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.StringFormat("Save"), saveCommand);
@@ -140,6 +135,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         private bool CanNavigateAdd()
         {
             return this.Host.SelectedPatient != null;
+        }
+
+        private bool CanSave()
+        {
+            return this.ViewModel != null && this.ViewModel.SelectedRecord != null;
         }
 
         private void ConfigureAutoMapper()
