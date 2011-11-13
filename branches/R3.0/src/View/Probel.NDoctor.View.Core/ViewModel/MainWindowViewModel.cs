@@ -19,8 +19,11 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using System;
     using System.Windows.Input;
 
+    using Microsoft.Windows.Controls;
+
     using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Core.View;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -48,18 +51,26 @@ namespace Probel.NDoctor.View.Core.ViewModel
         public MainWindowViewModel()
             : base()
         {
-            this.settingCommand = new RelayCommand(() => PluginContext.Host.Navigate(new SettingsView()));
+            this.settingCommand = new RelayCommand(() => this.NavigateToSetting());
 
             var menu = new RibbonControlData(Messages.Title_Settings, uriImage.StringFormat("Settings"), settingCommand) { Order = 5 };
             this.Host.AddToApplicationMenu(menu);
 
             App.RibbonData.ApplicationMenuData.LargeImage = new Uri(uriImage.StringFormat("Home"), UriKind.Relative);
             App.RibbonData.ApplicationMenuData.SmallImage = new Uri(uriImage.StringFormat("Home"), UriKind.Relative);
+
+            this.ChildWindow = new ChildWindowViewModel();
         }
 
         #endregion Constructors
 
         #region Properties
+
+        public ChildWindowViewModel ChildWindow
+        {
+            get;
+            private set;
+        }
 
         public string ConnectedPatientText
         {
@@ -146,5 +157,17 @@ namespace Probel.NDoctor.View.Core.ViewModel
         }
 
         #endregion Properties
+
+        #region Methods
+
+        private void NavigateToSetting()
+        {
+            ChildWindowContext.Content = new SettingsView();
+            ChildWindowContext.WindowState = WindowState.Open;
+            ChildWindowContext.IsModal = false;
+            ChildWindowContext.Caption = Messages.Title_Settings;
+        }
+
+        #endregion Methods
     }
 }
