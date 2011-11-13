@@ -149,6 +149,10 @@
     <value>Ouverture d'une session pour {0} </value>
     <comment>Open a session for {0}</comment>
   </data>
+  <data name="Title_AddPatient" xml:space="preserve">
+    <value>Ajouter un patient</value>
+    <comment>Add a patient</comment>
+  </data>
   <data name="Title_ButtonAddPatient" xml:space="preserve">
     <value>Ajouter un patient</value>
     <comment>AddPatient</comment>
@@ -173,8 +177,12 @@
     <value>10 patients les plus utilisés</value>
     <comment>Ten most used patients</comment>
   </data>
+  <data name="Title_SearchPatient" xml:space="preserve">
+    <value>Chercher un patient</value>
+    <comment>Search patient</comment>
+  </data>
   <data name="Title_SearchWatermark" xml:space="preserve">
-    <value>Entrez le nom et/ou le prénom</value>
-    <comment>Enter name and/or surname</comment>
+    <value>Nom et/ou le prénom</value>
+    <comment>First or last name</comment>
   </data>
 </root>

@@ -75,11 +75,11 @@ namespace Probel.NDoctor.Plugins.PatientSession
         /// </summary>
         public override void Initialise()
         {
+            this.Host.Invoke(() => this.addPatientView = new AddPatientView()); ;
             this.Host.Invoke(() =>
             {
-                this.workbench = new Workbench();
-                this.workbench.DataContext = new WorkbenchViewModel();
-                this.addPatientView = new AddPatientView();
+                this.Host.AddDockablePane(Messages.Title_MostUsed, new TopTenControl());
+                this.Host.AddDockablePane(Messages.Title_SearchPatient, new SearchPatientControl());
             });
 
             this.BuildButtons();
@@ -87,20 +87,12 @@ namespace Probel.NDoctor.Plugins.PatientSession
 
         private void BuildButtons()
         {
-            this.searchCommand = new RelayCommand(() => this.Host.Navigate(this.workbench));
-            var navButton = new RibbonButtonData(Messages.Title_ButtonSearch, this.searchCommand)
-            {
-                SmallImage = new Uri(searchUri.StringFormat("Search"), UriKind.Relative),
-                Order = 1,
-            };
-
             this.addCommand = new RelayCommand(() => this.Host.Navigate(this.addPatientView));
             var addButton = new RibbonButtonData(Messages.Title_ButtonAddPatient, this.addCommand)
             {
                 SmallImage = new Uri(searchUri.StringFormat("Add"), UriKind.Relative),
                 Order = 2,
             };
-            this.Host.AddInHome(navButton, Groups.Tools);
             this.Host.AddInHome(addButton, Groups.Tools);
         }
 

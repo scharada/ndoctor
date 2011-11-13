@@ -4,59 +4,63 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:text="clr-namespace:Probel.NDoctor.View.Core.Translations"
-      xmlns:ctrl="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+      xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
       mc:Ignorable="d" 
-      Title="SettingsView"      
-      d:DesignHeight="600"
-      d:DesignWidth="600">
-    
-    <StackPanel Width="300"
+      Title="SettingsView">
+
+    <toolkit:ChildWindow Caption="{Binding Source={x:Static Member=text:SettingsText.TitleSettings}}"
+                             IsModal="False"
+                             WindowState="Open"
+                             WindowStartupLocation="Center"
+                             CloseButtonVisibility="Collapsed">
+        <StackPanel Width="300"
                 Height="150">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" 
-                   Content="{Binding Source={x:Static Member=text:SettingsText.TitleLanguage}}"/>
-            <ComboBox Grid.Column="1" ItemsSource="{Binding SupportedLanguages}"
-                      SelectedItem="{Binding SelectedLanguage}"/>
-        </Grid>
-        <GroupBox Header="{Binding Source={x:Static Member=text:SettingsText.TitleWorkday}}">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="80"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Label    Grid.Row="0" 
+                <Label Grid.Column="0" 
+                   Content="{Binding Source={x:Static Member=text:SettingsText.TitleLanguage}}"/>
+                <ComboBox Grid.Column="1" ItemsSource="{Binding SupportedLanguages}"
+                          SelectedItem="{Binding SelectedLanguage}"/>
+            </Grid>
+            <GroupBox Header="{Binding Source={x:Static Member=text:SettingsText.TitleWorkday}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label    Grid.Row="0" 
                           Grid.Column="0" 
                           Content="{Binding Source={x:Static Member=text:SettingsText.TitleStart}}"/>
-                <ctrl:TimePicker Grid.Row="0" 
+                    <toolkit:TimePicker Grid.Row="0" 
                                  Grid.Column="1"
                                  Value="{Binding Start, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <Label    Grid.Row="1" 
+                    <Label    Grid.Row="1" 
                           Grid.Column="0" 
                           Content="{Binding Source={x:Static Member=text:SettingsText.TitleEnd}}"/>
-                <ctrl:TimePicker Grid.Row="1" 
+                    <toolkit:TimePicker Grid.Row="1" 
                                  Grid.Column="1"
                                  Value="{Binding End, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <Label    Grid.Row="2" 
+                    <Label    Grid.Row="2" 
                           Grid.Column="0" 
                           Content="{Binding Source={x:Static Member=text:SettingsText.TitleSlotDuration}}"/>
-                <ComboBox Grid.Row="2"
+                    <ComboBox Grid.Row="2"
                           Grid.Column="1" ItemsSource="{Binding Path=SlotDurations}"
                           SelectedItem="{Binding Path=SelectedSlot}"
                           DisplayMemberPath="Item1"/>
-            </Grid>
-        </GroupBox>
-        <Button Content="{Binding Source={x:Static Member=text:SettingsText.BtnSave}}"
-                Command="{Binding Path=SaveCommand}"/>
-    </StackPanel>
+                </Grid>
+            </GroupBox>
+            <Button Content="{Binding Source={x:Static Member=text:SettingsText.BtnSave}}"
+                    Command="{Binding Path=SaveCommand}"/>
+        </StackPanel>
+    </toolkit:ChildWindow>
 </Page>

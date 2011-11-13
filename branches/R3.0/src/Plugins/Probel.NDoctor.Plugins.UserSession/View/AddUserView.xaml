@@ -5,64 +5,70 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.UserSession.Translations"
       xmlns:Helpers="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
+      xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
-	Title="AddUserView">
+      Title="AddUserView">
 
-    <StackPanel HorizontalAlignment="Center"
-                VerticalAlignment="Center" Width="284">
-        <Grid HorizontalAlignment="Center">
-            <CheckBox Grid.Column="1"
+    <toolkit:ChildWindow Caption="{Binding Source={x:Static Member=text:AddUserText.TitleAddUser}}"
+                         IsModal="False"
+                         WindowState="Open"
+                         WindowStartupLocation="Center"
+                         CloseButtonVisibility="Collapsed">
+        <StackPanel HorizontalAlignment="Center"
+                VerticalAlignment="Center" Width="300">
+            <Grid HorizontalAlignment="Center">
+                <CheckBox Grid.Column="1"
                       Content="{Binding Source={x:Static Member=text:AddUserText.TitleDefaultUser}}"
                      IsChecked="{Binding Path=IsDefaultUser, UpdateSourceTrigger=PropertyChanged}"/>
-        </Grid>
-        <Grid>
-            <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="70"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0"
                    Content="{Binding Source={x:Static Member=text:AddUserText.TitleLastName}}"/>
-            <TextBox Grid.Column="1"
+                <TextBox Grid.Column="1"
                      Text="{Binding Path=User.LastName, UpdateSourceTrigger=PropertyChanged}"/>
-        </Grid>
-        <Grid>
-            <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="70"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0"
                    Content="{Binding Source={x:Static Member=text:AddUserText.TitleFirstName}}"/>
-            <TextBox Grid.Column="1"
+                <TextBox Grid.Column="1"
                      Text="{Binding Path=User.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
-        </Grid>
-        <Grid>
-            <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0"
                    Content="{Binding Source={x:Static Member=text:AddUserText.TitlePassword}}"/>
-            <PasswordBox Grid.Column="1" Helpers:PasswordBoxAssistant.BindPassword="True" 
+                <PasswordBox Grid.Column="1" Helpers:PasswordBoxAssistant.BindPassword="True" 
 						 Helpers:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        </Grid>
-        <Grid>
-            <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0"
                    Content="{Binding Source={x:Static Member=text:AddUserText.TitleRepeatPasword}}"/>
-            <PasswordBox Grid.Column="1" Helpers:PasswordBoxAssistant.BindPassword="True" 
+                <PasswordBox Grid.Column="1" Helpers:PasswordBoxAssistant.BindPassword="True" 
 						 Helpers:PasswordBoxAssistant.BoundPassword="{Binding Path=PasswordCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        </Grid>
-        <Grid>
-            <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-        </Grid>
-        <Button Content="{Binding Source={x:Static Member=text:AddUserText.BtnAdd}}"
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <Button Content="{Binding Source={x:Static Member=text:AddUserText.BtnAdd}}"
                 Command="{Binding AddCommand}"/>
-    </StackPanel>
+        </StackPanel>
+    </toolkit:ChildWindow>
 </Page>

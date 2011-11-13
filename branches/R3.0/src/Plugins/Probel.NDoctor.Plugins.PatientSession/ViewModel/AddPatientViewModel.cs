@@ -65,11 +65,6 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             private set;
         }
 
-        public string BtnAdd
-        {
-            get { return Messages.Btn_Add; }
-        }
-
         public ObservableCollection<Tuple<string, Gender>> Genders
         {
             get;
@@ -94,21 +89,6 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
                 this.Patient.Gender = value.Item2;
                 this.OnPropertyChanged("SelectedGender");
             }
-        }
-
-        public string TitleFirstName
-        {
-            get { return Messages.Title_FirstName; }
-        }
-
-        public string TitleGender
-        {
-            get { return Messages.Title_Gender; }
-        }
-
-        public string TitleLastName
-        {
-            get { return Messages.Title_LastName; }
         }
 
         #endregion Properties

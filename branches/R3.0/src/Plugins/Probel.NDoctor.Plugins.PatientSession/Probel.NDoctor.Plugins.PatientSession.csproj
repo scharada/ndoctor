@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Translations\AddPatientText.cs" />
     <Compile Include="ViewModel\LightPatientViewModel.cs" />
     <Compile Include="Properties\Messages.fr.Designer.cs">
       <DependentUpon>Messages.fr.resx</DependentUpon>
@@ -93,6 +94,12 @@
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
     <Compile Include="View\AddPatientView.xaml.cs">
       <DependentUpon>AddPatientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SearchPatientControl.xaml.cs">
+      <DependentUpon>SearchPatientControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TopTenControl.xaml.cs">
+      <DependentUpon>TopTenControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Workbench.xaml.cs">
       <DependentUpon>Workbench.xaml</DependentUpon>
@@ -141,6 +148,14 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="View\AddPatientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SearchPatientControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TopTenControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
