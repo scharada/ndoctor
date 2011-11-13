@@ -26,10 +26,7 @@ namespace Probel.NDoctor.Plugins.UserSession.Translations
     public static class AddUserText
     {
         #region Properties
-        public static string TitleAddUser
-        {
-            get { return Messages.Title_ButtonAddUser; }
-        }
+
         public static string BtnAdd
         {
             get { return Messages.Btn_Add; }
@@ -38,6 +35,11 @@ namespace Probel.NDoctor.Plugins.UserSession.Translations
         public static string MsgWarnDefaultUser
         {
             get { return Messages.Msg_WarnDefaultUser; }
+        }
+
+        public static string TitleAddUser
+        {
+            get { return Messages.Title_ButtonAddUser; }
         }
 
         public static string TitleDefaultUser
