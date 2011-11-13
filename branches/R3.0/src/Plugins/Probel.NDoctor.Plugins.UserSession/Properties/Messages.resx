@@ -121,6 +121,14 @@
     <value>Add</value>
     <comment>Add</comment>
   </data>
+  <data name="Btn_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Cancel</comment>
+  </data>
+  <data name="Btn_Save" xml:space="preserve">
+    <value>Save</value>
+    <comment>Save</comment>
+  </data>
   <data name="Menu_Actions" xml:space="preserve">
     <value>Actions</value>
     <comment>Actions</comment>

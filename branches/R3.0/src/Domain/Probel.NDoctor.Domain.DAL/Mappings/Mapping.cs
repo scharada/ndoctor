@@ -37,6 +37,8 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
         {
             Mapper.CreateMap<LightPatientDto, PatientBmiDto>();
             Mapper.CreateMap<PatientBmiDto, LightPatientDto>();
+            Mapper.CreateMap<LightPracticeDto, PracticeDto>();
+            Mapper.CreateMap<PracticeDto, LightPracticeDto>();
         }
 
         private static void MapDtoToEntity()

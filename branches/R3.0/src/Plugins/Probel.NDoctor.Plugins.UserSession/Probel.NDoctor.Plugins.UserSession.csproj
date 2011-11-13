@@ -97,8 +97,8 @@
     <Compile Include="View\ConnectionView.xaml.cs">
       <DependentUpon>ConnectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UpdateUserView.xaml.cs">
-      <DependentUpon>UpdateUserView.xaml</DependentUpon>
+    <Compile Include="View\UpdateUserControl.xaml.cs">
+      <DependentUpon>UpdateUserControl.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -169,7 +169,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UpdateUserView.xaml">
+    <Page Include="View\UpdateUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

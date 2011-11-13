@@ -135,6 +135,11 @@
                 ContentChanged(null, EventArgs.Empty);
         }
 
+        public static void CloseWindow()
+        {
+            WindowState = Microsoft.Windows.Controls.WindowState.Closed;
+        }
+
         #endregion Methods
     }
 }

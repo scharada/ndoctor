@@ -22,6 +22,16 @@ namespace Probel.NDoctor.Plugins.UserSession.Translations
     {
         #region Properties
 
+        public static string BtnCancel
+        {
+            get { return Messages.Btn_Cancel; }
+        }
+
+        public static string BtnSave
+        {
+            get { return Messages.Btn_Save; }
+        }
+
         public static string ContactSeparator
         {
             get { return Messages.Title_SepContact; }

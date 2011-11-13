@@ -69,11 +69,8 @@ namespace Probel.NDoctor.Plugins.UserSession
         private ICommand addCommand = null;
         private IUserSessionComponent component;
         private ConnectionView connectionPage;
-        private RibbonContextualTabGroupData contextualMenu;
         private ICommand printCommand;
         private ICommand showUpdateUserCommand;
-        private ICommand updateCommand;
-        private UpdateUserView updateUserPage;
 
         #endregion Fields
 
@@ -112,7 +109,6 @@ namespace Probel.NDoctor.Plugins.UserSession
             this.Host.Invoke(() =>
             {
                 this.connectionPage = new ConnectionView();
-                this.updateUserPage = new UpdateUserView();
             });
 
             var addButton = new RibbonButtonData(Messages.Title_ButtonAddUser, this.addCommand)
@@ -128,7 +124,6 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         private void BuildCommands()
         {
-            this.updateCommand = new RelayCommand(() => this.UpdateUser());
             this.printCommand = new RelayCommand(() => this.PrintBusinessCard());
             this.addCommand = new RelayCommand(() => this.NavigateAddUser());
             this.showUpdateUserCommand = new RelayCommand(() => this.NavigateToUpdateUser());
@@ -171,27 +166,8 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         private void InitialiseUpdateUserPage()
         {
-            #region Application Menu
             var menu = new RibbonControlData(Messages.Menu_ManagePersonalData, uri.StringFormat("Users"), showUpdateUserCommand) { Order = 3 };
             this.Host.AddToApplicationMenu(menu);
-            #endregion
-
-            #region Context Menu
-
-            var saveButton = new RibbonButtonData(Messages.Menu_Save, uri.StringFormat("Save"), this.updateCommand);
-            var printButton = new RibbonButtonData(Messages.Menu_Print, this.printCommand) { SmallImage = new Uri(uri.StringFormat("Printer"), UriKind.RelativeOrAbsolute) };
-            var cgroup = new RibbonGroupData(Messages.Menu_Actions);
-
-            cgroup.ButtonDataCollection.Add(saveButton);
-            cgroup.ButtonDataCollection.Add(printButton);
-
-            var tab = new RibbonTabData(Messages.Menu_File, cgroup) { ContextualTabGroupHeader = Messages.Title_ContextMenu };
-            this.Host.Add(tab);
-
-            this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_ContextMenu, tab) { Background = Brushes.OrangeRed, IsVisible = false };
-            this.Host.Add(this.contextualMenu);
-
-            #endregion
         }
 
         private void NavigateAddUser()
@@ -204,18 +180,14 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         private void NavigateToUpdateUser()
         {
-            var viewModel = this.updateUserPage.DataContext as UpdateUserViewModel;
-            if (viewModel != null) viewModel.Refresh();
-
-            this.Host.Navigate(this.updateUserPage);
-
-            this.contextualMenu.IsVisible = true;
-            this.contextualMenu.TabDataCollection[0].IsSelected = true;
+            ChildWindowContext.Content = new UpdateUserControl();
+            ChildWindowContext.WindowState = WindowState.Open;
+            ChildWindowContext.IsModal = false;
+            ChildWindowContext.Caption = Messages.Menu_ManagePersonalData;
         }
 
         private void PrintBusinessCard()
         {
-            //MessageBox.Show(Messages.Msg_NotYetImplemented, Messages.Title_Info, MessageBoxButton.OK, MessageBoxImage.Information);
             BusinessCard card;
             UserDto user;
             using (this.component.UnitOfWork)
@@ -226,25 +198,6 @@ namespace Probel.NDoctor.Plugins.UserSession
             card.DataContext = BusinessCardViewModel.CreateFrom(user);
 
             card.Print();
-        }
-
-        private void UpdateUser()
-        {
-            try
-            {
-                var component = ObjectFactory.GetInstance<IUserSessionComponent>();
-                var viewmodel = this.updateUserPage.DataContext as UpdateUserViewModel;
-
-                using (component.UnitOfWork)
-                {
-                    component.Update(viewmodel.User);
-                }
-                this.Host.WriteStatus(StatusType.Info, Messages.Msg_UserUpdated);
-            }
-            catch (Exception ex)
-            {
-                this.HandleError(ex, Messages.Msg_ErrorUpdateUser);
-            }
         }
 
         #endregion Methods

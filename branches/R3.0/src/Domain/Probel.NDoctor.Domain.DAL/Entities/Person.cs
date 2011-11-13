@@ -102,7 +102,7 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         /// Gets or sets the mail.
         /// </summary>
         /// <value>The mail.</value>
-        public virtual string ProMail
+        public virtual string MailPro
         {
             get;
             set;
@@ -112,7 +112,7 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         /// Gets or sets the mobile pro.
         /// </summary>
         /// <value>The mobile pro.</value>
-        public virtual string ProMobile
+        public virtual string MobilePro
         {
             get;
             set;
@@ -122,7 +122,7 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         /// Gets or sets the phone pro.
         /// </summary>
         /// <value>The phone pro.</value>
-        public virtual string ProPhone
+        public virtual string PhonePro
         {
             get;
             set;

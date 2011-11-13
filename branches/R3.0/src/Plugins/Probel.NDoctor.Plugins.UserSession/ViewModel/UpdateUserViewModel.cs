@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows;
+    using System.Windows.Input;
 
     using Probel.Helpers.Conversions;
     using Probel.NDoctor.Domain.DTO.Components;
@@ -29,6 +30,8 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
+    using AutoMapper;
+    using Probel.NDoctor.View.Core.Helpers;
 
     public class UpdateUserViewModel : BaseViewModel
     {
@@ -50,11 +53,20 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         public UpdateUserViewModel()
             : base()
         {
+            this.UpdateCommand = new RelayCommand(() => this.UpdateUser(), () => this.CanUpdateUser());
+            this.CancelCommand = new RelayCommand(() => ChildWindowContext.CloseWindow());
+            this.Refresh();
         }
 
         #endregion Constructors
 
         #region Properties
+
+        public ICommand CancelCommand
+        {
+            get;
+            private set;
+        }
 
         public bool IsDefaultUser
         {
@@ -145,6 +157,12 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             }
         }
 
+        public ICommand UpdateCommand
+        {
+            get;
+            private set;
+        }
+
         /// <summary>
         /// Gets or sets the user to manage.
         /// </summary>
@@ -198,6 +216,35 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 
             }
             catch (Exception ex) { this.HandleError(ex, Messages.Msg_ErrorWhileLoadingUser); }
+        }
+
+        private bool CanUpdateUser()
+        {
+            return !string.IsNullOrWhiteSpace(this.User.FirstName)
+                && !string.IsNullOrWhiteSpace(this.User.LastName)
+                && this.User.Practice != null;
+        }
+
+        private void UpdateUser()
+        {
+            try
+            {
+                var component = ObjectFactory.GetInstance<IUserSessionComponent>();
+
+                using (component.UnitOfWork)
+                {
+                    component.Update(this.User);
+                }
+                this.Host.WriteStatus(StatusType.Info, Messages.Msg_UserUpdated);
+            }
+            catch (Exception ex)
+            {
+                this.HandleError(ex, Messages.Msg_ErrorUpdateUser);
+            }
+            finally
+            {
+                ChildWindowContext.CloseWindow();
+            }
         }
 
         #endregion Methods

@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Plugins.UserSession.Properties
-{
-
-
+namespace Probel.NDoctor.Plugins.UserSession.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -66,6 +66,24 @@ namespace Probel.NDoctor.Plugins.UserSession.Properties
         internal static string Btn_Add {
             get {
                 return ResourceManager.GetString("Btn_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string Btn_Cancel {
+            get {
+                return ResourceManager.GetString("Btn_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string Btn_Save {
+            get {
+                return ResourceManager.GetString("Btn_Save", resourceCulture);
             }
         }
         
