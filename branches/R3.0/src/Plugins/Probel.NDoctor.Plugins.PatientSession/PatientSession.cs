@@ -49,8 +49,6 @@ namespace Probel.NDoctor.Plugins.PatientSession
 
         private ICommand addCommand;
         private AddPatientView addPatientView;
-        private ICommand searchCommand;
-        private Workbench workbench;
 
         #endregion Fields
 
