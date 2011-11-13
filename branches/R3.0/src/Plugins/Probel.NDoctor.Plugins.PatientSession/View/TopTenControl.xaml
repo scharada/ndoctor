@@ -29,8 +29,8 @@
         </DataTemplate>
 
     </UserControl.Resources>
-    <StackPanel DockPanel.Dock="Left" Width="250">
-        <Label Content="{Binding Source={x:Static Member=text:WorkbenchText.TitleMostUsed}}"/>
+    <DockPanel Width="250"
+                LastChildFill="True">
         <ListView ItemsSource="{Binding Top10Patients}"
                   IsSynchronizedWithCurrentItem="True">
             <ListView.ItemContainerStyle>
@@ -39,5 +39,5 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-    </StackPanel>
+    </DockPanel>
 </UserControl>

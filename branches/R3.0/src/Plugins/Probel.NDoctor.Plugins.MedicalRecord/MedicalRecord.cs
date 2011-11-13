@@ -109,13 +109,18 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         private void BuildButtons()
         {
             this.navigateCommand = new RelayCommand(() => this.NavigateAdd(), () => this.CanNavigateAdd());
-            this.saveCommand = new RelayCommand(() => this.Save());
+            this.saveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
 
             var navigateButton = new RibbonButtonData(Messages.Title_MedicalRecord
                 , imgUri.StringFormat("MedicalRecord")
                 , navigateCommand) { Order = 2 };
 
             this.Host.AddInHome(navigateButton, Groups.Managers);
+        }
+
+        private bool CanSave()
+        {
+            return this.ViewModel != null && this.ViewModel.SelectedRecord != null;
         }
 
         private void BuildContextMenu()
