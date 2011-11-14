@@ -33,5 +33,11 @@ namespace Probel.NDoctor.Plugins.FamilyManager.Translations
         }
 
         #endregion Properties
+
+
+        public static string TitleWatermark
+        {
+            get { return Messages.Title_SearchWatermark; }
+        }
     }
 }

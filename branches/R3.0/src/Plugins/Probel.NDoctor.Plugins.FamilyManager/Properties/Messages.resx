@@ -217,4 +217,8 @@
     <value>Save</value>
     <comment>Save</comment>
   </data>
+  <data name="Title_SearchWatermark" xml:space="preserve">
+    <value>First or last name</value>
+    <comment>First or last name</comment>
+  </data>
 </root>

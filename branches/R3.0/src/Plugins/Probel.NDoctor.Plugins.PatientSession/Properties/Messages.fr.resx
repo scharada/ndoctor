@@ -182,7 +182,7 @@
     <comment>Search patient</comment>
   </data>
   <data name="Title_SearchWatermark" xml:space="preserve">
-    <value>Nom et/ou le prénom</value>
+    <value>Nom et/ou prénom</value>
     <comment>First or last name</comment>
   </data>
 </root>

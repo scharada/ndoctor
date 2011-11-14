@@ -36,6 +36,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager
     using Probel.NDoctor.View.Plugins.MenuData;
 
     using StructureMap;
+    using Probel.NDoctor.View.Core.Helpers;
 
     [Export(typeof(IPlugin))]
     public class FamilyManager : Plugin
@@ -120,12 +121,10 @@ namespace Probel.NDoctor.Plugins.FamilyManager
                 {
                     if (this.ViewModel != null) this.ViewModel.Reset();
 
-                    var page = new AddFamilyWorkbench();
-                    page.DataContext = new AddFamilyViewModel();
-                    this.Host.Navigate(page);
-
-                    this.contextualMenu.IsVisible = true;
-                    this.contextualMenu.TabDataCollection[0].IsSelected = true;
+                    ChildWindowContext.Caption = Messages.Btn_Add;
+                    ChildWindowContext.Content = new AddFamilyWorkbench();
+                    ChildWindowContext.WindowState = Microsoft.Windows.Controls.WindowState.Open;
+                    ChildWindowContext.WindowStartupLocation = Microsoft.Windows.Controls.WindowStartupLocation.Center;
                 }
                 catch (Exception ex)
                 {
@@ -137,16 +136,19 @@ namespace Probel.NDoctor.Plugins.FamilyManager
             #region Relation remove
             this.navRemoveRelationCommand = new RelayCommand(() =>
             {
-                if (this.ViewModel != null) this.ViewModel.Reset();
+                try
+                {
+                    if (this.ViewModel != null) this.ViewModel.Reset();
 
-                var page = new RemoveFamilyWorkbench();
-                var dataContext = new RemoveFamilyViewModel();
-                dataContext.Refresh();
-                page.DataContext = dataContext;
-                this.Host.Navigate(page);
-
-                this.contextualMenu.IsVisible = true;
-                this.contextualMenu.TabDataCollection[0].IsSelected = true;
+                    ChildWindowContext.Caption = Messages.Btn_Remove;
+                    ChildWindowContext.Content = new RemoveFamilyWorkbench();
+                    ChildWindowContext.WindowState = Microsoft.Windows.Controls.WindowState.Open;
+                    ChildWindowContext.WindowStartupLocation = Microsoft.Windows.Controls.WindowStartupLocation.Center;
+                }
+                catch (Exception ex)
+                {
+                    this.HandleError(ex, Messages.Msg_FailToLoadFamilyManager);
+                }
             });
             #endregion
         }
@@ -158,13 +160,11 @@ namespace Probel.NDoctor.Plugins.FamilyManager
         {
             var navAddRelationButton = new RibbonButtonData(Messages.Title_AddFamilyManager, imgUri.StringFormat("Add"), navAddRelationCommand);
             var navRemoveRelationButton = new RibbonButtonData(Messages.Title_RemoveFamilyManager, imgUri.StringFormat("Delete"), navRemoveRelationCommand);
-            var mainNavigationButton = this.BuildMainNavigationButton();
 
             var cgroup = new RibbonGroupData(Messages.Menu_Actions);
 
             cgroup.ButtonDataCollection.Add(navAddRelationButton);
             cgroup.ButtonDataCollection.Add(navRemoveRelationButton);
-            cgroup.ButtonDataCollection.Add(mainNavigationButton);
 
             var tab = new RibbonTabData(Messages.Menu_File, cgroup) { ContextualTabGroupHeader = Messages.Title_FamilyManager };
             this.Host.Add(tab);
