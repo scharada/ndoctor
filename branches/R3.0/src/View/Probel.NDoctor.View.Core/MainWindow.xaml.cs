@@ -208,7 +208,7 @@ namespace Probel.NDoctor.View.Core
         /// </summary>
         /// <param name="button">The button.</param>
         /// <param name="group">The group.</param>
-        public void AddInHome(RibbonButtonData button, Groups group)
+        public void AddInHome(RibbonControlData button, Groups group)
         {
             string criteria = this.FindGroupName(group);
 
@@ -250,6 +250,34 @@ namespace Probel.NDoctor.View.Core
                 App.RibbonData.ApplicationMenuData.ControlDataCollection.Refill(
                     App.RibbonData.ApplicationMenuData.ControlDataCollection.OrderBy(e => e.Order).ToList());
             });
+        }
+
+        /// <summary>
+        /// Finds in the home menu the control with the specified name in the specified group.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="group">The group.</param>
+        /// <returns>
+        /// The searched control or null is not found
+        /// </returns>
+        public RibbonBase FindInHome(string name, Groups group)
+        {
+            string criteria = this.FindGroupName(group);
+
+            var tab = (from menu in App.RibbonData.TabDataCollection
+                       where menu.Header == Messages.Title_Home
+                       select menu).FirstOrDefault();
+            if (tab == null) throw new PluginException(Messages.PluginException_HomeMenuVoid);
+
+            foreach (var grp in tab.GroupDataCollection)
+            {
+                var result = (from control in grp.ButtonDataCollection
+                              where control.Name == name
+                              select control).FirstOrDefault();
+                if (result != null) return result;
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -355,7 +383,7 @@ namespace Probel.NDoctor.View.Core
             this.WriteStatus(StatusType.Info, Messages.Msg_Ready);
         }
 
-        private void AddButton(RibbonTabData tab, string goupName, RibbonButtonData button)
+        private void AddButton(RibbonTabData tab, string goupName, RibbonControlData button)
         {
             var group = (from g in tab.GroupDataCollection
                          where g.Header == goupName

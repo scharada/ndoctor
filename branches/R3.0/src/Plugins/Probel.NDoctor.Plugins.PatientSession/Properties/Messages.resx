@@ -149,6 +149,10 @@
     <value>Open a session for {0}</value>
     <comment>Open a session for {0}</comment>
   </data>
+  <data name="Title_Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>Add</comment>
+  </data>
   <data name="Title_AddPatient" xml:space="preserve">
     <value>Add a patient</value>
     <comment>Add a patient</comment>

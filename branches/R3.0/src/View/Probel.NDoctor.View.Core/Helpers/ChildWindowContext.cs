@@ -27,6 +27,8 @@
 
         public static event EventHandler IsModalChanged;
 
+        public static event EventHandler Loaded;
+
         public static event EventHandler WindowStartupLocationChanged;
 
         public static event EventHandler WindowStateChanged;
@@ -92,12 +94,20 @@
             {
                 windowState = value;
                 OnWindowStateChanged();
+
+                if (value == WindowState.Open)
+                    OnLoaded();
             }
         }
 
         #endregion Properties
 
         #region Methods
+
+        public static void CloseWindow()
+        {
+            WindowState = Microsoft.Windows.Controls.WindowState.Closed;
+        }
 
         public static void OnCaptionChanged()
         {
@@ -135,9 +145,10 @@
                 ContentChanged(null, EventArgs.Empty);
         }
 
-        public static void CloseWindow()
+        private static void OnLoaded()
         {
-            WindowState = Microsoft.Windows.Controls.WindowState.Closed;
+            if (Loaded != null)
+                Loaded(null, EventArgs.Empty);
         }
 
         #endregion Methods

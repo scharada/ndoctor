@@ -21,17 +21,36 @@
 
 namespace Probel.NDoctor.View.Plugins.MenuData
 {
+    using System;
+
     using Probel.Helpers.Events;
 
     public class RibbonBase : ObservableObject
     {
         #region Fields
 
+        private string name = Guid.NewGuid().ToString();
         private int order;
 
         #endregion Fields
 
         #region Properties
+
+        /// <summary>
+        /// Gets or sets the name of this control. It is used to find controls
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public string Name
+        {
+            get { return this.name; }
+            set
+            {
+                this.name = value;
+                this.OnPropertyChanged("Name");
+            }
+        }
 
         public int Order
         {

@@ -74,6 +74,21 @@
             <Setter Property="DropDownHeight" Value="200" />
         </Style>
 
+        <!-- RibbonSplitButton -->
+        <DataTemplate DataType="{x:Type menu:RibbonSplitButtonData}">
+            <ribbon:RibbonSplitButton />
+        </DataTemplate>
+        <Style TargetType="{x:Type ribbon:RibbonSplitButton}" BasedOn="{StaticResource {x:Type ribbon:RibbonMenuButton}}">
+            <Setter Property="IsCheckable" Value="{Binding IsCheckable}" />
+            <Setter Property="IsChecked" Value="{Binding IsChecked}" />
+            <Setter Property="Command" Value="{Binding Command}" />
+            <Setter Property="HeaderQuickAccessToolBarId" Value="{Binding Label}" />
+            <Setter Property="CanUserResizeHorizontally" Value="True" />
+            <Setter Property="CanUserResizeVertically" Value="True" />
+            <Setter Property="UsesItemContainerTemplate" Value="True" />
+            <Setter Property="DropDownHeight" Value="200" />
+        </Style>
+
         <!-- RibbonMenuItem -->
         <ItemContainerTemplate x:Key="{ItemContainerTemplateKey DataType={x:Type menu:RibbonMenuItemData}}">
             <ribbon:RibbonMenuItem />

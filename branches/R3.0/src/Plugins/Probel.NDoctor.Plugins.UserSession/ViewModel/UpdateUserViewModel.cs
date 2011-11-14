@@ -22,16 +22,17 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using System.Windows;
     using System.Windows.Input;
 
+    using AutoMapper;
+
     using Probel.Helpers.Conversions;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.UserSession.Properties;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
-    using AutoMapper;
-    using Probel.NDoctor.View.Core.Helpers;
 
     public class UpdateUserViewModel : BaseViewModel
     {
@@ -55,7 +56,16 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         {
             this.UpdateCommand = new RelayCommand(() => this.UpdateUser(), () => this.CanUpdateUser());
             this.CancelCommand = new RelayCommand(() => ChildWindowContext.CloseWindow());
-            this.Refresh();
+            ChildWindowContext.Loaded += (sender, e) => this.Refresh();
+        }
+
+        /// <summary>
+        /// Releases unmanaged resources and performs other cleanup operations before the
+        /// <see cref="UpdateUserViewModel"/> is reclaimed by garbage collection.
+        /// </summary>
+        ~UpdateUserViewModel()
+        {
+            ChildWindowContext.Loaded -= (sender, e) => this.Refresh();
         }
 
         #endregion Constructors

@@ -161,13 +161,16 @@
     <Resource Include="Images\Select.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Search.png" />
+    <Resource Include="Images\SearchSmall.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Add.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Search.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

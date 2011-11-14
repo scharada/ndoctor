@@ -90,6 +90,7 @@
     <Compile Include="Configuration\IPluginConfigurationLoader.cs" />
     <Compile Include="LogObject.cs" />
     <Compile Include="MefPluginLoader.cs" />
+    <Compile Include="MenuData\RibbonSplitButtonData.cs" />
     <Compile Include="MenuData\RibbonApplicationMenuItemData.cs" />
     <Compile Include="MenuData\RibbonBase.cs" />
     <Compile Include="MenuData\RibbonButtonData.cs" />

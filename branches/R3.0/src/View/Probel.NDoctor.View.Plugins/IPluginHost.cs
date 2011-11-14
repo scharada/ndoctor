@@ -26,6 +26,9 @@ namespace Probel.NDoctor.View.Plugins
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IPluginHost
     {
         #region Properties
@@ -123,13 +126,21 @@ namespace Probel.NDoctor.View.Plugins
         /// </summary>
         /// <param name="button">The button.</param>
         /// <param name="group">The group.</param>
-        void AddInHome(RibbonButtonData button, Groups group);
+        void AddInHome(RibbonControlData button, Groups group);
 
         /// <summary>
         /// Adds the specified control into the application menu.
         /// </summary>
         /// <param name="control">The control.</param>
         void AddToApplicationMenu(RibbonControlData control);
+
+        /// <summary>
+        /// Finds in the home menu the control with the specified name in the specified group.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="group">The group.</param>
+        /// <returns>The searched control or null is not found</returns>
+        RibbonBase FindInHome(string name, Groups group);
 
         /// <summary>
         /// Deactivates the menu.

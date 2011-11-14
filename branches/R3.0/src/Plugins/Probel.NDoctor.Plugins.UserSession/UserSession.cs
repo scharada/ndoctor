@@ -106,17 +106,26 @@ namespace Probel.NDoctor.Plugins.UserSession
 
             TranslateExtension.ResourceManager = Messages.ResourceManager;
 
-            this.Host.Invoke(() =>
-            {
-                this.connectionPage = new ConnectionView();
-            });
+            this.Host.Invoke(() => { this.connectionPage = new ConnectionView(); });
 
-            var addButton = new RibbonButtonData(Messages.Title_ButtonAddUser, this.addCommand)
+            var splitter = this.Host.FindInHome("add", Groups.Tools);
+            var splitterExist = true;
+            if (splitter == null || splitter.GetType() != typeof(RibbonSplitButtonData))
             {
-                SmallImage = new Uri(uri.StringFormat("Add"), UriKind.Relative),
+                splitterExist = false;
+                splitter = new RibbonSplitButtonData(Messages.Btn_Add, uri.StringFormat("Add"), null)
+                {
+                    Order = 1,
+                    Name = "add",
+                };
+            }
+
+            var addButton = new RibbonButtonData(Messages.Title_ButtonAddUser, uri.StringFormat("Add"), this.addCommand)
+            {
                 Order = 3,
             };
-            this.Host.AddInHome(addButton, Groups.Tools);
+            (splitter as RibbonSplitButtonData).ControlDataCollection.Add(addButton);
+            if (!splitterExist) this.Host.AddInHome((splitter as RibbonSplitButtonData), Groups.Tools);
 
             this.InitialiseConnectionPage();
             this.InitialiseUpdateUserPage();

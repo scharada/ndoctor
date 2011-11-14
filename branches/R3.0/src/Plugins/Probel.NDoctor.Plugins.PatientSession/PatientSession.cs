@@ -48,9 +48,12 @@ namespace Probel.NDoctor.Plugins.PatientSession
     {
         #region Fields
 
-        private const string searchUri = @"\Probel.NDoctor.Plugins.PatientSession;component/Images\{0}.png";
+        private const string uriIco = @"\Probel.NDoctor.Plugins.PatientSession;component/Images\{0}.ico";
+        private const string uriPng = @"\Probel.NDoctor.Plugins.PatientSession;component/Images\{0}.png";
 
         private ICommand addCommand;
+        private ICommand searchCommand;
+        private ICommand showTopTenCommand;
 
         #endregion Fields
 
@@ -75,24 +78,58 @@ namespace Probel.NDoctor.Plugins.PatientSession
         /// </summary>
         public override void Initialise()
         {
-            this.Host.Invoke(() =>
-            {
-                this.Host.AddDockablePane(Messages.Title_MostUsed, new TopTenControl());
-                this.Host.AddDockablePane(Messages.Title_SearchPatient, new SearchPatientControl());
-            });
-
             this.BuildButtons();
         }
 
         private void BuildButtons()
         {
-            this.addCommand = new RelayCommand(() => this.NavigateAddPatient());
-            var addButton = new RibbonButtonData(Messages.Title_ButtonAddPatient, this.addCommand)
+            #region Add
+            var splitterExist = true;
+            var splitter = this.Host.FindInHome("add", Groups.Tools);
+            if (splitter == null || splitter.GetType() != typeof(RibbonSplitButtonData))
             {
-                SmallImage = new Uri(searchUri.StringFormat("Add"), UriKind.Relative),
+                splitterExist = false;
+                splitter = new RibbonSplitButtonData(Messages.Btn_Add, uriPng.StringFormat("Add"), null)
+                {
+                    Order = 1,
+                    Name = "add",
+                };
+            }
+
+            this.addCommand = new RelayCommand(() => this.NavigateAddPatient());
+            var addButton = new RibbonButtonData(Messages.Title_ButtonAddPatient, uriPng.StringFormat("Add"), this.addCommand)
+            {
                 Order = 2,
             };
-            this.Host.AddInHome(addButton, Groups.Tools);
+
+            (splitter as RibbonSplitButtonData).ControlDataCollection.Add(addButton);
+            if (!splitterExist) this.Host.AddInHome((splitter as RibbonSplitButtonData), Groups.Tools);
+            #endregion
+
+            #region Search
+            this.searchCommand = new RelayCommand(() => this.NavigateSearchPatient());
+            var searchButton = new RibbonButtonData(Messages.Title_SearchPatient, this.searchCommand)
+            {
+                SmallImage = new Uri(uriPng.StringFormat("SearchSmall"), UriKind.Relative),
+                Order = 0,
+            };
+
+            this.showTopTenCommand = new RelayCommand(() => this.NavigateTopTen());
+            var topTenButton = new RibbonButtonData(Messages.Title_MostUsed, this.showTopTenCommand)
+            {
+                SmallImage = new Uri(uriPng.StringFormat("SearchSmall"), UriKind.Relative),
+                Order = 0,
+            };
+
+            var searchSplitButton = new RibbonSplitButtonData(Messages.Title_ButtonSearch, uriIco.StringFormat("Search"), this.searchCommand)
+            {
+                Order = 0,
+            };
+            searchSplitButton.ControlDataCollection.Add(searchButton);
+            searchSplitButton.ControlDataCollection.Add(topTenButton);
+
+            this.Host.AddInHome(searchSplitButton, Groups.Tools);
+            #endregion
         }
 
         private void ConfigureAutoMapper()
@@ -116,6 +153,22 @@ namespace Probel.NDoctor.Plugins.PatientSession
             ChildWindowContext.WindowState = WindowState.Open;
             ChildWindowContext.IsModal = false;
             ChildWindowContext.Caption = Messages.Title_AddPatient;
+        }
+
+        private void NavigateSearchPatient()
+        {
+            ChildWindowContext.Content = new SearchPatientControl();
+            ChildWindowContext.WindowState = WindowState.Open;
+            ChildWindowContext.IsModal = false;
+            ChildWindowContext.Caption = Messages.Title_SearchPatient;
+        }
+
+        private void NavigateTopTen()
+        {
+            ChildWindowContext.Content = new TopTenControl();
+            ChildWindowContext.WindowState = WindowState.Open;
+            ChildWindowContext.IsModal = false;
+            ChildWindowContext.Caption = Messages.Title_MostUsed;
         }
 
         #endregion Methods

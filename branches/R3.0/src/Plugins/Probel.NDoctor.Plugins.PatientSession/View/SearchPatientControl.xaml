@@ -11,7 +11,8 @@
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PatientSession.Translations"
      
              mc:Ignorable="d"
-             d:DesignWidth="250">
+             Width="250"
+             Height="400">
     <UserControl.Resources>
         <conv:GenderToImageConverter x:Key="genderToImage"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -45,14 +46,14 @@
             </Grid.ColumnDefinitions>
 
             <toolkit:WatermarkTextBox Grid.Column="0" 
-                                          Text="{Binding Path=Criterium, UpdateSourceTrigger=PropertyChanged}">
+                                      Text="{Binding Path=Criterium, UpdateSourceTrigger=PropertyChanged}">
                 <toolkit:WatermarkTextBox.Watermark>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
-                                   Height="15"
-                                   Width="15" />
+                               Height="15"
+                               Width="15" />
                         <TextBlock Text="{Binding Source={x:Static Member=text:WorkbenchText.TitleWatermark}}"
-                                       Margin="4,0,0,0"/>
+                                   Margin="4,0,0,0"/>
                     </StackPanel>
                 </toolkit:WatermarkTextBox.Watermark>
             </toolkit:WatermarkTextBox>
@@ -60,15 +61,17 @@
                         Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnSearch}}" 
                         Command="{Binding SearchCommand}"/>
         </Grid>
-        <ListView DockPanel.Dock="Bottom"
+        <ScrollViewer>
+            <ListView DockPanel.Dock="Bottom"
                   ItemsSource="{Binding FoundPatients}"
                   IsSynchronizedWithCurrentItem="True"
                   VerticalAlignment="Stretch">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+        </ScrollViewer>
     </DockPanel>
 </UserControl>

@@ -24,7 +24,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
     {
         #region Fields
 
-        private ObservableCollection<RibbonButtonData> buttons = new ObservableCollection<RibbonButtonData>();
+        private ObservableCollection<RibbonControlData> buttons = new ObservableCollection<RibbonControlData>();
         private string header;
 
         #endregion Fields
@@ -34,7 +34,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
         public RibbonGroupData(string name, ObservableCollection<RibbonButtonData> buttonDataCollection)
         {
             this.Header = name;
-            this.buttons = new ObservableCollection<RibbonButtonData>();
+            this.buttons = new ObservableCollection<RibbonControlData>();
             foreach (var button in buttonDataCollection) this.buttons.Add(button);
         }
 
@@ -52,7 +52,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
 
         #region Properties
 
-        public ObservableCollection<RibbonButtonData> ButtonDataCollection
+        public ObservableCollection<RibbonControlData> ButtonDataCollection
         {
             get { return this.buttons; }
         }
