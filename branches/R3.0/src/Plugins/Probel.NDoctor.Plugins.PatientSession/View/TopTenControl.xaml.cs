@@ -26,7 +26,7 @@
         public TopTenControl()
         {
             InitializeComponent();
-            this.DataContext = new WorkbenchViewModel();
+            this.DataContext = new SearchPatientViewModel();
         }
 
         #endregion Constructors
@@ -35,9 +35,9 @@
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            if (this.DataContext is WorkbenchViewModel)
+            if (this.DataContext is SearchPatientViewModel)
             {
-                (this.DataContext as WorkbenchViewModel).Refresh();
+                (this.DataContext as SearchPatientViewModel).Refresh();
             }
         }
 

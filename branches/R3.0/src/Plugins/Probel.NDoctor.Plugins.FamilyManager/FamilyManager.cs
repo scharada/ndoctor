@@ -31,12 +31,12 @@ namespace Probel.NDoctor.Plugins.FamilyManager
     using Probel.NDoctor.Plugins.FamilyManager.Properties;
     using Probel.NDoctor.Plugins.FamilyManager.View;
     using Probel.NDoctor.Plugins.FamilyManager.ViewModel;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
 
     using StructureMap;
-    using Probel.NDoctor.View.Core.Helpers;
 
     [Export(typeof(IPlugin))]
     public class FamilyManager : Plugin

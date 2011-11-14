@@ -91,7 +91,7 @@
     </Compile>
     <Compile Include="Translations\WorkbenchText.cs" />
     <Compile Include="ViewModel\AddPatientViewModel.cs" />
-    <Compile Include="ViewModel\WorkbenchViewModel.cs" />
+    <Compile Include="ViewModel\SearchPatientViewModel.cs" />
     <Compile Include="View\AddPatientControl.xaml.cs">
       <DependentUpon>AddPatientControl.xaml</DependentUpon>
     </Compile>

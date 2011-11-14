@@ -26,7 +26,7 @@
         public SearchPatientControl()
         {
             InitializeComponent();
-            this.DataContext = new WorkbenchViewModel();
+            this.DataContext = new SearchPatientViewModel();
         }
 
         #endregion Constructors

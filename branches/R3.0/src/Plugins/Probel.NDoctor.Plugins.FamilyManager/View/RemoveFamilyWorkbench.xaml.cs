@@ -1,6 +1,7 @@
 ﻿namespace Probel.NDoctor.Plugins.FamilyManager.View
 {
     using System.Windows.Controls;
+
     using Probel.NDoctor.Plugins.FamilyManager.ViewModel;
 
     /// <summary>

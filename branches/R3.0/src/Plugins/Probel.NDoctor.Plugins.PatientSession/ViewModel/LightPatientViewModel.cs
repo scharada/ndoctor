@@ -30,6 +30,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PatientSession.Properties;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
@@ -52,10 +53,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
                 PluginContext.Host.SelectedPatient = this;
                 this.IncrementCounter();
 
-                MessageBox.Show(Messages.Msg_PatientSelected
-                    , Messages.Information
-                    , MessageBoxButton.OK
-                    , MessageBoxImage.Information);
+                ChildWindowContext.CloseWindow();
             });
             this.component = ObjectFactory.GetInstance<IPatientSessionComponent>();
         }
@@ -91,26 +89,6 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
         #endregion Properties
 
         #region Methods
-
-        /// <summary>
-        /// Creates a <see cref="LightPatientViewModel"/> from an instance of <see cref="LightPatientDto"/>.
-        /// </summary>
-        /// <param name="patient">The patient.</param>
-        /// <returns></returns>
-        public static LightPatientViewModel CreateFrom(LightPatientDto patient)
-        {
-            return Mapper.Map<LightPatientDto, LightPatientViewModel>(patient);
-        }
-
-        /// <summary>
-        /// Creates a enumeration of <see cref="LightPatientViewModel"/> from an instance of enumeration of <see cref="LightPatientDto"/>.
-        /// </summary>
-        /// <param name="patient">The patient.</param>
-        /// <returns></returns>
-        public static IEnumerable<LightPatientViewModel> CreateFrom(IEnumerable<LightPatientDto> patients)
-        {
-            return Mapper.Map<IEnumerable<LightPatientDto>, IEnumerable<LightPatientViewModel>>(patients);
-        }
 
         private void IncrementCounter()
         {

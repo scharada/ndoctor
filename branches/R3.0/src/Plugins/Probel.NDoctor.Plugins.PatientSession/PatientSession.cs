@@ -102,6 +102,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
                 Order = 2,
             };
 
+            (splitter as RibbonSplitButtonData).Command = addCommand;
             (splitter as RibbonSplitButtonData).ControlDataCollection.Add(addButton);
             if (!splitterExist) this.Host.AddInHome((splitter as RibbonSplitButtonData), Groups.Tools);
             #endregion
