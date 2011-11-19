@@ -18,8 +18,6 @@ namespace Probel.NDoctor.View.Plugins.MenuData
 {
     using System.Collections.ObjectModel;
 
-    using Probel.Helpers.Events;
-
     public class RibbonGroupData : RibbonBase
     {
         #region Fields

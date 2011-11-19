@@ -22,8 +22,6 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using System.Windows;
     using System.Windows.Input;
 
-    using AutoMapper;
-
     using Probel.Helpers.Conversions;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -55,8 +53,8 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             : base()
         {
             this.UpdateCommand = new RelayCommand(() => this.UpdateUser(), () => this.CanUpdateUser());
-            this.CancelCommand = new RelayCommand(() => ChildWindowContext.CloseWindow());
-            ChildWindowContext.Loaded += (sender, e) => this.Refresh();
+            this.CancelCommand = new RelayCommand(() => InnerWindow.Close());
+            InnerWindow.Loaded += (sender, e) => this.Refresh();
         }
 
         /// <summary>
@@ -65,7 +63,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         /// </summary>
         ~UpdateUserViewModel()
         {
-            ChildWindowContext.Loaded -= (sender, e) => this.Refresh();
+            InnerWindow.Loaded -= (sender, e) => this.Refresh();
         }
 
         #endregion Constructors
@@ -253,7 +251,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             }
             finally
             {
-                ChildWindowContext.CloseWindow();
+                InnerWindow.Close();
             }
         }
 

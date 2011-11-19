@@ -18,8 +18,6 @@ namespace Probel.NDoctor.View.Plugins.MenuData
 {
     using System.Collections.ObjectModel;
 
-    using Probel.Helpers.Events;
-
     //REFACTOR: Remove the suffix "Collection" on collection properties for the ribbon menu
     /// <summary>
     /// Represents all the items of the ribbon menu.

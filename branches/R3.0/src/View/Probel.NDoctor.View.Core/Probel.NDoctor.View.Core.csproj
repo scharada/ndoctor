@@ -84,7 +84,7 @@
     <Compile Include="Helpers\Languages.cs" />
     <Compile Include="Helpers\PasswordBoxAssistant.cs" />
     <Compile Include="Helpers\TranslateExtension.cs" />
-    <Compile Include="Helpers\ChildWindowContext.cs" />
+    <Compile Include="Helpers\InnerWindow.cs" />
     <Compile Include="Model\Commands.cs" />
     <Compile Include="Properties\Messages.Designer.cs">
       <AutoGen>True</AutoGen>

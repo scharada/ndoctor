@@ -27,8 +27,6 @@ namespace Probel.NDoctor.Plugins.PatientSession
 
     using AutoMapper;
 
-    using Microsoft.Windows.Controls;
-
     using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
@@ -150,26 +148,17 @@ namespace Probel.NDoctor.Plugins.PatientSession
 
         private void NavigateAddPatient()
         {
-            ChildWindowContext.Content = new AddPatientControl();
-            ChildWindowContext.WindowState = WindowState.Open;
-            ChildWindowContext.IsModal = false;
-            ChildWindowContext.Caption = Messages.Title_AddPatient;
+            InnerWindow.Show(Messages.Title_AddPatient, new AddPatientControl());
         }
 
         private void NavigateSearchPatient()
         {
-            ChildWindowContext.Content = new SearchPatientControl();
-            ChildWindowContext.WindowState = WindowState.Open;
-            ChildWindowContext.IsModal = false;
-            ChildWindowContext.Caption = Messages.Title_SearchPatient;
+            InnerWindow.Show(Messages.Title_SearchPatient,new SearchPatientControl());
         }
 
         private void NavigateTopTen()
         {
-            ChildWindowContext.Content = new TopTenControl();
-            ChildWindowContext.WindowState = WindowState.Open;
-            ChildWindowContext.IsModal = false;
-            ChildWindowContext.Caption = Messages.Title_MostUsed;
+            InnerWindow.Show(Messages.Title_MostUsed,new TopTenControl());
         }
 
         #endregion Methods

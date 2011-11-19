@@ -141,10 +141,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                 }
                 else
                 {
-                    ChildWindowContext.Content = new AddUserControl();
-                    ChildWindowContext.WindowState = Microsoft.Windows.Controls.WindowState.Open;
-                    ChildWindowContext.IsModal = false;
-                    ChildWindowContext.Caption = Messages.Title_ButtonAddUser;
+                    InnerWindow.Show(Messages.Title_ButtonAddUser, new AddUserControl());
                 }
             }
             catch (Exception ex)

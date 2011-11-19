@@ -21,11 +21,7 @@
 
 namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 {
-    using System.Collections.Generic;
-    using System.Windows;
     using System.Windows.Input;
-
-    using AutoMapper;
 
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -53,7 +49,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
                 PluginContext.Host.SelectedPatient = this;
                 this.IncrementCounter();
 
-                ChildWindowContext.CloseWindow();
+                InnerWindow.Close();
             });
             this.component = ObjectFactory.GetInstance<IPatientSessionComponent>();
         }

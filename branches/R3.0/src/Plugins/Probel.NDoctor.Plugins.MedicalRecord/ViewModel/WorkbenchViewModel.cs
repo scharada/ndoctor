@@ -29,19 +29,16 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
+    using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
 
     public class WorkbenchViewModel : BaseViewModel
     {
         #region Fields
 
-        private ICommand addFolderCommand;
-        private ICommand addRecordCommand;
         private TitledMedicalRecordCabinetDto cabinet;
         private IMedicalRecordComponent component = ObjectFactory.GetInstance<IMedicalRecordComponent>();
-        private TitledMedicalRecordDto recordToAdd;
         private TitledMedicalRecordDto selectedRecord;
         private IList<TagDto> tags = new List<TagDto>();
-        private TagDto tagToAdd;
 
         #endregion Fields
 
@@ -54,48 +51,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         public WorkbenchViewModel()
             : base()
         {
-            this.RecordToAdd = new TitledMedicalRecordDto() { State = State.Added };
-            this.TagToAdd = new TagDto() { Category = TagCategory.MedicalRecord };
-
-            #region Add record
-            this.addRecordCommand = new RelayCommand(() =>
-            {
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Create(this.RecordToAdd, this.Host.SelectedPatient);
-                }
-                this.Refresh();
-                this.Host.WriteStatus(StatusType.Info, Messages.Msg_RecordAdded);
-            }, () => this.RecordToAdd.Tag != null);
-            #endregion
-
-            #region Add folder
-            this.addFolderCommand = new RelayCommand(() =>
-            {
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Create(this.tagToAdd);
-                }
-                this.Host.WriteStatus(StatusType.Info, Messages.Msg_TagAdded.StringFormat(this.tagToAdd.Name));
-                this.ResetTagToAdd();
-                this.Refresh();
-            }, () => !string.IsNullOrWhiteSpace(this.tagToAdd.Name));
-            #endregion
+            Notifyer.Refreshed += (sender, e) => this.Refresh();
         }
 
         #endregion Constructors
 
         #region Properties
-
-        public ICommand AddFolderCommand
-        {
-            get { return this.addFolderCommand; }
-        }
-
-        public ICommand AddRecordCommand
-        {
-            get { return this.addRecordCommand; }
-        }
 
         public TitledMedicalRecordCabinetDto Cabinet
         {
@@ -104,16 +65,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             {
                 this.cabinet = value;
                 this.OnPropertyChanged("Cabinet");
-            }
-        }
-
-        public TitledMedicalRecordDto RecordToAdd
-        {
-            get { return this.recordToAdd; }
-            set
-            {
-                this.recordToAdd = value;
-                this.OnPropertyChanged("RecordToAdd");
             }
         }
 
@@ -143,46 +94,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             }
         }
 
-        public TagDto TagToAdd
-        {
-            get { return this.tagToAdd; }
-            set
-            {
-                this.tagToAdd = value;
-                this.OnPropertyChanged("TagToAdd");
-            }
-        }
-
-        public string TitleAddFolder
-        {
-            get { return Messages.Title_AddFolder; }
-        }
-
-        public string TitleAddRecord
-        {
-            get { return Messages.Title_AddRecord; }
-        }
-
-        public string TitleBtnAdd
-        {
-            get { return Messages.Title_BtnAdd; }
-        }
-
-        public string TitleBtnSearch
-        {
-            get { return Messages.Btn_SearchFor; }
-        }
-
-        public string TitleMedicalRecord
-        {
-            get { return Messages.Title_MedicalRecord; }
-        }
-
-        public string TitleSearchFor
-        {
-            get { return Messages.Title_SearchFor; }
-        }
-
         #endregion Properties
 
         #region Methods
@@ -209,15 +120,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             {
                 this.component.UpdateCabinet(this.Host.SelectedPatient, this.Cabinet);
             }
-        }
-
-        private void ResetTagToAdd()
-        {
-            this.tagToAdd.Name = null;
-            this.tagToAdd.Notes = null;
-            this.tagToAdd.Category = TagCategory.MedicalRecord;
-            this.tagToAdd.State = State.Added;
-            this.tagToAdd.Id = -1;
         }
 
         #endregion Methods

@@ -19,8 +19,6 @@ namespace Probel.NDoctor.View.Plugins
     using System;
     using System.Windows.Controls;
 
-    using AvalonDock;
-
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Plugins.Helpers;

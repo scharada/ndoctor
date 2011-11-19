@@ -19,8 +19,6 @@ namespace Probel.NDoctor.View.Plugins.MenuData
     using System.Collections.ObjectModel;
     using System.Windows.Media;
 
-    using Probel.Helpers.Events;
-
     public class RibbonContextualTabGroupData : RibbonBase
     {
         #region Fields

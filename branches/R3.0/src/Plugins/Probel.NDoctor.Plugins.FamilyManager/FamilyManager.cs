@@ -121,10 +121,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager
                 {
                     if (this.ViewModel != null) this.ViewModel.Reset();
 
-                    ChildWindowContext.Caption = Messages.Btn_Add;
-                    ChildWindowContext.Content = new AddFamilyWorkbench();
-                    ChildWindowContext.WindowState = Microsoft.Windows.Controls.WindowState.Open;
-                    ChildWindowContext.WindowStartupLocation = Microsoft.Windows.Controls.WindowStartupLocation.Center;
+                    InnerWindow.Show(Messages.Btn_Add, new AddFamilyWorkbench());
                 }
                 catch (Exception ex)
                 {
@@ -140,10 +137,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager
                 {
                     if (this.ViewModel != null) this.ViewModel.Reset();
 
-                    ChildWindowContext.Caption = Messages.Btn_Remove;
-                    ChildWindowContext.Content = new RemoveFamilyWorkbench();
-                    ChildWindowContext.WindowState = Microsoft.Windows.Controls.WindowState.Open;
-                    ChildWindowContext.WindowStartupLocation = Microsoft.Windows.Controls.WindowStartupLocation.Center;
+                    InnerWindow.Show(Messages.Btn_Remove, new RemoveFamilyWorkbench());
                 }
                 catch (Exception ex)
                 {

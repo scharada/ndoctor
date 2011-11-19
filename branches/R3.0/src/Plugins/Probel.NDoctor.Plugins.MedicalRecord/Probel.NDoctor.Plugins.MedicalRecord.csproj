@@ -63,6 +63,7 @@
     <Compile Include="Dto\TitledMedicalRecordCabinetDto.cs" />
     <Compile Include="Dto\TitledMedicalRecordDto.cs" />
     <Compile Include="Dto\TitledMedicalRecordFolderDto.cs" />
+    <Compile Include="Helpers\Notifyer.cs" />
     <Compile Include="MedicalRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -82,7 +83,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Translations\AddFolderText.cs" />
+    <Compile Include="Translations\AddRecordText.cs" />
+    <Compile Include="Translations\WorkbenchText.cs" />
+    <Compile Include="ViewModel\AddFolderViewModel.cs" />
+    <Compile Include="ViewModel\AddRecordViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
+    <Compile Include="View\AddFolderView.xaml.cs">
+      <DependentUpon>AddFolderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddRecordView.xaml.cs">
+      <DependentUpon>AddRecordView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Workbench.xaml.cs">
       <DependentUpon>Workbench.xaml</DependentUpon>
     </Compile>
@@ -130,6 +142,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\AddFolderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddRecordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Workbench.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -144,6 +164,9 @@
   <ItemGroup>
     <Resource Include="Images\Document.png" />
     <Resource Include="Images\Folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Add.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

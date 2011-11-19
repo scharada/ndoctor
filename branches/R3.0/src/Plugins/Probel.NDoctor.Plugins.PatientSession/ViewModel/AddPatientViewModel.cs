@@ -25,8 +25,6 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using System.Collections.ObjectModel;
     using System.Windows.Input;
 
-    using Microsoft.Windows.Controls;
-
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -104,7 +102,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             {
                 using (this.component.UnitOfWork) { this.component.Create(this.Patient); }
                 this.Host.WriteStatus(StatusType.Info, Messages.Msg_PatientAdded);
-                ChildWindowContext.WindowState = WindowState.Closed;
+                InnerWindow.Close();
             }
             catch (Exception ex)
             {

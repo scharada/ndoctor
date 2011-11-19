@@ -19,7 +19,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Microsoft.Windows.Controls;
 
     using Probel.NDoctor.View.Core.Helpers;
-    using Probel.NDoctor.View.Core.ViewModel;
 
     public class ChildWindowViewModel : BaseViewModel
     {
@@ -27,12 +26,12 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         public ChildWindowViewModel()
         {
-            ChildWindowContext.CaptionChanged += (sender, e) => this.OnPropertyChanged("Caption");
-            ChildWindowContext.CloseButtonVisibilityChanged += (sender, e) => this.OnPropertyChanged("CloseButtonVisibility");
-            ChildWindowContext.ContentChanged += (sender, e) => this.OnPropertyChanged("Content");
-            ChildWindowContext.IsModalChanged += (sender, e) => this.OnPropertyChanged("IsModal");
-            ChildWindowContext.WindowStartupLocationChanged += (sender, e) => this.OnPropertyChanged("WindowStartupLocation");
-            ChildWindowContext.WindowStateChanged += (sender, e) => this.OnPropertyChanged("WindowState");
+            InnerWindow.CaptionChanged += (sender, e) => this.OnPropertyChanged("Caption");
+            InnerWindow.CloseButtonVisibilityChanged += (sender, e) => this.OnPropertyChanged("CloseButtonVisibility");
+            InnerWindow.ContentChanged += (sender, e) => this.OnPropertyChanged("Content");
+            InnerWindow.IsModalChanged += (sender, e) => this.OnPropertyChanged("IsModal");
+            InnerWindow.WindowStartupLocationChanged += (sender, e) => this.OnPropertyChanged("WindowStartupLocation");
+            InnerWindow.WindowStateChanged += (sender, e) => this.OnPropertyChanged("WindowState");
         }
 
         #endregion Constructors
@@ -41,38 +40,38 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         public string Caption
         {
-            get { return ChildWindowContext.Caption; }
-            set { ChildWindowContext.Caption = value; }
+            get { return InnerWindow.Caption; }
+            set { InnerWindow.Caption = value; }
         }
 
         public System.Windows.Visibility CloseButtonVisibility
         {
-            get { return ChildWindowContext.CloseButtonVisibility; }
-            set { ChildWindowContext.CloseButtonVisibility = value; }
+            get { return InnerWindow.CloseButtonVisibility; }
+            set { InnerWindow.CloseButtonVisibility = value; }
         }
 
         public System.Windows.Controls.UserControl Content
         {
-            get { return ChildWindowContext.Content; }
-            set { ChildWindowContext.Content = value; }
+            get { return InnerWindow.Content; }
+            set { InnerWindow.Content = value; }
         }
 
         public bool IsModal
         {
-            get { return ChildWindowContext.IsModal; }
-            set { ChildWindowContext.IsModal = value; }
+            get { return InnerWindow.IsModal; }
+            set { InnerWindow.IsModal = value; }
         }
 
         public Microsoft.Windows.Controls.WindowStartupLocation WindowStartupLocation
         {
-            get { return ChildWindowContext.WindowStartupLocation; }
-            set { ChildWindowContext.WindowStartupLocation = value; }
+            get { return InnerWindow.WindowStartupLocation; }
+            set { InnerWindow.WindowStartupLocation = value; }
         }
 
         public WindowState WindowState
         {
-            get { return ChildWindowContext.WindowState; }
-            set { ChildWindowContext.WindowState = value; }
+            get { return InnerWindow.WindowState; }
+            set { InnerWindow.WindowState = value; }
         }
 
         #endregion Properties

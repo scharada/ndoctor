@@ -19,8 +19,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using System;
     using System.Windows.Input;
 
-    using Microsoft.Windows.Controls;
-
     using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.Helpers;
@@ -162,10 +160,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         private void NavigateToSetting()
         {
-            ChildWindowContext.Content = new SettingsView();
-            ChildWindowContext.WindowState = WindowState.Open;
-            ChildWindowContext.IsModal = false;
-            ChildWindowContext.Caption = Messages.Title_Settings;
+            InnerWindow.Show(Messages.Title_Settings, new SettingsView());
         }
 
         #endregion Methods

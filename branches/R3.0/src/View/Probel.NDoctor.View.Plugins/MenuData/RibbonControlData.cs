@@ -19,8 +19,6 @@ namespace Probel.NDoctor.View.Plugins.MenuData
     using System;
     using System.Windows.Input;
 
-    using Probel.Helpers.Events;
-
     /// <summary>
     /// Class used for binding of a RibbonControl
     /// </summary>

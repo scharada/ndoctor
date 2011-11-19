@@ -22,7 +22,6 @@
 namespace Probel.NDoctor.View.Core.Helpers
 {
     using System;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
 
     using Probel.NDoctor.View.Core.Properties;

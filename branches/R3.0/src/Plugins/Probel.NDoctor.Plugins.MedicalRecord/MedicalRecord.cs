@@ -37,6 +37,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
     using Probel.NDoctor.Plugins.MedicalRecord.Properties;
     using Probel.NDoctor.Plugins.MedicalRecord.View;
     using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
@@ -50,6 +51,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.MedicalRecord;component/Images\{0}.png";
 
+        private ICommand addFolderCommand;
+        private ICommand addRecordCommand;
         private MedicalRecordComponent component = new MedicalRecordComponent();
         private RibbonContextualTabGroupData contextualMenu;
         private ICommand navigateCommand;
@@ -121,9 +124,23 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         private void BuildContextMenu()
         {
             var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.StringFormat("Save"), saveCommand);
+
+            #region SplitButton
+            this.addRecordCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddRecord, new AddRecordView()));
+            this.addFolderCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddFolder, new AddFolderView()));
+
+            var splitButton = new RibbonSplitButtonData(Messages.Title_BtnAdd, imgUri.StringFormat("Add"), addRecordCommand);
+            var addRecordButton = new RibbonButtonData(Messages.Title_AddRecord, imgUri.StringFormat("Add"), addRecordCommand);
+            var addFolderButton = new RibbonButtonData(Messages.Title_AddFolder, imgUri.StringFormat("Add"), addFolderCommand);
+
+            splitButton.ControlDataCollection.Add(addRecordButton);
+            splitButton.ControlDataCollection.Add(addFolderButton);
+            #endregion
+
             var cgroup = new RibbonGroupData(Messages.Menu_Actions);
 
             cgroup.ButtonDataCollection.Add(saveButton);
+            cgroup.ButtonDataCollection.Add(splitButton);
 
             var tab = new RibbonTabData(Messages.Menu_File, cgroup) { ContextualTabGroupHeader = Messages.Title_MedicalRecord };
             this.Host.Add(tab);

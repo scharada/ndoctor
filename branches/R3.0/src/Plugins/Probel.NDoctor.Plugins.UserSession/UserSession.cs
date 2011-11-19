@@ -19,11 +19,8 @@ namespace Probel.NDoctor.Plugins.UserSession
     using System;
     using System.ComponentModel.Composition;
     using System.Windows.Input;
-    using System.Windows.Media;
 
     using AutoMapper;
-
-    using Microsoft.Windows.Controls;
 
     using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DAL.Components;
@@ -181,18 +178,12 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         private void NavigateAddUser()
         {
-            ChildWindowContext.Content = new AddUserControl();
-            ChildWindowContext.WindowState = WindowState.Open;
-            ChildWindowContext.IsModal = false;
-            ChildWindowContext.Caption = Messages.Title_ButtonAddUser;
+            InnerWindow.Show(Messages.Title_ButtonAddUser, new AddUserControl());
         }
 
         private void NavigateToUpdateUser()
         {
-            ChildWindowContext.Content = new UpdateUserControl();
-            ChildWindowContext.WindowState = WindowState.Open;
-            ChildWindowContext.IsModal = false;
-            ChildWindowContext.Caption = Messages.Menu_ManagePersonalData;
+            InnerWindow.Show(Messages.Menu_ManagePersonalData, new UpdateUserControl());
         }
 
         private void PrintBusinessCard()

@@ -29,6 +29,26 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 
         #endregion Fields
 
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TagDto"/> class.
+        /// </summary>
+        public TagDto()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TagDto"/> class.
+        /// </summary>
+        /// <param name="category">The category.</param>
+        public TagDto(TagCategory category)
+        {
+            this.Category = category;
+        }
+
+        #endregion Constructors
+
         #region Properties
 
         /// <summary>

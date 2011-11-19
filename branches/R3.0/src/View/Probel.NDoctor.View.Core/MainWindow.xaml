@@ -81,6 +81,7 @@
         <Style TargetType="{x:Type ribbon:RibbonSplitButton}" BasedOn="{StaticResource {x:Type ribbon:RibbonMenuButton}}">
             <Setter Property="IsCheckable" Value="{Binding IsCheckable}" />
             <Setter Property="IsChecked" Value="{Binding IsChecked}" />
+            <Setter Property="IsDropDownOpen" Value="{Binding IsDropDownOpen}" />
             <Setter Property="Command" Value="{Binding Command}" />
             <Setter Property="HeaderQuickAccessToolBarId" Value="{Binding Label}" />
             <Setter Property="CanUserResizeHorizontally" Value="True" />

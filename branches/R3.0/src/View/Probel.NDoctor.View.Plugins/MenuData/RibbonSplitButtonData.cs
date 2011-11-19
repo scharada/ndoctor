@@ -1,10 +1,6 @@
 ﻿namespace Probel.NDoctor.View.Plugins.MenuData
 {
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Text;
     using System.Windows.Input;
 
     public class RibbonSplitButtonData : RibbonMenuButtonData
@@ -14,6 +10,7 @@
         private RibbonButtonData dropDownButtonData;
         private bool isCheckable;
         private bool isChecked;
+        private bool isDropDownOpen;
 
         #endregion Fields
 
@@ -94,11 +91,7 @@
 
         public bool IsCheckable
         {
-            get
-            {
-                return isCheckable;
-            }
-
+            get { return isCheckable; }
             set
             {
                 if (isCheckable != value)
@@ -123,6 +116,16 @@
                     isChecked = value;
                     OnPropertyChanged("IsChecked");
                 }
+            }
+        }
+
+        public bool IsDropDownOpen
+        {
+            get { return this.isDropDownOpen; }
+            set
+            {
+                this.isDropDownOpen = value;
+                this.OnPropertyChanged("IsDropDownOpen");
             }
         }
 
