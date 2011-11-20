@@ -37,11 +37,28 @@
         <!-- RibbonControl -->
         <Style x:Key="RibbonControlStyle">
             <Setter Property="ribbon:RibbonControlService.Label" Value="{Binding Label}" />
-            <Setter Property="ribbon:RibbonControlService.LargeImageSource" Value="{Binding SmallImage}" />
-            <Setter Property="ribbon:RibbonControlService.SmallImageSource" Value="{Binding LargeImage}" />
+            <Setter Property="ribbon:RibbonControlService.LargeImageSource" Value="{Binding LargeImage}" />
+            <Setter Property="ribbon:RibbonControlService.SmallImageSource" Value="{Binding SmallImage}" />
             <Setter Property="ribbon:RibbonControlService.ToolTipTitle" Value="{Binding ToolTipTitle}" />
             <Setter Property="ribbon:RibbonControlService.ToolTipDescription" Value="{Binding ToolTipDescription}" />
             <Setter Property="ribbon:RibbonControlService.ToolTipImageSource" Value="{Binding ToolTipImage}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding LargeImage}" Value="{x:Null}">
+                    <Setter Property="ribbon:RibbonControlService.LargeImageSource" Value="{x:Null}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SmallImage}" Value="{x:Null}">
+                    <Setter Property="ribbon:RibbonControlService.SmallImageSource" Value="{x:Null}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ToolTipImage}" Value="{x:Null}">
+                    <Setter Property="ribbon:RibbonControlService.ToolTipImageSource" Value="{x:Null}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ToolTipFooterImage}" Value="{x:Null}">
+                    <Setter Property="ribbon:RibbonControlService.ToolTipFooterImageSource" Value="{x:Null}" />
+                </DataTrigger>
+                <Trigger Property="ribbon:RibbonControlService.IsInQuickAccessToolBar" Value="False">
+                    <Setter Property="KeyTipService.KeyTip" Value="{Binding KeyTip}" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <!-- RibbonGroup -->
@@ -49,12 +66,22 @@
             <Setter Property="QuickAccessToolBarId" Value="{Binding Label}" />
             <Setter Property="Header" Value="{Binding Header}" />
             <Setter Property="ItemsSource" Value="{Binding ButtonDataCollection}" />
+            <Setter Property="Width" Value="{Binding Width}" />
         </Style>
 
         <!-- RibbonButton -->
         <DataTemplate DataType="{x:Type menu:RibbonButtonData}">
             <ribbon:RibbonButton Label="{Binding Label}" Command="{Binding Command}" SmallImageSource="{Binding SmallImage}"  LargeImageSource="{Binding LargeImage}"/>
         </DataTemplate>
+
+        <!-- RibbonToggleButton -->
+        <DataTemplate DataType="{x:Type menu:RibbonToggleButtonData}">
+            <ribbon:RibbonToggleButton />
+        </DataTemplate>
+        <Style TargetType="{x:Type ribbon:RibbonToggleButton}" BasedOn="{StaticResource RibbonControlStyle}">
+            <Setter Property="Command" Value="{Binding Command}" />
+            <Setter Property="IsChecked" Value="{Binding IsChecked}" />
+        </Style>
 
         <!-- RibbonSeparator -->
         <ItemContainerTemplate x:Key="{ItemContainerTemplateKey DataType={x:Type menu:RibbonSeparatorData}}">
@@ -126,6 +153,26 @@
         </ItemContainerTemplate>
         <Style TargetType="{x:Type ribbon:RibbonApplicationMenuItem}" BasedOn="{StaticResource {x:Type ribbon:RibbonMenuItem}}" />
 
+        <!-- RibbonTab -->
+        <Style TargetType="{x:Type ribbon:RibbonTab}" x:Key="ContextualTabStyle">
+            <Setter Property="ContextualTabGroupHeader" Value="{Binding ContextualTabGroupHeader}" />
+            <Setter Property="Header" Value="{Binding Header}" />
+            <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+        </Style>
+
+        <!-- RibbonComboBox -->
+        <DataTemplate DataType="{x:Type menu:RibbonComboBoxData}">
+            <ribbon:RibbonComboBox
+                    IsEditable="True"
+                    TextSearch.TextPath="Label"/>
+        </DataTemplate>
+        <Style TargetType="{x:Type ribbon:RibbonComboBox}" BasedOn="{StaticResource {x:Type ribbon:RibbonMenuButton}}">
+            <Setter Property="IsEditable" Value="True" />
+            <Setter Property="TextSearch.TextPath" Value="Label" />
+            <Setter Property="DataContext" Value="DataContext"/>
+            <Setter Property="SelectionBoxWidth" Value="SelectionBoxWidth"/>
+        </Style>
+
 
     </Window.Resources>
 
@@ -143,9 +190,9 @@
                 <RowDefinition Height="26"/>
             </Grid.RowDefinitions>
             <ribbon:Ribbon Grid.Row="0" 
-                       x:Name="ribbon"
-					   ItemsSource="{Binding Source={x:Static data:App.RibbonData},Path=TabDataCollection}"
-					   ContextualTabGroupsSource="{Binding Source={x:Static data:App.RibbonData},Path=ContextualTabGroupDataCollection}">
+                           x:Name="ribbon"
+                           ItemsSource="{Binding Source={x:Static data:App.RibbonData},Path=TabDataCollection}"
+                           ContextualTabGroupsSource="{Binding Source={x:Static data:App.RibbonData},Path=ContextualTabGroupDataCollection}">
 
                 <ribbon:Ribbon.ApplicationMenu>
                     <ribbon:RibbonApplicationMenu 

@@ -121,13 +121,52 @@
     <value>Search</value>
     <comment>Search</comment>
   </data>
+  <data name="Edition_Bold" xml:space="preserve">
+    <value>Bold</value>
+  </data>
+  <data name="Edition_Bullets" xml:space="preserve">
+    <value>Bullets</value>
+  </data>
+  <data name="Edition_CenterAlign" xml:space="preserve">
+    <value>Center align</value>
+  </data>
+  <data name="Edition_Italic" xml:space="preserve">
+    <value>Italic</value>
+  </data>
+  <data name="Edition_JustifyAlign" xml:space="preserve">
+    <value>Justify align</value>
+  </data>
+  <data name="Edition_LeftAlign" xml:space="preserve">
+    <value>Left align</value>
+  </data>
+  <data name="Edition_Numbering" xml:space="preserve">
+    <value>Numbering</value>
+  </data>
+  <data name="Edition_RightAlign" xml:space="preserve">
+    <value>Right align</value>
+  </data>
+  <data name="Edition_Underline" xml:space="preserve">
+    <value>Underline</value>
+  </data>
   <data name="Menu_Actions" xml:space="preserve">
     <value>Actions</value>
     <comment>Actions</comment>
   </data>
+  <data name="Menu_Edition" xml:space="preserve">
+    <value>Edition</value>
+    <comment>Edition</comment>
+  </data>
   <data name="Menu_File" xml:space="preserve">
     <value>File</value>
     <comment>File</comment>
+  </data>
+  <data name="Menu_Font" xml:space="preserve">
+    <value>Font</value>
+    <comment>Font</comment>
+  </data>
+  <data name="Menu_Paragraph" xml:space="preserve">
+    <value>Paragraph</value>
+    <comment>Paragraph</comment>
   </data>
   <data name="Msg_FailToLoadMedicalRecords" xml:space="preserve">
     <value>An error occured while loading medical records. {0}</value>

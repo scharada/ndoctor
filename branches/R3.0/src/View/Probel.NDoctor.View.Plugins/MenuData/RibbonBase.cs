@@ -29,12 +29,33 @@ namespace Probel.NDoctor.View.Plugins.MenuData
     {
         #region Fields
 
+        private double height;
         private string name = Guid.NewGuid().ToString();
         private int order;
+        private double width;
 
         #endregion Fields
 
+        #region Constructors
+
+        public RibbonBase()
+        {
+            this.width = -1;
+        }
+
+        #endregion Constructors
+
         #region Properties
+
+        public double Height
+        {
+            get { return this.height; }
+            set
+            {
+                this.height = value;
+                this.OnPropertyChanged("Height");
+            }
+        }
 
         /// <summary>
         /// Gets or sets the name of this control. It is used to find controls
@@ -59,6 +80,16 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             {
                 this.order = value;
                 this.OnPropertyChanged("Order");
+            }
+        }
+
+        public double Width
+        {
+            get { return this.width; }
+            set
+            {
+                this.width = value;
+                this.OnPropertyChanged("Width");
             }
         }
 

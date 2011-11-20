@@ -60,16 +60,8 @@
         /// <param name="uriImage">The URI image.</param>
         /// <param name="command">The command.</param>
         public RibbonSplitButtonData(string label, string uriImage, ICommand command)
+            : base(label, uriImage, command)
         {
-            this.Label = label;
-            this.Command = command;
-
-            if (!string.IsNullOrEmpty(uriImage))
-            {
-                this.LargeImage
-                    = this.SmallImage
-                    = new Uri(uriImage, UriKind.RelativeOrAbsolute);
-            }
         }
 
         #endregion Constructors

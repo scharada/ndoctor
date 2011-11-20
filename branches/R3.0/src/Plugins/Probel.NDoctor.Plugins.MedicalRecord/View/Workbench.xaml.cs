@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
     using System.Windows.Controls;
 
     using Probel.NDoctor.Plugins.MedicalRecord.Dto;
+    using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
 
     /// <summary>
@@ -32,6 +33,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
         public Workbench()
         {
             InitializeComponent();
+            Context.RichTextBox = this.richTextBox;
         }
 
         #endregion Constructors

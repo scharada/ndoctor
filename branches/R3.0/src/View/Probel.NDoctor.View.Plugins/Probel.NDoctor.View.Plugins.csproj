@@ -90,6 +90,7 @@
     <Compile Include="Configuration\IPluginConfigurationLoader.cs" />
     <Compile Include="LogObject.cs" />
     <Compile Include="MefPluginLoader.cs" />
+    <Compile Include="MenuData\RibbonComboBoxData.cs" />
     <Compile Include="MenuData\RibbonSplitButtonData.cs" />
     <Compile Include="MenuData\RibbonApplicationMenuItemData.cs" />
     <Compile Include="MenuData\RibbonBase.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="MenuData\RibbonMenuItemData.cs" />
     <Compile Include="MenuData\RibbonSeparatorData.cs" />
     <Compile Include="MenuData\RibbonTabData.cs" />
+    <Compile Include="MenuData\RibbonToggleButtonData.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="IPluginHost.cs" />
     <Compile Include="IPluginLoader.cs" />

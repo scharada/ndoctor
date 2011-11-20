@@ -46,6 +46,15 @@ namespace Probel.NDoctor.View.Plugins.MenuData
         /// Initializes a new instance of the <see cref="RibbonControlData"/> class.
         /// </summary>
         /// <param name="label">The label.</param>
+        public RibbonControlData(string label)
+            : this(label, null, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RibbonControlData"/> class.
+        /// </summary>
+        /// <param name="label">The label.</param>
         /// <param name="uriImage">The URI image.</param>
         public RibbonControlData(string label, string uriImage)
             : this(label, uriImage, null)

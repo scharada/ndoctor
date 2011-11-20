@@ -84,10 +84,10 @@ namespace Probel.NDoctor.Plugins.PatientSession
             #region Add
             var splitterExist = true;
             var splitter = this.Host.FindInHome("add", Groups.Tools);
-            if (splitter == null || splitter.GetType() != typeof(RibbonSplitButtonData))
+            if (splitter == null || splitter.GetType() != typeof(RibbonMenuButtonData))
             {
                 splitterExist = false;
-                splitter = new RibbonSplitButtonData(Messages.Btn_Add, uriPng.StringFormat("Add"), null)
+                splitter = new RibbonMenuButtonData(Messages.Btn_Add, uriPng.StringFormat("Add"), null)
                 {
                     Order = 1,
                     Name = "add",
@@ -95,14 +95,14 @@ namespace Probel.NDoctor.Plugins.PatientSession
             }
 
             this.addCommand = new RelayCommand(() => this.NavigateAddPatient());
-            var addButton = new RibbonButtonData(Messages.Title_ButtonAddPatient, uriPng.StringFormat("Add"), this.addCommand)
+            var addButton = new RibbonMenuItemData(Messages.Title_ButtonAddPatient, uriPng.StringFormat("Add"), this.addCommand)
             {
                 Order = 2,
             };
 
-            (splitter as RibbonSplitButtonData).Command = addCommand;
-            (splitter as RibbonSplitButtonData).ControlDataCollection.Add(addButton);
-            if (!splitterExist) this.Host.AddInHome((splitter as RibbonSplitButtonData), Groups.Tools);
+            (splitter as RibbonMenuButtonData).Command = addCommand;
+            (splitter as RibbonMenuButtonData).ControlDataCollection.Add(addButton);
+            if (!splitterExist) this.Host.AddInHome((splitter as RibbonMenuButtonData), Groups.Tools);
             #endregion
 
             #region Search

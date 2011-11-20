@@ -64,6 +64,7 @@
     <Compile Include="Dto\TitledMedicalRecordDto.cs" />
     <Compile Include="Dto\TitledMedicalRecordFolderDto.cs" />
     <Compile Include="Helpers\Notifyer.cs" />
+    <Compile Include="Helpers\Context.cs" />
     <Compile Include="MedicalRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -167,6 +168,25 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TextHighlightColorPicker.png" />
+    <Resource Include="Images\Underline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Numbering.png" />
+    <Resource Include="Images\RightAlign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FontColorPicker.png" />
+    <Resource Include="Images\Italic.png" />
+    <Resource Include="Images\JustifyAlign.png" />
+    <Resource Include="Images\LeftAlign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Bold.png" />
+    <Resource Include="Images\Bullets.png" />
+    <Resource Include="Images\CenterAlign.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

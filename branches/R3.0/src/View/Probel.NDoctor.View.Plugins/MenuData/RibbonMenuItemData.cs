@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,8 +16,13 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#endregion Header
+
 namespace Probel.NDoctor.View.Plugins.MenuData
 {
+    using System.Windows.Input;
+
     public class RibbonMenuItemData : RibbonMenuButtonData
     {
         #region Fields
@@ -24,6 +31,29 @@ namespace Probel.NDoctor.View.Plugins.MenuData
         private bool isChecked;
 
         #endregion Fields
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RibbonMenuItemData"/> class.
+        /// </summary>
+        public RibbonMenuItemData()
+            : base(true)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RibbonMenuItemData"/> class.
+        /// </summary>
+        /// <param name="label">The label.</param>
+        /// <param name="uriImage">The URI image.</param>
+        /// <param name="command">The command.</param>
+        public RibbonMenuItemData(string label, string uriImage, ICommand command)
+            : base(label, uriImage, command)
+        {
+        }
+
+        #endregion Constructors
 
         #region Properties
 

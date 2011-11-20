@@ -107,22 +107,22 @@ namespace Probel.NDoctor.Plugins.UserSession
 
             var splitter = this.Host.FindInHome("add", Groups.Tools);
             var splitterExist = true;
-            if (splitter == null || splitter.GetType() != typeof(RibbonSplitButtonData))
+            if (splitter == null || splitter.GetType() != typeof(RibbonMenuButtonData))
             {
                 splitterExist = false;
-                splitter = new RibbonSplitButtonData(Messages.Btn_Add, uri.StringFormat("Add"), null)
+                splitter = new RibbonMenuButtonData(Messages.Btn_Add, uri.StringFormat("Add"), null)
                 {
                     Order = 1,
                     Name = "add",
                 };
             }
 
-            var addButton = new RibbonButtonData(Messages.Title_ButtonAddUser, uri.StringFormat("Add"), this.addCommand)
+            var addButton = new RibbonMenuItemData(Messages.Title_ButtonAddUser, uri.StringFormat("Add"), this.addCommand)
             {
                 Order = 3,
             };
-            (splitter as RibbonSplitButtonData).ControlDataCollection.Add(addButton);
-            if (!splitterExist) this.Host.AddInHome((splitter as RibbonSplitButtonData), Groups.Tools);
+            (splitter as RibbonMenuButtonData).ControlDataCollection.Add(addButton);
+            if (!splitterExist) this.Host.AddInHome((splitter as RibbonMenuButtonData), Groups.Tools);
 
             this.InitialiseConnectionPage();
             this.InitialiseUpdateUserPage();
