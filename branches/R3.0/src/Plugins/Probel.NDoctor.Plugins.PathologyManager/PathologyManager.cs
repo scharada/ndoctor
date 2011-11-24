@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager
     using System;
     using System.ComponentModel.Composition;
     using System.Windows.Input;
+    using System.Windows.Media;
 
     using AutoMapper;
 
@@ -30,6 +31,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
     using Probel.NDoctor.Plugins.PathologyManager.View;
     using Probel.NDoctor.Plugins.PathologyManager.ViewModel;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
@@ -43,6 +45,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.PathologyManager;component/Images\{0}.png";
 
+        private RibbonContextualTabGroupData contextualMenu;
         private ICommand navigateCommand = null;
         private Workbench workbench;
 
@@ -115,7 +118,19 @@ namespace Probel.NDoctor.Plugins.PathologyManager
         /// </summary>
         private void BuildContextMenu()
         {
-            //This plugin doesn't have contextual menu
+            var cgroup = new RibbonGroupData(Messages.Menu_Actions, 1);
+            var tab = new RibbonTabData() { Header = Messages.Menu_File, ContextualTabGroupHeader = Messages.Title_PathologyManager };
+
+            tab.GroupDataCollection.Add(cgroup);
+            this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_PathologyManager, tab) { Background = Brushes.OrangeRed, IsVisible = false, };
+            this.Host.AddContextualMenu(this.contextualMenu);
+            this.Host.AddTab(tab);
+
+            ICommand addPeriodCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_Add, new AddIllnessPeriodView()));
+            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPeriods, imgUri.StringFormat("Add"), addPeriodCommand) { Order = 1, });
+
+            ICommand addPathologyCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPathology, new AddPathologyView()));
+            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPathology, imgUri.StringFormat("Add"), addPathologyCommand) { Order = 2 });
         }
 
         private bool CanNavigate()
@@ -148,6 +163,9 @@ namespace Probel.NDoctor.Plugins.PathologyManager
                 this.ViewModel.Refresh();
                 this.Host.WriteStatusReady();
                 this.Host.Navigate(this.workbench);
+
+                this.contextualMenu.IsVisible = true;
+                this.contextualMenu.TabDataCollection[0].IsSelected = true;
             }
             catch (Exception ex)
             {

@@ -167,7 +167,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             this.ConfigureSaveMenu(tab);
             this.ConfigureFontGroup(tab);
             this.ConfigureParagraphGroup(tab);
-            this.Host.Add(tab);
+            this.Host.AddTab(tab);
 
             this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_MedicalRecord, tab)
             {
@@ -175,7 +175,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
                 IsVisible = false,
             };
 
-            this.Host.Add(this.contextualMenu);
+            this.Host.AddContextualMenu(this.contextualMenu);
         }
 
         private bool CanNavigateAdd()

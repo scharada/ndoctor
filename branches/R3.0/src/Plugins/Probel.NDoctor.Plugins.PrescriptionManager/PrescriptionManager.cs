@@ -166,10 +166,10 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             cgroup.ButtonDataCollection.Add(navAddPrescriptionButton);
 
             var tab = new RibbonTabData(Messages.Menu_File, cgroup) { ContextualTabGroupHeader = Messages.Title_PrescriptionManager };
-            this.Host.Add(tab);
+            this.Host.AddTab(tab);
 
             this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_PrescriptionManager, tab) { Background = Brushes.OrangeRed, IsVisible = false };
-            this.Host.Add(this.contextualMenu);
+            this.Host.AddContextualMenu(this.contextualMenu);
         }
 
         private bool CanNavigate()

@@ -24,6 +24,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
     using System;
     using System.ComponentModel.Composition;
     using System.Windows.Input;
+    using System.Windows.Media;
 
     using AutoMapper;
 
@@ -34,6 +35,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
     using Probel.NDoctor.Plugins.BmiRecord.View;
     using Probel.NDoctor.Plugins.BmiRecord.ViewModel;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
@@ -48,6 +50,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
         private const string imgUri = @"\Probel.NDoctor.Plugins.BmiRecord;component/Images\{0}.png";
 
         private IBmiComponent component;
+        private RibbonContextualTabGroupData contextualMenu;
         private ICommand navigateCommand;
         private Workbench workbench;
 
@@ -84,6 +87,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
         {
             this.Host.Invoke(() => this.workbench = new Workbench());
             this.BuildButtons();
+            this.BuildContextMenu();
         }
 
         private void BuildButtons()
@@ -95,6 +99,23 @@ namespace Probel.NDoctor.Plugins.BmiRecord
                     , navigateCommand) { Order = 5 };
 
             this.Host.AddInHome(navigateButton, Groups.Managers);
+        }
+
+        /// <summary>
+        /// Builds the context menu of this plugin.
+        /// </summary>
+        private void BuildContextMenu()
+        {
+            var cgroup = new RibbonGroupData(Messages.Menu_Actions, 1);
+            var tab = new RibbonTabData() { Header = Messages.Menu_File, ContextualTabGroupHeader = Messages.Title_Bmi };
+
+            tab.GroupDataCollection.Add(cgroup);
+            this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_Bmi, tab) { Background = Brushes.OrangeRed, IsVisible = false, };
+            this.Host.AddContextualMenu(this.contextualMenu);
+            this.Host.AddTab(tab);
+
+            ICommand addPeriodCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddBmi, new AddBmiView()));
+            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddBmi, imgUri.StringFormat("Add"), addPeriodCommand) { Order = 1, });
         }
 
         private bool CanNavigate()
@@ -123,6 +144,9 @@ namespace Probel.NDoctor.Plugins.BmiRecord
             var viewModel = new WorkbenchViewModel();
             this.workbench.DataContext = viewModel;
             viewModel.Refresh();
+
+            this.contextualMenu.IsVisible = true;
+            this.contextualMenu.TabDataCollection[0].IsSelected = true;
         }
 
         #endregion Methods

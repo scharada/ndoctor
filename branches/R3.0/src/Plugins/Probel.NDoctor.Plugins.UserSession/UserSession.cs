@@ -117,10 +117,7 @@ namespace Probel.NDoctor.Plugins.UserSession
                 };
             }
 
-            var addButton = new RibbonMenuItemData(Messages.Title_ButtonAddUser, uri.StringFormat("Add"), this.addCommand)
-            {
-                Order = 3,
-            };
+            var addButton = new RibbonMenuItemData(Messages.Title_ButtonAddUser, uri.StringFormat("Add"), this.addCommand) { Order = 3, };
             (splitter as RibbonMenuButtonData).ControlDataCollection.Add(addButton);
             if (!splitterExist) this.Host.AddInHome((splitter as RibbonMenuButtonData), Groups.Tools);
 

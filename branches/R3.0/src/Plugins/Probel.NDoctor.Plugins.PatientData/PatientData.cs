@@ -119,10 +119,10 @@ namespace Probel.NDoctor.Plugins.PatientData
             cgroup.ButtonDataCollection.Add(saveButton);
 
             var tab = new RibbonTabData(Messages.Menu_File, cgroup) { ContextualTabGroupHeader = Messages.Title_ContextMenu };
-            this.Host.Add(tab);
+            this.Host.AddTab(tab);
 
             this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_ContextMenu, tab) { Background = Brushes.OrangeRed, IsVisible = false };
-            this.Host.Add(this.contextualMenu);
+            this.Host.AddContextualMenu(this.contextualMenu);
         }
 
         private bool CanNavigate()

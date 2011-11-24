@@ -23,6 +23,8 @@ namespace Probel.NDoctor.Plugins.BmiRecord.View
 {
     using System.Windows.Controls;
 
+    using Probel.NDoctor.Plugins.BmiRecord.ViewModel;
+
     /// <summary>
     /// Interaction logic for AddBmiView.xaml
     /// </summary>
@@ -33,6 +35,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.View
         public AddBmiView()
         {
             InitializeComponent();
+            this.DataContext = new AddBmiViewModel();
         }
 
         #endregion Constructors

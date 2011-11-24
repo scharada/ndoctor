@@ -28,7 +28,9 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using Probel.Helpers.WPF;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.BmiRecord.Helpers;
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
@@ -39,8 +41,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
         #region Fields
 
         private IBmiComponent component = null;
-        private BmiDto currentBmi;
-        private bool isPopupOpened;
+        private BmiDto currentBmi = new BmiDto();
 
         #endregion Fields
 
@@ -48,9 +49,15 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
 
         public AddBmiViewModel()
         {
-            if (!Designer.IsDesignMode) ObjectFactory.GetInstance<IBmiComponent>();
+            if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IBmiComponent>();
 
             this.AddCommand = new RelayCommand(() => this.AddBmi(), () => this.CanAddBmi());
+
+            if (this.Host.SelectedPatient != null)
+            {
+                this.CurrentBmi.Height = this.Host.SelectedPatient.Height;
+                this.CurrentBmi.Date = DateTime.Today;
+            }
         }
 
         #endregion Constructors
@@ -70,16 +77,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
             {
                 this.currentBmi = value;
                 this.OnPropertyChanged("CurrentBmi");
-            }
-        }
-
-        public bool IsPopupOpened
-        {
-            get { return this.isPopupOpened; }
-            set
-            {
-                this.isPopupOpened = value;
-                this.OnPropertyChanged("IsPopupOpened");
             }
         }
 
@@ -106,13 +103,16 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
                     this.HandleError(ex, Messages.Msg_ErrAddBmi);
                 }
             }
+            Notifyer.OnItemChanged(this);
+            InnerWindow.Close();
         }
 
         private bool CanAddBmi()
         {
             return this.CurrentBmi.Date <= DateTime.Now
                 && this.CurrentBmi.Height > 0
-                && this.CurrentBmi.Weight > 0;
+                && this.CurrentBmi.Weight > 0
+                && this.Host.SelectedPatient != null;
         }
 
         #endregion Methods

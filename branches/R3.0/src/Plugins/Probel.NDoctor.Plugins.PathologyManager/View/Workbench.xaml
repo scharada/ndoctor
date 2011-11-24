@@ -14,57 +14,51 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Page.Resources>
 
-    <DockPanel>
-        <Expander DockPanel.Dock="Top"
-                  Header="{Binding Source={x:Static Member=text:AddIllnessPeriodText.TitleAddPeriods}}">
-            <ctrl:AddIllnessPeriodView/>
-        </Expander>
-        <TabControl>
-            <TabItem Header="{Binding Source={x:Static Member=text:AddIllnessPeriodText.TitleChart}}">
-                <chart:Chart>
-                    <chart:Chart.Series>
-                        <chart:PieSeries Title="{Binding Source={x:Static Member=text:AddIllnessPeriodText.TitleChartIllnessTime}}"
+    <TabControl>
+        <TabItem Header="{Binding Source={x:Static Member=text:AddIllnessPeriodText.TitleChart}}">
+            <chart:Chart>
+                <chart:Chart.Series>
+                    <chart:PieSeries Title="{Binding Source={x:Static Member=text:AddIllnessPeriodText.TitleChartIllnessTime}}"
                                  ItemsSource="{Binding Path=Chart.Points}"
                                  IndependentValueBinding="{Binding X}"
                                  DependentValueBinding="{Binding Y}"/>
-                    </chart:Chart.Series>
-                </chart:Chart>
-            </TabItem>
-            <TabItem Header="{Binding Source={x:Static Member=text:AddIllnessPeriodText.TitleData}}">
-                <DataGrid ItemsSource="{Binding Path=IllnessHistory}"     
+                </chart:Chart.Series>
+            </chart:Chart>
+        </TabItem>
+        <TabItem Header="{Binding Source={x:Static Member=text:AddIllnessPeriodText.TitleData}}">
+            <DataGrid ItemsSource="{Binding Path=IllnessHistory}"     
                           AutoGenerateColumns="False"
                           CanUserAddRows="False"
                           CanUserDeleteRows="False"
                           SelectionMode="Single">
-                    <DataGrid.RowDetailsTemplate>
-                        <DataTemplate>
-                            <Button Content="{Binding Source={x:Static Member=text:AddIllnessPeriodText.BtnRemove}}"
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Source={x:Static Member=text:AddIllnessPeriodText.BtnRemove}}"
                                     Command="{Binding RemoveCommand}"/>
-                        </DataTemplate>
-                    </DataGrid.RowDetailsTemplate>
-                        <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=StartAsText, UpdateSourceTrigger=PropertyChanged}" 
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=StartAsText, UpdateSourceTrigger=PropertyChanged}" 
                                             Header="{Binding Source={x:Static Member=text:IllnessPeriodText.HeaderStart}}"
                                             IsReadOnly="True"
                                             Width="*"/>
 
-                        <DataGridTextColumn Binding="{Binding Path=EndAsText, UpdateSourceTrigger=PropertyChanged}" 
+                    <DataGridTextColumn Binding="{Binding Path=EndAsText, UpdateSourceTrigger=PropertyChanged}" 
                                             Header="{Binding Source={x:Static Member=text:IllnessPeriodText.HeaderEnd}}"
                                             IsReadOnly="True"
                                             Width="*"/>
 
-                        <DataGridTextColumn Binding="{Binding Path=DurationAsText, UpdateSourceTrigger=PropertyChanged}" 
+                    <DataGridTextColumn Binding="{Binding Path=DurationAsText, UpdateSourceTrigger=PropertyChanged}" 
                                             Header="{Binding Source={x:Static Member=text:IllnessPeriodText.HeaderDuration}}"
                                             IsReadOnly="True"
                                             Width="*"/>
 
-                        <DataGridTextColumn Binding="{Binding Path=Pathology.Name, UpdateSourceTrigger=PropertyChanged}" 
+                    <DataGridTextColumn Binding="{Binding Path=Pathology.Name, UpdateSourceTrigger=PropertyChanged}" 
                                             Header="{Binding Source={x:Static Member=text:IllnessPeriodText.HeaderPathology}}"
                                             IsReadOnly="True"
                                             Width="*"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-        </TabControl>
-    </DockPanel>
+                </DataGrid.Columns>
+            </DataGrid>
+        </TabItem>
+    </TabControl>
 </Page>

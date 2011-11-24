@@ -185,9 +185,13 @@
     <value>Add</value>
     <comment>Add</comment>
   </data>
+  <data name="Title_AddPathology" xml:space="preserve">
+    <value>Add a pathology</value>
+    <comment>Add a pathology</comment>
+  </data>
   <data name="Title_AddPeriods" xml:space="preserve">
-    <value>Add illness periods</value>
-    <comment>Add illness periods</comment>
+    <value>Add a period</value>
+    <comment>Add a period</comment>
   </data>
   <data name="Title_Chart" xml:space="preserve">
     <value>Charts</value>

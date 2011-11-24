@@ -6,32 +6,26 @@
              xmlns:this="clr-namespace:Probel.NDoctor.Plugins.PathologyManager.ViewModel"
              xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PathologyManager.View"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             Height="250" 
+             Width="450">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
-    <Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="26"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="20"/>
-                    <ColumnDefinition Width="70"/>
-                </Grid.ColumnDefinitions>
-                
-                <TextBox Grid.Column="0"
+    <DockPanel LastChildFill="True">
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="70"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Grid.Column="0"
                      Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <ctrl:AddPathologyView Grid.Column="1"/>
-
-                <Button  Grid.Column="2" 
+            <Button  Grid.Column="2" 
                      Content="{Binding BtnSearch}"
                      Command="{Binding SearchCommand}"/>
-            </Grid>
+        </Grid>
+        <ScrollViewer DockPanel.Dock="Bottom">
             <ListView Grid.Row="1" ItemsSource="{Binding Path=FoundPathologies}"
                       SelectedItem="{Binding Path=SelectedPathology}">
                 <ListView.Resources>
@@ -92,6 +86,6 @@
                 </ListView.ItemContainerStyle>
 
             </ListView>
-        </Grid>
-    </Grid>
+        </ScrollViewer>
+    </DockPanel>
 </UserControl>

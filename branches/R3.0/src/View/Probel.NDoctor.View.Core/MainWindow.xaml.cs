@@ -168,19 +168,10 @@ namespace Probel.NDoctor.View.Core
         #region Methods
 
         /// <summary>
-        /// Adds the specified tab.
-        /// </summary>
-        /// <param name="tab">The tab.</param>
-        public void Add(RibbonTabData tab)
-        {
-            this.Dispatcher.Invoke((Action)delegate { App.RibbonData.TabDataCollection.Add(tab); });
-        }
-
-        /// <summary>
         /// Adds the specified context tab.
         /// </summary>
         /// <param name="contextTab">The context tab.</param>
-        public void Add(RibbonContextualTabGroupData contextTab)
+        public void AddContextualMenu(RibbonContextualTabGroupData contextTab)
         {
             this.Dispatcher.Invoke((Action)delegate { App.RibbonData.ContextualTabGroupDataCollection.Add(contextTab); });
         }
@@ -235,6 +226,15 @@ namespace Probel.NDoctor.View.Core
                         break;
                 }
             });
+        }
+
+        /// <summary>
+        /// Adds the specified tab.
+        /// </summary>
+        /// <param name="tab">The tab.</param>
+        public void AddTab(RibbonTabData tab)
+        {
+            this.Dispatcher.Invoke((Action)delegate { App.RibbonData.TabDataCollection.Add(tab); });
         }
 
         /// <summary>

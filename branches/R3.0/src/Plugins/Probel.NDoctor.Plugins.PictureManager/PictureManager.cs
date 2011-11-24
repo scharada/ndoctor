@@ -126,10 +126,10 @@ namespace Probel.NDoctor.Plugins.PictureManager
             cgroup.ButtonDataCollection.Add(addPicButton);
 
             var tab = new RibbonTabData(Messages.Menu_File, cgroup) { ContextualTabGroupHeader = Messages.Title_Pictures };
-            this.Host.Add(tab);
+            this.Host.AddTab(tab);
 
             this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_Pictures, tab) { Background = Brushes.OrangeRed, IsVisible = false };
-            this.Host.Add(this.contextualMenu);
+            this.Host.AddContextualMenu(this.contextualMenu);
         }
 
         private bool CanNavigate()

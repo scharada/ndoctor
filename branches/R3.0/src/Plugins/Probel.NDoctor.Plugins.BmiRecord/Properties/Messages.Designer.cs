@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Plugins.BmiRecord.Properties
-{
-
-
+namespace Probel.NDoctor.Plugins.BmiRecord.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -133,6 +133,24 @@ namespace Probel.NDoctor.Plugins.BmiRecord.Properties
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actions.
+        /// </summary>
+        internal static string Menu_Actions {
+            get {
+                return ResourceManager.GetString("Menu_Actions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        internal static string Menu_File {
+            get {
+                return ResourceManager.GetString("Menu_File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Voulez-vous supprimer cet entrée?.
         /// </summary>
         internal static string Msg_AskDeleteBmi {
@@ -201,6 +219,15 @@ namespace Probel.NDoctor.Plugins.BmiRecord.Properties
         internal static string Question {
             get {
                 return ResourceManager.GetString("Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a BMI entry.
+        /// </summary>
+        internal static string Title_AddBmi {
+            get {
+                return ResourceManager.GetString("Title_AddBmi", resourceCulture);
             }
         }
         

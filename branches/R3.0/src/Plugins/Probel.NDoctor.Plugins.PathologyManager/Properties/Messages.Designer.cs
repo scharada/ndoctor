@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Plugins.PathologyManager.Properties
-{
-
-
+namespace Probel.NDoctor.Plugins.PathologyManager.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -214,7 +214,16 @@ namespace Probel.NDoctor.Plugins.PathologyManager.Properties
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add illness periods.
+        ///   Looks up a localized string similar to Add a pathology.
+        /// </summary>
+        internal static string Title_AddPathology {
+            get {
+                return ResourceManager.GetString("Title_AddPathology", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a period.
         /// </summary>
         internal static string Title_AddPeriods {
             get {

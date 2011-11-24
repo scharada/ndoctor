@@ -136,7 +136,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
                     this.BuildHomeMenu();
 
                     var version = Assembly.GetExecutingAssembly().GetName().Version;
-                    this.Title = string.Format("nDoctor BETA {0}.{1}", version.Major, version.Minor);
+                    this.Title = string.Format("nDoctor BETA {0}.{1}.{2}", version.Major, version.Minor, version.Build);
 
                     this.Status = Messages.Msg_ConfiguringNHibernate;
                     this.ConfigureNHibernate();
@@ -197,7 +197,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             groups.Add(new RibbonGroupData(Messages.Title_Managers));
             groups.Add(new RibbonGroupData(Messages.Title_GlobalTools));
 
-            this.Host.Add(new RibbonTabData(Messages.Title_Home, groups));
+            this.Host.AddTab(new RibbonTabData(Messages.Title_Home, groups));
         }
 
         private void ConfigureNHibernate()

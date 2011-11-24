@@ -101,16 +101,10 @@ namespace Probel.NDoctor.View.Plugins
         #region Methods
 
         /// <summary>
-        /// Adds the specified tab.
-        /// </summary>
-        /// <param name="tab">The tab.</param>
-        void Add(RibbonTabData tab);
-
-        /// <summary>
         /// Adds the specified context tab.
         /// </summary>
         /// <param name="contextTab">The context tab.</param>
-        void Add(RibbonContextualTabGroupData contextTab);
+        void AddContextualMenu(RibbonContextualTabGroupData contextTab);
 
         /// <summary>
         /// Adds a new side menu window
@@ -125,6 +119,12 @@ namespace Probel.NDoctor.View.Plugins
         /// <param name="button">The button.</param>
         /// <param name="group">The group.</param>
         void AddInHome(RibbonControlData button, Groups group);
+
+        /// <summary>
+        /// Adds the specified tab.
+        /// </summary>
+        /// <param name="tab">The tab.</param>
+        void AddTab(RibbonTabData tab);
 
         /// <summary>
         /// Adds the specified control into the application menu.
