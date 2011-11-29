@@ -23,6 +23,7 @@ namespace Probel.NDoctor.View.Test
     using Probel.NDoctor.View.Plugins;
 
     using Rhino.Mocks;
+    using Probel.NDoctor.View.Plugins.Helpers;
 
     [TestFixture]
     [Category("View")]
@@ -85,7 +86,7 @@ namespace Probel.NDoctor.View.Test
         [TestFixtureSetUp]
         public void FixtureSetup()
         {
-            this.host = MockRepository.GenerateMock<IPluginHost>();
+            PluginContext.Host = MockRepository.GenerateMock<IPluginHost>();
             host.Stub(x => x.HostVersion).Return(new Version("2.0.0.0"));
         }
 

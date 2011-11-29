@@ -115,9 +115,9 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 
             if (isConnected)
             {
-                this.Host.ShowMainMenu();
-                this.Host.ConnectedUser = this.SelectedUser;
-                this.Host.NavigateToStartPage();
+                PluginContext.Host.ShowMainMenu();
+                PluginContext.Host.ConnectedUser = this.SelectedUser;
+                PluginContext.Host.NavigateToStartPage();
                 this.Logger.Info("User logged in.");
             }
             else

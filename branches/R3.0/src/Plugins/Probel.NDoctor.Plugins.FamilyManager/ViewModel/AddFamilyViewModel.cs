@@ -89,23 +89,23 @@
             IList<LightPatientDto> result = new List<LightPatientDto>();
             using (this.component.UnitOfWork)
             {
-                result = this.component.FindPatientNotFamilyMembers(this.Host.SelectedPatient, this.Criteria, SearchOn.FirstAndLastName);
+                result = this.component.FindPatientNotFamilyMembers(PluginContext.Host.SelectedPatient, this.Criteria, SearchOn.FirstAndLastName);
             }
 
             var mappedResult = Mapper.Map<IList<LightPatientDto>, IList<LightPatientViewModel>>(result);
 
             for (int i = 0; i < mappedResult.Count; i++)
             {
-                mappedResult[i].SessionPatient = this.Host.SelectedPatient;
+                mappedResult[i].SessionPatient = PluginContext.Host.SelectedPatient;
                 mappedResult[i].Refreshed += (sender, e) =>
                 {
-                    this.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationAdded);
+                    PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationAdded);
                     this.Search();
                 };
             }
 
             this.FoundPatients.Refill(mappedResult);
-            this.Host.WriteStatusReady();
+            PluginContext.Host.WriteStatusReady();
         }
 
         #endregion Methods

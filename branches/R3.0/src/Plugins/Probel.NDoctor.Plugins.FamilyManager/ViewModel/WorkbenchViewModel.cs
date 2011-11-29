@@ -190,7 +190,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
         {
             using (this.familyComponent.UnitOfWork)
             {
-                this.Family = this.familyComponent.FindFamily(this.Host.SelectedPatient);
+                this.Family = this.familyComponent.FindFamily(PluginContext.Host.SelectedPatient);
                 this.OnPropertyChanged("ChildrenEnabled"); //Notifies children has been updated. Used to (de)activate the combobox
             }
         }

@@ -141,7 +141,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 {
                     this.component.Create(this.Doctor);
                 }
-                this.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
                 this.IsPopupOpened = false;
                 this.Doctor = new DoctorDto();
             }

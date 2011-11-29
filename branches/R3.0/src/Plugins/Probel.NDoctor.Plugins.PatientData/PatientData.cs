@@ -89,7 +89,7 @@ namespace Probel.NDoctor.Plugins.PatientData
         public override void Initialise()
         {
             this.component = ObjectFactory.GetInstance<IPatientDataComponent>();
-            this.Host.Invoke(() =>
+            PluginContext.Host.Invoke(() =>
             {
                 this.ViewModel = new WorkbenchViewModel();
                 this.ViewModel.Refresh();
@@ -108,7 +108,7 @@ namespace Probel.NDoctor.Plugins.PatientData
                     , imgUri.StringFormat("Properties")
                     , navigateCommand) { Order = 1 };
 
-            this.Host.AddInHome(navigateButton, Groups.Managers);
+            PluginContext.Host.AddInHome(navigateButton, Groups.Managers);
         }
 
         private void BuildContextMenu()
@@ -119,15 +119,15 @@ namespace Probel.NDoctor.Plugins.PatientData
             cgroup.ButtonDataCollection.Add(saveButton);
 
             var tab = new RibbonTabData(Messages.Menu_File, cgroup) { ContextualTabGroupHeader = Messages.Title_ContextMenu };
-            this.Host.AddTab(tab);
+            PluginContext.Host.AddTab(tab);
 
             this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_ContextMenu, tab) { Background = Brushes.OrangeRed, IsVisible = false };
-            this.Host.AddContextualMenu(this.contextualMenu);
+            PluginContext.Host.AddContextualMenu(this.contextualMenu);
         }
 
         private bool CanNavigate()
         {
-            return this.Host.SelectedPatient != null;
+            return PluginContext.Host.SelectedPatient != null;
         }
 
         private void ConfigureAutoMapper()
@@ -147,7 +147,7 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         private void Navigate()
         {
-            this.Host.Navigate(this.workbench);
+            PluginContext.Host.Navigate(this.workbench);
             var viewModel = new WorkbenchViewModel();
             viewModel.Refresh();
             this.workbench.DataContext = viewModel;

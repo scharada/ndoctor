@@ -208,7 +208,7 @@
                 var tags = this.component.FindTags(TagCategory.Drug);
                 this.Tags.Refill(tags);
             }
-            this.Host.WriteStatusReady();
+            PluginContext.Host.WriteStatusReady();
         }
 
         public void Save()
@@ -221,9 +221,9 @@
                 using (this.component.UnitOfWork)
                 {
 
-                    this.component.Create(this.PrescriptionDocumentToCreate, this.Host.SelectedPatient);
+                    this.component.Create(this.PrescriptionDocumentToCreate, PluginContext.Host.SelectedPatient);
                 }
-                this.Host.WriteStatus(StatusType.Info, Messages.Msg_PrescriptionSaved);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PrescriptionSaved);
             }
             catch (Exception ex)
             {

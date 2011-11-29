@@ -83,7 +83,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
         {
             #region Add
             var splitterExist = true;
-            var splitter = this.Host.FindInHome("add", Groups.Tools);
+            var splitter = PluginContext.Host.FindInHome("add", Groups.Tools);
             if (splitter == null || splitter.GetType() != typeof(RibbonMenuButtonData))
             {
                 splitterExist = false;
@@ -102,7 +102,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
 
             (splitter as RibbonMenuButtonData).Command = addCommand;
             (splitter as RibbonMenuButtonData).ControlDataCollection.Add(addButton);
-            if (!splitterExist) this.Host.AddInHome((splitter as RibbonMenuButtonData), Groups.Tools);
+            if (!splitterExist) PluginContext.Host.AddInHome((splitter as RibbonMenuButtonData), Groups.Tools);
             #endregion
 
             #region Search
@@ -127,7 +127,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
             searchSplitButton.ControlDataCollection.Add(searchButton);
             searchSplitButton.ControlDataCollection.Add(topTenButton);
 
-            this.Host.AddInHome(searchSplitButton, Groups.Tools);
+            PluginContext.Host.AddInHome(searchSplitButton, Groups.Tools);
             #endregion
         }
 

@@ -71,7 +71,8 @@ namespace Probel.NDoctor.Plugins.PathologyManager
         {
             get
             {
-                Assert.IsNotNull(this.Host, "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin medical record");
+                Assert.IsNotNull(PluginContext.Host, string.Format(
+                    "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin '{0}'", this.GetType().Name));
                 if (this.workbench.DataContext == null) this.workbench.DataContext = new WorkbenchViewModel();
                 return this.workbench.DataContext as WorkbenchViewModel;
             }
@@ -92,9 +93,9 @@ namespace Probel.NDoctor.Plugins.PathologyManager
         /// </summary>
         public override void Initialise()
         {
-            Assert.IsNotNull(this.Host, "To initialise the plugin, IPluginHost should be set.");
+            Assert.IsNotNull(PluginContext.Host, "To initialise the plugin, IPluginHost should be set.");
 
-            this.Host.Invoke(() => workbench = new Workbench());
+            PluginContext.Host.Invoke(() => workbench = new Workbench());
             this.BuildButtons();
             this.BuildContextMenu();
         }
@@ -110,7 +111,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager
                 , imgUri.StringFormat("PathologyManager")
                 , navigateCommand) { Order = 3 };
 
-            this.Host.AddInHome(navigateButton, Groups.Managers);
+            PluginContext.Host.AddInHome(navigateButton, Groups.Managers);
         }
 
         /// <summary>
@@ -123,8 +124,8 @@ namespace Probel.NDoctor.Plugins.PathologyManager
 
             tab.GroupDataCollection.Add(cgroup);
             this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_PathologyManager, tab) { Background = Brushes.OrangeRed, IsVisible = false, };
-            this.Host.AddContextualMenu(this.contextualMenu);
-            this.Host.AddTab(tab);
+            PluginContext.Host.AddContextualMenu(this.contextualMenu);
+            PluginContext.Host.AddTab(tab);
 
             ICommand addPeriodCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_Add, new AddIllnessPeriodView()));
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPeriods, imgUri.StringFormat("Add"), addPeriodCommand) { Order = 1, });
@@ -135,7 +136,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager
 
         private bool CanNavigate()
         {
-            return this.Host.SelectedPatient != null;
+            return PluginContext.Host.SelectedPatient != null;
         }
 
         private void ConfigureAutoMapper()
@@ -161,8 +162,8 @@ namespace Probel.NDoctor.Plugins.PathologyManager
             try
             {
                 this.ViewModel.Refresh();
-                this.Host.WriteStatusReady();
-                this.Host.Navigate(this.workbench);
+                PluginContext.Host.WriteStatusReady();
+                PluginContext.Host.Navigate(this.workbench);
 
                 this.contextualMenu.IsVisible = true;
                 this.contextualMenu.TabDataCollection[0].IsSelected = true;

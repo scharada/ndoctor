@@ -193,7 +193,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
         private void SearchAppointmentToAdd()
         {
-            var result = this.component.FindSlots(this.FromDate, this.ToDate, this.Host.Workday);
+            var result = this.component.FindSlots(this.FromDate, this.ToDate, PluginContext.Host.Workday);
             var mappedResult = Mapper.Map<IList<DateRange>, IList<DateRangeViewModel>>(result);
 
             // Fills the default subject to all the found appointments and the

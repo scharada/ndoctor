@@ -126,7 +126,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             IList<LightDoctorDto> result;
             using (this.component.UnitOfWork)
             {
-                result = this.component.FindDoctorsFor(this.Host.SelectedPatient, this.Criteria, SearchOn.FirstAndLastName);
+                result = this.component.FindDoctorsFor(PluginContext.Host.SelectedPatient, this.Criteria, SearchOn.FirstAndLastName);
             }
             var mapped = Mapper.Map<IList<LightDoctorDto>, IList<LightDoctorViewModel>>(result);
             this.FoundDoctors.Refill(mapped);

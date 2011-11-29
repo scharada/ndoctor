@@ -70,7 +70,8 @@ namespace Probel.NDoctor.Plugins.MeetingManager
         {
             get
             {
-                Assert.IsNotNull(this.Host, "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin medical record");
+                Assert.IsNotNull(PluginContext.Host, string.Format(
+                    "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin '{0}'", this.GetType().Name));
                 if (this.workbench.DataContext == null) this.workbench.DataContext = new WorkbenchViewModel();
                 return this.workbench.DataContext as WorkbenchViewModel;
             }
@@ -91,9 +92,9 @@ namespace Probel.NDoctor.Plugins.MeetingManager
         /// </summary>
         public override void Initialise()
         {
-            Assert.IsNotNull(this.Host, "To initialise the plugin, IPluginHost should be set.");
+            Assert.IsNotNull(PluginContext.Host, "To initialise the plugin, IPluginHost should be set.");
 
-            this.Host.Invoke(() =>
+            PluginContext.Host.Invoke(() =>
             {
                 this.workbench = new Workbench();
                 this.workbench.DataContext = this.ViewModel;
@@ -113,7 +114,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager
                 , imgUri.StringFormat("Calendar")
                 , navigateCommand);
 
-            this.Host.AddInHome(navigateButton, Groups.GlobalTools);
+            PluginContext.Host.AddInHome(navigateButton, Groups.GlobalTools);
         }
 
         /// <summary>
@@ -135,15 +136,15 @@ namespace Probel.NDoctor.Plugins.MeetingManager
                 .ForMember(src => src.Patient, opt => opt.MapFrom(dest => dest));
 
             Mapper.CreateMap<DateRange, DateRangeViewModel>()
-                  .ConstructUsing(obj => new DateRangeViewModel(obj.StartTime, obj.EndTime, this.Host));
+                  .ConstructUsing(obj => new DateRangeViewModel(obj.StartTime, obj.EndTime, PluginContext.Host));
 
             Mapper.CreateMap<DateRangeViewModel, AppointmentDto>()
-                .ForMember(src => src.User, opt => opt.MapFrom(dest => this.Host.ConnectedUser))
+                .ForMember(src => src.User, opt => opt.MapFrom(dest => PluginContext.Host.ConnectedUser))
                 .ForMember(src => src.Tag, opt => opt.MapFrom(dest => dest.SelectedTag));
 
             Mapper.CreateMap<AppointmentDto, DateRangeViewModel>()
                 .ForMember(src => src.SelectedTag, opt => opt.MapFrom(dest => dest.Tag))
-                .ConstructUsing(obj => new DateRangeViewModel(obj.StartTime, obj.EndTime, this.Host));
+                .ConstructUsing(obj => new DateRangeViewModel(obj.StartTime, obj.EndTime, PluginContext.Host));
 
             Mapper.CreateMap<DateRangeViewModel, DateRange>();
 
@@ -164,7 +165,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager
             try
             {
                 //this.ViewModel.Refresh();
-                this.Host.Navigate(this.workbench);
+                PluginContext.Host.Navigate(this.workbench);
 
                 if (this.contextualMenu != null)
                 {

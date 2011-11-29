@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
 
     using StructureMap;
+    using Probel.NDoctor.View.Plugins.Helpers;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -100,7 +101,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
         {
             using (this.component.UnitOfWork)
             {
-                var history = this.component.GetIllnessHistory(this.Host.SelectedPatient);
+                var history = this.component.GetIllnessHistory(PluginContext.Host.SelectedPatient);
                 var viewModels = Mapper.Map<IList<IllnessPeriodDto>, IList<IllnessPeriodViewModel>>(history.Periods);
 
                 for (int i = 0; i < viewModels.Count; i++)
@@ -109,7 +110,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
                 }
                 this.IllnessHistory.Refill(viewModels);
 
-                this.Chart = this.component.GetIlnessAsChart(this.Host.SelectedPatient);
+                this.Chart = this.component.GetIlnessAsChart(PluginContext.Host.SelectedPatient);
             }
         }
 

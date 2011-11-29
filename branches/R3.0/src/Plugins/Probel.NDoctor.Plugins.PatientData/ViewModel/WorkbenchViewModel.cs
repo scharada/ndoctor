@@ -149,11 +149,11 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         /// </summary>
         public void Refresh()
         {
-            if (this.Host.SelectedPatient == null) return;
+            if (PluginContext.Host.SelectedPatient == null) return;
 
             using (this.component.UnitOfWork)
             {
-                var result = this.component.GetDoctorOf(this.Host.SelectedPatient);
+                var result = this.component.GetDoctorOf(PluginContext.Host.SelectedPatient);
                 var mapped = Mapper.Map<IList<LightDoctorDto>, IList<LightDoctorViewModel>>(result);
                 this.Doctors.Refill(mapped);
 
@@ -163,7 +163,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 this.Professions.Refill(this.component.GetAllProfessions());
 
                 //Refill the collections BEFORE refreshing the patient.
-                this.Patient = this.component.GetPatient(this.Host.SelectedPatient);
+                this.Patient = this.component.GetPatient(PluginContext.Host.SelectedPatient);
                 if (this.Patient.Insurance != null)
                 {
                     this.Patient.Insurance = (from i in this.Insurances
@@ -202,7 +202,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 {
                     this.component.Update(this.Patient);
                 }
-                this.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
             }
             catch (Exception ex)
             {

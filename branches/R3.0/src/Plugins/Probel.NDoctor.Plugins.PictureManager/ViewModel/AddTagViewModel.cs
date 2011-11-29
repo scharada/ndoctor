@@ -105,7 +105,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 {
                     this.component.Create(this.SelectedTag);
                 }
-                this.Host.WriteStatus(StatusType.Info, Messages.Title_OperationDone);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Title_OperationDone);
                 this.SelectedTag = new TagDto() { Category = TagCategory.Picture };
                 this.IsPopupOpened = false;
                 Notifyer.OnItemChanged(this);

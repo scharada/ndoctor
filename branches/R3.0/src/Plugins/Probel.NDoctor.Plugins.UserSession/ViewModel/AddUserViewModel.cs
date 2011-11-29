@@ -132,12 +132,12 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                 {
                     this.component.Create(this.User, this.Password);
                 }
-                this.Host.WriteStatus(StatusType.Info, Messages.Msg_UserAdded);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_UserAdded);
 
-                if (this.Host.CanNavigateBack)
+                if (PluginContext.Host.CanNavigateBack)
                 {
                     Notifyer.OnUserAdded(this);
-                    this.Host.NavigateBack();
+                    PluginContext.Host.NavigateBack();
                 }
                 else
                 {

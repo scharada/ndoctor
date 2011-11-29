@@ -235,19 +235,19 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
 
         public void Refresh()
         {
-            Assert.IsNotNull(this.Host);
-            Assert.IsNotNull(this.Host.SelectedPatient);
+            Assert.IsNotNull(PluginContext.Host);
+            Assert.IsNotNull(PluginContext.Host.SelectedPatient);
 
             var thread = new BackgroundWorker();
             PatientBmiDto patient = null;
 
             thread.DoWork += (sender, e) =>
             {
-                this.Host.Invoke(() =>
+                PluginContext.Host.Invoke(() =>
                 {
                     using (this.component.UnitOfWork)
                     {
-                        patient = this.component.GetPatientWithBmiHistory(this.Host.SelectedPatient);
+                        patient = this.component.GetPatientWithBmiHistory(PluginContext.Host.SelectedPatient);
                     }
 
                     if (patient.BmiHistory.Count > 0)
@@ -261,10 +261,10 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
             {
                 if (patient == null) return;
 
-                this.Host.Invoke(() =>
+                PluginContext.Host.Invoke(() =>
                 {
                     this.Patient = patient;
-                    this.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiHistoryLoaded);
+                    PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiHistoryLoaded);
                 });
                 this.Logger.DebugFormat("Loaded Bmi history ({0} item(s))", patient.BmiHistory.Count);
             };
@@ -274,21 +274,21 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
 
         private void AddBmi()
         {
-            Assert.IsNotNull(this.Host, "The host shouldn't be null");
-            Assert.IsNotNull(this.Host.SelectedPatient, "A patient should be selected if you want to manage data of a patient");
+            Assert.IsNotNull(PluginContext.Host, "The host shouldn't be null");
+            Assert.IsNotNull(PluginContext.Host.SelectedPatient, "A patient should be selected if you want to manage data of a patient");
             Assert.IsNotNull(this.bmiToAdd, "The BMI to add shouldn't be null in order to add the item to the BMI history");
 
             try
             {
                 using (this.component.UnitOfWork)
                 {
-                    this.component.AddBmi(this.bmiToAdd, this.Host.SelectedPatient);
+                    this.component.AddBmi(this.bmiToAdd, PluginContext.Host.SelectedPatient);
 
-                    this.Host.SelectedPatient.Height = this.CurrentBmi.Height;
-                    this.component.Update(this.Host.SelectedPatient);
+                    PluginContext.Host.SelectedPatient.Height = this.CurrentBmi.Height;
+                    this.component.Update(PluginContext.Host.SelectedPatient);
                 }
                 this.Refresh();
-                this.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiAdded);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiAdded);
                 this.bmiToAdd = new BmiDto();
             }
             catch (Exception ex)

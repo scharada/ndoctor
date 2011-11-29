@@ -52,7 +52,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             this.settingCommand = new RelayCommand(() => this.NavigateToSetting());
 
             var menu = new RibbonControlData(Messages.Title_Settings, uriImage.StringFormat("Settings"), settingCommand) { Order = 5 };
-            this.Host.AddToApplicationMenu(menu);
+            PluginContext.Host.AddToApplicationMenu(menu);
 
             App.RibbonData.ApplicationMenuData.LargeImage = new Uri(uriImage.StringFormat("Home"), UriKind.Relative);
             App.RibbonData.ApplicationMenuData.SmallImage = new Uri(uriImage.StringFormat("Home"), UriKind.Relative);

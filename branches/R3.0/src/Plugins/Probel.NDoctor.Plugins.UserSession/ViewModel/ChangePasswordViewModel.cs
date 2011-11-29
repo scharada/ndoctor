@@ -114,12 +114,12 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
 
         private bool CanSave()
         {
-            if (this.Host.ConnectedUser == null) return false;
+            if (PluginContext.Host.ConnectedUser == null) return false;
 
             var isValidPwd = false;
             using (this.component.UnitOfWork)
             {
-                isValidPwd = this.component.CanConnect(this.Host.ConnectedUser, this.OldPassword);
+                isValidPwd = this.component.CanConnect(PluginContext.Host.ConnectedUser, this.OldPassword);
             }
             return isValidPwd
                 && this.NewPassword == this.CheckNewPassword
@@ -132,10 +132,10 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
             {
                 using (this.component.UnitOfWork)
                 {
-                    this.component.UpdatePassword(this.Host.ConnectedUser, this.NewPassword);
+                    this.component.UpdatePassword(PluginContext.Host.ConnectedUser, this.NewPassword);
                 }
                 this.IsPopupOpened = false;
-                this.Host.WriteStatus(StatusType.Info, Messages.Msg_PwdChanged);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PwdChanged);
             }
             catch (Exception ex)
             {

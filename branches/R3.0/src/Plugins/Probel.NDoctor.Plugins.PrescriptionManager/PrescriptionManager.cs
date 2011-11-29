@@ -74,7 +74,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         {
             get
             {
-                Assert.IsNotNull(this.Host, "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin medical record");
+                Assert.IsNotNull(PluginContext.Host, string.Format(
+                    "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin '{0}'", this.GetType().Name));
                 if (this.addPrescriptionView.DataContext == null) this.workbench.DataContext = new AddPrescriptionViewModel();
                 return this.addPrescriptionView.DataContext as AddPrescriptionViewModel;
             }
@@ -89,7 +90,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         {
             get
             {
-                Assert.IsNotNull(this.Host, "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin medical record");
+                Assert.IsNotNull(PluginContext.Host, string.Format(
+                    "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin '{0}'", this.GetType().Name));
                 if (this.workbench.DataContext == null) this.workbench.DataContext = new WorkbenchViewModel();
                 return this.workbench.DataContext as WorkbenchViewModel;
             }
@@ -110,8 +112,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         /// </summary>
         public override void Initialise()
         {
-            Assert.IsNotNull(this.Host, "To initialise the plugin, IPluginHost should be set.");
-            this.Host.Invoke(() =>
+            Assert.IsNotNull(PluginContext.Host, "To initialise the plugin, IPluginHost should be set.");
+            PluginContext.Host.Invoke(() =>
             {
                 this.workbench = new Workbench();
                 this.workbench.DataContext = this.ViewModel;
@@ -135,7 +137,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             var navigateButton = new RibbonButtonData(Messages.Title_PrescriptionManager
                     , imgUri.StringFormat("Prescription")
                     , navigateCommand) { Order = 4 };
-            this.Host.AddInHome(navigateButton, Groups.Managers);
+            PluginContext.Host.AddInHome(navigateButton, Groups.Managers);
             #endregion
 
             this.navAddPrescriptionCommand = new RelayCommand(() => this.NavigateAddPrescription());
@@ -166,15 +168,15 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             cgroup.ButtonDataCollection.Add(navAddPrescriptionButton);
 
             var tab = new RibbonTabData(Messages.Menu_File, cgroup) { ContextualTabGroupHeader = Messages.Title_PrescriptionManager };
-            this.Host.AddTab(tab);
+            PluginContext.Host.AddTab(tab);
 
             this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_PrescriptionManager, tab) { Background = Brushes.OrangeRed, IsVisible = false };
-            this.Host.AddContextualMenu(this.contextualMenu);
+            PluginContext.Host.AddContextualMenu(this.contextualMenu);
         }
 
         private bool CanNavigate()
         {
-            return this.Host.SelectedPatient != null;
+            return PluginContext.Host.SelectedPatient != null;
         }
 
         private bool CanSave()
@@ -201,7 +203,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             try
             {
                 this.isSaveCommandActivated = false;
-                this.Host.Navigate(this.workbench);
+                PluginContext.Host.Navigate(this.workbench);
                 this.workbench.DataContext = this.ViewModel;
 
                 this.contextualMenu.IsVisible = true;
@@ -222,7 +224,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
                 var datacontext = new AddPrescriptionViewModel();
                 datacontext.Refresh();
                 this.addPrescriptionView.DataContext = datacontext;
-                this.Host.Navigate(this.addPrescriptionView);
+                PluginContext.Host.Navigate(this.addPrescriptionView);
 
                 this.contextualMenu.IsVisible = true;
                 this.contextualMenu.TabDataCollection[0].IsSelected = true;

@@ -65,7 +65,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             this.SelectedPicture = new PictureDto();
             this.component = ObjectFactory.GetInstance<IPictureComponent>();
 
-            this.AddPictureCommand = new RelayCommand(() => AddPicture(), () => this.Host.SelectedPatient != null);
+            this.AddPictureCommand = new RelayCommand(() => AddPicture(), () => PluginContext.Host.SelectedPatient != null);
             this.SaveCommand = new RelayCommand(() => Save(), () => CheckSave());
             this.FilterPictureCommand = new RelayCommand(() => this.Refresh());
 
@@ -208,7 +208,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 using (this.component.UnitOfWork)
                 {
                     tags = this.component.FindTags(TagCategory.Picture);
-                    pictures = this.component.FindPictures(this.Host.SelectedPatient, this.FilterTag);
+                    pictures = this.component.FindPictures(PluginContext.Host.SelectedPatient, this.FilterTag);
                 }
                 this.Tags.Refill(tags);
                 this.Pictures.Refill(pictures);
@@ -235,7 +235,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 this.SelectedPicture = new PictureDto();
                 this.SelectedPicture.Bitmap = bytes;
                 this.creatingNewPicture = true;
-                this.Host.WriteStatus(StatusType.Info, Messages.Msg_PictureAdded);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PictureAdded);
                 this.creatingNewPicture = true;
             }
             else return;
@@ -261,7 +261,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 {
                     if (this.creatingNewPicture)
                     {
-                        this.component.Create(this.SelectedPicture, this.Host.SelectedPatient);
+                        this.component.Create(this.SelectedPicture, PluginContext.Host.SelectedPatient);
                         this.creatingNewPicture = false;
                     }
                     else this.component.Update(this.SelectedPicture);
@@ -271,7 +271,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
                 this.Refresh();
 
-                this.Host.WriteStatus(StatusType.Info, Messages.Msg_PictureUpdated);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PictureUpdated);
                 this.SelectedPicture = new PictureDto();
                 this.IsInformationExpanded = false;
             }

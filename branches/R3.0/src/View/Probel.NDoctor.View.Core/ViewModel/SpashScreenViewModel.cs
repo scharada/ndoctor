@@ -171,20 +171,20 @@ namespace Probel.NDoctor.View.Core.ViewModel
         {
             #region Quit menu
             var shutdownMenu = new RibbonControlData(Messages.Menu_Exit, "", Commands.Shutdown) { Order = 999 };
-            Host.AddToApplicationMenu(shutdownMenu);
+            PluginContext.Host.AddToApplicationMenu(shutdownMenu);
 
-            Host.AddToApplicationMenu(new RibbonSeparatorData(6));
+            PluginContext.Host.AddToApplicationMenu(new RibbonSeparatorData(6));
             #endregion
 
             #region Home menu
             ICommand homeCommand = new RelayCommand(() =>
             {
-                this.Host.NavigateToStartPage();
+                PluginContext.Host.NavigateToStartPage();
             });
             var homeMenu = new RibbonControlData(Messages.Menu_Home, "/Images/Home.png", homeCommand) { Order = 1 };
 
-            Host.AddToApplicationMenu(homeMenu);
-            Host.AddToApplicationMenu(new RibbonSeparatorData(2));
+            PluginContext.Host.AddToApplicationMenu(homeMenu);
+            PluginContext.Host.AddToApplicationMenu(new RibbonSeparatorData(2));
             #endregion
         }
 
@@ -197,7 +197,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             groups.Add(new RibbonGroupData(Messages.Title_Managers));
             groups.Add(new RibbonGroupData(Messages.Title_GlobalTools));
 
-            this.Host.AddTab(new RibbonTabData(Messages.Title_Home, groups));
+            PluginContext.Host.AddTab(new RibbonTabData(Messages.Title_Home, groups));
         }
 
         private void ConfigureNHibernate()
@@ -215,7 +215,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         {
             this.Logger.Info("Configuring plugins...");
             var loader = ObjectFactory.GetInstance<IPluginLoader>();
-            var container = new PluginContainer(this.Host, loader);
+            var container = new PluginContainer(PluginContext.Host, loader);
             container.LoadPlugins();
         }
 

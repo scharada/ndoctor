@@ -110,7 +110,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 {
                     this.component.Create(this.Practice);
                 }
-                this.Host.WriteStatus(StatusType.Info, Messages.Title_OperationDone);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Title_OperationDone);
                 this.IsPopupOpened = false;
                 Notifyer.OnDoctorLinkChanged(this);
             }

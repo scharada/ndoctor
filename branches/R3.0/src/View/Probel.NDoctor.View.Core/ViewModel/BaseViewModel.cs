@@ -44,19 +44,13 @@ namespace Probel.NDoctor.View.Core.ViewModel
             if (!Designer.IsDesignMode)
             {
                 if (PluginContext.Host == null) throw new NDoctorConfigurationException(Messages.Ex_NDoctorConfigurationException_HostNull);
-                this.Host = PluginContext.Host;
+                PluginContext.Host = PluginContext.Host;
             }
         }
 
         #endregion Constructors
 
         #region Properties
-
-        public IPluginHost Host
-        {
-            get;
-            private set;
-        }
 
         public ILog Logger
         {
@@ -129,7 +123,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         /// </summary>
         public void SetStatusToReady()
         {
-            if (this.Host != null) this.Host.WriteStatus(StatusType.Info, Messages.Msg_Ready);
+            if (PluginContext.Host != null) PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_Ready);
         }
 
         private void IndicateError()
@@ -139,9 +133,9 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         private void IndicateError(string msg)
         {
-            if (this.Host == null) return;
+            if (PluginContext.Host == null) return;
 
-            this.Host.WriteStatus(StatusType.Error, Messages.Msg_ErrorOccured.StringFormat(msg));
+            PluginContext.Host.WriteStatus(StatusType.Error, Messages.Msg_ErrorOccured.StringFormat(msg));
         }
 
         private void IndicateWarning()
@@ -151,9 +145,9 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         private void IndicateWarning(string msg)
         {
-            if (this.Host == null) return;
+            if (PluginContext.Host == null) return;
 
-            this.Host.WriteStatus(StatusType.Error, Messages.Msg_WarningOccured.StringFormat(msg));
+            PluginContext.Host.WriteStatus(StatusType.Error, Messages.Msg_WarningOccured.StringFormat(msg));
         }
 
         #endregion Methods

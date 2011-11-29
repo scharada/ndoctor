@@ -117,7 +117,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
                 {
                     this.component.Create(this.Pathology);
                 }
-                this.Host.WriteStatus(StatusType.Info, Messages.Title_OperationDone);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Title_OperationDone);
                 this.IsPopupOpened = false;
                 Notifyer.OnPathologyAdded(this, this.Pathology.Name);
             }

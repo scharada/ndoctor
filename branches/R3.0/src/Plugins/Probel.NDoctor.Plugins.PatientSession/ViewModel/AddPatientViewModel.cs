@@ -101,7 +101,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             try
             {
                 using (this.component.UnitOfWork) { this.component.Create(this.Patient); }
-                this.Host.WriteStatus(StatusType.Info, Messages.Msg_PatientAdded);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PatientAdded);
                 InnerWindow.Close();
             }
             catch (Exception ex)

@@ -30,6 +30,7 @@ namespace Probel.NDoctor.Plugins.DebugTools
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Plugins.Helpers;
 
     [Export(typeof(IPlugin))]
     public class DebugTools : Plugin
@@ -67,9 +68,9 @@ namespace Probel.NDoctor.Plugins.DebugTools
         {
             this.FillDefaultDatabase();
             this.LoadUserForDebug();
-            //this.Host.Invoke(() =>
+            //PluginContext.Host.Invoke(() =>
             //{
-            //    this.Host.AddDockablePane("Debug", new DebugControl());
+            //    PluginContext.Host.AddDockablePane("Debug", new DebugControl());
             //});
         }
 
@@ -98,14 +99,14 @@ namespace Probel.NDoctor.Plugins.DebugTools
 
         private void LoadUserForDebug()
         {
-            this.Host.Invoke(() =>
+            PluginContext.Host.Invoke(() =>
             {
                 using (this.component.UnitOfWork)
                 {
                     var patients = this.component.FindPatientsByNameLight("Robris", SearchOn.LastName);
                     if (patients.Count == 0) return;
 
-                    this.Host.SelectedPatient = patients[0];
+                    PluginContext.Host.SelectedPatient = patients[0];
 
                     this.Logger.DebugFormat("Default patient '{0} {1}' loaded for debug"
                         , patients[0].FirstName

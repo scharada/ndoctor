@@ -12,4 +12,5 @@
   <Plugin name="Prescription manager"   path="PrescriptionManager" activated="true"/>
   <Plugin name="Meeting manager"        path="MeetingManager"      activated="true"/>
   <Plugin name="Administration manager" path="Administration"      activated="true"/>
+  <Plugin name="Db import manager"      path="DbImport"            activated="true"/>
 </Plugins>

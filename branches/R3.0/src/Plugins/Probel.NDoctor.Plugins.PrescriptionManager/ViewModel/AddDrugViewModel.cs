@@ -119,7 +119,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                     this.component.Create(this.SelectedDrug);
                 }
                 Notifyer.OnItemChanged(this);
-                this.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
                 this.SelectedDrug = new DrugDto();
                 this.IsPopupOpened = false;
             }

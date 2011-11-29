@@ -43,7 +43,7 @@ namespace Probel.NDoctor.Plugins.Administration
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.Administration;component/Images\{0}.png";
 
-        private RibbonContextualTabGroupData contextualMenu;
+        //private RibbonContextualTabGroupData contextualMenu;
         private ICommand navigateCommand;
         private Workbench workbench;
 
@@ -69,7 +69,8 @@ namespace Probel.NDoctor.Plugins.Administration
         {
             get
             {
-                Assert.IsNotNull(this.Host, "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin medical record");
+                Assert.IsNotNull(PluginContext.Host, string.Format(
+                    "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin '{0}'", this.GetType().Name));
                 if (this.workbench.DataContext == null) this.workbench.DataContext = new WorkbenchViewModel();
                 return this.workbench.DataContext as WorkbenchViewModel;
             }
@@ -90,9 +91,9 @@ namespace Probel.NDoctor.Plugins.Administration
         /// </summary>
         public override void Initialise()
         {
-            Assert.IsNotNull(this.Host, "To initialise the plugin, IPluginHost should be set.");
+            Assert.IsNotNull(PluginContext.Host, "To initialise the plugin, IPluginHost should be set.");
 
-            this.Host.Invoke(() => workbench = new Workbench());
+            PluginContext.Host.Invoke(() => workbench = new Workbench());
             this.BuildButtons();
             this.BuildContextMenu();
         }
@@ -108,7 +109,7 @@ namespace Probel.NDoctor.Plugins.Administration
                     , imgUri.StringFormat("Administration")
                     , navigateCommand) { Order = 4 };
 
-            this.Host.AddToApplicationMenu(navigateButton);
+            PluginContext.Host.AddToApplicationMenu(navigateButton);
         }
 
         /// <summary>
@@ -159,7 +160,7 @@ namespace Probel.NDoctor.Plugins.Administration
 
         private void Navigate()
         {
-            this.Host.Navigate(this.workbench);
+            PluginContext.Host.Navigate(this.workbench);
             var viewModel = new WorkbenchViewModel();
             this.workbench.DataContext = viewModel;
         }

@@ -21,13 +21,12 @@ namespace Probel.NDoctor.View.Plugins
     using System.ComponentModel.Composition;
 
     using Probel.NDoctor.View.Plugins.Exceptions;
+    using Probel.NDoctor.View.Plugins.Helpers;
 
     public class PluginContainer : LogObject
     {
         #region Fields
 
-        private IPluginHost host;
-        private Version hostVersion;
         private IPluginLoader loader;
 
         #endregion Fields
@@ -40,10 +39,9 @@ namespace Probel.NDoctor.View.Plugins
         /// <param name="host">The host.</param>
         public PluginContainer(IPluginHost host, IPluginLoader loader)
         {
-            this.host = host;
+            PluginContext.Host = host;
             this.loader = loader;
             this.Plugins = new List<IPlugin>();
-            this.hostVersion = host.HostVersion;
         }
 
         #endregion Constructors
@@ -72,14 +70,14 @@ namespace Probel.NDoctor.View.Plugins
         /// </summary>
         public void LoadPlugins()
         {
-            this.loader.RetrievePlugins(this, host);
+            this.loader.RetrievePlugins(this, PluginContext.Host);
             if (this.Plugins == null) throw new PluginsNotLoadedException();
 
             this.Logger.DebugFormat("Loader retrieved {0} plugin(s).", this.Plugins.Count);
             foreach (var plugin in this.Plugins)
             {
                 plugin.Initialise();
-                if (plugin.IsValid(host)) plugin.Activate();
+                if (plugin.IsValid(PluginContext.Host)) plugin.Activate();
                 else plugin.Deactivate();
             }
         }

@@ -100,12 +100,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         public void Refresh()
         {
-            Assert.IsNotNull(this.Host);
-            Assert.IsNotNull(this.Host.SelectedPatient);
+            Assert.IsNotNull(PluginContext.Host);
+            Assert.IsNotNull(PluginContext.Host.SelectedPatient);
 
             using (this.component.UnitOfWork)
             {
-                var result = this.component.GetMedicalRecordCabinet(this.Host.SelectedPatient);
+                var result = this.component.GetMedicalRecordCabinet(PluginContext.Host.SelectedPatient);
                 this.Cabinet = TitledMedicalRecordCabinetDto.CreateFrom(result);
                 this.Tags = this.component.FindTags(TagCategory.MedicalRecord);
             }
@@ -113,12 +113,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         public void Save()
         {
-            Assert.IsNotNull(this.Host);
-            Assert.IsNotNull(this.Host.SelectedPatient);
+            Assert.IsNotNull(PluginContext.Host);
+            Assert.IsNotNull(PluginContext.Host.SelectedPatient);
 
             using (this.component.UnitOfWork)
             {
-                this.component.UpdateCabinet(this.Host.SelectedPatient, this.Cabinet);
+                this.component.UpdateCabinet(PluginContext.Host.SelectedPatient, this.Cabinet);
             }
         }
 

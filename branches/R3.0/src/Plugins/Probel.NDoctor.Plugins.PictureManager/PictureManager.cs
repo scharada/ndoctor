@@ -75,7 +75,8 @@ namespace Probel.NDoctor.Plugins.PictureManager
         {
             get
             {
-                Assert.IsNotNull(this.Host, "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin medical record");
+                Assert.IsNotNull(PluginContext.Host, string.Format(
+                    "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin '{0}'", this.GetType().Name));
                 if (this.workbench.DataContext == null) this.workbench.DataContext = new WorkbenchViewModel();
                 return this.workbench.DataContext as WorkbenchViewModel;
             }
@@ -96,7 +97,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
         /// </summary>
         public override void Initialise()
         {
-            this.Host.Invoke(() =>
+            PluginContext.Host.Invoke(() =>
             {
                 this.workbench = new Workbench();
                 this.workbench.DataContext = this.ViewModel;
@@ -113,7 +114,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
                     , imgUri.StringFormat("Picture")
                     , navigateCommand) { Order = 5 };
 
-            this.Host.AddInHome(navigateButton, Groups.Managers);
+            PluginContext.Host.AddInHome(navigateButton, Groups.Managers);
         }
 
         private void BuildContextMenu()
@@ -126,15 +127,15 @@ namespace Probel.NDoctor.Plugins.PictureManager
             cgroup.ButtonDataCollection.Add(addPicButton);
 
             var tab = new RibbonTabData(Messages.Menu_File, cgroup) { ContextualTabGroupHeader = Messages.Title_Pictures };
-            this.Host.AddTab(tab);
+            PluginContext.Host.AddTab(tab);
 
             this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_Pictures, tab) { Background = Brushes.OrangeRed, IsVisible = false };
-            this.Host.AddContextualMenu(this.contextualMenu);
+            PluginContext.Host.AddContextualMenu(this.contextualMenu);
         }
 
         private bool CanNavigate()
         {
-            return this.Host.SelectedPatient != null;
+            return PluginContext.Host.SelectedPatient != null;
         }
 
         private void ConfigureStructureMap()
@@ -149,14 +150,14 @@ namespace Probel.NDoctor.Plugins.PictureManager
         private ICommand GetAddPicCommand()
         {
             ICommand cmd = null;
-            this.Host.Invoke(() => cmd = this.ViewModel.AddPictureCommand);
+            PluginContext.Host.Invoke(() => cmd = this.ViewModel.AddPictureCommand);
             return cmd;
         }
 
         private ICommand GetSaveCommand()
         {
             ICommand cmd = null;
-            this.Host.Invoke(() => cmd = this.ViewModel.SaveCommand);
+            PluginContext.Host.Invoke(() => cmd = this.ViewModel.SaveCommand);
             return cmd;
         }
 
@@ -164,7 +165,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
         {
             try
             {
-                this.Host.Navigate(this.workbench);
+                PluginContext.Host.Navigate(this.workbench);
                 this.workbench.DataContext = this.ViewModel;
 
                 this.ViewModel.Refresh();

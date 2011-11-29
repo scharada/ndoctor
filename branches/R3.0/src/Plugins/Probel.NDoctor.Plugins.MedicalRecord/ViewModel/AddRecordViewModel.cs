@@ -36,11 +36,11 @@
             {
                 using (this.component.UnitOfWork)
                 {
-                    this.component.Create(this.RecordToAdd, this.Host.SelectedPatient);
+                    this.component.Create(this.RecordToAdd, PluginContext.Host.SelectedPatient);
                 }
                 InnerWindow.Close();
                 Notifyer.OnRefreshed();
-                this.Host.WriteStatus(StatusType.Info, Messages.Msg_RecordAdded);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RecordAdded);
             }, () => this.RecordToAdd.Tag != null);
         }
 

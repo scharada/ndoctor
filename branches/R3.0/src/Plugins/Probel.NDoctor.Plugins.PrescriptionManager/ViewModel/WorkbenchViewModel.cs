@@ -141,7 +141,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             {
                 using (this.component.UnitOfWork)
                 {
-                    var found = this.component.FindPrescriptionsByDates(this.Host.SelectedPatient
+                    var found = this.component.FindPrescriptionsByDates(PluginContext.Host.SelectedPatient
                         , this.StartCriteria, this.EndCriteria);
                     this.FoundPrescriptions.Refill(found);
                 }

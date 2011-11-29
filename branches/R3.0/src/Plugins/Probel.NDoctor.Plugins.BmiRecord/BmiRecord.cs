@@ -85,7 +85,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
         /// </summary>
         public override void Initialise()
         {
-            this.Host.Invoke(() => this.workbench = new Workbench());
+            PluginContext.Host.Invoke(() => this.workbench = new Workbench());
             this.BuildButtons();
             this.BuildContextMenu();
         }
@@ -98,7 +98,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
                     , imgUri.StringFormat("History")
                     , navigateCommand) { Order = 5 };
 
-            this.Host.AddInHome(navigateButton, Groups.Managers);
+            PluginContext.Host.AddInHome(navigateButton, Groups.Managers);
         }
 
         /// <summary>
@@ -111,8 +111,8 @@ namespace Probel.NDoctor.Plugins.BmiRecord
 
             tab.GroupDataCollection.Add(cgroup);
             this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_Bmi, tab) { Background = Brushes.OrangeRed, IsVisible = false, };
-            this.Host.AddContextualMenu(this.contextualMenu);
-            this.Host.AddTab(tab);
+            PluginContext.Host.AddContextualMenu(this.contextualMenu);
+            PluginContext.Host.AddTab(tab);
 
             ICommand addPeriodCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddBmi, new AddBmiView()));
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddBmi, imgUri.StringFormat("Add"), addPeriodCommand) { Order = 1, });
@@ -120,7 +120,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
 
         private bool CanNavigate()
         {
-            return this.Host.SelectedPatient != null;
+            return PluginContext.Host.SelectedPatient != null;
         }
 
         private void ConfigureAutoMapper()
@@ -140,7 +140,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
 
         private void Navigate()
         {
-            this.Host.Navigate(this.workbench);
+            PluginContext.Host.Navigate(this.workbench);
             var viewModel = new WorkbenchViewModel();
             this.workbench.DataContext = viewModel;
             viewModel.Refresh();

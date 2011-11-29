@@ -106,7 +106,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                     this.component.Create(this.SelectedTag);
                 }
                 Notifyer.OnItemChanged(this);
-                this.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
                 this.SelectedTag = new TagDto() { Category = TagCategory.Drug };
                 this.IsPopupOpened = false;
             }

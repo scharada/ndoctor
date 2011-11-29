@@ -61,7 +61,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         {
             this.errorHandler = new ErrorHandler(this);
             this.Tags = new ObservableCollection<TagDto>();
-            this.Host = host;
+            PluginContext.Host = host;
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
             this.RemoveCommand = new RelayCommand(() => this.Remove());
 
@@ -270,7 +270,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                     var appointment = Mapper.Map<DateRangeViewModel, AppointmentDto>(this);
                     this.component.Create(appointment, patient);
                 }
-                this.Host.WriteStatus(StatusType.Info, Messages.Msg_AppointmentAdded);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_AppointmentAdded);
                 this.OnRefreshed();
             }
             catch (Exception ex)
@@ -312,7 +312,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                     var appointment = Mapper.Map<DateRangeViewModel, AppointmentDto>(this);
                     this.component.Remove(appointment, this.Patient);
                 }
-                this.Host.WriteStatus(StatusType.Info, Messages.Msg_AppointmentRemoved);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_AppointmentRemoved);
                 this.OnRefreshed();
             }
             catch (Exception ex)

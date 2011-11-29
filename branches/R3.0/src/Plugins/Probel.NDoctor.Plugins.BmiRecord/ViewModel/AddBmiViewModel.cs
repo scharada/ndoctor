@@ -53,9 +53,9 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
 
             this.AddCommand = new RelayCommand(() => this.AddBmi(), () => this.CanAddBmi());
 
-            if (this.Host.SelectedPatient != null)
+            if (PluginContext.Host.SelectedPatient != null)
             {
-                this.CurrentBmi.Height = this.Host.SelectedPatient.Height;
+                this.CurrentBmi.Height = PluginContext.Host.SelectedPatient.Height;
                 this.CurrentBmi.Date = DateTime.Today;
             }
         }
@@ -86,16 +86,16 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
 
         private void AddBmi()
         {
-            Assert.IsNotNull(this.Host, "The host shouldn't be null");
-            Assert.IsNotNull(this.Host.SelectedPatient, "A patient should be selected if you want to manage data of a patient");
+            Assert.IsNotNull(PluginContext.Host, "The host shouldn't be null");
+            Assert.IsNotNull(PluginContext.Host.SelectedPatient, "A patient should be selected if you want to manage data of a patient");
             Assert.IsNotNull(this.CurrentBmi, "The BMI to add shouldn't be null in order to add the item to the BMI history");
 
             using (this.component.UnitOfWork)
             {
                 try
                 {
-                    this.component.AddBmi(this.CurrentBmi, this.Host.SelectedPatient);
-                    this.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiAdded);
+                    this.component.AddBmi(this.CurrentBmi, PluginContext.Host.SelectedPatient);
+                    PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiAdded);
                     this.CurrentBmi = new BmiDto();
                 }
                 catch (Exception ex)
@@ -112,7 +112,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
             return this.CurrentBmi.Date <= DateTime.Now
                 && this.CurrentBmi.Height > 0
                 && this.CurrentBmi.Weight > 0
-                && this.Host.SelectedPatient != null;
+                && PluginContext.Host.SelectedPatient != null;
         }
 
         #endregion Methods

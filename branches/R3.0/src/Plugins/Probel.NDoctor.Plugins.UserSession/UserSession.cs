@@ -103,9 +103,9 @@ namespace Probel.NDoctor.Plugins.UserSession
 
             TranslateExtension.ResourceManager = Messages.ResourceManager;
 
-            this.Host.Invoke(() => { this.connectionPage = new ConnectionView(); });
+            PluginContext.Host.Invoke(() => { this.connectionPage = new ConnectionView(); });
 
-            var splitter = this.Host.FindInHome("add", Groups.Tools);
+            var splitter = PluginContext.Host.FindInHome("add", Groups.Tools);
             var splitterExist = true;
             if (splitter == null || splitter.GetType() != typeof(RibbonMenuButtonData))
             {
@@ -119,7 +119,7 @@ namespace Probel.NDoctor.Plugins.UserSession
 
             var addButton = new RibbonMenuItemData(Messages.Title_ButtonAddUser, uri.StringFormat("Add"), this.addCommand) { Order = 3, };
             (splitter as RibbonMenuButtonData).ControlDataCollection.Add(addButton);
-            if (!splitterExist) this.Host.AddInHome((splitter as RibbonMenuButtonData), Groups.Tools);
+            if (!splitterExist) PluginContext.Host.AddInHome((splitter as RibbonMenuButtonData), Groups.Tools);
 
             this.InitialiseConnectionPage();
             this.InitialiseUpdateUserPage();
@@ -157,20 +157,20 @@ namespace Probel.NDoctor.Plugins.UserSession
 
             if (defaultUser == null)
             {
-                this.Host.HideMainMenu();
-                this.Host.Navigate(this.connectionPage);
+                PluginContext.Host.HideMainMenu();
+                PluginContext.Host.Navigate(this.connectionPage);
             }
             else
             {
-                this.Host.ConnectedUser = defaultUser;
-                this.Host.NavigateToStartPage();
+                PluginContext.Host.ConnectedUser = defaultUser;
+                PluginContext.Host.NavigateToStartPage();
             }
         }
 
         private void InitialiseUpdateUserPage()
         {
             var menu = new RibbonControlData(Messages.Menu_ManagePersonalData, uri.StringFormat("Users"), showUpdateUserCommand) { Order = 3 };
-            this.Host.AddToApplicationMenu(menu);
+            PluginContext.Host.AddToApplicationMenu(menu);
         }
 
         private void NavigateAddUser()
@@ -190,7 +190,7 @@ namespace Probel.NDoctor.Plugins.UserSession
             using (this.component.UnitOfWork)
             {
                 card = new BusinessCard();
-                user = this.component.GetUserById(this.Host.ConnectedUser.Id);
+                user = this.component.GetUserById(PluginContext.Host.ConnectedUser.Id);
             }
             card.DataContext = BusinessCardViewModel.CreateFrom(user);
 

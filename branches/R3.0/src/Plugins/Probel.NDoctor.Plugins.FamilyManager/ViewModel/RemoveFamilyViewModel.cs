@@ -59,21 +59,21 @@
         {
             using (this.component.UnitOfWork)
             {
-                var result = this.component.GetAllFamilyMembers(this.Host.SelectedPatient);
+                var result = this.component.GetAllFamilyMembers(PluginContext.Host.SelectedPatient);
                 var mapped = Mapper.Map<IList<LightPatientDto>, IList<LightPatientViewModel>>(result);
 
                 for (int i = 0; i < mapped.Count; i++)
                 {
-                    mapped[i].SessionPatient = this.Host.SelectedPatient;
+                    mapped[i].SessionPatient = PluginContext.Host.SelectedPatient;
                     mapped[i].Refreshed += (sender, e) =>
                     {
                         this.Refresh();
-                        if (e.Data == State.Added) { this.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationAdded); }
-                        else if (e.Data == State.Removed) { this.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationRemoved); }
+                        if (e.Data == State.Added) { PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationAdded); }
+                        else if (e.Data == State.Removed) { PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationRemoved); }
                     };
                 }
                 this.FamilyMembers.Refill(mapped);
-                this.Host.WriteStatusReady();
+                PluginContext.Host.WriteStatusReady();
             }
         }
 

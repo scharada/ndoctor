@@ -195,14 +195,14 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         {
             try
             {
-                if (this.Host.ConnectedUser == null) return;
+                if (PluginContext.Host.ConnectedUser == null) return;
 
                 using (this.component.UnitOfWork)
                 {
                     this.Practices = this.component.GetAllPractices().ToObservableCollection();
                     this.Roles = this.component.GetAllRolesLight().ToObservableCollection();
 
-                    var user = this.component.LoadUser(Host.ConnectedUser);
+                    var user = this.component.LoadUser(PluginContext.Host.ConnectedUser);
                     this.User = user;
 
                     if (this.User.Practice != null)
@@ -219,7 +219,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                                              select r).FirstOrDefault();
                     }
 
-                    this.Host.WriteStatus(StatusType.Info, Messages.Msg_Ready);
+                    PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_Ready);
                 }
 
             }
@@ -243,7 +243,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                 {
                     component.Update(this.User);
                 }
-                this.Host.WriteStatus(StatusType.Info, Messages.Msg_UserUpdated);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_UserUpdated);
             }
             catch (Exception ex)
             {

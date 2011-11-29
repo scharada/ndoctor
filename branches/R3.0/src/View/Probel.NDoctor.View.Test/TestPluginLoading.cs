@@ -25,6 +25,7 @@ namespace Probel.NDoctor.View.Test
     using Probel.NDoctor.View.Test.Stubs;
 
     using Rhino.Mocks;
+    using Probel.NDoctor.View.Plugins.Helpers;
 
     [TestFixture]
     [Category("View")]
@@ -63,7 +64,7 @@ namespace Probel.NDoctor.View.Test
         [TestFixtureSetUp]
         public void PluginFixture()
         {
-            this.host = MockRepository.GenerateMock<IPluginHost>();
+            PluginContext.Host = MockRepository.GenerateMock<IPluginHost>();
             this.loader = MockRepository.GenerateMock<IPluginLoader>();
             this.container = new PluginContainer(host, loader);
         }
