@@ -54,8 +54,8 @@ namespace Probel.NDoctor.Plugins.PathologyManager
         #region Constructors
 
         [ImportingConstructor]
-        public PathologyManager([Import("version")] Version version, [Import("host")] IPluginHost host)
-            : base(version, host)
+        public PathologyManager([Import("version")] Version version)
+            : base(version)
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
 

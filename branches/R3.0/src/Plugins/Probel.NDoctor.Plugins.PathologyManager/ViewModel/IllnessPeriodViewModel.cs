@@ -18,7 +18,6 @@
 
         private IPathologyComponent component = ObjectFactory.GetInstance<IPathologyComponent>();
         private bool isSelected;
-        private WorkbenchViewModel parent;
 
         #endregion Fields
 

@@ -29,12 +29,6 @@ namespace Probel.NDoctor.View.Test
     [Category("View")]
     public class TestPluginValidation
     {
-        #region Fields
-
-        private IPluginHost host;
-
-        #endregion Fields
-
         #region Methods
 
         [Test]
@@ -42,23 +36,23 @@ namespace Probel.NDoctor.View.Test
         {
             var constraint = new PluginValidator("2.0.0.0", ValidationMode.Minimum);
 
-            Assert.IsTrue(constraint.IsValid(host));
+            Assert.IsTrue(constraint.IsValid(PluginContext.Host));
         }
 
         [Test]
         public void CanCheckConstraint_MinimumMode_HostBiggerVersion()
         {
             var constraint = new PluginValidator("1.0.0.0", ValidationMode.Minimum);
-            Assert.IsTrue(constraint.IsValid(host));
+            Assert.IsTrue(constraint.IsValid(PluginContext.Host));
         }
 
         [Test]
         public void CanCheckConstraint_StrictMode_HostSameVersion()
         {
             var constraint = new PluginValidator("2.0.0.0", ValidationMode.Strict);
-            Assert.IsTrue(constraint.IsValid(host));
+            Assert.IsTrue(constraint.IsValid(PluginContext.Host));
 
-            Assert.IsTrue(constraint.IsValid(host));
+            Assert.IsTrue(constraint.IsValid(PluginContext.Host));
         }
 
         [Test]
@@ -66,14 +60,14 @@ namespace Probel.NDoctor.View.Test
         {
             var constraint = new PluginValidator("3.0.0.0", ValidationMode.Strict);
 
-            Assert.IsFalse(constraint.IsValid(host));
+            Assert.IsFalse(constraint.IsValid(PluginContext.Host));
         }
 
         [Test]
         public void FailCheckingConstraint_StrictMode_HostSmallerVersion()
         {
             var constraint = new PluginValidator("3.0.0.0", ValidationMode.Strict);
-            Assert.IsFalse(constraint.IsValid(host));
+            Assert.IsFalse(constraint.IsValid(PluginContext.Host));
         }
 
         [Test]
@@ -87,7 +81,7 @@ namespace Probel.NDoctor.View.Test
         public void FixtureSetup()
         {
             PluginContext.Host = MockRepository.GenerateMock<IPluginHost>();
-            host.Stub(x => x.HostVersion).Return(new Version("2.0.0.0"));
+            PluginContext.Host.Stub(x => x.HostVersion).Return(new Version("2.0.0.0"));
         }
 
         #endregion Methods

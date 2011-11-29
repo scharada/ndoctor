@@ -77,8 +77,16 @@ namespace Probel.NDoctor.View.Plugins
             foreach (var plugin in this.Plugins)
             {
                 plugin.Initialise();
-                if (plugin.IsValid(PluginContext.Host)) plugin.Activate();
-                else plugin.Deactivate();
+                if (plugin.IsValid(PluginContext.Host))
+                {
+                    this.Logger.DebugFormat("\tThe plugin '{0}' is valid.", plugin.GetType().Name);
+                    plugin.Activate();
+                }
+                else
+                {
+                    this.Logger.WarnFormat("\tThe plugin '{0}' is not valid.", plugin.GetType().Name);
+                    plugin.Deactivate();
+                }
             }
         }
 

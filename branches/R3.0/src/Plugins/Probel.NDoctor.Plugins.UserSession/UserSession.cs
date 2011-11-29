@@ -79,8 +79,8 @@ namespace Probel.NDoctor.Plugins.UserSession
         /// <param name="version">The version.</param>
         /// <param name="host">The host.</param>
         [ImportingConstructor]
-        public UserSession([Import("version")] Version version, [Import("host")] IPluginHost host)
-            : base(version, host)
+        public UserSession([Import("version")] Version version)
+            : base(version)
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
             this.BuildCommands();

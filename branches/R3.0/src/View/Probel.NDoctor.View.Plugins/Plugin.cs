@@ -44,11 +44,10 @@ namespace Probel.NDoctor.View.Plugins
         /// <param name="host">The host.</param>
         /// <param name="cultureInfo">The culture info.</param>
         [ImportingConstructor]
-        public Plugin(Version version, IPluginHost host)
+        public Plugin(Version version)
         {
             this.errorHandler = new ErrorHandler(this);
             this.Version = version;
-            PluginContext.Host = host;
         }
 
         /// <summary>
@@ -57,8 +56,8 @@ namespace Probel.NDoctor.View.Plugins
         /// <param name="version">The version of the plugin</param>
         /// <param name="host">The host.</param>
         /// <param name="cultureInfo">The culture info.</param>
-        protected Plugin(string version, IPluginHost host)
-            : this(new Version(version), host)
+        protected Plugin(string version)
+            : this(new Version(version))
         {
         }
 

@@ -49,8 +49,8 @@ namespace Probel.NDoctor.Plugins.DebugTools
         /// <param name="version">The version.</param>
         /// <param name="host">The host.</param>
         [ImportingConstructor]
-        public DebugTools([Import("version")] Version version, [Import("host")]  IPluginHost host)
-            : base(version, host)
+        public DebugTools([Import("version")] Version version)
+            : base(version)
         {
             this.Validator = new PluginValidator("1.0.0.0", ValidationMode.Minimum);
             this.Logger.Warn("Debug plugin is loaded. It shouldn't be used in production!");

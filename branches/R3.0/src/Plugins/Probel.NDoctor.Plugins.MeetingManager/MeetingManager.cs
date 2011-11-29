@@ -53,8 +53,8 @@ namespace Probel.NDoctor.Plugins.MeetingManager
         #region Constructors
 
         [ImportingConstructor]
-        public MeetingManager([Import("version")] Version version, [Import("host")] IPluginHost host)
-            : base(version, host)
+        public MeetingManager([Import("version")] Version version)
+            : base(version)
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
 

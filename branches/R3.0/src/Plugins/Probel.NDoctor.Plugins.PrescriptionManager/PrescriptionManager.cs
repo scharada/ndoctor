@@ -57,8 +57,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         #region Constructors
 
         [ImportingConstructor]
-        public PrescriptionManager([Import("version")] Version version, [Import("host")] IPluginHost host)
-            : base(version, host)
+        public PrescriptionManager([Import("version")] Version version)
+            : base(version)
         {
             this.ConfigureStructureMap();
             this.ConfigureAutoMapper();

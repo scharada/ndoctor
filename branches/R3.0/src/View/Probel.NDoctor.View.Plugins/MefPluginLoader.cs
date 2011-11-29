@@ -70,7 +70,6 @@ namespace Probel.NDoctor.View.Plugins
 
             var container = new CompositionContainer(catalog);
             container.ComposeExportedValue<Version>("version", host.HostVersion);
-            container.ComposeExportedValue<IPluginHost>("host", host);
             container.ComposeExportedValue<CultureInfo>("cultureInfo", Thread.CurrentThread.CurrentUICulture);
 
             var composition = new CompositionBatch();

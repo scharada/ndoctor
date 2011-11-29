@@ -80,8 +80,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         #region Constructors
 
         [ImportingConstructor]
-        public MedicalRecord([Import("version")] Version version, [Import("host")] IPluginHost host)
-            : base(version, host)
+        public MedicalRecord([Import("version")] Version version)
+            : base(version)
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
 

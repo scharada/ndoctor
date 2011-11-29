@@ -60,8 +60,8 @@ namespace Probel.NDoctor.Plugins.PictureManager
         /// <param name="version">The version.</param>
         /// <param name="host">The host.</param>
         [ImportingConstructor]
-        public PictureManager([Import("version")] Version version, [Import("host")] IPluginHost host)
-            : base(version, host)
+        public PictureManager([Import("version")] Version version)
+            : base(version)
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
             this.ConfigureStructureMap();
