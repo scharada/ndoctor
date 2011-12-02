@@ -25,7 +25,7 @@
    * [Administration Administration]
     * [PluginsManager Plugins manager]
     * [RightManager Rights manager]
-  * [convertdatabase Convert nDoctor 2 database]
+  * [convertdatabase Import data]
  * Implementation
   * [CodingConventions Coding conventions]
   * [Tools Tools]
