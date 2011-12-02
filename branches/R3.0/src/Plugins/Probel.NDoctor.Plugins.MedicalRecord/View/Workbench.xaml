@@ -56,7 +56,7 @@
         <ScrollViewer>
             <ctrl:RichTextBox x:Name="richTextBox"
                               DockPanel.Dock="Right"
-                              Text="{Binding Path=SelectedRecord.Html, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                              Text="{Binding Path=SelectedRecord.Rtf, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                 <ctrl:RichTextBoxFormatBarManager.FormatBar>
                     <ctrl:RichTextBoxFormatBar />
                 </ctrl:RichTextBoxFormatBarManager.FormatBar>

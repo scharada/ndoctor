@@ -365,7 +365,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             {
                 this.ViewModel.Cabinet.ForEachRecord(x =>
                 {
-                    x.Html = this.ViewModel.SelectedRecord.Html;
+                    x.Rtf = this.ViewModel.SelectedRecord.Rtf;
                     x.State = State.Updated;
                 }
                     , s => s.Id == this.ViewModel.SelectedRecord.Id);

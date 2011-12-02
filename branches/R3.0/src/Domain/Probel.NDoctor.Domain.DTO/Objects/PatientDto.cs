@@ -25,31 +25,31 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     {
         #region Fields
 
-        private AddressDto address;
-        private DateTime birthdate;
+        private AddressDto address = new AddressDto();
+        private DateTime birthdate = DateTime.Today;
         private int counter;
         private decimal fee;
         private string firstName;
         private Gender gender;
         private string header;
         private long height;
-        private DateTime inscriptionDate;
-        private LightInsuranceDto insurance;
+        private DateTime inscriptionDate = DateTime.Today;
+        private LightInsuranceDto insurance = new LightInsuranceDto();
         private bool isComplete;
         private string lastName;
-        private DateTime lastUpdate;
+        private DateTime lastUpdate = DateTime.Today;
         private string placeOfBirth;
-        private LightPracticeDto practice;
+        private LightPracticeDto practice = new LightPracticeDto();
         private string privateMail;
         private string privateMobile;
         private string privatePhone;
-        private ProfessionDto profession;
+        private ProfessionDto profession = new ProfessionDto();
         private string proMail;
         private string proMobile;
         private string proPhone;
         private string reason;
-        private ReputationDto reputation;
-        private TagDto tag;
+        private ReputationDto reputation = new ReputationDto();
+        private TagDto tag = new TagDto();
         private byte[] thumbnail;
 
         #endregion Fields

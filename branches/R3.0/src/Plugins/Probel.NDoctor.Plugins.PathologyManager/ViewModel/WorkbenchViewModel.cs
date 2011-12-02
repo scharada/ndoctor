@@ -27,9 +27,9 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PathologyManager.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
+    using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
-    using Probel.NDoctor.View.Plugins.Helpers;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin

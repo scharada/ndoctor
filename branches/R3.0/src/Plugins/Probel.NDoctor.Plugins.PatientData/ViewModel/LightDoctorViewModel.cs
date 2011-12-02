@@ -95,7 +95,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
                 using (this.component.UnitOfWork)
                 {
-                    this.component.AddLink(PluginContext.Host.SelectedPatient, (LightDoctorDto)this);
+                    this.component.AddDoctorTo(PluginContext.Host.SelectedPatient, (LightDoctorDto)this);
                 }
                 Notifyer.OnDoctorLinkChanged(this);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DoctorAded);
@@ -118,7 +118,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
                 using (this.component.UnitOfWork)
                 {
-                    this.component.RemoveLink(PluginContext.Host.SelectedPatient, (LightDoctorDto)this);
+                    this.component.RemoveDoctorFor(PluginContext.Host.SelectedPatient, (LightDoctorDto)this);
                 }
                 Notifyer.OnDoctorLinkChanged(this);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DoctorRemoved);

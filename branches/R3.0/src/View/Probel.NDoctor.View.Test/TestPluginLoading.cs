@@ -22,10 +22,10 @@ namespace Probel.NDoctor.View.Test
     using NUnit.Framework;
 
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Test.Stubs;
 
     using Rhino.Mocks;
-    using Probel.NDoctor.View.Plugins.Helpers;
 
     [TestFixture]
     [Category("View")]

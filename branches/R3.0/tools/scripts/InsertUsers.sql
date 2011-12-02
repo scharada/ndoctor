@@ -126,22 +126,22 @@ INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-09', 180, 88,
 INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-10', 180, 89, 4);
 INSERT INTO Bmi(Date, Height, Weight, Patient_id) VALUES ('2007-01-11', 180, 90, 4);
 
-INSERT INTO MedicalRecord(Id, CreationDate, Name, Html, Tag_Id, Patient_Id) VALUES(1, '2010-01-01', 'Title 1', '<h1>Demonstration Title</h1>" Hello world as a medical record 1 <h1>text</h1>', 1, 3);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, Html, Tag_Id, Patient_Id) VALUES(2, '2010-01-01', 'Title 1 bis', '<h1>Demonstration Title</h1>" Hello world as a medical record 1 bis <h1>text</h1>', 1, 3);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, Html, Tag_Id, Patient_Id) VALUES(3, '2010-01-01', 'Title 2', '<h1>Demonstration Title</h1>" Hello world as a medical record 2<h1>text</h1>', 2, 3);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, Html, Tag_Id, Patient_Id) VALUES(4, '2010-01-01', 'Title 3', '<h1>Demonstration Title</h1>" Hello world as a medical record 3<h1>text</h1>', 3, 3);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, Html, Tag_Id, Patient_Id) VALUES(5, '2010-01-01', 'Title 4', '<h1>Demonstration Title</h1>" Hello world as a medical record 4<h1>text</h1>', 1, 4);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, Html, Tag_Id, Patient_Id) VALUES(6, '2010-01-01', 'Title 5', '<h1>Demonstration Title</h1>" Hello world as a medical record 5<h1>text</h1>', 2, 4);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, Html, Tag_Id, Patient_Id) VALUES(7, '2010-01-01', 'Title 6', '<h1>Demonstration Title</h1>" Hello world as a medical record 6<h1>text</h1>', 3, 4);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id) VALUES(1, '2010-01-01', 'Title 1', '<h1>Demonstration Title</h1>" Hello world as a medical record 1 <h1>text</h1>', 1, 3);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id) VALUES(2, '2010-01-01', 'Title 1 bis', '<h1>Demonstration Title</h1>" Hello world as a medical record 1 bis <h1>text</h1>', 1, 3);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id) VALUES(3, '2010-01-01', 'Title 2', '<h1>Demonstration Title</h1>" Hello world as a medical record 2<h1>text</h1>', 2, 3);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id) VALUES(4, '2010-01-01', 'Title 3', '<h1>Demonstration Title</h1>" Hello world as a medical record 3<h1>text</h1>', 3, 3);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id) VALUES(5, '2010-01-01', 'Title 4', '<h1>Demonstration Title</h1>" Hello world as a medical record 4<h1>text</h1>', 1, 4);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id) VALUES(6, '2010-01-01', 'Title 5', '<h1>Demonstration Title</h1>" Hello world as a medical record 5<h1>text</h1>', 2, 4);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id) VALUES(7, '2010-01-01', 'Title 6', '<h1>Demonstration Title</h1>" Hello world as a medical record 6<h1>text</h1>', 3, 4);
 
-INSERT INTO MedicalRecord(Id, CreationDate, Name, Html, Tag_Id, Patient_Id) VALUES(8, '2010-01-01', 'Title 6', '<h1>Demonstration Title</h1>" Hello world as a medical record 6<h1>text</h1>', 3, 4);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, Html, Tag_Id, Patient_Id) VALUES(9, '2010-01-01', 'Title 6', '<h1>Demonstration Title</h1>" Hello world as a medical record 6<h1>text</h1>', 3, 7);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, Html, Tag_Id, Patient_Id) VALUES(10, '2010-01-01', 'Title 6', '<h1>Demonstration Title</h1>" Hello world as a medical record 6<h1>text</h1>', 3, 8);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, Html, Tag_Id, Patient_Id) VALUES(11, '2010-01-01', 'Title 6', '<h1>Demonstration Title</h1>" Hello world as a medical record 6<h1>text</h1>', 3, 9);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, Html, Tag_Id, Patient_Id) VALUES(12, '2010-01-01', 'Title 6', '<h1>Demonstration Title</h1>" Hello world as a medical record 6<h1>text</h1>', 3, 10);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, Html, Tag_Id, Patient_Id) VALUES(13, '2010-01-01', 'Title 6', '<h1>Demonstration Title</h1>" Hello world as a medical record 6<h1>text</h1>', 3, 11);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, Html, Tag_Id, Patient_Id) VALUES(14, '2010-01-01', 'Title 6', '<h1>Demonstration Title</h1>" Hello world as a medical record 6<h1>text</h1>', 3, 12);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, Html, Tag_Id, Patient_Id) VALUES(15, '2010-01-01', 'Title 6', '<h1>Demonstration Title</h1>" Hello world as a medical record 6<h1>text</h1>', 3, 13);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id) VALUES(8, '2010-01-01', 'Title 6', '<h1>Demonstration Title</h1>" Hello world as a medical record 6<h1>text</h1>', 3, 4);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id) VALUES(9, '2010-01-01', 'Title 6', '<h1>Demonstration Title</h1>" Hello world as a medical record 6<h1>text</h1>', 3, 7);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id) VALUES(10, '2010-01-01', 'Title 6', '<h1>Demonstration Title</h1>" Hello world as a medical record 6<h1>text</h1>', 3, 8);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id) VALUES(11, '2010-01-01', 'Title 6', '<h1>Demonstration Title</h1>" Hello world as a medical record 6<h1>text</h1>', 3, 9);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id) VALUES(12, '2010-01-01', 'Title 6', '<h1>Demonstration Title</h1>" Hello world as a medical record 6<h1>text</h1>', 3, 10);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id) VALUES(13, '2010-01-01', 'Title 6', '<h1>Demonstration Title</h1>" Hello world as a medical record 6<h1>text</h1>', 3, 11);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id) VALUES(14, '2010-01-01', 'Title 6', '<h1>Demonstration Title</h1>" Hello world as a medical record 6<h1>text</h1>', 3, 12);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id) VALUES(15, '2010-01-01', 'Title 6', '<h1>Demonstration Title</h1>" Hello world as a medical record 6<h1>text</h1>', 3, 13);
 
 INSERT INTO IllnessPeriod (Id, Start, End, Pathology_Id, Notes, Patient_Id) VALUES (1, '2010-01-01', '2010-01-05', 1, 'Some notes about the period', 7);
 INSERT INTO IllnessPeriod (Id, Start, End, Pathology_Id, Notes, Patient_Id) VALUES (2, '2010-01-02', '2010-01-07', 2, 'Some notes about the period', 7);

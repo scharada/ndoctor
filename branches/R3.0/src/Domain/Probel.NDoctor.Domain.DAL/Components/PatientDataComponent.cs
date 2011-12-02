@@ -54,7 +54,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="patient">The patient.</param>
         /// <param name="doctor">The doctor.</param>
         /// <exception cref="EntityNotFoundException">If there's no link between the doctor and the patient</exception>
-        public void AddLink(LightPatientDto patient, LightDoctorDto doctor)
+        public void AddDoctorTo(LightPatientDto patient, LightDoctorDto doctor)
         {
             this.CheckSession();
             var patientEntity = this.Session.Get<Patient>(patient.Id);
@@ -176,6 +176,18 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets the doctors linked to the specified patient.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <returns>A list of doctors</returns>
+        public IList<LightDoctorDto> FindDoctorOf(LightPatientDto patient)
+        {
+            this.CheckSession();
+            var entity = this.Session.Get<Patient>(patient.Id);
+            return Mapper.Map<IList<Doctor>, IList<LightDoctorDto>>(entity.Doctors);
+        }
+
+        /// <summary>
         /// Finds the doctors that can be linked to the specified doctor.
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -184,7 +196,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         /// A list of doctor
         /// </returns>
-        public IList<LightDoctorDto> FindDoctorsFor(LightPatientDto patient, string criteria, SearchOn searchOn)
+        public IList<LightDoctorDto> FindNotLinkedDoctorsFor(LightPatientDto patient, string criteria, SearchOn searchOn)
         {
             var patientEntity = this.Session.Get<Patient>(patient.Id);
 
@@ -212,24 +224,12 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Gets the doctors linked to the specified patient.
-        /// </summary>
-        /// <param name="patient">The patient.</param>
-        /// <returns>A list of doctors</returns>
-        public IList<LightDoctorDto> GetDoctorOf(LightPatientDto patient)
-        {
-            this.CheckSession();
-            var entity = this.Session.Get<Patient>(patient.Id);
-            return Mapper.Map<IList<Doctor>, IList<LightDoctorDto>>(entity.Doctors);
-        }
-
-        /// <summary>
         /// Loads all the data of the patient represented by the specified id.
         /// </summary>
         /// <param name="patient">The id of the patient to load.</param>
         /// <returns>A DTO with the whole data</returns>
         /// <exception cref="Probel.NDoctor.Domain.DAL.Exceptions.EntityNotFoundException">If the id is not linked to a patient</exception>
-        public PatientDto GetPatient(long id)
+        public PatientDto FindPatient(long id)
         {
             this.CheckSession();
             var fullPatient = (from p in this.Session.Query<Patient>()
@@ -247,9 +247,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="patient">The patient to load.</param>
         /// <returns>A DTO with the whole data</returns>
         /// <exception cref="Probel.NDoctor.Domain.DAL.Exceptions.EntityNotFoundException">If the patient doesn't exist</exception>
-        public PatientDto GetPatient(LightPatientDto patient)
+        public PatientDto FindPatient(LightPatientDto patient)
         {
-            return this.GetPatient(patient.Id);
+            return this.FindPatient(patient.Id);
         }
 
         /// <summary>
@@ -258,7 +258,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <exception cref="EntityNotFoundException">If there's no link between the doctor and the patient</exception>
         /// <param name="patient">The patient.</param>
         /// <param name="doctor">The doctor.</param>
-        public void RemoveLink(LightPatientDto patient, LightDoctorDto doctor)
+        public void RemoveDoctorFor(LightPatientDto patient, LightDoctorDto doctor)
         {
             var patientEntity = this.Session.Get<Patient>(patient.Id);
             var doctorEntity = this.Session.Get<Doctor>(doctor.Id);

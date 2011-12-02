@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Domain.DAL.Properties
-{
-
-
+namespace Probel.NDoctor.Domain.DAL.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -61,6 +61,15 @@ namespace Probel.NDoctor.Domain.DAL.Properties
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The ID type is &apos;{0}&apos; while expecting &apos;{1}&apos;.
+        /// </summary>
+        internal static string DalSessionException_UnknownId1 {
+            get {
+                return ResourceManager.GetString("DalSessionException_UnknownId1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Impossible to execute this action. This is a unexpected state that wasn&apos;t forseen or it will break business logic rules..
         /// </summary>
         internal static string Ex_BusinessLogicException {
@@ -84,6 +93,15 @@ namespace Probel.NDoctor.Domain.DAL.Properties
         internal static string Ex_DalConfigurationException {
             get {
                 return ResourceManager.GetString("Ex_DalConfigurationException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The ID type is &apos;{0}&apos; while expecting &apos;{1}&apos;.
+        /// </summary>
+        internal static string Ex_DalSessionException_UnknownId {
+            get {
+                return ResourceManager.GetString("Ex_DalSessionException_UnknownId", resourceCulture);
             }
         }
         

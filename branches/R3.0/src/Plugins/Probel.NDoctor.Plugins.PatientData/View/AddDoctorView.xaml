@@ -36,43 +36,45 @@
                             Command="{Binding Path=SearchCommand}"/>
 
                 </Grid>
-                <ListView ItemsSource="{Binding Path=FoundDoctors}"
+                <ScrollViewer>
+                    <ListView ItemsSource="{Binding Path=FoundDoctors}"
                           SelectedItem="{Binding Path=SelectedDoctor}">
-                    <ListView.Resources>
-                        <DataTemplate DataType="{x:Type vm:LightDoctorViewModel}">
-                            <StackPanel>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="80"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0"
+                        <ListView.Resources>
+                            <DataTemplate DataType="{x:Type vm:LightDoctorViewModel}">
+                                <StackPanel>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0"
                                            Content="{Binding Source={x:Static Member=text:AddDoctorText.TitleFullName}}"/>
-                                    <Label Grid.Column="1"
+                                        <Label Grid.Column="1"
                                            Content="{Binding Path=DisplayedName}"/>
-                                </Grid>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="80"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0"
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0"
                                            Content="{Binding Source={x:Static Member=text:AddDoctorText.TitleSpecialisation}}"/>
-                                    <Label Grid.Column="1"
+                                        <Label Grid.Column="1"
                                            Content="{Binding Path=Specialisation.Name}"/>
-                                </Grid>
-                                <Button Command="{Binding Path=AddDoctorCommand}" 
+                                    </Grid>
+                                    <Button Command="{Binding Path=AddDoctorCommand}" 
                                         Content="{Binding Source={x:Static Member=text:AddDoctorText.BtnAddDoctor}}"
                                         Visibility="{Binding Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.Resources>
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.Resources>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </ScrollViewer>
             </StackPanel>
         </Popup>
     </StackPanel>

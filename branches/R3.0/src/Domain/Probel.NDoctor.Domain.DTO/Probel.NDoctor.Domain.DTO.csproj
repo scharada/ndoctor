@@ -45,6 +45,7 @@
     <Compile Include="Collections\TagCategoryCollection.cs" />
     <Compile Include="Components\IAdministrationComponent.cs" />
     <Compile Include="Components\ICalendarComponent.cs" />
+    <Compile Include="Components\IImportComponent.cs" />
     <Compile Include="Components\IPrescriptionComponent.cs" />
     <Compile Include="Helpers\ConvertSlotDurationAndTimeSpan.cs" />
     <Compile Include="Helpers\SlotDuration.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Components\IFamilyComponent.cs" />
     <Compile Include="Components\IPathologyComponent.cs" />
     <Compile Include="Objects\DoctorDto.cs" />
+    <Compile Include="Objects\DoctorFullDto.cs" />
     <Compile Include="Objects\DrugDto.cs" />
     <Compile Include="Objects\FamilyDto.cs" />
     <Compile Include="Components\IMedicalRecordComponent.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="Objects\MedicalRecordFolderDto.cs" />
     <Compile Include="Objects\AppointmentDto.cs" />
     <Compile Include="Objects\PathologyDto.cs" />
+    <Compile Include="Objects\PatientFullDto.cs" />
     <Compile Include="Objects\PrescriptionDocumentDto.cs" />
     <Compile Include="Objects\PrescriptionDto.cs" />
     <Compile Include="Helpers\Workday.cs" />

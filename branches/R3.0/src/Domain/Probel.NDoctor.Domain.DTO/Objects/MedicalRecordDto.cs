@@ -26,8 +26,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #region Fields
 
         private DateTime creationDate;
-        private string html;
         private DateTime lastUpdate;
+        private string rtf;
         private TagDto tag;
         private string title;
 
@@ -66,27 +66,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         }
 
         /// <summary>
-        /// Gets or sets the HTML representing the medical record.
-        /// </summary>
-        /// <value>
-        /// The HTML.
-        /// </value>
-        public string Html
-        {
-            get { return this.html; }
-            set
-            {
-                if (this.html != value)
-                {
-                    if (this.html != null) this.State = State.Updated;
-
-                    this.html = value;
-                    this.OnPropertyChanged("Html");
-                }
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the date of the last update.
         /// </summary>
         /// <value>
@@ -115,6 +94,27 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.title = value;
                 this.OnPropertyChanged("Name");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the HTML representing the medical record.
+        /// </summary>
+        /// <value>
+        /// The HTML.
+        /// </value>
+        public string Rtf
+        {
+            get { return this.rtf; }
+            set
+            {
+                if (this.rtf != value)
+                {
+                    if (this.rtf != null) this.State = State.Updated;
+
+                    this.rtf = value;
+                    this.OnPropertyChanged("Rtf");
+                }
             }
         }
 

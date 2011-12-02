@@ -203,4 +203,12 @@
     <value>This entity already exist in the database</value>
     <comment>This entity already exist in the database</comment>
   </data>
+  <data name="Ex_DalSessionException_UnknownId" xml:space="preserve">
+    <value>The ID type is '{0}' while expecting '{1}'</value>
+    <comment>Le type de l'ID attendu est '{0}' alors qu'il est '{1}'</comment>
+  </data>
+  <data name="DalSessionException_UnknownId1" xml:space="preserve">
+    <value>The ID type is '{0}' while expecting '{1}'</value>
+    <comment>Le type de l'ID est '{0}' alors qu'il devrait être '{1}'</comment>
+  </data>
 </root>

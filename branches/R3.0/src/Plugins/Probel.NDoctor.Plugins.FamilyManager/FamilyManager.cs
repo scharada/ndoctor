@@ -153,13 +153,10 @@ namespace Probel.NDoctor.Plugins.FamilyManager
         /// </summary>
         private void BuildContextMenu()
         {
-            var navAddRelationButton = new RibbonButtonData(Messages.Title_AddFamilyManager, imgUri.StringFormat("Add"), navAddRelationCommand);
-            var navRemoveRelationButton = new RibbonButtonData(Messages.Title_RemoveFamilyManager, imgUri.StringFormat("Delete"), navRemoveRelationCommand);
-
             var cgroup = new RibbonGroupData(Messages.Menu_Actions);
 
-            cgroup.ButtonDataCollection.Add(navAddRelationButton);
-            cgroup.ButtonDataCollection.Add(navRemoveRelationButton);
+            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddFamilyManager, imgUri.StringFormat("Add"), navAddRelationCommand));
+            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_RemoveFamilyManager, imgUri.StringFormat("Delete"), navRemoveRelationCommand));
 
             var tab = new RibbonTabData(Messages.Menu_File, cgroup) { ContextualTabGroupHeader = Messages.Title_FamilyManager };
             PluginContext.Host.AddTab(tab);

@@ -147,10 +147,17 @@
         /// <param name="content">The content. That's the graphic interface contained in the child window</param>
         public static void Show(string caption, UserControl content)
         {
-            InnerWindow.Content = content;
-            InnerWindow.WindowState = WindowState.Open;
-            InnerWindow.IsModal = false;
-            InnerWindow.Caption = caption;
+            Show(caption, content, false);
+        }
+
+        /// <summary>
+        /// Shows the child window as a modal form.
+        /// </summary>
+        /// <param name="caption">The caption. That's the title of the window</param>
+        /// <param name="content">The content. That's the graphic interface contained in the child window</param>
+        public static void ShowDialog(string caption, UserControl content)
+        {
+            Show(caption, content, true);
         }
 
         private static void OnContentChanged()
@@ -163,6 +170,14 @@
         {
             if (Loaded != null)
                 Loaded(new Object(), EventArgs.Empty);
+        }
+
+        private static void Show(string caption, UserControl content, bool isModal)
+        {
+            InnerWindow.Content = content;
+            InnerWindow.WindowState = WindowState.Open;
+            InnerWindow.IsModal = isModal;
+            InnerWindow.Caption = caption;
         }
 
         #endregion Methods

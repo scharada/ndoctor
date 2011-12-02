@@ -41,7 +41,7 @@
         </Grid>
         <ScrollViewer>
             <ctrl:RichTextBox IsReadOnly="True"
-                              Text="{Binding Path=SelectedRecord.Html}"/>
+                              Text="{Binding Path=SelectedRecord.Rtf}"/>
         </ScrollViewer>
     </DockPanel>
 </UserControl>

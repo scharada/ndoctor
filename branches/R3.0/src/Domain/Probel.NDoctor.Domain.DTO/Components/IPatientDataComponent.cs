@@ -29,7 +29,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <param name="doctor">The doctor.</param>
-        void AddLink(LightPatientDto patient, LightDoctorDto doctor);
+        void AddDoctorTo(LightPatientDto patient, LightDoctorDto doctor);
 
         /// <summary>
         /// Creates the specified profession.
@@ -63,6 +63,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         long Create(DoctorDto doctor);
 
         /// <summary>
+        /// Gets the doctors linked to the specified patient.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <returns>A list of doctors</returns>
+        IList<LightDoctorDto> FindDoctorOf(LightPatientDto patient);
+
+        /// <summary>
         /// Finds the doctors that can be linked to the specified doctor.
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -71,14 +78,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <returns>
         /// A list of doctor
         /// </returns>
-        IList<LightDoctorDto> FindDoctorsFor(LightPatientDto patient, string criteria, SearchOn on);
-
-        /// <summary>
-        /// Gets the doctors linked to the specified patient.
-        /// </summary>
-        /// <param name="patient">The patient.</param>
-        /// <returns>A list of doctors</returns>
-        IList<LightDoctorDto> GetDoctorOf(LightPatientDto patient);
+        IList<LightDoctorDto> FindNotLinkedDoctorsFor(LightPatientDto patient, string criteria, SearchOn on);
 
         /// <summary>
         /// Loads all the data of the patient represented by the specified id.
@@ -86,7 +86,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="patient">The id of the patient to load.</param>
         /// <returns>A DTO with the whole data</returns>
         /// <exception cref="Probel.NDoctor.Domain.DAL.Exceptions.ItemNotFoundException">If the id is not linked to a patient</exception>
-        PatientDto GetPatient(long id);
+        PatientDto FindPatient(long id);
 
         /// <summary>
         /// Loads all the data of the patient.
@@ -94,7 +94,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="patient">The patient to load.</param>
         /// <returns>A DTO with the whole data</returns>
         /// <exception cref="Probel.NDoctor.Domain.DAL.Exceptions.ItemNotFoundException">If the patient doesn't exist</exception>
-        PatientDto GetPatient(LightPatientDto patient);
+        PatientDto FindPatient(LightPatientDto patient);
 
         /// <summary>
         /// Removes the link that existed between the specified patient and the specified doctor.
@@ -102,7 +102,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <exception cref="EntityNotFoundException">If there's no link between the doctor and the patient</exception>
         /// <param name="patient">The patient.</param>
         /// <param name="doctor">The doctor.</param>
-        void RemoveLink(LightPatientDto patient, LightDoctorDto doctor);
+        void RemoveDoctorFor(LightPatientDto patient, LightDoctorDto doctor);
 
         #endregion Methods
     }

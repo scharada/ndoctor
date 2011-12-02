@@ -63,6 +63,7 @@
       <Link>Version.cs</Link>
     </Compile>
     <Compile Include="Components\AdministrationComponent.cs" />
+    <Compile Include="Components\ImportComponent.cs" />
     <Compile Include="Components\FamilyComponent.cs" />
     <Compile Include="Components\CalendarComponent.cs" />
     <Compile Include="Components\PathologyComponent.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Entities\PrescriptionDocument.cs" />
     <Compile Include="Exceptions\BusinessLogicException.cs" />
     <Compile Include="Exceptions\EmptyPasswordException.cs" />
+    <Compile Include="Exceptions\WrongIdTypeException.cs" />
     <Compile Include="Helpers\EntityEqualityComparer.cs" />
     <Compile Include="Mappings\Mapping.cs" />
     <Compile Include="Components\BaseComponent.cs" />
