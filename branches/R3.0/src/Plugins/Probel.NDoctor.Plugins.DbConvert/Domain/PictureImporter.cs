@@ -25,13 +25,25 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
     using System.Collections.Generic;
     using System.Data.SQLite;
     using System.Linq;
+    using System.Text;
 
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.DbConvert.Properties;
 
-    public class RecordImporter : MultipleImporter<MedicalRecordDto>
+    public class PictureImporter : MultipleImporter<PictureDto>
     {
+        #region Fields
+
+        private static TagDto DefaultTag = new TagDto()
+        {
+            Category = TagCategory.Picture,
+            Name = Messages.Title_DefaultPictureType,
+            Notes = Messages.Msg_DoneByConverter,
+        };
+
+        #endregion Fields
+
         #region Constructors
 
         /// <summary>
@@ -39,7 +51,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <param name="component">The component.</param>
-        public RecordImporter(SQLiteConnection connection, IImportComponent component)
+        public PictureImporter(SQLiteConnection connection, IImportComponent component)
             : base(connection, component)
         {
         }
@@ -48,7 +60,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         #region Properties
 
-        public static MedicalRecordDto[] Cache
+        public static PictureDto[] Cache
         {
             get { return InternalCache.Values.ToArray(); }
         }
@@ -57,35 +69,37 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         #region Methods
 
-        protected override MedicalRecordDto Map(SQLiteDataReader reader)
+        protected override PictureDto Map(SQLiteDataReader reader)
         {
-            var record = new MedicalRecordDto();
-            record.Tag = this.MapTag(reader["fk_MedicalCardType"] as long?);
+            var item = new PictureDto();
 
-            record.CreationDate = (reader["CreationDate"] as DateTime? ?? DateTime.Today).Date;
-            record.LastUpdate = (reader["UpdateDate"] as DateTime? ?? DateTime.Today).Date;
-            record.Rtf = reader["Remark"] as string;
-            record.Name = reader["Title"] as string;
+            item.Creation
+                = item.LastUpdate
+                = reader["InsertDate"] as DateTime? ?? DateTime.Now;
 
-            return record;
+            item.Bitmap = reader["Bitmap"] as byte[];
+            item.Notes = reader["Remark"] as string;
+            item.Tag = this.MapTag();
+
+            return item;
         }
 
         protected override string Sql(long id)
         {
             return string.Format(
-                        @"SELECT *
-                        FROM MedicalCard
-                        INNER JOIN MedicaCardlType ON MedicalCard.fk_MedicalCardType = MedicaCardlType.ID
+                      @"SELECT *
+                        FROM Picture
+                        INNER JOIN Patient_Picture ON Picture.Id = Picture.Id
                         WHERE fk_Patient = {0}", id);
         }
 
-        private TagDto MapTag(long? id)
+        private TagDto MapTag()
         {
-            /* There's a typo in the table name ;) */
-            var importer = new TagImporter(this.Connection, this.Component, TagCategory.MedicalRecord, "MedicaCardlType");
+            var importer = new TagImporter(this.Connection, this.Component, TagCategory.Picture, string.Empty);
+            importer.Default = DefaultTag;
             this.Relay(importer);
 
-            return importer.Import(id);
+            return importer.Import(-1);
         }
 
         #endregion Methods

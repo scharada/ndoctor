@@ -22,17 +22,21 @@
 namespace Probel.NDoctor.Plugins.DbConvert.Domain
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.SQLite;
 
     using Probel.Helpers.Events;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Plugins.DbConvert.Properties;
+    using log4net;
 
     public abstract class BaseImporter
     {
+        protected ILog Logger { get; private set; }
         #region Constructors
-
         public BaseImporter(SQLiteConnection connection, IImportComponent component)
         {
+            this.Logger = LogManager.GetLogger(this.GetType());
             this.Connection = connection;
             this.Component = component;
         }
@@ -63,6 +67,11 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         #region Methods
 
+        protected void HandleError(Exception ex)
+        {
+            this.Logger.Error(ex);
+            OnLogged(ex.Message);
+        }
         protected void OnLogged(string log)
         {
             if (this.Logged != null)
@@ -81,5 +90,82 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
         }
 
         #endregion Methods
+
+        #region Nested Types
+
+        protected class Identifier
+        {
+            #region Fields
+
+            private static readonly string defaultSegregator = Guid.NewGuid().ToString();
+
+            #endregion Fields
+
+            #region Constructors
+
+            public Identifier(long id, string segregator)
+            {
+                this.Segregator = segregator;
+                this.Value = id;
+            }
+
+            public Identifier(long id)
+                : this(id, defaultSegregator)
+            {
+            }
+
+            #endregion Constructors
+
+            #region Properties
+
+            public string Segregator
+            {
+                get;
+                private set;
+            }
+
+            public long Value
+            {
+                get;
+                private set;
+            }
+
+            #endregion Properties
+
+            #region Methods
+
+            public static bool operator !=(Identifier left, Identifier right)
+            {
+                return !(left == right);
+            }
+
+            public static bool operator ==(Identifier left, Identifier right)
+            {
+                return left.Equals(right);
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (obj == null) { return false; }
+                else if (obj is Identifier) { return this.GetHashCode() == obj.GetHashCode(); }
+                else { return false; }
+            }
+
+            public override int GetHashCode()
+            {
+                return (string.Format("{0}-{1}", this.Value, this.Segregator)).GetHashCode();
+            }
+
+            public override string ToString()
+            {
+                return string.Format("[{0}] {1}"
+                    , this.Value
+                    , this.Segregator);
+            }
+
+            #endregion Methods
+        }
+
+        #endregion Nested Types
     }
 }

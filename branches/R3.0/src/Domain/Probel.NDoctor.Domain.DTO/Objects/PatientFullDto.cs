@@ -66,6 +66,11 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         {
             this.Doctors = new ObservableCollection<DoctorFullDto>();
             this.MedicalRecords = new ObservableCollection<MedicalRecordDto>();
+            this.BmiHistory = new ObservableCollection<BmiDto>();
+            this.Pictures = new ObservableCollection<PictureDto>();
+            this.Appointments = new ObservableCollection<AppointmentDto>();
+            this.IllnessHistory = new ObservableCollection<IllnessPeriodDto>();
+            this.PrescriptionDocuments = new ObservableCollection<PrescriptionDocumentDto>();
         }
 
         #endregion Constructors
@@ -88,6 +93,12 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             }
         }
 
+        public ObservableCollection<AppointmentDto> Appointments
+        {
+            get;
+            private set;
+        }
+
         /// <summary>
         /// Gets or sets the birthdate.
         /// </summary>
@@ -102,6 +113,12 @@ namespace Probel.NDoctor.Domain.DTO.Objects
                 this.birthdate = value;
                 this.OnPropertyChanged("Birthdate");
             }
+        }
+
+        public ObservableCollection<BmiDto> BmiHistory
+        {
+            get;
+            private set;
         }
 
         /// <summary>
@@ -217,6 +234,12 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             }
         }
 
+        public ObservableCollection<IllnessPeriodDto> IllnessHistory
+        {
+            get;
+            private set;
+        }
+
         /// <summary>
         /// Gets or sets the inscription date.
         /// </summary>
@@ -306,6 +329,12 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             private set;
         }
 
+        public ObservableCollection<PictureDto> Pictures
+        {
+            get;
+            private set;
+        }
+
         /// <summary>
         /// Gets or sets the place of birth.
         /// </summary>
@@ -330,6 +359,12 @@ namespace Probel.NDoctor.Domain.DTO.Objects
                 this.practice = value;
                 this.OnPropertyChanged("Practice");
             }
+        }
+
+        public ObservableCollection<PrescriptionDocumentDto> PrescriptionDocuments
+        {
+            get;
+            private set;
         }
 
         /// <summary>

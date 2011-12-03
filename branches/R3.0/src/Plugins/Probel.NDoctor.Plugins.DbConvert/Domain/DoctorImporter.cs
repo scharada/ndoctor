@@ -30,17 +30,9 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.DbConvert.Properties;
 
-    public class DoctorImporter : BaseImporter
+    public class DoctorImporter : MultipleImporter<DoctorFullDto>
     {
         #region Constructors
-
-        /// <summary>
-        /// Initializes the <see cref="DoctorImporter"/> class.
-        /// </summary>
-        static DoctorImporter()
-        {
-            Cache = new Dictionary<long, DoctorFullDto>();
-        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DoctorImporter"/> class.
@@ -56,81 +48,50 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         #region Properties
 
-        public static DoctorFullDto[] Doctors
+        public static DoctorFullDto[] Cache
         {
-            get { return Cache.Values.ToArray(); }
-        }
-
-        private static Dictionary<long, DoctorFullDto> Cache
-        {
-            get;
-            set;
+            get { return InternalCache.Values.ToArray(); }
         }
 
         #endregion Properties
 
         #region Methods
 
-        public IEnumerable<DoctorFullDto> Import(long? id)
+        protected override DoctorFullDto Map(SQLiteDataReader reader)
         {
-            var result = new List<DoctorFullDto>();
-            if (!id.HasValue) return result;
+            var doctor = new DoctorFullDto();
+            doctor.Specialisation = this.MapSpecialisation(reader["fk_DoctorType"] as long?);
 
-            var sql = @"SELECT *
-                        FROM Doctor
-                        INNER JOIN Person ON Doctor.ID = Person.ID
-                        INNER JOIN DoctorType ON Doctor.fk_DoctorType = DoctorType.ID
-                        INNER JOIN Address ON Person.fk_Address = Address.ID";
+            doctor.Address.BoxNumber = reader["BoxNumber"] as string;
+            doctor.Address.City = reader["City"] as string;
+            doctor.Address.PostalCode = reader["PostalCode"] as string;
+            doctor.Address.Street = reader["Street"] as string;
+            doctor.Address.StreetNumber = reader["StreetNumber"] as string;
 
-            using (var command = new SQLiteCommand(sql, this.Connection))
-            using (var reader = command.ExecuteReader())
-            {
-                int count = 0;
-                while (reader.Read())
-                {
-                    var current = this.Map(reader);
-                    result.Add(current);
-                    count++;
-                }
-                this.OnLogged(Messages.Log_DoctorCount, count, id.Value);
-            }
+            doctor.FirstName = reader["FirstName"] as string;
+            doctor.Gender = (reader["Sex"] as string == "M") ? Gender.Male : Gender.Female;
+            doctor.LastName = reader["LastName"] as string;
+            doctor.MailPro = reader["Mail"] as string;
+            doctor.MobilePro = reader["MobilePro"] as string;
+            doctor.PhonePro = reader["PhonePro"] as string;
 
-            return result;
+            doctor.Counter = reader["Counter"] as int? ?? 0;
+            doctor.IsComplete = reader["IsComplete"] as bool? ?? false;
+            doctor.LastUpdate = reader["LastUpdate"] as DateTime? ?? DateTime.Today;
+            doctor.Thumbnail = reader["Thumbnail"] as byte[];
+
+            return doctor;
         }
 
-        private DoctorFullDto Map(SQLiteDataReader reader)
+        protected override string Sql(long id)
         {
-            var id = reader["Id"] as long?;
-
-            if (!id.HasValue) { throw new NullReferenceException(); }
-            else if (Cache.ContainsKey(id.Value)) { return Cache[id.Value]; }
-            else
-            {
-                var doctor = new DoctorFullDto();
-                doctor.Specialisation = this.MapSpecialisation(reader["fk_DoctorType"] as long?);
-
-                doctor.Address.BoxNumber = reader["BoxNumber"] as string;
-                doctor.Address.City = reader["City"] as string;
-                doctor.Address.PostalCode = reader["PostalCode"] as string;
-                doctor.Address.Street = reader["Street"] as string;
-                doctor.Address.StreetNumber = reader["StreetNumber"] as string;
-
-                doctor.FirstName = reader["FirstName"] as string;
-                doctor.Gender = (reader["Sex"] as string == "M") ? Gender.Male : Gender.Female;
-                doctor.LastName = reader["LastName"] as string;
-                doctor.MailPro = reader["Mail"] as string;
-                doctor.MobilePro = reader["MobilePro"] as string;
-                doctor.PhonePro = reader["PhonePro"] as string;
-
-                doctor.Counter = reader["Counter"] as int? ?? 0;
-                doctor.IsComplete = reader["IsComplete"] as bool? ?? false;
-                doctor.LastUpdate = reader["LastUpdate"] as DateTime? ?? DateTime.Today;
-                doctor.Thumbnail = reader["Thumbnail"] as byte[];
-
-                Cache.Add(id.Value, doctor);
-
-                return doctor;
-            }
+            return string.Format(@"SELECT *
+                                   FROM Doctor
+                                   INNER JOIN Person ON Doctor.ID = Person.ID
+                                   INNER JOIN DoctorType ON Doctor.fk_DoctorType = DoctorType.ID
+                                   INNER JOIN Address ON Person.fk_Address = Address.ID
+                                   INNER JOIN Patient_Doctor ON Patient_Doctor.fk_Doctor = Doctor.ID
+                                   WHERE Patient_Doctor.fk_Patient = {0}", id);
         }
 
         private TagDto MapSpecialisation(long? id)

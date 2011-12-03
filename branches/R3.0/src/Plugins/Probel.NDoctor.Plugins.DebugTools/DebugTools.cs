@@ -68,10 +68,6 @@ namespace Probel.NDoctor.Plugins.DebugTools
         {
             this.FillDefaultDatabase();
             this.LoadUserForDebug();
-            //PluginContext.Host.Invoke(() =>
-            //{
-            //    PluginContext.Host.AddDockablePane("Debug", new DebugControl());
-            //});
         }
 
         private void FillDefaultDatabase()

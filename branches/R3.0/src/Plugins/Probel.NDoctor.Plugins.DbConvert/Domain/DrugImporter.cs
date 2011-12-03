@@ -21,32 +21,32 @@
 
 namespace Probel.NDoctor.Plugins.DbConvert.Domain
 {
-    using System;
-    using System.Collections.Generic;
     using System.Data.SQLite;
     using System.Linq;
 
-    using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.DbConvert.Properties;
 
-    public class TagImporter : SingleImporter<TagDto>
+    public class DrugImporter : SingleImporter<DrugDto>
     {
         #region Constructors
 
-        public TagImporter(SQLiteConnection connection, IImportComponent component, TagCategory category, string table)
-            : base(connection, component, category.ToString())
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InsuranceImporter"/> class.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <param name="component">The component.</param>
+        public DrugImporter(SQLiteConnection connection, IImportComponent component)
+            : base(connection, component, "Insurance")
         {
-            this.Table = table;
-            this.Category = category;
         }
 
         #endregion Constructors
 
         #region Properties
 
-        public static TagDto[] Cache
+        public static DrugDto[] Cache
         {
             get
             {
@@ -54,40 +54,33 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             }
         }
 
-        private TagCategory Category
-        {
-            get;
-            set;
-        }
-
-        private string Table
-        {
-            get;
-            set;
-        }
-
         #endregion Properties
 
         #region Methods
 
-        protected override TagDto Map(SQLiteDataReader reader)
+        protected override DrugDto Map(SQLiteDataReader reader)
         {
-            var tag = new TagDto(Category);
-            tag.Name = reader["Title"] as string;
-            tag.Notes = Messages.Msg_DoneByConverter;
+            var drug = new DrugDto();
 
-            return tag;
+            drug.Name = reader["Title"] as string;
+            drug.Notes = Messages.Msg_DoneByConverter;
+            drug.Tag = this.MapTag(reader["fk_DrugType"] as long?);
+
+            return drug;
         }
 
         protected override string Sql(long id)
         {
-            if (string.IsNullOrWhiteSpace(this.Table)) return string.Empty;
-            else
-            {
-                return string.Format("SELECT * FROM {0} WHERE id = {1}"
-                    , this.Table
-                    , id);
-            }
+            return string.Format("SELECT * FROM Drug WHERE Id = {0}"
+                , id);
+        }
+
+        private TagDto MapTag(long? id)
+        {
+            var importer = new TagImporter(this.Connection, this.Component, TagCategory.Drug, "DrugType");
+            this.Relay(importer);
+
+            return importer.Import(id);
         }
 
         #endregion Methods

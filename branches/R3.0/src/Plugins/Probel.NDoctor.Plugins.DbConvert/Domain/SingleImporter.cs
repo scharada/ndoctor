@@ -38,7 +38,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
         /// </summary>
         static SingleImporter()
         {
-            Cache = new Dictionary<long, T>();
+            InternalCache = new Dictionary<Identifier, T>();
         }
 
         /// <summary>
@@ -46,9 +46,11 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <param name="component">The component.</param>
-        public SingleImporter(SQLiteConnection connection, IImportComponent component)
+        public SingleImporter(SQLiteConnection connection, IImportComponent component, string segragator)
             : base(connection, component)
         {
+            this.Default = default(T);
+            this.Segragator = segragator;
         }
 
         #endregion Constructors
@@ -56,51 +58,61 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
         #region Properties
 
         /// <summary>
+        /// Gets the default value of the type T.
+        /// </summary>
+        public virtual T Default
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets or sets the cache.
         /// </summary>
         /// <value>
         /// The cache.
         /// </value>
-        protected static Dictionary<long, T> Cache
+        protected static Dictionary<Identifier, T> InternalCache
         {
             get;
             set;
+        }
+
+        protected string Segragator
+        {
+            get;
+            private set;
         }
 
         #endregion Properties
 
         #region Methods
 
-        public T Import(long? id)
+        public T Import(long? rid)
         {
-            try
-            {
-                if (!id.HasValue) return default(T);
-                else if (Cache.ContainsKey(id.Value)) { return Cache[id.Value]; }
-                else
-                {
+            Identifier id;
+            if (!rid.HasValue || string.IsNullOrWhiteSpace(this.Sql(-1))) return this.Default;
+            else { id = new Identifier(rid.Value, this.Segragator); }
 
-                    using (var command = new SQLiteCommand(this.Sql(id.Value), this.Connection))
-                    using (var reader = command.ExecuteReader())
+            if (InternalCache.ContainsKey(id)) { return InternalCache[id]; }
+            else
+            {
+
+                using (var command = new SQLiteCommand(this.Sql(id.Value), this.Connection))
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
                     {
-                        if (reader.Read())
-                        {
-                            var result = Map(reader);
-                            this.AddInCache(id.Value, result);
-                            return result;
-                        }
-                        else
-                        {
-                            this.OnLogged(Messages.Log_NoItem, id.Value);
-                            return default(T);
-                        }
+                        var result = Map(reader);
+                        this.AddInCache(new Identifier(id.Value, this.Segragator), result);
+                        return result;
+                    }
+                    else
+                    {
+                        this.OnLogged(Messages.Log_NoItem, id.Value);
+                        return this.Default;
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(string.Format(Messages.Error_ImpossibleToMap, typeof(T).Name)
-                    , ex);
             }
         }
 
@@ -109,16 +121,13 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
         /// </summary>
         /// <param name="id">The id of the stored item in the cache.</param>
         /// <param name="item">The item to cache.</param>
-        protected void AddInCache(long id, T item)
+        protected void AddInCache(Identifier id, T item)
         {
-            if (!Cache.ContainsKey(id))
+            if (!InternalCache.ContainsKey(id))
             {
-                this.Create(item);
-                Cache.Add(id, item);
+                InternalCache.Add(id, item);
             }
         }
-
-        protected abstract void Create(T item);
 
         /// <summary>
         /// Maps the specified reader into the type <c>T</c>.

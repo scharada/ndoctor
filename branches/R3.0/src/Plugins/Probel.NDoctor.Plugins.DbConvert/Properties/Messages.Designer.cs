@@ -61,7 +61,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Impossible convertir &apos;{0}&apos;.
+        ///   Looks up a localized string similar to Impossibla to map &apos;{0}&apos;.
         /// </summary>
         internal static string Error_ImpossibleToMap {
             get {
@@ -70,7 +70,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Base de données sélectionnée.
+        ///   Looks up a localized string similar to Database selected.
         /// </summary>
         internal static string Log_DbChosen {
             get {
@@ -106,7 +106,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aucune données avec l&apos;identifiant &apos;{0}&apos;.
+        ///   Looks up a localized string similar to No item with id &apos;{0}&apos; was found.
         /// </summary>
         internal static string Log_NoItem {
             get {
@@ -124,7 +124,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} record(s) for the patient &apos;{1}&apos;.
+        ///   Looks up a localized string similar to {0} élément(s) importé pour le patient &apos;{1}&apos;.
         /// </summary>
         internal static string Log_RecordCount {
             get {
@@ -151,7 +151,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fichier.
+        ///   Looks up a localized string similar to File.
         /// </summary>
         internal static string Menu_File {
             get {
@@ -192,6 +192,33 @@ namespace Probel.NDoctor.Plugins.DbConvert.Properties {
         internal static string Title_DbConvertManager {
             get {
                 return ResourceManager.GetString("Title_DbConvertManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work.
+        /// </summary>
+        internal static string Title_DefaultAppointementType {
+            get {
+                return ResourceManager.GetString("Title_DefaultAppointementType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medical pictures.
+        /// </summary>
+        internal static string Title_DefaultPictureType {
+            get {
+                return ResourceManager.GetString("Title_DefaultPictureType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prescription.
+        /// </summary>
+        internal static string Title_DefaultPrescription {
+            get {
+                return ResourceManager.GetString("Title_DefaultPrescription", resourceCulture);
             }
         }
         

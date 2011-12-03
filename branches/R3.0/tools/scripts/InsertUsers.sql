@@ -28,10 +28,10 @@ INSERT INTO Tag(Id, Category, Name) VALUES(17, 'PrescriptionDocument', 'Default'
 INSERT INTO Tag(Id, Category, Name) VALUES(18, 'Appointment', 'Privé');
 INSERT INTO Tag(Id, Category, Name) VALUES(19, 'Appointment', 'Professionnel');
 
-INSERT INTO Pathology (Id, Name, Notes, Tag_Id) VALUES( 1, 'Grippe', 'Some notes', 11);
-INSERT INTO Pathology (Id, Name, Notes, Tag_Id) VALUES( 2, 'Rhume', 'Some notes', 11);
-INSERT INTO Pathology (Id, Name, Notes, Tag_Id) VALUES( 3, 'Pneumonie', 'Some notes', 12);
-INSERT INTO Pathology (Id, Name, Notes, Tag_Id) VALUES( 4, 'Angine', 'Some notes', 12);
+INSERT INTO Pathology (Id, Name, Notes, Tag_Id) VALUES( 1, 'Grippe &&', 'Some notes', 11);
+INSERT INTO Pathology (Id, Name, Notes, Tag_Id) VALUES( 2, 'Rhume &&', 'Some notes', 11);
+INSERT INTO Pathology (Id, Name, Notes, Tag_Id) VALUES( 3, 'Pneumonie &&', 'Some notes', 12);
+INSERT INTO Pathology (Id, Name, Notes, Tag_Id) VALUES( 4, 'Angine &&', 'Some notes', 12);
 
 INSERT INTO Role(Id, Name) VALUES(1, 'Role 1');
 INSERT INTO Role(Id, Name) VALUES(2, 'Role 2');

@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Error_ImpossibleToMap" xml:space="preserve">
-    <value>Impossible convertir '{0}'</value>
+    <value>Impossibla to map '{0}'</value>
     <comment>Impossibla to map '{0}'</comment>
   </data>
   <data name="Log_DbChosen" xml:space="preserve">
-    <value>Base de données sélectionnée</value>
+    <value>Database selected</value>
     <comment>Database selected</comment>
   </data>
   <data name="Log_DoctorCount" xml:space="preserve">
@@ -138,7 +138,7 @@
     <comment>The selected database is invalid</comment>
   </data>
   <data name="Log_NoItem" xml:space="preserve">
-    <value>Aucune données avec l'identifiant '{0}'</value>
+    <value>No item with id '{0}' was found</value>
     <comment>No item with id '{0}' was found</comment>
   </data>
   <data name="Log_PatientCount" xml:space="preserve">
@@ -146,8 +146,8 @@
     <comment>{0} patient(s) imported.</comment>
   </data>
   <data name="Log_RecordCount" xml:space="preserve">
-    <value>{0} record(s) for the patient '{1}'</value>
-    <comment>{0} record(s) for the patient '{1}'</comment>
+    <value>{0} élément(s) importé pour le patient '{1}'</value>
+    <comment>{0} item(s) imported for the patient '{1}'</comment>
   </data>
   <data name="Log_StartImporting" xml:space="preserve">
     <value>Start importing...</value>
@@ -158,7 +158,7 @@
     <comment>Action</comment>
   </data>
   <data name="Menu_File" xml:space="preserve">
-    <value>Fichier</value>
+    <value>File</value>
     <comment>File</comment>
   </data>
   <data name="Msg_DoneByConverter" xml:space="preserve">
@@ -176,6 +176,18 @@
   <data name="Title_DbConvertManager" xml:space="preserve">
     <value>Import data</value>
     <comment>Import data</comment>
+  </data>
+  <data name="Title_DefaultAppointementType" xml:space="preserve">
+    <value>Work</value>
+    <comment>Work</comment>
+  </data>
+  <data name="Title_DefaultPictureType" xml:space="preserve">
+    <value>Medical pictures</value>
+    <comment>Medical pictures</comment>
+  </data>
+  <data name="Title_DefaultPrescription" xml:space="preserve">
+    <value>Prescription</value>
+    <comment>Prescription</comment>
   </data>
   <data name="Title_Import" xml:space="preserve">
     <value>Import</value>

@@ -75,12 +75,14 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
                 this.OnLogged(Messages.Log_PatientCount, count);
             }
 
-            using (this.Component.UnitOfWork)
-            {
-                this.Component.Create(newPatients);
-                this.Component.Create(DoctorImporter.Doctors);
-                this.Component.Create(RecordImporter.Records);
-            }
+            using (this.Component.UnitOfWork) { this.Component.Create(newPatients.ToArray()); }
+        }
+
+        private IEnumerable<BmiDto> MapBmiHistory(long? id)
+        {
+            var importer = new BmiImporter(this.Connection, this.Component);
+
+            return importer.Import(id);
         }
 
         private IEnumerable<DoctorFullDto> MapDoctors(long? id)
@@ -90,13 +92,28 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             return importer.Import(id);
         }
 
+        private IEnumerable<IllnessPeriodDto> MapIllnessHistory(long? id)
+        {
+            var importer = new IllnessPeriodImporter(this.Connection, this.Component);
+            this.Relay(importer);
+
+            return importer.Import(id);
+        }
+
         private InsuranceDto MapInsurance(SQLiteDataReader reader)
         {
             var importer = new InsuranceImporter(this.Connection, this.Component);
             this.Relay(importer);
 
-            var practice = importer.Import((reader[Columns.Practice] as long?));
-            return practice;
+            return importer.Import((reader[Columns.Practice] as long?));
+        }
+
+        private IEnumerable<AppointmentDto> MapMeetings(long? id)
+        {
+            var importer = new AppointmentImporter(this.Connection, this.Component);
+            this.Relay(importer);
+
+            return importer.Import(id);
         }
 
         private PatientFullDto MapPatient(SQLiteDataReader reader)
@@ -139,8 +156,21 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
             current.Doctors.Refill(this.MapDoctors(reader[Columns.Id] as long?));
             current.MedicalRecords.Refill(this.MapRecords(reader[Columns.Id] as long?));
+            current.IllnessHistory.Refill(this.MapIllnessHistory(reader[Columns.Id] as long?));
+            current.PrescriptionDocuments.Refill(this.MapPrescriptions(reader[Columns.Id] as long?));
+            current.BmiHistory.Refill(this.MapBmiHistory(reader[Columns.Id] as long?));
+            current.Pictures.Refill(this.MapPictures(reader[Columns.Id] as long?));
+            current.Appointments.Refill(this.MapMeetings(reader[Columns.Id] as long?));
 
             return current;
+        }
+
+        private IEnumerable<PictureDto> MapPictures(long? id)
+        {
+            var importer = new PictureImporter(this.Connection, this.Component);
+            this.Relay(importer);
+
+            return importer.Import(id);
         }
 
         private PracticeDto MapPractice(SQLiteDataReader reader)
@@ -149,6 +179,14 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             this.Relay(importer);
 
             return importer.Import((reader[Columns.Practice] as long?));
+        }
+
+        private IEnumerable<PrescriptionDocumentDto> MapPrescriptions(long? id)
+        {
+            var importer = new PrescriptionDocumentImporter(this.Connection, this.Component);
+            this.Relay(importer);
+
+            return importer.Import(id);
         }
 
         private ProfessionDto MapProfession(SQLiteDataReader reader)
@@ -160,6 +198,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
         private IEnumerable<MedicalRecordDto> MapRecords(long? id)
         {
             var importer = new RecordImporter(this.Connection, this.Component);
+            this.Relay(importer);
 
             return importer.Import(id);
         }

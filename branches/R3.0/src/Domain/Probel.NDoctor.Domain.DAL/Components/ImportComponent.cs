@@ -21,13 +21,14 @@
 
 namespace Probel.NDoctor.Domain.DAL.Components
 {
-    using System.Collections.Generic;
+    using System;
+    using System.Linq;
 
     using AutoMapper;
 
     using NHibernate;
+    using NHibernate.Linq;
 
-    using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -61,124 +62,37 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Creates the specified patients.
         /// </summary>
         /// <param name="patients"></param>
-        public void Create(IEnumerable<PatientFullDto> patients)
+        public void Create(PatientFullDto[] patients)
         {
             this.CheckSession();
-            var entities = Mapper.Map<IEnumerable<PatientFullDto>, IEnumerable<Patient>>(patients);
-
-            using (var tx = this.Session.BeginTransaction())
+            var entities = Mapper.Map<PatientFullDto[], Patient[]>(patients);
+            this.Save(entities, e =>
             {
-                foreach (var entity in entities)
-                {
-                    this.MapReputation(entity);
-
-                    this.Session.SaveOrUpdate(entity);
-                }
-                tx.Commit();
-            }
+                this.MapReputation(e as Patient);
+                this.MapInsurance(e as Patient);
+            });
         }
 
         /// <summary>
-        /// Creates the specified reputation and update its id after creation.
+        /// Gets the default user.
         /// </summary>
-        /// <param name="reputation">The reputation.</param>
-        public void Create(ReputationDto reputation)
+        /// <returns></returns>
+        public LightUserDto GetDefaultUser()
         {
-            Assert.IsNotNull(reputation);
             this.CheckSession();
 
-            var entity = Mapper.Map<ReputationDto, Reputation>(reputation);
-            var id = this.Session.Save(entity);
-
-            reputation.Id = (long)id;
+            var entity = (from u in this.Session.Query<User>()
+                          where u.IsDefault
+                          select u).FirstOrDefault();
+            return Mapper.Map<User, LightUserDto>(entity);
         }
 
-        /// <summary>
-        /// Creates the specified reputation and update its id after creation.
-        /// </summary>
-        /// <param name="practice">The reputation.</param>
-        public void Create(PracticeDto practice)
+        private void MapInsurance(Patient entity)
         {
-            Assert.IsNotNull(practice);
-            this.CheckSession();
-
-            var entity = Mapper.Map<PracticeDto, Practice>(practice);
-            var id = this.Session.Save(entity);
-
-            practice.Id = (long)id;
-        }
-
-        /// <summary>
-        /// Creates the specified insurance and update its id after creation.
-        /// </summary>
-        /// <param name="insurance"></param>
-        public void Create(InsuranceDto insurance)
-        {
-            Assert.IsNotNull(insurance);
-            this.CheckSession();
-
-            var entity = Mapper.Map<InsuranceDto, Insurance>(insurance);
-            var id = this.Session.Save(entity);
-
-            insurance.Id = (long)id;
-        }
-
-        /// <summary>
-        /// Creates the specified tag and update its id after creation.
-        /// </summary>
-        /// <param name="tag">The tag.</param>
-        public void Create(TagDto tag)
-        {
-            Assert.IsNotNull(tag);
-            this.CheckSession();
-
-            var entity = Mapper.Map<TagDto, Tag>(tag);
-            var id = this.Session.Save(entity);
-
-            tag.Id = (long)id;
-        }
-
-        /// <summary>
-        /// Creates the doctors
-        /// </summary>
-        /// <param name="doctors">The doctor.</param>
-        public void Create(IEnumerable<DoctorFullDto> doctors)
-        {
-            Assert.IsNotNull(doctors);
-            this.CheckSession();
-
-            var entities = Mapper.Map<IEnumerable<DoctorFullDto>, IEnumerable<Doctor>>(doctors);
-
-            using (var tx = this.Session.BeginTransaction())
+            if (entity.Insurance != null)
             {
-                foreach (var entity in entities)
-                {
-                    this.MapSpecialisation(entity);
-                    this.Session.SaveOrUpdate(entity);
-                }
-                tx.Commit();
-            }
-        }
-
-        /// <summary>
-        /// Creates the records
-        /// </summary>
-        /// <param name="records"></param>
-        public void Create(IEnumerable<MedicalRecordDto> records)
-        {
-            Assert.IsNotNull(records);
-            this.CheckSession();
-
-            var entities = Mapper.Map<IEnumerable<MedicalRecordDto>, IEnumerable<MedicalRecord>>(records);
-
-            using (var tx = this.Session.BeginTransaction())
-            {
-                foreach (var entity in entities)
-                {
-                    this.MapType(entity);
-                    this.Session.SaveOrUpdate(entity);
-                }
-                tx.Commit();
+                var insurance = this.Session.Get<Insurance>(entity.Insurance.Id);
+                if (insurance != null) entity.Insurance = insurance;
             }
         }
 
@@ -191,21 +105,24 @@ namespace Probel.NDoctor.Domain.DAL.Components
             }
         }
 
-        private void MapSpecialisation(Doctor entity)
+        private void Save(Entity[] entities, Action<object> action)
         {
-            if (entity.Specialisation != null)
+            try
             {
-                var reputation = this.Session.Get<Tag>(entity.Specialisation.Id);
-                if (reputation != null) entity.Specialisation = reputation;
-            }
-        }
+                using (var tx = this.Session.BeginTransaction())
+                {
+                    for (int i = 0; i < entities.Length; i++)
+                    {
+                        if (action != null) action(entities[i]);
 
-        private void MapType(MedicalRecord entity)
-        {
-            if (entity.Tag != null)
+                        this.Session.SaveOrUpdate(entities[i]);
+                    }
+                    tx.Commit();
+                }
+            }
+            catch (Exception ex)
             {
-                var tag = this.Session.Get<Tag>(entity.Tag.Id);
-                if (tag != null) entity.Tag = tag;
+                throw new QueryException(ex);
             }
         }
 

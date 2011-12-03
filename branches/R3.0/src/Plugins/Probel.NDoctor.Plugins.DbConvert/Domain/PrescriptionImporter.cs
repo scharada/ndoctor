@@ -21,8 +21,6 @@
 
 namespace Probel.NDoctor.Plugins.DbConvert.Domain
 {
-    using System;
-    using System.Collections.Generic;
     using System.Data.SQLite;
     using System.Linq;
 
@@ -30,7 +28,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.DbConvert.Properties;
 
-    public class RecordImporter : MultipleImporter<MedicalRecordDto>
+    class PrescriptionImporter : MultipleImporter<PrescriptionDto>
     {
         #region Constructors
 
@@ -39,7 +37,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <param name="component">The component.</param>
-        public RecordImporter(SQLiteConnection connection, IImportComponent component)
+        public PrescriptionImporter(SQLiteConnection connection, IImportComponent component)
             : base(connection, component)
         {
         }
@@ -48,7 +46,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         #region Properties
 
-        public static MedicalRecordDto[] Cache
+        public static PrescriptionDto[] Chache
         {
             get { return InternalCache.Values.ToArray(); }
         }
@@ -57,35 +55,45 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         #region Methods
 
-        protected override MedicalRecordDto Map(SQLiteDataReader reader)
+        protected override PrescriptionDto Map(SQLiteDataReader reader)
         {
-            var record = new MedicalRecordDto();
-            record.Tag = this.MapTag(reader["fk_MedicalCardType"] as long?);
+            var item = new PrescriptionDto();
 
-            record.CreationDate = (reader["CreationDate"] as DateTime? ?? DateTime.Today).Date;
-            record.LastUpdate = (reader["UpdateDate"] as DateTime? ?? DateTime.Today).Date;
-            record.Rtf = reader["Remark"] as string;
-            record.Name = reader["Title"] as string;
+            item.Drug = this.MapDrug(reader["fk_Drug"] as long?);
+            item.Tag = this.MapTag();
+            item.Notes = reader["Remark"] as string;
 
-            return record;
+            return item;
         }
 
         protected override string Sql(long id)
         {
             return string.Format(
-                        @"SELECT *
-                        FROM MedicalCard
-                        INNER JOIN MedicaCardlType ON MedicalCard.fk_MedicalCardType = MedicaCardlType.ID
-                        WHERE fk_Patient = {0}", id);
+                      @"SELECT *
+                        FROM Prescription
+                        INNER JOIN Prescription_Drug ON Prescription.ID = Prescription_Drug.fk_Prescription
+                        INNER JOIN Patient_Prescription ON Prescription.ID = Patient_Prescription.fk_Prescription
+                        WHERE Patient_Prescription.fk_Patient = {0}", id);
         }
 
-        private TagDto MapTag(long? id)
+        private DrugDto MapDrug(long? id)
         {
-            /* There's a typo in the table name ;) */
-            var importer = new TagImporter(this.Connection, this.Component, TagCategory.MedicalRecord, "MedicaCardlType");
+            var importer = new DrugImporter(this.Connection, this.Component);
             this.Relay(importer);
 
             return importer.Import(id);
+        }
+
+        private TagDto MapTag()
+        {
+            var tagImporter = new TagImporter(this.Connection, this.Component, TagCategory.Prescription, string.Empty);
+            tagImporter.Default = new TagDto()
+            {
+                Category = TagCategory.Prescription,
+                Name = Messages.Title_DefaultPrescription,
+                Notes = Messages.Msg_DoneByConverter,
+            };
+            return tagImporter.Import(-1);
         }
 
         #endregion Methods

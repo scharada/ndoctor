@@ -64,8 +64,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbConvert.cs" />
+    <Compile Include="Domain\AppointmentImporter.cs" />
     <Compile Include="Domain\BaseImporter.cs" />
+    <Compile Include="Domain\BmiImporter.cs" />
     <Compile Include="Domain\DoctorImporter.cs" />
+    <Compile Include="Domain\DrugImporter.cs" />
+    <Compile Include="Domain\IllnessPeriodImporter.cs" />
+    <Compile Include="Domain\MultipleImporter.cs" />
+    <Compile Include="Domain\PathologyImporter.cs" />
+    <Compile Include="Domain\PictureImporter.cs" />
+    <Compile Include="Domain\PrescriptionDocumentImporter.cs" />
+    <Compile Include="Domain\PrescriptionImporter.cs" />
     <Compile Include="Domain\TagImporter.cs" />
     <Compile Include="Domain\RecordImporter.cs" />
     <Compile Include="Domain\SingleImporter.cs" />

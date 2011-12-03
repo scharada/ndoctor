@@ -23,6 +23,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 {
     using System;
     using System.Data.SQLite;
+    using System.Linq;
 
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -38,21 +39,25 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
         /// <param name="connection">The connection.</param>
         /// <param name="component">The component.</param>
         public InsuranceImporter(SQLiteConnection connection, IImportComponent component)
-            : base(connection, component)
+            : base(connection, component, "Insurance")
         {
         }
 
         #endregion Constructors
 
-        #region Methods
+        #region Properties
 
-        protected override void Create(InsuranceDto item)
+        public static InsuranceDto[] Cache
         {
-            using (this.Component.UnitOfWork)
+            get
             {
-                this.Component.Create(item);
+                return InternalCache.Values.ToArray();
             }
         }
+
+        #endregion Properties
+
+        #region Methods
 
         protected override InsuranceDto Map(SQLiteDataReader reader)
         {

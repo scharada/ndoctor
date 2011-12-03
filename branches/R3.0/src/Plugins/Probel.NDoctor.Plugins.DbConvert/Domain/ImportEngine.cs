@@ -30,6 +30,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.DbConvert.Properties;
+    using log4net;
 
     public class ImportEngine
     {
@@ -43,6 +44,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         public ImportEngine(string path)
         {
+            this.Logger = LogManager.GetLogger(this.GetType());
             this.path = path;
         }
 
@@ -58,6 +60,12 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         #region Methods
 
+        protected ILog Logger { get; private set; }
+        protected void HandleError(Exception ex)
+        {
+            this.Logger.Error(ex);
+            OnLogged(ex.Message);
+        }
         public bool Check()
         {
             var connection = new SQLiteConnection(string.Format("Data Source={0};Version=3;", this.path));
@@ -70,7 +78,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             }
             catch (Exception ex)
             {
-                this.OnLogged(ex.ToString());
+                this.HandleError(ex);
                 hasSucceeded = false;
             }
             finally
@@ -98,7 +106,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             }
             catch (Exception ex)
             {
-                this.OnLogged(ex.ToString());
+                this.HandleError(ex);
             }
             finally
             {

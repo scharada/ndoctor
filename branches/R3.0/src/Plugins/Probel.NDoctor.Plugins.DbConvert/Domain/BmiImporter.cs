@@ -25,28 +25,31 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
     using System.Collections.Generic;
     using System.Data.SQLite;
     using System.Linq;
+    using System.Text;
 
-    using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.DbConvert.Properties;
 
-    public class TagImporter : SingleImporter<TagDto>
+    public class BmiImporter : MultipleImporter<BmiDto>
     {
         #region Constructors
 
-        public TagImporter(SQLiteConnection connection, IImportComponent component, TagCategory category, string table)
-            : base(connection, component, category.ToString())
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DoctorImporter"/> class.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <param name="component">The component.</param>
+        public BmiImporter(SQLiteConnection connection, IImportComponent component)
+            : base(connection, component)
         {
-            this.Table = table;
-            this.Category = category;
         }
 
         #endregion Constructors
 
         #region Properties
 
-        public static TagDto[] Cache
+        public static BmiDto[] Cache
         {
             get
             {
@@ -54,40 +57,34 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             }
         }
 
-        private TagCategory Category
+        public static BmiDto[] Records
         {
-            get;
-            set;
-        }
-
-        private string Table
-        {
-            get;
-            set;
+            get { return InternalCache.Values.ToArray(); }
         }
 
         #endregion Properties
 
         #region Methods
 
-        protected override TagDto Map(SQLiteDataReader reader)
+        protected override BmiDto Map(SQLiteDataReader reader)
         {
-            var tag = new TagDto(Category);
-            tag.Name = reader["Title"] as string;
-            tag.Notes = Messages.Msg_DoneByConverter;
+            var record = new BmiDto();
 
-            return tag;
+            var date = reader["Date"] as DateTime? ?? DateTime.Today;
+
+            record.Date = date.Date;
+            record.Height = (int)(reader["Height"] as long? ?? 0);
+            record.Weight = (float)(reader["Weight"] as decimal? ?? 0);
+
+            return record;
         }
 
         protected override string Sql(long id)
         {
-            if (string.IsNullOrWhiteSpace(this.Table)) return string.Empty;
-            else
-            {
-                return string.Format("SELECT * FROM {0} WHERE id = {1}"
-                    , this.Table
-                    , id);
-            }
+            return string.Format(
+                      @"SELECT *
+                        FROM Bmi
+                        WHERE fk_Patient = {0}", id);
         }
 
         #endregion Methods

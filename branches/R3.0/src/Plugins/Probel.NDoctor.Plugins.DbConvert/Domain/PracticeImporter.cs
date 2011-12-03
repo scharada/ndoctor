@@ -38,21 +38,13 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
         /// </summary>
         /// <param name="connection">The connection.</param>
         public PracticeImporter(SQLiteConnection connection, IImportComponent component)
-            : base(connection, component)
+            : base(connection, component, "Practice")
         {
         }
 
         #endregion Constructors
 
         #region Methods
-
-        protected override void Create(PracticeDto item)
-        {
-            using (this.Component.UnitOfWork)
-            {
-                this.Component.Create(item);
-            }
-        }
 
         protected override PracticeDto Map(SQLiteDataReader reader)
         {
