@@ -21,12 +21,37 @@ namespace Probel.NDoctor.Domain.DAL.Entities
     /// </summary>
     public class Entity
     {
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Entity"/> class.
+        /// </summary>
+        public Entity()
+        {
+            this.IsImported = false;
+        }
+
+        #endregion Constructors
+
         #region Properties
 
         /// <summary>
         /// Gets the id.
         /// </summary>
         public virtual long Id
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this entity is imported from somewhere else.
+        /// By imported, understand the entity wasn't added manually in the database
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if this instance is imported; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool IsImported
         {
             get;
             set;

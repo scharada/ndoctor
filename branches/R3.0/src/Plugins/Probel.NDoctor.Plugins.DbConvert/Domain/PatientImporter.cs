@@ -26,6 +26,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
     using System.Collections.ObjectModel;
     using System.Data;
     using System.Data.SQLite;
+    using System.Threading;
 
     using Probel.Helpers.Conversions;
     using Probel.NDoctor.Domain.DTO.Components;
@@ -36,7 +37,13 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
     {
         #region Fields
 
-        private static readonly TagDto PatientTag = new TagDto() { Category = TagCategory.Patient, Name = "Patient", Notes = Messages.Msg_DoneByConverter };
+        private static readonly TagDto PatientTag = new TagDto()
+        {
+            Category = TagCategory.Patient,
+            Name = "Patient",
+            Notes = Messages.Msg_DoneByConverter,
+            IsImported = true,
+        };
 
         #endregion Fields
 
@@ -51,11 +58,23 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         #region Methods
 
+        public long Count()
+        {
+            var sql = "SELECT COUNT(*) FROM Patient";
+            using (var command = new SQLiteCommand(sql, this.Connection))
+            {
+                return (long)command.ExecuteScalar();
+            }
+        }
+
         public void Import()
         {
             var newPatients = new List<PatientFullDto>();
 
             if (this.Connection.State != ConnectionState.Open) this.Connection.Open();
+
+            long count = this.Count();
+            long step = 1;
 
             var sql = @"SELECT *
                         FROM Patient
@@ -65,17 +84,24 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             using (var command = new SQLiteCommand(sql, this.Connection))
             using (var reader = command.ExecuteReader())
             {
-                int count = 0;
                 while (reader.Read())
                 {
                     var current = this.MapPatient(reader);
                     newPatients.Add(current);
-                    count++;
+                    this.OnProgressChanged((int)(Percentage(count, ++step)));
                 }
                 this.OnLogged(Messages.Log_PatientCount, count);
             }
 
             using (this.Component.UnitOfWork) { this.Component.Create(newPatients.ToArray()); }
+        }
+
+        private static int Percentage(long count, long step)
+        {
+            var divideBy = (count / step);
+            if (divideBy == 0) divideBy = 1;
+
+            return (int)(100 / divideBy);
         }
 
         private IEnumerable<BmiDto> MapBmiHistory(long? id)
@@ -118,7 +144,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         private PatientFullDto MapPatient(SQLiteDataReader reader)
         {
-            var current = new PatientFullDto();
+            var current = new PatientFullDto() { IsImported = true };
             current.Address.BoxNumber = reader[Columns.BoxNumber] as string;
             current.Address.City = reader[Columns.City] as string;
             current.Address.PostalCode = reader[Columns.PostalCode] as string;

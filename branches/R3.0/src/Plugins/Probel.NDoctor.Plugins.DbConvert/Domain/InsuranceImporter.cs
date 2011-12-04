@@ -61,7 +61,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         protected override InsuranceDto Map(SQLiteDataReader reader)
         {
-            var insurance = new InsuranceDto();
+            var insurance = new InsuranceDto() { IsImported = true };
 
             insurance.Name = reader["Title"] as string;
             insurance.Notes = Messages.Msg_DoneByConverter;

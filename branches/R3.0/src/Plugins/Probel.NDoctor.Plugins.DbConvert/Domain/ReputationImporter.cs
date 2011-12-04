@@ -60,7 +60,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         protected override ReputationDto Map(SQLiteDataReader reader)
         {
-            var reputation = new ReputationDto();
+            var reputation = new ReputationDto() { IsImported = true };
             reputation.Name = reader["Title"] as string;
             reputation.Notes = reader["Remark"] as string;
             return reputation;

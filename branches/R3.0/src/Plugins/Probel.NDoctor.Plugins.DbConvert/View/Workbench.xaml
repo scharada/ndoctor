@@ -16,29 +16,35 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
+
         <Button Grid.Row="0"
+                Grid.Column="1"
                 Command="{Binding Path=ChooseOldDbCommand}"
                 Content="{Binding Source={x:Static Member=text:WorkbenchText.ChooseDb}}"/>
+
         <Label Grid.Row="0" 
-               Content="{Binding Path=Database}"
-               Grid.Column="1"/>
+               Grid.Column="0"
+               Content="{Binding Path=Database}"/>
 
         <ScrollViewer Grid.Row="1"
                       Grid.ColumnSpan="2"
                       ScrollViewer.HorizontalScrollBarVisibility="Auto">
-            <TextBox Text="{Binding Path=Logs}"
-                     IsReadOnly="True"/>
+            <TextBlock Background="{x:Static SystemColors.InfoBrush}"
+                       Text="{Binding Path=Logs}"/>
         </ScrollViewer>
 
         <Button Grid.Row="2"
+                Grid.Column="1"
                 Command="{Binding Path=ImportCommand}"
                 Content="{Binding Source={x:Static Member=text:WorkbenchText.Import}}"/>
+
         <ProgressBar Grid.Row="2" 
-                     Grid.Column="1"
+                     Grid.Column="0"
                      Value="{Binding Path=Progress}"/>
 
     </Grid>
 </UserControl>
+

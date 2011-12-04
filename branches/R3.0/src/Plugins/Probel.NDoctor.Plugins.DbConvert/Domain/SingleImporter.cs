@@ -110,6 +110,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
                     else
                     {
                         this.OnLogged(Messages.Log_NoItem, id.Value);
+                        this.AddInCache(new Identifier(id.Value, this.Segragator), this.Default);
                         return this.Default;
                     }
                 }

@@ -68,7 +68,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         protected override BmiDto Map(SQLiteDataReader reader)
         {
-            var record = new BmiDto();
+            var record = new BmiDto() { IsImported = true };
 
             var date = reader["Date"] as DateTime? ?? DateTime.Today;
 

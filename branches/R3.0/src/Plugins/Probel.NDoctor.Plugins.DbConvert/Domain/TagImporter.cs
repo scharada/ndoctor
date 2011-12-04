@@ -72,7 +72,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         protected override TagDto Map(SQLiteDataReader reader)
         {
-            var tag = new TagDto(Category);
+            var tag = new TagDto(Category) { IsImported = true };
             tag.Name = reader["Title"] as string;
             tag.Notes = Messages.Msg_DoneByConverter;
 

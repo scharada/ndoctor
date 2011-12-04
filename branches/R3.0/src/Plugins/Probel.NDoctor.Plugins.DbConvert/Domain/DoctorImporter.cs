@@ -59,7 +59,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         protected override DoctorFullDto Map(SQLiteDataReader reader)
         {
-            var doctor = new DoctorFullDto();
+            var doctor = new DoctorFullDto() { IsImported = true };
             doctor.Specialisation = this.MapSpecialisation(reader["fk_DoctorType"] as long?);
 
             doctor.Address.BoxNumber = reader["BoxNumber"] as string;

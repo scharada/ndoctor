@@ -30,6 +30,18 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
     class PrescriptionImporter : MultipleImporter<PrescriptionDto>
     {
+        #region Fields
+
+        private static readonly TagDto DefaultTag = new TagDto()
+        {
+            Category = TagCategory.Prescription,
+            Name = Messages.Title_DefaultPrescription,
+            Notes = Messages.Msg_DoneByConverter,
+            IsImported = true,
+        };
+
+        #endregion Fields
+
         #region Constructors
 
         /// <summary>
@@ -57,7 +69,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         protected override PrescriptionDto Map(SQLiteDataReader reader)
         {
-            var item = new PrescriptionDto();
+            var item = new PrescriptionDto() { IsImported = true };
 
             item.Drug = this.MapDrug(reader["fk_Drug"] as long?);
             item.Tag = this.MapTag();
@@ -87,12 +99,9 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
         private TagDto MapTag()
         {
             var tagImporter = new TagImporter(this.Connection, this.Component, TagCategory.Prescription, string.Empty);
-            tagImporter.Default = new TagDto()
-            {
-                Category = TagCategory.Prescription,
-                Name = Messages.Title_DefaultPrescription,
-                Notes = Messages.Msg_DoneByConverter,
-            };
+            tagImporter.Default = DefaultTag;
+            this.Relay(tagImporter);
+
             return tagImporter.Import(-1);
         }
 

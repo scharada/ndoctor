@@ -70,6 +70,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             {
                 this.MapReputation(e as Patient);
                 this.MapInsurance(e as Patient);
+                this.MapMeetings(e as Patient);
             });
         }
 
@@ -93,6 +94,18 @@ namespace Probel.NDoctor.Domain.DAL.Components
             {
                 var insurance = this.Session.Get<Insurance>(entity.Insurance.Id);
                 if (insurance != null) entity.Insurance = insurance;
+            }
+        }
+
+        private void MapMeetings(Patient patient)
+        {
+            foreach (var appointment in patient.Appointments)
+            {
+                if (appointment != null)
+                {
+                    var user = this.Session.Get<User>(appointment.User.Id);
+                    if (user != null) appointment.User = user;
+                }
             }
         }
 

@@ -40,6 +40,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             Category = TagCategory.Appointment,
             Name = Messages.Title_DefaultAppointementType,
             Notes = Messages.Msg_DoneByConverter,
+            IsImported = true,
         };
 
         private LightUserDto defaultUser;
@@ -94,14 +95,14 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             if (InternalCache.ContainsKey(id)) { return InternalCache[id]; }
             else
             {
-                var item = new AppointmentDto();
+                var item = new AppointmentDto() { IsImported = true };
 
                 item.StartTime = reader["StartDate"] as DateTime? ?? DateTime.Now;
                 item.EndTime = reader["EndDate"] as DateTime? ?? DateTime.Now;
 
                 item.Subject = reader["Title"] as string;
                 item.Notes = Messages.Msg_DoneByConverter;
-                //item.User = this.DefaultUser;
+                item.User = this.DefaultUser;
                 item.Tag = this.MapTag(reader["fk_MeetingType"] as long?);
 
                 InternalCache.Add(id, item);

@@ -61,6 +61,24 @@ namespace Probel.NDoctor.Plugins.DbConvert.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The import failed.
+        /// </summary>
+        internal static string Error_ImportFailed {
+            get {
+                return ResourceManager.GetString("Error_ImportFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Impossibla to map &apos;{0}&apos;.
         /// </summary>
         internal static string Error_ImpossibleToMap {

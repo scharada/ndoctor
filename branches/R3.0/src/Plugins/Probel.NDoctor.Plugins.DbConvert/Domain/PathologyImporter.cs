@@ -61,7 +61,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
         {
             var tagImporter = new TagImporter(this.Connection, this.Component, TagCategory.Pathology, "PathologyType");
 
-            var pathology = new PathologyDto();
+            var pathology = new PathologyDto() { IsImported = true };
             pathology.Name = reader["Title"] as string;
             pathology.Notes = Messages.Msg_DoneByConverter;
             pathology.Tag = tagImporter.Import(reader["fk_PathologyType"] as long?);

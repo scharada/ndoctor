@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private static IEqualityComparer<BaseDto> equalityComparer = new BaseDtoEqualityComparer();
 
         private long id;
+        private bool isImported;
 
         #endregion Fields
 
@@ -39,6 +40,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         public BaseDto()
         {
             this.State = State.Clean;
+            this.IsImported = false;
         }
 
         #endregion Constructors
@@ -66,6 +68,23 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.id = value;
                 this.OnPropertyChanged("Id");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this entity is imported from somewhere else.
+        /// By imported, understand the entity wasn't added manually in the database
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if this instance is imported; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsImported
+        {
+            get { return this.isImported; }
+            set
+            {
+                this.isImported = value;
+                this.OnPropertyChanged("IsImported");
             }
         }
 

@@ -48,7 +48,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         protected override PracticeDto Map(SQLiteDataReader reader)
         {
-            var practice = new PracticeDto();
+            var practice = new PracticeDto() { IsImported = true };
             practice.Name = reader["Title"] as string;
             practice.Phone = reader["Phone"] as string;
             practice.Notes = Messages.Msg_DoneByConverter;

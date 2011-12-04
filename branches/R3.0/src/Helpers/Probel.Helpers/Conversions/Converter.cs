@@ -18,6 +18,7 @@ namespace Probel.Helpers.Conversions
 {
     using System;
     using System.ComponentModel;
+    using System.Data.Common;
     using System.Drawing;
     using System.IO;
     using System.Runtime.InteropServices;
@@ -73,6 +74,33 @@ namespace Probel.Helpers.Conversions
                 }
             }
             catch (Exception ex) { throw new ConversionException(ex); }
+        }
+
+        /// <summary>
+        /// Gets the bytes contained in the column of the specified reader.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <param name="columnName">Name of the column.</param>
+        /// <returns></returns>
+        public static byte[] GetBytes(DbDataReader reader, string columnName)
+        {
+            const int CHUNK_SIZE = 2 * 1024;
+            byte[] buffer = new byte[CHUNK_SIZE];
+            long bytesRead;
+            long fieldOffset = 0;
+            int col = reader.GetOrdinal(columnName);
+
+            using (MemoryStream stream = new MemoryStream())
+            {
+                while ((bytesRead = reader.GetBytes(col, fieldOffset, buffer, 0, buffer.Length)) > 0)
+                {
+                    byte[] actualRead = new byte[bytesRead];
+                    Buffer.BlockCopy(buffer, 0, actualRead, 0, (int)bytesRead);
+                    stream.Write(actualRead, 0, actualRead.Length);
+                    fieldOffset += bytesRead;
+                }
+                return stream.ToArray();
+            }
         }
 
         /// <summary>

@@ -58,7 +58,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         protected override IllnessPeriodDto Map(SQLiteDataReader reader)
         {
-            var item = new IllnessPeriodDto();
+            var item = new IllnessPeriodDto() { IsImported = true };
 
             item.Start = (reader["StartDate"] as DateTime? ?? DateTime.Today).Date;
             item.End = (reader["EndDate"] as DateTime? ?? DateTime.Today).Date;

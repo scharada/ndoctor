@@ -131,9 +131,8 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
             return AutoMap.AssemblyOf<Entity>(new CustomAutomappingConfiguration())
                     .IgnoreBase<Entity>()
                     .Override<User>(m => m.IgnoreProperty(x => x.DisplayedName))
-
                     .Override<Appointment>(m => m.IgnoreProperty(x => x.DateRange))
-
+                    .Override<IllnessPeriod>(x => x.IgnoreProperty(p => p.Duration))
                     .Override<Patient>(patient =>
                     {
                         patient.HasMany<Bmi>(x => x.BmiHistory).KeyColumn("Patient_Id");
@@ -142,7 +141,6 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                         patient.HasMany<Appointment>(x => x.Appointments).KeyColumn("Patient_Id");
                     })
 
-                    .Override<IllnessPeriod>(x => x.IgnoreProperty(p => p.Duration))
                     .Conventions.Add(DefaultCascade.SaveUpdate());
         }
 

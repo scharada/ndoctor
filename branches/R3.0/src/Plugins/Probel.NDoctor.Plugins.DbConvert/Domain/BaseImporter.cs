@@ -22,18 +22,17 @@
 namespace Probel.NDoctor.Plugins.DbConvert.Domain
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.SQLite;
+
+    using log4net;
 
     using Probel.Helpers.Events;
     using Probel.NDoctor.Domain.DTO.Components;
-    using Probel.NDoctor.Plugins.DbConvert.Properties;
-    using log4net;
 
     public abstract class BaseImporter
     {
-        protected ILog Logger { get; private set; }
         #region Constructors
+
         public BaseImporter(SQLiteConnection connection, IImportComponent component)
         {
             this.Logger = LogManager.GetLogger(this.GetType());
@@ -46,6 +45,8 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
         #region Events
 
         public event EventHandler<EventArgs<string>> Logged;
+
+        public event EventHandler<EventArgs<int>> ProgressChanged;
 
         #endregion Events
 
@@ -63,15 +64,28 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             private set;
         }
 
+        protected ILog Logger
+        {
+            get;
+            private set;
+        }
+
         #endregion Properties
 
         #region Methods
+
+        public void OnProgressChanged(int percentage)
+        {
+            if (this.ProgressChanged != null)
+                this.ProgressChanged(this, new EventArgs<int>(percentage));
+        }
 
         protected void HandleError(Exception ex)
         {
             this.Logger.Error(ex);
             OnLogged(ex.Message);
         }
+
         protected void OnLogged(string log)
         {
             if (this.Logged != null)

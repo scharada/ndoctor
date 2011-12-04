@@ -22,11 +22,10 @@
 namespace Probel.NDoctor.Plugins.DbConvert.Domain
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.SQLite;
     using System.Linq;
-    using System.Text;
 
+    using Probel.Helpers.Conversions;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.DbConvert.Properties;
@@ -40,6 +39,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             Category = TagCategory.Picture,
             Name = Messages.Title_DefaultPictureType,
             Notes = Messages.Msg_DoneByConverter,
+            IsImported = true,
         };
 
         #endregion Fields
@@ -71,13 +71,14 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         protected override PictureDto Map(SQLiteDataReader reader)
         {
-            var item = new PictureDto();
+            var item = new PictureDto() { IsImported = true };
 
             item.Creation
                 = item.LastUpdate
-                = reader["InsertDate"] as DateTime? ?? DateTime.Now;
+                = (reader["InsertDate"] as DateTime? ?? DateTime.Now);
 
-            item.Bitmap = reader["Bitmap"] as byte[];
+            item.Bitmap = Converter.GetBytes(reader, "Bitmap");
+
             item.Notes = reader["Remark"] as string;
             item.Tag = this.MapTag();
 
@@ -89,7 +90,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             return string.Format(
                       @"SELECT *
                         FROM Picture
-                        INNER JOIN Patient_Picture ON Picture.Id = Picture.Id
+                        INNER JOIN Patient_Picture ON Picture.Id = Patient_Picture.fk_Picture
                         WHERE fk_Patient = {0}", id);
         }
 

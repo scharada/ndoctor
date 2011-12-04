@@ -17,14 +17,17 @@
 namespace Probel.NDoctor.Plugins.DbConvert.ViewModel
 {
     using System;
-    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Globalization;
     using System.IO;
+    using System.Threading;
+    using System.Windows;
     using System.Windows.Input;
 
     using Microsoft.Win32;
 
+    using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DTO.Components;
-    using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.DbConvert.Domain;
     using Probel.NDoctor.Plugins.DbConvert.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
@@ -40,6 +43,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.ViewModel
         #region Fields
 
         IImportComponent component = ObjectFactory.GetInstance<IImportComponent>();
+        private CultureInfo cultureInfo = Thread.CurrentThread.CurrentUICulture;
         private string database;
         private bool importDone = false;
         private string logs;
@@ -144,16 +148,40 @@ namespace Probel.NDoctor.Plugins.DbConvert.ViewModel
         private void Import()
         {
             this.ClearLog();
-            var db = new ImportEngine(this.Database);
-            db.Logged += (sender, e) => this.AppendLog(e.Data);
-            db.ProgressChanged += (sender, e) => this.Progress = e.Data;
+            var engine = new ImportEngine(this.Database);
+            engine.Logged += (sender, e) => this.AppendLog(e.Data);
+            engine.ProgressChanged += (sender, e) => this.Progress = e.Data;
 
-            if (db.Check())
+            if (engine.Check())
             {
-                db.Import(component);
-                this.importDone = true;
+                this.RunInBackground(() =>
+                {
+                    Thread.CurrentThread.CurrentUICulture = cultureInfo;
+                    var result = engine.Import(component);
+                    this.importDone = true;
+                    return result;
+                });
             }
             else { this.AppendLog(Messages.Log_InvalidDb); }
+        }
+
+        private void RunInBackground(Func<bool> func)
+        {
+            Assert.IsNotNull(func);
+
+            var worker = new BackgroundWorker();
+            worker.RunWorkerCompleted += (sender, e) =>
+            {
+                if ((bool)e.Result)
+                {
+                    MessageBox.Show(Messages.Error_ImportFailed
+                        , Messages.Error
+                        , MessageBoxButton.OK
+                        , MessageBoxImage.Error);
+                }
+            };
+            worker.DoWork += (sender, e) => e.Result = func();
+            worker.RunWorkerAsync();
         }
 
         #endregion Methods

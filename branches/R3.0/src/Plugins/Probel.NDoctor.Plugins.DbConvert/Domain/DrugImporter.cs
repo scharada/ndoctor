@@ -60,7 +60,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         protected override DrugDto Map(SQLiteDataReader reader)
         {
-            var drug = new DrugDto();
+            var drug = new DrugDto() { IsImported = true };
 
             drug.Name = reader["Title"] as string;
             drug.Notes = Messages.Msg_DoneByConverter;

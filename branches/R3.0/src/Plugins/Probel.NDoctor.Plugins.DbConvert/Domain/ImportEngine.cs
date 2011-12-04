@@ -26,16 +26,18 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
     using System.Data;
     using System.Data.SQLite;
 
+    using log4net;
+
     using Probel.Helpers.Events;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.DbConvert.Properties;
-    using log4net;
 
     public class ImportEngine
     {
         #region Fields
 
+        private bool hasError = false;
         private string path;
 
         #endregion Fields
@@ -58,14 +60,18 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         #endregion Events
 
+        #region Properties
+
+        protected ILog Logger
+        {
+            get;
+            private set;
+        }
+
+        #endregion Properties
+
         #region Methods
 
-        protected ILog Logger { get; private set; }
-        protected void HandleError(Exception ex)
-        {
-            this.Logger.Error(ex);
-            OnLogged(ex.Message);
-        }
         public bool Check()
         {
             var connection = new SQLiteConnection(string.Format("Data Source={0};Version=3;", this.path));
@@ -88,7 +94,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             return hasSucceeded;
         }
 
-        public void Import(IImportComponent component)
+        public bool Import(IImportComponent component)
         {
             var connection = new SQLiteConnection(string.Format("Data Source={0};Version=3;", this.path));
             IEnumerable<PatientDto> result = new List<PatientDto>();
@@ -98,6 +104,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
                 var patients = new PatientImporter(connection, component);
                 patients.Logged += (sender, e) => this.OnLogged(e.Data);
+                patients.ProgressChanged += (sender, e) => this.OnProgressChanged(e.Data);
 
                 patients.Import();
 
@@ -112,6 +119,15 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             {
                 if (connection.State != ConnectionState.Closed) connection.Close();
             }
+
+            return this.hasError;
+        }
+
+        protected void HandleError(Exception ex)
+        {
+            this.hasError = true;
+            this.Logger.Error(ex);
+            OnLogged(ex.Message);
         }
 
         private void OnLogged(string log)

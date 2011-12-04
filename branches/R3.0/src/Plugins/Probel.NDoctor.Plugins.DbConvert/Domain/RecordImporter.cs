@@ -59,7 +59,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         protected override MedicalRecordDto Map(SQLiteDataReader reader)
         {
-            var record = new MedicalRecordDto();
+            var record = new MedicalRecordDto() { IsImported = true };
             record.Tag = this.MapTag(reader["fk_MedicalCardType"] as long?);
 
             record.CreationDate = (reader["CreationDate"] as DateTime? ?? DateTime.Today).Date;
