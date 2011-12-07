@@ -24,6 +24,8 @@
 
         public static event EventHandler CloseButtonVisibilityChanged;
 
+        public static event EventHandler Closed;
+
         public static event EventHandler ContentChanged;
 
         public static event EventHandler IsModalChanged;
@@ -96,8 +98,8 @@
                 windowState = value;
                 OnWindowStateChanged();
 
-                if (value == WindowState.Open)
-                    OnLoaded();
+                if (value == WindowState.Open) OnLoaded();
+                else if (value == WindowState.Closed) OnClosed();
             }
         }
 
@@ -158,6 +160,12 @@
         public static void ShowDialog(string caption, UserControl content)
         {
             Show(caption, content, true);
+        }
+
+        private static void OnClosed()
+        {
+            if (Closed != null)
+                Closed(Content, EventArgs.Empty);
         }
 
         private static void OnContentChanged()

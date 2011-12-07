@@ -10,9 +10,12 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
-    <StackPanel>
-        <Label Content="{Binding Path=DisplayedName}"/>
-        <Grid Visibility="{Binding Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+    <DockPanel>
+        <Label DockPanel.Dock="Top" 
+               Height="26"
+               Content="{Binding Path=DisplayedName}"/>
+        <Grid DockPanel.Dock="Top" 
+              Visibility="{Binding Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -29,7 +32,8 @@
                     Content="{Binding Source={x:Static Member=text:PatientText.BtnSearch}}"
                     Command="{Binding Path=SearchCommand}"/>
         </Grid>
-        <TabControl Visibility="{Binding Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <TabControl DockPanel.Dock="Top" 
+                    Visibility="{Binding Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
             <TabItem Header="{Binding Source={x:Static Member=text:PatientText.HeaderAdd}}">
                 <ScrollViewer Height="300">
                     <ListView ItemsSource="{Binding Path=FoundSlotsToAdd}">
@@ -132,5 +136,5 @@
                 </ScrollViewer>
             </TabItem>
         </TabControl>
-    </StackPanel>
+    </DockPanel>
 </UserControl>

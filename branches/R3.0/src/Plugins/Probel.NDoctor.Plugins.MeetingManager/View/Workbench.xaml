@@ -1,4 +1,5 @@
 ﻿<Page x:Class="Probel.NDoctor.Plugins.MeetingManager.View.Workbench"
+      
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,42 +8,17 @@
       xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.MeetingManager.View"
       xmlns:cal="clr-namespace:Probel.Helpers.WPF.Calendar.Controls;assembly=Probel.Helpers.WPF"
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.MeetingManager.Translations"
+      
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
 	Title="Workbench">
 
-    <DockPanel>
-        <StackPanel DockPanel.Dock="Left"
-                    Width="400">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="70"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBox Grid.Column="0"
-                         Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}"/>
-
-                <Button Grid.Column="1" 
-                        Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnSearch}}"
-                        Command="{Binding Path=SearchCommand}"/>
-            </Grid>
-            <ListView ItemsSource="{Binding Path=FoundPatients}">
-                <ListView.Resources>
-                    <DataTemplate DataType="{x:Type this:PatientViewModel}">
-                        <ctrl:PatientView />
-                    </DataTemplate>
-                </ListView.Resources>
-                
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
-                    </Style>
-                </ListView.ItemContainerStyle>
-            </ListView>
-        </StackPanel>
-        <cal:Calendar DockPanel.Dock="Right"  
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <cal:Calendar Grid.Column="0"
                       CurrentDate="{Binding Path=DateToDisplay, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                       Appointments="{Binding Path=DayAppointments}"/>
-    </DockPanel>
+    </Grid>
 </Page>

@@ -20,7 +20,7 @@ namespace Probel.Helpers.WPF.Behaviours
     using System.Windows.Controls;
 
     /// <summary>
-    /// Allows the web browser to navigate to an HTML string speciafied via
+    /// Allows the web browser to navigate to an HTML string specified via
     /// "Html" attached property.
     /// </summary>
     public class WebBrowserBehaviour

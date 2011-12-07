@@ -60,6 +60,7 @@
     <Compile Include="Data\Chart.cs" />
     <Compile Include="Data\ChartPoint.cs" />
     <Compile Include="Data\DateRange.cs" />
+    <Compile Include="Data\DateTimeExtensions.cs" />
     <Compile Include="Events\EventArgs.cs" />
     <Compile Include="Events\ObservableObject.cs" />
     <Compile Include="Exceptions\ConversionException.cs" />

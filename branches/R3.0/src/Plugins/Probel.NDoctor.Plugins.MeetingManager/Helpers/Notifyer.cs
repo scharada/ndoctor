@@ -19,24 +19,26 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Plugins.MeetingManager.Translations
+namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
 {
-    using Probel.NDoctor.Plugins.MeetingManager.Properties;
+    using System;
 
-    public static class WorkbenchText
+    public static class Notifyer
     {
-        #region Properties
+        #region Events
 
-        public static string BtnSearch
+        public static event EventHandler Refreshed;
+
+        #endregion Events
+
+        #region Methods
+
+        public static void OnRefreshed(object sender)
         {
-            get { return Messages.Btn_Search; }
+            if (Refreshed != null)
+                Refreshed(sender, EventArgs.Empty);
         }
 
-        #endregion Properties
-
-        public static string TitleWatermark
-        {
-            get { return Messages.Title_SearchWatermark; }
-        }
+        #endregion Methods
     }
 }

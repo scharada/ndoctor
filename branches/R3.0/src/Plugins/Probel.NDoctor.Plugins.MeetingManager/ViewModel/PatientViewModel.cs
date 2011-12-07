@@ -37,6 +37,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
+    using Probel.NDoctor.Plugins.MeetingManager.Helpers;
 
     public class PatientViewModel : BaseViewModel
     {
@@ -62,23 +63,16 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             this.fromDate
                 = this.toDate
                 = DateTime.Today;
+
+            Notifyer.Refreshed += (sender, e) =>
+            {
+                if (CanSearch()) { this.Search(); }
+            };
         }
 
         #endregion Constructors
 
-        #region Events
-
-        public event EventHandler Refreshed;
-
-        #endregion Events
-
         #region Properties
-
-        public ICommand AddCommand
-        {
-            get;
-            private set;
-        }
 
         public string DisplayedName
         {
@@ -138,12 +132,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             }
         }
 
-        public ICommand RemoveCommand
-        {
-            get;
-            private set;
-        }
-
         public ICommand SearchCommand
         {
             get;
@@ -167,12 +155,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         private bool CanSearch()
         {
             return this.FromDate <= this.ToDate;
-        }
-
-        private void OnRefreshed()
-        {
-            if (this.Refreshed != null)
-                this.Refreshed(this, EventArgs.Empty);
         }
 
         private void Search()
@@ -201,11 +183,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             foreach (var item in mappedResult)
             {
                 item.Patient = this.Patient;
-                item.Refreshed += (sender, e) =>
-                {
-                    this.Search();
-                    this.OnRefreshed();
-                };
             }
             this.FoundSlotsToAdd.Refill(mappedResult);
         }
@@ -220,11 +197,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             foreach (var item in mappedResult)
             {
                 item.Patient = this.Patient;
-                item.Refreshed += (sender, e) =>
-                {
-                    this.Search();
-                    this.OnRefreshed();
-                };
             }
 
             this.FoundSlotsToRemove.Refill(mappedResult);

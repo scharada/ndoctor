@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Plugins.MeetingManager.Properties
-{
-
-
+namespace Probel.NDoctor.Plugins.MeetingManager.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -151,7 +151,25 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Properties
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Une rendez-vous a été ajouté..
+        ///   Looks up a localized string similar to Action.
+        /// </summary>
+        internal static string Menu_Actions {
+            get {
+                return ResourceManager.GetString("Menu_Actions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        internal static string Menu_File {
+            get {
+                return ResourceManager.GetString("Menu_File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An appointment has just been added.
         /// </summary>
         internal static string Msg_AppointmentAdded {
             get {
@@ -223,11 +241,38 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Properties
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manage meetings.
+        /// </summary>
+        internal static string Title_ManageMeeting {
+            get {
+                return ResourceManager.GetString("Title_ManageMeeting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calendar.
+        /// </summary>
+        internal static string Title_MeetingsManager {
+            get {
+                return ResourceManager.GetString("Title_MeetingsManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Question.
         /// </summary>
         internal static string Title_Question {
             get {
                 return ResourceManager.GetString("Title_Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First or last name.
+        /// </summary>
+        internal static string Title_SearchWatermark {
+            get {
+                return ResourceManager.GetString("Title_SearchWatermark", resourceCulture);
             }
         }
         

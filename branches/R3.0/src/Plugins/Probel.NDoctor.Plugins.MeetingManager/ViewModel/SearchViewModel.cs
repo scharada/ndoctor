@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,33 +16,38 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#endregion Header
+
 namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Windows.Input;
 
     using AutoMapper;
 
     using Probel.Helpers.Conversions;
-    using Probel.Helpers.WPF.Calendar.Model;
     using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MeetingManager.Helpers;
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
-    using Probel.NDoctor.Plugins.MeetingManager.View;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
+    using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
     /// </summary>
-    public class WorkbenchViewModel : BaseViewModel
+    public class SearchViewModel : BaseViewModel
     {
         #region Fields
 
         private ICalendarComponent component = ObjectFactory.GetInstance<ICalendarComponent>();
+        private string criteria;
         private DateTime dateToDisplay;
 
         #endregion Fields
@@ -51,23 +58,28 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         /// Initializes a new instance of the <see cref="WorkbenchViewModel"/> class.
         /// </summary>
         /// <param name="host">The host.</param>
-        public WorkbenchViewModel()
+        public SearchViewModel()
             : base()
         {
             this.DateToDisplay = DateTime.Today;
-            this.DayAppointments = new AppointmentCollection();
+            this.FoundPatients = new ObservableCollection<PatientViewModel>();
 
-            Notifyer.Refreshed += (sender, e) => this.DateToDisplay = this.DateToDisplay.AddMilliseconds(1);
-            this.PropertyChanged += (sender, e) =>
-            {
-                if (e.PropertyName == "DateToDisplay")
-                    this.RefreshCalendar();
-            };
+            this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());
         }
 
         #endregion Constructors
 
         #region Properties
+
+        public string Criteria
+        {
+            get { return this.criteria; }
+            set
+            {
+                this.criteria = value;
+                this.OnPropertyChanged("Criteria");
+            }
+        }
 
         public DateTime DateToDisplay
         {
@@ -79,7 +91,13 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             }
         }
 
-        public AppointmentCollection DayAppointments
+        public ObservableCollection<PatientViewModel> FoundPatients
+        {
+            get;
+            private set;
+        }
+
+        public ICommand SearchCommand
         {
             get;
             private set;
@@ -89,20 +107,28 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
         #region Methods
 
-        private void RefreshCalendar()
+        private bool CanSearch()
+        {
+            return !string.IsNullOrWhiteSpace(this.Criteria);
+        }
+
+        private void Search()
         {
             try
             {
+                IList<LightPatientDto> result = new List<LightPatientDto>();
                 using (this.component.UnitOfWork)
                 {
-                    var result = this.component.FindAppointments(this.DateToDisplay);
-                    var mappedResult = Mapper.Map<IList<AppointmentDto>, AppointmentCollection>(result);
-                    this.DayAppointments.Refill(mappedResult);
+                    result = this.component.FindPatientsByNameLight(this.Criteria, SearchOn.FirstAndLastName);
                 }
+                var mappedResult = Mapper.Map<IList<LightPatientDto>, IList<PatientViewModel>>(result);
+
+                this.FoundPatients.Refill(mappedResult);
+                this.DateToDisplay = this.DateToDisplay.AddMilliseconds(1);
             }
             catch (Exception ex)
             {
-                this.HandleError(ex, Messages.Error_RefreshingCalendar);
+                this.HandleError(ex, Messages.Error_ErrorSearching);
             }
         }
 

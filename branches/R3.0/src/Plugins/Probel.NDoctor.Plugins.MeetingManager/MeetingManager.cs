@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager
     using System;
     using System.ComponentModel.Composition;
     using System.Windows.Input;
+    using System.Windows.Media;
 
     using AutoMapper;
 
@@ -31,6 +32,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.Plugins.MeetingManager.View;
     using Probel.NDoctor.Plugins.MeetingManager.ViewModel;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
@@ -122,7 +124,16 @@ namespace Probel.NDoctor.Plugins.MeetingManager
         /// </summary>
         private void BuildContextMenu()
         {
-            //No context menu
+            var cgroup = new RibbonGroupData(Messages.Menu_Actions, 1);
+            var tab = new RibbonTabData() { Header = Messages.Menu_File, ContextualTabGroupHeader = Messages.Title_MeetingsManager };
+
+            tab.GroupDataCollection.Add(cgroup);
+            this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_MeetingsManager, tab) { Background = Brushes.OrangeRed, IsVisible = false, };
+            PluginContext.Host.AddContextualMenu(this.contextualMenu);
+            PluginContext.Host.AddTab(tab);
+
+            ICommand searchCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_ManageMeeting, new SearchView()));
+            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_ManageMeeting, imgUri.StringFormat("Add"), searchCommand) { Order = 1, });
         }
 
         private bool CanNavigate()

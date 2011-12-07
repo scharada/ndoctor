@@ -35,6 +35,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.Helpers.Data;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.MeetingManager.Helpers;
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -89,8 +90,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         #region Events
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public event EventHandler Refreshed;
 
         #endregion Events
 
@@ -271,7 +270,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                     this.component.Create(appointment, patient);
                 }
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_AppointmentAdded);
-                this.OnRefreshed();
+                Notifyer.OnRefreshed(this);
             }
             catch (Exception ex)
             {
@@ -288,12 +287,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         {
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private void OnRefreshed()
-        {
-            if (this.Refreshed != null)
-                this.Refreshed(this, EventArgs.Empty);
         }
 
         private void Remove()
@@ -313,7 +306,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                     this.component.Remove(appointment, this.Patient);
                 }
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_AppointmentRemoved);
-                this.OnRefreshed();
+                Notifyer.OnRefreshed(this);
             }
             catch (Exception ex)
             {

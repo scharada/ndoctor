@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -17,26 +15,22 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#endregion Header
+using System;
 
-namespace Probel.NDoctor.Plugins.MeetingManager.Translations
+namespace Probel.Helpers.Data
 {
-    using Probel.NDoctor.Plugins.MeetingManager.Properties;
-
-    public static class WorkbenchText
+    public static class DateTimeExtensions
     {
-        #region Properties
-
-        public static string BtnSearch
+        public static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
         {
-            get { return Messages.Btn_Search; }
-        }
+            int diff = dt.DayOfWeek - startOfWeek;
+            if (diff < 0)
+            {
+                diff += 7;
+            }
 
-        #endregion Properties
-
-        public static string TitleWatermark
-        {
-            get { return Messages.Title_SearchWatermark; }
+            return dt.AddDays(-1 * diff).Date;
         }
     }
+
 }
