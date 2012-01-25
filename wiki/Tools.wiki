@@ -35,7 +35,7 @@ Here's the list of tools used to develop nDoctor
  * [http://www.narrange.net/ nArrange]
  * [http://visualstudiogallery.msdn.microsoft.com/B08B0375-139E-41D7-AF9B-FAEE50F68392?SRC=VSIDE Snippet Designer]
 
-= Architecture tools =
+= Review tools =
  * [http://www.mono-project.com/Gendarme Gendarme]
  * [http://msdn.microsoft.com/en-us/library/bb429476%28v=vs.80%29.aspx FxCop] <Not used anymore>
  * [http://archive.msdn.microsoft.com/sourceanalysis StyleCop]
