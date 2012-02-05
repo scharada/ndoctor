@@ -6,19 +6,9 @@
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PatientData.Translations"
              mc:Ignorable="d">
     <StackPanel>
-        <Button Command="{Binding Path=ShowPopupCommand}" Height="20" Width="20">
-            <Image Source="/Probel.NDoctor.Plugins.PatientData;Component/Images/Plus.png"/>
-        </Button>
-
-        <Popup IsOpen="{Binding IsPopupOpened}"
-               StaysOpen="False"
-               AllowsTransparency="True">
-            <StackPanel>
-                <TextBox Text="{Binding Path=Profession.Name, UpdateSourceTrigger=PropertyChanged}"
+        <TextBox Text="{Binding Path=Profession.Name, UpdateSourceTrigger=PropertyChanged}"
                          MinWidth="100"/>
-                <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnAdd}}"
+        <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnAdd}}"
                         Command="{Binding Path=AddCommand}"/>
-            </StackPanel>
-        </Popup>
     </StackPanel>
 </UserControl>

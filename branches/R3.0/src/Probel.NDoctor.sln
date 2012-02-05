@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Probel.NDoctor.Plugins.Meet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Probel.NDoctor.Plugins.Administration", "Plugins\Probel.NDoctor.Plugins.Administration\Probel.NDoctor.Plugins.Administration.csproj", "{CA15F6F8-428C-4774-8169-8138FFC7B374}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Probel.NDoctor.Plugins.DbConvert", "Plugins\Probel.NDoctor.Plugins.DbConvert\Probel.NDoctor.Plugins.DbConvert.csproj", "{ED7EFCBD-0CAD-4F8B-9180-3CF42BB90719}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -271,6 +273,16 @@ Global
 		{CA15F6F8-428C-4774-8169-8138FFC7B374}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{CA15F6F8-428C-4774-8169-8138FFC7B374}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{CA15F6F8-428C-4774-8169-8138FFC7B374}.Release|x86.ActiveCfg = Release|Any CPU
+		{ED7EFCBD-0CAD-4F8B-9180-3CF42BB90719}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED7EFCBD-0CAD-4F8B-9180-3CF42BB90719}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED7EFCBD-0CAD-4F8B-9180-3CF42BB90719}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{ED7EFCBD-0CAD-4F8B-9180-3CF42BB90719}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{ED7EFCBD-0CAD-4F8B-9180-3CF42BB90719}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ED7EFCBD-0CAD-4F8B-9180-3CF42BB90719}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED7EFCBD-0CAD-4F8B-9180-3CF42BB90719}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED7EFCBD-0CAD-4F8B-9180-3CF42BB90719}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{ED7EFCBD-0CAD-4F8B-9180-3CF42BB90719}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{ED7EFCBD-0CAD-4F8B-9180-3CF42BB90719}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -297,5 +309,6 @@ Global
 		{9FBFF473-4348-4AC8-B4AC-5D2CC423DCE4} = {D8360C59-BA27-4022-B495-A8A725325A41}
 		{B4B8E01C-B816-46BA-A4B6-81FCE666D809} = {D8360C59-BA27-4022-B495-A8A725325A41}
 		{CA15F6F8-428C-4774-8169-8138FFC7B374} = {D8360C59-BA27-4022-B495-A8A725325A41}
+		{ED7EFCBD-0CAD-4F8B-9180-3CF42BB90719} = {D8360C59-BA27-4022-B495-A8A725325A41}
 	EndGlobalSection
 EndGlobal

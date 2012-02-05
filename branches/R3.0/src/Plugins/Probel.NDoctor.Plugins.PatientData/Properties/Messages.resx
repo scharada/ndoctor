@@ -302,8 +302,8 @@
     <comment>Search</comment>
   </data>
   <data name="Title_AddDoctor" xml:space="preserve">
-    <value>Add a doctor to this patient...</value>
-    <comment>Add a doctor to this patient...</comment>
+    <value>Add a doctor</value>
+    <comment>Add a doctor</comment>
   </data>
   <data name="Title_FullName" xml:space="preserve">
     <value>Name</value>
@@ -384,5 +384,33 @@
   <data name="Title_Phone" xml:space="preserve">
     <value>Phone</value>
     <comment>Phone</comment>
+  </data>
+  <data name="Title_AddSpecialisation" xml:space="preserve">
+    <value>Add a specialisation</value>
+    <comment>Add a new specialisation</comment>
+  </data>
+  <data name="Title_BindDoctor" xml:space="preserve">
+    <value>Bind a doctor...</value>
+    <comment>Bind a doctor...</comment>
+  </data>
+  <data name="Title_AddInsurance" xml:space="preserve">
+    <value>Add an insurance</value>
+    <comment>Add an insurance</comment>
+  </data>
+  <data name="Title_AddReputation" xml:space="preserve">
+    <value>Add a reputation</value>
+    <comment>Add a reputation</comment>
+  </data>
+  <data name="Title_AddPractice" xml:space="preserve">
+    <value>Add a practice</value>
+    <comment>Add a practice</comment>
+  </data>
+  <data name="Title_AddProfession" xml:space="preserve">
+    <value>Add a profession</value>
+    <comment>Add a profession</comment>
+  </data>
+  <data name="Menu_Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>Add</comment>
   </data>
 </root>

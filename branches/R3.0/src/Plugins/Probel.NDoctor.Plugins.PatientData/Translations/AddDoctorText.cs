@@ -27,6 +27,10 @@ namespace Probel.NDoctor.Plugins.PatientData.Translations
     {
         #region Properties
 
+        public static string TitleBindDoctor
+        {
+            get { return Messages.Title_BindDoctor; }
+        }
         public static string BtnAdd
         {
             get { return Messages.Btn_Add; }

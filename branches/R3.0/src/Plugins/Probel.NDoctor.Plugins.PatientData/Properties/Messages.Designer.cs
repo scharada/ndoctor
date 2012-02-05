@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Plugins.PatientData.Properties
-{
-
-
+namespace Probel.NDoctor.Plugins.PatientData.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -120,6 +120,15 @@ namespace Probel.NDoctor.Plugins.PatientData.Properties
         internal static string Menu_Actions {
             get {
                 return ResourceManager.GetString("Menu_Actions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        internal static string Menu_Add {
+            get {
+                return ResourceManager.GetString("Menu_Add", resourceCulture);
             }
         }
         
@@ -259,11 +268,47 @@ namespace Probel.NDoctor.Plugins.PatientData.Properties
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add a doctor to this patient....
+        ///   Looks up a localized string similar to Add a doctor.
         /// </summary>
         internal static string Title_AddDoctor {
             get {
                 return ResourceManager.GetString("Title_AddDoctor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add an insurance.
+        /// </summary>
+        internal static string Title_AddInsurance {
+            get {
+                return ResourceManager.GetString("Title_AddInsurance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a practice.
+        /// </summary>
+        internal static string Title_AddPractice {
+            get {
+                return ResourceManager.GetString("Title_AddPractice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a profession.
+        /// </summary>
+        internal static string Title_AddProfession {
+            get {
+                return ResourceManager.GetString("Title_AddProfession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a reputation.
+        /// </summary>
+        internal static string Title_AddReputation {
+            get {
+                return ResourceManager.GetString("Title_AddReputation", resourceCulture);
             }
         }
         
@@ -309,6 +354,24 @@ namespace Probel.NDoctor.Plugins.PatientData.Properties
         internal static string Title_AddressStreetNr {
             get {
                 return ResourceManager.GetString("Title_AddressStreetNr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a specialisation.
+        /// </summary>
+        internal static string Title_AddSpecialisation {
+            get {
+                return ResourceManager.GetString("Title_AddSpecialisation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bind a doctor....
+        /// </summary>
+        internal static string Title_BindDoctor {
+            get {
+                return ResourceManager.GetString("Title_BindDoctor", resourceCulture);
             }
         }
         

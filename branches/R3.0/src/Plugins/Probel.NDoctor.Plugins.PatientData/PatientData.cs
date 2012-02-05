@@ -35,6 +35,7 @@ namespace Probel.NDoctor.Plugins.PatientData
     using Probel.NDoctor.View.Plugins.MenuData;
 
     using StructureMap;
+    using Probel.NDoctor.View.Core.Helpers;
 
     [Export(typeof(IPlugin))]
     public class PatientData : Plugin
@@ -99,10 +100,24 @@ namespace Probel.NDoctor.Plugins.PatientData
             this.BuildContextMenu();
         }
 
+        private ICommand addSpecialisationCommand;
+        private ICommand addInsuranceCommand;
+        private ICommand addDoctorCommand;
+        private ICommand addReputationCommand;
+        private ICommand addPracticeCommand;
+        private ICommand addProfessionCommand;
+
         private void BuildButtons()
         {
             this.navigateCommand = new RelayCommand(() => this.Navigate(), () => this.CanNavigate());
             this.saveCommand = new RelayCommand(() => this.ViewModel.Save());
+            this.addDoctorCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddDoctor, new DoctorView()));
+            this.addSpecialisationCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddSpecialisation, new AddSpecialisationView()));
+            this.addInsuranceCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddInsurance, new AddInsuranceView()));
+            this.addReputationCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddReputation, new AddReputationView()));
+            this.addPracticeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPractice, new AddPracticeView()));
+            this.addProfessionCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddProfession, new AddProfessionView()));
+
 
             var navigateButton = new RibbonButtonData(Messages.Title_PatientDataManager
                     , imgUri.StringFormat("Properties")
@@ -113,12 +128,28 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         private void BuildContextMenu()
         {
-            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.StringFormat("Save"), saveCommand);
+            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.StringFormat("Save"), this.saveCommand);
+            var addDoctorButton = new RibbonButtonData(Messages.Title_AddDoctor, imgUri.StringFormat("Save"), this.addDoctorCommand);
+            var addSpecialisationButton = new RibbonButtonData(Messages.Title_AddSpecialisation, imgUri.StringFormat("Save"), this.addSpecialisationCommand);
+            var addInsuranceButton = new RibbonButtonData(Messages.Title_AddInsurance, imgUri.StringFormat("Save"), this.addInsuranceCommand);
+            var addReputationButton = new RibbonButtonData(Messages.Title_AddReputation, imgUri.StringFormat("Save"), this.addReputationCommand);
+            var addPracticeButton = new RibbonButtonData(Messages.Title_AddPractice, imgUri.StringFormat("Save"), this.addPracticeCommand);
+            var addProfessionButton = new RibbonButtonData(Messages.Title_AddProfession, imgUri.StringFormat("Save"), this.addProfessionCommand);
+
             var cgroup = new RibbonGroupData(Messages.Menu_Actions);
+            var cgroupAdd = new RibbonGroupData(Messages.Menu_Add);
 
             cgroup.ButtonDataCollection.Add(saveButton);
 
-            var tab = new RibbonTabData(Messages.Menu_File, cgroup) { ContextualTabGroupHeader = Messages.Title_ContextMenu };
+            cgroupAdd.ButtonDataCollection.Add(addDoctorButton);
+            cgroupAdd.ButtonDataCollection.Add(addSpecialisationButton);
+            cgroupAdd.ButtonDataCollection.Add(addInsuranceButton);
+            cgroupAdd.ButtonDataCollection.Add(addReputationButton);
+            cgroupAdd.ButtonDataCollection.Add(addProfessionButton);
+
+            var tab = new RibbonTabData(Messages.Menu_File) { ContextualTabGroupHeader = Messages.Title_ContextMenu };
+            tab.GroupDataCollection.Add(cgroup);
+            tab.GroupDataCollection.Add(cgroupAdd);
             PluginContext.Host.AddTab(tab);
 
             this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_ContextMenu, tab) { Background = Brushes.OrangeRed, IsVisible = false };

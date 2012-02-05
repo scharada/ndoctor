@@ -103,18 +103,12 @@
                               SelectedItem="{Binding Path=SelectedGender}"
                               DisplayMemberPath="Item1"/>
                     <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=Patient.Fee, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="20"/>
-                        </Grid.ColumnDefinitions>
-                        <ComboBox Style="{StaticResource textBoxStyle}"
+
+                    <ComboBox Style="{StaticResource textBoxStyle}"
 						  DisplayMemberPath="Name"
 						  SelectedItem="{Binding Path=Patient.Profession}"
 						  SelectedValuePath="Name"
 						  ItemsSource="{Binding Path=Professions, UpdateSourceTrigger=PropertyChanged}"/>
-                        <ctrl:AddProfessionView Grid.Column="1"/>
-                    </Grid>
                     <Label Style="{StaticResource separatorStyle}" Content="{Binding Source={x:Static Member=text:WorkbenchText.SeparatorContactData}}"/>
                 </StackPanel>
             </Grid>
@@ -200,50 +194,30 @@
                     <Label Style="{StaticResource separatorStyle}" Content="{Binding Source={x:Static Member=text:WorkbenchText.SeparatorMisc}}"/>
                     <DatePicker Style="{StaticResource textBoxStyle}" SelectedDate="{Binding Path=Patient.InscriptionDate, UpdateSourceTrigger=PropertyChanged}"/>
                     <Label Style="{StaticResource textBoxStyle}" Content="{Binding Path=Patient.LastUpdate}"/>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="20"/>
-                        </Grid.ColumnDefinitions>
-                        <ComboBox Style="{StaticResource textBoxStyle}"
+
+                    <ComboBox Style="{StaticResource textBoxStyle}"
 						  DisplayMemberPath="Name"
 						  SelectedValuePath="Name"
 						  SelectedItem="{Binding Path=Patient.Reputation}"
 						  ItemsSource="{Binding Path=Reputations, UpdateSourceTrigger=PropertyChanged}"/>
-                        <ctrl:AddReputationView Grid.Column="1"/>
-                    </Grid>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="20"/>
-                        </Grid.ColumnDefinitions>
-                        <ComboBox Style="{StaticResource textBoxStyle}"
+                    <ComboBox Style="{StaticResource textBoxStyle}"
 						  DisplayMemberPath="Name"
 						  SelectedItem="{Binding Path=Patient.Insurance}"
 						  SelectedValuePath="Name"
 						  ItemsSource="{Binding Path=Insurances, UpdateSourceTrigger=PropertyChanged}"/>
-                        <ctrl:AddInsuranceView Grid.Column="1"/>
-                    </Grid>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="20"/>
-                        </Grid.ColumnDefinitions>
-                        <ComboBox Style="{StaticResource textBoxStyle}"
+                    <ComboBox Style="{StaticResource textBoxStyle}"
 						  DisplayMemberPath="Name"
 						  SelectedItem="{Binding Path=Patient.Practice}"
 						  SelectedValuePath="Name"
 						  ItemsSource="{Binding Path=Practices, UpdateSourceTrigger=PropertyChanged}"/>
-                        <ctrl:AddPracticeView Grid.Column="1"/>
-                    </Grid>
                     <Label Style="{StaticResource separatorStyle}" Content="{Binding Source={x:Static Member=text:WorkbenchText.SeparatorDoctors}}"/>
                 </StackPanel>
 
             </Grid>
-            
+
             <ctrl:AddDoctorView Grid.Column="1"
                                 Grid.Row="1"/>
-            
+
             <DataGrid Grid.Column="2"
                       Grid.Row="2"
                       ItemsSource="{Binding Path=Doctors, UpdateSourceTrigger=PropertyChanged}"
