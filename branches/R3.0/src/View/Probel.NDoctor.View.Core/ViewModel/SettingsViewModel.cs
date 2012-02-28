@@ -142,10 +142,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         private void Save()
         {
-            var start = this.Start.ToString("HH:mm");
-            var end = this.End.ToString("HH:mm");
-            Settings.Default.WorkDayStart = start;
-            Settings.Default.WorkDayEnd = end;
+            Settings.Default.WorkDayStart = this.Start.ToString("HH:mm");
+            Settings.Default.WorkDayEnd = this.End.ToString("HH:mm");
             Settings.Default.Language = this.SelectedLanguage;
 
             Settings.Default.Save();
