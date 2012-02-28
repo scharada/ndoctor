@@ -149,6 +149,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             Settings.Default.Language = this.SelectedLanguage;
 
             Settings.Default.Save();
+            InnerWindow.Close();
         }
 
         private string Translate(SlotDuration slotDuration)
