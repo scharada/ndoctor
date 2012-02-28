@@ -69,6 +69,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 this.StartCriteria = e.Data.From;
                 this.EndCriteria = e.Data.To;
 
+                this.Logger.Debug("Load prescriptions");
             };
         }
 

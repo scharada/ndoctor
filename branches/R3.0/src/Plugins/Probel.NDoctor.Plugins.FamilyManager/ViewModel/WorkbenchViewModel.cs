@@ -193,6 +193,8 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
                 this.Family = this.familyComponent.FindFamily(PluginContext.Host.SelectedPatient);
                 this.OnPropertyChanged("ChildrenEnabled"); //Notifies children has been updated. Used to (de)activate the combobox
             }
+
+            this.Logger.Debug("Load family");
         }
 
         /// <summary>

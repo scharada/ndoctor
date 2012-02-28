@@ -177,6 +177,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 //Refresh the patient with the refreshed collection binding
                 this.Patient = this.component.FindPatient(PluginContext.Host.SelectedPatient);
                 this.RefreshPatientData();
+
+                this.Logger.Debug("Load patient's data");
             }
         }
 

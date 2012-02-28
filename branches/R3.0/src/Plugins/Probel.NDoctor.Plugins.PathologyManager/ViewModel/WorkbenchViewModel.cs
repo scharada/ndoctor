@@ -111,6 +111,8 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
                 this.IllnessHistory.Refill(viewModels);
 
                 this.Chart = this.component.GetIlnessAsChart(PluginContext.Host.SelectedPatient);
+
+                this.Logger.Debug("Load pathologies");
             }
         }
 

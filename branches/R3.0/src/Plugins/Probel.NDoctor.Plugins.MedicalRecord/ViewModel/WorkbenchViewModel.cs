@@ -109,6 +109,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 this.Cabinet = TitledMedicalRecordCabinetDto.CreateFrom(result);
                 this.Tags = this.component.FindTags(TagCategory.MedicalRecord);
             }
+
+            this.Logger.Debug("Load medical records");
         }
 
         public void Save()

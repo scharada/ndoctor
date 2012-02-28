@@ -213,6 +213,8 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 this.Tags.Refill(tags);
                 this.Pictures.Refill(pictures);
                 this.creatingNewPicture = false;
+
+                this.Logger.Debug("Load pictures");
             }
             catch (Exception ex)
             {

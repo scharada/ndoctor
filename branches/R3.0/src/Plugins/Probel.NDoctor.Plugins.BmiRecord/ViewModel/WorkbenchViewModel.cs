@@ -266,7 +266,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
                     this.Patient = patient;
                     PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiHistoryLoaded);
                 });
-                this.Logger.DebugFormat("Loaded Bmi history ({0} item(s))", patient.BmiHistory.Count);
+                this.Logger.DebugFormat("Load Bmi history ({0} item(s))", patient.BmiHistory.Count);
             };
 
             thread.RunWorkerAsync();
