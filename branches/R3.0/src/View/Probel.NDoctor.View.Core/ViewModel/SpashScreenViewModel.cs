@@ -156,7 +156,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
                 {
                     this.Logger.Error("An error occured in the spashscreen", ex);
 
-                    MessageBox.Show(Messages.Msg_FatalErrorOccured.StringFormat(ex.Message)
+                    MessageBox.Show(Messages.Msg_FatalErrorOccured.FormatWith(ex.Message)
                         , Messages.Title_Error
                         , MessageBoxButton.OK
                         , MessageBoxImage.Error);

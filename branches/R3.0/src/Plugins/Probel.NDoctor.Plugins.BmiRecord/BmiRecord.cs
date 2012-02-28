@@ -95,7 +95,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
             this.navigateCommand = new RelayCommand(() => this.Navigate(), () => this.CanNavigate());
 
             var navigateButton = new RibbonButtonData(Messages.Title_BmiRecordManager
-                    , imgUri.StringFormat("History")
+                    , imgUri.FormatWith("History")
                     , navigateCommand) { Order = 5 };
 
             PluginContext.Host.AddInHome(navigateButton, Groups.Managers);
@@ -115,7 +115,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
             PluginContext.Host.AddTab(tab);
 
             ICommand addPeriodCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddBmi, new AddBmiView()));
-            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddBmi, imgUri.StringFormat("Add"), addPeriodCommand) { Order = 1, });
+            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddBmi, imgUri.FormatWith("Add"), addPeriodCommand) { Order = 1, });
         }
 
         private bool CanNavigate()

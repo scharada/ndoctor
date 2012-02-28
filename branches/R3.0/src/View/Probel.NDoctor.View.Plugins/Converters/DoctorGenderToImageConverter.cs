@@ -52,10 +52,10 @@ namespace Probel.NDoctor.View.Plugins.Converters
             switch (gender)
             {
                 case Gender.Male:
-                    result = new Uri(uri.StringFormat("DoctorMale"), UriKind.Relative);
+                    result = new Uri(uri.FormatWith("DoctorMale"), UriKind.Relative);
                     break;
                 case Gender.Female:
-                    result = new Uri(uri.StringFormat("DoctorFemale"), UriKind.Relative);
+                    result = new Uri(uri.FormatWith("DoctorFemale"), UriKind.Relative);
                     break;
                 default:
                     Assert.FailOnEnumeration(gender);

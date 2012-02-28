@@ -111,7 +111,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
             this.navigateCommand = new RelayCommand(() => Navigate(), () => this.CanNavigate());
 
             var navigateButton = new RibbonButtonData(Messages.Title_PictureManager
-                    , imgUri.StringFormat("Picture")
+                    , imgUri.FormatWith("Picture")
                     , navigateCommand) { Order = 5 };
 
             PluginContext.Host.AddInHome(navigateButton, Groups.Managers);
@@ -119,8 +119,8 @@ namespace Probel.NDoctor.Plugins.PictureManager
 
         private void BuildContextMenu()
         {
-            var addPicButton = new RibbonButtonData(Messages.Title_BtnAddPic, imgUri.StringFormat("Add"), this.GetAddPicCommand());
-            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.StringFormat("Save"), this.GetSaveCommand());
+            var addPicButton = new RibbonButtonData(Messages.Title_BtnAddPic, imgUri.FormatWith("Add"), this.GetAddPicCommand());
+            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.GetSaveCommand());
             var cgroup = new RibbonGroupData(Messages.Menu_Actions);
 
             cgroup.ButtonDataCollection.Add(saveButton);
@@ -175,7 +175,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
             }
             catch (Exception ex)
             {
-                this.HandleError(ex, Messages.Msg_FailToLoadMedicalPictures.StringFormat(ex.Message));
+                this.HandleError(ex, Messages.Msg_FailToLoadMedicalPictures.FormatWith(ex.Message));
             }
         }
 

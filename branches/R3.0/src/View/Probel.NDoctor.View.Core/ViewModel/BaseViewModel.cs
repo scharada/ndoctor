@@ -135,7 +135,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         {
             if (PluginContext.Host == null) return;
 
-            PluginContext.Host.WriteStatus(StatusType.Error, Messages.Msg_ErrorOccured.StringFormat(msg));
+            PluginContext.Host.WriteStatus(StatusType.Error, Messages.Msg_ErrorOccured.FormatWith(msg));
         }
 
         private void IndicateWarning()
@@ -147,7 +147,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         {
             if (PluginContext.Host == null) return;
 
-            PluginContext.Host.WriteStatus(StatusType.Error, Messages.Msg_WarningOccured.StringFormat(msg));
+            PluginContext.Host.WriteStatus(StatusType.Error, Messages.Msg_WarningOccured.FormatWith(msg));
         }
 
         #endregion Methods

@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Plugins.PrescriptionManager.Properties
-{
-
-
+namespace Probel.NDoctor.Plugins.PrescriptionManager.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -66,6 +66,24 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Properties
         internal static string Btn_Add {
             get {
                 return ResourceManager.GetString("Btn_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a drug.
+        /// </summary>
+        internal static string Btn_AddDrug {
+            get {
+                return ResourceManager.GetString("Btn_AddDrug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a drug type.
+        /// </summary>
+        internal static string Btn_AddDrugType {
+            get {
+                return ResourceManager.GetString("Btn_AddDrugType", resourceCulture);
             }
         }
         
@@ -142,6 +160,24 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Properties
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manage.
+        /// </summary>
+        internal static string Menu_Manage {
+            get {
+                return ResourceManager.GetString("Menu_Manage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Navigation.
+        /// </summary>
+        internal static string Menu_Navigation {
+            get {
+                return ResourceManager.GetString("Menu_Navigation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data saved.
         /// </summary>
         internal static string Msg_DataSaved {
@@ -196,6 +232,24 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Properties
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Prescriptions were found.
+        /// </summary>
+        internal static string Msg_FoundPrescription {
+            get {
+                return ResourceManager.GetString("Msg_FoundPrescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nothing was found.
+        /// </summary>
+        internal static string Msg_NothingFound {
+            get {
+                return ResourceManager.GetString("Msg_NothingFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The prescription wasn&apos;t saved. Please enter at least one drug..
         /// </summary>
         internal static string Msg_NothingToSave {
@@ -237,6 +291,15 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Properties
         internal static string Title_AddPrescription {
             get {
                 return ResourceManager.GetString("Title_AddPrescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creation of a prescription.
+        /// </summary>
+        internal static string Title_CreatePrescription {
+            get {
+                return ResourceManager.GetString("Title_CreatePrescription", resourceCulture);
             }
         }
         
@@ -286,6 +349,15 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Properties
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Prescriptions list between {0} and {1}.
+        /// </summary>
+        internal static string Title_PrescriptionHeader {
+            get {
+                return ResourceManager.GetString("Title_PrescriptionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Prescriptions.
         /// </summary>
         internal static string Title_PrescriptionManager {
@@ -300,6 +372,15 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Properties
         internal static string Title_PrescriptionNotes {
             get {
                 return ResourceManager.GetString("Title_PrescriptionNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search drugs.
+        /// </summary>
+        internal static string Title_SearchDrugs {
+            get {
+                return ResourceManager.GetString("Title_SearchDrugs", resourceCulture);
             }
         }
         
@@ -331,7 +412,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Properties
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Attention.
+        ///   Looks up a localized string similar to Warning.
         /// </summary>
         internal static string Warning {
             get {

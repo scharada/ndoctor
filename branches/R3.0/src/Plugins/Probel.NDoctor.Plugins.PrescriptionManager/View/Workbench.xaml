@@ -9,58 +9,37 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="Workbench">
 
-    <DockPanel LastChildFill="True">
-        <StackPanel DockPanel.Dock="Left">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="26"/>
-                    <RowDefinition Height="26"/>
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Label  Grid.Row="0" 
-                        Grid.Column="0"
-                        Content="{Binding Path=TitleFrom}"/>
-
-                <DatePicker Grid.Row="0" Grid.Column="1" 
-                        SelectedDate="{Binding Path=StartCriteria}"/>
-
-                <Label  Grid.Row="1" 
-                        Grid.Column="0"
-                        Content="{Binding Path=TitleTo}"/>
-
-                <DatePicker Grid.Row="1" Grid.Column="1"
-                        SelectedDate="{Binding Path=EndCriteria}"/>
-            </Grid>
-
-            <Button Grid.Row="2"
-                Content="{Binding Path=BtnSearch}" 
-                Command="{Binding SearchCommand}"/>
-
-            <ListView Grid.Row="3"
-                      ItemsSource="{Binding Path=FoundPrescriptions}"
-                      DisplayMemberPath="CreationDateToDisplay"
-                      SelectedItem="{Binding Path=SelectedPrescriptionDocument}"/>
-        </StackPanel>
-        <DataGrid DockPanel.Dock="Left"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <GroupBox Header="{Binding PrescriptionHeader}">
+                <ListView Grid.Row="2" ItemsSource="{Binding Path=FoundPrescriptions}"
+                          DisplayMemberPath="CreationDateToDisplay"
+                          SelectedItem="{Binding Path=SelectedPrescriptionDocument}"/>
+            </GroupBox>
+        </Grid>
+        <GroupBox Grid.Row="1"
+                  Header="{Binding Source={x:Static Member=text:WorkbenchText.TitlePrescription}}">
+            <DataGrid Grid.Row="1"
+                  DockPanel.Dock="Left"
                   ItemsSource="{Binding Path=SelectedPrescriptionDocument.Prescriptions, UpdateSourceTrigger=PropertyChanged}"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Path=Drug.Name, UpdateSourceTrigger=PropertyChanged}" 
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=Drug.Name, UpdateSourceTrigger=PropertyChanged}" 
                                     Header="{Binding Source={x:Static Member=text:AddPrescriptionText.ColDrug}}"
                                     IsReadOnly="True" />
 
-                <DataGridTextColumn Binding="{Binding Path=Notes, UpdateSourceTrigger=PropertyChanged}" 
+                    <DataGridTextColumn Binding="{Binding Path=Notes, UpdateSourceTrigger=PropertyChanged}" 
                                     Header="{Binding  Source={x:Static Member=text:AddPrescriptionText.ColNotes}}"
                                     Width="*"
                                     IsReadOnly="True" />
-            </DataGrid.Columns>
-        </DataGrid>
-    </DockPanel>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+    </Grid>
 </Page>

@@ -121,6 +121,14 @@
     <value>Add</value>
     <comment>Add</comment>
   </data>
+  <data name="Btn_AddDrug" xml:space="preserve">
+    <value>Add a drug</value>
+    <comment>Drug</comment>
+  </data>
+  <data name="Btn_AddDrugType" xml:space="preserve">
+    <value>Add a drug type</value>
+    <comment>Drug type</comment>
+  </data>
   <data name="Btn_New" xml:space="preserve">
     <value>Nouv.</value>
     <comment>New</comment>
@@ -153,6 +161,14 @@
     <value>File</value>
     <comment>File</comment>
   </data>
+  <data name="Menu_Manage" xml:space="preserve">
+    <value>Manage</value>
+    <comment>Manage</comment>
+  </data>
+  <data name="Menu_Navigation" xml:space="preserve">
+    <value>Navigation</value>
+    <comment>Navigation</comment>
+  </data>
   <data name="Msg_DataSaved" xml:space="preserve">
     <value>Data saved</value>
     <comment>Data saved</comment>
@@ -177,6 +193,14 @@
     <value>An error occured when loading the prescription manager.</value>
     <comment>An error occured when loading the prescription manager.</comment>
   </data>
+  <data name="Msg_FoundPrescription" xml:space="preserve">
+    <value>Prescriptions were found</value>
+    <comment>Prescriptions were found</comment>
+  </data>
+  <data name="Msg_NothingFound" xml:space="preserve">
+    <value>Nothing was found</value>
+    <comment>Nothing was found</comment>
+  </data>
   <data name="Msg_NothingToSave" xml:space="preserve">
     <value>The prescription wasn't saved. Please enter at least one drug.</value>
     <comment>The prescription wasn't saved. Please enter at least one drug.</comment>
@@ -196,6 +220,10 @@
   <data name="Title_AddPrescription" xml:space="preserve">
     <value>Create new prescription</value>
     <comment>Create new prescription</comment>
+  </data>
+  <data name="Title_CreatePrescription" xml:space="preserve">
+    <value>Creation of a prescription</value>
+    <comment>Creation of a prescription</comment>
   </data>
   <data name="Title_CreationDate" xml:space="preserve">
     <value>Creation date:</value>
@@ -217,6 +245,10 @@
     <value>Prescription created on:</value>
     <comment>Prescription created on:</comment>
   </data>
+  <data name="Title_PrescriptionHeader" xml:space="preserve">
+    <value>Prescriptions list between {0} and {1}</value>
+    <comment>Prescriptions list between {0} and {1}</comment>
+  </data>
   <data name="Title_PrescriptionManager" xml:space="preserve">
     <value>Prescriptions</value>
     <comment>Prescriptions</comment>
@@ -224,6 +256,10 @@
   <data name="Title_PrescriptionNotes" xml:space="preserve">
     <value>Notes</value>
     <comment>Notes</comment>
+  </data>
+  <data name="Title_SearchDrugs" xml:space="preserve">
+    <value>Search drugs</value>
+    <comment>Search drugs</comment>
   </data>
   <data name="Title_SelectedDrug" xml:space="preserve">
     <value>Selected drug</value>
@@ -238,7 +274,7 @@
     <comment>To</comment>
   </data>
   <data name="Warning" xml:space="preserve">
-    <value>Attention</value>
+    <value>Warning</value>
     <comment>Warning</comment>
   </data>
 </root>

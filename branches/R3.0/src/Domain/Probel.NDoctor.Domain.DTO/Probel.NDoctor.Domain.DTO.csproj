@@ -88,6 +88,7 @@
     <Compile Include="Objects\PrescriptionDocumentDto.cs" />
     <Compile Include="Objects\PrescriptionDto.cs" />
     <Compile Include="Helpers\Workday.cs" />
+    <Compile Include="Objects\PrescriptionResultDto.cs" />
     <Compile Include="Properties\Messages.Designer.cs">
       <DependentUpon>Messages.resx</DependentUpon>
       <AutoGen>True</AutoGen>

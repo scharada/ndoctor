@@ -110,14 +110,14 @@ namespace Probel.NDoctor.Plugins.UserSession
             if (splitter == null || splitter.GetType() != typeof(RibbonMenuButtonData))
             {
                 splitterExist = false;
-                splitter = new RibbonMenuButtonData(Messages.Btn_Add, uri.StringFormat("Add"), null)
+                splitter = new RibbonMenuButtonData(Messages.Btn_Add, uri.FormatWith("Add"), null)
                 {
                     Order = 1,
                     Name = "add",
                 };
             }
 
-            var addButton = new RibbonMenuItemData(Messages.Title_ButtonAddUser, uri.StringFormat("Add"), this.addCommand) { Order = 3, };
+            var addButton = new RibbonMenuItemData(Messages.Title_ButtonAddUser, uri.FormatWith("Add"), this.addCommand) { Order = 3, };
             (splitter as RibbonMenuButtonData).ControlDataCollection.Add(addButton);
             if (!splitterExist) PluginContext.Host.AddInHome((splitter as RibbonMenuButtonData), Groups.Tools);
 
@@ -169,7 +169,7 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         private void InitialiseUpdateUserPage()
         {
-            var menu = new RibbonControlData(Messages.Menu_ManagePersonalData, uri.StringFormat("Users"), showUpdateUserCommand) { Order = 3 };
+            var menu = new RibbonControlData(Messages.Menu_ManagePersonalData, uri.FormatWith("Users"), showUpdateUserCommand) { Order = 3 };
             PluginContext.Host.AddToApplicationMenu(menu);
         }
 

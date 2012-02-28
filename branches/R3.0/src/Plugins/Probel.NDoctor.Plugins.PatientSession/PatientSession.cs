@@ -87,7 +87,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
             if (splitter == null || splitter.GetType() != typeof(RibbonMenuButtonData))
             {
                 splitterExist = false;
-                splitter = new RibbonMenuButtonData(Messages.Btn_Add, uriPng.StringFormat("Add"), null)
+                splitter = new RibbonMenuButtonData(Messages.Btn_Add, uriPng.FormatWith("Add"), null)
                 {
                     Order = 1,
                     Name = "add",
@@ -95,7 +95,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
             }
 
             this.addCommand = new RelayCommand(() => this.NavigateAddPatient());
-            var addButton = new RibbonMenuItemData(Messages.Title_ButtonAddPatient, uriPng.StringFormat("Add"), this.addCommand)
+            var addButton = new RibbonMenuItemData(Messages.Title_ButtonAddPatient, uriPng.FormatWith("Add"), this.addCommand)
             {
                 Order = 2,
             };
@@ -109,18 +109,18 @@ namespace Probel.NDoctor.Plugins.PatientSession
             this.searchCommand = new RelayCommand(() => this.NavigateSearchPatient());
             var searchButton = new RibbonButtonData(Messages.Title_SearchPatient, this.searchCommand)
             {
-                SmallImage = new Uri(uriPng.StringFormat("SearchSmall"), UriKind.Relative),
+                SmallImage = new Uri(uriPng.FormatWith("SearchSmall"), UriKind.Relative),
                 Order = 0,
             };
 
             this.showTopTenCommand = new RelayCommand(() => this.NavigateTopTen());
             var topTenButton = new RibbonButtonData(Messages.Title_MostUsed, this.showTopTenCommand)
             {
-                SmallImage = new Uri(uriPng.StringFormat("SearchSmall"), UriKind.Relative),
+                SmallImage = new Uri(uriPng.FormatWith("SearchSmall"), UriKind.Relative),
                 Order = 0,
             };
 
-            var searchSplitButton = new RibbonSplitButtonData(Messages.Title_ButtonSearch, uriIco.StringFormat("Search"), this.searchCommand)
+            var searchSplitButton = new RibbonSplitButtonData(Messages.Title_ButtonSearch, uriIco.FormatWith("Search"), this.searchCommand)
             {
                 Order = 0,
             };

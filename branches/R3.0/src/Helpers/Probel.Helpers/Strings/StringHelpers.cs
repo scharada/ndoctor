@@ -20,11 +20,6 @@ namespace Probel.Helpers.Strings
     {
         #region Methods
 
-        public static bool IsNullOrEmpty(this string str)
-        {
-            return string.IsNullOrEmpty(str);
-        }
-
         /// <summary>
         /// Replaces the format item in a specified string with the string representation
         /// of a corresponding object in a specified array.
@@ -36,9 +31,14 @@ namespace Probel.Helpers.Strings
         /// <exception cref="System.ArgumentNullException">format or args is null.</exception>
         /// <exception cref="System.FormatException">format is invalid.-or- The index of a format item is less than zero, or greater
         /// than or equal to the length of the args array.</exception>
-        public static string StringFormat(this string str, params object[] args)
+        public static string FormatWith(this string str, params object[] args)
         {
             return string.Format(str, args);
+        }
+
+        public static bool IsNullOrEmpty(this string str)
+        {
+            return string.IsNullOrEmpty(str);
         }
 
         #endregion Methods

@@ -120,6 +120,7 @@
     <Compile Include="ValidationMode.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="MenuData\_Ribbons.cd" />
     <None Include="_Design\Plugins.cd" />
     <None Include="_Design\Core.cd" />
     <None Include="Probel.NDoctor.View.Plugins.licenseheader" />

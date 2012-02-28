@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -16,27 +14,25 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-#endregion Header
-
-namespace Probel.NDoctor.Plugins.MeetingManager.Translations
+namespace Probel.NDoctor.Plugins.PrescriptionManager.View
 {
-    using Probel.NDoctor.Plugins.MeetingManager.Properties;
+    using System.Windows.Controls;
 
-    public static class WorkbenchText
+    using Probel.NDoctor.Plugins.PrescriptionManager.ViewModel;
+
+    /// <summary>
+    /// Interaction logic for SearchPrescriptionView.xaml
+    /// </summary>
+    public partial class SearchPrescriptionView : UserControl
     {
-        #region Properties
+        #region Constructors
 
-        public static string BtnSearch
+        public SearchPrescriptionView()
         {
-            get { return Messages.Btn_Search; }
+            InitializeComponent();
+            this.DataContext = new SearchPrescriptionViewModel();
         }
 
-        public static string TitleWatermark
-        {
-            get { return Messages.Title_SearchWatermark; }
-        }
-
-        #endregion Properties
+        #endregion Constructors
     }
 }

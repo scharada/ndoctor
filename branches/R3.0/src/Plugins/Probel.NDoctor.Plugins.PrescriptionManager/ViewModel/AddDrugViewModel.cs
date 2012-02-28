@@ -37,13 +37,13 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
+    using Probel.NDoctor.View.Core.Helpers;
 
     public class AddDrugViewModel : BaseViewModel
     {
         #region Fields
 
         private IPrescriptionComponent component;
-        private bool isPopupOpened;
         private DrugDto selectedDrug;
 
         #endregion Fields
@@ -57,7 +57,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             this.Tags = new ObservableCollection<TagDto>();
             this.SelectedDrug = new DrugDto();
 
-            this.ShowPopupCommand = new RelayCommand(() => this.IsPopupOpened = true);
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
         }
 
@@ -71,19 +70,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             private set;
         }
 
-        public bool IsPopupOpened
-        {
-            get { return this.isPopupOpened; }
-            set
-            {
-                this.isPopupOpened = value;
-
-                if (value) this.Refresh();
-
-                this.OnPropertyChanged("IsPopupOpened");
-            }
-        }
-
         public DrugDto SelectedDrug
         {
             get { return this.selectedDrug; }
@@ -92,12 +78,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 this.selectedDrug = value;
                 this.OnPropertyChanged("SelectedDrug");
             }
-        }
-
-        public ICommand ShowPopupCommand
-        {
-            get;
-            private set;
         }
 
         public ObservableCollection<TagDto> Tags
@@ -121,7 +101,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 Notifyer.OnItemChanged(this);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
                 this.SelectedDrug = new DrugDto();
-                this.IsPopupOpened = false;
+                InnerWindow.Close();
             }
             catch (ExistingItemException ex)
             {
@@ -140,7 +120,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 && !string.IsNullOrWhiteSpace(this.SelectedDrug.Name);
         }
 
-        private void Refresh()
+        public void Refresh()
         {
             IList<TagDto> result;
             using (this.component.UnitOfWork)

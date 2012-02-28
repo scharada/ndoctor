@@ -35,7 +35,7 @@
                     this.component.Create(this.tagToAdd);
                 }
                 InnerWindow.Close();
-                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_TagAdded.StringFormat(this.tagToAdd.Name));
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_TagAdded.FormatWith(this.tagToAdd.Name));
 
                 Notifyer.OnRefreshed();
 

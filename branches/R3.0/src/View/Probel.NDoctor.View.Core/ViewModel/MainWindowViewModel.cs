@@ -51,11 +51,11 @@ namespace Probel.NDoctor.View.Core.ViewModel
         {
             this.settingCommand = new RelayCommand(() => this.NavigateToSetting());
 
-            var menu = new RibbonControlData(Messages.Title_Settings, uriImage.StringFormat("Settings"), settingCommand) { Order = 5 };
+            var menu = new RibbonControlData(Messages.Title_Settings, uriImage.FormatWith("Settings"), settingCommand) { Order = 5 };
             PluginContext.Host.AddToApplicationMenu(menu);
 
-            App.RibbonData.ApplicationMenuData.LargeImage = new Uri(uriImage.StringFormat("Home"), UriKind.Relative);
-            App.RibbonData.ApplicationMenuData.SmallImage = new Uri(uriImage.StringFormat("Home"), UriKind.Relative);
+            App.RibbonData.ApplicationMenuData.LargeImage = new Uri(uriImage.FormatWith("Home"), UriKind.Relative);
+            App.RibbonData.ApplicationMenuData.SmallImage = new Uri(uriImage.FormatWith("Home"), UriKind.Relative);
 
             this.ChildWindow = new ChildWindowViewModel();
         }
@@ -75,7 +75,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             get
             {
                 return (this.SelectedPatient != null)
-                    ? Messages.Msg_ConnectedPatient.StringFormat(PluginContext.Host.SelectedPatient.DisplayedName)
+                    ? Messages.Msg_ConnectedPatient.FormatWith(PluginContext.Host.SelectedPatient.DisplayedName)
                     : Messages.Title_NoUserConnected;
             }
         }
@@ -149,7 +149,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             get
             {
                 return (this.SelectedPatient != null)
-                    ? Messages.Title_SelectedUser.StringFormat(this.ConnectedUser.DisplayedName)
+                    ? Messages.Title_SelectedUser.FormatWith(this.ConnectedUser.DisplayedName)
                     : Messages.Title_NoUserConnected;
             }
         }

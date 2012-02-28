@@ -432,7 +432,7 @@ namespace Probel.NDoctor.View.Core
         private void WriteStatus(LightPatientDto value)
         {
             var name = string.Format("{0} {1}", value.FirstName, value.LastName);
-            this.WriteStatus(StatusType.Info, Messages.Msg_SelectPatient.StringFormat(name));
+            this.WriteStatus(StatusType.Info, Messages.Msg_SelectPatient.FormatWith(name));
         }
 
         #endregion Methods

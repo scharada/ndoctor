@@ -63,7 +63,7 @@ namespace Probel.NDoctor.View.Plugins.Configuration
             var pluginDir = Path.Combine(CONFIG_PATH, plugin.Path);
             if (!Directory.Exists(pluginDir))
             {
-                throw new FileNotFoundException(Messages.Ex_PluginNotFoundException.StringFormat(plugin.Menu, pluginDir));
+                throw new FileNotFoundException(Messages.Ex_PluginNotFoundException.FormatWith(plugin.Menu, pluginDir));
             }
             return pluginDir;
         }

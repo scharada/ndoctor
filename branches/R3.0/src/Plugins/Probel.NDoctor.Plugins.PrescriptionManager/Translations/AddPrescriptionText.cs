@@ -73,5 +73,16 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Translations
         }
 
         #endregion Properties
+
+
+        public static string TitleSearchDrugs
+        {
+            get { return Messages.Title_SearchDrugs; }
+        }
+
+        public static string TitleCreatePrescription
+        {
+            get { return Messages.Title_CreatePrescription; }
+        }
     }
 }

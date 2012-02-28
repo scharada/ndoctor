@@ -114,7 +114,7 @@ namespace Probel.NDoctor.Domain.DTO.Helpers
         private DateTime GetTime(string value)
         {
             var parts = value.Split(':');
-            if (parts.Length != 2) throw new ArgumentException(Messages.Error_WrongTextForDate.StringFormat(value));
+            if (parts.Length != 2) throw new ArgumentException(Messages.Error_WrongTextForDate.FormatWith(value));
 
             int hours, minutes;
             if (!Int32.TryParse(parts[0], out hours)) throw new ArgumentException(Messages.Error_WrongTextForDate);

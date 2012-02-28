@@ -5,21 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PrescriptionManager.Translations"
              mc:Ignorable="d">
-    <StackPanel>
-        <Button Command="{Binding Path=ShowPopupCommand}" Height="20" Width="20">
-            <Image Source="/Probel.NDoctor.Plugins.PrescriptionManager;Component/Images/Plus.png"/>
-        </Button>
+    <StackPanel Width="200">
+        <TextBox Text="{Binding Path=SelectedTag.Name, UpdateSourceTrigger=PropertyChanged}"
+                 MinWidth="100"/>
 
-        <Popup IsOpen="{Binding IsPopupOpened}"
-               StaysOpen="False"
-               AllowsTransparency="True">
-            <StackPanel>
-                <TextBox Text="{Binding Path=SelectedTag.Name, UpdateSourceTrigger=PropertyChanged}"
-                         MinWidth="100"/>
-
-                <Button Content="{Binding Source={x:Static Member=text:AddDrugText.BtnAdd}}"
-                        Command="{Binding Path=AddCommand}"/>
-            </StackPanel>
-        </Popup>
+        <Button Content="{Binding Source={x:Static Member=text:AddDrugText.BtnAdd}}"
+                Command="{Binding Path=AddCommand}"/>
     </StackPanel>
 </UserControl>

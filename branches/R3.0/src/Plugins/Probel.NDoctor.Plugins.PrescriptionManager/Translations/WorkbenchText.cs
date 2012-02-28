@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -17,26 +15,26 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#endregion Header
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
 
-namespace Probel.NDoctor.Plugins.MeetingManager.Translations
+namespace Probel.NDoctor.Plugins.PrescriptionManager.Translations
 {
-    using Probel.NDoctor.Plugins.MeetingManager.Properties;
-
     public static class WorkbenchText
     {
-        #region Properties
 
-        public static string BtnSearch
+        public static string PrescriptionHeader
         {
-            get { return Messages.Btn_Search; }
+            get { return Messages.Title_PrescriptionHeader; }
         }
 
-        public static string TitleWatermark
-        {
-            get { return Messages.Title_SearchWatermark; }
-        }
 
-        #endregion Properties
+        public static string TitlePrescription
+        {
+            get { return Messages.Title_PrescriptionManager; }
+        }
     }
 }

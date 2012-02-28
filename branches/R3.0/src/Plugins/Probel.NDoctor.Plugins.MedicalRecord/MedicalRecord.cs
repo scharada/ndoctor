@@ -151,7 +151,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             this.saveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
 
             var navigateButton = new RibbonButtonData(Messages.Title_MedicalRecord
-                , imgUri.StringFormat("MedicalRecord")
+                , imgUri.FormatWith("MedicalRecord")
                 , navigateCommand) { Order = 2 };
 
             PluginContext.Host.AddInHome(navigateButton, Groups.Managers);
@@ -230,7 +230,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
         private void ConfigureSaveMenu(RibbonTabData tab)
         {
-            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.StringFormat("Save"), saveCommand);
+            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), saveCommand);
             var splitButton = this.ConfigureSplitButton();
 
             var cgroup = new RibbonGroupData(Messages.Menu_Actions, 1);
@@ -244,9 +244,9 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             this.addRecordCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddRecord, new AddRecordView()));
             this.addFolderCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddFolder, new AddFolderView()));
 
-            var splitButton = new RibbonMenuButtonData(Messages.Title_BtnAdd, imgUri.StringFormat("Add"), addRecordCommand);
-            var addRecordButton = new RibbonMenuItemData(Messages.Title_AddRecord, imgUri.StringFormat("Add"), addRecordCommand);
-            var addFolderButton = new RibbonMenuItemData(Messages.Title_AddFolder, imgUri.StringFormat("Add"), addFolderCommand);
+            var splitButton = new RibbonMenuButtonData(Messages.Title_BtnAdd, imgUri.FormatWith("Add"), addRecordCommand);
+            var addRecordButton = new RibbonMenuItemData(Messages.Title_AddRecord, imgUri.FormatWith("Add"), addRecordCommand);
+            var addFolderButton = new RibbonMenuItemData(Messages.Title_AddFolder, imgUri.FormatWith("Add"), addFolderCommand);
 
             splitButton.ControlDataCollection.Add(addRecordButton);
             splitButton.ControlDataCollection.Add(addFolderButton);
@@ -267,28 +267,28 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             this.leftAllignButton = new RibbonToggleButtonData()
             {
                 Label = Messages.Edition_LeftAlign,
-                SmallImage = new Uri(imgUri.StringFormat("LeftAlign"), UriKind.Relative),
+                SmallImage = new Uri(imgUri.FormatWith("LeftAlign"), UriKind.Relative),
                 Command = EditingCommands.AlignLeft,
                 Order = 1,
             };
             this.rightAllignButton = new RibbonToggleButtonData()
             {
                 Label = Messages.Edition_RightAlign,
-                SmallImage = new Uri(imgUri.StringFormat("RightAlign"), UriKind.Relative),
+                SmallImage = new Uri(imgUri.FormatWith("RightAlign"), UriKind.Relative),
                 Command = EditingCommands.AlignRight,
                 Order = 2,
             };
             this.centerAllignButton = new RibbonToggleButtonData()
             {
                 Label = Messages.Edition_CenterAlign,
-                SmallImage = new Uri(imgUri.StringFormat("CenterAlign"), UriKind.Relative),
+                SmallImage = new Uri(imgUri.FormatWith("CenterAlign"), UriKind.Relative),
                 Command = EditingCommands.AlignCenter,
                 Order = 3,
             };
             this.justifyAllignButton = new RibbonToggleButtonData()
             {
                 Label = Messages.Edition_JustifyAlign,
-                SmallImage = new Uri(imgUri.StringFormat("JustifyAlign"), UriKind.Relative),
+                SmallImage = new Uri(imgUri.FormatWith("JustifyAlign"), UriKind.Relative),
                 Command = EditingCommands.AlignJustify,
                 Order = 4,
             };
@@ -314,31 +314,31 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             this.boldButton = new RibbonToggleButtonData()
             {
                 Label = Messages.Edition_Bold,
-                SmallImage = new Uri(imgUri.StringFormat("Bold"), UriKind.Relative),
+                SmallImage = new Uri(imgUri.FormatWith("Bold"), UriKind.Relative),
                 Command = EditingCommands.ToggleBold,
             };
             this.italicButton = new RibbonToggleButtonData()
             {
                 Label = Messages.Edition_Italic,
-                SmallImage = new Uri(imgUri.StringFormat("Italic"), UriKind.Relative),
+                SmallImage = new Uri(imgUri.FormatWith("Italic"), UriKind.Relative),
                 Command = EditingCommands.ToggleItalic,
             };
             this.underlineButton = new RibbonToggleButtonData()
             {
                 Label = Messages.Edition_Underline,
-                SmallImage = new Uri(imgUri.StringFormat("Underline"), UriKind.Relative),
+                SmallImage = new Uri(imgUri.FormatWith("Underline"), UriKind.Relative),
                 Command = EditingCommands.ToggleUnderline,
             };
             this.bulletsButton = new RibbonButtonData()
             {
                 Label = Messages.Edition_Bullets,
-                SmallImage = new Uri(imgUri.StringFormat("Bullets"), UriKind.Relative),
+                SmallImage = new Uri(imgUri.FormatWith("Bullets"), UriKind.Relative),
                 Command = EditingCommands.ToggleBullets,
             };
             this.numberingButton = new RibbonButtonData()
             {
                 Label = Messages.Edition_Numbering,
-                SmallImage = new Uri(imgUri.StringFormat("Numbering"), UriKind.Relative),
+                SmallImage = new Uri(imgUri.FormatWith("Numbering"), UriKind.Relative),
                 Command = EditingCommands.ToggleNumbering,
             };
         }
@@ -355,7 +355,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             }
             catch (Exception ex)
             {
-                this.HandleError(ex, Messages.Msg_FailToLoadMedicalRecords.StringFormat(ex.Message));
+                this.HandleError(ex, Messages.Msg_FailToLoadMedicalRecords.FormatWith(ex.Message));
             }
         }
 

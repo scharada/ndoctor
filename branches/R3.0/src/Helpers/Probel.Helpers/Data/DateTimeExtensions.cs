@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -15,12 +17,16 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System;
+#endregion Header
 
 namespace Probel.Helpers.Data
 {
+    using System;
+
     public static class DateTimeExtensions
     {
+        #region Methods
+
         public static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
         {
             int diff = dt.DayOfWeek - startOfWeek;
@@ -31,6 +37,7 @@ namespace Probel.Helpers.Data
 
             return dt.AddDays(-1 * diff).Date;
         }
-    }
 
+        #endregion Methods
+    }
 }

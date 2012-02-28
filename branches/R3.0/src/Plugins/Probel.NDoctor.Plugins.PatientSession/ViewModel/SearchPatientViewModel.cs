@@ -137,7 +137,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             var patients = Mapper.Map<IList<LightPatientDto>, IList<LightPatientViewModel>>(result);
             this.FoundPatients.Refill(patients);
 
-            PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_SearchExecuted.StringFormat(result.Count()));
+            PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_SearchExecuted.FormatWith(result.Count()));
         }
 
         #endregion Methods

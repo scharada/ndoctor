@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonApplicationMenuItemData" Collapsed="true">
+    <Position X="2" Y="6.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MenuData\RibbonApplicationMenuItemData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonBase" Collapsed="true">
+    <Position X="7.75" Y="0.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAEAAAABBAAAAAQAQAAAAEQAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MenuData\RibbonBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonButtonData" Collapsed="true">
+    <Position X="10" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MenuData\RibbonButtonData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonComboBoxData" Collapsed="true">
+    <Position X="4.75" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>oAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>MenuData\RibbonComboBoxData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonContextualTabGroupData" Collapsed="true">
+    <Position X="0.75" Y="2.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAQAAAAAEAAAABAAABAAAAAAAAAAAABgAAAAIAA=</HashCode>
+      <FileName>MenuData\RibbonContextualTabGroupData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonControlData" Collapsed="true">
+    <Position X="7.75" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAEKAAkBAAAJACQAAgBkAAIAQAAAACAAAAARAAABk=</HashCode>
+      <FileName>MenuData\RibbonControlData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonData" Collapsed="true">
+    <Position X="13.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>MenuData\RibbonData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonGroupData" Collapsed="true">
+    <Position X="11.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAQAAAAAAAAEIAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>MenuData\RibbonGroupData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonMenuButtonData" Collapsed="true">
+    <Position X="4.5" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAQgAAAsAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MenuData\RibbonMenuButtonData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonMenuItemData" Collapsed="true">
+    <Position X="2.25" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAACAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAA=</HashCode>
+      <FileName>MenuData\RibbonMenuItemData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonSeparatorData" Collapsed="true">
+    <Position X="12.25" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MenuData\RibbonSeparatorData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonSplitButtonData" Collapsed="true">
+    <Position X="7.5" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAMAAAADAAAAAAEAAAAAAAAAAAAEAQAABAAAAAAAA=</HashCode>
+      <FileName>MenuData\RibbonSplitButtonData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonTabData" Collapsed="true">
+    <Position X="3.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAASQAAAAEAAAAAAIAAACAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>MenuData\RibbonTabData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonToggleButtonData" Collapsed="true">
+    <Position X="7.5" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MenuData\RibbonToggleButtonData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

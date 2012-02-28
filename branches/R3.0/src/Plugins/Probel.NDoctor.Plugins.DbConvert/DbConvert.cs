@@ -77,7 +77,7 @@ namespace Probel.NDoctor.Plugins.DbConvert
             var navigateCommand = new RelayCommand(() => this.Navigate());
 
             var navigateButton = new RibbonButtonData(Messages.Title_DbConvertManager
-                    , imgUri.StringFormat("Source")
+                    , imgUri.FormatWith("Source")
                     , navigateCommand) { Order = 4 };
 
             PluginContext.Host.AddToApplicationMenu(navigateButton);

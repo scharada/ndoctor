@@ -169,7 +169,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             {
                 if (selectedPicture != null)
                 {
-                    return Messages.Title_CreationDate.StringFormat(this.SelectedPicture.Creation.Date.ToShortDateString());
+                    return Messages.Title_CreationDate.FormatWith(this.SelectedPicture.Creation.Date.ToShortDateString());
                 }
                 else return string.Empty;
             }
@@ -181,7 +181,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             {
                 if (selectedPicture != null)
                 {
-                    return Messages.Title_LastUpdate.StringFormat(this.SelectedPicture.LastUpdate);
+                    return Messages.Title_LastUpdate.FormatWith(this.SelectedPicture.LastUpdate);
                 }
                 else return string.Empty;
             }

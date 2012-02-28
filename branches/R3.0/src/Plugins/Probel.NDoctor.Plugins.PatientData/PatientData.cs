@@ -30,12 +30,12 @@ namespace Probel.NDoctor.Plugins.PatientData
     using Probel.NDoctor.Plugins.PatientData.Properties;
     using Probel.NDoctor.Plugins.PatientData.View;
     using Probel.NDoctor.Plugins.PatientData.ViewModel;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
 
     using StructureMap;
-    using Probel.NDoctor.View.Core.Helpers;
 
     [Export(typeof(IPlugin))]
     public class PatientData : Plugin
@@ -44,6 +44,12 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.PatientData;component/Images\{0}.png";
 
+        private ICommand addDoctorCommand;
+        private ICommand addInsuranceCommand;
+        private ICommand addPracticeCommand;
+        private ICommand addProfessionCommand;
+        private ICommand addReputationCommand;
+        private ICommand addSpecialisationCommand;
         private IPatientDataComponent component;
         private RibbonContextualTabGroupData contextualMenu;
         private ICommand navigateCommand;
@@ -100,13 +106,6 @@ namespace Probel.NDoctor.Plugins.PatientData
             this.BuildContextMenu();
         }
 
-        private ICommand addSpecialisationCommand;
-        private ICommand addInsuranceCommand;
-        private ICommand addDoctorCommand;
-        private ICommand addReputationCommand;
-        private ICommand addPracticeCommand;
-        private ICommand addProfessionCommand;
-
         private void BuildButtons()
         {
             this.navigateCommand = new RelayCommand(() => this.Navigate(), () => this.CanNavigate());
@@ -118,9 +117,8 @@ namespace Probel.NDoctor.Plugins.PatientData
             this.addPracticeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPractice, new AddPracticeView()));
             this.addProfessionCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddProfession, new AddProfessionView()));
 
-
             var navigateButton = new RibbonButtonData(Messages.Title_PatientDataManager
-                    , imgUri.StringFormat("Properties")
+                    , imgUri.FormatWith("Properties")
                     , navigateCommand) { Order = 1 };
 
             PluginContext.Host.AddInHome(navigateButton, Groups.Managers);
@@ -128,13 +126,13 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         private void BuildContextMenu()
         {
-            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.StringFormat("Save"), this.saveCommand);
-            var addDoctorButton = new RibbonButtonData(Messages.Title_AddDoctor, imgUri.StringFormat("Save"), this.addDoctorCommand);
-            var addSpecialisationButton = new RibbonButtonData(Messages.Title_AddSpecialisation, imgUri.StringFormat("Save"), this.addSpecialisationCommand);
-            var addInsuranceButton = new RibbonButtonData(Messages.Title_AddInsurance, imgUri.StringFormat("Save"), this.addInsuranceCommand);
-            var addReputationButton = new RibbonButtonData(Messages.Title_AddReputation, imgUri.StringFormat("Save"), this.addReputationCommand);
-            var addPracticeButton = new RibbonButtonData(Messages.Title_AddPractice, imgUri.StringFormat("Save"), this.addPracticeCommand);
-            var addProfessionButton = new RibbonButtonData(Messages.Title_AddProfession, imgUri.StringFormat("Save"), this.addProfessionCommand);
+            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.saveCommand);
+            var addDoctorButton = new RibbonButtonData(Messages.Title_AddDoctor, imgUri.FormatWith("Save"), this.addDoctorCommand);
+            var addSpecialisationButton = new RibbonButtonData(Messages.Title_AddSpecialisation, imgUri.FormatWith("Save"), this.addSpecialisationCommand);
+            var addInsuranceButton = new RibbonButtonData(Messages.Title_AddInsurance, imgUri.FormatWith("Save"), this.addInsuranceCommand);
+            var addReputationButton = new RibbonButtonData(Messages.Title_AddReputation, imgUri.FormatWith("Save"), this.addReputationCommand);
+            var addPracticeButton = new RibbonButtonData(Messages.Title_AddPractice, imgUri.FormatWith("Save"), this.addPracticeCommand);
+            var addProfessionButton = new RibbonButtonData(Messages.Title_AddProfession, imgUri.FormatWith("Save"), this.addProfessionCommand);
 
             var cgroup = new RibbonGroupData(Messages.Menu_Actions);
             var cgroupAdd = new RibbonGroupData(Messages.Menu_Add);

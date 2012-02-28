@@ -108,7 +108,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager
             this.navigateCommand = new RelayCommand(() => this.Navigate(), () => this.CanNavigate());
 
             var navigateButton = new RibbonButtonData(Messages.Title_PathologyManager
-                , imgUri.StringFormat("PathologyManager")
+                , imgUri.FormatWith("PathologyManager")
                 , navigateCommand) { Order = 3 };
 
             PluginContext.Host.AddInHome(navigateButton, Groups.Managers);
@@ -128,10 +128,10 @@ namespace Probel.NDoctor.Plugins.PathologyManager
             PluginContext.Host.AddTab(tab);
 
             ICommand addPeriodCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_Add, new AddIllnessPeriodView()));
-            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPeriods, imgUri.StringFormat("Add"), addPeriodCommand) { Order = 1, });
+            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPeriods, imgUri.FormatWith("Add"), addPeriodCommand) { Order = 1, });
 
             ICommand addPathologyCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPathology, new AddPathologyView()));
-            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPathology, imgUri.StringFormat("Add"), addPathologyCommand) { Order = 2 });
+            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPathology, imgUri.FormatWith("Add"), addPathologyCommand) { Order = 2 });
         }
 
         private bool CanNavigate()

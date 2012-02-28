@@ -31,24 +31,31 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
     using Probel.NDoctor.Plugins.PrescriptionManager.View;
     using Probel.NDoctor.Plugins.PrescriptionManager.ViewModel;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
 
     using StructureMap;
+    using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
 
     [Export(typeof(IPlugin))]
     public class PrescriptionManager : Plugin
     {
         #region Fields
 
+        private const string icoUri = @"\Probel.NDoctor.Plugins.PrescriptionManager;component/Images\{0}.ico";
         private const string imgUri = @"\Probel.NDoctor.Plugins.PrescriptionManager;component/Images\{0}.png";
 
         private AddPrescriptionView addPrescriptionView;
         private RibbonContextualTabGroupData contextualMenu;
         private bool isSaveCommandActivated = false;
+        private bool isSearching = false;
+        private LastNavigation lastNavigation;
         private ICommand navAddPrescriptionCommand;
-        private ICommand navigateCommand;
+        private ICommand navWorkbenchCommand;
+        private ICommand navPrescriptionCommand;
+        private ICommand navSearchCommand;
         private ICommand saveCommand;
         private Workbench workbench;
 
@@ -60,13 +67,37 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         public PrescriptionManager([Import("version")] Version version)
             : base(version)
         {
+            this.lastNavigation = LastNavigation.None;
             this.ConfigureStructureMap();
             this.ConfigureAutoMapper();
 
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
+
+            this.saveCommand = new RelayCommand(() => this.Save(), () => CanSave());
+            this.navSearchCommand = new RelayCommand(() => this.NavigateSearch(), () => this.CanNavigateSearch());
+            this.navAddPrescriptionCommand = new RelayCommand(() => this.NavigateAddPrescription(), () => this.lastNavigation != LastNavigation.AddPrescription);
+            this.navWorkbenchCommand = new RelayCommand(() => this.NavigateWorkbench(), () => this.CanNavigateWorkbench());
+            this.navPrescriptionCommand = new RelayCommand(() => this.NavigateWorkbench(), () => this.CanNavigatePrescription());
+        }
+
+        private bool CanNavigatePrescription()
+        {
+            return this.CanNavigateWorkbench()
+                && this.lastNavigation != LastNavigation.Workbench;
         }
 
         #endregion Constructors
+
+        #region Enumerations
+
+        private enum LastNavigation
+        {
+            Workbench,
+            AddPrescription,
+            None,
+        }
+
+        #endregion Enumerations
 
         #region Properties
 
@@ -132,16 +163,12 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         private void BuildButtons()
         {
             #region Navigate
-            this.navigateCommand = new RelayCommand(() => this.Navigate(), () => this.CanNavigate());
 
             var navigateButton = new RibbonButtonData(Messages.Title_PrescriptionManager
-                    , imgUri.StringFormat("Prescription")
-                    , navigateCommand) { Order = 4 };
+                    , imgUri.FormatWith("Prescription")
+                    , navWorkbenchCommand) { Order = 4 };
             PluginContext.Host.AddInHome(navigateButton, Groups.Managers);
             #endregion
-
-            this.navAddPrescriptionCommand = new RelayCommand(() => this.NavigateAddPrescription());
-            this.saveCommand = new RelayCommand(() => this.Save(), () => CanSave());
         }
 
         /// <summary>
@@ -150,31 +177,70 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         private void BuildContextMenu()
         {
             var navAddPrescriptionButton = new RibbonButtonData(Messages.Title_AddPrescription
-                , imgUri.StringFormat("Add")
+                , imgUri.FormatWith("Add")
                 , navAddPrescriptionCommand);
 
             var navWorkbenchButton = new RibbonButtonData(Messages.Title_PrescriptionManager
-                , imgUri.StringFormat("Prescription")
-                , navigateCommand);
+                , imgUri.FormatWith("Prescription")
+                , navPrescriptionCommand);
 
             var saveButton = new RibbonButtonData(Messages.Btn_Save
-                , imgUri.StringFormat("Save")
+                , imgUri.FormatWith("Save")
                 , saveCommand);
 
+            var navSearchButton = new RibbonButtonData(Messages.Btn_Search
+                , icoUri.FormatWith("Search")
+                , navSearchCommand);
+
+            var addDrugButton = new RibbonButtonData(Messages.Btn_AddDrug
+                , imgUri.FormatWith("Add")
+                , new RelayCommand(() =>
+                {
+                    var view = new AddDrugView();
+                    var model = new AddDrugViewModel();
+                    model.Refresh();
+                    view.DataContext = model;
+
+                    InnerWindow.Show(Messages.Btn_Add, view);
+                }
+                    , () => this.lastNavigation == LastNavigation.AddPrescription));
+
+            var addDrugTypeButton = new RibbonButtonData(Messages.Btn_AddDrugType
+                , imgUri.FormatWith("Add")
+                , new RelayCommand(() => InnerWindow.Show(Messages.Btn_Add, new AddDrugTypeView())
+                    , () => this.lastNavigation == LastNavigation.AddPrescription));
+
             var cgroup = new RibbonGroupData(Messages.Menu_Actions);
+            var ngroup = new RibbonGroupData(Messages.Menu_Navigation);
+            var mgroup = new RibbonGroupData(Messages.Menu_Manage);
 
             cgroup.ButtonDataCollection.Add(saveButton);
-            cgroup.ButtonDataCollection.Add(navWorkbenchButton);
-            cgroup.ButtonDataCollection.Add(navAddPrescriptionButton);
+            cgroup.ButtonDataCollection.Add(navSearchButton);
 
-            var tab = new RibbonTabData(Messages.Menu_File, cgroup) { ContextualTabGroupHeader = Messages.Title_PrescriptionManager };
+            ngroup.ButtonDataCollection.Add(navWorkbenchButton);
+            ngroup.ButtonDataCollection.Add(navAddPrescriptionButton);
+
+            mgroup.ButtonDataCollection.Add(addDrugButton);
+            mgroup.ButtonDataCollection.Add(addDrugTypeButton);
+
+            var tab = new RibbonTabData(Messages.Menu_File) { ContextualTabGroupHeader = Messages.Title_PrescriptionManager };
+            tab.GroupDataCollection.Add(cgroup);
+            tab.GroupDataCollection.Add(ngroup);
+            tab.GroupDataCollection.Add(mgroup);
+
             PluginContext.Host.AddTab(tab);
 
             this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_PrescriptionManager, tab) { Background = Brushes.OrangeRed, IsVisible = false };
             PluginContext.Host.AddContextualMenu(this.contextualMenu);
         }
 
-        private bool CanNavigate()
+        private bool CanNavigateSearch()
+        {
+            return this.lastNavigation == LastNavigation.Workbench
+                && !this.isSearching;
+        }
+
+        private bool CanNavigateWorkbench()
         {
             return PluginContext.Host.SelectedPatient != null;
         }
@@ -198,7 +264,34 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             });
         }
 
-        private void Navigate()
+        private void NavigateAddPrescription()
+        {
+            try
+            {
+                this.isSaveCommandActivated = true;
+                var datacontext = new AddPrescriptionViewModel();
+                datacontext.Refresh();
+                this.addPrescriptionView.DataContext = datacontext;
+                PluginContext.Host.Navigate(this.addPrescriptionView);
+
+                this.contextualMenu.IsVisible = true;
+                this.contextualMenu.TabDataCollection[0].IsSelected = true;
+                this.lastNavigation = LastNavigation.AddPrescription;
+            }
+            catch (Exception ex)
+            {
+                this.HandleError(ex, Messages.Msg_FailToLoadPrescriptionManager.FormatWith(ex.Message));
+            }
+        }
+
+        private void NavigateSearch()
+        {
+            this.isSearching = true;
+            InnerWindow.Closed += (sender, e) => this.isSearching = false;
+            InnerWindow.Show(Messages.Btn_Search, new SearchPrescriptionView());
+        }
+
+        private void NavigateWorkbench()
         {
             try
             {
@@ -208,33 +301,28 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
 
                 this.contextualMenu.IsVisible = true;
                 this.contextualMenu.TabDataCollection[0].IsSelected = true;
+                this.lastNavigation = LastNavigation.Workbench;
+                this.LoadDefaultPrescriptions();
             }
             catch (Exception ex)
             {
-                this.HandleError(ex, Messages.Msg_FailToLoadPrescriptionManager.StringFormat(ex.Message));
+                this.HandleError(ex, Messages.Msg_FailToLoadPrescriptionManager.FormatWith(ex.Message));
             }
         }
 
-        private void NavigateAddPrescription()
+        private void LoadDefaultPrescriptions()
         {
-            try
+            var component = ObjectFactory.GetInstance<IPrescriptionComponent>();
+            using (component.UnitOfWork)
             {
-                //var page = new AddPrescriptionView();
-                this.isSaveCommandActivated = true;
-                var datacontext = new AddPrescriptionViewModel();
-                datacontext.Refresh();
-                this.addPrescriptionView.DataContext = datacontext;
-                PluginContext.Host.Navigate(this.addPrescriptionView);
+                var from = DateTime.Today.AddMonths(-1);
+                var to = DateTime.Today;
 
-                this.contextualMenu.IsVisible = true;
-                this.contextualMenu.TabDataCollection[0].IsSelected = true;
-            }
-            catch (Exception ex)
-            {
-                this.HandleError(ex, Messages.Msg_FailToLoadPrescriptionManager.StringFormat(ex.Message));
+                var found = component.FindPrescriptionsByDates(PluginContext.Host.SelectedPatient, from, to);
+
+                Notifyer.OnPrescriptionFound(this, new PrescriptionResultDto(found, from, to));
             }
         }
-
         private void Save()
         {
             (this.addPrescriptionView.DataContext as AddPrescriptionViewModel).Save();

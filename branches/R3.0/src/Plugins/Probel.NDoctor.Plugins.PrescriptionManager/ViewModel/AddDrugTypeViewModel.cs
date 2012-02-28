@@ -34,13 +34,13 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
+    using Probel.NDoctor.View.Core.Helpers;
 
     public class AddDrugTypeViewModel : BaseViewModel
     {
         #region Fields
 
         private IPrescriptionComponent component;
-        private bool isPopupOpened;
         private TagDto selectedTag;
 
         #endregion Fields
@@ -54,7 +54,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             this.SelectedTag = new TagDto() { Category = TagCategory.Drug };
 
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
-            this.ShowPopupCommand = new RelayCommand(() => this.IsPopupOpened = true);
         }
 
         #endregion Constructors
@@ -67,16 +66,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             private set;
         }
 
-        public bool IsPopupOpened
-        {
-            get { return this.isPopupOpened; }
-            set
-            {
-                this.isPopupOpened = value;
-                this.OnPropertyChanged("IsPopupOpened");
-            }
-        }
-
         public TagDto SelectedTag
         {
             get { return this.selectedTag; }
@@ -85,12 +74,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 this.selectedTag = value;
                 this.OnPropertyChanged("SelectedTag");
             }
-        }
-
-        public ICommand ShowPopupCommand
-        {
-            get;
-            private set;
         }
 
         #endregion Properties
@@ -108,7 +91,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 Notifyer.OnItemChanged(this);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
                 this.SelectedTag = new TagDto() { Category = TagCategory.Drug };
-                this.IsPopupOpened = false;
+                InnerWindow.Close();
             }
             catch (ExistingItemException ex)
             {

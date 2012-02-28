@@ -82,10 +82,13 @@
     </Compile>
     <Compile Include="Translations\AddDrugText.cs" />
     <Compile Include="Translations\AddPrescriptionText.cs" />
+    <Compile Include="Translations\SearchPrescriptionText.cs" />
+    <Compile Include="Translations\WorkbenchText.cs" />
     <Compile Include="ViewModel\AddDrugTypeViewModel.cs" />
     <Compile Include="ViewModel\AddDrugViewModel.cs" />
     <Compile Include="ViewModel\AddPrescriptionViewModel.cs" />
     <Compile Include="ViewModel\DrugViewModel.cs" />
+    <Compile Include="ViewModel\SearchPrescriptionViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
     <Compile Include="View\AddDrugTypeView.xaml.cs">
       <DependentUpon>AddDrugTypeView.xaml</DependentUpon>
@@ -95,6 +98,9 @@
     </Compile>
     <Compile Include="View\AddPrescriptionView.xaml.cs">
       <DependentUpon>AddPrescriptionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SearchPrescriptionView.xaml.cs">
+      <DependentUpon>SearchPrescriptionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Workbench.xaml.cs">
       <DependentUpon>Workbench.xaml</DependentUpon>
@@ -157,6 +163,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SearchPrescriptionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\Workbench.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -170,6 +180,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Search.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -16,9 +14,6 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-#endregion Header
-
 namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 {
     using System;
@@ -26,50 +21,31 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using System.Windows.Input;
 
     using Probel.Helpers.Conversions;
-    using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
 
-    /// <summary>
-    /// Workbench's ViewModel of the plugin
-    /// </summary>
-    public class WorkbenchViewModel : BaseViewModel
+    public class SearchPrescriptionViewModel : BaseViewModel
     {
         #region Fields
 
         private IPrescriptionComponent component = ObjectFactory.GetInstance<IPrescriptionComponent>();
-        private DateTime endCriteria;
-        private PrescriptionDocumentDto selectPrescriptionDocument;
-        private DateTime startCriteria;
+        private DateTime endCriteria = DateTime.Today;
+        private DateTime startCriteria = DateTime.Today.AddDays(-30);
 
         #endregion Fields
 
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WorkbenchViewModel"/> class.
-        /// </summary>
-        /// <param name="host">The host.</param>
-        public WorkbenchViewModel()
-            : base()
+        public SearchPrescriptionViewModel()
         {
-            this.StartCriteria = DateTime.Today.AddMonths(-1);
-            this.EndCriteria = DateTime.Today.AddMonths(1);
-
-            this.FoundPrescriptions = new ObservableCollection<PrescriptionDocumentDto>();
-            Notifyer.PrescriptionFound += (sender, e) =>
-            {
-                this.FoundPrescriptions.Refill(e.Data.Prescriptions);
-                this.StartCriteria = e.Data.From;
-                this.EndCriteria = e.Data.To;
-
-            };
+            this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());
         }
 
         #endregion Constructors
@@ -82,24 +58,14 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             set
             {
                 this.endCriteria = value;
-                this.OnPropertyChanged("EndCriteria", "PrescriptionHeader");
+                this.OnPropertyChanged("EndCriteria");
             }
         }
 
-        public ObservableCollection<PrescriptionDocumentDto> FoundPrescriptions
+        public ICommand SearchCommand
         {
             get;
             private set;
-        }
-
-        public PrescriptionDocumentDto SelectedPrescriptionDocument
-        {
-            get { return this.selectPrescriptionDocument; }
-            set
-            {
-                this.selectPrescriptionDocument = value;
-                this.OnPropertyChanged("SelectedPrescriptionDocument");
-            }
         }
 
         public DateTime StartCriteria
@@ -108,25 +74,40 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             set
             {
                 this.startCriteria = value;
-                // I update the  header 'FromTo' from the EndCriteria
                 this.OnPropertyChanged("StartCriteria");
             }
         }
 
+        #endregion Properties
 
-        /// <summary>
-        /// Gets the prescription header. The binding is done when the <see cref="EndCriteria"/> is updated
-        /// </summary>
-        public string PrescriptionHeader
+        #region Methods
+
+        private bool CanSearch()
         {
-            get
+            return this.StartCriteria < this.EndCriteria;
+        }
+
+        private void Search()
+        {
+            try
             {
-                return Messages.Title_PrescriptionHeader.FormatWith(
-                    this.StartCriteria.ToShortDateString()
-                    , this.EndCriteria.ToShortDateString());
+                using (this.component.UnitOfWork)
+                {
+                    var found = this.component.FindPrescriptionsByDates(PluginContext.Host.SelectedPatient
+                        , this.StartCriteria, this.EndCriteria);
+                    Notifyer.OnPrescriptionFound(this, new PrescriptionResultDto(found, this.StartCriteria, this.EndCriteria));
+                    InnerWindow.Close();
+
+                    if (found.Count > 0) PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_FoundPrescription);
+                    else PluginContext.Host.WriteStatus(StatusType.Warning, Messages.Msg_NothingFound);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.HandleError(ex, Messages.Msg_ErrorSearchingPrescriptions);
             }
         }
 
-        #endregion Properties
+        #endregion Methods
     }
 }

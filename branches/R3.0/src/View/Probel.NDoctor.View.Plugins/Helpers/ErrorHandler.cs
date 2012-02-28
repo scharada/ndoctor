@@ -114,17 +114,17 @@ namespace Probel.NDoctor.View.Plugins.Helpers
 
         private void HandleError(bool silent, Exception ex, string format, params object[] args)
         {
-            this.Logger.Error(format.StringFormat(args), ex);
+            this.Logger.Error(format.FormatWith(args), ex);
             if (!silent)
             {
-                MessageBox.Show(format.StringFormat(args), Messages.Title_Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(format.FormatWith(args), Messages.Title_Error, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             this.WriteErrorInStatus();
         }
 
         private void HandleWarning(bool silent, Exception ex, string format, params object[] args)
         {
-            this.Logger.Warn(format.StringFormat(args), ex);
+            this.Logger.Warn(format.FormatWith(args), ex);
             if (!silent)
             {
                 MessageBox.Show(ex.Message, Messages.Title_Warning, MessageBoxButton.OK, MessageBoxImage.Warning);

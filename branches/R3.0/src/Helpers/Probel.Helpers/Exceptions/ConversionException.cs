@@ -43,7 +43,7 @@ namespace Probel.Helpers.Exceptions
         /// </summary>
         /// <param name="ex">The ex.</param>
         public ConversionException(Exception ex)
-            : this(Messages.Ex_ConversionException.StringFormat(ex.Message), ex)
+            : this(Messages.Ex_ConversionException.FormatWith(ex.Message), ex)
         {
         }
 

@@ -113,7 +113,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager
             this.navigateCommand = new RelayCommand(() => this.Navigate(), () => this.CanNavigate());
 
             var navigateButton = new RibbonButtonData(Messages.Title_Calendar
-                , imgUri.StringFormat("Calendar")
+                , imgUri.FormatWith("Calendar")
                 , navigateCommand);
 
             PluginContext.Host.AddInHome(navigateButton, Groups.GlobalTools);
@@ -133,7 +133,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager
             PluginContext.Host.AddTab(tab);
 
             ICommand searchCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_ManageMeeting, new SearchView()));
-            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_ManageMeeting, imgUri.StringFormat("Add"), searchCommand) { Order = 1, });
+            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_ManageMeeting, imgUri.FormatWith("Add"), searchCommand) { Order = 1, });
         }
 
         private bool CanNavigate()

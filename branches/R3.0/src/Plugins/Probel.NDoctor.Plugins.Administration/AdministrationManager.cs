@@ -106,7 +106,7 @@ namespace Probel.NDoctor.Plugins.Administration
             this.navigateCommand = new RelayCommand(() => this.Navigate(), () => this.CanNavigate());
 
             var navigateButton = new RibbonButtonData(Messages.Title_AdministratorManager
-                    , imgUri.StringFormat("Administration")
+                    , imgUri.FormatWith("Administration")
                     , navigateCommand) { Order = 4 };
 
             PluginContext.Host.AddToApplicationMenu(navigateButton);
