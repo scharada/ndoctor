@@ -257,9 +257,9 @@
     <value>Adresse</value>
     <comment>Address</comment>
   </data>
-  <data name="Title_TabContact" xml:space="preserve">
-    <value>Contact</value>
-    <comment>Contact</comment>
+  <data name="Title_TabPrivateContact" xml:space="preserve">
+    <value>Privé</value>
+    <comment>Private</comment>
   </data>
   <data name="Title_EmailPrivate" xml:space="preserve">
     <value>Email privé</value>
@@ -408,5 +408,17 @@
   <data name="Menu_Add" xml:space="preserve">
     <value>Ajouter</value>
     <comment>Add</comment>
+  </data>
+  <data name="Title_Rollback" xml:space="preserve">
+    <value>Annuler modifications</value>
+    <comment>Cancel modifications</comment>
+  </data>
+  <data name="Title_TabProContact" xml:space="preserve">
+    <value>Professionnel</value>
+    <comment>Professional</comment>
+  </data>
+  <data name="Title_TabContact" xml:space="preserve">
+    <value>Contact</value>
+    <comment>Contact</comment>
   </data>
 </root>

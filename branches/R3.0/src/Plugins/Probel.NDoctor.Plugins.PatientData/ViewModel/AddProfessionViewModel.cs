@@ -40,7 +40,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         #region Fields
 
         private IPatientDataComponent component;
-        private bool isPopupOpened;
         private ProfessionDto profession;
 
         #endregion Fields
@@ -52,7 +51,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             this.Profession = new ProfessionDto();
 
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
-            this.ShowPopupCommand = new RelayCommand(() => this.IsPopupOpened = true);
 
             if (!Designer.IsDesignMode)
             {
@@ -70,18 +68,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             private set;
         }
 
-        public bool IsPopupOpened
-        {
-            get { return this.isPopupOpened; }
-            set
-            {
-                this.Profession = new ProfessionDto();
-
-                this.isPopupOpened = value;
-                this.OnPropertyChanged("IsPopupOpened");
-            }
-        }
-
         public ProfessionDto Profession
         {
             get { return this.profession; }
@@ -90,12 +76,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 this.profession = value;
                 this.OnPropertyChanged("Profession");
             }
-        }
-
-        public ICommand ShowPopupCommand
-        {
-            get;
-            private set;
         }
 
         #endregion Properties
@@ -111,8 +91,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                     this.component.Create(this.Profession);
                 }
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Title_OperationDone);
-                this.IsPopupOpened = false;
-                Notifyer.OnDoctorLinkChanged(this);
+                Notifyer.OnSateliteDataChanged(this);
             }
             catch (ExistingItemException ex)
             {

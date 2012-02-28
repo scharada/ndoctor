@@ -261,10 +261,6 @@
     <value>Address</value>
     <comment>Address</comment>
   </data>
-  <data name="Title_TabContact" xml:space="preserve">
-    <value>Contact</value>
-    <comment>Contact</comment>
-  </data>
   <data name="Title_EmailPrivate" xml:space="preserve">
     <value>Email</value>
     <comment>Email</comment>
@@ -310,7 +306,7 @@
     <comment>Name</comment>
   </data>
   <data name="Title_Specialisation" xml:space="preserve">
-    <value>Spécialisation</value>
+    <value>Specialisation</value>
     <comment>Specialisation</comment>
   </data>
   <data name="Msg_AskAddDoctor" xml:space="preserve">
@@ -365,10 +361,6 @@
     <value>The operation succeeded.</value>
     <comment>The operation succeeded.</comment>
   </data>
-  <data name="Title_OperationDone1" xml:space="preserve">
-    <value>L'opération s'est déroulée avec succès.</value>
-    <comment>The operation succeeded.</comment>
-  </data>
   <data name="Title_Data" xml:space="preserve">
     <value>Data</value>
     <comment>Data</comment>
@@ -412,5 +404,21 @@
   <data name="Menu_Add" xml:space="preserve">
     <value>Add</value>
     <comment>Add</comment>
+  </data>
+  <data name="Title_Rollback" xml:space="preserve">
+    <value>Cancel modifications</value>
+    <comment>Cancel modifications</comment>
+  </data>
+  <data name="Title_TabPrivateContact" xml:space="preserve">
+    <value>Private</value>
+    <comment>Private</comment>
+  </data>
+  <data name="Title_TabProContact" xml:space="preserve">
+    <value>Professional</value>
+    <comment>Professional</comment>
+  </data>
+  <data name="Title_TabContact" xml:space="preserve">
+    <value>Contact</value>
+    <comment>Contact</comment>
   </data>
 </root>

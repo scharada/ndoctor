@@ -19,9 +19,11 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System;
     using System.Collections.Generic;
 
+    using Probel.Helpers.Data;
     using Probel.Helpers.Events;
 
-    public abstract class BaseDto : ObservableObject, IEquatable<BaseDto>
+    [Serializable]
+    public abstract class BaseDto : ObservableObject, IEquatable<BaseDto>, ICloneable
     {
         #region Fields
 
@@ -105,6 +107,17 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #endregion Properties
 
         #region Methods
+
+        /// <summary>
+        /// Creates a new object that is a copy of the current instance.
+        /// </summary>
+        /// <returns>
+        /// A new object that is a copy of this instance.
+        /// </returns>
+        public object Clone()
+        {
+            return Cloner.Clone(this);
+        }
 
         /// <summary>
         /// Indicates whether the current object is equal to another object of the same type.

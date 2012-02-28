@@ -21,7 +21,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     /// <summary>
     /// Represents an item of the Bmi history of a Patient
     /// </summary>
-    public class BmiDto : BaseDto, ICloneable
+    [Serializable]
+    public class BmiDto : BaseDto
     {
         #region Fields
 
@@ -109,23 +110,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #endregion Properties
 
         #region Methods
-
-        /// <summary>
-        /// Creates a new object that is a copy of the current instance.
-        /// </summary>
-        /// <returns>
-        /// A new object that is a copy of this instance.
-        /// </returns>
-        public object Clone()
-        {
-            return new BmiDto()
-            {
-                Date = this.Date,
-                Height = this.Height,
-                Id = this.Id,
-                Weight = this.Weight
-            };
-        }
 
         /// <summary>
         /// Returns a <see cref="System.String"/> that represents this instance.

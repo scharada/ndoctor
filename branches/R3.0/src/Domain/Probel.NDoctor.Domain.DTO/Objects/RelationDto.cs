@@ -16,6 +16,8 @@
 */
 namespace Probel.NDoctor.Domain.DTO.Objects
 {
+    using System;
+
     using Probel.Helpers.Assertion;
 
     /// <summary>
@@ -24,6 +26,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     /// is on the left side (which is the property LeftSide of
     /// the dto <see cref="FamilyDto"/>)
     /// </summary>
+    [Serializable]
     public class RelationDto : BaseDto
     {
         #region Fields

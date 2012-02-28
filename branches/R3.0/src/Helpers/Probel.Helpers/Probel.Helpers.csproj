@@ -59,6 +59,7 @@
     <Compile Include="Conversions\ObservableCollectionFiller.cs" />
     <Compile Include="Data\Chart.cs" />
     <Compile Include="Data\ChartPoint.cs" />
+    <Compile Include="Data\Cloner.cs" />
     <Compile Include="Data\DateRange.cs" />
     <Compile Include="Data\DateTimeExtensions.cs" />
     <Compile Include="Events\EventArgs.cs" />

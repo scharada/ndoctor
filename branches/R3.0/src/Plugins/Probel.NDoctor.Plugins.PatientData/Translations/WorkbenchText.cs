@@ -97,6 +97,17 @@ namespace Probel.NDoctor.Plugins.PatientData.Translations
             get { return Messages.Title_TabAddress; }
         }
 
+        public static string TabPrivateContact
+        {
+            get { return Messages.Title_TabPrivateContact; }
+        }
+
+        public static string TabProContact
+        {
+            get { return Messages.Title_TabProContact; }
+        }
+
+
         public static string TabContact
         {
             get { return Messages.Title_TabContact; }

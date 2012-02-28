@@ -16,10 +16,12 @@
 */
 namespace Probel.NDoctor.Domain.DTO.Objects
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
 
+    [Serializable]
     public class PatientBmiDto : LightPatientDto
     {
         #region Constructors

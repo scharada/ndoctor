@@ -39,5 +39,15 @@ namespace Probel.NDoctor.Plugins.PatientData.View
         }
 
         #endregion Constructors
+
+        private WorkbenchViewModel vm;
+        public WorkbenchViewModel VM
+        {
+            get { return this.vm; }
+            set
+            {
+                this.vm = value;
+            }
+        }
     }
 }

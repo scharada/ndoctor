@@ -22,6 +22,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     /// <summary>
     /// Represents a set of drug prescriptions.
     /// </summary>
+    [Serializable]
     public class PrescriptionDocumentDto : BaseDto
     {
         #region Fields

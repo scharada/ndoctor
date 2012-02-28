@@ -41,7 +41,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         private IPatientDataComponent component;
         private InsuranceDto insurance;
-        private bool isPopupOpened;
 
         #endregion Fields
 
@@ -52,7 +51,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             this.Insurance = new InsuranceDto();
 
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
-            this.ShowPopupCommand = new RelayCommand(() => this.IsPopupOpened = true);
 
             if (!Designer.IsDesignMode)
             {
@@ -80,24 +78,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             }
         }
 
-        public bool IsPopupOpened
-        {
-            get { return this.isPopupOpened; }
-            set
-            {
-                this.Insurance = new InsuranceDto();
-
-                this.isPopupOpened = value;
-                this.OnPropertyChanged("IsPopupOpened");
-            }
-        }
-
-        public ICommand ShowPopupCommand
-        {
-            get;
-            private set;
-        }
-
         #endregion Properties
 
         #region Methods
@@ -111,8 +91,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                     this.component.Create(this.Insurance);
                 }
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Title_OperationDone);
-                this.IsPopupOpened = false;
-                Notifyer.OnDoctorLinkChanged(this);
+                Notifyer.OnSateliteDataChanged(this);
             }
             catch (ExistingItemException ex)
             {

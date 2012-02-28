@@ -38,7 +38,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         #region Fields
 
         private IPatientDataComponent component;
-        private bool isPopupOpened;
         private TagDto tag;
 
         #endregion Fields
@@ -50,7 +49,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             this.component = ObjectFactory.GetInstance<IPatientDataComponent>();
             this.Tag = new TagDto() { Category = TagCategory.Doctor };
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
-            this.ShowPopupCommand = new RelayCommand(() => this.IsPopupOpened = true);
         }
 
         #endregion Constructors
@@ -58,22 +56,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         #region Properties
 
         public ICommand AddCommand
-        {
-            get;
-            private set;
-        }
-
-        public bool IsPopupOpened
-        {
-            get { return this.isPopupOpened; }
-            set
-            {
-                this.isPopupOpened = value;
-                this.OnPropertyChanged("IsPopupOpened");
-            }
-        }
-
-        public ICommand ShowPopupCommand
         {
             get;
             private set;

@@ -21,6 +21,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     /// <summary>
     /// Represents a medical record item
     /// </summary>
+    [Serializable]
     public class MedicalRecordDto : BaseDto
     {
         #region Fields

@@ -21,6 +21,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     /// <summary>
     /// Represents a illness period while a patient was ill
     /// </summary>
+    [Serializable]
     public class IllnessPeriodDto : BaseDto
     {
         #region Fields

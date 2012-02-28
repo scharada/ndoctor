@@ -21,9 +21,12 @@
 
 namespace Probel.NDoctor.Domain.DTO.Objects
 {
+    using System;
+
     /// <summary>
     /// Doctor
     /// </summary>
+    [Serializable]
     public class DoctorDto : BaseDto
     {
         #region Fields

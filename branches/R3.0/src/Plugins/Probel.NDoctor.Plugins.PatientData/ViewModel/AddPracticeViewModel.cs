@@ -112,7 +112,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 }
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Title_OperationDone);
                 this.IsPopupOpened = false;
-                Notifyer.OnDoctorLinkChanged(this);
+                Notifyer.OnSateliteDataChanged(this);
             }
             catch (ExistingItemException ex)
             {

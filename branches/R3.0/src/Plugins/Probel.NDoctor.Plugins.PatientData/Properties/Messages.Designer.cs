@@ -538,15 +538,6 @@ namespace Probel.NDoctor.Plugins.PatientData.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to L&apos;opération s&apos;est déroulée avec succès..
-        /// </summary>
-        internal static string Title_OperationDone1 {
-            get {
-                return ResourceManager.GetString("Title_OperationDone1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Patient data.
         /// </summary>
         internal static string Title_PatientDataManager {
@@ -655,6 +646,15 @@ namespace Probel.NDoctor.Plugins.PatientData.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel modifications.
+        /// </summary>
+        internal static string Title_Rollback {
+            get {
+                return ResourceManager.GetString("Title_Rollback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string Title_Save {
@@ -700,7 +700,7 @@ namespace Probel.NDoctor.Plugins.PatientData.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Spécialisation.
+        ///   Looks up a localized string similar to Specialisation.
         /// </summary>
         internal static string Title_Specialisation {
             get {
@@ -723,6 +723,24 @@ namespace Probel.NDoctor.Plugins.PatientData.Properties {
         internal static string Title_TabContact {
             get {
                 return ResourceManager.GetString("Title_TabContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Private.
+        /// </summary>
+        internal static string Title_TabPrivateContact {
+            get {
+                return ResourceManager.GetString("Title_TabPrivateContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Professional.
+        /// </summary>
+        internal static string Title_TabProContact {
+            get {
+                return ResourceManager.GetString("Title_TabProContact", resourceCulture);
             }
         }
     }

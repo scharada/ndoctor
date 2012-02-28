@@ -16,11 +16,13 @@
 */
 namespace Probel.NDoctor.Domain.DTO.Objects
 {
+    using System;
     using System.Collections.ObjectModel;
 
     /// <summary>
     /// Represents the illness history of a patient
     /// </summary>
+    [Serializable]
     public class IllnessHistoryDto : BaseDto
     {
         #region Fields

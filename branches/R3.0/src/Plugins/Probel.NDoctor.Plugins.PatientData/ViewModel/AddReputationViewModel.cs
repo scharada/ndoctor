@@ -40,7 +40,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         #region Fields
 
         private IPatientDataComponent component;
-        private bool isPopupOpened;
         private ReputationDto reputation;
 
         #endregion Fields
@@ -52,7 +51,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             this.Reputation = new ReputationDto();
 
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
-            this.ShowPopupCommand = new RelayCommand(() => this.IsPopupOpened = true);
 
             if (!Designer.IsDesignMode)
             {
@@ -70,18 +68,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             private set;
         }
 
-        public bool IsPopupOpened
-        {
-            get { return this.isPopupOpened; }
-            set
-            {
-                this.Reputation = new ReputationDto();
-
-                this.isPopupOpened = value;
-                this.OnPropertyChanged("IsPopupOpened");
-            }
-        }
-
         public ReputationDto Reputation
         {
             get { return this.reputation; }
@@ -91,13 +77,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 this.OnPropertyChanged("Reputation");
             }
         }
-
-        public ICommand ShowPopupCommand
-        {
-            get;
-            private set;
-        }
-
         #endregion Properties
 
         #region Methods
@@ -111,8 +90,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                     this.component.Create(this.Reputation);
                 }
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Title_OperationDone);
-                this.IsPopupOpened = false;
-                Notifyer.OnDoctorLinkChanged(this);
+                Notifyer.OnSateliteDataChanged(this);
             }
             catch (ExistingItemException ex)
             {

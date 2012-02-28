@@ -45,7 +45,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         private IPatientDataComponent component;
         private DoctorDto doctor;
-        private bool isPopupOpened;
         private Tuple<string, Gender> selectedGender;
 
         #endregion Fields
@@ -59,8 +58,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IPatientDataComponent>();
 
             this.Doctor = new DoctorDto();
-
-            this.ShowPopupCommand = new RelayCommand(() => this.IsPopupOpened = true);
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
 
             Notifyer.SpecialisationChanged += (FluentMessageSender, e) => this.Refresh();
@@ -94,18 +91,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             set;
         }
 
-        public bool IsPopupOpened
-        {
-            get { return this.isPopupOpened; }
-            set
-            {
-                this.Doctor = new DoctorDto();
-
-                this.isPopupOpened = value;
-                this.OnPropertyChanged("IsPopupOpened");
-            }
-        }
-
         public Tuple<string, Gender> SelectedGender
         {
             get { return this.selectedGender; }
@@ -115,12 +100,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 this.selectedGender = value;
                 this.OnPropertyChanged("SelectedGender");
             }
-        }
-
-        public ICommand ShowPopupCommand
-        {
-            get;
-            private set;
         }
 
         public ObservableCollection<TagDto> Specialisations
@@ -142,7 +121,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                     this.component.Create(this.Doctor);
                 }
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
-                this.IsPopupOpened = false;
                 this.Doctor = new DoctorDto();
             }
             catch (ExistingItemException ex)

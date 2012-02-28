@@ -42,7 +42,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         private IPatientDataComponent component;
         private string criteria;
-        private bool isPopupOpened;
         private LightDoctorViewModel selectedDoctor;
 
         #endregion Fields
@@ -55,7 +54,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
             this.FoundDoctors = new ObservableCollection<LightDoctorViewModel>();
             this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());
-            this.OpenPopupCommand = new RelayCommand(() => this.IsPopupOpened = true);
         }
 
         #endregion Constructors
@@ -73,24 +71,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         }
 
         public ObservableCollection<LightDoctorViewModel> FoundDoctors
-        {
-            get;
-            private set;
-        }
-
-        public bool IsPopupOpened
-        {
-            get { return this.isPopupOpened; }
-            set
-            {
-                if (value) this.FoundDoctors.Clear();
-
-                this.isPopupOpened = value;
-                this.OnPropertyChanged("IsPopupOpened");
-            }
-        }
-
-        public ICommand OpenPopupCommand
         {
             get;
             private set;

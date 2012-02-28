@@ -31,9 +31,9 @@ namespace Probel.NDoctor.Plugins.PatientData.Helpers
         #region Events
 
         /// <summary>
-        /// Occurs when a link bewteen a doctor and a patient changed.
+        /// Occurs when satelite data is changed.
         /// </summary>
-        public static event EventHandler DoctorLinkChanged;
+        public static event EventHandler SateliteDataChanged;
 
         /// <summary>
         /// Occurs when a specialisation changed.
@@ -45,14 +45,14 @@ namespace Probel.NDoctor.Plugins.PatientData.Helpers
         #region Methods
 
         /// <summary>
-        /// Notifies a doctor was linked to a patinent
+        /// Notifies when satelite data is changed.
         /// </summary>
         /// <param name="sender">The sender.</param>
-        public static void OnDoctorLinkChanged(object sender)
+        public static void OnSateliteDataChanged(object sender)
         {
-            if (DoctorLinkChanged != null)
+            if (SateliteDataChanged != null)
             {
-                DoctorLinkChanged(sender, EventArgs.Empty);
+                SateliteDataChanged(sender, EventArgs.Empty);
             }
         }
 

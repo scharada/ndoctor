@@ -23,6 +23,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
+    [Serializable]
     public class AppointmentDto : BaseDto
     {
         #region Fields

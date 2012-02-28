@@ -143,7 +143,28 @@
                     </Grid>
                 </TabItem>
 
-                <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.TabContact}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.TabPrivateContact}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:WorkbenchText.TitlePrivateEmail}}"/>
+                            <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:WorkbenchText.TitlePrivataPhone}}"/>
+                            <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:WorkbenchText.TitlePrivateMobile}}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1">
+                            <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=Patient.PrivateMail,   UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=Patient.PrivatePhone,  UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=Patient.PrivateMobile, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.TabProContact}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="150"/>
@@ -154,18 +175,12 @@
                             <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:WorkbenchText.TitleProEmail}}"/>
                             <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:WorkbenchText.TitleProPhone}}"/>
                             <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:WorkbenchText.TitleProMobile}}"/>
-                            <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:WorkbenchText.TitlePrivateEmail}}"/>
-                            <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:WorkbenchText.TitlePrivataPhone}}"/>
-                            <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:WorkbenchText.TitlePrivateMobile}}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="1">
-                            <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=Patient.ProMail, UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=Patient.ProPhone, UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=Patient.ProMobile, UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=Patient.PrivateMail, UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=Patient.PrivatePhone, UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=Patient.PrivateMobile, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=Patient.ProMail,       UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=Patient.ProPhone,      UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=Patient.ProMobile,     UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </Grid>
                 </TabItem>
@@ -196,20 +211,20 @@
                     <Label Style="{StaticResource textBoxStyle}" Content="{Binding Path=Patient.LastUpdate}"/>
 
                     <ComboBox Style="{StaticResource textBoxStyle}"
-						  DisplayMemberPath="Name"
-						  SelectedValuePath="Name"
-						  SelectedItem="{Binding Path=Patient.Reputation}"
-						  ItemsSource="{Binding Path=Reputations, UpdateSourceTrigger=PropertyChanged}"/>
+                              DisplayMemberPath="Name"
+                              SelectedValuePath="Name"
+                              SelectedItem="{Binding Path=Patient.Reputation, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                              ItemsSource="{Binding Path=Reputations, UpdateSourceTrigger=PropertyChanged}"/>
                     <ComboBox Style="{StaticResource textBoxStyle}"
 						  DisplayMemberPath="Name"
-						  SelectedItem="{Binding Path=Patient.Insurance}"
 						  SelectedValuePath="Name"
+						  SelectedItem="{Binding Path=Patient.Insurance,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
 						  ItemsSource="{Binding Path=Insurances, UpdateSourceTrigger=PropertyChanged}"/>
                     <ComboBox Style="{StaticResource textBoxStyle}"
 						  DisplayMemberPath="Name"
 						  SelectedItem="{Binding Path=Patient.Practice}"
 						  SelectedValuePath="Name"
-						  ItemsSource="{Binding Path=Practices, UpdateSourceTrigger=PropertyChanged}"/>
+						  ItemsSource="{Binding Path=Practices, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                     <Label Style="{StaticResource separatorStyle}" Content="{Binding Source={x:Static Member=text:WorkbenchText.SeparatorDoctors}}"/>
                 </StackPanel>
 

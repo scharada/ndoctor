@@ -97,7 +97,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 {
                     this.component.AddDoctorTo(PluginContext.Host.SelectedPatient, (LightDoctorDto)this);
                 }
-                Notifyer.OnDoctorLinkChanged(this);
+                Notifyer.OnSateliteDataChanged(this);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DoctorAded);
             }
             catch (Exception ex)
@@ -120,7 +120,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 {
                     this.component.RemoveDoctorFor(PluginContext.Host.SelectedPatient, (LightDoctorDto)this);
                 }
-                Notifyer.OnDoctorLinkChanged(this);
+                Notifyer.OnSateliteDataChanged(this);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DoctorRemoved);
             }
             catch (Exception ex)

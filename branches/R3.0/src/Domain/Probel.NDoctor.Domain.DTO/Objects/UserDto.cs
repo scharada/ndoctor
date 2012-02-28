@@ -16,8 +16,10 @@
 */
 namespace Probel.NDoctor.Domain.DTO.Objects
 {
+    using System;
     using System.Drawing;
 
+    [Serializable]
     public class UserDto : BaseDto
     {
         #region Fields

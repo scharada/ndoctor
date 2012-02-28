@@ -581,7 +581,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
             this.CheckSession();
 
             var professions = (from profession in this.Session.Query<Profession>()
-                               select profession).ToList();
+                               select profession)
+                                  .OrderBy(e => e.Name)
+                                  .ToList();
 
             return Mapper.Map<IList<Profession>, IList<ProfessionDto>>(professions);
         }
@@ -595,7 +597,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
             this.CheckSession();
 
             var reputations = (from reputation in this.Session.Query<Reputation>()
-                               select reputation).ToList();
+                               select reputation)
+                                    .OrderBy(e => e.Name)
+                                    .ToList();
 
             return Mapper.Map<IList<Reputation>, IList<ReputationDto>>(reputations);
         }
@@ -945,7 +949,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
             this.CheckSession();
 
             var insurances = (from insurance in this.Session.Query<Insurance>()
-                              select insurance).ToList();
+                              select insurance)
+                                .OrderBy(e => e.Name)
+                                .ToList();
             return insurances;
         }
 
@@ -963,7 +969,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
             this.CheckSession();
 
             return (from practice in this.Session.Query<Practice>()
-                    select practice).ToList();
+                    select practice)
+                              .OrderBy(e => e.Name)
+                              .ToList();
         }
 
         private IList<Role> GetAllEntitiesRoles()

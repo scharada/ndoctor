@@ -16,9 +16,11 @@
 */
 namespace Probel.Helpers.Conversions
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
 
+    [Serializable]
     public static class ObservableCollectionFiller
     {
         #region Methods

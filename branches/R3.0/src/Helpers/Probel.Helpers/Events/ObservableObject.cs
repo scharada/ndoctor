@@ -16,6 +16,7 @@
 */
 namespace Probel.Helpers.Events
 {
+    using System;
     using System.ComponentModel;
     using System.Diagnostics;
 
@@ -24,6 +25,7 @@ namespace Probel.Helpers.Events
     /// <summary>
     /// Basic implementation of <see cref="INotifyPropertyChanged"/>
     /// </summary>
+    [Serializable]
     public class ObservableObject : INotifyPropertyChanged
     {
         #region Events

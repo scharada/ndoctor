@@ -26,6 +26,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System.Linq;
     using System.Text;
 
+    [Serializable]
     public class DoctorFullDto : BaseDto
     {
         #region Fields
