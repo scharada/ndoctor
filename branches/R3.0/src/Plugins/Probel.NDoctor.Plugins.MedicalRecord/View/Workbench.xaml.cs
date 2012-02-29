@@ -34,6 +34,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
         {
             InitializeComponent();
             Context.RichTextBox = this.richTextBox;
+            this.richTextBox.IsEnabled = false;
         }
 
         #endregion Constructors
@@ -48,6 +49,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
                 if (this.treeView.SelectedItem is TitledMedicalRecordDto)
                 {
                     viewModel.SelectedRecord = this.treeView.SelectedItem as TitledMedicalRecordDto;
+                    this.richTextBox.IsEnabled = true;
                 }
             }
         }

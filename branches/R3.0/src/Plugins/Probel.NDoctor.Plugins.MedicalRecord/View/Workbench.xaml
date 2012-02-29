@@ -7,17 +7,17 @@
       xmlns:this="clr-namespace:Probel.NDoctor.Plugins.MedicalRecord.Dto"
       xmlns:c="clr-namespace:Probel.Helpers.WPF.Calendar.Controls;assembly=Probel.Helpers.WPF"
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.MedicalRecord.Translations"
+      xmlns:ctrl="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
       
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      Title="Workbench" 
-      xmlns:ctrl="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended">
+      Title="Workbench"> 
     <DockPanel>
         <DockPanel>
             <Label DockPanel.Dock="Top" Content="{Binding Source={x:Static Member=text:WorkbenchText.TitleMedicalRecord}}"/>
             <TreeView x:Name="treeView" Width="250"
                       DockPanel.Dock="Left"
-                      ItemsSource="{Binding Path=Cabinet.TitledFolders}"
+                      ItemsSource="{Binding Path=Cabinet.TitledFolders}"                      
                       SelectedItemChanged="treeView_SelectedItemChanged">
                 <TreeView.Resources>
                     <HierarchicalDataTemplate DataType="{x:Type this:TitledMedicalRecordCabinetDto}"
@@ -54,6 +54,7 @@
             </TreeView>
         </DockPanel>
         <ScrollViewer>
+            <!-- The binding to enable/disable the richtext box is done in code behind. -->
             <ctrl:RichTextBox x:Name="richTextBox"
                               DockPanel.Dock="Right"
                               Text="{Binding Path=SelectedRecord.Rtf, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">

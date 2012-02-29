@@ -68,13 +68,18 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             }
         }
 
+        public bool IsRecordSelected
+        {
+            get { return this.SelectedRecord != null; }
+        }
+
         public TitledMedicalRecordDto SelectedRecord
         {
             get { return this.selectedRecord; }
             set
             {
                 this.selectedRecord = value;
-                this.OnPropertyChanged("SelectedRecord");
+                this.OnPropertyChanged("SelectedRecord", "IsRecordSelected");
             }
         }
 
