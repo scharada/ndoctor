@@ -102,5 +102,75 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         #endregion Methods
+
+        /// <summary>
+        /// Creates the specified tag.
+        /// </summary>
+        /// <param name="tag">The tag.</param>
+        public void Create(TagDto tag)
+        {
+            var entity = Mapper.Map<TagDto, Tag>(tag);
+            this.Session.Save(entity);
+        }
+
+        /// <summary>
+        /// Creates the specified profession.
+        /// </summary>
+        /// <param name="profession">The tag.</param>
+        public void Create(ProfessionDto profession)
+        {
+            var entity = Mapper.Map<ProfessionDto, Profession>(profession);
+            this.Session.Save(entity);
+        }
+
+        /// <summary>
+        /// Creates the specified reputation.
+        /// </summary>
+        /// <param name="reputation">The tag.</param>
+        public void Create(ReputationDto reputation)
+        {
+            var entity = Mapper.Map<ReputationDto, Reputation>(reputation);
+            this.Session.Save(entity);
+        }
+
+        /// <summary>
+        /// Creates the specified drug.
+        /// </summary>
+        /// <param name="drug">The drug.</param>
+        public void Create(DrugDto drug)
+        {
+            var entity = Mapper.Map<DrugDto, Drug>(drug);
+            this.Session.Save(entity);
+        }
+
+        /// <summary>
+        /// Creates the specified pathology.
+        /// </summary>
+        /// <param name="pathology">The drug.</param>
+        public void Create(PathologyDto pathology)
+        {
+            var entity = Mapper.Map<PathologyDto, Pathology>(pathology);
+            this.Session.Save(entity);
+        }
+
+        /// <summary>
+        /// Creates the specified practice.
+        /// </summary>
+        /// <param name="practice">The drug.</param>
+        public void Create(PracticeDto practice)
+        {
+            var entity = Mapper.Map<PracticeDto, Practice>(practice);
+            this.Session.Save(entity);
+        }
+
+        /// <summary>
+        /// Creates the specified insurance.
+        /// </summary>
+        /// <param name="insurance">The drug.</param>
+        public void Create(InsuranceDto insurance)
+        {
+            var entity = Mapper.Map<InsuranceDto, Insurance>(insurance);
+            this.Session.Save(entity);
+        }
     }
 }

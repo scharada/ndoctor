@@ -43,6 +43,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         {
             this.State = State.Clean;
             this.IsImported = false;
+            this.PropertyChanged += (sender, e) => this.State = State.Updated;
         }
 
         #endregion Constructors
@@ -102,6 +103,21 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         {
             get;
             set;
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is new.
+        /// A new instance means it doesn't exist in the database.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is new; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsNew
+        {
+            get
+            {
+                return this.Id >= 0;
+            }
         }
 
         #endregion Properties

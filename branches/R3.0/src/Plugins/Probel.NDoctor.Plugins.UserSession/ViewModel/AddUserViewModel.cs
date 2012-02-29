@@ -139,10 +139,11 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                     Notifyer.OnUserAdded(this);
                     PluginContext.Host.NavigateBack();
                 }
-                else
-                {
-                    InnerWindow.Show(Messages.Title_ButtonAddUser, new AddUserControl());
-                }
+                //else
+                //{
+                //    InnerWindow.Show(Messages.Title_ButtonAddUser, new AddUserControl());
+                //}
+                Notifyer.OnUserAdded(this);
             }
             catch (Exception ex)
             {

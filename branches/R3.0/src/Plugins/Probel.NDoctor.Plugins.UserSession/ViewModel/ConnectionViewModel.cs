@@ -29,6 +29,8 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
+    using Probel.NDoctor.View.Core.Helpers;
+    using Probel.NDoctor.Plugins.UserSession.View;
 
     public class ConnectionViewModel : BaseViewModel
     {
@@ -49,8 +51,19 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 
             this.ConnectCommand = new RelayCommand(() => this.Connect());
 
-            Notifyer.UserAdded += (sender, e) => this.Refresh();
+            this.NavigateAddUserCommand = new RelayCommand(() => this.AddUser());
+            Notifyer.UserAdded += (sender, e) =>
+            {
+                InnerWindow.Close();
+                this.Refresh();
+                this.OnPropertyChanged("HasUsers");
+            };
             this.Refresh();
+        }
+
+        private void AddUser()
+        {
+            InnerWindow.Show(Messages.Btn_Add, new AddUserControl());
         }
 
         #endregion Constructors
@@ -65,6 +78,11 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             get;
             private set;
         }
+
+        /// <summary>
+        /// Displays a InnerWindow to add a new user
+        /// </summary>
+        public ICommand NavigateAddUserCommand { get; private set; }
 
         public string Password
         {
@@ -102,6 +120,20 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             {
                 var users = this.component.GetAllUsers();
                 this.Users.Refill(users);
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether nDoctor has users in the database.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has users; otherwise, <c>false</c>.
+        /// </value>
+        public bool HasUsers
+        {
+            get
+            {
+                return this.Users != null && this.Users.Count > 0;
             }
         }
 
