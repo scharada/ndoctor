@@ -39,7 +39,7 @@ namespace Probel.NDoctor.Domain.Test.Component
             var sql = "SELECT COUNT(*) FROM MedicalRecord";
             var cardCountBefore = (long)this.ExecuteNonQuery(sql);
 
-            var record = new MedicalRecordDto() { Tag = new TagDto(), Name = uniqueId };
+            var record = new MedicalRecordDto() { Tag = new TagDto(TagCategory.MedicalRecord), Name = uniqueId };
 
             this.Transaction(() => this.Component.Create(record, patients[0]));
 

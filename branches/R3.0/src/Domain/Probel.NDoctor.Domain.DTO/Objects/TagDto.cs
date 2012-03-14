@@ -42,17 +42,17 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// <summary>
         /// Initializes a new instance of the <see cref="TagDto"/> class.
         /// </summary>
-        public TagDto()
+        /// <param name="category">The category.</param>
+        public TagDto(TagCategory category)
         {
+            this.Category = category;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TagDto"/> class.
         /// </summary>
-        /// <param name="category">The category.</param>
-        public TagDto(TagCategory category)
+        private TagDto()
         {
-            this.Category = category;
         }
 
         #endregion Constructors

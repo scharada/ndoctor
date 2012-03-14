@@ -124,7 +124,7 @@ namespace Probel.NDoctor.Domain.Test.Component
             var result = this.Component.FindTags(uniqueName, tagType);
             Assert.AreEqual(1, result.Count, "The tag wasn't found");
 
-            this.Transaction(() => this.Component.Remove(new TagDto() { Id = result[0].Id }));
+            this.Transaction(() => this.Component.Remove(new TagDto(TagCategory.MedicalRecord) { Id = result[0].Id }));
 
             countAfter = this.Component.GetAllTags().Count;
             Assert.AreEqual(countAfter, countBefore, "The tag wasn't deleted");
@@ -273,10 +273,9 @@ namespace Probel.NDoctor.Domain.Test.Component
         [ExpectedException(typeof(Probel.Helpers.Assertion.AssertionException))]
         public void FailToGetDoctorOnSpecialisationWhenDetached()
         {
-            var specialisation = new TagDto()
+            var specialisation = new TagDto(TagCategory.Doctor)
             {
                 Name = "SpecialisationToFind",
-                Category = TagCategory.Doctor
             };
 
             var result = this.Component.FindDoctorsBySpecialisationLight(specialisation);

@@ -223,11 +223,29 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to save this medical record?.
+        /// </summary>
+        internal static string Msg_SaveMedicalRecord {
+            get {
+                return ResourceManager.GetString("Msg_SaveMedicalRecord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The folder &apos;{0}&apos; was created.
         /// </summary>
         internal static string Msg_TagAdded {
             get {
                 return ResourceManager.GetString("Msg_TagAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Question.
+        /// </summary>
+        internal static string Question {
+            get {
+                return ResourceManager.GetString("Question", resourceCulture);
             }
         }
         
@@ -264,6 +282,15 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Properties {
         internal static string Title_MedicalRecord {
             get {
                 return ResourceManager.GetString("Title_MedicalRecord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} | Created {1} | Last update: {2}.
+        /// </summary>
+        internal static string Title_MedicalRecordTitle {
+            get {
+                return ResourceManager.GetString("Title_MedicalRecordTitle", resourceCulture);
             }
         }
         

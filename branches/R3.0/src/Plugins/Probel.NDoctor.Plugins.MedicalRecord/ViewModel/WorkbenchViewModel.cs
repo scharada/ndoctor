@@ -19,6 +19,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using System.Collections.Generic;
     using System.Windows.Input;
 
+    using AutoMapper;
+
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DTO.Components;
@@ -30,6 +32,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
+    using System.Windows;
+    using System;
 
     public class WorkbenchViewModel : BaseViewModel
     {
@@ -113,6 +117,14 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 var result = this.component.GetMedicalRecordCabinet(PluginContext.Host.SelectedPatient);
                 this.Cabinet = TitledMedicalRecordCabinetDto.CreateFrom(result);
                 this.Tags = this.component.FindTags(TagCategory.MedicalRecord);
+
+                if (this.SelectedRecord != null)
+                {
+                    var record = this.component.FindMedicalRecordById(this.SelectedRecord.Id);
+                    this.SelectedRecord = (record != null)
+                        ? TitledMedicalRecordDto.CreateFrom(record)
+                        : null;
+                }
             }
 
             this.Logger.Debug("Load medical records");
@@ -123,6 +135,19 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             Assert.IsNotNull(PluginContext.Host);
             Assert.IsNotNull(PluginContext.Host.SelectedPatient);
 
+
+            this.Cabinet.ForEachRecord(x =>
+            {
+                if (x.Rtf != this.selectedRecord.Rtf)
+                {
+                    x.Rtf = this.SelectedRecord.Rtf;
+                    x.State = State.Updated;
+                    x.LastUpdate = DateTime.Now;
+                }
+            }
+                , s => s.Id == this.SelectedRecord.Id);
+
+
             using (this.component.UnitOfWork)
             {
                 this.component.UpdateCabinet(PluginContext.Host.SelectedPatient, this.Cabinet);
@@ -130,5 +155,17 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         }
 
         #endregion Methods
+
+        /// <summary>
+        /// Saves the record if the user interaction demand saving.
+        /// </summary>
+        internal void SaveOnUserAction()
+        {
+            if (this.SelectedRecord != null && this.SelectedRecord.State == State.Updated)
+            {
+                var dr = MessageBox.Show(Messages.Msg_SaveMedicalRecord, Messages.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (dr == MessageBoxResult.Yes) { this.Save(); }
+            }
+        }
     }
 }

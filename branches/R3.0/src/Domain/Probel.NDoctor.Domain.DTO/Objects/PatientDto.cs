@@ -50,7 +50,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private string proPhone;
         private string reason;
         private ReputationDto reputation = new ReputationDto();
-        private TagDto tag = new TagDto();
+        private TagDto tag = new TagDto(TagCategory.Patient);
         private byte[] thumbnail;
 
         #endregion Fields

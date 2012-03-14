@@ -35,9 +35,8 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
     {
         #region Fields
 
-        private static TagDto DefaultTag = new TagDto()
+        private static TagDto DefaultTag = new TagDto(TagCategory.Appointment)
         {
-            Category = TagCategory.Appointment,
             Name = Messages.Title_DefaultAppointementType,
             Notes = Messages.Msg_DoneByConverter,
             IsImported = true,

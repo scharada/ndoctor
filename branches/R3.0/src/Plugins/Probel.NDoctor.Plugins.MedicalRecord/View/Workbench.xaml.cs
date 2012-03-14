@@ -18,6 +18,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
 {
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Input;
 
     using Probel.NDoctor.Plugins.MedicalRecord.Dto;
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
@@ -40,20 +41,31 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
         #endregion Constructors
 
         #region Methods
+        #endregion Methods
 
-        private void treeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        private void treeView_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (this.DataContext is WorkbenchViewModel)
             {
                 var viewModel = this.DataContext as WorkbenchViewModel;
+
                 if (this.treeView.SelectedItem is TitledMedicalRecordDto)
                 {
+                    viewModel.SaveOnUserAction();
+
                     viewModel.SelectedRecord = this.treeView.SelectedItem as TitledMedicalRecordDto;
+                    viewModel.SelectedRecord.State = Domain.DTO.Objects.State.Clean;
+
                     this.richTextBox.IsEnabled = true;
+
+                }
+                else
+                {
+                    viewModel.SelectedRecord = null;
+                    this.richTextBox.Clear();
                 }
             }
-        }
 
-        #endregion Methods
+        }
     }
 }

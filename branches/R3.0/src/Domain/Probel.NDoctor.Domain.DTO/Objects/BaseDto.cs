@@ -43,9 +43,14 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         {
             this.State = State.Clean;
             this.IsImported = false;
-            this.PropertyChanged += (sender, e) => this.State = State.Updated;
+            this.PropertyChanged += (sender, e) =>
+            {
+                if (!this.PropertiesToAvoid.Contains(e.PropertyName))
+                {
+                    this.State = State.Updated;
+                }
+            };
         }
-
         #endregion Constructors
 
         #region Properties
@@ -92,20 +97,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         }
 
         /// <summary>
-        /// Gets or sets the state of the DTO.
-        /// This state will be used to determine whether
-        /// this DTO is new/updated/deleted.
-        /// </summary>
-        /// <value>
-        /// The state.
-        /// </value>
-        public State State
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// Gets a value indicating whether this instance is new.
         /// A new instance means it doesn't exist in the database.
         /// </summary>
@@ -118,6 +109,20 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 return this.Id >= 0;
             }
+        }
+
+        /// <summary>
+        /// Gets or sets the state of the DTO.
+        /// This state will be used to determine whether
+        /// this DTO is new/updated/deleted.
+        /// </summary>
+        /// <value>
+        /// The state.
+        /// </value>
+        public State State
+        {
+            get;
+            set;
         }
 
         #endregion Properties

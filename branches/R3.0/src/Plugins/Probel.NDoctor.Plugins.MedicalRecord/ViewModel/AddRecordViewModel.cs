@@ -22,6 +22,7 @@
         private ICommand addRecordCommand;
         private IMedicalRecordComponent component = ObjectFactory.GetInstance<IMedicalRecordComponent>();
         private MedicalRecordDto recordToAdd;
+        private TagDto selectedTag;
         private ObservableCollection<TagDto> tags = new ObservableCollection<TagDto>();
 
         #endregion Fields
@@ -36,12 +37,13 @@
             {
                 using (this.component.UnitOfWork)
                 {
-                    this.component.Create(this.RecordToAdd, PluginContext.Host.SelectedPatient);
+                    this.recordToAdd.Tag = this.SelectedTag;
+                    this.component.Create(this.recordToAdd, PluginContext.Host.SelectedPatient);
                 }
                 InnerWindow.Close();
                 Notifyer.OnRefreshed();
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RecordAdded);
-            }, () => this.RecordToAdd.Tag != null);
+            }, () => this.selectedTag != null);
         }
 
         #endregion Constructors
@@ -53,13 +55,13 @@
             get { return this.addRecordCommand; }
         }
 
-        public MedicalRecordDto RecordToAdd
+        public TagDto SelectedTag
         {
-            get { return this.recordToAdd; }
+            get { return this.selectedTag; }
             set
             {
-                this.recordToAdd = value;
-                this.OnPropertyChanged("RecordToAdd");
+                this.selectedTag = value;
+                this.OnPropertyChanged("SelectedTag");
             }
         }
 
@@ -76,6 +78,16 @@
             {
                 this.tags = value;
                 this.OnPropertyChanged("Tags");
+            }
+        }
+
+        public string Title
+        {
+            get { return this.recordToAdd.Name; }
+            set
+            {
+                this.recordToAdd.Name = value;
+                this.OnPropertyChanged("Title");
             }
         }
 

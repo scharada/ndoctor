@@ -124,7 +124,7 @@ namespace Probel.NDoctor.Domain.DAL.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The specified item doesn&apos;t exist in the database.
+        ///   Looks up a localized string similar to The searched item of type &apos;{0}&apos; doesn&apos;t exist in the database.
         /// </summary>
         internal static string Ex_EntityNotFoundException {
             get {

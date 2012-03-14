@@ -69,7 +69,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             var entity = this.Session.Get<Patient>(patient.Id);
 
             if (entity != null) entity.BmiHistory.Add(Mapper.Map<BmiDto, Bmi>(bmi));
-            else throw new EntityNotFoundException();
+            else throw new EntityNotFoundException(typeof(Bmi));
         }
 
         /// <summary>

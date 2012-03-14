@@ -41,7 +41,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 
         public PathologyDto()
         {
-            this.Tag = new TagDto();
+            this.Tag = new TagDto(TagCategory.Pathology);
         }
 
         #endregion Constructors

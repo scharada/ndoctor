@@ -134,7 +134,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void UpdatePassword(LightUserDto user, string password)
         {
             var entity = this.Session.Get<User>(user.Id);
-            if (entity == null) throw new EntityNotFoundException();
+            if (entity == null) throw new EntityNotFoundException(typeof(User));
 
             entity.Password = password;
             this.Session.Update(entity);

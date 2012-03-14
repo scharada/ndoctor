@@ -166,7 +166,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
                            where p.Id == family.Current.Id
                            select p).FirstOrDefault();
 
-            if (patient == null) throw new EntityNotFoundException();
+            if (patient == null) throw new EntityNotFoundException(typeof(Patient));
 
             if (family.Father != null && family.Father.State == State.Added)
             {

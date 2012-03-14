@@ -137,7 +137,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             var toRemove = (from a in patientEntity.Appointments
                             where a.Id == meeting.Id
                             select a).FirstOrDefault();
-            if (toRemove == null) throw new EntityNotFoundException();
+            if (toRemove == null) throw new EntityNotFoundException(typeof(Appointment));
 
             patientEntity.Appointments.Remove(toRemove);
 

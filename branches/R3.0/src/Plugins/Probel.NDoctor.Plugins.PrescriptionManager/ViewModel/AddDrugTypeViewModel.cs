@@ -30,11 +30,11 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
-    using Probel.NDoctor.View.Core.Helpers;
 
     public class AddDrugTypeViewModel : BaseViewModel
     {
@@ -51,7 +51,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         {
             if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IPrescriptionComponent>();
 
-            this.SelectedTag = new TagDto() { Category = TagCategory.Drug };
+            this.SelectedTag = new TagDto(TagCategory.Drug);
 
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
         }
@@ -90,7 +90,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 }
                 Notifyer.OnItemChanged(this);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
-                this.SelectedTag = new TagDto() { Category = TagCategory.Drug };
+                this.SelectedTag = new TagDto(TagCategory.Drug);
                 InnerWindow.Close();
             }
             catch (ExistingItemException ex)

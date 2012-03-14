@@ -28,6 +28,36 @@ namespace Probel.NDoctor.Domain.DTO.Components
         #region Methods
 
         /// <summary>
+        /// Creates the specified profession.
+        /// </summary>
+        /// <param name="profession">The tag.</param>
+        long Create(ProfessionDto profession);
+
+        /// <summary>
+        /// Creates the specified reputation.
+        /// </summary>
+        /// <param name="reputation">The tag.</param>
+        long Create(ReputationDto reputation);
+
+        /// <summary>
+        /// Creates the specified pathology.
+        /// </summary>
+        /// <param name="pathology">The drug.</param>
+        long Create(PathologyDto pathology);
+
+        /// <summary>
+        /// Creates the specified practice.
+        /// </summary>
+        /// <param name="practice">The drug.</param>
+        long Create(PracticeDto practice);
+
+        /// <summary>
+        /// Creates the specified insurance.
+        /// </summary>
+        /// <param name="insurance">The drug.</param>
+        long Create(InsuranceDto insurance);
+
+        /// <summary>
         /// Updates the specified tag.
         /// </summary>
         /// <param name="tag">The tag.</param>
@@ -70,47 +100,5 @@ namespace Probel.NDoctor.Domain.DTO.Components
         void Update(InsuranceDto insurance);
 
         #endregion Methods
-
-        /// <summary>
-        /// Creates the specified tag.
-        /// </summary>
-        /// <param name="tag">The tag.</param>
-        void Create(TagDto tag);
-
-        /// <summary>
-        /// Creates the specified profession.
-        /// </summary>
-        /// <param name="profession">The tag.</param>
-        void Create(ProfessionDto profession);
-
-        /// <summary>
-        /// Creates the specified reputation.
-        /// </summary>
-        /// <param name="reputation">The tag.</param>
-        void Create(ReputationDto reputation);
-
-        /// <summary>
-        /// Creates the specified drug.
-        /// </summary>
-        /// <param name="drug">The drug.</param>
-        void Create(DrugDto drug);
-
-        /// <summary>
-        /// Creates the specified pathology.
-        /// </summary>
-        /// <param name="pathology">The drug.</param>
-        void Create(PathologyDto pathology);
-
-        /// <summary>
-        /// Creates the specified practice.
-        /// </summary>
-        /// <param name="practice">The drug.</param>
-        void Create(PracticeDto practice);
-
-        /// <summary>
-        /// Creates the specified insurance.
-        /// </summary>
-        /// <param name="insurance">The drug.</param>
-        void Create(InsuranceDto insurance);
     }
 }

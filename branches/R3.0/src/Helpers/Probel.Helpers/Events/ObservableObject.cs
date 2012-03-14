@@ -21,6 +21,7 @@ namespace Probel.Helpers.Events
     using System.Diagnostics;
 
     using Probel.Helpers.Assertion;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Basic implementation of <see cref="INotifyPropertyChanged"/>
@@ -28,6 +29,11 @@ namespace Probel.Helpers.Events
     [Serializable]
     public class ObservableObject : INotifyPropertyChanged
     {
+        protected HashSet<string> PropertiesToAvoid { get; private set; }
+        public ObservableObject()
+        {
+            this.PropertiesToAvoid = new HashSet<string>();
+        }
         #region Events
 
         /// <summary>
@@ -51,6 +57,15 @@ namespace Probel.Helpers.Events
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        protected void OnPropertyChanged(string propertyName, bool listen)
+        {
+            if (listen == false)
+            {
+                this.PropertiesToAvoid.Add(propertyName);
+            }
+            this.OnPropertyChanged(propertyName);
         }
 
         /// <summary>

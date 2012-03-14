@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
     using Probel.NDoctor.Plugins.PrescriptionManager.View;
     using Probel.NDoctor.Plugins.PrescriptionManager.ViewModel;
@@ -37,7 +38,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
     using Probel.NDoctor.View.Plugins.MenuData;
 
     using StructureMap;
-    using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
 
     [Export(typeof(IPlugin))]
     public class PrescriptionManager : Plugin
@@ -53,9 +53,9 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         private bool isSearching = false;
         private LastNavigation lastNavigation;
         private ICommand navAddPrescriptionCommand;
-        private ICommand navWorkbenchCommand;
         private ICommand navPrescriptionCommand;
         private ICommand navSearchCommand;
+        private ICommand navWorkbenchCommand;
         private ICommand saveCommand;
         private Workbench workbench;
 
@@ -78,12 +78,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             this.navAddPrescriptionCommand = new RelayCommand(() => this.NavigateAddPrescription(), () => this.lastNavigation != LastNavigation.AddPrescription);
             this.navWorkbenchCommand = new RelayCommand(() => this.NavigateWorkbench(), () => this.CanNavigateWorkbench());
             this.navPrescriptionCommand = new RelayCommand(() => this.NavigateWorkbench(), () => this.CanNavigatePrescription());
-        }
-
-        private bool CanNavigatePrescription()
-        {
-            return this.CanNavigateWorkbench()
-                && this.lastNavigation != LastNavigation.Workbench;
         }
 
         #endregion Constructors
@@ -234,6 +228,12 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             PluginContext.Host.AddContextualMenu(this.contextualMenu);
         }
 
+        private bool CanNavigatePrescription()
+        {
+            return this.CanNavigateWorkbench()
+                && this.lastNavigation != LastNavigation.Workbench;
+        }
+
         private bool CanNavigateSearch()
         {
             return this.lastNavigation == LastNavigation.Workbench
@@ -262,6 +262,20 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
                 x.For<IPrescriptionComponent>().Add<PrescriptionComponent>();
                 x.SelectConstructor<PrescriptionComponent>(() => new PrescriptionComponent());
             });
+        }
+
+        private void LoadDefaultPrescriptions()
+        {
+            var component = ObjectFactory.GetInstance<IPrescriptionComponent>();
+            using (component.UnitOfWork)
+            {
+                var from = DateTime.Today.AddMonths(-1);
+                var to = DateTime.Today;
+
+                var found = component.FindPrescriptionsByDates(PluginContext.Host.SelectedPatient, from, to);
+
+                Notifyer.OnPrescriptionFound(this, new PrescriptionResultDto(found, from, to));
+            }
         }
 
         private void NavigateAddPrescription()
@@ -310,19 +324,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             }
         }
 
-        private void LoadDefaultPrescriptions()
-        {
-            var component = ObjectFactory.GetInstance<IPrescriptionComponent>();
-            using (component.UnitOfWork)
-            {
-                var from = DateTime.Today.AddMonths(-1);
-                var to = DateTime.Today;
-
-                var found = component.FindPrescriptionsByDates(PluginContext.Host.SelectedPatient, from, to);
-
-                Notifyer.OnPrescriptionFound(this, new PrescriptionResultDto(found, from, to));
-            }
-        }
         private void Save()
         {
             (this.addPrescriptionView.DataContext as AddPrescriptionViewModel).Save();

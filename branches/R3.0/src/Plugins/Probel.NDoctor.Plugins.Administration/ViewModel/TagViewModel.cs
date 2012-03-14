@@ -47,6 +47,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         #region Constructors
 
         public TagViewModel()
+            : base(TagCategory.Appointment)
         {
             if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IAdministrationComponent>();
             this.errorHandler = new ErrorHandler(this);

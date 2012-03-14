@@ -37,9 +37,8 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
     {
         #region Fields
 
-        private static readonly TagDto DefaultTag = new TagDto()
+        private static readonly TagDto DefaultTag = new TagDto(TagCategory.PrescriptionDocument)
         {
-            Category = TagCategory.PrescriptionDocument,
             Name = Messages.Title_DefaultPrescription,
             Notes = Messages.Msg_DoneByConverter,
             IsImported = true,

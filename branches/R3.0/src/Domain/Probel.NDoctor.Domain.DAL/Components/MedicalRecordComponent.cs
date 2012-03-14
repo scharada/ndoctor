@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Domain.DAL.Components
 {
+    using System;
     using System.Linq;
 
     using AutoMapper;
@@ -70,13 +71,31 @@ namespace Probel.NDoctor.Domain.DAL.Components
             var foundPatient = (from p in this.Session.Query<Patient>()
                                 where p.Id == forPatient.Id
                                 select p).FirstOrDefault();
-            if (foundPatient == null) throw new EntityNotFoundException();
+            if (foundPatient == null) throw new EntityNotFoundException(typeof(Patient));
 
             var recEntity = Mapper.Map<MedicalRecordDto, MedicalRecord>(record);
 
             foundPatient.MedicalRecords.Add(recEntity);
 
             this.Session.SaveOrUpdate(foundPatient);
+        }
+
+        /// <summary>
+        /// Finds the medical record by id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns>
+        /// The medical record or <c>Null</c> if not found
+        /// </returns>
+        public MedicalRecordDto FindMedicalRecordById(long id)
+        {
+            this.CheckSession();
+
+            var result = this.Session.Get<MedicalRecord>(id);
+
+            return (result != null)
+                ? Mapper.Map<MedicalRecord, MedicalRecordDto>(result)
+                : null;
         }
 
         /// <summary>
@@ -116,9 +135,13 @@ namespace Probel.NDoctor.Domain.DAL.Components
                             //Nothing to do
                             break;
                         case State.Updated:
+                            record.LastUpdate = DateTime.Now;
                             this.Update(record);
                             break;
                         case State.Added:
+                            record.LastUpdate
+                                = record.CreationDate
+                                = DateTime.Now;
                             this.Create(record);
                             break;
                         case State.Removed:

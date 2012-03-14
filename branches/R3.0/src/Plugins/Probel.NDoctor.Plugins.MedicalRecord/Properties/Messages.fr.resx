@@ -173,16 +173,24 @@
     <comment>An error occured while loading medical records. {0}</comment>
   </data>
   <data name="Msg_RecordAdded" xml:space="preserve">
-    <value>Nouvelle fiche ajoutée au dosser</value>
+    <value>Nouvelle fiche ajoutée au dossier</value>
     <comment>New card added to the record</comment>
   </data>
   <data name="Msg_RecordsSaved" xml:space="preserve">
     <value>Dossier médical sauvé.</value>
     <comment>Medical record saved.</comment>
   </data>
+  <data name="Msg_SaveMedicalRecord" xml:space="preserve">
+    <value>Voulez-vous sauver ce dossier médical avant de poursuivre?</value>
+    <comment>Do you want to save this medical record?</comment>
+  </data>
   <data name="Msg_TagAdded" xml:space="preserve">
     <value>Le répertoire '{0}' a été créé</value>
     <comment>The folder '{0}' was created</comment>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Question</value>
+    <comment>Question</comment>
   </data>
   <data name="Title_AddFolder" xml:space="preserve">
     <value>Créer un nouveau répertoire</value>
@@ -197,8 +205,12 @@
     <comment>Add</comment>
   </data>
   <data name="Title_MedicalRecord" xml:space="preserve">
-    <value>Dossiers médical</value>
+    <value>Dossiers médicaux</value>
     <comment>Medical record</comment>
+  </data>
+  <data name="Title_MedicalRecordTitle" xml:space="preserve">
+    <value>{0} | Création {1} | Dernière mise à jour: {2}</value>
+    <comment>{0} | Created {1} | Last update: {2}</comment>
   </data>
   <data name="Title_Save" xml:space="preserve">
     <value>Sauver</value>

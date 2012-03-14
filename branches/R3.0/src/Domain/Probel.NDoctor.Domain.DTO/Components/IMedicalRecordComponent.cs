@@ -18,6 +18,9 @@ namespace Probel.NDoctor.Domain.DTO.Components
 {
     using Probel.NDoctor.Domain.DTO.Objects;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IMedicalRecordComponent : IBaseComponent
     {
         #region Methods
@@ -28,6 +31,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="record">The record.</param>
         /// <param name="forPatient">For patient.</param>
         void Create(MedicalRecordDto record, LightPatientDto forPatient);
+
+        /// <summary>
+        /// Finds the medical record by id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns>The medical record or <c>Null</c> if not found </returns>
+        MedicalRecordDto FindMedicalRecordById(long id);
 
         /// <summary>
         /// Gets all the medical records of the specified patient. The records are packed into a 

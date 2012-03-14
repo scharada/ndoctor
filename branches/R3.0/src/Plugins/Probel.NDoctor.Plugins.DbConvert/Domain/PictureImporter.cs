@@ -34,9 +34,8 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
     {
         #region Fields
 
-        private static TagDto DefaultTag = new TagDto()
+        private static TagDto DefaultTag = new TagDto(TagCategory.Picture)
         {
-            Category = TagCategory.Picture,
             Name = Messages.Title_DefaultPictureType,
             Notes = Messages.Msg_DoneByConverter,
             IsImported = true,

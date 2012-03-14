@@ -47,7 +47,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         public AddSpecialisationViewModel()
         {
             this.component = ObjectFactory.GetInstance<IPatientDataComponent>();
-            this.Tag = new TagDto() { Category = TagCategory.Doctor };
+            this.Tag = new TagDto(TagCategory.Doctor);
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
         }
 
@@ -81,7 +81,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             {
                 using (this.component.UnitOfWork) { this.component.Create(this.Tag); }
 
-                this.Tag = new TagDto() { Category = TagCategory.Doctor };
+                this.Tag = new TagDto(TagCategory.Doctor);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
                 Notifyer.OnSpecialisationChanged(this);
             }

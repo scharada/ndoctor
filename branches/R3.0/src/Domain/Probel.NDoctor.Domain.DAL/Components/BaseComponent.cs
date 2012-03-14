@@ -235,6 +235,13 @@ namespace Probel.NDoctor.Domain.DAL.Components
             this.CloseSession();
         }
 
+        public T FindById<T>(long id)
+        {
+            this.CheckSession();
+
+            return this.Session.Get<T>(id);
+        }
+
         /// <summary>
         /// Finds the doctors by name.
         /// </summary>
@@ -807,7 +814,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             this.CheckSession();
 
             var entity = this.Session.Get<Picture>(item.Id);
-            if (entity == null) throw new EntityNotFoundException();
+            if (entity == null) throw new EntityNotFoundException(typeof(Picture));
 
             Mapper.Map<PictureDto, Picture>(item, entity);
             this.Session.Update(entity);
@@ -874,8 +881,12 @@ namespace Probel.NDoctor.Domain.DAL.Components
             this.CheckSession();
 
             var entity = this.Session.Get<MedicalRecord>(item.Id);
+            var tag = this.Session.Get<Tag>(entity.Tag.Id);
+
             Mapper.Map<MedicalRecordDto, MedicalRecord>(item, entity);
-            this.Session.Update(entity);
+
+            entity.Tag = tag;
+            this.Session.Merge(entity);
         }
 
         private void CloseSession()

@@ -35,7 +35,7 @@ namespace Probel.NDoctor.Domain.Test.Component
             {
                 Bitmap = Build.Picture(1),
                 Notes = "Some notes",
-                Tag = new TagDto() { Name = "SomeTag" },
+                Tag = new TagDto(TagCategory.Picture) { Name = "SomeTag" },
             };
 
             this.Component.Create(pic, patients[0]);

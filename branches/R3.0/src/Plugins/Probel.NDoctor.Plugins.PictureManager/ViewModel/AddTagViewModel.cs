@@ -49,7 +49,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
         public AddTagViewModel()
         {
-            this.SelectedTag = new TagDto() { Category = TagCategory.Picture };
+            this.SelectedTag = new TagDto(TagCategory.Picture);
 
             if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IPictureComponent>();
 
@@ -106,7 +106,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                     this.component.Create(this.SelectedTag);
                 }
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Title_OperationDone);
-                this.SelectedTag = new TagDto() { Category = TagCategory.Picture };
+                this.SelectedTag = new TagDto(TagCategory.Picture);
                 this.IsPopupOpened = false;
                 Notifyer.OnItemChanged(this);
             }

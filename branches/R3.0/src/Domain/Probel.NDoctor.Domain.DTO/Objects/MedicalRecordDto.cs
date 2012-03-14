@@ -28,9 +28,9 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 
         private DateTime creationDate;
         private DateTime lastUpdate;
+        private string name;
         private string rtf;
-        private TagDto tag;
-        private string title;
+        private TagDto tag = new TagDto(TagCategory.MedicalRecord);
 
         #endregion Fields
 
@@ -42,8 +42,10 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// </summary>
         public MedicalRecordDto()
         {
-            this.creationDate = DateTime.Now;
-            this.title = DateTime.Now.ToString();
+            this.creationDate
+                = this.lastUpdate
+                = DateTime.Now;
+            this.name = DateTime.Today.ToShortDateString();
         }
 
         #endregion Constructors
@@ -61,8 +63,13 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             get { return this.creationDate; }
             set
             {
-                this.creationDate = value;
-                this.OnPropertyChanged("CreationDate");
+                if (this.creationDate != value)
+                {
+                    this.creationDate
+                        = this.lastUpdate
+                        = value;
+                    this.OnPropertyChanged("CreationDate");
+                }
             }
         }
 
@@ -77,8 +84,11 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             get { return this.lastUpdate; }
             set
             {
-                this.lastUpdate = value;
-                this.OnPropertyChanged("LastUpdate");
+                if (this.lastUpdate != value)
+                {
+                    this.lastUpdate = value;
+                    this.OnPropertyChanged("LastUpdate");
+                }
             }
         }
 
@@ -90,11 +100,14 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// </value>
         public string Name
         {
-            get { return this.title; }
+            get { return this.name; }
             set
             {
-                this.title = value;
-                this.OnPropertyChanged("Name");
+                if (value != null && this.name != value)
+                {
+                    this.name = value;
+                    this.OnPropertyChanged("Name");
+                }
             }
         }
 
@@ -109,10 +122,9 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             get { return this.rtf; }
             set
             {
-                if (this.rtf != value)
+                if (value != null && this.rtf != value)
                 {
-                    if (this.rtf != null) this.State = State.Updated;
-
+                    this.State = State.Updated;
                     this.rtf = value;
                     this.OnPropertyChanged("Rtf");
                 }
@@ -130,8 +142,11 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             get { return this.tag; }
             set
             {
-                this.tag = value;
-                this.OnPropertyChanged("Tag");
+                if (value != null && tag.Id != value.Id)
+                {
+                    this.tag = value;
+                    this.OnPropertyChanged("Tag");
+                }
             }
         }
 

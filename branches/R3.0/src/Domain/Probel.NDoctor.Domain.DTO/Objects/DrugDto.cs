@@ -44,7 +44,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// </summary>
         public DrugDto()
         {
-            this.Tag = new TagDto();
+            this.Tag = new TagDto(TagCategory.Drug);
         }
 
         #endregion Constructors

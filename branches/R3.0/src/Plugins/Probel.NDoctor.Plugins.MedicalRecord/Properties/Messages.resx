@@ -180,9 +180,17 @@
     <value>Medical record saved.</value>
     <comment>Medical record saved.</comment>
   </data>
+  <data name="Msg_SaveMedicalRecord" xml:space="preserve">
+    <value>Do you want to save this medical record?</value>
+    <comment>Do you want to save this medical record?</comment>
+  </data>
   <data name="Msg_TagAdded" xml:space="preserve">
     <value>The folder '{0}' was created</value>
     <comment>The folder '{0}' was created</comment>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Question</value>
+    <comment>Question</comment>
   </data>
   <data name="Title_AddFolder" xml:space="preserve">
     <value>Create new directory</value>
@@ -199,6 +207,10 @@
   <data name="Title_MedicalRecord" xml:space="preserve">
     <value>Medical record</value>
     <comment>Medical record</comment>
+  </data>
+  <data name="Title_MedicalRecordTitle" xml:space="preserve">
+    <value>{0} | Created {1} | Last update: {2}</value>
+    <comment>{0} | Created {1} | Last update: {2}</comment>
   </data>
   <data name="Title_Save" xml:space="preserve">
     <value>Save</value>

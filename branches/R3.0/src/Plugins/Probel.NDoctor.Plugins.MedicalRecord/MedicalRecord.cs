@@ -361,17 +361,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
         private void Save()
         {
-            using (this.component.UnitOfWork)
-            {
-                this.ViewModel.Cabinet.ForEachRecord(x =>
-                {
-                    x.Rtf = this.ViewModel.SelectedRecord.Rtf;
-                    x.State = State.Updated;
-                }
-                    , s => s.Id == this.ViewModel.SelectedRecord.Id);
-
-                this.ViewModel.Save();
-            }
+            this.ViewModel.Save();
+            Notifyer.OnRefreshed();
             PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RecordsSaved);
         }
 

@@ -60,7 +60,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
             var patientEntity = this.Session.Get<Patient>(patient.Id);
             var doctorEntity = this.Session.Get<Doctor>(doctor.Id);
 
-            if (patientEntity == null || doctorEntity == null) throw new EntityNotFoundException();
+            if (patientEntity == null) throw new EntityNotFoundException(typeof(Patient));
+            if (doctorEntity == null) throw new EntityNotFoundException(typeof(Doctor));
 
             patientEntity.Doctors.Add(doctorEntity);
             doctorEntity.Patients.Add(patientEntity);
@@ -236,7 +237,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
                                where p.Id == id
                                select p).FirstOrDefault();
 
-            if (fullPatient == null) throw new EntityNotFoundException();
+            if (fullPatient == null) throw new EntityNotFoundException(typeof(Patient));
 
             return Mapper.Map<Patient, PatientDto>(fullPatient);
         }
@@ -284,7 +285,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
                                where d.Id == doctor.Id
                                select d).FirstOrDefault();
 
-            if (doctorToDel == null) throw new EntityNotFoundException();
+            if (doctorToDel == null) throw new EntityNotFoundException(typeof(Doctor));
             else return doctorToDel;
         }
 
@@ -294,7 +295,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
                                 where p.Id == patient.Id
                                 select p).FirstOrDefault();
 
-            if (patientToDel == null) throw new EntityNotFoundException();
+            if (patientToDel == null) throw new EntityNotFoundException(typeof(Patient));
             else return patientToDel;
         }
 

@@ -162,8 +162,8 @@
     <comment>The item you want to create already exist in the database.</comment>
   </data>
   <data name="Ex_EntityNotFoundException" xml:space="preserve">
-    <value>L'élément que vous cherchez n'existe pas dans la base de données.</value>
-    <comment>The specified item doesn't exist in the database</comment>
+    <value>L'élément de type '{0}' que vous cherchez n'existe pas dans la base de données.</value>
+    <comment>The searched item of type '{0}' doesn't exist in the database</comment>
   </data>
   <data name="Ex_NotLoadedEntityException" xml:space="preserve">
     <value>L'entité que vous êtes en train d'utiliser est détachée de la base de données.</value>
