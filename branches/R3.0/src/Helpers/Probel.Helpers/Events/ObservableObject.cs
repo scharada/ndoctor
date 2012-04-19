@@ -1,4 +1,4 @@
-﻿/*
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -17,11 +17,12 @@
 namespace Probel.Helpers.Events
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Diagnostics;
+    using System.Linq.Expressions;
 
     using Probel.Helpers.Assertion;
-    using System.Collections.Generic;
 
     /// <summary>
     /// Basic implementation of <see cref="INotifyPropertyChanged"/>
@@ -29,11 +30,15 @@ namespace Probel.Helpers.Events
     [Serializable]
     public class ObservableObject : INotifyPropertyChanged
     {
-        protected HashSet<string> PropertiesToAvoid { get; private set; }
+        #region Constructors
+
         public ObservableObject()
         {
             this.PropertiesToAvoid = new HashSet<string>();
         }
+
+        #endregion Constructors
+
         #region Events
 
         /// <summary>
@@ -42,6 +47,16 @@ namespace Probel.Helpers.Events
         public virtual event PropertyChangedEventHandler PropertyChanged;
 
         #endregion Events
+
+        #region Properties
+
+        protected HashSet<string> PropertiesToAvoid
+        {
+            get;
+            private set;
+        }
+
+        #endregion Properties
 
         #region Methods
 
@@ -81,6 +96,16 @@ namespace Probel.Helpers.Events
         }
 
         /// <summary>
+        ///   Notifies subscribers of the property change.
+        /// </summary>
+        /// <typeparam name = "TProperty">The type of the property.</typeparam>
+        /// <param name = "property">The property expression.</param>
+        protected void OnPropertyChanged<TProperty>(Expression<Func<TProperty>> property)
+        {
+            this.OnPropertyChanged(property.GetMemberInfo().Name);
+        }
+
+        /// <summary>
         /// Warns the developer if this object does not have a public property with
         /// the specified name. This method does not exist in a Release build.
         /// </summary>
@@ -94,6 +119,36 @@ namespace Probel.Helpers.Events
             {
                 Assert.Fail("Invalid property name: {0}", propertyName);
             }
+        }
+
+        #endregion Methods
+    }
+
+    internal static class ExpressionExtension
+    {
+        #region Methods
+
+        /// <summary>
+        /// Converts an expression into a <see cref="MemberInfo"/>.
+        /// </summary>
+        /// <param name="expression">The expression to convert.</param>
+        /// <returns>The member info.</returns>
+        public static MemberInfo GetMemberInfo(this Expression expression)
+        {
+            var lambda = (LambdaExpression)expression;
+
+            MemberExpression memberExpression;
+            if (lambda.Body is UnaryExpression)
+            {
+                var unaryExpression = (UnaryExpression)lambda.Body;
+                memberExpression = (MemberExpression)unaryExpression.Operand;
+            }
+            else
+            {
+                memberExpression = (MemberExpression)lambda.Body;
+            }
+
+            return memberExpression.Member;
         }
 
         #endregion Methods
