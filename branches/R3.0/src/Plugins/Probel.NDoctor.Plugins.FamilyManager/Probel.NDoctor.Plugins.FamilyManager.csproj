@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FamilyManager.cs" />
+    <Compile Include="Helpers\Notifyer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -83,17 +84,14 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Translations\AddFamilyWorkbenchText.cs" />
+    <Compile Include="Translations\FamilyText.cs" />
     <Compile Include="Translations\LightPatientText.cs" />
     <Compile Include="ViewModel\LightPatientViewModel.cs" />
     <Compile Include="ViewModel\AddFamilyViewModel.cs" />
-    <Compile Include="ViewModel\MedicalCabinetViewModel.cs" />
     <Compile Include="ViewModel\RemoveFamilyViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
     <Compile Include="View\AddFamilyWorkbench.xaml.cs">
       <DependentUpon>AddFamilyWorkbench.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\MedicalCabinetView.xaml.cs">
-      <DependentUpon>MedicalCabinetView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RemoveFamilyWorkbench.xaml.cs">
       <DependentUpon>RemoveFamilyWorkbench.xaml</DependentUpon>
@@ -148,10 +146,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="View\AddFamilyWorkbench.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\MedicalCabinetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

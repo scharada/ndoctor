@@ -34,8 +34,8 @@ namespace Probel.NDoctor.Domain.Test.Component
             var family = this.Component.FindFamily(new LightPatientDto() { Id = 7 });
 
             Assert.NotNull(family.Current, "No current patient found");
-            Assert.NotNull(family.Father, "No father found");
-            Assert.NotNull(family.Mother, "No mother found");
+            Assert.NotNull(family.Fathers, "No father found");
+            Assert.NotNull(family.Mothers, "No mother found");
             Assert.AreEqual(family.Children, 7, "It is not the number of children expected");
         }
 

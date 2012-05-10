@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -16,9 +14,6 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-#endregion Header
-
 namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 {
     using System;
@@ -33,11 +28,11 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
-    using Probel.NDoctor.View.Core.Helpers;
 
     public class AddDrugViewModel : BaseViewModel
     {
@@ -90,6 +85,16 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
         #region Methods
 
+        public void Refresh()
+        {
+            IList<TagDto> result;
+            using (this.component.UnitOfWork)
+            {
+                result = this.component.FindTags(TagCategory.Drug);
+            }
+            this.Tags.Refill(result);
+        }
+
         private void Add()
         {
             try
@@ -118,16 +123,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             return this.SelectedDrug != null
                 && this.SelectedDrug.Tag != null
                 && !string.IsNullOrWhiteSpace(this.SelectedDrug.Name);
-        }
-
-        public void Refresh()
-        {
-            IList<TagDto> result;
-            using (this.component.UnitOfWork)
-            {
-                result = this.component.FindTags(TagCategory.Drug);
-            }
-            this.Tags.Refill(result);
         }
 
         #endregion Methods

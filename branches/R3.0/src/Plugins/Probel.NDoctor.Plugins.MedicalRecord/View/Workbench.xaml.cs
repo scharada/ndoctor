@@ -41,7 +41,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
         #endregion Constructors
 
         #region Methods
-        #endregion Methods
 
         private void treeView_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -65,7 +64,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
                     this.richTextBox.Clear();
                 }
             }
-
         }
+
+        #endregion Methods
     }
 }

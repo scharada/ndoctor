@@ -1,4 +1,4 @@
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -20,7 +20,6 @@ namespace Probel.Helpers.Events
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Diagnostics;
-    using System.Linq.Expressions;
 
     using Probel.Helpers.Assertion;
 
@@ -34,7 +33,7 @@ namespace Probel.Helpers.Events
 
         public ObservableObject()
         {
-            this.PropertiesToAvoid = new HashSet<string>();
+            this.StateProperties = new HashSet<string>();
         }
 
         #endregion Constructors
@@ -50,7 +49,11 @@ namespace Probel.Helpers.Events
 
         #region Properties
 
-        protected HashSet<string> PropertiesToAvoid
+        /// <summary>
+        /// The state properties are properties that can change the state of the DTO
+        /// A DTO can be clean, updated, added or removed
+        /// </summary>
+        protected HashSet<string> StateProperties
         {
             get;
             private set;
@@ -74,11 +77,15 @@ namespace Probel.Helpers.Events
             }
         }
 
+        /// <summary>
+        /// Raises this object's PropertyChanged event.
+        /// </summary>
+        /// <param name="propertyName">The name of the property that has a new value.</param>
         protected void OnPropertyChanged(string propertyName, bool listen)
         {
             if (listen == false)
             {
-                this.PropertiesToAvoid.Add(propertyName);
+                this.StateProperties.Add(propertyName);
             }
             this.OnPropertyChanged(propertyName);
         }
@@ -96,16 +103,6 @@ namespace Probel.Helpers.Events
         }
 
         /// <summary>
-        ///   Notifies subscribers of the property change.
-        /// </summary>
-        /// <typeparam name = "TProperty">The type of the property.</typeparam>
-        /// <param name = "property">The property expression.</param>
-        protected void OnPropertyChanged<TProperty>(Expression<Func<TProperty>> property)
-        {
-            this.OnPropertyChanged(property.GetMemberInfo().Name);
-        }
-
-        /// <summary>
         /// Warns the developer if this object does not have a public property with
         /// the specified name. This method does not exist in a Release build.
         /// </summary>
@@ -119,36 +116,6 @@ namespace Probel.Helpers.Events
             {
                 Assert.Fail("Invalid property name: {0}", propertyName);
             }
-        }
-
-        #endregion Methods
-    }
-
-    internal static class ExpressionExtension
-    {
-        #region Methods
-
-        /// <summary>
-        /// Converts an expression into a <see cref="MemberInfo"/>.
-        /// </summary>
-        /// <param name="expression">The expression to convert.</param>
-        /// <returns>The member info.</returns>
-        public static MemberInfo GetMemberInfo(this Expression expression)
-        {
-            var lambda = (LambdaExpression)expression;
-
-            MemberExpression memberExpression;
-            if (lambda.Body is UnaryExpression)
-            {
-                var unaryExpression = (UnaryExpression)lambda.Body;
-                memberExpression = (MemberExpression)unaryExpression.Operand;
-            }
-            else
-            {
-                memberExpression = (MemberExpression)lambda.Body;
-            }
-
-            return memberExpression.Member;
         }
 
         #endregion Methods

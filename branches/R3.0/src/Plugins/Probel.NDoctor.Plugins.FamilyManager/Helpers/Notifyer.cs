@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
+namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
 {
     using System;
 
@@ -22,12 +22,18 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
     {
         #region Events
 
+        /// <summary>
+        /// Occurs when refreshed the plugin needs a refresh of all the data.
+        /// </summary>
         public static event EventHandler Refreshed;
 
         #endregion Events
 
         #region Methods
 
+        /// <summary>
+        /// Called to trigger the <see cref="Refreshed"/> event 
+        /// </summary>
         public static void OnRefreshed(object sender)
         {
             if (Refreshed != null)

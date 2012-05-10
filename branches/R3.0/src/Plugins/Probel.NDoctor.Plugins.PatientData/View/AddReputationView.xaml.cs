@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -16,9 +14,6 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-#endregion Header
-
 namespace Probel.NDoctor.Plugins.PatientData.View
 {
     using System.Windows.Controls;
@@ -30,6 +25,12 @@ namespace Probel.NDoctor.Plugins.PatientData.View
     /// </summary>
     public partial class AddReputationView : UserControl
     {
+        #region Fields
+
+        private WorkbenchViewModel vm;
+
+        #endregion Fields
+
         #region Constructors
 
         public AddReputationView()
@@ -40,7 +41,8 @@ namespace Probel.NDoctor.Plugins.PatientData.View
 
         #endregion Constructors
 
-        private WorkbenchViewModel vm;
+        #region Properties
+
         public WorkbenchViewModel VM
         {
             get { return this.vm; }
@@ -49,5 +51,7 @@ namespace Probel.NDoctor.Plugins.PatientData.View
                 this.vm = value;
             }
         }
+
+        #endregion Properties
     }
 }

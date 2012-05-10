@@ -14,27 +14,29 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
-
 namespace Probel.NDoctor.Plugins.PrescriptionManager.Translations
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
+
     public static class WorkbenchText
     {
+        #region Properties
 
         public static string PrescriptionHeader
         {
             get { return Messages.Title_PrescriptionHeader; }
         }
 
-
         public static string TitlePrescription
         {
             get { return Messages.Title_PrescriptionManager; }
         }
+
+        #endregion Properties
     }
 }

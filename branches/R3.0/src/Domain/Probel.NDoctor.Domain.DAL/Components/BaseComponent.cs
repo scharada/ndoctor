@@ -235,13 +235,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
             this.CloseSession();
         }
 
-        public T FindById<T>(long id)
-        {
-            this.CheckSession();
-
-            return this.Session.Get<T>(id);
-        }
-
         /// <summary>
         /// Finds the doctors by name.
         /// </summary>
@@ -883,6 +876,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             var entity = this.Session.Get<MedicalRecord>(item.Id);
             var tag = this.Session.Get<Tag>(entity.Tag.Id);
 
+            //Reload the tag to avoid exception from nhibernate
             Mapper.Map<MedicalRecordDto, MedicalRecord>(item, entity);
 
             entity.Tag = tag;

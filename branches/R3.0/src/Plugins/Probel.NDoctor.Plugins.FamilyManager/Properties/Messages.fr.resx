@@ -205,9 +205,29 @@
     <value>Ajouter une relation</value>
     <comment>Add relation</comment>
   </data>
+  <data name="Title_Children" xml:space="preserve">
+    <value>Enfants</value>
+    <comment>Children</comment>
+  </data>
+  <data name="Title_Family" xml:space="preserve">
+    <value>Famille</value>
+    <comment>Family</comment>
+  </data>
   <data name="Title_FamilyManager" xml:space="preserve">
     <value>Famille</value>
     <comment>Family</comment>
+  </data>
+  <data name="Title_Father" xml:space="preserve">
+    <value>Père</value>
+    <comment>Père</comment>
+  </data>
+  <data name="Title_Mother" xml:space="preserve">
+    <value>Mère</value>
+    <comment>Mère</comment>
+  </data>
+  <data name="Title_Parent" xml:space="preserve">
+    <value>Parents</value>
+    <comment>Parents</comment>
   </data>
   <data name="Title_RemoveFamilyManager" xml:space="preserve">
     <value>Supprimer un membre de la famille</value>

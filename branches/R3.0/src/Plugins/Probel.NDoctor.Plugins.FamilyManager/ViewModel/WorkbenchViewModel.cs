@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -15,75 +13,46 @@
 
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-#endregion Header
-
+*/
 namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
 {
     using System.Windows.Input;
 
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.FamilyManager.Properties;
+    using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
 
-    /// <summary>
-    /// Workbench's ViewModel of the plugin
-    /// </summary>
     public class WorkbenchViewModel : BaseViewModel
     {
         #region Fields
 
         private FamilyDto family;
         private IFamilyComponent familyComponent = ObjectFactory.GetInstance<IFamilyComponent>();
+        private MedicalRecordCabinetDto medicalRecordCabinet = new MedicalRecordCabinetDto();
         private IMedicalRecordComponent medicalRecordComponent = ObjectFactory.GetInstance<IMedicalRecordComponent>();
-        private LightPatientDto selectedChild;
-        private LightPatientDto selectedMember;
+        private MedicalRecordFolderDto selectedFolder;
+        private LightPatientDto selectedMember = new LightPatientDto();
+        private MedicalRecordDto selectedRecord;
 
         #endregion Fields
 
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WorkbenchViewModel"/> class.
-        /// </summary>
-        /// <param name="host">The host.</param>
         public WorkbenchViewModel()
             : base()
         {
-            this.MedicalCabinetViewModel = new MedicalCabinetViewModel();
-            this.ManageFamilyViewModel = new AddFamilyViewModel();
+            this.MemberSelectedCommand = new RelayCommand(() => this.LoadCabinet());
 
-            this.GetFatherRecordCommand = new RelayCommand(() => this.GetFatherRecord(), () => this.HasFather);
-            this.GetMotherRecordCommand = new RelayCommand(() => this.GetMotherRecord(), () => this.HasMother);
+            Notifyer.Refreshed += (sender, e) => this.Refresh();
         }
 
         #endregion Constructors
 
         #region Properties
-
-        public string BtnFather
-        {
-            get { return Messages.Btn_Father; }
-        }
-
-        public string BtnMother
-        {
-            get { return Messages.Btn_Mother; }
-        }
-
-        public bool ChildrenEnabled
-        {
-            get
-            {
-                if (this.Family == null) return false;
-                else return this.Family.Children.Count > 0;
-            }
-        }
 
         /// <summary>
         /// Gets or sets the family of the selected patient.
@@ -101,24 +70,13 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             }
         }
 
-        public ICommand GetFatherRecordCommand
-        {
-            get;
-            private set;
-        }
-
-        public ICommand GetMotherRecordCommand
-        {
-            get;
-            private set;
-        }
-
         public bool HasFather
         {
             get
             {
                 if (this.Family == null) return false;
-                else return (this.Family.Father != null);
+                else return (this.Family.Fathers != null
+                    && this.Family.Fathers.Count > 0);
             }
         }
 
@@ -127,45 +85,44 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             get
             {
                 if (this.Family == null) return false;
-                else return (this.Family.Mother != null);
+                else return (this.Family.Mothers != null
+                    && this.Family.Mothers.Count > 0);
             }
         }
 
-        public AddFamilyViewModel ManageFamilyViewModel
+        public MedicalRecordCabinetDto MedicalRecordCabinet
         {
-            get;
-            private set;
-        }
-
-        public MedicalCabinetViewModel MedicalCabinetViewModel
-        {
-            get;
-            private set;
-        }
-
-        public LightPatientDto SelectedChild
-        {
-            get { return this.selectedChild; }
-            set
+            get { return this.medicalRecordCabinet; }
+            private set
             {
-                if (value != null)
+                this.medicalRecordCabinet = value;
+
+                if (value.Folders.Length > 0)
                 {
-                    this.selectedChild
-                        = this.SelectedMember
-                        = value;
-                    this.GetMedicalRecord();
-                    this.OnPropertyChanged("SelectedChild");
+                    this.SelectedFolder = value.Folders[0];
+                    if (value.Folders[0].Records.Length > 0)
+                    {
+                        this.SelectedRecord = value.Folders[0].Records[0];
+                    }
                 }
+
+                this.OnPropertyChanged("MedicalRecordCabinet");
             }
         }
 
-        public MedicalRecordCabinetDto SelectedMedicalRecordCabinet
+        public ICommand MemberSelectedCommand
         {
-            get { return this.MedicalCabinetViewModel.MedicalRecordCabinet; }
+            get;
+            private set;
+        }
+
+        public MedicalRecordFolderDto SelectedFolder
+        {
+            get { return this.selectedFolder; }
             set
             {
-                this.MedicalCabinetViewModel.MedicalRecordCabinet = value;
-                this.OnPropertyChanged("SelectedMedicalRecordCabinet");
+                this.selectedFolder = value;
+                this.OnPropertyChanged("SelectedFolder");
             }
         }
 
@@ -179,19 +136,25 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             }
         }
 
+        public MedicalRecordDto SelectedRecord
+        {
+            get { return this.selectedRecord; }
+            set
+            {
+                this.selectedRecord = value;
+                this.OnPropertyChanged("SelectedRecord");
+            }
+        }
+
         #endregion Properties
 
         #region Methods
 
-        /// <summary>
-        /// Refreshes the data of this instance.
-        /// </summary>
         public void Refresh()
         {
             using (this.familyComponent.UnitOfWork)
             {
                 this.Family = this.familyComponent.FindFamily(PluginContext.Host.SelectedPatient);
-                this.OnPropertyChanged("ChildrenEnabled"); //Notifies children has been updated. Used to (de)activate the combobox
             }
 
             this.Logger.Debug("Load family");
@@ -203,28 +166,19 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
         public void Reset()
         {
             this.SelectedMember = null;
-            this.SelectedMedicalRecordCabinet = null;
-            this.SelectedChild = null;
         }
 
-        private void GetFatherRecord()
+        private void LoadCabinet()
         {
-            this.SelectedMember = this.Family.Father;
-            this.GetMedicalRecord();
-        }
-
-        private void GetMedicalRecord()
-        {
-            using (this.medicalRecordComponent.UnitOfWork)
+            if (this.SelectedMember != null)
             {
-                this.SelectedMedicalRecordCabinet = this.medicalRecordComponent.GetMedicalRecordCabinet(this.SelectedMember);
+                using (this.medicalRecordComponent.UnitOfWork)
+                {
+                    this.MedicalRecordCabinet = this.medicalRecordComponent.GetMedicalRecordCabinet(this.SelectedMember);
+                }
+                this.Logger.Debug("Load medical records cabinet");
             }
-        }
-
-        private void GetMotherRecord()
-        {
-            this.SelectedMember = this.Family.Mother;
-            this.GetMedicalRecord();
+            else { this.Logger.Warn("Impossible to load the medical record cabinet because the selected member is null"); }
         }
 
         #endregion Methods

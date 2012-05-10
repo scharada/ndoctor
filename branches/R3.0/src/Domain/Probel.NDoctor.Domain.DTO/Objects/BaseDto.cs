@@ -45,12 +45,13 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             this.IsImported = false;
             this.PropertyChanged += (sender, e) =>
             {
-                if (!this.PropertiesToAvoid.Contains(e.PropertyName))
+                if (!this.StateProperties.Contains(e.PropertyName))
                 {
                     this.State = State.Updated;
                 }
             };
         }
+
         #endregion Constructors
 
         #region Properties

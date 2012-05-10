@@ -25,12 +25,12 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.UserSession.Helpers;
     using Probel.NDoctor.Plugins.UserSession.Properties;
+    using Probel.NDoctor.Plugins.UserSession.View;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
-    using Probel.NDoctor.View.Core.Helpers;
-    using Probel.NDoctor.Plugins.UserSession.View;
 
     public class ConnectionViewModel : BaseViewModel
     {
@@ -61,11 +61,6 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             this.Refresh();
         }
 
-        private void AddUser()
-        {
-            InnerWindow.Show(Messages.Btn_Add, new AddUserControl());
-        }
-
         #endregion Constructors
 
         #region Properties
@@ -80,9 +75,26 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         }
 
         /// <summary>
+        /// Gets a value indicating whether nDoctor has users in the database.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has users; otherwise, <c>false</c>.
+        /// </value>
+        public bool HasUsers
+        {
+            get
+            {
+                return this.Users != null && this.Users.Count > 0;
+            }
+        }
+
+        /// <summary>
         /// Displays a InnerWindow to add a new user
         /// </summary>
-        public ICommand NavigateAddUserCommand { get; private set; }
+        public ICommand NavigateAddUserCommand
+        {
+            get; private set;
+        }
 
         public string Password
         {
@@ -123,18 +135,9 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether nDoctor has users in the database.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance has users; otherwise, <c>false</c>.
-        /// </value>
-        public bool HasUsers
+        private void AddUser()
         {
-            get
-            {
-                return this.Users != null && this.Users.Count > 0;
-            }
+            InnerWindow.Show(Messages.Btn_Add, new AddUserControl());
         }
 
         private void Connect()

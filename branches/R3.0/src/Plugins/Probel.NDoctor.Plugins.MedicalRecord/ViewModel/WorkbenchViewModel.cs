@@ -16,7 +16,9 @@
 */
 namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 {
+    using System;
     using System.Collections.Generic;
+    using System.Windows;
     using System.Windows.Input;
 
     using AutoMapper;
@@ -32,8 +34,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
-    using System.Windows;
-    using System;
 
     public class WorkbenchViewModel : BaseViewModel
     {
@@ -135,7 +135,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             Assert.IsNotNull(PluginContext.Host);
             Assert.IsNotNull(PluginContext.Host.SelectedPatient);
 
-
             this.Cabinet.ForEachRecord(x =>
             {
                 if (x.Rtf != this.selectedRecord.Rtf)
@@ -147,14 +146,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             }
                 , s => s.Id == this.SelectedRecord.Id);
 
-
             using (this.component.UnitOfWork)
             {
                 this.component.UpdateCabinet(PluginContext.Host.SelectedPatient, this.Cabinet);
             }
         }
-
-        #endregion Methods
 
         /// <summary>
         /// Saves the record if the user interaction demand saving.
@@ -167,5 +163,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 if (dr == MessageBoxResult.Yes) { this.Save(); }
             }
         }
+
+        #endregion Methods
     }
 }

@@ -35,9 +35,29 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FamilyDto"/> class.
+        /// </summary>
         public FamilyDto()
         {
+            this.Fathers = new ObservableCollection<LightPatientDto>();
+            this.Mothers = new ObservableCollection<LightPatientDto>();
             this.Children = new ObservableCollection<LightPatientDto>();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FamilyDto"/> class.
+        /// </summary>
+        /// <param name="current">The current.</param>
+        /// <param name="father">The father.</param>
+        /// <param name="mother">The mother.</param>
+        /// <param name="children">The children.</param>
+        public FamilyDto(LightPatientDto current, LightPatientDto father, LightPatientDto mother, LightPatientDto[] children)
+        {
+            this.Current = current;
+            this.Fathers = new ObservableCollection<LightPatientDto>(new LightPatientDto[] { father });
+            this.Mothers = new ObservableCollection<LightPatientDto>(new LightPatientDto[] { mother });
+            this.Children = new ObservableCollection<LightPatientDto>(children);
         }
 
         #endregion Constructors
@@ -47,7 +67,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         public ObservableCollection<LightPatientDto> Children
         {
             get;
-            set;
+            private set;
         }
 
         /// <summary>
@@ -68,28 +88,20 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// Gets or sets the father of the current patient
         /// </summary>
         /// <value>The father</value>
-        public LightPatientDto Father
+        public ObservableCollection<LightPatientDto> Fathers
         {
-            get { return this.father; }
-            set
-            {
-                this.father = value;
-                this.OnPropertyChanged("Father");
-            }
+            get;
+            private set;
         }
 
         /// <summary>
         /// Gets or sets the mother of the current patient
         /// </summary>
         /// <value>The mother</value>
-        public LightPatientDto Mother
+        public ObservableCollection<LightPatientDto> Mothers
         {
-            get { return this.mother; }
-            set
-            {
-                this.mother = value;
-                this.OnPropertyChanged("Mother");
-            }
+            get;
+            private set;
         }
 
         #endregion Properties

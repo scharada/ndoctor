@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -16,9 +14,6 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-#endregion Header
-
 namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 {
     using System;
@@ -93,6 +88,19 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             private set;
         }
 
+        /// <summary>
+        /// Gets the prescription header. The binding is done when the <see cref="EndCriteria"/> is updated
+        /// </summary>
+        public string PrescriptionHeader
+        {
+            get
+            {
+                return Messages.Title_PrescriptionHeader.FormatWith(
+                    this.StartCriteria.ToShortDateString()
+                    , this.EndCriteria.ToShortDateString());
+            }
+        }
+
         public PrescriptionDocumentDto SelectedPrescriptionDocument
         {
             get { return this.selectPrescriptionDocument; }
@@ -111,20 +119,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 this.startCriteria = value;
                 // I update the  header 'FromTo' from the EndCriteria
                 this.OnPropertyChanged("StartCriteria");
-            }
-        }
-
-
-        /// <summary>
-        /// Gets the prescription header. The binding is done when the <see cref="EndCriteria"/> is updated
-        /// </summary>
-        public string PrescriptionHeader
-        {
-            get
-            {
-                return Messages.Title_PrescriptionHeader.FormatWith(
-                    this.StartCriteria.ToShortDateString()
-                    , this.EndCriteria.ToShortDateString());
             }
         }
 

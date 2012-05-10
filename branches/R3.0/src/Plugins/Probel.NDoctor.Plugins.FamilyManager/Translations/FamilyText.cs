@@ -14,26 +14,39 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
+namespace Probel.NDoctor.Plugins.FamilyManager.Translations
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
-    public static class Notifyer
+    using Probel.NDoctor.Plugins.FamilyManager.Properties;
+
+    public class FamilyText
     {
-        #region Events
+        #region Properties
 
-        public static event EventHandler Refreshed;
-
-        #endregion Events
-
-        #region Methods
-
-        public static void OnRefreshed(object sender)
+        public static string TitleChildren
         {
-            if (Refreshed != null)
-                Refreshed(sender, EventArgs.Empty);
+            get { return Messages.Title_Children; }
         }
 
-        #endregion Methods
+        public static string TitleFamily
+        {
+            get { return Messages.Title_Family; }
+        }
+
+        public static string TitleFather
+        {
+            get { return Messages.Title_Father; }
+        }
+
+        public static string TitleMother
+        {
+            get { return Messages.Title_Mother; }
+        }
+
+        #endregion Properties
     }
 }
