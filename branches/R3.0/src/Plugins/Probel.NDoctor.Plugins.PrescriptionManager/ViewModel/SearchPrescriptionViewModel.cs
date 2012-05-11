@@ -21,6 +21,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using System.Windows.Input;
 
     using Probel.Helpers.Conversions;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
@@ -58,7 +59,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             set
             {
                 this.endCriteria = value;
-                this.OnPropertyChanged("EndCriteria");
+                this.OnPropertyChanged(() => EndCriteria);
             }
         }
 
@@ -74,7 +75,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             set
             {
                 this.startCriteria = value;
-                this.OnPropertyChanged("StartCriteria");
+                this.OnPropertyChanged(() => StartCriteria);
             }
         }
 

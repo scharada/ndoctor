@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
     using System.Windows.Controls;
     using System.Windows.Input;
 
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Plugins.MedicalRecord.Dto;
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
@@ -53,7 +54,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
                     viewModel.SaveOnUserAction();
 
                     viewModel.SelectedRecord = this.treeView.SelectedItem as TitledMedicalRecordDto;
-                    viewModel.SelectedRecord.State = Domain.DTO.Objects.State.Clean;
+                    viewModel.SelectedRecord.Clean();
 
                     this.richTextBox.IsEnabled = true;
 

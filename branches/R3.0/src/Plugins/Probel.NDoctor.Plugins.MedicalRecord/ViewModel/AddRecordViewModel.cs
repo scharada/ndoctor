@@ -21,6 +21,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using System.Windows.Input;
 
     using Probel.Helpers.Conversions;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
@@ -77,7 +78,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             set
             {
                 this.selectedTag = value;
-                this.OnPropertyChanged("SelectedTag");
+                this.OnPropertyChanged(() => SelectedTag);
             }
         }
 
@@ -93,7 +94,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             set
             {
                 this.tags = value;
-                this.OnPropertyChanged("Tags");
+                this.OnPropertyChanged(() => this.Tags);
             }
         }
 
@@ -103,7 +104,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             set
             {
                 this.recordToAdd.Name = value;
-                this.OnPropertyChanged("Title");
+                this.OnPropertyChanged(() => this.Title);
             }
         }
 

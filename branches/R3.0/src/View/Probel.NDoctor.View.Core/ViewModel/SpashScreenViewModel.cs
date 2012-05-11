@@ -28,6 +28,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using System.Windows.Input;
 
     using Probel.Helpers.Strings;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.View.Core.Model;
     using Probel.NDoctor.View.Core.Properties;
@@ -83,7 +84,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             {
                 if (value > 100) return;
                 this.progress = value;
-                this.OnPropertyChanged("Progress");
+                this.OnPropertyChanged(() => Progress);
             }
         }
 
@@ -93,7 +94,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             set
             {
                 this.status = value;
-                this.OnPropertyChanged("Status");
+                this.OnPropertyChanged(() => Status);
             }
         }
 
@@ -103,7 +104,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             set
             {
                 this.title = value;
-                this.OnPropertyChanged("Title");
+                this.OnPropertyChanged(() => Title);
             }
         }
 

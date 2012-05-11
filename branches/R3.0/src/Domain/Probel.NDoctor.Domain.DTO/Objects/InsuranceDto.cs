@@ -18,6 +18,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
+    using Probel.Mvvm;
+
     [Serializable]
     public class InsuranceDto : BaseDto
     {
@@ -53,7 +55,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.address = value;
-                this.OnPropertyChanged("Address");
+                this.OnPropertyChanged(() => this.Address);
             }
         }
 
@@ -69,7 +71,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.name = value;
-                this.OnPropertyChanged("Name");
+                this.OnPropertyChanged(() => Name);
             }
         }
 
@@ -85,7 +87,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.notes = value;
-                this.OnPropertyChanged("Notes");
+                this.OnPropertyChanged(() => Notes);
             }
         }
 
@@ -101,7 +103,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.phone = value;
-                this.OnPropertyChanged("Phone");
+                this.OnPropertyChanged(() => Phone);
             }
         }
 

@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using System;
     using System.Windows.Input;
 
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PatientData.Helpers;
@@ -62,7 +63,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             set
             {
                 this.tag = value;
-                this.OnPropertyChanged("Tag");
+                this.OnPropertyChanged(() => Tag);
             }
         }
 

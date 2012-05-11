@@ -18,6 +18,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
+    using Probel.Mvvm;
+
     /// <summary>
     /// Represents a medical record item
     /// </summary>
@@ -68,7 +70,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
                     this.creationDate
                         = this.lastUpdate
                         = value;
-                    this.OnPropertyChanged("CreationDate");
+                    this.OnPropertyChanged(() => CreationDate);
                 }
             }
         }
@@ -87,7 +89,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
                 if (this.lastUpdate != value)
                 {
                     this.lastUpdate = value;
-                    this.OnPropertyChanged("LastUpdate");
+                    this.OnPropertyChanged(() => LastUpdate);
                 }
             }
         }
@@ -106,7 +108,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
                 if (value != null && this.name != value)
                 {
                     this.name = value;
-                    this.OnPropertyChanged("Name");
+                    this.OnPropertyChanged(() => Name);
                 }
             }
         }
@@ -124,9 +126,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 if (value != null && this.rtf != value)
                 {
-                    this.State = State.Updated;
                     this.rtf = value;
-                    this.OnPropertyChanged("Rtf");
+                    this.OnPropertyChanged(() => Rtf);
                 }
             }
         }
@@ -145,7 +146,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
                 if (value != null && tag.Id != value.Id)
                 {
                     this.tag = value;
-                    this.OnPropertyChanged("Tag");
+                    this.OnPropertyChanged(() => Tag);
                 }
             }
         }

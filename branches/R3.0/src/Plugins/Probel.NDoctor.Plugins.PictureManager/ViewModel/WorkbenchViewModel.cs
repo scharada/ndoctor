@@ -35,6 +35,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
+using Probel.Mvvm.DataBinding;
 
     public class WorkbenchViewModel : BaseViewModel
     {
@@ -94,19 +95,19 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             set
             {
                 this.filterTag = value;
-                this.OnPropertyChanged("FilterTag");
+                this.OnPropertyChanged(() => FilterTag);
 
                 this.Logger.DebugFormat("The filter tag changed. Filter is null: {0}", (value == null));
             }
-        }
+            }
 
-        public bool IsInformationExpanded
-        {
+            public bool IsInformationExpanded
+            {
             get { return this.isInformationExpanded; }
             set
             {
                 this.isInformationExpanded = value;
-                this.OnPropertyChanged("IsInformationExpanded");
+                this.OnPropertyChanged(() => IsInformationExpanded);
             }
         }
 
@@ -132,18 +133,21 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 SelectTagOfPicture();
                 this.creatingNewPicture = false;
 
-                this.OnPropertyChanged("SelectedPicture", "TitleCreationDate", "TitleLastUpdate");
+                this.OnPropertyChanged(() => SelectedPicture);
+                this.OnPropertyChanged(()=> TitleCreationDate);
+                this.OnPropertyChanged(()=>TitleLastUpdate);
+
                 this.SetStatusToReady();
             }
-        }
+            }
 
-        public TagDto SelectedTag
-        {
+            public TagDto SelectedTag
+            {
             get { return this.selectedTag; }
             set
             {
                 this.selectedTag = value;
-                this.OnPropertyChanged("SelectedTag");
+                this.OnPropertyChanged(() => SelectedTag);
             }
         }
 

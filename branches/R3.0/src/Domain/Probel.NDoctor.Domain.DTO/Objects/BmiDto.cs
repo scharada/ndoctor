@@ -18,6 +18,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
+    using Probel.Mvvm;
+
     /// <summary>
     /// Represents an item of the Bmi history of a Patient
     /// </summary>
@@ -58,7 +60,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.date = value;
-                this.OnPropertyChanged("Date");
+                this.OnPropertyChanged(() => this.Date);
             }
         }
 
@@ -74,7 +76,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.height = value;
-                this.OnPropertyChanged("Height");
+                this.OnPropertyChanged(() => this.Height);
             }
         }
 
@@ -103,7 +105,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.weight = value;
-                this.OnPropertyChanged("Weight");
+                this.OnPropertyChanged(() => this.Weight);
             }
         }
 

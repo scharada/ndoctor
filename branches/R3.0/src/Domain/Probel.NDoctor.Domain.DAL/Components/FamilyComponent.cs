@@ -27,6 +27,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Conversions;
+    using Probel.Mvvm;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Exceptions;
     using Probel.NDoctor.Domain.DTO.Components;
@@ -163,14 +165,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
             if (patient == null) throw new EntityNotFoundException(typeof(Patient));
 
             if (family.Fathers != null
-                && (family.Fathers.Count > 0 && family.Fathers[0].State == State.Added))
+                && (family.Fathers.Count > 0 && family.Fathers[0].State == State.Created))
             {
                 var father = this.Session.Get<Patient>(family.Fathers[0].Id);
                 patient.Father = father;
             }
 
             if (family.Mothers != null
-                && (family.Mothers.Count > 0 && family.Mothers[0].State == State.Added))
+                && (family.Mothers.Count > 0 && family.Mothers[0].State == State.Created))
             {
                 var mother = this.Session.Get<Patient>(family.Mothers[0].Id);
                 patient.Mother = mother;
@@ -178,7 +180,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
             foreach (var child in family.Children)
             {
-                if (child.State == State.Added)
+                if (child.State == State.Created)
                 {
                     var currentChild = this.Session.Get<Patient>(child.Id);
                     switch (patient.Gender)
@@ -235,7 +237,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             var family = this.GetAllFamilyMembers(patient);
             family.Add(patient);
             return (from r in result
-                    where !family.Contains(r, LightPatientDto.EqualityComparer)
+                    where !family.Contains(r, new BaseDtoComparer<long>())
                     select r).ToList();
         }
 

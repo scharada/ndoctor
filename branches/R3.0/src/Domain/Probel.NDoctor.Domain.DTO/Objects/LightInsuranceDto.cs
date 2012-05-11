@@ -18,6 +18,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
+    using Probel.Mvvm;
+
     [Serializable]
     public class LightInsuranceDto : BaseDto
     {
@@ -41,7 +43,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.name = value;
-                this.OnPropertyChanged("Name");
+                this.OnPropertyChanged(() => Name);
             }
         }
 

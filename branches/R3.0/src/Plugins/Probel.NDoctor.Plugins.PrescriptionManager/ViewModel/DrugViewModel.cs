@@ -49,7 +49,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             set
             {
                 this.isSelected = value;
-                this.OnPropertyChanged("IsSelected");
+                this.OnPropertyChanged(() => IsSelected);
             }
         }
 

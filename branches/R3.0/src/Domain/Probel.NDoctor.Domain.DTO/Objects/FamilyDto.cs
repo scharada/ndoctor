@@ -19,6 +19,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System;
     using System.Collections.ObjectModel;
 
+    using Probel.Mvvm;
+
     /// <summary>
     /// Represents the family of a patient
     /// </summary>
@@ -28,8 +30,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #region Fields
 
         private LightPatientDto current;
-        private LightPatientDto father;
-        private LightPatientDto mother;
 
         #endregion Fields
 
@@ -80,7 +80,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.current = value;
-                this.OnPropertyChanged("Current");
+                this.OnPropertyChanged(()=>this.Current);
             }
         }
 

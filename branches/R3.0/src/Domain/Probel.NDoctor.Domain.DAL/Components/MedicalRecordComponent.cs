@@ -25,6 +25,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using NHibernate.Linq;
 
     using Probel.Helpers.Assertion;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Exceptions;
     using Probel.NDoctor.Domain.DAL.Helpers;
@@ -138,7 +139,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
                             record.LastUpdate = DateTime.Now;
                             this.Update(record);
                             break;
-                        case State.Added:
+                        case State.Created:
                             record.LastUpdate
                                 = record.CreationDate
                                 = DateTime.Now;

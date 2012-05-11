@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using System.Windows;
     using System.Windows.Input;
 
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.UserSession.Helpers;
@@ -80,7 +81,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                     if (dr == MessageBoxResult.No) return;
                 }
                 this.User.IsDefault = value;
-                this.OnPropertyChanged("IsDefaultUser");
+                this.OnPropertyChanged(() => IsDefaultUser);
             }
         }
 
@@ -90,7 +91,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             set
             {
                 this.password = value;
-                this.OnPropertyChanged("Password");
+                this.OnPropertyChanged(() => Password);
             }
         }
 
@@ -100,7 +101,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             set
             {
                 this.passwordCheck = value;
-                this.OnPropertyChanged("PasswordCheck");
+                this.OnPropertyChanged(() => PasswordCheck);
             }
         }
 
@@ -110,7 +111,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             set
             {
                 this.user = value;
-                this.OnPropertyChanged("User");
+                this.OnPropertyChanged(() => User);
             }
         }
 

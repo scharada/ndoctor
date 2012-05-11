@@ -23,6 +23,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     using AutoMapper;
 
     using Probel.Helpers.Conversions;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.FamilyManager.Properties;
@@ -65,7 +66,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             set
             {
                 this.criteria = value;
-                this.OnPropertyChanged("Criteria");
+                this.OnPropertyChanged(() => Criteria);
             }
         }
 
@@ -87,7 +88,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             set
             {
                 this.selectedPatient = value;
-                this.OnPropertyChanged("SelectedPatient");
+                this.OnPropertyChanged(() => SelectedPatient);
             }
         }
 

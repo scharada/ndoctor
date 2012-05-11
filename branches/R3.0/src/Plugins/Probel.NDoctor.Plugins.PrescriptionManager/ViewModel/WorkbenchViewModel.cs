@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.Mvvm.DataBinding;
 
     using StructureMap;
 
@@ -78,7 +79,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             set
             {
                 this.endCriteria = value;
-                this.OnPropertyChanged("EndCriteria", "PrescriptionHeader");
+                this.OnPropertyChanged(() => EndCriteria);
+                this.OnPropertyChanged(() => PrescriptionHeader);
             }
         }
 
@@ -107,7 +109,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             set
             {
                 this.selectPrescriptionDocument = value;
-                this.OnPropertyChanged("SelectedPrescriptionDocument");
+                this.OnPropertyChanged(() => SelectedPrescriptionDocument);
             }
         }
 
@@ -118,7 +120,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             {
                 this.startCriteria = value;
                 // I update the  header 'FromTo' from the EndCriteria
-                this.OnPropertyChanged("StartCriteria");
+                this.OnPropertyChanged(() => StartCriteria);
             }
         }
 

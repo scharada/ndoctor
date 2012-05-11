@@ -18,6 +18,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
+    using Probel.Mvvm;
+
     [Serializable]
     public class MedicalRecordCabinetDto : BaseDto
     {

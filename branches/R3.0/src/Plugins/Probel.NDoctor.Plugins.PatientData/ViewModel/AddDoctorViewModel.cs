@@ -24,6 +24,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
     using Probel.Helpers.Conversions;
     using Probel.Helpers.WPF;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.ViewModel;
@@ -61,7 +62,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             set
             {
                 this.criteria = value;
-                this.OnPropertyChanged("Criteria");
+                this.OnPropertyChanged(() => Criteria);
             }
         }
 
@@ -83,7 +84,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             set
             {
                 this.selectedDoctor = value;
-                this.OnPropertyChanged("SelectedDoctor");
+                this.OnPropertyChanged(() => SelectedDoctor);
             }
         }
 

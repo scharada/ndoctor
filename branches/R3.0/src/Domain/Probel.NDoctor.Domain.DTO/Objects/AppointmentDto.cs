@@ -18,6 +18,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
+    using Probel.Mvvm;
+
     [Serializable]
     public class AppointmentDto : BaseDto
     {
@@ -46,7 +48,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.endTime = value;
-                this.OnPropertyChanged("EndTime");
+                this.OnPropertyChanged(() => this.EndTime);
             }
         }
 
@@ -62,7 +64,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.notes = value;
-                this.OnPropertyChanged("Notes");
+                this.OnPropertyChanged(() => this.Notes);
             }
         }
 
@@ -78,7 +80,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.startTime = value;
-                this.OnPropertyChanged("StartTime");
+                this.OnPropertyChanged(() => this.StartTime);
             }
         }
 
@@ -94,7 +96,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.subject = value;
-                this.OnPropertyChanged("Subject");
+                this.OnPropertyChanged(() => this.Subject);
             }
         }
 
@@ -110,7 +112,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.tag = value;
-                this.OnPropertyChanged("Tag");
+                this.OnPropertyChanged(() => this.Tag);
             }
         }
 
@@ -126,7 +128,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.user = value;
-                this.OnPropertyChanged("User");
+                this.OnPropertyChanged(() => this.User);
             }
         }
 

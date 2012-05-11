@@ -18,6 +18,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
 {
     using System.Windows.Input;
 
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
@@ -66,7 +67,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             set
             {
                 this.family = value;
-                this.OnPropertyChanged("Family");
+                this.OnPropertyChanged(() => Family);
             }
         }
 
@@ -106,7 +107,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
                     }
                 }
 
-                this.OnPropertyChanged("MedicalRecordCabinet");
+                this.OnPropertyChanged(() => MedicalRecordCabinet);
             }
         }
 
@@ -122,7 +123,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             set
             {
                 this.selectedFolder = value;
-                this.OnPropertyChanged("SelectedFolder");
+                this.OnPropertyChanged(() => SelectedFolder);
             }
         }
 
@@ -132,7 +133,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             set
             {
                 this.selectedMember = value;
-                this.OnPropertyChanged("SelectedMember");
+                this.OnPropertyChanged(() => SelectedMember);
             }
         }
 
@@ -142,7 +143,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             set
             {
                 this.selectedRecord = value;
-                this.OnPropertyChanged("SelectedRecord");
+                this.OnPropertyChanged(() => SelectedRecord);
             }
         }
 

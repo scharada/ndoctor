@@ -26,12 +26,12 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         public ChildWindowViewModel()
         {
-            InnerWindow.CaptionChanged += (sender, e) => this.OnPropertyChanged("Caption");
-            InnerWindow.CloseButtonVisibilityChanged += (sender, e) => this.OnPropertyChanged("CloseButtonVisibility");
-            InnerWindow.ContentChanged += (sender, e) => this.OnPropertyChanged("Content");
-            InnerWindow.IsModalChanged += (sender, e) => this.OnPropertyChanged("IsModal");
-            InnerWindow.WindowStartupLocationChanged += (sender, e) => this.OnPropertyChanged("WindowStartupLocation");
-            InnerWindow.WindowStateChanged += (sender, e) => this.OnPropertyChanged("WindowState");
+            InnerWindow.CaptionChanged += (sender, e) => this.OnPropertyChanged(() => Caption);
+            InnerWindow.CloseButtonVisibilityChanged += (sender, e) => this.OnPropertyChanged(() => CloseButtonVisibility);
+            InnerWindow.ContentChanged += (sender, e) => this.OnPropertyChanged(() => Content);
+            InnerWindow.IsModalChanged += (sender, e) => this.OnPropertyChanged(() => IsModal);
+            InnerWindow.WindowStartupLocationChanged += (sender, e) => this.OnPropertyChanged(() => WindowStartupLocation);
+            InnerWindow.WindowStateChanged += (sender, e) => this.OnPropertyChanged(() => WindowState);
         }
 
         #endregion Constructors

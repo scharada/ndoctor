@@ -21,6 +21,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System.Linq;
     using System.Text;
 
+    using Probel.Mvvm;
+
     [Serializable]
     public class DoctorFullDto : BaseDto
     {
@@ -130,7 +132,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.address = value;
-                this.OnPropertyChanged("Address");
+                this.OnPropertyChanged(() => this.Address);
             }
         }
 
@@ -140,7 +142,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.counter = value;
-                this.OnPropertyChanged("Counter");
+                this.OnPropertyChanged(() => this.Counter);
             }
         }
 
@@ -150,7 +152,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.firstName = value;
-                this.OnPropertyChanged("FirstName");
+                this.OnPropertyChanged(() => this.FirstName);
             }
         }
 
@@ -160,7 +162,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.gender = value;
-                this.OnPropertyChanged("Gender");
+                this.OnPropertyChanged(() => this.Gender);
             }
         }
 
@@ -170,7 +172,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.isComplete = value;
-                this.OnPropertyChanged("IsComplete");
+                this.OnPropertyChanged(() => this.IsComplete);
             }
         }
 
@@ -180,7 +182,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.lastName = value;
-                this.OnPropertyChanged("LastName");
+                this.OnPropertyChanged(() => this.LastName);
             }
         }
 
@@ -190,7 +192,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.lastUpdate = value;
-                this.OnPropertyChanged("LastUpdate");
+                this.OnPropertyChanged(() => this.LastUpdate);
             }
         }
 
@@ -200,7 +202,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.mailPro = value;
-                this.OnPropertyChanged("MailPro");
+                this.OnPropertyChanged(() => this.MailPro);
             }
         }
 
@@ -210,7 +212,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.mobilePro = value;
-                this.OnPropertyChanged("MobilePro");
+                this.OnPropertyChanged(() => this.MobilePro);
             }
         }
 
@@ -220,7 +222,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.phonePro = value;
-                this.OnPropertyChanged("PhonePro");
+                this.OnPropertyChanged(() => this.PhonePro);
             }
         }
 
@@ -230,7 +232,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.specialisation = value;
-                this.OnPropertyChanged("Specialisation");
+                this.OnPropertyChanged(() => this.Specialisation);
             }
         }
 
@@ -240,7 +242,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.thumbnail = value;
-                this.OnPropertyChanged("Thumbnail");
+                this.OnPropertyChanged(() => this.Thumbnail);
             }
         }
 

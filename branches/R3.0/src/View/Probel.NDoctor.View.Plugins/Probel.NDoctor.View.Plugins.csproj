@@ -45,6 +45,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Probel.Mvvm">
+      <HintPath>..\..\..\lib\Probel.Mvvm\Probel.Mvvm.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
     </Reference>
@@ -85,7 +88,6 @@
     <Compile Include="Helpers\IErrorHandler.cs" />
     <Compile Include="Helpers\ITreeNode.cs" />
     <Compile Include="Helpers\PluginContext.cs" />
-    <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\StatusType.cs" />
     <Compile Include="IPlugin.cs" />
     <Compile Include="Configuration\IPluginConfigurationLoader.cs" />

@@ -23,6 +23,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
     using Probel.Helpers.Conversions;
     using Probel.Helpers.WPF;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Exceptions;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -71,7 +72,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             set
             {
                 this.selectedDrug = value;
-                this.OnPropertyChanged("SelectedDrug");
+                this.OnPropertyChanged(() => SelectedDrug);
             }
         }
 

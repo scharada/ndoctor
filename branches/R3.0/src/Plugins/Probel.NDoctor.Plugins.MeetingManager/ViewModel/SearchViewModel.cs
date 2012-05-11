@@ -24,6 +24,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using AutoMapper;
 
     using Probel.Helpers.Conversions;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -72,7 +73,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             set
             {
                 this.criteria = value;
-                this.OnPropertyChanged("Criteria");
+                this.OnPropertyChanged(() => Criteria);
             }
         }
 
@@ -82,7 +83,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             set
             {
                 this.dateToDisplay = value;
-                this.OnPropertyChanged("DateToDisplay");
+                this.OnPropertyChanged(() => DateToDisplay);
             }
         }
 

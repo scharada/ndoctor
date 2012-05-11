@@ -30,6 +30,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.NDoctor.Plugins.MeetingManager.View;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
+    using Probel.Mvvm.DataBinding;
 
     using StructureMap;
 
@@ -75,7 +76,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             set
             {
                 this.dateToDisplay = value;
-                this.OnPropertyChanged("DateToDisplay");
+                this.OnPropertyChanged(() => DateToDisplay);
             }
         }
 

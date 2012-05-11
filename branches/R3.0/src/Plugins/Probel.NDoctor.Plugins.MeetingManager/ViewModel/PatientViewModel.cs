@@ -24,6 +24,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
     using Probel.Helpers.Conversions;
     using Probel.Helpers.Data;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -98,7 +99,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             {
                 this.fromDate = value;
                 this.ToDate = this.FromDate;
-                this.OnPropertyChanged("FromDate");
+                this.OnPropertyChanged(() => FromDate);
             }
         }
 
@@ -113,7 +114,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                     this.FoundSlotsToRemove.Clear();
                 }
                 this.isSelected = value;
-                this.OnPropertyChanged("IsSelected");
+                this.OnPropertyChanged(() => IsSelected);
             }
         }
 
@@ -123,7 +124,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             set
             {
                 this.patient = value;
-                this.OnPropertyChanged("Patient");
+                this.OnPropertyChanged(() => Patient);
             }
         }
 
@@ -139,7 +140,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             set
             {
                 this.toDate = value;
-                this.OnPropertyChanged("ToDate");
+                this.OnPropertyChanged(() => ToDate);
             }
         }
 

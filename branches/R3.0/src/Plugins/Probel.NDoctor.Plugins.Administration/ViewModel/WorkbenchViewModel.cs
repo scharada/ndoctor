@@ -24,6 +24,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
     using Probel.Helpers.Conversions;
     using Probel.Helpers.WPF;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.ViewModel;
@@ -109,7 +110,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             set
             {
                 this.selectedCategory = value;
-                this.OnPropertyChanged("SelectedCategory");
+                this.OnPropertyChanged(() => SelectedCategory);
             }
         }
 

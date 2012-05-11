@@ -25,6 +25,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using AutoMapper;
 
     using Probel.Helpers.Conversions;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
@@ -78,7 +79,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             set
             {
                 this.criteria = value;
-                this.OnPropertyChanged("Criteria");
+                this.OnPropertyChanged(() => Criteria);
             }
         }
 
@@ -88,7 +89,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             set
             {
                 this.currentPrescription = value;
-                this.OnPropertyChanged("CurrentPrescription");
+                this.OnPropertyChanged(() => CurrentPrescription);
             }
         }
 
@@ -104,7 +105,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             set
             {
                 this.prescriptionDocumentToCreate = value;
-                this.OnPropertyChanged("PrescriptionDocumentToCreate");
+                this.OnPropertyChanged(() => PrescriptionDocumentToCreate);
             }
         }
 
@@ -120,7 +121,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             set
             {
                 this.searchOnTags = value;
-                this.OnPropertyChanged("SearchOnTags");
+                this.OnPropertyChanged(() => SearchOnTags);
             }
         }
 
@@ -136,7 +137,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             set
             {
                 this.selectedDrug = value;
-                this.OnPropertyChanged("SelectedDrug");
+                this.OnPropertyChanged(() => SelectedDrug);
             }
         }
 
@@ -146,7 +147,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             set
             {
                 this.selectedPrescriptionToDelete = value;
-                this.OnPropertyChanged("SelectedPrescriptionToDelete");
+                this.OnPropertyChanged(() => SelectedPrescriptionToDelete);
             }
         }
 
@@ -156,7 +157,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             set
             {
                 this.selectedTag = value;
-                this.OnPropertyChanged("SelectedTag");
+                this.OnPropertyChanged(() => SelectedTag);
             }
         }
 

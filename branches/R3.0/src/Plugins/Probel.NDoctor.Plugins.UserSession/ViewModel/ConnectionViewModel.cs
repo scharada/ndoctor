@@ -21,6 +21,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using System.Windows.Input;
 
     using Probel.Helpers.Conversions;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.UserSession.Helpers;
@@ -56,7 +57,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             {
                 InnerWindow.Close();
                 this.Refresh();
-                this.OnPropertyChanged("HasUsers");
+                this.OnPropertyChanged(() => HasUsers);
             };
             this.Refresh();
         }
@@ -102,7 +103,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             set
             {
                 this.password = value;
-                this.OnPropertyChanged("Password");
+                this.OnPropertyChanged(() => Password);
             }
         }
 
@@ -112,7 +113,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             set
             {
                 this.selectedUser = value;
-                this.OnPropertyChanged("SelectedUser");
+                this.OnPropertyChanged(() => SelectedUser);
             }
         }
 

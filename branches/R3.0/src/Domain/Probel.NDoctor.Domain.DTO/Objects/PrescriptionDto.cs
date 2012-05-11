@@ -18,6 +18,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
+    using Probel.Mvvm;
+
     /// <summary>
     /// Represents a prescription. That's a drug with notes about how to take it.    
     /// </summary>
@@ -46,7 +48,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.drug = value;
-                this.OnPropertyChanged("Drug");
+                this.OnPropertyChanged(() => Drug);
             }
         }
 
@@ -63,7 +65,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.notes = value;
-                this.OnPropertyChanged("Notes");
+                this.OnPropertyChanged(() => Notes);
             }
         }
 
@@ -79,7 +81,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.tag = value;
-                this.OnPropertyChanged("Tag");
+                this.OnPropertyChanged(() => Tag);
             }
         }
 

@@ -20,6 +20,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
     using System.Linq;
 
     using Probel.Helpers.Conversions;
+    using Probel.Mvvm.DataBinding;
 
     public class RibbonTabData : RibbonBase
     {
@@ -69,7 +70,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             set
             {
                 this.contextualTabGroupHeader = value;
-                this.OnPropertyChanged("ContextualTabGroupHeader");
+                this.OnPropertyChanged(() => ContextualTabGroupHeader);
             }
         }
 
@@ -89,7 +90,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             set
             {
                 this.header = value;
-                this.OnPropertyChanged("Header");
+                this.OnPropertyChanged(() => Header);
             }
         }
 
@@ -99,7 +100,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             set
             {
                 this.isSelected = value;
-                this.OnPropertyChanged("IsSelected");
+                this.OnPropertyChanged(() => IsSelected);
             }
         }
 

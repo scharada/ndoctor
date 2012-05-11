@@ -23,6 +23,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
     using Probel.Helpers.Conversions;
     using Probel.Helpers.WPF;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Exceptions;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
@@ -76,7 +77,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             set
             {
                 this.doctor = value;
-                this.OnPropertyChanged("Doctor");
+                this.OnPropertyChanged(() => Doctor);
             }
         }
 
@@ -93,7 +94,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             {
                 this.Doctor.Gender = value.Item2;
                 this.selectedGender = value;
-                this.OnPropertyChanged("SelectedGender");
+                this.OnPropertyChanged(() => SelectedGender);
             }
         }
 

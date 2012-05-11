@@ -49,9 +49,8 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
 
             foreach (var folder in folders)
             {
-                folder.State = State.Clean;
                 folder.Records = GetRecords(patient, folder);
-                foreach (var item in folder.Records) { item.State = State.Clean; }
+                foreach (var item in folder.Records) { item.Clean(); }
             }
 
             return folders;
@@ -64,7 +63,7 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
                           select r).ToList();
 
             var buffer = Mapper.Map<List<MedicalRecord>, List<MedicalRecordDto>>(result).ToArray();
-            foreach (var item in buffer) { item.State = State.Clean; }
+            foreach (var item in buffer) { item.Clean(); }
             return buffer;
         }
 

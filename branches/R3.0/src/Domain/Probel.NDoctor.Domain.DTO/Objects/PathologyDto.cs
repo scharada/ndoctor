@@ -18,6 +18,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
+    using Probel.Mvvm;
+
     /// <summary>
     /// Represents a pathology
     /// </summary>
@@ -55,7 +57,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.name = value;
-                this.OnPropertyChanged("Name");
+                this.OnPropertyChanged(() => Name);
             }
         }
 
@@ -71,7 +73,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.notes = value;
-                this.OnPropertyChanged("Notes");
+                this.OnPropertyChanged(() => Notes);
             }
         }
 
@@ -88,7 +90,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.tag = value;
-                this.OnPropertyChanged("Tag");
+                this.OnPropertyChanged(() => Tag);
             }
         }
 

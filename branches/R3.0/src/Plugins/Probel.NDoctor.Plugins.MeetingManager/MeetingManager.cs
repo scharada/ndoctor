@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager
     using Probel.Helpers.Data;
     using Probel.Helpers.Strings;
     using Probel.Helpers.WPF.Calendar.Model;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MeetingManager.Properties;

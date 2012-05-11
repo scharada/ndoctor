@@ -64,7 +64,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             set
             {
                 this.dataContext = value;
-                this.OnPropertyChanged("DataContext");
+                this.OnPropertyChanged(() => DataContext);
             }
         }
 
@@ -74,7 +74,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             set
             {
                 this.selectionBoxWidth = value;
-                this.OnPropertyChanged("SelectionBoxWidth");
+                this.OnPropertyChanged(() => SelectionBoxWidth);
             }
         }
 

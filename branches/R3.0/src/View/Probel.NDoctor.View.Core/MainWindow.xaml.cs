@@ -30,6 +30,7 @@ namespace Probel.NDoctor.View.Core
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Conversions;
     using Probel.Helpers.Strings;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.Properties;

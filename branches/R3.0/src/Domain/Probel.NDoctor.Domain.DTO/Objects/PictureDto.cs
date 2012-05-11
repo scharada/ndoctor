@@ -18,6 +18,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
+    using Probel.Mvvm;
+
     [Serializable]
     public class PictureDto : BaseDto
     {
@@ -57,7 +59,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.bitmap = value;
-                this.OnPropertyChanged("Bitmap");
+                this.OnPropertyChanged(() => this.Bitmap);
             }
         }
 
@@ -73,7 +75,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.creation = value;
-                this.OnPropertyChanged("Creation");
+                this.OnPropertyChanged(() => this.Creation);
             }
         }
 
@@ -89,7 +91,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.lastUpdate = value;
-                this.OnPropertyChanged("LastUpdate");
+                this.OnPropertyChanged(() => this.LastUpdate);
             }
         }
 
@@ -105,7 +107,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.notes = value;
-                this.OnPropertyChanged("Notes");
+                this.OnPropertyChanged(() => this.Notes);
             }
         }
 
@@ -121,7 +123,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.tag = value;
-                this.OnPropertyChanged("Tag");
+                this.OnPropertyChanged(() => this.Tag);
             }
         }
 

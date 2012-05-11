@@ -22,6 +22,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     using AutoMapper;
 
     using Probel.Helpers.Conversions;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.FamilyManager.Properties;
@@ -63,7 +64,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             set
             {
                 this.selectedPatient = value;
-                this.OnPropertyChanged("SelectedPatient");
+                this.OnPropertyChanged(() => SelectedPatient);
             }
         }
 
@@ -84,7 +85,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
                     mapped[i].Refreshed += (sender, e) =>
                     {
                         this.Refresh();
-                        if (e.Data == State.Added) { PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationAdded); }
+                        if (e.Data == State.Created) { PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationAdded); }
                         else if (e.Data == State.Removed) { PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationRemoved); }
                     };
                 }

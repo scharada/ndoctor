@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Microsoft.Win32;
 
     using Probel.Helpers.Conversions;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -106,7 +107,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 this.patient = value;
                 if (this.memento == null) this.memento = value.Clone() as PatientDto;
 
-                this.OnPropertyChanged("Patient", "SelectedGender");
+                this.OnPropertyChanged(() => this.Patient);
+                this.OnPropertyChanged(() => this.SelectedGender);
             }
         }
 
@@ -145,7 +147,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             set
             {
                 this.Patient.Gender = value.Item2;
-                this.OnPropertyChanged("SelectedGender");
+                this.OnPropertyChanged(() => SelectedGender);
             }
         }
 

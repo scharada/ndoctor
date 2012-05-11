@@ -23,6 +23,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.Helpers.Events;
     using Probel.Helpers.Strings;
     using Probel.Helpers.WPF;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Exceptions;

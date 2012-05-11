@@ -20,6 +20,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using System.Windows.Input;
 
     using Probel.Helpers.Strings;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.Properties;
@@ -92,7 +93,9 @@ namespace Probel.NDoctor.View.Core.ViewModel
             set
             {
                 this.connectedUser = value;
-                this.OnPropertyChanged("ConnectedUser", "WindowTitle");
+
+                this.OnPropertyChanged(() => ConnectedUser);
+                this.OnPropertyChanged(() => WindowTitle);
             }
         }
 
@@ -108,7 +111,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             set
             {
                 this.message = value;
-                this.OnPropertyChanged("Message");
+                this.OnPropertyChanged(() => Message);
             }
         }
 
@@ -124,7 +127,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
             set
             {
                 this.selectedPatient = value;
-                this.OnPropertyChanged("SelectedPatient", "ConnectedPatientText");
+                this.OnPropertyChanged(() => SelectedPatient);
+                this.OnPropertyChanged(() => ConnectedPatientText);
             }
         }
 
@@ -140,7 +144,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             set
             {
                 this.type = value;
-                this.OnPropertyChanged("Type");
+                this.OnPropertyChanged(() => Type);
             }
         }
 

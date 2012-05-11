@@ -25,6 +25,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MedicalRecord.Dto;
@@ -68,7 +69,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             set
             {
                 this.cabinet = value;
-                this.OnPropertyChanged("Cabinet");
+                this.OnPropertyChanged(() => Cabinet);
             }
         }
 
@@ -83,7 +84,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             set
             {
                 this.selectedRecord = value;
-                this.OnPropertyChanged("SelectedRecord", "IsRecordSelected");
+                this.OnPropertyChanged(() => this.SelectedRecord);
+                this.OnPropertyChanged(() => this.IsRecordSelected);
             }
         }
 
@@ -99,7 +101,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             set
             {
                 this.tags = value;
-                this.OnPropertyChanged("Tags");
+                this.OnPropertyChanged(() => Tags);
             }
         }
 
@@ -140,7 +142,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 if (x.Rtf != this.selectedRecord.Rtf)
                 {
                     x.Rtf = this.SelectedRecord.Rtf;
-                    x.State = State.Updated;
+                    //x.State = State.Updated;
                     x.LastUpdate = DateTime.Now;
                 }
             }

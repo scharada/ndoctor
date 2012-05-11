@@ -18,6 +18,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
+    using Probel.Mvvm;
+
     /// <summary>
     /// Dto of a tag
     /// </summary>
@@ -66,7 +68,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.tagType = value;
-                this.OnPropertyChanged("Category");
+                this.OnPropertyChanged(() => Category);
             }
         }
 
@@ -82,7 +84,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.name = value;
-                this.OnPropertyChanged("Name");
+                this.OnPropertyChanged(() => Name);
             }
         }
 
@@ -98,7 +100,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.notes = value;
-                this.OnPropertyChanged("Notes");
+                this.OnPropertyChanged(() => Notes);
             }
         }
 

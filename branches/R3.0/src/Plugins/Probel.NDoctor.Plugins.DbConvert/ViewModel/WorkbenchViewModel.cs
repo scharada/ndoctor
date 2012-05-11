@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.ViewModel
     using Microsoft.Win32;
 
     using Probel.Helpers.Assertion;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Plugins.DbConvert.Domain;
     using Probel.NDoctor.Plugins.DbConvert.Properties;
@@ -78,7 +79,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.ViewModel
             set
             {
                 this.database = value;
-                this.OnPropertyChanged("Database");
+                this.OnPropertyChanged(() => Database);
             }
         }
 
@@ -94,7 +95,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.ViewModel
             set
             {
                 this.logs = value;
-                this.OnPropertyChanged("Logs");
+                this.OnPropertyChanged(() => Logs);
             }
         }
 
@@ -104,7 +105,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.ViewModel
             set
             {
                 this.progress = value;
-                this.OnPropertyChanged("Progress");
+                this.OnPropertyChanged(() => Progress);
             }
         }
 

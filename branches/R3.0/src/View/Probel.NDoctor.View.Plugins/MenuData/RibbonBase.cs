@@ -18,7 +18,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
 {
     using System;
 
-    using Probel.Helpers.Events;
+    using Probel.Mvvm.DataBinding;
 
     public class RibbonBase : ObservableObject
     {
@@ -48,7 +48,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             set
             {
                 this.height = value;
-                this.OnPropertyChanged("Height");
+                this.OnPropertyChanged(() => Height);
             }
         }
 
@@ -64,7 +64,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             set
             {
                 this.name = value;
-                this.OnPropertyChanged("Name");
+                this.OnPropertyChanged(() => Name);
             }
         }
 
@@ -74,7 +74,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             set
             {
                 this.order = value;
-                this.OnPropertyChanged("Order");
+                this.OnPropertyChanged(() => Order);
             }
         }
 
@@ -84,7 +84,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             set
             {
                 this.width = value;
-                this.OnPropertyChanged("Width");
+                this.OnPropertyChanged(() => Width);
             }
         }
 

@@ -33,6 +33,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
     using Probel.NDoctor.View.Plugins.MenuData;
 
     using StructureMap;
+    using Probel.Mvvm.DataBinding;
 
     [Export(typeof(IPlugin))]
     public class PictureManager : Plugin

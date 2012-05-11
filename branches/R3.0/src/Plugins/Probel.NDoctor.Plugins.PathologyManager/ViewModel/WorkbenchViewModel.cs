@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.NDoctor.Plugins.PathologyManager.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.Mvvm.DataBinding;
 
     using StructureMap;
 
@@ -67,7 +68,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
             set
             {
                 this.chart = value;
-                this.OnPropertyChanged("Chart");
+                this.OnPropertyChanged(() => Chart);
             }
         }
 
@@ -86,7 +87,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
             set
             {
                 this.selectedIllnessPeriod = value;
-                this.OnPropertyChanged("SelectedIllnessPeriod");
+                this.OnPropertyChanged(() => SelectedIllnessPeriod);
             }
         }
 

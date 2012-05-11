@@ -25,6 +25,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Events;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -52,7 +53,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             this.Relations = new List<Tuple<FamilyRelations, string>>();
 
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
-            this.RemoveCommand = new RelayCommand(() => this.Remove());
+            this.RemoveCommand = new RelayCommand(() => this.Delete());
         }
 
         #endregion Constructors
@@ -83,7 +84,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             set
             {
                 this.isSelected = value;
-                this.OnPropertyChanged("IsSelected");
+                this.OnPropertyChanged(() => IsSelected);
             }
         }
 
@@ -105,7 +106,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             set
             {
                 this.selectedRelation = value;
-                this.OnPropertyChanged("SelectedRelation");
+                this.OnPropertyChanged(() => SelectedRelation);
             }
         }
 
@@ -115,7 +116,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             set
             {
                 this.sessionPatient = value;
-                this.OnPropertyChanged("SessionPatient");
+                this.OnPropertyChanged(() => SessionPatient);
 
                 this.Relations = new List<Tuple<FamilyRelations, string>>();
                 this.Relations.Add(new Tuple<FamilyRelations, string>(FamilyRelations.Parent, this.SetRelation(FamilyRelations.Parent)));
@@ -135,12 +136,12 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
                 , MessageBoxImage.Question);
             if (dr == MessageBoxResult.No) return;
 
-            this.State = State.Added;
+            //this.State = State.Created;
             using (this.component.UnitOfWork)
             {
                 this.component.Update(this.BuildFamily());
             }
-            this.OnRefreshed(State.Added);
+            this.OnRefreshed(State.Created);
             this.BuildFamily();
 
             Notifyer.OnRefreshed(this);
@@ -177,7 +178,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
                 this.Refreshed(this, new EventArgs<State>(state));
         }
 
-        private void Remove()
+        private void Delete()
         {
             var dr = MessageBox.Show(Messages.Msg_AskRemoveMember
                 , Messages.Question

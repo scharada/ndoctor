@@ -18,6 +18,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
+    using Probel.Mvvm;
+
     /// <summary>
     /// Doctor
     /// </summary>
@@ -60,7 +62,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.address = value;
-                this.OnPropertyChanged("Address");
+                this.OnPropertyChanged(() => this.Address);
             }
         }
 
@@ -88,7 +90,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.firstName = value;
-                this.OnPropertyChanged("FirstName");
+                this.OnPropertyChanged(() => this.FirstName);
             }
         }
 
@@ -102,7 +104,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.gender = value;
-                this.OnPropertyChanged("Gender");
+                this.OnPropertyChanged(() => this.Gender);
             }
         }
 
@@ -118,7 +120,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.lastName = value;
-                this.OnPropertyChanged("LastName");
+                this.OnPropertyChanged(() => this.LastName);
             }
         }
 
@@ -134,7 +136,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.proMail = value;
-                this.OnPropertyChanged("ProMail");
+                this.OnPropertyChanged(() => this.ProMail);
             }
         }
 
@@ -150,7 +152,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.proMobile = value;
-                this.OnPropertyChanged("ProMobile");
+                this.OnPropertyChanged(() => this.ProMobile);
             }
         }
 
@@ -166,7 +168,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.proPhone = value;
-                this.OnPropertyChanged("ProPhone");
+                this.OnPropertyChanged(() => this.ProPhone);
             }
         }
 
@@ -176,7 +178,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.specialisation = value;
-                this.OnPropertyChanged("Specialisation");
+                this.OnPropertyChanged(() => this.Specialisation);
             }
         }
 

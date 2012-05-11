@@ -22,6 +22,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
     using Probel.Helpers.Conversions;
     using Probel.Helpers.WPF;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Exceptions;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -75,7 +76,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
             set
             {
                 this.isPopupOpened = value;
-                this.OnPropertyChanged("IsPopupOpened");
+                this.OnPropertyChanged(() => IsPopupOpened);
             }
         }
 
@@ -85,7 +86,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
             set
             {
                 this.pathology = value;
-                this.OnPropertyChanged("Pathology");
+                this.OnPropertyChanged(() => Pathology);
             }
         }
 

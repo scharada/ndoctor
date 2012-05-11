@@ -18,6 +18,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
+    using Probel.Mvvm;
+
     [Serializable]
     public class LightUserDto : BaseDto
     {
@@ -45,7 +47,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.firstName = value;
-                this.OnPropertyChanged("FirstName");
+                this.OnPropertyChanged(() => FirstName);
             }
         }
 
@@ -55,7 +57,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.isDefaultUser = value;
-                this.OnPropertyChanged("IsDefault");
+                this.OnPropertyChanged(() => IsDefault);
             }
         }
 
@@ -65,7 +67,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.lastName = value;
-                this.OnPropertyChanged("LastName");
+                this.OnPropertyChanged(() => LastName);
             }
         }
 

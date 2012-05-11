@@ -23,6 +23,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using System.Windows.Input;
 
     using Probel.Helpers.Conversions;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.UserSession.Properties;
@@ -97,7 +98,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                     if (dr == MessageBoxResult.No) return;
                 }
                 this.User.IsDefault = value;
-                this.OnPropertyChanged("IsDefaultUser");
+                this.OnPropertyChanged(() => IsDefaultUser);
             }
         }
 
@@ -113,7 +114,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             set
             {
                 this.practices = value;
-                this.OnPropertyChanged("Practices");
+                this.OnPropertyChanged(() => Practices);
             }
         }
 
@@ -129,7 +130,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             set
             {
                 this.roles = value;
-                this.OnPropertyChanged("Roles");
+                this.OnPropertyChanged(() => Roles);
             }
         }
 
@@ -145,7 +146,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             {
                 if (this.User == null) return;
                 this.User.Practice = value;
-                this.OnPropertyChanged("SelectedPractice");
+                this.OnPropertyChanged(() => SelectedPractice);
             }
         }
 
@@ -161,7 +162,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             {
                 if (this.User == null) return;
                 this.User.AssignedRole = value;
-                this.OnPropertyChanged("SelectedRole");
+                this.OnPropertyChanged(() => SelectedRole);
             }
         }
 
@@ -183,7 +184,8 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             set
             {
                 this.user = value;
-                this.OnPropertyChanged("User", "IsDefaultUser");
+                this.OnPropertyChanged(() => User);
+                this.OnPropertyChanged(() => IsDefaultUser);
             }
         }
 

@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using System.Windows.Input;
 
     using Probel.Helpers.WPF;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Collections;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
@@ -73,7 +74,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             set
             {
                 this.Category = value.Item2;
-                this.OnPropertyChanged("SelectedTag");
+                this.OnPropertyChanged(() => SelectedTag);
             }
         }
 

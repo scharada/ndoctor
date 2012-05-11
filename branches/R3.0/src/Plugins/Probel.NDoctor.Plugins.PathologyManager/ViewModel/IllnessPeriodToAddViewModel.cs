@@ -21,6 +21,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using System.Windows.Input;
 
     using Probel.Helpers.Assertion;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PathologyManager.Helpers;
@@ -77,7 +78,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
             set
             {
                 this.isSelected = value;
-                this.OnPropertyChanged("IsSelected");
+                this.OnPropertyChanged(() => IsSelected);
             }
         }
 

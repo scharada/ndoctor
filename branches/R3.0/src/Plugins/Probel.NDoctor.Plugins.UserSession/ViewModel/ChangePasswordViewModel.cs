@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
     using System.Windows.Input;
 
     using Probel.Helpers.WPF;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Plugins.UserSession.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
@@ -62,7 +63,7 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
             set
             {
                 this.checkNewPassword = value;
-                this.OnPropertyChanged("CheckNewPassword");
+                this.OnPropertyChanged(() => CheckNewPassword);
             }
         }
 
@@ -72,7 +73,7 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
             set
             {
                 this.isPopupOpened = value;
-                this.OnPropertyChanged("IsPopupOpened");
+                this.OnPropertyChanged(() => IsPopupOpened);
             }
         }
 
@@ -82,7 +83,7 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
             set
             {
                 this.newPassword = value;
-                this.OnPropertyChanged("NewPassword");
+                this.OnPropertyChanged(() => NewPassword);
             }
         }
 
@@ -92,7 +93,7 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
             set
             {
                 this.oldPassword = value;
-                this.OnPropertyChanged("OldPassword");
+                this.OnPropertyChanged(() => OldPassword);
             }
         }
 

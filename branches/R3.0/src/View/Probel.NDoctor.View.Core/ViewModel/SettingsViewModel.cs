@@ -21,6 +21,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using System.Windows.Input;
 
     using Probel.Helpers.Assertion;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.Properties;
@@ -62,7 +63,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             set
             {
                 this.end = value;
-                this.OnPropertyChanged("End");
+                this.OnPropertyChanged(() => End);
             }
         }
 
@@ -78,7 +79,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             set
             {
                 Settings.Default.Language = value;
-                this.OnPropertyChanged("SelectedLanguage");
+                this.OnPropertyChanged(() => SelectedLanguage);
             }
         }
 
@@ -92,7 +93,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             set
             {
                 Settings.Default.SlotDuration = value.Item2;
-                this.OnPropertyChanged("SelectedSlot");
+                this.OnPropertyChanged(() => SelectedSlot);
             }
         }
 
@@ -108,7 +109,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             set
             {
                 this.start = value;
-                this.OnPropertyChanged("Start");
+                this.OnPropertyChanged(() => Start);
             }
         }
 

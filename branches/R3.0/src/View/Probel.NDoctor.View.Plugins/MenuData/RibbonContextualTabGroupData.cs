@@ -72,7 +72,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             set
             {
                 this.background = value;
-                this.OnPropertyChanged("Background");
+                this.OnPropertyChanged(() => Background);
             }
         }
 
@@ -82,7 +82,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             set
             {
                 this.header = value;
-                this.OnPropertyChanged("Header");
+                this.OnPropertyChanged(() => Header);
             }
         }
 
@@ -92,7 +92,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             set
             {
                 this.isVisible = value;
-                this.OnPropertyChanged("IsVisible");
+                this.OnPropertyChanged(() => IsVisible);
             }
         }
 

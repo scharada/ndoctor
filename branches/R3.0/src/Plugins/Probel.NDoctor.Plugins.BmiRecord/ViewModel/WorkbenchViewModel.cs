@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Conversions;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.BmiRecord.Helpers;
@@ -89,7 +90,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
             set
             {
                 this.bmiToAdd = value;
-                this.OnPropertyChanged("CurrentBmi");
+                this.OnPropertyChanged(() => CurrentBmi);
             }
         }
 
@@ -122,7 +123,11 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
             {
                 this.patient = value;
                 this.CurrentBmi.Height = value.Height;
-                this.OnPropertyChanged("Patient", "StartDate", "EndDate", "CurrentBmi");
+
+                this.OnPropertyChanged(() => this.Patient);
+                this.OnPropertyChanged(() => this.StartDate);
+                this.OnPropertyChanged(() => this.EndDate);
+                this.OnPropertyChanged(() => this.CurrentBmi);
             }
         }
 

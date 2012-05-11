@@ -34,6 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
+    <Reference Include="Probel.Mvvm">
+      <HintPath>..\..\..\lib\Probel.Mvvm\Probel.Mvvm.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -56,14 +59,12 @@
     <Compile Include="Assertion\Message\TextMessageWriter.cs" />
     <Compile Include="Conversions\ConversionExtension.cs" />
     <Compile Include="Conversions\Converter.cs" />
-    <Compile Include="Conversions\ObservableCollectionFiller.cs" />
     <Compile Include="Data\Chart.cs" />
     <Compile Include="Data\ChartPoint.cs" />
     <Compile Include="Data\Cloner.cs" />
     <Compile Include="Data\DateRange.cs" />
     <Compile Include="Data\DateTimeExtensions.cs" />
     <Compile Include="Events\EventArgs.cs" />
-    <Compile Include="Events\ObservableObject.cs" />
     <Compile Include="Exceptions\ConversionException.cs" />
     <Compile Include="Management\GenericUnitOfWork.cs" />
     <Compile Include="Management\UnitOfWork.cs" />

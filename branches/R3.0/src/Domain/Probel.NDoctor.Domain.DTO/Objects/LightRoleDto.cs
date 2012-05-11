@@ -18,6 +18,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
+    using Probel.Mvvm;
+
     [Serializable]
     public class LightRoleDto : BaseDto
     {
@@ -42,7 +44,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.description = value;
-                this.OnPropertyChanged("Description");
+                this.OnPropertyChanged(() => Description);
             }
         }
 
@@ -58,7 +60,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.name = value;
-                this.OnPropertyChanged("Name");
+                this.OnPropertyChanged(() => Name);
             }
         }
 

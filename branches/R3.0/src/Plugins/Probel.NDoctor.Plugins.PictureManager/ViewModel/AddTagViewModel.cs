@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
+    using Probel.Mvvm.DataBinding;
 
     public class AddTagViewModel : BaseViewModel
     {
@@ -68,7 +69,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             set
             {
                 this.isPopupOpened = value;
-                this.OnPropertyChanged("IsPopupOpened");
+                this.OnPropertyChanged(() => IsPopupOpened);
             }
         }
 
@@ -78,7 +79,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             set
             {
                 this.selectedTag = value;
-                this.OnPropertyChanged("SelectedTag");
+                this.OnPropertyChanged(() => SelectedTag);
             }
         }
 

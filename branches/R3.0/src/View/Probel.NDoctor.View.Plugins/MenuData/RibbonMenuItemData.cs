@@ -58,7 +58,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             set
             {
                 this.isCheckable = value;
-                this.OnPropertyChanged("IsCheckable");
+                this.OnPropertyChanged(() => IsCheckable);
             }
         }
 
@@ -68,7 +68,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             set
             {
                 this.isChecked = value;
-                this.OnPropertyChanged("IsChecked");
+                this.OnPropertyChanged(() => IsChecked);
             }
         }
 

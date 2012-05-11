@@ -26,6 +26,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 
     using Probel.Helpers.Conversions;
     using Probel.Helpers.Strings;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PatientSession.Properties;
@@ -74,7 +75,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             set
             {
                 this.criterium = value;
-                this.OnPropertyChanged("Criterium");
+                this.OnPropertyChanged(() => Criterium);
             }
         }
 

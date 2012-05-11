@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using System.Windows.Input;
 
     using Probel.Helpers.WPF;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Exceptions;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -73,7 +74,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 this.Practice = new PracticeDto();
 
                 this.isPopupOpened = value;
-                this.OnPropertyChanged("IsPopupOpened");
+                this.OnPropertyChanged(() => IsPopupOpened);
             }
         }
 
@@ -83,7 +84,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             set
             {
                 this.practice = value;
-                this.OnPropertyChanged("Practice");
+                this.OnPropertyChanged(() => Practice);
             }
         }
 

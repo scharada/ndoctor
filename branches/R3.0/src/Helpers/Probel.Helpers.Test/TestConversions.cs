@@ -22,6 +22,7 @@ namespace Probel.Helpers.Test
     using NUnit.Framework;
 
     using Probel.Helpers.Conversions;
+    using Probel.Mvvm.DataBinding;
 
     public class TestConversions : TestBase
     {

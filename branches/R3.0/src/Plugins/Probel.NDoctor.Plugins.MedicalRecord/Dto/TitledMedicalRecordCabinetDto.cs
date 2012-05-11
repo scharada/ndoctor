@@ -56,7 +56,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Dto
             set
             {
                 this.isExpanded = value;
-                this.OnPropertyChanged("IsExpanded");
+                this.OnPropertyChanged(() => IsExpanded);
             }
         }
 

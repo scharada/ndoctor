@@ -39,6 +39,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Dto
         public TitledMedicalRecordDto()
         {
             this.IsExpanded = true;
+
+            this.Ignore(() => this.IsExpanded, () => this.IsSelected);
         }
 
         #endregion Constructors
@@ -55,7 +57,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Dto
             set
             {
                 this.isExpanded = value;
-                this.OnPropertyChanged("IsExpanded",false);
+                this.OnPropertyChanged(() => IsExpanded);
             }
         }
 
@@ -69,7 +71,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Dto
             set
             {
                 this.isSelected = value;
-                this.OnPropertyChanged("IsSelected", false);
+                this.OnPropertyChanged(() => IsSelected);
             }
         }
 

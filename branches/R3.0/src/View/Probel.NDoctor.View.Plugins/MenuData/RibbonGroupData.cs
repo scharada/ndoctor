@@ -75,7 +75,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             set
             {
                 this.header = value;
-                this.OnPropertyChanged("Header");
+                this.OnPropertyChanged(() => Header);
             }
         }
 

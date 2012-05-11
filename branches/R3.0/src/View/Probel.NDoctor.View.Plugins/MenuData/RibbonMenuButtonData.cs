@@ -76,7 +76,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             set
             {
                 this.isApplicationMenu = value;
-                this.OnPropertyChanged("IsApplicationMenu");
+                this.OnPropertyChanged(() => this.IsApplicationMenu);
             }
         }
 
@@ -86,7 +86,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             set
             {
                 this.nestingDepth = value;
-                this.OnPropertyChanged("NestingDepth");
+                this.OnPropertyChanged(() => this.NestingDepth);
             }
         }
 
@@ -97,7 +97,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
         public void ReplaceDataCollection(IEnumerable<RibbonControlData> collection)
         {
             this.controlDataCollection = new ObservableCollection<RibbonControlData>(collection);
-            this.OnPropertyChanged("ControlDataCollection");
+            this.OnPropertyChanged(() => this.ControlDataCollection);
         }
 
         #endregion Methods

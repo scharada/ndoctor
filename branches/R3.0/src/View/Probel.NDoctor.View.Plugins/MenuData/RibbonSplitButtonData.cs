@@ -105,7 +105,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
                 if (isCheckable != value)
                 {
                     isCheckable = value;
-                    OnPropertyChanged("IsCheckable");
+                    this.OnPropertyChanged(() => IsCheckable);
                 }
             }
         }
@@ -122,7 +122,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
                 if (isChecked != value)
                 {
                     isChecked = value;
-                    OnPropertyChanged("IsChecked");
+                    this.OnPropertyChanged(() => IsChecked);
                 }
             }
         }
@@ -133,7 +133,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             set
             {
                 this.isDropDownOpen = value;
-                this.OnPropertyChanged("IsDropDownOpen");
+                this.OnPropertyChanged(() => IsDropDownOpen);
             }
         }
 

@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
     using Probel.Helpers.Conversions;
     using Probel.Helpers.Data;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MeetingManager.Helpers;
@@ -82,12 +83,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
         #endregion Constructors
 
-        #region Events
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion Events
-
         #region Properties
 
         public ICommand AddCommand
@@ -114,7 +109,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             set
             {
                 this.isSelected = value;
-                this.OnPropertyChanged("IsSelected");
+                this.OnPropertyChanged(() => this.IsSelected);
             }
         }
 
@@ -137,7 +132,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                     ? value.DisplayedName
                     : string.Empty;
 
-                this.OnPropertyChanged("Patient");
+                this.OnPropertyChanged(() => Patient);
             }
         }
 
@@ -153,7 +148,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             set
             {
                 this.selectedTag = value;
-                this.OnPropertyChanged("SelectedTag");
+                this.OnPropertyChanged(() => SelectedTag);
             }
         }
 
@@ -163,7 +158,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             set
             {
                 this.subject = value;
-                this.OnPropertyChanged("Subject");
+                this.OnPropertyChanged(() => Subject);
             }
         }
 
@@ -276,12 +271,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         private bool CanAdd()
         {
             return !string.IsNullOrWhiteSpace(this.Subject);
-        }
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private void Remove()

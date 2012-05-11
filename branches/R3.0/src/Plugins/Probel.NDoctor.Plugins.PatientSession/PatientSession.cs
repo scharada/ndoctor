@@ -23,6 +23,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
     using AutoMapper;
 
     using Probel.Helpers.Strings;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
