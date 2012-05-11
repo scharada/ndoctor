@@ -44,7 +44,7 @@
             set
             {
                 this.$patient$ = value;
-                this.OnPropertyChanged("$Patient$");
+                this.OnPropertyChanged(() => $Patient$);
             }
         }     ]]></Code>
     </Snippet>
