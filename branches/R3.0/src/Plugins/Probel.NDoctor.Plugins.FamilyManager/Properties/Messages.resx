@@ -141,6 +141,14 @@
     <value>Search</value>
     <comment>Search</comment>
   </data>
+  <data name="Lbl_RecordName" xml:space="preserve">
+    <value>Record:</value>
+    <comment>Record</comment>
+  </data>
+  <data name="Lbl_RecordType" xml:space="preserve">
+    <value>Category:</value>
+    <comment>Category</comment>
+  </data>
   <data name="Menu_Actions" xml:space="preserve">
     <value>Action</value>
     <comment>Action</comment>

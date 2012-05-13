@@ -27,6 +27,14 @@ namespace Probel.NDoctor.Plugins.FamilyManager.Translations
     {
         #region Properties
 
+        public static string TitleRecordCategory
+        {
+            get { return Messages.Lbl_RecordType; }
+        }
+        public static string TitleRecord
+        {
+            get { return Messages.Lbl_RecordName; }
+        }
         public static string TitleChildren
         {
             get { return Messages.Title_Children; }

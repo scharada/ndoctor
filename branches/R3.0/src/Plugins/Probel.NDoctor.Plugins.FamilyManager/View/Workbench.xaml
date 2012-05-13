@@ -55,22 +55,32 @@
         <DockPanel Grid.Column="2">
             <Grid DockPanel.Dock="Top">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="26" />
                 </Grid.RowDefinitions>
 
+                <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Content="{Binding Source={x:Static Member=text:FamilyText.TitleRecordCategory}}"/>
+                
                 <ComboBox Grid.Row="0"
-                          Grid.Column="0"
+                          Grid.Column="1"
                           ItemsSource="{Binding Path=MedicalRecordCabinet.Folders}"
                           SelectedItem="{Binding Path=SelectedFolder}"
                           DisplayMemberPath="Name"
                           SelectedIndex="0" />
 
+                <Label Grid.Row="0"
+                           Grid.Column="2"
+                           Content="{Binding Source={x:Static Member=text:FamilyText.TitleRecord}}"/>
+
                 <ComboBox Grid.Row="0"
-                          Grid.Column="1"
+                          Grid.Column="3"
                           ItemsSource="{Binding Path=SelectedFolder.Records}"
                           SelectedItem="{Binding Path=SelectedRecord}"
                           DisplayMemberPath="Name"
