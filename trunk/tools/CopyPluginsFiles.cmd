@@ -11,11 +11,17 @@
 
 set "prj=%~dp0..\src" rem Get the directory of the executing script
 set "root=%prj%\Plugins"
+echo '
+echo '
+echo '
+echo=======================================================================================================
 
 echo prj: %prj%
 echo root:%root%
+echo mode:%1%
+echo=======================================================================================================
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-set "releaseMode=Debug"
+set "releaseMode=%1"
 set "pluginName=Debug"
 set "return=start"
 
@@ -34,7 +40,7 @@ goto %return%
 
 :start
 echo=======================================================================================================
-echo Create directories  and files release mode: %releaseMode%
+echo Create directories and files
 echo=======================================================================================================
 
 echo=======================================================================================================
