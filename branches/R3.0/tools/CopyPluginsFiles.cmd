@@ -259,10 +259,9 @@ copy "%rsxPlugin%" "%directory%\fr"
 copy "%rsxCore%" "%directory%\fr"
 copy "%rsxViewPlugin%" "%directory%\fr"
 echo=======================================================================================================
-set "pluginName=DbImport"
+set "pluginName=DbConvert"
 echo "Plugin: %pluginName%"
 echo=======================================================================================================
-
 set "return=r13"
 goto refresh
 :r13
