@@ -34,33 +34,28 @@
 
     </UserControl.Resources>
     <DockPanel LastChildFill="True">
-        <Grid DockPanel.Dock="Top">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="26"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="80"/>
-            </Grid.ColumnDefinitions>
-
-            <toolkit:WatermarkTextBox Grid.Column="0" 
-                                      Text="{Binding Path=Criterium, UpdateSourceTrigger=PropertyChanged}">
-                <toolkit:WatermarkTextBox.Watermark>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
+        <DockPanel DockPanel.Dock="Top"
+                   LastChildFill="True">
+            <Border Style="{StaticResource InnerWindowButton}"
+                    DockPanel.Dock="Right">
+                <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnSearch}}" 
+                        Command="{Binding SearchCommand}"/>
+            </Border>
+            <Border Style="{StaticResource InnerWindowButton}">
+                <toolkit:WatermarkTextBox Grid.Column="0" 
+                                          Text="{Binding Path=Criterium, UpdateSourceTrigger=PropertyChanged}">
+                    <toolkit:WatermarkTextBox.Watermark>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
                                Height="15"
                                Width="15" />
-                        <TextBlock Text="{Binding Source={x:Static Member=text:WorkbenchText.TitleWatermark}}"
+                            <TextBlock Text="{Binding Source={x:Static Member=text:WorkbenchText.TitleWatermark}}"
                                    Margin="4,0,0,0"/>
-                    </StackPanel>
-                </toolkit:WatermarkTextBox.Watermark>
-            </toolkit:WatermarkTextBox>
-            <Button Grid.Column="1" 
-                        Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnSearch}}" 
-                        Command="{Binding SearchCommand}"/>
-        </Grid>
+                        </StackPanel>
+                    </toolkit:WatermarkTextBox.Watermark>
+                </toolkit:WatermarkTextBox>
+            </Border>
+        </DockPanel>
         <ScrollViewer>
             <ListView DockPanel.Dock="Bottom"
                   ItemsSource="{Binding FoundPatients}"

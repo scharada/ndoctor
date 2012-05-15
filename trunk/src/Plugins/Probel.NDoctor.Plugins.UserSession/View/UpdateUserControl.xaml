@@ -110,12 +110,16 @@
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right">
-            <Button Width="80"
+            <Border Style="{StaticResource InnerWindowButton}">
+                <Button Width="80"
                     Content="{Binding Source={x:Static Member=text:UpdateUserText.BtnSave}}"
                     Command="{Binding Path=UpdateCommand}"/>
-            <Button Width="80"
+            </Border>
+            <Border Style="{StaticResource InnerWindowButton}">
+                <Button Width="80"
                     Content="{Binding Source={x:Static Member=text:UpdateUserText.BtnCancel}}"
                     Command="{Binding Path=CancelCommand}"/>
+            </Border>
         </StackPanel>
     </StackPanel>
 </UserControl>
