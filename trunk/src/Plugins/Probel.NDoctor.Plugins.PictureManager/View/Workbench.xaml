@@ -1,4 +1,5 @@
 ﻿<Page x:Class="Probel.NDoctor.Plugins.PictureManager.View.Workbench"
+      
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,28 +8,73 @@
       xmlns:dto="clr-namespace:Probel.NDoctor.Domain.DTO.Objects;assembly=Probel.NDoctor.Domain.DTO"
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PictureManager.Translations"
       xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PictureManager.View"
+      
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
 	Title="Workbench">
     <Page.Resources>
         <conv:ByteArrayToImageConverter x:Key="bytesToImage"/>
 
+        <!-- Main photo catalog view -->
+        <Style TargetType="{x:Type ListBox}" x:Key="PhotoListBoxStyle">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}" >
+                        <WrapPanel Margin="5" IsItemsHost="True" Orientation="Horizontal" 
+                                   VerticalAlignment="Top" HorizontalAlignment="Stretch" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--Info about the pictures-->
+        <Style TargetType="{x:Type Border}" x:Key="StatusBorder">
+            <Setter Property="Padding" Value="4"/>
+            <Setter Property="Background" Value="White"                       />
+            <Setter Property="BorderBrush" Value="#22000000"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <!--<Setter Property="Width" Value="170"/>-->
+        </Style>
+
         <DataTemplate DataType="{x:Type dto:PictureDto}">
-            <Image Source="{Binding Bitmap, Converter={StaticResource bytesToImage},UpdateSourceTrigger=PropertyChanged}" 
-                   Width="150" 
-                   Height="150"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="6">
+                <!-- Drop Shadow -->
+                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="4" Background="#44000000">
+                    <Border.RenderTransform>
+                        <TranslateTransform X="5" Y="5" />
+                    </Border.RenderTransform>
+                    <Border.BitmapEffect>
+                        <BlurBitmapEffect Radius="8" />
+                    </Border.BitmapEffect>
+                </Border>
+                <!-- Image Template -->
+                <Border Padding="4" Background="White" BorderBrush="#22000000" BorderThickness="1">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding Bitmap, Converter={StaticResource bytesToImage},UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Content="{Binding LastUpdate}">
+                            <Label.ToolTip>
+                                Only JPeg images with a stored thumbnail will display a thumbnail during preview.
+                            </Label.ToolTip>
+                        </Label>
+                    </StackPanel>
+                </Border>
+            </Grid>
         </DataTemplate>
 
     </Page.Resources>
-    <DockPanel>
-        <DockPanel DockPanel.Dock="Right">
-            <Grid DockPanel.Dock="Top" Width="175">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="175"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Column="2">
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="26"/>
                     <RowDefinition Height="26"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
                 <ComboBox Grid.Row="0"  
@@ -41,58 +87,65 @@
                         Content="{Binding Source={x:Static Member=text:WorkbenchText.TitleSearch}}" 
                         Command="{Binding FilterPictureCommand}" />
 
-                <ListBox  Grid.Row="2" Grid.ColumnSpan="2"
-                          ItemsSource="{Binding Pictures}"
-                          SelectedItem="{Binding SelectedPicture, Mode=OneWayToSource}"
-                          IsSynchronizedWithCurrentItem="True"/>
+                <ScrollViewer  Grid.Row="2" Grid.ColumnSpan="2">
+                    <ListBox Style="{StaticResource PhotoListBoxStyle}"
+                             ItemsSource="{Binding Pictures}"
+                             SelectedItem="{Binding SelectedPicture, Mode=OneWayToSource}"
+                             IsSynchronizedWithCurrentItem="True"/>
+                </ScrollViewer>
             </Grid>
         </DockPanel>
-        <Expander DockPanel.Dock="Top"
-                  ExpandDirection="Up"
-                  IsExpanded="{Binding Path=IsInformationExpanded}"
-                  Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderInformation}}">
-            <Grid Height="150">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+        <GridSplitter Width="8"/>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Bottom"
+                        Orientation="Horizontal">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="26"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+                <Border Style="{StaticResource StatusBorder}">
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="1"   
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Center"
+                               Text="{Binding TitleCreationDate}"/>
+                </Border>
+                <Border Style="{StaticResource StatusBorder}">
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="2" 
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Center"
+                               Text="{Binding TitleLastUpdate}"/>
+                </Border>
+                <Border Style="{StaticResource StatusBorder}">
+                    <DockPanel LastChildFill="True">
+                        <Label Content="{Binding Source={x:Static Member=text:WorkbenchText.TitleCategory}}"/>
+                        <ComboBox Grid.Column="0"
+                                  DisplayMemberPath="Name"
+                                  SelectedValuePath="Name"
+                                  SelectedItem="{Binding Path=SelectedTag}"
+                                  ItemsSource="{Binding Path=Tags, UpdateSourceTrigger=PropertyChanged}"/>
+                    </DockPanel>
+                </Border>
 
-                <Grid Grid.Row="0" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="20"/>
-                    </Grid.ColumnDefinitions>
-                    <ComboBox  Grid.Column="0"
-                               DisplayMemberPath="Name"
-                               SelectedValuePath="Name"
-                               SelectedItem="{Binding Path=SelectedTag}"
-                               ItemsSource="{Binding Path=Tags, UpdateSourceTrigger=PropertyChanged}"/>
-                    <ctrl:AddTagView Grid.Column="1"/>
-                </Grid>
+            </StackPanel>
+            <Expander DockPanel.Dock="Bottom"
+                      ExpandDirection="Up"
+                      IsExpanded="{Binding Path=IsInformationExpanded}"
+                      Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderInformation}}">
 
-                <TextBlock Grid.Row="0" 
-                       Grid.Column="1" 
-                       VerticalAlignment="Center" 
-                       HorizontalAlignment="Center"
-                       Text="{Binding Path=TitleCreationDate}"/>
-
-                <TextBlock Grid.Row="0"
-                       Grid.Column="2" 
-                       VerticalAlignment="Center" 
-                       HorizontalAlignment="Center"
-                       Text="{Binding Path=TitleLastUpdate}"/>
-
-                <TextBox   Grid.Row="1" Grid.ColumnSpan="3" 
-                       Text="{Binding Path=SelectedPicture.Notes, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
-            </Grid>
-        </Expander>
-        <Image DockPanel.Dock="Left" 
-               Source="{Binding SelectedPicture.Bitmap, Converter={StaticResource bytesToImage}}"/>
-    </DockPanel>
+                <ScrollViewer Height="100">
+                    <TextBox Grid.Row="1" Grid.ColumnSpan="3"                              
+                             Text="{Binding Path=SelectedPicture.Notes, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                </ScrollViewer>
+            </Expander>
+            <!-- Image -->
+            <Border DockPanel.Dock="Top"
+                    Grid.Column="0"
+                    Padding="4" 
+                    Background="White" 
+                    BorderBrush="#22000000" 
+                    BorderThickness="1">
+                    <Image Source="{Binding SelectedPicture.Bitmap, Converter={StaticResource bytesToImage},UpdateSourceTrigger=PropertyChanged}"
+                           Stretch="Uniform"/>
+            </Border>
+        </DockPanel>
+    </Grid>
 </Page>

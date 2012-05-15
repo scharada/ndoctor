@@ -169,6 +169,10 @@
     <value>Search</value>
     <comment>Search</comment>
   </data>
+  <data name="Title_Category" xml:space="preserve">
+    <value>Category:</value>
+    <comment>Category:</comment>
+  </data>
   <data name="Title_CreationDate" xml:space="preserve">
     <value>Creation date: {0}</value>
     <comment>Creation date: {0}</comment>

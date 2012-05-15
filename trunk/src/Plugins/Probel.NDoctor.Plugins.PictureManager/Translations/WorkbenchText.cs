@@ -32,6 +32,22 @@ namespace Probel.NDoctor.Plugins.PictureManager.Translations
             get { return Messages.Title_Search; }
         }
 
+
+        public static string TitleCreationDate
+        {
+            get { return Messages.Title_CreationDate; }
+        }
+
+        public static string TitleLastUpdate
+        {
+            get { return Messages.Title_LastUpdate; }
+        }
+
+        public static string TitleCategory
+        {
+            get { return Messages.Title_Category; }
+        }
+
         #endregion Properties
     }
 }
