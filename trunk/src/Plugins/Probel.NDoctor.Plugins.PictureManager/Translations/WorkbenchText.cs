@@ -27,11 +27,10 @@ namespace Probel.NDoctor.Plugins.PictureManager.Translations
             get { return Messages.Header_Information; }
         }
 
-        public static string TitleSearch
+        public static string TitleCategory
         {
-            get { return Messages.Title_Search; }
+            get { return Messages.Title_Category; }
         }
-
 
         public static string TitleCreationDate
         {
@@ -43,9 +42,9 @@ namespace Probel.NDoctor.Plugins.PictureManager.Translations
             get { return Messages.Title_LastUpdate; }
         }
 
-        public static string TitleCategory
+        public static string TitleSearch
         {
-            get { return Messages.Title_Category; }
+            get { return Messages.Title_Search; }
         }
 
         #endregion Properties

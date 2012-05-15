@@ -121,6 +121,10 @@
     <value>Add</value>
     <comment>Add</comment>
   </data>
+  <data name="Btn_Cancel" xml:space="preserve">
+    <value>Annuler</value>
+    <comment>Cancer</comment>
+  </data>
   <data name="Header_Information" xml:space="preserve">
     <value>Information</value>
     <comment>Information</comment>
@@ -160,6 +164,10 @@
   <data name="Msg_PictureUpdated" xml:space="preserve">
     <value>Picture updated</value>
     <comment>Picture updated</comment>
+  </data>
+  <data name="Title_AddPicType" xml:space="preserve">
+    <value>Add a category</value>
+    <comment>Add a category</comment>
   </data>
   <data name="Title_BtnAddPic" xml:space="preserve">
     <value>Add a picture</value>

@@ -18,8 +18,11 @@ namespace Probel.NDoctor.View.Core.Helpers
 {
     using System;
     using System.Windows.Controls;
+    using System.Windows.Input;
 
     using Microsoft.Windows.Controls;
+
+    using Probel.Mvvm.DataBinding;
 
     public static class InnerWindow
     {
@@ -33,6 +36,15 @@ namespace Probel.NDoctor.View.Core.Helpers
         private static WindowState windowState = WindowState.Closed;
 
         #endregion Fields
+
+        #region Constructors
+
+        static InnerWindow()
+        {
+            CancelCommand = new RelayCommand(() => Close());
+        }
+
+        #endregion Constructors
 
         #region Events
 
@@ -55,6 +67,11 @@ namespace Probel.NDoctor.View.Core.Helpers
         #endregion Events
 
         #region Properties
+
+        public static ICommand CancelCommand
+        {
+            get; private set;
+        }
 
         public static string Caption
         {

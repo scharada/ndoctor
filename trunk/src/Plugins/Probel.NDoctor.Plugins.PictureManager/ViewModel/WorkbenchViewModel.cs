@@ -27,15 +27,17 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Conversions;
     using Probel.Helpers.Strings;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PictureManager.Helpers;
     using Probel.NDoctor.Plugins.PictureManager.Properties;
+    using Probel.NDoctor.Plugins.PictureManager.View;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
-    using Probel.Mvvm.DataBinding;
 
     public class WorkbenchViewModel : BaseViewModel
     {
@@ -62,6 +64,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             this.component = ObjectFactory.GetInstance<IPictureComponent>();
 
             this.AddPictureCommand = new RelayCommand(() => AddPicture(), () => PluginContext.Host.SelectedPatient != null);
+            this.AddTypeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPicType, new AddTagView()), () => PluginContext.Host.SelectedPatient != null);
             this.SaveCommand = new RelayCommand(() => Save(), () => CheckSave());
             this.FilterPictureCommand = new RelayCommand(() => this.Refresh());
 
@@ -73,6 +76,12 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         #region Properties
 
         public ICommand AddPictureCommand
+        {
+            get;
+            private set;
+        }
+
+        public ICommand AddTypeCommand
         {
             get;
             private set;

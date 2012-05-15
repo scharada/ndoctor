@@ -143,11 +143,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             get { return this.tag; }
             set
             {
-                if (value != null && tag.Id != value.Id)
-                {
-                    this.tag = value;
-                    this.OnPropertyChanged(() => Tag);
-                }
+                this.tag = value;
+                this.OnPropertyChanged(() => Tag);
             }
         }
 

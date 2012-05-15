@@ -196,13 +196,13 @@
 
                 <ribbon:Ribbon.ApplicationMenu>
                     <ribbon:RibbonApplicationMenu 
-					DataContext="{Binding Source={x:Static data:App.RibbonData},Path=ApplicationMenuData}" 
-					SmallImageSource="{Binding SmallImage}"
-					ToolTipTitle="{Binding ToolTipTitle}"
-					ToolTipDescription="{Binding ToolTipDescription}"
-					ToolTipImageSource="{Binding ToolTipImage}"
-					UsesItemContainerTemplate="True"
-					ItemsSource="{Binding ControlDataCollection}" />
+                        DataContext="{Binding Source={x:Static data:App.RibbonData},Path=ApplicationMenuData}" 
+                        SmallImageSource="{Binding SmallImage}"
+                        ToolTipTitle="{Binding ToolTipTitle}"
+                        ToolTipDescription="{Binding ToolTipDescription}"
+                        ToolTipImageSource="{Binding ToolTipImage}"
+                        UsesItemContainerTemplate="True"
+                        ItemsSource="{Binding ControlDataCollection}" />
                 </ribbon:Ribbon.ApplicationMenu>
             </ribbon:Ribbon>
             <ad:DockingManager x:Name="dockManger"

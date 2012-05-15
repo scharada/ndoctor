@@ -57,6 +57,11 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             var record = new MedicalRecordDto() { IsImported = true };
             record.Tag = this.MapTag(reader["fk_MedicalCardType"] as long?);
 
+            if (record.Tag == null || record.Tag.Id <= 0)
+            {
+                record.Tag = DefaultTag();
+            }
+
             record.CreationDate = (reader["CreationDate"] as DateTime? ?? DateTime.Today).Date;
             record.LastUpdate = (reader["UpdateDate"] as DateTime? ?? DateTime.Today).Date;
             record.Rtf = reader["Remark"] as string;
@@ -72,6 +77,17 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
                         FROM MedicalCard
                         INNER JOIN MedicaCardlType ON MedicalCard.fk_MedicalCardType = MedicaCardlType.ID
                         WHERE fk_Patient = {0}", id);
+        }
+
+        private TagDto DefaultTag()
+        {
+            var tag = new TagDto(TagCategory.MedicalRecord)
+            {
+                IsImported = true,
+                Name = Messages.Default_RecordType,
+                Notes = string.Empty,
+            };
+            return tag;
         }
 
         private TagDto MapTag(long? id)

@@ -4,7 +4,13 @@
              StartupUri="MainWindow.xaml"
              DispatcherUnhandledException="Application_DispatcherUnhandledException">
     <Application.Resources>
-		<!-- Resources scoped at the Application level should be defined here. -->
-        
+        <!-- Resources scoped at the Application level should be defined here. -->
+
+
+        <!-- InnerWindow button's border -->
+        <Style TargetType="{x:Type Border}" x:Key="InnerWindowBtnStyle">
+            <Setter Property="Padding" Value="4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
     </Application.Resources>
 </Application>

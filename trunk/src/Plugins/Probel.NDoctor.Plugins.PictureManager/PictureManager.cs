@@ -23,6 +23,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Plugins.PictureManager.Properties;
@@ -33,7 +34,6 @@ namespace Probel.NDoctor.Plugins.PictureManager
     using Probel.NDoctor.View.Plugins.MenuData;
 
     using StructureMap;
-    using Probel.Mvvm.DataBinding;
 
     [Export(typeof(IPlugin))]
     public class PictureManager : Plugin
@@ -116,11 +116,13 @@ namespace Probel.NDoctor.Plugins.PictureManager
         private void BuildContextMenu()
         {
             var addPicButton = new RibbonButtonData(Messages.Title_BtnAddPic, imgUri.FormatWith("Add"), this.GetAddPicCommand());
+            var addTypeButton = new RibbonButtonData(Messages.Title_AddPicType, imgUri.FormatWith("Add"), this.GetAddCategoryCommand());
             var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.GetSaveCommand());
             var cgroup = new RibbonGroupData(Messages.Menu_Actions);
 
             cgroup.ButtonDataCollection.Add(saveButton);
             cgroup.ButtonDataCollection.Add(addPicButton);
+            cgroup.ButtonDataCollection.Add(addTypeButton);
 
             var tab = new RibbonTabData(Messages.Menu_File, cgroup) { ContextualTabGroupHeader = Messages.Title_Pictures };
             PluginContext.Host.AddTab(tab);
@@ -141,6 +143,13 @@ namespace Probel.NDoctor.Plugins.PictureManager
                 x.For<IPictureComponent>().Add<PictureComponent>();
                 x.SelectConstructor<PictureComponent>(() => new PictureComponent());
             });
+        }
+
+        private ICommand GetAddCategoryCommand()
+        {
+            ICommand cmd = null;
+            PluginContext.Host.Invoke(() => cmd = this.ViewModel.AddTypeCommand);
+            return cmd;
         }
 
         private ICommand GetAddPicCommand()

@@ -27,6 +27,11 @@ namespace Probel.NDoctor.Plugins.PictureManager.Translations
             get { return Messages.Btn_Add; }
         }
 
+        public static string Cancel
+        {
+            get { return Messages.Btn_Cancel; }
+        }
+
         #endregion Properties
     }
 }

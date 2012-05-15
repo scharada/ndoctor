@@ -22,6 +22,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Translations
     {
         #region Properties
 
+        public static string HeaderMedicalRecords
+        {
+            get { return Messages.Header_MedicalRecords; }
+        }
+
         public static string TitleMedicalRecord
         {
             get { return Messages.Title_MedicalRecord; }

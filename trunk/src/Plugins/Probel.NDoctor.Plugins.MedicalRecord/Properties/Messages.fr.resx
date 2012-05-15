@@ -148,6 +148,10 @@
   <data name="Edition_Underline" xml:space="preserve">
     <value>Souligné</value>
   </data>
+  <data name="Header_MedicalRecords" xml:space="preserve">
+    <value>Dossiers médicaux</value>
+    <comment>Medical records</comment>
+  </data>
   <data name="Menu_Actions" xml:space="preserve">
     <value>Actions</value>
     <comment>Actions</comment>
