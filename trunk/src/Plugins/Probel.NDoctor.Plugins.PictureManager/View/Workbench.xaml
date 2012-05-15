@@ -133,7 +133,9 @@
 
                 <ScrollViewer Height="100">
                     <TextBox Grid.Row="1" Grid.ColumnSpan="3"                              
-                             Text="{Binding Path=SelectedPicture.Notes, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                             Text="{Binding Path=SelectedPicture.Notes, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" 
+                             AcceptsReturn="True" 
+                             AcceptsTab="True"/>
                 </ScrollViewer>
             </Expander>
             <!-- Image -->
