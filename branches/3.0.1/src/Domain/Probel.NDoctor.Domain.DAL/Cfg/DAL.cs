@@ -108,7 +108,13 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                       .Create(false, true);
                 };
             }
-            else this.setupConfiguration = (configuration) => this.Configuration = configuration;
+            else this.setupConfiguration = (configuration) =>
+            {
+                var update = new SchemaUpdate(configuration);
+                update.Execute(false, true);
+
+                this.Configuration = configuration;
+            };
 
             this.persistenceConfigurer
                 = SQLiteConfiguration
