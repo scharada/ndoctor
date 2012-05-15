@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Probel.NDoctor.Domain.DTO.FamilyDto" Collapsed="true">
+    <Position X="0.5" Y="1" Width="1.5" />
+    <Members>
+      <Method Name="FamilyDto" Hidden="true" />
+      <Field Name="leftSide" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAACAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>FamilyDto.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="LeftSide" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="RightSides" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DTO.LightPatientDto">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <Members>
+      <Field Name="firstName" Hidden="true" />
+      <Field Name="gender" Hidden="true" />
+      <Field Name="height" Hidden="true" />
+      <Field Name="lastName" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAABABAAASAAAAAgAAAAAAAAAAAAAAACAAAAAg=</HashCode>
+      <FileName>LightPatientDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DTO.RelationDto">
+    <Position X="0.75" Y="4" Width="1.5" />
+    <Members>
+      <Field Name="name" Hidden="true" />
+      <Field Name="rightSide" Hidden="true" />
+    </Members>
+    <AssociationLine Name="RightSide" Type="Probel.NDoctor.Domain.DTO.LightPatientDto">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.131" Y="0.716" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAEAAAAAAAAAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RelationDto.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="RightSide" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,248 @@
+﻿<Page x:Class="Probel.NDoctor.Plugins.Administration.View.Workbench"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:text="clr-namespace:Probel.NDoctor.Plugins.Administration.Translations"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="600"
+	Title="Workbench">
+
+    <TabControl>
+        <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleInsurance}}">
+            <DataGrid ItemsSource="{Binding Path=Insurances}"       
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      SelectionMode="Single">
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnApply}}"
+                                    Command="{Binding Path=UpdateCommand}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleName}}"
+                                        Binding="{Binding Path=Name,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleNotes}}"
+                                        Binding="{Binding Path=Notes,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitlePhone}}"
+                                        Binding="{Binding Path=Phone,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleStreet}}"
+                                        Binding="{Binding Path=Address.Street,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleStreetNr}}"
+                                        Binding="{Binding Path=Address.StreetNumber,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleBoxNr}}"
+                                        Binding="{Binding Path=Address.BoxNumber,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleCity}}"
+                                        Binding="{Binding Path=Address.City,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitlePostalCode}}"
+                                        Binding="{Binding Path=Address.PostalCode,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </TabItem>
+        <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.TitlePractice}}">
+            <DataGrid ItemsSource="{Binding Path=Practices}"       
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      SelectionMode="Single">
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnApply}}"
+                                    Command="{Binding Path=UpdateCommand}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleName}}"
+                                        Binding="{Binding Path=Name,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleNotes}}"
+                                        Binding="{Binding Path=Notes,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitlePhone}}"
+                                        Binding="{Binding Path=Phone,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleStreet}}"
+                                        Binding="{Binding Path=Address.Street,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleStreetNr}}"
+                                        Binding="{Binding Path=Address.StreetNumber,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleBoxNr}}"
+                                        Binding="{Binding Path=Address.BoxNumber,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleCity}}"
+                                        Binding="{Binding Path=Address.City,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitlePostalCode}}"
+                                        Binding="{Binding Path=Address.PostalCode,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </TabItem>
+        <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.TitlePathology}}">
+            <DataGrid ItemsSource="{Binding Path=Pathologies}"       
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      SelectionMode="Single">
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnApply}}"
+                                    Command="{Binding Path=UpdateCommand}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleName}}"
+                                        Binding="{Binding Path=Name,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                    <DataGridTemplateColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleType}}"
+                                            Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Tag.Name,UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <ComboBox ItemsSource="{Binding Tags}"
+                                          DisplayMemberPath="Name"
+                                          SelectedItem="{Binding Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </TabItem>
+        <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleDrug}}">
+            <DataGrid ItemsSource="{Binding Path=Drugs}"       
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      SelectionMode="Single">
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnApply}}"
+                                    Command="{Binding Path=UpdateCommand}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleName}}"
+                                        Binding="{Binding Path=Name,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                    <DataGridTemplateColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleType}}"
+                                            Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Tag.Name,UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <ComboBox ItemsSource="{Binding Tags}"
+                                          DisplayMemberPath="Name"
+                                          SelectedItem="{Binding Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </TabItem>
+        <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleProfession}}">
+            <DataGrid ItemsSource="{Binding Path=Professions}"       
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      SelectionMode="Single">
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnApply}}"
+                                    Command="{Binding Path=UpdateCommand}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleName}}"
+                                        Binding="{Binding Path=Name,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                </DataGrid.Columns>
+
+            </DataGrid>
+        </TabItem>
+        <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleReputation}}">
+            <DataGrid ItemsSource="{Binding Path=Reputations}"       
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      SelectionMode="Single">
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnApply}}"
+                                    Command="{Binding Path=UpdateCommand}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleName}}"
+                                        Binding="{Binding Path=Name,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </TabItem>
+        <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleTag}}">
+            <DataGrid ItemsSource="{Binding Path=Tags}"       
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      SelectionMode="Single">
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnApply}}"
+                                    Command="{Binding Path=UpdateCommand}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleName}}"
+                                        Binding="{Binding Path=Name,UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                    <DataGridTemplateColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleType}}"
+                                            Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=SelectedTag.Item1,UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <ComboBox ItemsSource="{Binding Categories}"
+                                          DisplayMemberPath="Item1"
+                                          SelectedItem="{Binding SelectedTag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </TabItem>
+    </TabControl>
+</Page>

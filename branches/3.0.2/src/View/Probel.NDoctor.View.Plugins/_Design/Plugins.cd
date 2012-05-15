@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Probel.NDoctor.View.Plugins.PluginValidator">
+    <Position X="6.75" Y="1.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PluginValidator.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mode" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.PluginContainer">
+    <Position X="3.75" Y="1.25" Width="1.5" />
+    <AssociationLine Name="host" Type="Probel.NDoctor.View.Plugins.IPluginHost">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.154" Y="0.105" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="loader" Type="Probel.NDoctor.View.Plugins.IPluginLoader">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.756" Y="0.087" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAABAAAAAAACAAAAAAAAAggAAAAAAAA=</HashCode>
+      <FileName>PluginContainer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="host" />
+      <Field Name="loader" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Plugins" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.Plugin" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="4.25" Width="1.75" />
+    <Members>
+      <Field Name="host" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAABAAAAAABQAQBAEAgAAAAAAAAEAAAAAAgAAIAAAAA=</HashCode>
+      <FileName>Plugin.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="Probel.NDoctor.View.Plugins.IPluginLoader">
+    <Position X="4.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>IPluginLoader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Probel.NDoctor.View.Plugins.IPluginHost">
+    <Position X="2.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIABAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>IPluginHost.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Probel.NDoctor.View.Plugins.IPlugin">
+    <Position X="0.5" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAABAAAAAABQAQBAEAgAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IPlugin.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Probel.NDoctor.View.Plugins.ValidationMode" Collapsed="true">
+    <Position X="6.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ValidationMode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

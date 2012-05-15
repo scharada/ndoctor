@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Probel.NDoctor.Plugins.BmiRecord.View.AddBmiView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:text="clr-namespace:Probel.NDoctor.Plugins.BmiRecord.Translations">
+    <StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" 
+                       Content="{Binding Source={x:Static Member=text:AddBmiText.Date}}"/>
+            <DatePicker Grid.Column="1" Grid.Row="0"
+                        SelectedDate="{Binding Path=CurrentBmi.Date, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Grid.Column="0" Grid.Row="1"
+                       Content="{Binding Source={x:Static Member=text:AddBmiText.Height}}"/>
+            <TextBox Grid.Column="1" Grid.Row="1"
+                         Text="{Binding Path=CurrentBmi.Height, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Grid.Column="0" Grid.Row="2"
+                       Content="{Binding Source={x:Static Member=text:AddBmiText.Weight}}"/>
+            <TextBox Grid.Column="1" Grid.Row="2"
+                         Text="{Binding Path=CurrentBmi.Weight, UpdateSourceTrigger=PropertyChanged}"/>
+
+        </Grid>
+        <Button Content="{Binding Source={x:Static Member=text:AddBmiText.BtnAdd}}"
+                        Command="{Binding Path=AddCommand}"/>
+    </StackPanel>
+</UserControl>

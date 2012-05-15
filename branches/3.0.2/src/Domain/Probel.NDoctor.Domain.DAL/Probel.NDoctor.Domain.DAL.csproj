@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{96B7A128-8A98-4B49-A3CB-30AE783236E9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Probel.NDoctor.Domain.DAL</RootNamespace>
+    <AssemblyName>Probel.NDoctor.Domain.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\packages\AutoMapper.1.1.0.118\lib\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\packages\FluentNHibernate.1.3.0.717\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.3.2.0.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Probel.Mvvm">
+      <HintPath>..\..\..\lib\Probel.Mvvm\Probel.Mvvm.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.66.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <HintPath>..\..\..\lib\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Version.cs">
+      <Link>Version.cs</Link>
+    </Compile>
+    <Compile Include="Components\AdministrationComponent.cs" />
+    <Compile Include="Components\ImportComponent.cs" />
+    <Compile Include="Components\FamilyComponent.cs" />
+    <Compile Include="Components\CalendarComponent.cs" />
+    <Compile Include="Components\PathologyComponent.cs" />
+    <Compile Include="Components\PrescriptionComponent.cs" />
+    <Compile Include="Entities\Drug.cs" />
+    <Compile Include="Entities\IllnessPeriod.cs" />
+    <Compile Include="Entities\Appointment.cs" />
+    <Compile Include="Entities\Pathology.cs" />
+    <Compile Include="Entities\Prescription.cs" />
+    <Compile Include="Entities\PrescriptionDocument.cs" />
+    <Compile Include="Exceptions\BusinessLogicException.cs" />
+    <Compile Include="Exceptions\EmptyPasswordException.cs" />
+    <Compile Include="Exceptions\WrongIdTypeException.cs" />
+    <Compile Include="Helpers\EntityEqualityComparer.cs" />
+    <Compile Include="Mappings\Mapping.cs" />
+    <Compile Include="Components\BaseComponent.cs" />
+    <Compile Include="Components\BmiComponent.cs" />
+    <Compile Include="Components\PictureComponent.cs" />
+    <Compile Include="Components\SQLComponent.cs" />
+    <Compile Include="Components\MedicalRecordComponent.cs" />
+    <Compile Include="Components\PatientDataComponent.cs" />
+    <Compile Include="Components\PatientSessionComponent.cs" />
+    <Compile Include="Entities\Bmi.cs" />
+    <Compile Include="Entities\Doctor.cs" />
+    <Compile Include="Entities\Gender.cs" />
+    <Compile Include="Entities\Insurance.cs" />
+    <Compile Include="Entities\MedicalRecord.cs" />
+    <Compile Include="Entities\Patient.cs" />
+    <Compile Include="Entities\Picture.cs" />
+    <Compile Include="Entities\Profession.cs" />
+    <Compile Include="Entities\Reputation.cs" />
+    <Compile Include="Entities\Tag.cs" />
+    <Compile Include="Exceptions\QueryException.cs" />
+    <Compile Include="Helpers\MedicalRecordCabinetHelper.cs" />
+    <Compile Include="Helpers\TestTools.cs" />
+    <Compile Include="Exceptions\DalSessionException.cs" />
+    <Compile Include="Cfg\CustomAutomappingConfiguration.cs" />
+    <Compile Include="Cfg\DAL.cs" />
+    <Compile Include="Entities\Address.cs" />
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Person.cs" />
+    <Compile Include="Entities\Practice.cs" />
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\Task.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Exceptions\ExistingItemException.cs" />
+    <Compile Include="Exceptions\EntityNotFoundException.cs" />
+    <Compile Include="Exceptions\DetachedEntityException.cs" />
+    <Compile Include="Exceptions\NullSessionFactoryException.cs" />
+    <Compile Include="Mappings\MedicalRecordMapping.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Components\UserSessionComponent.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="_Design\Domain\Prescriptions.cd" />
+    <None Include="_Design\Domain\Family.cd" />
+    <None Include="_Design\Domain\MedicalRecords.cd" />
+    <None Include="_Design\Domain\Patient.cd" />
+    <None Include="_Design\Component\UserComponent.cd" />
+    <None Include="packages.config" />
+    <None Include="_Design\Domain\User.cd" />
+    <None Include="Probel.NDoctor.Domain.DAL.licenseheader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Validators\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Messages.fr.resx" />
+    <EmbeddedResource Include="Properties\Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Helpers\Probel.Helpers\Probel.Helpers.csproj">
+      <Project>{18F7EA3E-0BF5-430F-9B1D-258BDAB6304E}</Project>
+      <Name>Probel.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Probel.NDoctor.Domain.DTO\Probel.NDoctor.Domain.DTO.csproj">
+      <Project>{DB2E15D4-BA31-457B-BF73-71208922A0A0}</Project>
+      <Name>Probel.NDoctor.Domain.DTO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

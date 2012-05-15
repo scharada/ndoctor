@@ -1,0 +1,140 @@
+﻿<UserControl x:Class="Probel.NDoctor.Plugins.MeetingManager.View.PatientView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:dto="clr-namespace:Probel.NDoctor.Plugins.MeetingManager.ViewModel"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:text="clr-namespace:Probel.NDoctor.Plugins.MeetingManager.Translations"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    <DockPanel>
+        <Label DockPanel.Dock="Top" 
+               Height="26"
+               Content="{Binding Path=DisplayedName}"/>
+        <Grid DockPanel.Dock="Top" 
+              Visibility="{Binding Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="70"/>
+            </Grid.ColumnDefinitions>
+
+            <DatePicker Grid.Column="0"
+                        SelectedDate="{Binding Path=FromDate, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <DatePicker Grid.Column="1"
+                        SelectedDate="{Binding Path=ToDate, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Button Grid.Column="2" 
+                    Content="{Binding Source={x:Static Member=text:PatientText.BtnSearch}}"
+                    Command="{Binding Path=SearchCommand}"/>
+        </Grid>
+        <TabControl DockPanel.Dock="Top" 
+                    Visibility="{Binding Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TabItem Header="{Binding Source={x:Static Member=text:PatientText.HeaderAdd}}">
+                <ScrollViewer Height="300">
+                    <ListView ItemsSource="{Binding Path=FoundSlotsToAdd}">
+                        <ListView.Resources>
+                            <DataTemplate DataType="{x:Type dto:DateRangeViewModel}">
+                                <StackPanel>
+                                    <Label Content="{Binding Path=TimeToDisplay}"/>
+
+                                    <Grid Visibility="{Binding Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Label Grid.Row="0" Grid.Column="0"
+                                               Content="{Binding Source={x:Static Member=text:DateRangeText.TitleSubject}}"/>
+
+                                        <TextBox Grid.Row="0" Grid.Column="1"
+                                                 Text="{Binding Path=Subject, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label Grid.Row="1" Grid.Column="0" 
+                                               Content="{Binding Source={x:Static Member=text:DateRangeText.TitleTag}}"/>
+
+                                        <ComboBox Grid.Row="1" Grid.Column="1"
+                                                  DisplayMemberPath="Name"
+                                                  ItemsSource="{Binding Path=Tags}"
+                                                  SelectedItem="{Binding Path=SelectedTag}"
+                                                  SelectedIndex="0"/>
+
+                                        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+                                                Content="{Binding Source={x:Static Member=text:PatientText.BtnAdd}}"
+                                                Command="{Binding Path=AddCommand}"
+                                                Visibility="{Binding Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                    </Grid>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.Resources>
+
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="{Binding Source={x:Static Member=text:PatientText.HeaderRemove}}">
+                <ScrollViewer Height="300">
+                    <ListView ItemsSource="{Binding Path=FoundSlotsToRemove}">
+                        <ListView.Resources>
+                            <DataTemplate DataType="{x:Type dto:DateRangeViewModel}">
+                                <StackPanel>
+                                    <Label Content="{Binding Path=TimeToDisplay}"/>
+
+                                    <Grid Visibility="{Binding Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Label Grid.Row="0" Grid.Column="0"
+                                               Content="{Binding Source={x:Static Member=text:DateRangeText.TitleSubject}}"/>
+
+                                        <TextBlock Grid.Row="0" Grid.Column="1"
+                                                   Text="{Binding Path=Subject}"/>
+
+                                        <Label Grid.Row="1" Grid.Column="0" 
+                                               Content="{Binding Source={x:Static Member=text:DateRangeText.TitleTag}}"/>
+
+                                        <TextBlock Grid.Row="1" Grid.Column="1"
+                                                   Text="{Binding Path=SelectedTag.Name}"/>
+
+                                        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+                                        Content="{Binding Source={x:Static Member=text:PatientText.BtnRemove}}"
+                                        Command="{Binding Path=RemoveCommand}"
+                                        Visibility="{Binding Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                    </Grid>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.Resources>
+
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</UserControl>

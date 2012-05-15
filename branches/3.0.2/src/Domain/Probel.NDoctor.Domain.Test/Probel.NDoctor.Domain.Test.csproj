@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{45B13F1B-8DED-4348-8074-268FEAC900E4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Probel.NDoctor.Domain.Test</RootNamespace>
+    <AssemblyName>Probel.NDoctor.Domain.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\packages\AutoMapper.1.1.0.118\lib\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate, Version=1.3.0.717, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentNHibernate.1.3.0.717\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=3.2.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.3.2.0.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.mocks, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="pnunit.framework">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\pnunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Probel.Mvvm">
+      <HintPath>..\..\..\lib\Probel.Mvvm\Probel.Mvvm.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\..\..\lib\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Version.cs">
+      <Link>Version.cs</Link>
+    </Compile>
+    <Compile Include="Components\TestFamilyComponent.cs" />
+    <Compile Include="Data\TestTimeSlotCollection.cs" />
+    <Compile Include="Data\TestWorkday.cs" />
+    <Compile Include="Helpers\Create.cs" />
+    <Compile Include="Helpers\DbBuilder.cs" />
+    <Compile Include="Helpers\GlobalConfigurator.cs" />
+    <Compile Include="Helpers\MockBaseComponent.cs" />
+    <Compile Include="Helpers\PictureCreator.cs" />
+    <Compile Include="Helpers\TestBase.cs" />
+    <Compile Include="Components\TestBaseComponent.cs" />
+    <Compile Include="Components\TestBaseComponentNullArguments.cs" />
+    <Compile Include="Components\TestBmiComponent.cs" />
+    <Compile Include="Mappings\TestMapping.cs" />
+    <Compile Include="Components\TestMedicalRecordComponent.cs" />
+    <Compile Include="Components\TestPatientSessionComponent.cs" />
+    <Compile Include="Components\TestPatientDataComponent.cs" />
+    <Compile Include="Components\TestPictureManagerComponent.cs" />
+    <Compile Include="Components\TestUserSessionComponent.cs" />
+    <Compile Include="Helpers\InMemoryDatabase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Components\TestBaseComponentWhenNullSession.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Probel.NDoctor.Domain.Test.licenseheader" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Helpers\Probel.Helpers\Probel.Helpers.csproj">
+      <Project>{18F7EA3E-0BF5-430F-9B1D-258BDAB6304E}</Project>
+      <Name>Probel.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Probel.NDoctor.Domain.DAL\Probel.NDoctor.Domain.DAL.csproj">
+      <Project>{96B7A128-8A98-4B49-A3CB-30AE783236E9}</Project>
+      <Name>Probel.NDoctor.Domain.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Probel.NDoctor.Domain.DTO\Probel.NDoctor.Domain.DTO.csproj">
+      <Project>{DB2E15D4-BA31-457B-BF73-71208922A0A0}</Project>
+      <Name>Probel.NDoctor.Domain.DTO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\tools\scripts\InsertUsers.sql">
+      <Link>InsertUsers.sql</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\picture1.jpg" />
+    <EmbeddedResource Include="Images\picture2.jpg" />
+    <EmbeddedResource Include="Images\picture3.jpg" />
+    <EmbeddedResource Include="Images\picture4.jpg" />
+    <EmbeddedResource Include="Images\picture5.jpg" />
+    <EmbeddedResource Include="Images\picture6.jpg" />
+    <EmbeddedResource Include="Images\picture7.jpg" />
+    <EmbeddedResource Include="Images\picture8.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

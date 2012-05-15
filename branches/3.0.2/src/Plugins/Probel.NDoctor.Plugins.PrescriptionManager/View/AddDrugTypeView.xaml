@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="Probel.NDoctor.Plugins.PrescriptionManager.View.AddDrugTypeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PrescriptionManager.Translations"
+             mc:Ignorable="d">
+    <StackPanel Width="200">
+        <TextBox Text="{Binding Path=SelectedTag.Name, UpdateSourceTrigger=PropertyChanged}"
+                 MinWidth="100"/>
+
+        <Button Content="{Binding Source={x:Static Member=text:AddDrugText.BtnAdd}}"
+                Command="{Binding Path=AddCommand}"/>
+    </StackPanel>
+</UserControl>

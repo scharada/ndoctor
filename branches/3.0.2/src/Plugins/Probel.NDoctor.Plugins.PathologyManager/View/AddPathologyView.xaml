@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Probel.NDoctor.Plugins.PathologyManager.View.AddPathologyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PathologyManager.Translations"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             Width="250">
+    <DockPanel LastChildFill="True">
+        <Button Width="60"
+                DockPanel.Dock="Right"
+                Content="{Binding Source={x:Static Member=text:AddPathologyText.BtnAdd}}"
+                Command="{Binding Path=AddCommand}"/>
+
+        <TextBox DockPanel.Dock="Left"
+                 Text="{Binding Path=Pathology.Name, UpdateSourceTrigger=PropertyChanged}"
+                 MinWidth="100"/>
+    </DockPanel>
+</UserControl>

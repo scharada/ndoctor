@@ -1,0 +1,146 @@
+﻿<Page x:Class="Probel.NDoctor.Plugins.PrescriptionManager.View.AddPrescriptionView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:this="clr-namespace:Probel.NDoctor.Plugins.PrescriptionManager.ViewModel"
+      xmlns:dto="clr-namespace:Probel.NDoctor.Domain.DTO.Objects;assembly=Probel.NDoctor.Domain.DTO"
+      xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PrescriptionManager.Translations"
+      xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PrescriptionManager.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="650"
+	Title="AddPrescriptionView">
+
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" 
+                  Header="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleSearchDrugs}}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="52"/>
+                    <RowDefinition Height="22"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <RadioButton x:Name="radioButtonName"
+                             Grid.Row="0" 
+                             Grid.Column="0"
+                             GroupName="Search"
+                             Content="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleName}}"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1"
+                         Grid.Row="0"
+                         Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}"
+                         IsEnabled="{Binding ElementName=radioButton, Path=IsChecked}"/>
+
+                    <RadioButton x:Name="radioButtonTag"
+                             IsChecked="{Binding SearchOnTags}"
+                             Grid.Row="1" 
+                             Grid.Column="0"
+                             GroupName="Search"
+                             Content="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleTag}}"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"/>
+                    <ComboBox Grid.Column="1"
+                          Grid.Row="1"
+                          IsEnabled="{Binding ElementName=radioButtonTag, Path=IsChecked}"
+                          ItemsSource="{Binding Path=Tags}"
+                          DisplayMemberPath="Name"
+                          SelectedIndex="0"
+                          SelectedItem="{Binding Path=SelectedTag}"/>
+                </Grid>
+
+                <Button Grid.Row="1"
+                Content="{Binding Source={x:Static Member=text:AddPrescriptionText.BtnSearch}}" 
+                Command="{Binding SearchCommand}"/>
+
+                <ListView Grid.Row="2"
+                      ItemsSource="{Binding Path=FoundDrugs}"
+                      SelectedItem="{Binding Path=SelectedDrug}">
+
+                    <ListView.Resources>
+                        <DataTemplate DataType="{x:Type this:DrugViewModel}">
+                            <StackPanel>
+                                <Label  Content="{Binding Path=Name}"/>
+                                <Button Content="{Binding Source={x:Static Member=text:AddPrescriptionText.BtnSelect}}"
+                                    Command="{Binding Path=SelectDrugCommand}"
+                                    Visibility="{Binding Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.Resources>
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="1"
+                  Header="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleCreatePrescription}}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="26"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"
+                       Content="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleCreationDate}}"/>
+                    <DatePicker Grid.Column="1"
+                        SelectedDate="{Binding Path=PrescriptionDocumentToCreate.CreationDate}"/>
+                </Grid>
+                <DataGrid Grid.Row="1"
+                      ItemsSource="{Binding Path=PrescriptionDocumentToCreate.Prescriptions, UpdateSourceTrigger=PropertyChanged}"
+                      AutoGenerateColumns="False"
+                      SelectedItem="{Binding Path=CurrentPrescription, UpdateSourceTrigger=PropertyChanged}"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False">
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Label Content="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleAddNotesHere}}"/>
+                                <ScrollViewer>
+                                    <TextBox Height="70" 
+                                         Text="{Binding Path=Notes, UpdateSourceTrigger=PropertyChanged}"/>
+                                </ScrollViewer>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=Drug.Name, UpdateSourceTrigger=PropertyChanged}" 
+                                        Header="{Binding Source={x:Static Member=text:AddPrescriptionText.ColDrug}}"
+                                        IsReadOnly="True" />
+
+                        <DataGridTextColumn Binding="{Binding Path=Notes, UpdateSourceTrigger=PropertyChanged}" 
+                                        Header="{Binding  Source={x:Static Member=text:AddPrescriptionText.ColNotes}}"
+                                        Width="*"
+                                        IsReadOnly="True" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Page>

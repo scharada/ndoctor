@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Btn_Save" xml:space="preserve">
+    <value>Save</value>
+    <comment>Save</comment>
+  </data>
+  <data name="Ex_NDoctorConfigurationException_HostNull" xml:space="preserve">
+    <value>The plugin host is not configured. Check the state of the plugin context.</value>
+    <comment>The plugin host is not configured. Check the state of the plugin context.</comment>
+  </data>
+  <data name="Ex_PluginException_StartPageAlreadySet" xml:space="preserve">
+    <value>The start page was already configured by a plugin.</value>
+    <comment>The start page was already configured by a plugin.</comment>
+  </data>
+  <data name="Language_Englisg" xml:space="preserve">
+    <value>English</value>
+    <comment>English</comment>
+  </data>
+  <data name="Language_French" xml:space="preserve">
+    <value>French</value>
+    <comment>French</comment>
+  </data>
+  <data name="Menu_Exit" xml:space="preserve">
+    <value>Exit</value>
+    <comment>Exit</comment>
+  </data>
+  <data name="Menu_Home" xml:space="preserve">
+    <value>Start page</value>
+    <comment>Start page</comment>
+  </data>
+  <data name="Menu_Select" xml:space="preserve">
+    <value>Load this patient</value>
+    <comment>Load this patient</comment>
+  </data>
+  <data name="Msg_AskForShutdown" xml:space="preserve">
+    <value>Do you want to quit the application?</value>
+    <comment>Do you want to quit the application?</comment>
+  </data>
+  <data name="Msg_ConfiguringConfigFile" xml:space="preserve">
+    <value>Configuring config file...</value>
+    <comment>Configuring config file...</comment>
+  </data>
+  <data name="Msg_ConfiguringNHibernate" xml:space="preserve">
+    <value>Configuring nHibernate...</value>
+    <comment>Configuring nHibernate...</comment>
+  </data>
+  <data name="Msg_ConfiguringPlugins" xml:space="preserve">
+    <value>Configuring plugins...</value>
+    <comment>Configuring plugins...</comment>
+  </data>
+  <data name="Msg_ConfiguringStructureMap" xml:space="preserve">
+    <value>Configuring StructureMap</value>
+    <comment>Configuring StructureMap</comment>
+  </data>
+  <data name="Msg_ConnectedPatient" xml:space="preserve">
+    <value>Patient: {0}</value>
+    <comment>Patient: {0}</comment>
+  </data>
+  <data name="Msg_ErrorDatabaseNotFound" xml:space="preserve">
+    <value>The path specified for the database is incorrect.</value>
+    <comment>The path specified for the database is incorrect.</comment>
+  </data>
+  <data name="Msg_ErrorOccured" xml:space="preserve">
+    <value>An error occured. {0}</value>
+    <comment>An error occured.</comment>
+  </data>
+  <data name="Msg_FatalErrorOccured" xml:space="preserve">
+    <value>{0}
+The application will close. Check the logs for further  information</value>
+    <comment>An error occured: {0}</comment>
+  </data>
+  <data name="Msg_Loading" xml:space="preserve">
+    <value>Loading...</value>
+    <comment>Loading...</comment>
+  </data>
+  <data name="Msg_Progess" xml:space="preserve">
+    <value>Progress: {0,3}%</value>
+    <comment>Progress: {0,3}%</comment>
+  </data>
+  <data name="Msg_Ready" xml:space="preserve">
+    <value>Ready.</value>
+    <comment>Ready.</comment>
+  </data>
+  <data name="Msg_SelectPatient" xml:space="preserve">
+    <value>Open record of {0}</value>
+    <comment>Open record of {0}</comment>
+  </data>
+  <data name="Msg_WarningOccured" xml:space="preserve">
+    <value>Warning. {0}</value>
+    <comment>Warning: {0}</comment>
+  </data>
+  <data name="PluginException_HomeMenuVoid" xml:space="preserve">
+    <value>The main menu of the application does't exist.</value>
+    <comment>The main menu of the application does't exist.</comment>
+  </data>
+  <data name="SlotDuration_OneHour" xml:space="preserve">
+    <value>1 hour</value>
+    <comment>1 hour</comment>
+  </data>
+  <data name="SlotDuration_ThirtyMinutes" xml:space="preserve">
+    <value>30 minutes</value>
+    <comment>30 minutes</comment>
+  </data>
+  <data name="Title_End" xml:space="preserve">
+    <value>End</value>
+    <comment>End</comment>
+  </data>
+  <data name="Title_Error" xml:space="preserve">
+    <value>Error</value>
+    <comment>Error</comment>
+  </data>
+  <data name="Title_Fatal" xml:space="preserve">
+    <value>Fatal error</value>
+    <comment>Fatal error</comment>
+  </data>
+  <data name="Title_GlobalTools" xml:space="preserve">
+    <value>Management</value>
+    <comment>Management</comment>
+  </data>
+  <data name="Title_Home" xml:space="preserve">
+    <value>Home</value>
+    <comment>Home</comment>
+  </data>
+  <data name="Title_Interogation" xml:space="preserve">
+    <value>Question</value>
+    <comment>Question</comment>
+  </data>
+  <data name="Title_Languages" xml:space="preserve">
+    <value>Language</value>
+    <comment>Language</comment>
+  </data>
+  <data name="Title_Managers" xml:space="preserve">
+    <value>Session</value>
+    <comment>Session</comment>
+  </data>
+  <data name="Title_NoUserConnected" xml:space="preserve">
+    <value>nDoctor 3 </value>
+    <comment>nDoctor 3</comment>
+  </data>
+  <data name="Title_SelectedPatient" xml:space="preserve">
+    <value>Patient: {0}</value>
+    <comment>Patient: {0}</comment>
+  </data>
+  <data name="Title_SelectedUser" xml:space="preserve">
+    <value>nDoctor 3 - Connecté en tant que {0}</value>
+    <comment>nDoctor 3 - Connected as {0}</comment>
+  </data>
+  <data name="Title_SessionManagers" xml:space="preserve">
+    <value>Session</value>
+    <comment>Session</comment>
+  </data>
+  <data name="Title_Settings" xml:space="preserve">
+    <value>Customise</value>
+    <comment>Customise</comment>
+  </data>
+  <data name="Title_SlotDuration" xml:space="preserve">
+    <value>Slot duration</value>
+    <comment>Slot duration</comment>
+  </data>
+  <data name="Title_Start" xml:space="preserve">
+    <value>Start</value>
+    <comment>Start</comment>
+  </data>
+  <data name="Title_Tools" xml:space="preserve">
+    <value>Tools</value>
+    <comment>Tools</comment>
+  </data>
+  <data name="Title_Warning" xml:space="preserve">
+    <value>Warning</value>
+    <comment>Warning</comment>
+  </data>
+  <data name="Title_Workday" xml:space="preserve">
+    <value>Workday</value>
+    <comment>Workday</comment>
+  </data>
+</root>
