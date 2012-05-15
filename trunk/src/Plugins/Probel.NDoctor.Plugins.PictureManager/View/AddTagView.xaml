@@ -2,10 +2,10 @@
              
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PictureManager.Translations"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
+             xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
              
              mc:Ignorable="d">
     <StackPanel>
@@ -18,14 +18,14 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0"
-                    Style="{StaticResource InnerWindowBtnStyle}">
-                <Button Content="{Binding Source={x:Static Member=text:AddTagText.BtnAdd}}"
+                    Style="{StaticResource InnerWindowButton}">
+                <Button Content="{Binding Source={x:Static Member=t:BaseText.Add}}"
                         Command="{Binding Path=AddCommand}"/>
             </Border>
             
             <Border Grid.Column="1"
-                    Style="{StaticResource InnerWindowBtnStyle}">
-                <Button Content="{Binding Source={x:Static Member=text:AddTagText.Cancel}}"
+                    Style="{StaticResource InnerWindowButton}">
+                <Button Content="{Binding Source={x:Static Member=t:BaseText.Cancel}}"
                         Command="iw:InnerWindow.CancelCommand" />
             </Border>
         </Grid>

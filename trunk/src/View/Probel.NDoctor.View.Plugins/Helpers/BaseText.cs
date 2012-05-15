@@ -14,24 +14,22 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Plugins.PictureManager.Translations
+
+using Probel.NDoctor.View.Plugins.Properties;
+
+namespace Probel.NDoctor.View.Plugins.Helpers
 {
-    using Probel.NDoctor.Plugins.PictureManager.Properties;
-
-    public static class AddTagText
+    public static class BaseText
     {
-        #region Properties
-
-        public static string BtnAdd
-        {
-            get { return Messages.Btn_Add; }
-        }
 
         public static string Cancel
         {
             get { return Messages.Btn_Cancel; }
         }
 
-        #endregion Properties
+        public static string Add
+        {
+            get { return Messages.Btn_Add; }
+        }
     }
 }

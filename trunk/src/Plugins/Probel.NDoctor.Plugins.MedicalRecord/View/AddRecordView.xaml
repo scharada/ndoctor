@@ -5,18 +5,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.MedicalRecord.Translations"
+             xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
+             xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
              
              mc:Ignorable="d" 
              Width="250">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="60"/>
-        </Grid.ColumnDefinitions>
+    <StackPanel>
         <ComboBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
                               ItemsSource="{Binding Tags, Mode=TwoWay}"
                               DisplayMemberPath="Name" 
@@ -24,9 +18,24 @@
                               SelectedIndex="0"/>
 
         <TextBox  Grid.Row="1" Grid.Column="0" Text="{Binding Path=Title}" />
-        <Button   Grid.Row="1" 
-                  Grid.Column="1" 
-                  Content="{Binding Source={x:Static Member=text:AddRecordText.TitleBtnAdd}}" 
-                  Command="{Binding AddRecordCommand}"/>
-    </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0"
+                    Style="{StaticResource InnerWindowButton}">
+                <Button   Grid.Row="1" 
+                          Grid.Column="1" 
+                          Content="{Binding Source={x:Static Member=text:AddRecordText.TitleBtnAdd}}" 
+                          Command="{Binding AddRecordCommand}"/>
+            </Border>
+
+            <Border Grid.Column="1"
+                    Style="{StaticResource InnerWindowButton}">
+                <Button Content="{Binding Source={x:Static Member=t:BaseText.Cancel}}"
+                        Command="iw:InnerWindow.CancelCommand" />
+            </Border>
+        </Grid>
+    </StackPanel>
 </UserControl>

@@ -17,15 +17,11 @@
 namespace Probel.NDoctor.Plugins.BmiRecord.Translations
 {
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
+    using Probel.NDoctor.View.Plugins.Helpers;
 
     public static class AddBmiText
     {
         #region Properties
-
-        public static string BtnAdd
-        {
-            get { return Messages.Title_BtnAdd; }
-        }
 
         public static string Date
         {

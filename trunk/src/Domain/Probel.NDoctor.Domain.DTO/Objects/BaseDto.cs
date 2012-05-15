@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     public abstract class BaseDto : BaseDto<long>, ICloneable
     {
         #region Fields
+
         private bool isImported;
 
         #endregion Fields
@@ -43,6 +44,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         }
 
         #endregion Constructors
+
+        #region Properties
 
         /// <summary>
         /// Gets or sets a value indicating whether this entity is imported from somewhere else.
@@ -76,6 +79,10 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             }
         }
 
+        #endregion Properties
+
+        #region Methods
+
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
         /// </summary>
@@ -86,5 +93,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         {
             return Cloner.Clone(this);
         }
+
+        #endregion Methods
     }
 }

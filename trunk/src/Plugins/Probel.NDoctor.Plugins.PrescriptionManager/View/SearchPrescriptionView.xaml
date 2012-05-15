@@ -5,9 +5,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:dto="clr-namespace:Probel.NDoctor.Domain.DTO.Objects;assembly=Probel.NDoctor.Domain.DTO"
-             xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PrescriptionManager.Translations"
+             xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PrescriptionManager.Translations"             
+             xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
+             xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
              
-             mc:Ignorable="d" >
+             mc:Ignorable="d">
     <DockPanel LastChildFill="True">
         <Grid DockPanel.Dock="Top" >
             <Grid.RowDefinitions>
@@ -35,9 +37,25 @@
                         SelectedDate="{Binding Path=EndCriteria}"/>
         </Grid>
 
-        <Button DockPanel.Dock="Top"  
-                    Grid.Row="2"
-                    Content="{Binding Source={x:Static Member=text:SearchPrescriptionText.BtnSearch}}"
-                    Command="{Binding SearchCommand}"/>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0"
+                    Style="{StaticResource InnerWindowButton}">
+                <Button DockPanel.Dock="Top"  
+                        Grid.Row="2"
+                        Content="{Binding Source={x:Static Member=text:SearchPrescriptionText.BtnSearch}}"
+                        Command="{Binding SearchCommand}"/>
+            </Border>
+
+            <Border Grid.Column="1"
+                    Style="{StaticResource InnerWindowButton}">
+                <Button Content="{Binding Source={x:Static Member=t:BaseText.Cancel}}"
+                        Command="iw:InnerWindow.CancelCommand" />
+            </Border>
+        </Grid>
     </DockPanel>
 </UserControl>

@@ -17,6 +17,7 @@
 namespace Probel.NDoctor.Plugins.PictureManager.Translations
 {
     using Probel.NDoctor.Plugins.PictureManager.Properties;
+    using Probel.NDoctor.View.Plugins.Helpers;
 
     public static class WorkbenchText
     {

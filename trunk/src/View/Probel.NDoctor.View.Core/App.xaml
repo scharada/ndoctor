@@ -8,7 +8,7 @@
 
 
         <!-- InnerWindow button's border -->
-        <Style TargetType="{x:Type Border}" x:Key="InnerWindowBtnStyle">
+        <Style TargetType="{x:Type Border}" x:Key="InnerWindowButton">
             <Setter Property="Padding" Value="4"/>
             <Setter Property="BorderThickness" Value="1"/>
         </Style>

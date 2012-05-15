@@ -61,24 +61,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add.
-        /// </summary>
-        internal static string Btn_Add {
-            get {
-                return ResourceManager.GetString("Btn_Add", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Annuler.
-        /// </summary>
-        internal static string Btn_Cancel {
-            get {
-                return ResourceManager.GetString("Btn_Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Information.
         /// </summary>
         internal static string Header_Information {

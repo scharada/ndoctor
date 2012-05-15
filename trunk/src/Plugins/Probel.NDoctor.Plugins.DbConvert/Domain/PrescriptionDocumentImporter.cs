@@ -24,10 +24,10 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
     using System.Text;
 
     using Probel.Helpers.Conversions;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.DbConvert.Properties;
-    using Probel.Mvvm.DataBinding;
 
     public class PrescriptionDocumentImporter : MultipleImporter<PrescriptionDocumentDto>
     {
