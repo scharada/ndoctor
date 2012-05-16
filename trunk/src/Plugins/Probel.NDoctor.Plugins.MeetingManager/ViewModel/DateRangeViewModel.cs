@@ -27,7 +27,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
     using log4net;
 
-    using Probel.Helpers.Conversions;
     using Probel.Helpers.Data;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;

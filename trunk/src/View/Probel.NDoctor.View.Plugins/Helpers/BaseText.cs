@@ -46,7 +46,7 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         {
             get { return Messages.Title_Warning; }
         }
-        #endregion Properties
 
+        #endregion Properties
     }
 }
