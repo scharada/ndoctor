@@ -31,13 +31,13 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     public class UpdateUserViewModel : BaseViewModel
     {
         #region Fields
 
-        private IUserSessionComponent component = ObjectFactory.GetInstance<IUserSessionComponent>();
+        private IUserSessionComponent component = new ComponentFactory().GetInstance<IUserSessionComponent>();
         private ObservableCollection<PracticeDto> practices;
         private ObservableCollection<LightRoleDto> roles;
         private UserDto user;
@@ -239,7 +239,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         {
             try
             {
-                var component = ObjectFactory.GetInstance<IUserSessionComponent>();
+                var component = new ComponentFactory().GetInstance<IUserSessionComponent>();
 
                 using (component.UnitOfWork)
                 {

@@ -36,7 +36,7 @@ namespace Probel.NDoctor.Plugins.UserSession
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     /// <summary>
     /// When the application user has logged into the application, it opens a User session that contains the modules the logged user can use. 
@@ -98,9 +98,8 @@ namespace Probel.NDoctor.Plugins.UserSession
         public override void Initialise()
         {
             this.ConfigureAutoMapper();
-            this.ConfigureStructureMap();
 
-            this.component = ObjectFactory.GetInstance<IUserSessionComponent>();
+            this.component = new ComponentFactory().GetInstance<IUserSessionComponent>();
 
             TranslateExtension.ResourceManager = Messages.ResourceManager;
 
@@ -137,15 +136,6 @@ namespace Probel.NDoctor.Plugins.UserSession
         {
             Mapper.CreateMap<UserDto, BusinessCardViewModel>();
             Mapper.CreateMap<BusinessCardViewModel, UserDto>();
-        }
-
-        private void ConfigureStructureMap()
-        {
-            ObjectFactory.Configure(x =>
-            {
-                x.For<IUserSessionComponent>().Add<UserSessionComponent>();
-                x.SelectConstructor<UserSessionComponent>(() => new UserSessionComponent());
-            });
         }
 
         private void InitialiseConnectionPage()

@@ -38,7 +38,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     [Export(typeof(IPlugin))]
     public class PrescriptionManager : Plugin
@@ -69,7 +69,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             : base(version)
         {
             this.lastNavigation = LastNavigation.None;
-            this.ConfigureStructureMap();
             this.ConfigureAutoMapper();
 
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
@@ -256,18 +255,9 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             Mapper.CreateMap<DrugDto, DrugViewModel>();
         }
 
-        private void ConfigureStructureMap()
-        {
-            ObjectFactory.Configure(x =>
-            {
-                x.For<IPrescriptionComponent>().Add<PrescriptionComponent>();
-                x.SelectConstructor<PrescriptionComponent>(() => new PrescriptionComponent());
-            });
-        }
-
         private void LoadDefaultPrescriptions()
         {
-            var component = ObjectFactory.GetInstance<IPrescriptionComponent>();
+            var component = new ComponentFactory().GetInstance<IPrescriptionComponent>();
             using (component.UnitOfWork)
             {
                 var from = DateTime.Today.AddMonths(-1);

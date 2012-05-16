@@ -37,7 +37,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     public class WorkbenchViewModel : BaseViewModel
     {
@@ -65,7 +65,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
             this.IsInformationExpanded = false;
             this.SelectedPicture = new PictureDto();
-            this.component = ObjectFactory.GetInstance<IPictureComponent>();
+            this.component = new ComponentFactory().GetInstance<IPictureComponent>();
 
             this.AddPictureCommand = new RelayCommand(() => AddPicture(), () => PluginContext.Host.SelectedPatient != null);
             this.AddTypeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPicType, new AddTagView()), () => PluginContext.Host.SelectedPatient != null);

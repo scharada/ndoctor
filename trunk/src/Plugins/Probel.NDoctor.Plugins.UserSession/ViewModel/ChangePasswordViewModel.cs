@@ -26,7 +26,7 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     public class ChangePasswordViewModel : BaseViewModel
     {
@@ -47,7 +47,7 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
             this.IsPopupOpened = false;
             if (!Designer.IsDesignMode)
             {
-                this.component = ObjectFactory.GetInstance<IUserSessionComponent>();
+                this.component = new ComponentFactory().GetInstance<IUserSessionComponent>();
                 this.SaveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
                 this.OpenPopupCommand = new RelayCommand(() => this.IsPopupOpened = true);
             }

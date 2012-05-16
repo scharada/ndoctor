@@ -35,7 +35,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     [Export(typeof(IPlugin))]
     public class PatientSession : Plugin
@@ -59,7 +59,6 @@ namespace Probel.NDoctor.Plugins.PatientSession
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
             this.ConfigureAutoMapper();
-            this.ConfigureStructureMap();
         }
 
         #endregion Constructors
@@ -133,15 +132,6 @@ namespace Probel.NDoctor.Plugins.PatientSession
             Mapper.CreateMap<LightPatientViewModel, LightPatientDto>();
         }
 
-        private void ConfigureStructureMap()
-        {
-            ObjectFactory.Configure(x =>
-            {
-                x.For<IPatientSessionComponent>().Add<PatientSessionComponent>();
-                x.SelectConstructor<PatientSessionComponent>(() => new PatientSessionComponent());
-            });
-        }
-
         private void NavigateAddPatient()
         {
             InnerWindow.Show(Messages.Title_AddPatient, new AddPatientControl());
@@ -149,12 +139,12 @@ namespace Probel.NDoctor.Plugins.PatientSession
 
         private void NavigateSearchPatient()
         {
-            InnerWindow.Show(Messages.Title_SearchPatient,new SearchPatientControl());
+            InnerWindow.Show(Messages.Title_SearchPatient, new SearchPatientControl());
         }
 
         private void NavigateTopTen()
         {
-            InnerWindow.Show(Messages.Title_MostUsed,new TopTenControl());
+            InnerWindow.Show(Messages.Title_MostUsed, new TopTenControl());
         }
 
         #endregion Methods

@@ -36,8 +36,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Plugins.Configuration;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-
     using StructureMap;
+
 
     public class SpashScreenViewModel : BaseViewModel
     {

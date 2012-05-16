@@ -30,7 +30,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     public class AddTagViewModel : BaseViewModel
     {
@@ -48,7 +48,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         {
             this.SelectedTag = new TagDto(TagCategory.Picture);
 
-            if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IPictureComponent>();
+            if (!Designer.IsDesignMode) this.component = new ComponentFactory().GetInstance<IPictureComponent>();
 
             this.ShowPopupCommand = new RelayCommand(() => this.IsPopupOpened = true);
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());

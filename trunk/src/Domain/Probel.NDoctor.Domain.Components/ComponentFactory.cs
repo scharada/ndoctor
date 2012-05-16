@@ -72,6 +72,21 @@ namespace Probel.NDoctor.Domain.Components
                 x.For<IPatientDataComponent>().Add<PatientDataComponent>();
                 x.SelectConstructor<PatientDataComponent>(() => new PatientDataComponent());
 
+                //Patient session plugin
+                x.For<IPatientSessionComponent>().Add<PatientSessionComponent>();
+                x.SelectConstructor<PatientSessionComponent>(() => new PatientSessionComponent());
+
+                //Picture manager plugin
+                x.For<IPictureComponent>().Add<PictureComponent>();
+                x.SelectConstructor<PictureComponent>(() => new PictureComponent());
+
+                //Prescription manager plugin
+                x.For<IPrescriptionComponent>().Add<PrescriptionComponent>();
+                x.SelectConstructor<PrescriptionComponent>(() => new PrescriptionComponent());
+
+                //User session manager
+                x.For<IUserSessionComponent>().Add<UserSessionComponent>();
+                x.SelectConstructor<UserSessionComponent>(() => new UserSessionComponent());
             });
         }
 

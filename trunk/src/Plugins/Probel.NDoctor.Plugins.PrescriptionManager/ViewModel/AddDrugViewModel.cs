@@ -33,7 +33,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     public class AddDrugViewModel : BaseViewModel
     {
@@ -48,7 +48,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
         public AddDrugViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IPrescriptionComponent>();
+            if (!Designer.IsDesignMode) this.component = new ComponentFactory().GetInstance<IPrescriptionComponent>();
 
             this.Tags = new ObservableCollection<TagDto>();
             this.SelectedDrug = new DrugDto();

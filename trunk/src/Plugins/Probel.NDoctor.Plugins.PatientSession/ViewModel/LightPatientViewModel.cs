@@ -25,7 +25,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     public class LightPatientViewModel : LightPatientDto
     {
@@ -48,7 +48,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
                 InnerWindow.Close();
                 PluginContext.Host.NavigateToStartPage();
             });
-            this.component = ObjectFactory.GetInstance<IPatientSessionComponent>();
+            this.component = new ComponentFactory().GetInstance<IPatientSessionComponent>();
         }
 
         #endregion Constructors

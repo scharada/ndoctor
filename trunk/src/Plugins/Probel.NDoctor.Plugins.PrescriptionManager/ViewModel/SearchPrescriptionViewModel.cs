@@ -30,13 +30,13 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     public class SearchPrescriptionViewModel : BaseViewModel
     {
         #region Fields
 
-        private IPrescriptionComponent component = ObjectFactory.GetInstance<IPrescriptionComponent>();
+        private IPrescriptionComponent component = new ComponentFactory().GetInstance<IPrescriptionComponent>();
         private DateTime endCriteria = DateTime.Today;
         private DateTime startCriteria = DateTime.Today.AddDays(-30);
 
