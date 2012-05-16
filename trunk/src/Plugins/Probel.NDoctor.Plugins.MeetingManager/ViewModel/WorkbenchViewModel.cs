@@ -23,6 +23,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
     using Probel.Helpers.Conversions;
     using Probel.Helpers.WPF.Calendar.Model;
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MeetingManager.Helpers;
@@ -30,7 +31,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.NDoctor.Plugins.MeetingManager.View;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
-    using Probel.Mvvm.DataBinding;
 
     using StructureMap;
 

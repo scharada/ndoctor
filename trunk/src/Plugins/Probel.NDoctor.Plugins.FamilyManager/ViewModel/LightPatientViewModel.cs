@@ -172,12 +172,6 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             return this.SelectedRelation != null;
         }
 
-        private void OnRefreshed(State state)
-        {
-            if (this.Refreshed != null)
-                this.Refreshed(this, new EventArgs<State>(state));
-        }
-
         private void Delete()
         {
             var dr = MessageBox.Show(Messages.Msg_AskRemoveMember
@@ -192,6 +186,12 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
                 this.component.RemoveFamilyMember(member, this.SessionPatient);
             }
             this.OnRefreshed(State.Removed);
+        }
+
+        private void OnRefreshed(State state)
+        {
+            if (this.Refreshed != null)
+                this.Refreshed(this, new EventArgs<State>(state));
         }
 
         private void SetParent(FamilyDto family, LightPatientDto current)

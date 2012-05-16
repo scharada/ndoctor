@@ -96,13 +96,10 @@
     <Compile Include="ViewModel\AddProfessionViewModel.cs" />
     <Compile Include="ViewModel\AddReputationViewModel.cs" />
     <Compile Include="Translations\WorkbenchText.cs" />
-    <Compile Include="ViewModel\AddDoctorViewModel.cs" />
+    <Compile Include="ViewModel\BindDoctorViewModel.cs" />
     <Compile Include="ViewModel\AddSpecialisationViewModel.cs" />
     <Compile Include="ViewModel\LightDoctorViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
-    <Compile Include="View\AddDoctorView.xaml.cs">
-      <DependentUpon>AddDoctorView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\AddInsuranceView.xaml.cs">
       <DependentUpon>AddInsuranceView.xaml</DependentUpon>
     </Compile>
@@ -121,8 +118,8 @@
     <Compile Include="View\CreateDoctorView.xaml.cs">
       <DependentUpon>CreateDoctorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\DoctorView.xaml.cs">
-      <DependentUpon>DoctorView.xaml</DependentUpon>
+    <Compile Include="View\BindDoctorView.xaml.cs">
+      <DependentUpon>BindDoctorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Workbench.xaml.cs">
       <DependentUpon>Workbench.xaml</DependentUpon>
@@ -177,10 +174,6 @@
     <Resource Include="Images\Save.png" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="View\AddDoctorView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="View\AddInsuranceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -205,7 +198,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\DoctorView.xaml">
+    <Page Include="View\BindDoctorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

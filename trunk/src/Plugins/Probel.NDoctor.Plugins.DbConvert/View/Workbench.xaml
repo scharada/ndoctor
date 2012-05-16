@@ -20,10 +20,12 @@
             <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Row="0"
+        <Border Grid.Row="0"
                 Grid.Column="1"
-                Command="{Binding Path=ChooseOldDbCommand}"
+                Style="{StaticResource BorderStyle}">
+            <Button Command="{Binding Path=ChooseOldDbCommand}"
                 Content="{Binding Source={x:Static Member=text:WorkbenchText.ChooseDb}}"/>
+        </Border>
 
         <Label Grid.Row="0" 
                Grid.Column="0"
@@ -36,14 +38,18 @@
                        Text="{Binding Path=Logs}"/>
         </ScrollViewer>
 
-        <Button Grid.Row="2"
+        <Border Grid.Row="2"
                 Grid.Column="1"
-                Command="{Binding Path=ImportCommand}"
+                Style="{StaticResource BorderStyle}">
+            <Button Command="{Binding Path=ImportCommand}"
                 Content="{Binding Source={x:Static Member=text:WorkbenchText.Import}}"/>
+        </Border>
 
-        <ProgressBar Grid.Row="2" 
-                     Grid.Column="0"
-                     Value="{Binding Path=Progress}"/>
+        <Border Grid.Row="2" 
+                Grid.Column="0"
+                Style="{StaticResource BorderStyle}">
+            <ProgressBar Value="{Binding Path=Progress}"/>
+        </Border>
 
     </Grid>
 </UserControl>

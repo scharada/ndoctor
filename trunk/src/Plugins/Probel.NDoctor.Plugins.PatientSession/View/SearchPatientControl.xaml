@@ -36,12 +36,12 @@
     <DockPanel LastChildFill="True">
         <DockPanel DockPanel.Dock="Top"
                    LastChildFill="True">
-            <Border Style="{StaticResource InnerWindowButton}"
+            <Border Style="{StaticResource BorderStyle}"
                     DockPanel.Dock="Right">
                 <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnSearch}}" 
                         Command="{Binding SearchCommand}"/>
             </Border>
-            <Border Style="{StaticResource InnerWindowButton}">
+            <Border Style="{StaticResource BorderStyle}">
                 <toolkit:WatermarkTextBox Grid.Column="0" 
                                           Text="{Binding Path=Criterium, UpdateSourceTrigger=PropertyChanged}">
                     <toolkit:WatermarkTextBox.Watermark>

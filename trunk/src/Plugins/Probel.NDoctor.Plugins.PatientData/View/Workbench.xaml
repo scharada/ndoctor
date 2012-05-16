@@ -230,8 +230,16 @@
 
             </Grid>
 
-            <ctrl:AddDoctorView Grid.Column="1"
-                                Grid.Row="1"/>
+            <!--<ctrl:AddDoctorView Grid.Column="1"
+                                Grid.Row="1"/>-->
+            <TextBlock Grid.Column="1"
+                       Grid.Row="1"
+                       TextAlignment="Center"
+                       VerticalAlignment="Center">
+                <Hyperlink Command="{Binding Path=BindDoctorCommand}">
+                    <TextBlock Text="{Binding Source={x:Static Member=text:AddDoctorText.TitleBindDoctor}}"/>
+                </Hyperlink>
+            </TextBlock>
 
             <DataGrid Grid.Column="2"
                       Grid.Row="2"

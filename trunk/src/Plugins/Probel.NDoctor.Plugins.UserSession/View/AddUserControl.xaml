@@ -13,7 +13,7 @@
              mc:Ignorable="d">
 
     <StackPanel>
-        <Border Style="{StaticResource InnerWindowButton}">
+        <Border Style="{StaticResource BorderStyle}">
             <CheckBox HorizontalAlignment="Center" 
                   VerticalAlignment="Center"
                   Content="{Binding Source={x:Static Member=text:AddUserText.TitleDefaultUser}}"
@@ -48,13 +48,13 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0"
-                    Style="{StaticResource InnerWindowButton}">
+                    Style="{StaticResource BorderStyle}">
                 <Button Content="{Binding Source={x:Static Member=text:AddUserText.BtnAdd}}"
                         Command="{Binding AddCommand}"/>
             </Border>
 
             <Border Grid.Column="1"
-                    Style="{StaticResource InnerWindowButton}">
+                    Style="{StaticResource BorderStyle}">
                 <Button Content="{Binding Source={x:Static Member=t:BaseText.Cancel}}"
                         Command="iw:InnerWindow.CancelCommand" />
             </Border>

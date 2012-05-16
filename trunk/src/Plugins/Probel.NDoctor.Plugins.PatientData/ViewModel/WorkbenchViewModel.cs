@@ -37,6 +37,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
+    using Probel.NDoctor.View.Core.Helpers;
+    using Probel.NDoctor.Plugins.PatientData.View;
 
     public class WorkbenchViewModel : BaseViewModel
     {
@@ -64,6 +66,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             this.InitialiseCollections();
 
             this.ChangeImageCommand = new RelayCommand(() => this.ChangeImage(), () => this.CanChangePicture());
+            this.BindDoctorCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_BindDoctor, new BindDoctorView()), () => this.Patient != null);
         }
 
         #endregion Constructors
@@ -274,5 +277,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         }
 
         #endregion Methods
+
+
+        public ICommand BindDoctorCommand { get; private set; }
     }
 }

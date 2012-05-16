@@ -41,12 +41,12 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" Style="{StaticResource InnerWindowButton}">
+            <Border Grid.Column="0" Style="{StaticResource BorderStyle}">
                 <Button Content="{Binding Source={x:Static Member=t:BaseText.Add}}"
                         Command="{Binding Path=AddCommand}"/>
             </Border>
 
-            <Border Grid.Column="1" Style="{StaticResource InnerWindowButton}">
+            <Border Grid.Column="1" Style="{StaticResource BorderStyle}">
                 <Button Content="{Binding Source={x:Static Member=t:BaseText.Cancel}}"
                         Command="iw:InnerWindow.CancelCommand"/>
             </Border>

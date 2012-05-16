@@ -90,7 +90,7 @@ namespace Probel.NDoctor.Plugins.PatientData
         #endregion Properties
 
         #region Methods
-
+        public ICommand BindDoctorCommand { get; private set; }
         public override void Initialise()
         {
             this.component = ObjectFactory.GetInstance<IPatientDataComponent>();
@@ -104,7 +104,7 @@ namespace Probel.NDoctor.Plugins.PatientData
             this.saveCommand = new RelayCommand(() => this.ViewModel.Save());
             this.rollbackCommand = new RelayCommand(() => this.ViewModel.Rollback(), () => this.ViewModel.CanRollback);
 
-            this.addDoctorCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddDoctor, new DoctorView()));
+            this.addDoctorCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddDoctor, new CreateDoctorView()));
             this.addSpecialisationCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddSpecialisation, new AddSpecialisationView()));
             this.addInsuranceCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddInsurance, new AddInsuranceView()));
             this.addReputationCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddReputation, new AddReputationView()));
