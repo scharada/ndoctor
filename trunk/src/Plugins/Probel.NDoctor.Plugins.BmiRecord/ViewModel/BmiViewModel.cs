@@ -19,15 +19,13 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using System;
     using System.Windows;
     using System.Windows.Input;
-
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.BmiRecord.Helpers;
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
-
-    using StructureMap;
 
     public class BmiViewModel : BmiDto
     {
@@ -43,7 +41,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
         public BmiViewModel()
         {
             this.errorHandler = new ErrorHandler(this);
-            this.component = ObjectFactory.GetInstance<IBmiComponent>();
+            this.component = new ComponentFactory().GetInstance<IBmiComponent>();
             this.DeleteCommand = new RelayCommand(() => this.Delete());
         }
 

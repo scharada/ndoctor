@@ -37,8 +37,13 @@ namespace Probel.NDoctor.Domain.Components
         {
             ObjectFactory.Configure(x =>
             {
+                //Administration plugin
                 x.For<IAdministrationComponent>().Add<AdministrationComponent>();
                 x.SelectConstructor<IAdministrationComponent>(() => new AdministrationComponent());
+
+                //BmiRecord plugin
+                x.For<IBmiComponent>().Add<BmiComponent>();
+                x.SelectConstructor<BmiComponent>(() => new BmiComponent());
             });
         }
 

@@ -18,10 +18,10 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
 {
     using System;
     using System.Windows.Input;
-
     using Probel.Helpers.Assertion;
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.BmiRecord.Helpers;
@@ -29,8 +29,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-
-    using StructureMap;
 
     public class AddBmiViewModel : BaseViewModel
     {
@@ -45,7 +43,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
 
         public AddBmiViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IBmiComponent>();
+            if (!Designer.IsDesignMode) this.component = new ComponentFactory().GetInstance<IBmiComponent>();
 
             this.AddCommand = new RelayCommand(() => this.AddBmi(), () => this.CanAddBmi());
 
