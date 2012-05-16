@@ -127,10 +127,9 @@
     <Compile Include="Components\UserSessionComponent.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <None Include="_Design\Domain\MedicalRecords.cd" />
     <None Include="_Design\Domain\Prescriptions.cd" />
     <None Include="_Design\Domain\Family.cd" />
-    <None Include="_Design\Domain\MedicalRecords.cd" />
     <None Include="_Design\Domain\Patient.cd" />
     <None Include="_Design\Component\UserComponent.cd" />
     <None Include="packages.config" />
