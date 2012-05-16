@@ -44,13 +44,8 @@ namespace Probel.NDoctor.View.Plugins.Converters
         /// </returns>
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value == null) return Visibility.Collapsed;
-
-            Assert.OfType(typeof(string), value);
-
-            var str = (string)value;
-
-            if (str.IsNullOrEmpty()) return Visibility.Collapsed;
+            var str = value as string;
+            if (string.IsNullOrWhiteSpace(str)) return Visibility.Collapsed;
             else return Visibility.Visible;
         }
 

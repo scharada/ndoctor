@@ -84,6 +84,7 @@
     <Compile Include="Exceptions\WrongDataContextException.cs" />
     <Compile Include="Groups.cs" />
     <Compile Include="Helpers\BaseText.cs" />
+    <Compile Include="Helpers\SelectorHelper.cs" />
     <Compile Include="Helpers\TreeViewHelper.cs" />
     <Compile Include="Helpers\ErrorHandler.cs" />
     <Compile Include="Helpers\IErrorHandler.cs" />

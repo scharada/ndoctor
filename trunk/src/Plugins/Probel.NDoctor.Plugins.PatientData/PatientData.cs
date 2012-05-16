@@ -77,6 +77,11 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         #region Properties
 
+        public ICommand BindDoctorCommand
+        {
+            get; private set;
+        }
+
         private WorkbenchViewModel ViewModel
         {
             get
@@ -90,7 +95,7 @@ namespace Probel.NDoctor.Plugins.PatientData
         #endregion Properties
 
         #region Methods
-        public ICommand BindDoctorCommand { get; private set; }
+
         public override void Initialise()
         {
             this.component = ObjectFactory.GetInstance<IPatientDataComponent>();

@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -15,21 +17,26 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Probel.NDoctor.View.Plugins.Properties;
+#endregion Header
 
 namespace Probel.NDoctor.View.Plugins.Helpers
 {
+    using Probel.NDoctor.View.Plugins.Properties;
+
     public static class BaseText
     {
+        #region Properties
+
+        public static string Add
+        {
+            get { return Messages.Btn_Add; }
+        }
 
         public static string Cancel
         {
             get { return Messages.Btn_Cancel; }
         }
 
-        public static string Add
-        {
-            get { return Messages.Btn_Add; }
-        }
+        #endregion Properties
     }
 }

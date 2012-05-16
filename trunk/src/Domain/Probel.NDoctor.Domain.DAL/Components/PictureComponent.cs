@@ -90,6 +90,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
         /// <summary>
         /// Gets the pictures for the specified patient and with the specified tag.
+        /// If the specified tag is null, it'll select all the picture of the specified
+        /// patient
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <param name="tag">The criteria of the search. If null, it'll take all the picture for the specified patient</param>

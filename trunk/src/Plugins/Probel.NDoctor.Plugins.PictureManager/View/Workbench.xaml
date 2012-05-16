@@ -8,12 +8,15 @@
       xmlns:dto="clr-namespace:Probel.NDoctor.Domain.DTO.Objects;assembly=Probel.NDoctor.Domain.DTO"
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PictureManager.Translations"
       xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PictureManager.View"
+      xmlns:h="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
       
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
 	Title="Workbench">
     <Page.Resources>
         <conv:ByteArrayToImageConverter x:Key="bytesToImage"/>
+        <conv:NullToVisibilityConverter x:Key="nullToVisibility"/>
+        <conv:StringToVisibilityConverter x:Key="stringToVisibility"/>
 
         <!-- Main photo catalog view -->
         <Style TargetType="{x:Type ListBox}" x:Key="PhotoListBoxStyle">
@@ -69,31 +72,22 @@
             <ColumnDefinition Width="175"/>
         </Grid.ColumnDefinitions>
         <DockPanel Grid.Column="2">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="26"/>
-                    <RowDefinition Height="26"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="50"/>
-                </Grid.RowDefinitions>
+            <DockPanel>
 
-                <ComboBox Grid.Row="0"  
+                <ComboBox DockPanel.Dock="Top"
 					      DisplayMemberPath="Name"
 					      SelectedValuePath="Name"
                           SelectedItem="{Binding Path=FilterTag}"
-					      ItemsSource="{Binding Path=Tags, UpdateSourceTrigger=PropertyChanged}"/>
+					      ItemsSource="{Binding Path=FilterTags}"
+                          h:SelectorHelper.SelectionChanged="{Binding FilterPictureCommand}"/>
 
-                <Button Grid.Row="1" 
-                        Content="{Binding Source={x:Static Member=text:WorkbenchText.TitleSearch}}" 
-                        Command="{Binding FilterPictureCommand}" />
-
-                <ScrollViewer  Grid.Row="2" Grid.ColumnSpan="2">
+                <ScrollViewer  DockPanel.Dock="Bottom">
                     <ListBox Style="{StaticResource PhotoListBoxStyle}"
                              ItemsSource="{Binding Pictures}"
                              SelectedItem="{Binding SelectedPicture, Mode=OneWayToSource}"
                              IsSynchronizedWithCurrentItem="True"/>
                 </ScrollViewer>
-            </Grid>
+            </DockPanel>
         </DockPanel>
         <GridSplitter Width="8"/>
         <DockPanel>
@@ -121,12 +115,14 @@
                                   DisplayMemberPath="Name"
                                   SelectedValuePath="Name"
                                   SelectedItem="{Binding Path=SelectedTag}"
+                                  SelectedIndex="0"
                                   ItemsSource="{Binding Path=Tags, UpdateSourceTrigger=PropertyChanged}"/>
                     </DockPanel>
                 </Border>
 
             </StackPanel>
-            <Expander DockPanel.Dock="Bottom"
+            <Expander Visibility="{Binding SelectedPicture.Notes, Converter={StaticResource bytesToImage},UpdateSourceTrigger=PropertyChanged}"
+                      DockPanel.Dock="Bottom"
                       ExpandDirection="Up"
                       IsExpanded="{Binding Path=IsInformationExpanded}"
                       Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderInformation}}">
@@ -145,7 +141,7 @@
                     Background="White" 
                     BorderBrush="#22000000" 
                     BorderThickness="1">
-                    <Image Source="{Binding SelectedPicture.Bitmap, Converter={StaticResource bytesToImage},UpdateSourceTrigger=PropertyChanged}"
+                <Image Source="{Binding SelectedPicture.Bitmap, Converter={StaticResource bytesToImage},UpdateSourceTrigger=PropertyChanged}"
                            Stretch="Uniform"/>
             </Border>
         </DockPanel>

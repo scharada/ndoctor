@@ -33,12 +33,12 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PatientData.Helpers;
     using Probel.NDoctor.Plugins.PatientData.Properties;
+    using Probel.NDoctor.Plugins.PatientData.View;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
     using StructureMap;
-    using Probel.NDoctor.View.Core.Helpers;
-    using Probel.NDoctor.Plugins.PatientData.View;
 
     public class WorkbenchViewModel : BaseViewModel
     {
@@ -72,6 +72,11 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         #endregion Constructors
 
         #region Properties
+
+        public ICommand BindDoctorCommand
+        {
+            get; private set;
+        }
 
         public bool CanRollback
         {
@@ -277,8 +282,5 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         }
 
         #endregion Methods
-
-
-        public ICommand BindDoctorCommand { get; private set; }
     }
 }

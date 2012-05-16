@@ -130,8 +130,8 @@
     <comment>File</comment>
   </data>
   <data name="Msg_AllTags" xml:space="preserve">
-    <value>All the pictures</value>
-    <comment>All the pictures</comment>
+    <value>&lt;All the pictures&gt;</value>
+    <comment>&lt;All the pictures&gt;</comment>
   </data>
   <data name="Msg_ErOnSavePicture" xml:space="preserve">
     <value>An error occued while saving the picture</value>

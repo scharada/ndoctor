@@ -88,7 +88,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All the pictures.
+        ///   Looks up a localized string similar to &lt;All the pictures&gt;.
         /// </summary>
         internal static string Msg_AllTags {
             get {
