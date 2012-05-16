@@ -30,7 +30,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     public class BindDoctorViewModel : BaseViewModel
     {
@@ -46,7 +46,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         public BindDoctorViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IPatientDataComponent>();
+            if (!Designer.IsDesignMode) this.component = new ComponentFactory().GetInstance<IPatientDataComponent>();
 
             this.FoundDoctors = new ObservableCollection<LightDoctorViewModel>();
             this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());

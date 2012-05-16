@@ -23,7 +23,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.Helpers.Conversions;
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.DAL.Exceptions;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PathologyManager.Helpers;
@@ -31,7 +31,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     public class AddPathologyViewModel : BaseViewModel
     {
@@ -47,7 +47,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
         public AddPathologyViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IPathologyComponent>();
+            if (!Designer.IsDesignMode) this.component = new ComponentFactory().GetInstance<IPathologyComponent>();
             this.Tags = new ObservableCollection<TagDto>();
             this.Pathology = new PathologyDto();
 

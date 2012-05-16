@@ -19,7 +19,7 @@ namespace Probel.NDoctor.Domain.Test.Component
     using NUnit.Framework;
 
     using Probel.NDoctor.Domain.DAL.Components;
-    using Probel.NDoctor.Domain.DAL.Exceptions;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.Test.Helpers;
 

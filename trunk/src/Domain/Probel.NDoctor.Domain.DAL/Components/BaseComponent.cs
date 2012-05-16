@@ -31,7 +31,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.Helpers.Management;
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Entities;
-    using Probel.NDoctor.Domain.DAL.Exceptions;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;

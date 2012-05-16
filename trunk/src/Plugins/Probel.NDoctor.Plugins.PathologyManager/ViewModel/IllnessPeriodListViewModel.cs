@@ -31,13 +31,13 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     public class IllnessPeriodListViewModel : BaseViewModel
     {
         #region Fields
 
-        private IFamilyComponent component = ObjectFactory.GetInstance<IFamilyComponent>();
+        private IFamilyComponent component = new ComponentFactory().GetInstance<IFamilyComponent>();
         private string criteria;
         private IllnessPeriodToAddViewModel selectedPathology;
 

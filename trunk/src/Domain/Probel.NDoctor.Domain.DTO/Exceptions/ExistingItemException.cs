@@ -14,37 +14,37 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Domain.DAL.Exceptions
+namespace Probel.NDoctor.Domain.DTO.Exceptions
 {
     using System;
     using System.Runtime.Serialization;
 
-    using Probel.NDoctor.Domain.DAL.Properties;
+    using Probel.NDoctor.Domain.DTO.Properties;
 
     /// <summary>
-    /// The exception that is thrown when the session used to query the database when session is closed
+    /// The exception that is thrown when 
     /// </summary>
     [Serializable]
-    public class DalSessionException : ApplicationException
+    public class ExistingItemException : ApplicationException
     {
         #region Constructors
 
-        public DalSessionException()
-            : this(Messages.Ex_SessionException)
+        public ExistingItemException()
+            : this(Messages.Ex_ExistingItemException)
         {
         }
 
-        public DalSessionException(string message)
+        public ExistingItemException(string message)
             : base(message)
         {
         }
 
-        public DalSessionException(string message, Exception inner)
+        public ExistingItemException(string message, Exception inner)
             : base(message, inner)
         {
         }
 
-        protected DalSessionException(SerializationInfo info, StreamingContext context)
+        protected ExistingItemException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }

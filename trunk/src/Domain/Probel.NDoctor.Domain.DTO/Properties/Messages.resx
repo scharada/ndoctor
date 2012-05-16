@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DalSessionException_UnknownId1" xml:space="preserve">
+    <value>The ID type is '{0}' while expecting '{1}'</value>
+    <comment>Le type de l'ID est '{0}' alors qu'il devrait être '{1}'</comment>
+  </data>
   <data name="Error_BeginBiggerThanEnd" xml:space="preserve">
     <value>The start time should be smaller than the end time</value>
     <comment>The start time should be smaller than the end time</comment>
@@ -136,6 +140,64 @@
   <data name="Error_WrongTextForDate" xml:space="preserve">
     <value>Impossible to convert "{0}" into time</value>
     <comment>Impossible to convert "{0}" into time</comment>
+  </data>
+  <data name="Ex_BusinessLogicException" xml:space="preserve">
+    <value>Impossible to execute this action. This is a unexpected state that wasn't forseen or it will break business logic rules.</value>
+    <comment>Impossible to execute this action. This is a unexpected state that wasn't forseen or it will break business logic rules.</comment>
+  </data>
+  <data name="Ex_ClosedSessionException" xml:space="preserve">
+    <value>The session you're using to query the database is closed.</value>
+    <comment>The session you're using to query the database is closed.</comment>
+  </data>
+  <data name="Ex_DalConfigurationException" xml:space="preserve">
+    <value>An error occured during the configuration of the database</value>
+  </data>
+  <data name="Ex_DalSessionException_UnknownId" xml:space="preserve">
+    <value>The ID type is '{0}' while expecting '{1}'</value>
+    <comment>Le type de l'ID attendu est '{0}' alors qu'il est '{1}'</comment>
+  </data>
+  <data name="Ex_EmptyPasswordException" xml:space="preserve">
+    <value>Empty password are not accepted</value>
+    <comment>Empty password are not accepted</comment>
+  </data>
+  <data name="Ex_EntityAlreadyExistsException" xml:space="preserve">
+    <value>This entity already exist in the database</value>
+    <comment>This entity already exist in the database</comment>
+  </data>
+  <data name="Ex_EntityNotFoundException" xml:space="preserve">
+    <value>The searched item of type '{0}' doesn't exist in the database</value>
+    <comment>The searched item of type '{0}' doesn't exist in the database</comment>
+  </data>
+  <data name="Ex_EntityNotFoundException_NoPatient" xml:space="preserve">
+    <value>No patient with id '{0}' was found.</value>
+    <comment>No patient with id '{0}' was found.</comment>
+  </data>
+  <data name="Ex_EntityNotFoundException_NoRelationRightSide" xml:space="preserve">
+    <value>The patient of right side of the relation doesn't exist in the database</value>
+    <comment>The patient of right side of the relation doesn't exist in the database</comment>
+  </data>
+  <data name="Ex_ExistingItemException" xml:space="preserve">
+    <value>The item you want to create already exist in the database.</value>
+    <comment>The item you want to create already exist in the database.</comment>
+  </data>
+  <data name="Ex_NotLoadedEntityException" xml:space="preserve">
+    <value>The entity you are using is detached  from the database.</value>
+    <comment>The entity you are using is detached  from the database.</comment>
+  </data>
+  <data name="Ex_NullSessionFactoryException" xml:space="preserve">
+    <value>The nHibernate session factory is not configured.</value>
+    <comment>The nHibernate session factory is not configured.</comment>
+  </data>
+  <data name="Ex_QueryException" xml:space="preserve">
+    <value>An error occured during the execution of a query. {0}</value>
+  </data>
+  <data name="Ex_QueryException_SeveralDefaultUsers" xml:space="preserve">
+    <value>More than one default user was found.</value>
+    <comment>More than one default user was found.</comment>
+  </data>
+  <data name="Ex_SessionException" xml:space="preserve">
+    <value>An error occured in the session</value>
+    <comment>An error occured in the session</comment>
   </data>
   <data name="Gender_Female" xml:space="preserve">
     <value>Female</value>

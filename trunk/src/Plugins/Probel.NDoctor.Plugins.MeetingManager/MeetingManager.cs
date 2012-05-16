@@ -38,7 +38,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     [Export(typeof(IPlugin))]
     public class MeetingManager : Plugin
@@ -61,7 +61,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
 
-            this.ConfigureStructureMap();
             this.ConfigureAutoMapper();
         }
 
@@ -161,15 +160,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager
             Mapper.CreateMap<DateRangeViewModel, DateRange>();
 
             Mapper.CreateMap<AppointmentDto, Appointment>();
-        }
-
-        private void ConfigureStructureMap()
-        {
-            ObjectFactory.Configure(x =>
-            {
-                x.For<ICalendarComponent>().Add<CalendarComponent>();
-                x.SelectConstructor<CalendarComponent>(() => new CalendarComponent());
-            });
         }
 
         private void Navigate()

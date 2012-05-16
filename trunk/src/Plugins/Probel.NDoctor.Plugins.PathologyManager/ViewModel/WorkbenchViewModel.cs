@@ -30,7 +30,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -40,7 +40,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
         #region Fields
 
         private Chart<string, double> chart;
-        private IPathologyComponent component = ObjectFactory.GetInstance<IPathologyComponent>();
+        private IPathologyComponent component = new ComponentFactory().GetInstance<IPathologyComponent>();
         private IllnessPeriodViewModel selectedIllnessPeriod;
 
         #endregion Fields

@@ -27,7 +27,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     public class AddSpecialisationViewModel : BaseViewModel
     {
@@ -42,7 +42,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         public AddSpecialisationViewModel()
         {
-            this.component = ObjectFactory.GetInstance<IPatientDataComponent>();
+            this.component = new ComponentFactory().GetInstance<IPatientDataComponent>();
             this.Tag = new TagDto(TagCategory.Doctor);
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
         }

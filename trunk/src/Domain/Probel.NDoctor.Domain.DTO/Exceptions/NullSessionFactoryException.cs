@@ -14,37 +14,37 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Domain.DAL.Exceptions
+namespace Probel.NDoctor.Domain.DTO.Exceptions
 {
     using System;
     using System.Runtime.Serialization;
 
-    using Probel.NDoctor.Domain.DAL.Properties;
+    using Probel.NDoctor.Domain.DTO.Properties;
 
     /// <summary>
-    /// The exception that is thrown when 
+    /// The exception that is thrown when the session factory is null
     /// </summary>
     [Serializable]
-    public class ExistingItemException : ApplicationException
+    public class NullSessionFactoryException : ApplicationException
     {
         #region Constructors
 
-        public ExistingItemException()
-            : this(Messages.Ex_ExistingItemException)
+        public NullSessionFactoryException()
+            : this(Messages.Ex_NullSessionFactoryException)
         {
         }
 
-        public ExistingItemException(string message)
+        public NullSessionFactoryException(string message)
             : base(message)
         {
         }
 
-        public ExistingItemException(string message, Exception inner)
+        public NullSessionFactoryException(string message, Exception inner)
             : base(message, inner)
         {
         }
 
-        protected ExistingItemException(SerializationInfo info, StreamingContext context)
+        protected NullSessionFactoryException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }

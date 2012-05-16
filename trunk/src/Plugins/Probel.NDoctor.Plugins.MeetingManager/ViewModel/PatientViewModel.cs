@@ -33,13 +33,13 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     public class PatientViewModel : BaseViewModel
     {
         #region Fields
 
-        private ICalendarComponent component = ObjectFactory.GetInstance<ICalendarComponent>();
+        private ICalendarComponent component = new ComponentFactory().GetInstance<ICalendarComponent>();
         private DateTime fromDate;
         private bool isSelected;
         private LightPatientDto patient;

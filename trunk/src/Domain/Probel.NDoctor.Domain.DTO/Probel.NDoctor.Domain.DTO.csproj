@@ -51,6 +51,15 @@
     <Compile Include="Components\ISqlComponent.cs" />
     <Compile Include="Components\IImportComponent.cs" />
     <Compile Include="Components\IPrescriptionComponent.cs" />
+    <Compile Include="Exceptions\BusinessLogicException.cs" />
+    <Compile Include="Exceptions\DalSessionException.cs" />
+    <Compile Include="Exceptions\DetachedEntityException.cs" />
+    <Compile Include="Exceptions\EmptyPasswordException.cs" />
+    <Compile Include="Exceptions\EntityNotFoundException.cs" />
+    <Compile Include="Exceptions\ExistingItemException.cs" />
+    <Compile Include="Exceptions\NullSessionFactoryException.cs" />
+    <Compile Include="Exceptions\QueryException.cs" />
+    <Compile Include="Exceptions\WrongIdTypeException.cs" />
     <Compile Include="Helpers\ConvertSlotDurationAndTimeSpan.cs" />
     <Compile Include="Helpers\SlotDuration.cs" />
     <Compile Include="Helpers\TimeSlotCollection.cs" />

@@ -117,14 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Ex_DalConfigurationException" xml:space="preserve">
-    <value>Une erreur est apparue lors de la création de la base de données</value>
-    <comment>An error occured during the configuration of the database</comment>
-  </data>
-  <data name="Ex_QueryException" xml:space="preserve">
-    <value>Une erreur est apparue pendant l'exécution d'une requête. {0}</value>
-    <comment>An error occured during the execution of a query. {0}</comment>
-  </data>
   <data name="Msg_ErrorDbCreationImpossible" xml:space="preserve">
     <value>Impossible de créér la base de données.</value>
     <comment>Impossible to create the database</comment>
@@ -149,33 +141,9 @@
     <value>Le mot de passe ne peut pas être une chaîne vide.</value>
     <comment>The password can't be empty</comment>
   </data>
-  <data name="Ex_ClosedSessionException" xml:space="preserve">
-    <value>La session que vous utilisez pour interroger la base de données est fermée.</value>
-    <comment>The session you're using to query the database is closed.</comment>
-  </data>
-  <data name="Ex_NullSessionFactoryException" xml:space="preserve">
-    <value>La factory de session nHibernate n'est pas configurée.</value>
-    <comment>The nHibernate session factory is not configured.</comment>
-  </data>
-  <data name="Ex_ExistingItemException" xml:space="preserve">
-    <value>L'élément que vous voulez enregistrer dans la base de données existe déjà.</value>
-    <comment>The item you want to create already exist in the database.</comment>
-  </data>
-  <data name="Ex_EntityNotFoundException" xml:space="preserve">
-    <value>L'élément de type '{0}' que vous cherchez n'existe pas dans la base de données.</value>
-    <comment>The searched item of type '{0}' doesn't exist in the database</comment>
-  </data>
-  <data name="Ex_NotLoadedEntityException" xml:space="preserve">
-    <value>L'entité que vous êtes en train d'utiliser est détachée de la base de données.</value>
-    <comment>The entity you are using detached  from the database.</comment>
-  </data>
   <data name="Msg_ErrorSessionAlreadyOpenException" xml:space="preserve">
     <value>Une session a déjà été ouverte. Veuillez fermer celle-ci avant d'en ouvrir une nouvelle.</value>
     <comment>A session is already opened. Please, close the opened session before opening a new one.</comment>
-  </data>
-  <data name="Ex_SessionException" xml:space="preserve">
-    <value>An error occured in the session</value>
-    <comment>An error occured in the session</comment>
   </data>
   <data name="Msg_ErrorSessionNotOpen" xml:space="preserve">
     <value>La session n'est pas ouverte. Veuillez ouvrir une session avant d'interroger la base de données.</value>
@@ -188,29 +156,5 @@
   <data name="Ex_QueryException_SeveralDefaultUsers" xml:space="preserve">
     <value>Plus d'un utilisateur par défaut a été trouvé.</value>
     <comment>More than one default user was found. </comment>
-  </data>
-  <data name="Ex_EntityNotFoundException_NoPatient" xml:space="preserve">
-    <value>Aucun patient avec l'identifiant '{0}' n'a été trouvé.</value>
-    <comment>No patient with id '{0}' was found.</comment>
-  </data>
-  <data name="Ex_BusinessLogicException" xml:space="preserve">
-    <value>Impossible d'exécuter cette action. Ceci est un cas de figure qui va  l'encontre de la logique métier ou n'est pas un cas prévus.</value>
-    <comment>Impossible to execute this action. This is a unexpected state that wasn't forseen or it will break business logic rules.</comment>
-  </data>
-  <data name="Ex_EntityNotFoundException_NoRelationRightSide" xml:space="preserve">
-    <value>Le patient qui représente la partie droite de la relation n'existe pas dans la base de données.</value>
-    <comment>The patient of right side of the relation doesn't exist in the database</comment>
-  </data>
-  <data name="Ex_EmptyPasswordException" xml:space="preserve">
-    <value>Les mots de passe vide ne sont pas accepté</value>
-    <comment>Empty password are not accepted</comment>
-  </data>
-  <data name="Ex_EntityAlreadyExistsException" xml:space="preserve">
-    <value>Cette entité existe déjà dans la base de données</value>
-    <comment>This entity already exist in the database</comment>
-  </data>
-  <data name="Ex_DalSessionException_UnknownId" xml:space="preserve">
-    <value>The ID type is '{0}' while expecting '{1}'</value>
-    <comment>Le type de l'ID est '{0}' alors qu'il devrait être '{1}'</comment>
   </data>
 </root>

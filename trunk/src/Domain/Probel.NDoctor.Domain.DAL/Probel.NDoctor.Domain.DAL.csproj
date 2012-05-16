@@ -79,9 +79,6 @@
     <Compile Include="Entities\Pathology.cs" />
     <Compile Include="Entities\Prescription.cs" />
     <Compile Include="Entities\PrescriptionDocument.cs" />
-    <Compile Include="Exceptions\BusinessLogicException.cs" />
-    <Compile Include="Exceptions\EmptyPasswordException.cs" />
-    <Compile Include="Exceptions\WrongIdTypeException.cs" />
     <Compile Include="Helpers\EntityEqualityComparer.cs" />
     <Compile Include="Mappings\Mapping.cs" />
     <Compile Include="Components\BaseComponent.cs" />
@@ -100,10 +97,8 @@
     <Compile Include="Entities\Profession.cs" />
     <Compile Include="Entities\Reputation.cs" />
     <Compile Include="Entities\Tag.cs" />
-    <Compile Include="Exceptions\QueryException.cs" />
     <Compile Include="Helpers\MedicalRecordCabinetHelper.cs" />
     <Compile Include="Helpers\TestTools.cs" />
-    <Compile Include="Exceptions\DalSessionException.cs" />
     <Compile Include="Cfg\CustomAutomappingConfiguration.cs" />
     <Compile Include="Cfg\DAL.cs" />
     <Compile Include="Entities\Address.cs" />
@@ -113,10 +108,6 @@
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Task.cs" />
     <Compile Include="Entities\User.cs" />
-    <Compile Include="Exceptions\ExistingItemException.cs" />
-    <Compile Include="Exceptions\EntityNotFoundException.cs" />
-    <Compile Include="Exceptions\DetachedEntityException.cs" />
-    <Compile Include="Exceptions\NullSessionFactoryException.cs" />
     <Compile Include="Mappings\MedicalRecordMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Messages.Designer.cs">

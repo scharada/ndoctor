@@ -14,38 +14,37 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Domain.DAL.Exceptions
+namespace Probel.NDoctor.Domain.DTO.Exceptions
 {
     using System;
     using System.Runtime.Serialization;
 
-    using Probel.Helpers.Strings;
-    using Probel.NDoctor.Domain.DAL.Properties;
+    using Probel.NDoctor.Domain.DTO.Properties;
 
     /// <summary>
-    /// The exception that is thrown when the searched item doesn't exist in the database
+    /// The exception that is thrown when 
     /// </summary>
     [Serializable]
-    public class EntityNotFoundException : ApplicationException
+    public class DetachedEntityException : ApplicationException
     {
         #region Constructors
 
-        public EntityNotFoundException(Type searchedType)
-            : this(Messages.Ex_EntityNotFoundException.FormatWith(searchedType.Name))
+        public DetachedEntityException()
+            : this(Messages.Ex_NotLoadedEntityException)
         {
         }
 
-        public EntityNotFoundException(string message)
+        public DetachedEntityException(string message)
             : base(message)
         {
         }
 
-        public EntityNotFoundException(string message, Exception inner)
+        public DetachedEntityException(string message, Exception inner)
             : base(message, inner)
         {
         }
 
-        protected EntityNotFoundException(SerializationInfo info, StreamingContext context)
+        protected DetachedEntityException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }

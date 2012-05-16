@@ -27,7 +27,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
     using NHibernate.Tool.hbm2ddl;
 
     using Probel.NDoctor.Domain.DAL.Entities;
-    using Probel.NDoctor.Domain.DAL.Exceptions;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DAL.Mappings;
     using Probel.NDoctor.Domain.DAL.Properties;
 

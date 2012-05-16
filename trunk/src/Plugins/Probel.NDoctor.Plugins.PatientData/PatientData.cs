@@ -37,7 +37,7 @@ namespace Probel.NDoctor.Plugins.PatientData
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     [Export(typeof(IPlugin))]
     public class PatientData : Plugin
@@ -69,7 +69,6 @@ namespace Probel.NDoctor.Plugins.PatientData
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
 
-            this.ConfigureStructureMap();
             this.ConfigureAutoMapper();
         }
 
@@ -98,7 +97,7 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         public override void Initialise()
         {
-            this.component = ObjectFactory.GetInstance<IPatientDataComponent>();
+            this.component = new ComponentFactory().GetInstance<IPatientDataComponent>();
             this.BuildButtons();
             this.BuildContextMenu();
         }
@@ -159,15 +158,6 @@ namespace Probel.NDoctor.Plugins.PatientData
         {
             Mapper.CreateMap<LightDoctorDto, LightDoctorViewModel>();
             Mapper.CreateMap<LightDoctorViewModel, LightDoctorDto>();
-        }
-
-        private void ConfigureStructureMap()
-        {
-            ObjectFactory.Configure(x =>
-            {
-                x.For<IPatientDataComponent>().Add<PatientDataComponent>();
-                x.SelectConstructor<PatientDataComponent>(() => new PatientDataComponent());
-            });
         }
 
         private void Navigate()

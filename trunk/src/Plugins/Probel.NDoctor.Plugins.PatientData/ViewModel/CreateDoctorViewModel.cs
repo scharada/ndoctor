@@ -24,7 +24,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.Helpers.Conversions;
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.DAL.Exceptions;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -33,7 +33,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     public class CreateDoctorViewModel : BaseViewModel
     {
@@ -51,7 +51,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         {
             this.InitialiseCollections();
 
-            if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IPatientDataComponent>();
+            if (!Designer.IsDesignMode) this.component = new ComponentFactory().GetInstance<IPatientDataComponent>();
 
             this.Doctor = new DoctorDto();
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());

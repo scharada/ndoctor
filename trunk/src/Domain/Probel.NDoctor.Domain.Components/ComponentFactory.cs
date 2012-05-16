@@ -60,6 +60,18 @@ namespace Probel.NDoctor.Domain.Components
                 x.For<IMedicalRecordComponent>().Add<MedicalRecordComponent>();
                 x.SelectConstructor<MedicalRecordComponent>(() => new MedicalRecordComponent());
 
+                //Meeting manager plugin
+                x.For<ICalendarComponent>().Add<CalendarComponent>();
+                x.SelectConstructor<CalendarComponent>(() => new CalendarComponent());
+
+                //Pathology plugin
+                x.For<IPathologyComponent>().Add<PathologyComponent>();
+                x.SelectConstructor<PathologyComponent>(() => new PathologyComponent());
+
+                //Patient data plugin
+                x.For<IPatientDataComponent>().Add<PatientDataComponent>();
+                x.SelectConstructor<PatientDataComponent>(() => new PatientDataComponent());
+
             });
         }
 
