@@ -1,0 +1,4 @@
+= Technical Documentation =
+
+== Castle Dynamic Proxy ==
+[http://kozmic.pl/dynamic-proxy-tutorial/ Krzysztof Koźmic tutorial ]
