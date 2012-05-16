@@ -12,6 +12,10 @@ The plugin repository is a directory _Plugins_ in the application root. Each plu
 
 The config file is a XML file that contains the configuration of the plugin
 
+== Dynamic proxy ==
+
+To be written...
+
 == Class diagrams ==
 https://lh5.googleusercontent.com/-JCz7TurlDzg/Tl_5F6r-UUI/AAAAAAAAAE8/9C3TlkbMniU/Plugins%252520design.jpg
 == Sequence diagrams ==
