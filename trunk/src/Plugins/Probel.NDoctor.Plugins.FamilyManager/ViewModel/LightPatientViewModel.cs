@@ -32,14 +32,15 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     using Probel.NDoctor.Plugins.FamilyManager.Properties;
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.Domain.Components;
 
-    using StructureMap;
+
 
     public class LightPatientViewModel : LightPatientDto
     {
         #region Fields
 
-        private IFamilyComponent component = ObjectFactory.GetInstance<IFamilyComponent>();
+        private IFamilyComponent component = new ComponentFactory().GetInstance<IFamilyComponent>();
         private bool isSelected = false;
         private Tuple<FamilyRelations, string> selectedRelation;
         private LightPatientDto sessionPatient;

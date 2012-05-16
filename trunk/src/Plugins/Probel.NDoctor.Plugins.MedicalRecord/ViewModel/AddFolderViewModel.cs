@@ -28,13 +28,13 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     public class AddFolderViewModel : BaseViewModel
     {
         #region Fields
 
-        private IMedicalRecordComponent component = ObjectFactory.GetInstance<IMedicalRecordComponent>();
+        private IMedicalRecordComponent component = new ComponentFactory().GetInstance<IMedicalRecordComponent>();
         private TagDto tagToAdd;
 
         #endregion Fields

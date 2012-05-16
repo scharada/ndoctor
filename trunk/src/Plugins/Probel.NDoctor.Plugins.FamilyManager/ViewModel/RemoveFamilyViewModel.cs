@@ -28,14 +28,15 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     using Probel.NDoctor.Plugins.FamilyManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.Domain.Components;
 
-    using StructureMap;
+
 
     public class RemoveFamilyViewModel : BaseViewModel
     {
         #region Fields
 
-        private IFamilyComponent component = ObjectFactory.GetInstance<IFamilyComponent>();
+        private IFamilyComponent component = new ComponentFactory().GetInstance<IFamilyComponent>();
         private LightPatientViewModel selectedPatient;
 
         #endregion Fields

@@ -72,6 +72,7 @@
     <Compile Include="Components\CalendarComponent.cs" />
     <Compile Include="Components\PathologyComponent.cs" />
     <Compile Include="Components\PrescriptionComponent.cs" />
+    <Compile Include="Components\SqlComponent.cs" />
     <Compile Include="Entities\Drug.cs" />
     <Compile Include="Entities\IllnessPeriod.cs" />
     <Compile Include="Entities\Appointment.cs" />
@@ -86,7 +87,6 @@
     <Compile Include="Components\BaseComponent.cs" />
     <Compile Include="Components\BmiComponent.cs" />
     <Compile Include="Components\PictureComponent.cs" />
-    <Compile Include="Components\SQLComponent.cs" />
     <Compile Include="Components\MedicalRecordComponent.cs" />
     <Compile Include="Components\PatientDataComponent.cs" />
     <Compile Include="Components\PatientSessionComponent.cs" />

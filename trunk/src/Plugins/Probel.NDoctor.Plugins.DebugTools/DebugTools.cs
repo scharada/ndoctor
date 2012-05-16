@@ -21,8 +21,7 @@ namespace Probel.NDoctor.Plugins.DebugTools
     using System.IO;
     using System.Reflection;
     using System.Text;
-
-    using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -32,7 +31,7 @@ namespace Probel.NDoctor.Plugins.DebugTools
     {
         #region Fields
 
-        private SQLComponent component = new SQLComponent();
+        private ISqlComponent component = new ComponentFactory().GetInstance<ISqlComponent>();
 
         #endregion Fields
 
@@ -72,7 +71,7 @@ namespace Probel.NDoctor.Plugins.DebugTools
 
             if (isDataBaseEmpty)
             {
-                this.Logger.Debug("Create default values into the database");
+                this.Logger.Warn("Create default values into the database");
                 var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Probel.NDoctor.Plugins.DebugTools.InsertUsers.sql");
                 if (stream == null) throw new NullReferenceException("The embedded script to create the database can't be loaded or doesn't exist.");
 

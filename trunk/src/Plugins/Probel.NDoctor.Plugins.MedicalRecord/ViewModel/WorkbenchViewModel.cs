@@ -34,14 +34,14 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     public class WorkbenchViewModel : BaseViewModel
     {
         #region Fields
 
         private TitledMedicalRecordCabinetDto cabinet;
-        private IMedicalRecordComponent component = ObjectFactory.GetInstance<IMedicalRecordComponent>();
+        private IMedicalRecordComponent component = new ComponentFactory().GetInstance<IMedicalRecordComponent>();
         private TitledMedicalRecordDto selectedRecord;
         private IList<TagDto> tags = new List<TagDto>();
 

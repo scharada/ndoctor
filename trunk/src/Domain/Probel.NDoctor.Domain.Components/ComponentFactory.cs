@@ -44,6 +44,22 @@ namespace Probel.NDoctor.Domain.Components
                 //BmiRecord plugin
                 x.For<IBmiComponent>().Add<BmiComponent>();
                 x.SelectConstructor<BmiComponent>(() => new BmiComponent());
+
+                //DbConvert plugin
+                x.For<IImportComponent>().Add<ImportComponent>();
+                x.SelectConstructor<ImportComponent>(() => new ImportComponent());
+
+                //Debug plugin
+                x.For<ISqlComponent>().Add<SqlComponent>();
+
+                //Family manager plugin
+                x.For<IFamilyComponent>().Add<FamilyComponent>();
+                x.SelectConstructor<FamilyComponent>(() => new FamilyComponent());
+
+                //Medical record plugin
+                x.For<IMedicalRecordComponent>().Add<MedicalRecordComponent>();
+                x.SelectConstructor<MedicalRecordComponent>(() => new MedicalRecordComponent());
+
             });
         }
 

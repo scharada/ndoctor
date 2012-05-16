@@ -31,7 +31,6 @@ namespace Probel.NDoctor.Plugins.DbConvert
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
 
-    using StructureMap;
 
     [Export(typeof(IPlugin))]
     public class DbConvert : Plugin
@@ -50,7 +49,6 @@ namespace Probel.NDoctor.Plugins.DbConvert
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
 
-            this.ConfigureStructureMap();
             this.ConfigureAutoMapper();
         }
 
@@ -95,15 +93,6 @@ namespace Probel.NDoctor.Plugins.DbConvert
         private void ConfigureAutoMapper()
         {
             /*Nothing to do*/
-        }
-
-        private void ConfigureStructureMap()
-        {
-            ObjectFactory.Configure(x =>
-            {
-                x.For<IImportComponent>().Add<ImportComponent>();
-                x.SelectConstructor<ImportComponent>(() => new ImportComponent());
-            });
         }
 
         private void Navigate()

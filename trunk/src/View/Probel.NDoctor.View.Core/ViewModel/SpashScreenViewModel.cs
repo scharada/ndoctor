@@ -209,8 +209,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
             if (!File.Exists(path) && !this.CreateDatabase) { this.Logger.Warn("It seems to be the first start of the application. An empty database is created."); }
 
             this.Logger.DebugFormat("Database path: {0}", path);
-            var msg = this.CreateDatabase ? "Create a new database" : "Do NOT Create a new database";
-            this.Logger.Debug(msg);
             this.LogDatabaseCreation();
             new DAL().ConfigureUsingFile(path, this.CreateDatabase);
         }

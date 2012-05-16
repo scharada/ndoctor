@@ -48,6 +48,7 @@
     <Compile Include="Collections\TagCategoryCollection.cs" />
     <Compile Include="Components\IAdministrationComponent.cs" />
     <Compile Include="Components\ICalendarComponent.cs" />
+    <Compile Include="Components\ISqlComponent.cs" />
     <Compile Include="Components\IImportComponent.cs" />
     <Compile Include="Components\IPrescriptionComponent.cs" />
     <Compile Include="Helpers\ConvertSlotDurationAndTimeSpan.cs" />
@@ -63,7 +64,6 @@
     <Compile Include="Objects\DrugDto.cs" />
     <Compile Include="Objects\FamilyDto.cs" />
     <Compile Include="Components\IMedicalRecordComponent.cs" />
-    <Compile Include="Components\IDebugComponent.cs" />
     <Compile Include="Components\IBmiComponent.cs" />
     <Compile Include="Components\IBaseComponent.cs" />
     <Compile Include="Components\IPatientDataComponent.cs" />

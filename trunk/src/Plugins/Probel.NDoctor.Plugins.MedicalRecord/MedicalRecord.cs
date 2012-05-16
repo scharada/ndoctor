@@ -43,7 +43,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     [Export(typeof(IPlugin))]
     public class MedicalRecord : Plugin
@@ -57,7 +57,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         private RibbonToggleButtonData boldButton;
         private RibbonButtonData bulletsButton;
         private RibbonToggleButtonData centerAllignButton;
-        private MedicalRecordComponent component = new MedicalRecordComponent();
         private RibbonContextualTabGroupData contextualMenu;
         private RibbonComboBoxData fontsComboBox;
         private RibbonComboBoxData fontsSizeComboBox;
@@ -83,8 +82,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
             this.InitialiseFontButtons();
             this.InitialiseParagraphButtons();
-
-            this.ConfigureStructureMap();
             this.ConfigureAutoMapper();
         }
 
@@ -247,15 +244,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             splitButton.ControlDataCollection.Add(addRecordButton);
             splitButton.ControlDataCollection.Add(addFolderButton);
             return splitButton;
-        }
-
-        private void ConfigureStructureMap()
-        {
-            ObjectFactory.Configure(x =>
-            {
-                x.For<IMedicalRecordComponent>().Add<MedicalRecordComponent>();
-                x.SelectConstructor<MedicalRecordComponent>(() => new MedicalRecordComponent());
-            });
         }
 
         private void InitialiseFontButtons()

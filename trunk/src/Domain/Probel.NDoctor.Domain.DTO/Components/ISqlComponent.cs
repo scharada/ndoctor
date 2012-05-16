@@ -16,11 +16,30 @@
 */
 namespace Probel.NDoctor.Domain.DTO.Components
 {
-    public interface IDebugComponent
+    public interface ISqlComponent : IBaseComponent
     {
         #region Methods
 
-        void ExecuteSql(string sql);
+        /// <summary>
+        /// Executes a SQL query that resurns only one result
+        /// </summary>
+        /// <param name="sql">The SQL.</param>
+        /// <returns></returns>
+         object ExecuteNonQuery(string sql);
+
+        /// <summary>
+        /// Executes the specified SQL.
+        /// </summary>
+        /// <param name="sql">The SQL.</param>
+         void ExecuteSql(string sql);
+
+        /// <summary>
+        /// Determines whether the database is empty.
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if the database is empty; otherwise, <c>false</c>.
+        /// </returns>
+         bool IsDatabaseEmpty();
 
         #endregion Methods
     }

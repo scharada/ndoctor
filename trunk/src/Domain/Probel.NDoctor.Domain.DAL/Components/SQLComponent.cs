@@ -20,7 +20,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
     using Probel.NDoctor.Domain.DTO.Components;
 
-    public class SQLComponent : BaseComponent, IDebugComponent
+    public class SqlComponent : BaseComponent, ISqlComponent
     {
         #region Methods
 

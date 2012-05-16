@@ -30,14 +30,14 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     public class AddRecordViewModel : BaseViewModel
     {
         #region Fields
 
         private ICommand addRecordCommand;
-        private IMedicalRecordComponent component = ObjectFactory.GetInstance<IMedicalRecordComponent>();
+        private IMedicalRecordComponent component = new ComponentFactory().GetInstance<IMedicalRecordComponent>();
         private MedicalRecordDto recordToAdd;
         private TagDto selectedTag;
         private ObservableCollection<TagDto> tags = new ObservableCollection<TagDto>();

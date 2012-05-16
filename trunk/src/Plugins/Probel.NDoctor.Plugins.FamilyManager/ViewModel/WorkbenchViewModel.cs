@@ -24,17 +24,18 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.Domain.Components;
 
-    using StructureMap;
+
 
     public class WorkbenchViewModel : BaseViewModel
     {
         #region Fields
 
         private FamilyDto family;
-        private IFamilyComponent familyComponent = ObjectFactory.GetInstance<IFamilyComponent>();
+        private IFamilyComponent familyComponent = new ComponentFactory().GetInstance<IFamilyComponent>();
         private MedicalRecordCabinetDto medicalRecordCabinet = new MedicalRecordCabinetDto();
-        private IMedicalRecordComponent medicalRecordComponent = ObjectFactory.GetInstance<IMedicalRecordComponent>();
+        private IMedicalRecordComponent medicalRecordComponent = new ComponentFactory().GetInstance<IMedicalRecordComponent>();
         private MedicalRecordFolderDto selectedFolder;
         private LightPatientDto selectedMember = new LightPatientDto();
         private MedicalRecordDto selectedRecord;

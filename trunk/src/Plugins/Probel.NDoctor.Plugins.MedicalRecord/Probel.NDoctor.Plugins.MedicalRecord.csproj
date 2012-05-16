@@ -44,9 +44,6 @@
     <Reference Include="Probel.Mvvm">
       <HintPath>..\..\..\lib\Probel.Mvvm\Probel.Mvvm.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap, Version=2.6.3.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
@@ -120,9 +117,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Domain\Probel.NDoctor.Domain.DAL\Probel.NDoctor.Domain.DAL.csproj">
-      <Project>{96B7A128-8A98-4B49-A3CB-30AE783236E9}</Project>
-      <Name>Probel.NDoctor.Domain.DAL</Name>
+    <ProjectReference Include="..\..\Domain\Probel.NDoctor.Domain.Components\Probel.NDoctor.Domain.Components.csproj">
+      <Project>{0B3E735D-EBB5-4191-93DA-4EB1EE173D18}</Project>
+      <Name>Probel.NDoctor.Domain.Components</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Domain\Probel.NDoctor.Domain.DTO\Probel.NDoctor.Domain.DTO.csproj">
       <Project>{DB2E15D4-BA31-457B-BF73-71208922A0A0}</Project>
