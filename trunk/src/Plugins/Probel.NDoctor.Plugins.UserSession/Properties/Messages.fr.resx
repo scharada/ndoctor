@@ -217,6 +217,10 @@
     <value>Ajouter un utilisateur</value>
     <comment>Add a new user</comment>
   </data>
+  <data name="Title_ChangePwd" xml:space="preserve">
+    <value>Changer mon mot de passe</value>
+    <comment>Change my password</comment>
+  </data>
   <data name="Title_ContextMenu" xml:space="preserve">
     <value>Gestion utilisateur</value>
     <comment>User management</comment>

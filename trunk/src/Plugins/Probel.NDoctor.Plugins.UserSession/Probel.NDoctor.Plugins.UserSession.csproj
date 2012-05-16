@@ -194,6 +194,9 @@
   <ItemGroup>
     <Resource Include="Images\Add.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Keys.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>..\..\..\..\..\tools\CopyPluginsFiles.cmd $(ConfigurationName)</PostBuildEvent>

@@ -222,8 +222,8 @@
     <comment>Add a new user</comment>
   </data>
   <data name="Title_ChangePwd" xml:space="preserve">
-    <value>Change the password</value>
-    <comment>Change the password</comment>
+    <value>Change my password</value>
+    <comment>Change my password</comment>
   </data>
   <data name="Title_ContextMenu" xml:space="preserve">
     <value>User management</value>

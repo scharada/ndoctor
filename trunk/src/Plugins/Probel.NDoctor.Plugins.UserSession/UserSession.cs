@@ -24,6 +24,7 @@ namespace Probel.NDoctor.Plugins.UserSession
 
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -35,8 +36,6 @@ namespace Probel.NDoctor.Plugins.UserSession
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-
-    using Probel.NDoctor.Domain.Components;
 
     /// <summary>
     /// When the application user has logged into the application, it opens a User session that contains the modules the logged user can use. 
@@ -64,7 +63,8 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         private readonly string uri = @"\Probel.NDoctor.Plugins.UserSession;component/Images\{0}.png";
 
-        private ICommand addCommand = null;
+        private ICommand addCommand;
+        private ICommand changePwdCommand;
         private IUserSessionComponent component;
         private ConnectionView connectionPage;
         private ICommand printCommand;
@@ -129,6 +129,7 @@ namespace Probel.NDoctor.Plugins.UserSession
         {
             this.printCommand = new RelayCommand(() => this.PrintBusinessCard());
             this.addCommand = new RelayCommand(() => this.NavigateAddUser());
+            this.changePwdCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_ChangePwd, new ChangePasswordView()));
             this.showUpdateUserCommand = new RelayCommand(() => this.NavigateToUpdateUser());
         }
 
@@ -160,7 +161,10 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         private void InitialiseUpdateUserPage()
         {
+            var pwd = new RibbonControlData(Messages.Title_ChangePwd, uri.FormatWith("Keys"), changePwdCommand) { Order = 3 };
             var menu = new RibbonControlData(Messages.Menu_ManagePersonalData, uri.FormatWith("Users"), showUpdateUserCommand) { Order = 3 };
+
+            PluginContext.Host.AddToApplicationMenu(pwd);
             PluginContext.Host.AddToApplicationMenu(menu);
         }
 

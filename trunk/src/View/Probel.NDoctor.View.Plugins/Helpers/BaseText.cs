@@ -37,6 +37,16 @@ namespace Probel.NDoctor.View.Plugins.Helpers
             get { return Messages.Btn_Cancel; }
         }
 
+        public static string Error
+        {
+            get { return Messages.Title_Error; }
+        }
+
+        public static string Warning
+        {
+            get { return Messages.Title_Warning; }
+        }
         #endregion Properties
+
     }
 }

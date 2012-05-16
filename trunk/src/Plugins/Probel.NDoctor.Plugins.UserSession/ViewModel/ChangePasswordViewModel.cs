@@ -21,12 +21,15 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
 
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Plugins.UserSession.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-
-    using Probel.NDoctor.Domain.Components;
+    using Microsoft.Windows.Controls;
+    using System.Windows;
+    using Probel.NDoctor.View.Core.Helpers;
+    using Probel.NDoctor.Plugins.UserSession.View;
 
     public class ChangePasswordViewModel : BaseViewModel
     {
@@ -117,26 +120,38 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
         {
             if (PluginContext.Host.ConnectedUser == null) return false;
 
+            return this.NewPassword == this.CheckNewPassword
+                && !string.IsNullOrWhiteSpace(this.NewPassword);
+        }
+
+        private bool IsValidPassword()
+        {
             var isValidPwd = false;
             using (this.component.UnitOfWork)
             {
                 isValidPwd = this.component.CanConnect(PluginContext.Host.ConnectedUser, this.OldPassword);
             }
-            return isValidPwd
-                && this.NewPassword == this.CheckNewPassword
-                && !string.IsNullOrWhiteSpace(this.NewPassword);
+            return isValidPwd;
         }
 
         private void Save()
         {
             try
             {
-                using (this.component.UnitOfWork)
+                if (!this.IsValidPassword())
                 {
-                    this.component.UpdatePassword(PluginContext.Host.ConnectedUser, this.NewPassword);
+                    Microsoft.Windows.Controls.MessageBox.Show(Messages.Msg_ErrorWrongPassword, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
-                this.IsPopupOpened = false;
-                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PwdChanged);
+                else
+                {
+                    using (this.component.UnitOfWork)
+                    {
+                        this.component.UpdatePassword(PluginContext.Host.ConnectedUser, this.NewPassword);
+                    }
+                    this.IsPopupOpened = false;
+                    PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PwdChanged);
+                    InnerWindow.Close();
+                }
             }
             catch (Exception ex)
             {

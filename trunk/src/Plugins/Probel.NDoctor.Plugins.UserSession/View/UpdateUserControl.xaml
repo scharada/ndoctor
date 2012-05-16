@@ -55,7 +55,6 @@
                         <Label Style="{StaticResource labelStyle}"/>
                         <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:UpdateUserText.RoleTitle}}"/>
                         <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:UpdateUserText.FeeTitle}}"/>
-                        <Label Style="{StaticResource labelStyle}"/>
 
                         <Label Style="{StaticResource separatorStyle}" />
                         <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:UpdateUserText.PracticeTitle}}"/>
@@ -83,8 +82,7 @@
                           SelectedValuePath="Name"
                           SelectedItem="{Binding Path=SelectedRole, Mode=TwoWay}"
                           ItemsSource="{Binding Path=Roles, UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=User.Fee, UpdateSourceTrigger=PropertyChanged}"/>
-                        <ctrl:ChangePasswordView/>
+                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=User.Fee, UpdateSourceTrigger=PropertyChanged}"/>                      
 
                         <Label Style="{StaticResource separatorStyle}" Content="{Binding Source={x:Static Member=text:UpdateUserText.ContactSeparator}}"/>
                         <ComboBox Style="{StaticResource controlStyle}" 
