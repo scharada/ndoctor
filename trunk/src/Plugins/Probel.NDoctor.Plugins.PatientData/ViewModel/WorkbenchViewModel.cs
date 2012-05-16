@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
     using Probel.Helpers.Conversions;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -37,8 +38,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-
-    using Probel.NDoctor.Domain.Components;
 
     public class WorkbenchViewModel : BaseViewModel
     {
@@ -75,7 +74,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         public ICommand BindDoctorCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public bool CanRollback
@@ -187,8 +187,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 //Refresh the patient with the refreshed collection binding
                 this.Patient = this.component.FindPatient(PluginContext.Host.SelectedPatient);
                 this.RefreshPatientData();
-
-                this.Logger.Debug("Load patient's data");
             }
         }
 

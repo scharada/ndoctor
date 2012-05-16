@@ -22,21 +22,15 @@
 namespace Probel.NDoctor.Domain.Components.Interceptors
 {
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Reflection;
 
     using Castle.DynamicProxy;
 
     using log4net;
-    using log4net.Core;
 
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DAL.Helpers;
-    using Probel.NDoctor.Domain.DTO.Helpers;
 
-    public class CheckerInterceptor : IInterceptor
+    public class CheckerInterceptor : BaseInterceptor
     {
         #region Fields
 
@@ -46,13 +40,13 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
 
         #region Methods
 
-        public void Intercept(IInvocation invocation)
+        public override void Intercept(IInvocation invocation)
         {
             try
             {
                 if (invocation.InvocationTarget is BaseComponent)
                 {
-                    if (this.ProcessCheck(invocation.MethodInvocationTarget))
+                    if (!this.Ignore(invocation))
                     {
                         var component = invocation.InvocationTarget as BaseComponent;
 
@@ -67,12 +61,6 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
                 throw;
             }
             finally { invocation.Proceed(); }
-        }
-
-        private bool ProcessCheck(MethodInfo methodInfo)
-        {
-            var attributes = methodInfo.GetCustomAttributes(typeof(IgnoreSessionCheckAttribute), true);
-            return attributes.Length == 0;
         }
 
         #endregion Methods

@@ -23,14 +23,12 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
 
     using Probel.Helpers.Conversions;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.FamilyManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.NDoctor.Domain.Components;
-
-
 
     public class RemoveFamilyViewModel : BaseViewModel
     {

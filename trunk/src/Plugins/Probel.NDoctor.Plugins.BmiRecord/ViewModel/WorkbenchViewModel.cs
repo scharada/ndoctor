@@ -22,7 +22,9 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using System.ComponentModel;
     using System.Linq;
     using System.Windows.Input;
+
     using AutoMapper;
+
     using Probel.Helpers.Assertion;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
@@ -32,7 +34,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-
 
     public class WorkbenchViewModel : BaseViewModel
     {
@@ -263,7 +264,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
                     this.Patient = patient;
                     PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiHistoryLoaded);
                 });
-                this.Logger.DebugFormat("Load Bmi history ({0} item(s))", patient.BmiHistory.Count);
             };
 
             thread.RunWorkerAsync();

@@ -19,14 +19,12 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     using System.Windows.Input;
 
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.NDoctor.Domain.Components;
-
-
 
     public class WorkbenchViewModel : BaseViewModel
     {
@@ -158,8 +156,6 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             {
                 this.Family = this.familyComponent.FindFamily(PluginContext.Host.SelectedPatient);
             }
-
-            this.Logger.Debug("Load family");
         }
 
         /// <summary>
@@ -178,7 +174,6 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
                 {
                     this.MedicalRecordCabinet = this.medicalRecordComponent.GetMedicalRecordCabinet(this.SelectedMember);
                 }
-                this.Logger.Debug("Load medical records cabinet");
             }
             else { this.Logger.Warn("Impossible to load the medical record cabinet because the selected member is null"); }
         }

@@ -26,15 +26,13 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Events;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.FamilyManager.Properties;
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.NDoctor.Domain.Components;
-
-
 
     public class LightPatientViewModel : LightPatientDto
     {

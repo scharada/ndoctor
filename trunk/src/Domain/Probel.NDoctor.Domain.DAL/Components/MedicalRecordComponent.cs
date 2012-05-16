@@ -67,7 +67,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Create(MedicalRecordDto record, LightPatientDto forPatient)
         {
             Assert.IsNotNull(record, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var foundPatient = (from p in this.Session.Query<Patient>()
                                 where p.Id == forPatient.Id
@@ -90,8 +89,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </returns>
         public MedicalRecordDto FindMedicalRecordById(long id)
         {
-            this.CheckSession();
-
             var result = this.Session.Get<MedicalRecord>(id);
 
             return (result != null)
@@ -108,7 +105,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public MedicalRecordCabinetDto GetMedicalRecordCabinet(LightPatientDto patient)
         {
-            this.CheckSession();
             var selectedPatient = (from p in this.Session.Query<Patient>()
                                    where p.Id == patient.Id
                                    select p).FirstOrDefault();
@@ -125,7 +121,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="cabinet">The cabinet.</param>
         public void UpdateCabinet(LightPatientDto patient, MedicalRecordCabinetDto cabinet)
         {
-            this.CheckSession();
             using (var tx = this.Session.BeginTransaction())
             {
                 cabinet.ForeachRecords(record =>

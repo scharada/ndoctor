@@ -31,11 +31,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.Helpers.Management;
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DAL.Helpers;
     using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Domain.DAL.Helpers;
 
     /* REFACTOR: 1027 lines of code => refactor this god object.
      * I should split the responsibilities....
@@ -92,7 +92,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
         public UnitOfWork UnitOfWork
         {
-            [IgnoreSessionCheck]
+            [Ignore]
             get { return new UnitOfWork(init, dispose); }
         }
 
@@ -119,7 +119,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public long Create(DrugDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var exist = (from i in this.Session.Query<Drug>()
                          where i.Name.ToUpper() == item.Name.ToUpper()
@@ -138,7 +137,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public long Create(PatientDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var found = (from p in this.Session.Query<Patient>()
                          where p.Id == item.Id
@@ -156,7 +154,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public long Create(LightDoctorDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var found = (from p in this.Session.Query<Doctor>()
                          where p.Id == item.Id
@@ -174,7 +171,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public long Create(TagDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var exist = (from p in this.Session.Query<Tag>()
                          where (p.Name.ToUpper() == item.Name.ToUpper()
@@ -194,7 +190,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public long Create(UserDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var found = (from p in this.Session.Query<User>()
                          where p.Id == item.Id
@@ -215,7 +210,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public long Create(LightPatientDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var found = (from p in this.Session.Query<Patient>()
                          where p.Id == item.Id
@@ -274,7 +268,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public IList<LightDoctorDto> FindDoctorsBySpecialisationLight(TagDto specialisation)
         {
-            this.CheckSession();
             if (specialisation.Id <= 0) throw new DetachedEntityException();
 
             var results = (from item in this.Session.Query<Doctor>()
@@ -292,8 +285,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>A list of drugs</returns>
         public IList<DrugDto> FindDrugsByName(string name)
         {
-            this.CheckSession();
-
             var result = (from drug in this.Session.Query<Drug>()
                           where drug.Name.Contains(name)
                           select drug).ToList();
@@ -307,7 +298,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>A list of drugs</returns>
         public IList<DrugDto> FindDrugsByTags(string criteria)
         {
-            this.CheckSession();
             var result = (from drug in this.Session.Query<Drug>()
                           where drug.Tag.Name == criteria
                           select drug).ToList();
@@ -321,7 +311,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public IList<InsuranceDto> FindInsurances(string name)
         {
-            this.CheckSession();
             var insurances = (from insurance in this.Session.Query<Insurance>()
                               where insurance.Name.Contains(name)
                               select insurance).ToList();
@@ -336,7 +325,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public IList<LightDoctorDto> FindLightDoctor(TagDto specialisation)
         {
-            this.CheckSession();
             var result = (from doctor in this.Session.Query<Doctor>()
                           where doctor.Specialisation.Id == specialisation.Id
                           select doctor).ToList();
@@ -350,8 +338,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public IList<PathologyDto> FindPathology(string name)
         {
-            this.CheckSession();
-
             var pathologies = (from pahology in this.Session.Query<Pathology>()
                                where pahology.Name.Contains(name)
                                select pahology).ToList();
@@ -367,8 +353,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public IList<LightPatientDto> FindPatientsByNameLight(string criterium, SearchOn search)
         {
-            this.CheckSession();
-
             if (string.IsNullOrEmpty(criterium)) return new List<LightPatientDto>().ToList();
 
             criterium = criterium.ToLower();
@@ -406,8 +390,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public IList<PracticeDto> FindPractices(string name)
         {
-            this.CheckSession();
-
             var practices = (from practice in this.Session.Query<Practice>()
                              where practice.Name.Contains(name)
                              select practice).ToList();
@@ -421,8 +403,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public IList<ProfessionDto> FindProfessions(string name)
         {
-            this.CheckSession();
-
             var professions = (from profession in this.Session.Query<Profession>()
                                where profession.Name.Contains(name)
                                select profession).ToList();
@@ -437,8 +417,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public IList<ReputationDto> FindReputations(string name)
         {
-            this.CheckSession();
-
             var reputations = (from reputation in this.Session.Query<Reputation>()
                                where reputation.Name.Contains(name)
                                select reputation).ToList();
@@ -452,8 +430,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public IList<TagDto> FindTags(TagCategory category)
         {
-            this.CheckSession();
-
             var tags = (from tag in this.Session.Query<Tag>()
                         where tag.Category == category
                         select tag).ToList();
@@ -468,8 +444,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public IList<TagDto> FindTags(string name, TagCategory type)
         {
-            this.CheckSession();
-
             var tags = (from tag in this.Session.Query<Tag>()
                         where tag.Category == type
                            && tag.Name.Contains(name)
@@ -484,8 +458,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>The light weight version of the doctors</returns>
         public IList<LightDoctorDto> GetAllDoctorsLight()
         {
-            this.CheckSession();
-
             var results = (from item in this.Session.Query<Doctor>()
                            select item).ToList();
 
@@ -498,8 +470,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public IList<DrugDto> GetAllDrugs()
         {
-            this.CheckSession();
-
             var tags = (from tag in this.Session.Query<Drug>()
                         select tag).ToList();
 
@@ -512,7 +482,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>A list of insurance</returns>
         public IList<InsuranceDto> GetAllInsurances()
         {
-            this.CheckSession();
             var insurances = this.GetAllEntitiesInsurances();
 
             return Mapper.Map<IList<Insurance>, IList<InsuranceDto>>(insurances);
@@ -535,7 +504,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public IList<PathologyDto> GetAllPathologies()
         {
-            this.CheckSession();
             var pathologies = this.GetAllEntitiesPathologies();
 
             return Mapper.Map<IList<Pathology>, IList<PathologyDto>>(pathologies);
@@ -547,8 +515,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public IList<LightPatientDto> GetAllPatientsLight()
         {
-            this.CheckSession();
-
             var result = GetAllPatientEntities();
 
             return Mapper.Map<IList<Patient>, IList<LightPatientDto>>(result);
@@ -580,8 +546,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public IList<ProfessionDto> GetAllProfessions()
         {
-            this.CheckSession();
-
             var professions = (from profession in this.Session.Query<Profession>()
                                select profession)
                                   .OrderBy(e => e.Name)
@@ -596,8 +560,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public IList<ReputationDto> GetAllReputations()
         {
-            this.CheckSession();
-
             var reputations = (from reputation in this.Session.Query<Reputation>()
                                select reputation)
                                     .OrderBy(e => e.Name)
@@ -622,8 +584,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public IList<TagDto> GetAllTags()
         {
-            this.CheckSession();
-
             var tags = (from tag in this.Session.Query<Tag>()
                         select tag).ToList();
 
@@ -636,8 +596,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public IList<LightUserDto> GetAllUsers()
         {
-            this.CheckSession();
-
             try
             {
                 var result = (from user in Session.Query<User>()
@@ -657,7 +615,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public UserDto GetUserById(long id)
         {
-            this.CheckSession();
             var user = this.Session.Get<User>(id);
             return Mapper.Map<User, UserDto>(user);
         }
@@ -670,7 +627,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Remove(InsuranceDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var entity = this.Session.Get<Insurance>(item.Id);
             this.Remove(entity);
@@ -684,7 +640,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Remove(PracticeDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var entity = this.Session.Get<Practice>(item.Id);
             this.Remove(entity);
@@ -698,7 +653,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Remove(ProfessionDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var entity = this.Session.Get<Profession>(item.Id);
             this.Remove(entity);
@@ -712,7 +666,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Remove(ReputationDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var entity = this.Session.Get<Reputation>(item.Id);
             this.Remove(entity);
@@ -725,8 +678,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="id">The id of the item to remove.</param>
         public void Remove(TagDto item)
         {
-            this.CheckSession();
-
             var entity = this.Session.Get<Tag>(item.Id);
             this.Remove(entity);
         }
@@ -739,7 +690,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Remove(LightDoctorDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var entity = this.Session.Get<Doctor>(item.Id);
             this.Remove(entity);
@@ -752,7 +702,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Remove(LightPatientDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var entity = this.Session.Get<Patient>(item.Id);
             this.Remove(entity);
@@ -765,7 +714,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Remove(PatientDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var entity = this.Session.Get<Patient>(item.Id);
             this.Remove(entity);
@@ -778,7 +726,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Update(PatientDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var entity = this.Session.Get<Patient>(item.Id);
             entity.LastUpdate = DateTime.Now;
@@ -793,8 +740,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The user.</param>
         public void Update(UserDto item)
         {
-            this.CheckSession();
-
             var entity = this.Session.Get<User>(item.Id);
             Mapper.Map<UserDto, User>(item, entity);
             this.Session.Update(entity);
@@ -806,8 +751,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="picture">The picture.</param>
         public void Update(PictureDto item)
         {
-            this.CheckSession();
-
             var entity = this.Session.Get<Picture>(item.Id);
             if (entity == null) throw new EntityNotFoundException(typeof(Picture));
 
@@ -841,7 +784,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         protected void Create(MedicalRecordDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var found = (from p in this.Session.Query<MedicalRecord>()
                          where p.Id == item.Id
@@ -860,7 +802,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         protected void Remove(MedicalRecordDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var entity = this.Session.Get<MedicalRecord>(item.Id);
             this.Remove(entity);
@@ -873,7 +814,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         protected void Update(MedicalRecordDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var entity = this.Session.Get<MedicalRecord>(item.Id);
             var tag = this.Session.Get<Tag>(entity.Tag.Id);
@@ -897,8 +837,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
         private IList<Doctor> FindDoctorsByFirstAndLastName(string name)
         {
-            this.CheckSession();
-
             return (from doctor in this.Session.Query<Doctor>()
                     where doctor.FirstName.Contains(name)
                        || doctor.LastName.Contains(name)
@@ -907,8 +845,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
         private IList<Doctor> FindDoctorsByFirstName(string name)
         {
-            this.CheckSession();
-
             return (from doctor in this.Session.Query<Doctor>()
                     where doctor.FirstName.Contains(name)
                     select doctor).ToList();
@@ -916,8 +852,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
         private IList<Doctor> FindDoctorsByLastName(string name)
         {
-            this.CheckSession();
-
             return (from doctor in this.Session.Query<Doctor>()
                     where doctor.LastName.Contains(name)
                     select doctor).ToList();
@@ -925,8 +859,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
         private List<Patient> FindPatientsByFirstAndLastName(string criterium)
         {
-            this.CheckSession();
-
             return (from patient in this.Session.Query<Patient>()
                     where patient.FirstName.Contains(criterium)
                        || patient.LastName.Contains(criterium)
@@ -935,8 +867,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
         private List<Patient> FindPatientsByOnFirstName(string criterium)
         {
-            this.CheckSession();
-
             return (from patient in this.Session.Query<Patient>()
                     where patient.FirstName.Contains(criterium)
                     select patient).ToList();
@@ -944,8 +874,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
         private List<Patient> FindPatientsByOnLastName(string criterium)
         {
-            this.CheckSession();
-
             return (from patient in this.Session.Query<Patient>()
                     where patient.LastName.Contains(criterium)
                     select patient).ToList();
@@ -953,8 +881,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
         private List<Insurance> GetAllEntitiesInsurances()
         {
-            this.CheckSession();
-
             var insurances = (from insurance in this.Session.Query<Insurance>()
                               select insurance)
                                 .OrderBy(e => e.Name)
@@ -964,8 +890,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
         private IList<Pathology> GetAllEntitiesPathologies()
         {
-            this.CheckSession();
-
             var pathologies = (from insurance in this.Session.Query<Pathology>()
                                select insurance).ToList();
             return pathologies;
@@ -973,8 +897,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
         private List<Practice> GetAllEntitiesPractices()
         {
-            this.CheckSession();
-
             return (from practice in this.Session.Query<Practice>()
                     select practice)
                               .OrderBy(e => e.Name)
@@ -983,7 +905,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
         private IList<Role> GetAllEntitiesRoles()
         {
-            this.CheckSession();
             return (from role in this.Session.Query<Role>()
                     select role).ToList();
         }

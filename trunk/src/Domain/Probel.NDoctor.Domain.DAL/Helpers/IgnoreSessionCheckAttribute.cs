@@ -14,29 +14,25 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 namespace Probel.NDoctor.Domain.DAL.Helpers
 {
     using System;
 
     /// <summary>
-    /// Indicates whether the dynamic proxy should avoid to check if the session
-    /// if OK before executing the method.
-    /// That's every methods decorated with this attribute wont have the method
-    /// CheckSession of <see cref="BaseComponent"/> executed before proceeding
-    /// this called method
+    /// Every method decorated with this attribute will be ignored by the
+    /// inspectors of the Castle Dynamic Proxy.
     /// </summary>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property,
         AllowMultiple = false,
         Inherited = true)]
-    public class IgnoreSessionCheckAttribute : Attribute
+    public class IgnoreAttribute : Attribute
     {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="IgnoreSessionCheckAttribute"/> class.
+        /// Initializes a new instance of the <see cref="IgnoreAttribute"/> class.
         /// </summary>
-        public IgnoreSessionCheckAttribute()
+        public IgnoreAttribute()
         {
             this.Ignore = true;
         }

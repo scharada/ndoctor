@@ -63,7 +63,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </returns>
         public IList<LightPatientDto> GetTopXPatient(uint x)
         {
-            this.CheckSession();
             var result = (from patient in this.Session.Query<Patient>()
                           orderby patient.Counter descending
                           select patient)

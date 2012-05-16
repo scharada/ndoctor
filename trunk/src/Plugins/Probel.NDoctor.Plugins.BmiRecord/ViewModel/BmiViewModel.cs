@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using System;
     using System.Windows;
     using System.Windows.Input;
+
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;

@@ -62,7 +62,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Create(PictureDto picture, LightPatientDto forPatient)
         {
             Assert.IsNotNull(picture, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var foundPatient = (from p in this.Session.Query<Patient>()
                                 where p.Id == forPatient.Id
@@ -100,7 +99,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </returns>
         public IList<PictureDto> FindPictures(LightPatientDto patient, TagDto tag)
         {
-            this.CheckSession();
             var entity = (from p in this.Session.Query<Patient>()
                           where p.Id == patient.Id
                           select p).FirstOrDefault();

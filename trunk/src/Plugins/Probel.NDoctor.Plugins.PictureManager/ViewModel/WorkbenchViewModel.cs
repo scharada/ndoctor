@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.Helpers.Conversions;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PictureManager.Helpers;
@@ -36,8 +37,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-
-    using Probel.NDoctor.Domain.Components;
 
     public class WorkbenchViewModel : BaseViewModel
     {
@@ -109,8 +108,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             {
                 this.filterTag = value;
                 this.OnPropertyChanged(() => FilterTag);
-
-                this.Logger.DebugFormat("The filter tag changed. Filter is null: {0}", (value == null));
             }
         }
 
@@ -236,8 +233,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
                 this.SelectFirstTag();
                 this.Filter();
-
-                this.Logger.Debug("Load pictures");
             }
             catch (Exception ex)
             {
@@ -326,8 +321,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                     }
                     else this.component.Update(this.SelectedPicture);
                 }
-
-                this.Logger.Debug("Updating picture");
 
                 this.Refresh();
 

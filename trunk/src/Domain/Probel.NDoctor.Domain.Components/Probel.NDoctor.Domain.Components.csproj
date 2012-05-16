@@ -47,6 +47,7 @@
       <Link>Version.cs</Link>
     </Compile>
     <Compile Include="ComponentFactory.cs" />
+    <Compile Include="Interceptors\BaseInterceptor.cs" />
     <Compile Include="Interceptors\LogInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interceptors\CheckerInterceptor.cs" />

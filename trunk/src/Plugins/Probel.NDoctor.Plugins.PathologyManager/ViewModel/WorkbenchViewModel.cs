@@ -24,13 +24,12 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.Helpers.Conversions;
     using Probel.Helpers.Data;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PathologyManager.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-
-    using Probel.NDoctor.Domain.Components;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -112,8 +111,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
                 this.IllnessHistory.Refill(viewModels);
 
                 this.Chart = this.component.GetIlnessAsChart(PluginContext.Host.SelectedPatient);
-
-                this.Logger.Debug("Load pathologies");
             }
         }
 

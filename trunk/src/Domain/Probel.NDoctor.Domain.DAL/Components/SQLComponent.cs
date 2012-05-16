@@ -29,10 +29,10 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Executes a SQL query that resurns only one result
         /// </summary>
         /// <param name="sql">The SQL.</param>
-        /// <returns></returns>
+        /// <returns>The result of the query</returns>
+        [Ignore]
         public object ExecuteNonQuery(string sql)
         {
-            this.CheckSession();
             var query = this.Session.CreateSQLQuery(sql);
             return query.UniqueResult();
         }
@@ -41,10 +41,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Executes the specified SQL.
         /// </summary>
         /// <param name="sql">The SQL.</param>
+        [Ignore]
         public void ExecuteSql(string sql)
         {
-            this.CheckSession();
-
             var regex = new Regex(";", RegexOptions.IgnoreCase | RegexOptions.Multiline);
             string[] lines = regex.Split(sql);
 
@@ -67,7 +66,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         ///   <c>true</c> if the database is empty; otherwise, <c>false</c>.
         /// </returns>
-        [IgnoreSessionCheck]
+        [Ignore]
         public bool IsDatabaseEmpty()
         {
             var sql = "SELECT count(*) FROM sqlite_sequence WHERE seq > 0";

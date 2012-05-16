@@ -66,7 +66,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="patient">The patient.</param>
         public void AddBmi(BmiDto bmi, LightPatientDto patient)
         {
-            this.CheckSession();
             var entity = this.Session.Get<Patient>(patient.Id);
 
             if (entity != null) entity.BmiHistory.Add(Mapper.Map<BmiDto, Bmi>(bmi));
@@ -79,7 +78,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="date">The date.</param>
         public void DeleteBmiWithDate(LightPatientDto patient, DateTime date)
         {
-            this.CheckSession();
             var current = (from p in this.Session.Query<Patient>()
                            where p.Id == patient.Id
                            select p).FirstOrDefault();
@@ -94,7 +92,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
                     i--; //I've deleted one item, I step back and continue to check for deletion
                 }
             }
-            this.Logger.DebugFormat("Deleted {0} BMI history item(s)", deletedCount);
             this.Session.Update(current);
         }
 
@@ -107,8 +104,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public IList<BmiDto> FindBmiHistory(LightPatientDto patient, DateTime start, DateTime end)
         {
-            this.CheckSession();
-
             var entity = this.Session.Get<Patient>(patient.Id);
 
             var result = (from b in entity.BmiHistory
@@ -128,7 +123,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </returns>
         public IList<BmiDto> GetAllBmiHistory(LightPatientDto patient)
         {
-            this.CheckSession();
             var entity = this.Session.Get<Patient>(patient.Id);
 
             var result = (from b in entity.BmiHistory
@@ -144,8 +138,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public PatientBmiDto GetPatientWithBmiHistory(LightPatientDto patient)
         {
-            this.CheckSession();
-
             var result = Mapper.Map<LightPatientDto, PatientBmiDto>(patient);
 
             var history = Mapper.Map<IList<Bmi>, IList<BmiDto>>(this.Session.Get<Patient>(patient.Id).BmiHistory);

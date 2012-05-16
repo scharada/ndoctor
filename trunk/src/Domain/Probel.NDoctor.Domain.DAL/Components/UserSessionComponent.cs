@@ -60,8 +60,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </returns>
         public bool CanConnect(LightUserDto user, string password)
         {
-            this.CheckSession();
-
             if (user == null || password == null) return false;
 
             if (!Session.IsOpen) throw new SessionException(Messages.Msg_ErrorSessionNotOpen);
@@ -80,7 +78,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
             if (string.IsNullOrEmpty(password)) throw new EmptyPasswordException();
-            this.CheckSession();
 
             var found = (from p in this.Session.Query<Practice>()
                          where p.Id == item.Id
@@ -100,8 +97,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public LightUserDto GetDefaultUser()
         {
-            this.CheckSession();
-
             var result = (from user in this.Session.Query<User>()
                           where user.IsDefault == true
                           select user).ToList();
@@ -118,8 +113,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public UserDto LoadUser(LightUserDto user)
         {
-            this.CheckSession();
-
             var fullUser = this.Session.Get<User>(user.Id);
 
             if (fullUser == null) return null;

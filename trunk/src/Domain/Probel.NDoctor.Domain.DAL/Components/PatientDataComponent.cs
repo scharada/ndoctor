@@ -56,7 +56,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <exception cref="EntityNotFoundException">If there's no link between the doctor and the patient</exception>
         public void AddDoctorTo(LightPatientDto patient, LightDoctorDto doctor)
         {
-            this.CheckSession();
             var patientEntity = this.Session.Get<Patient>(patient.Id);
             var doctorEntity = this.Session.Get<Doctor>(doctor.Id);
 
@@ -82,7 +81,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public long Create(ProfessionDto profession)
         {
             Assert.IsNotNull(profession, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var found = (from p in this.Session.Query<Profession>()
                          where p.Id == profession.Id
@@ -103,7 +101,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public long Create(ReputationDto reputation)
         {
             Assert.IsNotNull(reputation, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var exist = (from p in this.Session.Query<Reputation>()
                          where reputation.Name.ToUpper() == p.Name.ToUpper()
@@ -122,7 +119,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public long Create(InsuranceDto insurance)
         {
             Assert.IsNotNull(insurance, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var exist = (from i in this.Session.Query<Insurance>()
                          where insurance.Name.ToUpper() == i.Name.ToUpper()
@@ -141,7 +137,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public long Create(PracticeDto practice)
         {
             Assert.IsNotNull(practice, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var exist = (from i in this.Session.Query<Practice>()
                          where practice.Name.ToUpper() == i.Name.ToUpper()
@@ -161,7 +156,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public long Create(DoctorDto doctor)
         {
             Assert.IsNotNull(doctor, "The item to create shouldn't be null");
-            this.CheckSession();
 
             var found = (from p in this.Session.Query<Doctor>()
                          where p.Id == doctor.Id
@@ -183,7 +177,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>A list of doctors</returns>
         public IList<LightDoctorDto> FindDoctorOf(LightPatientDto patient)
         {
-            this.CheckSession();
             var entity = this.Session.Get<Patient>(patient.Id);
             return Mapper.Map<IList<Doctor>, IList<LightDoctorDto>>(entity.Doctors);
         }
@@ -232,7 +225,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <exception cref="Probel.NDoctor.Domain.DAL.Exceptions.EntityNotFoundException">If the id is not linked to a patient</exception>
         public PatientDto FindPatient(long id)
         {
-            this.CheckSession();
             var fullPatient = (from p in this.Session.Query<Patient>()
                                where p.Id == id
                                select p).FirstOrDefault();

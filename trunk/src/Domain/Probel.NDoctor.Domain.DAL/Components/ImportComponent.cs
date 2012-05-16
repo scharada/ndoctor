@@ -59,7 +59,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="patients"></param>
         public void Create(PatientFullDto[] patients)
         {
-            this.CheckSession();
             var entities = Mapper.Map<PatientFullDto[], Patient[]>(patients);
             this.Save(entities, e =>
             {
@@ -75,8 +74,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public LightUserDto GetDefaultUser()
         {
-            this.CheckSession();
-
             var entity = (from u in this.Session.Query<User>()
                           where u.IsDefault
                           select u).FirstOrDefault();

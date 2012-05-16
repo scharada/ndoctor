@@ -22,12 +22,11 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
     using Probel.Helpers.Events;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
-
-    using Probel.NDoctor.Domain.Components;
 
     public class IllnessPeriodViewModel : IllnessPeriodDto
     {

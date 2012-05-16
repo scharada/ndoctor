@@ -23,14 +23,13 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.Helpers.Conversions;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-
-    using Probel.NDoctor.Domain.Components;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -64,8 +63,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 this.FoundPrescriptions.Refill(e.Data.Prescriptions);
                 this.StartCriteria = e.Data.From;
                 this.EndCriteria = e.Data.To;
-
-                this.Logger.Debug("Load prescriptions");
             };
         }
 

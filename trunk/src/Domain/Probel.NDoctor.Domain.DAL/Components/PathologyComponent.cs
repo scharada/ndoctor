@@ -62,8 +62,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The item.</param>
         public void Create(PathologyDto item)
         {
-            this.CheckSession();
-
             var found = (from p in this.Session.Query<Pathology>()
                          where p.Id == item.Id
                             || item.Name.ToLower() == p.Name.ToLower()

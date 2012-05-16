@@ -23,23 +23,27 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
 {
     using Castle.DynamicProxy;
 
-    using log4net;
+    using Probel.NDoctor.Domain.DAL.Helpers;
 
-    public class LogInterceptor : BaseInterceptor
+    public abstract class BaseInterceptor : IInterceptor
     {
-        #region Fields
-
-        private readonly ILog log = LogManager.GetLogger(typeof(LogInterceptor));
-
-        #endregion Fields
-
         #region Methods
 
-        public override void Intercept(IInvocation invocation)
+        /// <summary>
+        /// Intercepts the specified invocation.
+        /// </summary>
+        /// <param name="invocation">The invocation.</param>
+        public abstract void Intercept(IInvocation invocation);
+
+        /// <summary>
+        /// Indicates whether the invocated method should be invoked or not
+        /// </summary>
+        /// <param name="invocation">The invocation.</param>
+        /// <returns></returns>
+        protected bool Ignore(IInvocation invocation)
         {
-            if (!this.Ignore(invocation))
-                log.Debug(string.Format("Intercepting the method '{0}' of the component '{1}'", invocation.Method.Name, invocation.TargetType.Name));
-            invocation.Proceed();
+            var attributes = invocation.MethodInvocationTarget.GetCustomAttributes(typeof(IgnoreAttribute), true);
+            return attributes.Length > 0;
         }
 
         #endregion Methods

@@ -65,7 +65,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public FamilyDto FindFamily(LightPatientDto patient)
         {
-            this.CheckSession();
             var current = (from p in this.Session.Query<Patient>()
                            where patient.Id == p.Id
                            select p).FirstOrDefault();
@@ -92,8 +91,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>A list of patient</returns>
         public IList<LightPatientDto> FindPatientNotFamilyMembers(LightPatientDto patient, string criteria, SearchOn search)
         {
-            this.CheckSession();
-
             var result = this.FindPatientsByNameLight(criteria, search);
             return this.RemoveFamilyMembers(result, patient);
         }
@@ -105,7 +102,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>The list of the family members</returns>
         public IList<LightPatientDto> GetAllFamilyMembers(LightPatientDto patient)
         {
-            this.CheckSession();
             var p = this.Session.Get<Patient>(patient.Id);
             return this.GetAllFamilyMembers(p);
         }
@@ -117,7 +113,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>The list of the familly members</returns>
         public IList<LightPatientDto> GetFamilyMembers(LightPatientDto patient)
         {
-            this.CheckSession();
             var entity = this.Session.Get<Patient>(patient.Id);
             return this.GetAllFamilyMembers(entity);
         }
@@ -132,7 +127,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
             Assert.IsNotNull(member, "Member");
             Assert.IsNotNull(patient, "Patient");
 
-            this.CheckSession();
             var entity = this.Session.Get<Patient>(patient.Id);
 
             var isUpdated = this.UpdateParent(member, entity);
@@ -157,7 +151,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="family">The family.</param>
         public void Update(FamilyDto family)
         {
-            this.CheckSession();
             var patient = (from p in this.Session.Query<Patient>()
                            where p.Id == family.Current.Id
                            select p).FirstOrDefault();

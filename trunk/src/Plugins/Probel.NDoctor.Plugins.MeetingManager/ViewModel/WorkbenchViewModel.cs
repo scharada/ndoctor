@@ -24,6 +24,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.Helpers.Conversions;
     using Probel.Helpers.WPF.Calendar.Model;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MeetingManager.Helpers;
@@ -31,8 +32,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.NDoctor.Plugins.MeetingManager.View;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
-
-    using Probel.NDoctor.Domain.Components;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -99,8 +98,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                     var result = this.component.FindAppointments(this.DateToDisplay);
                     var mappedResult = Mapper.Map<IList<AppointmentDto>, AppointmentCollection>(result);
                     this.DayAppointments.Refill(mappedResult);
-
-                    this.Logger.Debug("Calendar refreshed");
                 }
             }
             catch (Exception ex)
