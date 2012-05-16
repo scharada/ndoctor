@@ -19,13 +19,12 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using System.Windows.Input;
 
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PatientSession.Properties;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
-
-    using Probel.NDoctor.Domain.Components;
 
     public class LightPatientViewModel : LightPatientDto
     {
@@ -48,7 +47,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
                 InnerWindow.Close();
                 PluginContext.Host.NavigateToStartPage();
             });
-            this.component = new ComponentFactory().GetInstance<IPatientSessionComponent>();
+            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPatientSessionComponent>();
         }
 
         #endregion Constructors

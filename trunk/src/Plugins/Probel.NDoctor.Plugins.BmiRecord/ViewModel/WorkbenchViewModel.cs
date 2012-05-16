@@ -55,7 +55,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
             : base()
         {
             this.CurrentBmi = new BmiDto();
-            this.component = new ComponentFactory().GetInstance<IBmiComponent>();
+            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IBmiComponent>();
             this.BmiHistory = new ObservableCollection<BmiViewModel>();
 
             this.AddBmiCommand = new RelayCommand(() => this.AddBmi(), () => this.CanAddBmi());

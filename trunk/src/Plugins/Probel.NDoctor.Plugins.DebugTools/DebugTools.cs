@@ -21,6 +21,7 @@ namespace Probel.NDoctor.Plugins.DebugTools
     using System.IO;
     using System.Reflection;
     using System.Text;
+
     using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View.Plugins;
@@ -31,7 +32,7 @@ namespace Probel.NDoctor.Plugins.DebugTools
     {
         #region Fields
 
-        private ISqlComponent component = new ComponentFactory().GetInstance<ISqlComponent>();
+        private ISqlComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<ISqlComponent>();
 
         #endregion Fields
 

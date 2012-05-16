@@ -21,6 +21,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Collections;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
@@ -28,7 +29,6 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.NDoctor.Plugins.Administration.Helpers;
     using Probel.NDoctor.Plugins.Administration.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.NDoctor.Domain.Components;
 
     public class TagViewModel : TagDto
     {
@@ -44,7 +44,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         public TagViewModel()
             : base(TagCategory.Appointment)
         {
-            if (!Designer.IsDesignMode) this.component = new ComponentFactory().GetInstance<IAdministrationComponent>();
+            if (!Designer.IsDesignMode) this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IAdministrationComponent>();
             this.errorHandler = new ErrorHandler(this);
             this.Categories = TagCategoryCollection.Build();
 

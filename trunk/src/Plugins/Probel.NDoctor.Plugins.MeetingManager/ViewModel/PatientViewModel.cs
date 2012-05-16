@@ -38,7 +38,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     {
         #region Fields
 
-        private ICalendarComponent component = new ComponentFactory().GetInstance<ICalendarComponent>();
+        private ICalendarComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<ICalendarComponent>();
         private DateTime fromDate;
         private bool isSelected;
         private LightPatientDto patient;

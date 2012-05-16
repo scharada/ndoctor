@@ -39,7 +39,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
         #region Fields
 
         private Chart<string, double> chart;
-        private IPathologyComponent component = new ComponentFactory().GetInstance<IPathologyComponent>();
+        private IPathologyComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPathologyComponent>();
         private IllnessPeriodViewModel selectedIllnessPeriod;
 
         #endregion Fields

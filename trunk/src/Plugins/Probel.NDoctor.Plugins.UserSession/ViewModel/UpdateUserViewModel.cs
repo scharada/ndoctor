@@ -36,7 +36,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     {
         #region Fields
 
-        private IUserSessionComponent component = new ComponentFactory().GetInstance<IUserSessionComponent>();
+        private IUserSessionComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IUserSessionComponent>();
         private ObservableCollection<PracticeDto> practices;
         private ObservableCollection<LightRoleDto> roles;
         private UserDto user;
@@ -238,7 +238,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         {
             try
             {
-                var component = new ComponentFactory().GetInstance<IUserSessionComponent>();
+                var component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IUserSessionComponent>();
 
                 using (component.UnitOfWork)
                 {

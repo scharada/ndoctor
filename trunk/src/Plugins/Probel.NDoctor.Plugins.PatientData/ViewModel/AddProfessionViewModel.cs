@@ -49,7 +49,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
             if (!Designer.IsDesignMode)
             {
-                this.component = new ComponentFactory().GetInstance<IPatientDataComponent>();
+                this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPatientDataComponent>();
             }
         }
 

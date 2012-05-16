@@ -30,6 +30,7 @@ namespace Probel.NDoctor.Domain.Components
     using Probel.NDoctor.Domain.Components.Interceptors;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Objects;
 
     using StructureMap;
 
@@ -44,6 +45,7 @@ namespace Probel.NDoctor.Domain.Components
         private static readonly ProxyGenerator generator = new ProxyGenerator(new PersistentProxyBuilder());
 
         private ILog logger = LogManager.GetLogger(typeof(ComponentFactory));
+        private LightUserDto user;
 
         #endregion Fields
 
@@ -104,6 +106,15 @@ namespace Probel.NDoctor.Domain.Components
                 x.For<IUserSessionComponent>().Add<UserSessionComponent>();
                 x.SelectConstructor<UserSessionComponent>(() => new UserSessionComponent());
             });
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ComponentFactory"/> class.
+        /// </summary>
+        /// <param name="user">The user connected into nDoctor.</param>
+        public ComponentFactory(LightUserDto user)
+        {
+            this.user = user;
         }
 
         #endregion Constructors

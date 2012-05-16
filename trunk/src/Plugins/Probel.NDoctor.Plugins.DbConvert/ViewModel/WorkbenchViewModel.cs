@@ -28,13 +28,12 @@ namespace Probel.NDoctor.Plugins.DbConvert.ViewModel
 
     using Probel.Helpers.Assertion;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Plugins.DbConvert.Domain;
     using Probel.NDoctor.Plugins.DbConvert.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.NDoctor.Domain.Components;
-
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -43,7 +42,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.ViewModel
     {
         #region Fields
 
-        IImportComponent component = new ComponentFactory().GetInstance<IImportComponent>();
+        IImportComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IImportComponent>();
         private CultureInfo cultureInfo = Thread.CurrentThread.CurrentUICulture;
         private string database;
         private bool importDone = false;

@@ -41,7 +41,7 @@
     <Reference Include="log4net">
       <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Probel.Mvvm, Version=1.0.0.33, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Probel.Mvvm">
       <HintPath>..\..\..\lib\Probel.Mvvm\Probel.Mvvm.dll</HintPath>
     </Reference>
     <Reference Include="System" />

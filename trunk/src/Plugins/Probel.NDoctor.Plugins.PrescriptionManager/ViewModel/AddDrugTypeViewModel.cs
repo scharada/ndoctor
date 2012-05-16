@@ -44,7 +44,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
         public AddDrugTypeViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = new ComponentFactory().GetInstance<IPrescriptionComponent>();
+            if (!Designer.IsDesignMode) this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPrescriptionComponent>();
 
             this.SelectedTag = new TagDto(TagCategory.Drug);
 

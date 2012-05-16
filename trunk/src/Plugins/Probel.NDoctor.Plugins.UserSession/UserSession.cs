@@ -99,7 +99,7 @@ namespace Probel.NDoctor.Plugins.UserSession
         {
             this.ConfigureAutoMapper();
 
-            this.component = new ComponentFactory().GetInstance<IUserSessionComponent>();
+            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IUserSessionComponent>();
 
             TranslateExtension.ResourceManager = Messages.ResourceManager;
 

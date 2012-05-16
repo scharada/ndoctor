@@ -26,6 +26,7 @@ namespace Probel.NDoctor.Plugins.PatientData
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -36,8 +37,6 @@ namespace Probel.NDoctor.Plugins.PatientData
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-
-    using Probel.NDoctor.Domain.Components;
 
     [Export(typeof(IPlugin))]
     public class PatientData : Plugin
@@ -97,7 +96,7 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         public override void Initialise()
         {
-            this.component = new ComponentFactory().GetInstance<IPatientDataComponent>();
+            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPatientDataComponent>();
             this.BuildButtons();
             this.BuildContextMenu();
         }

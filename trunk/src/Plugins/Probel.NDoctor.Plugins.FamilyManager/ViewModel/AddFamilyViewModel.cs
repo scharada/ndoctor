@@ -35,7 +35,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     {
         #region Fields
 
-        private IFamilyComponent component = new ComponentFactory().GetInstance<IFamilyComponent>();
+        private IFamilyComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IFamilyComponent>();
         private string criteria;
         private LightPatientViewModel selectedPatient;
 

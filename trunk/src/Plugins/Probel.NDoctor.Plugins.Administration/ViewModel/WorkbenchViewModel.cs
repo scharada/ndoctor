@@ -25,10 +25,11 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.Helpers.Conversions;
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.ViewModel;
-    using Probel.NDoctor.Domain.Components;
+    using Probel.NDoctor.View.Plugins.Helpers;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -50,7 +51,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         /// <param name="host">The host.</param>
         public WorkbenchViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = new ComponentFactory().GetInstance<IAdministrationComponent>();
+            if (!Designer.IsDesignMode) this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IAdministrationComponent>();
 
             this.Insurances = new ObservableCollection<InsuranceViewModel>();
             this.Practices = new ObservableCollection<PracticeViewModel>();

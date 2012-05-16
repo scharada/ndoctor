@@ -40,7 +40,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         #region Fields
 
         private TitledMedicalRecordCabinetDto cabinet;
-        private IMedicalRecordComponent component = new ComponentFactory().GetInstance<IMedicalRecordComponent>();
+        private IMedicalRecordComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IMedicalRecordComponent>();
         private TitledMedicalRecordDto selectedRecord;
         private IList<TagDto> tags = new List<TagDto>();
 

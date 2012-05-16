@@ -31,9 +31,9 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
         #region Fields
 
         private FamilyDto family;
-        private IFamilyComponent familyComponent = new ComponentFactory().GetInstance<IFamilyComponent>();
+        private IFamilyComponent familyComponent = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IFamilyComponent>();
         private MedicalRecordCabinetDto medicalRecordCabinet = new MedicalRecordCabinetDto();
-        private IMedicalRecordComponent medicalRecordComponent = new ComponentFactory().GetInstance<IMedicalRecordComponent>();
+        private IMedicalRecordComponent medicalRecordComponent = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IMedicalRecordComponent>();
         private MedicalRecordFolderDto selectedFolder;
         private LightPatientDto selectedMember = new LightPatientDto();
         private MedicalRecordDto selectedRecord;

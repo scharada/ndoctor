@@ -41,7 +41,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         public AddSpecialisationViewModel()
         {
-            this.component = new ComponentFactory().GetInstance<IPatientDataComponent>();
+            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPatientDataComponent>();
             this.Tag = new TagDto(TagCategory.Doctor);
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
         }

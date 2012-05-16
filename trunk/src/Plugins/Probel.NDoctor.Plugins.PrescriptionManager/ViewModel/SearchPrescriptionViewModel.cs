@@ -35,7 +35,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     {
         #region Fields
 
-        private IPrescriptionComponent component = new ComponentFactory().GetInstance<IPrescriptionComponent>();
+        private IPrescriptionComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPrescriptionComponent>();
         private DateTime endCriteria = DateTime.Today;
         private DateTime startCriteria = DateTime.Today.AddDays(-30);
 

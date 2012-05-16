@@ -21,6 +21,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using System.Windows.Input;
 
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -29,13 +30,11 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using Probel.NDoctor.Domain.Components;
-
     public class AddPatientViewModel : BaseViewModel
     {
         #region Fields
 
-        private IPatientSessionComponent component = new ComponentFactory().GetInstance<IPatientSessionComponent>();
+        private IPatientSessionComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPatientSessionComponent>();
         private LightPatientDto patient;
 
         #endregion Fields

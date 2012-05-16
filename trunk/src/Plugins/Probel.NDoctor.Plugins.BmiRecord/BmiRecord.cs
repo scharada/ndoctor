@@ -66,7 +66,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
 
             this.ConfigureAutoMapper();
 
-            this.component = new ComponentFactory().GetInstance<IBmiComponent>();
+            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IBmiComponent>();
         }
 
         #endregion Constructors

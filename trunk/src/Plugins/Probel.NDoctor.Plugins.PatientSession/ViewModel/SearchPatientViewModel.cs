@@ -27,13 +27,12 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.Helpers.Conversions;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PatientSession.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-
-    using Probel.NDoctor.Domain.Components;
 
     public class SearchPatientViewModel : BaseViewModel
     {
@@ -57,7 +56,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             this.TodayPatients = new ObservableCollection<LightPatientViewModel>();
             this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());
 
-            this.component = new ComponentFactory().GetInstance<IPatientSessionComponent>();
+            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPatientSessionComponent>();
         }
 
         #endregion Constructors

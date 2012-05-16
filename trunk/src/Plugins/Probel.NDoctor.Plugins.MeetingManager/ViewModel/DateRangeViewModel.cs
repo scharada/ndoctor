@@ -41,7 +41,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     {
         #region Fields
 
-        private static readonly ICalendarComponent component = new ComponentFactory().GetInstance<ICalendarComponent>();
+        private static readonly ICalendarComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<ICalendarComponent>();
 
         private static IList<TagDto> tags;
 
