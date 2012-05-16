@@ -27,6 +27,7 @@
     * [RightManager Rights manager]
   * [convertdatabase Import data]
  * Implementation
+  * [TechDoc Technical documentation]
   * [CodingConventions Coding conventions]
   * [Tools Tools]
   * [SVN Use of SVN]
