@@ -91,7 +91,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
         public void ConfigureUsingFile(string path, bool create)
         {
-            if (!create && !File.Exists(path)) throw new FileNotFoundException(Messages.Msg_ErrorDbInvalidPath);
+            if (!File.Exists(path)) create = true;
 
             if (create)
             {

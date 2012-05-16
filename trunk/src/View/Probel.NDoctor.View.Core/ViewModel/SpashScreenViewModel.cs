@@ -204,10 +204,13 @@ namespace Probel.NDoctor.View.Core.ViewModel
         private void ConfigureNHibernate()
         {
             this.Logger.Info("Configuring nHibernate...");
-            var path = ConfigurationManager.AppSettings["Database"];
-            if (!File.Exists(path) && !this.CreateDatabase) throw new FileNotFoundException(Messages.Msg_ErrorDatabaseNotFound);
+            var path = Environment.ExpandEnvironmentVariables(ConfigurationManager.AppSettings["Database"]);
+
+            if (!File.Exists(path) && !this.CreateDatabase) { this.Logger.Warn("It seems to be the first start of the application. An empty database is created."); }
 
             this.Logger.DebugFormat("Database path: {0}", path);
+            var msg = this.CreateDatabase ? "Create a new database" : "Do NOT Create a new database";
+            this.Logger.Debug(msg);
             this.LogDatabaseCreation();
             new DAL().ConfigureUsingFile(path, this.CreateDatabase);
         }

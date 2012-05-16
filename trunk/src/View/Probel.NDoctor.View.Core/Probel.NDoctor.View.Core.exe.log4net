@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <log4net>
   <appender name="FileAppender" type="log4net.Appender.RollingFileAppender">
-    <file value="${USERPROFILE}\Logs\nDoctor\nDoctor.log"/>
+    <file value="${APPDATA}\Probel\nDoctor\Logs\nDoctor.log"/>
     <appendToFile value="true"/>
     <maximumFileSize value="1000KB"/>
     <maxSizeRollBackups value="20"/>
