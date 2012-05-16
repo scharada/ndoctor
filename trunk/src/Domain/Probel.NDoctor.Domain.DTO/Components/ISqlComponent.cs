@@ -25,13 +25,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="sql">The SQL.</param>
         /// <returns></returns>
-         object ExecuteNonQuery(string sql);
+        object ExecuteNonQuery(string sql);
 
         /// <summary>
         /// Executes the specified SQL.
         /// </summary>
         /// <param name="sql">The SQL.</param>
-         void ExecuteSql(string sql);
+        void ExecuteSql(string sql);
 
         /// <summary>
         /// Determines whether the database is empty.
@@ -39,7 +39,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <returns>
         ///   <c>true</c> if the database is empty; otherwise, <c>false</c>.
         /// </returns>
-         bool IsDatabaseEmpty();
+        bool IsDatabaseEmpty();
 
         #endregion Methods
     }

@@ -37,8 +37,6 @@ namespace Probel.NDoctor.Plugins.FamilyManager
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
 
-
-
     [Export(typeof(IPlugin))]
     public class FamilyManager : Plugin
     {

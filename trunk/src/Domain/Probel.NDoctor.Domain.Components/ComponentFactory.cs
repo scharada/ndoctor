@@ -34,7 +34,8 @@ namespace Probel.NDoctor.Domain.Components
     using StructureMap;
 
     /// <summary>
-    /// Give an instance of a component
+    /// Give an instance of a component and add dynamic interceptors to the call of every methods
+    /// of the components
     /// </summary>
     public class ComponentFactory
     {
