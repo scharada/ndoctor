@@ -17,6 +17,7 @@
 namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Windows;
@@ -41,7 +42,10 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     {
         #region Fields
 
-        private ICalendarComponent component = new ComponentFactory().GetInstance<ICalendarComponent>();
+        private static readonly ICalendarComponent component = new ComponentFactory().GetInstance<ICalendarComponent>();
+
+        private static IList<TagDto> tags;
+
         private ErrorHandler errorHandler;
         private bool isSelected = false;
         private LightPatientDto patient;
@@ -63,16 +67,8 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
             try
             {
-                /* HACK: I need fresh data as soon as this object is insanciated.
-                 * But is is not a good practice to have code that can throws exception
-                 * in a ctor. Therefore, a solution should be found and this code refactored.
-                 */
-                using (this.component.UnitOfWork)
-                {
-                    var result = this.component.FindTags(TagCategory.Appointment);
-                    this.Tags.Refill(result);
-                }
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_SearchProcessed);
+                this.Tags.Refill(tags);
             }
             catch (Exception ex)
             {
@@ -88,6 +84,11 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         {
             get;
             private set;
+        }
+
+        public ICalendarComponent Component
+        {
+            get { return component; }
         }
 
         public IPluginHost Host
@@ -187,6 +188,16 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
         #region Methods
 
+        public static void RefreshTags()
+        {
+            IList<TagDto> result;
+            using (component.UnitOfWork)
+            {
+                result = component.FindTags(TagCategory.Appointment);
+            }
+            tags = result;
+        }
+
         /// <summary>
         /// Handles the error, log it and shows a message box with the error.
         /// </summary>
@@ -253,10 +264,10 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
             try
             {
-                using (this.component.UnitOfWork)
+                using (this.Component.UnitOfWork)
                 {
                     var appointment = Mapper.Map<DateRangeViewModel, AppointmentDto>(this);
-                    this.component.Create(appointment, patient);
+                    this.Component.Create(appointment, patient);
                 }
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_AppointmentAdded);
                 Notifyer.OnRefreshed(this);
@@ -283,10 +294,10 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
             try
             {
-                using (this.component.UnitOfWork)
+                using (this.Component.UnitOfWork)
                 {
                     var appointment = Mapper.Map<DateRangeViewModel, AppointmentDto>(this);
-                    this.component.Remove(appointment, this.Patient);
+                    this.Component.Remove(appointment, this.Patient);
                 }
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_AppointmentRemoved);
                 Notifyer.OnRefreshed(this);
