@@ -1,3 +1,5 @@
+﻿#region Header
+
 /*
     This file is part of NDoctor.
 
@@ -15,14 +17,29 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System.Reflection;
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
-[assembly: AssemblyVersion("3.0.1.309")]
+#endregion Header
+
+namespace Probel.NDoctor.Domain.Components.Interceptors
+{
+    using Castle.DynamicProxy;
+
+    using log4net;
+
+    public class LogInterceptor : IInterceptor
+    {
+        #region Fields
+
+        private readonly ILog log = LogManager.GetLogger(typeof(LogInterceptor));
+
+        #endregion Fields
+
+        #region Methods
+
+        public void Intercept(IInvocation invocation)
+        {
+            log.Debug(string.Format("Intercepting the method '{0}' of the component '{1}'", invocation.Method.Name, invocation.TargetType.Name));
+        }
+
+        #endregion Methods
+    }
+}

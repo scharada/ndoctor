@@ -80,6 +80,8 @@
     <Compile Include="Entities\Prescription.cs" />
     <Compile Include="Entities\PrescriptionDocument.cs" />
     <Compile Include="Helpers\EntityEqualityComparer.cs" />
+    <Compile Include="Helpers\ComponentDecorator.cs" />
+    <Compile Include="Helpers\IgnoreSessionCheckAttribute.cs" />
     <Compile Include="Mappings\Mapping.cs" />
     <Compile Include="Components\BaseComponent.cs" />
     <Compile Include="Components\BmiComponent.cs" />

@@ -18,6 +18,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
 {
     using System.Text.RegularExpressions;
 
+    using Probel.NDoctor.Domain.DAL.Helpers;
     using Probel.NDoctor.Domain.DTO.Components;
 
     public class SqlComponent : BaseComponent, ISqlComponent
@@ -66,6 +67,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         ///   <c>true</c> if the database is empty; otherwise, <c>false</c>.
         /// </returns>
+        [IgnoreSessionCheck]
         public bool IsDatabaseEmpty()
         {
             var sql = "SELECT count(*) FROM sqlite_sequence WHERE seq > 0";

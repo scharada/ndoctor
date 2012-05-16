@@ -31,10 +31,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.Helpers.Management;
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Entities;
-    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.DAL.Helpers;
 
     /* REFACTOR: 1027 lines of code => refactor this god object.
      * I should split the responsibilities....
@@ -91,6 +92,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
         public UnitOfWork UnitOfWork
         {
+            [IgnoreSessionCheck]
             get { return new UnitOfWork(init, dispose); }
         }
 
@@ -814,22 +816,22 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Check if the current session can be used to query the database
+        /// </summary>
+        /// <exception cref="DalSessionException">Is thrown when the session is not configured correctly</exception>
+        internal void CheckSession()
+        {
+            Assert.IsNotNull(this.Session, "The session is not configured. Every query to a component should be in a UnitOfWork!");
+            if (!Session.IsOpen) throw new DalSessionException(Messages.Msg_ErrorSessionNotOpen);
+        }
+
+        /// <summary>
         /// Sets the session. This for test purpose
         /// </summary>
         /// <param name="session">The session.</param>
         internal void SetSession(ISession session)
         {
             this.Session = session;
-        }
-
-        /// <summary>
-        /// Check if the current session can be used to query the database
-        /// </summary>
-        /// <exception cref="DalSessionException">Is thrown when the session is not configured correctly</exception>
-        protected void CheckSession()
-        {
-            Assert.IsNotNull(this.Session, "The session is not configured. Every query to a component should be in a UnitOfWork!");
-            if (!Session.IsOpen) throw new DalSessionException(Messages.Msg_ErrorSessionNotOpen);
         }
 
         /// <summary>

@@ -21,6 +21,13 @@
 
 namespace Probel.NDoctor.Domain.Components
 {
+    using System;
+
+    using Castle.DynamicProxy;
+
+    using log4net;
+
+    using Probel.NDoctor.Domain.Components.Interceptors;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
 
@@ -31,6 +38,14 @@ namespace Probel.NDoctor.Domain.Components
     /// </summary>
     public class ComponentFactory
     {
+        #region Fields
+
+        private static readonly ProxyGenerator generator = new ProxyGenerator(new PersistentProxyBuilder());
+
+        private ILog logger = LogManager.GetLogger(typeof(ComponentFactory));
+
+        #endregion Fields
+
         #region Constructors
 
         static ComponentFactory()
@@ -95,8 +110,25 @@ namespace Probel.NDoctor.Domain.Components
         #region Methods
 
         public T GetInstance<T>()
+            where T : class
         {
-            return ObjectFactory.GetInstance<T>();
+            try
+            {
+                T instance = ObjectFactory.GetInstance<T>();
+
+                if (instance is BaseComponent)
+                {
+                    return generator.CreateInterfaceProxyWithTarget<T>(instance
+                        , new CheckerInterceptor()
+                        , new LogInterceptor());
+                }
+                else { return instance; }
+            }
+            catch (Exception ex)
+            {
+                this.logger.Warn("An error occured when instanciating a component", ex);
+                throw;
+            }
         }
 
         #endregion Methods

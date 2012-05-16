@@ -1,3 +1,5 @@
+﻿#region Header
+
 /*
     This file is part of NDoctor.
 
@@ -15,14 +17,36 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System.Reflection;
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
-[assembly: AssemblyVersion("3.0.1.309")]
+#endregion Header
+
+namespace Probel.NDoctor.Domain.DAL.Helpers
+{
+    using Probel.NDoctor.Domain.DAL.Components;
+
+    public class ComponentDecorator
+    {
+        #region Fields
+
+        private BaseComponent component;
+
+        #endregion Fields
+
+        #region Constructors
+
+        public ComponentDecorator(BaseComponent component)
+        {
+            this.component = component;
+        }
+
+        #endregion Constructors
+
+        #region Methods
+
+        public void CheckSession()
+        {
+            this.component.CheckSession();
+        }
+
+        #endregion Methods
+    }
+}

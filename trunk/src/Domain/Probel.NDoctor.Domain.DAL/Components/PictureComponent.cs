@@ -26,8 +26,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
     using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DAL.Entities;
-    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     public class PictureComponent : BaseComponent, IPictureComponent
