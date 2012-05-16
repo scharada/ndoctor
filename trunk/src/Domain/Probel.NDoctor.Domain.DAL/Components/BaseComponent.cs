@@ -92,7 +92,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
         public UnitOfWork UnitOfWork
         {
-            [Ignore]
+            [InspectionIgnored]
             get { return new UnitOfWork(init, dispose); }
         }
 

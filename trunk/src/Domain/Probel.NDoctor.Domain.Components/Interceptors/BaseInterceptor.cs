@@ -42,7 +42,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
         /// <returns></returns>
         protected bool Ignore(IInvocation invocation)
         {
-            var attributes = invocation.MethodInvocationTarget.GetCustomAttributes(typeof(IgnoreAttribute), true);
+            var attributes = invocation.MethodInvocationTarget.GetCustomAttributes(typeof(InspectionIgnoredAttribute), true);
             return attributes.Length > 0;
         }
 

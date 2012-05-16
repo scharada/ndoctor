@@ -25,14 +25,14 @@ namespace Probel.NDoctor.Domain.DAL.Helpers
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property,
         AllowMultiple = false,
         Inherited = true)]
-    public class IgnoreAttribute : Attribute
+    public class InspectionIgnoredAttribute : Attribute
     {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="IgnoreAttribute"/> class.
+        /// Initializes a new instance of the <see cref="InspectionIgnoredAttribute"/> class.
         /// </summary>
-        public IgnoreAttribute()
+        public InspectionIgnoredAttribute()
         {
             this.Ignore = true;
         }
