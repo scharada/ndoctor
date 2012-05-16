@@ -35,7 +35,6 @@ namespace Probel.NDoctor.Plugins.Administration
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
 
-    using StructureMap;
 
     [Export(typeof(IPlugin))]
     public class AdministrationManager : Plugin
@@ -58,7 +57,6 @@ namespace Probel.NDoctor.Plugins.Administration
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
 
-            this.ConfigureStructureMap();
             this.ConfigureAutoMapper();
         }
 
@@ -148,15 +146,6 @@ namespace Probel.NDoctor.Plugins.Administration
 
             Mapper.CreateMap<InsuranceDto, InsuranceViewModel>();
             Mapper.CreateMap<InsuranceViewModel, InsuranceDto>();
-        }
-
-        private void ConfigureStructureMap()
-        {
-            ObjectFactory.Configure(x =>
-            {
-                x.For<IAdministrationComponent>().Add<AdministrationComponent>();
-                x.SelectConstructor<IAdministrationComponent>(() => new AdministrationComponent());
-            });
         }
 
         private void Navigate()

@@ -25,8 +25,8 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.Administration.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.Domain.Components;
 
-    using StructureMap;
 
     public class ProfessionViewModel : ProfessionDto
     {
@@ -41,7 +41,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         public ProfessionViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IAdministrationComponent>();
+            if (!Designer.IsDesignMode) this.component = new ComponentFactory().GetInstance<IAdministrationComponent>();
             this.errorHandler = new ErrorHandler(this);
 
             this.UpdateCommand = new RelayCommand(() => this.Update(), () => this.CanUpdate());
@@ -53,7 +53,8 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         public ICommand UpdateCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         #endregion Properties

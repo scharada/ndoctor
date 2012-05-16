@@ -29,8 +29,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.NDoctor.Plugins.Administration.Helpers;
     using Probel.NDoctor.Plugins.Administration.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
-
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     public class DrugViewModel : DrugDto
     {
@@ -45,7 +44,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         public DrugViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IAdministrationComponent>();
+            if (!Designer.IsDesignMode) this.component = new ComponentFactory().GetInstance<IAdministrationComponent>();
             this.errorHandler = new ErrorHandler(this);
 
             this.Tags = new ObservableCollection<TagDto>();

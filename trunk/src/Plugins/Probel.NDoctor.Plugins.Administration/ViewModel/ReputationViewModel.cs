@@ -25,8 +25,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.Administration.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
-
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     public class ReputationViewModel : ReputationDto
     {
@@ -41,7 +40,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         public ReputationViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IAdministrationComponent>();
+            if (!Designer.IsDesignMode) this.component = new ComponentFactory().GetInstance<IAdministrationComponent>();
             this.errorHandler = new ErrorHandler(this);
 
             this.UpdateCommand = new RelayCommand(() => this.Update(), () => this.CanUpdate());

@@ -20,15 +20,16 @@
 #endregion Header
 
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ClassLibrary1Probel.NDoctor.View.Test")]
+[assembly: AssemblyTitle("Probel.NDoctor.Domain.Components")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyProduct("ClassLibrary1Probel.NDoctor.View.Test")]
+[assembly: AssemblyProduct("Probel.NDoctor.Domain.Components")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
@@ -36,4 +37,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("09829863-b74a-4326-9862-b405253f3ba2")]
+[assembly: Guid("d290eb43-a3bb-44f3-a08e-120e14f0bcd6")]

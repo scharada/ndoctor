@@ -173,6 +173,10 @@
     <Resource Include="Images\SmallIcon.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Domain\Probel.NDoctor.Domain.Components\Probel.NDoctor.Domain.Components.csproj">
+      <Project>{0B3E735D-EBB5-4191-93DA-4EB1EE173D18}</Project>
+      <Name>Probel.NDoctor.Domain.Components</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Domain\Probel.NDoctor.Domain.DAL\Probel.NDoctor.Domain.DAL.csproj">
       <Project>{96B7A128-8A98-4B49-A3CB-30AE783236E9}</Project>
       <Name>Probel.NDoctor.Domain.DAL</Name>

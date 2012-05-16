@@ -26,7 +26,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.NDoctor.Plugins.Administration.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    using StructureMap;
+    using Probel.NDoctor.Domain.Components;
 
     public class InsuranceViewModel : InsuranceDto
     {
@@ -41,7 +41,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         public InsuranceViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = ObjectFactory.GetInstance<IAdministrationComponent>();
+            if (!Designer.IsDesignMode) this.component = new ComponentFactory().GetInstance<IAdministrationComponent>();
             this.errorHandler = new ErrorHandler(this);
             this.UpdateCommand = new RelayCommand(() => this.Update(), () => this.CanUpdate());
         }
