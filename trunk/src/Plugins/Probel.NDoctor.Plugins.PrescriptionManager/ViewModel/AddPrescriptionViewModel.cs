@@ -38,7 +38,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     {
         #region Fields
 
-        private IPrescriptionComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPrescriptionComponent>();
+        private IPrescriptionComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPrescriptionComponent>();
         private string criteria;
         private PrescriptionDto currentPrescription;
         private PrescriptionDocumentDto prescriptionDocumentToCreate;

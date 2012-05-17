@@ -58,6 +58,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         ///   <c>true</c> if this instance can connect the specified user; otherwise, <c>false</c>.
         /// </returns>
+        [Granted(To.Read)]
         public bool CanConnect(LightUserDto user, string password)
         {
             if (user == null || password == null) return false;
@@ -95,7 +96,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Gets user used for default connection or null if none is selected.
         /// </summary>
         /// <returns></returns>
-        public LightUserDto GetDefaultUser()
+        public LightUserDto FindDefaultUser()
         {
             var result = (from user in this.Session.Query<User>()
                           where user.IsDefault == true
@@ -111,12 +112,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="id">The id.</param>
         /// <returns></returns>
+        [Granted(To.Read)]
         public UserDto LoadUser(LightUserDto user)
         {
             var fullUser = this.Session.Get<User>(user.Id);
 
             if (fullUser == null) return null;
-            return Mapper.Map<User, UserDto>(fullUser);
+            var result = Mapper.Map<User, UserDto>(fullUser);
+            return result;
         }
 
         /// <summary>

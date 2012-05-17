@@ -14,39 +14,35 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.View.Plugins.Helpers
+namespace Probel.NDoctor.Domain.DAL
 {
-    using Probel.NDoctor.View.Plugins;
+    using System;
 
     /// <summary>
-    /// Context of the plugin
+    /// Explicit authorisation are done throught this Attribute. An attribute override implicit rules
+    /// 
+    /// If no attribute is set to a method or a class, this implicit authorisation is done:
+    /// * Read : every method that contains "Find" or "GetAll"
+    /// * Write: every method that contains "Create", "Remove" or "Update"    
     /// </summary>
-    public static class PluginContext
+    [AttributeUsage(AttributeTargets.All, AllowMultiple = false)]
+    public class GrantedAttribute : Attribute
     {
-        #region Properties
+        #region Constructors
 
-        /// <summary>
-        /// Gets or sets a value indicating whether component loggin is enabled.
-        /// </summary>
-        /// <value>
-        /// 	<c>true</c> if component loggin is enabled; otherwise, <c>false</c>.
-        /// </value>
-        public static bool ComponentLogginEnabled
+        public GrantedAttribute(string to)
         {
-            get;
-            set;
+            this.Task = to;
         }
 
-        /// <summary>
-        /// Gets or sets the plugin host.
-        /// </summary>
-        /// <value>
-        /// The host.
-        /// </value>
-        public static IPluginHost Host
+        #endregion Constructors
+
+        #region Properties
+
+        public string Task
         {
             get;
-            set;
+            private set;
         }
 
         #endregion Properties

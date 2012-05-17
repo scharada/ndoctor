@@ -99,7 +99,7 @@ namespace Probel.NDoctor.Plugins.UserSession
         {
             this.ConfigureAutoMapper();
 
-            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IUserSessionComponent>();
+            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IUserSessionComponent>();
 
             TranslateExtension.ResourceManager = Messages.ResourceManager;
 
@@ -144,7 +144,7 @@ namespace Probel.NDoctor.Plugins.UserSession
             LightUserDto defaultUser = null;
             using (this.component.UnitOfWork)
             {
-                defaultUser = this.component.GetDefaultUser();
+                defaultUser = this.component.FindDefaultUser();
             }
 
             if (defaultUser == null)

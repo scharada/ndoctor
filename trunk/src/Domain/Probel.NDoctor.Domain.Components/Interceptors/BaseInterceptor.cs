@@ -25,7 +25,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
 
     using Probel.NDoctor.Domain.DAL.Helpers;
 
-    public abstract class BaseInterceptor : IInterceptor
+    internal abstract class BaseInterceptor : IInterceptor
     {
         #region Methods
 

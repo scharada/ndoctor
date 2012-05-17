@@ -34,7 +34,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     {
         #region Fields
 
-        private IPatientSessionComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPatientSessionComponent>();
+        private IPatientSessionComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPatientSessionComponent>();
         private LightPatientDto patient;
 
         #endregion Fields

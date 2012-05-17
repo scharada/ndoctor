@@ -41,7 +41,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     {
         #region Fields
 
-        private ICalendarComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<ICalendarComponent>();
+        private ICalendarComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<ICalendarComponent>();
         private string criteria;
         private DateTime dateToDisplay;
 

@@ -49,11 +49,23 @@
     <Compile Include="..\..\Version.cs">
       <Link>Version.cs</Link>
     </Compile>
+    <Compile Include="AuthorisationException.cs" />
     <Compile Include="ComponentFactory.cs" />
+    <Compile Include="Interceptors\AuthorisationInterceptor.cs" />
     <Compile Include="Interceptors\BaseInterceptor.cs" />
     <Compile Include="Interceptors\LogInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interceptors\CheckerInterceptor.cs" />
+    <Compile Include="Properties\Messages.fr.Designer.cs">
+      <DependentUpon>Messages.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Probel.NDoctor.Domain.DAL\Probel.NDoctor.Domain.DAL.csproj">
@@ -68,6 +80,16 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Probel.NDoctor.Domain.Components.licenseheader" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Messages.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

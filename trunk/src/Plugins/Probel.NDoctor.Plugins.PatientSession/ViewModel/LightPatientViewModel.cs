@@ -47,7 +47,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
                 InnerWindow.Close();
                 PluginContext.Host.NavigateToStartPage();
             });
-            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPatientSessionComponent>();
+            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPatientSessionComponent>();
         }
 
         #endregion Constructors

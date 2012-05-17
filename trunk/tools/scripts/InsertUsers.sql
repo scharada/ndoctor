@@ -33,13 +33,8 @@ INSERT INTO Pathology (Id, Name, Notes, Tag_Id, IsImported) VALUES( 2, 'Rhume &&
 INSERT INTO Pathology (Id, Name, Notes, Tag_Id, IsImported) VALUES( 3, 'Pneumonie &&', 'Some notes', 12, 0);
 INSERT INTO Pathology (Id, Name, Notes, Tag_Id, IsImported) VALUES( 4, 'Angine &&'   , 'Some notes', 12, 0);
 
-INSERT INTO Role(Id, Name, IsImported) VALUES(1, 'Role 1', 0);
-INSERT INTO Role(Id, Name, IsImported) VALUES(2, 'Role 2', 0);
-
-INSERT INTO Task(Name, role_id, IsImported) VALUES('Task1', 1, 0);
-INSERT INTO Task(Name, role_id, IsImported) VALUES('Task2', 1, 0);
-INSERT INTO Task(Name, role_id, IsImported) VALUES('Task3', 2, 0);
-INSERT INTO Task(Name, role_id, IsImported) VALUES('Task4', 2, 0);
+INSERT INTO Role(Id, Name, IsImported, Tasks) VALUES(1, 'Role 1', 0, "Read,Write");
+INSERT INTO Role(Id, Name, IsImported, Tasks) VALUES(2, 'Role 2', 0, "Read,Write");
 
 INSERT INTO Practice(Id, Name, Notes, Phone, AddressBoxNumber, AddressCity, AddressPostalCode, AddressStreet, AddressStreetNumber, IsImported) VALUES (1, 'Cabinet de Liege', 'Qques notes', '04/222.13.89','111','Li�ge', '4000', 'rue Darchis','56', 0);
 INSERT INTO Practice(Id, Name, Notes, Phone, AddressBoxNumber, AddressCity, AddressPostalCode, AddressStreet, AddressStreetNumber, IsImported) VALUES (2, 'Cabinet de Huy', 'Qques notes', '085/25.58.75','111','Huy', '4500', 'rue du Long Thier','26', 0);

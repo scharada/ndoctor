@@ -45,7 +45,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         public BindDoctorViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPatientDataComponent>();
+            if (!Designer.IsDesignMode) this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPatientDataComponent>();
 
             this.FoundDoctors = new ObservableCollection<LightDoctorViewModel>();
             this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());

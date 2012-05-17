@@ -36,9 +36,9 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     {
         #region Fields
 
-        private IUserSessionComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IUserSessionComponent>();
+        private IUserSessionComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IUserSessionComponent>();
         private ObservableCollection<PracticeDto> practices;
-        private ObservableCollection<LightRoleDto> roles;
+        private ObservableCollection<RoleDto> roles;
         private UserDto user;
 
         #endregion Fields
@@ -123,7 +123,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         /// <value>
         /// The roles.
         /// </value>
-        public ObservableCollection<LightRoleDto> Roles
+        public ObservableCollection<RoleDto> Roles
         {
             get { return this.roles; }
             set
@@ -149,7 +149,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             }
         }
 
-        public LightRoleDto SelectedRole
+        public RoleDto SelectedRole
         {
             get
             {
@@ -238,7 +238,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         {
             try
             {
-                var component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IUserSessionComponent>();
+                var component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IUserSessionComponent>();
 
                 using (component.UnitOfWork)
                 {

@@ -36,7 +36,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         #region Fields
 
         private ICommand addRecordCommand;
-        private IMedicalRecordComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IMedicalRecordComponent>();
+        private IMedicalRecordComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IMedicalRecordComponent>();
         private MedicalRecordDto recordToAdd;
         private TagDto selectedTag;
         private ObservableCollection<TagDto> tags = new ObservableCollection<TagDto>();

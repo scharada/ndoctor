@@ -42,7 +42,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
         public BmiViewModel()
         {
             this.errorHandler = new ErrorHandler(this);
-            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IBmiComponent>();
+            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IBmiComponent>();
             this.DeleteCommand = new RelayCommand(() => this.Delete());
         }
 

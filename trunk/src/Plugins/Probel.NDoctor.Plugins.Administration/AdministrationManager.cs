@@ -35,7 +35,6 @@ namespace Probel.NDoctor.Plugins.Administration
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
 
-
     [Export(typeof(IPlugin))]
     public class AdministrationManager : Plugin
     {

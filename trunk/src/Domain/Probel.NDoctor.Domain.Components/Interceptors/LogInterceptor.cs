@@ -25,7 +25,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
 
     using log4net;
 
-    public class LogInterceptor : BaseInterceptor
+    internal class LogInterceptor : BaseInterceptor
     {
         #region Fields
 

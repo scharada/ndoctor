@@ -256,7 +256,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
 
         private void LoadDefaultPrescriptions()
         {
-            var component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPrescriptionComponent>();
+            var component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPrescriptionComponent>();
             using (component.UnitOfWork)
             {
                 var from = DateTime.Today.AddMonths(-1);

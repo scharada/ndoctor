@@ -245,7 +245,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// Gets all roles light.
         /// </summary>
         /// <returns>An array with all the roles</returns>
-        IList<LightRoleDto> GetAllRolesLight();
+        IList<RoleDto> GetAllRolesLight();
 
         /// <summary>
         /// Gets all the tags

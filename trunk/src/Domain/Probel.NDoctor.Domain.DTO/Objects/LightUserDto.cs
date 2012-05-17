@@ -25,6 +25,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     {
         #region Fields
 
+        private RoleDto assignedRole;
         private string firstName;
         private bool isDefaultUser;
         private string lastName;
@@ -32,6 +33,16 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #endregion Fields
 
         #region Properties
+
+        public RoleDto AssignedRole
+        {
+            get { return this.assignedRole; }
+            set
+            {
+                this.assignedRole = value;
+                this.OnPropertyChanged(() => AssignedRole);
+            }
+        }
 
         public string DisplayedName
         {

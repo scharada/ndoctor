@@ -36,7 +36,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     {
         #region Fields
 
-        private IUserSessionComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IUserSessionComponent>();
+        private IUserSessionComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IUserSessionComponent>();
         private string password;
         private LightUserDto selectedUser;
 

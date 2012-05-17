@@ -42,7 +42,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         public LightDoctorViewModel()
         {
-            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPatientDataComponent>();
+            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPatientDataComponent>();
             this.errorHandler = new ErrorHandler(this);
             this.AddDoctorCommand = new RelayCommand(() => this.AddDoctor());
             this.RemoveLinkCommand = new RelayCommand(() => this.RemoveLink());

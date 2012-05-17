@@ -47,7 +47,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         {
             this.SelectedTag = new TagDto(TagCategory.Picture);
 
-            if (!Designer.IsDesignMode) this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPictureComponent>();
+            if (!Designer.IsDesignMode) this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPictureComponent>();
 
             this.ShowPopupCommand = new RelayCommand(() => this.IsPopupOpened = true);
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());

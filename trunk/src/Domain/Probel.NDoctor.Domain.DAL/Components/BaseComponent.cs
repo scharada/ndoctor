@@ -572,10 +572,10 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Gets all roles light.
         /// </summary>
         /// <returns>An array with all the roles</returns>
-        public IList<LightRoleDto> GetAllRolesLight()
+        public IList<RoleDto> GetAllRolesLight()
         {
             var roles = this.GetAllEntitiesRoles();
-            return Mapper.Map<IList<Role>, IList<LightRoleDto>>(roles);
+            return Mapper.Map<IList<Role>, IList<RoleDto>>(roles);
         }
 
         /// <summary>

@@ -24,6 +24,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
 
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -34,8 +35,6 @@ namespace Probel.NDoctor.Plugins.PatientSession
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-
-    using Probel.NDoctor.Domain.Components;
 
     [Export(typeof(IPlugin))]
     public class PatientSession : Plugin

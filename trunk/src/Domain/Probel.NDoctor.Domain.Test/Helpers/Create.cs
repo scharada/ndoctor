@@ -18,7 +18,7 @@ namespace Probel.NDoctor.Domain.Test.Helpers
 {
     using System;
     using System.Collections.Generic;
-
+    using Probel.NDoctor.Domain.DAL;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DTO.Objects;
 
@@ -133,6 +133,15 @@ namespace Probel.NDoctor.Domain.Test.Helpers
             };
         }
 
+        public static Role ARole()
+        {
+            return new Role()
+            {
+                Name = Guid.NewGuid().ToString(),
+                Tasks = string.Format("{0},{1}", To.Read, To.Write)
+            };
+        }
+
         public static Tag ASpecialisation(string name)
         {
             return new Tag()
@@ -158,15 +167,6 @@ namespace Probel.NDoctor.Domain.Test.Helpers
             };
         }
 
-        public static Task ATask()
-        {
-            return new Task()
-            {
-                Description = Guid.NewGuid().ToString(),
-                Name = Guid.NewGuid().ToString(),
-            };
-        }
-
         public static User AUser(Address address, Role role, Practice practice, bool isDefaultUser)
         {
             var robertDupont = new User()
@@ -183,17 +183,6 @@ namespace Probel.NDoctor.Domain.Test.Helpers
                 IsDefault = isDefaultUser,
             };
             return robertDupont;
-        }
-
-        public static Role GetRole(Task task)
-        {
-            var role = new Role()
-            {
-                Description = Guid.NewGuid().ToString(),
-                Name = Guid.NewGuid().ToString(),
-                Tasks = new List<Task>() { task },
-            };
-            return role;
         }
 
         public static Insurance Insurance()

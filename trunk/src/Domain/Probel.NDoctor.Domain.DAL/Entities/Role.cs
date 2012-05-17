@@ -30,7 +30,8 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         /// </value>
         public virtual string Description
         {
-            get; set;
+            get;
+            set;
         }
 
         /// <summary>
@@ -41,7 +42,8 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         /// </value>
         public virtual string Name
         {
-            get; set;
+            get;
+            set;
         }
 
         /// <summary>
@@ -50,9 +52,10 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         /// <value>
         /// The tasks.
         /// </value>
-        public virtual IList<Task> Tasks
+        public virtual string Tasks
         {
-            get; set;
+            get;
+            set;
         }
 
         #endregion Properties

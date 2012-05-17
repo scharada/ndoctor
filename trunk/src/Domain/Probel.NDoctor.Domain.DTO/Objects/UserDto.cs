@@ -26,7 +26,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     {
         #region Fields
 
-        private LightRoleDto assignedRole;
+        private RoleDto assignedRole;
         private decimal fee;
         private string firstName;
         private string header;
@@ -48,7 +48,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// <value>
         /// The assigned role.
         /// </value>
-        public LightRoleDto AssignedRole
+        public RoleDto AssignedRole
         {
             get { return this.assignedRole; }
             set

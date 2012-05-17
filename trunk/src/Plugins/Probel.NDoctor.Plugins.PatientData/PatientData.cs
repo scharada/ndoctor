@@ -96,7 +96,7 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         public override void Initialise()
         {
-            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPatientDataComponent>();
+            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPatientDataComponent>();
             this.BuildButtons();
             this.BuildContextMenu();
         }

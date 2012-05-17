@@ -30,7 +30,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DAL.Helpers;
 
-    public class CheckerInterceptor : BaseInterceptor
+    internal class CheckerInterceptor : BaseInterceptor
     {
         #region Fields
 

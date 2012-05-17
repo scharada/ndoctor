@@ -42,7 +42,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.ViewModel
     {
         #region Fields
 
-        IImportComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IImportComponent>();
+        IImportComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IImportComponent>();
         private CultureInfo cultureInfo = Thread.CurrentThread.CurrentUICulture;
         private string database;
         private bool importDone = false;

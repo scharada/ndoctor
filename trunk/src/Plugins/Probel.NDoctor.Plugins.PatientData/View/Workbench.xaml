@@ -16,6 +16,14 @@
         <conv:ByteArrayToImageConverter x:Key="bytesToImage"/>
         <conv:DoctorGenderToImageConverter x:Key="doctorGenderToImage"/>
 
+        <!--Info about the pictures-->
+        <Style TargetType="{x:Type Border}" x:Key="StatusBorder">
+            <Setter Property="Padding" Value="4"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#22000000"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <!--<Setter Property="Width" Value="170"/>-->
+        </Style>
         <!--controlStyle-->
         <Style x:Key="controlStyle">
             <Setter Property="Control.Height" Value="26"/>
@@ -68,7 +76,24 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="26"/>
                         </Grid.RowDefinitions>
-                        <Image Grid.Row="0" Source="{Binding Patient.Thumbnail, Converter={StaticResource bytesToImage}}"/>
+                        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="6">
+                            <!-- Drop Shadow -->
+                            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="4" Background="#44000000">
+                                <Border.RenderTransform>
+                                    <TranslateTransform X="5" Y="5" />
+                                </Border.RenderTransform>
+                                <Border.BitmapEffect>
+                                    <BlurBitmapEffect Radius="8" />
+                                </Border.BitmapEffect>
+                            </Border>
+                            <!-- Image Template -->
+                            <Border Padding="4" Background="White" BorderBrush="#22000000" BorderThickness="1">
+                                <StackPanel Orientation="Vertical">
+                                    <Image Source="{Binding Patient.Thumbnail, Converter={StaticResource bytesToImage}}"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+    
                         <TextBlock Grid.Row="1" HorizontalAlignment="Center">        
 						    <Hyperlink Command="{Binding ChangeImageCommand}">
 							    <TextBlock Text="{Binding Source={x:Static Member=text:WorkbenchText.MsgChangePicture}}"/>

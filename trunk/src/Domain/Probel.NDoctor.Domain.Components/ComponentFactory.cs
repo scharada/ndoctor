@@ -22,6 +22,8 @@
 namespace Probel.NDoctor.Domain.Components
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     using Castle.DynamicProxy;
 
@@ -44,6 +46,7 @@ namespace Probel.NDoctor.Domain.Components
 
         private static readonly ProxyGenerator generator = new ProxyGenerator(new PersistentProxyBuilder());
 
+        private bool componentLogginEnabled = false;
         private ILog logger = LogManager.GetLogger(typeof(ComponentFactory));
         private LightUserDto user;
 
@@ -112,9 +115,11 @@ namespace Probel.NDoctor.Domain.Components
         /// Initializes a new instance of the <see cref="ComponentFactory"/> class.
         /// </summary>
         /// <param name="user">The user connected into nDoctor.</param>
-        public ComponentFactory(LightUserDto user)
+        /// <param name="componentLogginEnabled">if set to <c>true</c> component loggin is enabled.</param>
+        public ComponentFactory(LightUserDto user, bool componentLogginEnabled)
         {
             this.user = user;
+            this.componentLogginEnabled = componentLogginEnabled;
         }
 
         #endregion Constructors
@@ -130,9 +135,7 @@ namespace Probel.NDoctor.Domain.Components
 
                 if (instance is BaseComponent)
                 {
-                    return generator.CreateInterfaceProxyWithTarget<T>(instance
-                        , new CheckerInterceptor()
-                        , new LogInterceptor());
+                    return generator.CreateInterfaceProxyWithTarget<T>(instance, this.GetInterceptors());
                 }
                 else { return instance; }
             }
@@ -141,6 +144,17 @@ namespace Probel.NDoctor.Domain.Components
                 this.logger.Warn("An error occured when instanciating a component", ex);
                 throw;
             }
+        }
+
+        private IInterceptor[] GetInterceptors()
+        {
+            var interceptors = new List<IInterceptor>();
+
+            interceptors.Add(new CheckerInterceptor());
+            interceptors.Add(new AuthorisationInterceptor());
+            if (this.componentLogginEnabled) { interceptors.Add(new LogInterceptor()); }
+
+            return interceptors.ToArray();
         }
 
         #endregion Methods

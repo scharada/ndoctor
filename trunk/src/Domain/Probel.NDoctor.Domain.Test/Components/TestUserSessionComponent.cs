@@ -34,17 +34,17 @@ namespace Probel.NDoctor.Domain.Test.Component
         [Test]
         public void CanAddTwiceDefaultUser()
         {
-            var user = Create.AUser(Create.Address(), Create.GetRole(Create.ATask()), Create.Practice(Create.Address()), true);
+            var user = Create.AUser(Create.Address(), Create.ARole(), Create.Practice(Create.Address()), true);
             var dto = Mapper.Map<User, UserDto>(user);
 
             this.Component.Create(dto);
 
-            user = Create.AUser(Create.Address(), Create.GetRole(Create.ATask()), Create.Practice(Create.Address()), true);
+            user = Create.AUser(Create.Address(), Create.ARole(), Create.Practice(Create.Address()), true);
             dto = Mapper.Map<User, UserDto>(user);
 
             this.Component.Create(dto);
 
-            var defaultUser = this.Component.GetDefaultUser();
+            var defaultUser = this.Component.FindDefaultUser();
             Assert.NotNull(defaultUser);
             Assert.AreEqual(user.FirstName, defaultUser.FirstName);
         }
@@ -64,7 +64,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [Test]
         public void CanFindDefaultUser()
         {
-            var result = this.Component.GetDefaultUser();
+            var result = this.Component.FindDefaultUser();
             Assert.NotNull(result, "Should be one default user.");
         }
 

@@ -26,6 +26,7 @@ namespace Probel.NDoctor.View.Core
     using log4net;
 
     using Probel.NDoctor.View.Core.Properties;
+    using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
 
     using MySplashScreen = Probel.NDoctor.View.Core.View.SplashScreen;
@@ -47,6 +48,8 @@ namespace Probel.NDoctor.View.Core
         {
             this.Logger = LogManager.GetLogger(typeof(App));
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Settings.Default.Language);
+
+            PluginContext.ComponentLogginEnabled = bool.Parse(ConfigurationManager.AppSettings["ComponentLogginEnabled"]);
 
             var main = new MainWindow();
             var splash = new MySplashScreen();

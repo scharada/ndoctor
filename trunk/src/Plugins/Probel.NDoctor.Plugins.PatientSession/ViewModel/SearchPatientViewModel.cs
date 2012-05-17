@@ -56,7 +56,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             this.TodayPatients = new ObservableCollection<LightPatientViewModel>();
             this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());
 
-            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPatientSessionComponent>();
+            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPatientSessionComponent>();
         }
 
         #endregion Constructors

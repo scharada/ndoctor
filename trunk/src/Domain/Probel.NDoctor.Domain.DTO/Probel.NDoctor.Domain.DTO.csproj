@@ -90,7 +90,7 @@
     <Compile Include="Objects\InsuranceDto.cs" />
     <Compile Include="Objects\LightDoctorDto.cs" />
     <Compile Include="Objects\LightPatientDto.cs" />
-    <Compile Include="Objects\LightRoleDto.cs" />
+    <Compile Include="Objects\RoleDto.cs" />
     <Compile Include="Objects\MedicalRecordDto.cs" />
     <Compile Include="Objects\MedicalRecordCabinetDto.cs" />
     <Compile Include="Objects\MedicalRecordFolderDto.cs" />
@@ -131,6 +131,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="_Design\User.cd" />
     <None Include="_Design\Family.cd" />
     <None Include="_Design\MedicalRecords.cd" />
     <None Include="Probel.NDoctor.Domain.DTO.licenseheader" />

@@ -21,12 +21,13 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using Probel.Mvvm;
 
     [Serializable]
-    public class LightRoleDto : BaseDto
+    public class RoleDto : BaseDto
     {
         #region Fields
 
         string description;
         string name;
+        private string tasks;
 
         #endregion Fields
 
@@ -64,6 +65,33 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             }
         }
 
+        /// <summary>
+        /// Gets the task collection.
+        /// </summary>
+        public string[] TaskCollection
+        {
+            get
+            {
+                return this.tasks.Split(',', ';');
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the tasks assigned to this role.
+        /// </summary>
+        /// <value>
+        /// The tasks.
+        /// </value>
+        public string Tasks
+        {
+            get { return this.tasks; }
+            set
+            {
+                this.tasks = value;
+                this.OnPropertyChanged(() => Tasks);
+            }
+        }
+
         #endregion Properties
 
         #region Methods
@@ -76,7 +104,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// </returns>
         public override string ToString()
         {
-            return string.Format("{0}, name: {1}", base.ToString(), this.name);
+            return string.Format("{0}, name: {1} tasks: {2}", base.ToString(), this.name, this.tasks);
         }
 
         #endregion Methods

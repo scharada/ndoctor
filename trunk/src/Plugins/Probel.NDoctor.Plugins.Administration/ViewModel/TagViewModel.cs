@@ -44,7 +44,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         public TagViewModel()
             : base(TagCategory.Appointment)
         {
-            if (!Designer.IsDesignMode) this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IAdministrationComponent>();
+            if (!Designer.IsDesignMode) this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IAdministrationComponent>();
             this.errorHandler = new ErrorHandler(this);
             this.Categories = TagCategoryCollection.Build();
 

@@ -44,7 +44,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         public DrugViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IAdministrationComponent>();
+            if (!Designer.IsDesignMode) this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IAdministrationComponent>();
             this.errorHandler = new ErrorHandler(this);
 
             this.Tags = new ObservableCollection<TagDto>();

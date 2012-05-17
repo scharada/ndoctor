@@ -50,7 +50,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         {
             this.InitialiseCollections();
 
-            if (!Designer.IsDesignMode) this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPatientDataComponent>();
+            if (!Designer.IsDesignMode) this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPatientDataComponent>();
 
             this.Doctor = new DoctorDto();
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());

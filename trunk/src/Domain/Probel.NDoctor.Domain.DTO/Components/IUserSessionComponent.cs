@@ -45,7 +45,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// Gets user used for default connection or null if none is selected.
         /// </summary>
         /// <returns></returns>
-        LightUserDto GetDefaultUser();
+        LightUserDto FindDefaultUser();
 
         /// <summary>
         /// Gets the whole data of the specified connected user.

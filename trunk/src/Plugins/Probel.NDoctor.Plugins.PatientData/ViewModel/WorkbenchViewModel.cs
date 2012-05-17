@@ -58,7 +58,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         public WorkbenchViewModel()
             : base()
         {
-            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPatientDataComponent>();
+            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPatientDataComponent>();
 
             Notifyer.SateliteDataChanged += (sender, e) => this.Refresh();
 

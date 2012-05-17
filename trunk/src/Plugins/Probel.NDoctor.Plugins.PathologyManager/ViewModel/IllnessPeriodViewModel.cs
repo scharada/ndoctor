@@ -32,7 +32,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     {
         #region Fields
 
-        private IPathologyComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPathologyComponent>();
+        private IPathologyComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPathologyComponent>();
         private bool isSelected;
 
         #endregion Fields

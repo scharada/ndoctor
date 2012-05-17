@@ -64,7 +64,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
             this.IsInformationExpanded = false;
             this.SelectedPicture = new PictureDto();
-            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IPictureComponent>();
+            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPictureComponent>();
 
             this.AddPictureCommand = new RelayCommand(() => AddPicture(), () => PluginContext.Host.SelectedPatient != null);
             this.AddTypeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPicType, new AddTagView()), () => PluginContext.Host.SelectedPatient != null);

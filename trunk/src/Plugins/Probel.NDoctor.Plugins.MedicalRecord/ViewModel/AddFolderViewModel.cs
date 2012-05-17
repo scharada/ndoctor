@@ -33,7 +33,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     {
         #region Fields
 
-        private IMedicalRecordComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser).GetInstance<IMedicalRecordComponent>();
+        private IMedicalRecordComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IMedicalRecordComponent>();
         private TagDto tagToAdd;
 
         #endregion Fields
