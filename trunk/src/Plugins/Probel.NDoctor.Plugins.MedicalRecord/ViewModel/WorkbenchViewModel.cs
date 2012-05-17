@@ -115,7 +115,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
             using (this.component.UnitOfWork)
             {
-                var result = this.component.GetMedicalRecordCabinet(PluginContext.Host.SelectedPatient);
+                var result = this.component.FindMedicalRecordCabinet(PluginContext.Host.SelectedPatient);
                 this.Cabinet = TitledMedicalRecordCabinetDto.CreateFrom(result);
                 this.Tags = this.component.FindTags(TagCategory.MedicalRecord);
 

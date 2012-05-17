@@ -103,7 +103,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <returns></returns>
-        public MedicalRecordCabinetDto GetMedicalRecordCabinet(LightPatientDto patient)
+        public MedicalRecordCabinetDto FindMedicalRecordCabinet(LightPatientDto patient)
         {
             var selectedPatient = (from p in this.Session.Query<Patient>()
                                    where p.Id == patient.Id

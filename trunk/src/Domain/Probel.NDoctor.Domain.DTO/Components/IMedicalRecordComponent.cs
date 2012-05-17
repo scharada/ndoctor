@@ -46,7 +46,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <returns></returns>
-        MedicalRecordCabinetDto GetMedicalRecordCabinet(LightPatientDto patient);
+        MedicalRecordCabinetDto FindMedicalRecordCabinet(LightPatientDto patient);
 
         /// <summary>
         /// Commits the changes on medical record cabinet.

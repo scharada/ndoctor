@@ -172,7 +172,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             {
                 using (this.medicalRecordComponent.UnitOfWork)
                 {
-                    this.MedicalRecordCabinet = this.medicalRecordComponent.GetMedicalRecordCabinet(this.SelectedMember);
+                    this.MedicalRecordCabinet = this.medicalRecordComponent.FindMedicalRecordCabinet(this.SelectedMember);
                 }
             }
             else { this.Logger.Warn("Impossible to load the medical record cabinet because the selected member is null"); }
