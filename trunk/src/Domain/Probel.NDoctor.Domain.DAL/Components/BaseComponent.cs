@@ -726,9 +726,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Update(PatientDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
+            item.LastUpdate = DateTime.Today;
 
             var entity = this.Session.Get<Patient>(item.Id);
-            entity.LastUpdate = DateTime.Now;
 
             Mapper.Map<PatientDto, Patient>(item, entity);
             this.Session.Update(entity);

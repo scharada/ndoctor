@@ -235,7 +235,7 @@
                     <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=Patient.Reason, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Top" Height="250"/>
                     <Label Style="{StaticResource separatorStyle}" Content="{Binding Source={x:Static Member=text:WorkbenchText.SeparatorMisc}}"/>
                     <DatePicker Style="{StaticResource textBoxStyle}" SelectedDate="{Binding Path=Patient.InscriptionDate, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Label Style="{StaticResource textBoxStyle}" Content="{Binding Path=Patient.LastUpdate}"/>
+                    <DatePicker Style="{StaticResource textBoxStyle}" SelectedDate="{Binding Path=Patient.LastUpdate}" IsEnabled="False"/>
 
                     <ComboBox Style="{StaticResource textBoxStyle}"
                               DisplayMemberPath="Name"
