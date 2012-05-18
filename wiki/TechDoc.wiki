@@ -1,4 +1,9 @@
 = Technical Documentation =
+== Import the plugin project template ==
+Drop the file 
+  * `[working copy]\tools\Probel.NDoctor.Template.zip` 
+into 
+  * `%userprofile%\My Documents\Visual Studio 2010\Templates\ProjectTemplates\Visual C#\`
 
 == Castle Dynamic Proxy ==
 [http://kozmic.pl/dynamic-proxy-tutorial/ Krzysztof Koźmic tutorial ]
