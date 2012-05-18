@@ -7,6 +7,7 @@
   * [GeneralDesign General Design]
   * [PluginDesign Plugin Design]
  * Requirements
+  * [Users]
   * [Gui Graphic user interface]
   * [UserSession User's session]
    * [PatientSession Patient's session]
