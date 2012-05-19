@@ -37,7 +37,7 @@ namespace Probel.Helpers.Test
         }
 
         [Test]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void FailOnRefillNull()
         {
             ObservableCollection<object> list = new ObservableCollection<object>();
