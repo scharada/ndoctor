@@ -2,8 +2,12 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Probel.NDoctor.Domain.DAL.Entities.Patient">
     <Position X="3.25" Y="4.5" Width="1.5" />
+    <Members>
+      <Method Name="Patient" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
     <TypeIdentifier>
-      <HashCode>AACCAAAABBAAAAIggAAAAAQgAAAAAAAIEAAgAAQAAAA=</HashCode>
+      <HashCode>AASiAAAARBAACAIlgAAAAAQgQAAIAAAIEgAhAAQAAAA=</HashCode>
       <FileName>Entities\Patient.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -12,11 +16,14 @@
       <Property Name="Profession" />
       <Property Name="Reputation" />
     </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="MedicalRecords" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Probel.NDoctor.Domain.DAL.Entities.Person">
     <Position X="3.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQAgAEAAAAAgAACAAAAACIAQAQAAAAICABAAAAAAAAg=</HashCode>
+      <HashCode>AQAAAEQAAAAgCACEAAAACAAQAQAAAAACAAAAAAAACAg=</HashCode>
       <FileName>Entities\Person.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -31,7 +38,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Probel.NDoctor.Domain.DAL.Entities.Profession">
-    <Position X="7.5" Y="5.5" Width="1.5" />
+    <Position X="7.5" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\Profession.cs</FileName>
@@ -50,9 +57,6 @@
       <HashCode>AAAgAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAACAA=</HashCode>
       <FileName>Entities\Tag.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Category" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Probel.NDoctor.Domain.DAL.Entities.Practice">
     <Position X="0.75" Y="4.75" Width="1.5" />
@@ -61,9 +65,15 @@
       <FileName>Entities\Practice.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Enum Name="Probel.NDoctor.Domain.DTO.TagCategory">
-    <Position X="8.5" Y="0.75" Width="1.5" />
-    <TypeIdentifier />
-  </Enum>
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.MedicalRecord">
+    <Position X="8.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAgAAAAAAAAAAQQEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\MedicalRecord.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Tag" />
+    </ShowAsAssociation>
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

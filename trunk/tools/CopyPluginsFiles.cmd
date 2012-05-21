@@ -282,5 +282,22 @@ copy "%rsxPlugin%" "%directory%\fr"
 copy "%rsxCore%" "%directory%\fr"
 copy "%rsxViewPlugin%" "%directory%\fr"
 echo=======================================================================================================
+set "pluginName=Authorisation"
+echo "Plugin: %pluginName%"
+echo=======================================================================================================
+set "return=r14"
+goto refresh
+:r14
+
+mkdir "%directory%"
+mkdir "%directoryFr%"
+
+copy "%pluginDll%" "%directory%\
+copy "%rsxHelper%" "%directory%\fr"
+copy "%rsxDal%" "%directory%\fr"
+copy "%rsxPlugin%" "%directory%\fr"
+copy "%rsxCore%" "%directory%\fr"
+copy "%rsxViewPlugin%" "%directory%\fr"
+echo=======================================================================================================
 
 echo Script executed

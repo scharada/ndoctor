@@ -186,7 +186,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
                 , navSearchCommand);
 
             var addDrugButton = new RibbonButtonData(Messages.Btn_AddDrug
-                , imgUri.FormatWith("Add")
+                , imgUri.FormatWith("Drug")
                 , new RelayCommand(() =>
                 {
                     var view = new AddDrugView();
@@ -199,7 +199,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
                     , () => this.lastNavigation == LastNavigation.AddPrescription));
 
             var addDrugTypeButton = new RibbonButtonData(Messages.Btn_AddDrugType
-                , imgUri.FormatWith("Add")
+                , imgUri.FormatWith("DrugType")
                 , new RelayCommand(() => InnerWindow.Show(Messages.Btn_Add, new AddDrugTypeView())
                     , () => this.lastNavigation == LastNavigation.AddPrescription));
 

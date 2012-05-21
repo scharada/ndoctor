@@ -184,6 +184,10 @@
   <ItemGroup>
     <Resource Include="Images\Search.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Drug.png" />
+    <Resource Include="Images\DrugType.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>..\..\..\..\..\tools\CopyPluginsFiles.cmd $(ConfigurationName)</PostBuildEvent>
