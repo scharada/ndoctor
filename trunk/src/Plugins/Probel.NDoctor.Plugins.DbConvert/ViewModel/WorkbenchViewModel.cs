@@ -42,7 +42,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.ViewModel
     {
         #region Fields
 
-        IImportComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IImportComponent>();
+        private IImportComponent component;
         private CultureInfo cultureInfo = Thread.CurrentThread.CurrentUICulture;
         private string database;
         private bool importDone = false;
@@ -58,6 +58,9 @@ namespace Probel.NDoctor.Plugins.DbConvert.ViewModel
         /// </summary>
         public WorkbenchViewModel()
         {
+            this.component = PluginContext.ComponentFactory.GetInstance<IImportComponent>();
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IImportComponent>();
+
             this.ChooseOldDbCommand = new RelayCommand(() => this.ChooseOldDb());
             this.ImportCommand = new RelayCommand(() => this.Import(), () => this.CanImport());
         }

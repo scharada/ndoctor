@@ -40,7 +40,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         #region Fields
 
         private TitledMedicalRecordCabinetDto cabinet;
-        private IMedicalRecordComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IMedicalRecordComponent>();
+        private IMedicalRecordComponent component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
         private TitledMedicalRecordDto selectedRecord;
         private IList<TagDto> tags = new List<TagDto>();
 
@@ -55,6 +55,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         public WorkbenchViewModel()
             : base()
         {
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
             Notifyer.Refreshed += (sender, e) => this.Refresh();
         }
 
@@ -110,45 +111,53 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         public void Refresh()
         {
-            Assert.IsNotNull(PluginContext.Host);
-            Assert.IsNotNull(PluginContext.Host.SelectedPatient);
-
-            using (this.component.UnitOfWork)
+            try
             {
-                var result = this.component.FindMedicalRecordCabinet(PluginContext.Host.SelectedPatient);
-                this.Cabinet = TitledMedicalRecordCabinetDto.CreateFrom(result);
-                this.Tags = this.component.FindTags(TagCategory.MedicalRecord);
+                Assert.IsNotNull(PluginContext.Host);
+                Assert.IsNotNull(PluginContext.Host.SelectedPatient);
 
-                if (this.SelectedRecord != null)
+                using (this.component.UnitOfWork)
                 {
-                    var record = this.component.FindMedicalRecordById(this.SelectedRecord.Id);
-                    this.SelectedRecord = (record != null)
-                        ? TitledMedicalRecordDto.CreateFrom(record)
-                        : null;
+                    var result = this.component.FindMedicalRecordCabinet(PluginContext.Host.SelectedPatient);
+                    this.Cabinet = TitledMedicalRecordCabinetDto.CreateFrom(result);
+                    this.Tags = this.component.FindTags(TagCategory.MedicalRecord);
+
+                    if (this.SelectedRecord != null)
+                    {
+                        var record = this.component.FindMedicalRecordById(this.SelectedRecord.Id);
+                        this.SelectedRecord = (record != null)
+                            ? TitledMedicalRecordDto.CreateFrom(record)
+                            : null;
+                    }
                 }
             }
+            catch (Exception ex) { this.HandleError(ex); }
         }
 
         public void Save()
         {
-            Assert.IsNotNull(PluginContext.Host);
-            Assert.IsNotNull(PluginContext.Host.SelectedPatient);
-
-            this.Cabinet.ForEachRecord(x =>
+            try
             {
-                if (x.Rtf != this.selectedRecord.Rtf)
+                Assert.IsNotNull(PluginContext.Host);
+                Assert.IsNotNull(PluginContext.Host.SelectedPatient);
+
+                this.Cabinet.ForEachRecord(x =>
                 {
-                    x.Rtf = this.SelectedRecord.Rtf;
-                    //x.State = State.Updated;
-                    x.LastUpdate = DateTime.Now;
+                    if (x.Rtf != this.selectedRecord.Rtf)
+                    {
+                        x.Rtf = this.SelectedRecord.Rtf;
+                        //x.State = State.Updated;
+                        x.LastUpdate = DateTime.Now;
+                    }
+                }
+                    , s => s.Id == this.SelectedRecord.Id);
+
+                using (this.component.UnitOfWork)
+                {
+                    this.component.UpdateCabinet(PluginContext.Host.SelectedPatient, this.Cabinet);
                 }
             }
-                , s => s.Id == this.SelectedRecord.Id);
-
-            using (this.component.UnitOfWork)
-            {
-                this.component.UpdateCabinet(PluginContext.Host.SelectedPatient, this.Cabinet);
-            }
+            catch (Exception ex) { this.HandleError(ex); }
         }
 
         /// <summary>
@@ -156,11 +165,15 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         /// </summary>
         internal void SaveOnUserAction()
         {
-            if (this.SelectedRecord != null && this.SelectedRecord.State == State.Updated)
+            try
             {
-                var dr = MessageBox.Show(Messages.Msg_SaveMedicalRecord, Messages.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (dr == MessageBoxResult.Yes) { this.Save(); }
+                if (this.SelectedRecord != null && this.SelectedRecord.State == State.Updated)
+                {
+                    var dr = MessageBox.Show(Messages.Msg_SaveMedicalRecord, Messages.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (dr == MessageBoxResult.Yes) { this.Save(); }
+                }
             }
+            catch (Exception ex) { this.HandleError(ex); }
         }
 
         #endregion Methods

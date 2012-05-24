@@ -67,12 +67,15 @@
       <Link>Version.cs</Link>
     </Compile>
     <Compile Include="Components\AdministrationComponent.cs" />
+    <Compile Include="Components\AuthorisationComponent.cs" />
     <Compile Include="Components\ImportComponent.cs" />
     <Compile Include="Components\FamilyComponent.cs" />
     <Compile Include="Components\CalendarComponent.cs" />
     <Compile Include="Components\PathologyComponent.cs" />
     <Compile Include="Components\PrescriptionComponent.cs" />
     <Compile Include="Components\SqlComponent.cs" />
+    <Compile Include="Entities\Task.cs" />
+    <Compile Include="EqualityComparers\TaskEqualityComparerOnName.cs" />
     <Compile Include="GrantedAttribute.cs" />
     <Compile Include="Entities\Drug.cs" />
     <Compile Include="Entities\IllnessPeriod.cs" />
@@ -82,7 +85,7 @@
     <Compile Include="Entities\PrescriptionDocument.cs" />
     <Compile Include="Helpers\EntityEqualityComparer.cs" />
     <Compile Include="Helpers\ComponentDecorator.cs" />
-    <Compile Include="Helpers\IgnoreSessionCheckAttribute.cs" />
+    <Compile Include="Helpers\InspectionIgnoredAttribute.cs" />
     <Compile Include="Mappings\Mapping.cs" />
     <Compile Include="Components\BaseComponent.cs" />
     <Compile Include="Components\BmiComponent.cs" />
@@ -118,7 +121,6 @@
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
     <Compile Include="Components\UserSessionComponent.cs" />
-    <Compile Include="To.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_Design\Domain\MedicalRecords.cd" />

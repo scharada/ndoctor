@@ -30,7 +30,13 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             MapEntityToDto();
             MapDtoToEntity();
             MapDtoToDto();
+
             MedicalRecordMapping.Configure();
+        }
+
+        private static void Clean(BaseDto dto)
+        {
+            if (dto != null) { dto.Clean(); }
         }
 
         private static void MapDtoToDto()
@@ -46,7 +52,6 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<UserDto, User>();
             Mapper.CreateMap<AddressDto, Address>();
             Mapper.CreateMap<PracticeDto, Practice>();
-            Mapper.CreateMap<RoleDto, Role>();
             Mapper.CreateMap<LightPatientDto, Patient>();
             Mapper.CreateMap<InsuranceDto, Insurance>();
             Mapper.CreateMap<LightInsuranceDto, Insurance>();
@@ -68,39 +73,43 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<DoctorDto, Doctor>();
             Mapper.CreateMap<PatientFullDto, Patient>();
             Mapper.CreateMap<DoctorFullDto, Doctor>();
+            Mapper.CreateMap<RoleDto, Role>();
+            Mapper.CreateMap<TaskDto, Task>();
         }
 
         private static void MapEntityToDto()
         {
             Mapper.CreateMap<Doctor, LightDoctorDto>()
-                .ForMember(dest => dest.DisplayedName, opt => opt.Ignore());
+                .ForMember(dest => dest.DisplayedName, opt => opt.Ignore())
+                .AfterMap((entity, dto) => Clean(dto));
 
-            Mapper.CreateMap<User, LightUserDto>();
-            Mapper.CreateMap<Role, RoleDto>();
-            Mapper.CreateMap<User, UserDto>();
-            Mapper.CreateMap<Address, AddressDto>();
-            Mapper.CreateMap<Practice, PracticeDto>();
-            Mapper.CreateMap<Patient, LightPatientDto>();
-            Mapper.CreateMap<Patient, PatientDto>();
-            Mapper.CreateMap<Insurance, InsuranceDto>();
-            Mapper.CreateMap<Insurance, LightInsuranceDto>();
-            Mapper.CreateMap<Reputation, ReputationDto>();
-            Mapper.CreateMap<Profession, ProfessionDto>();
-            Mapper.CreateMap<Tag, TagDto>();
-            Mapper.CreateMap<User, LightUserDto>();
-            Mapper.CreateMap<Practice, LightPracticeDto>();
-            Mapper.CreateMap<Bmi, BmiDto>();
-            Mapper.CreateMap<MedicalRecord, MedicalRecordDto>();
-            Mapper.CreateMap<Picture, PictureDto>();
-            Mapper.CreateMap<IllnessPeriod, IllnessPeriodDto>();
-            Mapper.CreateMap<Pathology, PathologyDto>();
-            Mapper.CreateMap<Drug, DrugDto>();
-            Mapper.CreateMap<Prescription, PrescriptionDto>();
-            Mapper.CreateMap<PrescriptionDocument, PrescriptionDocumentDto>();
-            Mapper.CreateMap<Appointment, AppointmentDto>();
-            Mapper.CreateMap<Doctor, DoctorDto>();
-            Mapper.CreateMap<Patient, PatientFullDto>();
-            Mapper.CreateMap<Doctor, DoctorFullDto>();
+            Mapper.CreateMap<User, LightUserDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<User, UserDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Address, AddressDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Practice, PracticeDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Patient, LightPatientDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Patient, PatientDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Insurance, InsuranceDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Insurance, LightInsuranceDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Reputation, ReputationDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Profession, ProfessionDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Tag, TagDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<User, LightUserDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Practice, LightPracticeDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Bmi, BmiDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<MedicalRecord, MedicalRecordDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Picture, PictureDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<IllnessPeriod, IllnessPeriodDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Pathology, PathologyDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Drug, DrugDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Prescription, PrescriptionDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<PrescriptionDocument, PrescriptionDocumentDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Appointment, AppointmentDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Doctor, DoctorDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Patient, PatientFullDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Doctor, DoctorFullDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Role, RoleDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Task, TaskDto>().AfterMap((entity, dto) => Clean(dto));
         }
 
         #endregion Methods

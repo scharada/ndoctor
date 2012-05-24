@@ -36,14 +36,18 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
         public abstract void Intercept(IInvocation invocation);
 
         /// <summary>
-        /// Indicates whether the invocated method should be invoked or not
+        /// Indicates whether the invocated method should be invoked or not.
+        /// A method should be ignored when it is eihter:
+        ///  - a non public method
+        ///  - a ctor
+        ///  - a method marked with the <see cref="InspectionIngnoredAttribute"/> attribute
         /// </summary>
         /// <param name="invocation">The invocation.</param>
-        /// <returns></returns>
+        /// <returns><c>True</c> if this method should be ignored; otherwise <c>False</c></returns>
         protected bool Ignore(IInvocation invocation)
         {
             var attributes = invocation.MethodInvocationTarget.GetCustomAttributes(typeof(InspectionIgnoredAttribute), true);
-            return attributes.Length > 0;
+            return attributes.Length > 0 && invocation.Method.IsPublic && !invocation.Method.IsConstructor;
         }
 
         #endregion Methods

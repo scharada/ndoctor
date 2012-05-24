@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using System.Windows;
     using System.Windows.Input;
 
+    using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
@@ -41,8 +42,13 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
 
         public BmiViewModel()
         {
+            if (!Designer.IsDesignMode)
+            {
+                this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
+                PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
+            }
             this.errorHandler = new ErrorHandler(this);
-            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IBmiComponent>();
+            this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
             this.DeleteCommand = new RelayCommand(() => this.Delete());
         }
 
@@ -77,7 +83,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
 
                 using (this.component.UnitOfWork)
                 {
-                    this.component.DeleteBmiWithDate(PluginContext.Host.SelectedPatient, this.Date);
+                    this.component.RemoveBmiWithDate(PluginContext.Host.SelectedPatient, this.Date);
                 }
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiDeleted);
                 Notifyer.OnItemChanged(this);

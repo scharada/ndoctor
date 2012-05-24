@@ -32,7 +32,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     {
         #region Fields
 
-        private IPathologyComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPathologyComponent>();
+        private IPathologyComponent component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
         private bool isSelected;
 
         #endregion Fields
@@ -44,6 +44,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
         /// </summary>
         public IllnessPeriodViewModel()
         {
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
             this.RemoveCommand = new RelayCommand(() =>
             {
                 var dr = MessageBox.Show(Messages.Msg_DeleteIllnessPeriod, Messages.Title_Question, MessageBoxButton.YesNo, MessageBoxImage.Question);

@@ -38,7 +38,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     {
         #region Fields
 
-        private IPrescriptionComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPrescriptionComponent>();
+        private IPrescriptionComponent component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
         private string criteria;
         private PrescriptionDto currentPrescription;
         private PrescriptionDocumentDto prescriptionDocumentToCreate;
@@ -58,6 +58,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         public AddPrescriptionViewModel()
             : base()
         {
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
+
             this.Tags = new ObservableCollection<TagDto>();
             this.FoundDrugs = new ObservableCollection<DrugViewModel>();
             this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());

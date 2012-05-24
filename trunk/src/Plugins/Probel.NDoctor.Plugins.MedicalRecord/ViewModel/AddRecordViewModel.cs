@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
@@ -36,7 +37,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         #region Fields
 
         private ICommand addRecordCommand;
-        private IMedicalRecordComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IMedicalRecordComponent>();
+        private IMedicalRecordComponent component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
         private MedicalRecordDto recordToAdd;
         private TagDto selectedTag;
         private ObservableCollection<TagDto> tags = new ObservableCollection<TagDto>();
@@ -47,6 +48,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         public AddRecordViewModel()
         {
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
+
             this.Refresh();
             this.recordToAdd = new MedicalRecordDto();
             this.addRecordCommand = new RelayCommand(() =>
@@ -113,10 +116,14 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         private void Refresh()
         {
-            using (this.component.UnitOfWork)
+            try
             {
-                this.Tags.Refill(this.component.FindTags(TagCategory.MedicalRecord));
+                using (this.component.UnitOfWork)
+                {
+                    this.Tags.Refill(this.component.FindTags(TagCategory.MedicalRecord));
+                }
             }
+            catch (Exception ex) { this.HandleError(ex); }
         }
 
         #endregion Methods

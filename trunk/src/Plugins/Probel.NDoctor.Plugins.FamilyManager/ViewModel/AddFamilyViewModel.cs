@@ -35,7 +35,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     {
         #region Fields
 
-        private IFamilyComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IFamilyComponent>();
+        private IFamilyComponent component;
         private string criteria;
         private LightPatientViewModel selectedPatient;
 
@@ -46,6 +46,8 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
         public AddFamilyViewModel()
             : base()
         {
+            this.component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
             this.FoundPatients = new ObservableCollection<LightPatientViewModel>();
             this.SearchCommand = new RelayCommand(() => Search(), () => CanSearch());
         }

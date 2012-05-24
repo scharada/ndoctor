@@ -29,7 +29,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
     using Probel.Helpers.Data;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MeetingManager.Helpers;
@@ -41,10 +40,9 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     {
         #region Fields
 
-        private static readonly ICalendarComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<ICalendarComponent>();
-
         private static IList<TagDto> tags;
 
+        private ICalendarComponent component = PluginContext.ComponentFactory.GetInstance<ICalendarComponent>();
         private ErrorHandler errorHandler;
         private bool isSelected = false;
         private LightPatientDto patient;
@@ -58,6 +56,8 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         public DateRangeViewModel(DateTime start, DateTime end, IPluginHost host)
             : base(start, end)
         {
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<ICalendarComponent>();
+
             this.errorHandler = new ErrorHandler(this);
             this.Tags = new ObservableCollection<TagDto>();
             PluginContext.Host = host;
@@ -189,10 +189,11 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
         public static void RefreshTags()
         {
+            var c = PluginContext.ComponentFactory.GetInstance<ICalendarComponent>();
             IList<TagDto> result;
-            using (component.UnitOfWork)
+            using (c.UnitOfWork)
             {
-                result = component.FindTags(TagCategory.Appointment);
+                result = c.FindTags(TagCategory.Appointment);
             }
             tags = result;
         }

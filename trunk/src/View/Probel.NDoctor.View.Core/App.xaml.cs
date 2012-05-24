@@ -57,7 +57,7 @@ namespace Probel.NDoctor.View.Core
             try { splash.ShowDialog(); }
             catch (Exception ex)
             {
-                this.Logger.ErrorFormat("An error occured in the spashscreen: {0}", ex);
+                this.Logger.Error("An error occured in the spashscreen", ex);
                 throw ex;
             }
 

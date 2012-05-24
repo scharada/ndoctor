@@ -47,15 +47,14 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         }
 
         /// <summary>
-        /// Gets or sets the tasks the role has.
+        /// Gets or sets the tasks binded to this role.
         /// </summary>
         /// <value>
         /// The tasks.
         /// </value>
-        public virtual string Tasks
+        public virtual IList<Task> Tasks
         {
-            get;
-            set;
+            get; set;
         }
 
         #endregion Properties

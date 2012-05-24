@@ -17,8 +17,11 @@
 namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
+    using System.Collections.ObjectModel;
+    using System.Collections.Specialized;
 
     using Probel.Mvvm;
+    using Probel.Mvvm.DataBinding;
 
     [Serializable]
     public class RoleDto : BaseDto
@@ -27,9 +30,20 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 
         string description;
         string name;
-        private string tasks;
 
         #endregion Fields
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RoleDto"/> class.
+        /// </summary>
+        public RoleDto()
+        {
+            this.Tasks = new ObservableCollection<TaskDto>();
+        }
+
+        #endregion Constructors
 
         #region Properties
 
@@ -68,28 +82,10 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// <summary>
         /// Gets the task collection.
         /// </summary>
-        public string[] TaskCollection
+        public ObservableCollection<TaskDto> Tasks
         {
-            get
-            {
-                return this.tasks.Split(',', ';');
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the tasks assigned to this role.
-        /// </summary>
-        /// <value>
-        /// The tasks.
-        /// </value>
-        public string Tasks
-        {
-            get { return this.tasks; }
-            set
-            {
-                this.tasks = value;
-                this.OnPropertyChanged(() => Tasks);
-            }
+            get;
+            private set;
         }
 
         #endregion Properties
@@ -104,7 +100,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// </returns>
         public override string ToString()
         {
-            return string.Format("{0}, name: {1} tasks: {2}", base.ToString(), this.name, this.tasks);
+            return string.Format("{0}, name: {1}", base.ToString(), this.name);
         }
 
         #endregion Methods

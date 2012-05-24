@@ -39,7 +39,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
         #region Fields
 
         private Chart<string, double> chart;
-        private IPathologyComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPathologyComponent>();
+        private IPathologyComponent component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
         private IllnessPeriodViewModel selectedIllnessPeriod;
 
         #endregion Fields
@@ -53,6 +53,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
         public WorkbenchViewModel()
             : base()
         {
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
             this.IllnessHistory = new ObservableCollection<IllnessPeriodViewModel>();
             Notifyer.ItemChanged += (sender, e) => this.Refresh();
         }

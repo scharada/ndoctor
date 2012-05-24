@@ -32,7 +32,7 @@ namespace Probel.NDoctor.Plugins.DebugTools
     {
         #region Fields
 
-        private ISqlComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<ISqlComponent>();
+        private ISqlComponent component;
 
         #endregion Fields
 
@@ -47,6 +47,9 @@ namespace Probel.NDoctor.Plugins.DebugTools
         public DebugTools([Import("version")] Version version)
             : base(version)
         {
+            this.component = PluginContext.ComponentFactory.GetInstance<ISqlComponent>();
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<ISqlComponent>();
+
             this.Validator = new PluginValidator("1.0.0.0", ValidationMode.Minimum);
             this.Logger.Warn("Debug plugin is loaded. It shouldn't be used in production!");
         }

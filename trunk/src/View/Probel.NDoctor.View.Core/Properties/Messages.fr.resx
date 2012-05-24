@@ -121,6 +121,10 @@
     <value>Sauver</value>
     <comment>Save</comment>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Une erreur est survenue. Lisez les logs pour plus d'informations</value>
+    <comment>An error occured. Read logs for further information.</comment>
+  </data>
   <data name="Ex_NDoctorConfigurationException_HostNull" xml:space="preserve">
     <value>L'hôte du plugin n'est pas configuré. Vérifier l'état du contexte du plugin.</value>
     <comment>The plugin host is not configured. Check the state of the plugin context.</comment>

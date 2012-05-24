@@ -23,12 +23,16 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
     using FluentNHibernate.Cfg.Db;
     using FluentNHibernate.Conventions.Helpers;
 
+    using log4net;
+
     using NHibernate;
     using NHibernate.Tool.hbm2ddl;
 
+    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Mappings;
     using Probel.NDoctor.Domain.DAL.Properties;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Exceptions;
 
     using NHConfiguration = NHibernate.Cfg.Configuration;
@@ -36,6 +40,8 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
     public class DAL
     {
         #region Fields
+
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(DAL));
 
         private static ISessionFactory sessionFactory;
 
@@ -91,6 +97,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
         public void ConfigureUsingFile(string path, bool create)
         {
+            bool executeScript = false;
             if (!File.Exists(path)) create = true;
 
             if (create)
@@ -106,6 +113,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                     // and exports a database schema from it
                     new SchemaExport(configuration)
                       .Create(false, true);
+                    executeScript = true;
                 };
             }
             else this.setupConfiguration = (configuration) =>
@@ -122,6 +130,8 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                 .UsingFile(path);
 
             this.Configure();
+
+            if (executeScript) { this.ExecuteScript(); }
         }
 
         private void Configure()
@@ -164,6 +174,19 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                 })
             .ExposeConfiguration(setupConfiguration)
             .BuildSessionFactory();
+        }
+
+        private void ExecuteScript()
+        {
+            Logger.Info("Execute the database creation script [SQL]");
+            var component = new SqlComponent();
+            using (component.UnitOfWork)
+            {
+                foreach (var task in To.ToStringArray())
+                {
+                    component.ExecuteSql(string.Format("INSERT INTO Task (Name) VALUES (\"{0}\")", task));
+                }
+            }
         }
 
         #endregion Methods

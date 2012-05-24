@@ -62,11 +62,12 @@ namespace Probel.NDoctor.Plugins.BmiRecord
         public BmiRecord([Import("version")] Version version)
             : base(version)
         {
+            this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
+
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
 
             this.ConfigureAutoMapper();
-
-            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IBmiComponent>();
         }
 
         #endregion Constructors
@@ -79,6 +80,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
         /// </summary>
         public override void Initialise()
         {
+            this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
             PluginContext.Host.Invoke(() => this.workbench = new Workbench());
             this.BuildButtons();
             this.BuildContextMenu();

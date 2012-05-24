@@ -29,6 +29,15 @@ namespace Probel.NDoctor.View.Plugins
     /// </summary>
     public interface IPluginHost
     {
+        #region Events
+
+        /// <summary>
+        /// Occurs when a new user has connected.
+        /// </summary>
+        event EventHandler NewUserConnected;
+
+        #endregion Events
+
         #region Properties
 
         /// <summary>

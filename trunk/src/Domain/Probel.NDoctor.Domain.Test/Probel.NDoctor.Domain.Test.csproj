@@ -71,6 +71,7 @@
     <Compile Include="..\..\Version.cs">
       <Link>Version.cs</Link>
     </Compile>
+    <Compile Include="Authorisation\TestAuthorisation.cs" />
     <Compile Include="Components\TestFamilyComponent.cs" />
     <Compile Include="Data\TestTimeSlotCollection.cs" />
     <Compile Include="Data\TestWorkday.cs" />

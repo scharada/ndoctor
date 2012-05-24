@@ -38,7 +38,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     {
         #region Fields
 
-        private IPrescriptionComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPrescriptionComponent>();
+        private IPrescriptionComponent component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
         private DateTime endCriteria;
         private PrescriptionDocumentDto selectPrescriptionDocument;
         private DateTime startCriteria;
@@ -54,6 +54,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         public WorkbenchViewModel()
             : base()
         {
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
+
             this.StartCriteria = DateTime.Today.AddMonths(-1);
             this.EndCriteria = DateTime.Today.AddMonths(1);
 

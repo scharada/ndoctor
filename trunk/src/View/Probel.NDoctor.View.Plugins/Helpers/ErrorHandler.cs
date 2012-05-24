@@ -22,6 +22,7 @@ namespace Probel.NDoctor.View.Plugins.Helpers
     using log4net;
 
     using Probel.Helpers.Strings;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.View.Plugins.Properties;
 
     /// <summary>
@@ -117,7 +118,14 @@ namespace Probel.NDoctor.View.Plugins.Helpers
             this.Logger.Error(format.FormatWith(args), ex);
             if (!silent)
             {
-                MessageBox.Show(format.FormatWith(args), Messages.Title_Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                if (ex.GetType() == typeof(AuthorisationException))
+                {
+                    MessageBox.Show(Messages.Msg_ErrorAuthorisation, Messages.Title_Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    MessageBox.Show(format.FormatWith(args), Messages.Title_Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             this.WriteErrorInStatus();
         }
@@ -127,7 +135,14 @@ namespace Probel.NDoctor.View.Plugins.Helpers
             this.Logger.Warn(format.FormatWith(args), ex);
             if (!silent)
             {
-                MessageBox.Show(ex.Message, Messages.Title_Warning, MessageBoxButton.OK, MessageBoxImage.Warning);
+                if (ex.GetType() == typeof(AuthorisationException))
+                {
+                    MessageBox.Show(Messages.Msg_ErrorAuthorisation, Messages.Title_Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    MessageBox.Show(ex.Message, Messages.Title_Warning, MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
             this.WriteWarningInStatus(string.Format(format, args));
         }

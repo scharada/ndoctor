@@ -33,7 +33,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     {
         #region Fields
 
-        private IPathologyComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPathologyComponent>();
+        private IPathologyComponent component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
         private ErrorHandler errorHandler = null;
         private bool isSelected;
 
@@ -43,6 +43,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
         public IllnessPeriodToAddViewModel()
         {
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
             this.errorHandler = new ErrorHandler(this);
             this.Start
                 = this.End

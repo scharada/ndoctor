@@ -68,7 +68,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         /// <param name="ex">The exception to log.</param>
         public void HandleError(Exception ex)
         {
-            this.errorHandler.HandleError(ex, ex.Message);
+            this.errorHandler.HandleError(ex, Messages.Error);
         }
 
         /// <summary>

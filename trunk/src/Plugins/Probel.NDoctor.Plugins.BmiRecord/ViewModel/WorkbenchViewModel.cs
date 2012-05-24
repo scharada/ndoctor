@@ -26,6 +26,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using AutoMapper;
 
     using Probel.Helpers.Assertion;
+    using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
@@ -54,8 +55,13 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
         public WorkbenchViewModel()
             : base()
         {
+            if (!Designer.IsDesignMode)
+            {
+                this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
+                PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
+            }
             this.CurrentBmi = new BmiDto();
-            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IBmiComponent>();
+            this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
             this.BmiHistory = new ObservableCollection<BmiViewModel>();
 
             this.AddBmiCommand = new RelayCommand(() => this.AddBmi(), () => this.CanAddBmi());
@@ -279,7 +285,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
             {
                 using (this.component.UnitOfWork)
                 {
-                    this.component.AddBmi(this.bmiToAdd, PluginContext.Host.SelectedPatient);
+                    this.component.CreateBmi(this.bmiToAdd, PluginContext.Host.SelectedPatient);
 
                     PluginContext.Host.SelectedPatient.Height = this.CurrentBmi.Height;
                     this.component.Update(PluginContext.Host.SelectedPatient);

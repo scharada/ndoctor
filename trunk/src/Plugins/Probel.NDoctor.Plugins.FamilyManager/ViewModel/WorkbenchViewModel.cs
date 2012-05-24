@@ -31,9 +31,9 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
         #region Fields
 
         private FamilyDto family;
-        private IFamilyComponent familyComponent = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IFamilyComponent>();
+        private IFamilyComponent familyComponent = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
         private MedicalRecordCabinetDto medicalRecordCabinet = new MedicalRecordCabinetDto();
-        private IMedicalRecordComponent medicalRecordComponent = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IMedicalRecordComponent>();
+        private IMedicalRecordComponent medicalRecordComponent = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
         private MedicalRecordFolderDto selectedFolder;
         private LightPatientDto selectedMember = new LightPatientDto();
         private MedicalRecordDto selectedRecord;
@@ -45,6 +45,12 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
         public WorkbenchViewModel()
             : base()
         {
+            PluginContext.Host.NewUserConnected += (sender, e) =>
+            {
+                this.familyComponent = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
+                this.medicalRecordComponent = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
+            };
+
             this.MemberSelectedCommand = new RelayCommand(() => this.LoadCabinet());
 
             Notifyer.Refreshed += (sender, e) => this.Refresh();

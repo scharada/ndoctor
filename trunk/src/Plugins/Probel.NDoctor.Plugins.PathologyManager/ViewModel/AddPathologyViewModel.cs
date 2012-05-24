@@ -46,7 +46,11 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
         public AddPathologyViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPathologyComponent>();
+            if (!Designer.IsDesignMode)
+            {
+                this.component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
+                PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
+            }
             this.Tags = new ObservableCollection<TagDto>();
             this.Pathology = new PathologyDto();
 
@@ -91,7 +95,8 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
         public ICommand ShowPopupCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public ObservableCollection<TagDto> Tags

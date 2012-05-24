@@ -24,18 +24,27 @@ namespace Probel.NDoctor.Domain.Components
     using System;
     using System.Runtime.Serialization;
 
+    using Probel.NDoctor.Domain.Components.Properties;
+
     /// <summary>
     /// Whenever the execution of a method is not granted, this exception is thrown
     /// </summary>
     [Serializable]
     public class AuthorisationException : ApplicationException
     {
+        #region Fields
+
+        private Castle.DynamicProxy.IInvocation invocation;
+
+        #endregion Fields
+
         #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthorisationException"/> class.
         /// </summary>
         public AuthorisationException()
+            : this(Messages.Ex_AuthorisationException)
         {
         }
 

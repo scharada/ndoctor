@@ -33,14 +33,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="bmi">The bmi.</param>
         /// <param name="patient">The patient.</param>
-        void AddBmi(BmiDto bmi, LightPatientDto patient);
-
-        /// <summary>
-        /// Deletes the bmi with the specified date.
-        /// </summary>
-        /// <param name="patient">The patient to be processed.</param>
-        /// <param name="date">The date to remove.</param>
-        void DeleteBmiWithDate(LightPatientDto patient, DateTime date);
+        void CreateBmi(BmiDto bmi, LightPatientDto patient);
 
         /// <summary>
         /// Finds the bmi history for the specified patient and that are between the start and end date.
@@ -64,6 +57,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="patient">The patient.</param>
         /// <returns></returns>
         PatientBmiDto GetPatientWithBmiHistory(LightPatientDto patient);
+
+        /// <summary>
+        /// Deletes the bmi with the specified date.
+        /// </summary>
+        /// <param name="patient">The patient to be processed.</param>
+        /// <param name="date">The date to remove.</param>
+        void RemoveBmiWithDate(LightPatientDto patient, DateTime date);
 
         /// <summary>
         /// Updates the specified light patient. This method should be used to update 

@@ -36,7 +36,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     {
         #region Fields
 
-        private IFamilyComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IFamilyComponent>();
+        private IFamilyComponent component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
         private string criteria;
         private IllnessPeriodToAddViewModel selectedPathology;
 
@@ -51,6 +51,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
         public IllnessPeriodListViewModel()
             : base()
         {
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
             this.FoundPathologies = new ObservableCollection<IllnessPeriodToAddViewModel>();
             this.SearchCommand = new RelayCommand(() => this.SearchPathology(), () => this.CanSearchPathology());
 

@@ -51,7 +51,11 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         /// <param name="host">The host.</param>
         public WorkbenchViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IAdministrationComponent>();
+            if (!Designer.IsDesignMode)
+            {
+                this.component = PluginContext.ComponentFactory.GetInstance<IAdministrationComponent>();
+                PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAdministrationComponent>();
+            }
 
             this.Insurances = new ObservableCollection<InsuranceViewModel>();
             this.Practices = new ObservableCollection<PracticeViewModel>();

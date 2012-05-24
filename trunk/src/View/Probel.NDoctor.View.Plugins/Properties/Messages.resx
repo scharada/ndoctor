@@ -125,6 +125,10 @@
     <value>Cancel</value>
     <comment>Cancel</comment>
   </data>
+  <data name="Btn_OK" xml:space="preserve">
+    <value>OK</value>
+    <comment>OK</comment>
+  </data>
   <data name="Ex_DeactivatedPluginException" xml:space="preserve">
     <value>The plugin you try to show is deactivated.</value>
     <comment>The plugin you try to show is deactivated.</comment>
@@ -166,6 +170,10 @@ Path: {1}</value>
     <value>The data context of the item is not at the expected type.</value>
     <comment>The data context of the item is not at the expected type.</comment>
   </data>
+  <data name="Msg_ErrorAuthorisation" xml:space="preserve">
+    <value>You are not granted to execute this feature</value>
+    <comment>You are not granted to execute this feature</comment>
+  </data>
   <data name="Msg_ErrorOccured" xml:space="preserve">
     <value>Une erreur est survenue.</value>
     <comment>An error occured.</comment>
@@ -177,6 +185,10 @@ Path: {1}</value>
   <data name="Msg_MissingParameterInConfiguration" xml:space="preserve">
     <value>The parameter '{0}' is not set in the configuration file. Please set it up.</value>
     <comment>The parameter '{0}' is not set in the configuration file. Please set it up.</comment>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Question</value>
+    <comment>Question</comment>
   </data>
   <data name="Title_Error" xml:space="preserve">
     <value>Error</value>

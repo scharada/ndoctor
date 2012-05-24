@@ -41,7 +41,7 @@ namespace Probel.NDoctor.Domain.Test.Component
             var patient = this.Component.GetPatientWithBmiHistory(patients[0]);
             var before = patient.BmiHistory.Count;
 
-            this.Component.AddBmi(new BmiDto() { Date = DateTime.Now, Height = 180, Weight = 85 }, patients[0]);
+            this.Component.CreateBmi(new BmiDto() { Date = DateTime.Now, Height = 180, Weight = 85 }, patients[0]);
 
             patients = this.Component.FindPatientsByNameLight("Patient", SearchOn.FirstAndLastName);
             Assert.Greater(patients.Count, 1, "No patient were found after add");
@@ -62,16 +62,16 @@ namespace Probel.NDoctor.Domain.Test.Component
             var count = this.Component.GetPatientWithBmiHistory(patient).BmiHistory.Count;
 
             var dateTime = DateTime.Today.AddDays(-4);
-            this.Component.AddBmi(new BmiDto() { Date = dateTime, Height = 10, Weight = 10 }, patient);
-            this.Component.AddBmi(new BmiDto() { Date = dateTime, Height = 10, Weight = 10 }, patient);
-            this.Component.AddBmi(new BmiDto() { Date = dateTime, Height = 10, Weight = 10 }, patient);
-            this.Component.AddBmi(new BmiDto() { Date = dateTime, Height = 10, Weight = 10 }, patient);
+            this.Component.CreateBmi(new BmiDto() { Date = dateTime, Height = 10, Weight = 10 }, patient);
+            this.Component.CreateBmi(new BmiDto() { Date = dateTime, Height = 10, Weight = 10 }, patient);
+            this.Component.CreateBmi(new BmiDto() { Date = dateTime, Height = 10, Weight = 10 }, patient);
+            this.Component.CreateBmi(new BmiDto() { Date = dateTime, Height = 10, Weight = 10 }, patient);
 
             Assert.AreEqual(count + 4
                 , this.Component.GetPatientWithBmiHistory(patient).BmiHistory.Count
                 , "The count is not the expected one after insertion");
 
-            this.Component.DeleteBmiWithDate(patient, dateTime);
+            this.Component.RemoveBmiWithDate(patient, dateTime);
 
             Assert.AreEqual(count
                 , this.Component.GetPatientWithBmiHistory(patient).BmiHistory.Count

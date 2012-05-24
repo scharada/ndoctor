@@ -256,9 +256,7 @@
                 </StackPanel>
 
             </Grid>
-
-            <!--<ctrl:AddDoctorView Grid.Column="1"
-                                Grid.Row="1"/>-->
+            
             <TextBlock Grid.Column="1"
                        Grid.Row="1"
                        TextAlignment="Center"
@@ -272,7 +270,6 @@
                       Grid.Row="2"
                       ItemsSource="{Binding Path=Doctors, UpdateSourceTrigger=PropertyChanged}"
                       AutoGenerateColumns="False"
-                      SelectedItem="{Binding Path=CurrentPrescription, UpdateSourceTrigger=PropertyChanged}"
                       CanUserAddRows="False"
                       CanUserDeleteRows="False">
                 <DataGrid.RowDetailsTemplate>

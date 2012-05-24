@@ -42,6 +42,16 @@ namespace Probel.NDoctor.View.Plugins.Helpers
             get { return Messages.Title_Error; }
         }
 
+        public static string OK
+        {
+            get { return Messages.Btn_OK; }
+        }
+
+        public static string Question
+        {
+            get { return Messages.Question; }
+        }
+
         public static string Warning
         {
             get { return Messages.Title_Warning; }

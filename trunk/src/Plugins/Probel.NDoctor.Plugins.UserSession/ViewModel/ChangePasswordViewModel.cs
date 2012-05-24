@@ -51,10 +51,12 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
             this.IsPopupOpened = false;
             if (!Designer.IsDesignMode)
             {
-                this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IUserSessionComponent>();
-                this.SaveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
-                this.OpenPopupCommand = new RelayCommand(() => this.IsPopupOpened = true);
+                this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
+                PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
             }
+
+            this.SaveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
+            this.OpenPopupCommand = new RelayCommand(() => this.IsPopupOpened = true);
         }
 
         #endregion Constructors

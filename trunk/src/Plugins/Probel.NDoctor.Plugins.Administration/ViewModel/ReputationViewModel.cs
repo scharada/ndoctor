@@ -40,7 +40,11 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         public ReputationViewModel()
         {
-            if (!Designer.IsDesignMode) this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IAdministrationComponent>();
+            if (!Designer.IsDesignMode)
+            {
+                this.component = PluginContext.ComponentFactory.GetInstance<IAdministrationComponent>();
+                PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAdministrationComponent>();
+            }
             this.errorHandler = new ErrorHandler(this);
 
             this.UpdateCommand = new RelayCommand(() => this.Update(), () => this.CanUpdate());

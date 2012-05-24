@@ -60,15 +60,18 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public BaseComponent()
         {
             this.Logger = LogManager.GetLogger(this.GetType());
-
-            //Use the method OpenSession() to open a session.
             this.init = (context) =>
             {
+                this.Logger.DebugFormat("\t[{0}] Opening session", this.GetType().Name);
                 this.OpenSession();
                 return null;
             };
 
-            this.dispose = (context) => this.CloseSession();
+            this.dispose = (context) =>
+            {
+                this.Logger.DebugFormat("\t[{0}] Closing session", this.GetType().Name);
+                this.CloseSession();
+            };
         }
 
         #endregion Constructors
@@ -83,6 +86,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </value>
         public bool IsSessionOpen
         {
+            [InspectionIgnored]
             get
             {
                 if (this.Session == null) return false;
@@ -93,7 +97,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public UnitOfWork UnitOfWork
         {
             [InspectionIgnored]
-            get { return new UnitOfWork(init, dispose); }
+            get
+            {
+                if (this.Session != null && this.Session.IsOpen) { throw new SessionException(Messages.Msg_ErrorSessionAlreadyOpenException); }
+                else
+                {
+                    return new UnitOfWork(init, dispose);
+                }
+            }
         }
 
         internal ISession Session
@@ -226,6 +237,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
+        [InspectionIgnored]
         public void Dispose()
         {
             this.CloseSession();
@@ -807,6 +819,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
             this.Remove(entity);
         }
 
+        protected void Remove(object item)
+        {
+            if (item != null)
+            {
+                this.Session.Delete(item);
+            }
+        }
+
         /// <summary>
         /// Updates the specified medical record.
         /// </summary>
@@ -921,14 +941,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
             if (Session == null || !Session.IsOpen)
                 this.Session = DAL.SessionFactory.OpenSession();
             else throw new DalSessionException(Messages.Msg_ErrorSessionAlreadyOpenException);
-        }
-
-        private void Remove(object item)
-        {
-            if (item != null)
-            {
-                this.Session.Delete(item);
-            }
         }
 
         private void ReplaceDefaultUser()

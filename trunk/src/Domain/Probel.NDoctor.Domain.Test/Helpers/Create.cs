@@ -21,6 +21,7 @@ namespace Probel.NDoctor.Domain.Test.Helpers
 
     using Probel.NDoctor.Domain.DAL;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     public static class Create
@@ -139,7 +140,6 @@ namespace Probel.NDoctor.Domain.Test.Helpers
             return new Role()
             {
                 Name = Guid.NewGuid().ToString(),
-                Tasks = string.Format("{0},{1}", To.Read, To.Write)
             };
         }
 

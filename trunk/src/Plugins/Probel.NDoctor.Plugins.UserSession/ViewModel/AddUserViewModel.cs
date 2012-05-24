@@ -35,7 +35,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     {
         #region Fields
 
-        private IUserSessionComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IUserSessionComponent>();
+        private IUserSessionComponent component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
         private string password;
         private string passwordCheck;
         private LightUserDto user = new LightUserDto();
@@ -47,6 +47,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         public AddUserViewModel()
             : base()
         {
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
         }
 

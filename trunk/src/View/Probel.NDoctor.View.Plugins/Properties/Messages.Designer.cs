@@ -79,6 +79,15 @@ namespace Probel.NDoctor.View.Plugins.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string Btn_OK {
+            get {
+                return ResourceManager.GetString("Btn_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The plugin you try to show is deactivated..
         /// </summary>
         internal static string Ex_DeactivatedPluginException {
@@ -170,6 +179,15 @@ namespace Probel.NDoctor.View.Plugins.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are not granted to execute this feature.
+        /// </summary>
+        internal static string Msg_ErrorAuthorisation {
+            get {
+                return ResourceManager.GetString("Msg_ErrorAuthorisation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Une erreur est survenue..
         /// </summary>
         internal static string Msg_ErrorOccured {
@@ -193,6 +211,15 @@ namespace Probel.NDoctor.View.Plugins.Properties {
         internal static string Msg_MissingParameterInConfiguration {
             get {
                 return ResourceManager.GetString("Msg_MissingParameterInConfiguration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Question.
+        /// </summary>
+        internal static string Question {
+            get {
+                return ResourceManager.GetString("Question", resourceCulture);
             }
         }
         

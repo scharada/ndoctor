@@ -34,7 +34,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     {
         #region Fields
 
-        private IPatientSessionComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPatientSessionComponent>();
+        private IPatientSessionComponent component = PluginContext.ComponentFactory.GetInstance<IPatientSessionComponent>();
         private LightPatientDto patient;
 
         #endregion Fields
@@ -44,6 +44,8 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
         public AddPatientViewModel()
             : base()
         {
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPatientSessionComponent>();
+
             this.Patient = new LightPatientDto();
             this.Genders = new ObservableCollection<Tuple<string, Gender>>();
             this.Genders.Add(new Tuple<string, Gender>(Gender.Male.Translate(), Gender.Male));

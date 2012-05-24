@@ -36,7 +36,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     {
         #region Fields
 
-        private IUserSessionComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IUserSessionComponent>();
+        private IUserSessionComponent component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
         private ObservableCollection<PracticeDto> practices;
         private ObservableCollection<RoleDto> roles;
         private UserDto user;
@@ -52,6 +52,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         public UpdateUserViewModel()
             : base()
         {
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
             this.UpdateCommand = new RelayCommand(() => this.UpdateUser(), () => this.CanUpdateUser());
             this.CancelCommand = new RelayCommand(() => InnerWindow.Close());
             InnerWindow.Loaded += (sender, e) => this.Refresh();
@@ -238,7 +239,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         {
             try
             {
-                var component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IUserSessionComponent>();
+                var component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
 
                 using (component.UnitOfWork)
                 {

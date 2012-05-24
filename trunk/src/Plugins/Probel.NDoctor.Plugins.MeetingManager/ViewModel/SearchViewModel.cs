@@ -41,7 +41,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     {
         #region Fields
 
-        private ICalendarComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<ICalendarComponent>();
+        private ICalendarComponent component = PluginContext.ComponentFactory.GetInstance<ICalendarComponent>();
         private string criteria;
         private DateTime dateToDisplay;
 
@@ -56,6 +56,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         public SearchViewModel()
             : base()
         {
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<ICalendarComponent>();
             this.DateToDisplay = DateTime.Today;
             this.FoundPatients = new ObservableCollection<PatientViewModel>();
 

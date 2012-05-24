@@ -128,7 +128,7 @@
       <Name>Probel.NDoctor.Domain.DTO</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Helpers\Probel.Helpers.WPF\Probel.Helpers.WPF.csproj">
-      <Project>{625CC14F-559B-4004-A814-4C9DFF5DF503}</Project>
+      <Project>{031C3942-6CE3-4999-89A7-D6DAAD781645}</Project>
       <Name>Probel.Helpers.WPF</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Helpers\Probel.Helpers\Probel.Helpers.csproj">

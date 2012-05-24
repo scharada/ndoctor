@@ -47,6 +47,7 @@
     </Compile>
     <Compile Include="Collections\TagCategoryCollection.cs" />
     <Compile Include="Components\IAdministrationComponent.cs" />
+    <Compile Include="Components\IAuthorisationComponent.cs" />
     <Compile Include="Components\ICalendarComponent.cs" />
     <Compile Include="Components\ISqlComponent.cs" />
     <Compile Include="Components\IImportComponent.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Objects\PrescriptionDto.cs" />
     <Compile Include="Helpers\Workday.cs" />
     <Compile Include="Objects\PrescriptionResultDto.cs" />
+    <Compile Include="Objects\TaskDto.cs" />
     <Compile Include="Properties\Messages.Designer.cs">
       <DependentUpon>Messages.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -123,6 +125,7 @@
     <Compile Include="Objects\TagCategory.cs" />
     <Compile Include="Objects\TagDto.cs" />
     <Compile Include="Objects\UserDto.cs" />
+    <Compile Include="To.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Helpers\Probel.Helpers\Probel.Helpers.csproj">

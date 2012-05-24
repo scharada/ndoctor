@@ -58,7 +58,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         public WorkbenchViewModel()
             : base()
         {
-            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IPatientDataComponent>();
+            this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
 
             Notifyer.SateliteDataChanged += (sender, e) => this.Refresh();
 
@@ -169,25 +170,29 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         //TODO: if this code is slow, there's many call to the database here. Should be resolved
         public void Refresh()
         {
-            if (PluginContext.Host.SelectedPatient == null) { return; }
-            if (this.Patient != null) { this.Save(); }
-
-            using (this.component.UnitOfWork)
+            try
             {
-                var result = this.component.FindDoctorOf(PluginContext.Host.SelectedPatient);
-                var mapped = Mapper.Map<IList<LightDoctorDto>, IList<LightDoctorViewModel>>(result);
-                this.Doctors.Refill(mapped);
+                if (PluginContext.Host.SelectedPatient == null) { return; }
+                if (this.Patient != null) { this.Save(); }
 
-                //Refill the collections BEFORE refreshing the patient.
-                this.Insurances.Refill(this.component.GetAllInsurancesLight());
-                this.Practices.Refill(this.component.GetAllPracticesLight());
-                this.Reputations.Refill(this.component.GetAllReputations());
-                this.Professions.Refill(this.component.GetAllProfessions());
+                using (this.component.UnitOfWork)
+                {
+                    var result = this.component.FindDoctorOf(PluginContext.Host.SelectedPatient);
+                    var mapped = Mapper.Map<IList<LightDoctorDto>, IList<LightDoctorViewModel>>(result);
+                    this.Doctors.Refill(mapped);
 
-                //Refresh the patient with the refreshed collection binding
-                this.Patient = this.component.FindPatient(PluginContext.Host.SelectedPatient);
-                this.RefreshPatientData();
+                    //Refill the collections BEFORE refreshing the patient.
+                    this.Insurances.Refill(this.component.GetAllInsurancesLight());
+                    this.Practices.Refill(this.component.GetAllPracticesLight());
+                    this.Reputations.Refill(this.component.GetAllReputations());
+                    this.Professions.Refill(this.component.GetAllProfessions());
+
+                    //Refresh the patient with the refreshed collection binding
+                    this.Patient = this.component.FindPatient(PluginContext.Host.SelectedPatient);
+                    this.RefreshPatientData();
+                }
             }
+            catch (Exception ex) { this.HandleError(ex); }
         }
 
         public void Rollback()
@@ -209,7 +214,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             }
             catch (Exception ex)
             {
-                this.HandleError(ex, Messages.Msg_ErrorSave, ex.Message);
+                this.HandleError(ex);
             }
         }
 

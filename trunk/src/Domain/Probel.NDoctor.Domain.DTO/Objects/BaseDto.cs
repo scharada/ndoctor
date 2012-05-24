@@ -75,7 +75,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         {
             get
             {
-                return this.Id >= 0;
+                return this.Id <= 0;
             }
         }
 

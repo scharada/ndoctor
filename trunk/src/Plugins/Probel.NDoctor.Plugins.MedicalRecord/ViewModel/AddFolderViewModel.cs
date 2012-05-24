@@ -33,7 +33,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     {
         #region Fields
 
-        private IMedicalRecordComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IMedicalRecordComponent>();
+        private IMedicalRecordComponent component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
         private TagDto tagToAdd;
 
         #endregion Fields
@@ -43,6 +43,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         public AddFolderViewModel()
             : base()
         {
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
+
             this.tagToAdd = new TagDto(TagCategory.MedicalRecord);
             this.AddFolderCommand = new RelayCommand(() =>
             {
@@ -64,7 +66,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         public ICommand AddFolderCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public TagDto TagToAdd

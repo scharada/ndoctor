@@ -108,6 +108,10 @@ namespace Probel.NDoctor.Domain.Components
                 //User session manager
                 x.For<IUserSessionComponent>().Add<UserSessionComponent>();
                 x.SelectConstructor<UserSessionComponent>(() => new UserSessionComponent());
+
+                //Authorisation manager
+                x.For<IAuthorisationComponent>().Add<AuthorisationComponent>();
+                x.SelectConstructor<AuthorisationComponent>(() => new AuthorisationComponent());
             });
         }
 
@@ -151,7 +155,7 @@ namespace Probel.NDoctor.Domain.Components
             var interceptors = new List<IInterceptor>();
 
             interceptors.Add(new CheckerInterceptor());
-            interceptors.Add(new AuthorisationInterceptor());
+            interceptors.Add(new AuthorisationInterceptor(user));
             if (this.componentLogginEnabled) { interceptors.Add(new LogInterceptor()); }
 
             return interceptors.ToArray();

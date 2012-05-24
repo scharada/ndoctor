@@ -25,7 +25,6 @@ namespace Probel.NDoctor.Plugins.UserSession
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
-    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.UserSession.Controls;
@@ -83,6 +82,7 @@ namespace Probel.NDoctor.Plugins.UserSession
         public UserSession([Import("version")] Version version)
             : base(version)
         {
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
             this.BuildCommands();
         }
@@ -99,7 +99,7 @@ namespace Probel.NDoctor.Plugins.UserSession
         {
             this.ConfigureAutoMapper();
 
-            this.component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<IUserSessionComponent>();
+            this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
 
             TranslateExtension.ResourceManager = Messages.ResourceManager;
 

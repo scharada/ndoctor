@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.View.Plugins.Helpers
 {
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.View.Plugins;
 
     /// <summary>
@@ -24,6 +25,17 @@ namespace Probel.NDoctor.View.Plugins.Helpers
     public static class PluginContext
     {
         #region Properties
+
+        /// <summary>
+        /// Gets the component factory.
+        /// </summary>
+        public static ComponentFactory ComponentFactory
+        {
+            get
+            {
+                return new ComponentFactory(Host.ConnectedUser, ComponentLogginEnabled);
+            }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether component loggin is enabled.

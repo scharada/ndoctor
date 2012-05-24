@@ -6,7 +6,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:my="clr-namespace:Probel.NDoctor.Plugins.FamilyManager.View" 
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.FamilyManager.Translations"
-      xmlns:helpers="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
+      xmlns:h="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
       xmlns:ctrl="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
       
       mc:Ignorable="d" 
@@ -21,8 +21,8 @@
         </Grid.ColumnDefinitions>
 
         <TreeView Grid.Column="0"
-                  helpers:TreeViewHelper.SelectedItem="{Binding SelectedMember, Mode=TwoWay}"   
-                  helpers:TreeViewHelper.SelectedItemChanged="{Binding MemberSelectedCommand}">
+                  h:TreeViewBehaviour.SelectedItem="{Binding SelectedMember, Mode=TwoWay}"   
+                  h:TreeViewBehaviour.SelectedItemChanged="{Binding MemberSelectedCommand}">
 
             <TreeViewItem Header="{Binding Source={x:Static Member=text:FamilyText.TitleFamily}}"
                           IsExpanded="True">
@@ -45,13 +45,13 @@
                               IsExpanded="True"/>
             </TreeViewItem>
         </TreeView>
-        
+
         <GridSplitter Grid.Column="1"
                       HorizontalAlignment="Right" 
                       VerticalAlignment="Stretch" 
                       ResizeBehavior="PreviousAndNext"
                       Width="5"/>
-        
+
         <DockPanel Grid.Column="2">
             <Grid DockPanel.Dock="Top">
                 <Grid.ColumnDefinitions>
@@ -67,7 +67,7 @@
                 <Label Grid.Row="0"
                            Grid.Column="0"
                            Content="{Binding Source={x:Static Member=text:FamilyText.TitleRecordCategory}}"/>
-                
+
                 <ComboBox Grid.Row="0"
                           Grid.Column="1"
                           ItemsSource="{Binding Path=MedicalRecordCabinet.Folders}"

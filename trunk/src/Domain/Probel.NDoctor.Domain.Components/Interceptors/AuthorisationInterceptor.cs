@@ -21,18 +21,21 @@
 
 namespace Probel.NDoctor.Domain.Components.Interceptors
 {
+    using System.Linq;
+
     using Castle.DynamicProxy;
 
     using log4net;
 
     using Probel.NDoctor.Domain.DAL;
+    using Probel.NDoctor.Domain.DTO;
+    using Probel.NDoctor.Domain.DTO.Objects;
 
     /// <summary>
     /// This class manage authorisation. If the execution of the method is unauthorised, an exception is thrown.
-    /// 
     /// If no attribute is set to a method or a class, this implicit authorisation is done:
     /// * Read : every method that contains "Find" or "GetAll"
-    /// * Write: every method that contains "Create", "Remove" or "Update"    
+    /// * Write: every method that contains "Create", "Remove" or "Update"
     /// </summary>
     internal class AuthorisationInterceptor : BaseInterceptor
     {
@@ -42,52 +45,101 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
         private static readonly string[] ReadAuthorisations = new string[] { "find", "getall" };
         private static readonly string[] WriteAuthorisations = new string[] { "create", "remove", "update" };
 
+        private LightUserDto user;
+
         #endregion Fields
+
+        #region Constructors
+
+        public AuthorisationInterceptor(LightUserDto user)
+        {
+            this.user = user;
+        }
+
+        #endregion Constructors
 
         #region Methods
 
         public override void Intercept(IInvocation invocation)
         {
+            var hasRight = true;
+
             if (!this.Ignore(invocation))
             {
                 var name = invocation.MethodInvocationTarget.Name.ToLower();
-                if (this.HasAuthAttribute(invocation))
+                if (this.user == null)
                 {
-                    Logger.DebugFormat("\t\t'{0}' is granted to {1} thanks to an attribute"
-                        , invocation.MethodInvocationTarget.Name
-                        , this.GetAuthAttribute(invocation));
+                    Logger.WarnFormat("No user connected, proceed the invocation of method {0} of assembly {1}"
+                        , invocation.Method.Name
+                        , invocation.TargetType.Name);
+                    hasRight = true;
                 }
-                if (this.IsWriteMethod(name))
+                else if (this.HasAuthAttribute(invocation))
                 {
-                    Logger.DebugFormat("\t\t'{0}' is granted to write"
-                        , invocation.MethodInvocationTarget.Name);
+                    hasRight = IsGrantedWithAttribute(invocation);
                 }
-                if (this.IsReadMethod(name))
+                else if (this.IsWriteMethod(name))
                 {
-                    Logger.DebugFormat("\t\t'{0}' is granted to read"
-                        , invocation.MethodInvocationTarget.Name);
+                    hasRight = (from task in this.user.AssignedRole.Tasks
+                                where task.Name.ToLower() == To.Write.ToLower()
+                                select task).Count() > 0;
+                }
+                else if (this.IsReadMethod(name))
+                {
+                    hasRight = (from task in this.user.AssignedRole.Tasks
+                                where task.Name.ToLower() == To.Read.ToLower()
+                                select task).Count() > 0;
                 }
             }
 
-            invocation.Proceed();
+            if (hasRight) { invocation.Proceed(); }
+            else
+            {
+                Logger.WarnFormat("Not granted to execute {0}.{1} [Role: '{2}']"
+                    , invocation.TargetType.Name
+                    , invocation.Method.Name
+                    , (this.user != null) ? this.user.AssignedRole.Name : "EMPTY");
+                throw new AuthorisationException();
+            }
         }
 
+        /// <summary>
+        /// Gets the authoriation attribute of the invocation if exists.
+        /// It'll first look for a Class Attribute that overrides every method attributes
+        /// It'll then look for a Member Attribute end eventually returns an empty string if
+        /// neither the Class nor the Member is decorated.
+        /// </summary>
+        /// <param name="invocation">The invocation.</param>
+        /// <returns></returns>
         private string GetAuthAttribute(IInvocation invocation)
         {
             var authorisation = string.Empty;
-            var attributes = invocation.MethodInvocationTarget.GetCustomAttributes(typeof(GrantedAttribute), true);
-            if (attributes.Length > 0)
-            {
-                return ((GrantedAttribute)attributes[0]).Task;
-            }
+            var memberAttributes = invocation.MethodInvocationTarget.GetCustomAttributes(typeof(GrantedAttribute), true);
+            var objectAttributes = invocation.TargetType.GetCustomAttributes(typeof(GrantedAttribute), true);
 
-            return authorisation;
+            if (objectAttributes.Length > 0)
+            {
+                return ((GrantedAttribute)objectAttributes[0]).Task.ToLower();
+            }
+            else if (memberAttributes.Length > 0)
+            {
+                return ((GrantedAttribute)memberAttributes[0]).Task.ToLower();
+            }
+            else { return authorisation; }
         }
 
         private bool HasAuthAttribute(IInvocation invocation)
         {
-            var attributes = invocation.MethodInvocationTarget.GetCustomAttributes(typeof(GrantedAttribute), true);
-            return attributes.Length > 0;
+            return !string.IsNullOrEmpty(GetAuthAttribute(invocation));
+        }
+
+        private bool IsGrantedWithAttribute(IInvocation invocation)
+        {
+            var granted = GetAuthAttribute(invocation);
+
+            return (from task in this.user.AssignedRole.Tasks
+                    where task.Name.ToLower() == granted
+                    select task).Count() > 0;
         }
 
         private bool IsReadMethod(string name)

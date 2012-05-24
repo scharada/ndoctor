@@ -67,6 +67,15 @@ namespace Probel.NDoctor.View.Core
 
         #endregion Constructors
 
+        #region Events
+
+        /// <summary>
+        /// Occurs when a new user has connected.
+        /// </summary>
+        public event EventHandler NewUserConnected;
+
+        #endregion Events
+
         #region Properties
 
         /// <summary>
@@ -418,6 +427,14 @@ namespace Probel.NDoctor.View.Core
             return criteria;
         }
 
+        private void OnNewUserConnected()
+        {
+            if (this.NewUserConnected != null)
+            {
+                this.NewUserConnected(this, EventArgs.Empty);
+            }
+        }
+
         private void RefreshDataContext(LightUserDto lightUserDto)
         {
             this.Dispatcher.Invoke((Action)delegate
@@ -428,6 +445,7 @@ namespace Probel.NDoctor.View.Core
                 }
                 else { throw new WrongDataContextException(); }
             });
+            this.OnNewUserConnected();
         }
 
         private void WriteStatus(LightPatientDto value)

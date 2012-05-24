@@ -38,7 +38,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     {
         #region Fields
 
-        private ICalendarComponent component = new ComponentFactory(PluginContext.Host.ConnectedUser, PluginContext.ComponentLogginEnabled).GetInstance<ICalendarComponent>();
+        private ICalendarComponent component = PluginContext.ComponentFactory.GetInstance<ICalendarComponent>();
         private DateTime fromDate;
         private bool isSelected;
         private LightPatientDto patient;
@@ -51,6 +51,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         public PatientViewModel()
             : base()
         {
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<ICalendarComponent>();
             this.FoundSlotsToAdd = new TimeSlotCollection();
             this.FoundSlotsToRemove = new TimeSlotCollection();
             this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());
