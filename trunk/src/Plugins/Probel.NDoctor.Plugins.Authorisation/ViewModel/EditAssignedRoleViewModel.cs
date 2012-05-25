@@ -109,7 +109,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
                 roles = component.GetAllRoles();
             }
             this.Roles.Refill(roles);
-            if (this.SelectedUser != null)
+            if (this.SelectedUser != null && this.SelectedUser.AssignedRole != null)
             {
                 this.SelectedRole = (from r in this.Roles
                                      where r.Name == this.SelectedUser.AssignedRole.Name

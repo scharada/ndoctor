@@ -37,9 +37,9 @@ namespace Probel.NDoctor.Plugins.Authorisation.Translations
             get { return Messages.Btn_Edit; }
         }
 
-        public static string IsDefault
+        public static string IsSuperAdmin
         {
-            get { return Messages.Header_IsDefault; }
+            get { return Messages.Header_IsSuperAdmin; }
         }
 
         public static string Roles

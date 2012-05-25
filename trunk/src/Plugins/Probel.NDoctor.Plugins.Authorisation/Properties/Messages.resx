@@ -149,17 +149,25 @@
     <value>Assigned role</value>
     <comment>Assigned role</comment>
   </data>
-  <data name="Header_IsDefault" xml:space="preserve">
-    <value>Par défaut</value>
-    <comment>Default</comment>
+  <data name="Header_IsSuperAdmin" xml:space="preserve">
+    <value>Super admin</value>
+    <comment>Super admin</comment>
   </data>
   <data name="Header_Name" xml:space="preserve">
     <value>Name</value>
     <comment>Name</comment>
   </data>
+  <data name="Lbl_AssignedTasks" xml:space="preserve">
+    <value>Assigned Task(s)</value>
+    <comment>Assigned Task(s)</comment>
+  </data>
   <data name="Lbl_AvailableTasks" xml:space="preserve">
     <value>Available tasks:</value>
     <comment>Available tasks:</comment>
+  </data>
+  <data name="Lbl_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>Description</comment>
   </data>
   <data name="Lbl_RoleDescription" xml:space="preserve">
     <value>Description:</value>
@@ -172,6 +180,14 @@
   <data name="Lbl_Roles" xml:space="preserve">
     <value>Roles:</value>
     <comment>Roles:</comment>
+  </data>
+  <data name="Lbl_SelectedRole" xml:space="preserve">
+    <value>Role's description</value>
+    <comment>Role's description</comment>
+  </data>
+  <data name="Lbl_SelectedTask" xml:space="preserve">
+    <value>Task's description</value>
+    <comment>Task's description</comment>
   </data>
   <data name="Menu_Actions" xml:space="preserve">
     <value>Actions</value>

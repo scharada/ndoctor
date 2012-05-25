@@ -221,4 +221,116 @@
     <value>Secrétaire</value>
     <comment>Secretary</comment>
   </data>
+  <data name="Explanation_Administer1" xml:space="preserve">
+    <value>Un utilisateur qui a ce droit peut écrire, lire et modifier les informations contenue dans la base de données et qui sont liées à l'administration (par exemple la gestion des droits)</value>
+    <comment>A user with this right can modify data about administration </comment>
+  </data>
+  <data name="Explanation_Administrator1" xml:space="preserve">
+    <value>Un administrateur à tous les droits sur l'application.</value>
+    <comment>The administrator has all the rights in the application</comment>
+  </data>
+  <data name="Explanation_Doctor1" xml:space="preserve">
+    <value>Un médecin peut modifier ou lire toutes les information sauf celles relatives à l'administration</value>
+    <comment>The doctor can read and mofify all the data but he/she cant read or modify  adlinistration data</comment>
+  </data>
+  <data name="Explanation_EditCalendar" xml:space="preserve">
+    <value>Un utilisateur qui a ce droit peut ajouter, modifier ou supprimer des rendez-vous dans l'agenda.</value>
+    <comment>A user with this right can add, update or delete apointments in the calendar.</comment>
+  </data>
+  <data name="Explanation_Everyone1" xml:space="preserve">
+    <value>Tout le monde peut exécuter cette fonctionnalité</value>
+    <comment>Everyone can execute this feature</comment>
+  </data>
+  <data name="Explanation_Metawrite1" xml:space="preserve">
+    <value>Un utilisateur qui a ce droit peut modifier les informations à son sujet comme son mot de passe ou son nom</value>
+    <comment>A user with this right can modify data about himself/herself such as his/her password</comment>
+  </data>
+  <data name="Explanation_Read1" xml:space="preserve">
+    <value>Un utilisateur qui a ce droit peut lire les informations contenues dans la base de données</value>
+    <comment>A user with this right can read data</comment>
+  </data>
+  <data name="Explanation_Secretary1" xml:space="preserve">
+    <value>Un secrétaire peut lire toutes les information mais ne peut modifier que l'agenda</value>
+    <comment>The secretary can read all the data but only modify the calendar</comment>
+  </data>
+  <data name="Explanation_Write1" xml:space="preserve">
+    <value>Un utilisataur qui a ce droit peur écrire et modifier les informations contenues dans la base de données.</value>
+    <comment>A user with this right can write and edit data (but not about himself/herself or administration)</comment>
+  </data>
+  <data name="Ex_QueryException_SeveralDefaultUsers1" xml:space="preserve">
+    <value>Plus d'un utilisateur par défaut a été trouvé.</value>
+    <comment>More than one default user was found. </comment>
+  </data>
+  <data name="Msg_ErrorDbCreationImpossible1" xml:space="preserve">
+    <value>Impossible de créér la base de données.</value>
+    <comment>Impossible to create the database</comment>
+  </data>
+  <data name="Msg_ErrorDbInvalidPath1" xml:space="preserve">
+    <value>Le chemin vers la base de données est incorrecte ou le fichier n'existe pas.</value>
+    <comment>The path to the database is invalid or the file doesn't exist</comment>
+  </data>
+  <data name="Msg_ErrorInvalidHbmPath1" xml:space="preserve">
+    <value>Le chemin pour exporter les fichier HBM est invalide.</value>
+    <comment>The path where to export the HBM files is invalid or doesn't exist!</comment>
+  </data>
+  <data name="Msg_ErrorSessionAlreadyOpenException1" xml:space="preserve">
+    <value>Une session a déjà été ouverte. Veuillez fermer celle-ci avant d'en ouvrir une nouvelle.</value>
+    <comment>A session is already opened. Please, close the opened session before opening a new one.</comment>
+  </data>
+  <data name="Msg_ErrorSessionFactoryNull1" xml:space="preserve">
+    <value>La factory de session n'est pas configurée. Etes-vous sûr que vous avez configuré nHibernate pour cette instance?</value>
+    <comment>The session factory is not set. Are you sure you have configured nHibernate for this instance?</comment>
+  </data>
+  <data name="Msg_ErrorSessionNotOpen1" xml:space="preserve">
+    <value>La session n'est pas ouverte. Veuillez ouvrir une session avant d'interroger la base de données.</value>
+    <comment>The session is not open. Please open it before query the database.</comment>
+  </data>
+  <data name="Msg_ErrorSQLiteConfigurationNotSet1" xml:space="preserve">
+    <value>Le configurateur SQLite n'est pas prêt.</value>
+    <comment>The SQLiteConfiguration is not set!</comment>
+  </data>
+  <data name="Role_Administrator1" xml:space="preserve">
+    <value>Administrateur</value>
+    <comment>Administrator</comment>
+  </data>
+  <data name="Role_Doctor1" xml:space="preserve">
+    <value>Docteur</value>
+    <comment>Doctor</comment>
+  </data>
+  <data name="Role_Secretary1" xml:space="preserve">
+    <value>Secrétaire</value>
+    <comment>Secretary</comment>
+  </data>
+  <data name="Task_Administer1" xml:space="preserve">
+    <value>Administrer</value>
+    <comment>Administer</comment>
+  </data>
+  <data name="Task_EditCalendar" xml:space="preserve">
+    <value>Editer les agendas</value>
+    <comment>Edit calendars</comment>
+  </data>
+  <data name="Task_Everyone1" xml:space="preserve">
+    <value>Tout le monde</value>
+    <comment>Everyone</comment>
+  </data>
+  <data name="Task_Metawrite1" xml:space="preserve">
+    <value>Méta-écriture</value>
+    <comment>Metawrite</comment>
+  </data>
+  <data name="Task_Read1" xml:space="preserve">
+    <value>Lecture</value>
+    <comment>Read</comment>
+  </data>
+  <data name="Task_Write1" xml:space="preserve">
+    <value>Ecriture</value>
+    <comment>Write</comment>
+  </data>
+  <data name="Validation_Password1" xml:space="preserve">
+    <value>Vous n'avez pas entré deux fois le même mot de passe.</value>
+    <comment>You didn't entered twice the same password.</comment>
+  </data>
+  <data name="Validation_PasswordCantBeEmpty1" xml:space="preserve">
+    <value>Le mot de passe ne peut pas être une chaîne vide.</value>
+    <comment>The password can't be empty</comment>
+  </data>
 </root>

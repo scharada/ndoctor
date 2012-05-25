@@ -28,7 +28,7 @@
             </DataGrid.ContextMenu>
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Binding="{Binding Path=IsDefault, UpdateSourceTrigger=PropertyChanged}"
-                                        Header="{Binding Source={x:Static Member=t:ManageUserText.IsDefault}}"
+                                        Header="{Binding Source={x:Static Member=t:ManageUserText.IsSuperAdmin}}"
                                         IsReadOnly="True"/>
 
                 <DataGridTextColumn Binding="{Binding Path=DisplayedName, UpdateSourceTrigger=PropertyChanged}" 

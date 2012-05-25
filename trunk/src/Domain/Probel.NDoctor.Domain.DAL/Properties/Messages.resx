@@ -217,4 +217,12 @@
     <value>Secretary</value>
     <comment>Secretary</comment>
   </data>
+  <data name="Explanation_EditCalendar" xml:space="preserve">
+    <value>Un utilisateur qui a ce droit peut ajouter, modifier ou supprimer des rendez-vous dans l'agenda.</value>
+    <comment>A user with this right can add, update or delete apointments in the calendar.</comment>
+  </data>
+  <data name="Task_EditCalendar" xml:space="preserve">
+    <value>Editer les agendas</value>
+    <comment>Edit calendars</comment>
+  </data>
 </root>

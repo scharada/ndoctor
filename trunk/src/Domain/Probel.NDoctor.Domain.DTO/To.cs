@@ -60,6 +60,11 @@ namespace Probel.NDoctor.Domain.DTO
         /// </summary>
         public const string Write = "write";
 
+        /// <summary>
+        /// Users granted to edit the calendar can add/remove and update appointments in the calendars
+        /// </summary>
+        public const string EditCalendar = "editcalendar";
+
         #endregion Fields
 
         #region Methods

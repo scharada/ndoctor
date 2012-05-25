@@ -11,8 +11,14 @@
       d:DesignHeight="300" 
       d:DesignWidth="600"
       Title="{Binding Source={x:Static Member=t:WorkbenchText.PageTitle}}">
-
-    <DockPanel>
+    <Page.Resources>
+        <!-- InnerWindow button's border -->
+        <Style TargetType="{x:Type Border}" x:Key="BorderStyle">
+            <Setter Property="Padding" Value="4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </Page.Resources>
+        <DockPanel>
         <DockPanel>
             <ListView DockPanel.Dock="Left"
                       Width="150"
@@ -42,38 +48,58 @@
                     </ContextMenu>
                 </ListView.ContextMenu>
             </ListView>
+            <Border Style="{StaticResource BorderStyle}"
+                    DockPanel.Dock="Top">
+                <DockPanel LastChildFill="True">
 
-            <DockPanel DockPanel.Dock="Top"
-                       LastChildFill="True">
-
-                <Button DockPanel.Dock="Right"
+                    <Button DockPanel.Dock="Right"
                         Content="{Binding Source={x:Static t:WorkbenchText.BtnAdd}}"
                         Command="{Binding AddCommand}"/>
 
-                <Label Content="{Binding Source={x:Static t:WorkbenchText.AvailableTasks}}"/>
+                    <Label Content="{Binding Source={x:Static t:WorkbenchText.AvailableTasks}}"/>
 
-                <ComboBox ItemsSource="{Binding AvailableTasks}"
+                    <ComboBox ItemsSource="{Binding AvailableTasks}"
                           SelectedItem="{Binding ComboBoxTask}"
                           DisplayMemberPath="Name"/>
-            </DockPanel>
+                </DockPanel>
+            </Border>
 
-            <ListView DockPanel.Dock="Top"
-                      ItemsSource="{Binding SelectedRole.Tasks}"
-                      DisplayMemberPath="Name"
-                      SelectedItem="{Binding ListViewTask}">
-                <ListView.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Command="{Binding RemoveTaskCommand}"
+            <GroupBox Header="{Binding Source={x:Static t:WorkbenchText.SelectedRole}}"
+                    DockPanel.Dock="Top">
+                <ScrollViewer Height="40">
+                    <TextBlock Text="{Binding SelectedRole.Description}"
+                               TextWrapping="Wrap"/>
+                </ScrollViewer>
+            </GroupBox>            
+
+            <GroupBox Header="{Binding Source={x:Static t:WorkbenchText.AssignedTasks}}">
+                <DockPanel LastChildFill="True">
+                    <GroupBox Header="{Binding Source={x:Static t:WorkbenchText.SelectedTask}}"
+                    DockPanel.Dock="Bottom">
+                        <ScrollViewer Height="40">
+                            <TextBlock Text="{Binding SelectedTask.Notes}"
+                                       TextWrapping="Wrap"/>
+                        </ScrollViewer>
+                    </GroupBox>
+                    <ListView DockPanel.Dock="Top"
+                              ItemsSource="{Binding SelectedRole.Tasks}"
+                              DisplayMemberPath="Name"
+                              SelectedItem="{Binding SelectedTask}">
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Command="{Binding RemoveTaskCommand}"
                                   Header="{Binding Source={x:Static t:WorkbenchText.RemoveTask}}">
-                            <MenuItem.Icon>
-                                <Image Source="\Probel.NDoctor.Plugins.Authorisation;component/Images\Delete.png"
+                                    <MenuItem.Icon>
+                                        <Image Source="\Probel.NDoctor.Plugins.Authorisation;component/Images\Delete.png"
                                        Height="20"
                                        Width="20"/>
-                            </MenuItem.Icon>
-                        </MenuItem>
-                    </ContextMenu>
-                </ListView.ContextMenu>
-            </ListView>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </ListView.ContextMenu>
+                    </ListView>
+                </DockPanel>
+            </GroupBox>
         </DockPanel>
     </DockPanel>
 </Page>

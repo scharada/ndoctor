@@ -133,11 +133,11 @@ namespace Probel.NDoctor.Plugins.Authorisation.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Par défaut.
+        ///   Looks up a localized string similar to Super admin.
         /// </summary>
-        internal static string Header_IsDefault {
+        internal static string Header_IsSuperAdmin {
             get {
-                return ResourceManager.GetString("Header_IsDefault", resourceCulture);
+                return ResourceManager.GetString("Header_IsSuperAdmin", resourceCulture);
             }
         }
         
@@ -151,11 +151,29 @@ namespace Probel.NDoctor.Plugins.Authorisation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assigned Task(s).
+        /// </summary>
+        internal static string Lbl_AssignedTasks {
+            get {
+                return ResourceManager.GetString("Lbl_AssignedTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Available tasks:.
         /// </summary>
         internal static string Lbl_AvailableTasks {
             get {
                 return ResourceManager.GetString("Lbl_AvailableTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string Lbl_Description {
+            get {
+                return ResourceManager.GetString("Lbl_Description", resourceCulture);
             }
         }
         
@@ -183,6 +201,24 @@ namespace Probel.NDoctor.Plugins.Authorisation.Properties {
         internal static string Lbl_Roles {
             get {
                 return ResourceManager.GetString("Lbl_Roles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role&apos;s description.
+        /// </summary>
+        internal static string Lbl_SelectedRole {
+            get {
+                return ResourceManager.GetString("Lbl_SelectedRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task&apos;s description.
+        /// </summary>
+        internal static string Lbl_SelectedTask {
+            get {
+                return ResourceManager.GetString("Lbl_SelectedTask", resourceCulture);
             }
         }
         

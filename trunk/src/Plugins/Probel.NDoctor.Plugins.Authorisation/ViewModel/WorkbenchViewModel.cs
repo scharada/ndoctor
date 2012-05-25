@@ -1,4 +1,5 @@
-﻿/*
+﻿
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -42,9 +43,9 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
         #region Fields
 
         private IAuthorisationComponent component;
-        private TaskDto listViewTask;
-        private RoleDto selectedRole;
         private TaskDto selectedTask;
+        private RoleDto selectedRole;
+        private TaskDto comboBoxTask;
 
         #endregion Fields
 
@@ -91,10 +92,10 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
         public TaskDto ComboBoxTask
         {
-            get { return this.selectedTask; }
+            get { return this.comboBoxTask; }
             set
             {
-                this.selectedTask = value;
+                this.comboBoxTask = value;
                 this.OnPropertyChanged(() => ComboBoxTask);
             }
         }
@@ -105,13 +106,13 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             private set;
         }
 
-        public TaskDto ListViewTask
+        public TaskDto SelectedTask
         {
-            get { return this.listViewTask; }
+            get { return this.selectedTask; }
             set
             {
-                this.listViewTask = value;
-                this.OnPropertyChanged(() => ListViewTask);
+                this.selectedTask = value;
+                this.OnPropertyChanged(() => SelectedTask);
             }
         }
 
@@ -245,7 +246,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
         {
             try
             {
-                this.SelectedRole.Tasks.Remove(this.ListViewTask);
+                this.SelectedRole.Tasks.Remove(this.SelectedTask);
                 this.UpdateRoles();
                 this.RefreshAvailableTasks();
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_TaskRemoved);

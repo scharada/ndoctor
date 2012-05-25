@@ -56,23 +56,31 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                     var metawrite = new TaskDto(To.MetaWrite) { Name = Messages.Task_Metawrite, Notes = Messages.Explanation_Metawrite };
                     var read = new TaskDto(To.Read) { Name = Messages.Task_Read, Notes = Messages.Explanation_Read };
                     var write = new TaskDto(To.Write) { Name = Messages.Task_Write, Notes = Messages.Explanation_Write };
-                    CheckTaksNumber(administer, metawrite, read, write);
+                    var editcalendar = new TaskDto(To.EditCalendar) { Name = Messages.Task_EditCalendar, Notes = Messages.Explanation_EditCalendar };
+                    CheckTaksNumber(administer, metawrite, read, write, editcalendar);
 
                     component.Create(administer);
                     component.Create(metawrite);
                     component.Create(read);
                     component.Create(write);
+                    component.Create(editcalendar);
 
-                    var administrator = BuildRole(Messages.Role_Administrator, Messages.Explanation_Administrator, administer, metawrite, read, write);
-                    var doctor = BuildRole(Messages.Role_Doctor, Messages.Explanation_Doctor, metawrite, read, write);
-                    var secretary = BuildRole(Messages.Role_Secretary, Messages.Explanation_Secretary, metawrite, read);
+                    var administrator = BuildRole(Messages.Role_Administrator, Messages.Explanation_Administrator
+                        , administer, metawrite, read, write, editcalendar);
+
+                    var doctor = BuildRole(Messages.Role_Doctor, Messages.Explanation_Doctor
+                        , metawrite, read, write, editcalendar);
+
+                    var secretary = BuildRole(Messages.Role_Secretary, Messages.Explanation_Secretary
+                        , metawrite, read, editcalendar);
 
                     component.Create(administrator);
                     component.Create(doctor);
                     component.Create(secretary);
 
-                    var superadmin = new UserDto(true) { FirstName = "Superadmin", LastName = "Superadmin", IsDefault = true };
-                    component.Create(superadmin);
+                    //Uncomment to create a superadmin as a first user
+                    //var superadmin = new UserDto(true) { FirstName = "Superadmin", LastName = "Superadmin", IsDefault = true };
+                    //component.Create(superadmin);
 
                     Logger.Info("Script is done...");
                 }

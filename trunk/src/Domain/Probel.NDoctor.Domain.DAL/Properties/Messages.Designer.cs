@@ -97,6 +97,15 @@ namespace Probel.NDoctor.Domain.DAL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Un utilisateur qui a ce droit peut ajouter, modifier ou supprimer des rendez-vous dans l&apos;agenda..
+        /// </summary>
+        internal static string Explanation_EditCalendar {
+            get {
+                return ResourceManager.GetString("Explanation_EditCalendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Everyone can execute this feature.
         /// </summary>
         internal static string Explanation_Everyone {
@@ -237,6 +246,15 @@ namespace Probel.NDoctor.Domain.DAL.Properties {
         internal static string Task_Administer {
             get {
                 return ResourceManager.GetString("Task_Administer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editer les agendas.
+        /// </summary>
+        internal static string Task_EditCalendar {
+            get {
+                return ResourceManager.GetString("Task_EditCalendar", resourceCulture);
             }
         }
         

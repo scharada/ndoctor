@@ -68,5 +68,20 @@ namespace Probel.NDoctor.Plugins.Authorisation.Translations
         }
 
         #endregion Properties
+
+        public static string AssignedTasks
+        {
+            get { return Messages.Lbl_AssignedTasks; }
+        }
+
+        public static string SelectedTask
+        {
+            get { return Messages.Lbl_SelectedTask; }
+        }
+
+        public static string SelectedRole
+        {
+            get { return Messages.Lbl_SelectedRole; }
+        }
     }
 }
