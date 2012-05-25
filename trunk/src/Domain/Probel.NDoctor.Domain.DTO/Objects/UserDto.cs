@@ -40,6 +40,26 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 
         #endregion Fields
 
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserDto"/> class.
+        /// </summary>
+        /// <param name="isSuperAdmin">if set to <c>true</c> [is super admin].</param>
+        public UserDto(bool isSuperAdmin)
+        {
+            this.IsSuperAdmin = isSuperAdmin;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserDto"/> class.
+        /// </summary>
+        public UserDto()
+        {
+        }
+
+        #endregion Constructors
+
         #region Properties
 
         /// <summary>
@@ -134,6 +154,11 @@ namespace Probel.NDoctor.Domain.DTO.Objects
                 this.isDefaultUser = value;
                 this.OnPropertyChanged(() => IsDefault);
             }
+        }
+
+        public bool IsSuperAdmin
+        {
+            get; private set;
         }
 
         /// <summary>

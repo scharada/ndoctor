@@ -50,6 +50,17 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         }
 
         /// <summary>
+        /// Gets the door keeper. That's the instance that can specify if the demanded feature can be executed or not.
+        /// </summary>
+        public static DoorKeeper DoorKeeper
+        {
+            get
+            {
+                return new DoorKeeper(PluginContext.Host.ConnectedUser);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the plugin host.
         /// </summary>
         /// <value>

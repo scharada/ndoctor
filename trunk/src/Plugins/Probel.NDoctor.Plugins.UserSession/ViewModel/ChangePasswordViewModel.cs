@@ -25,6 +25,7 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Plugins.UserSession.Properties;
     using Probel.NDoctor.Plugins.UserSession.View;
@@ -123,7 +124,8 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
         {
             if (PluginContext.Host.ConnectedUser == null) return false;
 
-            return this.NewPassword == this.CheckNewPassword
+            return PluginContext.DoorKeeper.Grants(To.MetaWrite)
+                && this.NewPassword == this.CheckNewPassword
                 && !string.IsNullOrWhiteSpace(this.NewPassword);
         }
 

@@ -27,9 +27,12 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
 
     using log4net;
 
+    using Probel.NDoctor.Domain.Components.AuthorisationPolicies;
     using Probel.NDoctor.Domain.DAL;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
+
+    using StructureMap;
 
     /// <summary>
     /// This class manage authorisation. If the execution of the method is unauthorised, an exception is thrown.
@@ -42,6 +45,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
         #region Fields
 
         private static readonly ILog Logger = LogManager.GetLogger(typeof(AuthorisationInterceptor));
+        private static readonly IAuthorisationPolicy policy = ObjectFactory.GetInstance<IAuthorisationPolicy>();
         private static readonly string[] ReadAuthorisations = new string[] { "find", "getall" };
         private static readonly string[] WriteAuthorisations = new string[] { "create", "remove", "update" };
 
@@ -63,32 +67,29 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
         public override void Intercept(IInvocation invocation)
         {
             var hasRight = true;
+            var authAttribute = GetAuthAttribute(invocation);
 
             if (!this.Ignore(invocation))
             {
                 var name = invocation.MethodInvocationTarget.Name.ToLower();
-                if (this.user == null)
+                if (this.user == null && authAttribute.ToLower() == To.Everyone.ToLower())
                 {
                     Logger.WarnFormat("No user connected, proceed the invocation of method {0} of assembly {1}"
                         , invocation.Method.Name
                         , invocation.TargetType.Name);
                     hasRight = true;
                 }
-                else if (this.HasAuthAttribute(invocation))
+                else if (!string.IsNullOrEmpty(authAttribute))
                 {
                     hasRight = IsGrantedWithAttribute(invocation);
                 }
                 else if (this.IsWriteMethod(name))
                 {
-                    hasRight = (from task in this.user.AssignedRole.Tasks
-                                where task.Name.ToLower() == To.Write.ToLower()
-                                select task).Count() > 0;
+                    hasRight = policy.IsGranted(To.Write, this.user);
                 }
                 else if (this.IsReadMethod(name))
                 {
-                    hasRight = (from task in this.user.AssignedRole.Tasks
-                                where task.Name.ToLower() == To.Read.ToLower()
-                                select task).Count() > 0;
+                    hasRight = policy.IsGranted(To.Read, this.user);
                 }
             }
 
@@ -98,8 +99,8 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
                 Logger.WarnFormat("Not granted to execute {0}.{1} [Role: '{2}']"
                     , invocation.TargetType.Name
                     , invocation.Method.Name
-                    , (this.user != null) ? this.user.AssignedRole.Name : "EMPTY");
-                throw new AuthorisationException();
+                    , (this.user != null && this.user.AssignedRole != null) ? this.user.AssignedRole.Name : "EMPTY");
+                throw new AuthorisationException(invocation.TargetType, invocation.Method);
             }
         }
 
@@ -128,18 +129,10 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
             else { return authorisation; }
         }
 
-        private bool HasAuthAttribute(IInvocation invocation)
-        {
-            return !string.IsNullOrEmpty(GetAuthAttribute(invocation));
-        }
-
         private bool IsGrantedWithAttribute(IInvocation invocation)
         {
             var granted = GetAuthAttribute(invocation);
-
-            return (from task in this.user.AssignedRole.Tasks
-                    where task.Name.ToLower() == granted
-                    select task).Count() > 0;
+            return policy.IsGranted(granted, this.user);
         }
 
         private bool IsReadMethod(string name)

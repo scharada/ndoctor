@@ -138,7 +138,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
         {
             sessionFactory = this.CreateSessionFactory();
 
-            Mapping.Configure();
+            AutoMapperMapping.Configure();
             this.IsConfigured = true;
         }
 
@@ -179,14 +179,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
         private void ExecuteScript()
         {
             Logger.Info("Execute the database creation script [SQL]");
-            var component = new SqlComponent();
-            using (component.UnitOfWork)
-            {
-                foreach (var task in To.ToStringArray())
-                {
-                    component.ExecuteSql(string.Format("INSERT INTO Task (Name) VALUES (\"{0}\")", task));
-                }
-            }
+            new Script().Execute();
         }
 
         #endregion Methods

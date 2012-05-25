@@ -40,7 +40,10 @@ namespace Probel.NDoctor.Domain.DAL.EqualityComparers
         /// <returns></returns>
         public bool Equals(Task x, Task y)
         {
-            return x.Name.ToLower() == y.Name.ToLower();
+            if (x == null && y == null) return true;
+            else if (string.IsNullOrEmpty(x.Name) && string.IsNullOrEmpty(y.Name)) return true;
+            else if (string.IsNullOrEmpty(x.Name) || string.IsNullOrEmpty(y.Name)) return false;
+            else return x.Name.ToLower() == y.Name.ToLower();
         }
 
         /// <summary>

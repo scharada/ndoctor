@@ -38,7 +38,17 @@ namespace Probel.NDoctor.Domain.DTO
         /// User should be administrator to execute features decorated with this role.
         /// That's, user with high privileges
         /// </summary>
-        public const string Administration = "administration";
+        public const string Administer = "administer";
+
+        /// <summary>
+        /// All users can execute features decorated with this role.
+        /// </summary>
+        public const string Everyone = "everyone";
+
+        /// <summary>
+        /// User granted to modify their own data (name, surname, password) can execute features decorated with this role.
+        /// </summary>
+        public const string MetaWrite = "metawrite";
 
         /// <summary>
         /// Standard user can execute features decorated with this role.        
@@ -46,7 +56,7 @@ namespace Probel.NDoctor.Domain.DTO
         public const string Read = "read";
 
         /// <summary>
-        /// Users with database modification can execute features decorated with this role.
+        /// Users granted to execute database modification can execute features decorated with this role.
         /// </summary>
         public const string Write = "write";
 

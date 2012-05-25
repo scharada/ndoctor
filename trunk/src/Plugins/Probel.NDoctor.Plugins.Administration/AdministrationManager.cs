@@ -26,6 +26,7 @@ namespace Probel.NDoctor.Plugins.Administration
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.Administration.Properties;
@@ -120,7 +121,7 @@ namespace Probel.NDoctor.Plugins.Administration
 
         private bool CanNavigate()
         {
-            return true;
+            return true && PluginContext.DoorKeeper.Grants(To.Read);
         }
 
         private void ConfigureAutoMapper()

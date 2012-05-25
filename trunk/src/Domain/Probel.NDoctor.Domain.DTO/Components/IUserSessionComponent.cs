@@ -55,6 +55,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         UserDto LoadUser(LightUserDto user);
 
         /// <summary>
+        /// Updates the specified user.
+        /// </summary>
+        /// <param name="item">The user.</param>
+        void Update(UserDto item);
+
+        /// <summary>
         /// Updates the password of the connected user.
         /// </summary>
         /// <param name="user">The user.</param>

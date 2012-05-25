@@ -66,6 +66,7 @@
     <Compile Include="..\..\Version.cs">
       <Link>Version.cs</Link>
     </Compile>
+    <Compile Include="Cfg\Script.cs" />
     <Compile Include="Components\AdministrationComponent.cs" />
     <Compile Include="Components\AuthorisationComponent.cs" />
     <Compile Include="Components\ImportComponent.cs" />
@@ -86,7 +87,7 @@
     <Compile Include="Helpers\EntityEqualityComparer.cs" />
     <Compile Include="Helpers\ComponentDecorator.cs" />
     <Compile Include="Helpers\InspectionIgnoredAttribute.cs" />
-    <Compile Include="Mappings\Mapping.cs" />
+    <Compile Include="Mappings\AutoMapperMapping.cs" />
     <Compile Include="Components\BaseComponent.cs" />
     <Compile Include="Components\BmiComponent.cs" />
     <Compile Include="Components\PictureComponent.cs" />

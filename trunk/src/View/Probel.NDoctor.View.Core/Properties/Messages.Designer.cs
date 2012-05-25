@@ -79,6 +79,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are not granted to executie this feature.
+        /// </summary>
+        internal static string Error_UnauthorisedAction {
+            get {
+                return ResourceManager.GetString("Error_UnauthorisedAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The plugin host is not configured. Check the state of the plugin context..
         /// </summary>
         internal static string Ex_NDoctorConfigurationException_HostNull {

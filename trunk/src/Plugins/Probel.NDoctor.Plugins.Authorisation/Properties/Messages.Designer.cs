@@ -160,6 +160,15 @@ namespace Probel.NDoctor.Plugins.Authorisation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Description:.
+        /// </summary>
+        internal static string Lbl_RoleDescription {
+            get {
+                return ResourceManager.GetString("Lbl_RoleDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Role&apos;s name:.
         /// </summary>
         internal static string Lbl_RoleName {

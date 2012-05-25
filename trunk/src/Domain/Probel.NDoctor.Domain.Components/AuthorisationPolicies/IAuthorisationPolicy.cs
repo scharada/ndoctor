@@ -19,33 +19,26 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Domain.Test.Authorisation
+namespace Probel.NDoctor.Domain.Components.AuthorisationPolicies
 {
-    using System.Linq;
+    using Probel.NDoctor.Domain.DTO.Objects;
 
-    using NUnit.Framework;
-
-    using Probel.NDoctor.Domain.DTO;
-
-    [TestFixture]
-    [Category("Authorisation")]
-    public class TestAuthorisation
+    /// <summary>
+    /// Provide the algorithm for the authorisation allowance.
+    /// </summary>
+    internal interface IAuthorisationPolicy
     {
         #region Methods
 
-        [Test]
-        public void CanListRoles()
-        {
-            string[] roles = To.ToStringArray();
-
-            Assert.AreEqual(5, roles.Length);
-
-            Assert.IsTrue(roles.Contains(To.Everyone));
-            Assert.IsTrue(roles.Contains(To.MetaWrite));
-            Assert.IsTrue(roles.Contains(To.Administer));
-            Assert.IsTrue(roles.Contains(To.Read));
-            Assert.IsTrue(roles.Contains(To.Write));
-        }
+        /// <summary>
+        /// Determines whether the specified role is granted to execute the specified task.
+        /// </summary>
+        /// <param name="to">The level of authorisatio needed to execute the role.</param>
+        /// <param name="user">The user to check the authorisations.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified assigned role is granted; otherwise, <c>false</c>.
+        /// </returns>
+        bool IsGranted(string to, LightUserDto user);
 
         #endregion Methods
     }

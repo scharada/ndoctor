@@ -22,6 +22,7 @@
 namespace Probel.NDoctor.Domain.Components
 {
     using System;
+    using System.Reflection;
     using System.Runtime.Serialization;
 
     using Probel.NDoctor.Domain.Components.Properties;
@@ -32,21 +33,7 @@ namespace Probel.NDoctor.Domain.Components
     [Serializable]
     public class AuthorisationException : ApplicationException
     {
-        #region Fields
-
-        private Castle.DynamicProxy.IInvocation invocation;
-
-        #endregion Fields
-
         #region Constructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AuthorisationException"/> class.
-        /// </summary>
-        public AuthorisationException()
-            : this(Messages.Ex_AuthorisationException)
-        {
-        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthorisationException"/> class.
@@ -67,6 +54,13 @@ namespace Probel.NDoctor.Domain.Components
         {
         }
 
+        internal AuthorisationException(Type type, MethodInfo methodInfo)
+            : this()
+        {
+            this.TargetType = type;
+            this.CalledMethod = methodInfo;
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthorisationException"/> class.
         /// </summary>
@@ -77,6 +71,28 @@ namespace Probel.NDoctor.Domain.Components
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuthorisationException"/> class.
+        /// </summary>
+        private AuthorisationException()
+            : this(Messages.Ex_AuthorisationException)
+        {
+        }
+
         #endregion Constructors
+
+        #region Properties
+
+        public MethodInfo CalledMethod
+        {
+            get; private set;
+        }
+
+        public Type TargetType
+        {
+            get; private set;
+        }
+
+        #endregion Properties
     }
 }

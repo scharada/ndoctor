@@ -161,6 +161,10 @@
     <value>Tâches disponibles:</value>
     <comment>Available tasks:</comment>
   </data>
+  <data name="Lbl_RoleDescription" xml:space="preserve">
+    <value>Description:</value>
+    <comment>Description:</comment>
+  </data>
   <data name="Lbl_RoleName" xml:space="preserve">
     <value>Nom du rôle:</value>
     <comment>Role's name:</comment>

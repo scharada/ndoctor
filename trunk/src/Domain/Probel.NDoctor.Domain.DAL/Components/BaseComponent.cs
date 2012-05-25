@@ -33,6 +33,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Helpers;
     using Probel.NDoctor.Domain.DAL.Properties;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -198,6 +199,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Create the specified item into the database
         /// </summary>
         /// <param name="item">The item to add in the database</param>
+        [Granted(To.Everyone)]
         public long Create(UserDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
@@ -211,6 +213,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
             this.Session.Flush();
 
             var entity = Mapper.Map<UserDto, User>(item);
+
+            if (this.IsFirstUser()) { entity.IsSuperAdmin = true; }
             return (long)this.Session.Save(entity);
         }
 
@@ -606,6 +610,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Gets all users.
         /// </summary>
         /// <returns></returns>
+        [Granted(To.Everyone)]
         public IList<LightUserDto> GetAllUsers()
         {
             try
@@ -747,17 +752,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Updates the specified user.
-        /// </summary>
-        /// <param name="item">The user.</param>
-        public void Update(UserDto item)
-        {
-            var entity = this.Session.Get<User>(item.Id);
-            Mapper.Map<UserDto, User>(item, entity);
-            this.Session.Update(entity);
-        }
-
-        /// <summary>
         /// Updates the specified picture.
         /// </summary>
         /// <param name="picture">The picture.</param>
@@ -804,6 +798,15 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
             var entity = Mapper.Map<MedicalRecordDto, MedicalRecord>(item);
             this.Session.Save(entity);
+        }
+
+        protected bool IsFirstUser()
+        {
+            var result = (from u in this.Session.Query<User>()
+                          where u.IsSuperAdmin == true
+                          select u).Take(2);
+
+            return result.Count() == 0;
         }
 
         /// <summary>

@@ -67,8 +67,8 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             this.AddCommand = new RelayCommand(() => this.AddTask(), () => this.CanModifyTask());
             this.RemoveTaskCommand = new RelayCommand(() => this.RemoveTask(), () => this.CanModifyTask());
             this.RefreshRoleCommand = new RelayCommand(() => this.RefreshAvailableTasks());
-            this.EditRoleCommand = new RelayCommand(() => this.EditRole(), () => this.CanEditRole());
-            this.RemoveRoleCommand = new RelayCommand(() => this.RemoveRole(), () => this.CanRemoveRole());
+            this.EditRoleCommand = new RelayCommand(() => this.EditRole(), () => this.CanModifyRole());
+            this.RemoveRoleCommand = new RelayCommand(() => this.RemoveRole(), () => this.CanModifyRole());
 
             Notifyer.RoleRefreshing += (sender, e) => this.Refresh();
         }
@@ -183,17 +183,12 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             catch (Exception ex) { this.HandleError(ex); }
         }
 
-        private bool CanEditRole()
-        {
-            return true;
-        }
-
-        private bool CanModifyTask()
+        private bool CanModifyRole()
         {
             return this.SelectedRole != null;
         }
 
-        private bool CanRemoveRole()
+        private bool CanModifyTask()
         {
             return this.SelectedRole != null;
         }

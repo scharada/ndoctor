@@ -23,7 +23,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.Translations
 {
     using Probel.NDoctor.Plugins.Authorisation.Properties;
 
-    static class EditRoleText
+    internal static class EditRoleText
     {
         #region Properties
 
@@ -32,6 +32,10 @@ namespace Probel.NDoctor.Plugins.Authorisation.Translations
             get { return Messages.Lbl_RoleName; }
         }
 
+        public static string RoleDescription
+        {
+            get { return Messages.Lbl_RoleDescription; }
+        }
         #endregion Properties
     }
 }

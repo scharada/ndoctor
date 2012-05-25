@@ -44,10 +44,35 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         }
 
         /// <summary>
-        /// Gets or sets the roles this task is binded to.
+        /// Gets or sets the notes to explain the database.
         /// </summary>
         /// <value>
-        /// The roles.
+        /// The notes.
+        /// </value>
+        public virtual string Notes
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the reference name.
+        /// /!\ Don't change this value because it is linked to hardcoded values
+        /// </summary>
+        /// <value>
+        /// The name of the ref.
+        /// </value>
+        public virtual string RefName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the roles binded to this role.
+        /// </summary>
+        /// <value>
+        /// The tasks.
         /// </value>
         public virtual IList<Role> Roles
         {

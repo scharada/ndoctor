@@ -59,7 +59,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         ///   <c>true</c> if this instance can connect the specified user; otherwise, <c>false</c>.
         /// </returns>
-        [Granted(To.Read)]
+        [Granted(To.Everyone)]
         public bool CanConnect(LightUserDto user, string password)
         {
             if (user == null || password == null) return false;
@@ -76,6 +76,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="user">The user.</param>
         /// <param name="password">The password.</param>
+        [Granted(To.Everyone)]
         public long Create(LightUserDto item, string password)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
@@ -90,6 +91,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
             entity.Password = password;
 
             if (entity.IsDefault) this.RemoveDefaultUser();
+            if (this.IsFirstUser()) { entity.IsSuperAdmin = true; }
+
             return (long)this.Session.Save(entity);
         }
 
@@ -97,6 +100,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Gets user used for default connection or null if none is selected.
         /// </summary>
         /// <returns></returns>
+        [Granted(To.Everyone)]
         public LightUserDto FindDefaultUser()
         {
             var result = (from user in this.Session.Query<User>()
@@ -124,10 +128,23 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Updates the specified user.
+        /// </summary>
+        /// <param name="item">The user.</param>
+        [Granted(To.MetaWrite)]
+        public void Update(UserDto item)
+        {
+            var entity = this.Session.Get<User>(item.Id);
+            Mapper.Map<UserDto, User>(item, entity);
+            this.Session.Update(entity);
+        }
+
+        /// <summary>
         /// Updates the password of the connected user.
         /// </summary>
         /// <param name="user">The user.</param>
         /// <param name="password">The password.</param>
+        [Granted(To.MetaWrite)]
         public void UpdatePassword(LightUserDto user, string password)
         {
             var entity = this.Session.Get<User>(user.Id);

@@ -32,6 +32,19 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 
         #endregion Fields
 
+        #region Constructors
+
+        public LightUserDto()
+        {
+        }
+
+        public LightUserDto(bool isSuperAdmin)
+        {
+            this.IsSuperAdmin = isSuperAdmin;
+        }
+
+        #endregion Constructors
+
         #region Properties
 
         public RoleDto AssignedRole
@@ -70,6 +83,11 @@ namespace Probel.NDoctor.Domain.DTO.Objects
                 this.isDefaultUser = value;
                 this.OnPropertyChanged(() => IsDefault);
             }
+        }
+
+        public bool IsSuperAdmin
+        {
+            get; private set;
         }
 
         public string LastName

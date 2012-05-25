@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Domain.Components
 
     using log4net;
 
+    using Probel.NDoctor.Domain.Components.AuthorisationPolicies;
     using Probel.NDoctor.Domain.Components.Interceptors;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
@@ -112,6 +113,9 @@ namespace Probel.NDoctor.Domain.Components
                 //Authorisation manager
                 x.For<IAuthorisationComponent>().Add<AuthorisationComponent>();
                 x.SelectConstructor<AuthorisationComponent>(() => new AuthorisationComponent());
+
+                //Authorisation policies
+                x.For<IAuthorisationPolicy>().Add<AuthorisationPolicy>();
             });
         }
 

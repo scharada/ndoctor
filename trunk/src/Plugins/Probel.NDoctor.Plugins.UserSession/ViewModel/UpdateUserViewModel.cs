@@ -24,7 +24,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 
     using Probel.Helpers.Conversions;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.UserSession.Properties;
@@ -225,14 +225,15 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                 }
 
             }
-            catch (Exception ex) { this.HandleError(ex, Messages.Msg_ErrorWhileLoadingUser); }
+            catch (Exception ex) { this.HandleError(ex); }
         }
 
         private bool CanUpdateUser()
         {
-            return !string.IsNullOrWhiteSpace(this.User.FirstName)
+            return PluginContext.DoorKeeper.Grants(To.MetaWrite)
+                && (!string.IsNullOrWhiteSpace(this.User.FirstName)
                 && !string.IsNullOrWhiteSpace(this.User.LastName)
-                && this.User.Practice != null;
+                && this.User.Practice != null);
         }
 
         private void UpdateUser()
@@ -247,14 +248,8 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                 }
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_UserUpdated);
             }
-            catch (Exception ex)
-            {
-                this.HandleError(ex, Messages.Msg_ErrorUpdateUser);
-            }
-            finally
-            {
-                InnerWindow.Close();
-            }
+            catch (Exception ex) { this.HandleError(ex); }
+            finally { InnerWindow.Close(); }
         }
 
         #endregion Methods

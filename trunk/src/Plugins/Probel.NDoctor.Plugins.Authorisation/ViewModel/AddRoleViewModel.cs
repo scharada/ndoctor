@@ -39,8 +39,8 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
     {
         #region Fields
 
-        private IAuthorisationComponent component;
-        private string roleName;
+        private IAuthorisationComponent component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
+        private string name;
 
         #endregion Fields
 
@@ -48,11 +48,8 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
         public AddRoleViewModel()
         {
-            if (!Designer.IsDesignMode)
-            {
-                this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
-                PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
-            }
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
+
             this.AddCommand = new RelayCommand(() => this.AddRole(), () => this.CanAddRole());
         }
 
@@ -66,13 +63,23 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             private set;
         }
 
-        public string RoleName
+        private string description;
+        public string Description
         {
-            get { return this.roleName; }
+            get { return this.description; }
             set
             {
-                this.roleName = value;
-                this.OnPropertyChanged(() => RoleName);
+                this.description = value;
+                this.OnPropertyChanged(() => Description);
+            }
+        }     
+        public string Name
+        {
+            get { return this.name; }
+            set
+            {
+                this.name = value;
+                this.OnPropertyChanged(() => Name);
             }
         }
 
@@ -88,7 +95,8 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
                 {
                     this.component.Create(new RoleDto()
                     {
-                        Name = this.RoleName
+                        Name = this.Name,
+                        Description=this.Description,
                     });
                 }
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RoleCreated);
@@ -100,7 +108,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
         private bool CanAddRole()
         {
-            return !string.IsNullOrWhiteSpace(this.RoleName);
+            return !string.IsNullOrWhiteSpace(this.Name);
         }
 
         #endregion Methods

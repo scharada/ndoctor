@@ -82,6 +82,12 @@ namespace Probel.NDoctor.Domain.DAL.Entities
             set;
         }
 
+        public virtual bool IsSuperAdmin
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// Gets or sets the login of the user.
         /// </summary>

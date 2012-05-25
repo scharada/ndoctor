@@ -153,4 +153,68 @@
     <value>More than one default user was found.</value>
     <comment>More than one default user was found.</comment>
   </data>
+  <data name="Explanation_Administer" xml:space="preserve">
+    <value>A user with this right can modify data about administration</value>
+    <comment>A user with this right can modify data about administration </comment>
+  </data>
+  <data name="Explanation_Everyone" xml:space="preserve">
+    <value>Everyone can execute this feature</value>
+    <comment>Everyone can execute this feature</comment>
+  </data>
+  <data name="Explanation_Metawrite" xml:space="preserve">
+    <value>A user with this right can modify data about himself/herself such as his/her password</value>
+    <comment>A user with this right can modify data about himself/herself such as his/her password</comment>
+  </data>
+  <data name="Explanation_Read" xml:space="preserve">
+    <value>A user with this right can read data</value>
+    <comment>A user with this right can read data</comment>
+  </data>
+  <data name="Explanation_Write" xml:space="preserve">
+    <value>A user with this right can write and edit data (but not about himself/herself or administration)</value>
+    <comment>A user with this right can write and edit data (but not about himself/herself or administration)</comment>
+  </data>
+  <data name="Task_Administer" xml:space="preserve">
+    <value>Administer</value>
+    <comment>Administer</comment>
+  </data>
+  <data name="Task_Everyone" xml:space="preserve">
+    <value>Everyone</value>
+    <comment>Everyone</comment>
+  </data>
+  <data name="Task_Metawrite" xml:space="preserve">
+    <value>Metawrite</value>
+    <comment>Metawrite</comment>
+  </data>
+  <data name="Task_Read" xml:space="preserve">
+    <value>Read</value>
+    <comment>Read</comment>
+  </data>
+  <data name="Task_Write" xml:space="preserve">
+    <value>Write</value>
+    <comment>Write</comment>
+  </data>
+  <data name="Explanation_Administrator" xml:space="preserve">
+    <value>The administrator has all the rights in the application</value>
+    <comment>The administrator has all the rights in the application</comment>
+  </data>
+  <data name="Explanation_Doctor" xml:space="preserve">
+    <value>The doctor can read and mofify all the data but he/she cant read or modify  adlinistration data</value>
+    <comment>The doctor can read and mofify all the data but he/she cant read or modify  adlinistration data</comment>
+  </data>
+  <data name="Explanation_Secretary" xml:space="preserve">
+    <value>The secretary can read all the data but only modify the calendar</value>
+    <comment>The secretary can read all the data but only modify the calendar</comment>
+  </data>
+  <data name="Role_Administrator" xml:space="preserve">
+    <value>Administrator</value>
+    <comment>Administrator</comment>
+  </data>
+  <data name="Role_Doctor" xml:space="preserve">
+    <value>Doctor</value>
+    <comment>Doctor</comment>
+  </data>
+  <data name="Role_Secretary" xml:space="preserve">
+    <value>Secretary</value>
+    <comment>Secretary</comment>
+  </data>
 </root>

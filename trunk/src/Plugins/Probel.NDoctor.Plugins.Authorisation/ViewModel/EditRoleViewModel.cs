@@ -36,23 +36,31 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
     {
         #region Fields
 
-        private IAuthorisationComponent component;
+        private IAuthorisationComponent component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
         private string name;
         private RoleDto selectedRole;
 
         #endregion Fields
-
+        private string notes;
+        public string Description
+        {
+            get { return this.notes; }
+            set
+            {
+                this.notes = value;
+                this.OnPropertyChanged(() => Description);
+            }
+        }
         #region Constructors
 
         public EditRoleViewModel(RoleDto role)
         {
-            if (!Designer.IsDesignMode)
-            {
-                this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
-                PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
-            }
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
+
             this.SelectedRole = role;
             this.Name = role.Name;
+            this.Description = role.Description;
+
             this.UpdateCommand = new RelayCommand(() => this.Update(), () => this.CanUpdate());
         }
 
@@ -98,6 +106,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
         private void Update()
         {
             this.SelectedRole.Name = this.Name;
+            this.SelectedRole.Description = this.Description;
             using (component.UnitOfWork)
             {
                 component.Update(this.SelectedRole);

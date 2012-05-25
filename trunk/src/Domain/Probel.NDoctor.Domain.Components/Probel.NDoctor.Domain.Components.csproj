@@ -50,7 +50,10 @@
       <Link>Version.cs</Link>
     </Compile>
     <Compile Include="AuthorisationException.cs" />
+    <Compile Include="AuthorisationPolicies\AuthorisationPolicy.cs" />
+    <Compile Include="AuthorisationPolicies\IAuthorisationPolicy.cs" />
     <Compile Include="ComponentFactory.cs" />
+    <Compile Include="DoorKeeper.cs" />
     <Compile Include="Interceptors\AuthorisationInterceptor.cs" />
     <Compile Include="Interceptors\BaseInterceptor.cs" />
     <Compile Include="Interceptors\LogInterceptor.cs" />

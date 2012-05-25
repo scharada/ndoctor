@@ -22,6 +22,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.UserSession.Helpers;
@@ -140,6 +141,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                     Notifyer.OnUserAdded(this);
                     PluginContext.Host.NavigateBack();
                 }
+                //TODO check this out
                 //else
                 //{
                 //    InnerWindow.Show(Messages.Title_ButtonAddUser, new AddUserControl());
@@ -154,7 +156,8 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 
         private bool CanAdd()
         {
-            return !(string.IsNullOrWhiteSpace(this.User.FirstName)
+            return PluginContext.DoorKeeper.Grants(To.Everyone)
+                && !(string.IsNullOrWhiteSpace(this.User.FirstName)
                   || string.IsNullOrWhiteSpace(this.User.LastName)
                   || string.IsNullOrWhiteSpace(this.Password)
                   || this.Password != this.PasswordCheck);

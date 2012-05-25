@@ -125,6 +125,10 @@
     <value>An error occured. Read logs for further information.</value>
     <comment>An error occured. Read logs for further information.</comment>
   </data>
+  <data name="Error_UnauthorisedAction" xml:space="preserve">
+    <value>You are not granted to executie this feature</value>
+    <comment>You are not granted to executie this feature</comment>
+  </data>
   <data name="Ex_NDoctorConfigurationException_HostNull" xml:space="preserve">
     <value>The plugin host is not configured. Check the state of the plugin context.</value>
     <comment>The plugin host is not configured. Check the state of the plugin context.</comment>

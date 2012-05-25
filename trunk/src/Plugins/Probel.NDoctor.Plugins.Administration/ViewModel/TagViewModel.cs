@@ -22,6 +22,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Collections;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
@@ -93,7 +94,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         private bool CanUpdate()
         {
-            return !string.IsNullOrWhiteSpace(this.Name);
+            return !string.IsNullOrWhiteSpace(this.Name) && PluginContext.DoorKeeper.Grants(To.Write);
         }
 
         private void Update()

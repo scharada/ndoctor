@@ -30,7 +30,7 @@ namespace Probel.NDoctor.Domain.Test.Helpers
         {
             if (!isMappingConfigured)
             {
-                Probel.NDoctor.Domain.DAL.Mappings.Mapping.Configure();
+                Probel.NDoctor.Domain.DAL.Mappings.AutoMapperMapping.Configure();
                 isMappingConfigured = true;
             }
         }

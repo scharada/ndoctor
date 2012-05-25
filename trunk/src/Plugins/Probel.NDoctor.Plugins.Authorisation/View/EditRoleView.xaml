@@ -9,11 +9,21 @@
              xmlns:txt="clr-namespace:Probel.NDoctor.Plugins.Authorisation.Translations"
                        
              mc:Ignorable="d" 
-             Width="250">
+             Width="300">
     <DockPanel LastChildFill="True">
         <DockPanel DockPanel.Dock="Top" LastChildFill="True">
             <Label Content="{Binding Source={x:Static Member=txt:EditRoleText.RoleName}}"/>
-            <TextBox Text="{Binding Name}"/>
+            <Border Style="{StaticResource BorderStyle}">
+                <TextBox Text="{Binding Name}"/>
+            </Border>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top" LastChildFill="True">
+            <Label Content="{Binding Source={x:Static Member=txt:EditRoleText.RoleDescription}}"/>
+            <Border Style="{StaticResource BorderStyle}">
+                <ScrollViewer Height="80">
+                    <TextBox Text="{Binding Description}" TextWrapping="Wrap" />
+                </ScrollViewer>
+            </Border>
         </DockPanel>
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>

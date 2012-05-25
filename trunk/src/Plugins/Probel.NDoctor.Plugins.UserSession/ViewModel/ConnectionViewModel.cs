@@ -23,6 +23,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using Probel.Helpers.Conversions;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.UserSession.Helpers;
@@ -51,7 +52,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 
             this.Users = new ObservableCollection<LightUserDto>();
 
-            this.ConnectCommand = new RelayCommand(() => this.Connect());
+            this.ConnectCommand = new RelayCommand(() => this.Connect(), () => !string.IsNullOrWhiteSpace(this.Password));
 
             this.NavigateAddUserCommand = new RelayCommand(() => this.AddUser());
             Notifyer.UserAdded += (sender, e) =>
@@ -95,7 +96,8 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         /// </summary>
         public ICommand NavigateAddUserCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public string Password

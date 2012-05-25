@@ -25,6 +25,7 @@ namespace Probel.NDoctor.Plugins.UserSession
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.UserSession.Controls;
@@ -127,10 +128,12 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         private void BuildCommands()
         {
-            this.printCommand = new RelayCommand(() => this.PrintBusinessCard());
+            this.printCommand = new RelayCommand(() => this.PrintBusinessCard(), () => PluginContext.DoorKeeper.Grants(To.Write));
             this.addCommand = new RelayCommand(() => this.NavigateAddUser());
-            this.changePwdCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_ChangePwd, new ChangePasswordView()));
-            this.showUpdateUserCommand = new RelayCommand(() => this.NavigateToUpdateUser());
+            this.changePwdCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_ChangePwd, new ChangePasswordView())
+                , () => PluginContext.DoorKeeper.Grants(To.MetaWrite));
+            this.showUpdateUserCommand = new RelayCommand(() => this.NavigateToUpdateUser()
+                , () => PluginContext.DoorKeeper.Grants(To.MetaWrite));
         }
 
         private void ConfigureAutoMapper()

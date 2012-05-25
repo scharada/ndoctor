@@ -157,4 +157,68 @@
     <value>Plus d'un utilisateur par défaut a été trouvé.</value>
     <comment>More than one default user was found. </comment>
   </data>
+  <data name="Explanation_Administer" xml:space="preserve">
+    <value>Un utilisateur qui a ce droit peut écrire, lire et modifier les informations contenue dans la base de données et qui sont liées à l'administration (par exemple la gestion des droits)</value>
+    <comment>A user with this right can modify data about administration </comment>
+  </data>
+  <data name="Explanation_Everyone" xml:space="preserve">
+    <value>Tout le monde peut exécuter cette fonctionnalité</value>
+    <comment>Everyone can execute this feature</comment>
+  </data>
+  <data name="Explanation_Metawrite" xml:space="preserve">
+    <value>Un utilisateur qui a ce droit peut modifier les informations à son sujet comme son mot de passe ou son nom</value>
+    <comment>A user with this right can modify data about himself/herself such as his/her password</comment>
+  </data>
+  <data name="Explanation_Read" xml:space="preserve">
+    <value>Un utilisateur qui a ce droit peut lire les informations contenues dans la base de données</value>
+    <comment>A user with this right can read data</comment>
+  </data>
+  <data name="Explanation_Write" xml:space="preserve">
+    <value>Un utilisataur qui a ce droit peur écrire et modifier les informations contenues dans la base de données.</value>
+    <comment>A user with this right can write and edit data (but not about himself/herself or administration)</comment>
+  </data>
+  <data name="Task_Administer" xml:space="preserve">
+    <value>Administrer</value>
+    <comment>Administer</comment>
+  </data>
+  <data name="Task_Everyone" xml:space="preserve">
+    <value>Tout le monde</value>
+    <comment>Everyone</comment>
+  </data>
+  <data name="Task_Metawrite" xml:space="preserve">
+    <value>Méta-écriture</value>
+    <comment>Metawrite</comment>
+  </data>
+  <data name="Task_Read" xml:space="preserve">
+    <value>Lecture</value>
+    <comment>Read</comment>
+  </data>
+  <data name="Task_Write" xml:space="preserve">
+    <value>Ecriture</value>
+    <comment>Write</comment>
+  </data>
+  <data name="Explanation_Administrator" xml:space="preserve">
+    <value>Un administrateur à tous les droits sur l'application.</value>
+    <comment>The administrator has all the rights in the application</comment>
+  </data>
+  <data name="Explanation_Doctor" xml:space="preserve">
+    <value>Un médecin peut modifier ou lire toutes les information sauf celles relatives à l'administration</value>
+    <comment>The doctor can read and mofify all the data but he/she cant read or modify  adlinistration data</comment>
+  </data>
+  <data name="Explanation_Secretary" xml:space="preserve">
+    <value>Un secrétaire peut lire toutes les information mais ne peut modifier que l'agenda</value>
+    <comment>The secretary can read all the data but only modify the calendar</comment>
+  </data>
+  <data name="Role_Administrator" xml:space="preserve">
+    <value>Administrateur</value>
+    <comment>Administrator</comment>
+  </data>
+  <data name="Role_Doctor" xml:space="preserve">
+    <value>Docteur</value>
+    <comment>Doctor</comment>
+  </data>
+  <data name="Role_Secretary" xml:space="preserve">
+    <value>Secrétaire</value>
+    <comment>Secretary</comment>
+  </data>
 </root>

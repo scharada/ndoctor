@@ -39,7 +39,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     /// <summary>
     /// Provide tools to manage authorisation management. These features are granted only for administrators
     /// </summary>
-    [Granted(To.Administration)]
+    [Granted(To.Administer)]
     public class AuthorisationComponent : BaseComponent, IAuthorisationComponent
     {
         #region Methods
@@ -63,10 +63,49 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="role">The role.</param>
         /// <returns></returns>
-        public long Create(RoleDto role)
+        public void Create(RoleDto role)
         {
             var entity = Mapper.Map<RoleDto, Role>(role);
-            return (long)this.Session.Save(entity);
+            using (var tx = this.Session.Transaction)
+            {
+                tx.Begin();
+                entity = this.Session.Merge(entity);
+                this.Session.SaveOrUpdate(entity);
+                tx.Commit();
+            }
+            Mapper.Map<Role, RoleDto>(entity, role);
+        }
+
+        /// <summary>
+        /// Creates the specified task.
+        /// </summary>
+        /// <param name="task">The task.</param>
+        /// <returns>
+        /// The id of the created item
+        /// </returns>
+        public void Create(TaskDto task)
+        {
+            var entity = Mapper.Map<TaskDto, Task>(task);
+            using (var tx = this.Session.Transaction)
+            {
+                tx.Begin();
+                var id = (long)this.Session.Save(entity);
+                tx.Commit();
+            }
+            Mapper.Map<Task, TaskDto>(entity, task);
+        }
+
+        /// <summary>
+        /// Finds the task by its reference name.
+        /// </summary>
+        /// <param name="refName">Name of the ref.</param>
+        /// <returns>The found task or <c>Null</c> if nothing is found</returns>
+        public TaskDto FindTaskByReference(string refName)
+        {
+            var result = (from t in this.Session.Query<Task>()
+                          where t.RefName == refName
+                          select t).FirstOrDefault();
+            return Mapper.Map<Task, TaskDto>(result);
         }
 
         /// <summary>

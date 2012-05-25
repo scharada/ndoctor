@@ -70,6 +70,78 @@ namespace Probel.NDoctor.Domain.DAL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A user with this right can modify data about administration.
+        /// </summary>
+        internal static string Explanation_Administer {
+            get {
+                return ResourceManager.GetString("Explanation_Administer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The administrator has all the rights in the application.
+        /// </summary>
+        internal static string Explanation_Administrator {
+            get {
+                return ResourceManager.GetString("Explanation_Administrator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The doctor can read and mofify all the data but he/she cant read or modify  adlinistration data.
+        /// </summary>
+        internal static string Explanation_Doctor {
+            get {
+                return ResourceManager.GetString("Explanation_Doctor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Everyone can execute this feature.
+        /// </summary>
+        internal static string Explanation_Everyone {
+            get {
+                return ResourceManager.GetString("Explanation_Everyone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A user with this right can modify data about himself/herself such as his/her password.
+        /// </summary>
+        internal static string Explanation_Metawrite {
+            get {
+                return ResourceManager.GetString("Explanation_Metawrite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A user with this right can read data.
+        /// </summary>
+        internal static string Explanation_Read {
+            get {
+                return ResourceManager.GetString("Explanation_Read", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The secretary can read all the data but only modify the calendar.
+        /// </summary>
+        internal static string Explanation_Secretary {
+            get {
+                return ResourceManager.GetString("Explanation_Secretary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A user with this right can write and edit data (but not about himself/herself or administration).
+        /// </summary>
+        internal static string Explanation_Write {
+            get {
+                return ResourceManager.GetString("Explanation_Write", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Impossible to create the database.
         /// </summary>
         internal static string Msg_ErrorDbCreationImpossible {
@@ -129,6 +201,78 @@ namespace Probel.NDoctor.Domain.DAL.Properties {
         internal static string Msg_ErrorSQLiteConfigurationNotSet {
             get {
                 return ResourceManager.GetString("Msg_ErrorSQLiteConfigurationNotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Administrator.
+        /// </summary>
+        internal static string Role_Administrator {
+            get {
+                return ResourceManager.GetString("Role_Administrator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Doctor.
+        /// </summary>
+        internal static string Role_Doctor {
+            get {
+                return ResourceManager.GetString("Role_Doctor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secretary.
+        /// </summary>
+        internal static string Role_Secretary {
+            get {
+                return ResourceManager.GetString("Role_Secretary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Administer.
+        /// </summary>
+        internal static string Task_Administer {
+            get {
+                return ResourceManager.GetString("Task_Administer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Everyone.
+        /// </summary>
+        internal static string Task_Everyone {
+            get {
+                return ResourceManager.GetString("Task_Everyone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Metawrite.
+        /// </summary>
+        internal static string Task_Metawrite {
+            get {
+                return ResourceManager.GetString("Task_Metawrite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read.
+        /// </summary>
+        internal static string Task_Read {
+            get {
+                return ResourceManager.GetString("Task_Read", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write.
+        /// </summary>
+        internal static string Task_Write {
+            get {
+                return ResourceManager.GetString("Task_Write", resourceCulture);
             }
         }
         

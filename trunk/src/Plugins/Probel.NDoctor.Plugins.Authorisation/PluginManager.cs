@@ -25,6 +25,7 @@ namespace Probel.NDoctor.Plugins.Authorisation
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Plugins.Authorisation.Helpers;
     using Probel.NDoctor.Plugins.Authorisation.Properties;
@@ -90,7 +91,7 @@ namespace Probel.NDoctor.Plugins.Authorisation
         /// </summary>
         private void BuildButtons()
         {
-            this.navigateCommand = new RelayCommand(() => this.NavigateRole(), () => PluginContext.Host.ConnectedUser != null);
+            this.navigateCommand = new RelayCommand(() => this.NavigateRole(), () => PluginContext.Host.ConnectedUser != null && PluginContext.DoorKeeper.Grants(To.Administer));
 
             var navigateButton = new RibbonButtonData(Messages.Title_AuthorisationManager
                     , imgUri.FormatWith("Admin")
@@ -127,19 +128,19 @@ namespace Probel.NDoctor.Plugins.Authorisation
 
         private bool CanNavigateRole()
         {
-            return PluginContext.Host.SelectedPatient != null
-                && this.displayed != PageEventArgs.DisplayedPage.RoleManager;
+            return  this.displayed != PageEventArgs.DisplayedPage.RoleManager
+                && PluginContext.DoorKeeper.Grants(To.Administer);
         }
 
         private bool CanNavigateUser()
         {
-            return PluginContext.Host.SelectedPatient != null
-                && this.displayed != PageEventArgs.DisplayedPage.UserManager;
+            return this.displayed != PageEventArgs.DisplayedPage.UserManager
+                && PluginContext.DoorKeeper.Grants(To.Administer);
         }
 
         private bool CanSaveRole()
         {
-            return true;
+            return PluginContext.DoorKeeper.Grants(To.Administer);
         }
 
         /// <summary>

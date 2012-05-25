@@ -332,12 +332,6 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="picture">The picture.</param>
         void Update(PictureDto item);
 
-        /// <summary>
-        /// Updates the specified user.
-        /// </summary>
-        /// <param name="item">The user.</param>
-        void Update(UserDto item);
-
         #endregion Methods
     }
 }

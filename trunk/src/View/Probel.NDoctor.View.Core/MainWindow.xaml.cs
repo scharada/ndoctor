@@ -25,12 +25,13 @@ namespace Probel.NDoctor.View.Core
 
     using log4net;
 
+    using Microsoft.Windows.Controls;
     using Microsoft.Windows.Controls.Ribbon;
 
     using Probel.Helpers.Assertion;
-    using Probel.Helpers.Conversions;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.Properties;

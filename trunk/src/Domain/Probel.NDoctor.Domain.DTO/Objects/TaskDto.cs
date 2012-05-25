@@ -21,8 +21,23 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #region Fields
 
         private string name;
+        private string notes;
+        private string refName;
 
         #endregion Fields
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaskDto"/> class.
+        /// </summary>
+        /// <param name="refName">Name of the ref.</param>
+        public TaskDto(string refName)
+        {
+            this.refName = refName;
+        }
+
+        #endregion Constructors
 
         #region Properties
 
@@ -40,6 +55,27 @@ namespace Probel.NDoctor.Domain.DTO.Objects
                 this.name = value;
                 this.OnPropertyChanged(() => Name);
             }
+        }
+
+        /// <summary>
+        /// Gets or sets the notes to explain the database.
+        /// </summary>
+        /// <value>
+        /// The notes.
+        /// </value>
+        public string Notes
+        {
+            get { return this.notes; }
+            set
+            {
+                this.notes = value;
+                this.OnPropertyChanged(() => Notes);
+            }
+        }
+
+        public string RefName
+        {
+            get { return this.refName; }
         }
 
         #endregion Properties

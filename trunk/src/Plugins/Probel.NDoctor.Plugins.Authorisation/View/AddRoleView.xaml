@@ -34,7 +34,15 @@
             </Border>
             <Border Style="{StaticResource BorderStyle}">
                 <TextBox DockPanel.Dock="Right"
-                         Text="{Binding RoleName, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+            </Border>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top" LastChildFill="True">
+            <Label Content="{Binding Source={x:Static Member=txt:EditRoleText.RoleDescription}}"/>
+            <Border Style="{StaticResource BorderStyle}">
+                <ScrollViewer Height="80">
+                    <TextBox Text="{Binding Description}" TextWrapping="Wrap" />
+                </ScrollViewer>
             </Border>
         </DockPanel>
     </DockPanel>
