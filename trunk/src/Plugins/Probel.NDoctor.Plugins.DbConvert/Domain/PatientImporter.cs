@@ -88,7 +88,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
                 this.OnLogged(Messages.Log_PatientCount, count);
             }
 
-            using (this.Component.UnitOfWork) { this.Component.Create(newPatients.ToArray()); }
+            using (this.Component.UnitOfWork) { this.Component.Create(newPatients); }
         }
 
         private static int Percentage(long count, long step)
@@ -218,7 +218,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
         private IEnumerable<MedicalRecordDto> MapRecords(long? id)
         {
-            var importer = new RecordImporter(this.Connection, this.Component);
+            var importer = new MedicalRecordImporter(this.Connection, this.Component);
             this.Relay(importer);
 
             return importer.Import(id);

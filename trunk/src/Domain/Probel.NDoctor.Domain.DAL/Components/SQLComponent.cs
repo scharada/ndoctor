@@ -71,7 +71,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         {
             var sql = "SELECT count(*) FROM sqlite_sequence WHERE seq > 0";
             var empty = (long)this.ExecuteNonQuery(sql);
-            return (empty <= 1);
+            return (empty <= 2);
         }
 
         #endregion Methods

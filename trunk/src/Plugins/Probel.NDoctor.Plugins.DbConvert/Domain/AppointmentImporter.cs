@@ -25,6 +25,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.DbConvert.Properties;
+    using Probel.NDoctor.View.Plugins.Helpers;
 
     public class AppointmentImporter : MultipleImporter<AppointmentDto>
     {
@@ -62,18 +63,6 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             get { return InternalCache.Values.ToArray(); }
         }
 
-        private LightUserDto DefaultUser
-        {
-            get
-            {
-                if (this.defaultUser == null)
-                {
-                    using (this.Component.UnitOfWork) { this.defaultUser = this.Component.GetDefaultUser(); }
-                }
-                return this.defaultUser;
-            }
-        }
-
         #endregion Properties
 
         #region Methods
@@ -83,7 +72,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             var rid = reader["Id"] as long?;
             Identifier id;
 
-            if (!rid.HasValue) { throw new NullReferenceException(); }
+            if (!rid.HasValue) { throw new NullReferenceException("There's an appointment without ID"); }
             else { id = new Identifier(rid.Value); }
 
             if (InternalCache.ContainsKey(id)) { return InternalCache[id]; }
@@ -96,7 +85,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
                 item.Subject = reader["Title"] as string;
                 item.Notes = Messages.Msg_DoneByConverter;
-                item.User = this.DefaultUser;
+                item.User = PluginContext.Host.ConnectedUser;
                 item.Tag = this.MapTag(reader["fk_MeetingType"] as long?);
 
                 InternalCache.Add(id, item);

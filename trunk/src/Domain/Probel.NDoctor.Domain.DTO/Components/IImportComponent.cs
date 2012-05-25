@@ -28,53 +28,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// Creates the specified patients.
         /// </summary>
         /// <param name="?">The patients.</param>
-        void Create(PatientFullDto[] patients);
-
-        ///// <summary>
-        ///// Creates the specified reputation and update its id after creation.
-        ///// </summary>
-        ///// <param name="reputation">The reputation.</param>
-        //void Create(ReputationDto[] reputations);
-        ///// <summary>
-        ///// Creates the specified reputation and update its id after creation.
-        ///// </summary>
-        ///// <param name="practice">The reputation.</param>
-        //void Create(PracticeDto[] practices);
-        ///// <summary>
-        ///// Creates the doctors
-        ///// </summary>
-        ///// <param name="doctors">The doctors.</param>
-        //void Create(DoctorFullDto[] doctors);
-        ///// <summary>
-        ///// Creates the records
-        ///// </summary>
-        ///// <param name="doctors">The records.</param>
-        //void Create(MedicalRecordDto[] records);
-        ///// <summary>
-        ///// Creates the specified appointments.
-        ///// </summary>
-        ///// <param name="appointments">The appointments.</param>
-        //void Create(AppointmentDto[] appointments);
-        ///// <summary>
-        ///// Creates the specified tags.
-        ///// </summary>
-        ///// <param name="tags">The tags.</param>
-        //void Create(TagDto[] tags);
-        ///// <summary>
-        ///// Creates the specified insurance.
-        ///// </summary>
-        ///// <param name="insuranceDto">The insurance.</param>
-        //void Create(InsuranceDto[] insurance);
-        ///// <summary>
-        ///// Creates the specified bmi.
-        ///// </summary>
-        ///// <param name="bmi">The bmi.</param>
-        //void Create(BmiDto[] bmi);
-        /// <summary>
-        /// Gets the default user.
-        /// </summary>
-        /// <returns></returns>
-        LightUserDto GetDefaultUser();
+        void Create(IEnumerable<PatientFullDto> patients);
 
         #endregion Methods
     }

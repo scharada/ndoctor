@@ -52,11 +52,10 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                 {
                     Logger.Info("Start default value insertion's script");
 
-                    //var everyone = new TaskDto(To.Everyone) { Name = Messages.Task_Everyone, Notes = Messages.Explanation_Everyone };
-                    TaskDto administer = new TaskDto(To.Administer) { Name = Messages.Task_Administer, Notes = Messages.Explanation_Administer };
-                    TaskDto metawrite = new TaskDto(To.MetaWrite) { Name = Messages.Task_Metawrite, Notes = Messages.Explanation_Metawrite };
-                    TaskDto read = new TaskDto(To.Read) { Name = Messages.Task_Read, Notes = Messages.Explanation_Read };
-                    TaskDto write = new TaskDto(To.Write) { Name = Messages.Task_Write, Notes = Messages.Explanation_Write };
+                    var administer = new TaskDto(To.Administer) { Name = Messages.Task_Administer, Notes = Messages.Explanation_Administer };
+                    var metawrite = new TaskDto(To.MetaWrite) { Name = Messages.Task_Metawrite, Notes = Messages.Explanation_Metawrite };
+                    var read = new TaskDto(To.Read) { Name = Messages.Task_Read, Notes = Messages.Explanation_Read };
+                    var write = new TaskDto(To.Write) { Name = Messages.Task_Write, Notes = Messages.Explanation_Write };
                     CheckTaksNumber(administer, metawrite, read, write);
 
                     component.Create(administer);
@@ -71,6 +70,9 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                     component.Create(administrator);
                     component.Create(doctor);
                     component.Create(secretary);
+
+                    var superadmin = new UserDto(true) { FirstName = "Superadmin", LastName = "Superadmin", IsDefault = true };
+                    component.Create(superadmin);
 
                     Logger.Info("Script is done...");
                 }

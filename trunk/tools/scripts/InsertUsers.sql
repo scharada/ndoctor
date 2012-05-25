@@ -33,15 +33,6 @@ INSERT INTO Pathology (Id, Name, Notes, Tag_Id, IsImported) VALUES( 2, 'Rhume &&
 INSERT INTO Pathology (Id, Name, Notes, Tag_Id, IsImported) VALUES( 3, 'Pneumonie &&', 'Some notes', 12, 0);
 INSERT INTO Pathology (Id, Name, Notes, Tag_Id, IsImported) VALUES( 4, 'Angine &&'   , 'Some notes', 12, 0);
 
-INSERT INTO Role(Id, Name, IsImported) VALUES(1, 'Role 1', 0);
-INSERT INTO Role(Id, Name, IsImported) VALUES(2, 'Role 2', 0);
-
-INSERT INTO RolesToTasks(Role_id, Task_id) VALUES(1, 1);
-INSERT INTO RolesToTasks(Role_id, Task_id) VALUES(1, 2);
-INSERT INTO RolesToTasks(Role_id, Task_id) VALUES(1, 3);
-INSERT INTO RolesToTasks(Role_id, Task_id) VALUES(2, 1);
-INSERT INTO RolesToTasks(Role_id, Task_id) VALUES(2, 2);
-
 INSERT INTO Practice(Id, Name, Notes, Phone, AddressBoxNumber, AddressCity, AddressPostalCode, AddressStreet, AddressStreetNumber, IsImported) VALUES (1, 'Cabinet de Liege', 'Qques notes', '04/222.13.89','111','Li�ge', '4000', 'rue Darchis','56', 0);
 INSERT INTO Practice(Id, Name, Notes, Phone, AddressBoxNumber, AddressCity, AddressPostalCode, AddressStreet, AddressStreetNumber, IsImported) VALUES (2, 'Cabinet de Huy', 'Qques notes', '085/25.58.75','111','Huy', '4500', 'rue du Long Thier','26', 0);
 
@@ -74,7 +65,7 @@ INSERT INTO Person(Id, LastUpdate, Gender, FirstName, LastName, ProMail, ProMobi
 INSERT INTO Person(Id, LastUpdate, Gender, FirstName, LastName, ProMail, ProMobile, ProPhone, AddressBoxNumber, AddressCity, AddressPostalCode, AddressStreet, AddressStreetNumber, IsComplete, IsImported) VALUES (5,'2007-01-01', 'Male'  , 'Doctor Robert', 'Dupont'  , 'some@mail.com', '0476/79.98.97','085/25.58.75', 'box', 'Liege', '4000', 'rue Darchis', '56', 1, 0);
 INSERT INTO Person(Id, LastUpdate, Gender, FirstName, LastName, ProMail, ProMobile, ProPhone, AddressBoxNumber, AddressCity, AddressPostalCode, AddressStreet, AddressStreetNumber, IsComplete, IsImported) VALUES (6,'2007-01-01', 'Female', 'Doctor Lucie ', 'Jravniou', 'some@mail.com', '0476/79.98.97','085/25.58.75', 'box', 'Liege', '4000', 'rue Darchis', '56', 1, 0);
 
-INSERT INTO User(person_id, password, Header, Practice_id, AssignedRole_id, IsDefault) VALUES (1, 'aze', 'Some header', 1, 1, 1);
+INSERT INTO User(person_id, password, Header, Practice_id, AssignedRole_id, IsDefault, IsSuperAdmin) VALUES (1, 'aze', 'Some header', 1, 1, 1, 1);
 INSERT INTO User(person_id, password, Header, Practice_id, AssignedRole_id, IsDefault) VALUES (2, 'aze', 'Some header', 2, 1, 0);
 
 INSERT INTO Patient(Person_id, Birthdate, Fee, Height, InscriptionDate, PlaceOfBirth, PrivateMail, PrivateMobile, PrivatePhone, Reason, Insurance_Id, Practice_Id, Profession_Id, Reputation_Id)                       VALUES (3 , '2007-01-01', 170, 180, '2007-01-01 10:00:00', 'Place of birth', 'private@mail.com', '088/55.33.66', '04/226.14.15', 'Some reasons', 1, 1, 1, 1);   	   -- Grand father

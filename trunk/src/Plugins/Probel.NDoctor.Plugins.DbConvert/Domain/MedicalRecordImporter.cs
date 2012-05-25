@@ -25,7 +25,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.DbConvert.Properties;
 
-    public class RecordImporter : MultipleImporter<MedicalRecordDto>
+    public class MedicalRecordImporter : MultipleImporter<MedicalRecordDto>
     {
         #region Constructors
 
@@ -34,7 +34,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <param name="component">The component.</param>
-        public RecordImporter(SQLiteConnection connection, IImportComponent component)
+        public MedicalRecordImporter(SQLiteConnection connection, IImportComponent component)
             : base(connection, component)
         {
         }
@@ -59,7 +59,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
             if (record.Tag == null || record.Tag.Id <= 0)
             {
-                record.Tag = DefaultTag();
+                record.Tag = DefaultTag;
             }
 
             record.CreationDate = (reader["CreationDate"] as DateTime? ?? DateTime.Today).Date;
@@ -79,16 +79,13 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
                         WHERE fk_Patient = {0}", id);
         }
 
-        private TagDto DefaultTag()
+        private static readonly TagDto DefaultTag = new TagDto(TagCategory.MedicalRecord)
         {
-            var tag = new TagDto(TagCategory.MedicalRecord)
-            {
-                IsImported = true,
-                Name = Messages.Default_RecordType,
-                Notes = string.Empty,
-            };
-            return tag;
-        }
+            IsImported = true,
+            Name = Messages.Default_RecordType,
+            Notes = string.Empty,
+        };
+
 
         private TagDto MapTag(long? id)
         {

@@ -242,7 +242,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
         private void LogDatabaseCreation()
         {
             if (this.CreateDatabase) { this.Logger.Warn("Creation of a new database. Old data is deleted"); }
-            else { this.Logger.Debug("Don't create a new database"); }
         }
 
         private void OnFailed()

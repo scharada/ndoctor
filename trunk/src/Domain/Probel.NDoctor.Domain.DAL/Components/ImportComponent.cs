@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using System.Collections.Generic;
 
     public class ImportComponent : BaseComponent, IImportComponent
     {
@@ -57,78 +58,45 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Creates the specified patients.
         /// </summary>
         /// <param name="patients"></param>
-        public void Create(PatientFullDto[] patients)
+        public void Create(IEnumerable<PatientFullDto> patients)
         {
-            var entities = Mapper.Map<PatientFullDto[], Patient[]>(patients);
-            this.Save(entities, e =>
-            {
-                this.MapReputation(e as Patient);
-                this.MapInsurance(e as Patient);
-                this.MapMeetings(e as Patient);
-            });
+            var entities = Mapper.Map<IEnumerable<PatientFullDto>, Patient[]>(patients);
+            this.Save(entities);
         }
 
-        /// <summary>
-        /// Gets the default user.
-        /// </summary>
-        /// <returns></returns>
-        public LightUserDto GetDefaultUser()
+        private void ForEach<T>(IList<T> collection, Action<T> merge)
         {
-            var entity = (from u in this.Session.Query<User>()
-                          where u.IsDefault
-                          select u).FirstOrDefault();
-            return Mapper.Map<User, LightUserDto>(entity);
-        }
-
-        private void MapInsurance(Patient entity)
-        {
-            if (entity.Insurance != null)
+            for (int i = 0; i < collection.Count; i++)
             {
-                var insurance = this.Session.Get<Insurance>(entity.Insurance.Id);
-                if (insurance != null) entity.Insurance = insurance;
+                merge(collection[i]);
             }
         }
 
-        private void MapMeetings(Patient patient)
+        private void Reload<T>(T item)
         {
-            foreach (var appointment in patient.Appointments)
+            if (item != null)
             {
-                if (appointment != null)
-                {
-                    var user = this.Session.Get<User>(appointment.User.Id);
-                    if (user != null) appointment.User = user;
-                }
+                var loaded = (T)this.Session.Get<T>(((dynamic)item).Id);
+
+                if (loaded != null) { item = loaded; }
+                else { this.Session.Save(item); }
             }
         }
 
-        private void MapReputation(Patient entity)
-        {
-            if (entity.Reputation != null)
-            {
-                var reputation = this.Session.Get<Reputation>(entity.Reputation.Id);
-                if (reputation != null) entity.Reputation = reputation;
-            }
-        }
-
-        private void Save(Entity[] entities, Action<object> action)
+        private void Save(Entity[] entities)
         {
             try
             {
                 using (var tx = this.Session.BeginTransaction())
                 {
-                    for (int i = 0; i < entities.Length; i++)
+                    foreach (var entity in entities)
                     {
-                        if (action != null) action(entities[i]);
-
-                        this.Session.SaveOrUpdate(entities[i]);
+                        this.Session.SaveOrUpdate(entity);
                     }
                     tx.Commit();
                 }
             }
-            catch (Exception ex)
-            {
-                throw new QueryException(ex);
-            }
+            catch (Exception ex) { throw new QueryException(ex); }
         }
 
         #endregion Methods

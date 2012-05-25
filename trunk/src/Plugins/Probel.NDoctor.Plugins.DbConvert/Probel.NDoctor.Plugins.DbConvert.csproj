@@ -76,7 +76,7 @@
     <Compile Include="Domain\PrescriptionDocumentImporter.cs" />
     <Compile Include="Domain\PrescriptionImporter.cs" />
     <Compile Include="Domain\TagImporter.cs" />
-    <Compile Include="Domain\RecordImporter.cs" />
+    <Compile Include="Domain\MedicalRecordImporter.cs" />
     <Compile Include="Domain\SingleImporter.cs" />
     <Compile Include="Domain\ImportEngine.cs" />
     <Compile Include="Domain\InsuranceImporter.cs" />

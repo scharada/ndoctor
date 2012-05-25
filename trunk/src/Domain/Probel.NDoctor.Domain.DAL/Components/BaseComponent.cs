@@ -367,6 +367,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="criterium">The criterium.</param>
         /// <param name="search">The search should be done on the specified property.</param>
         /// <returns></returns>
+        [Granted(To.Everyone)]
         public IList<LightPatientDto> FindPatientsByNameLight(string criterium, SearchOn search)
         {
             if (string.IsNullOrEmpty(criterium)) return new List<LightPatientDto>().ToList();
