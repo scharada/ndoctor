@@ -42,6 +42,7 @@
       <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="Probel.Mvvm">
       <HintPath>..\..\..\lib\Probel.Mvvm\Probel.Mvvm.dll</HintPath>
     </Reference>
@@ -171,6 +172,22 @@
     <Resource Include="Images\Save.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Resources\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic_brushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\AddInsuranceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

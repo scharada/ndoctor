@@ -31,7 +31,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.View
         /// <param name="host">The host.</param>
         public AddPrescriptionView()
         {
-            this.InitializeComponent();
+            this.InitializeComponent();            
         }
 
         #endregion Constructors

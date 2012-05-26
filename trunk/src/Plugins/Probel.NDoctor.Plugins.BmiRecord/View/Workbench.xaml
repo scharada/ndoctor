@@ -3,8 +3,6 @@
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 	  
-      xmlns:conv= "clr-namespace:Probel.NDoctor.View.Plugins.Converters;assembly=Probel.NDoctor.View.Plugins"
-      xmlns:dto=  "clr-namespace:Probel.NDoctor.Domain.DTO.Objects;assembly=Probel.NDoctor.Domain.DTO"
 	  xmlns:chart="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.BmiRecord.Translations"
       xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.BmiRecord.View"
@@ -13,12 +11,12 @@
 	  Title="Workbench">
 
     <Page.Resources>
-        <conv:DateTimeToShortStringConverter x:Key="dateTimeToString"/>
-
-        <DataTemplate x:Key="BmiTemplate" DataType="{x:Type dto:BmiDto}">
-            <TextBlock Text="{Binding Date, Converter={StaticResource dateTimeToString}}"/>
-        </DataTemplate>
-
+        <ResourceDictionary x:Key="dic">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Probel.NDoctor.Plugins.BmiRecord;component/Themes/Generic.xaml" />
+                <ResourceDictionary Source="/Probel.NDoctor.Plugins.BmiRecord;component/Resources/BmiTemplate.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Page.Resources>
 
     <TabControl>
@@ -126,42 +124,44 @@
             </TabControl>
         </TabItem>
         <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderRawData}}">
-            <DataGrid ItemsSource="{Binding Path=BmiHistory}"      
+            <StackPanel>
+                <DataGrid ItemsSource="{Binding Path=BmiHistory}"      
                           AutoGenerateColumns="False"
                           SelectedItem="{Binding Path=SelectedBmi, UpdateSourceTrigger=PropertyChanged}"
                           CanUserAddRows="False"
                           CanUserDeleteRows="False"
                           SelectionMode="Single">
-                <DataGrid.RowDetailsTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnDelete}}"
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnDelete}}"
                                         Command="{Binding Path=DeleteCommand}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </DataGrid.RowDetailsTemplate>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Path=DateString, UpdateSourceTrigger=PropertyChanged}" 
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=DateString, UpdateSourceTrigger=PropertyChanged}" 
                                             Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderDate}}"
                                             IsReadOnly="True"
                                             Width="*"/>
 
-                    <DataGridTextColumn Binding="{Binding Path=Height, UpdateSourceTrigger=PropertyChanged}" 
+                        <DataGridTextColumn Binding="{Binding Path=Height, UpdateSourceTrigger=PropertyChanged}" 
                                             Header="{Binding  Source={x:Static Member=text:WorkbenchText.Height}}"
                                             IsReadOnly="True" 
                                             Width="*"/>
 
-                    <DataGridTextColumn Binding="{Binding Path=Weight, UpdateSourceTrigger=PropertyChanged}" 
+                        <DataGridTextColumn Binding="{Binding Path=Weight, UpdateSourceTrigger=PropertyChanged}" 
                                             Header="{Binding Source={x:Static Member=text:WorkbenchText.Weight}}"
                                             IsReadOnly="True"
                                             Width="*"/>
 
-                    <DataGridTextColumn Binding="{Binding Path=Index, UpdateSourceTrigger=PropertyChanged}" 
+                        <DataGridTextColumn Binding="{Binding Path=Index, UpdateSourceTrigger=PropertyChanged}" 
                                             Header="{Binding  Source={x:Static Member=text:WorkbenchText.Bmi}}"
                                             IsReadOnly="True"
                                             Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
         </TabItem>
     </TabControl>
 </Page>

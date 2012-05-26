@@ -8,6 +8,9 @@
       
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300">
+    <Page.Resources>
+        <ResourceDictionary Source="/Probel.NDoctor.Plugins.Authorisation;component/Themes/Generic.xaml" />
+    </Page.Resources>
     <StackPanel>
         <DataGrid ItemsSource="{Binding Path=Users, UpdateSourceTrigger=PropertyChanged}"
                   AutoGenerateColumns="False"

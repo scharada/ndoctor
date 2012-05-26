@@ -4,7 +4,6 @@
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:conv="clr-namespace:Probel.NDoctor.View.Plugins.Converters;assembly=Probel.NDoctor.View.Plugins" 
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PatientData.Translations"
       xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PatientData.View"
       
@@ -12,45 +11,14 @@
 	  d:DesignHeight="1223" d:DesignWidth="1453"      
 	  Title="Workbench" xmlns:my="http://schemas.microsoft.com/winfx/2006/xaml/presentation/ribbon">
 
-    <Page.Resources>
-        <conv:ByteArrayToImageConverter x:Key="bytesToImage"/>
-        <conv:DoctorGenderToImageConverter x:Key="doctorGenderToImage"/>
-
-        <!--Info about the pictures-->
-        <Style TargetType="{x:Type Border}" x:Key="StatusBorder">
-            <Setter Property="Padding" Value="4"/>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="#22000000"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <!--<Setter Property="Width" Value="170"/>-->
-        </Style>
-        <!--controlStyle-->
-        <Style x:Key="controlStyle">
-            <Setter Property="Control.Height" Value="26"/>
-            <Setter Property="Control.VerticalContentAlignment" Value="Center"/>
-        </Style>
-
-        <!--labelStyle-->
-        <Style x:Key="labelStyle" BasedOn="{StaticResource controlStyle}">
-            <Setter Property="Label.HorizontalContentAlignment" Value="Right"/>
-            <Setter Property="Label.Foreground" Value="DarkGray"/>
-            <Setter Property="Label.FontWeight" Value="Bold"/>
-            <Setter Property="Label.HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="Label.VerticalContentAlignment" Value="Center"/>
-        </Style>
-
-        <!--separatorStyle-->
-        <Style x:Key="separatorStyle" BasedOn="{StaticResource labelStyle}">
-            <Setter Property="Label.HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="Label.Background" Value="DarkGray"/>
-            <Setter Property="Label.Foreground" Value="Black"/>
-        </Style>
-
-        <!--textBoxStyle-->
-        <Style x:Key="textBoxStyle" BasedOn="{StaticResource controlStyle}">
-            <Setter Property="Control.Foreground" Value="Black"/>
-            <Setter Property="Control.FontFamily" Value="Arial"/>
-        </Style>
+    <Page.Resources>        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Probel.NDoctor.Plugins.PatientData;component/Resources/Converters.xaml" />
+                <ResourceDictionary Source="/Probel.NDoctor.Plugins.PatientData;component/Themes/Generic.xaml" />
+                <ResourceDictionary Source="/Probel.NDoctor.Plugins.PatientData;component/Resources/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Page.Resources>
     <ScrollViewer>
         <Grid MaxWidth="1024" MaxHeight="768">
@@ -93,7 +61,7 @@
                                 </StackPanel>
                             </Border>
                         </Grid>
-    
+
                         <TextBlock Grid.Row="1" HorizontalAlignment="Center">        
 						    <Hyperlink Command="{Binding ChangeImageCommand}">
 							    <TextBlock Text="{Binding Source={x:Static Member=text:WorkbenchText.MsgChangePicture}}"/>
@@ -256,7 +224,7 @@
                 </StackPanel>
 
             </Grid>
-            
+
             <TextBlock Grid.Column="1"
                        Grid.Row="1"
                        TextAlignment="Center"
