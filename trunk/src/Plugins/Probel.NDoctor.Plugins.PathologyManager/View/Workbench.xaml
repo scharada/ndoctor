@@ -35,14 +35,19 @@
                 <DataGrid ItemsSource="{Binding Path=IllnessHistory}"     
                           AutoGenerateColumns="False"
                           CanUserAddRows="False"
-                          CanUserDeleteRows="False"
-                          SelectionMode="Single">
-                    <DataGrid.RowDetailsTemplate>
-                        <DataTemplate>
-                            <Button Content="{Binding Source={x:Static Member=text:AddIllnessPeriodText.BtnRemove}}"
-                                    Command="{Binding RemoveCommand}"/>
-                        </DataTemplate>
-                    </DataGrid.RowDetailsTemplate>
+                          CanUserDeleteRows="False">                          
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="{Binding Source={x:Static Member=text:AddIllnessPeriodText.BtnRemove}}"
+                                      Command="{Binding RemoveCommand}">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.PathologyManager;component/Images\Delete.png"
+                                           Height="20"
+                                           Width="20"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=StartAsText, UpdateSourceTrigger=PropertyChanged}" 
                                             Header="{Binding Source={x:Static Member=text:IllnessPeriodText.HeaderStart}}"

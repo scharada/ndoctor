@@ -131,14 +131,18 @@
                           CanUserAddRows="False"
                           CanUserDeleteRows="False"
                           SelectionMode="Single">
-                    <DataGrid.RowDetailsTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnDelete}}"
-                                        Command="{Binding Path=DeleteCommand}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGrid.RowDetailsTemplate>
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="{Binding Source={x:Static Member=text:WorkbenchText.BtnDelete}}"
+                                      Command="{Binding Path=DeleteCommand}">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.BmiRecord;component/Images\Delete.png"
+                                           Height="20"
+                                           Width="20"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=DateString, UpdateSourceTrigger=PropertyChanged}" 
                                             Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderDate}}"

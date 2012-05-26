@@ -11,7 +11,7 @@
 	  d:DesignHeight="1223" d:DesignWidth="1453"      
 	  Title="Workbench" xmlns:my="http://schemas.microsoft.com/winfx/2006/xaml/presentation/ribbon">
 
-    <Page.Resources>        
+    <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Probel.NDoctor.Plugins.PatientData;component/Resources/Converters.xaml" />
@@ -234,42 +234,50 @@
                 </Hyperlink>
             </TextBlock>
 
-            <DataGrid Grid.Column="2"
-                      Grid.Row="2"
-                      ItemsSource="{Binding Path=Doctors, UpdateSourceTrigger=PropertyChanged}"
-                      AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False">
-                <DataGrid.RowDetailsTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.TitleRemoveDoctor}}"
-                                    Command="{Binding Path=RemoveLinkCommand}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </DataGrid.RowDetailsTemplate>
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderSex}}">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Image Source="{Binding Path=Gender
+            <StackPanel Grid.Column="2"
+                        Grid.Row="2">
+                <DataGrid ItemsSource="{Binding Path=Doctors, UpdateSourceTrigger=PropertyChanged}"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleRemoveDoctor}}"
+                                      Command="{Binding Path=RemoveLinkCommand}">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.PatientData;component/Images\Delete.png"
+                                           Height="20"
+                                           Width="20"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                    <DataGrid.Columns
+                    >
+                        <DataGridTemplateColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderSex}}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Path=Gender
                                     , UpdateSourceTrigger=PropertyChanged
-                                    , Converter={StaticResource doctorGenderToImage}}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+                                    , Converter={StaticResource doctorGenderToImage}}"
+                                       Height="20"
+                                       Width="20"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
 
-                    <DataGridTextColumn Binding="{Binding Path=Specialisation.Name, UpdateSourceTrigger=PropertyChanged}" 
+                        <DataGridTextColumn Binding="{Binding Path=Specialisation.Name, UpdateSourceTrigger=PropertyChanged}" 
                                         Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderDoctorSpecialisation}}"
                                         IsReadOnly="True" />
 
-                    <DataGridTextColumn Binding="{Binding Path=DisplayedName, UpdateSourceTrigger=PropertyChanged}" 
+                        <DataGridTextColumn Binding="{Binding Path=DisplayedName, UpdateSourceTrigger=PropertyChanged}" 
                                         Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderDoctorName}}"
                                         Width="*"
                                         IsReadOnly="True" />
 
-                </DataGrid.Columns>
-            </DataGrid>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
         </Grid>
     </ScrollViewer>
 </Page>
