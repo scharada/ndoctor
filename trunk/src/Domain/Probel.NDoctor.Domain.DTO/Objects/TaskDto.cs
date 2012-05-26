@@ -73,6 +73,12 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             }
         }
 
+        /// <summary>
+        /// Gets the name of the ref.
+        /// </summary>
+        /// <value>
+        /// The name of the ref.
+        /// </value>
         public string RefName
         {
             get { return this.refName; }

@@ -50,7 +50,7 @@ namespace Probel.NDoctor.Domain.Components.AuthorisationPolicies
             else
             {
                 return (from task in user.AssignedRole.Tasks
-                        where task.Name.ToLower() == to
+                        where task.RefName.ToLower() == to
                         select task).Count() > 0;
             }
         }

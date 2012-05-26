@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.DTO;
 
     /// <summary>
     /// Provides features to manage the meetings
@@ -42,6 +43,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="meeting">The meeting.</param>
         /// <param name="patient">The patient.</param>
+        [Granted(To.EditCalendar)]
         public void Create(AppointmentDto meeting, LightPatientDto patient)
         {
             var patientEntity = this.Session.Get<Patient>(patient.Id);
@@ -94,11 +96,16 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Finds the slots.
+        /// The doctor/secretary uses this method to find free allowable time for a appointment with a patient.
         /// </summary>
-        /// <param name="startDate">From.</param>
-        /// <param name="endDate">To.</param>
-        /// <param name="timeSpan">The time span.</param>
+        /// <param name="startDate">The starting point for the search. That's, the search won't try to find free slots before this date (included)</param>
+        /// <param name="endDate">The end point for the search. That's, the search won't try to find free slots after this date (included)</param>
+        /// <param name="workday">The workday is defined by a start and an end time. A classic workday starts at 8:00 and finishes at 17:00. In other
+        /// words, the method will search free slots between 8:00 and 17:00</param>
+        /// <returns>
+        /// A list of free allowable slots
+        /// </returns>
+        [Granted(To.EditCalendar)]
         public TimeSlotCollection FindSlots(DateTime startDate, DateTime endDate, Workday workday)
         {
             startDate = startDate.Date;
@@ -125,6 +132,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="meeting">The meeting.</param>
         /// <param name="patient">The patient.</param>
+        [Granted(To.EditCalendar)]
         public void Remove(AppointmentDto meeting, LightPatientDto patient)
         {
             var patientEntity = this.Session.Get<Patient>(patient.Id);

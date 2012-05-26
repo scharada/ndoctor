@@ -115,7 +115,11 @@ namespace Probel.NDoctor.View.Plugins.Helpers
 
         private void HandleError(bool silent, Exception ex, string format, params object[] args)
         {
-            this.Logger.Error(format.FormatWith(args), ex);
+            //Logs only error, not authorisation errors...
+            if (!(ex is AuthorisationException))
+            {
+                this.Logger.Error(format.FormatWith(args), ex);
+            }
             if (!silent)
             {
                 if (ex.GetType() == typeof(AuthorisationException))
