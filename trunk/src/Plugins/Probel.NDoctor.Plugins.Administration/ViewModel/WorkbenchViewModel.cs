@@ -30,6 +30,11 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using System.Windows.Input;
+    using Probel.NDoctor.View.Core.Helpers;
+    using Probel.NDoctor.Plugins.Administration.Properties;
+    using Probel.NDoctor.View.Core.Controls;
+    using Probel.NDoctor.Plugins.Administration.Helpers;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -65,8 +70,15 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             this.Professions = new ObservableCollection<ProfessionViewModel>();
             this.Tags = new ObservableCollection<TagViewModel>();
 
+            this.EditInsuranceCommand = new RelayCommand(() => this.EditInsurance(), () => this.SelectedInsurance != null);
+            this.EditProfessionCommand = new RelayCommand(() => EditProfession(), () => this.SelectedProfession != null);
+            this.EditPracticeCommand = new RelayCommand(() => this.EditPractice(), () => this.SelectedPractice != null);
+            this.EditPathologyCommand = new RelayCommand(() => this.EditPathology(), () => this.selectedPathology != null);
+
+            Notifyer.ItemChanged += (sender, e) => this.Refresh();
             this.Refresh();
         }
+
 
         #endregion Constructors
 
@@ -124,6 +136,9 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             private set;
         }
 
+
+
+
         #endregion Properties
 
         #region Methods
@@ -159,5 +174,149 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         }
 
         #endregion Methods
+
+        #region Insurance
+        private InsuranceDto selectedInsurance;
+        public InsuranceDto SelectedInsurance
+        {
+            get { return this.selectedInsurance; }
+            set
+            {
+                this.selectedInsurance = value;
+                this.OnPropertyChanged(() => SelectedInsurance);
+            }
+        }
+        public ICommand EditInsuranceCommand { get; private set; }
+        private void EditInsurance()
+        {
+            InnerWindow.Show(Messages.Title_Edit, new InsuranceBox()
+            {
+                ButtonName = Messages.Btn_Apply,
+                Insurance = this.SelectedInsurance,
+                OkCommand = new RelayCommand(() =>
+                {
+                    try
+                    {
+                        using (this.component.UnitOfWork)
+                        {
+                            this.component.Update(this.SelectedInsurance);
+                        }
+                        InnerWindow.Close();
+                        Notifyer.OnItemChanged(this);
+                    }
+                    catch (Exception ex) { this.HandleError(ex); }
+                })
+            });
+        }
+        #endregion
+
+        #region Profession
+        private ProfessionDto selectedProfession;
+        public ProfessionDto SelectedProfession
+        {
+            get { return this.selectedProfession; }
+            set
+            {
+                this.selectedProfession = value;
+                this.OnPropertyChanged(() => SelectedProfession);
+            }
+        }
+        public ICommand EditProfessionCommand { get; private set; }
+        private void EditProfession()
+        {
+            InnerWindow.Show(Messages.Title_Edit, new ProfessionBox()
+            {
+                ButtonName = Messages.Btn_Apply,
+                Profession = this.SelectedProfession,
+                OkCommand = new RelayCommand(() =>
+                {
+                    try
+                    {
+                        using (this.component.UnitOfWork)
+                        {
+                            this.component.Update(this.SelectedProfession);
+                        }
+                        InnerWindow.Close();
+                        Notifyer.OnItemChanged(this);
+                    }
+                    catch (Exception ex) { this.HandleError(ex); }
+                }),
+            });
+        }
+        #endregion
+
+        #region Practice
+
+        private PracticeDto selectedPractice;
+        public PracticeDto SelectedPractice
+        {
+            get { return this.selectedPractice; }
+            set
+            {
+                this.selectedPractice = value;
+                this.OnPropertyChanged(() => SelectedPractice);
+            }
+        }
+        public ICommand EditPracticeCommand { get; private set; }
+        private void EditPractice()
+        {
+            InnerWindow.Show(Messages.Title_Edit, new PracticeBox()
+            {
+                ButtonName = Messages.Btn_Apply,
+                Profession = this.SelectedPractice,
+                OkCommand = new RelayCommand(() =>
+                {
+                    try
+                    {
+                        using (this.component.UnitOfWork)
+                        {
+                            this.component.Update(this.SelectedPractice);
+                        }
+                        InnerWindow.Close();
+                        Notifyer.OnItemChanged(this);
+                    }
+                    catch (Exception ex) { this.HandleError(ex); }
+                }),
+            });
+        }
+        #endregion
+
+        #region Pathology
+
+        private PathologyDto selectedPathology;
+        public PathologyDto SelectedPathology
+        {
+            get { return this.selectedPathology; }
+            set
+            {
+                this.selectedPathology = value;
+                this.OnPropertyChanged(() => SelectedPathology);
+            }
+        }
+        public ICommand EditPathologyCommand { get; private set; }
+        private void EditPathology()
+        {
+            var viewmodel = new PathologyBoxViewModel();
+            viewmodel.Refresh();
+            InnerWindow.Show(Messages.Title_Edit, new PathologyBox(viewmodel)
+            {
+                ButtonName = Messages.Btn_Apply,
+                Pathology = this.SelectedPathology,
+                OkCommand = new RelayCommand(() =>
+                {
+                    try
+                    {
+                        using (this.component.UnitOfWork)
+                        {
+                            this.component.Update(this.SelectedPathology);
+                        }
+                        InnerWindow.Close();
+                        Notifyer.OnItemChanged(this);
+                    }
+                    catch (Exception ex) { this.HandleError(ex); }
+                }),
+            });
+        }
+        #endregion
     }
 }

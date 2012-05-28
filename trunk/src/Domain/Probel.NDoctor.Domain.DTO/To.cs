@@ -41,6 +41,11 @@ namespace Probel.NDoctor.Domain.DTO
         public const string Administer = "administer";
 
         /// <summary>
+        /// Users granted to edit the calendar can add/remove and update appointments in the calendars
+        /// </summary>
+        public const string EditCalendar = "editcalendar";
+
+        /// <summary>
         /// All users can execute features decorated with this role.
         /// </summary>
         public const string Everyone = "everyone";
@@ -59,11 +64,6 @@ namespace Probel.NDoctor.Domain.DTO
         /// Users granted to execute database modification can execute features decorated with this role.
         /// </summary>
         public const string Write = "write";
-
-        /// <summary>
-        /// Users granted to edit the calendar can add/remove and update appointments in the calendars
-        /// </summary>
-        public const string EditCalendar = "editcalendar";
 
         #endregion Fields
 

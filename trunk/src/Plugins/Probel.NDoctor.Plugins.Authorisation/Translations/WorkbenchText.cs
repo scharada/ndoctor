@@ -22,6 +22,11 @@ namespace Probel.NDoctor.Plugins.Authorisation.Translations
     {
         #region Properties
 
+        public static string AssignedTasks
+        {
+            get { return Messages.Lbl_AssignedTasks; }
+        }
+
         public static string AvailableTasks
         {
             get { return Messages.Lbl_AvailableTasks; }
@@ -57,6 +62,16 @@ namespace Probel.NDoctor.Plugins.Authorisation.Translations
             get { return Messages.Btn_RemoveTask; }
         }
 
+        public static string SelectedRole
+        {
+            get { return Messages.Lbl_SelectedRole; }
+        }
+
+        public static string SelectedTask
+        {
+            get { return Messages.Lbl_SelectedTask; }
+        }
+
         public static string TaskIsSelected
         {
             get { return Messages.Grid_TaskIsSelected; }
@@ -68,20 +83,5 @@ namespace Probel.NDoctor.Plugins.Authorisation.Translations
         }
 
         #endregion Properties
-
-        public static string AssignedTasks
-        {
-            get { return Messages.Lbl_AssignedTasks; }
-        }
-
-        public static string SelectedTask
-        {
-            get { return Messages.Lbl_SelectedTask; }
-        }
-
-        public static string SelectedRole
-        {
-            get { return Messages.Lbl_SelectedRole; }
-        }
     }
 }

@@ -79,10 +79,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                 }
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
             }
-            catch (Exception ex)
-            {
-                this.errorHandler.HandleError(ex, Messages.Msg_ErrorOccured);
-            }
+            catch (Exception ex) { this.errorHandler.HandleError(ex, Messages.Msg_ErrorOccured); }
         }
 
         #endregion Methods

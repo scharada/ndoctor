@@ -1,5 +1,4 @@
-﻿
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -42,10 +41,10 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
     {
         #region Fields
 
-        private IAuthorisationComponent component;
-        private TaskDto selectedTask;
-        private RoleDto selectedRole;
         private TaskDto comboBoxTask;
+        private IAuthorisationComponent component;
+        private RoleDto selectedRole;
+        private TaskDto selectedTask;
 
         #endregion Fields
 
@@ -106,16 +105,6 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             private set;
         }
 
-        public TaskDto SelectedTask
-        {
-            get { return this.selectedTask; }
-            set
-            {
-                this.selectedTask = value;
-                this.OnPropertyChanged(() => SelectedTask);
-            }
-        }
-
         public ICommand RefreshRoleCommand
         {
             get;
@@ -147,6 +136,16 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             {
                 this.selectedRole = value;
                 this.OnPropertyChanged(() => SelectedRole);
+            }
+        }
+
+        public TaskDto SelectedTask
+        {
+            get { return this.selectedTask; }
+            set
+            {
+                this.selectedTask = value;
+                this.OnPropertyChanged(() => SelectedTask);
             }
         }
 

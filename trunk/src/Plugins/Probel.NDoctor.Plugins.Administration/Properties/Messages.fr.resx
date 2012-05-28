@@ -201,4 +201,12 @@
     <value>Une erreur est survenue. Vérifier les logs pour plus d'informations.</value>
     <comment>An error occured. Check the logs for further information.</comment>
   </data>
+  <data name="Title_Edit" xml:space="preserve">
+    <value>Editer</value>
+    <comment>Edit</comment>
+  </data>
+  <data name="Title_Remove" xml:space="preserve">
+    <value>Supprimer</value>
+    <comment>Remove</comment>
+  </data>
 </root>

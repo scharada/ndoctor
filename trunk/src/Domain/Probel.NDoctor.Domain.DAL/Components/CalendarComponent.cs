@@ -26,10 +26,10 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
     using Probel.Helpers.Data;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Domain.DTO;
 
     /// <summary>
     /// Provides features to manage the meetings

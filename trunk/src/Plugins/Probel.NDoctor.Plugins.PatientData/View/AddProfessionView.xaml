@@ -6,28 +6,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PatientData.Translations"
              xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
-             xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
+             xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"             
+             xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Core.Controls;assembly=Probel.NDoctor.View.Core"
              
              mc:Ignorable="d">
-    <StackPanel>
-        <TextBox Text="{Binding Path=Profession.Name, UpdateSourceTrigger=PropertyChanged}"
-                         MinWidth="200"/>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Border Grid.Column="0"
-                    Style="{StaticResource BorderStyle}">
-                <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnAdd}}"
-                        Command="{Binding Path=AddCommand}"/>
-            </Border>
-
-            <Border Grid.Column="1"
-                    Style="{StaticResource BorderStyle}">
-                <Button Content="{Binding Source={x:Static Member=t:BaseText.Cancel}}"
-                        Command="iw:InnerWindow.CancelCommand" />
-            </Border>
-        </Grid>
-    </StackPanel>
+    <ctrl:ProfessionBox Profession="{Binding Profession}"
+                        ButtonName="{Binding Source={x:Static Member=text:WorkbenchText.BtnAdd}}"
+                        OkCommand="{Binding AddCommand}"/>
 </UserControl>

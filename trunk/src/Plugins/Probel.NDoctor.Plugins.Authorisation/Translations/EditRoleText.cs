@@ -27,15 +27,16 @@ namespace Probel.NDoctor.Plugins.Authorisation.Translations
     {
         #region Properties
 
+        public static string RoleDescription
+        {
+            get { return Messages.Lbl_RoleDescription; }
+        }
+
         public static string RoleName
         {
             get { return Messages.Lbl_RoleName; }
         }
 
-        public static string RoleDescription
-        {
-            get { return Messages.Lbl_RoleDescription; }
-        }
         #endregion Properties
     }
 }

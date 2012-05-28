@@ -27,6 +27,16 @@ namespace Probel.NDoctor.Plugins.Administration.Translations
             get { return Messages.Btn_Apply; }
         }
 
+        public static string Edit
+        {
+            get { return Messages.Title_Edit; }
+        }
+
+        public static string Remove
+        {
+            get { return Messages.Title_Remove; }
+        }
+
         public static string TitleBoxNr
         {
             get { return Messages.Title_BoxNr; }

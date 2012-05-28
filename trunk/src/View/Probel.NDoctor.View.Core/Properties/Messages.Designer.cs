@@ -61,6 +61,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ajouter.
+        /// </summary>
+        internal static string Btn_Add {
+            get {
+                return ResourceManager.GetString("Btn_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string Btn_Save {
@@ -305,6 +314,42 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adresse.
+        /// </summary>
+        internal static string Title_Address {
+            get {
+                return ResourceManager.GetString("Title_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Box:.
+        /// </summary>
+        internal static string Title_Box {
+            get {
+                return ResourceManager.GetString("Title_Box", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City:.
+        /// </summary>
+        internal static string Title_City {
+            get {
+                return ResourceManager.GetString("Title_City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Informations.
+        /// </summary>
+        internal static string Title_Data {
+            get {
+                return ResourceManager.GetString("Title_Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to End.
         /// </summary>
         internal static string Title_End {
@@ -377,11 +422,47 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nom:.
+        /// </summary>
+        internal static string Title_Name {
+            get {
+                return ResourceManager.GetString("Title_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes:.
+        /// </summary>
+        internal static string Title_Notes {
+            get {
+                return ResourceManager.GetString("Title_Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to nDoctor 3 .
         /// </summary>
         internal static string Title_NoUserConnected {
             get {
                 return ResourceManager.GetString("Title_NoUserConnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tél.:.
+        /// </summary>
+        internal static string Title_Phone {
+            get {
+                return ResourceManager.GetString("Title_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postal code:.
+        /// </summary>
+        internal static string Title_PostalCode {
+            get {
+                return ResourceManager.GetString("Title_PostalCode", resourceCulture);
             }
         }
         
@@ -436,6 +517,24 @@ namespace Probel.NDoctor.View.Core.Properties {
         internal static string Title_Start {
             get {
                 return ResourceManager.GetString("Title_Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Street:.
+        /// </summary>
+        internal static string Title_Street {
+            get {
+                return ResourceManager.GetString("Title_Street", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nr:.
+        /// </summary>
+        internal static string Title_StreetNr {
+            get {
+                return ResourceManager.GetString("Title_StreetNr", resourceCulture);
             }
         }
         

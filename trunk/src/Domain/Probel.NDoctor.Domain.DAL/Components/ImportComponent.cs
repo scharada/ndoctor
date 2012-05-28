@@ -17,6 +17,7 @@
 namespace Probel.NDoctor.Domain.DAL.Components
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     using AutoMapper;
@@ -27,7 +28,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using System.Collections.Generic;
 
     public class ImportComponent : BaseComponent, IImportComponent
     {

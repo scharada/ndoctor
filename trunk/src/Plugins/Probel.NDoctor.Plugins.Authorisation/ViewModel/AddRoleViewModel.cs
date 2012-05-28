@@ -40,6 +40,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
         #region Fields
 
         private IAuthorisationComponent component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
+        private string description;
         private string name;
 
         #endregion Fields
@@ -63,7 +64,6 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             private set;
         }
 
-        private string description;
         public string Description
         {
             get { return this.description; }
@@ -72,7 +72,8 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
                 this.description = value;
                 this.OnPropertyChanged(() => Description);
             }
-        }     
+        }
+
         public string Name
         {
             get { return this.name; }

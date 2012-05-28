@@ -145,6 +145,10 @@
     <value>Drug</value>
     <comment>Drug</comment>
   </data>
+  <data name="Title_Edit" xml:space="preserve">
+    <value>Edit</value>
+    <comment>Edit</comment>
+  </data>
   <data name="Title_Insurance" xml:space="preserve">
     <value>Insurance</value>
     <comment>Insurance</comment>
@@ -176,6 +180,10 @@
   <data name="Title_Profession" xml:space="preserve">
     <value>Profession</value>
     <comment>Profession</comment>
+  </data>
+  <data name="Title_Remove" xml:space="preserve">
+    <value>Remove</value>
+    <comment>Remove</comment>
   </data>
   <data name="Title_Reputation" xml:space="preserve">
     <value>Reputation</value>

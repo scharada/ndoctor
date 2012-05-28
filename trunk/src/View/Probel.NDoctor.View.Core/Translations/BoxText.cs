@@ -19,22 +19,22 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Plugins.Authorisation.Translations
+namespace Probel.NDoctor.View.Core.Translations
 {
-    using Probel.NDoctor.Plugins.Authorisation.Properties;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
-    public static class AddRoleText
+    using Probel.NDoctor.View.Core.Properties;
+
+    public static class BoxText
     {
         #region Properties
 
-        public static string RoleDescription
+        public static string BtnAdd
         {
-            get { return Messages.Lbl_RoleDescription; }
-        }
-
-        public static string RoleName
-        {
-            get { return Messages.Lbl_RoleName; }
+            get { return Messages.Btn_Add; }
         }
 
         #endregion Properties

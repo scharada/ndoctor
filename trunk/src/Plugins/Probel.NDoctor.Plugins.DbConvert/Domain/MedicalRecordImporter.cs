@@ -27,6 +27,17 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 
     public class MedicalRecordImporter : MultipleImporter<MedicalRecordDto>
     {
+        #region Fields
+
+        private static readonly TagDto DefaultTag = new TagDto(TagCategory.MedicalRecord)
+        {
+            IsImported = true,
+            Name = Messages.Default_RecordType,
+            Notes = string.Empty,
+        };
+
+        #endregion Fields
+
         #region Constructors
 
         /// <summary>
@@ -78,14 +89,6 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
                         INNER JOIN MedicaCardlType ON MedicalCard.fk_MedicalCardType = MedicaCardlType.ID
                         WHERE fk_Patient = {0}", id);
         }
-
-        private static readonly TagDto DefaultTag = new TagDto(TagCategory.MedicalRecord)
-        {
-            IsImported = true,
-            Name = Messages.Default_RecordType,
-            Notes = string.Empty,
-        };
-
 
         private TagDto MapTag(long? id)
         {

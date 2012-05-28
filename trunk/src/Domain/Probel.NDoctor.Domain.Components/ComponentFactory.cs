@@ -59,6 +59,7 @@ namespace Probel.NDoctor.Domain.Components
         {
             ObjectFactory.Configure(x =>
             {
+
                 //Administration plugin
                 x.For<IAdministrationComponent>().Add<AdministrationComponent>();
                 x.SelectConstructor<IAdministrationComponent>(() => new AdministrationComponent());

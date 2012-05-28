@@ -5,6 +5,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.Administration.Translations"
+      xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended" 
+      xmlns:h="clr-namespace:Probel.NDoctor.View.Core.Controls;assembly=Probel.NDoctor.View.Core"
       
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="600"
@@ -15,19 +17,34 @@
     <TabControl>
         <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleInsurance}}">
             <StackPanel>
-                <DataGrid ItemsSource="{Binding Path=Insurances}"       
-                      AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False"
-                      SelectionMode="Single">
-                    <DataGrid.RowDetailsTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnApply}}"
-                                    Command="{Binding Path=UpdateCommand}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGrid.RowDetailsTemplate>
+                <DataGrid ItemsSource="{Binding Path=Insurances}"                              
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          SelectionMode="Single"
+                          SelectedItem="{Binding SelectedInsurance}"
+                          IsReadOnly="True">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Remove}}"
+                                      IsEnabled="False">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Delete.png"
+                                           Height="20"
+                                           Width="20"
+                                           IsEnabled="False"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Edit}}" 
+                                      Command="{Binding EditInsuranceCommand}">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Edit.png"
+                                           Height="20"
+                                           Width="20"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleName}}"
                                         Binding="{Binding Path=Name,UpdateSourceTrigger=PropertyChanged}"
@@ -59,19 +76,34 @@
         </TabItem>
         <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.TitlePractice}}">
             <StackPanel>
-                <DataGrid ItemsSource="{Binding Path=Practices}"       
-                      AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False"
-                      SelectionMode="Single">
-                    <DataGrid.RowDetailsTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnApply}}"
-                                    Command="{Binding Path=UpdateCommand}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGrid.RowDetailsTemplate>
+                <DataGrid ItemsSource="{Binding Path=Practices}"  
+                          SelectedItem="{Binding SelectedPractice}"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          SelectionMode="Single"
+                          IsReadOnly="True">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Remove}}"
+                                      IsEnabled="False">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Delete.png"
+                                           Height="20"
+                                           Width="20"
+                                           IsEnabled="False"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Edit}}" 
+                                      Command="{Binding EditPracticeCommand}">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Edit.png"
+                                           Height="20"
+                                           Width="20"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleName}}"
                                         Binding="{Binding Path=Name,UpdateSourceTrigger=PropertyChanged}"
@@ -104,18 +136,33 @@
         <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.TitlePathology}}">
             <StackPanel>
                 <DataGrid ItemsSource="{Binding Path=Pathologies}"       
-                      AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False"
-                      SelectionMode="Single">
-                    <DataGrid.RowDetailsTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnApply}}"
-                                    Command="{Binding Path=UpdateCommand}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGrid.RowDetailsTemplate>
+                          SelectedItem="{Binding SelectedPathology}"
+                          IsReadOnly="True"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          SelectionMode="Single">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Remove}}"
+                                      IsEnabled="False">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Delete.png"
+                                           Height="20"
+                                           Width="20"
+                                           IsEnabled="False"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Edit}}" 
+                                      Command="{Binding EditPathologyCommand}">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Edit.png"
+                                           Height="20"
+                                           Width="20"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleName}}"
                                         Binding="{Binding Path=Name,UpdateSourceTrigger=PropertyChanged}"
@@ -179,19 +226,34 @@
         </TabItem>
         <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleProfession}}">
             <StackPanel>
-                <DataGrid ItemsSource="{Binding Path=Professions}"       
-                      AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False"
-                      SelectionMode="Single">
-                    <DataGrid.RowDetailsTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnApply}}"
-                                    Command="{Binding Path=UpdateCommand}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGrid.RowDetailsTemplate>
+                <DataGrid ItemsSource="{Binding Path=Professions}"      
+                          SelectedItem="{Binding SelectedProfession}"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          SelectionMode="Single"
+                          IsReadOnly="True">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Remove}}"
+                                      IsEnabled="False">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Delete.png"
+                                           Height="20"
+                                           Width="20"
+                                           IsEnabled="False"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Edit}}" 
+                                      Command="{Binding EditProfessionCommand}">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Edit.png"
+                                           Height="20"
+                                           Width="20"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleName}}"
                                         Binding="{Binding Path=Name,UpdateSourceTrigger=PropertyChanged}"

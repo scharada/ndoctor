@@ -9,10 +9,10 @@
                      xmlns:converter="clr-namespace:Probel.NDoctor.View.Plugins.Converters;assembly=Probel.NDoctor.View.Plugins"
                      xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock"
                      
-		Title="{Binding Path=WindowTitle}"
-		Width="1024" Height="768" 
-        WindowStartupLocation="CenterScreen" 
-        Icon="/Probel.NDoctor.View.Core;component/Images/Icon.ico">
+                     Title="{Binding Path=WindowTitle}"
+                     Width="1024" Height="768" 
+                     WindowStartupLocation="CenterScreen" 
+                     Icon="/Probel.NDoctor.View.Core;component/Images/Icon.ico">
 
     <Window.Resources>
 

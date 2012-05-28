@@ -38,19 +38,11 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
         private IAuthorisationComponent component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
         private string name;
+        private string notes;
         private RoleDto selectedRole;
 
         #endregion Fields
-        private string notes;
-        public string Description
-        {
-            get { return this.notes; }
-            set
-            {
-                this.notes = value;
-                this.OnPropertyChanged(() => Description);
-            }
-        }
+
         #region Constructors
 
         public EditRoleViewModel(RoleDto role)
@@ -67,6 +59,16 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
         #endregion Constructors
 
         #region Properties
+
+        public string Description
+        {
+            get { return this.notes; }
+            set
+            {
+                this.notes = value;
+                this.OnPropertyChanged(() => Description);
+            }
+        }
 
         public string Name
         {
