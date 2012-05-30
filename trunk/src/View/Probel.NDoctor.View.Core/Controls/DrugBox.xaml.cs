@@ -21,42 +21,52 @@
 
 namespace Probel.NDoctor.View.Core.Controls
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Documents;
     using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+    using System.Windows.Navigation;
+    using System.Windows.Shapes;
 
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.ViewModel;
 
     /// <summary>
-    /// Interaction logic for IllnessBox.xaml
+    /// Interaction logic for DrugBox.xaml
     /// </summary>
-    public partial class PathologyBox : UserControl
+    public partial class DrugBox : UserControl
     {
         #region Fields
 
         public static DependencyProperty ButtonNameProperty = DependencyProperty.RegisterAttached("ButtonName", typeof(string)
-            , typeof(PathologyBox)
+            , typeof(DrugBox)
+            , new UIPropertyMetadata(null));
+        public static DependencyProperty DrugyProperty = DependencyProperty.RegisterAttached("Drug", typeof(DrugDto)
+            , typeof(DrugBox)
             , new UIPropertyMetadata(null));
         public static DependencyProperty OkCommandProperty = DependencyProperty.RegisterAttached("OkCommand", typeof(ICommand)
-            , typeof(PathologyBox)
-            , new UIPropertyMetadata(null));
-        public static DependencyProperty PathologyProperty = DependencyProperty.RegisterAttached("Pathology", typeof(PathologyDto)
-            , typeof(PathologyBox)
+            , typeof(DrugBox)
             , new UIPropertyMetadata(null));
 
         #endregion Fields
 
         #region Constructors
 
-        public PathologyBox(PathologyBoxViewModel viewModel)
+        public DrugBox(DrugBoxViewModel viewmodel)
         {
             InitializeComponent();
-            this.DataContext = viewModel;
+            this.DataContext = viewmodel;
         }
 
-        public PathologyBox()
-            : this(new PathologyBoxViewModel())
+        public DrugBox()
+            : this(new DrugBoxViewModel())
         {
         }
 
@@ -66,20 +76,20 @@ namespace Probel.NDoctor.View.Core.Controls
 
         public string ButtonName
         {
-            get { return PathologyBox.GetButtonName(this); }
-            set { PathologyBox.SetButtonName(this, value); }
+            get { return DrugBox.GetButtonName(this); }
+            set { DrugBox.SetButtonName(this, value); }
+        }
+
+        public DrugDto Drug
+        {
+            get { return DrugBox.GetDrug(this); }
+            set { DrugBox.SetDrug(this, value); }
         }
 
         public ICommand OkCommand
         {
-            get { return PathologyBox.GetOkCommand(this); }
-            set { PathologyBox.SetOkCommand(this, value); }
-        }
-
-        public PathologyDto Pathology
-        {
-            get { return PathologyBox.GetPathology(this); }
-            set { PathologyBox.SetPathology(this, value); }
+            get { return DrugBox.GetOkCommand(this); }
+            set { DrugBox.SetOkCommand(this, value); }
         }
 
         #endregion Properties
@@ -91,14 +101,14 @@ namespace Probel.NDoctor.View.Core.Controls
             return target.GetValue(ButtonNameProperty) as string ?? "No value";
         }
 
+        public static DrugDto GetDrug(DependencyObject target)
+        {
+            return target.GetValue(DrugyProperty) as DrugDto;
+        }
+
         public static ICommand GetOkCommand(DependencyObject target)
         {
             return target.GetValue(OkCommandProperty) as ICommand;
-        }
-
-        public static PathologyDto GetPathology(DependencyObject target)
-        {
-            return target.GetValue(PathologyProperty) as PathologyDto;
         }
 
         public static void SetButtonName(DependencyObject target, string value)
@@ -106,14 +116,14 @@ namespace Probel.NDoctor.View.Core.Controls
             target.SetValue(ButtonNameProperty, value);
         }
 
+        public static void SetDrug(DependencyObject target, DrugDto value)
+        {
+            target.SetValue(DrugyProperty, value);
+        }
+
         public static void SetOkCommand(DependencyObject target, ICommand value)
         {
             target.SetValue(OkCommandProperty, value);
-        }
-
-        public static void SetPathology(DependencyObject target, PathologyDto value)
-        {
-            target.SetValue(PathologyProperty, value);
         }
 
         #endregion Methods

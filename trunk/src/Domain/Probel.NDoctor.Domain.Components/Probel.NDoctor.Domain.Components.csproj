@@ -53,6 +53,7 @@
     <Compile Include="AuthorisationPolicies\AuthorisationPolicy.cs" />
     <Compile Include="AuthorisationPolicies\IAuthorisationPolicy.cs" />
     <Compile Include="ComponentFactory.cs" />
+    <Compile Include="ComponentException.cs" />
     <Compile Include="DoorKeeper.cs" />
     <Compile Include="Interceptors\AuthorisationInterceptor.cs" />
     <Compile Include="Interceptors\BaseInterceptor.cs" />

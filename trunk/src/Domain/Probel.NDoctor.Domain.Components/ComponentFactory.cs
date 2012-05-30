@@ -36,6 +36,7 @@ namespace Probel.NDoctor.Domain.Components
     using Probel.NDoctor.Domain.DTO.Objects;
 
     using StructureMap;
+    using Probel.NDoctor.Domain.Components.Properties;
 
     /// <summary>
     /// Give an instance of a component and add dynamic interceptors to the call of every methods
@@ -151,7 +152,7 @@ namespace Probel.NDoctor.Domain.Components
             catch (Exception ex)
             {
                 this.logger.Warn("An error occured when instanciating a component", ex);
-                throw;
+                throw new ComponentException(Messages.Ex_ComponentException, ex);
             }
         }
 

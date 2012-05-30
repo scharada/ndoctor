@@ -18,6 +18,7 @@ namespace Probel.NDoctor.View.Plugins.Helpers
 {
     using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.View.Plugins;
+    using Probel.Helpers.Assertion;
 
     /// <summary>
     /// Context of the plugin
@@ -33,6 +34,8 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         {
             get
             {
+                Assert.IsNotNull(Host, "Host");
+
                 return new ComponentFactory(Host.ConnectedUser, ComponentLogginEnabled);
             }
         }

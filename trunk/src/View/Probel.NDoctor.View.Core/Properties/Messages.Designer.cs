@@ -61,7 +61,7 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ajouter.
+        ///   Looks up a localized string similar to Add.
         /// </summary>
         internal static string Btn_Add {
             get {

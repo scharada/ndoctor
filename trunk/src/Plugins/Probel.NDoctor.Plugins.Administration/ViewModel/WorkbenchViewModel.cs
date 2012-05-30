@@ -74,6 +74,8 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             this.EditProfessionCommand = new RelayCommand(() => EditProfession(), () => this.SelectedProfession != null);
             this.EditPracticeCommand = new RelayCommand(() => this.EditPractice(), () => this.SelectedPractice != null);
             this.EditPathologyCommand = new RelayCommand(() => this.EditPathology(), () => this.selectedPathology != null);
+            this.EditDrugCommand = new RelayCommand(() => this.EditDrug(), () => this.SelectedDrug != null);
+            this.EditReputationCommand = new RelayCommand(() => this.EditReputation(), () => this.SelectedReputation != null);
 
             Notifyer.ItemChanged += (sender, e) => this.Refresh();
             this.Refresh();
@@ -309,6 +311,78 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         using (this.component.UnitOfWork)
                         {
                             this.component.Update(this.SelectedPathology);
+                        }
+                        InnerWindow.Close();
+                        Notifyer.OnItemChanged(this);
+                    }
+                    catch (Exception ex) { this.HandleError(ex); }
+                }),
+            });
+        }
+        #endregion
+
+        #region Drug
+        private DrugDto selectedDrug;
+        public DrugDto SelectedDrug
+        {
+            get { return this.selectedDrug; }
+            set
+            {
+                this.selectedDrug = value;
+                this.OnPropertyChanged(() => SelectedDrug);
+            }
+        }
+        public ICommand EditDrugCommand { get; private set; }
+        private void EditDrug()
+        {
+            var viewmodel = new DrugBoxViewModel();
+            viewmodel.Refresh();
+            InnerWindow.Show(Messages.Title_Edit, new DrugBox(viewmodel)
+            {
+                ButtonName = Messages.Btn_Apply,
+                Drug = this.SelectedDrug,
+                OkCommand = new RelayCommand(() =>
+                {
+                    try
+                    {
+                        using (this.component.UnitOfWork)
+                        {
+                            this.component.Update(this.SelectedDrug);
+                        }
+                        InnerWindow.Close();
+                        Notifyer.OnItemChanged(this);
+                    }
+                    catch (Exception ex) { this.HandleError(ex); }
+                }),
+            });
+        }
+        #endregion
+
+        #region Reputation
+        private ReputationDto selectedReputation;
+        public ReputationDto SelectedReputation
+        {
+            get { return this.selectedReputation; }
+            set
+            {
+                this.selectedReputation = value;
+                this.OnPropertyChanged(() => SelectedReputation);
+            }
+        }
+        public ICommand EditReputationCommand { get; private set; }
+        private void EditReputation()
+        {
+            InnerWindow.Show(Messages.Title_Edit, new ReputationBox()
+            {
+                ButtonName = Messages.Btn_Apply,
+                Reputation = this.SelectedReputation,
+                OkCommand = new RelayCommand(() =>
+                {
+                    try
+                    {
+                        using (this.component.UnitOfWork)
+                        {
+                            this.component.Update(this.SelectedReputation);
                         }
                         InnerWindow.Close();
                         Notifyer.OnItemChanged(this);

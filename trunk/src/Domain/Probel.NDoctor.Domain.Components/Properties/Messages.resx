@@ -121,4 +121,8 @@
     <value>You are not granted to execute this action</value>
     <comment>You are not granted to execute this action</comment>
   </data>
+  <data name="Ex_ComponentException" xml:space="preserve">
+    <value>An error occured in the DAL components. See inner exception for details.</value>
+    <comment>An error occured in the DAL components. See inner exception for details.</comment>
+  </data>
 </root>

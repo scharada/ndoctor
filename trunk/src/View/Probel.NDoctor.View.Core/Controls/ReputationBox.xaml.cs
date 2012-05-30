@@ -26,38 +26,31 @@ namespace Probel.NDoctor.View.Core.Controls
     using System.Windows.Input;
 
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.View.Core.ViewModel;
 
     /// <summary>
-    /// Interaction logic for IllnessBox.xaml
+    /// Interaction logic for ReputationBox.xaml
     /// </summary>
-    public partial class PathologyBox : UserControl
+    public partial class ReputationBox : UserControl
     {
         #region Fields
 
         public static DependencyProperty ButtonNameProperty = DependencyProperty.RegisterAttached("ButtonName", typeof(string)
-            , typeof(PathologyBox)
+            , typeof(ReputationBox)
             , new UIPropertyMetadata(null));
         public static DependencyProperty OkCommandProperty = DependencyProperty.RegisterAttached("OkCommand", typeof(ICommand)
-            , typeof(PathologyBox)
+            , typeof(ReputationBox)
             , new UIPropertyMetadata(null));
-        public static DependencyProperty PathologyProperty = DependencyProperty.RegisterAttached("Pathology", typeof(PathologyDto)
-            , typeof(PathologyBox)
+        public static DependencyProperty ReputationProperty = DependencyProperty.RegisterAttached("Reputation", typeof(ReputationDto)
+            , typeof(ReputationBox)
             , new UIPropertyMetadata(null));
 
         #endregion Fields
 
         #region Constructors
 
-        public PathologyBox(PathologyBoxViewModel viewModel)
+        public ReputationBox()
         {
             InitializeComponent();
-            this.DataContext = viewModel;
-        }
-
-        public PathologyBox()
-            : this(new PathologyBoxViewModel())
-        {
         }
 
         #endregion Constructors
@@ -66,20 +59,20 @@ namespace Probel.NDoctor.View.Core.Controls
 
         public string ButtonName
         {
-            get { return PathologyBox.GetButtonName(this); }
-            set { PathologyBox.SetButtonName(this, value); }
+            get { return ReputationBox.GetButtonName(this); }
+            set { ReputationBox.SetButtonName(this, value); }
         }
 
         public ICommand OkCommand
         {
-            get { return PathologyBox.GetOkCommand(this); }
-            set { PathologyBox.SetOkCommand(this, value); }
+            get { return ReputationBox.GetOkCommand(this); }
+            set { ReputationBox.SetOkCommand(this, value); }
         }
 
-        public PathologyDto Pathology
+        public ReputationDto Reputation
         {
-            get { return PathologyBox.GetPathology(this); }
-            set { PathologyBox.SetPathology(this, value); }
+            get { return ReputationBox.GetReputation(this); }
+            set { ReputationBox.SetReputation(this, value); }
         }
 
         #endregion Properties
@@ -96,9 +89,9 @@ namespace Probel.NDoctor.View.Core.Controls
             return target.GetValue(OkCommandProperty) as ICommand;
         }
 
-        public static PathologyDto GetPathology(DependencyObject target)
+        public static ReputationDto GetReputation(DependencyObject target)
         {
-            return target.GetValue(PathologyProperty) as PathologyDto;
+            return target.GetValue(ReputationProperty) as ReputationDto;
         }
 
         public static void SetButtonName(DependencyObject target, string value)
@@ -111,9 +104,9 @@ namespace Probel.NDoctor.View.Core.Controls
             target.SetValue(OkCommandProperty, value);
         }
 
-        public static void SetPathology(DependencyObject target, PathologyDto value)
+        public static void SetReputation(DependencyObject target, ReputationDto value)
         {
-            target.SetValue(PathologyProperty, value);
+            target.SetValue(ReputationProperty, value);
         }
 
         #endregion Methods

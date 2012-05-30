@@ -68,5 +68,14 @@ namespace Probel.NDoctor.Domain.Components.Properties {
                 return ResourceManager.GetString("Ex_AuthorisationException", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occured in the DAL components. See inner exception for details..
+        /// </summary>
+        internal static string Ex_ComponentException {
+            get {
+                return ResourceManager.GetString("Ex_ComponentException", resourceCulture);
+            }
+        }
     }
 }
