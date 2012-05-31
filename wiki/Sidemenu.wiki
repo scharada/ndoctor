@@ -28,7 +28,7 @@
     * [RightManager Rights manager]
   * [convertdatabase Import data]
  * Implementation
-  * [PluginFeatures Plugin features documentation ]
+  * [PluginFeatures Plugin API ]
   * [TechDoc Technical documentation]
   * [CodingConventions Coding conventions]
   * [Tools Tools]
