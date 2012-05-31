@@ -10,7 +10,7 @@ https://docs.google.com/drawings/pub?id=16q9kqDSYWS153EoiLeCXgO8G4xI8b0xxJWUj9t4
 The GUI is divided into different parts
  # The main menu: It contains all the application wide menu such as:  
   # Home: Contains a menu group to manage a patient session and another menu group to manage the patient's managers
-  # Tools: Contains tools to improve the user experience of nDoctor.
+  # [`Deprecated`] Tools: Contains tools to improve the user experience of nDoctor. All the items that should be in this menu are moved in the global menu.
   # Help: Contains help information about nDoctor.
  # The contextual menu: this menu changes depending on the selected workbench.
  # The status: Provide non interactive logs. That's, information about the state of the application.
