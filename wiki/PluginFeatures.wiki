@@ -1,11 +1,8 @@
 = Introduction =
 
-Add your content here.
+Here you'll find all the explanations about how to use the Plugin API
 
 
-= Details =
+= Features =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== `InnerWindow` ==
