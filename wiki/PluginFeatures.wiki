@@ -4,6 +4,15 @@ Here you'll find all the explanations about how to use the Plugin API
 
 
 = Features =
+== Logging ==
+
+The plugin host DLL offers a base class that allows logging. If you need a class with logging enabled, derives your class from `LogObject`
+
+== Error handling ==
+
+The plugin host DLL offers a error handlerto manage exception handling. Its role is pretty simple it:
+ * displays an error message in a message box
+ * logs the exception in a file or in whatever way you've configured log4net
 
 == Inner Window ==
 The `InnerWindow` is an easy to use versatile message box. Here's the way to use it: 
