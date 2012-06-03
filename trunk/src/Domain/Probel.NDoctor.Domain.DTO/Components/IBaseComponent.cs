@@ -182,6 +182,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         IList<TagDto> FindTags(string name, TagCategory type);
 
         /// <summary>
+        /// Gets the user by id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns></returns>
+        UserDto FindUserById(long id);
+
+        /// <summary>
         /// Finds all doctors.
         /// </summary>
         /// <returns>The light weight version of the doctors</returns>
@@ -258,27 +265,6 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <returns></returns>
         IList<LightUserDto> GetAllUsers();
-
-        /// <summary>
-        /// Gets the user by id.
-        /// </summary>
-        /// <param name="id">The id.</param>
-        /// <returns></returns>
-        UserDto GetUserById(long id);
-
-        /// <summary>
-        /// Removes item with the specified id.
-        /// </summary>
-        /// <typeparam name="T">The type of the item to remove</typeparam>
-        /// <param name="id">The id of the item to remove.</param>
-        void Remove(InsuranceDto item);
-
-        /// <summary>
-        /// Removes item with the specified id.
-        /// </summary>
-        /// <typeparam name="T">The type of the item to remove</typeparam>
-        /// <param name="id">The id of the item to remove.</param>
-        void Remove(PracticeDto item);
 
         /// <summary>
         /// Removes item with the specified id.

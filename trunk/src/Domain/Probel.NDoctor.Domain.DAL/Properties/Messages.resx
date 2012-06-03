@@ -225,4 +225,8 @@
     <value>Editer les agendas</value>
     <comment>Edit calendars</comment>
   </data>
+  <data name="Ex_ReferencialIntegrityException_Deletion" xml:space="preserve">
+    <value>Couldn't remove this item because it is referenced somewhere else.</value>
+    <comment>Couldn't remove this item because it is referenced somewhere else.</comment>
+  </data>
 </root>

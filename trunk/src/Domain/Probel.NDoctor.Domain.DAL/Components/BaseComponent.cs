@@ -470,6 +470,17 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets the user by id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns></returns>
+        public UserDto FindUserById(long id)
+        {
+            var user = this.Session.Get<User>(id);
+            return Mapper.Map<User, UserDto>(user);
+        }
+
+        /// <summary>
         /// Finds all doctors.
         /// </summary>
         /// <returns>The light weight version of the doctors</returns>
@@ -627,53 +638,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Gets the user by id.
-        /// </summary>
-        /// <param name="id">The id.</param>
-        /// <returns></returns>
-        public UserDto GetUserById(long id)
-        {
-            var user = this.Session.Get<User>(id);
-            return Mapper.Map<User, UserDto>(user);
-        }
-
-        /// <summary>
-        /// Removes item with the specified id.
-        /// </summary>
-        /// <typeparam name="T">The type of the item to remove</typeparam>
-        /// <param name="id">The id of the item to remove.</param>
-        public void Remove(InsuranceDto item)
-        {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-
-            var entity = this.Session.Get<Insurance>(item.Id);
-            this.Remove(entity);
-        }
-
-        /// <summary>
-        /// Removes item with the specified id.
-        /// </summary>
-        /// <typeparam name="T">The type of the item to remove</typeparam>
-        /// <param name="id">The id of the item to remove.</param>
-        public void Remove(PracticeDto item)
-        {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-
-            var entity = this.Session.Get<Practice>(item.Id);
-            this.Remove(entity);
-        }
-
-        /// <summary>
         /// Removes item with the specified id.
         /// </summary>
         /// <typeparam name="T">The type of the item to remove</typeparam>
         /// <param name="id">The id of the item to remove.</param>
         public void Remove(ProfessionDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-
-            var entity = this.Session.Get<Profession>(item.Id);
-            this.Remove(entity);
+            Assert.IsNotNull(item, "item");
+            this.Remove<Profession>(item);
         }
 
         /// <summary>
@@ -683,10 +655,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="id">The id of the item to remove.</param>
         public void Remove(ReputationDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-
-            var entity = this.Session.Get<Reputation>(item.Id);
-            this.Remove(entity);
+            Assert.IsNotNull(item, "item");
+            this.Remove<Reputation>(item);
         }
 
         /// <summary>
@@ -696,8 +666,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="id">The id of the item to remove.</param>
         public void Remove(TagDto item)
         {
-            var entity = this.Session.Get<Tag>(item.Id);
-            this.Remove(entity);
+            Assert.IsNotNull(item, "item");
+            this.Remove<Tag>(item);
         }
 
         /// <summary>
@@ -707,10 +677,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="id">The id of the item to remove.</param>
         public void Remove(LightDoctorDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-
-            var entity = this.Session.Get<Doctor>(item.Id);
-            this.Remove(entity);
+            Assert.IsNotNull(item, "item");
+            this.Remove<Doctor>(item);
         }
 
         /// <summary>
@@ -719,10 +687,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The item.</param>
         public void Remove(LightPatientDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-
-            var entity = this.Session.Get<Patient>(item.Id);
-            this.Remove(entity);
+            Assert.IsNotNull(item, "item");
+            this.Remove<Patient>(item);
         }
 
         /// <summary>
@@ -731,10 +697,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The item.</param>
         public void Remove(PatientDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-
-            var entity = this.Session.Get<Patient>(item.Id);
-            this.Remove(entity);
+            Assert.IsNotNull(item, "item");
+            this.Remove<Patient>(item);
         }
 
         /// <summary>
@@ -817,17 +781,17 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="id">The id of the item to remove.</param>
         protected void Remove(MedicalRecordDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-
-            var entity = this.Session.Get<MedicalRecord>(item.Id);
-            this.Remove(entity);
+            Assert.IsNotNull(item, "item");
+            this.Remove<MedicalRecord>(item);
         }
 
-        protected void Remove(object item)
+        protected void Remove<TEntity>(BaseDto item)
+            where TEntity : Entity
         {
+            var loaded = this.Session.Get<TEntity>(item.Id);
             if (item != null)
             {
-                this.Session.Delete(item);
+                this.Session.Delete(loaded);
             }
         }
 

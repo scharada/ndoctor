@@ -26,11 +26,12 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Translations
 
     public static class WorkbenchText
     {
+        #region Properties
+
         public static string BtnAdd
         {
             get { return BaseText.Add; }
         }
-        #region Properties
 
         public static string PrescriptionHeader
         {

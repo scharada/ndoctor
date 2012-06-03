@@ -30,7 +30,9 @@ namespace Probel.NDoctor.Plugins.PathologyManager.View
         public AddPathologyView()
         {
             InitializeComponent();
-            this.DataContext = new AddPathologyViewModel();
+            var modelview = new AddPathologyViewModel();
+            modelview.Refresh();
+            this.DataContext = modelview;
         }
 
         #endregion Constructors

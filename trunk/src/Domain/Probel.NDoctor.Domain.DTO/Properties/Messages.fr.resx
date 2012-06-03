@@ -193,6 +193,10 @@
     <value>Plus d'un utilisateur par défaut a été trouvé.</value>
     <comment>More than one default user was found. </comment>
   </data>
+  <data name="Ex_ReferencialIntegrityException" xml:space="preserve">
+    <value>Cette action ne peut être exécutée pour garder l'intégrité des donnéess</value>
+    <comment>This action wasn't executed to keep the integrity of the data.</comment>
+  </data>
   <data name="Ex_SessionException" xml:space="preserve">
     <value>An error occured in the session</value>
     <comment>An error occured in the session</comment>

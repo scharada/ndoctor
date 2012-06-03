@@ -19,7 +19,7 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Domain.Components
+namespace Probel.NDoctor.Domain.DTO.Exceptions
 {
     using System;
     using System.Collections.Generic;
@@ -27,29 +27,29 @@ namespace Probel.NDoctor.Domain.Components
     using System.Runtime.Serialization;
     using System.Text;
 
-    using Probel.NDoctor.Domain.Components.Properties;
+    using Probel.NDoctor.Domain.DTO.Properties;
 
     [Serializable]
-    public class ComponentException : ApplicationException
+    public class ReferencialIntegrityException : ApplicationException
     {
         #region Constructors
 
-        public ComponentException()
-            : this(Messages.Ex_ComponentException)
+        public ReferencialIntegrityException()
+            : this(Messages.Ex_ReferencialIntegrityException)
         {
         }
 
-        public ComponentException(string message)
+        public ReferencialIntegrityException(string message)
             : base(message)
         {
         }
 
-        public ComponentException(string message, Exception inner)
+        public ReferencialIntegrityException(string message, Exception inner)
             : base(message, inner)
         {
         }
 
-        protected ComponentException(SerializationInfo info, StreamingContext context)
+        protected ReferencialIntegrityException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }

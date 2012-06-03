@@ -7,29 +7,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
              xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
+             xmlns:txt="clr-namespace:Probel.NDoctor.View.Core.Translations;assembly=Probel.NDoctor.View.Core"
+             xmlns:h="clr-namespace:Probel.NDoctor.View.Core.Controls;assembly=Probel.NDoctor.View.Core"
              
              mc:Ignorable="d"
              Width="250">
     <StackPanel>
-        <TextBox DockPanel.Dock="Left"
-                 Text="{Binding Path=Pathology.Name, UpdateSourceTrigger=PropertyChanged}"
-                 MinWidth="100"/>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Border Grid.Column="0"
-                    Style="{StaticResource BorderStyle}">
-                <Button Content="{Binding Source={x:Static Member=text:AddPathologyText.BtnAdd}}"
-                        Command="{Binding Path=AddCommand}"/>
-            </Border>
-
-            <Border Grid.Column="1"
-                    Style="{StaticResource BorderStyle}">
-                <Button Content="{Binding Source={x:Static Member=t:BaseText.Cancel}}"
-                        Command="iw:InnerWindow.CancelCommand" />
-            </Border>
-        </Grid>
+        <h:PathologyBox Pathology="{Binding Pathology,UpdateSourceTrigger=PropertyChanged}"
+                        ButtonName="{Binding Source={x:Static txt:BoxText.BtnAdd}}"
+                        OkCommand="{Binding AddCommand}"
+                        Tags="{Binding Tags, UpdateSourceTrigger=PropertyChanged}"/>
     </StackPanel>
 </UserControl>

@@ -35,7 +35,6 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     {
         #region Fields
 
-        private IAdministrationComponent component;
         private ErrorHandler errorHandler;
 
         #endregion Fields
@@ -45,15 +44,8 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         public TagViewModel()
             : base(TagCategory.Appointment)
         {
-            if (!Designer.IsDesignMode)
-            {
-                this.component = PluginContext.ComponentFactory.GetInstance<IAdministrationComponent>();
-                PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAdministrationComponent>();
-            }
             this.errorHandler = new ErrorHandler(this);
             this.Categories = TagCategoryCollection.Build();
-
-            this.UpdateCommand = new RelayCommand(() => this.Update(), () => this.CanUpdate());
         }
 
         #endregion Constructors
@@ -66,12 +58,6 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             private set;
         }
 
-        public IAdministrationComponent ObjectFatory
-        {
-            get;
-            set;
-        }
-
         public Tuple<string, TagCategory> SelectedTag
         {
             get { return new Tuple<string, TagCategory>(this.Category.Translate(), this.Category); }
@@ -82,38 +68,6 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             }
         }
 
-        public ICommand UpdateCommand
-        {
-            get;
-            private set;
-        }
-
         #endregion Properties
-
-        #region Methods
-
-        private bool CanUpdate()
-        {
-            return !string.IsNullOrWhiteSpace(this.Name) && PluginContext.DoorKeeper.Grants(To.Write);
-        }
-
-        private void Update()
-        {
-            try
-            {
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Update(this);
-                }
-                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
-                Notifyer.OnTagsChanged(this);
-            }
-            catch (Exception ex)
-            {
-                this.errorHandler.HandleError(ex, Messages.Msg_ErrorOccured);
-            }
-        }
-
-        #endregion Methods
     }
 }

@@ -21,39 +21,34 @@
 
 namespace Probel.NDoctor.View.Core.Controls
 {
-    using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
-
+    using Probel.NDoctor.Domain.DTO.Collections;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.View.Core.ViewModel;
 
     /// <summary>
-    /// Interaction logic for IllnessBox.xaml
+    /// Interaction logic for TagControl.xaml
     /// </summary>
-    public partial class PathologyBox : UserControl
+    public partial class TagBox : UserControl
     {
         #region Fields
 
         public static DependencyProperty ButtonNameProperty = DependencyProperty.RegisterAttached("ButtonName", typeof(string)
-            , typeof(PathologyBox)
+            , typeof(TagBox)
             , new UIPropertyMetadata(null));
         public static DependencyProperty OkCommandProperty = DependencyProperty.RegisterAttached("OkCommand", typeof(ICommand)
-            , typeof(PathologyBox)
+            , typeof(TagBox)
             , new UIPropertyMetadata(null));
-        public static DependencyProperty PathologyProperty = DependencyProperty.RegisterAttached("Pathology", typeof(PathologyDto)
-            , typeof(PathologyBox)
-            , new UIPropertyMetadata(null));
-        public static DependencyProperty TagsProperty = DependencyProperty.RegisterAttached("Tags", typeof(ObservableCollection<TagDto>)
-            , typeof(PathologyBox)
+        public static DependencyProperty StampProperty = DependencyProperty.RegisterAttached("Stamp", typeof(TagDto)
+            , typeof(TagBox)
             , new UIPropertyMetadata(null));
 
         #endregion Fields
 
         #region Constructors
 
-        public PathologyBox()
+        public TagBox()
         {
             this.InitializeComponent();
         }
@@ -64,26 +59,20 @@ namespace Probel.NDoctor.View.Core.Controls
 
         public string ButtonName
         {
-            get { return PathologyBox.GetButtonName(this); }
-            set { PathologyBox.SetButtonName(this, value); }
+            get { return TagBox.GetButtonName(this); }
+            set { TagBox.SetButtonName(this, value); }
         }
 
         public ICommand OkCommand
         {
-            get { return PathologyBox.GetOkCommand(this); }
-            set { PathologyBox.SetOkCommand(this, value); }
+            get { return TagBox.GetOkCommand(this); }
+            set { TagBox.SetOkCommand(this, value); }
         }
 
-        public PathologyDto Pathology
+        public TagDto Stamp
         {
-            get { return PathologyBox.GetPathology(this); }
-            set { PathologyBox.SetPathology(this, value); }
-        }
-
-        public ObservableCollection<TagDto> Tags
-        {
-            get { return PathologyBox.GetTags(this); }
-            set { PathologyBox.SetTags(this, value); }
+            get { return TagBox.GetStamp(this); }
+            set { TagBox.SetStamp(this, value); }
         }
 
         #endregion Properties
@@ -100,14 +89,9 @@ namespace Probel.NDoctor.View.Core.Controls
             return target.GetValue(OkCommandProperty) as ICommand;
         }
 
-        public static PathologyDto GetPathology(DependencyObject target)
+        public static TagDto GetStamp(DependencyObject target)
         {
-            return target.GetValue(PathologyProperty) as PathologyDto;
-        }
-
-        public static ObservableCollection<TagDto> GetTags(DependencyObject target)
-        {
-            return target.GetValue(TagsProperty) as ObservableCollection<TagDto>;
+            return target.GetValue(StampProperty) as TagDto;
         }
 
         public static void SetButtonName(DependencyObject target, string value)
@@ -120,14 +104,9 @@ namespace Probel.NDoctor.View.Core.Controls
             target.SetValue(OkCommandProperty, value);
         }
 
-        public static void SetPathology(DependencyObject target, PathologyDto value)
+        public static void SetStamp(DependencyObject target, TagDto value)
         {
-            target.SetValue(PathologyProperty, value);
-        }
-
-        public static void SetTags(DependencyObject target, ObservableCollection<TagDto> value)
-        {
-            target.SetValue(TagsProperty, value);
+            target.SetValue(StampProperty, value);
         }
 
         #endregion Methods

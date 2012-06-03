@@ -23,6 +23,33 @@ namespace Probel.NDoctor.Domain.DTO.Components
         #region Methods
 
         /// <summary>
+        /// Determines whether the specified item can be removed.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can remove the specified item; otherwise, <c>false</c>.
+        /// </returns>
+        bool CanRemove(InsuranceDto item);
+
+        /// <summary>
+        /// Determines whether the specified item can be removed.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can remove the specified item; otherwise, <c>false</c>.
+        /// </returns>
+        bool CanRemove(PracticeDto item);
+
+        /// <summary>
+        /// Determines whether the specified item can be removed.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can remove the specified item; otherwise, <c>false</c>.
+        /// </returns>
+        bool CanRemove(PathologyDto item);
+
+        /// <summary>
         /// Creates the specified profession.
         /// </summary>
         /// <param name="profession">The tag.</param>
@@ -51,6 +78,48 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="insurance">The drug.</param>
         long Create(InsuranceDto insurance);
+
+        /// <summary>
+        /// Removes the specified item.
+        /// </summary>
+        /// <param name="item">The item to remove</param>
+        void Remove(InsuranceDto item);
+
+        /// <summary>
+        /// Removes the specified item.
+        /// </summary>
+        /// <param name="item">The item to remove</param>
+        void Remove(PracticeDto item);
+
+        /// <summary>
+        /// Removes the specified item.
+        /// </summary>
+        /// <param name="item">The item to remove</param>
+        void Remove(PathologyDto item);
+
+        /// <summary>
+        /// Removes the specified item.
+        /// </summary>
+        /// <param name="item">The item to remove</param>
+        void Remove(DrugDto item);
+
+        /// <summary>
+        /// Removes the specified item.
+        /// </summary>
+        /// <param name="item">The item to remove</param>
+        void Remove(ProfessionDto item);
+
+        /// <summary>
+        /// Removes the specified item.
+        /// </summary>
+        /// <param name="item">The item to remove</param>
+        void Remove(ReputationDto item);
+
+        /// <summary>
+        /// Removes the specified item.
+        /// </summary>
+        /// <param name="item">The item to remove</param>
+        void Remove(TagDto item);
 
         /// <summary>
         /// Updates the specified tag.

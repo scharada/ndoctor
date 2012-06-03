@@ -209,4 +209,8 @@
     <value>Supprimer</value>
     <comment>Remove</comment>
   </data>
+  <data name="Msg_CantDelete" xml:space="preserve">
+    <value>Impossible de supprimer cet élémént, il est toujours référencé ailleur dans les données</value>
+    <comment>Impossible to delete this item. It s referenced somewhere else in the data.</comment>
+  </data>
 </root>

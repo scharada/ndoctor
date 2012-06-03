@@ -277,7 +277,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [Test]
         public void CanGetUserByItsId()
         {
-            var user = this.Component.GetUserById(1);
+            var user = this.Component.FindUserById(1);
 
             Assert.NotNull(user, "The user 'Robert Dupont' should be in the database");
             Assert.AreEqual("User Robert", user.FirstName);

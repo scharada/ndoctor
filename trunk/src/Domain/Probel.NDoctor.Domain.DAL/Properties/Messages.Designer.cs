@@ -70,6 +70,15 @@ namespace Probel.NDoctor.Domain.DAL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Couldn&apos;t remove this item because it is referenced somewhere else..
+        /// </summary>
+        internal static string Ex_ReferencialIntegrityException_Deletion {
+            get {
+                return ResourceManager.GetString("Ex_ReferencialIntegrityException_Deletion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A user with this right can modify data about administration.
         /// </summary>
         internal static string Explanation_Administer {

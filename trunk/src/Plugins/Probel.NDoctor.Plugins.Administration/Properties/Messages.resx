@@ -121,6 +121,10 @@
     <value>Apply</value>
     <comment>Apply</comment>
   </data>
+  <data name="Msg_CantDelete" xml:space="preserve">
+    <value>Impossible to delete this item. It s referenced somewhere else in the data.</value>
+    <comment>Impossible to delete this item. It s referenced somewhere else in the data.</comment>
+  </data>
   <data name="Msg_DataSaved" xml:space="preserve">
     <value>Data saved</value>
     <comment>Data saved</comment>

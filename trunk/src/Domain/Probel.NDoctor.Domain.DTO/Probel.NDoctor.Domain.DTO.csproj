@@ -60,6 +60,7 @@
     <Compile Include="Exceptions\ExistingItemException.cs" />
     <Compile Include="Exceptions\NullSessionFactoryException.cs" />
     <Compile Include="Exceptions\QueryException.cs" />
+    <Compile Include="Exceptions\ReferencialIntegrityException.cs" />
     <Compile Include="Exceptions\WrongIdTypeException.cs" />
     <Compile Include="Helpers\ConvertSlotDurationAndTimeSpan.cs" />
     <Compile Include="Helpers\SlotDuration.cs" />

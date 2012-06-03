@@ -16,9 +16,9 @@
 */
 namespace Probel.NDoctor.View.Plugins.Helpers
 {
+    using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.View.Plugins;
-    using Probel.Helpers.Assertion;
 
     /// <summary>
     /// Context of the plugin

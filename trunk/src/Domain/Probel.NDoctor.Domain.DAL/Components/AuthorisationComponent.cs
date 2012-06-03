@@ -161,12 +161,10 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Removes the role with the specified id.
         /// </summary>
         /// <param name="role">The role to remove.</param>
-        public void Remove(RoleDto role)
+        public void Remove(RoleDto item)
         {
-            Assert.IsNotNull(role, "The item to remove shouldn't be null");
-
-            var entity = this.Session.Get<Role>(role.Id);
-            this.Remove(entity);
+            Assert.IsNotNull(item, "item");
+            this.Remove<Role>(item);
         }
 
         /// <summary>

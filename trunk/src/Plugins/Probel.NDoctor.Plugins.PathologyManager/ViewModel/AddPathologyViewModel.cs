@@ -17,6 +17,7 @@
 namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
 
@@ -56,11 +57,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
             this.ShowPopupCommand = new RelayCommand(() => this.IsPopupOpened = true);
-
-            using (this.component.UnitOfWork)
-            {
-                this.Tags.Refill(this.component.FindTags(TagCategory.Drug));
-            }
         }
 
         #endregion Constructors
@@ -108,6 +104,16 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
         #endregion Properties
 
         #region Methods
+
+        internal void Refresh()
+        {
+            IList<TagDto> result = new List<TagDto>();
+            using (this.component.UnitOfWork)
+            {
+                result = this.component.FindTags(TagCategory.Pathology);
+            }
+            this.Tags.Refill(result);
+        }
 
         private void Add()
         {

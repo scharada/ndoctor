@@ -102,6 +102,9 @@
     <Compile Include="Controls\ReputationBox.xaml.cs">
       <DependentUpon>ReputationBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TagBox.xaml.cs">
+      <DependentUpon>TagBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\Languages.cs" />
     <Compile Include="Helpers\PasswordBoxAssistant.cs" />
     <Compile Include="Helpers\TranslateExtension.cs" />
@@ -122,9 +125,7 @@
     <Compile Include="Translations\SettingsText.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ChildWindowViewModel.cs" />
-    <Compile Include="ViewModel\DrugBoxViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="ViewModel\PathologyBoxViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\SpashScreenViewModel.cs" />
     <Compile Include="View\SettingsView.xaml.cs">
@@ -157,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ReputationBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TagBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

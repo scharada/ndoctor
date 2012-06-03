@@ -23,6 +23,7 @@ namespace Probel.NDoctor.View.Core.Controls
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Text;
     using System.Windows;
@@ -48,6 +49,9 @@ namespace Probel.NDoctor.View.Core.Controls
         public static DependencyProperty ButtonNameProperty = DependencyProperty.RegisterAttached("ButtonName", typeof(string)
             , typeof(DrugBox)
             , new UIPropertyMetadata(null));
+        public static DependencyProperty CategoriesProperty = DependencyProperty.RegisterAttached("Categories", typeof(ObservableCollection<TagDto>)
+            , typeof(DrugBox)
+            , new UIPropertyMetadata(null));
         public static DependencyProperty DrugyProperty = DependencyProperty.RegisterAttached("Drug", typeof(DrugDto)
             , typeof(DrugBox)
             , new UIPropertyMetadata(null));
@@ -59,15 +63,9 @@ namespace Probel.NDoctor.View.Core.Controls
 
         #region Constructors
 
-        public DrugBox(DrugBoxViewModel viewmodel)
-        {
-            InitializeComponent();
-            this.DataContext = viewmodel;
-        }
-
         public DrugBox()
-            : this(new DrugBoxViewModel())
         {
+            this.InitializeComponent();
         }
 
         #endregion Constructors
@@ -78,6 +76,12 @@ namespace Probel.NDoctor.View.Core.Controls
         {
             get { return DrugBox.GetButtonName(this); }
             set { DrugBox.SetButtonName(this, value); }
+        }
+
+        public ObservableCollection<TagDto> Categories
+        {
+            get { return DrugBox.GetCategories(this); }
+            set { DrugBox.SetCategories(this, value); }
         }
 
         public DrugDto Drug
@@ -101,6 +105,11 @@ namespace Probel.NDoctor.View.Core.Controls
             return target.GetValue(ButtonNameProperty) as string ?? "No value";
         }
 
+        public static ObservableCollection<TagDto> GetCategories(DependencyObject target)
+        {
+            return target.GetValue(CategoriesProperty) as ObservableCollection<TagDto>;
+        }
+
         public static DrugDto GetDrug(DependencyObject target)
         {
             return target.GetValue(DrugyProperty) as DrugDto;
@@ -114,6 +123,11 @@ namespace Probel.NDoctor.View.Core.Controls
         public static void SetButtonName(DependencyObject target, string value)
         {
             target.SetValue(ButtonNameProperty, value);
+        }
+
+        public static void SetCategories(DependencyObject target, ObservableCollection<TagDto> value)
+        {
+            target.SetValue(CategoriesProperty, value);
         }
 
         public static void SetDrug(DependencyObject target, DrugDto value)

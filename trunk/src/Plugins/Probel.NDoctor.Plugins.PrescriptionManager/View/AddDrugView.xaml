@@ -16,6 +16,7 @@
     <StackPanel>
         <h:DrugBox  Drug="{Binding Drug}"
                     ButtonName="{Binding Source={x:Static Member=text:WorkbenchText.BtnAdd}}"
+                    Categories="{Binding Tags}"
                     OkCommand="{Binding AddCommand}"/>
     </StackPanel>
 </UserControl>

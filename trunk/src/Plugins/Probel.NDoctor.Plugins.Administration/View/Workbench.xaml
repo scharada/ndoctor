@@ -27,7 +27,7 @@
                     <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Remove}}"
-                                      IsEnabled="False">
+                                      Command="{Binding RemoveInsuranceCommand}">
                                 <MenuItem.Icon>
                                     <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Delete.png"
                                            Height="20"
@@ -86,7 +86,7 @@
                     <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Remove}}"
-                                      IsEnabled="False">
+                                      Command="{Binding RemovePracticeCommand}">
                                 <MenuItem.Icon>
                                     <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Delete.png"
                                            Height="20"
@@ -145,7 +145,7 @@
                     <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Remove}}"
-                                      IsEnabled="False">
+                                      Command="{Binding RemovePathlogyCommand}">
                                 <MenuItem.Icon>
                                     <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Delete.png"
                                            Height="20"
@@ -310,45 +310,52 @@
                     </DataGrid.ContextMenu>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleName}}"
-                                        Binding="{Binding Path=Name,UpdateSourceTrigger=PropertyChanged}"
-                                        Width="*"/>
+                                            Binding="{Binding Path=Name,UpdateSourceTrigger=PropertyChanged}"
+                                            Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
         </TabItem>
         <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleTag}}">
             <StackPanel>
-                <DataGrid ItemsSource="{Binding Path=Tags}"       
-                      AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False"
-                      SelectionMode="Single">
-                    <DataGrid.RowDetailsTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnApply}}"
-                                    Command="{Binding Path=UpdateCommand}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGrid.RowDetailsTemplate>
+                <DataGrid ItemsSource="{Binding Path=Tags}"  
+                          SelectedItem="{Binding SelectedTag}"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          SelectionMode="Single">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Remove}}"
+                                      IsEnabled="False">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Delete.png"
+                                           Height="20"
+                                           Width="20"
+                                           IsEnabled="False"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Edit}}" 
+                                      Command="{Binding EditTagCommand}">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Edit.png"
+                                           Height="20"
+                                           Width="20"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleName}}"
                                         Binding="{Binding Path=Name,UpdateSourceTrigger=PropertyChanged}"
                                         Width="*"/>
                         <DataGridTemplateColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleType}}"
-                                            Width="*">
+                                                Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=SelectedTag.Item1,UpdateSourceTrigger=PropertyChanged}" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
-                            <DataGridTemplateColumn.CellEditingTemplate>
-                                <DataTemplate>
-                                    <ComboBox ItemsSource="{Binding Categories}"
-                                          DisplayMemberPath="Item1"
-                                          SelectedItem="{Binding SelectedTag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellEditingTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>

@@ -333,4 +333,8 @@
     <value>Le mot de passe ne peut pas être une chaîne vide.</value>
     <comment>The password can't be empty</comment>
   </data>
+  <data name="Ex_ReferencialIntegrityException_Deletion" xml:space="preserve">
+    <value>Supprimer cet élément est impossible: il est toujours référencé</value>
+    <comment>Couldn't remove this item because it is referenced somewhere else.</comment>
+  </data>
 </root>

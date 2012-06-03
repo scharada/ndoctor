@@ -188,7 +188,7 @@ namespace Probel.NDoctor.Plugins.UserSession
             using (this.component.UnitOfWork)
             {
                 card = new BusinessCard();
-                user = this.component.GetUserById(PluginContext.Host.ConnectedUser.Id);
+                user = this.component.FindUserById(PluginContext.Host.ConnectedUser.Id);
             }
             card.DataContext = BusinessCardViewModel.CreateFrom(user);
 

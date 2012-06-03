@@ -82,12 +82,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Translations\WorkbenchText.cs" />
-    <Compile Include="ViewModel\DrugViewModel.cs" />
-    <Compile Include="ViewModel\InsuranceViewModel.cs" />
-    <Compile Include="ViewModel\PathologyViewModel.cs" />
-    <Compile Include="ViewModel\PracticeViewModel.cs" />
-    <Compile Include="ViewModel\ProfessionViewModel.cs" />
-    <Compile Include="ViewModel\ReputationViewModel.cs" />
     <Compile Include="ViewModel\TagViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
     <Compile Include="View\Workbench.xaml.cs">

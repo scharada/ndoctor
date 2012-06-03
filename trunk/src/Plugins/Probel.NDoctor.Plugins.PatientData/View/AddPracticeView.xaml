@@ -9,7 +9,7 @@
              
              mc:Ignorable="d" 
              Width="350">
-    <ctrl:PracticeBox Practice="{Binding SelectedPractice}"
+    <ctrl:PracticeBox Practice="{Binding Practice}"
                       ButtonName="{Binding Source={x:Static Member=text:WorkbenchText.BtnAdd}}"
-                      OkCommand="{Binding EditPracticeCommand}"/>
+                      OkCommand="{Binding AddCommand}"/>
 </UserControl>

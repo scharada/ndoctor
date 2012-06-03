@@ -70,6 +70,15 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Impossible to delete this item. It s referenced somewhere else in the data..
+        /// </summary>
+        internal static string Msg_CantDelete {
+            get {
+                return ResourceManager.GetString("Msg_CantDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data saved.
         /// </summary>
         internal static string Msg_DataSaved {

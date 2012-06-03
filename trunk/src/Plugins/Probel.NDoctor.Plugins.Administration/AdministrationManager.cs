@@ -43,9 +43,21 @@ namespace Probel.NDoctor.Plugins.Administration
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.Administration;component/Images\{0}.png";
 
-        //private RibbonContextualTabGroupData contextualMenu;
         private ICommand navigateCommand;
         private Workbench workbench;
+        private Workbench Workbench
+        {
+            get
+            {
+                if (workbench == null)
+                {
+                    PluginContext.Host.Invoke(() => this.workbench = new Workbench());
+                    this.workbench.DataContext = new WorkbenchViewModel();
+                }
+
+                return this.workbench;
+            }
+        }
 
         #endregion Fields
 
@@ -62,26 +74,6 @@ namespace Probel.NDoctor.Plugins.Administration
 
         #endregion Constructors
 
-        #region Properties
-
-        private WorkbenchViewModel ViewModel
-        {
-            get
-            {
-                Assert.IsNotNull(PluginContext.Host, string.Format(
-                    "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin '{0}'", this.GetType().Name));
-                if (this.workbench.DataContext == null) this.workbench.DataContext = new WorkbenchViewModel();
-                return this.workbench.DataContext as WorkbenchViewModel;
-            }
-            set
-            {
-                Assert.IsNotNull(this.workbench.DataContext);
-                this.workbench.DataContext = value;
-            }
-        }
-
-        #endregion Properties
-
         #region Methods
 
         /// <summary>
@@ -92,7 +84,6 @@ namespace Probel.NDoctor.Plugins.Administration
         {
             Assert.IsNotNull(PluginContext.Host, "To initialise the plugin, IPluginHost should be set.");
 
-            PluginContext.Host.Invoke(() => workbench = new Workbench());
             this.BuildButtons();
             this.BuildContextMenu();
         }
@@ -128,33 +119,13 @@ namespace Probel.NDoctor.Plugins.Administration
         {
             Mapper.CreateMap<TagViewModel, TagDto>();
             Mapper.CreateMap<TagDto, TagViewModel>();
-
-            Mapper.CreateMap<ProfessionViewModel, ProfessionDto>();
-            Mapper.CreateMap<ProfessionDto, ProfessionViewModel>();
-
-            Mapper.CreateMap<ReputationViewModel, ReputationDto>();
-            Mapper.CreateMap<ReputationDto, ReputationViewModel>();
-
-            Mapper.CreateMap<DrugViewModel, DrugDto>();
-            Mapper.CreateMap<DrugDto, DrugViewModel>();
-
-            Mapper.CreateMap<PathologyDto, PathologyViewModel>();
-            Mapper.CreateMap<PathologyViewModel, PathologyDto>();
-
-            Mapper.CreateMap<PracticeDto, PracticeViewModel>();
-            Mapper.CreateMap<PracticeViewModel, PracticeDto>();
-
-            Mapper.CreateMap<InsuranceDto, InsuranceViewModel>();
-            Mapper.CreateMap<InsuranceViewModel, InsuranceDto>();
         }
-
         private void Navigate()
         {
-            PluginContext.Host.Navigate(this.workbench);
-            var viewModel = new WorkbenchViewModel();
-            this.workbench.DataContext = viewModel;
-        }
 
+            PluginContext.Host.Navigate(this.Workbench);
+            ((WorkbenchViewModel)this.Workbench.DataContext).Refresh();
+        }
         #endregion Methods
     }
 }

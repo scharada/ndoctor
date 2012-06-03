@@ -16,15 +16,64 @@
 */
 namespace Probel.NDoctor.Domain.DAL.Components
 {
+    using System.Linq;
+
     using AutoMapper;
 
+    using NHibernate.Linq;
+
+    using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     public class AdministrationComponent : BaseComponent, IAdministrationComponent
     {
         #region Methods
+
+        /// <summary>
+        /// Determines whether the specified item can be removed.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can remove the specified item; otherwise, <c>false</c>.
+        /// </returns>
+        public bool CanRemove(PathologyDto item)
+        {
+            return (from t in this.Session.Query<Patient>()
+                    where t.IllnessHistory.Where(e => e.Pathology.Id == item.Id).Count() > 0
+                    select t).Count() == 0;
+        }
+
+        /// <summary>
+        /// Determines whether the specified item can be removed.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can remove the specified item; otherwise, <c>false</c>.
+        /// </returns>
+        public bool CanRemove(InsuranceDto item)
+        {
+            return (from t in this.Session.Query<Patient>()
+                    where t.Insurance.Id == item.Id
+                    select t).Count() == 0;
+        }
+
+        /// <summary>
+        /// Determines whether the specified item can be removed.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can remove the specified item; otherwise, <c>false</c>.
+        /// </returns>
+        public bool CanRemove(PracticeDto item)
+        {
+            return (from t in this.Session.Query<Patient>()
+                    where t.Practice.Id == item.Id
+                    select t).Count() == 0;
+        }
 
         /// <summary>
         /// Creates the specified profession.
@@ -74,6 +123,50 @@ namespace Probel.NDoctor.Domain.DAL.Components
         {
             var entity = Mapper.Map<InsuranceDto, Insurance>(insurance);
             return (long)this.Session.Save(entity);
+        }
+
+        /// <summary>
+        /// Removes the specified item.
+        /// </summary>
+        /// <param name="item">The item to remove</param>
+        public void Remove(PathologyDto item)
+        {
+            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            if (!this.CanRemove(item)) throw new ReferencialIntegrityException(Messages.Ex_ReferencialIntegrityException_Deletion);
+            this.Remove<Pathology>(item);
+        }
+
+        /// <summary>
+        /// Removes the specified item.
+        /// </summary>
+        /// <param name="item">The item to remove</param>
+        public void Remove(DrugDto item)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
+        /// Removes item with the specified id.
+        /// </summary>
+        /// <typeparam name="T">The type of the item to remove</typeparam>
+        /// <param name="id">The id of the item to remove.</param>
+        public void Remove(InsuranceDto item)
+        {
+            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            if (!this.CanRemove(item)) throw new ReferencialIntegrityException(Messages.Ex_ReferencialIntegrityException_Deletion);
+            this.Remove<Insurance>(item);
+        }
+
+        /// <summary>
+        /// Removes item with the specified id.
+        /// </summary>
+        /// <typeparam name="T">The type of the item to remove</typeparam>
+        /// <param name="id">The id of the item to remove.</param>
+        public void Remove(PracticeDto item)
+        {
+            Assert.IsNotNull(item, "item");
+            if (!this.CanRemove(item)) throw new ReferencialIntegrityException(Messages.Ex_ReferencialIntegrityException_Deletion);
+            this.Remove<Practice>(item);
         }
 
         /// <summary>

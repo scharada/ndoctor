@@ -241,6 +241,15 @@ namespace Probel.NDoctor.Domain.DTO.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This action wasn&apos;t executed to keep the integrity of the data..
+        /// </summary>
+        internal static string Ex_ReferencialIntegrityException {
+            get {
+                return ResourceManager.GetString("Ex_ReferencialIntegrityException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occured in the session.
         /// </summary>
         internal static string Ex_SessionException {

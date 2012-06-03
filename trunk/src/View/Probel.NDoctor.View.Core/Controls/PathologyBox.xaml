@@ -14,13 +14,13 @@
              Width="250">
     <StackPanel>
         <Border Style="{StaticResource BorderStyle}">
-            <ComboBox ItemsSource="{Binding Tags}"
+            <ComboBox ItemsSource="{Binding ElementName=this, Path=Tags}"
                       DisplayMemberPath="Name"
                       SelectedItem="{Binding ElementName=this, Path=Pathology.Tag, UpdateSourceTrigger=PropertyChanged}"/>
         </Border>
         <Border Style="{StaticResource BorderStyle}">
             <TextBox Text="{Binding ElementName=this, Path=Pathology.Name, UpdateSourceTrigger=PropertyChanged}"
-                 MinWidth="200"/>
+                     MinWidth="200"/>
         </Border>
         <Grid>
             <Grid.ColumnDefinitions>
