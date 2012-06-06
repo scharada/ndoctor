@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using System;
     using System.Windows.Input;
 
+    using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
@@ -41,8 +42,11 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         public AddSpecialisationViewModel()
         {
-            this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
+            if (!Designer.IsDesignMode)
+            {
+                this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
+                PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
+            }
             this.Tag = new TagDto(TagCategory.Doctor);
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
         }

@@ -16,6 +16,8 @@
 */
 namespace Probel.NDoctor.Domain.DAL.Components
 {
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     using AutoMapper;
@@ -75,6 +77,49 @@ namespace Probel.NDoctor.Domain.DAL.Components
                     select t).Count() == 0;
         }
 
+        public bool CanRemove(DrugDto item)
+        {
+            return (from t in this.Session.Query<Patient>()
+                    where t.PrescriptionDocuments
+                        .Where(e => e.Prescriptions
+                            .Where(p => p.Drug.Id == item.Id).Count() > 0)
+                            .Count() > 0
+                    select t).Count() == 0;
+        }
+
+        public bool CanRemove(ReputationDto item)
+        {
+            return (from t in this.Session.Query<Patient>()
+                    where t.Reputation.Id == item.Id
+                    select t).Count() == 0;
+        }
+
+        public bool CanRemove(TagDto item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CanRemove(ProfessionDto item)
+        {
+            return (from t in this.Session.Query<Patient>()
+                    where t.Profession.Id == item.Id
+                    select t).Count() == 0;
+        }
+
+        /// <summary>
+        /// Determines whether the specified doctor can be removed.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can remove the specified item; otherwise, <c>false</c>.
+        /// </returns>
+        public bool CanRemove(DoctorDto item)
+        {
+            return (from t in this.Session.Query<Patient>()
+                    where t.Doctors.Where(e => e.Id == item.Id).Count() > 0
+                    select t).Count() == 0;
+        }
+
         /// <summary>
         /// Creates the specified profession.
         /// </summary>
@@ -126,6 +171,17 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets all doctors.
+        /// </summary>
+        /// <returns></returns>
+        public IList<DoctorDto> GetAllDoctors()
+        {
+            var entities = (from d in this.Session.Query<Doctor>()
+                            select d).ToList();
+            return Mapper.Map<IList<Doctor>, IList<DoctorDto>>(entities);
+        }
+
+        /// <summary>
         /// Removes the specified item.
         /// </summary>
         /// <param name="item">The item to remove</param>
@@ -167,6 +223,17 @@ namespace Probel.NDoctor.Domain.DAL.Components
             Assert.IsNotNull(item, "item");
             if (!this.CanRemove(item)) throw new ReferencialIntegrityException(Messages.Ex_ReferencialIntegrityException_Deletion);
             this.Remove<Practice>(item);
+        }
+
+        /// <summary>
+        /// Removes the specified doctor.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        public void Remove(DoctorDto item)
+        {
+            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            if (!this.CanRemove(item)) throw new ReferencialIntegrityException(Messages.Ex_ReferencialIntegrityException_Deletion);
+            this.Remove<Doctor>(item);
         }
 
         /// <summary>
@@ -236,6 +303,16 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Update(InsuranceDto insurance)
         {
             var entity = Mapper.Map<InsuranceDto, Insurance>(insurance);
+            this.Session.Update(entity);
+        }
+
+        /// <summary>
+        /// Updates the specified doctor.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        public void Update(DoctorDto item)
+        {
+            var entity = Mapper.Map<DoctorDto, Doctor>(item);
             this.Session.Update(entity);
         }
 

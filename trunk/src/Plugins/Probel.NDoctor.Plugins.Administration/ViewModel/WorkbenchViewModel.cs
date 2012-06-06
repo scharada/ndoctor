@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Plugins.Administration.ViewModel
 {
+    using Probel.NDoctor.Domain.DTO.Helpers;
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -28,6 +29,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
+    using Probel.NDoctor.Domain.DTO.Collections;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.Administration.Helpers;
@@ -36,7 +38,6 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.NDoctor.Domain.DTO.Collections;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -47,6 +48,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         private IAdministrationComponent component;
         private Tuple<string, TagCategory> selectedCategory;
+        private DoctorDto selectedDoctor;
         private DrugDto selectedDrug;
         private InsuranceDto selectedInsurance;
         private PathologyDto selectedPathology;
@@ -73,6 +75,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
             Notifyer.ItemChanged += (sender, e) => this.Refresh();
 
+            #region Instanciates collections
             this.Insurances = new ObservableCollection<InsuranceDto>();
             this.Practices = new ObservableCollection<PracticeDto>();
             this.Pathologies = new ObservableCollection<PathologyDto>();
@@ -80,6 +83,9 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             this.Reputations = new ObservableCollection<ReputationDto>();
             this.Professions = new ObservableCollection<ProfessionDto>();
             this.Tags = new ObservableCollection<TagViewModel>();
+            this.Doctors = new ObservableCollection<DoctorDto>();
+
+            #endregion
 
             #region Edition commands
             this.EditInsuranceCommand = new RelayCommand(() => this.EditInsurance(), () => this.SelectedInsurance != null);
@@ -89,22 +95,40 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             this.EditDrugCommand = new RelayCommand(() => this.EditDrug(), () => this.SelectedDrug != null);
             this.EditReputationCommand = new RelayCommand(() => this.EditReputation(), () => this.SelectedReputation != null);
             this.EditTagCommand = new RelayCommand(() => this.EditTag(), () => this.SelectedTag != null);
+            this.EditDoctorCommand = new RelayCommand(() => this.EditDoctor(), () => this.SelectedDoctor != null);
             #endregion
 
             #region Suppression commands
             this.RemoveInsuranceCommand = new RelayCommand(() => this.RemoveInsurance(), () => this.SelectedInsurance != null);
             this.RemovePracticeCommand = new RelayCommand(() => this.RemovePractice(), () => this.SelectedPractice != null);
             this.RemovePathlogyCommand = new RelayCommand(() => this.RemovePathlogy(), () => this.SelectedPathology != null);
-
+            this.RemoveDrugCommand = new RelayCommand(() => this.RemoveDrug(), () => this.SelectedDrug != null);
+            this.RemoveProfessionCommand = new RelayCommand(() => this.RemoveProfession(), () => this.SelectedProfession != null);
+            this.RemoveReputationCommand = new RelayCommand(() => this.RemoveReputation(), () => this.SelectedReputation != null);
+            this.RemoveTagCommand = new RelayCommand(() => this.RemoveTag(), () => this.SelectedTag != null);
+            this.RemoveDoctorCommand = new RelayCommand(() => this.RemoveDoctor(), () => this.SelectedDoctor != null);
             #endregion
 
             Notifyer.ItemChanged += (sender, e) => this.Refresh();
         }
+
         #endregion Constructors
 
         #region Properties
 
+        public ObservableCollection<DoctorDto> Doctors
+        {
+            get;
+            private set;
+        }
+
         public ObservableCollection<DrugDto> Drugs
+        {
+            get;
+            private set;
+        }
+
+        public ICommand EditDoctorCommand
         {
             get;
             private set;
@@ -176,6 +200,18 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             private set;
         }
 
+        public ICommand RemoveDoctorCommand
+        {
+            get;
+            private set;
+        }
+
+        public ICommand RemoveDrugCommand
+        {
+            get;
+            private set;
+        }
+
         public ICommand RemoveInsuranceCommand
         {
             get;
@@ -194,6 +230,24 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             private set;
         }
 
+        public ICommand RemoveProfessionCommand
+        {
+            get;
+            private set;
+        }
+
+        public ICommand RemoveReputationCommand
+        {
+            get;
+            private set;
+        }
+
+        public ICommand RemoveTagCommand
+        {
+            get;
+            private set;
+        }
+
         public ObservableCollection<ReputationDto> Reputations
         {
             get;
@@ -207,6 +261,16 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             {
                 this.selectedCategory = value;
                 this.OnPropertyChanged(() => SelectedCategory);
+            }
+        }
+
+        public DoctorDto SelectedDoctor
+        {
+            get { return this.selectedDoctor; }
+            set
+            {
+                this.selectedDoctor = value;
+                this.OnPropertyChanged(() => SelectedDoctor);
             }
         }
 
@@ -290,20 +354,70 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         #region Methods
 
-        public void RemovePathlogy()
+        public void Refresh()
         {
-            try
+            IList<InsuranceDto> insurances = null;
+            IList<PracticeDto> practices = null;
+            IList<PathologyDto> pathologies = null;
+            IList<TagDto> tags = null;
+            IList<DrugDto> drugs = null;
+            IList<ReputationDto> reputations = null;
+            IList<ProfessionDto> professions = null;
+            IList<DoctorDto> doctors = null;
+
+            using (this.component.UnitOfWork)
             {
-                using (this.component.UnitOfWork)
-                {
-                    if (this.component.CanRemove(this.SelectedPathology))
-                    {
-                        this.component.Remove(this.SelectedPathology);
-                    }
-                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
-                }
+                insurances = this.component.GetAllInsurances();
+                practices = this.component.GetAllPractices();
+                pathologies = this.component.GetAllPathologies();
+                tags = this.component.GetAllTags();
+                drugs = this.component.GetAllDrugs();
+                reputations = this.component.GetAllReputations();
+                professions = this.component.GetAllProfessions();
+                doctors = this.component.GetAllDoctors();
             }
-            catch (Exception ex) { this.HandleError(ex); }
+
+            this.Insurances.Refill(insurances);
+            this.Practices.Refill(practices);
+            this.Pathologies.Refill(pathologies);
+            this.Drugs.Refill(drugs);
+            this.Reputations.Refill(reputations);
+            this.Tags.Refill(Mapper.Map<IList<TagDto>, IList<TagViewModel>>(tags));
+            this.Professions.Refill(professions);
+            this.Doctors.Refill(doctors);
+        }
+
+        private bool AskToDelete()
+        {
+            var result = MessageBox.Show(Messages.Msg_AskDelete, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            return result == MessageBoxResult.Yes;
+        }
+
+        private void EditDoctor()
+        {
+            IList<TagDto> specialisations = new List<TagDto>();
+            using (this.component.UnitOfWork) { specialisations = this.component.FindTags(TagCategory.Doctor); }
+
+            InnerWindow.Show(Messages.Title_Edit, new DoctorBox()
+            {
+                ButtonName = Messages.Btn_Apply,
+                Doctor = this.SelectedDoctor,
+                Specialisations = new ObservableCollection<TagDto>(specialisations),
+                OkCommand = new RelayCommand(() =>
+                {
+                    try
+                    {
+                        using (this.component.UnitOfWork)
+                        {
+                            this.component.Update(this.SelectedDoctor);
+                        }
+                        InnerWindow.Close();
+                        Notifyer.OnItemChanged(this);
+                    }
+                    catch (Exception ex) { this.HandleError(ex); }
+                }),
+            });
         }
 
         private void EditDrug()
@@ -470,47 +584,97 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             });
         }
 
-        public void Refresh()
+        private void RemoveDoctor()
         {
-            IList<InsuranceDto> insurances = null;
-            IList<PracticeDto> practices = null;
-            IList<PathologyDto> pathologies = null;
-            IList<TagDto> tags = null;
-            IList<DrugDto> drugs = null;
-            IList<ReputationDto> reputations = null;
-            IList<ProfessionDto> professions = null;
-
-            using (this.component.UnitOfWork)
+            try
             {
-                insurances = this.component.GetAllInsurances();
-                practices = this.component.GetAllPractices();
-                pathologies = this.component.GetAllPathologies();
-                tags = this.component.GetAllTags();
-                drugs = this.component.GetAllDrugs();
-                reputations = this.component.GetAllReputations();
-                professions = this.component.GetAllProfessions();
+                if (this.AskToDelete())
+                {
+                    using (this.component.UnitOfWork)
+                    {
+                        if (this.component.CanRemove(this.SelectedDoctor))
+                        {
+                            this.component.Remove(this.SelectedDoctor);
+                        }
+                        else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+                    }
+                    Notifyer.OnItemChanged(this);
+                }
             }
+            catch (Exception ex) { this.HandleError(ex); }
+        }
 
-            this.Insurances.Refill(insurances);
-            this.Practices.Refill(practices);
-            this.Pathologies.Refill(pathologies);
-            this.Drugs.Refill(drugs);
-            this.Reputations.Refill(reputations);
-            this.Tags.Refill(Mapper.Map<IList<TagDto>, IList<TagViewModel>>(tags));
-            this.Professions.Refill(professions);
+        private void RemoveDrug()
+        {
+            try
+            {
+                using (this.component.UnitOfWork)
+                {
+                    if (this.component.CanRemove(this.SelectedDrug))
+                    {
+                        this.component.Remove(this.SelectedDrug);
+                    }
+                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+                }
+            }
+            catch (Exception ex) { this.HandleError(ex); }
         }
 
         private void RemoveInsurance()
         {
             try
             {
-                using (this.component.UnitOfWork)
+                if (this.AskToDelete())
                 {
-                    if (this.component.CanRemove(this.selectedInsurance))
+                    using (this.component.UnitOfWork)
                     {
-                        component.Remove(this.selectedInsurance);
+                        if (this.component.CanRemove(this.selectedInsurance))
+                        {
+                            component.Remove(this.selectedInsurance);
+                        }
+                        else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
                     }
-                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+                    Notifyer.OnItemChanged(this);
+                }
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+        }
+
+        private void RemovePathlogy()
+        {
+            try
+            {
+                if (this.AskToDelete())
+                {
+                    using (this.component.UnitOfWork)
+                    {
+                        if (this.component.CanRemove(this.SelectedPathology))
+                        {
+                            this.component.Remove(this.SelectedPathology);
+                        }
+                        else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+                    }
+                    Notifyer.OnItemChanged(this);
+                }
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+        }
+
+        private void RemovePathology()
+        {
+            try
+            {
+                if (this.AskToDelete())
+                {
+                    using (this.component.UnitOfWork)
+                    {
+                        if (this.component.CanRemove(this.SelectedPathology) && this.AskToDelete())
+                        {
+                            this.component.Remove(this.SelectedPathology);
+                        }
+                        else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+                    }
+                    Notifyer.OnItemChanged(this);
                 }
             }
             catch (Exception ex) { this.HandleError(ex); }
@@ -520,13 +684,77 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         {
             try
             {
-                using (this.component.UnitOfWork)
+                if (this.AskToDelete())
                 {
-                    if (this.component.CanRemove(this.SelectedPractice))
+                    using (this.component.UnitOfWork)
                     {
-                        this.component.Remove(this.SelectedPractice);
+                        if (this.component.CanRemove(this.SelectedPractice) && this.AskToDelete())
+                        {
+                            this.component.Remove(this.SelectedPractice);
+                        }
+                        else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
                     }
-                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+                    Notifyer.OnItemChanged(this);
+                }
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+        }
+
+        private void RemoveProfession()
+        {
+            try
+            {
+                if (this.AskToDelete())
+                {
+                    using (this.component.UnitOfWork)
+                    {
+                        if (this.component.CanRemove(this.SelectedProfession) && this.AskToDelete())
+                        {
+                            this.component.Remove(this.SelectedProfession);
+                        }
+                        else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+                    }
+                    Notifyer.OnItemChanged(this);
+                }
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+        }
+
+        private void RemoveReputation()
+        {
+            try
+            {
+                if (this.AskToDelete())
+                {
+                    using (this.component.UnitOfWork)
+                    {
+                        if (this.component.CanRemove(this.SelectedReputation) && this.AskToDelete())
+                        {
+                            this.component.Remove(this.SelectedReputation);
+                        }
+                        else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+                    }
+                    Notifyer.OnItemChanged(this);
+                }
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+        }
+
+        private void RemoveTag()
+        {
+            try
+            {
+                if (this.AskToDelete())
+                {
+                    using (this.component.UnitOfWork)
+                    {
+                        if (this.component.CanRemove(this.SelectedTag))
+                        {
+                            this.component.Remove(this.SelectedTag);
+                        }
+                        else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+                    }
+                    Notifyer.OnItemChanged(this);
                 }
             }
             catch (Exception ex) { this.HandleError(ex); }

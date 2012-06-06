@@ -84,6 +84,9 @@
     <Compile Include="..\..\Version.cs">
       <Link>Version.cs</Link>
     </Compile>
+    <Compile Include="Controls\DoctorBox.xaml.cs">
+      <DependentUpon>DoctorBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DrugBox.xaml.cs">
       <DependentUpon>DrugBox.xaml</DependentUpon>
     </Compile>
@@ -101,6 +104,9 @@
     </Compile>
     <Compile Include="Controls\ReputationBox.xaml.cs">
       <DependentUpon>ReputationBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SpecialisationBox.xaml.cs">
+      <DependentUpon>SpecialisationBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\TagBox.xaml.cs">
       <DependentUpon>TagBox.xaml</DependentUpon>
@@ -121,6 +127,7 @@
       <DependentUpon>Messages.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="Translations\BoxText.cs" />
+    <Compile Include="Translations\DoctorBoxText.cs" />
     <Compile Include="Translations\InsuranceText.cs" />
     <Compile Include="Translations\SettingsText.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -137,6 +144,10 @@
     <Compile Include="View\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\DoctorBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\DrugBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -158,6 +169,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ReputationBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SpecialisationBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

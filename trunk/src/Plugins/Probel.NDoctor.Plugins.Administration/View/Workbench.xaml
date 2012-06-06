@@ -198,7 +198,7 @@
                     <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Remove}}"
-                                      IsEnabled="False">
+                                      Command="{Binding RemoveDrugCommand}">
                                 <MenuItem.Icon>
                                     <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Delete.png"
                                            Height="20"
@@ -250,8 +250,8 @@
                           IsReadOnly="True">
                     <DataGrid.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Remove}}"
-                                      IsEnabled="False">
+                            <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Remove}}"                                      
+                                      Command="{Binding RemoveProfessionCommand}">
                                 <MenuItem.Icon>
                                     <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Delete.png"
                                            Height="20"
@@ -290,7 +290,7 @@
                     <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Remove}}"
-                                      IsEnabled="False">
+                                      Command="{Binding RemoveReputationCommand}">
                                 <MenuItem.Icon>
                                     <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Delete.png"
                                            Height="20"
@@ -327,7 +327,7 @@
                     <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Remove}}"
-                                      IsEnabled="False">
+                                      Command="{Binding RemoveTagCommand}">
                                 <MenuItem.Icon>
                                     <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Delete.png"
                                            Height="20"
@@ -347,8 +347,8 @@
                     </DataGrid.ContextMenu>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleName}}"
-                                        Binding="{Binding Path=Name,UpdateSourceTrigger=PropertyChanged}"
-                                        Width="*"/>
+                                            Binding="{Binding Path=Name,UpdateSourceTrigger=PropertyChanged}"
+                                            Width="*"/>
                         <DataGridTemplateColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleType}}"
                                                 Width="*">
                             <DataGridTemplateColumn.CellTemplate>
@@ -357,6 +357,47 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleDoctor}}">
+            <StackPanel>
+                <DataGrid ItemsSource="{Binding Path=Doctors}"                              
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          SelectionMode="Single"
+                          SelectedItem="{Binding SelectedDoctor}"
+                          IsReadOnly="True">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Remove}}"
+                                      Command="{Binding RemoveDoctorCommand}">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Delete.png"
+                                           Height="20"
+                                           Width="20"
+                                           IsEnabled="False"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Edit}}" 
+                                      Command="{Binding EditDoctorCommand}">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Edit.png"
+                                           Height="20"
+                                           Width="20"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleName}}"
+                                        Binding="{Binding Path=DisplayedName, UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                        <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleSpecialisation}}"
+                                        Binding="{Binding Path=Specialisation.Name, UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Probel.NDoctor.Domain.DAL.Entities.Patient">
-    <Position X="3.25" Y="4.5" Width="1.5" />
+    <Position X="3" Y="4.5" Width="2" />
     <Members>
       <Method Name="Patient" Hidden="true" />
       <Method Name="ToString" Hidden="true" />
@@ -31,14 +31,14 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Probel.NDoctor.Domain.DAL.Entities.Insurance">
-    <Position X="9.5" Y="4.75" Width="1.5" />
+    <Position X="6" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAAIAAAAAA=</HashCode>
       <FileName>Entities\Insurance.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Probel.NDoctor.Domain.DAL.Entities.Profession">
-    <Position X="7.5" Y="5" Width="1.5" />
+    <Position X="7.75" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\Profession.cs</FileName>
@@ -59,7 +59,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Probel.NDoctor.Domain.DAL.Entities.Practice">
-    <Position X="0.75" Y="4.75" Width="1.5" />
+    <Position X="0.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAAIAAAAAA=</HashCode>
       <FileName>Entities\Practice.cs</FileName>

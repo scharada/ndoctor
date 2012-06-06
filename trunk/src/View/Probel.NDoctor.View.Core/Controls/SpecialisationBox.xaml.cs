@@ -25,33 +25,32 @@ namespace Probel.NDoctor.View.Core.Controls
     using System.Windows.Controls;
     using System.Windows.Input;
 
-    using Probel.NDoctor.Domain.DTO.Collections;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     /// <summary>
-    /// Interaction logic for TagControl.xaml
+    /// Interaction logic for SpecialisationBox.xaml
     /// </summary>
-    public partial class TagBox : UserControl
+    public partial class SpecialisationBox : UserControl
     {
         #region Fields
 
         public static DependencyProperty ButtonNameProperty = DependencyProperty.RegisterAttached("ButtonName", typeof(string)
-            , typeof(TagBox)
+            , typeof(SpecialisationBox)
             , new UIPropertyMetadata(null));
         public static DependencyProperty OkCommandProperty = DependencyProperty.RegisterAttached("OkCommand", typeof(ICommand)
-            , typeof(TagBox)
+            , typeof(SpecialisationBox)
             , new UIPropertyMetadata(null));
-        public static DependencyProperty StampProperty = DependencyProperty.RegisterAttached("Stamp", typeof(TagDto)
-            , typeof(TagBox)
+        public static DependencyProperty ReputationProperty = DependencyProperty.RegisterAttached("Specialisation", typeof(TagDto)
+            , typeof(SpecialisationBox)
             , new UIPropertyMetadata(null));
 
         #endregion Fields
 
         #region Constructors
 
-        public TagBox()
+        public SpecialisationBox()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion Constructors
@@ -60,20 +59,20 @@ namespace Probel.NDoctor.View.Core.Controls
 
         public string ButtonName
         {
-            get { return TagBox.GetButtonName(this); }
-            set { TagBox.SetButtonName(this, value); }
+            get { return SpecialisationBox.GetButtonName(this); }
+            set { SpecialisationBox.SetButtonName(this, value); }
         }
 
         public ICommand OkCommand
         {
-            get { return TagBox.GetOkCommand(this); }
-            set { TagBox.SetOkCommand(this, value); }
+            get { return SpecialisationBox.GetOkCommand(this); }
+            set { SpecialisationBox.SetOkCommand(this, value); }
         }
 
-        public TagDto Stamp
+        public TagDto Specialisation
         {
-            get { return TagBox.GetStamp(this); }
-            set { TagBox.SetStamp(this, value); }
+            get { return SpecialisationBox.GetSpecialisation(this); }
+            set { SpecialisationBox.SetSpecialisation(this, value); }
         }
 
         #endregion Properties
@@ -90,9 +89,9 @@ namespace Probel.NDoctor.View.Core.Controls
             return target.GetValue(OkCommandProperty) as ICommand;
         }
 
-        public static TagDto GetStamp(DependencyObject target)
+        public static TagDto GetSpecialisation(DependencyObject target)
         {
-            return target.GetValue(StampProperty) as TagDto;
+            return target.GetValue(ReputationProperty) as TagDto;
         }
 
         public static void SetButtonName(DependencyObject target, string value)
@@ -105,9 +104,9 @@ namespace Probel.NDoctor.View.Core.Controls
             target.SetValue(OkCommandProperty, value);
         }
 
-        public static void SetStamp(DependencyObject target, TagDto value)
+        public static void SetSpecialisation(DependencyObject target, TagDto value)
         {
-            target.SetValue(StampProperty, value);
+            target.SetValue(ReputationProperty, value);
         }
 
         #endregion Methods

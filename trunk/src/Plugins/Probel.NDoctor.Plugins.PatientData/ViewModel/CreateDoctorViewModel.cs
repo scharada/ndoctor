@@ -21,10 +21,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using System.Collections.ObjectModel;
     using System.Windows.Input;
 
-    using Probel.Helpers.Conversions;
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Helpers;
@@ -33,6 +31,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.Plugins.PatientData.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+
 
     public class CreateDoctorViewModel : BaseViewModel
     {
@@ -59,7 +58,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             this.Doctor = new DoctorDto();
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
 
-            Notifyer.SpecialisationChanged += (FluentMessageSender, e) => this.Refresh();
+            Notifyer.SpecialisationChanged += (sender, e) => this.Refresh();
 
             this.Refresh();
         }

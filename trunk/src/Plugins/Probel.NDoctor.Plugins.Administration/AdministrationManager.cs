@@ -45,19 +45,6 @@ namespace Probel.NDoctor.Plugins.Administration
 
         private ICommand navigateCommand;
         private Workbench workbench;
-        private Workbench Workbench
-        {
-            get
-            {
-                if (workbench == null)
-                {
-                    PluginContext.Host.Invoke(() => this.workbench = new Workbench());
-                    this.workbench.DataContext = new WorkbenchViewModel();
-                }
-
-                return this.workbench;
-            }
-        }
 
         #endregion Fields
 
@@ -73,6 +60,24 @@ namespace Probel.NDoctor.Plugins.Administration
         }
 
         #endregion Constructors
+
+        #region Properties
+
+        private Workbench Workbench
+        {
+            get
+            {
+                if (workbench == null)
+                {
+                    PluginContext.Host.Invoke(() => this.workbench = new Workbench());
+                    this.workbench.DataContext = new WorkbenchViewModel();
+                }
+
+                return this.workbench;
+            }
+        }
+
+        #endregion Properties
 
         #region Methods
 
@@ -120,12 +125,13 @@ namespace Probel.NDoctor.Plugins.Administration
             Mapper.CreateMap<TagViewModel, TagDto>();
             Mapper.CreateMap<TagDto, TagViewModel>();
         }
+
         private void Navigate()
         {
-
             PluginContext.Host.Navigate(this.Workbench);
             ((WorkbenchViewModel)this.Workbench.DataContext).Refresh();
         }
+
         #endregion Methods
     }
 }

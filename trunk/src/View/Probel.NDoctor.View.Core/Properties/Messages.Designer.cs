@@ -341,6 +341,24 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contact.
+        /// </summary>
+        internal static string Title_Contact {
+            get {
+                return ResourceManager.GetString("Title_Contact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact data.
+        /// </summary>
+        internal static string Title_ContactData {
+            get {
+                return ResourceManager.GetString("Title_ContactData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Informations.
         /// </summary>
         internal static string Title_Data {
@@ -373,6 +391,24 @@ namespace Probel.NDoctor.View.Core.Properties {
         internal static string Title_Fatal {
             get {
                 return ResourceManager.GetString("Title_Fatal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First name:.
+        /// </summary>
+        internal static string Title_FirstName {
+            get {
+                return ResourceManager.GetString("Title_FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gender:.
+        /// </summary>
+        internal static string Title_Gender {
+            get {
+                return ResourceManager.GetString("Title_Gender", resourceCulture);
             }
         }
         
@@ -413,6 +449,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last name:.
+        /// </summary>
+        internal static string Title_LastName {
+            get {
+                return ResourceManager.GetString("Title_LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Session.
         /// </summary>
         internal static string Title_Managers {
@@ -449,6 +494,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Private data.
+        /// </summary>
+        internal static string Title_PersonalData {
+            get {
+                return ResourceManager.GetString("Title_PersonalData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tél.:.
         /// </summary>
         internal static string Title_Phone {
@@ -463,6 +517,33 @@ namespace Probel.NDoctor.View.Core.Properties {
         internal static string Title_PostalCode {
             get {
                 return ResourceManager.GetString("Title_PostalCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mail:.
+        /// </summary>
+        internal static string Title_ProMail {
+            get {
+                return ResourceManager.GetString("Title_ProMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mobile:.
+        /// </summary>
+        internal static string Title_ProMobile {
+            get {
+                return ResourceManager.GetString("Title_ProMobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone:.
+        /// </summary>
+        internal static string Title_ProPhone {
+            get {
+                return ResourceManager.GetString("Title_ProPhone", resourceCulture);
             }
         }
         
@@ -508,6 +589,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         internal static string Title_SlotDuration {
             get {
                 return ResourceManager.GetString("Title_SlotDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specialisation:.
+        /// </summary>
+        internal static string Title_Specialisation {
+            get {
+                return ResourceManager.GetString("Title_Specialisation", resourceCulture);
             }
         }
         

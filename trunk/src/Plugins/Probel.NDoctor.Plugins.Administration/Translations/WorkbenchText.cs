@@ -47,6 +47,11 @@ namespace Probel.NDoctor.Plugins.Administration.Translations
             get { return Messages.Title_City; }
         }
 
+        public static string TitleDoctor
+        {
+            get { return Messages.Title_Doctor; }
+        }
+
         public static string TitleDrug
         {
             get { return Messages.Title_Drug; }

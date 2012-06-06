@@ -213,4 +213,12 @@
     <value>Impossible de supprimer cet élémént, il est toujours référencé ailleur dans les données</value>
     <comment>Impossible to delete this item. It s referenced somewhere else in the data.</comment>
   </data>
+  <data name="Msg_AskDelete" xml:space="preserve">
+    <value>Voulez-vous supprimer cet élément?</value>
+    <comment>Do you want to delete this item?</comment>
+  </data>
+  <data name="Title_Doctor" xml:space="preserve">
+    <value>Médecins</value>
+    <comment>Doctors</comment>
+  </data>
 </root>

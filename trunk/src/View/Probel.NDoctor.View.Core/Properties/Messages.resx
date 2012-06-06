@@ -342,4 +342,44 @@ The application will close. Check the logs for further  information</value>
     <value>Workday</value>
     <comment>Workday</comment>
   </data>
+  <data name="Title_Contact" xml:space="preserve">
+    <value>Contact</value>
+    <comment>Contact</comment>
+  </data>
+  <data name="Title_ContactData" xml:space="preserve">
+    <value>Contact data</value>
+    <comment>Contact data</comment>
+  </data>
+  <data name="Title_FirstName" xml:space="preserve">
+    <value>First name:</value>
+    <comment>First name:</comment>
+  </data>
+  <data name="Title_Gender" xml:space="preserve">
+    <value>Gender:</value>
+    <comment>Gender:</comment>
+  </data>
+  <data name="Title_LastName" xml:space="preserve">
+    <value>Last name:</value>
+    <comment>Last name:</comment>
+  </data>
+  <data name="Title_PersonalData" xml:space="preserve">
+    <value>Private data</value>
+    <comment>Private data</comment>
+  </data>
+  <data name="Title_ProMail" xml:space="preserve">
+    <value>Mail:</value>
+    <comment>Mail:</comment>
+  </data>
+  <data name="Title_ProMobile" xml:space="preserve">
+    <value>Mobile:</value>
+    <comment>Gsm:</comment>
+  </data>
+  <data name="Title_ProPhone" xml:space="preserve">
+    <value>Phone:</value>
+    <comment>Tél:</comment>
+  </data>
+  <data name="Title_Specialisation" xml:space="preserve">
+    <value>Specialisation:</value>
+    <comment>Specialisation:</comment>
+  </data>
 </root>

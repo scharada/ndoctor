@@ -613,7 +613,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public IList<TagDto> GetAllTags()
         {
             var tags = (from tag in this.Session.Query<Tag>()
-                        select tag).ToList();
+                        select tag)
+                            .OrderBy(e => e.Category)
+                            .ToList();
 
             return Mapper.Map<IList<Tag>, IList<TagDto>>(tags);
         }

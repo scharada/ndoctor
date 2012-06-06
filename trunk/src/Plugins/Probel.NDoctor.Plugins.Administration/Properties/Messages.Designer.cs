@@ -70,6 +70,15 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to delete this item?.
+        /// </summary>
+        internal static string Msg_AskDelete {
+            get {
+                return ResourceManager.GetString("Msg_AskDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Impossible to delete this item. It s referenced somewhere else in the data..
         /// </summary>
         internal static string Msg_CantDelete {
@@ -120,6 +129,15 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         internal static string Title_City {
             get {
                 return ResourceManager.GetString("Title_City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Médecins.
+        /// </summary>
+        internal static string Title_Doctor {
+            get {
+                return ResourceManager.GetString("Title_Doctor", resourceCulture);
             }
         }
         

@@ -160,7 +160,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             var found = (from p in this.Session.Query<Doctor>()
                          where p.Id == doctor.Id
                             || (doctor.FirstName.ToUpper() == p.FirstName.ToUpper()
-                            && doctor.LastName.ToUpper() == doctor.LastName.ToUpper())
+                            && doctor.LastName.ToUpper() == p.LastName.ToUpper())
                          select p).Count() > 0;
             if (found) throw new ExistingItemException();
 

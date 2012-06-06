@@ -16,6 +16,8 @@
 */
 namespace Probel.NDoctor.Domain.DTO.Components
 {
+    using System.Collections.Generic;
+
     using Probel.NDoctor.Domain.DTO.Objects;
 
     public interface IAdministrationComponent : IBaseComponent
@@ -50,6 +52,51 @@ namespace Probel.NDoctor.Domain.DTO.Components
         bool CanRemove(PathologyDto item);
 
         /// <summary>
+        /// Determines whether this instance can remove the specified drug dto.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can remove the specified drug dto; otherwise, <c>false</c>.
+        /// </returns>
+        bool CanRemove(DrugDto item);
+
+        /// <summary>
+        /// Determines whether this instance can remove the specified reputation dto.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can remove the specified reputation dto; otherwise, <c>false</c>.
+        /// </returns>
+        bool CanRemove(ReputationDto item);
+
+        /// <summary>
+        /// Determines whether this instance can remove the specified tag dto.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can remove the specified tag dto; otherwise, <c>false</c>.
+        /// </returns>
+        bool CanRemove(TagDto item);
+
+        /// <summary>
+        /// Determines whether this instance can remove the specified profession dto.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can remove the specified profession dto; otherwise, <c>false</c>.
+        /// </returns>
+        bool CanRemove(ProfessionDto item);
+
+        /// <summary>
+        /// Determines whether the specified doctor can be removed.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can remove the specified item; otherwise, <c>false</c>.
+        /// </returns>
+        bool CanRemove(DoctorDto item);
+
+        /// <summary>
         /// Creates the specified profession.
         /// </summary>
         /// <param name="profession">The tag.</param>
@@ -78,6 +125,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="insurance">The drug.</param>
         long Create(InsuranceDto insurance);
+
+        /// <summary>
+        /// Gets all doctors.
+        /// </summary>
+        /// <returns></returns>
+        IList<DoctorDto> GetAllDoctors();
 
         /// <summary>
         /// Removes the specified item.
@@ -122,6 +175,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         void Remove(TagDto item);
 
         /// <summary>
+        /// Removes the specified doctor.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        void Remove(DoctorDto item);
+
+        /// <summary>
         /// Updates the specified tag.
         /// </summary>
         /// <param name="tag">The tag.</param>
@@ -162,6 +221,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="insurance">The drug.</param>
         void Update(InsuranceDto insurance);
+
+        /// <summary>
+        /// Updates the specified doctor.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        void Update(DoctorDto item);
 
         #endregion Methods
     }
