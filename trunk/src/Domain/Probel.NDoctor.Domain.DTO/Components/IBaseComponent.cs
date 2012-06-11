@@ -271,27 +271,6 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <typeparam name="T">The type of the item to remove</typeparam>
         /// <param name="id">The id of the item to remove.</param>
-        void Remove(ProfessionDto item);
-
-        /// <summary>
-        /// Removes item with the specified id.
-        /// </summary>
-        /// <typeparam name="T">The type of the item to remove</typeparam>
-        /// <param name="id">The id of the item to remove.</param>
-        void Remove(ReputationDto item);
-
-        /// <summary>
-        /// Removes item with the specified id.
-        /// </summary>
-        /// <typeparam name="T">The type of the item to remove</typeparam>
-        /// <param name="id">The id of the item to remove.</param>
-        void Remove(TagDto item);
-
-        /// <summary>
-        /// Removes item with the specified id.
-        /// </summary>
-        /// <typeparam name="T">The type of the item to remove</typeparam>
-        /// <param name="id">The id of the item to remove.</param>
         void Remove(LightDoctorDto item);
 
         /// <summary>

@@ -16,7 +16,6 @@
 */
 namespace Probel.NDoctor.Plugins.Administration.ViewModel
 {
-    using Probel.NDoctor.Domain.DTO.Helpers;
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -31,6 +30,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Collections;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.Administration.Helpers;
     using Probel.NDoctor.Plugins.Administration.Properties;

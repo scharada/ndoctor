@@ -77,6 +77,13 @@ namespace Probel.NDoctor.Domain.DAL.Components
                     select t).Count() == 0;
         }
 
+        /// <summary>
+        /// Determines whether this instance can remove the specified drug dto.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can remove the specified drug dto; otherwise, <c>false</c>.
+        /// </returns>
         public bool CanRemove(DrugDto item)
         {
             return (from t in this.Session.Query<Patient>()
@@ -87,6 +94,13 @@ namespace Probel.NDoctor.Domain.DAL.Components
                     select t).Count() == 0;
         }
 
+        /// <summary>
+        /// Determines whether this instance can remove the specified reputation dto.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can remove the specified reputation dto; otherwise, <c>false</c>.
+        /// </returns>
         public bool CanRemove(ReputationDto item)
         {
             return (from t in this.Session.Query<Patient>()
@@ -94,9 +108,31 @@ namespace Probel.NDoctor.Domain.DAL.Components
                     select t).Count() == 0;
         }
 
+        /// <summary>
+        /// Determines whether this instance can remove the specified item.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can remove the specified item; otherwise, <c>false</c>.
+        /// </returns>
         public bool CanRemove(TagDto item)
         {
-            throw new NotImplementedException();
+            var entity = this.Session.Get<Tag>(item.Id);
+            switch (item.Category)
+            {
+                case TagCategory.Doctor: return this.CanRemoveSpecialisation(entity);
+                case TagCategory.Picture: return this.CanRemovePictureTag(entity);
+                case TagCategory.MedicalRecord: return this.CanRemoveRecordTag(entity);
+                case TagCategory.Patient: return this.CanRemovePersonTag(entity);
+                case TagCategory.Drug: return this.CanRemoveDrugTag(entity);
+                case TagCategory.Prescription: return this.CanRemovePrescriptionTag(entity);
+                case TagCategory.PrescriptionDocument: return this.CanRemovePrescriptionDocumentTag(entity);
+                case TagCategory.Pathology: return this.CanRemovePathologyTag(entity);
+                case TagCategory.Appointment: return this.CanRemoveAppointmentTag(entity);
+                default:
+                    Assert.FailOnEnumeration(item.Category);
+                    return false;
+            }
         }
 
         public bool CanRemove(ProfessionDto item)
@@ -179,6 +215,17 @@ namespace Probel.NDoctor.Domain.DAL.Components
             var entities = (from d in this.Session.Query<Doctor>()
                             select d).ToList();
             return Mapper.Map<IList<Doctor>, IList<DoctorDto>>(entities);
+        }
+
+        /// <summary>
+        /// Removes item with the specified id.
+        /// </summary>
+        /// <param name="item"></param>
+        public void Remove(TagDto item)
+        {
+            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            if (!this.CanRemove(item)) throw new ReferencialIntegrityException(Messages.Ex_ReferencialIntegrityException_Deletion);
+            this.Remove<Tag>(item);
         }
 
         /// <summary>
@@ -314,6 +361,69 @@ namespace Probel.NDoctor.Domain.DAL.Components
         {
             var entity = Mapper.Map<DoctorDto, Doctor>(item);
             this.Session.Update(entity);
+        }
+
+        private bool CanRemoveAppointmentTag(Tag entity)
+        {
+            return (from p in this.Session.Query<Appointment>()
+                    where p.Tag.Id == entity.Id
+                    select p).Count() == 0;
+        }
+
+        private bool CanRemoveDrugTag(Tag entity)
+        {
+            return (from p in this.Session.Query<Drug>()
+                    where p.Tag.Id == entity.Id
+                    select p).Count() == 0;
+        }
+
+        private bool CanRemovePathologyTag(Tag entity)
+        {
+            return (from p in this.Session.Query<Pathology>()
+                    where p.Tag.Id == entity.Id
+                    select p).Count() == 0;
+        }
+
+        private bool CanRemovePersonTag(Tag entity)
+        {
+            return (from p in this.Session.Query<Person>()
+                    where p.Tag.Id == entity.Id
+                    select p).Count() == 0;
+        }
+
+        private bool CanRemovePictureTag(Tag entity)
+        {
+            return (from p in this.Session.Query<Picture>()
+                    where p.Tag.Id == entity.Id
+                    select p).Count() == 0;
+        }
+
+        private bool CanRemovePrescriptionDocumentTag(Tag entity)
+        {
+            return (from p in this.Session.Query<Prescription>()
+                    where p.Tag.Id == entity.Id
+                    select p).Count() == 0;
+        }
+
+        private bool CanRemovePrescriptionTag(Tag entity)
+        {
+            return (from p in this.Session.Query<Prescription>()
+                    where p.Tag.Id == entity.Id
+                    select p).Count() == 0;
+        }
+
+        private bool CanRemoveRecordTag(Tag entity)
+        {
+            return (from r in this.Session.Query<MedicalRecord>()
+                    where r.Tag.Id == entity.Id
+                    select r).Count() == 0;
+        }
+
+        private bool CanRemoveSpecialisation(Tag tag)
+        {
+            return (from d in this.Session.Query<Doctor>()
+                    where d.Specialisation.Id == tag.Id
+                    select d).Count() == 0;
         }
 
         #endregion Methods
