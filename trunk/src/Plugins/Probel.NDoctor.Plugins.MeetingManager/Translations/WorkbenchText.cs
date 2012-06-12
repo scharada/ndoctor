@@ -22,9 +22,49 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Translations
     {
         #region Properties
 
+        public static string AddMeeting
+        {
+            get { return Messages.Lbl_AddMeeting; }
+        }
+
+        public static string And
+        {
+            get { return Messages.Lbl_And; }
+        }
+
+        public static string Between
+        {
+            get { return Messages.Lbl_Between; }
+        }
+
+        public static string BtnAdd
+        {
+            get { return Messages.Btn_Add; }
+        }
+
         public static string BtnSearch
         {
             get { return Messages.Btn_Search; }
+        }
+
+        public static string FreeSlots
+        {
+            get { return Messages.Lbl_FreeSlots; }
+        }
+
+        public static string HeaderAdd
+        {
+            get { return Messages.Header_Add; }
+        }
+
+        public static string HeaderRemove
+        {
+            get { return Messages.Header_Remove; }
+        }
+
+        public static string SelectedPatient
+        {
+            get { return Messages.Lbl_SelectedPatient; }
         }
 
         public static string TitleWatermark

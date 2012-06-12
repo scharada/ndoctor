@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="Probel.NDoctor.Plugins.MeetingManager.View.AddMeetingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
+             
+             xmlns:text="clr-namespace:Probel.NDoctor.Plugins.MeetingManager.Translations"
+             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+             
+             mc:Ignorable="d" 
+             Height="300" 
+             Width="450">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Column="0"
+                   LastChildFill="True">
+            <DockPanel LastChildFill="True"
+                       DockPanel.Dock="Top">
+                <Border Style="{StaticResource BorderStyle}"
+                        DockPanel.Dock="Right">
+                    <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnSearch}}"
+                            Command="{Binding Path=SearchCommand}"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}">
+                    <toolkit:WatermarkTextBox Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}">
+                        <toolkit:WatermarkTextBox.Watermark>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
+                                       Height="15"
+                                       Width="15" />
+                                <TextBlock Text="{Binding Source={x:Static Member=text:WorkbenchText.TitleWatermark}}"
+                                           Margin="4,0,0,0"/>
+                            </StackPanel>
+                        </toolkit:WatermarkTextBox.Watermark>
+                    </toolkit:WatermarkTextBox>
+                </Border>
+            </DockPanel>
+            <ListView DockPanel.Dock="Bottom"
+                      ItemsSource="{Binding FoundPatients}"
+                      DisplayMemberPath="DisplayedName"
+                      SelectedItem="{Binding SelectedPatient}"/>
+        </DockPanel>
+        <DockPanel Grid.Column="1"
+                   LastChildFill="True">
+            <StackPanel DockPanel.Dock="top"
+                        Orientation="Horizontal">
+                <Label Content="{Binding Source={x:Static Member=text:WorkbenchText.SelectedPatient}}"/>
+                <Label Content="{Binding SelectedPatient.DisplayedName}"/>
+            </StackPanel>
+            <Grid DockPanel.Dock="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <DockPanel Grid.Column="0"
+                                   LastChildFill="True">
+                    <Border DockPanel.Dock="Top" Style="{StaticResource BorderStyle}">
+                        <ComboBox ItemsSource="{Binding AppointmentTags}"
+                                          SelectedItem="{Binding SelectedAppointmentTag}"
+                                          DisplayMemberPath="Name"/>
+                    </Border>
+                    <DockPanel DockPanel.Dock="Top">
+                        <Label Width="60" DockPanel.Dock="Left" Content="{Binding Source={x:Static Member=text:WorkbenchText.Between}}"/>
+                        <DatePicker SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}"/>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Top">
+                        <Label Width="60" DockPanel.Dock="Left" Content="{Binding Source={x:Static Member=text:WorkbenchText.And}}"/>
+                        <DatePicker SelectedDate="{Binding EndDate, UpdateSourceTrigger=PropertyChanged}"/>
+                    </DockPanel>
+                    <Border Style="{StaticResource BorderStyle}"
+                                    DockPanel.Dock="Top">
+                        <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnSearch}}"
+                                        Command="{Binding FindFreeSlotsCommand}"/>
+                    </Border>
+                    <Label DockPanel.Dock="Top" Content="{Binding Source={x:Static Member=text:WorkbenchText.FreeSlots}}"/>
+                    <Border Style="{StaticResource BorderStyle}"
+                                    DockPanel.Dock="Bottom">
+                        <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnAdd}}"
+                                        Command="{Binding AddAppointmentCommand}"/>
+                    </Border>
+                    <ListView DockPanel.Dock="Bottom"
+                                      ItemsSource="{Binding FreeSlots}"
+                                      SelectedItem="{Binding SelectedSlot}"
+                                      DisplayMemberPath="TimeToDisplay"/>
+                </DockPanel>
+            </Grid>
+        </DockPanel>
+
+    </Grid>
+</UserControl>

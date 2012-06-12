@@ -161,6 +161,26 @@
     <value>Supprimer</value>
     <comment>Remove</comment>
   </data>
+  <data name="Lbl_AddMeeting" xml:space="preserve">
+    <value>Ajouter un rendez-vous</value>
+    <comment>Add a appointment</comment>
+  </data>
+  <data name="Lbl_And" xml:space="preserve">
+    <value>Et:</value>
+    <comment>Et:</comment>
+  </data>
+  <data name="Lbl_Between" xml:space="preserve">
+    <value>Entre:</value>
+    <comment>Between:</comment>
+  </data>
+  <data name="Lbl_FreeSlots" xml:space="preserve">
+    <value>Possibilités:</value>
+    <comment>Free slots:</comment>
+  </data>
+  <data name="Lbl_SelectedPatient" xml:space="preserve">
+    <value>Patient sélectionné:</value>
+    <comment>Selected patient:</comment>
+  </data>
   <data name="Menu_Actions" xml:space="preserve">
     <value>Action</value>
     <comment>Action</comment>
@@ -198,8 +218,8 @@
     <comment>{0} from {1} to {2} {3}</comment>
   </data>
   <data name="Title_ManageMeeting" xml:space="preserve">
-    <value>Gérer les rendez-vous</value>
-    <comment>Manage meetings</comment>
+    <value>Ajouter un rendez-vous</value>
+    <comment>Add a appointment</comment>
   </data>
   <data name="Title_MeetingsManager" xml:space="preserve">
     <value>Agenda</value>

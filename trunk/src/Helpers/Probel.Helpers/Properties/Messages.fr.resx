@@ -129,4 +129,8 @@
     <value>Le chemin d'accès ne peut pas être null ou vide</value>
     <comment>The path shouldn't be null or empty</comment>
   </data>
+  <data name="Title_FromTo1" xml:space="preserve">
+    <value>{0} de {1} à {2} {3}</value>
+    <comment>{0} from {1} to {2} {3}</comment>
+  </data>
 </root>

@@ -18,6 +18,7 @@ namespace Probel.Helpers.Data
 {
     using System;
 
+    using Probel.Helpers.Properties;
     using Probel.Mvvm.DataBinding;
 
     /// <summary>
@@ -69,6 +70,22 @@ namespace Probel.Helpers.Data
             get
             {
                 return this.EndTime - this.StartTime;
+            }
+        }
+
+        public string TimeToDisplay
+        {
+            get
+            {
+                var dateFrom = this.StartTime.ToShortDateString();
+                var dateTo = (this.StartTime.Date == this.EndTime.Date)
+                    ? string.Empty
+                    : this.EndTime.ToShortDateString();
+
+                var timeFrom = this.StartTime.ToString("HH:mm");
+                var timeTo = this.EndTime.ToString("HH:mm");
+
+                return string.Format(Messages.Title_FromTo, dateFrom, timeFrom, dateTo, timeTo);
             }
         }
 

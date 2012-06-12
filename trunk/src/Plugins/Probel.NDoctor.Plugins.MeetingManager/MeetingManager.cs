@@ -131,7 +131,8 @@ namespace Probel.NDoctor.Plugins.MeetingManager
             PluginContext.Host.AddContextualMenu(this.contextualMenu);
             PluginContext.Host.AddTab(tab);
 
-            ICommand searchCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_ManageMeeting, new SearchView()));
+            //ICommand searchCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_ManageMeeting, new SearchView()));
+            ICommand searchCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_ManageMeeting, new AddMeetingView()));
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_ManageMeeting, imgUri.FormatWith("Add"), searchCommand) { Order = 1, });
         }
 
@@ -142,22 +143,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager
 
         private void ConfigureAutoMapper()
         {
-            Mapper.CreateMap<LightPatientDto, PatientViewModel>()
-                .ForMember(src => src.Patient, opt => opt.MapFrom(dest => dest));
-
-            Mapper.CreateMap<DateRange, DateRangeViewModel>()
-                  .ConstructUsing(obj => new DateRangeViewModel(obj.StartTime, obj.EndTime, PluginContext.Host));
-
-            Mapper.CreateMap<DateRangeViewModel, AppointmentDto>()
-                .ForMember(src => src.User, opt => opt.MapFrom(dest => PluginContext.Host.ConnectedUser))
-                .ForMember(src => src.Tag, opt => opt.MapFrom(dest => dest.SelectedTag));
-
-            Mapper.CreateMap<AppointmentDto, DateRangeViewModel>()
-                .ForMember(src => src.SelectedTag, opt => opt.MapFrom(dest => dest.Tag))
-                .ConstructUsing(obj => new DateRangeViewModel(obj.StartTime, obj.EndTime, PluginContext.Host));
-
-            Mapper.CreateMap<DateRangeViewModel, DateRange>();
-
             Mapper.CreateMap<AppointmentDto, Appointment>();
         }
 

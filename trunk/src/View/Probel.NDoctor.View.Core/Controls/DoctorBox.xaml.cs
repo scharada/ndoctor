@@ -26,9 +26,10 @@ namespace Probel.NDoctor.View.Core.Controls
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
-    using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.NDoctor.Domain.DTO.Objects;
+
     using Probel.NDoctor.Domain.DTO.Helpers;
+    using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.View.Plugins.Helpers;
 
     /// <summary>
     /// Interaction logic for DoctorBox.xaml
@@ -62,6 +63,7 @@ namespace Probel.NDoctor.View.Core.Controls
 
             InitializeComponent();
         }
+
         #endregion Constructors
 
         #region Properties
@@ -90,7 +92,10 @@ namespace Probel.NDoctor.View.Core.Controls
             set { DoctorBox.SetSpecialisations(this, value); }
         }
 
-        private ObservableCollection<Tuple<string, Gender>> Genders { get; set; }
+        private ObservableCollection<Tuple<string, Gender>> Genders
+        {
+            get; set;
+        }
 
         #endregion Properties
 
@@ -137,6 +142,5 @@ namespace Probel.NDoctor.View.Core.Controls
         }
 
         #endregion Methods
-
     }
 }
