@@ -194,6 +194,10 @@ Path: {1}</value>
     <value>Error</value>
     <comment>Error</comment>
   </data>
+  <data name="Title_Information" xml:space="preserve">
+    <value>Information</value>
+    <comment>Information</comment>
+  </data>
   <data name="Title_Warning" xml:space="preserve">
     <value>Warning</value>
     <comment>Warning</comment>

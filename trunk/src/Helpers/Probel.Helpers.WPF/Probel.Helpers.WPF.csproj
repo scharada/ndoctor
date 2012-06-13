@@ -67,7 +67,6 @@
     <Compile Include="Calendar\Controls\TimeSlotPanel.cs" />
     <Compile Include="Calendar\Model\Appointment.cs" />
     <Compile Include="Calendar\Model\AppointmentCollection.cs" />
-    <Compile Include="Calendar\Model\BindableObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Designer.cs" />

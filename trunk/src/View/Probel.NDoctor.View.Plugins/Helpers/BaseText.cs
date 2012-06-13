@@ -58,5 +58,7 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         }
 
         #endregion Properties
+
+        public static string Information { get { return Messages.Title_Information; } }
     }
 }

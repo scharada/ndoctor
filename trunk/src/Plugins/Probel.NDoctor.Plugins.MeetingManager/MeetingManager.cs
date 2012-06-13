@@ -31,6 +31,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager
     using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.MeetingManager.Helpers;
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.Plugins.MeetingManager.View;
     using Probel.NDoctor.Plugins.MeetingManager.ViewModel;
@@ -131,9 +132,11 @@ namespace Probel.NDoctor.Plugins.MeetingManager
             PluginContext.Host.AddContextualMenu(this.contextualMenu);
             PluginContext.Host.AddTab(tab);
 
-            //ICommand searchCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_ManageMeeting, new SearchView()));
-            ICommand searchCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_ManageMeeting, new AddMeetingView()));
-            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_ManageMeeting, imgUri.FormatWith("Add"), searchCommand) { Order = 1, });
+            ICommand addCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddMeeting, new AddMeetingView()));
+            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddMeeting, imgUri.FormatWith("Add"), addCommand) { Order = 1, });
+
+            ICommand removeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_RemoveMeeting, new RemoveMeetingView()));
+            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_RemoveMeeting, imgUri.FormatWith("Delete"), removeCommand) { Order = 2, });
         }
 
         private bool CanNavigate()
@@ -158,6 +161,8 @@ namespace Probel.NDoctor.Plugins.MeetingManager
                     this.contextualMenu.IsVisible = true;
                     this.contextualMenu.TabDataCollection[0].IsSelected = true;
                 }
+
+                Notifyer.OnRefreshed(this);
             }
             catch (Exception ex)
             {

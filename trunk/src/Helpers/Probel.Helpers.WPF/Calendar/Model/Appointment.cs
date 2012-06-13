@@ -19,13 +19,15 @@ namespace Probel.Helpers.WPF.Calendar.Model
     using System;
 
     using Probel.Helpers.Data;
+    using Probel.Mvvm.DataBinding;
 
-    public class Appointment : BindableObject
+    public class Appointment : ObservableObject
     {
         #region Fields
 
         private string body;
         private DateTime endTime;
+        private long id;
         private string location;
         private DateTime startTime;
         private string subject;
@@ -42,7 +44,7 @@ namespace Probel.Helpers.WPF.Calendar.Model
                 if (body != value)
                 {
                     body = value;
-                    RaisePropertyChanged("Body");
+                    this.OnPropertyChanged(() => this.Body);
                 }
             }
         }
@@ -62,8 +64,18 @@ namespace Probel.Helpers.WPF.Calendar.Model
                 {
                     endTime = value;
                     this.SetDateRange();
-                    RaisePropertyChanged("EndTime");
+                    this.OnPropertyChanged(() => EndTime);
                 }
+            }
+        }
+
+        public long Id
+        {
+            get { return this.id; }
+            set
+            {
+                this.id = value;
+                this.OnPropertyChanged(() => this.Id);
             }
         }
 
@@ -84,7 +96,7 @@ namespace Probel.Helpers.WPF.Calendar.Model
                 if (location != value)
                 {
                     location = value;
-                    RaisePropertyChanged("Location");
+                    this.OnPropertyChanged(() => Location);
                 }
             }
         }
@@ -98,7 +110,7 @@ namespace Probel.Helpers.WPF.Calendar.Model
                 {
                     startTime = value;
                     this.SetDateRange();
-                    RaisePropertyChanged("StartTime");
+                    this.OnPropertyChanged(() => StartTime);
                 }
             }
         }
@@ -111,7 +123,7 @@ namespace Probel.Helpers.WPF.Calendar.Model
                 if (subject != value)
                 {
                     subject = value;
-                    RaisePropertyChanged("Subject");
+                    this.OnPropertyChanged(() => Subject);
                 }
             }
         }

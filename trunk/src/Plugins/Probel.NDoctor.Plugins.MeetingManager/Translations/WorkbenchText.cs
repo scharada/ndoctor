@@ -47,6 +47,11 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Translations
             get { return Messages.Btn_Search; }
         }
 
+        public static string BusySlots
+        {
+            get { return Messages.Lbl_BusySlots; }
+        }
+
         public static string FreeSlots
         {
             get { return Messages.Lbl_FreeSlots; }
@@ -60,6 +65,11 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Translations
         public static string HeaderRemove
         {
             get { return Messages.Header_Remove; }
+        }
+
+        public static string Remove
+        {
+            get { return Messages.Btn_Remove; }
         }
 
         public static string SelectedPatient

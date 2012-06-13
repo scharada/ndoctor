@@ -26,7 +26,10 @@ namespace Probel.Helpers.WPF.Behaviours
     {
         #region Fields
 
-        public static readonly DependencyProperty SelectionChangedProperty = DependencyProperty.RegisterAttached("SelectionChanged", typeof(ICommand), typeof(SelectorBehaviour), new UIPropertyMetadata(null, SelectionChanged));
+        public static readonly DependencyProperty SelectionChangedProperty = DependencyProperty.RegisterAttached("SelectionChanged"
+            , typeof(ICommand)
+            , typeof(SelectorBehaviour)
+            , new UIPropertyMetadata(null, SelectionChanged));
 
         private static Dictionary<DependencyObject, Behaviour> behaviours = new Dictionary<DependencyObject, Behaviour>();
 

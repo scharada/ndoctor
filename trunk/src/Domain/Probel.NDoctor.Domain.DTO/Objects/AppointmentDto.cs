@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System;
 
     using Probel.Mvvm;
+    using Probel.NDoctor.Domain.DTO.Properties;
 
     [Serializable]
     public class AppointmentDto : BaseDto
@@ -97,6 +98,22 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.subject = value;
                 this.OnPropertyChanged(() => this.Subject);
+            }
+        }
+
+        public string TimeToDisplay
+        {
+            get
+            {
+                var dateFrom = this.StartTime.ToShortDateString();
+                var dateTo = (this.StartTime.Date == this.EndTime.Date)
+                    ? string.Empty
+                    : this.EndTime.ToShortDateString();
+
+                var timeFrom = this.StartTime.ToString("HH:mm");
+                var timeTo = this.EndTime.ToString("HH:mm");
+
+                return string.Format(Messages.Title_FromTo, dateFrom, timeFrom, dateTo, timeTo);
             }
         }
 

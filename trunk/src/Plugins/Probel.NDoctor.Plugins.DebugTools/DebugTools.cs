@@ -18,6 +18,7 @@ namespace Probel.NDoctor.Plugins.DebugTools
 {
     using System;
     using System.ComponentModel.Composition;
+    using System.Diagnostics;
     using System.IO;
     using System.Reflection;
     using System.Text;
@@ -26,7 +27,6 @@ namespace Probel.NDoctor.Plugins.DebugTools
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using System.Diagnostics;
 
     [Export(typeof(IPlugin))]
     public class DebugTools : Plugin

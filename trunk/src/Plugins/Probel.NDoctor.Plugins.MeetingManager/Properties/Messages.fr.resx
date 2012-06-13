@@ -173,9 +173,17 @@
     <value>Entre:</value>
     <comment>Between:</comment>
   </data>
+  <data name="Lbl_BusySlots" xml:space="preserve">
+    <value>Rendez-vous pris:</value>
+    <comment>Meeting list</comment>
+  </data>
   <data name="Lbl_FreeSlots" xml:space="preserve">
     <value>Possibilités:</value>
     <comment>Free slots:</comment>
+  </data>
+  <data name="Lbl_RemoveMeeting" xml:space="preserve">
+    <value>Supprimer un rendez-vous</value>
+    <comment>Remove a meeting</comment>
   </data>
   <data name="Lbl_SelectedPatient" xml:space="preserve">
     <value>Patient sélectionné:</value>
@@ -205,9 +213,17 @@
     <value>Un rendez-vous a été supprimé.</value>
     <comment>An appointment has just been removed.</comment>
   </data>
+  <data name="Msg_NothingFound" xml:space="preserve">
+    <value>Aucun résultat</value>
+    <comment>No result</comment>
+  </data>
   <data name="Msg_SearchProcessed" xml:space="preserve">
     <value>Recherche effectuée.</value>
     <comment>Search processed.</comment>
+  </data>
+  <data name="Title_AddMeeting" xml:space="preserve">
+    <value>Ajouter un rendez-vous</value>
+    <comment>Add a appointment</comment>
   </data>
   <data name="Title_Calendar" xml:space="preserve">
     <value>Agenda</value>
@@ -217,10 +233,6 @@
     <value>{0} de {1} à {2} {3}</value>
     <comment>{0} from {1} to {2} {3}</comment>
   </data>
-  <data name="Title_ManageMeeting" xml:space="preserve">
-    <value>Ajouter un rendez-vous</value>
-    <comment>Add a appointment</comment>
-  </data>
   <data name="Title_MeetingsManager" xml:space="preserve">
     <value>Agenda</value>
     <comment>Calendar</comment>
@@ -228,6 +240,10 @@
   <data name="Title_Question" xml:space="preserve">
     <value>Question</value>
     <comment>Question</comment>
+  </data>
+  <data name="Title_RemoveMeeting" xml:space="preserve">
+    <value>Supprimer un rendez-vous</value>
+    <comment>Remove an appointment</comment>
   </data>
   <data name="Title_SearchWatermark" xml:space="preserve">
     <value>Nom et/ou prénom</value>

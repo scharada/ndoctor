@@ -22,52 +22,25 @@
 namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 {
     using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
-    using System.Text;
     using System.Windows.Input;
 
-    using Probel.Helpers.Data;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.DAL.Components;
-    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.MeetingManager.Helpers;
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.View.Core.Helpers;
-    using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class AddMeetingViewModel : BaseViewModel
+    public class AddMeetingViewModel : MeetingViewModel
     {
-        #region Fields
-
-        private ICalendarComponent component = PluginContext.ComponentFactory.GetInstance<ICalendarComponent>();
-        private string criteria;
-        private DateTime endDate;
-        private TagDto selectedAppointmentTag;
-        private LightPatientDto selectedPatient;
-        private DateRange selectedSlot;
-        private DateTime startDate;
-
-        #endregion Fields
-
         #region Constructors
 
         public AddMeetingViewModel()
         {
-            this.StartDate
-                = this.startDate
-                = DateTime.Today;
-
             this.FreeSlots = new TimeSlotCollection();
-            this.FoundPatients = new ObservableCollection<LightPatientDto>();
-            this.AppointmentTags = new ObservableCollection<TagDto>();
-
-            this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());
             this.AddAppointmentCommand = new RelayCommand(() => this.AddAppointment(), () => this.CanAddAppointment());
-            this.FindFreeSlotsCommand = new RelayCommand(() => this.FindFreeSlots(), () => this.CanFindFreeSlots());
+            this.FindFreeSlotsCommand = new RelayCommand(() => this.FindFreeSlots(), () => this.CanFindSlots());
         }
 
         #endregion Constructors
@@ -80,96 +53,10 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             private set;
         }
 
-        public ObservableCollection<TagDto> AppointmentTags
-        {
-            get;
-            private set;
-        }
-
-        public string Criteria
-        {
-            get { return this.criteria; }
-            set
-            {
-                this.criteria = value;
-                this.OnPropertyChanged(() => Criteria);
-            }
-        }
-
-        public DateTime EndDate
-        {
-            get { return this.startDate; }
-            set
-            {
-                this.startDate = value;
-                this.OnPropertyChanged(() => EndDate);
-            }
-        }
-
         public ICommand FindFreeSlotsCommand
         {
             get;
             private set;
-        }
-
-        public ObservableCollection<LightPatientDto> FoundPatients
-        {
-            get;
-            private set;
-        }
-
-        public TimeSlotCollection FreeSlots
-        {
-            get;
-            private set;
-        }
-
-        public ICommand SearchCommand
-        {
-            get;
-            private set;
-        }
-
-        public TagDto SelectedAppointmentTag
-        {
-            get { return this.selectedAppointmentTag; }
-            set
-            {
-                this.selectedAppointmentTag = value;
-                this.OnPropertyChanged(() => SelectedAppointmentTag);
-            }
-        }
-
-        public LightPatientDto SelectedPatient
-        {
-            get { return this.selectedPatient; }
-            set
-            {
-                this.selectedPatient = value;
-                this.SelectedSlot = null;
-                this.FreeSlots.Clear();
-                this.OnPropertyChanged(() => SelectedPatient);
-            }
-        }
-
-        public DateRange SelectedSlot
-        {
-            get { return this.selectedSlot; }
-            set
-            {
-                this.selectedSlot = value;
-                this.OnPropertyChanged(() => SelectedSlot);
-            }
-        }
-
-        public DateTime StartDate
-        {
-            get { return this.endDate; }
-            set
-            {
-                this.endDate = value;
-                this.OnPropertyChanged(() => StartDate);
-            }
         }
 
         #endregion Properties
@@ -180,20 +67,22 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         {
             try
             {
-                using (this.component.UnitOfWork)
+                using (this.Component.UnitOfWork)
                 {
                     var appointment = new AppointmentDto()
                     {
                         StartTime = this.SelectedSlot.StartTime,
                         EndTime = this.SelectedSlot.EndTime,
-                        Subject = this.SelectedPatient.DisplayedName,
+                        Subject = string.Format("{0} - {1}", this.SelectedAppointmentTag.Name, this.SelectedPatient.DisplayedName),
                         User = PluginContext.Host.ConnectedUser,
                         Tag = this.SelectedAppointmentTag,
                     };
-                    this.component.Create(appointment, this.SelectedPatient);
-                    PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_AppointmentAdded);
-                    InnerWindow.Close();
+                    this.Component.Create(appointment, this.SelectedPatient);
                 }
+
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_AppointmentAdded);
+                Notifyer.OnRefreshed(this);
+                InnerWindow.Close();
             }
             catch (Exception ex) { this.HandleError(ex); }
         }
@@ -204,50 +93,30 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                 && this.SelectedAppointmentTag != null;
         }
 
-        private bool CanFindFreeSlots()
-        {
-            if (this.SelectedPatient == null) return false;
-            else if (this.StartDate < DateTime.Today || this.EndDate < DateTime.Today) return false;
-            else if (this.EndDate < this.StartDate) return false;
-            else return true;
-        }
-
-        private bool CanSearch()
-        {
-            return !string.IsNullOrWhiteSpace(this.criteria);
-        }
-
         private void FindFreeSlots()
         {
             try
             {
                 var freeSlots = new TimeSlotCollection();
-                using (this.component.UnitOfWork)
+                using (this.Component.UnitOfWork)
                 {
-                    freeSlots = this.component.FindSlots(this.StartDate, this.EndDate, PluginContext.Host.Workday);
+                    freeSlots = this.Component.FindSlots(this.StartDate, this.EndDate, PluginContext.Host.Workday);
                 }
                 this.FreeSlots.Refill(freeSlots);
             }
             catch (Exception ex) { this.HandleError(ex); }
         }
 
-        private void Search()
+        public TimeSlotCollection FreeSlots
         {
-            try
-            {
-                IList<LightPatientDto> patients;
-                IList<TagDto> tags;
-                using (component.UnitOfWork)
-                {
-                    patients = this.component.FindPatientsByNameLight(this.Criteria, SearchOn.FirstAndLastName);
-                    tags = this.component.FindTags(TagCategory.Appointment);
-                }
-                this.FoundPatients.Refill(patients);
-                this.AppointmentTags.Refill(tags);
-            }
-            catch (Exception ex) { this.HandleError(ex); }
+            get;
+            private set;
         }
-
         #endregion Methods
+
+        protected override void ClearSlotZone()
+        {
+            this.FreeSlots.Clear();
+        }
     }
 }

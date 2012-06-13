@@ -85,9 +85,14 @@
     </Compile>
     <Compile Include="Translations\WorkbenchText.cs" />
     <Compile Include="ViewModel\AddMeetingViewModel.cs" />
+    <Compile Include="ViewModel\MeetingViewModel.cs" />
+    <Compile Include="ViewModel\RemoveMeetingViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
     <Compile Include="View\AddMeetingView.xaml.cs">
       <DependentUpon>AddMeetingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RemoveMeetingView.xaml.cs">
+      <DependentUpon>RemoveMeetingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Workbench.xaml.cs">
       <DependentUpon>Workbench.xaml</DependentUpon>
@@ -142,6 +147,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\RemoveMeetingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Workbench.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -155,6 +164,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

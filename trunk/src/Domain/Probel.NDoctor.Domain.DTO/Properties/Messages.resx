@@ -255,4 +255,8 @@
     <value>Prescription document</value>
     <comment>Prescription document</comment>
   </data>
+  <data name="Title_FromTo" xml:space="preserve">
+    <value>{0} from {1} to {2} {3}</value>
+    <comment>{0} from {1} to {2} {3}</comment>
+  </data>
 </root>
