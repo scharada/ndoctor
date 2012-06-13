@@ -21,6 +21,9 @@ namespace Probel.NDoctor.Domain.DTO.Components
 
     using Probel.NDoctor.Domain.DTO.Objects;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IPrescriptionComponent : IBaseComponent
     {
         #region Methods
@@ -41,6 +44,24 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <returns>A list of prescriptions</returns>
         IList<PrescriptionDocumentDto> FindPrescriptionsByDates(LightPatientDto patient, DateTime start, DateTime end);
 
+        /// <summary>
+        /// Removes the specified item but doesn't touch the drugs liked to it.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        void Remove(PrescriptionDocumentDto item);
+
+        /// <summary>
+        /// Removes the specified prescription.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        void Remove(PrescriptionDto item);
+
         #endregion Methods
+
+        /// <summary>
+        /// Updates the specified prescription.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        void Update(PrescriptionDto item);
     }
 }

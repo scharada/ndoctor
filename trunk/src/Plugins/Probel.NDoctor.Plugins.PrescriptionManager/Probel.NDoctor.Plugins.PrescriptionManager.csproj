@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\Notifyer.cs" />
+    <Compile Include="Helpers\SearchService.cs" />
     <Compile Include="PrescriptionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -200,6 +201,12 @@
   <ItemGroup>
     <Resource Include="Images\Drug.png" />
     <Resource Include="Images\DrugType.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Edit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

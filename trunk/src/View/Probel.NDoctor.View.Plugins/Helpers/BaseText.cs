@@ -42,6 +42,11 @@ namespace Probel.NDoctor.View.Plugins.Helpers
             get { return Messages.Title_Error; }
         }
 
+        public static string Information
+        {
+            get { return Messages.Title_Information; }
+        }
+
         public static string OK
         {
             get { return Messages.Btn_OK; }
@@ -52,6 +57,11 @@ namespace Probel.NDoctor.View.Plugins.Helpers
             get { return Messages.Question; }
         }
 
+        public static string Question_Delete
+        {
+            get { return Messages.Question_Delete; }
+        }
+
         public static string Warning
         {
             get { return Messages.Title_Warning; }
@@ -59,6 +69,10 @@ namespace Probel.NDoctor.View.Plugins.Helpers
 
         #endregion Properties
 
-        public static string Information { get { return Messages.Title_Information; } }
+
+        public static string Edit
+        {
+            get { return Messages.Title_Edit; }
+        }
     }
 }

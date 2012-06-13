@@ -62,6 +62,42 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return Mapper.Map<IList<PrescriptionDocument>, IList<PrescriptionDocumentDto>>(prescriptions);
         }
 
+        /// <summary>
+        /// Removes the specified item but doesn't touch the drugs liked to it.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        public void Remove(PrescriptionDocumentDto item)
+        {
+            foreach (var prescription in item.Prescriptions)
+            {
+                this.Remove<Prescription>(item);
+            }
+
+            this.Remove<PrescriptionDocument>(item);
+        }
+
+        /// <summary>
+        /// Removes the specified prescription.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        public void Remove(PrescriptionDto item)
+        {
+            this.Remove<Prescription>(item);
+        }
+
         #endregion Methods
+
+
+        /// <summary>
+        /// Updates the specified prescription.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        public void Update(PrescriptionDto item)
+        {
+            var entity = this.Session.Get<Prescription>(item.Id);
+            Mapper.Map<PrescriptionDto, Prescription>(item, entity);
+
+            this.Session.Update(entity);
+        }
     }
 }

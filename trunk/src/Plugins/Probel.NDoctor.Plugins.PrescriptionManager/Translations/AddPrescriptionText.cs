@@ -17,11 +17,16 @@
 namespace Probel.NDoctor.Plugins.PrescriptionManager.Translations
 {
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
+    using Probel.NDoctor.View.Plugins.Helpers;
 
     public static class AddPrescriptionText
     {
         #region Properties
 
+        public static string Edit
+        {
+            get { return Messages.Title_EditPrescription; }
+        }
         public static string BtnAdd
         {
             get { return Messages.Btn_Add; }
@@ -45,6 +50,11 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Translations
         public static string ColNotes
         {
             get { return Messages.Col_Notes; }
+        }
+
+        public static string Remove
+        {
+            get { return Messages.Btn_Remove; }
         }
 
         public static string TitleAddNotesHere

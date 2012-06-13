@@ -148,9 +148,9 @@ INSERT INTO Drug(Id, Name, Notes, Tag_Id, IsImported) VALUES (3, 'Vitamin D', 'F
 INSERT INTO Drug(Id, Name, Notes, Tag_Id, IsImported) VALUES (4, 'Vitamin E', 'For energy'   , 14, 0);
 INSERT INTO Drug(Id, Name, Notes, Tag_Id, IsImported) VALUES (5, 'Dispril'  , 'For headaches', 13, 0);
 
-INSERT INTO PrescriptionDocument(Id, CreationDate, Title, Tag_Id, Patient_Id, IsImported) VALUES(1, '2012-02-09', 'Default title', 15, 7, 0);
-INSERT INTO PrescriptionDocument(Id, CreationDate, Title, Tag_Id, Patient_Id, IsImported) VALUES(2, '2012-02-09', 'Default title', 15, 7, 0);
-INSERT INTO PrescriptionDocument(Id, CreationDate, Title, Tag_Id, Patient_Id, IsImported) VALUES(3, '2012-02-09', 'Default title', 15, 7, 0);
+INSERT INTO PrescriptionDocument(Id, CreationDate, Title, Tag_Id, Patient_Id, IsImported) VALUES(1, '2012-06-09', 'Default title', 15, 7, 0);
+INSERT INTO PrescriptionDocument(Id, CreationDate, Title, Tag_Id, Patient_Id, IsImported) VALUES(2, '2012-06-09', 'Default title', 15, 7, 0);
+INSERT INTO PrescriptionDocument(Id, CreationDate, Title, Tag_Id, Patient_Id, IsImported) VALUES(3, '2012-06-09', 'Default title', 15, 7, 0);
 
 INSERT INTO Prescription(Id, Notes, Tag_Id, PrescriptionDocument_Id, Drug_Id, IsImported) VALUES (1, 'Twice a day', 15, 1, 1, 0);
 INSERT INTO Prescription(Id, Notes, Tag_Id, PrescriptionDocument_Id, Drug_Id, IsImported) VALUES (2, 'Twice a day', 15, 1, 2, 0);

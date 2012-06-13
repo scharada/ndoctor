@@ -133,6 +133,10 @@
     <value>Nouv.</value>
     <comment>New</comment>
   </data>
+  <data name="Btn_Remove" xml:space="preserve">
+    <value>Remove this prescription</value>
+    <comment>Remove this prescription</comment>
+  </data>
   <data name="Btn_Save" xml:space="preserve">
     <value>Save</value>
     <comment>Save</comment>
@@ -205,6 +209,10 @@
     <value>The prescription wasn't saved. Please enter at least one drug.</value>
     <comment>The prescription wasn't saved. Please enter at least one drug.</comment>
   </data>
+  <data name="Msg_PrescriptionDeleted" xml:space="preserve">
+    <value>Prescription deleted.</value>
+    <comment>Prescription deleted.</comment>
+  </data>
   <data name="Msg_PrescriptionSaved" xml:space="preserve">
     <value>Prescription saved.</value>
     <comment>Prescription saved.</comment>
@@ -228,6 +236,10 @@
   <data name="Title_CreationDate" xml:space="preserve">
     <value>Creation date:</value>
     <comment>Creation date:</comment>
+  </data>
+  <data name="Title_EditPrescription" xml:space="preserve">
+    <value>Edit this prescription</value>
+    <comment>Edit this prescription</comment>
   </data>
   <data name="Title_From" xml:space="preserve">
     <value>From</value>

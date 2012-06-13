@@ -1,4 +1,4 @@
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -15,14 +15,24 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System.Reflection;
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
-[assembly: AssemblyVersion("3.0.1.367")]
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Probel.NDoctor.View.Core.Helpers
+{
+    /// <summary>
+    /// This object is used with databinding to keep the "by reference" feature when developer pass
+    /// a string or a value object
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class ReferenceObject<T>
+    {
+        public ReferenceObject(T value)
+        {
+            this.Value = value;
+        }
+        public T Value { get; set; }
+    }
+}

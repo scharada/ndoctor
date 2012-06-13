@@ -90,6 +90,9 @@
     <Compile Include="Controls\DrugBox.xaml.cs">
       <DependentUpon>DrugBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\EditionBox.xaml.cs">
+      <DependentUpon>EditionBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PathologyBox.xaml.cs">
       <DependentUpon>PathologyBox.xaml</DependentUpon>
     </Compile>
@@ -111,6 +114,7 @@
     <Compile Include="Controls\TagBox.xaml.cs">
       <DependentUpon>TagBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ReferenceObject.cs" />
     <Compile Include="Helpers\Languages.cs" />
     <Compile Include="Helpers\PasswordBoxAssistant.cs" />
     <Compile Include="Helpers\TranslateExtension.cs" />
@@ -149,6 +153,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\DrugBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\EditionBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

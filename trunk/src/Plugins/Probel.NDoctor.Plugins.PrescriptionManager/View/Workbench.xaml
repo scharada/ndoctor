@@ -11,7 +11,7 @@
     <Page.Resources>
         <ResourceDictionary x:Key="themes" Source="/Probel.NDoctor.Plugins.PrescriptionManager;component/Themes/Generic.xaml" />
     </Page.Resources>
-        <Grid>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="4*"/>
@@ -20,30 +20,68 @@
             <GroupBox Header="{Binding PrescriptionHeader}">
                 <ListView Grid.Row="2" ItemsSource="{Binding Path=FoundPrescriptions}"
                           DisplayMemberPath="CreationDateToDisplay"
-                          SelectedItem="{Binding Path=SelectedPrescriptionDocument}"/>
+                          SelectedItem="{Binding Path=SelectedPrescriptionDocument}">
+                    <ListView.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="{Binding Source={x:Static Member=text:AddPrescriptionText.Remove}}"
+                                      Command="{Binding RemovePrescriptionDocumentCommand}">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.PrescriptionManager;component/Images\Delete.png"
+                                           Height="20"
+                                           Width="20"
+                                           IsEnabled="False"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </ListView.ContextMenu>
+                </ListView>
             </GroupBox>
         </Grid>
         <GroupBox Grid.Row="1"
                   Header="{Binding Source={x:Static Member=text:WorkbenchText.TitlePrescription}}">
             <StackPanel>
                 <DataGrid Grid.Row="1"
-                  DockPanel.Dock="Left"
-                  ItemsSource="{Binding Path=SelectedPrescriptionDocument.Prescriptions, UpdateSourceTrigger=PropertyChanged}"
-                  AutoGenerateColumns="False"
-                  CanUserAddRows="False"
-                  CanUserDeleteRows="False">
+                          DockPanel.Dock="Left"
+                          ItemsSource="{Binding Path=SelectedPrescriptionDocument.Prescriptions, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding SelectedPrescription}"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=Drug.Name, UpdateSourceTrigger=PropertyChanged}" 
-                                    Header="{Binding Source={x:Static Member=text:AddPrescriptionText.ColDrug}}"
-                                    IsReadOnly="True" />
-
+                                            Header="{Binding Source={x:Static Member=text:AddPrescriptionText.ColDrug}}"
+                                            IsReadOnly="True" />
+                        
                         <DataGridTextColumn Binding="{Binding Path=Notes, UpdateSourceTrigger=PropertyChanged}" 
-                                    Header="{Binding  Source={x:Static Member=text:AddPrescriptionText.ColNotes}}"
-                                    Width="*"
-                                    IsReadOnly="True" />
+                                            Header="{Binding  Source={x:Static Member=text:AddPrescriptionText.ColNotes}}"
+                                            Width="*"
+                                            IsReadOnly="True" />
                     </DataGrid.Columns>
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="{Binding Source={x:Static Member=text:AddPrescriptionText.Remove}}"
+                                      Command="{Binding RemovePrescriptionCommand}">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.PrescriptionManager;component/Images\Delete.png"
+                                           Height="20"
+                                           Width="20"
+                                           IsEnabled="False"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="{Binding Source={x:Static Member=text:AddPrescriptionText.Edit}}"
+                                      Command="{Binding EditPrescriptionCommand}">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.PrescriptionManager;component/Images\Edit.png"
+                                           Height="20"
+                                           Width="20"
+                                           IsEnabled="False"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
                 </DataGrid>
             </StackPanel>
         </GroupBox>
     </Grid>
 </Page>
+    

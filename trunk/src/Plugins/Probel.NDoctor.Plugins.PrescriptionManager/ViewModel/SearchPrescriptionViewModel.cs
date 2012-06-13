@@ -92,16 +92,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         {
             try
             {
-                using (this.component.UnitOfWork)
-                {
-                    var found = this.component.FindPrescriptionsByDates(PluginContext.Host.SelectedPatient
-                        , this.StartCriteria, this.EndCriteria);
-                    Notifyer.OnPrescriptionFound(this, new PrescriptionResultDto(found, this.StartCriteria, this.EndCriteria));
-                    InnerWindow.Close();
-
-                    if (found.Count > 0) PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_FoundPrescription);
-                    else PluginContext.Host.WriteStatus(StatusType.Warning, Messages.Msg_NothingFound);
-                }
+                new SearchService(this.component).SearchPrescription(this.StartCriteria, this.EndCriteria);
             }
             catch (Exception ex)
             {

@@ -18,18 +18,19 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 {
     using System;
     using System.Collections.ObjectModel;
+    using System.Windows;
     using System.Windows.Input;
 
-    using Probel.Helpers.Conversions;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Core.Helpers;
+    using Probel.NDoctor.View.Core.Controls;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -40,6 +41,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
         private IPrescriptionComponent component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
         private DateTime endCriteria;
+        private SearchService searcher;
+        private PrescriptionDto selectedPrescription;
         private PrescriptionDocumentDto selectPrescriptionDocument;
         private DateTime startCriteria;
 
@@ -54,7 +57,12 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         public WorkbenchViewModel()
             : base()
         {
+            this.searcher = new SearchService(this.component);
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
+
+            this.RemovePrescriptionDocumentCommand = new RelayCommand(() => this.RemovePrescriptionDocument(), () => this.SelectedPrescriptionDocument != null);
+            this.RemovePrescriptionCommand = new RelayCommand(() => this.RemovePrescription(), () => this.SelectedPrescription != null);
+            this.EditPrescriptionCommand = new RelayCommand(() => this.EditPrescription(), () => this.SelectedPrescription != null);
 
             this.StartCriteria = DateTime.Today.AddMonths(-1);
             this.EndCriteria = DateTime.Today.AddMonths(1);
@@ -102,6 +110,28 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             }
         }
 
+        public ICommand RemovePrescriptionCommand
+        {
+            get;
+            private set;
+        }
+
+        public ICommand RemovePrescriptionDocumentCommand
+        {
+            get;
+            private set;
+        }
+
+        public PrescriptionDto SelectedPrescription
+        {
+            get { return this.selectedPrescription; }
+            set
+            {
+                this.selectedPrescription = value;
+                this.OnPropertyChanged(() => SelectedPrescription);
+            }
+        }
+
         public PrescriptionDocumentDto SelectedPrescriptionDocument
         {
             get { return this.selectPrescriptionDocument; }
@@ -124,5 +154,67 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         }
 
         #endregion Properties
+
+        #region Methods
+
+        private void RemovePrescription()
+        {
+            try
+            {
+                var dr = MessageBox.Show(BaseText.Question_Delete, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (dr == MessageBoxResult.No) return;
+
+                using (this.component.UnitOfWork)
+                {
+                    this.component.Remove(this.SelectedPrescription);
+                }
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PrescriptionDeleted);
+                this.searcher.SearchPrescription(this.StartCriteria, this.EndCriteria);
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+        }
+
+        private void RemovePrescriptionDocument()
+        {
+            try
+            {
+                var dr = MessageBox.Show(BaseText.Question_Delete, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (dr == MessageBoxResult.No) return;
+
+                using (this.component.UnitOfWork)
+                {
+                    this.component.Remove(this.SelectedPrescriptionDocument);
+                }
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PrescriptionDeleted);
+                this.searcher.SearchPrescription(this.StartCriteria, this.EndCriteria);
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+        }
+
+        #endregion Methods
+
+        public ICommand EditPrescriptionCommand { get; private set; }
+        private void EditPrescription()
+        {
+            try
+            {
+                var refObj = new ReferenceObject<string>(this.SelectedPrescription.Notes);
+                InnerWindow.Show(BaseText.Edit, new EditionBox()
+                {
+                    Value = refObj,
+                    ButtonName = BaseText.OK,
+                    OkCommand = new RelayCommand(() =>
+                    {
+                        this.SelectedPrescription.Notes = refObj.Value;
+                        using (this.component.UnitOfWork)
+                        {
+                            this.component.Update(this.SelectedPrescription);
+                        }
+                        InnerWindow.Close();
+                    }, () => this.SelectedPrescription != null),
+                });
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+        }
     }
 }

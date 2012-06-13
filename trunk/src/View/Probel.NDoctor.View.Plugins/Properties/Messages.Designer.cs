@@ -224,6 +224,24 @@ namespace Probel.NDoctor.View.Plugins.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Voulez-vous supprimer cet élément?.
+        /// </summary>
+        internal static string Question_Delete {
+            get {
+                return ResourceManager.GetString("Question_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editer.
+        /// </summary>
+        internal static string Title_Edit {
+            get {
+                return ResourceManager.GetString("Title_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         internal static string Title_Error {
