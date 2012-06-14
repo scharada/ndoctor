@@ -59,9 +59,20 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             private set;
         }
 
+        public TimeSlotCollection FreeSlots
+        {
+            get;
+            private set;
+        }
+
         #endregion Properties
 
         #region Methods
+
+        protected override void ClearSlotZone()
+        {
+            this.FreeSlots.Clear();
+        }
 
         private void AddAppointment()
         {
@@ -107,16 +118,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             catch (Exception ex) { this.HandleError(ex); }
         }
 
-        public TimeSlotCollection FreeSlots
-        {
-            get;
-            private set;
-        }
         #endregion Methods
-
-        protected override void ClearSlotZone()
-        {
-            this.FreeSlots.Clear();
-        }
     }
 }

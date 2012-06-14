@@ -56,12 +56,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="item">The item.</param>
         void Remove(PrescriptionDto item);
 
-        #endregion Methods
-
         /// <summary>
         /// Updates the specified prescription.
         /// </summary>
         /// <param name="item">The item.</param>
         void Update(PrescriptionDto item);
+
+        #endregion Methods
     }
 }

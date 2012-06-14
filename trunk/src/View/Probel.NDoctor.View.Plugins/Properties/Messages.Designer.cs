@@ -233,6 +233,15 @@ namespace Probel.NDoctor.View.Plugins.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data refreshed.
+        /// </summary>
+        internal static string Refreshed {
+            get {
+                return ResourceManager.GetString("Refreshed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Editer.
         /// </summary>
         internal static string Title_Edit {

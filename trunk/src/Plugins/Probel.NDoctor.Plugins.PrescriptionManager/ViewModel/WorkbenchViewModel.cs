@@ -27,10 +27,10 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
+    using Probel.NDoctor.View.Core.Controls;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.NDoctor.View.Core.Helpers;
-    using Probel.NDoctor.View.Core.Controls;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -79,6 +79,11 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         #endregion Constructors
 
         #region Properties
+
+        public ICommand EditPrescriptionCommand
+        {
+            get; private set;
+        }
 
         public DateTime EndCriteria
         {
@@ -157,6 +162,29 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
         #region Methods
 
+        private void EditPrescription()
+        {
+            try
+            {
+                var refObj = new ReferenceObject<string>(this.SelectedPrescription.Notes);
+                InnerWindow.Show(BaseText.Edit, new EditionBox()
+                {
+                    Value = refObj,
+                    ButtonName = BaseText.OK,
+                    OkCommand = new RelayCommand(() =>
+                    {
+                        this.SelectedPrescription.Notes = refObj.Value;
+                        using (this.component.UnitOfWork)
+                        {
+                            this.component.Update(this.SelectedPrescription);
+                        }
+                        InnerWindow.Close();
+                    }, () => this.SelectedPrescription != null),
+                });
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+        }
+
         private void RemovePrescription()
         {
             try
@@ -192,29 +220,5 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         }
 
         #endregion Methods
-
-        public ICommand EditPrescriptionCommand { get; private set; }
-        private void EditPrescription()
-        {
-            try
-            {
-                var refObj = new ReferenceObject<string>(this.SelectedPrescription.Notes);
-                InnerWindow.Show(BaseText.Edit, new EditionBox()
-                {
-                    Value = refObj,
-                    ButtonName = BaseText.OK,
-                    OkCommand = new RelayCommand(() =>
-                    {
-                        this.SelectedPrescription.Notes = refObj.Value;
-                        using (this.component.UnitOfWork)
-                        {
-                            this.component.Update(this.SelectedPrescription);
-                        }
-                        InnerWindow.Close();
-                    }, () => this.SelectedPrescription != null),
-                });
-            }
-            catch (Exception ex) { this.HandleError(ex); }
-        }
     }
 }

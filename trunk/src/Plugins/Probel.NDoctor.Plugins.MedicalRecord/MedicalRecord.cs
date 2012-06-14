@@ -17,10 +17,8 @@
 namespace Probel.NDoctor.Plugins.MedicalRecord
 {
     using System;
-    using System.Collections.ObjectModel;
     using System.ComponentModel.Composition;
     using System.Windows;
-    using System.Windows.Controls.Primitives;
     using System.Windows.Documents;
     using System.Windows.Input;
     using System.Windows.Media;
@@ -30,9 +28,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
-    using Probel.NDoctor.Domain.DAL.Components;
-    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MedicalRecord.Dto;
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
@@ -330,7 +325,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         {
             try
             {
-                this.ViewModel.Refresh();
+                this.ViewModel.RefreshCommand.ExecuteIfCan(); ;
                 PluginContext.Host.Navigate(this.workbench);
 
                 this.contextualMenu.IsVisible = true;
@@ -344,9 +339,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
         private void Save()
         {
-            this.ViewModel.Save();
+            this.ViewModel.SaveCommand.ExecuteIfCan();
             Notifyer.OnRefreshed();
-            PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RecordsSaved);
         }
 
         private void UpdateItemCheckedState(RibbonToggleButtonData button, DependencyProperty formattingProperty, object expectedValue)

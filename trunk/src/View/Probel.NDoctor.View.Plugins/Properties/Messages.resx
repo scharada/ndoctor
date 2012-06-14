@@ -194,6 +194,10 @@ Path: {1}</value>
     <value>Voulez-vous supprimer cet élément?</value>
     <comment>Do you want to delete this item?</comment>
   </data>
+  <data name="Refreshed" xml:space="preserve">
+    <value>Data refreshed</value>
+    <comment>Data refreshed</comment>
+  </data>
   <data name="Title_Edit" xml:space="preserve">
     <value>Editer</value>
     <comment>Edit</comment>

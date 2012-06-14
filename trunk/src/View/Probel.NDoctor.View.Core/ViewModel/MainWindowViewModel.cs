@@ -59,6 +59,11 @@ namespace Probel.NDoctor.View.Core.ViewModel
             App.RibbonData.ApplicationMenuData.SmallImage = new Uri(uriImage.FormatWith("Home"), UriKind.Relative);
 
             this.ChildWindow = new ChildWindowViewModel();
+
+            this.TriggerSaveCommand = new RelayCommand(() => this.GetView().OnSaveShortcuted());
+            this.TriggerRefreshCommand = new RelayCommand(() => this.GetView().OnRefreshShortcuted());
+            this.TriggerNewCommand = new RelayCommand(() => this.GetView().OnNewShortcuted());
+            this.TriggerSearchCommand = new RelayCommand(() => this.GetView().OnSearchShortcuted());
         }
 
         #endregion Constructors
@@ -132,6 +137,26 @@ namespace Probel.NDoctor.View.Core.ViewModel
             }
         }
 
+        public ICommand TriggerNewCommand
+        {
+            get; private set;
+        }
+
+        public ICommand TriggerRefreshCommand
+        {
+            get; private set;
+        }
+
+        public ICommand TriggerSaveCommand
+        {
+            get; private set;
+        }
+
+        public ICommand TriggerSearchCommand
+        {
+            get; private set;
+        }
+
         /// <summary>
         /// Gets or sets the type of the icon in the status bar.
         /// </summary>
@@ -161,6 +186,18 @@ namespace Probel.NDoctor.View.Core.ViewModel
         #endregion Properties
 
         #region Methods
+
+        private MainWindow GetView()
+        {
+            var view = PluginContext.Host as MainWindow;
+            if (view == null)
+            {
+                throw new ArgumentNullException(string.Format(
+                    "The view for this ViewModel is not the expected one. {0} was expected!"
+                    , typeof(MainWindow)));
+            }
+            else { return view; }
+        }
 
         private void NavigateToSetting()
         {

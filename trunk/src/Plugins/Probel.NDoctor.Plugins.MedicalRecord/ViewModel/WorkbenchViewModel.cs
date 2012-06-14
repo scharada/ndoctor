@@ -56,6 +56,10 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             : base()
         {
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
+
+            this.RefreshCommand = new RelayCommand(() => this.Refresh());
+            this.SaveCommand = new RelayCommand(() => Save(), () => this.CanSave());
+
             Notifyer.Refreshed += (sender, e) => this.Refresh();
         }
 
@@ -76,6 +80,16 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         public bool IsRecordSelected
         {
             get { return this.SelectedRecord != null; }
+        }
+
+        public ICommand RefreshCommand
+        {
+            get; private set;
+        }
+
+        public ICommand SaveCommand
+        {
+            get; private set;
         }
 
         public TitledMedicalRecordDto SelectedRecord
@@ -109,7 +123,28 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         #region Methods
 
-        public void Refresh()
+        /// <summary>
+        /// Saves the record if the user interaction demand saving.
+        /// </summary>
+        internal void SaveOnUserAction()
+        {
+            try
+            {
+                if (this.SelectedRecord != null && this.SelectedRecord.State == State.Updated)
+                {
+                    var dr = MessageBox.Show(Messages.Msg_SaveMedicalRecord, Messages.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (dr == MessageBoxResult.Yes) { this.Save(); }
+                }
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+        }
+
+        private bool CanSave()
+        {
+            return this.SelectedRecord != null;
+        }
+
+        private void Refresh()
         {
             try
             {
@@ -130,11 +165,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                             : null;
                     }
                 }
+                PluginContext.Host.WriteStatus(StatusType.Info, BaseText.Refreshed);
             }
             catch (Exception ex) { this.HandleError(ex); }
         }
 
-        public void Save()
+        private void Save()
         {
             try
             {
@@ -156,22 +192,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 {
                     this.component.UpdateCabinet(PluginContext.Host.SelectedPatient, this.Cabinet);
                 }
-            }
-            catch (Exception ex) { this.HandleError(ex); }
-        }
 
-        /// <summary>
-        /// Saves the record if the user interaction demand saving.
-        /// </summary>
-        internal void SaveOnUserAction()
-        {
-            try
-            {
-                if (this.SelectedRecord != null && this.SelectedRecord.State == State.Updated)
-                {
-                    var dr = MessageBox.Show(Messages.Msg_SaveMedicalRecord, Messages.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (dr == MessageBoxResult.Yes) { this.Save(); }
-                }
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RecordsSaved);
             }
             catch (Exception ex) { this.HandleError(ex); }
         }

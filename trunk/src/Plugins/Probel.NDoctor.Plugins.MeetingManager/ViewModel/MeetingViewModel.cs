@@ -26,6 +26,8 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using System.Collections.ObjectModel;
     using System.Windows.Input;
 
+    using Microsoft.Windows.Controls;
+
     using Probel.Helpers.Data;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Components;
@@ -37,7 +39,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Microsoft.Windows.Controls;
 
     public abstract class MeetingViewModel : BaseViewModel
     {
@@ -102,7 +103,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             private set;
         }
 
-
         public ICommand SearchCommand
         {
             get;
@@ -130,7 +130,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                 this.OnPropertyChanged(() => SelectedPatient);
             }
         }
-        protected abstract void ClearSlotZone();
+
         public DateRange SelectedSlot
         {
             get { return this.selectedSlot; }
@@ -167,6 +167,8 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             else if (this.EndDate < this.StartDate) return false;
             else return true;
         }
+
+        protected abstract void ClearSlotZone();
 
         private bool CanSearch()
         {

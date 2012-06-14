@@ -25,13 +25,11 @@ namespace Probel.NDoctor.View.Core
 
     using log4net;
 
-    using Microsoft.Windows.Controls;
     using Microsoft.Windows.Controls.Ribbon;
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.Properties;
@@ -48,6 +46,8 @@ namespace Probel.NDoctor.View.Core
     public partial class MainWindow : RibbonWindow, IPluginHost
     {
         #region Fields
+
+        private static readonly ILog Log = LogManager.GetLogger(typeof(MainWindow));
 
         private LightUserDto connectedUser;
         private Page startpage = new StartPage();
@@ -71,9 +71,29 @@ namespace Probel.NDoctor.View.Core
         #region Events
 
         /// <summary>
+        /// Occurs when user has executed a shortcut to add a new item.
+        /// </summary>
+        public event EventHandler NewShortcuted;
+
+        /// <summary>
         /// Occurs when a new user has connected.
         /// </summary>
         public event EventHandler NewUserConnected;
+
+        /// <summary>
+        /// Occurs when user has executed a shortcut to refresh.
+        /// </summary>
+        public event EventHandler RefreshShortcuted;
+
+        /// <summary>
+        /// Occurs when user has executed a shortcut to save.
+        /// </summary>
+        public event EventHandler SaveShortcuted;
+
+        /// <summary>
+        /// Occurs when user has executed a shortcut to search.
+        /// </summary>
+        public event EventHandler SearchShortcuted;
 
         #endregion Events
 
@@ -316,8 +336,14 @@ namespace Probel.NDoctor.View.Core
         {
             Assert.IsNotNull(page, "The page where to navigate shouldn't be null");
 
+            // Hide other context menus otherwise, the context menu of this page
+            // will be added to the others.
             foreach (var context in App.RibbonData.ContextualTabGroupDataCollection)
             { context.IsVisible = false; }
+
+            // Set all the shortcut events to null to allow only the current
+            // page to trigger shortcuts
+            this.ResetShortcutEvents();
 
             this.Dispatcher.Invoke((Action)delegate
             {
@@ -393,6 +419,42 @@ namespace Probel.NDoctor.View.Core
             this.WriteStatus(StatusType.Info, Messages.Msg_Ready);
         }
 
+        internal void OnNewShortcuted()
+        {
+            Log.DebugFormat("Shortcut clicked [{0}]", "New");
+            if (this.NewShortcuted != null)
+            {
+                this.NewShortcuted(this, EventArgs.Empty);
+            }
+        }
+
+        internal void OnRefreshShortcuted()
+        {
+            Log.DebugFormat("Shortcut clicked [{0}]", "Refresh");
+            if (this.RefreshShortcuted != null)
+            {
+                this.RefreshShortcuted(this, EventArgs.Empty);
+            }
+        }
+
+        internal void OnSaveShortcuted()
+        {
+            Log.DebugFormat("Shortcut clicked [{0}]", "Save");
+            if (this.SaveShortcuted != null)
+            {
+                this.SaveShortcuted(this, EventArgs.Empty);
+            }
+        }
+
+        internal void OnSearchShortcuted()
+        {
+            Log.DebugFormat("Shortcut clicked [{0}]", "Search");
+            if (this.SearchShortcuted != null)
+            {
+                this.SearchShortcuted(this, EventArgs.Empty);
+            }
+        }
+
         private void AddButton(RibbonTabData tab, string goupName, RibbonControlData button)
         {
             var group = (from g in tab.GroupDataCollection
@@ -447,6 +509,15 @@ namespace Probel.NDoctor.View.Core
                 else { throw new WrongDataContextException(); }
             });
             this.OnNewUserConnected();
+        }
+
+        private void ResetShortcutEvents()
+        {
+            this.SaveShortcuted
+                = this.RefreshShortcuted
+                = this.NewShortcuted
+                = this.SearchShortcuted
+                = null;
         }
 
         private void WriteStatus(LightPatientDto value)

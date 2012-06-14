@@ -32,9 +32,29 @@ namespace Probel.NDoctor.View.Plugins
         #region Events
 
         /// <summary>
+        /// Occurs when user has executed a shortcut to add a new item.
+        /// </summary>
+        event EventHandler NewShortcuted;
+
+        /// <summary>
         /// Occurs when a new user has connected.
         /// </summary>
         event EventHandler NewUserConnected;
+
+        /// <summary>
+        /// Occurs when user has executed a shortcut to refresh.
+        /// </summary>
+        event EventHandler RefreshShortcuted;
+
+        /// <summary>
+        /// Occurs when user has executed a shortcut to save.
+        /// </summary>
+        event EventHandler SaveShortcuted;
+
+        /// <summary>
+        /// Occurs when user has executed a shortcut to search.
+        /// </summary>
+        event EventHandler SearchShortcuted;
 
         #endregion Events
 

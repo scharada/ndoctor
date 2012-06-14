@@ -85,9 +85,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
             this.Remove<Prescription>(item);
         }
 
-        #endregion Methods
-
-
         /// <summary>
         /// Updates the specified prescription.
         /// </summary>
@@ -99,5 +96,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
             this.Session.Update(entity);
         }
+
+        #endregion Methods
     }
 }

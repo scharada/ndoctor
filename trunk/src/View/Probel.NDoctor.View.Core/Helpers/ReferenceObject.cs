@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -15,13 +17,15 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+#endregion Header
 
 namespace Probel.NDoctor.View.Core.Helpers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     /// <summary>
     /// This object is used with databinding to keep the "by reference" feature when developer pass
     /// a string or a value object
@@ -29,10 +33,22 @@ namespace Probel.NDoctor.View.Core.Helpers
     /// <typeparam name="T"></typeparam>
     public class ReferenceObject<T>
     {
+        #region Constructors
+
         public ReferenceObject(T value)
         {
             this.Value = value;
         }
-        public T Value { get; set; }
+
+        #endregion Constructors
+
+        #region Properties
+
+        public T Value
+        {
+            get; set;
+        }
+
+        #endregion Properties
     }
 }

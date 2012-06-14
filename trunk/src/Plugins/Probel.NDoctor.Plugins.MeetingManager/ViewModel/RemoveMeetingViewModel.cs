@@ -23,15 +23,22 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Windows;
     using System.Windows.Input;
+
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
-    using System.Windows;
+    using Probel.NDoctor.View.Plugins.Helpers;
 
     public class RemoveMeetingViewModel : MeetingViewModel
     {
+        #region Fields
+
+        private AppointmentDto selectedAppointment;
+
+        #endregion Fields
+
         #region Constructors
 
         public RemoveMeetingViewModel()
@@ -44,15 +51,36 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
         #region Properties
 
+        public ObservableCollection<AppointmentDto> BusyAppointments
+        {
+            get;
+            private set;
+        }
+
         public ICommand FindSlotsCommand
         {
             get;
             private set;
         }
 
+        public AppointmentDto SelectedAppointment
+        {
+            get { return this.selectedAppointment; }
+            set
+            {
+                this.selectedAppointment = value;
+                this.OnPropertyChanged(() => SelectedAppointment);
+            }
+        }
+
         #endregion Properties
 
         #region Methods
+
+        protected override void ClearSlotZone()
+        {
+            this.AppointmentTags.Clear();
+        }
 
         private void FindSlots()
         {
@@ -67,28 +95,5 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         }
 
         #endregion Methods
-
-        protected override void ClearSlotZone()
-        {
-            this.AppointmentTags.Clear();
-        }
-
-        public ObservableCollection<AppointmentDto> BusyAppointments
-        {
-            get;
-            private set;
-        }
-
-
-        private AppointmentDto selectedAppointment;
-        public AppointmentDto SelectedAppointment
-        {
-            get { return this.selectedAppointment; }
-            set
-            {
-                this.selectedAppointment = value;
-                this.OnPropertyChanged(() => SelectedAppointment);
-            }
-        }
     }
 }

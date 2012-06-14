@@ -34,6 +34,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.View
     using System.Windows.Media.Imaging;
     using System.Windows.Navigation;
     using System.Windows.Shapes;
+
     using Probel.NDoctor.Plugins.MeetingManager.ViewModel;
 
     /// <summary>
