@@ -28,7 +28,7 @@
     * [RightManager Rights manager]
   * [convertdatabase Import data]
  * Implementation
-  * [ComponentAop Components AOP]
+  * [ComponentAop Components & AOP]
   * [PluginFeatures Plugin API ]
   * [TechDoc Technical documentation]
   * [CodingConventions Coding conventions]
