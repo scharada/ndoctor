@@ -5,10 +5,7 @@ The plugin module has these roles
  * It loads the plugins from the repository.
  * It validates the plugins. That's, it checks if the version of the plugin is compatible with the version of the plugins host.
 
-The plugin repository is a directory _Plugins_ in the application root. Each plugin has:
- * Its own directory that contains
-  * The plugin dll and all the needed files
-  * a config file that contains the dependency information.
+The plugin repository is a directory named _Plugins_ in the application root. At the root of this directory there's a XML file which has the information about which plugin is activated and the name of the plugins. Each plugin has its own directory that contains the plugin dll and all the needed files.
 
 The config file is a XML file that contains the configuration of the plugin
 
