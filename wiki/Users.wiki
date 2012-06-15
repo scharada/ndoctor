@@ -1,7 +1,10 @@
 = User requirements =
 
+A user is defined as a person that can log into nDoctor and manipulate its data refering the privileges he/she has been granted.
+
 = Super admin =
 
-The first created user is a super administrator and can execute everything in nDoctor.
-
-This user can't be deleted and if his password is lost, it will be recovered by tweaking the database.
+The first created user:
+ * is a super administrator and can execute everything in nDoctor.
+ * is undeletable
+ * can't recover a lost password without a separate tweaking tool.
