@@ -4,9 +4,9 @@ This module allows the user that has the right to utilise this plugin to adminis
 
 The role manager is divided into two parts: the roles and the tasks.
 
-A *task* is an action the connected user can perform or not depending the assigned *role* he/she has.
+A *task* is an action the connected user can perform or not depending the assigned *role* he/she has. nDoctor has a built-in list a tasks that can be modified by users.
 
-A *role* is a batch of tasks. A user has an assigned role that allows him/her to execute certain tasks.
+A *role* is a batch of tasks. A user has an assigned role that allows him/her to grant certain tasks. Any granted user can create roles.
 
 = Tasks list =
 ||  *Nr* || *Id*             || *Name*                                   ||
