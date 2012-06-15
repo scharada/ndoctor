@@ -50,10 +50,10 @@ PluginContext.Host.AddDockablePane("Title of the pane", new CustomUserControl())
 }}}
 
 === Logging in status bar ===
-You can display non interactive logging into the status bar of nDoctor. A log can be an error, a warning, or information. Depending of the Status type, a different icon is displayed just before the message in the status bar. This code is used to log: 
+You can display non interactive logging into the status bar of nDoctor. A log can be an error, a warning or information. Depending of the Status type, a different icon is displayed just before the message in the status bar. This code is used to log: 
 
 {{{
-WriteStatus(statusType.Warning, "Mind the step!");
+PluginContext.Host.WriteStatus(statusType.Warning, "Mind the step!");
 }}}
 
 `StatusType` can be:
