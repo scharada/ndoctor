@@ -17,17 +17,23 @@ The plugin host DLL offers a error handlerto manage exception handling. Its role
 == Inner Window ==
 The `InnerWindow` is an easy to use versatile message box. Here's the way to use it: 
 
-`InnerWindow.Show("Title of the window", new CustomUserControl());`
+{{{
+InnerWindow.Show("Title of the window", new CustomUserControl());
+}}}
 
 The ctor receives a string for the title of the window and a WPF `UserControl` for the main part of the window.
 
 To close the `InnerWindow` write this code: 
 
-`InnerWindow.Close()`
+{{{
+InnerWindow.Close()
+}}}
 
 You can use a built-in Cancel command writing this into the xaml code:
 
-`Command="iw:InnerWindow.CancelCommand"`
+{{{
+Command="iw:InnerWindow.CancelCommand"
+}}}
 
 == Plugin context ==
 This plugin context provides an small API to execute some generic tasks:
@@ -39,12 +45,16 @@ This plugin context provides an small API to execute some generic tasks:
 === Avalon Dock ===
 nDoctor is build with the ability to show a hideable left panel. To add a new left panel use this code:
 
-`PluginContext.Host.AddDockablePane("Title of the pane", new CustomUserControl())`
+{{{
+PluginContext.Host.AddDockablePane("Title of the pane", new CustomUserControl())
+}}}
 
 === Logging in status bar ===
 You can display non interactive logging into the status bar of nDoctor. A log can be an error, a warning, or information. Depending of the Status type, a different icon is displayed just before the message in the status bar. This code is used to log: 
 
-`WriteStatus(statusType.Warning, "Mind the step!");`
+{{{
+WriteStatus(statusType.Warning, "Mind the step!");
+}}}
 
 `StatusType` can be:
  * Error
@@ -54,7 +64,9 @@ You can display non interactive logging into the status bar of nDoctor. A log ca
 === Door Keeper ===
 The door keeper is a module that checks the authorisation on demand. It keep tracks on who's connected and says whether this connected user can execute this or that kind of tasks. For instance this code checks whether the connected user can execute a _write_ action:
 
-`bool isGranted = PluginContext.Host.DoorKeeper.IsGranted("write")`
+{{{
+bool isGranted = PluginContext.Host.DoorKeeper.IsGranted("write")
+}}}
 
 === Build ribbon menu with data binding ===
 [`Check the interface IPluginContext, the method's names are explicit`]
