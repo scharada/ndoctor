@@ -17,8 +17,6 @@ Before any call a of component's methods, all the configured dynamic proxies are
 You can avoid the execution of the session check by decorating your method with `InspectionIgnored` attribute
 
 == Authorisation ==
-You an decorate the methods of the DAL with the `Granted` attributes that uses a string that defines the granted task.
+You an decorate the methods of the DAL with `GrantedAttribute` that uses a string that defines the granted task. You can decorate a class or its members. When a class is decorated, it overrides all the member decoration.
 
 Default behaviour without decoration is explained [CodingConventions#authorisation_management here]
-
-[`To be written`]
