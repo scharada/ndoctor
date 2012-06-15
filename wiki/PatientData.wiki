@@ -38,4 +38,3 @@ The features of this manager are fairly simple. It should allow to modify the da
 
 The context menu should contain two features:
  # a button to roll back into the state the patient had when user loaded it.
- # a button to activate edit mode.
