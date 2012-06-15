@@ -45,6 +45,7 @@
             <Setter Property="Control.FontFamily" Value="Arial"/>
         </Style>
     </UserControl.Resources>
+    
     <StackPanel>
         <Grid Grid.Column="0">
             <Grid.ColumnDefinitions>
@@ -128,19 +129,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" Style="{StaticResource BorderStyle}">
-                <Button Content="{Binding Source={x:Static Member=txt:BoxText.BtnAdd}}"
-                        Command="{Binding AddCommand}"/>
-            </Border>
-            <Border Grid.Column="1" Style="{StaticResource BorderStyle}">
-                <Button Content="{Binding Source={x:Static Member=t:BaseText.Cancel}}"
-                        Command="iw:InnerWindow.CancelCommand"/>
-            </Border>
-        </Grid>
+        <ctrl:OKCancelBox OkCommand="{Binding ElementName=this, Path=OkCommand, UpdateSourceTrigger=PropertyChanged}"
+                          ButtonName="{Binding ElementName=this, Path=ButtonName, UpdateSourceTrigger=PropertyChanged}"/>
     </StackPanel>
 </UserControl>

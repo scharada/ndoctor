@@ -31,24 +31,25 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using System.Timers;
 
-    public class IllnessPeriodListViewModel : BaseViewModel
+    public class AddIllnessPeriodListViewModel : BaseViewModel
     {
         #region Fields
 
         private IFamilyComponent component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
         private string criteria;
         private IllnessPeriodToAddViewModel selectedPathology;
-
+        private static Timer Countdown = new Timer(250) { AutoReset = true };
         #endregion Fields
 
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="IllnessPeriodListViewModel"/> class.
+        /// Initializes a new instance of the <see cref="AddIllnessPeriodListViewModel"/> class.
         /// </summary>
         /// <param name="host">The host.</param>
-        public IllnessPeriodListViewModel()
+        public AddIllnessPeriodListViewModel()
             : base()
         {
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
@@ -60,6 +61,12 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
                 this.Criteria = e.Data;
                 this.SearchCommand.Execute(null);
             };
+
+            Countdown.Elapsed += (sender, e) => PluginContext.Host.Invoke(() =>
+            {
+                this.SearchCommand.ExecuteIfCan();
+                Countdown.Stop();
+            });
         }
 
         #endregion Constructors
@@ -82,6 +89,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
             get { return this.criteria; }
             set
             {
+                Countdown.Start();
                 this.criteria = value;
                 this.OnPropertyChanged(() => Criteria);
             }

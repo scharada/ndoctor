@@ -30,6 +30,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     using Probel.NDoctor.Plugins.FamilyManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using System.Timers;
 
     public class AddFamilyViewModel : BaseViewModel
     {
@@ -38,7 +39,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
         private IFamilyComponent component;
         private string criteria;
         private LightPatientViewModel selectedPatient;
-
+        private static readonly Timer Countdown = new Timer(250) { AutoReset = true };
         #endregion Fields
 
         #region Constructors
@@ -50,6 +51,12 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
             this.FoundPatients = new ObservableCollection<LightPatientViewModel>();
             this.SearchCommand = new RelayCommand(() => Search(), () => CanSearch());
+
+            Countdown.Elapsed += (sender, e) => PluginContext.Host.Invoke(() =>
+            {
+                this.SearchCommand.ExecuteIfCan();
+                Countdown.Stop();
+            });
         }
 
         #endregion Constructors
@@ -66,6 +73,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             get { return this.criteria; }
             set
             {
+                Countdown.Start();
                 this.criteria = value;
                 this.OnPropertyChanged(() => Criteria);
             }

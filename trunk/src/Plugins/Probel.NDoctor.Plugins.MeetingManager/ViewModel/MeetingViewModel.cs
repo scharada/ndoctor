@@ -39,6 +39,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using System.Timers;
 
     public abstract class MeetingViewModel : BaseViewModel
     {
@@ -52,6 +53,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         private DateRange selectedSlot;
         private DateTime startDate;
 
+        protected static readonly Timer Countdown = new Timer(250) { AutoReset = true };
         #endregion Fields
 
         #region Constructors
@@ -82,6 +84,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             get { return this.criteria; }
             set
             {
+                Countdown.Start();
                 this.criteria = value;
                 this.OnPropertyChanged(() => Criteria);
             }

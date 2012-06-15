@@ -186,7 +186,7 @@
     <comment>Search patient</comment>
   </data>
   <data name="Title_SearchWatermark" xml:space="preserve">
-    <value>First or last name</value>
-    <comment>First or last name</comment>
+    <value>Chercher...</value>
+    <comment>Search...</comment>
   </data>
 </root>

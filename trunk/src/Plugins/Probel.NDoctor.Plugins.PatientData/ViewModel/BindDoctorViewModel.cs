@@ -30,6 +30,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using System.Timers;
 
     public class BindDoctorViewModel : BaseViewModel
     {
@@ -38,6 +39,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         private IPatientDataComponent component;
         private string criteria;
         private LightDoctorViewModel selectedDoctor;
+        public static readonly Timer Countdown = new Timer(250) { AutoReset = true };
 
         #endregion Fields
 
@@ -53,6 +55,12 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
             this.FoundDoctors = new ObservableCollection<LightDoctorViewModel>();
             this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());
+
+            Countdown.Elapsed += (sender, e) => PluginContext.Host.Invoke(() =>
+            {
+                this.SearchCommand.ExecuteIfCan();
+                Countdown.Stop();
+            });
         }
 
         #endregion Constructors
@@ -64,6 +72,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             get { return this.criteria; }
             set
             {
+                Countdown.Start();
                 this.criteria = value;
                 this.OnPropertyChanged(() => Criteria);
             }

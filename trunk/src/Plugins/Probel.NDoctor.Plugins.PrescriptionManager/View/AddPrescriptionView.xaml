@@ -10,9 +10,10 @@
       xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PrescriptionManager.View"
       xmlns:h="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
       
+      xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="650"
-	Title="AddPrescriptionView">
+      Title="AddPrescriptionView">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -30,25 +31,27 @@
                 <DockPanel DockPanel.Dock="Top">
                     <Border Style="{StaticResource BorderStyle}">
                         <RadioButton DockPanel.Dock="Left" x:Name="radioButtonName"
-                                 Grid.Row="0" 
-                                 Grid.Column="0"
-                                 GroupName="Search"
-                                 Content="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleName}}"
-                                 HorizontalAlignment="Left"
-                                 VerticalAlignment="Center"/>
-                    </Border>
-                    <Border Style="{StaticResource BorderStyle}"
-                            DockPanel.Dock="Right">
-                        <Button Grid.Row="1"
-                                Content="{Binding Source={x:Static Member=text:AddPrescriptionText.BtnSearch}}" 
-                                Command="{Binding SearchCommand}"/>
+                                     Grid.Row="0" 
+                                     Grid.Column="0"
+                                     GroupName="Search"
+                                     Content="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleName}}"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center"/>
                     </Border>
                     <Border Style="{StaticResource BorderStyle}">
-                        <TextBox DockPanel.Dock="Right"
-                                 Grid.Column="1"
-                                 Grid.Row="0"
-                                 Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}"
-                                 IsEnabled="{Binding ElementName=radioButton, Path=IsChecked}"/>
+                        <toolkit:WatermarkTextBox Grid.Column="0" 
+                                                  Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}"                                                
+                                                  IsEnabled="{Binding ElementName=radioButtonName, Path=IsChecked}">
+                            <toolkit:WatermarkTextBox.Watermark>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
+                                           Height="15"
+                                           Width="15" />
+                                    <TextBlock Text="{Binding Source={x:Static Member=text:AddPrescriptionText.Watermark}}"
+                                               Margin="4,0,0,0"/>
+                                </StackPanel>
+                            </toolkit:WatermarkTextBox.Watermark>
+                        </toolkit:WatermarkTextBox>
                     </Border>
                 </DockPanel>
                 <DockPanel DockPanel.Dock="Top">

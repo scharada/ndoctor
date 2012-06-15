@@ -9,6 +9,7 @@
              xmlns:txt="clr-namespace:Probel.NDoctor.View.Core.Translations"
              xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
              xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
+             xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Core.Controls"
              
              Width="200"
              mc:Ignorable="d">
@@ -16,22 +17,7 @@
         <Border Style="{StaticResource BorderStyle}">
             <TextBox Text="{Binding ElementName=this, Path=Profession.Name, UpdateSourceTrigger=PropertyChanged}"/>
         </Border>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Border Grid.Column="0"
-                    Style="{StaticResource BorderStyle}">
-                <Button Content="{Binding ElementName=this, Path=ButtonName, UpdateSourceTrigger=PropertyChanged}"
-                        Command="{Binding ElementName=this, Path=OkCommand, UpdateSourceTrigger=PropertyChanged}"/>
-            </Border>
-
-            <Border Grid.Column="1"
-                    Style="{StaticResource BorderStyle}">
-                <Button Content="{Binding Source={x:Static Member=t:BaseText.Cancel}}"
-                        Command="iw:InnerWindow.CancelCommand" />
-            </Border>
-        </Grid>
+        <ctrl:OKCancelBox OkCommand="{Binding ElementName=this, Path=OkCommand, UpdateSourceTrigger=PropertyChanged}"
+                          ButtonName="{Binding ElementName=this, Path=ButtonName, UpdateSourceTrigger=PropertyChanged}"/>
     </StackPanel>
 </UserControl>

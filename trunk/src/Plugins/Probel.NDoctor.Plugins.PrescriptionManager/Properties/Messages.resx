@@ -273,6 +273,10 @@
     <value>Search drugs</value>
     <comment>Search drugs</comment>
   </data>
+  <data name="Title_SearchWatermark" xml:space="preserve">
+    <value>Search...</value>
+    <comment>Search...</comment>
+  </data>
   <data name="Title_SelectedDrug" xml:space="preserve">
     <value>Selected drug</value>
     <comment>Selected drug</comment>

@@ -31,6 +31,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using System.Timers;
 
     public class AddMeetingViewModel : MeetingViewModel
     {
@@ -41,12 +42,17 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             this.FreeSlots = new TimeSlotCollection();
             this.AddAppointmentCommand = new RelayCommand(() => this.AddAppointment(), () => this.CanAddAppointment());
             this.FindFreeSlotsCommand = new RelayCommand(() => this.FindFreeSlots(), () => this.CanFindSlots());
+
+            Countdown.Elapsed += (sender, e) => PluginContext.Host.Invoke(() =>
+            {
+                this.SearchCommand.ExecuteIfCan();
+                Countdown.Stop();
+            });
         }
 
         #endregion Constructors
 
         #region Properties
-
         public ICommand AddAppointmentCommand
         {
             get;

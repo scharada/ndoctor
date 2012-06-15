@@ -93,6 +93,9 @@
     <Compile Include="Controls\EditionBox.xaml.cs">
       <DependentUpon>EditionBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\OKCancelBox.xaml.cs">
+      <DependentUpon>OKCancelBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PathologyBox.xaml.cs">
       <DependentUpon>PathologyBox.xaml</DependentUpon>
     </Compile>
@@ -157,6 +160,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\EditionBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OKCancelBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

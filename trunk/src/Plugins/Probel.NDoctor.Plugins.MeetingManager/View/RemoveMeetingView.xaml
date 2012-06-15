@@ -21,11 +21,11 @@
                    LastChildFill="True">
             <DockPanel LastChildFill="True"
                        DockPanel.Dock="Top">
-                <Border Style="{StaticResource BorderStyle}"
+                <!--<Border Style="{StaticResource BorderStyle}"
                         DockPanel.Dock="Right">
                     <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnSearch}}"
                             Command="{Binding Path=SearchCommand}"/>
-                </Border>
+                </Border>-->
                 <Border Style="{StaticResource BorderStyle}">
                     <toolkit:WatermarkTextBox Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}">
                         <toolkit:WatermarkTextBox.Watermark>

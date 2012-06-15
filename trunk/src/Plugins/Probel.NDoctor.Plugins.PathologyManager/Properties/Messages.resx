@@ -237,6 +237,10 @@
     <value>Question</value>
     <comment>Question</comment>
   </data>
+  <data name="Title_SearchWatermark" xml:space="preserve">
+    <value>Search...</value>
+    <comment>Search...</comment>
+  </data>
   <data name="Title_To" xml:space="preserve">
     <value>to</value>
     <comment>to</comment>

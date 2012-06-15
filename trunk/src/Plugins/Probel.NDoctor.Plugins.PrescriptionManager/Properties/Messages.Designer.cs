@@ -412,6 +412,15 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search....
+        /// </summary>
+        internal static string Title_SearchWatermark {
+            get {
+                return ResourceManager.GetString("Title_SearchWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selected drug.
         /// </summary>
         internal static string Title_SelectedDrug {

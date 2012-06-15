@@ -22,7 +22,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
     using Probel.Helpers.Events;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
@@ -34,7 +33,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
         private IPathologyComponent component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
         private bool isSelected;
-
         #endregion Fields
 
         #region Constructors

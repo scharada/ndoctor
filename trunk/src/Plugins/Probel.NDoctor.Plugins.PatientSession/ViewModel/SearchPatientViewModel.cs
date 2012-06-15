@@ -33,14 +33,15 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.NDoctor.Plugins.PatientSession.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using System.Timers;
 
     public class SearchPatientViewModel : BaseViewModel
     {
         #region Fields
 
         private IPatientSessionComponent component;
-        private string criterium = string.Empty;
-
+        private string criteria = string.Empty;
+        public static readonly Timer Countdown = new Timer(250) { AutoReset = true };
         #endregion Fields
 
         #region Constructors
@@ -58,6 +59,12 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 
             this.component = PluginContext.ComponentFactory.GetInstance<IPatientSessionComponent>();
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPatientSessionComponent>();
+
+            Countdown.Elapsed += (sender, e) => PluginContext.Host.Invoke(() =>
+            {
+                this.SearchCommand.ExecuteIfCan();
+                Countdown.Stop();
+            });
         }
 
         #endregion Constructors
@@ -69,13 +76,14 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             get { return Messages.Title_ButtonSearch; }
         }
 
-        public string Criterium
+        public string Criteria
         {
-            get { return this.criterium; }
+            get { return this.criteria; }
             set
             {
-                this.criterium = value;
-                this.OnPropertyChanged(() => Criterium);
+                Countdown.Start();
+                this.criteria = value;
+                this.OnPropertyChanged(() => Criteria);
             }
         }
 
@@ -120,7 +128,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 
         private bool CanSearch()
         {
-            return !string.IsNullOrEmpty(this.Criterium);
+            return !string.IsNullOrEmpty(this.Criteria);
         }
 
         private void Search()
@@ -128,7 +136,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             IList<LightPatientDto> result;
             using (this.component.UnitOfWork)
             {
-                result = this.component.FindPatientsByNameLight(this.Criterium, SearchOn.FirstAndLastName);
+                result = this.component.FindPatientsByNameLight(this.Criteria, SearchOn.FirstAndLastName);
             }
             var patients = Mapper.Map<IList<LightPatientDto>, IList<LightPatientViewModel>>(result);
             this.FoundPatients.Refill(patients);

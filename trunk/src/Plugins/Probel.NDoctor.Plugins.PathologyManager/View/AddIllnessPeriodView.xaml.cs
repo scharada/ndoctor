@@ -30,7 +30,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.View
         public AddIllnessPeriodView()
         {
             InitializeComponent();
-            this.DataContext = new IllnessPeriodListViewModel();
+            this.DataContext = new AddIllnessPeriodListViewModel();
         }
 
         #endregion Constructors

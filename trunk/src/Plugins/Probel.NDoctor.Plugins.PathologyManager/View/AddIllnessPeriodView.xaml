@@ -4,26 +4,32 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:this="clr-namespace:Probel.NDoctor.Plugins.PathologyManager.ViewModel"
-             xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PathologyManager.View"
+             xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PathologyManager.View"       
+             
+             xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PathologyManager.Translations"
+             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
              mc:Ignorable="d" 
-             Height="250" 
+             Height="450" 
              Width="450">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
     <DockPanel LastChildFill="True">
         <Grid DockPanel.Dock="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="70"/>
-            </Grid.ColumnDefinitions>
-
-            <TextBox Grid.Column="0"
-                     Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}"/>
-
-            <Button  Grid.Column="2" 
-                     Content="{Binding BtnSearch}"
-                     Command="{Binding SearchCommand}"/>
+            <Border Style="{StaticResource BorderStyle}">
+                <toolkit:WatermarkTextBox Grid.Column="0" 
+                                          Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}">
+                    <toolkit:WatermarkTextBox.Watermark>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
+                               Height="15"
+                               Width="15" />
+                            <TextBlock Text="{Binding Source={x:Static Member=text:AddIllnessPeriodText.Watermark}}"
+                                   Margin="4,0,0,0"/>
+                        </StackPanel>
+                    </toolkit:WatermarkTextBox.Watermark>
+                </toolkit:WatermarkTextBox>
+            </Border>
         </Grid>
         <ScrollViewer DockPanel.Dock="Bottom">
             <ListView Grid.Row="1" ItemsSource="{Binding Path=FoundPathologies}"

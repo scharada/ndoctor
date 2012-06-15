@@ -33,6 +33,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using System.Timers;
 
     public class AddPrescriptionViewModel : BaseViewModel
     {
@@ -46,7 +47,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         private DrugViewModel selectedDrug;
         private PrescriptionDto selectedPrescriptionToDelete;
         private TagDto selectedTag;
-
+        private static readonly Timer Countdown = new Timer(250) { AutoReset = true };
         #endregion Fields
 
         #region Constructors
@@ -68,6 +69,12 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             this.SelectDrugCommand = new RelayCommand(() => this.SelectDrug());
 
             Notifyer.ItemChanged += (sender, e) => this.Refresh();
+
+            Countdown.Elapsed += (sender, e) => PluginContext.Host.Invoke(() =>
+            {
+                this.SearchCommand.ExecuteIfCan();
+                Countdown.Stop();
+            });
         }
 
         #endregion Constructors
@@ -79,6 +86,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             get { return this.criteria; }
             set
             {
+                Countdown.Start();
                 this.criteria = value;
                 this.OnPropertyChanged(() => Criteria);
             }
