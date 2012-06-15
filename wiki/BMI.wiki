@@ -17,4 +17,6 @@ One tab to:
  * a chart showing the evolution of the height
 
 = Features =
-This manager should be able to integrate reference charts. For insance a chart to show the evolution of BMI during a generic diet.
+
+ * This manager integrates reference charts. That's charts that show the evolution of BMI during a generic diet.
+ * This manager shows the thresholds for obesity, normal weight, underweight, etc.
