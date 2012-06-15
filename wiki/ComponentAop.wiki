@@ -2,7 +2,7 @@
 
 = Introduction =
 
-The Domain has some [http://en.wikipedia.org/wiki/Aspect-oriented_programming AOP] basic features as it uses Castle Dynamic Proxy.
+The Domain has some [http://en.wikipedia.org/wiki/Aspect-oriented_programming AOP] basic features as it uses [http://stw.castleproject.org/Default.aspx?Page=DynamicProxy&NS=Tools&AspxAutoDetectCookieSupport=1 Castle Dynamic Proxy].
 
 = How it works =
 
