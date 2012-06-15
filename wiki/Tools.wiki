@@ -23,6 +23,7 @@ Here's the list of tools used to develop nDoctor
  * [http://nini.sourceforge.net/ Nini <Not used anymore>]
  * [http://wpf.codeplex.com/ WPF Toolkit]
  * [http://wpftoolkit.codeplex.com/ WPF Toolkit extended]
+ * [http://stw.castleproject.org/Default.aspx?Page=DynamicProxy&NS=Tools&AspxAutoDetectCookieSupport=1 Castle Dynamic Proxy]
 
 = Visual studio plugins =
  * [http://ankhsvn.open.collab.net/ AnkhSVN] 
