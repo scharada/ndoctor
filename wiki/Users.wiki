@@ -11,16 +11,16 @@ The first created user:
 
 = Authorisation management =
 nDoctor has a short list of built-in roles:
- * Administrator: this user has got all the privileges in the application
- * Doctor: this user can read and write all the data but the authorisation or any administration pieces of data
- * Secretary: this user can read all the data but can only modify data related to calendar and appointment management.
+ * *Administrator*: this user has got all the privileges in the application
+ * *Doctor*: this user can read and write all the data but the authorisation or any administration pieces of data
+ * *Secretary*: this user can read all the data but can only modify data related to calendar and appointment management.
 
 A role is a list of one or more tasks. nDoctor as a static (means, user can't dynamically add tasks into the system) list of tasks
 
- * Administer: Regroup all the features that can read/write data related to the application management (such as authorisation data)
- * !Meta_write: Regroup all the features that is about the connected user
- * Write: Regroup all the features that can modify the data
- * Read: Regroup all the features that read data
- * !Edit_Calendar: Regroup all the features that can modify the data of the calendar
+ * *Administer*: Regroup all the features that can read/write data related to the application management (such as authorisation data)
+ * *!Meta_Write*: Regroup all the features that is about the connected user
+ * *Write*: Regroup all the features that can modify the data
+ * *Read*: Regroup all the features that read data
+ * *!Edit_Calendar*: Regroup all the features that can modify the data of the calendar
 
 For further information, goo on [ComponentAop#Authorisation this page] to see the technical documentation.
