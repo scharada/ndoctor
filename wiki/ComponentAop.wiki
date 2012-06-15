@@ -19,4 +19,6 @@ You can avoid the execution of the session check by decorating your method with 
 == Authorisation ==
 You an decorate the methods of the DAL with the `Granted` attributes that uses a string that defines the granted task.
 
+Default behaviour without decoration is explained [CodingConventions#authorisation_management here]
+
 [`To be written`]
