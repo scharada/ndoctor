@@ -11,9 +11,7 @@ https://docs.google.com/drawings/pub?id=1DNjYbNhEX-DXKjL-hvoJ7t9BspwmKUPlVjoMMlq
 = Features =
 
 The manager provides:
- * Navigation features such as _previous_ and _next_ picture
  * The possibility to add comments to the picture
  * The possibility to add and remove a picture
  * The possibility to update or remove a tag or a comment of a picture
  * A way to search pictures by tag
- * A way to search pictures by name
