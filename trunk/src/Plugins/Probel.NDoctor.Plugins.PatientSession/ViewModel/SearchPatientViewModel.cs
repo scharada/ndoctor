@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Timers;
     using System.Windows.Input;
 
     using AutoMapper;
@@ -33,15 +34,16 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.NDoctor.Plugins.PatientSession.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using System.Timers;
 
     public class SearchPatientViewModel : BaseViewModel
     {
         #region Fields
 
+        public static readonly Timer Countdown = new Timer(250) { AutoReset = true };
+
         private IPatientSessionComponent component;
         private string criteria = string.Empty;
-        public static readonly Timer Countdown = new Timer(250) { AutoReset = true };
+
         #endregion Fields
 
         #region Constructors
