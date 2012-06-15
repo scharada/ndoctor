@@ -5,14 +5,14 @@ The application is built on the MVVM pattern and supports plugins.
 
 == Concepts ==
 
- * Components: The components are pieces of business logic. It consumes the entities nHibernates provides to the data transformation that has to be done and gives the result to WCF services throught DTO objects.
+ * Components: The components are pieces of business logic. It consumes the entities nHibernates provides to the data transformation that has to be done and gives the result using DTO objects.
  * nHibernate: Make the link between the server and the database. It hides the database implementation. 
 
 == Plugins ==
 
 A plugin is a piece of business logic. It contains the GUI and the component to manipulate the business data.
 
-Each plugin should know about the entities and nHibernate.
+Each plugin should *NOT* know about the entities and nHibernate. All the data work is done thought components.
 
 == Schema ==
 
