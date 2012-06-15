@@ -21,18 +21,36 @@
 
 namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Input;
-
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.MeetingManager.Helpers;
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
 
     public class RemoveMeetingViewModel : MeetingViewModel
     {
+        public ICommand RemoveAppointmentCommand { get; private set; }
+        private void RemoveAppointment()
+        {
+            try
+            {
+                using (this.Component.UnitOfWork)
+                {
+                    this.Component.Remove(this.SelectedAppointment, this.SelectedPatient);
+                }
+
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_AppointmentAdded);
+                Notifyer.OnRefreshed(this);
+                InnerWindow.Close();
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+        }
         #region Fields
 
         private AppointmentDto selectedAppointment;
@@ -45,6 +63,13 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         {
             this.BusyAppointments = new ObservableCollection<AppointmentDto>();
             this.FindSlotsCommand = new RelayCommand(() => this.FindSlots(), () => this.CanFindSlots());
+            this.RemoveAppointmentCommand = new RelayCommand(() => this.RemoveAppointment(), () => CanRemoveAppointment());
+        }
+
+        private bool CanRemoveAppointment()
+        {
+            return this.SelectedAppointment != null
+                && this.SelectedPatient != null;
         }
 
         #endregion Constructors

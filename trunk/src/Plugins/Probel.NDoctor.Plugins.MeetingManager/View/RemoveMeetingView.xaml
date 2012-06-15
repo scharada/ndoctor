@@ -75,7 +75,7 @@
                     <Border Style="{StaticResource BorderStyle}"
                                     DockPanel.Dock="Bottom">
                         <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.Remove}}"
-                                        Command="{Binding AddAppointmentCommand}"/>
+                                        Command="{Binding RemoveAppointmentCommand}"/>
                     </Border>
                     <ListView DockPanel.Dock="Bottom"
                                       ItemsSource="{Binding BusyAppointments}"
