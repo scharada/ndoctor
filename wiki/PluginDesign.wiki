@@ -9,6 +9,10 @@ The plugin repository is a directory named _Plugins_ in the application root. At
 
 `To be completed and analysed:` Maybe install the plugins into _%programfiles%_ needs administrator privileges and could be a security issue.
 
+== Remark ==
+
+These explanations are only about the plugin loading and validation. The interface `IPluginHost` exposes an API the plugins can use. This API is explained [PluginFeatures here].
+
 == Class diagrams ==
 https://lh5.googleusercontent.com/-JCz7TurlDzg/Tl_5F6r-UUI/AAAAAAAAAE8/9C3TlkbMniU/Plugins%252520design.jpg
 == Sequence diagrams ==
