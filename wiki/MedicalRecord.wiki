@@ -10,6 +10,6 @@ https://docs.google.com/drawings/pub?id=1pydNaRvjOFSUEPOmvy7QS5cLBWJFRysMJb5ORMR
 = Features =
  * The medical record manager is a light weight text editor. 
  * A tree view shows the hierarchy of the record
- * A search box exist to find a record by name or by type
+ * [`Pause: Maybe it is a useless feature`] A search box exist to find a record by name or by type
  * The tool box has all the feature to modify the text appearance such as colour, size, bold or italic.
  * An button exist to rollback the text to the sate it was when loaded.
