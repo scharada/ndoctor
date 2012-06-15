@@ -23,4 +23,4 @@ A role is a list of one or more tasks. nDoctor as a static (means, user can't dy
  * *Read*: Regroup all the features that read data
  * *!Edit_Calendar*: Regroup all the features that can modify the data of the calendar
 
-For further information, goo on [ComponentAop#Authorisation this page] to see the technical documentation.
+For further information, go on [ComponentAop#Authorisation this page] to see the technical documentation.
