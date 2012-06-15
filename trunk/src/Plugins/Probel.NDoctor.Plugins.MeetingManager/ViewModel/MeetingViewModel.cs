@@ -24,6 +24,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Timers;
     using System.Windows.Input;
 
     using Microsoft.Windows.Controls;
@@ -39,11 +40,12 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using System.Timers;
 
     public abstract class MeetingViewModel : BaseViewModel
     {
         #region Fields
+
+        protected static readonly Timer Countdown = new Timer(250) { AutoReset = true };
 
         private ICalendarComponent component = PluginContext.ComponentFactory.GetInstance<ICalendarComponent>();
         private string criteria;
@@ -53,7 +55,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         private DateRange selectedSlot;
         private DateTime startDate;
 
-        protected static readonly Timer Countdown = new Timer(250) { AutoReset = true };
         #endregion Fields
 
         #region Constructors

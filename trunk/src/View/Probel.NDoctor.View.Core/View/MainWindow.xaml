@@ -1,4 +1,4 @@
-﻿<ribbon:RibbonWindow x:Class="Probel.NDoctor.View.Core.MainWindow"
+﻿<ribbon:RibbonWindow x:Class="Probel.NDoctor.View.Core.View.MainWindow"
 					 x:Name="this"
 					 
 					 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"                     
@@ -191,6 +191,7 @@
 		<KeyBinding Modifiers="Control"
 					Key="F"
 					Command="{Binding Path=TriggerSearchCommand}"/>
+        
 		<KeyBinding Key="F3"
 					Command="{Binding Path=TriggerSearchCommand}"/>
 	</Window.InputBindings>

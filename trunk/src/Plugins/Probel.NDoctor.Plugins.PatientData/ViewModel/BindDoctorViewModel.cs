@@ -18,6 +18,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Timers;
     using System.Windows.Input;
 
     using AutoMapper;
@@ -30,16 +31,16 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using System.Timers;
 
     public class BindDoctorViewModel : BaseViewModel
     {
         #region Fields
 
+        public static readonly Timer Countdown = new Timer(250) { AutoReset = true };
+
         private IPatientDataComponent component;
         private string criteria;
         private LightDoctorViewModel selectedDoctor;
-        public static readonly Timer Countdown = new Timer(250) { AutoReset = true };
 
         #endregion Fields
 

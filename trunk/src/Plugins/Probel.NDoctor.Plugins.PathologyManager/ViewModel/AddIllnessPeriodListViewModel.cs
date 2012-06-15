@@ -18,6 +18,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Timers;
     using System.Windows.Input;
 
     using AutoMapper;
@@ -31,16 +32,17 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using System.Timers;
 
     public class AddIllnessPeriodListViewModel : BaseViewModel
     {
         #region Fields
 
+        private static Timer Countdown = new Timer(250) { AutoReset = true };
+
         private IFamilyComponent component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
         private string criteria;
         private IllnessPeriodToAddViewModel selectedPathology;
-        private static Timer Countdown = new Timer(250) { AutoReset = true };
+
         #endregion Fields
 
         #region Constructors

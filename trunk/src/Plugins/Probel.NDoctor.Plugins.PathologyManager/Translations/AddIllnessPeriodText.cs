@@ -47,11 +47,11 @@ namespace Probel.NDoctor.Plugins.PathologyManager.Translations
             get { return Messages.Title_Data; }
         }
 
-
         public static string Watermark
         {
             get { return Messages.Title_SearchWatermark; }
         }
+
         #endregion Properties
     }
 }

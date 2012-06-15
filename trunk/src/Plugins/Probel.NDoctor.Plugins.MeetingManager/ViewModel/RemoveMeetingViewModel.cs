@@ -24,6 +24,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Timers;
     using System.Windows;
     using System.Windows.Input;
 
@@ -33,7 +34,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using System.Timers;
 
     public class RemoveMeetingViewModel : MeetingViewModel
     {

@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.View.Core
+namespace Probel.NDoctor.View.Core.View
 {
     using System;
     using System.Linq;

@@ -18,6 +18,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Timers;
     using System.Windows.Input;
 
     using AutoMapper;
@@ -30,16 +31,17 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     using Probel.NDoctor.Plugins.FamilyManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using System.Timers;
 
     public class AddFamilyViewModel : BaseViewModel
     {
         #region Fields
 
+        private static readonly Timer Countdown = new Timer(250) { AutoReset = true };
+
         private IFamilyComponent component;
         private string criteria;
         private LightPatientViewModel selectedPatient;
-        private static readonly Timer Countdown = new Timer(250) { AutoReset = true };
+
         #endregion Fields
 
         #region Constructors

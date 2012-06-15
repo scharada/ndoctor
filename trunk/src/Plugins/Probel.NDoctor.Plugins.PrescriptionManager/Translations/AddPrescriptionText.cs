@@ -21,10 +21,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Translations
 
     public static class AddPrescriptionText
     {
-        public static string Watermark
-        {
-            get { return Messages.Title_SearchWatermark; }
-        }
         #region Properties
 
         public static string BtnAdd
@@ -90,6 +86,11 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Translations
         public static string TitleTag
         {
             get { return Messages.Title_Tag; }
+        }
+
+        public static string Watermark
+        {
+            get { return Messages.Title_SearchWatermark; }
         }
 
         #endregion Properties

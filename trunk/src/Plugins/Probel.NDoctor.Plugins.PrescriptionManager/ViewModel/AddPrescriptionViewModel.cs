@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Timers;
     using System.Windows;
     using System.Windows.Input;
 
@@ -33,11 +34,12 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using System.Timers;
 
     public class AddPrescriptionViewModel : BaseViewModel
     {
         #region Fields
+
+        private static readonly Timer Countdown = new Timer(250) { AutoReset = true };
 
         private IPrescriptionComponent component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
         private string criteria;
@@ -47,7 +49,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         private DrugViewModel selectedDrug;
         private PrescriptionDto selectedPrescriptionToDelete;
         private TagDto selectedTag;
-        private static readonly Timer Countdown = new Timer(250) { AutoReset = true };
+
         #endregion Fields
 
         #region Constructors

@@ -22,10 +22,6 @@ namespace Probel.NDoctor.Plugins.PatientData.Translations
     {
         #region Properties
 
-        public static string Watermark
-        {
-            get { return Messages.Title_SearchWatermark; }
-        }
         public static string BtnAdd
         {
             get { return Messages.Btn_Add; }
@@ -59,6 +55,11 @@ namespace Probel.NDoctor.Plugins.PatientData.Translations
         public static string TitleSpecialisation
         {
             get { return Messages.Title_Specialisation; }
+        }
+
+        public static string Watermark
+        {
+            get { return Messages.Title_SearchWatermark; }
         }
 
         #endregion Properties

@@ -36,20 +36,8 @@ namespace Probel.NDoctor.View.Plugins.Helpers
             {
                 Assert.IsNotNull(Host, "Host");
 
-                return new ComponentFactory(Host.ConnectedUser, ComponentLogginEnabled);
+                return new ComponentFactory(Host.ConnectedUser, Configuration.ComponentLogginEnabled);
             }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether component loggin is enabled.
-        /// </summary>
-        /// <value>
-        /// 	<c>true</c> if component loggin is enabled; otherwise, <c>false</c>.
-        /// </value>
-        public static bool ComponentLogginEnabled
-        {
-            get;
-            set;
         }
 
         /// <summary>
@@ -74,6 +62,11 @@ namespace Probel.NDoctor.View.Plugins.Helpers
             get;
             set;
         }
+
+        /// <summary>
+        /// Gets the configuration for the whole application.
+        /// </summary>
+        public static readonly Configuration Configuration = new Configuration();
 
         #endregion Properties
     }

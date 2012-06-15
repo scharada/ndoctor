@@ -1,3 +1,5 @@
+﻿#region Header
+
 /*
     This file is part of NDoctor.
 
@@ -15,14 +17,31 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System.Reflection;
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
-[assembly: AssemblyVersion("3.0.1.405")]
+#endregion Header
+
+namespace Probel.NDoctor.View.Plugins.Helpers
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    public class Configuration
+    {
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets a value indicating whether component loggin is enabled.
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if component loggin is enabled; otherwise, <c>false</c>.
+        /// </value>
+        public bool ComponentLogginEnabled
+        {
+            get;
+            set;
+        }
+
+        #endregion Properties
+    }
+}
