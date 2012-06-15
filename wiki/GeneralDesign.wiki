@@ -5,8 +5,8 @@ The application is built on the MVVM pattern and supports plugins.
 
 == Concepts ==
 
- * Components: The components are pieces of business logic. It consumes the entities nHibernates provides to the data transformation that has to be done and gives the result using DTO objects.
- * nHibernate: Make the link between the server and the database. It hides the database implementation. 
+ * Component: a component is a piece of business logic. It consumes the entities nHibernates provides, process the data depending on business logic and gives the result using DTO objects.
+ * nHibernate: it makes the link between the domain and the database. It hides the database implementation. 
 
 == Plugins ==
 
