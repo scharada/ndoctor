@@ -62,7 +62,7 @@ WriteStatus(statusType.Warning, "Mind the step!");
  * Info
 
 === Door Keeper ===
-The door keeper is a module that checks the authorisation on demand. It keep tracks on who's connected and says whether this connected user can execute this or that kind of tasks. For instance this code checks whether the connected user can execute a _write_ action:
+The door keeper is a module that checks the authorisation on demand. It keep tracks on who's connected and says whether this connected user can execute or not the specified task. For instance this code checks whether the connected user can execute a _write_ action:
 
 {{{
 bool isGranted = PluginContext.Host.DoorKeeper.IsGranted("write")
