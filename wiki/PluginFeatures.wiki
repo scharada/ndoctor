@@ -10,7 +10,7 @@ The plugin host DLL offers a base class that allows logging. If you need a class
 
 == Error handling ==
 
-The plugin host DLL offers a error handlerto manage exception handling. Its role is pretty simple it:
+The plugin host DLL offers a error handler to manage exception. Its role is pretty simple it:
  * displays an error message in a message box
  * logs the exception in a file or in whatever way you've configured log4net
 
