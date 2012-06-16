@@ -6,18 +6,16 @@ Before starting development, you have to configure your machine as follow:
  # Ask the `write` privilege to the project owner sending him a mail to *`ndoctor(dot)software(at)gmail(dot)com`* explaining why you'd like to be part of the team.
  # Check out the code at this address `https://ndoctor.googlecode.com/svn/trunk/`
 
-== Visual Studio: ==
-
-=== Add code snippets ==
+== Add code snippets ==
 Copy the `*.snippet` files 
  * from: `%workingcopy%`\tools\Snippets
  * to  : `%userprofile%\My Documents\Visual Studio 2010\Code Snippets\Visual C#\My Code Snippets`
-=== Import the plugin project template: ===
+== Import the plugin project template: ==
 Drop the file 
  * `[working copy]\tools\Probel.NDoctor.Template.zip` 
  * into :`%userprofile%\My Documents\Visual Studio 2010\Templates\ProjectTemplates\Visual C#\`
 
-=== Install the libraries that are not configured with !NuGet: ===
+== Install the libraries that are not configured with !NuGet: ==
 Simply install:
  * [http://wpf.codeplex.com/ WPF Toolkit]
  * [http://wpftoolkit.codeplex.com/ WPF Toolkit extended]
