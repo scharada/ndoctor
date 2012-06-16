@@ -16,6 +16,16 @@ Before starting development, you have to configure your machine as follow:
    # Click on "Environment Variables" 
    # Edit PATH (On my machine I add "`C:\Program Files\TortoiseSVN\bin`"
 
+== Configure nArrange: ==
+
+nArrange is a little tool to beautify the code. By default, it is triggered every time you execute the nAnt build file.
+
+To add this tool in Visual Studio follow these steps:
+ # In Visual Studion go to Tools\External Tools
+ # Fill the windows as follow:
+https://picasaweb.google.com/111060146865868240063/Documentation#5754697586678971202&w=960&h=720&cht=bvg&nonsense=something_that_ends_with.png
+
+
 == Configure nAnt: ==
  # Download [http://nant.sourceforge.net/ nAnt] and [http://nantcontrib.sourceforge.net/ nAnt contrib]. 
  # Copy the downoaded files into `%programfiles%\nAnt` (or whatever directory) and copy the nAnt Contrib files from `bin` directory into the nAnt directory you've created.
