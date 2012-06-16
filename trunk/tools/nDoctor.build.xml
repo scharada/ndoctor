@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<project default="Build" xmlns="http://nant.sf.net/release/0.92/nant.xsd">
+  <!-- Properties -->
+  <property name="build-mode" value="debug" overwrite="false"/>
+  
+  <!-- Targets -->  
+  <target name="Build" description="Build the solution">
+    <echo message="Build mode: ${build-mode}"/>
+  </target>
+  
+  <target name="Plugins" description="Install the plugins into nDoctor"></target>
+</project>
