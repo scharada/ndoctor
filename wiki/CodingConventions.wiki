@@ -68,9 +68,12 @@ While writing a component, developer have to follow these rules:
  * A DTO object is suffixed with `Dto`. For example a patient dto is called `PatientDto`
 
 = Gui- Xaml, Mvvm: =
- * When defining a ICommand, always prefix the check method with a *Can*
+ * When defining a ICommand:
+  * the name of the command is suffixed with *Command*
+  * prefix the check method with a *Can* 
+  * the action performed by the command is the name of the command without the suffix *Command*
 {{{
-    this.SomeCommand = new RelayCommand(() => ExecuteCommand(), () => CanExecuteCommand());
+    this.DrinkABeerCommand = new RelayCommand(() => DrinkABeerCommand(), () => CanDrinkABeerCommand());
 }}}
  * If you need static events in your plugin, define them into a static class called `Notifyer`
  * The translation system uses static class. This class should have the name of the `ViewModel` class. Replace the suffix `ViewModel` with `Text`. If the !ViewModel is `AddPatientViewModel` then the translation static class is `AddPatientText`
