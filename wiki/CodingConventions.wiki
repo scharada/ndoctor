@@ -75,7 +75,7 @@ While writing a component, developer have to follow these rules:
  * If you need static events in your plugin, define them into a static class called `Notifyer`
  * The translation system uses static class. This class should have the name of the `ViewModel` class. Replace the suffix `ViewModel` with `Text`
  * A plugin solution should written on that pattern: `Probel.NDoctor.Plugins.NameOfThePlugin`
- * a ViewModel class derives from BaseViewModel. This base class is in charge of error handling and logging.
+ * A `ViewModel` class derives from `BaseViewModel`. This base class is in charge of error handling and logging.
 
 = Authorisation management: =
 The authorisation is build on the pattern [http://en.wikipedia.org/wiki/Convention_over_configuration Convention over configuration]. 
