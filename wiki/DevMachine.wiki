@@ -35,4 +35,4 @@ To fix it I:
  # Edit the file `packages.config` of the project `Probel.NDoctor.Domain.Components`
  # Removed the entry `<package id="Castle.Core" version="3.0.0.4001" />`
  # Right clicked on `Reference` directory on this project
- # Reinstalled the `Castle Dynamic Proxy`
+ # Reinstalled the `Castle Dynamic Proxy` with !NuGet
