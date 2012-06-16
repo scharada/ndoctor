@@ -17,6 +17,12 @@ Drop the file
  * `[working copy]\tools\Probel.NDoctor.Template.zip` 
  * into :`%userprofile%\My Documents\Visual Studio 2010\Templates\ProjectTemplates\Visual C#\`
 
+=== Install the libraries that are not configured with !NuGet: ===
+Simply install:
+ * [http://wpf.codeplex.com/ WPF Toolkit]
+ * [http://wpftoolkit.codeplex.com/ WPF Toolkit extended]
+ * [http://www.microsoft.com/download/en/details.aspx?id=11877 Microsoft Ribbon for WPF]
+
 == Configure TortoiseSVN: ==
 
  # Configure SubWCRev for automatic versionning based on SVN revision number:
@@ -55,9 +61,3 @@ To add this tool in Visual Studio follow these steps:
    # Command          : `nAnt.exe` (if you haven't configured the environment variables, type the full path)
    # Arguments        : `-buildfile:nDoctor.build.xml -D:build-mode=debug`
    # Initial directory: `$(SolutionDir)\..\tools`
-
-== Install the libraries that are not configured with !NuGet: ==
-Simply install:
- * [http://wpf.codeplex.com/ WPF Toolkit]
- * [http://wpftoolkit.codeplex.com/ WPF Toolkit extended]
- * [http://www.microsoft.com/download/en/details.aspx?id=11877 Microsoft Ribbon for WPF]
