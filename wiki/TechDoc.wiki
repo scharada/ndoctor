@@ -1,13 +1,12 @@
-= Technical Documentation =
-== Configure the development machine ==
+= Configure the development machine =
 Before starting development, you have to configure your machine as follow:
 
-=== Checkout the code: ===
+== Checkout the code: ==
 
  # Ask the `write` privilege to the project owner sending him a mail to `ndoctor(dot)software(at)gmail(dot)com` explaining why you'd like to be part of the team.
  # Check out the code at this address `https://ndoctor.googlecode.com/svn/trunk/`
 
-=== Configure TortoiseSVN: ===
+== Configure TortoiseSVN: ==
 
  # Configure SubWCRev for automatic versionning based on SVN revision number:
   # Install TortoiseSVN
@@ -17,20 +16,20 @@ Before starting development, you have to configure your machine as follow:
    # Click on "Environment Variables" 
    # Edit PATH (On my machine I add "`C:\Program Files\TortoiseSVN\bin`"
 
-=== Install the libraries that are not configured with !NuGet: ===
+== Install the libraries that are not configured with !NuGet: ==
 Simply install:
  * [http://wpf.codeplex.com/ WPF Toolkit]
  * [http://wpftoolkit.codeplex.com/ WPF Toolkit extended]
  * [http://www.microsoft.com/download/en/details.aspx?id=11877 Microsoft Ribbon for WPF]
 
-=== Import the plugin project template: ===
+== Import the plugin project template: ==
 Drop the file 
   * `[working copy]\tools\Probel.NDoctor.Template.zip` 
 into 
   * `%userprofile%\My Documents\Visual Studio 2010\Templates\ProjectTemplates\Visual C#\`
 
-=== Troubleshooting: ===
-==== Castle Dynamic Proxy: ===
+== Troubleshooting: ==
+=== Castle Dynamic Proxy: ==
 For an unknown reason, this libraries wasn't recognised anymore when I made a fresh checkout on a new machine.
 To fix it I:
  # Edit the file `packages.config` of the project `Probel.NDoctor.Domain.Components`
