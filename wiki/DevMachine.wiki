@@ -50,7 +50,7 @@ To add this tool in Visual Studio follow these steps:
  
 To add this tool in Visual Studio follow these steps:
  # In Visual Studion go to Tools\External Tools
- # Fill the windows as follow:
+ # Fill the window as follow:
    # Title            : nAnt(or whatever name you want)
    # Command          : `nAnt.exe` (if you haven't configured the environment variables, type the full path)
    # Arguments        : `-buildfile:nDoctor.build.xml -D:build-mode=debug`
