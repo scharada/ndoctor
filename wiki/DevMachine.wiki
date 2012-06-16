@@ -23,7 +23,7 @@ nArrange is a little tool to beautify the code. By default, it is triggered ever
 To add this tool in Visual Studio follow these steps:
  # In Visual Studion go to Tools\External Tools
  # Fill the windows as follow:
-https://picasaweb.google.com/111060146865868240063/Documentation#5754697586678971202&w=960&h=720&cht=bvg&nonsense=something_that_ends_with.png
+https://docs.google.com/drawings/pub?id=1F6XbnNXA_9pweliorfaAoQwtwbHTa_g44d2FcgnjV-Q&w=462&h=450&nonsense=something_that_ends_with.png
 
 
 == Configure nAnt: ==
