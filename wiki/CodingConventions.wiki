@@ -1,8 +1,62 @@
 #labels Phase-Implementation
 = Introduction =
 
-All the coding conventions are listed here.
+All the coding conventions are listed here. Most of these rules are automatically managed with `nArrange`. This is here fyi.
 
+== Guidelines ==
+
+Follow the [http://msdn.microsoft.com/en-us/library/czefa0ke(v=vs.71) Microsoft guidelines]
+
+== Header on each file ==
+Each `*.cs` file should have this header
+{{{
+/*
+    This file is part of NDoctor.
+
+    NDoctor is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    NDoctor is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
+*/
+}}}
+
+== `using` directive ==
+The `namespaces` should be ordered alphabetically. Each group should be separated by a line.
+
+Here's an example:
+{{{
+using System;
+using System.Windows.Input;
+
+using Probel.Helpers.WPF;
+using Probel.Mvvm.DataBinding;
+using Probel.NDoctor.Domain.DTO;
+using Probel.NDoctor.Domain.DTO.Collections;
+using Probel.NDoctor.Domain.DTO.Helpers;
+using Probel.NDoctor.Plugins.Administration.Helpers;
+}}}
+
+== Class ==
+You should groups each member into a `#region`. The `#region`should appear in this order:
+ # Fields
+ # Constructors
+ # Enumeration
+ # Events
+ # Properties
+ # Methods
+ # Nested Types
+
+Every member should be ordered:
+ * by visibility (public, internal, protected, private)
+ * alphabetically,
 
 = Components =
 
@@ -11,12 +65,17 @@ While writing a component, developer have to follow these rules:
  * All the components are suffixed with "*`Component`*". For instance, the medical record's component will be called `MedicalRecordComponent`.
  * A methods to retrieve all the entities of a type will be prefixed with *`GetAll`*. A methods to get all the patients will be called `GetAllPatients()`.
  * A method to find entities based on criteria should be prefixed with *`Find`* and suffixed with "*`By...`*" which translates on what the search will be done.
+ * A DTO object is suffixed with `Dto`. For example a patient dto is called `PatientDto`
 
-= General notes =
+= Gui- Xaml, Mvvm =
  * When defining a ICommand, always prefix the check method with a *Can*
 {{{
     this.SomeCommand = new RelayCommand(() => ExecuteCommand(), () => CanExecuteCommand());
 }}}
+ * If you need static events in your plugin, define them into a static class called `Notifyer`
+ * The translation system uses static class. This class should have the name of the `ViewModel` class. Replace the suffix `ViewModel` with `Text`
+ * A plugin solution should written on that pattern: `Probel.NDoctor.Plugins.NameOfThePlugin`
+ * a ViewModel class derives from BaseViewModel. This base class is in charge of error handling and logging.
 
 = Authorisation management =
 The authorisation is build on the pattern [http://en.wikipedia.org/wiki/Convention_over_configuration Convention over configuration]. 
