@@ -35,7 +35,6 @@
   * [Tools Tools]
    * [TechDoc Tools documentation]
   * [CodingConventions Coding conventions]
-  * [SVN Use of SVN]
  * QA
  * Deploy
  * Support
