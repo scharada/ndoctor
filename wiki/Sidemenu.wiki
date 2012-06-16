@@ -30,11 +30,11 @@
  * Documentation
   * [DevMachine Dev machine installation]
    * [Troubleshooting Troubleshooting]
+  * [Tools Tools]
+   * [TechDoc Tools documentation]
   * [CodingConventions Coding conventions]
   * [ComponentAop Components & AOP]
   * [PluginFeatures Plugin API ]
-  * [Tools Tools]
-   * [TechDoc Tools documentation]
  * QA
  * Deploy
  * Support
