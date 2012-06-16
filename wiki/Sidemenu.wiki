@@ -28,7 +28,7 @@
     * [RightManager Rights manager]
   * [convertdatabase Import data]
  * Documentation
-  * [DevMachine Before working]
+  * [DevMachine Dev machine installation]
    * [Troubleshooting Troubleshooting]
   * [ComponentAop Components & AOP]
   * [PluginFeatures Plugin API ]
