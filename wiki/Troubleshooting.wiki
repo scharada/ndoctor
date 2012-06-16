@@ -1,5 +1,7 @@
 = Troubleshooting: =
-== nAnt's crashing displaying a security error message: ==
+Here's the list of some problem you could encounter when installing a development machine.
+
+== nAnt is crashing displaying a security error message: ==
 You have to create yourself the `nAnt` directory into `%programfiles%` and copy/paste the nAnt files into the freshly created directory. In this way, Windows 7 doesn't believe these files are untrusted internet files.
 
 == Castle Dynamic Proxy: ==
