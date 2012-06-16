@@ -27,7 +27,7 @@
     * [PluginsManager Plugins manager]
     * [RightManager Rights manager]
   * [convertdatabase Import data]
- * Implementation
+ * Documentation
   * [DevMachine Before working]
   * [ComponentAop Components & AOP]
   * [PluginFeatures Plugin API ]
