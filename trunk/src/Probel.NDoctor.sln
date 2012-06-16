@@ -57,6 +57,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Probel.NDoctor.Domain.Compo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Probel.NDoctor.Plugins.Authorisation", "Plugins\Probel.NDoctor.Plugins.Authorisation\Probel.NDoctor.Plugins.Authorisation.csproj", "{33DB69DA-57AC-4B25-A266-5A2C20B91CA9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Tools", "_Tools", "{B78C3AA9-F3E2-4919-8965-B43DA42EE324}"
+	ProjectSection(SolutionItems) = preProject
+		..\tools\nDoctor.build.xml = ..\tools\nDoctor.build.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -299,7 +299,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>$(SolutionDir)..\tools\SubWCRev.exe $(SolutionDir) "$(ProjectDir)..\..\Version.template" "$(ProjectDir)..\..\Version.cs"</PreBuildEvent>
+    <PreBuildEvent>SubWCRev.exe $(SolutionDir) "$(ProjectDir)..\..\Version.template" "$(ProjectDir)..\..\Version.cs"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

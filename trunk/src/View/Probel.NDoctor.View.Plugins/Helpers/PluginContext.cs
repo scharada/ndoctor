@@ -25,6 +25,15 @@ namespace Probel.NDoctor.View.Plugins.Helpers
     /// </summary>
     public static class PluginContext
     {
+        #region Fields
+
+        /// <summary>
+        /// Gets the configuration for the whole application.
+        /// </summary>
+        public static readonly Configuration Configuration = new Configuration();
+
+        #endregion Fields
+
         #region Properties
 
         /// <summary>
@@ -62,11 +71,6 @@ namespace Probel.NDoctor.View.Plugins.Helpers
             get;
             set;
         }
-
-        /// <summary>
-        /// Gets the configuration for the whole application.
-        /// </summary>
-        public static readonly Configuration Configuration = new Configuration();
 
         #endregion Properties
     }
