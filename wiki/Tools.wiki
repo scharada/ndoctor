@@ -14,6 +14,7 @@ Here's the list of tools used to develop nDoctor
  * [http://getgreenshot.org/ Greenshot]
  * [http://www.7-zip.org/ 7-Zip]
  * [http://www.sqlite.org/ SQLite]
+ * [http://sqliteadmin.orbmu2k.de/ SQLite Admin]
 
 = API =
  * [http://structuremap.net/structuremap/ StructureMap]
