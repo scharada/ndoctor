@@ -3,12 +3,12 @@
 
 All the coding conventions are listed here. Most of these rules are automatically managed with `nArrange`. This is here fyi.
 
-== Guidelines ==
+== Guidelines: ==
 
 Follow the [http://msdn.microsoft.com/en-us/library/czefa0ke(v=vs.71) Microsoft guidelines]
 
-== Header on each file ==
-Each `*.cs` file should have this header
+== Header on each file: ==
+Each `*.cs` file should have this header:
 {{{
 /*
     This file is part of NDoctor.
@@ -28,7 +28,7 @@ Each `*.cs` file should have this header
 */
 }}}
 
-== `using` directive ==
+== `using` directive: ==
 The `namespaces` should be ordered alphabetically. Each group should be separated by a line.
 
 Here's an example:
@@ -44,8 +44,8 @@ using Probel.NDoctor.Domain.DTO.Helpers;
 using Probel.NDoctor.Plugins.Administration.Helpers;
 }}}
 
-== Class ==
-You should groups each member into a `#region`. The `#region`should appear in this order:
+== Class: ==
+You should groups each member into a `#region`. The `#region` should appear in this order:
  # Fields
  # Constructors
  # Enumeration
@@ -58,7 +58,7 @@ Every member should be ordered:
  * by visibility (public, internal, protected, private)
  * alphabetically,
 
-= Components =
+= Components: =
 
 While writing a component, developer have to follow these rules:
 
@@ -67,7 +67,7 @@ While writing a component, developer have to follow these rules:
  * A method to find entities based on criteria should be prefixed with *`Find`* and suffixed with "*`By...`*" which translates on what the search will be done.
  * A DTO object is suffixed with `Dto`. For example a patient dto is called `PatientDto`
 
-= Gui- Xaml, Mvvm =
+= Gui- Xaml, Mvvm: =
  * When defining a ICommand, always prefix the check method with a *Can*
 {{{
     this.SomeCommand = new RelayCommand(() => ExecuteCommand(), () => CanExecuteCommand());
@@ -77,7 +77,7 @@ While writing a component, developer have to follow these rules:
  * A plugin solution should written on that pattern: `Probel.NDoctor.Plugins.NameOfThePlugin`
  * a ViewModel class derives from BaseViewModel. This base class is in charge of error handling and logging.
 
-= Authorisation management =
+= Authorisation management: =
 The authorisation is build on the pattern [http://en.wikipedia.org/wiki/Convention_over_configuration Convention over configuration]. 
 
 Without the attribute `GrantedAttribute` the authorisation is set as follow:
