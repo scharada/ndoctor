@@ -13,7 +13,7 @@ Copy the `*.snippet` files
 
 == Import the plugin project template: ==
 Drop the file 
- * `[working copy]\tools\Probel.NDoctor.Template.zip` 
+ * `[working copy]\tools\Probel.NDoctor.Plugins.Plugin.zip` 
  * into :`%userprofile%\My Documents\Visual Studio 2010\Templates\ProjectTemplates\Visual C#\`
 
 == Install the libraries that are not configured with !NuGet: ==
