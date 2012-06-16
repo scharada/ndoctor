@@ -10,6 +10,7 @@ Before starting development, you have to configure your machine as follow:
 Copy the `*.snippet` files 
  * from: `%workingcopy%`\tools\Snippets
  * to  : `%userprofile%\My Documents\Visual Studio 2010\Code Snippets\Visual C#\My Code Snippets`
+
 == Import the plugin project template: ==
 Drop the file 
  * `[working copy]\tools\Probel.NDoctor.Template.zip` 
@@ -42,7 +43,6 @@ To add this tool in Visual Studio follow these steps:
    # Command          : `%WorkingCopy%\tools\NArrange\narrange-console.exe`
    # Arguments        : `$(SolutionFileName) /b`
    # Initial directory: `$(SolutionDir)`
-
 
 == Configure nAnt: ==
  # Download [http://nant.sourceforge.net/ nAnt] and [http://nantcontrib.sourceforge.net/ nAnt contrib]. 
