@@ -413,5 +413,24 @@
             The DTO is deleted and should be deleted from the database
             </summary>
         </member>
+        <member name="T:Probel.Mvvm.DataBinding.CommandExtension">
+            <summary>
+            Provide a way to execute a command if it can be executed
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.DataBinding.CommandExtension.ExecuteIfCan(System.Windows.Input.ICommand,System.Object)">
+            <summary>
+            Executes the specified command giving the specified <see cref="!:arg"/>
+            as argument for Execute and CanExecute.
+            </summary>
+            <param name="command">The command.</param>
+            <param name="arg">The arg.</param>
+        </member>
+        <member name="M:Probel.Mvvm.DataBinding.CommandExtension.ExecuteIfCan(System.Windows.Input.ICommand)">
+            <summary>
+            Executes the specified command giving null as argument for Execute and CanExecute.
+            </summary>
+            <param name="command">The command.</param>
+        </member>
     </members>
 </doc>
