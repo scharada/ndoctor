@@ -45,7 +45,7 @@ using Probel.NDoctor.Plugins.Administration.Helpers;
 }}}
 
 == Class: ==
-You should groups each member into a `#region`. The `#region` should appear in this order:
+You should wrap each member group into a `#region`. The `#region` should appear in this order:
  # Fields
  # Constructors
  # Enumeration
