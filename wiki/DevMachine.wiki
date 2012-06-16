@@ -30,7 +30,7 @@ into
 
 == Troubleshooting: ==
 === Castle Dynamic Proxy: ==
-For an unknown reason, this libraries wasn't recognised anymore when I made a fresh checkout on a new machine.
+For an unknown reason, this librarie wasn't recognised anymore when I made a fresh checkout on a new machine.
 To fix it I:
  # Edit the file `packages.config` of the project `Probel.NDoctor.Domain.Components`
  # Removed the entry `<package id="Castle.Core" version="3.0.0.4001" />`
