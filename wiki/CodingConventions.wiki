@@ -73,10 +73,11 @@ While writing a component, developer have to follow these rules:
     this.SomeCommand = new RelayCommand(() => ExecuteCommand(), () => CanExecuteCommand());
 }}}
  * If you need static events in your plugin, define them into a static class called `Notifyer`
- * The translation system uses static class. This class should have the name of the `ViewModel` class. Replace the suffix `ViewModel` with `Text`
-If the !ViewModel is `AddPatientViewModel` then the translation static class is `AddPatientText`
+ * The translation system uses static class. This class should have the name of the `ViewModel` class. Replace the suffix `ViewModel` with `Text`. If the !ViewModel is `AddPatientViewModel` then the translation static class is `AddPatientText`
  * A plugin solution should written on that pattern: `Probel.NDoctor.Plugins.NameOfThePlugin`
  * A `ViewModel` class derives from `BaseViewModel`. This base class is in charge of error handling and logging.
+ * Every DTO derives from `Probel.Mvvm.BaseDto<T>`.
+ * If you need to implement [http://msdn.microsoft.com/en-us/library/system.componentmodel.inotifypropertychanged.aspx INotifyPropertyChanged] and `BaseDto<T>` doesn't fit your need, use `ValidatableObject` but *don't* reimplement INPC yourself.
 
 = Authorisation management: =
 The authorisation is build on the pattern [http://en.wikipedia.org/wiki/Convention_over_configuration Convention over configuration]. 
