@@ -31,9 +31,9 @@
   * [DevMachine Before working]
   * [ComponentAop Components & AOP]
   * [PluginFeatures Plugin API ]
+  * [Tools Tools]
   * [TechDoc Tools documentation]
   * [CodingConventions Coding conventions]
-  * [Tools Tools]
   * [SVN Use of SVN]
  * QA
  * Deploy
