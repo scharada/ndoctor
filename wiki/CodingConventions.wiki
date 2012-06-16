@@ -28,6 +28,8 @@ Each `*.cs` file should have this header:
 */
 }}}
 
+Use the plugin [http://visualstudiogallery.msdn.microsoft.com/5647a099-77c9-4a49-91c3-94001828e99e?SRC=VSIDE License Header Manager] for that purpose.
+
 == `using` directive: ==
 The `namespaces` should be ordered alphabetically. Each group should be separated by a line.
 
