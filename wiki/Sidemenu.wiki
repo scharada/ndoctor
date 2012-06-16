@@ -31,7 +31,7 @@
   * [DevMachine Before working]
   * [ComponentAop Components & AOP]
   * [PluginFeatures Plugin API ]
-  * [TechDoc External tools]
+  * [TechDoc Tools documentation]
   * [CodingConventions Coding conventions]
   * [Tools Tools]
   * [SVN Use of SVN]
