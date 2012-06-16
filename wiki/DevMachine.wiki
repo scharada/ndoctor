@@ -8,7 +8,7 @@ Before starting development, you have to configure your machine as follow:
 
 == Add code snippets ==
 Copy the `*.snippet` files 
- * from: `%workingcopy%`\tools\Snippets
+ * from: `[workingcopy]`\tools\Snippets
  * to  : `%userprofile%\My Documents\Visual Studio 2010\Code Snippets\Visual C#\My Code Snippets`
 
 == Import the plugin project template: ==
@@ -40,7 +40,7 @@ To add this tool in Visual Studio follow these steps:
  # In Visual Studion go to Tools\External Tools
  # Fill the windows as follow:
    # Title            : nArrange (or whatever name you want)
-   # Command          : `%WorkingCopy%\tools\NArrange\narrange-console.exe`
+   # Command          : `[workingcopy]\tools\NArrange\narrange-console.exe`
    # Arguments        : `$(SolutionFileName) /b`
    # Initial directory: `$(SolutionDir)`
 
