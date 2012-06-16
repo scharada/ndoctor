@@ -29,6 +29,7 @@
   * [convertdatabase Import data]
  * Documentation
   * [DevMachine Before working]
+   * [Troubleshooting Troubleshooting]
   * [ComponentAop Components & AOP]
   * [PluginFeatures Plugin API ]
   * [Tools Tools]
