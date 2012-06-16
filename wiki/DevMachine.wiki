@@ -23,7 +23,10 @@ nArrange is a little tool to beautify the code. By default, it is triggered ever
 To add this tool in Visual Studio follow these steps:
  # In Visual Studion go to Tools\External Tools
  # Fill the windows as follow:
-https://docs.google.com/drawings/pub?id=1F6XbnNXA_9pweliorfaAoQwtwbHTa_g44d2FcgnjV-Q&w=462&h=450&nonsense=something_that_ends_with.png
+   # Title            : nArrange (or whatever name you want)
+   # Command          : `%WorkingCopy%\tools\NArrange\narrange-console.exe`
+   # Arguments        : `$(SolutionFileName) /b`
+   # Initial directory: `$(SolutionDir)`
 
 
 == Configure nAnt: ==
@@ -33,6 +36,14 @@ https://docs.google.com/drawings/pub?id=1F6XbnNXA_9pweliorfaAoQwtwbHTa_g44d2Fcgn
  # Configure Visual Studio to work with build files. 
   * [https://github.com/nant/nant/wiki/Frequently-Asked-Questions FAQ] 
   * [http://stackoverflow.com/questions/5157041/how-to-make-intellisense-work-with-nant-files-in-visual-studio-2008 How to use *.xsd for IntelliSense]
+ 
+To add this tool in Visual Studio follow these steps:
+ # In Visual Studion go to Tools\External Tools
+ # Fill the windows as follow:
+   # Title            : nAnt(or whatever name you want)
+   # Command          : `nAnt.exe` (if you haven't configured the environment variables, type the full path)
+   # Arguments        : `-buildfile:nDoctor.build.xml -D:build-mode=debug`
+   # Initial directory: `$(SolutionDir)\..\tools`
 
 == Install the libraries that are not configured with !NuGet: ==
 Simply install:
@@ -49,6 +60,7 @@ into
 == Troubleshooting: ==
 === nAnt's crashing displaying a security error message: ===
 You have to create yourself the `nAnt` directory into `%programfiles%` and copy/paste the nAnt files into the freshly created directory. In this way, Windows 7 doesn't believe is untrusted internet files.
+
 === Castle Dynamic Proxy: ==
 For an unknown reason, this librarie wasn't recognised anymore when I made a fresh checkout on a new machine.
 To fix it I:
