@@ -35,6 +35,11 @@ You can use a built-in Cancel command writing this into the xaml code:
 Command="iw:InnerWindow.CancelCommand"
 }}}
 
+`iw` refers to a xml namespace defined as follow on top of the xaml file:
+{{{
+xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
+}}}
+
 == Plugin context ==
 This plugin context provides an small API to execute some generic tasks:
  * Loggin into the GUI
