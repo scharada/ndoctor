@@ -3,7 +3,7 @@ Before starting development, you have to configure your machine as follow:
 
 == Checkout the code: ==
 
- # Ask the `write` privilege to the project owner sending him a mail to `ndoctor(dot)software(at)gmail(dot)com` explaining why you'd like to be part of the team.
+ # Ask the `write` privilege to the project owner sending him a mail to *`ndoctor(dot)software(at)gmail(dot)com`* explaining why you'd like to be part of the team.
  # Check out the code at this address `https://ndoctor.googlecode.com/svn/trunk/`
 
 == Visual Studio: ==
