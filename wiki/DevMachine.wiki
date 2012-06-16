@@ -21,8 +21,8 @@ Before starting development, you have to configure your machine as follow:
  # Copy the downoaded files into `%programfiles%\nAnt` (or whatever directory)
  # Update the Environment Variables to allow nAnt.exe to be accessible from everywhere
  # Configure Visual Studio to work with build files. 
-  * [https://github.com/nant/nant/wiki/Frequently-Asked-Questions Some info] 
-  * [http://stackoverflow.com/questions/5157041/how-to-make-intellisense-work-with-nant-files-in-visual-studio-2008 How to use *.xsd for !IntelliSense]
+  * [https://github.com/nant/nant/wiki/Frequently-Asked-Questions FAQ] 
+  * [http://stackoverflow.com/questions/5157041/how-to-make-intellisense-work-with-nant-files-in-visual-studio-2008 How to use *.xsd for IntelliSense]
 
 == Install the libraries that are not configured with !NuGet: ==
 Simply install:
