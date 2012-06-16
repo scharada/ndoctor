@@ -17,8 +17,8 @@ Before starting development, you have to configure your machine as follow:
    # Edit PATH (On my machine I add "`C:\Program Files\TortoiseSVN\bin`"
 
 == Configure nAnt: ==
- # [http://nant.sourceforge.net/ Download] nAnt
- # Copy the downoaded files into `%programfiles%\nAnt` (or whatever directory)
+ # Download [http://nant.sourceforge.net/ nAnt] and [http://nantcontrib.sourceforge.net/ nAnt contrib]. 
+ # Copy the downoaded files into `%programfiles%\nAnt` (or whatever directory) and copy the nAnt Contrib files from `bin` directory into the nAnt directory you've created.
  # Update the Environment Variables to allow nAnt.exe to be accessible from everywhere
  # Configure Visual Studio to work with build files. 
   * [https://github.com/nant/nant/wiki/Frequently-Asked-Questions FAQ] 
