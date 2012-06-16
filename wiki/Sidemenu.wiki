@@ -29,8 +29,8 @@
   * [convertdatabase Import data]
  * Documentation
   * [DevMachine Dev machine installation]
-  * [CodingConventions Coding conventions]
    * [Troubleshooting Troubleshooting]
+  * [CodingConventions Coding conventions]
   * [ComponentAop Components & AOP]
   * [PluginFeatures Plugin API ]
   * [Tools Tools]
