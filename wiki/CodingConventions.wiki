@@ -58,6 +58,51 @@ Every member should be ordered:
  * by visibility (public, internal, protected, private)
  * alphabetically,
 
+== Member: ==
+=== General ===
+ * Never prefix '`_`' (underscore) class wide variable or suffix '`_`' (underscore) method wide method. Instead use the keyword `this`. If a variable is prefixed with `this`, it is a class variable otherwise a method variable.
+{{{
+public int OffsetAdd(int right, int left)
+{
+    var result = right + left;
+    return result + this.offset;
+}
+}}}
+ * Use as much as possible the keyword *`var`*. It'll force you to find better variable name and it eases refactoring.
+=== Pascal case and camel case: ===
+ * Properties, const, readonly members are in pascal case.
+{{{
+public int PascalCaseMethod(){ return 1 + 1; } 
+}}}
+ * Class wide and method wide variable are in camel case.
+{{{
+private int camelCaseVariable;
+}}}
+
+=== Spacing conventions: ===
+Bear in mind Visual Studio has automatic reordering feature: *`Ctrl+E, D`*. Keep default configuration.
+
+ * Put a space before and after any operator
+ * Put a space after the coma not before
+ * Put a space after and before the curly braces if they are on the same line
+{{{
+i = i + 5;
+
+if(number == 4) { number += 150; }
+
+public void DumbMethod(int arg, string text){ text += arg.ToString(); }
+}}}
+
+=== Curly brace conventions: ===
+Bear in mind Visual Studio has automatic reordering feature: *`Ctrl+E, D`*. Keep default configuration.
+
+ * Always put the curly braces.
+ * If the if statement is really short write it as follow:
+{{{
+if( this.IsTrue) { this.DoSomeWork(); }
+else { this.DoOtherWork(); }
+}}}
+
 = Components: =
 
 While writing a component, developer have to follow these rules:
@@ -73,7 +118,7 @@ While writing a component, developer have to follow these rules:
   * prefix the check method with a *Can* 
   * the action performed by the command is the name of the command without the suffix *Command*
 {{{
-    this.DrinkABeerCommand = new RelayCommand(() => DrinkABeer(), () => CanDrinkABeer());
+    this.DrinkABeerCommand = new RelayCommand(() => this.DrinkABeer(), () => this.CanDrinkABeer());
 }}}
  * If you need static events in your plugin, define them into a static class called `Notifyer`
  * The translation system uses static class. This class should have the name of the `ViewModel` class. Replace the suffix `ViewModel` with `Text`. If the !ViewModel is `AddPatientViewModel` then the translation static class is `AddPatientText`
