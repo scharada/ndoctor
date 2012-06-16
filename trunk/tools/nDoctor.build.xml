@@ -24,14 +24,23 @@
 
   <!-- Targets -->
   <target name="Pre-Build" description="Beautify the code">
-    <echo message="Input   : ${sln-file}"/>
-    <echo message="Output  : ${sln-dir}"/>
-    <echo message="Tool dir: ${tool-dir}"/>
+    <echo message="sln-file   : ${sln-file}"/>
+    <echo message="sln-dir    : ${sln-dir}"/>
+    <echo message="Tool dir   : ${tool-dir}"/>
+    <echo message="========================"/>
 
+     <!-- nArrange the code --> 
     <exec program="${tool-dir}\NArrange\narrange-console.exe">
       <arg value="${sln-dir}${sln-file}"/>
       <arg value="/b"/>
     </exec>
+    
+    <!-- Versioning is done with SubWCRev.exe in the Probel.NDoctor.View.Core project -->
+    <!--<exec program="SubWCRev">
+      <arg value="${sln-dir}"/>
+      <arg value="${sln-dir}Version.template"/>
+      <arg value="${sln-dir}Version.cs"/>
+    </exec>-->
   </target>
 
   <target name="Build" description="Build the solution" depends="Pre-Build">
