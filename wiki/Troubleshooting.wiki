@@ -1,0 +1,14 @@
+= Troubleshooting: =
+== nAnt's crashing displaying a security error message: ==
+You have to create yourself the `nAnt` directory into `%programfiles%` and copy/paste the nAnt files into the freshly created directory. In this way, Windows 7 doesn't believe these files are untrusted internet files.
+
+== Castle Dynamic Proxy: ==
+For an unknown reason, this librarie wasn't recognised anymore when I made a fresh checkout on a new machine.
+To fix it I:
+ # Edit the file `packages.config` of the project `Probel.NDoctor.Domain.Components`
+ # Removed the entry `<package id="Castle.Core" version="3.0.0.4001" />`
+ # Right clicked on `Reference` directory on this project
+ # Reinstalled the `Castle Dynamic Proxy` with !NuGet
+
+== AnkhSVN is not working with Visual Studio ==
+You just need to enable SVN as source control as explained [http://stackoverflow.com/questions/3869404/ankhsvn-not-integrated-to-visual-studio-2010 here]
