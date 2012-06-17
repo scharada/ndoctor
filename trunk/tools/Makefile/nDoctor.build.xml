@@ -10,17 +10,12 @@
             overwrite="false" />
 
   <loadtasks assembly="${path::combine(nantcontrib-dir, 'bin/NAnt.Contrib.Tasks.dll')}"/>-->
-  <!--
-  This nAnt script only trigger MSBuild that will use the *.sln file of this solution
-  The "after.Probel.NDoctor.sln.targets" contains all the tasks to execute atfer the compilation
-  That's, it'll copy the freshly compiled plugin's files into the directory to allow debuggin
-  -->
 
   <!-- Properties -->
   <property name="release-dir" value="c:\nDoctor-Release" overwrite="false"/> 
   <property name="code-dir" value="${release-dir}\bin"/>
-  <property name="sln-file" value="Probel.NDoctor.sln" overwrite="true"/>
-  <property name="tool-dir" value="${release-dir}\tools"/>
+  <property name="sln-file" value="Probel.NDoctor.sln" overwrite="false"/>
+  <property name="tool-dir" value="${release-dir}\bin\tools"/>
   <property name="build-mode" value="release" overwrite="false"/>
   <property name="svn-repository" value="http://ndoctor.googlecode.com/svn/trunk/"/>
 
@@ -37,7 +32,6 @@
 
     <echo message="Clean previous files"/>
     <delete dir="${code-dir}"/>
-
     <exec program="svn.exe"
           commandline="checkout &quot;${svn-repository}&quot; &quot;${code-dir}&quot; --username jibedoubleve@gmail.com --password aQ5aP3ng8ZY4"/>
   </target>
@@ -67,14 +61,14 @@
     <echo message="Building"/>
     <echo message="Build mode: ${build-mode}"/>
     <msbuild project="${code-dir}\src\${sln-file}"
-             verbosity="Normal">
+             verbosity="Detailed">
       <property name="Configuration" value="${build-mode}"/>
     </msbuild>
   </target>
 
   <target name="Post-Build" description="Execute the post build actions" depends="Build">
     <exec program="${tool-dir}\CopyPluginsFiles.cmd">
-      <arg value="debug"/>
+      <arg value="${build-mode}"/>
     </exec>
   </target>
 
@@ -88,12 +82,12 @@
 
     <echo message="Copying plugins..."/>
     <copy todir="${release-dir}\Plugins">
-      <fileset basedir="${sln-dir}\View\Probel.NDoctor.View.Core\bin\${build-mode}\Plugins"/>
+      <fileset basedir="${code-dir}\src\View\Probel.NDoctor.View.Core\bin\${build-mode}\Plugins"/>
     </copy>
 
     <echo message="Copying main files..."/>
     <copy todir="${release-dir}">
-      <fileset basedir="${sln-dir}\View\Probel.NDoctor.View.Core\bin\${build-mode}\">
+      <fileset basedir="${code-dir}\src\View\Probel.NDoctor.View.Core\bin\${build-mode}\">
         <exclude name="*.vshost.exe"/>
         <exclude name="*.vshost.exe.config"/>
         <include name="*.dll"/>
@@ -107,15 +101,16 @@
     <loadfile file="${release-dir}\Plugins\plugins.config.xml" property="file-content"/>
     <echo file="${release-dir}\Plugins\plugins.config.xml"
           message="${string::replace(file-content, '  &lt;Plugin name=&quot;Debug Tools&quot;            path=&quot;DebugTools&quot;          activated=&quot;true&quot;/&gt;','')}"/>
-    <delete dir="${release-dir}Plugins\DebugTools" failonerror="false"/>
+    <delete dir="${release-dir}\Plugins\DebugTools" failonerror="false"/>
 
-    <loadfile file="${sln-dir}Version.cs" property="version-file"/>
+    <loadfile file="${code-dir}\src\Version.cs" property="version-file"/>
     <regex pattern="AssemblyVersion\(\&quot;(?'version'3.*.*.*)*\&quot;"
            input="${version-file}"/>
     <echo message="Version number: ${version}"/>
 
     <zip zipfile="${release-dir}\nDoctor.${version}.zip">
       <fileset basedir="${release-dir}">
+        <exclude name="bin\**" />
         <include name="**.*"/>
       </fileset>
     </zip>
@@ -123,6 +118,7 @@
     <echo message="Clean temporary files"/>
     <delete dir="${release-dir}\fr"/>
     <delete dir="${release-dir}\Plugins"/>
+    <delete dir="${code-dir}"/>
     <delete>
       <fileset basedir="${release-dir}">
         <exclude name="*.zip"/>
