@@ -39,11 +39,11 @@
     <delete dir="${code-dir}"/>
 
     <exec program="svn.exe"
-          commandline="export &quot;${svn-repository}&quot; &quot;${code-dir}&quot;"/>
+          commandline="checkout &quot;${svn-repository}&quot; &quot;${code-dir}&quot; --username jibedoubleve@gmail.com --password aQ5aP3ng8ZY4"/>
   </target>
 
   <target name ="Set-Release-Mode" depends="Pre-Build">
-
+    
     <!-- Create a temp .prj file with that build a windows application and not a console application -->
     <copy file     ="${code-dir}\src\View\Probel.NDoctor.View.Core\Probel.NDoctor.View.Core.csproj"
           tofile   ="${code-dir}\src\View\Probel.NDoctor.View.Core\Probel.NDoctor.View.Core.csproj.temp"
