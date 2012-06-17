@@ -20,7 +20,7 @@
   <property name="tool-dir" value="${directory::get-current-directory()}"/>
   <property name="sln-file" value="n.a." overwrite="false"/>
   <property name="sln-dir" value="n.a." overwrite="false"/>
-  <property name="release-dir" value="c:\nDoctor-Release" overwrite="false"/>
+  <property name="release-dir" value="c:\nDoctor-Release" overwrite="false"/>  
   <property name="build-mode" value="debug" overwrite="false"/>
 
   <!-- Targets -->
@@ -53,19 +53,64 @@
   </target>
 
   <target name="Post-Build" description="Execute the post build actions">
-    <exec program="${tool-dir}\CopyPluginsFiles.cmd">
+    <exec program="${tool-dir}\..\CopyPluginsFiles.cmd">
       <arg value="debug"/>
     </exec>
   </target>
 
+  <!-- Create a release package with the binaries -->
   <target name="Release" description="Pack the binaries into a directory">
+    <echo message="Clean previous files"/>
+    <delete dir="${release-dir}"/>    
+
+    <echo message="Copying i18n files..."/>
+    <copy todir="${release-dir}\fr">
+      <fileset basedir="${sln-dir}\View\Probel.NDoctor.View.Core\bin\${build-mode}\fr"/>
+    </copy>
+
+    <echo message="Copying plugins..."/>
+    <copy todir="${release-dir}\Plugins">
+      <fileset basedir="${sln-dir}\View\Probel.NDoctor.View.Core\bin\${build-mode}\Plugins"/>
+    </copy>
+
+    <echo message="Copying main files..."/>
     <copy todir="${release-dir}">
       <fileset basedir="${sln-dir}\View\Probel.NDoctor.View.Core\bin\${build-mode}\">
+        <exclude name="*.vshost.exe"/>
+        <exclude name="*.vshost.exe.config"/>
         <include name="*.dll"/>
         <include name="*.exe"/>
         <include name="*.log4net"/>
         <include name="*.config"/>
       </fileset>
     </copy>
+
+    <echo message="Deactivate debug plugin if exists"/>
+    <loadfile file="${release-dir}\Plugins\plugins.config.xml" property="file-content"/>
+
+    <echo message="Deactivate debug plugin"/>
+    <echo file="${release-dir}\Plugins\plugins.config.xml"
+          message="${string::replace(file-content, '  &lt;Plugin name=&quot;Debug Tools&quot;            path=&quot;DebugTools&quot;          activated=&quot;true&quot;/&gt;','')}"/>
+
+    <loadfile file="${sln-dir}Version.cs" property="version-file"/>
+    <regex pattern="AssemblyVersion\(\&quot;(?'version'3.*.*.*)*\&quot;"
+           input="${version-file}"/>
+    <echo message="Version number: ${version}"/>
+    
+    <zip zipfile="${release-dir}\nDoctor.${version}.zip">
+      <fileset basedir="${release-dir}">
+        <include name="**.*"/>
+      </fileset>
+    </zip>
+
+    <echo message="Clean temporary files"/>
+    <delete dir="${release-dir}\fr"/>
+    <delete dir="${release-dir}\Plugins"/>
+    <delete>
+      <fileset basedir="${release-dir}">
+        <exclude name="*.zip"/>
+        <include name="**.*"/>
+      </fileset>
+    </delete>
   </target>
 </project>
