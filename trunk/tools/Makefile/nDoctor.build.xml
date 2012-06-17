@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<project default="Post-Build" xmlns="http://nant.sf.net/release/0.92/nant.xsd">
+
+  <!--
+  Uncomment these few lines if the nAnd Contrib binaries are not in the same directory than the nAnt files.
+  Bear in mind these lines are an example, therefore configure what has to be configured ;)
+  -->
+  <!--<property name="nantcontrib-dir"
+            value="${path::combine(nant::get-base-directory(), '../../NAntContrib')}"
+            overwrite="false" />
+
+  <loadtasks assembly="${path::combine(nantcontrib-dir, 'bin/NAnt.Contrib.Tasks.dll')}"/>-->
+  <!--
+  This nAnt script only trigger MSBuild that will use the *.sln file of this solution
+  The "after.Probel.NDoctor.sln.targets" contains all the tasks to execute atfer the compilation
+  That's, it'll copy the freshly compiled plugin's files into the directory to allow debuggin
+  -->
+
+  <!-- Properties -->
+  <property name="tool-dir" value="${directory::get-current-directory()}"/>
+  <property name="sln-file" value="n.a." overwrite="false"/>
+  <property name="sln-dir" value="n.a." overwrite="false"/>
+  <property name="release-dir" value="c:\nDoctor-Release" overwrite="false"/>
+  <property name="build-mode" value="debug" overwrite="false"/>
+
+  <!-- Targets -->
+  <target name="Pre-Build" description="Beautify the code">
+    <echo message="sln-file   : ${sln-file}"/>
+    <echo message="sln-dir    : ${sln-dir}"/>
+    <echo message="Tool dir   : ${tool-dir}"/>
+    <echo message="release-dir: ${release-dir}"/>
+    <echo message="========================"/>
+
+    <!-- nArrange the code -->
+    <exec program="${tool-dir}\NArrange\narrange-console.exe">
+      <arg value="${sln-dir}${sln-file}"/>
+      <arg value="/b"/>
+    </exec>
+  </target>
+
+  <target name="Build" description="Build the solution" depends="Pre-Build">
+    <!-- Versioning is done with SubWCRev.exe in the Probel.NDoctor.View.Core project -->
+    <exec program="SubWCRev">
+      <arg value="${sln-dir}"/>
+      <arg value="${sln-dir}Version.template"/>
+      <arg value="${sln-dir}Version.cs"/>
+    </exec>
+    <echo message="Building"/>
+    <echo message="Build mode: ${build-mode}"/>
+    <msbuild project="${sln-dir}${sln-file}">
+      <property name="Configuration" value="${build-mode}"/>
+    </msbuild>
+  </target>
+
+  <target name="Post-Build" description="Execute the post build actions">
+    <exec program="${tool-dir}\CopyPluginsFiles.cmd">
+      <arg value="debug"/>
+    </exec>
+  </target>
+
+  <target name="Release" description="Pack the binaries into a directory">
+    <copy todir="${release-dir}">
+      <fileset basedir="${sln-dir}\View\Probel.NDoctor.View.Core\bin\${build-mode}\">
+        <include name="*.dll"/>
+        <include name="*.exe"/>
+        <include name="*.log4net"/>
+        <include name="*.config"/>
+      </fileset>
+    </copy>
+  </target>
+</project>
