@@ -17,55 +17,73 @@
   -->
 
   <!-- Properties -->
-  <property name="tool-dir" value="${directory::get-current-directory()}"/>
-  <property name="sln-file" value="n.a." overwrite="false"/>
-  <property name="sln-dir" value="n.a." overwrite="false"/>
-  <property name="release-dir" value="c:\nDoctor-Release" overwrite="false"/>  
-  <property name="build-mode" value="debug" overwrite="false"/>
+  <property name="release-dir" value="c:\nDoctor-Release" overwrite="false"/> 
+  <property name="code-dir" value="${release-dir}\bin"/>
+  <property name="sln-file" value="Probel.NDoctor.sln" overwrite="true"/>
+  <property name="tool-dir" value="${release-dir}\tools"/>
+  <property name="build-mode" value="release" overwrite="false"/>
+  <property name="svn-repository" value="http://ndoctor.googlecode.com/svn/trunk/"/>
 
   <!-- Targets -->
-  <target name="Pre-Build" description="Beautify the code">
-    <echo message="sln-file   : ${sln-file}"/>
-    <echo message="sln-dir    : ${sln-dir}"/>
-    <echo message="Tool dir   : ${tool-dir}"/>
-    <echo message="release-dir: ${release-dir}"/>
-    <echo message="========================"/>
+  <target name="Pre-Build" description="Export the code locally">
+    <echo message="========================================================================"/>
+    <echo message="release-dir   : ${release-dir}"/>
+    <echo message="code-dir      : ${code-dir}"/>
+    <echo message="sln-file      : ${sln-file}"/>
+    <echo message="tool-dir      : ${tool-dir}"/>
+    <echo message="build-mode    : ${build-mode}"/>
+    <echo message="svn-repository: ${svn-repository}"/>
+    <echo message="========================================================================"/>
 
-    <!-- nArrange the code -->
-    <exec program="${tool-dir}\NArrange\narrange-console.exe">
-      <arg value="${sln-dir}${sln-file}"/>
-      <arg value="/b"/>
-    </exec>
+    <echo message="Clean previous files"/>
+    <delete dir="${code-dir}"/>
+
+    <exec program="svn.exe"
+          commandline="export &quot;${svn-repository}&quot; &quot;${code-dir}&quot;"/>
   </target>
 
-  <target name="Build" description="Build the solution" depends="Pre-Build">
-    <!-- Versioning is done with SubWCRev.exe in the Probel.NDoctor.View.Core project -->
-    <exec program="SubWCRev">
-      <arg value="${sln-dir}"/>
-      <arg value="${sln-dir}Version.template"/>
-      <arg value="${sln-dir}Version.cs"/>
-    </exec>
+  <target name ="Set-Release-Mode" depends="Pre-Build">
+
+    <!-- Create a temp .prj file with that build a windows application and not a console application -->
+    <copy file     ="${code-dir}\src\View\Probel.NDoctor.View.Core\Probel.NDoctor.View.Core.csproj"
+          tofile   ="${code-dir}\src\View\Probel.NDoctor.View.Core\Probel.NDoctor.View.Core.csproj.temp"
+          overwrite="true"
+          verbose  ="true">
+      <filterchain>
+        <replacestring from="&lt;OutputType&gt;Exe&lt;/OutputType&gt;"
+                       to="&lt;OutputType&gt;WinExe&lt;/OutputType&gt;"/>
+      </filterchain>
+    </copy>
+
+    <!-- Override the old .prj file with the new build instructions -->
+    <delete file="${code-dir}\src\View\Probel.NDoctor.View.Core\Probel.NDoctor.View.Core.csproj"/>
+    <copy file="${code-dir}\src\View\Probel.NDoctor.View.Core\Probel.NDoctor.View.Core.csproj.temp"
+          tofile="${code-dir}\src\View\Probel.NDoctor.View.Core\Probel.NDoctor.View.Core.csproj"/>
+    <delete file="${code-dir}\src\View\Probel.NDoctor.View.Core\Probel.NDoctor.View.Core.csproj.temp"/>
+  </target>
+
+  <target name="Build" description="Build the solution" depends="Set-Release-Mode">
+    <!-- Build the solution -->
     <echo message="Building"/>
     <echo message="Build mode: ${build-mode}"/>
-    <msbuild project="${sln-dir}${sln-file}">
+    <msbuild project="${code-dir}\src\${sln-file}"
+             verbosity="Normal">
       <property name="Configuration" value="${build-mode}"/>
     </msbuild>
   </target>
 
-  <target name="Post-Build" description="Execute the post build actions">
-    <exec program="${tool-dir}\..\CopyPluginsFiles.cmd">
+  <target name="Post-Build" description="Execute the post build actions" depends="Build">
+    <exec program="${tool-dir}\CopyPluginsFiles.cmd">
       <arg value="debug"/>
     </exec>
   </target>
 
   <!-- Create a release package with the binaries -->
-  <target name="Release" description="Pack the binaries into a directory">
-    <echo message="Clean previous files"/>
-    <delete dir="${release-dir}"/>    
+  <target name="Release" description="Zip the binaries and rename the file" depends="Post-Build">    
 
     <echo message="Copying i18n files..."/>
     <copy todir="${release-dir}\fr">
-      <fileset basedir="${sln-dir}\View\Probel.NDoctor.View.Core\bin\${build-mode}\fr"/>
+      <fileset basedir="${code-dir}\src\View\Probel.NDoctor.View.Core\bin\${build-mode}\fr"/>
     </copy>
 
     <echo message="Copying plugins..."/>
@@ -87,16 +105,15 @@
 
     <echo message="Deactivate debug plugin if exists"/>
     <loadfile file="${release-dir}\Plugins\plugins.config.xml" property="file-content"/>
-
-    <echo message="Deactivate debug plugin"/>
     <echo file="${release-dir}\Plugins\plugins.config.xml"
           message="${string::replace(file-content, '  &lt;Plugin name=&quot;Debug Tools&quot;            path=&quot;DebugTools&quot;          activated=&quot;true&quot;/&gt;','')}"/>
+    <delete dir="${release-dir}Plugins\DebugTools" failonerror="false"/>
 
     <loadfile file="${sln-dir}Version.cs" property="version-file"/>
     <regex pattern="AssemblyVersion\(\&quot;(?'version'3.*.*.*)*\&quot;"
            input="${version-file}"/>
     <echo message="Version number: ${version}"/>
-    
+
     <zip zipfile="${release-dir}\nDoctor.${version}.zip">
       <fileset basedir="${release-dir}">
         <include name="**.*"/>
@@ -112,5 +129,6 @@
         <include name="**.*"/>
       </fileset>
     </delete>
+
   </target>
 </project>

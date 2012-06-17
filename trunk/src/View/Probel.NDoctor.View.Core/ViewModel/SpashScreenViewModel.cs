@@ -137,7 +137,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
                     this.BuildHomeMenu();
 
                     var version = Assembly.GetExecutingAssembly().GetName().Version;
-                    this.Title = string.Format("nDoctor BETA {0}.{1}.{2}", version.Major, version.Minor, version.Build);
+                    this.Title = string.Format("nDoctor BETA {0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
 
                     this.Status = Messages.Msg_ConfiguringNHibernate;
                     this.ConfigureNHibernate();

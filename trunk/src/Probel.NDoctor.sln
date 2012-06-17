@@ -26,6 +26,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Probel.NDoctor.View.Test", "View\Probel.NDoctor.View.Test\Probel.NDoctor.View.Test.csproj", "{00EC893D-A444-40AF-AE78-5D5CB70782DA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{D8360C59-BA27-4022-B495-A8A725325A41}"
+	ProjectSection(SolutionItems) = preProject
+		..\tools\NArrange\narrange-console.exe = ..\tools\NArrange\narrange-console.exe
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Probel.NDoctor.Plugins.DebugTools", "Plugins\Probel.NDoctor.Plugins.DebugTools\Probel.NDoctor.Plugins.DebugTools.csproj", "{712C251C-F478-4CB0-870D-406533729256}"
 EndProject
@@ -59,7 +62,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Probel.NDoctor.Plugins.Auth
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Tools", "_Tools", "{B78C3AA9-F3E2-4919-8965-B43DA42EE324}"
 	ProjectSection(SolutionItems) = preProject
-		..\tools\nDoctor.build.xml = ..\tools\nDoctor.build.xml
+		..\tools\Makefile\nDoctor.build.xml = ..\tools\Makefile\nDoctor.build.xml
 	EndProjectSection
 EndProject
 Global
