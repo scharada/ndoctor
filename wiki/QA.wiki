@@ -1,0 +1,27 @@
+= Test machine =
+
+Test team should install [https://www.virtualbox.org/ Virtual Box] in their machine and configure a virtual Windows 7
+
+The virtual OS should be a default installation without any software or special configuration. That's an out of the box installation
+
+= Test execution =
+
+Each test case is a wiki page under the QA page.
+
+Follow this pattern to create _test suite_ and _test cases_
+ * QA
+  * Test Suite 1
+   * Test Case 1
+   * Test Case 2
+  * Test Suite 2
+   * Test Case 1
+   * Test Case 2
+
+A test suite is written on this pattern:
+  * *Description*: contains a link to the tested requirement and/or a short description of what is tested.
+
+A test case is written on this pattern:
+   * *Steps*: contains point by point the steps to execute the test.
+   * *Expected results*: contains point by point the expected results of the executed step.
+   * *Version*: contains the tested version of nDoctor.
+   * *Issues*: contains a link to the issues this test highlighted.
