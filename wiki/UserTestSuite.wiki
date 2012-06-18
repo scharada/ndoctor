@@ -3,3 +3,4 @@
 [Users See here]
 
 == Test cases ==
+[TestCase_FirstUserCreation First user creation]
