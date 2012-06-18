@@ -2,7 +2,7 @@
 
 Test team should install [https://www.virtualbox.org/ Virtual Box] in their machine and configure a virtual Windows 7
 
-The virtual OS should be a default installation without any software or special configuration. That's an out of the box installation
+The virtual OS should be a default installation without any software or special configuration. That's, an out of the box installation
 
 = Test execution =
 
