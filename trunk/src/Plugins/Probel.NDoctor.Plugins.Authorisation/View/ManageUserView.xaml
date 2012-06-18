@@ -30,9 +30,11 @@
                 </ContextMenu>
             </DataGrid.ContextMenu>
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Binding="{Binding Path=IsDefault, UpdateSourceTrigger=PropertyChanged}"
+                <DataGridCheckBoxColumn Binding="{Binding Path=IsSuperAdmin, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                                         Header="{Binding Source={x:Static Member=t:ManageUserText.IsSuperAdmin}}"
                                         IsReadOnly="True"/>
+                <DataGridTemplateColumn Header="{Binding Source={x:Static Member=t:ManageUserText.IsSuperAdmin}}">
+                </DataGridTemplateColumn>
 
                 <DataGridTextColumn Binding="{Binding Path=DisplayedName, UpdateSourceTrigger=PropertyChanged}" 
                                     Header="{Binding Source={x:Static Member=t:ManageUserText.UserName}}"
