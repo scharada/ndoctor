@@ -3,4 +3,4 @@
 [Users See here]
 == Test cases: ==
  * [TestCase_FirstUserCreation First user creation]
- * [TestCase_CreateNewUSer Create new user]
+ * [TestCase_CreateNewUser Create new user]
