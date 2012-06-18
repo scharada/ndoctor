@@ -31,7 +31,12 @@
     <echo message="========================================================================"/>
 
     <echo message="Clean previous files"/>
-    <delete dir="${code-dir}"/>
+    <delete>
+      <fileset basedir="${release-dir}">
+        <exclude name="*.zip"/>
+        <include name="**.*"/>
+      </fileset>
+    </delete>
     <exec program="svn.exe"
           commandline="checkout &quot;${svn-repository}&quot; &quot;${code-dir}&quot; --username jibedoubleve@gmail.com --password aQ5aP3ng8ZY4"/>
   </target>
