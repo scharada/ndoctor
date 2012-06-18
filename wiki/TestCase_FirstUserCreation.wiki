@@ -13,4 +13,5 @@
  # A warning message appear saying you can't delete this user
 == Issues ==
 === version 3.0.2: ===
-* issue 41
+ * issue 41
+ * issue 42
