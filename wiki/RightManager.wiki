@@ -10,7 +10,7 @@ A *role* is a batch of tasks. A user has an assigned role that allows him/her th
 
 = Tasks list =
 ||  *Nr* || *Id*             || *Name*                                   ||
-||  1    || Administer       || Regroup all the features that can read/write data related to the application management (such as authorisation data)            ||
+||  1    || Administer       || Regroup all the features that can read/write data related to the application management (such as authorisation data or data import)            ||
 ||  2    || Meta_write       || Regroup all the features that is about the connected user           ||
 ||  3    || Write            || Regroup all the features that can modify the data              ||
 ||  4    || Read             || Regroup all the features that read data              ||
