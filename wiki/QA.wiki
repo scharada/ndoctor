@@ -12,10 +12,18 @@ Follow this pattern to create _test suite_ and _test cases_
  * QA
   * Test Suite 1
    * Test Case 1
+    * Result version x.x.0
+    * Result version x.x.1
    * Test Case 2
+    * Result version x.x.0
+    * Result version x.x.1
   * Test Suite 2
    * Test Case 1
+    * Result version x.x.0
+    * Result version x.x.1
    * Test Case 2
+    * Result version x.x.0
+    * Result version x.x.1
 
 == A test suite is written on this pattern: ==
   * *Description*: contains a link to the tested requirement and/or a short description of what is tested.
