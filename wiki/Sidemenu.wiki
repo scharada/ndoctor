@@ -6,12 +6,9 @@
    * [BmiDomain Bmi]
   * [GeneralDesign General Design]
   * [PluginDesign Plugin Design]
-
  * Requirements
   * [Users]
-
   * [Gui Graphic user interface]
-
   * [UserSession User's session]
    * [PatientSession Patient's session]
     * [PatientData Patient's data]
@@ -21,35 +18,24 @@
     * [Pictures Pictures]
     * [Prescriptions Prescriptions]
     * [PathologyRecord Pathologies record]
-
    * [Calendar Calendar]
-
    * [News News]
     * [VendorNews Vendor's news]
     * [PracticeNews Medical practice's news]
-
    * [Statistics Statistics]
-
    * [Administration Administration]
     * [PluginsManager Plugins manager]
     * [RightManager Rights manager]
-
   * [convertdatabase Import data]
-
  * Documentation
   * [DevMachine Dev machine installation]
    * [Troubleshooting Troubleshooting]
-
   * [Tools Tools]
    * [TechDoc Tools documentation]
-
   * [CodingConventions Coding conventions]
   * [ComponentAop Components & AOP]
   * [PluginFeatures Plugin API ]
-
  * [QA QA]
   * [UserTestSuite User]
-
  * [Deploy Deploy]
-
  * Support
