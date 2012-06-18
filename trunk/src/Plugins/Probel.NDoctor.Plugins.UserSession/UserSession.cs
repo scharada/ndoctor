@@ -128,12 +128,17 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         private void BuildCommands()
         {
-            this.printCommand = new RelayCommand(() => this.PrintBusinessCard(), () => PluginContext.DoorKeeper.Grants(To.Write));
-            this.addCommand = new RelayCommand(() => this.NavigateAddUser());
+            this.printCommand = new RelayCommand(() => this.PrintBusinessCard(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.addCommand = new RelayCommand(() => this.NavigateAddUser(), () => this.CanNavigateAddUser());
             this.changePwdCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_ChangePwd, new ChangePasswordView())
-                , () => PluginContext.DoorKeeper.Grants(To.MetaWrite));
+                , () => PluginContext.DoorKeeper.IsUserGranted(To.MetaWrite));
             this.showUpdateUserCommand = new RelayCommand(() => this.NavigateToUpdateUser()
-                , () => PluginContext.DoorKeeper.Grants(To.MetaWrite));
+                , () => PluginContext.DoorKeeper.IsUserGranted(To.MetaWrite));
+        }
+
+        private bool CanNavigateAddUser()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         private void ConfigureAutoMapper()

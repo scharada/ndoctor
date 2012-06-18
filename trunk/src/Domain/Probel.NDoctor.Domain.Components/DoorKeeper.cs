@@ -58,7 +58,7 @@ namespace Probel.NDoctor.Domain.Components
 
         #region Methods
 
-        public bool Grants(string to)
+        public bool IsUserGranted(string to)
         {
             return policy.IsGranted(to, this.user);
         }

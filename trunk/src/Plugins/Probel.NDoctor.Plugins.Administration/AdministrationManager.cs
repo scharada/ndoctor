@@ -117,7 +117,7 @@ namespace Probel.NDoctor.Plugins.Administration
 
         private bool CanNavigate()
         {
-            return true && PluginContext.DoorKeeper.Grants(To.Read);
+            return true && PluginContext.DoorKeeper.IsUserGranted(To.Read);
         }
 
         private void ConfigureAutoMapper()

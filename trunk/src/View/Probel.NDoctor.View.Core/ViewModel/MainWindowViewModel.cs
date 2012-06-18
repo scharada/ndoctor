@@ -27,6 +27,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Core.View;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.Domain.DTO;
 
     /// <summary>
     /// This ViewModel should contain all the information about the
@@ -50,7 +51,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         public MainWindowViewModel()
             : base()
         {
-            this.settingCommand = new RelayCommand(() => this.NavigateToSetting());
+            this.settingCommand = new RelayCommand(() => this.NavigateToSetting(), () => this.CanNavigateToSetting());
 
             var menu = new RibbonControlData(Messages.Title_Settings, uriImage.FormatWith("Settings"), settingCommand) { Order = 5 };
             PluginContext.Host.AddToApplicationMenu(menu);
@@ -64,6 +65,11 @@ namespace Probel.NDoctor.View.Core.ViewModel
             this.TriggerRefreshCommand = new RelayCommand(() => this.GetView().OnRefreshShortcuted());
             this.TriggerNewCommand = new RelayCommand(() => this.GetView().OnNewShortcuted());
             this.TriggerSearchCommand = new RelayCommand(() => this.GetView().OnSearchShortcuted());
+        }
+
+        private bool CanNavigateToSetting()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Read);
         }
 
         #endregion Constructors
@@ -139,22 +145,26 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         public ICommand TriggerNewCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public ICommand TriggerRefreshCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public ICommand TriggerSaveCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public ICommand TriggerSearchCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         /// <summary>

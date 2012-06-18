@@ -230,7 +230,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 
         private bool CanUpdateUser()
         {
-            return PluginContext.DoorKeeper.Grants(To.MetaWrite)
+            return PluginContext.DoorKeeper.IsUserGranted(To.MetaWrite)
                 && (!string.IsNullOrWhiteSpace(this.User.FirstName)
                 && !string.IsNullOrWhiteSpace(this.User.LastName)
                 && this.User.Practice != null);

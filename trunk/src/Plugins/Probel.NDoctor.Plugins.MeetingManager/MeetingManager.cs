@@ -39,6 +39,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.Domain.DTO;
 
     [Export(typeof(IPlugin))]
     public class MeetingManager : Plugin
@@ -141,7 +142,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager
 
         private bool CanNavigate()
         {
-            return true;
+            return PluginContext.DoorKeeper.IsUserGranted(To.EditCalendar);
         }
 
         private void ConfigureAutoMapper()

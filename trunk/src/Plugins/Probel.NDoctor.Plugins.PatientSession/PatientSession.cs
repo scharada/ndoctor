@@ -35,6 +35,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.Domain.DTO;
 
     [Export(typeof(IPlugin))]
     public class PatientSession : Plugin
@@ -88,7 +89,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
                 };
             }
 
-            this.addCommand = new RelayCommand(() => this.NavigateAddPatient());
+            this.addCommand = new RelayCommand(() => this.NavigateAddPatient(), () => this.CanNavigateAddPatient());
             var addButton = new RibbonMenuItemData(Messages.Title_ButtonAddPatient, uriPng.FormatWith("Add"), this.addCommand)
             {
                 Order = 2,
@@ -100,14 +101,14 @@ namespace Probel.NDoctor.Plugins.PatientSession
             #endregion
 
             #region Search
-            this.searchCommand = new RelayCommand(() => this.NavigateSearchPatient());
+            this.searchCommand = new RelayCommand(() => this.NavigateSearchPatient(), () => this.CanSearchPatient());
             var searchButton = new RibbonButtonData(Messages.Title_SearchPatient, this.searchCommand)
             {
                 SmallImage = new Uri(uriPng.FormatWith("SearchSmall"), UriKind.Relative),
                 Order = 0,
             };
 
-            this.showTopTenCommand = new RelayCommand(() => this.NavigateTopTen());
+            this.showTopTenCommand = new RelayCommand(() => this.NavigateTopTen(), () => this.CanSearchPatient());
             var topTenButton = new RibbonButtonData(Messages.Title_MostUsed, this.showTopTenCommand)
             {
                 SmallImage = new Uri(uriPng.FormatWith("SearchSmall"), UriKind.Relative),
@@ -123,6 +124,16 @@ namespace Probel.NDoctor.Plugins.PatientSession
 
             PluginContext.Host.AddInHome(searchSplitButton, Groups.Tools);
             #endregion
+        }
+
+        private bool CanNavigateAddPatient()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write);
+        }
+
+        private bool CanSearchPatient()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Read);
         }
 
         private void ConfigureAutoMapper()

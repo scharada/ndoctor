@@ -30,6 +30,7 @@ namespace Probel.NDoctor.Plugins.DbConvert
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.Domain.DTO;
 
     [Export(typeof(IPlugin))]
     public class DbConvert : Plugin
@@ -72,13 +73,18 @@ namespace Probel.NDoctor.Plugins.DbConvert
         /// </summary>
         private void BuildButtons()
         {
-            var navigateCommand = new RelayCommand(() => this.Navigate());
+            var navigateCommand = new RelayCommand(() => this.Navigate(), () => this.CanNavigate());
 
             var navigateButton = new RibbonButtonData(Messages.Title_DbConvertManager
                     , imgUri.FormatWith("Source")
                     , navigateCommand) { Order = 4 };
 
             PluginContext.Host.AddToApplicationMenu(navigateButton);
+        }
+
+        private bool CanNavigate()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Administer);
         }
 
         /// <summary>

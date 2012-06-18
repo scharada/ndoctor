@@ -91,7 +91,7 @@ namespace Probel.NDoctor.Plugins.Authorisation
         /// </summary>
         private void BuildButtons()
         {
-            this.navigateCommand = new RelayCommand(() => this.NavigateRole(), () => PluginContext.Host.ConnectedUser != null && PluginContext.DoorKeeper.Grants(To.Administer));
+            this.navigateCommand = new RelayCommand(() => this.NavigateRole(), () => PluginContext.Host.ConnectedUser != null && PluginContext.DoorKeeper.IsUserGranted(To.Administer));
 
             var navigateButton = new RibbonButtonData(Messages.Title_AuthorisationManager
                     , imgUri.FormatWith("Admin")
@@ -129,18 +129,18 @@ namespace Probel.NDoctor.Plugins.Authorisation
         private bool CanNavigateRole()
         {
             return  this.displayed != PageEventArgs.DisplayedPage.RoleManager
-                && PluginContext.DoorKeeper.Grants(To.Administer);
+                && PluginContext.DoorKeeper.IsUserGranted(To.Administer);
         }
 
         private bool CanNavigateUser()
         {
             return this.displayed != PageEventArgs.DisplayedPage.UserManager
-                && PluginContext.DoorKeeper.Grants(To.Administer);
+                && PluginContext.DoorKeeper.IsUserGranted(To.Administer);
         }
 
         private bool CanSaveRole()
         {
-            return PluginContext.DoorKeeper.Grants(To.Administer);
+            return PluginContext.DoorKeeper.IsUserGranted(To.Administer);
         }
 
         /// <summary>

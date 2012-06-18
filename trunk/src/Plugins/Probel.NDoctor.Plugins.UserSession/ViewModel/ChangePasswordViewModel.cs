@@ -124,7 +124,7 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
         {
             if (PluginContext.Host.ConnectedUser == null) return false;
 
-            return PluginContext.DoorKeeper.Grants(To.MetaWrite)
+            return PluginContext.DoorKeeper.IsUserGranted(To.MetaWrite)
                 && this.NewPassword == this.CheckNewPassword
                 && !string.IsNullOrWhiteSpace(this.NewPassword);
         }

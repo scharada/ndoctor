@@ -156,7 +156,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 
         private bool CanAdd()
         {
-            return PluginContext.DoorKeeper.Grants(To.Everyone)
+            return PluginContext.DoorKeeper.IsUserGranted(To.Everyone)
                 && !(string.IsNullOrWhiteSpace(this.User.FirstName)
                   || string.IsNullOrWhiteSpace(this.User.LastName)
                   || string.IsNullOrWhiteSpace(this.Password)
