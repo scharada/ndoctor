@@ -1,0 +1,10 @@
+= Authorisation management =
+== Requirements ==
+[RightManager See ere]
+== Steps ==
+ # Create an Administrator and connect into nDoctor
+ # Create
+== Expected results ==
+ # All the feature are available
+== Issues ==
+=== version 3.0.2: ===
