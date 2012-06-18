@@ -3,7 +3,7 @@
  # Connect into nDoctor with an administrator
  # Create a new user 
   * *don't* select him/her as default user. 
-  * *don"t* assign any role to this user
+  * *don't* assign any role to this user
  # Reconnect into nDoctor with the new user
 
 == Expected results ==
