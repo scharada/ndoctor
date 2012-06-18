@@ -18,6 +18,7 @@ Here's the list of tools used to develop nDoctor
  * [http://nant.sourceforge.net/ nAnt]
  * [http://nantcontrib.sourceforge.net/ nAnt Contrib]
  * [https://www.virtualbox.org/ Virtual Box]
+ * [http://sourceforge.net/projects/tailforwin32/ Tail for Win32]
 
 = API =
  * [http://structuremap.net/structuremap/ StructureMap]
