@@ -1,12 +1,12 @@
 #labels Phase-Requirements
 = Introduction =
-This module allows the user that has the right to utilise this plugin to administrate the rights of the application.
+This module allows the user that is granted to utilise this plugin to administrate the rights of the application.
 
 The role manager is divided into two parts: the roles and the tasks.
 
-A *task* is an action the connected user can perform or not depending the assigned *role* he/she has. nDoctor has a built-in list a tasks that can be modified by users.
+A *task* is an action the connected user can perform or not depending on the assigned *role* he/she has. nDoctor has a built-in list of tasks that can be modified by users.
 
-A *role* is a batch of tasks. A user has an assigned role that allows him/her to grant certain tasks. Any granted user can create roles.
+A *role* is a batch of tasks. A user has an assigned role that allows him/her that grants certain actions. Any administrator user can create roles.
 
 = Tasks list =
 ||  *Nr* || *Id*             || *Name*                                   ||
@@ -14,10 +14,10 @@ A *role* is a batch of tasks. A user has an assigned role that allows him/her to
 ||  2    || Meta_write       || Regroup all the features that is about the connected user           ||
 ||  3    || Write            || Regroup all the features that can modify the data              ||
 ||  4    || Read             || Regroup all the features that read data              ||
-||  5    || !Edit_Calendar    || Regroup all the features that can modify the data of the calendar                  ||
+||  5    || !Edit_Calendar   || Regroup all the features that can modify the data of the calendar                  ||
 
 = Built-in role list =
 ||  *Nr* || *Id*             || *Name*                                   ||
-||  1    || Administrator|| this user has got all the privileges in the application            ||
-||  2    || Doctor       || this user can read and write all the data but the authorisation or any administration pieces of data       ||
-||  3    || Secretary    || this user can read all the data but can only modify data related to calendar and appointment management.               ||
+||  1    || Administrator    || this user has got all the privileges in the application            ||
+||  2    || Doctor           || this user can read and write all the data but the authorisation or any administration pieces of data       ||
+||  3    || Secretary        || this user can read all the data but can only modify data related to calendar and appointment management.               ||
