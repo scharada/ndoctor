@@ -25,3 +25,8 @@ Follow this pattern to create _test suite_ and _test cases_
    * *Expected results*: contains point by point the expected results of the executed step.
    * *Version*: contains the tested version of nDoctor.
    * *Issues*: contains a link to the issues this test highlighted.
+== Tips: ==
+ * Create a script to delete the database when you need to start from scratch:
+{{{
+%appdata%\Probel\nDoctor\Database.db
+}}}
