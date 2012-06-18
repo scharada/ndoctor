@@ -1,0 +1,15 @@
+= First user creation =
+== Steps ==
+ # Delete the file %appdata%\Probel\nDoctor\Database.db
+ # Create the administrator but don't select it as default user
+ # Select the user you've created, enter the password and click on *GO*
+ # Go to the "Main menu\Authorisation" and click on "Manage users"
+ # Go to the "Main menu\Authorisation" and right-click on the only user and delete it
+== Expected results ==
+ # ...
+ # After creation, you're in the connection view
+ # You enter in the main window, the session group is greyed out.
+ # There's only one user and the "Super admin" check box is checked for this user
+ # A warning message appear saying you can't delete this user
+== Issues ==
+=== version 3.0.2: ===
