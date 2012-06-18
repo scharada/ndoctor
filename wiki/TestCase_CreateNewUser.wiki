@@ -1,0 +1,20 @@
+= Create new user =
+== Steps ==
+ # Connect into nDoctor with an administrator
+ # Create a new user 
+  * *don't* select him/her as default user. 
+  * *don"t* assign any role to this user
+ # Reconnect into nDoctor with the new user
+
+== Expected results ==
+ # ...
+ # ...
+ # Check the menus:
+  * In the application menu the only menu that aren't greyed out are:
+   * Start page
+   * Preferences
+ * In the main ribbon the only menu that aren't greyed out are:
+  * Search 
+
+== Issues ==
+=== version 3.0.2: ===
