@@ -8,9 +8,22 @@
 
 == Expected results ==
  # All the feature are available
- # Only the administrative features aren't available.Administrative features:
+ # Only the administrative features aren't available. That's:
   * Import data
   * Authorisation
+ # These actions:
+  * are *NOT* available or shows an "Action not authorised" error:
+   *
+   *
+   *
+   *
+  * are available:
+   *
+   *
+   *
+   *
+   *
+   *
 
 == Issues ==
 === version 3.0.2: ===
