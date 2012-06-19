@@ -21,4 +21,4 @@
 
 == Issues ==
 === version 3.0.2: ===
- * n.a.
+ * issue  46
