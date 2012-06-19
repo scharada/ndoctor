@@ -31,6 +31,7 @@ namespace Probel.NDoctor.View.Core
     using Probel.NDoctor.View.Plugins.MenuData;
 
     using MySplashScreen = Probel.NDoctor.View.Core.View.SplashScreen;
+    using System.Runtime.InteropServices;
 
     /// <summary>
     /// Interaction logic for App.xaml
@@ -47,6 +48,10 @@ namespace Probel.NDoctor.View.Core
 
         public App()
         {
+#if DEBUG
+            //Hook the console to the application to have logging features
+            AllocConsole();
+#endif
             this.Logger = LogManager.GetLogger(typeof(App));
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Settings.Default.Language);
 
@@ -65,7 +70,8 @@ namespace Probel.NDoctor.View.Core
             if (!splash.IsOnError) main.Show();
             else Application.Current.Shutdown();
         }
-
+        [DllImport("kernel32.dll")]
+        private static extern bool AllocConsole();
         #endregion Constructors
 
         #region Properties
