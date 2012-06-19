@@ -95,9 +95,9 @@ namespace Probel.NDoctor.Plugins.PictureManager
             {
                 this.workbench = new Workbench();
                 this.workbench.DataContext = this.ViewModel;
+                this.BuildButtons();
+                this.BuildContextMenu();
             });
-            this.BuildButtons();
-            this.BuildContextMenu();
         }
 
         private void BuildButtons()

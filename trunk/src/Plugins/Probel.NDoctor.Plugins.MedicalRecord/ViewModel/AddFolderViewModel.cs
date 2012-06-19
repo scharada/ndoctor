@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 {
+    using System;
     using System.Windows.Input;
 
     using Probel.Helpers.Strings;
@@ -46,18 +47,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
 
             this.tagToAdd = new TagDto(TagCategory.MedicalRecord);
-            this.AddFolderCommand = new RelayCommand(() =>
-            {
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Create(this.tagToAdd);
-                }
-                InnerWindow.Close();
-                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_TagAdded.FormatWith(this.tagToAdd.Name));
-
-                Notifyer.OnRefreshed();
-
-            }, () => !string.IsNullOrWhiteSpace(this.tagToAdd.Name));
+            this.AddFolderCommand = new RelayCommand(() => this.AddFolder(), () => this.CanAddFolder());
         }
 
         #endregion Constructors
@@ -81,5 +71,31 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         }
 
         #endregion Properties
+
+        #region Methods
+
+        private void AddFolder()
+        {
+            try
+            {
+                using (this.component.UnitOfWork)
+                {
+                    this.component.Create(this.tagToAdd);
+                }
+                InnerWindow.Close();
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_TagAdded.FormatWith(this.tagToAdd.Name));
+
+                Notifyer.OnRefreshed();
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+            finally { InnerWindow.Close(); }
+        }
+
+        private bool CanAddFolder()
+        {
+            return !string.IsNullOrWhiteSpace(this.tagToAdd.Name);
+        }
+
+        #endregion Methods
     }
 }

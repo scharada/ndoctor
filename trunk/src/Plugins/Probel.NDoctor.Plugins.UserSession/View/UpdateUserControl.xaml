@@ -39,7 +39,7 @@
         </Style>
     </UserControl.Resources>
     <StackPanel>
-        <TabControl Height="370" Width="400">
+        <TabControl Height="325" Width="400">
             <TabItem Header="{Binding Source={x:Static Member=text:UpdateUserText.PersonalDataSeparator}}">
                 <Grid Grid.Column="0">
                     <Grid.ColumnDefinitions>
@@ -53,7 +53,7 @@
 
                         <Label Style="{StaticResource separatorStyle}" />
                         <Label Style="{StaticResource labelStyle}"/>
-                        <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:UpdateUserText.RoleTitle}}"/>
+
                         <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:UpdateUserText.FeeTitle}}"/>
 
                         <Label Style="{StaticResource separatorStyle}" />
@@ -77,11 +77,7 @@
                                 Text="{Binding Source={x:Static Member=text:UpdateUserText.TitleDefaultUser}}"/>
                             </CheckBox>
                         </Grid>
-                        <ComboBox Style="{StaticResource controlStyle}" 
-                          DisplayMemberPath="Name"
-                          SelectedValuePath="Name"
-                          SelectedItem="{Binding Path=SelectedRole, Mode=TwoWay}"
-                          ItemsSource="{Binding Path=Roles, UpdateSourceTrigger=PropertyChanged}"/>
+
                         <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=User.Fee, UpdateSourceTrigger=PropertyChanged}"/>                      
 
                         <Label Style="{StaticResource separatorStyle}" Content="{Binding Source={x:Static Member=text:UpdateUserText.ContactSeparator}}"/>
@@ -90,9 +86,9 @@
                           SelectedValuePath="Name"
                           SelectedItem="{Binding Path=SelectedPractice, Mode=TwoWay}"
                           ItemsSource="{Binding Path=Practices, UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=User.MailPro, UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=User.MobilePro, UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=User.PhonePro, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=User.ProMail, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=User.ProMobile, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=User.ProPhone, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                 </Grid>
             </TabItem>

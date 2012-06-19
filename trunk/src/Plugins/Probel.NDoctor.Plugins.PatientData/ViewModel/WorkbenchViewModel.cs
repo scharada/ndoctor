@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.Helpers.Conversions;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -67,6 +68,9 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
             this.ChangeImageCommand = new RelayCommand(() => this.ChangeImage(), () => this.CanChangePicture());
             this.BindDoctorCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_BindDoctor, new BindDoctorView()), () => this.Patient != null);
+
+            this.SaveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
+            this.RollbackCommand = new RelayCommand(() => this.Rollback(), () => this.CanRollback());
         }
 
         #endregion Constructors
@@ -77,11 +81,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         {
             get;
             private set;
-        }
-
-        public bool CanRollback
-        {
-            get { return this.memento != null; }
         }
 
         public ICommand ChangeImageCommand
@@ -145,6 +144,16 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             set;
         }
 
+        public ICommand RollbackCommand
+        {
+            get; private set;
+        }
+
+        public ICommand SaveCommand
+        {
+            get; private set;
+        }
+
         public Tuple<string, Gender> SelectedGender
         {
             get
@@ -166,8 +175,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         /// <summary>
         /// Refreshes the data of this instance.
-        /// </summary>
-        //TODO: if this code is slow, there's many call to the database here. Should be resolved
+        /// </summary>        
         public void Refresh()
         {
             try
@@ -195,32 +203,20 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             catch (Exception ex) { this.HandleError(ex); }
         }
 
-        public void Rollback()
-        {
-            this.patient = this.memento;
-            this.Save();
-            this.Refresh();
-        }
-
-        public void Save()
-        {
-            try
-            {
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Update(this.Patient);
-                }
-                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
-            }
-            catch (Exception ex)
-            {
-                this.HandleError(ex);
-            }
-        }
-
         private bool CanChangePicture()
         {
             return this.Patient != null;
+        }
+
+        private bool CanRollback()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write)
+                && this.memento != null;
+        }
+
+        private bool CanSave()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         private void ChangeImage()
@@ -281,6 +277,29 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 this.Patient.Profession = (from p in this.Professions
                                            where p.Id == this.Patient.Profession.Id
                                            select p).FirstOrDefault();
+            }
+        }
+
+        private void Rollback()
+        {
+            this.patient = this.memento;
+            this.Save();
+            this.Refresh();
+        }
+
+        private void Save()
+        {
+            try
+            {
+                using (this.component.UnitOfWork)
+                {
+                    this.component.Update(this.Patient);
+                }
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
+            }
+            catch (Exception ex)
+            {
+                this.HandleError(ex);
             }
         }
 

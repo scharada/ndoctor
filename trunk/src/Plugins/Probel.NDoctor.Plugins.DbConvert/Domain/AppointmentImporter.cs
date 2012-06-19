@@ -38,8 +38,6 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             IsImported = true,
         };
 
-        private LightUserDto defaultUser;
-
         #endregion Fields
 
         #region Constructors

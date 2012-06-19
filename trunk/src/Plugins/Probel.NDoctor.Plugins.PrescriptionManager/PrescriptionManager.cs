@@ -38,6 +38,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.Domain.DTO;
 
     [Export(typeof(IPlugin))]
     public class PrescriptionManager : Plugin
@@ -74,9 +75,14 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
 
             this.saveCommand = new RelayCommand(() => this.Save(), () => CanSave());
             this.navSearchCommand = new RelayCommand(() => this.NavigateSearch(), () => this.CanNavigateSearch());
-            this.navAddPrescriptionCommand = new RelayCommand(() => this.NavigateAddPrescription(), () => this.lastNavigation != LastNavigation.AddPrescription);
+            this.navAddPrescriptionCommand = new RelayCommand(() => this.NavigateAddPrescription(), () => CanNavigateToAddPrescription());
             this.navWorkbenchCommand = new RelayCommand(() => this.NavigateWorkbench(), () => this.CanNavigateWorkbench());
             this.navPrescriptionCommand = new RelayCommand(() => this.NavigateWorkbench(), () => this.CanNavigatePrescription());
+        }
+
+        private bool CanNavigateToAddPrescription()
+        {
+            return this.lastNavigation != LastNavigation.AddPrescription && PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         #endregion Constructors
@@ -196,12 +202,12 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
 
                     InnerWindow.Show(Messages.Btn_Add, view);
                 }
-                    , () => this.lastNavigation == LastNavigation.AddPrescription));
+                    , () => this.lastNavigation == LastNavigation.AddPrescription && PluginContext.DoorKeeper.IsUserGranted(To.Write)));
 
             var addDrugTypeButton = new RibbonButtonData(Messages.Btn_AddDrugType
                 , imgUri.FormatWith("DrugType")
                 , new RelayCommand(() => InnerWindow.Show(Messages.Btn_Add, new AddDrugTypeView())
-                    , () => this.lastNavigation == LastNavigation.AddPrescription));
+                    , () => this.lastNavigation == LastNavigation.AddPrescription && PluginContext.DoorKeeper.IsUserGranted(To.Write)));
 
             var cgroup = new RibbonGroupData(Messages.Menu_Actions);
             var ngroup = new RibbonGroupData(Messages.Menu_Navigation);
@@ -316,7 +322,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
 
         private void Save()
         {
-            (this.addPrescriptionView.DataContext as AddPrescriptionViewModel).Save();
+            (this.addPrescriptionView.DataContext as AddPrescriptionViewModel).SaveCommand.TryExecute();
         }
 
         #endregion Methods

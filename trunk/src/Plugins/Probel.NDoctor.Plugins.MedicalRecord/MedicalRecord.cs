@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MedicalRecord.Dto;
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
@@ -60,7 +61,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         private ICommand navigateCommand;
         private RibbonButtonData numberingButton;
         private RibbonToggleButtonData rightAllignButton;
-        private ICommand saveCommand;
         private RibbonToggleButtonData underlineButton;
         private Workbench workbench;
 
@@ -125,9 +125,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         {
             Assert.IsNotNull(PluginContext.Host, "To initialise the plugin, IPluginHost should be set.");
 
-            PluginContext.Host.Invoke(() => workbench = new Workbench());
-            this.BuildButtons();
-            this.BuildContextMenu();
+            PluginContext.Host.Invoke(() =>
+            {
+                this.workbench = new Workbench();
+                this.BuildButtons();
+                this.BuildContextMenu();
+            });
 
             Context.RichTextBox.SelectionChanged += (sender, e) => this.UpdateToggleButtonState();
         }
@@ -135,7 +138,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         private void BuildButtons()
         {
             this.navigateCommand = new RelayCommand(() => this.NavigateAdd(), () => this.CanNavigateAdd());
-            this.saveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
 
             var navigateButton = new RibbonButtonData(Messages.Title_MedicalRecord
                 , imgUri.FormatWith("MedicalRecord")
@@ -169,11 +171,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         private bool CanNavigateAdd()
         {
             return PluginContext.Host.SelectedPatient != null;
-        }
-
-        private bool CanSave()
-        {
-            return this.ViewModel != null && this.ViewModel.SelectedRecord != null;
         }
 
         private void ConfigureAutoMapper()
@@ -217,7 +214,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
         private void ConfigureSaveMenu(RibbonTabData tab)
         {
-            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), saveCommand);
+            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.ViewModel.SaveCommand);
             var splitButton = this.ConfigureSplitButton();
 
             var cgroup = new RibbonGroupData(Messages.Menu_Actions, 1);
@@ -228,8 +225,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
         private RibbonMenuButtonData ConfigureSplitButton()
         {
-            this.addRecordCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddRecord, new AddRecordView()));
-            this.addFolderCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddFolder, new AddFolderView()));
+            this.addRecordCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddRecord, new AddRecordView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.addFolderCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddFolder, new AddFolderView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
 
             var splitButton = new RibbonMenuButtonData(Messages.Title_BtnAdd, imgUri.FormatWith("Add"), addRecordCommand);
             var addRecordButton = new RibbonMenuItemData(Messages.Title_AddRecord, imgUri.FormatWith("Add"), addRecordCommand);
@@ -325,7 +322,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         {
             try
             {
-                this.ViewModel.RefreshCommand.ExecuteIfCan(); ;
+                ((RelayCommand)this.ViewModel.RefreshCommand).TryExecute(); ;
                 PluginContext.Host.Navigate(this.workbench);
 
                 this.contextualMenu.IsVisible = true;
@@ -335,12 +332,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             {
                 this.HandleError(ex, Messages.Msg_FailToLoadMedicalRecords.FormatWith(ex.Message));
             }
-        }
-
-        private void Save()
-        {
-            this.ViewModel.SaveCommand.ExecuteIfCan();
-            Notifyer.OnRefreshed();
         }
 
         private void UpdateItemCheckedState(RibbonToggleButtonData button, DependencyProperty formattingProperty, object expectedValue)

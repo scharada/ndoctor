@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MedicalRecord.Dto;
@@ -84,12 +85,14 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         public ICommand RefreshCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public ICommand SaveCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public TitledMedicalRecordDto SelectedRecord
@@ -141,7 +144,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         private bool CanSave()
         {
-            return this.SelectedRecord != null;
+            return this.SelectedRecord != null
+                && PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         private void Refresh()

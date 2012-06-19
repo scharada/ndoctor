@@ -19,6 +19,7 @@ namespace Probel.NDoctor.View.Core
     using System;
     using System.Configuration;
     using System.Globalization;
+    using System.Runtime.InteropServices;
     using System.Threading;
     using System.Windows;
     using System.Windows.Threading;
@@ -31,7 +32,6 @@ namespace Probel.NDoctor.View.Core
     using Probel.NDoctor.View.Plugins.MenuData;
 
     using MySplashScreen = Probel.NDoctor.View.Core.View.SplashScreen;
-    using System.Runtime.InteropServices;
 
     /// <summary>
     /// Interaction logic for App.xaml
@@ -48,10 +48,10 @@ namespace Probel.NDoctor.View.Core
 
         public App()
         {
-#if DEBUG
+            #if DEBUG
             //Hook the console to the application to have logging features
             AllocConsole();
-#endif
+            #endif
             this.Logger = LogManager.GetLogger(typeof(App));
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Settings.Default.Language);
 
@@ -70,8 +70,7 @@ namespace Probel.NDoctor.View.Core
             if (!splash.IsOnError) main.Show();
             else Application.Current.Shutdown();
         }
-        [DllImport("kernel32.dll")]
-        private static extern bool AllocConsole();
+
         #endregion Constructors
 
         #region Properties
@@ -111,6 +110,9 @@ namespace Probel.NDoctor.View.Core
         #endregion Properties
 
         #region Methods
+
+        [DllImport("kernel32.dll")]
+        private static extern bool AllocConsole();
 
         /// <summary>
         /// Handles the DispatcherUnhandledException event of the Application control.

@@ -160,9 +160,9 @@ namespace Probel.NDoctor.Domain.Components
         {
             var interceptors = new List<IInterceptor>();
 
+            if (this.componentLogginEnabled) { interceptors.Add(new LogInterceptor()); }
             interceptors.Add(new CheckerInterceptor());
             interceptors.Add(new AuthorisationInterceptor(user));
-            if (this.componentLogginEnabled) { interceptors.Add(new LogInterceptor()); }
 
             return interceptors.ToArray();
         }

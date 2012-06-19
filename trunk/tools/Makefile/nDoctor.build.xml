@@ -12,12 +12,13 @@
   <loadtasks assembly="${path::combine(nantcontrib-dir, 'bin/NAnt.Contrib.Tasks.dll')}"/>-->
 
   <!-- Properties -->
-  <property name="release-dir" value="c:\nDoctor-Release" overwrite="false"/> 
+  <property name="release-dir" value="c:\nDoctor-Release" overwrite="false"/>
   <property name="code-dir" value="${release-dir}\bin"/>
   <property name="sln-file" value="Probel.NDoctor.sln" overwrite="false"/>
   <property name="tool-dir" value="${release-dir}\bin\tools"/>
   <property name="build-mode" value="release" overwrite="false"/>
   <property name="svn-repository" value="http://ndoctor.googlecode.com/svn/trunk/"/>
+  <property name="nest-dir" value="${release-dir}\Nest\nDoctor"/>
 
   <!-- Targets -->
   <target name="Pre-Build" description="Export the code locally">
@@ -30,19 +31,29 @@
     <echo message="svn-repository: ${svn-repository}"/>
     <echo message="========================================================================"/>
 
-    <echo message="Clean previous files"/>
+    <echo message="Clean release directory..."/>
     <delete>
-      <fileset basedir="${release-dir}">
+      <fileset basedir="${release-dir}\">
         <exclude name="*.zip"/>
         <include name="**.*"/>
       </fileset>
     </delete>
+    <delete dir="${release-dir}\bin"/>
+    <delete dir="${nest-dir}"/>
+    
+
+    <echo message="Checkout the code..."/>
     <exec program="svn.exe"
-          commandline="checkout &quot;${svn-repository}&quot; &quot;${code-dir}&quot; --username jibedoubleve@gmail.com --password aQ5aP3ng8ZY4"/>
+          commandline="checkout &quot;${svn-repository}&quot; &quot;${code-dir}&quot; -q"/>
+    
+    <echo message="Prepare the nest..."/>
+    <unzip zipfile="${tool-dir}\Makefile\Nest.zip"
+           todir="${release-dir}"/>
+
   </target>
 
   <target name ="Set-Release-Mode" depends="Pre-Build">
-    
+
     <!-- Create a temp .prj file with that build a windows application and not a console application -->
     <copy file     ="${code-dir}\src\View\Probel.NDoctor.View.Core\Probel.NDoctor.View.Core.csproj"
           tofile   ="${code-dir}\src\View\Probel.NDoctor.View.Core\Probel.NDoctor.View.Core.csproj.temp"
@@ -63,35 +74,36 @@
 
   <target name="Build" description="Build the solution" depends="Set-Release-Mode">
     <!-- Build the solution -->
-    <echo message="Building"/>
+    <echo message="Building..."/>
     <echo message="Build mode: ${build-mode}"/>
     <msbuild project="${code-dir}\src\${sln-file}"
-             verbosity="Detailed">
+             verbosity="Minimal">
       <property name="Configuration" value="${build-mode}"/>
     </msbuild>
   </target>
 
   <target name="Post-Build" description="Execute the post build actions" depends="Build">
+    <echo message="Copying plugins into the repository..."/>
     <exec program="${tool-dir}\CopyPluginsFiles.cmd">
       <arg value="${build-mode}"/>
     </exec>
   </target>
 
   <!-- Create a release package with the binaries -->
-  <target name="Release" description="Zip the binaries and rename the file" depends="Post-Build">    
+  <target name="Release" description="Zip the binaries and rename the file" depends="Post-Build">
 
     <echo message="Copying i18n files..."/>
-    <copy todir="${release-dir}\fr">
+    <copy todir="${nest-dir}\fr">
       <fileset basedir="${code-dir}\src\View\Probel.NDoctor.View.Core\bin\${build-mode}\fr"/>
     </copy>
 
     <echo message="Copying plugins..."/>
-    <copy todir="${release-dir}\Plugins">
+    <copy todir="${nest-dir}\Plugins">
       <fileset basedir="${code-dir}\src\View\Probel.NDoctor.View.Core\bin\${build-mode}\Plugins"/>
     </copy>
 
     <echo message="Copying main files..."/>
-    <copy todir="${release-dir}">
+    <copy todir="${nest-dir}\">
       <fileset basedir="${code-dir}\src\View\Probel.NDoctor.View.Core\bin\${build-mode}\">
         <exclude name="*.vshost.exe"/>
         <exclude name="*.vshost.exe.config"/>
@@ -103,7 +115,7 @@
     </copy>
 
     <echo message="Deactivate debug plugin if exists"/>
-    <loadfile file="${release-dir}\Plugins\plugins.config.xml" property="file-content"/>
+    <loadfile file="${nest-dir}\Plugins\plugins.config.xml" property="file-content"/>
     <echo file="${release-dir}\Plugins\plugins.config.xml"
           message="${string::replace(file-content, '  &lt;Plugin name=&quot;Debug Tools&quot;            path=&quot;DebugTools&quot;          activated=&quot;true&quot;/&gt;','')}"/>
     <delete dir="${release-dir}\Plugins\DebugTools" failonerror="false"/>
@@ -114,15 +126,16 @@
     <echo message="Version number: ${version}"/>
 
     <zip zipfile="${release-dir}\nDoctor.${version}.zip">
-      <fileset basedir="${release-dir}">
+      <fileset basedir="${nest-dir}\..\">
         <exclude name="bin\**" />
-        <include name="**.*"/>
+        <include name="**.*"/>        
       </fileset>
     </zip>
 
     <echo message="Clean temporary files"/>
     <delete dir="${release-dir}\fr"/>
     <delete dir="${release-dir}\Plugins"/>
+    <delete dir="${release-dir}\Nest"/>
     <delete dir="${code-dir}"/>
     <delete>
       <fileset basedir="${release-dir}">

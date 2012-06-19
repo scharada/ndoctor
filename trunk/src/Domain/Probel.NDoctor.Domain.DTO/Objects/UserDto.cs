@@ -32,10 +32,10 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private string header;
         private bool isDefaultUser;
         private string lastName;
-        private string mailPro;
-        private string mobilePro;
-        private string phonePro;
         private PracticeDto practice;
+        private string proMail;
+        private string proMobile;
+        private string proPhone;
         private Image thumbnailImage;
 
         #endregion Fields
@@ -178,54 +178,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         }
 
         /// <summary>
-        /// Gets or sets the mail pro.
-        /// </summary>
-        /// <value>
-        /// The mail pro.
-        /// </value>
-        public string MailPro
-        {
-            get { return this.mailPro; }
-            set
-            {
-                this.mailPro = value;
-                this.OnPropertyChanged(() => MailPro);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the mobile pro.
-        /// </summary>
-        /// <value>
-        /// The mobile pro.
-        /// </value>
-        public string MobilePro
-        {
-            get { return this.mobilePro; }
-            set
-            {
-                this.mobilePro = value;
-                this.OnPropertyChanged(() => MobilePro);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the phone pro.
-        /// </summary>
-        /// <value>
-        /// The phone pro.
-        /// </value>
-        public string PhonePro
-        {
-            get { return this.phonePro; }
-            set
-            {
-                this.phonePro = value;
-                this.OnPropertyChanged(() => PhonePro);
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the practice whereon the current user work.
         /// </summary>
         /// <value>
@@ -238,6 +190,54 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.practice = value;
                 this.OnPropertyChanged(() => Practice);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the mail pro.
+        /// </summary>
+        /// <value>
+        /// The mail pro.
+        /// </value>
+        public string ProMail
+        {
+            get { return this.proMail; }
+            set
+            {
+                this.proMail = value;
+                this.OnPropertyChanged(() => ProMail);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the mobile pro.
+        /// </summary>
+        /// <value>
+        /// The mobile pro.
+        /// </value>
+        public string ProMobile
+        {
+            get { return this.proMobile; }
+            set
+            {
+                this.proMobile = value;
+                this.OnPropertyChanged(() => ProMobile);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the phone pro.
+        /// </summary>
+        /// <value>
+        /// The phone pro.
+        /// </value>
+        public string ProPhone
+        {
+            get { return this.proPhone; }
+            set
+            {
+                this.proPhone = value;
+                this.OnPropertyChanged(() => ProPhone);
             }
         }
 

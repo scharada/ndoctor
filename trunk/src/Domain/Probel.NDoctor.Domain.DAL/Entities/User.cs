@@ -82,6 +82,12 @@ namespace Probel.NDoctor.Domain.DAL.Entities
             set;
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this user is super admin.
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if this user is super admin; otherwise, <c>false</c>.
+        /// </value>
         public virtual bool IsSuperAdmin
         {
             get;

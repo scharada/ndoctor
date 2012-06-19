@@ -36,6 +36,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.Domain.DTO;
 
     [Export(typeof(IPlugin))]
     public class BmiRecord : Plugin
@@ -81,9 +82,12 @@ namespace Probel.NDoctor.Plugins.BmiRecord
         public override void Initialise()
         {
             this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
-            PluginContext.Host.Invoke(() => this.workbench = new Workbench());
-            this.BuildButtons();
-            this.BuildContextMenu();
+            PluginContext.Host.Invoke(() =>
+            {
+                this.workbench = new Workbench();
+                this.BuildButtons();
+                this.BuildContextMenu();
+            });
         }
 
         private void BuildButtons()
@@ -110,7 +114,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
             PluginContext.Host.AddContextualMenu(this.contextualMenu);
             PluginContext.Host.AddTab(tab);
 
-            ICommand addPeriodCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddBmi, new AddBmiView()));
+            ICommand addPeriodCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddBmi, new AddBmiView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddBmi, imgUri.FormatWith("Add"), addPeriodCommand) { Order = 1, });
         }
 

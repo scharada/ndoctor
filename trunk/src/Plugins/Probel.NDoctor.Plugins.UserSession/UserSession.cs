@@ -63,7 +63,7 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         private readonly string uri = @"\Probel.NDoctor.Plugins.UserSession;component/Images\{0}.png";
 
-        private ICommand addCommand;
+        private ICommand addUserCommand;
         private ICommand changePwdCommand;
         private IUserSessionComponent component;
         private ConnectionView connectionPage;
@@ -118,27 +118,48 @@ namespace Probel.NDoctor.Plugins.UserSession
                 };
             }
 
-            var addButton = new RibbonMenuItemData(Messages.Title_ButtonAddUser, uri.FormatWith("Add"), this.addCommand) { Order = 3, };
+            var addButton = new RibbonMenuItemData(Messages.Title_ButtonAddUser, uri.FormatWith("Add"), this.addUserCommand) { Order = 3, };
             (splitter as RibbonMenuButtonData).ControlDataCollection.Add(addButton);
             if (!splitterExist) PluginContext.Host.AddInHome((splitter as RibbonMenuButtonData), Groups.Tools);
+
+            var navigateButton = new RibbonButtonData(Messages.Title_Deconnection
+                , uri.FormatWith("Administration")
+                , this.DisconnectCommand) { Order = 850 };
+
+            PluginContext.Host.AddToApplicationMenu(navigateButton);
 
             this.InitialiseConnectionPage();
             this.InitialiseUpdateUserPage();
         }
-
+        public ICommand DisconnectCommand { get; private set; }
+        private void Disconnect()
+        {
+            PluginContext.Host.ConnectedUser = null;
+            PluginContext.Host.HideMainMenu();
+            PluginContext.Host.Navigate(this.connectionPage);
+        }
+        private bool CanDisconnect()
+        {
+            return true;
+        }
         private void BuildCommands()
         {
+            this.DisconnectCommand = new RelayCommand(() => this.Disconnect(), () => this.CanDisconnect());
+
             this.printCommand = new RelayCommand(() => this.PrintBusinessCard(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
-            this.addCommand = new RelayCommand(() => this.NavigateAddUser(), () => this.CanNavigateAddUser());
+
+            this.addUserCommand = new RelayCommand(() => this.NavigateAddUser(), () => this.CanNavigateAddUser());
+
             this.changePwdCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_ChangePwd, new ChangePasswordView())
                 , () => PluginContext.DoorKeeper.IsUserGranted(To.MetaWrite));
+
             this.showUpdateUserCommand = new RelayCommand(() => this.NavigateToUpdateUser()
                 , () => PluginContext.DoorKeeper.IsUserGranted(To.MetaWrite));
         }
 
         private bool CanNavigateAddUser()
         {
-            return PluginContext.DoorKeeper.IsUserGranted(To.Write);
+            return PluginContext.DoorKeeper.IsUserGranted(To.Administer);
         }
 
         private void ConfigureAutoMapper()
@@ -150,10 +171,7 @@ namespace Probel.NDoctor.Plugins.UserSession
         private void InitialiseConnectionPage()
         {
             LightUserDto defaultUser = null;
-            using (this.component.UnitOfWork)
-            {
-                defaultUser = this.component.FindDefaultUser();
-            }
+            using (this.component.UnitOfWork) { defaultUser = this.component.FindDefaultUser(); }
 
             if (defaultUser == null)
             {

@@ -52,17 +52,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
             this.Refresh();
             this.recordToAdd = new MedicalRecordDto();
-            this.addRecordCommand = new RelayCommand(() =>
-            {
-                using (this.component.UnitOfWork)
-                {
-                    this.recordToAdd.Tag = this.SelectedTag;
-                    this.component.Create(this.recordToAdd, PluginContext.Host.SelectedPatient);
-                }
-                InnerWindow.Close();
-                Notifyer.OnRefreshed();
-                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RecordAdded);
-            }, () => this.selectedTag != null);
+            this.addRecordCommand = new RelayCommand(() => this.AddRecord(), () => this.CanAddRecord());
         }
 
         #endregion Constructors
@@ -113,6 +103,28 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         #endregion Properties
 
         #region Methods
+
+        private void AddRecord()
+        {
+            try
+            {
+                using (this.component.UnitOfWork)
+                {
+                    this.recordToAdd.Tag = this.SelectedTag;
+                    this.component.Create(this.recordToAdd, PluginContext.Host.SelectedPatient);
+                }
+                InnerWindow.Close();
+                Notifyer.OnRefreshed();
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RecordAdded);
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+            finally { InnerWindow.Close(); }
+        }
+
+        private bool CanAddRecord()
+        {
+            return this.selectedTag != null;
+        }
 
         private void Refresh()
         {

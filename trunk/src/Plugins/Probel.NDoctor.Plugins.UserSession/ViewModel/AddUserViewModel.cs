@@ -136,12 +136,11 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                 }
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_UserAdded);
 
-                if (PluginContext.Host.CanNavigateBack)
-                {
-                    Notifyer.OnUserAdded(this);
-                    PluginContext.Host.NavigateBack();
-                }
-                //TODO check this out
+                //if (PluginContext.Host.CanNavigateBack)
+                //{
+                //    Notifyer.OnUserAdded(this);
+                //    PluginContext.Host.NavigateBack();
+                //}
                 //else
                 //{
                 //    InnerWindow.Show(Messages.Title_ButtonAddUser, new AddUserControl());

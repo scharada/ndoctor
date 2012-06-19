@@ -313,6 +313,15 @@ namespace Probel.NDoctor.Plugins.UserSession.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disconnect.
+        /// </summary>
+        internal static string Title_Deconnection {
+            get {
+                return ResourceManager.GetString("Title_Deconnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Load this user by default..
         /// </summary>
         internal static string Title_DefaultUser {

@@ -225,6 +225,10 @@
     <value>Gestion utilisateur</value>
     <comment>User management</comment>
   </data>
+  <data name="Title_Deconnection" xml:space="preserve">
+    <value>Se déconnecter</value>
+    <comment>Disconnect</comment>
+  </data>
   <data name="Title_DefaultUser" xml:space="preserve">
     <value>Connecter cet utilisateur par défaut.</value>
     <comment>Load this user by default.</comment>

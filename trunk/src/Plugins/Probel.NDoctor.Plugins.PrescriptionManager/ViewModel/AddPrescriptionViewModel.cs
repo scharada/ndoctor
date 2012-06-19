@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.Helpers.Conversions;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
@@ -69,12 +70,13 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             this.PrescriptionDocumentToCreate = new PrescriptionDocumentDto() { CreationDate = DateTime.Today };
 
             this.SelectDrugCommand = new RelayCommand(() => this.SelectDrug());
+            this.SaveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
 
             Notifyer.ItemChanged += (sender, e) => this.Refresh();
 
             Countdown.Elapsed += (sender, e) => PluginContext.Host.Invoke(() =>
             {
-                this.SearchCommand.ExecuteIfCan();
+                this.SearchCommand.TryExecute();
                 Countdown.Stop();
             });
         }
@@ -118,6 +120,11 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 this.prescriptionDocumentToCreate = value;
                 this.OnPropertyChanged(() => PrescriptionDocumentToCreate);
             }
+        }
+
+        public ICommand SaveCommand
+        {
+            get; private set;
         }
 
         public ICommand SearchCommand
@@ -239,7 +246,24 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             PluginContext.Host.WriteStatusReady();
         }
 
-        public void Save()
+        private bool CanSave()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write);
+        }
+
+        private bool CanSearch()
+        {
+            if (this.SearchOnTags)
+            {
+                return this.SelectedTag != null;
+            }
+            else
+            {
+                return !(string.IsNullOrWhiteSpace(this.Criteria));
+            }
+        }
+
+        private void Save()
         {
             try
             {
@@ -256,18 +280,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             catch (Exception ex)
             {
                 this.HandleError(ex, Messages.Msg_ErrorSavingPrescription);
-            }
-        }
-
-        private bool CanSearch()
-        {
-            if (this.SearchOnTags)
-            {
-                return this.SelectedTag != null;
-            }
-            else
-            {
-                return !(string.IsNullOrWhiteSpace(this.Criteria));
             }
         }
 

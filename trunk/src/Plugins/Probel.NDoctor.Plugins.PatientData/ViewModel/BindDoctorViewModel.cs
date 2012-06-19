@@ -59,7 +59,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
             Countdown.Elapsed += (sender, e) => PluginContext.Host.Invoke(() =>
             {
-                this.SearchCommand.ExecuteIfCan();
+                this.SearchCommand.TryExecute();
                 Countdown.Stop();
             });
         }

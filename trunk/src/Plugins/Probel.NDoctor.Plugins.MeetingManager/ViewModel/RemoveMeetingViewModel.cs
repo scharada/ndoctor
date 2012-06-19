@@ -52,7 +52,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             this.RemoveAppointmentCommand = new RelayCommand(() => this.RemoveAppointment(), () => CanRemoveAppointment());
             Countdown.Elapsed += (sender, e) => PluginContext.Host.Invoke(() =>
             {
-                this.SearchCommand.ExecuteIfCan();
+                this.SearchCommand.TryExecute();
                 Countdown.Stop();
             });
         }

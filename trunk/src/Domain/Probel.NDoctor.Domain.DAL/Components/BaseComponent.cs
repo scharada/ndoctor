@@ -666,17 +666,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <typeparam name="T">The type of the item to remove</typeparam>
         /// <param name="id">The id of the item to remove.</param>
-        public void Remove(TagDto item)
-        {
-            Assert.IsNotNull(item, "item");
-            this.Remove<Tag>(item);
-        }
-
-        /// <summary>
-        /// Removes item with the specified id.
-        /// </summary>
-        /// <typeparam name="T">The type of the item to remove</typeparam>
-        /// <param name="id">The id of the item to remove.</param>
         public void Remove(LightDoctorDto item)
         {
             Assert.IsNotNull(item, "item");

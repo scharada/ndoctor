@@ -21,13 +21,13 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Core.View;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.Domain.DTO;
 
     /// <summary>
     /// This ViewModel should contain all the information about the
@@ -65,11 +65,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
             this.TriggerRefreshCommand = new RelayCommand(() => this.GetView().OnRefreshShortcuted());
             this.TriggerNewCommand = new RelayCommand(() => this.GetView().OnNewShortcuted());
             this.TriggerSearchCommand = new RelayCommand(() => this.GetView().OnSearchShortcuted());
-        }
-
-        private bool CanNavigateToSetting()
-        {
-            return PluginContext.DoorKeeper.IsUserGranted(To.Read);
         }
 
         #endregion Constructors
@@ -196,6 +191,11 @@ namespace Probel.NDoctor.View.Core.ViewModel
         #endregion Properties
 
         #region Methods
+
+        private bool CanNavigateToSetting()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Administer);
+        }
 
         private MainWindow GetView()
         {

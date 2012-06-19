@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Plugins.PatientData
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PatientData.Properties;
@@ -54,8 +55,6 @@ namespace Probel.NDoctor.Plugins.PatientData
         private IPatientDataComponent component;
         private RibbonContextualTabGroupData contextualMenu;
         private ICommand navigateCommand;
-        private ICommand rollbackCommand;
-        private ICommand saveCommand;
         private Workbench workbench;
 
         #endregion Fields
@@ -77,7 +76,8 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         public ICommand BindDoctorCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         private WorkbenchViewModel ViewModel
@@ -97,22 +97,23 @@ namespace Probel.NDoctor.Plugins.PatientData
         public override void Initialise()
         {
             this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
-            this.BuildButtons();
-            this.BuildContextMenu();
+            PluginContext.Host.Invoke(() =>
+            {
+                this.BuildButtons();
+                this.BuildContextMenu();
+            });
         }
 
         private void BuildButtons()
         {
             this.navigateCommand = new RelayCommand(() => this.Navigate(), () => this.CanNavigate());
-            this.saveCommand = new RelayCommand(() => this.ViewModel.Save());
-            this.rollbackCommand = new RelayCommand(() => this.ViewModel.Rollback(), () => this.ViewModel.CanRollback);
 
-            this.addDoctorCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddDoctor, new CreateDoctorView()));
-            this.addSpecialisationCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddSpecialisation, new AddSpecialisationView()));
-            this.addInsuranceCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddInsurance, new AddInsuranceView()));
-            this.addReputationCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddReputation, new AddReputationView()));
-            this.addPracticeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPractice, new AddPracticeView()));
-            this.addProfessionCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddProfession, new AddProfessionView()));
+            this.addDoctorCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddDoctor, new CreateDoctorView()), () => this.IsGrantedToWrite());
+            this.addSpecialisationCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddSpecialisation, new AddSpecialisationView()), () => this.IsGrantedToWrite());
+            this.addInsuranceCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddInsurance, new AddInsuranceView()), () => this.IsGrantedToWrite());
+            this.addReputationCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddReputation, new AddReputationView()), () => this.IsGrantedToWrite());
+            this.addPracticeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPractice, new AddPracticeView()), () => this.IsGrantedToWrite());
+            this.addProfessionCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddProfession, new AddProfessionView()), () => this.IsGrantedToWrite());
 
             var navigateButton = new RibbonButtonData(Messages.Title_PatientDataManager
                     , imgUri.FormatWith("Properties")
@@ -123,9 +124,9 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         private void BuildContextMenu()
         {
-            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.saveCommand);
+            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.ViewModel.SaveCommand);
 
-            var rollbackButton = new RibbonButtonData(Messages.Title_Rollback, imgUri.FormatWith("Save"), this.rollbackCommand);
+            var rollbackButton = new RibbonButtonData(Messages.Title_Rollback, imgUri.FormatWith("Save"), this.ViewModel.RollbackCommand);
 
             var splitter = new RibbonMenuItemData(Messages.Btn_Add, imgUri.FormatWith("Add"), null);
             splitter.ControlDataCollection.Add(new RibbonMenuItemData(Messages.Title_AddDoctor, imgUri.FormatWith("Add"), this.addDoctorCommand));
@@ -157,6 +158,11 @@ namespace Probel.NDoctor.Plugins.PatientData
         {
             Mapper.CreateMap<LightDoctorDto, LightDoctorViewModel>();
             Mapper.CreateMap<LightDoctorViewModel, LightDoctorDto>();
+        }
+
+        private bool IsGrantedToWrite()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         private void Navigate()

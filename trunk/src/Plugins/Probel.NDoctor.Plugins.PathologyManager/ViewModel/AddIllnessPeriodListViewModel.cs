@@ -66,7 +66,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
             Countdown.Elapsed += (sender, e) => PluginContext.Host.Invoke(() =>
             {
-                this.SearchCommand.ExecuteIfCan();
+                this.SearchCommand.TryExecute();
                 Countdown.Stop();
             });
         }

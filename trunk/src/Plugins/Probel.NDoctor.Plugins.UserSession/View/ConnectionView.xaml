@@ -15,6 +15,11 @@
         <Converter:InvertVisibilityConverter x:Key="invertVisibility"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Page.Resources>
+    
+    <Page.InputBindings>
+        <KeyBinding Key="Escape"
+                    Command="Model:Commands.Shutdown"/>
+    </Page.InputBindings>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -61,7 +66,12 @@
             <PasswordBox Helpers:PasswordBoxAssistant.BindPassword="True" 
 						 Helpers:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
 						 Height="26" Width="226" HorizontalAlignment="Center" 
-                         Visibility="{Binding Path=Users.Count, Converter={StaticResource visibilityConverter}}"/>
+                         Visibility="{Binding Path=Users.Count, Converter={StaticResource visibilityConverter}}">
+                <PasswordBox.InputBindings>                    
+                        <KeyBinding Key="Enter"
+                                    Command="{Binding ConnectCommand}"/>                    
+                </PasswordBox.InputBindings>
+            </PasswordBox>
 
             <Button Content="Go" 
                     Height="26" Width="50" 

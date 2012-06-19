@@ -36,6 +36,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.Domain.DTO;
 
     [Export(typeof(IPlugin))]
     public class FamilyManager : Plugin
@@ -95,9 +96,12 @@ namespace Probel.NDoctor.Plugins.FamilyManager
         {
             Assert.IsNotNull(PluginContext.Host, "To initialise the plugin, IPluginHost should be set.");
 
-            PluginContext.Host.Invoke(() => workbench = new Workbench());
-            this.BuildButtons();
-            this.BuildContextMenu();
+            PluginContext.Host.Invoke(() =>
+            {
+                this.workbench = new Workbench();
+                this.BuildButtons();
+                this.BuildContextMenu();
+            });
         }
 
         /// <summary>
@@ -122,11 +126,8 @@ namespace Probel.NDoctor.Plugins.FamilyManager
 
                     InnerWindow.Show(Messages.Btn_Add, new AddFamilyWorkbench());
                 }
-                catch (Exception ex)
-                {
-                    this.HandleError(ex, Messages.Msg_FailToLoadFamilyManager);
-                }
-            });
+                catch (Exception ex) { this.HandleError(ex, Messages.Msg_FailToLoadFamilyManager); }
+            }, () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             #endregion
 
             #region Relation remove
@@ -142,7 +143,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager
                 {
                     this.HandleError(ex, Messages.Msg_FailToLoadFamilyManager);
                 }
-            });
+            }, () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             #endregion
         }
 

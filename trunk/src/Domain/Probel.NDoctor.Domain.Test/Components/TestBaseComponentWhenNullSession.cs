@@ -105,33 +105,6 @@ namespace Probel.NDoctor.Domain.Test.Component
 
         [Test]
         [ExpectedException(typeof(Probel.Helpers.Assertion.AssertionException))]
-        public void FailToCreateAndDeleteTag()
-        {
-            var tagType = TagCategory.Doctor;
-
-            int countBefore, countAfter = 0;
-            var uniqueName = Guid.NewGuid().ToString();
-
-            countBefore = this.Component.GetAllTags().Count;
-
-            var item = Mapper.Map<Tag, TagDto>(Create.ATag(tagType, uniqueName));
-
-            this.Transaction(() => this.Component.Create(item));
-
-            countAfter = this.Component.GetAllTags().Count;
-            Assert.AreEqual(countBefore + 1, countAfter, "The tag wasn't added");
-
-            var result = this.Component.FindTags(uniqueName, tagType);
-            Assert.AreEqual(1, result.Count, "The tag wasn't found");
-
-            this.Transaction(() => this.Component.Remove(new TagDto(TagCategory.MedicalRecord) { Id = result[0].Id }));
-
-            countAfter = this.Component.GetAllTags().Count;
-            Assert.AreEqual(countAfter, countBefore, "The tag wasn't deleted");
-        }
-
-        [Test]
-        [ExpectedException(typeof(Probel.Helpers.Assertion.AssertionException))]
         public void FailToGetAllDoctors()
         {
             var result = this.Component.GetAllDoctorsLight();

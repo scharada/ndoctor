@@ -23,6 +23,7 @@ namespace Probel.NDoctor.Plugins.DbConvert
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Plugins.DbConvert.Properties;
     using Probel.NDoctor.Plugins.DbConvert.View;
@@ -30,7 +31,6 @@ namespace Probel.NDoctor.Plugins.DbConvert
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.Domain.DTO;
 
     [Export(typeof(IPlugin))]
     public class DbConvert : Plugin
@@ -82,17 +82,17 @@ namespace Probel.NDoctor.Plugins.DbConvert
             PluginContext.Host.AddToApplicationMenu(navigateButton);
         }
 
-        private bool CanNavigate()
-        {
-            return PluginContext.DoorKeeper.IsUserGranted(To.Administer);
-        }
-
         /// <summary>
         /// Builds the context menu of this plugin.
         /// </summary>
         private void BuildContextMenu()
         {
             /*Nothing to do*/
+        }
+
+        private bool CanNavigate()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Administer);
         }
 
         private void ConfigureAutoMapper()

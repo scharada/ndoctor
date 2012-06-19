@@ -30,6 +30,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.Domain.DTO;
 
     public class AddTagViewModel : BaseViewModel
     {
@@ -128,7 +129,8 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         {
             return this.SelectedTag != null
                 && !string.IsNullOrWhiteSpace(this.SelectedTag.Name)
-                && this.SelectedTag.Category == TagCategory.Picture;
+                && this.SelectedTag.Category == TagCategory.Picture
+                && PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         #endregion Methods
