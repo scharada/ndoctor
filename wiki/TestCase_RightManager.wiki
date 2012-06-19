@@ -11,19 +11,13 @@
  # Only the administrative features aren't available. That's:
   * Import data
   * Authorisation
- # These actions:
-  * are *NOT* available or shows an "Action not authorised" error:
-   *
-   *
-   *
-   *
-  * are available:
-   *
-   *
-   *
-   *
-   *
-   *
+ # The result should be:
+   * All the "Save" features are deactivated
+   * All the "Add ..." features are deactivated
+   * User can add/remove appointments
+   * User can't import data or manage authorisations
+   * User can modify his/her password and personal data
+   * User can modify preferences
 
 == Issues ==
 === version 3.0.2: ===
