@@ -4,3 +4,4 @@
 == Test cases: ==
  * [TestCase_CreatePatient Patient creation]
  * [TestCase_PatientData Patient data]
+ * [TestCase_MedicalRecord Medical record editor]
