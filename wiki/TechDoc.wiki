@@ -2,11 +2,12 @@
 Here's the repository of the documentation about external tools and API used in nDoctor project
 == nAnt: ==
 [http://www.codeproject.com/Articles/38718/Building-and-Deploying-Using-NAnt Basic tutorial]
-== Castle Dynamic Proxy: ==
 
 == Rich text editor ==
 [http://deepin.developpez.com/tutoriels/silverlight/editeur-texte-riche/ Tutorial]
-[http://kozmic.pl/dynamic-proxy-tutorial/ Krzysztof Koźmic tutorial ]
-== Bug fixing ==
 
+== Castle Dynamic Proxy: ==
+[http://kozmic.pl/dynamic-proxy-tutorial/ Krzysztof Koźmic tutorial ]
+
+== Bug fixing ==
 Whenever you fix a bug, put the reference in the comment to keep tracks in the issue tracker. You can find more information [http://code.google.com/p/support/wiki/IssueTracker#Integration_with_version_control here] 
