@@ -1,7 +1,8 @@
 [PatientSessionTestSuite Parent]
-= Requirements =
+= Requirements: =
 [PatientData   See here]
-= Creation and search of a patient =
+
+= Creation and search of a patient: =
 == Steps ==
  # Create a user into an empty database
  # Create a second user with the same name and surname than the first one
