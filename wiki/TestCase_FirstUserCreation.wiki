@@ -1,3 +1,5 @@
+= Test Suite =
+[User User]
 = First user creation =
 == Steps ==
  # Delete the file %appdata%\Probel\nDoctor\Database.db
