@@ -1,3 +1,4 @@
+[UserTestSuite Parent]
 = Authorisation management =
 == Requirements ==
 [RightManager See here]
