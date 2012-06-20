@@ -36,5 +36,6 @@
   * [PluginFeatures Plugin API ]
  * [QA QA]
   * [UserTestSuite User Session]
+  * [PatientSessionTestSuite Patient session]
  * [Deploy Deploy]
  * Support
