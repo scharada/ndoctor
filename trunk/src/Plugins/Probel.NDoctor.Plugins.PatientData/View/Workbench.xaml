@@ -15,8 +15,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Probel.NDoctor.Plugins.PatientData;component/Resources/Converters.xaml" />
-                <!--<ResourceDictionary Source="/Probel.NDoctor.Plugins.PatientData;component/Themes/Generic.xaml" />
-                <ResourceDictionary Source="/Probel.NDoctor.Plugins.PatientData;component/Resources/Styles.xaml" />-->
+                <ResourceDictionary Source="/Probel.NDoctor.Plugins.PatientData;component/Themes/Generic.xaml" />
+                <ResourceDictionary Source="/Probel.NDoctor.Plugins.PatientData;component/Resources/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>

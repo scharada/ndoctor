@@ -60,11 +60,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
             App.RibbonData.ApplicationMenuData.SmallImage = new Uri(uriImage.FormatWith("Home"), UriKind.Relative);
 
             this.ChildWindow = new ChildWindowViewModel();
-
-            this.TriggerSaveCommand = new RelayCommand(() => this.GetView().OnSaveShortcuted());
-            this.TriggerRefreshCommand = new RelayCommand(() => this.GetView().OnRefreshShortcuted());
-            this.TriggerNewCommand = new RelayCommand(() => this.GetView().OnNewShortcuted());
-            this.TriggerSearchCommand = new RelayCommand(() => this.GetView().OnSearchShortcuted());
         }
 
         #endregion Constructors
@@ -195,18 +190,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
         private bool CanNavigateToSetting()
         {
             return PluginContext.DoorKeeper.IsUserGranted(To.Administer);
-        }
-
-        private MainWindow GetView()
-        {
-            var view = PluginContext.Host as MainWindow;
-            if (view == null)
-            {
-                throw new ArgumentNullException(string.Format(
-                    "The view for this ViewModel is not the expected one. {0} was expected!"
-                    , typeof(MainWindow)));
-            }
-            else { return view; }
         }
 
         private void NavigateToSetting()
