@@ -17,3 +17,4 @@
 == Issues ==
 === version 3.0.2: ===
  * issue 43
+ * issue 48
