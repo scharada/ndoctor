@@ -66,7 +66,6 @@ namespace Probel.NDoctor.Plugins.UserSession
         private ICommand addUserCommand;
         private ICommand changePwdCommand;
         private IUserSessionComponent component;
-        private ConnectionView connectionPage;
         private ICommand printCommand;
         private ICommand showUpdateUserCommand;
 
@@ -94,7 +93,8 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         public ICommand DisconnectCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         #endregion Properties
@@ -112,8 +112,6 @@ namespace Probel.NDoctor.Plugins.UserSession
             this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
 
             TranslateExtension.ResourceManager = Messages.ResourceManager;
-
-            PluginContext.Host.Invoke(() => { this.connectionPage = new ConnectionView(); });
 
             var splitter = PluginContext.Host.FindInHome("add", Groups.Tools);
             var splitterExist = true;
@@ -176,9 +174,17 @@ namespace Probel.NDoctor.Plugins.UserSession
         {
             PluginContext.Host.ConnectedUser = null;
             PluginContext.Host.HideMainMenu();
-            PluginContext.Host.Navigate(this.connectionPage);
+            PluginContext.Host.Navigate(this.ConnectionPage);
         }
-
+        private ConnectionView ConnectionPage
+        {
+            get
+            {
+                ConnectionView connectionView = null;
+                PluginContext.Host.Invoke(() => connectionView = new ConnectionView());
+                return connectionView;
+            }
+        }
         private void InitialiseConnectionPage()
         {
             LightUserDto defaultUser = null;
@@ -187,7 +193,7 @@ namespace Probel.NDoctor.Plugins.UserSession
             if (defaultUser == null)
             {
                 PluginContext.Host.HideMainMenu();
-                PluginContext.Host.Navigate(this.connectionPage);
+                PluginContext.Host.Navigate(this.ConnectionPage);
             }
             else
             {

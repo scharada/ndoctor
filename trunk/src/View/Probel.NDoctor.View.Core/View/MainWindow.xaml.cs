@@ -358,9 +358,6 @@ namespace Probel.NDoctor.View.Core.View
         /// </summary>
         public void NavigateToStartPage()
         {
-            bool isEmpty = true;
-            this.Dispatcher.Invoke((Action)delegate { isEmpty = (this.startpage.DataContext == null); });
-
             this.Navigate(startpage);
         }
 
