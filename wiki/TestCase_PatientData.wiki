@@ -2,7 +2,7 @@
 = Requirements: =
 [PatientData   See here]
 
-= Creation and search of a patient: =
+= Manage patient's data: =
 == Steps ==
  # Create a user into an empty database
  # Create a second user with the same name and surname than the first one
