@@ -1,6 +1,6 @@
 = Test Suite: Users =
 == Requirements ==
-[Users See here]
+[UserSession See here]
 == Test cases: ==
  * [TestCase_FirstUserCreation First user creation]
  * [TestCase_CreateNewUser Create new user]
