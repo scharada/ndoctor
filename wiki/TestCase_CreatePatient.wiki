@@ -8,4 +8,4 @@
  # A warning message appear saying you can't create two user with same name and surname
 == Issues ==
 === version 3.0.2: ===
- * issue 
+ * n.a.
