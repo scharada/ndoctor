@@ -3,3 +3,4 @@
 [PatientSession See here]
 == Test cases: ==
  * [TestCase_CreatePatient Patient creation]
+ * [TestCase_PatientData Patient data]
