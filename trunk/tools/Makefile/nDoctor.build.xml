@@ -98,9 +98,9 @@
 
     <echo message="Deactivate debug plugin if exists"/>
     <loadfile file="${nest-dir}\Plugins\plugins.config.xml" property="file-content"/>
-    <echo file="${release-dir}\Plugins\plugins.config.xml"
+    <echo file="${nest-dir}\Plugins\plugins.config.xml"
           message="${string::replace(file-content, '  &lt;Plugin name=&quot;Debug Tools&quot;            path=&quot;DebugTools&quot;          activated=&quot;true&quot;/&gt;','')}"/>
-    <delete dir="${release-dir}\Plugins\DebugTools" failonerror="false"/>
+    <delete dir="${nest-dir}\Plugins\DebugTools" failonerror="false"/>
 
     <loadfile file="${code-dir}\src\Version.cs" property="version-file"/>
     <regex pattern="AssemblyVersion\(\&quot;(?'version'3.*.*.*)*\&quot;"
