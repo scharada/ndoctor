@@ -146,12 +146,14 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         public ICommand RollbackCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public ICommand SaveCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public Tuple<string, Gender> SelectedGender
@@ -181,7 +183,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             try
             {
                 if (PluginContext.Host.SelectedPatient == null) { return; }
-                if (this.Patient != null) { this.Save(); }
+                if (this.Patient != null && PluginContext.DoorKeeper.IsUserGranted(To.Write)) { this.Save(); }
 
                 using (this.component.UnitOfWork)
                 {
@@ -297,10 +299,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 }
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
             }
-            catch (Exception ex)
-            {
-                this.HandleError(ex);
-            }
+            catch (Exception ex) { this.HandleError(ex); }
         }
 
         #endregion Methods
