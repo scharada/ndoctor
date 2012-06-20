@@ -229,4 +229,8 @@
     <value>Couldn't remove this item because it is referenced somewhere else.</value>
     <comment>Couldn't remove this item because it is referenced somewhere else.</comment>
   </data>
+  <data name="Ex_NoSuperAdmin" xml:space="preserve">
+    <value>The database is in a wrong state: there is no super admin.</value>
+    <comment>The database is in a wrong state: there is no super admin.</comment>
+  </data>
 </root>

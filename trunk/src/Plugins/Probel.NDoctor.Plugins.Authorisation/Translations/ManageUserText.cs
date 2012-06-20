@@ -32,6 +32,11 @@ namespace Probel.NDoctor.Plugins.Authorisation.Translations
             get { return Messages.Header_AssignedRole; }
         }
 
+        public static string DeleteUser
+        {
+            get { return Messages.Btn_RemoveUser; }
+        }
+
         public static string Edit
         {
             get { return Messages.Btn_Edit; }

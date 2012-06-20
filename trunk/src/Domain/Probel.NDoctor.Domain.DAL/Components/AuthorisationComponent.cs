@@ -32,8 +32,10 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.EqualityComparers;
     using Probel.NDoctor.Domain.DAL.Helpers;
+    using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     /// <summary>
@@ -158,6 +160,22 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Determines whether this specified usr is super admin.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified useris super admin; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsSuperAdmin(LightUserDto user)
+        {
+            var superadmin = (from u in this.Session.Query<User>()
+                              where u.Id == user.Id
+                              select u).FirstOrDefault();
+            if (superadmin == null) { throw new BusinessLogicException(Messages.Ex_NoSuperAdmin); }
+            return superadmin.IsSuperAdmin;
+        }
+
+        /// <summary>
         /// Removes the role with the specified id.
         /// </summary>
         /// <param name="role">The role to remove.</param>
@@ -165,6 +183,31 @@ namespace Probel.NDoctor.Domain.DAL.Components
         {
             Assert.IsNotNull(item, "item");
             this.Remove<Role>(item);
+        }
+
+        /// <summary>
+        /// Removes the specified user from the repository.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        public void Remove(LightUserDto user)
+        {
+            var aptEntities = (from a in this.Session.Query<Appointment>()
+                               where a.User.Id == user.Id
+                               select a);
+
+            foreach (var item in aptEntities)
+            {
+                this.Session.Delete(item);
+            }
+
+            var userEntities = (from u in this.Session.Query<User>()
+                                where u.Id == user.Id
+                                select u);
+
+            foreach (var item in userEntities)
+            {
+                this.Session.Delete(item);
+            }
         }
 
         /// <summary>

@@ -106,7 +106,7 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Administer.
+        ///   Looks up a localized string similar to Manage data.
         /// </summary>
         internal static string Title_AdministratorManager {
             get {

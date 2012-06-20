@@ -27,6 +27,14 @@
                                    Width="20"/>
                         </MenuItem.Icon>
                     </MenuItem>
+                    <MenuItem Header="{Binding Source={x:Static Member=t:ManageUserText.DeleteUser}}"
+                              Command="{Binding RemoveUserCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="\Probel.NDoctor.Plugins.Authorisation;component/Images\Delete.png"
+                                   Height="20"
+                                   Width="20"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </ContextMenu>
             </DataGrid.ContextMenu>
             <DataGrid.Columns>

@@ -88,6 +88,15 @@ namespace Probel.NDoctor.Plugins.Authorisation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove this user.
+        /// </summary>
+        internal static string Btn_RemoveUser {
+            get {
+                return ResourceManager.GetString("Btn_RemoveUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string Btn_Save {
@@ -268,11 +277,29 @@ namespace Probel.NDoctor.Plugins.Authorisation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to remove this user and all his/her appointments?.
+        /// </summary>
+        internal static string Msg_AskRemoveUser {
+            get {
+                return ResourceManager.GetString("Msg_AskRemoveUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This role is assigned to, at least, one user. Unassigned this role from all these user before removing this one..
         /// </summary>
         internal static string Msg_CantRemoveRole {
             get {
                 return ResourceManager.GetString("Msg_CantRemoveRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The super admin user can&apos;t be removed!.
+        /// </summary>
+        internal static string Msg_CantRemoveSuperadmin {
+            get {
+                return ResourceManager.GetString("Msg_CantRemoveSuperadmin", resourceCulture);
             }
         }
         

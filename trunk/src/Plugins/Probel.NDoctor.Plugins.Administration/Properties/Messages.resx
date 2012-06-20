@@ -138,8 +138,8 @@
     <comment>An error occured. Check the logs for further information.</comment>
   </data>
   <data name="Title_AdministratorManager" xml:space="preserve">
-    <value>Administer</value>
-    <comment>Administer</comment>
+    <value>Manage data</value>
+    <comment>Manage data</comment>
   </data>
   <data name="Title_BoxNr" xml:space="preserve">
     <value>Box nr</value>

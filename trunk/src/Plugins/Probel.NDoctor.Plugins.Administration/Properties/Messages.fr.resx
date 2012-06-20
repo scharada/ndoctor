@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Title_AdministratorManager" xml:space="preserve">
-    <value>Administrer</value>
-    <comment>Administer</comment>
+    <value>Gérer les données</value>
+    <comment>Manage data</comment>
   </data>
   <data name="Title_BoxNr" xml:space="preserve">
     <value>Boîte</value>

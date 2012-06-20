@@ -61,6 +61,15 @@ namespace Probel.NDoctor.Domain.DAL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The database is in a wrong state: there is no super admin..
+        /// </summary>
+        internal static string Ex_NoSuperAdmin {
+            get {
+                return ResourceManager.GetString("Ex_NoSuperAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to More than one default user was found..
         /// </summary>
         internal static string Ex_QueryException_SeveralDefaultUsers {

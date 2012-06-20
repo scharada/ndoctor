@@ -22,11 +22,14 @@
 namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Windows;
     using System.Windows.Input;
 
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.Authorisation.Helpers;
@@ -60,11 +63,19 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             this.UpdateUserCommand = new RelayCommand(() => this.UpdateUser(), () => this.CanUpdateUser());
 
             Notifyer.UserRefreshing += (sender, e) => this.Refresh();
+
+            this.RemoveUserCommand = new RelayCommand(() => this.RemoveUser(), () => this.CanRemoveUser());
         }
 
         #endregion Constructors
 
         #region Properties
+
+        public ICommand RemoveUserCommand
+        {
+            get;
+            private set;
+        }
 
         public ObservableCollection<RoleDto> Roles
         {
@@ -109,15 +120,45 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
                     users = this.component.GetAllLightUsers();
                     roles = this.component.GetAllRoles();
                 }
+
                 this.Users.Refill(users);
                 this.Roles.Refill(roles);
             }
             catch (Exception ex) { this.HandleError(ex); }
         }
 
+        private bool CanRemoveUser()
+        {
+            return this.SelectedUser != null
+                && PluginContext.DoorKeeper.IsUserGranted(To.Write);
+        }
+
         private bool CanUpdateUser()
         {
             return this.SelectedUser != null;
+        }
+
+        private void RemoveUser()
+        {
+            var dr = MessageBox.Show(Messages.Msg_AskRemoveUser, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (dr == MessageBoxResult.No) return;
+
+            try
+            {
+                using (this.component.UnitOfWork)
+                {
+                    if (this.component.IsSuperAdmin(this.SelectedUser))
+                    {
+                        MessageBox.Show(Messages.Msg_CantRemoveSuperadmin, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        this.component.Remove(this.SelectedUser);
+                    }
+                }
+                this.Refresh();
+            }
+            catch (Exception ex) { this.HandleError(ex); }
         }
 
         private void UpdateUser()

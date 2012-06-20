@@ -80,10 +80,25 @@ namespace Probel.NDoctor.Domain.DTO.Components
         TaskDto[] GetAvailableTasks(RoleDto role);
 
         /// <summary>
+        /// Determines whether this specified usr is super admin.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified useris super admin; otherwise, <c>false</c>.
+        /// </returns>
+        bool IsSuperAdmin(LightUserDto user);
+
+        /// <summary>
         /// Removes the role with the specified id.
         /// </summary>
         /// <param name="role">The role to remove.</param>
         void Remove(RoleDto role);
+
+        /// <summary>
+        /// Removes the specified user from the repository.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        void Remove(LightUserDto user);
 
         /// <summary>
         /// Updates the specified role.
