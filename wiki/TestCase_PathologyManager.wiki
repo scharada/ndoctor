@@ -14,7 +14,7 @@
  # ...
  # The category is created
  # The pathology is created
- # The illness perriod is created
+ # The illness period is created
 == Issues ==
 === version 3.0.2: ===
  * n.a.
