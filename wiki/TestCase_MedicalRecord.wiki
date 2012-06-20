@@ -13,7 +13,7 @@
  # ...
  # ...
  # Nothing is updated, you'll see the new repository in the record creation box.
- # The modification are saved
+ # The modifications are saved.
 == Issues ==
 === version 3.0.2: ===
  * n.a.
