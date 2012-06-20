@@ -10,6 +10,7 @@
  # Disconnect and reconnect the user
 == Expected results ==
  # ...
+ # ...
  # The data are updated
  # The data are updated
 == Issues ==
