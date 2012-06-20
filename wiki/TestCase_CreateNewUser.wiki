@@ -1,3 +1,4 @@
+[UserTestSuite Parent]
 = Create new user =
 == Steps ==
  # Connect into nDoctor with an administrator
