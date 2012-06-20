@@ -106,6 +106,21 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             }
         }
 
+
+        private bool isGranted = true;
+        public bool IsGranted
+        {
+            get { return this.isGranted; }
+            set
+            {
+                if (this.isGranted != value)
+                {
+                    this.isGranted = value;
+                    this.OnPropertyChanged(() => IsGranted);
+                }
+            }
+        }
+
         /// <summary>
         /// Gets or sets the tags.
         /// </summary>
@@ -144,8 +159,9 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         private bool CanSave()
         {
-            return this.SelectedRecord != null
-                && PluginContext.DoorKeeper.IsUserGranted(To.Write);
+            this.IsGranted = PluginContext.DoorKeeper.IsUserGranted(To.Write);
+
+            return this.SelectedRecord != null && this.IsGranted;
         }
 
         private void Refresh()

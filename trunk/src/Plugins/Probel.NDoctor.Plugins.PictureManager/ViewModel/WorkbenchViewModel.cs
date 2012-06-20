@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PictureManager.Helpers;
@@ -37,7 +38,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.NDoctor.Domain.DTO;
 
     public class WorkbenchViewModel : BaseViewModel
     {
@@ -74,12 +74,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             this.FilterPictureCommand = new RelayCommand(() => this.Filter());
 
             Notifyer.ItemChanged += (sender, e) => this.Refresh();
-        }
-
-        private bool CanAddSomething()
-        {
-            return PluginContext.Host.SelectedPatient != null
-                && PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         #endregion Constructors
@@ -267,6 +261,12 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 this.creatingNewPicture = true;
             }
             else return;
+        }
+
+        private bool CanAddSomething()
+        {
+            return PluginContext.Host.SelectedPatient != null
+                && PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         private bool CanSave()

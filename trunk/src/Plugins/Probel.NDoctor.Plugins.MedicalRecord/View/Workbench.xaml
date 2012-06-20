@@ -11,7 +11,7 @@
       
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      Title="Workbench"> 
+      Title="Workbench">
     <DockPanel>
         <DockPanel>
             <Label DockPanel.Dock="Top" Content="{Binding Source={x:Static Member=text:WorkbenchText.TitleMedicalRecord}}"/>
@@ -58,7 +58,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="{Binding Path=SelectedRecord.Title}"/>
-            <ScrollViewer Grid.Row="1">                
+            <ScrollViewer Grid.Row="1">
                 <!-- The binding to enable/disable the richtext box is done in code behind. -->
                 <ctrl:RichTextBox x:Name="richTextBox"
                                   DockPanel.Dock="Right"

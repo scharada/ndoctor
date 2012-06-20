@@ -56,7 +56,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
                     viewModel.SelectedRecord = this.treeView.SelectedItem as TitledMedicalRecordDto;
                     viewModel.SelectedRecord.Clean();
 
-                    this.richTextBox.IsEnabled = true;
+                    this.richTextBox.IsEnabled = viewModel.IsGranted;
 
                 }
                 else

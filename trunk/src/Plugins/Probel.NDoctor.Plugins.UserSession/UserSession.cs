@@ -90,6 +90,15 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         #endregion Constructors
 
+        #region Properties
+
+        public ICommand DisconnectCommand
+        {
+            get; private set;
+        }
+
+        #endregion Properties
+
         #region Methods
 
         /// <summary>
@@ -131,17 +140,7 @@ namespace Probel.NDoctor.Plugins.UserSession
             this.InitialiseConnectionPage();
             this.InitialiseUpdateUserPage();
         }
-        public ICommand DisconnectCommand { get; private set; }
-        private void Disconnect()
-        {
-            PluginContext.Host.ConnectedUser = null;
-            PluginContext.Host.HideMainMenu();
-            PluginContext.Host.Navigate(this.connectionPage);
-        }
-        private bool CanDisconnect()
-        {
-            return true;
-        }
+
         private void BuildCommands()
         {
             this.DisconnectCommand = new RelayCommand(() => this.Disconnect(), () => this.CanDisconnect());
@@ -157,6 +156,11 @@ namespace Probel.NDoctor.Plugins.UserSession
                 , () => PluginContext.DoorKeeper.IsUserGranted(To.MetaWrite));
         }
 
+        private bool CanDisconnect()
+        {
+            return true;
+        }
+
         private bool CanNavigateAddUser()
         {
             return PluginContext.DoorKeeper.IsUserGranted(To.Administer);
@@ -166,6 +170,13 @@ namespace Probel.NDoctor.Plugins.UserSession
         {
             Mapper.CreateMap<UserDto, BusinessCardViewModel>();
             Mapper.CreateMap<BusinessCardViewModel, UserDto>();
+        }
+
+        private void Disconnect()
+        {
+            PluginContext.Host.ConnectedUser = null;
+            PluginContext.Host.HideMainMenu();
+            PluginContext.Host.Navigate(this.connectionPage);
         }
 
         private void InitialiseConnectionPage()

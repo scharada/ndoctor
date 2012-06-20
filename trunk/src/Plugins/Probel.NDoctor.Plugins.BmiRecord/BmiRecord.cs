@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
@@ -36,7 +37,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.Domain.DTO;
 
     [Export(typeof(IPlugin))]
     public class BmiRecord : Plugin

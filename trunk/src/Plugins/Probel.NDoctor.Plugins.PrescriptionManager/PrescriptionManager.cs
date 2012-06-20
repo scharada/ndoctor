@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
@@ -38,7 +39,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.Domain.DTO;
 
     [Export(typeof(IPlugin))]
     public class PrescriptionManager : Plugin
@@ -78,11 +78,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             this.navAddPrescriptionCommand = new RelayCommand(() => this.NavigateAddPrescription(), () => CanNavigateToAddPrescription());
             this.navWorkbenchCommand = new RelayCommand(() => this.NavigateWorkbench(), () => this.CanNavigateWorkbench());
             this.navPrescriptionCommand = new RelayCommand(() => this.NavigateWorkbench(), () => this.CanNavigatePrescription());
-        }
-
-        private bool CanNavigateToAddPrescription()
-        {
-            return this.lastNavigation != LastNavigation.AddPrescription && PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         #endregion Constructors
@@ -243,6 +238,11 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         {
             return this.lastNavigation == LastNavigation.Workbench
                 && !this.isSearching;
+        }
+
+        private bool CanNavigateToAddPrescription()
+        {
+            return this.lastNavigation != LastNavigation.AddPrescription && PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         private bool CanNavigateWorkbench()

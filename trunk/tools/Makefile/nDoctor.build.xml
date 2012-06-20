@@ -52,27 +52,7 @@
 
   </target>
 
-  <target name ="Set-Release-Mode" depends="Pre-Build">
-
-    <!-- Create a temp .prj file with that build a windows application and not a console application -->
-    <copy file     ="${code-dir}\src\View\Probel.NDoctor.View.Core\Probel.NDoctor.View.Core.csproj"
-          tofile   ="${code-dir}\src\View\Probel.NDoctor.View.Core\Probel.NDoctor.View.Core.csproj.temp"
-          overwrite="true"
-          verbose  ="true">
-      <filterchain>
-        <replacestring from="&lt;OutputType&gt;Exe&lt;/OutputType&gt;"
-                       to="&lt;OutputType&gt;WinExe&lt;/OutputType&gt;"/>
-      </filterchain>
-    </copy>
-
-    <!-- Override the old .prj file with the new build instructions -->
-    <delete file="${code-dir}\src\View\Probel.NDoctor.View.Core\Probel.NDoctor.View.Core.csproj"/>
-    <copy file="${code-dir}\src\View\Probel.NDoctor.View.Core\Probel.NDoctor.View.Core.csproj.temp"
-          tofile="${code-dir}\src\View\Probel.NDoctor.View.Core\Probel.NDoctor.View.Core.csproj"/>
-    <delete file="${code-dir}\src\View\Probel.NDoctor.View.Core\Probel.NDoctor.View.Core.csproj.temp"/>
-  </target>
-
-  <target name="Build" description="Build the solution" depends="Set-Release-Mode">
+  <target name="Build" description="Build the solution" depends="Pre-Build">
     <!-- Build the solution -->
     <echo message="Building..."/>
     <echo message="Build mode: ${build-mode}"/>
@@ -80,13 +60,15 @@
              verbosity="Minimal">
       <property name="Configuration" value="${build-mode}"/>
     </msbuild>
-  </target>
-
-  <target name="Post-Build" description="Execute the post build actions" depends="Build">
+	
     <echo message="Copying plugins into the repository..."/>
     <exec program="${tool-dir}\CopyPluginsFiles.cmd">
       <arg value="${build-mode}"/>
     </exec>
+  </target>
+
+  <target name="Post-Build" description="Execute the post build actions" depends="Build">
+   <!-- Here should go the unit tests execution... -->
   </target>
 
   <!-- Create a release package with the binaries -->
