@@ -97,6 +97,16 @@ namespace Probel.NDoctor.Plugins.UserSession
             private set;
         }
 
+        private ConnectionView ConnectionPage
+        {
+            get
+            {
+                ConnectionView connectionView = null;
+                PluginContext.Host.Invoke(() => connectionView = new ConnectionView());
+                return connectionView;
+            }
+        }
+
         #endregion Properties
 
         #region Methods
@@ -176,15 +186,7 @@ namespace Probel.NDoctor.Plugins.UserSession
             PluginContext.Host.HideMainMenu();
             PluginContext.Host.Navigate(this.ConnectionPage);
         }
-        private ConnectionView ConnectionPage
-        {
-            get
-            {
-                ConnectionView connectionView = null;
-                PluginContext.Host.Invoke(() => connectionView = new ConnectionView());
-                return connectionView;
-            }
-        }
+
         private void InitialiseConnectionPage()
         {
             LightUserDto defaultUser = null;

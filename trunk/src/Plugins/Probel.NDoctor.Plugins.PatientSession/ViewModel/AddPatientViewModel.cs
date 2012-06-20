@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
 
     public class AddPatientViewModel : BaseViewModel
     {
@@ -102,10 +103,8 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PatientAdded);
                 InnerWindow.Close();
             }
-            catch (Exception ex)
-            {
-                this.HandleError(ex, Messages.Error_AddPatient);
-            }
+            catch (ExistingItemException ex) { this.HandleWarning(ex, ex.Message); }
+            catch (Exception ex) { this.HandleError(ex, Messages.Error_AddPatient); }
         }
 
         private bool CanAdd()

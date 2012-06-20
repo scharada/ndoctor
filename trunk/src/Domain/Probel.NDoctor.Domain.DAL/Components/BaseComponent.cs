@@ -228,6 +228,10 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
             var found = (from p in this.Session.Query<Patient>()
                          where p.Id == item.Id
+                         || (
+                            p.FirstName.ToLower() == item.FirstName.ToLower()
+                            && p.LastName.ToLower() == item.LastName.ToLower()
+                         )
                          select p).Count() > 0;
 
             var newPatient = Mapper.Map<LightPatientDto, Patient>(item);

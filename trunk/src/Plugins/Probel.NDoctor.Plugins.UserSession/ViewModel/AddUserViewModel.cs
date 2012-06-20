@@ -31,6 +31,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
 
     public class AddUserViewModel : BaseViewModel
     {
@@ -135,16 +136,6 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                     this.component.Create(this.User, this.Password);
                 }
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_UserAdded);
-
-                //if (PluginContext.Host.CanNavigateBack)
-                //{
-                //    Notifyer.OnUserAdded(this);
-                //    PluginContext.Host.NavigateBack();
-                //}
-                //else
-                //{
-                //    InnerWindow.Show(Messages.Title_ButtonAddUser, new AddUserControl());
-                //}
                 Notifyer.OnUserAdded(this);
             }
             catch (Exception ex)
