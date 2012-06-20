@@ -35,6 +35,6 @@
   * [ComponentAop Components & AOP]
   * [PluginFeatures Plugin API ]
  * [QA QA]
-  * [UserTestSuite User]
+  * [UserTestSuite User Session]
  * [Deploy Deploy]
  * Support
