@@ -176,25 +176,6 @@
 
 
 	</Window.Resources>
-	<Window.InputBindings>
-		<KeyBinding Modifiers="Control"
-					Key="S"
-					Command="{Binding Path=TriggerSaveCommand}"/>
-		
-		<KeyBinding Key="F5"
-					Command="{Binding Path=TriggerRefreshCommand}"/>
-		
-		<KeyBinding Modifiers="Control"
-					Key="N"
-					Command="{Binding Path=TriggerNewCommand}"/>
-		
-		<KeyBinding Modifiers="Control"
-					Key="F"
-					Command="{Binding Path=TriggerSearchCommand}"/>
-        
-		<KeyBinding Key="F3"
-					Command="{Binding Path=TriggerSearchCommand}"/>
-	</Window.InputBindings>
 	<Grid>
 		<toolkit:ChildWindow Caption="{Binding Path=ChildWindow.Caption}"                            
 							 CloseButtonVisibility="{Binding Path=ChildWindow.CloseButtonVisibility}"
