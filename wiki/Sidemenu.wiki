@@ -12,7 +12,7 @@
    * [PatientSession Patient's session]
     * [PatientData Patient's data]
     * [MedicalRecord Medical record]
-    * [PathologyRecord Pathologies record]
+    * [PathologyRecord Pathology manager]
     * [Prescriptions Prescriptions]
     * [BMI BMI record]
     * [Family Family]
