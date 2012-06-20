@@ -4,7 +4,7 @@
  # Create a user into an empty database
  # Create a second user with the same name and surname than the first one
 == Expected results ==
- # The user is created and can be find with search tools
+ # The user is created and can be found with search tools
  # A warning message appear saying you can't create two user with same name and surname
 == Issues ==
 === version 3.0.2: ===
