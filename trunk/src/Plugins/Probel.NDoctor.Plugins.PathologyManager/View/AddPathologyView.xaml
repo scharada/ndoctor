@@ -12,6 +12,12 @@
              
              mc:Ignorable="d"
              Width="250">
+    <UserControl.InputBindings>
+        <KeyBinding Key="Enter"
+                    Command="{Binding AddCommand}"/>
+        <KeyBinding Key="Escape"
+                    Command="iw:InnerWindow.CancelCommand" />
+    </UserControl.InputBindings>
     <StackPanel>
         <h:PathologyBox Pathology="{Binding Pathology,UpdateSourceTrigger=PropertyChanged}"
                         ButtonName="{Binding Source={x:Static txt:BoxText.BtnAdd}}"

@@ -11,7 +11,8 @@
              xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Core.Controls"
              
              mc:Ignorable="d"
-             Width="350">
+             Width="350"
+             Loaded="this_Loaded">
     <UserControl.Resources>
         <!--controlStyle-->
         <Style x:Key="controlStyle">
@@ -61,7 +62,8 @@
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Grid.Row="1">
-                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Practice.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Name="focused"
+                                 Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Practice.Name, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Practice.Phone, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Practice.Notes, UpdateSourceTrigger=PropertyChanged}"
                                          TextWrapping="Wrap"

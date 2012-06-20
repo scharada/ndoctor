@@ -42,6 +42,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         private TitledMedicalRecordCabinetDto cabinet;
         private IMedicalRecordComponent component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
+        private bool isGranted = true;
         private TitledMedicalRecordDto selectedRecord;
         private IList<TagDto> tags = new List<TagDto>();
 
@@ -78,6 +79,19 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             }
         }
 
+        public bool IsGranted
+        {
+            get { return this.isGranted; }
+            set
+            {
+                if (this.isGranted != value)
+                {
+                    this.isGranted = value;
+                    this.OnPropertyChanged(() => IsGranted);
+                }
+            }
+        }
+
         public bool IsRecordSelected
         {
             get { return this.SelectedRecord != null; }
@@ -103,21 +117,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 this.selectedRecord = value;
                 this.OnPropertyChanged(() => this.SelectedRecord);
                 this.OnPropertyChanged(() => this.IsRecordSelected);
-            }
-        }
-
-
-        private bool isGranted = true;
-        public bool IsGranted
-        {
-            get { return this.isGranted; }
-            set
-            {
-                if (this.isGranted != value)
-                {
-                    this.isGranted = value;
-                    this.OnPropertyChanged(() => IsGranted);
-                }
             }
         }
 

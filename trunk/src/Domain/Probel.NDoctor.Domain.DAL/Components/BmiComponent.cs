@@ -115,13 +115,27 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public PatientBmiDto GetPatientWithBmiHistory(LightPatientDto patient)
         {
-            var result = Mapper.Map<LightPatientDto, PatientBmiDto>(patient);
+            //var patientDto = Mapper.Map<LightPatientDto, PatientBmiDto>(patient);
+            var historyDto = Mapper.Map<IList<Bmi>, IList<BmiDto>>(this.Session.Get<Patient>(patient.Id).BmiHistory);
 
-            var history = Mapper.Map<IList<Bmi>, IList<BmiDto>>(this.Session.Get<Patient>(patient.Id).BmiHistory);
-            history.OrderBy(e => e.Date);
-            result.BmiHistory.Refill(history.ToObservableCollection());
+            historyDto.OrderBy(e => e.Date);
+            var patientDto = new PatientBmiDto(historyDto);
+            Mapper.Map<LightPatientDto, PatientBmiDto>(patient, patientDto);
+            return patientDto;
+        }
 
-            return result;
+        /// <summary>
+        /// Removes the specified BMI entry from the specified patient.
+        /// </summary>
+        /// <param name="from">The patient.</param>
+        /// <param name="dto">The dto to remove.</param>
+        public void Remove(BmiDto bmi, LightPatientDto from)
+        {
+            var ebmi = this.Session.Get<Bmi>(bmi.Id);
+            this.Session.Delete(ebmi);
+
+            var patient = this.Session.Get<Patient>(from.Id);
+            this.Session.Update(patient);
         }
 
         /// <summary>

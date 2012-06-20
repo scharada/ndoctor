@@ -177,7 +177,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         {
             get
             {
-                return (this.SelectedPatient != null)
+                return (this.ConnectedUser != null)
                     ? Messages.Title_SelectedUser.FormatWith(this.ConnectedUser.DisplayedName)
                     : Messages.Title_NoUserConnected;
             }

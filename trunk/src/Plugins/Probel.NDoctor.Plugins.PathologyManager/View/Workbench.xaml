@@ -35,11 +35,12 @@
                 <DataGrid ItemsSource="{Binding Path=IllnessHistory}"     
                           AutoGenerateColumns="False"
                           CanUserAddRows="False"
-                          CanUserDeleteRows="False">                          
+                          CanUserDeleteRows="False"
+                          SelectedItem="{Binding SelectedIllnessPeriod}">                          
                     <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="{Binding Source={x:Static Member=text:AddIllnessPeriodText.BtnRemove}}"
-                                      Command="{Binding RemoveCommand}">
+                                      Command="{Binding RemoveIllessPeriodCommand}">
                                 <MenuItem.Icon>
                                     <Image Source="\Probel.NDoctor.Plugins.PathologyManager;component/Images\Delete.png"
                                            Height="20"

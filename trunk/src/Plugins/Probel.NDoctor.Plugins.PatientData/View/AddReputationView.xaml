@@ -10,7 +10,12 @@
              xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Core.Controls;assembly=Probel.NDoctor.View.Core"
              
              mc:Ignorable="d">
-
+    <UserControl.InputBindings>
+        <KeyBinding Key="Enter"
+                    Command="{Binding AddCommand}"/>
+        <KeyBinding Key="Escape"
+                    Command="iw:InnerWindow.CancelCommand" />
+    </UserControl.InputBindings>
     <ctrl:ReputationBox Reputation="{Binding Reputation}"
                         ButtonName="{Binding Source={x:Static Member=text:WorkbenchText.BtnAdd}}"
                         OkCommand="{Binding AddCommand}"/>

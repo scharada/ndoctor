@@ -85,7 +85,7 @@
 		</Style>
 
 		<!-- RibbonSeparator -->
-		<ItemContainerTemplate x:Key="{ItemContainerTemplateKey DataType={x:Type menu:RibbonSeparatorData}}">
+        <ItemContainerTemplate x:Key="{ItemContainerTemplateKey DataType={x:Type menu:RibbonSeparatorData}}">
 			<ribbon:RibbonSeparator />
 		</ItemContainerTemplate>
 
@@ -119,9 +119,9 @@
 		</Style>
 
 		<!-- RibbonMenuItem -->
-		<ItemContainerTemplate x:Key="{ItemContainerTemplateKey DataType={x:Type menu:RibbonMenuItemData}}">
+		<!--<ItemContainerTemplate x:Key="{ItemContainerTemplateKey DataType={x:Type menu:RibbonMenuItemData}}">
 			<ribbon:RibbonMenuItem />
-		</ItemContainerTemplate>
+		</ItemContainerTemplate>-->
 		<Style TargetType="{x:Type ribbon:RibbonMenuItem}">
 			<Setter Property="ImageSource" Value="{Binding SmallImage}" />
 			<Setter Property="ribbon:RibbonControlService.ToolTipTitle" Value="{Binding ToolTipTitle}" />
@@ -149,9 +149,9 @@
 		</Style>
 
 		<!-- RibbonApplicationMenuItem -->
-		<ItemContainerTemplate x:Key="{ItemContainerTemplateKey DataType={x:Type menu:RibbonApplicationMenuItemData}}">
+		<!--<ItemContainerTemplate x:Key="{ItemContainerTemplateKey DataType={x:Type menu:RibbonApplicationMenuItemData}}">
 			<ribbon:RibbonApplicationMenuItem />
-		</ItemContainerTemplate>
+		</ItemContainerTemplate>-->
 		<Style TargetType="{x:Type ribbon:RibbonApplicationMenuItem}" BasedOn="{StaticResource {x:Type ribbon:RibbonMenuItem}}" />
 
 		<!-- RibbonTab -->
@@ -169,15 +169,16 @@
 		</DataTemplate>
 		<Style TargetType="{x:Type ribbon:RibbonComboBox}" BasedOn="{StaticResource {x:Type ribbon:RibbonMenuButton}}">
 			<Setter Property="IsEditable" Value="True" />
-			<Setter Property="TextSearch.TextPath" Value="Label" />
-			<Setter Property="DataContext" Value="DataContext"/>
-			<Setter Property="SelectionBoxWidth" Value="SelectionBoxWidth"/>
+            <Setter Property="TextSearch.TextPath" Value="{Binding Label}" />
+            <Setter Property="DataContext" Value="{Binding DataContext}"/>
+            <Setter Property="SelectionBoxWidth" Value="{Binding SelectionBoxWidth}"/>
 		</Style>
 
 
 	</Window.Resources>
 	<Grid>
-		<toolkit:ChildWindow Caption="{Binding Path=ChildWindow.Caption}"                            
+		<toolkit:ChildWindow Focusable="True" 
+                             Caption="{Binding Path=ChildWindow.Caption}"                            
 							 CloseButtonVisibility="{Binding Path=ChildWindow.CloseButtonVisibility}"
 							 Content="{Binding Path=ChildWindow.Content}"
 							 IsModal="{Binding Path=ChildWindow.IsModal}"

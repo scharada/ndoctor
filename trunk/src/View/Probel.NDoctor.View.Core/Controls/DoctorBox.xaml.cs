@@ -94,7 +94,8 @@ namespace Probel.NDoctor.View.Core.Controls
 
         private ObservableCollection<Tuple<string, Gender>> Genders
         {
-            get; set;
+            get;
+            set;
         }
 
         #endregion Properties
@@ -139,6 +140,11 @@ namespace Probel.NDoctor.View.Core.Controls
         private static void SetSpecialisations(DependencyObject target, ObservableCollection<TagDto> value)
         {
             target.SetValue(DoctorBox.SpecialisationsProperty, value);
+        }
+
+        private void this_Loaded(object sender, RoutedEventArgs e)
+        {
+            Keyboard.Focus(this.focused);
         }
 
         #endregion Methods

@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PatientData.Helpers;
     using Probel.NDoctor.Plugins.PatientData.Properties;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
@@ -89,14 +90,9 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Title_OperationDone);
                 Notifyer.OnSateliteDataChanged(this);
             }
-            catch (ExistingItemException ex)
-            {
-                this.HandleWarning(ex, ex.Message);
-            }
-            catch (Exception ex)
-            {
-                this.HandleError(ex, Messages.Msg_ErrorOccured);
-            }
+            catch (ExistingItemException ex) { this.HandleWarning(ex, ex.Message); }
+            catch (Exception ex) { this.HandleError(ex, Messages.Msg_ErrorOccured); }
+            finally { InnerWindow.Close(); }
         }
 
         private bool CanAdd()

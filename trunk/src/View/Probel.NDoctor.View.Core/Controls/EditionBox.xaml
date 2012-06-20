@@ -12,13 +12,14 @@
              xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Core.Controls"
              
              mc:Ignorable="d"
-             Width="200">
-
+             Width="200"
+             Loaded="this_Loaded">
 
     <StackPanel>
         <Border Style="{StaticResource BorderStyle}">
             <ScrollViewer>
-                <TextBox Height="100" 
+                <TextBox x:Name="focused"
+                         Height="100" 
                          Text="{Binding ElementName=this, Path=Value.Value, UpdateSourceTrigger=PropertyChanged}"
                          TextWrapping="Wrap"/>
             </ScrollViewer>

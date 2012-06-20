@@ -75,7 +75,6 @@
     <Compile Include="Translations\RawBmiText.cs" />
     <Compile Include="Translations\WorkbenchText.cs" />
     <Compile Include="ViewModel\AddBmiViewModel.cs" />
-    <Compile Include="ViewModel\BmiViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
     <Compile Include="View\AddBmiView.xaml.cs">
       <DependentUpon>AddBmiView.xaml</DependentUpon>

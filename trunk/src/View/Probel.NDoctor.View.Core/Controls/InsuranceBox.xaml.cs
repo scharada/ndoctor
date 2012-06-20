@@ -109,6 +109,11 @@ namespace Probel.NDoctor.View.Core.Controls
             target.SetValue(OkCommandProperty, value);
         }
 
+        private void this_Loaded(object sender, RoutedEventArgs e)
+        {
+            Keyboard.Focus(this.focused);
+        }
+
         #endregion Methods
     }
 }

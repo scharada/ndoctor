@@ -48,8 +48,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #region Properties
 
         /// <summary>
-        /// Gets or sets a value indicating whether this entity is imported from somewhere else.
-        /// By imported, understand the entity wasn't added manually in the database
+        /// Gets or sets a value indicating whether this dto is imported from somewhere else.
+        /// By imported, understand the dto wasn't added manually in the database
         /// </summary>
         /// <value>
         /// 	<c>true</c> if this instance is imported; otherwise, <c>false</c>.
@@ -84,6 +84,34 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #region Methods
 
         /// <summary>
+        /// Implements the operator !=.
+        /// </summary>
+        /// <param name="dto">The dto.</param>
+        /// <param name="other">The other.</param>
+        /// <returns>
+        /// The result of the operator.
+        /// </returns>
+        public static bool operator !=(BaseDto dto, BaseDto other)
+        {
+            return !(dto == other);
+        }
+
+        /// <summary>
+        /// Implements the operator ==.
+        /// </summary>
+        /// <param name="dto">The dto.</param>
+        /// <param name="other">The other.</param>
+        /// <returns>
+        /// The result of the operator.
+        /// </returns>
+        public static bool operator ==(BaseDto dto, BaseDto other)
+        {
+            if (object.ReferenceEquals(dto, other)) { return true; }
+            else if ((object)dto == null || (object)other == null) { return false; }
+            else { return dto.Equals(other); }
+        }
+
+        /// <summary>
         /// Creates a new object that is a copy of the current instance.
         /// </summary>
         /// <returns>
@@ -92,6 +120,31 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         public object Clone()
         {
             return Cloner.Clone(this);
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object"/> is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
+        public override bool Equals(object obj)
+        {
+            if (obj == null) { return false; }
+            else if (obj.GetType() == this.GetType() && obj is BaseDto) { return this.Id == (obj as BaseDto).Id; }
+            else { return false; }
+        }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
+        public override int GetHashCode()
+        {
+            return this.Id.GetHashCode() ^ this.GetType().GetHashCode();
         }
 
         #endregion Methods

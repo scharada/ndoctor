@@ -251,6 +251,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nobody.
+        /// </summary>
+        internal static string Msg_Nobody {
+            get {
+                return ResourceManager.GetString("Msg_Nobody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Progress: {0,3}%.
         /// </summary>
         internal static string Msg_Progess {

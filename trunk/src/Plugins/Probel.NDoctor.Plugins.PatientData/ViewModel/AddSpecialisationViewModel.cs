@@ -23,9 +23,11 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PatientData.Helpers;
     using Probel.NDoctor.Plugins.PatientData.Properties;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
@@ -85,10 +87,9 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
                 Notifyer.OnSpecialisationChanged(this);
             }
-            catch (Exception ex)
-            {
-                this.HandleError(ex, Messages.Msg_ErrorOccured);
-            }
+            catch (ExistingItemException ex) { this.HandleWarning(ex, ex.Message); }
+            catch (Exception ex) { this.HandleError(ex, Messages.Msg_ErrorOccured); }
+            finally { InnerWindow.Close(); }
         }
 
         private bool CanAdd()

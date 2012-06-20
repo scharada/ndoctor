@@ -59,6 +59,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         PatientBmiDto GetPatientWithBmiHistory(LightPatientDto patient);
 
         /// <summary>
+        /// Removes the specified BMI entry from the specified patient.
+        /// </summary>
+        /// <param name="bmi">The bmi to remove.</param>
+        /// <param name="from">The patient.</param>
+        void Remove(BmiDto bmi, LightPatientDto from);
+
+        /// <summary>
         /// Deletes the bmi with the specified date.
         /// </summary>
         /// <param name="patient">The patient to be processed.</param>

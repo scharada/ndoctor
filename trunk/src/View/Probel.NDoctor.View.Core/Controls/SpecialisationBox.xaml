@@ -11,10 +11,14 @@
              xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
              xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Core.Controls"
              
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             Loaded="this_Loaded">
     <StackPanel>
-        <TextBox Text="{Binding Path=Tag.Name, UpdateSourceTrigger=PropertyChanged}"
+
+        <Border Style="{StaticResource BorderStyle}">
+            <TextBox Name="focused"  Text="{Binding Path=Tag.Name, UpdateSourceTrigger=PropertyChanged}"
                          MinWidth="200"/>
+        </Border>
         <ctrl:OKCancelBox OkCommand="{Binding ElementName=this, Path=OkCommand, UpdateSourceTrigger=PropertyChanged}"
                           ButtonName="{Binding ElementName=this, Path=ButtonName, UpdateSourceTrigger=PropertyChanged}"/>      
     </StackPanel>

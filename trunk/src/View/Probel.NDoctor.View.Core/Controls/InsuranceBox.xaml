@@ -11,7 +11,8 @@
              xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
              xmlns:text="clr-namespace:Probel.NDoctor.View.Core.Translations"
              
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             Loaded="this_Loaded">
     <UserControl.Resources>
         <!--controlStyle-->
         <Style x:Key="controlStyle">
@@ -61,7 +62,8 @@
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Grid.Row="1">
-                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Insurance.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Name="focused"
+                                 Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Insurance.Name, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Insurance.Phone, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Insurance.Notes, UpdateSourceTrigger=PropertyChanged}"
                                  TextWrapping="Wrap"

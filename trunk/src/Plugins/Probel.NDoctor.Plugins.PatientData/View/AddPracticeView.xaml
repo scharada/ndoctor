@@ -6,9 +6,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"                   
              xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Core.Controls;assembly=Probel.NDoctor.View.Core"
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PatientData.Translations"
+             xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
              
-             mc:Ignorable="d" 
-             Width="350">
+             mc:Ignorable="d">
+    <UserControl.InputBindings>
+        <KeyBinding Key="Enter"
+                    Command="{Binding AddCommand}"/>
+        <KeyBinding Key="Escape"
+                    Command="iw:InnerWindow.CancelCommand" />
+    </UserControl.InputBindings>
     <ctrl:PracticeBox Practice="{Binding Practice}"
                       ButtonName="{Binding Source={x:Static Member=text:WorkbenchText.BtnAdd}}"
                       OkCommand="{Binding AddCommand}"/>

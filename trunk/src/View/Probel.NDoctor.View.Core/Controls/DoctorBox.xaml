@@ -13,7 +13,8 @@
              xmlns:conv="clr-namespace:Probel.NDoctor.View.Plugins.Converters;assembly=Probel.NDoctor.View.Plugins"
              
              MinWidth="300"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             Loaded="this_Loaded">
     <UserControl.Resources>
         <conv:DoctorGenderToImageConverter x:Key="doctorGenderToImage"/>
 
@@ -62,7 +63,8 @@
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="1">
                 <Label Style="{StaticResource separatorStyle}" Content="{Binding Source={x:Static Member=txt:DoctorBoxText.SeparatorPersonalData}}"/>
-                <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Doctor.LastName, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox  Name="focused"
+                         Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Doctor.LastName, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Doctor.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <ComboBox Grid.Column="0"  Style="{StaticResource controlStyle}"                                  

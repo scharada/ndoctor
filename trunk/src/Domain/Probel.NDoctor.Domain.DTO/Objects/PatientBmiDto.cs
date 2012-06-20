@@ -26,16 +26,16 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     {
         #region Constructors
 
-        public PatientBmiDto()
+        public PatientBmiDto(IEnumerable<BmiDto> bmiHistory)
         {
-            this.BmiHistory = new ObservableCollection<BmiDto>();
+            this.BmiHistory = bmiHistory.ToArray();
         }
 
         #endregion Constructors
 
         #region Properties
 
-        public ObservableCollection<BmiDto> BmiHistory
+        public BmiDto[] BmiHistory
         {
             get;
             private set;
@@ -72,7 +72,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private IList<BmiDto> CreateList(float index)
         {
             var list = new List<BmiDto>();
-            if (this.BmiHistory.Count > 0)
+            if (this.BmiHistory.Length > 0)
             {
                 var start = this.BmiHistory.Max(e => e.Date);
                 var end = this.BmiHistory.Min(e => e.Date);

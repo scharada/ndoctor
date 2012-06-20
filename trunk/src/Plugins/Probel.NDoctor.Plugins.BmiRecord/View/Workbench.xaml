@@ -134,7 +134,7 @@
                     <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="{Binding Source={x:Static Member=text:WorkbenchText.BtnDelete}}"
-                                      Command="{Binding Path=DeleteCommand}">
+                                      Command="{Binding Path=RemoveBmiCommand}">
                                 <MenuItem.Icon>
                                     <Image Source="\Probel.NDoctor.Plugins.BmiRecord;component/Images\Delete.png"
                                            Height="20"

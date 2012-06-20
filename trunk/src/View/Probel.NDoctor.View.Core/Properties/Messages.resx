@@ -382,4 +382,8 @@ The application will close. Check the logs for further  information</value>
     <value>Specialisation:</value>
     <comment>Specialisation:</comment>
   </data>
+  <data name="Msg_Nobody" xml:space="preserve">
+    <value>Nobody</value>
+    <comment>Nobody</comment>
+  </data>
 </root>

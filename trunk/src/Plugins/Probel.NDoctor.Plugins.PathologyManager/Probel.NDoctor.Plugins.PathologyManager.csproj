@@ -90,6 +90,7 @@
     <Compile Include="Translations\AddIllnessPeriodText.cs" />
     <Compile Include="Translations\AddPathologyText.cs" />
     <Compile Include="Translations\IllnessPeriodText.cs" />
+    <Compile Include="ViewModel\AddPathologyCategoryViewModel.cs" />
     <Compile Include="ViewModel\AddPathologyViewModel.cs" />
     <Compile Include="ViewModel\AddIllnessPeriodListViewModel.cs" />
     <Compile Include="ViewModel\IllnessPeriodToAddViewModel.cs" />
@@ -97,6 +98,9 @@
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
     <Compile Include="View\AddIllnessPeriodView.xaml.cs">
       <DependentUpon>AddIllnessPeriodView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddPathologyCategoryView.xaml.cs">
+      <DependentUpon>AddPathologyCategoryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddPathologyView.xaml.cs">
       <DependentUpon>AddPathologyView.xaml</DependentUpon>
@@ -163,6 +167,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\AddIllnessPeriodView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddPathologyCategoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

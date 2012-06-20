@@ -8,16 +8,26 @@
              
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PathologyManager.Translations"
              xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+             xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
              mc:Ignorable="d" 
+             
              Height="450" 
-             Width="450">
+             Width="450"
+             Loaded="this_Loaded">
+    <UserControl.InputBindings>
+        <KeyBinding Key="Enter"
+                    Command="{Binding AddCommand}"/>
+        <KeyBinding Key="Escape"
+                    Command="iw:InnerWindow.CancelCommand" />
+    </UserControl.InputBindings>
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
     <DockPanel LastChildFill="True">
         <Grid DockPanel.Dock="Top">
             <Border Style="{StaticResource BorderStyle}">
-                <toolkit:WatermarkTextBox Grid.Column="0" 
+                <toolkit:WatermarkTextBox x:Name="focused"
+                                          Grid.Column="0" 
                                           Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}">
                     <toolkit:WatermarkTextBox.Watermark>
                         <StackPanel Orientation="Horizontal">

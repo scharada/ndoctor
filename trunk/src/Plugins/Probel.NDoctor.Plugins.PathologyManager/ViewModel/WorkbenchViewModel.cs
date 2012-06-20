@@ -16,8 +16,11 @@
 */
 namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Windows;
+    using System.Windows.Input;
 
     using AutoMapper;
 
@@ -25,9 +28,12 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.Helpers.Data;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PathologyManager.Helpers;
+    using Probel.NDoctor.Plugins.PathologyManager.Properties;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
@@ -56,6 +62,8 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
             this.IllnessHistory = new ObservableCollection<IllnessPeriodViewModel>();
             Notifyer.ItemChanged += (sender, e) => this.Refresh();
+
+            this.RemoveIllessPeriodCommand = new RelayCommand(() => this.RemoveIllessPeriod(), () => this.CanRemoveIllessPeriod());
         }
 
         #endregion Constructors
@@ -76,6 +84,12 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
         /// Gets the illness history for the connected patient.
         /// </summary>
         public ObservableCollection<IllnessPeriodViewModel> IllnessHistory
+        {
+            get;
+            private set;
+        }
+
+        public ICommand RemoveIllessPeriodCommand
         {
             get;
             private set;
@@ -113,6 +127,30 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
                 this.Chart = this.component.GetIlnessAsChart(PluginContext.Host.SelectedPatient);
             }
+        }
+
+        private bool CanRemoveIllessPeriod()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write)
+                && this.SelectedIllnessPeriod != null;
+        }
+
+        private void RemoveIllessPeriod()
+        {
+            try
+            {
+                var dr = MessageBox.Show(Messages.Msg_DeleteIllnessPeriod, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (dr != MessageBoxResult.Yes) return;
+
+                using (this.component.UnitOfWork)
+                {
+                    this.component.Remove(this.SelectedIllnessPeriod, PluginContext.Host.SelectedPatient);
+                }
+
+                Notifyer.OnItemChanged(this);
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+            finally { InnerWindow.Close(); }
         }
 
         #endregion Methods

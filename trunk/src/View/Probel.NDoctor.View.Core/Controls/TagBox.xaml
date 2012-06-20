@@ -13,13 +13,16 @@
              
              mc:Ignorable="d"
              
-             Width="250">
+             Width="250"
+             Loaded="this_Loaded">
     <StackPanel>
         <Border Style="{StaticResource BorderStyle}">
-            <TextBox Text="{Binding ElementName=this, Path=Stamp.Name, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox x:Name="focused" 
+                     Text="{Binding ElementName=this, Path=Stamp.Name, UpdateSourceTrigger=PropertyChanged}"
                      MinWidth="200"/>
         </Border>
-        <ctrl:OKCancelBox OkCommand="{Binding ElementName=this, Path=OkCommand, UpdateSourceTrigger=PropertyChanged}"
+        <ctrl:OKCancelBox
+                          OkCommand="{Binding ElementName=this, Path=OkCommand, UpdateSourceTrigger=PropertyChanged}"
                           ButtonName="{Binding ElementName=this, Path=ButtonName, UpdateSourceTrigger=PropertyChanged}"/>
     </StackPanel>
 </UserControl>

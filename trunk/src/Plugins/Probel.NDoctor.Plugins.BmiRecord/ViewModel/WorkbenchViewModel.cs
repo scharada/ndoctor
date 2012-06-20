@@ -21,6 +21,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Linq;
+    using System.Windows;
     using System.Windows.Input;
 
     using AutoMapper;
@@ -29,6 +30,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.Components;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.BmiRecord.Helpers;
@@ -40,9 +42,9 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     {
         #region Fields
 
-        private BmiDto bmiToAdd;
         private IBmiComponent component;
         private PatientBmiDto patient;
+        private BmiDto selectedBmi;
 
         #endregion Fields
 
@@ -60,11 +62,12 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
                 this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
                 PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
             }
-            this.CurrentBmi = new BmiDto();
+            this.SelectedBmi = new BmiDto();
             this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
-            this.BmiHistory = new ObservableCollection<BmiViewModel>();
+            this.BmiHistory = new ObservableCollection<BmiDto>();
 
             this.AddBmiCommand = new RelayCommand(() => this.AddBmi(), () => this.CanAddBmi());
+            this.RemoveBmiCommand = new RelayCommand(() => this.RemoveBmi(), () => this.CanRemoveBmi());
 
             Notifyer.ItemChanged += (sender, e) => this.Refresh();
         }
@@ -82,36 +85,17 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
             private set;
         }
 
-        public ObservableCollection<BmiViewModel> BmiHistory
+        public ObservableCollection<BmiDto> BmiHistory
         {
             get;
             set;
-        }
-
-        public BmiDto CurrentBmi
-        {
-            get { return this.bmiToAdd; }
-            set
-            {
-                this.bmiToAdd = value;
-                this.OnPropertyChanged(() => CurrentBmi);
-            }
-        }
-
-        /// <summary>
-        /// Gets the command to delete the selected BMI entry.
-        /// </summary>
-        public ICommand DelBmiCommand
-        {
-            get;
-            private set;
         }
 
         public DateTime EndDate
         {
             get
             {
-                if (this.Patient != null && this.Patient.BmiHistory != null && this.Patient.BmiHistory.Count > 0)
+                if (this.Patient != null && this.Patient.BmiHistory != null && this.Patient.BmiHistory.Length > 0)
                 {
                     var result = this.Patient.BmiHistory.Max(e => e.Date);
                     return result.Date;
@@ -126,12 +110,31 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
             set
             {
                 this.patient = value;
-                this.CurrentBmi.Height = value.Height;
+                this.SelectedBmi.Height = value.Height;
 
                 this.OnPropertyChanged(() => this.Patient);
                 this.OnPropertyChanged(() => this.StartDate);
                 this.OnPropertyChanged(() => this.EndDate);
-                this.OnPropertyChanged(() => this.CurrentBmi);
+                this.OnPropertyChanged(() => this.SelectedBmi);
+            }
+        }
+
+        /// <summary>
+        /// Gets the command to delete the selected BMI entry.
+        /// </summary>
+        public ICommand RemoveBmiCommand
+        {
+            get;
+            private set;
+        }
+
+        public BmiDto SelectedBmi
+        {
+            get { return this.selectedBmi; }
+            set
+            {
+                this.selectedBmi = value;
+                this.OnPropertyChanged(() => SelectedBmi);
             }
         }
 
@@ -139,7 +142,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
         {
             get
             {
-                if (this.Patient != null && this.Patient.BmiHistory != null && this.Patient.BmiHistory.Count > 0)
+                if (this.Patient != null && this.Patient.BmiHistory != null && this.Patient.BmiHistory.Length > 0)
                 {
                     var result = this.Patient.BmiHistory.Min(e => e.Date);
                     return result.Date;
@@ -242,57 +245,39 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
             Assert.IsNotNull(PluginContext.Host);
             Assert.IsNotNull(PluginContext.Host.SelectedPatient);
 
-            var thread = new BackgroundWorker();
-            PatientBmiDto patient = null;
-
-            thread.DoWork += (sender, e) =>
+            try
             {
-                PluginContext.Host.Invoke(() =>
+                PatientBmiDto patient = null;
+
+                using (this.component.UnitOfWork)
                 {
-                    using (this.component.UnitOfWork)
-                    {
-                        patient = this.component.GetPatientWithBmiHistory(PluginContext.Host.SelectedPatient);
-                    }
-
-                    if (patient.BmiHistory.Count > 0)
-                    {
-                        var list = Mapper.Map<IList<BmiDto>, IList<BmiViewModel>>(patient.BmiHistory);
-                        this.BmiHistory.Refill(list);
-                    }
-                });
-            };
-            thread.RunWorkerCompleted += (sender, e) =>
-            {
-                if (patient == null) return;
-
-                PluginContext.Host.Invoke(() =>
-                {
-                    this.Patient = patient;
-                    PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiHistoryLoaded);
-                });
-            };
-
-            thread.RunWorkerAsync();
+                    patient = this.component.GetPatientWithBmiHistory(PluginContext.Host.SelectedPatient);
+                }
+                this.Patient = patient;
+                this.BmiHistory.Refill(this.Patient.BmiHistory);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiHistoryLoaded);
+            }
+            catch (Exception ex) { this.HandleError(ex); }
         }
 
         private void AddBmi()
         {
             Assert.IsNotNull(PluginContext.Host, "The host shouldn't be null");
             Assert.IsNotNull(PluginContext.Host.SelectedPatient, "A patient should be selected if you want to manage data of a patient");
-            Assert.IsNotNull(this.bmiToAdd, "The BMI to add shouldn't be null in order to add the item to the BMI history");
+            Assert.IsNotNull(this.selectedBmi, "The BMI to add shouldn't be null in order to add the item to the BMI history");
 
             try
             {
                 using (this.component.UnitOfWork)
                 {
-                    this.component.CreateBmi(this.bmiToAdd, PluginContext.Host.SelectedPatient);
+                    this.component.CreateBmi(this.selectedBmi, PluginContext.Host.SelectedPatient);
 
-                    PluginContext.Host.SelectedPatient.Height = this.CurrentBmi.Height;
+                    PluginContext.Host.SelectedPatient.Height = this.SelectedBmi.Height;
                     this.component.Update(PluginContext.Host.SelectedPatient);
                 }
                 this.Refresh();
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiAdded);
-                this.bmiToAdd = new BmiDto();
+                this.selectedBmi = new BmiDto();
             }
             catch (Exception ex)
             {
@@ -302,9 +287,31 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
 
         private bool CanAddBmi()
         {
-            return this.bmiToAdd.Date <= DateTime.Now
-                && this.bmiToAdd.Height > 0
-                && this.bmiToAdd.Weight > 0;
+            return this.selectedBmi.Date <= DateTime.Now
+                && this.selectedBmi.Height > 0
+                && this.selectedBmi.Weight > 0;
+        }
+
+        private bool CanRemoveBmi()
+        {
+            return this.SelectedBmi != null
+                && PluginContext.DoorKeeper.IsUserGranted(To.Write);
+        }
+
+        private void RemoveBmi()
+        {
+            try
+            {
+                var dr = MessageBox.Show(Messages.Msg_AskDeleteBmi, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (dr != MessageBoxResult.Yes) return;
+                using (this.component.UnitOfWork)
+                {
+                    this.component.Remove(this.SelectedBmi, this.Patient);
+                }
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiDeleted);
+                Notifyer.OnItemChanged(this);
+            }
+            catch (Exception ex) { this.HandleError(ex); }
         }
 
         #endregion Methods

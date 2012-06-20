@@ -125,8 +125,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
 
         private void ConfigureAutoMapper()
         {
-            Mapper.CreateMap<BmiViewModel, BmiDto>();
-            Mapper.CreateMap<BmiDto, BmiViewModel>();
+            //Nothing to do
         }
 
         private void Navigate()

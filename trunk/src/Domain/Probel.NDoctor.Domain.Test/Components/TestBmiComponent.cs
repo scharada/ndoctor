@@ -39,7 +39,7 @@ namespace Probel.NDoctor.Domain.Test.Component
             Assert.Greater(patients.Count, 1, "No patient were found");
 
             var patient = this.Component.GetPatientWithBmiHistory(patients[0]);
-            var before = patient.BmiHistory.Count;
+            var before = patient.BmiHistory.Length;
 
             this.Component.CreateBmi(new BmiDto() { Date = DateTime.Now, Height = 180, Weight = 85 }, patients[0]);
 
@@ -47,7 +47,7 @@ namespace Probel.NDoctor.Domain.Test.Component
             Assert.Greater(patients.Count, 1, "No patient were found after add");
 
             patient = this.Component.GetPatientWithBmiHistory(patients[0]);
-            Assert.AreEqual(patient.BmiHistory.Count, before + 1);
+            Assert.AreEqual(patient.BmiHistory.Length, before + 1);
         }
 
         [Test]
@@ -57,9 +57,9 @@ namespace Probel.NDoctor.Domain.Test.Component
             Assert.Greater(patients.Count, 1, "No patient were found");
 
             var patient = this.Component.GetPatientWithBmiHistory(patients[0]);
-            Assert.GreaterOrEqual(patient.BmiHistory.Count, 10);
+            Assert.GreaterOrEqual(patient.BmiHistory.Length, 10);
 
-            var count = this.Component.GetPatientWithBmiHistory(patient).BmiHistory.Count;
+            var count = this.Component.GetPatientWithBmiHistory(patient).BmiHistory.Length;
 
             var dateTime = DateTime.Today.AddDays(-4);
             this.Component.CreateBmi(new BmiDto() { Date = dateTime, Height = 10, Weight = 10 }, patient);
@@ -68,13 +68,13 @@ namespace Probel.NDoctor.Domain.Test.Component
             this.Component.CreateBmi(new BmiDto() { Date = dateTime, Height = 10, Weight = 10 }, patient);
 
             Assert.AreEqual(count + 4
-                , this.Component.GetPatientWithBmiHistory(patient).BmiHistory.Count
+                , this.Component.GetPatientWithBmiHistory(patient).BmiHistory.Length
                 , "The count is not the expected one after insertion");
 
             this.Component.RemoveBmiWithDate(patient, dateTime);
 
             Assert.AreEqual(count
-                , this.Component.GetPatientWithBmiHistory(patient).BmiHistory.Count
+                , this.Component.GetPatientWithBmiHistory(patient).BmiHistory.Length
                 , "The count is not the expected one after deletion");
         }
 
@@ -85,7 +85,7 @@ namespace Probel.NDoctor.Domain.Test.Component
             Assert.Greater(patients.Count, 1, "No patient were found");
 
             var patient = this.Component.GetPatientWithBmiHistory(patients[0]);
-            Assert.GreaterOrEqual(patient.BmiHistory.Count, 10);
+            Assert.GreaterOrEqual(patient.BmiHistory.Length, 10);
         }
 
         /// <summary>

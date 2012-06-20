@@ -12,10 +12,12 @@
              xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Core.Controls"
              mc:Ignorable="d" 
              
-             Width="250">
+             Width="250"
+             Loaded="this_Loaded">
     <StackPanel>
         <Border Style="{StaticResource BorderStyle}">
-            <ComboBox ItemsSource="{Binding ElementName=this, Path=Tags}"
+            <ComboBox Name="focused"
+                      ItemsSource="{Binding ElementName=this, Path=Tags}"
                       DisplayMemberPath="Name"
                       SelectedItem="{Binding ElementName=this, Path=Pathology.Tag, UpdateSourceTrigger=PropertyChanged}"/>
         </Border>

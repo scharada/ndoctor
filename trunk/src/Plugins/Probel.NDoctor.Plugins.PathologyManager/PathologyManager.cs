@@ -130,11 +130,17 @@ namespace Probel.NDoctor.Plugins.PathologyManager
             PluginContext.Host.AddContextualMenu(this.contextualMenu);
             PluginContext.Host.AddTab(tab);
 
-            ICommand addPeriodCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_Add, new AddIllnessPeriodView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            ICommand addPeriodCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_Add, new AddIllnessPeriodView())
+                , () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPeriods, imgUri.FormatWith("Add"), addPeriodCommand) { Order = 1, });
 
-            ICommand addPathologyCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPathology, new AddPathologyView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            ICommand addPathologyCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPathology, new AddPathologyView())
+                , () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPathology, imgUri.FormatWith("Add"), addPathologyCommand) { Order = 2 });
+
+            ICommand addPathologyCategory = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPathologyCategory, new AddPathologyCategoryView())
+                , () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPathologyCategory, imgUri.FormatWith("Add"), addPathologyCategory) { Order = 3 });
         }
 
         private bool CanNavigate()

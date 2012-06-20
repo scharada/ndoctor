@@ -12,12 +12,14 @@
              xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Core.Controls"
              
              mc:Ignorable="d"
-             Width="200">
+             Width="200"
+             Loaded="this_Loaded">
 
 
     <StackPanel>
         <Border Style="{StaticResource BorderStyle}">
-            <TextBox Text="{Binding ElementName=this, Path=Reputation.Name, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Name="focused"
+                     Text="{Binding ElementName=this, Path=Reputation.Name, UpdateSourceTrigger=PropertyChanged}"/>
         </Border>
         <ctrl:OKCancelBox OkCommand="{Binding ElementName=this, Path=OkCommand, UpdateSourceTrigger=PropertyChanged}"
                           ButtonName="{Binding ElementName=this, Path=ButtonName, UpdateSourceTrigger=PropertyChanged}"/>

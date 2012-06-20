@@ -53,13 +53,13 @@
     <Color x:Key="RadioIconPress1">#99759FB6</Color>
     <!--Press1, 60%-->
     <Color x:Key="RadioIconPress2">#FF4B8DAF</Color>
-    <Color x:Key="RadioStroke">#FF275674"</Color>
+    <Color x:Key="RadioStroke">#FF275674</Color>
     <Color x:Key="CheckInnerOver">#FF79C6F9</Color>
-    <Color x:Key="CheckInnerOver2">#FFAFDEFD"</Color>
+    <Color x:Key="CheckInnerOver2">#FFAFDEFD</Color>
     <Color x:Key="CheckInnerPress">#FF5EB6F7</Color>
-    <Color x:Key="CheckInnerPress2">#FF90CFFC"</Color>
-    <Color x:Key="CheckOutterOver">#FF5989A5"</Color>
-    <Color x:Key="CheckOutterOver2">#FFDEF9FA"</Color>
+    <Color x:Key="CheckInnerPress2">#FF90CFFC</Color>
+    <Color x:Key="CheckOutterOver">#FF5989A5</Color>
+    <Color x:Key="CheckOutterOver2">#FFDEF9FA</Color>
     <Color x:Key="ThumbPress1">#FF6CBBE5</Color>
     <Color x:Key="ThumbPress2">#FF50A1CC</Color>
     <Color x:Key="ExpanderOver1">#FFB1E7FE</Color>

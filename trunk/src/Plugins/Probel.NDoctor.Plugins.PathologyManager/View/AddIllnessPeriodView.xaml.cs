@@ -17,6 +17,7 @@
 namespace Probel.NDoctor.Plugins.PathologyManager.View
 {
     using System.Windows.Controls;
+    using System.Windows.Input;
 
     using Probel.NDoctor.Plugins.PathologyManager.ViewModel;
 
@@ -34,5 +35,14 @@ namespace Probel.NDoctor.Plugins.PathologyManager.View
         }
 
         #endregion Constructors
+
+        #region Methods
+
+        private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Keyboard.Focus(this.focused);
+        }
+
+        #endregion Methods
     }
 }

@@ -105,7 +105,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
             var result = (from ih in entity.IllnessHistory
                           group ih by new { Id = ih.Pathology.Id, Name = ih.Pathology.Name } into grp
-                          select new { Name = grp.Key.Name, TotalDays = grp.Sum(e => e.Duration.TotalDays) });
+                          select new { Name = grp.Key.Name, TotalDays = grp.Sum(e => e.Duration.TotalDays) }).Take(10);
             var chart = new Chart<string, double>();
             foreach (var item in result)
             {
