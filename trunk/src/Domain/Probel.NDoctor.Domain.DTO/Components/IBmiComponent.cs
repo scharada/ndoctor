@@ -72,13 +72,6 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="date">The date to remove.</param>
         void RemoveBmiWithDate(LightPatientDto patient, DateTime date);
 
-        /// <summary>
-        /// Updates the specified light patient. This method should be used to update 
-        /// first/last name height and or Gender
-        /// </summary>
-        /// <param name="patient">The patient.</param>
-        void Update(LightPatientDto patient);
-
         #endregion Methods
     }
 }

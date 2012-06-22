@@ -66,7 +66,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
             this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
             this.BmiHistory = new ObservableCollection<BmiDto>();
 
-            this.AddBmiCommand = new RelayCommand(() => this.AddBmi(), () => this.CanAddBmi());
             this.RemoveBmiCommand = new RelayCommand(() => this.RemoveBmi(), () => this.CanRemoveBmi());
 
             Notifyer.ItemChanged += (sender, e) => this.Refresh();
@@ -75,15 +74,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
         #endregion Constructors
 
         #region Properties
-
-        /// <summary>
-        /// Gets command to add a new BMI entry.
-        /// </summary>
-        public ICommand AddBmiCommand
-        {
-            get;
-            private set;
-        }
 
         public ObservableCollection<BmiDto> BmiHistory
         {
@@ -258,38 +248,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiHistoryLoaded);
             }
             catch (Exception ex) { this.HandleError(ex); }
-        }
-
-        private void AddBmi()
-        {
-            Assert.IsNotNull(PluginContext.Host, "The host shouldn't be null");
-            Assert.IsNotNull(PluginContext.Host.SelectedPatient, "A patient should be selected if you want to manage data of a patient");
-            Assert.IsNotNull(this.selectedBmi, "The BMI to add shouldn't be null in order to add the item to the BMI history");
-
-            try
-            {
-                using (this.component.UnitOfWork)
-                {
-                    this.component.CreateBmi(this.selectedBmi, PluginContext.Host.SelectedPatient);
-
-                    PluginContext.Host.SelectedPatient.Height = this.SelectedBmi.Height;
-                    this.component.Update(PluginContext.Host.SelectedPatient);
-                }
-                this.Refresh();
-                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiAdded);
-                this.selectedBmi = new BmiDto();
-            }
-            catch (Exception ex)
-            {
-                this.HandleError(ex, Messages.Msg_ErrAddBmi);
-            }
-        }
-
-        private bool CanAddBmi()
-        {
-            return this.selectedBmi.Date <= DateTime.Now
-                && this.selectedBmi.Height > 0
-                && this.selectedBmi.Weight > 0;
         }
 
         private bool CanRemoveBmi()

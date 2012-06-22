@@ -66,10 +66,17 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="patient">The patient.</param>
         public void CreateBmi(BmiDto bmi, LightPatientDto patient)
         {
+            patient.Height = bmi.Height;
+
             var entity = this.Session.Get<Patient>(patient.Id);
 
-            if (entity != null) entity.BmiHistory.Add(Mapper.Map<BmiDto, Bmi>(bmi));
-            else throw new EntityNotFoundException(typeof(Bmi));
+            if (entity != null)
+            {
+                entity.Height = bmi.Height;
+                entity.BmiHistory.Add(Mapper.Map<BmiDto, Bmi>(bmi));
+                this.Session.Update(entity);
+            }
+            else { throw new EntityNotFoundException(typeof(Bmi)); }
         }
 
         /// <summary>
@@ -159,19 +166,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
                 }
             }
             this.Session.Update(current);
-        }
-
-        /// <summary>
-        /// Updates the specified light patient. This method should be used to update 
-        /// first/last name height and or Gender
-        /// </summary>
-        /// <param name="patient">The patient.</param>
-        public void Update(LightPatientDto patient)
-        {
-            var entity = this.Session.Get<Patient>(patient.Id);
-            Mapper.Map<LightPatientDto, Patient>(patient, entity);
-
-            this.Session.Update(entity);
         }
 
         #endregion Methods
