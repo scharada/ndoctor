@@ -100,7 +100,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
             set
             {
                 this.patient = value;
-                this.SelectedBmi.Height = value.Height;
+                if (this.SelectedBmi != null) { this.SelectedBmi.Height = value.Height; }
 
                 this.OnPropertyChanged(() => this.Patient);
                 this.OnPropertyChanged(() => this.StartDate);

@@ -151,6 +151,15 @@ namespace Probel.NDoctor.Plugins.PathologyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A new category was added.
+        /// </summary>
+        internal static string Msg_CategoryAdded {
+            get {
+                return ResourceManager.GetString("Msg_CategoryAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to delete this period?.
         /// </summary>
         internal static string Msg_DeleteIllnessPeriod {

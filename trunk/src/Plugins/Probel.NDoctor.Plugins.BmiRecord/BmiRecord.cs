@@ -30,6 +30,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.BmiRecord.Helpers;
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
     using Probel.NDoctor.Plugins.BmiRecord.View;
     using Probel.NDoctor.Plugins.BmiRecord.ViewModel;
@@ -48,7 +49,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord
         private IBmiComponent component;
         private RibbonContextualTabGroupData contextualMenu;
         private ICommand navigateCommand;
-        private Workbench workbench;
 
         #endregion Fields
 
@@ -84,7 +84,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
             this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
             PluginContext.Host.Invoke(() =>
             {
-                this.workbench = new Workbench();
+                //this.workbench = ViewFactory.Workbench;
                 this.BuildButtons();
                 this.BuildContextMenu();
             });
@@ -114,7 +114,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
             PluginContext.Host.AddContextualMenu(this.contextualMenu);
             PluginContext.Host.AddTab(tab);
 
-            ICommand addPeriodCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddBmi, new AddBmiView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            ICommand addPeriodCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddBmi, ViewFactory.AddBmiView), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddBmi, imgUri.FormatWith("Add"), addPeriodCommand) { Order = 1, });
         }
 
@@ -130,10 +130,8 @@ namespace Probel.NDoctor.Plugins.BmiRecord
 
         private void Navigate()
         {
-            PluginContext.Host.Navigate(this.workbench);
-            var viewModel = new WorkbenchViewModel();
-            this.workbench.DataContext = viewModel;
-            viewModel.Refresh();
+            PluginContext.Host.Navigate(ViewFactory.Workbench);
+            ((WorkbenchViewModel)ViewFactory.Workbench.DataContext).Refresh();
 
             this.contextualMenu.IsVisible = true;
             this.contextualMenu.TabDataCollection[0].IsSelected = true;

@@ -157,6 +157,10 @@
     <value>Do you want to add this illness period?</value>
     <comment>Do you want to add this illness period?</comment>
   </data>
+  <data name="Msg_CategoryAdded" xml:space="preserve">
+    <value>A new category was added</value>
+    <comment>A new category was added</comment>
+  </data>
   <data name="Msg_DeleteIllnessPeriod" xml:space="preserve">
     <value>Do you want to delete this period?</value>
     <comment>Do you want to delete this period?</comment>

@@ -64,6 +64,14 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             }
         }
 
+        public string DateString
+        {
+            get
+            {
+                return this.Date.ToShortDateString();
+            }
+        }
+
         /// <summary>
         /// Gets or sets the height of the patient in centimeters.
         /// </summary>

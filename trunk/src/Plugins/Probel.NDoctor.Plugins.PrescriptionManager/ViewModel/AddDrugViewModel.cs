@@ -55,6 +55,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
             this.Tags = new ObservableCollection<TagDto>();
             this.SelectedDrug = new DrugDto();
+            this.SelectedDrug.Tag = null;
 
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
         }

@@ -193,6 +193,10 @@
     <value>File</value>
     <comment>File</comment>
   </data>
+  <data name="Msg_AddCategory" xml:space="preserve">
+    <value>Add a category</value>
+    <comment>Add a category</comment>
+  </data>
   <data name="Msg_AppointmentAdded" xml:space="preserve">
     <value>An appointment has just been added</value>
     <comment>An appointment has just been added</comment>
@@ -208,6 +212,10 @@
   <data name="Msg_AppointmentRemoved" xml:space="preserve">
     <value>An appointment has just been removed.</value>
     <comment>An appointment has just been removed.</comment>
+  </data>
+  <data name="Msg_CategoryAdded" xml:space="preserve">
+    <value>Category added</value>
+    <comment>Category added</comment>
   </data>
   <data name="Msg_FailToLoadCalendar" xml:space="preserve">
     <value>An error occured during the loading of the calendar</value>

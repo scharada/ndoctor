@@ -36,6 +36,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.Plugins.MeetingManager.View;
     using Probel.NDoctor.Plugins.MeetingManager.ViewModel;
+    using Probel.NDoctor.View.Core.Controls;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -68,6 +69,14 @@ namespace Probel.NDoctor.Plugins.MeetingManager
         #endregion Constructors
 
         #region Properties
+
+        private static bool IsCalendatEditor
+        {
+            get
+            {
+                return PluginContext.DoorKeeper.IsUserGranted(To.EditCalendar);
+            }
+        }
 
         private WorkbenchViewModel ViewModel
         {
@@ -133,11 +142,14 @@ namespace Probel.NDoctor.Plugins.MeetingManager
             PluginContext.Host.AddContextualMenu(this.contextualMenu);
             PluginContext.Host.AddTab(tab);
 
-            ICommand addCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddMeeting, new AddMeetingView()));
+            ICommand addCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddMeeting, ViewFactory.AddMeetingView), () => IsCalendatEditor);
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddMeeting, imgUri.FormatWith("Add"), addCommand) { Order = 1, });
 
-            ICommand removeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_RemoveMeeting, new RemoveMeetingView()));
+            ICommand removeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_RemoveMeeting, ViewFactory.RemoveMeetingView), () => IsCalendatEditor);
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_RemoveMeeting, imgUri.FormatWith("Delete"), removeCommand) { Order = 2, });
+
+            ICommand addCategoryCommand = new RelayCommand(() => InnerWindow.Show(Messages.Msg_AddCategory, ViewFactory.AddCategoryView), () => IsCalendatEditor);
+            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Msg_AddCategory, imgUri.FormatWith("AddCategory"), addCategoryCommand) { Order = 3, });
         }
 
         private bool CanNavigate()

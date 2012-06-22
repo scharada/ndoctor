@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\Notifyer.cs" />
+    <Compile Include="Helpers\ViewFactory.cs" />
     <Compile Include="MeetingManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -86,10 +87,14 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Translations\WorkbenchText.cs" />
+    <Compile Include="ViewModel\AddCategoryViewModel.cs" />
     <Compile Include="ViewModel\AddMeetingViewModel.cs" />
     <Compile Include="ViewModel\MeetingViewModel.cs" />
     <Compile Include="ViewModel\RemoveMeetingViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
+    <Compile Include="View\AddCategoryView.xaml.cs">
+      <DependentUpon>AddCategoryView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddMeetingView.xaml.cs">
       <DependentUpon>AddMeetingView.xaml</DependentUpon>
     </Compile>
@@ -145,6 +150,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\AddCategoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddMeetingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -169,6 +178,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AddCategory.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

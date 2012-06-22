@@ -183,6 +183,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public long Create(TagDto item)
         {
             Assert.IsNotNull(item, "The item to create shouldn't be null");
+            Assert.IsNotNull(item.Name, "The name of the tag shouldn't be null!");
 
             var exist = (from p in this.Session.Query<Tag>()
                          where (p.Name.ToUpper() == item.Name.ToUpper()
