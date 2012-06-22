@@ -38,6 +38,8 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     {
         #region Fields
 
+        private readonly ErrorHandler ErrorHandler;
+
         private IFamilyComponent component;
         private bool isSelected = false;
         private Tuple<FamilyRelations, string> selectedRelation;
@@ -49,6 +51,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
 
         public LightPatientViewModel()
         {
+            this.ErrorHandler = new ErrorHandler(this);
             this.component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
 
@@ -139,14 +142,18 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             if (dr == MessageBoxResult.No) return;
 
             //this.State = State.Created;
-            using (this.component.UnitOfWork)
+            try
             {
-                this.component.Update(this.BuildFamily());
-            }
-            this.OnRefreshed(State.Created);
-            this.BuildFamily();
+                using (this.component.UnitOfWork)
+                {
+                    this.component.Update(this.BuildFamily());
+                }
+                this.OnRefreshed(State.Created);
+                this.BuildFamily();
 
-            Notifyer.OnRefreshed(this);
+                Notifyer.OnRefreshed(this);
+            }
+            catch (Exception ex) { this.ErrorHandler.HandleError(ex); }
         }
 
         private FamilyDto BuildFamily()
@@ -182,12 +189,16 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
                 , MessageBoxImage.Question);
             if (dr == MessageBoxResult.No) return;
 
-            var member = Mapper.Map<LightPatientViewModel, LightPatientDto>(this);
-            using (this.component.UnitOfWork)
+            try
             {
-                this.component.RemoveFamilyMember(member, this.SessionPatient);
+                var member = Mapper.Map<LightPatientViewModel, LightPatientDto>(this);
+                using (this.component.UnitOfWork)
+                {
+                    this.component.RemoveFamilyMember(member, this.SessionPatient);
+                }
+                this.OnRefreshed(State.Removed);
             }
-            this.OnRefreshed(State.Removed);
+            catch (Exception ex) { this.ErrorHandler.HandleError(ex); }
         }
 
         private void OnRefreshed(State state)

@@ -8,11 +8,18 @@
              xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
              xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
              xmlns:h="clr-namespace:Probel.NDoctor.View.Core.Controls;assembly=Probel.NDoctor.View.Core"
+             xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Core.Controls;assembly=Probel.NDoctor.View.Core"
              
              mc:Ignorable="d"
              Width="200">
 
-
+    <UserControl.InputBindings>
+        <KeyBinding Key="Enter"
+                    Command="{Binding AddCommand}"/>
+        <KeyBinding Key="Escape"
+                    Command="iw:InnerWindow.CancelCommand" />
+    </UserControl.InputBindings>
+    
     <StackPanel>
         <h:DrugBox  Drug="{Binding SelectedDrug}"
                     ButtonName="{Binding Source={x:Static Member=text:WorkbenchText.BtnAdd}}"

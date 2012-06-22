@@ -1,14 +1,21 @@
 ﻿<UserControl x:Class="Probel.NDoctor.Plugins.DbConvert.View.Workbench"
+             x:Name="this"
              
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.DbConvert.Translations"
+             xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
              
              mc:Ignorable="d"
-             Width="650">
+             Width="650"
+             Loaded="this_Loaded">
 
+    <UserControl.InputBindings>
+        <KeyBinding Key="Escape"
+                    Command="iw:InnerWindow.CancelCommand" />
+    </UserControl.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -23,13 +30,16 @@
         <Border Grid.Row="0"
                 Grid.Column="1"
                 Style="{StaticResource BorderStyle}">
-            <Button Command="{Binding Path=ChooseOldDbCommand}"
-                Content="{Binding Source={x:Static Member=text:WorkbenchText.ChooseDb}}"/>
+            <Button x:Name="focused"
+                    Command="{Binding Path=ChooseOldDbCommand}"
+                    Content="{Binding Source={x:Static Member=text:WorkbenchText.ChooseDb}}"/>
         </Border>
 
-        <Label Grid.Row="0" 
+        <Border Style="{StaticResource BorderStyle}" BorderThickness="1" BorderBrush="Black">
+            <Label Grid.Row="0" 
                Grid.Column="0"
                Content="{Binding Path=Database}"/>
+        </Border>
 
         <ScrollViewer Grid.Row="1"
                       Grid.ColumnSpan="2"

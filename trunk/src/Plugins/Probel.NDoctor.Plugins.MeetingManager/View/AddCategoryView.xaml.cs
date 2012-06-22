@@ -1,6 +1,7 @@
 ﻿namespace Probel.NDoctor.Plugins.MeetingManager.View
 {
     using System.Windows.Controls;
+    using System.Windows.Input;
 
     using Probel.NDoctor.Plugins.MeetingManager.ViewModel;
 
@@ -18,5 +19,14 @@
         }
 
         #endregion Constructors
+
+        #region Methods
+
+        private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Keyboard.Focus(this.focused);
+        }
+
+        #endregion Methods
     }
 }

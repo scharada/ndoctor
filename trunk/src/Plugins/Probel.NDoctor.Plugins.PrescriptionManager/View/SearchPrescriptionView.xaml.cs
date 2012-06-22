@@ -17,6 +17,7 @@
 namespace Probel.NDoctor.Plugins.PrescriptionManager.View
 {
     using System.Windows.Controls;
+    using System.Windows.Input;
 
     using Probel.NDoctor.Plugins.PrescriptionManager.ViewModel;
 
@@ -34,5 +35,14 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.View
         }
 
         #endregion Constructors
+
+        #region Methods
+
+        private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Keyboard.Focus(this.focused);
+        }
+
+        #endregion Methods
     }
 }

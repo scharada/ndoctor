@@ -13,7 +13,8 @@
 					 Title="{Binding Path=WindowTitle}"
 					 Width="1024" Height="768" 
 					 WindowStartupLocation="CenterScreen" 
-					 Icon="/Probel.NDoctor.View.Core;component/Images/Icon.ico">
+					 Icon="/Probel.NDoctor.View.Core;component/Images/Icon.ico"
+                     Loaded="this_Loaded">
 
 	<Window.Resources>
 

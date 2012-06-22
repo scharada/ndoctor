@@ -12,6 +12,11 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
       Title="Workbench">
+    <Page.InputBindings>
+        <KeyBinding Modifiers="Control"
+                    Key="S"
+                    Command="{Binding SaveCommand}"/>
+    </Page.InputBindings>
     <DockPanel>
         <DockPanel>
             <Label DockPanel.Dock="Top" Content="{Binding Source={x:Static Member=text:WorkbenchText.TitleMedicalRecord}}"/>

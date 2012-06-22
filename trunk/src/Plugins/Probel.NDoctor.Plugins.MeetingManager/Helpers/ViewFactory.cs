@@ -1,35 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Probel.NDoctor.Plugins.MeetingManager.View;
-using Probel.NDoctor.View.Plugins.Helpers;
-using Probel.NDoctor.Plugins.MeetingManager.ViewModel;
-using Probel.NDoctor.Domain.DAL.Components;
-using Probel.NDoctor.Domain.DTO.Objects;
-using Probel.Mvvm.DataBinding;
-
-namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
+﻿namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.MeetingManager.View;
+    using Probel.NDoctor.Plugins.MeetingManager.ViewModel;
+    using Probel.NDoctor.View.Plugins.Helpers;
+
     public static class ViewFactory
     {
+        #region Fields
+
         private static ICalendarComponent Component = PluginContext.ComponentFactory.GetInstance<ICalendarComponent>();
-        private static AddMeetingView addMeetingView;
-        private static RemoveMeetingView removeMeetingView;
-        private static AddCategoryView addCategoryView;
-        static ViewFactory()
+
+        #endregion Fields
+
+        #region Properties
+
+        public static AddCategoryView AddCategoryView
         {
-            PluginContext.Host.Invoke(() =>
-            {
-                addCategoryView = new AddCategoryView();
-                addMeetingView = new AddMeetingView();
-                removeMeetingView = new RemoveMeetingView();
-            });
+            get { return new AddCategoryView(); }
         }
+
         public static AddMeetingView AddMeetingView
         {
             get
             {
+                var addMeetingView = new AddMeetingView();
                 IList<TagDto> tags;
                 using (Component.UnitOfWork)
                 {
@@ -39,13 +41,12 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
                 return addMeetingView;
             }
         }
-        public static AddCategoryView AddCategoryView
-        {
-            get { return addCategoryView; }
-        }
+
         public static RemoveMeetingView RemoveMeetingView
         {
-            get { return removeMeetingView; }
+            get { return new RemoveMeetingView(); }
         }
+
+        #endregion Properties
     }
 }

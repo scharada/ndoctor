@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Timers;
@@ -114,26 +115,30 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
 
         private void Search()
         {
-            IList<LightPatientDto> result = new List<LightPatientDto>();
-            using (this.component.UnitOfWork)
+            try
             {
-                result = this.component.FindPatientNotFamilyMembers(PluginContext.Host.SelectedPatient, this.Criteria, SearchOn.FirstAndLastName);
-            }
-
-            var mappedResult = Mapper.Map<IList<LightPatientDto>, IList<LightPatientViewModel>>(result);
-
-            for (int i = 0; i < mappedResult.Count; i++)
-            {
-                mappedResult[i].SessionPatient = PluginContext.Host.SelectedPatient;
-                mappedResult[i].Refreshed += (sender, e) =>
+                IList<LightPatientDto> result = new List<LightPatientDto>();
+                using (this.component.UnitOfWork)
                 {
-                    PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationAdded);
-                    this.Search();
-                };
-            }
+                    result = this.component.FindPatientNotFamilyMembers(PluginContext.Host.SelectedPatient, this.Criteria, SearchOn.FirstAndLastName);
+                }
 
-            this.FoundPatients.Refill(mappedResult);
-            PluginContext.Host.WriteStatusReady();
+                var mappedResult = Mapper.Map<IList<LightPatientDto>, IList<LightPatientViewModel>>(result);
+
+                for (int i = 0; i < mappedResult.Count; i++)
+                {
+                    mappedResult[i].SessionPatient = PluginContext.Host.SelectedPatient;
+                    mappedResult[i].Refreshed += (sender, e) =>
+                    {
+                        PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationAdded);
+                        this.Search();
+                    };
+                }
+
+                this.FoundPatients.Refill(mappedResult);
+                PluginContext.Host.WriteStatusReady();
+            }
+            catch (Exception ex) { this.HandleError(ex); }
         }
 
         #endregion Methods

@@ -455,5 +455,14 @@ namespace Probel.NDoctor.View.Core.View
         }
 
         #endregion Methods
+
+        private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+#if DEBUG
+            this.WindowState = System.Windows.WindowState.Normal;
+#else
+            this.WindowState = System.Windows.WindowState.Maximized;
+#endif
+        }
     }
 }

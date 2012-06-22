@@ -1,4 +1,6 @@
 ﻿<UserControl x:Class="Probel.NDoctor.Plugins.MeetingManager.View.AddCategoryView"
+             x:Name="this"
+             
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,7 +11,8 @@
              xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Core.Controls;assembly=Probel.NDoctor.View.Core"
              
              mc:Ignorable="d"
-             Width="250">
+             Width="250"
+             Loaded="this_Loaded">
     <UserControl.InputBindings>
         <KeyBinding Key="Enter"
                     Command="{Binding AddCommand}"/>
@@ -19,7 +22,8 @@
     <StackPanel>
         <Border DockPanel.Dock="Top"
                 Style="{StaticResource BorderStyle}">
-            <TextBox Text="{Binding Value,UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="focused"
+                     Text="{Binding Value,UpdateSourceTrigger=PropertyChanged}"/>
         </Border>
         <ctrl:OKCancelBox ButtonName="{Binding Source={x:Static Member=t:BaseText.Add}}"
                           OkCommand="{Binding AddCommand}"/>

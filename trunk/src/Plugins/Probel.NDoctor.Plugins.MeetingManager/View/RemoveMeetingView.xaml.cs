@@ -51,5 +51,14 @@ namespace Probel.NDoctor.Plugins.MeetingManager.View
         }
 
         #endregion Constructors
+
+        #region Methods
+
+        private void this_Loaded(object sender, RoutedEventArgs e)
+        {
+            Keyboard.Focus(this.focused);
+        }
+
+        #endregion Methods
     }
 }

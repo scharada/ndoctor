@@ -1,9 +1,9 @@
 ﻿namespace Probel.NDoctor.Plugins.PathologyManager.View
 {
     using System.Windows.Controls;
+    using System.Windows.Input;
 
     using Probel.NDoctor.Plugins.PathologyManager.ViewModel;
-    using System.Windows.Input;
 
     /// <summary>
     /// Interaction logic for AddPathologyCategoryView.xaml
@@ -20,9 +20,13 @@
 
         #endregion Constructors
 
+        #region Methods
+
         private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             Keyboard.Focus(this.focused);
         }
+
+        #endregion Methods
     }
 }

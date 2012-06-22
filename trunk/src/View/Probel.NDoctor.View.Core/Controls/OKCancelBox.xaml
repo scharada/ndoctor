@@ -10,12 +10,6 @@
              xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
              
              mc:Ignorable="d">
-    <UserControl.InputBindings>
-        <KeyBinding Key="Enter"
-                    Command="{Binding AddCommand}"/>
-        <KeyBinding Key="Escape"
-                    Command="iw:InnerWindow.CancelCommand" />
-    </UserControl.InputBindings>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

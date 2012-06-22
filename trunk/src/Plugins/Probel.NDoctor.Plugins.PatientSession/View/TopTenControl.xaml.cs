@@ -18,6 +18,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.View
 {
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Input;
 
     using Probel.NDoctor.Plugins.PatientSession.ViewModel;
 
@@ -40,6 +41,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.View
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            Keyboard.Focus(this.focused);
             if (this.DataContext is SearchPatientViewModel)
             {
                 (this.DataContext as SearchPatientViewModel).Refresh();

@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="Probel.NDoctor.Plugins.MeetingManager.View.RemoveMeetingView"
+             x:Name="this"
              
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -7,10 +8,18 @@
                                        
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.MeetingManager.Translations"
              xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+             xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
              
              mc:Ignorable="d" 
              Height="300" 
-             Width="450">
+             Width="450"
+             Loaded="this_Loaded">
+    <UserControl.InputBindings>
+        <KeyBinding Key="Enter"
+                    Command="{Binding FindFreeSlotsCommand}"/>
+        <KeyBinding Key="Escape"
+                    Command="iw:InnerWindow.CancelCommand" />
+    </UserControl.InputBindings>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -27,7 +36,8 @@
                             Command="{Binding Path=SearchCommand}"/>
                 </Border>-->
                 <Border Style="{StaticResource BorderStyle}">
-                    <toolkit:WatermarkTextBox Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}">
+                    <toolkit:WatermarkTextBox x:Name="focused"
+                                              Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}">
                         <toolkit:WatermarkTextBox.Watermark>
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"

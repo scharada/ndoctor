@@ -5,36 +5,16 @@
 
     public static class ViewFactory
     {
-        #region Fields
-
-        private static AddBmiView addBmiView;
-        private static Workbench workbench;
-
-        #endregion Fields
-
-        #region Constructors
-
-        static ViewFactory()
-        {
-            PluginContext.Host.Invoke(() =>
-            {
-                addBmiView = new AddBmiView();
-                workbench = new Workbench();
-            });
-        }
-
-        #endregion Constructors
-
         #region Properties
 
         public static AddBmiView AddBmiView
         {
-            get { return addBmiView; }
+            get { return new AddBmiView(); }
         }
 
         public static Workbench Workbench
         {
-            get { return workbench; }
+            get { return new Workbench(); }
         }
 
         #endregion Properties

@@ -17,7 +17,9 @@
 namespace Probel.NDoctor.View.Core.View
 {
     using System.Windows.Controls;
+    using System.Windows.Input;
 
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
 
     /// <summary>
@@ -34,5 +36,14 @@ namespace Probel.NDoctor.View.Core.View
         }
 
         #endregion Constructors
+
+        #region Methods
+
+        private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Keyboard.Focus(this.focused);
+        }
+
+        #endregion Methods
     }
 }
