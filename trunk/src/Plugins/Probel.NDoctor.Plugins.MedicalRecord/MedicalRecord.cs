@@ -52,7 +52,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         private RibbonToggleButtonData boldButton;
         private RibbonButtonData bulletsButton;
         private RibbonToggleButtonData centerAllignButton;
-        private RibbonContextualTabGroupData contextualMenu;
         private RibbonComboBoxData fontsComboBox;
         private RibbonComboBoxData fontsSizeComboBox;
         private RibbonToggleButtonData italicButton;
@@ -325,8 +324,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
                 ((RelayCommand)this.ViewModel.RefreshCommand).TryExecute(); ;
                 PluginContext.Host.Navigate(this.workbench);
 
-                this.contextualMenu.IsVisible = true;
-                this.contextualMenu.TabDataCollection[0].IsSelected = true;
+                this.ShowContextMenu();
             }
             catch (Exception ex)
             {

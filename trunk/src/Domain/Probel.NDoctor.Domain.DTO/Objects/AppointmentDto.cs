@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 
     using Probel.Mvvm;
     using Probel.NDoctor.Domain.DTO.Properties;
+    using Probel.NDoctor.Domain.DTO.Validators;
 
     [Serializable]
     public class AppointmentDto : BaseDto
@@ -34,6 +35,15 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private LightUserDto user;
 
         #endregion Fields
+
+        #region Constructors
+
+        public AppointmentDto()
+            : base(new AppointmentValidator())
+        {
+        }
+
+        #endregion Constructors
 
         #region Properties
 

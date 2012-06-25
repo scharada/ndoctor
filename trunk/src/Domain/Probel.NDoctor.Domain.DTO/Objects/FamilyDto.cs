@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System.Collections.ObjectModel;
 
     using Probel.Mvvm;
+    using Probel.NDoctor.Domain.DTO.Validators;
 
     /// <summary>
     /// Represents the family of a patient
@@ -39,6 +40,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// Initializes a new instance of the <see cref="FamilyDto"/> class.
         /// </summary>
         public FamilyDto()
+            : base(new FamilyValidator())
         {
             this.Fathers = new ObservableCollection<LightPatientDto>();
             this.Mothers = new ObservableCollection<LightPatientDto>();
@@ -80,7 +82,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.current = value;
-                this.OnPropertyChanged(()=>this.Current);
+                this.OnPropertyChanged(() => this.Current);
             }
         }
 

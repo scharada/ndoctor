@@ -26,6 +26,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Properties;
+    using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
@@ -79,21 +80,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         [Granted(To.Everyone)]
         public long Create(LightUserDto item, string password)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-            if (string.IsNullOrEmpty(password)) throw new EmptyPasswordException();
-
-            var found = (from p in this.Session.Query<Practice>()
-                         where p.Id == item.Id
-                         select p).Count() > 0;
-            if (found) throw new ExistingItemException();
-
-            var entity = Mapper.Map<LightUserDto, User>(item);
-            entity.Password = password;
-
-            if (entity.IsDefault) this.RemoveDefaultUser();
-            if (this.IsFirstUser()) { entity.IsSuperAdmin = true; }
-
-            return (long)this.Session.Save(entity);
+            return new Creator(this.Session).Create(item, password);
         }
 
         /// <summary>
@@ -152,20 +139,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
             entity.Password = password;
             this.Session.Update(entity);
-        }
-
-        private void RemoveDefaultUser()
-        {
-            var defaultUsers = (from u in this.Session.Query<User>()
-                                where u.IsDefault == true
-                                select u);
-
-            if (defaultUsers.Count() > 1) this.Logger.Warn("There's more than one default user in the database!");
-            foreach (var user in defaultUsers)
-            {
-                user.IsDefault = false;
-                this.Session.Update(user);
-            }
         }
 
         #endregion Methods

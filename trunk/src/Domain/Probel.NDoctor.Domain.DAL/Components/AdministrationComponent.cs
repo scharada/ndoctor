@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Properties;
+    using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -162,8 +163,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="profession">The tag.</param>
         public long Create(ProfessionDto profession)
         {
-            var entity = Mapper.Map<ProfessionDto, Profession>(profession);
-            return (long)this.Session.Save(entity);
+            return new Creator(this.Session).Create(profession);
         }
 
         /// <summary>
@@ -172,8 +172,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="reputation">The tag.</param>
         public long Create(ReputationDto reputation)
         {
-            var entity = Mapper.Map<ReputationDto, Reputation>(reputation);
-            return (long)this.Session.Save(entity);
+            return new Creator(this.Session).Create(reputation);
         }
 
         /// <summary>
@@ -182,8 +181,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="pathology">The drug.</param>
         public long Create(PathologyDto pathology)
         {
-            var entity = Mapper.Map<PathologyDto, Pathology>(pathology);
-            return (long)this.Session.Save(entity);
+            return new Creator(this.Session).Create(pathology);
         }
 
         /// <summary>
@@ -192,8 +190,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="practice">The drug.</param>
         public long Create(PracticeDto practice)
         {
-            var entity = Mapper.Map<PracticeDto, Practice>(practice);
-            return (long)this.Session.Save(entity);
+            return new Creator(this.Session).Create(practice);
         }
 
         /// <summary>
@@ -202,8 +199,17 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="insurance">The drug.</param>
         public long Create(InsuranceDto insurance)
         {
-            var entity = Mapper.Map<InsuranceDto, Insurance>(insurance);
-            return (long)this.Session.Save(entity);
+            return new Creator(this.Session).Create(insurance);
+        }
+
+        /// <summary>
+        /// Creates the specified doctor.
+        /// </summary>
+        /// <param name="doctor">The doctor.</param>
+        /// <returns></returns>
+        public long Create(DoctorDto doctor)
+        {
+            return new Creator(this.Session).Create(doctor);
         }
 
         /// <summary>

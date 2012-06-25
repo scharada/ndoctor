@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -16,9 +14,6 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-#endregion Header
-
 namespace Probel.NDoctor.Domain.Test.Authorisation
 {
     using System.Linq;
@@ -38,13 +33,14 @@ namespace Probel.NDoctor.Domain.Test.Authorisation
         {
             string[] roles = To.ToStringArray();
 
-            Assert.AreEqual(5, roles.Length);
+            Assert.AreEqual(6, roles.Length);
 
             Assert.IsTrue(roles.Contains(To.Everyone));
             Assert.IsTrue(roles.Contains(To.MetaWrite));
             Assert.IsTrue(roles.Contains(To.Administer));
             Assert.IsTrue(roles.Contains(To.Read));
             Assert.IsTrue(roles.Contains(To.Write));
+            Assert.IsTrue(roles.Contains(To.EditCalendar));
         }
 
         #endregion Methods

@@ -25,6 +25,7 @@ namespace Probel.NDoctor.View.Plugins
 
     using Probel.NDoctor.View.Plugins.Exceptions;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Plugins.Properties;
 
     public abstract class Plugin : IErrorHandler, IPlugin
@@ -105,6 +106,11 @@ namespace Probel.NDoctor.View.Plugins
         {
             get;
             protected set;
+        }
+
+        protected RibbonContextualTabGroupData contextualMenu
+        {
+            get; set;
         }
 
         protected CultureInfo CultureInfo
@@ -239,6 +245,19 @@ namespace Probel.NDoctor.View.Plugins
         public void TryShow()
         {
             if (this.IsActive) PluginContext.Host.Navigate(this.Page);
+        }
+
+        /// <summary>
+        /// Shows the contextual menu of the current plugin.
+        /// </summary>
+        protected void ShowContextMenu()
+        {
+            if (this.contextualMenu != null)
+            {
+                this.contextualMenu.IsVisible = true;
+                this.contextualMenu.TabDataCollection[0].IsSelected = PluginContext.Configuration.AutomaticContextMenu;
+            }
+            else { this.Logger.WarnFormat("The contextual menu of '{0}' is not set. [Null Reference]", this.GetType()); }
         }
 
         #endregion Methods

@@ -19,14 +19,14 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System;
 
     using Probel.Mvvm;
+    using Probel.NDoctor.Domain.DTO.Validators;
 
     [Serializable]
-    public class InsuranceDto : BaseDto
+    public class InsuranceDto : LightInsuranceDto
     {
         #region Fields
 
         private AddressDto address;
-        private string name;
         private string notes;
         private string phone;
 
@@ -56,22 +56,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.address = value;
                 this.OnPropertyChanged(() => this.Address);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the name.
-        /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
-        public string Name
-        {
-            get { return this.name; }
-            set
-            {
-                this.name = value;
-                this.OnPropertyChanged(() => Name);
             }
         }
 

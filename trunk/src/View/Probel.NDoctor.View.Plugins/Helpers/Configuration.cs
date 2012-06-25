@@ -31,6 +31,18 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         #region Properties
 
         /// <summary>
+        /// Gets or sets a value indicating whether the contextual menus should be automatically displayed when
+        /// user navigates to a new plugin.
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if [automatic context menu]; otherwise, <c>false</c>.
+        /// </value>
+        public bool AutomaticContextMenu
+        {
+            get; set;
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether component loggin is enabled.
         /// </summary>
         /// <value>

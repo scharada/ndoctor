@@ -19,19 +19,19 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System;
 
     using Probel.Mvvm;
+    using Probel.Mvvm.Validation;
+    using Probel.NDoctor.Domain.DTO.Validators;
 
     /// <summary>
     /// Doctor
     /// </summary>
     [Serializable]
-    public class DoctorDto : BaseDto
+    public class DoctorDto : PersonDto
     {
         #region Fields
 
         private AddressDto address;
-        private string firstName;
         private Gender gender;
-        private string lastName;
         private string proMail;
         private string proMobile;
         private string proPhone;
@@ -79,22 +79,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         }
 
         /// <summary>
-        /// Gets or sets the first name.
-        /// </summary>
-        /// <value>
-        /// The first name.
-        /// </value>
-        public string FirstName
-        {
-            get { return this.firstName; }
-            set
-            {
-                this.firstName = value;
-                this.OnPropertyChanged(() => this.FirstName);
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the sex.
         /// </summary>
         /// <value>The sex.</value>
@@ -105,22 +89,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.gender = value;
                 this.OnPropertyChanged(() => this.Gender);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the last name.
-        /// </summary>
-        /// <value>
-        /// The last name.
-        /// </value>
-        public string LastName
-        {
-            get { return this.lastName; }
-            set
-            {
-                this.lastName = value;
-                this.OnPropertyChanged(() => this.LastName);
             }
         }
 

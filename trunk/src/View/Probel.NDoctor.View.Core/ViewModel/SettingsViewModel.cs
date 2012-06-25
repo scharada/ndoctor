@@ -57,6 +57,18 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         #region Properties
 
+        public bool AutomaticContextMenu
+        {
+            get { return Settings.Default.AutomaticContextMenu; }
+            set
+            {
+                Settings.Default.AutomaticContextMenu
+                    = PluginContext.Configuration.AutomaticContextMenu
+                    = value;
+                this.OnPropertyChanged(() => AutomaticContextMenu);
+            }
+        }
+
         public DateTime End
         {
             get { return this.end; }

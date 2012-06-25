@@ -22,35 +22,18 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System.Text;
 
     using Probel.Mvvm;
+    using Probel.NDoctor.Domain.DTO.Validators;
 
     [Serializable]
-    public class DoctorFullDto : BaseDto
+    public class DoctorFullDto : DoctorDto
     {
         #region Fields
-
-        /// <summary>
-        /// Gets or sets the address.
-        /// </summary>
-        /// <value>The address.</value>
-        private AddressDto address;
 
         /// <summary>
         /// Gets or sets the value counting how many times this patient was used.
         /// </summary>
         /// <value>The counter.</value>
         private long counter;
-
-        /// <summary>
-        /// Gets or sets the first name.
-        /// </summary>
-        /// <value>The first name.</value>
-        private string firstName;
-
-        /// <summary>
-        /// Gets or sets the sex.
-        /// </summary>
-        /// <value>The sex.</value>
-        private Gender gender;
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is complete. That's if the person was quickly
@@ -63,42 +46,10 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private bool isComplete;
 
         /// <summary>
-        /// Gets or sets the last name.
-        /// </summary>
-        /// <value>The last name.</value>
-        private string lastName;
-
-        /// <summary>
         /// Gets or sets the last update.
         /// </summary>
         /// <value>The last update.</value>
         private DateTime lastUpdate;
-
-        /// <summary>
-        /// Gets or sets the mail.
-        /// </summary>
-        /// <value>The mail.</value>
-        private string mailPro;
-
-        /// <summary>
-        /// Gets or sets the mobile pro.
-        /// </summary>
-        /// <value>The mobile pro.</value>
-        private string mobilePro;
-
-        /// <summary>
-        /// Gets or sets the phone pro.
-        /// </summary>
-        /// <value>The phone pro.</value>
-        private string phonePro;
-
-        /// <summary>
-        /// Gets or sets the tag.
-        /// </summary>
-        /// <value>
-        /// The tag.
-        /// </value>
-        private TagDto specialisation;
 
         /// <summary>
         /// Gets or sets the thumbnail.
@@ -126,16 +77,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 
         #region Properties
 
-        public AddressDto Address
-        {
-            get { return this.address; }
-            set
-            {
-                this.address = value;
-                this.OnPropertyChanged(() => this.Address);
-            }
-        }
-
         public long Counter
         {
             get { return this.counter; }
@@ -143,26 +84,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.counter = value;
                 this.OnPropertyChanged(() => this.Counter);
-            }
-        }
-
-        public string FirstName
-        {
-            get { return this.firstName; }
-            set
-            {
-                this.firstName = value;
-                this.OnPropertyChanged(() => this.FirstName);
-            }
-        }
-
-        public Gender Gender
-        {
-            get { return this.gender; }
-            set
-            {
-                this.gender = value;
-                this.OnPropertyChanged(() => this.Gender);
             }
         }
 
@@ -176,16 +97,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             }
         }
 
-        public string LastName
-        {
-            get { return this.lastName; }
-            set
-            {
-                this.lastName = value;
-                this.OnPropertyChanged(() => this.LastName);
-            }
-        }
-
         public DateTime LastUpdate
         {
             get { return this.lastUpdate; }
@@ -193,46 +104,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.lastUpdate = value;
                 this.OnPropertyChanged(() => this.LastUpdate);
-            }
-        }
-
-        public string MailPro
-        {
-            get { return this.mailPro; }
-            set
-            {
-                this.mailPro = value;
-                this.OnPropertyChanged(() => this.MailPro);
-            }
-        }
-
-        public string MobilePro
-        {
-            get { return this.mobilePro; }
-            set
-            {
-                this.mobilePro = value;
-                this.OnPropertyChanged(() => this.MobilePro);
-            }
-        }
-
-        public string PhonePro
-        {
-            get { return this.phonePro; }
-            set
-            {
-                this.phonePro = value;
-                this.OnPropertyChanged(() => this.PhonePro);
-            }
-        }
-
-        public TagDto Specialisation
-        {
-            get { return this.specialisation; }
-            set
-            {
-                this.specialisation = value;
-                this.OnPropertyChanged(() => this.Specialisation);
             }
         }
 

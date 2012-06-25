@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Helpers;
+    using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -66,18 +67,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="forPatient">For patient.</param>
         public void Create(MedicalRecordDto record, LightPatientDto forPatient)
         {
-            Assert.IsNotNull(record, "The item to create shouldn't be null");
-
-            var foundPatient = (from p in this.Session.Query<Patient>()
-                                where p.Id == forPatient.Id
-                                select p).FirstOrDefault();
-            if (foundPatient == null) throw new EntityNotFoundException(typeof(Patient));
-
-            var recEntity = Mapper.Map<MedicalRecordDto, MedicalRecord>(record);
-
-            foundPatient.MedicalRecords.Add(recEntity);
-
-            this.Session.SaveOrUpdate(foundPatient);
+            new Creator(this.Session).Create(record, forPatient);
         }
 
         /// <summary>

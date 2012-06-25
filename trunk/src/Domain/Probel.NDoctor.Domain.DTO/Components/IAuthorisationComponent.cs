@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -16,9 +14,6 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-#endregion Header
-
 namespace Probel.NDoctor.Domain.DTO.Components
 {
     using System;
@@ -43,14 +38,14 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="role">The role.</param>
         /// <returns></returns>
-        void Create(RoleDto role);
+        long Create(RoleDto role);
 
         /// <summary>
         /// Creates the specified task.
         /// </summary>
         /// <param name="task">The task.</param>
         /// <returns>The id of the created item</returns>
-        void Create(TaskDto task);
+        long Create(TaskDto task);
 
         /// <summary>
         /// Finds the task by its reference name.

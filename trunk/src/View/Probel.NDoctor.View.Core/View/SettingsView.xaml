@@ -9,6 +9,7 @@
              xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
              xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
              xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
+             xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Core.Controls"
              
              MinWidth="300"
              mc:Ignorable="d"
@@ -20,11 +21,15 @@
         <KeyBinding Key="Escape"
                     Command="iw:InnerWindow.CancelCommand" />
     </UserControl.InputBindings>
+    <UserControl.Resources>
+        <Style x:Key="LabelStyle">
+            <Setter Property="Control.Width" Value="100"/>
+        </Style>
+    </UserControl.Resources>
     <StackPanel>
         <DockPanel LastChildFill="True">
-            <Border Style="{StaticResource BorderStyle}">
-                <Label Content="{Binding Source={x:Static Member=text:SettingsText.TitleLanguage}}"/>
-            </Border>
+            <Label Style="{StaticResource LabelStyle}"
+                   Content="{Binding Source={x:Static Member=text:SettingsText.TitleLanguage}}"/>
             <Border Style="{StaticResource BorderStyle}">
                 <ComboBox x:Name="focused" 
                           ItemsSource="{Binding SupportedLanguages}"
@@ -32,65 +37,47 @@
             </Border>
         </DockPanel>
         <GroupBox Header="{Binding Source={x:Static Member=text:SettingsText.TitleWorkday}}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Label    Grid.Row="0" 
-                          Grid.Column="0" 
-                          Content="{Binding Source={x:Static Member=text:SettingsText.TitleStart}}"/>
-
-                <Border Grid.Row="0" 
-                        Grid.Column="1" 
+            <StackPanel>
+                <DockPanel LastChildFill="True">
+                    <Label Style="{StaticResource LabelStyle}"
+                           DockPanel.Dock="Left"
+                           Content="{Binding Source={x:Static Member=text:SettingsText.TitleStart}}"/>
+                    <Border DockPanel.Dock="Right"
                         Style="{StaticResource BorderStyle}">
-                    <toolkit:TimePicker Value="{Binding Start, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                </Border>
+                        <toolkit:TimePicker Value="{Binding Start, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Border>
+                </DockPanel>
 
-                <Label    Grid.Row="1" 
-                          Grid.Column="0" 
-                          Content="{Binding Source={x:Static Member=text:SettingsText.TitleEnd}}"/>
+                <DockPanel LastChildFill="True">
+                    <Label Style="{StaticResource LabelStyle}"
+                           DockPanel.Dock="Left"
+                           Content="{Binding Source={x:Static Member=text:SettingsText.TitleEnd}}"/>
+                    <Border DockPanel.Dock="Right"
+                            Style="{StaticResource BorderStyle}">
+                        <toolkit:TimePicker Value="{Binding End, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Border>
+                </DockPanel>
 
-                <Border  Grid.Row="1" 
-                         Grid.Column="1"
-                         Style="{StaticResource BorderStyle}">
-                    <toolkit:TimePicker Value="{Binding End, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                </Border>
-
-                <Label    Grid.Row="2" 
-                          Grid.Column="0" 
-                          Content="{Binding Source={x:Static Member=text:SettingsText.TitleSlotDuration}}"/>
-
-                <Border Grid.Row="2"
-                        Grid.Column="1"
-                        Style="{StaticResource BorderStyle}">
-                    <ComboBox ItemsSource="{Binding Path=SlotDurations}"
+                <DockPanel LastChildFill="True">
+                    <Label Style="{StaticResource LabelStyle}"
+                           DockPanel.Dock="Left"
+                           Content="{Binding Source={x:Static Member=text:SettingsText.TitleSlotDuration}}"/>
+                    <Border DockPanel.Dock="Right"
+                            Style="{StaticResource BorderStyle}">
+                        <ComboBox ItemsSource="{Binding Path=SlotDurations}"
                               SelectedItem="{Binding Path=SelectedSlot}"
                               DisplayMemberPath="Item1"/>
-                </Border>
-            </Grid>
+                    </Border>
+                </DockPanel>
+            </StackPanel>
         </GroupBox>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Border Grid.Column="0"
-                    Style="{StaticResource BorderStyle}">
-                <Button Content="{Binding Source={x:Static Member=text:SettingsText.BtnSave}}"
-                        Command="{Binding Path=SaveCommand}"/>
+        <GroupBox Header="{Binding Source={x:Static Member=text:SettingsText.TitleMisc}}">
+            <Border Style="{StaticResource BorderStyle}">
+                <CheckBox Content="{Binding Source={x:Static Member=text:SettingsText.AutomaticContextMenu}}"
+                          IsChecked="{Binding AutomaticContextMenu}"/>
             </Border>
-
-            <Border Grid.Column="1"
-                    Style="{StaticResource BorderStyle}">
-                <Button Content="{Binding Source={x:Static Member=t:BaseText.Cancel}}"
-                        Command="iw:InnerWindow.CancelCommand" />
-            </Border>
-        </Grid>
+        </GroupBox>
+        <ctrl:OKCancelBox OkCommand="{Binding Path=SaveCommand}"
+                          ButtonName="{Binding Source={x:Static Member=text:SettingsText.BtnSave}}"/>
     </StackPanel>
 </UserControl>

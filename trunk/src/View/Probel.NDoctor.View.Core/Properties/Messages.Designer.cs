@@ -332,6 +332,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatically display contextual menus.
+        /// </summary>
+        internal static string Title_AutomaticShowContext {
+            get {
+                return ResourceManager.GetString("Title_AutomaticShowContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Box:.
         /// </summary>
         internal static string Title_Box {
@@ -472,6 +481,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         internal static string Title_Managers {
             get {
                 return ResourceManager.GetString("Title_Managers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Divers.
+        /// </summary>
+        internal static string Title_Miscellaneous {
+            get {
+                return ResourceManager.GetString("Title_Miscellaneous", resourceCulture);
             }
         }
         

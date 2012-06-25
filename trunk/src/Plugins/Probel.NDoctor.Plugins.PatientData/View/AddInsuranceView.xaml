@@ -16,8 +16,8 @@
         <KeyBinding Key="Escape"
                     Command="iw:InnerWindow.CancelCommand" />
     </UserControl.InputBindings>
-    
-    <ctrl:InsuranceBox Insurance="{Binding Insurance}"
+
+    <ctrl:InsuranceBox Insurance="{Binding BoxItem}"
                        ButtonName="{Binding Source={x:Static Member=text:WorkbenchText.BtnAdd}}"
                        OkCommand="{Binding AddCommand}"/>                   
 </UserControl>

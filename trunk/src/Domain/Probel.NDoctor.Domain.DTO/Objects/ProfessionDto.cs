@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System;
 
     using Probel.Mvvm;
+    using Probel.NDoctor.Domain.DTO.Validators;
 
     /// <summary>
     /// Represents a profession DTO
@@ -32,6 +33,15 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private string notes;
 
         #endregion Fields
+
+        #region Constructors
+
+        public ProfessionDto()
+            : base(new ProfessionValidator())
+        {
+        }
+
+        #endregion Constructors
 
         #region Properties
 

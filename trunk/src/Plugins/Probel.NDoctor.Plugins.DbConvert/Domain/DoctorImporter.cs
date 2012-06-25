@@ -66,9 +66,9 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             doctor.FirstName = reader["FirstName"] as string;
             doctor.Gender = (reader["Sex"] as string == "M") ? Gender.Male : Gender.Female;
             doctor.LastName = reader["LastName"] as string;
-            doctor.MailPro = reader["Mail"] as string;
-            doctor.MobilePro = reader["MobilePro"] as string;
-            doctor.PhonePro = reader["PhonePro"] as string;
+            doctor.ProMail = reader["Mail"] as string;
+            doctor.ProMobile = reader["MobilePro"] as string;
+            doctor.ProPhone = reader["PhonePro"] as string;
 
             doctor.Counter = reader["Counter"] as int? ?? 0;
             doctor.IsComplete = reader["IsComplete"] as bool? ?? false;

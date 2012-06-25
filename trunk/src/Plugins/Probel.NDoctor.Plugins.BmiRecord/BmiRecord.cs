@@ -47,7 +47,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord
         private const string imgUri = @"\Probel.NDoctor.Plugins.BmiRecord;component/Images\{0}.png";
 
         private IBmiComponent component;
-        private RibbonContextualTabGroupData contextualMenu;
         private ICommand navigateCommand;
 
         #endregion Fields
@@ -133,8 +132,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
             PluginContext.Host.Navigate(ViewFactory.Workbench);
             ((WorkbenchViewModel)ViewFactory.Workbench.DataContext).Refresh();
 
-            this.contextualMenu.IsVisible = true;
-            this.contextualMenu.TabDataCollection[0].IsSelected = true;
+            this.ShowContextMenu();
         }
 
         #endregion Methods

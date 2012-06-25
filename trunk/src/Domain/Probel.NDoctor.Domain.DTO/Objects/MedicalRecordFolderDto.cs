@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System;
 
     using Probel.Mvvm;
+    using Probel.NDoctor.Domain.DTO.Validators;
 
     [Serializable]
     public class MedicalRecordFolderDto : BaseDto
@@ -34,6 +35,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #region Constructors
 
         public MedicalRecordFolderDto()
+            : base(new MedicalRecordFolderValidator())
         {
             this.Records = new MedicalRecordDto[] { };
         }

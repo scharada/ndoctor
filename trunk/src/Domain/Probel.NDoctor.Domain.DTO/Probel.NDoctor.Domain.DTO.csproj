@@ -61,6 +61,7 @@
     <Compile Include="Exceptions\NullSessionFactoryException.cs" />
     <Compile Include="Exceptions\QueryException.cs" />
     <Compile Include="Exceptions\ReferencialIntegrityException.cs" />
+    <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Exceptions\WrongIdTypeException.cs" />
     <Compile Include="Helpers\ConvertSlotDurationAndTimeSpan.cs" />
     <Compile Include="Helpers\SlotDuration.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Objects\InsuranceDto.cs" />
     <Compile Include="Objects\LightDoctorDto.cs" />
     <Compile Include="Objects\LightPatientDto.cs" />
+    <Compile Include="Objects\PersonDto.cs" />
     <Compile Include="Objects\RoleDto.cs" />
     <Compile Include="Objects\MedicalRecordDto.cs" />
     <Compile Include="Objects\MedicalRecordCabinetDto.cs" />
@@ -127,6 +129,25 @@
     <Compile Include="Objects\TagDto.cs" />
     <Compile Include="Objects\UserDto.cs" />
     <Compile Include="To.cs" />
+    <Compile Include="Validators\AppointmentValidator.cs" />
+    <Compile Include="Validators\BmiValidator.cs" />
+    <Compile Include="Validators\MedicalRecordFolderValidator.cs" />
+    <Compile Include="Validators\MedicalRecordValidator.cs" />
+    <Compile Include="Validators\PathologyValidator.cs" />
+    <Compile Include="Validators\PersonValidator.cs" />
+    <Compile Include="Validators\DrugValidator.cs" />
+    <Compile Include="Validators\FamilyValidator.cs" />
+    <Compile Include="Validators\IllnessHistoryValidator.cs" />
+    <Compile Include="Validators\InsuranceValidator.cs" />
+    <Compile Include="Validators\PracticeValidator.cs" />
+    <Compile Include="Validators\PrescriptionDocumentValidator.cs" />
+    <Compile Include="Validators\PrescriptionValidator.cs" />
+    <Compile Include="Validators\ProfessionValidator.cs" />
+    <Compile Include="Validators\ReputationValidator.cs" />
+    <Compile Include="Validators\RoleValidator.cs" />
+    <Compile Include="Validators\TagValidator.cs" />
+    <Compile Include="Validators\TaskValidator.cs" />
+    <Compile Include="Validators\Validator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Helpers\Probel.Helpers\Probel.Helpers.csproj">

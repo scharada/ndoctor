@@ -46,7 +46,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.PathologyManager;component/Images\{0}.png";
 
-        private RibbonContextualTabGroupData contextualMenu;
         private ICommand navigateCommand = null;
         private Workbench workbench;
 
@@ -165,8 +164,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager
                 PluginContext.Host.WriteStatusReady();
                 PluginContext.Host.Navigate(this.workbench);
 
-                this.contextualMenu.IsVisible = true;
-                this.contextualMenu.TabDataCollection[0].IsSelected = true;
+                this.ShowContextMenu();
             }
             catch (Exception ex)
             {

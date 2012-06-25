@@ -33,6 +33,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Helpers;
     using Probel.NDoctor.Domain.DAL.Properties;
+    using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
@@ -130,16 +131,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The item to add in the database</param>
         public long Create(DrugDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-
-            var exist = (from i in this.Session.Query<Drug>()
-                         where i.Name.ToUpper() == item.Name.ToUpper()
-                            || i.Id == item.Id
-                         select i).Count() > 0;
-            if (exist) throw new ExistingItemException();
-
-            var entity = Mapper.Map<DrugDto, Drug>(item);
-            return (long)this.Session.Save(entity);
+            return new Creator(this.Session).Create(item);
         }
 
         /// <summary>
@@ -148,15 +140,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The item to add in the database</param>
         public long Create(PatientDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-
-            var found = (from p in this.Session.Query<Patient>()
-                         where p.Id == item.Id
-                         select p).Count() > 0;
-            if (found) throw new ExistingItemException();
-
-            var entity = Mapper.Map<PatientDto, Patient>(item);
-            return (long)this.Session.Save(entity);
+            return new Creator(this.Session).Create(item);
         }
 
         /// <summary>
@@ -165,15 +149,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The item to add in the database</param>
         public long Create(LightDoctorDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-
-            var found = (from p in this.Session.Query<Doctor>()
-                         where p.Id == item.Id
-                         select p).Count() > 0;
-            if (found) throw new ExistingItemException();
-
-            var entity = Mapper.Map<LightDoctorDto, Doctor>(item);
-            return (long)this.Session.Save(entity);
+            return new Creator(this.Session).Create(item);
         }
 
         /// <summary>
@@ -182,18 +158,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The item to add in the database</param>
         public long Create(TagDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-            Assert.IsNotNull(item.Name, "The name of the tag shouldn't be null!");
-
-            var exist = (from p in this.Session.Query<Tag>()
-                         where (p.Name.ToUpper() == item.Name.ToUpper()
-                             && p.Category == item.Category)
-                             || p.Id == item.Id
-                         select p).Count() > 0;
-            if (exist) throw new ExistingItemException();
-
-            var entity = Mapper.Map<TagDto, Tag>(item);
-            return (long)this.Session.Save(entity);
+            return new Creator(this.Session).Create(item);
         }
 
         /// <summary>
@@ -203,20 +168,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         [Granted(To.Everyone)]
         public long Create(UserDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-
-            var found = (from p in this.Session.Query<User>()
-                         where p.Id == item.Id
-                         select p).Count() > 0;
-            if (found) throw new ExistingItemException();
-
-            if (item.IsDefault) this.ReplaceDefaultUser();
-            this.Session.Flush();
-
-            var entity = Mapper.Map<UserDto, User>(item);
-
-            if (this.IsFirstUser()) { entity.IsSuperAdmin = true; }
-            return (long)this.Session.Save(entity);
+            return new Creator(this.Session).Create(item);
         }
 
         /// <summary>
@@ -225,22 +177,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The patient.</param>
         public long Create(LightPatientDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-
-            var found = (from p in this.Session.Query<Patient>()
-                         where p.Id == item.Id
-                         || (
-                            p.FirstName.ToLower() == item.FirstName.ToLower()
-                            && p.LastName.ToLower() == item.LastName.ToLower()
-                         )
-                         select p).Count() > 0;
-
-            var newPatient = Mapper.Map<LightPatientDto, Patient>(item);
-            newPatient.InscriptionDate = DateTime.Today;
-
-            if (found) throw new ExistingItemException();
-
-            return (long)this.Session.Save(newPatient);
+            return new Creator(this.Session).Create(item);
         }
 
         /// <summary>
@@ -750,24 +687,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The item to add in the database</param>
         protected void Create(MedicalRecordDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-
-            var found = (from p in this.Session.Query<MedicalRecord>()
-                         where p.Id == item.Id
-                         select p).Count() > 0;
-            if (found) throw new ExistingItemException();
-
-            var entity = Mapper.Map<MedicalRecordDto, MedicalRecord>(item);
-            this.Session.Save(entity);
-        }
-
-        protected bool IsFirstUser()
-        {
-            var result = (from u in this.Session.Query<User>()
-                          where u.IsSuperAdmin == true
-                          select u).Take(2);
-
-            return result.Count() == 0;
+            new Creator(this.Session).Create(item);
         }
 
         /// <summary>
@@ -905,18 +825,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
             if (Session == null || !Session.IsOpen)
                 this.Session = DAL.SessionFactory.OpenSession();
             else throw new DalSessionException(Messages.Msg_ErrorSessionAlreadyOpenException);
-        }
-
-        private void ReplaceDefaultUser()
-        {
-            var users = (from user in this.Session.Query<User>()
-                         where user.IsDefault == true
-                         select user).ToList();
-
-            if (users.Count == 0) return;
-
-            users[0].IsDefault = false;
-            this.Session.Update(users[0]);
         }
 
         #endregion Methods

@@ -49,7 +49,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         private const string imgUri = @"\Probel.NDoctor.Plugins.PrescriptionManager;component/Images\{0}.png";
 
         private AddPrescriptionView addPrescriptionView;
-        private RibbonContextualTabGroupData contextualMenu;
         private bool isSaveCommandActivated = false;
         private bool isSearching = false;
         private LastNavigation lastNavigation;
@@ -284,8 +283,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
                 this.addPrescriptionView.DataContext = datacontext;
                 PluginContext.Host.Navigate(this.addPrescriptionView);
 
-                this.contextualMenu.IsVisible = true;
-                this.contextualMenu.TabDataCollection[0].IsSelected = true;
+                this.ShowContextMenu();
                 this.lastNavigation = LastNavigation.AddPrescription;
             }
             catch (Exception ex)
@@ -309,8 +307,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
                 PluginContext.Host.Navigate(this.workbench);
                 this.workbench.DataContext = this.ViewModel;
 
-                this.contextualMenu.IsVisible = true;
-                this.contextualMenu.TabDataCollection[0].IsSelected = true;
+                this.ShowContextMenu();
                 this.lastNavigation = LastNavigation.Workbench;
                 this.LoadDefaultPrescriptions();
             }

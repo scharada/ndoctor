@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System;
 
     using Probel.Mvvm;
+    using Probel.NDoctor.Domain.DTO.Validators;
 
     /// <summary>
     /// Dto of a tag
@@ -41,6 +42,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// </summary>
         /// <param name="category">The category.</param>
         public TagDto(TagCategory category)
+            : base(new TagValidator())
         {
             this.Category = category;
         }

@@ -21,9 +21,10 @@ namespace Probel.NDoctor.Domain.Test.Data
     using NUnit.Framework;
 
     using Probel.NDoctor.Domain.DTO.Helpers;
+    using Probel.NDoctor.Domain.Test.Helpers;
 
     [TestFixture]
-    [Category("Domain data")]
+    [Category(Categories.DomainData)]
     public class TestWorkday
     {
         #region Methods

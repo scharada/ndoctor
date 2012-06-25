@@ -41,7 +41,6 @@ namespace Probel.NDoctor.Plugins.PictureManager
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.PictureManager;component/Images\{0}.png";
 
-        private RibbonContextualTabGroupData contextualMenu;
         private ICommand navigateCommand;
         private Workbench workbench;
 
@@ -164,8 +163,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
 
                 this.ViewModel.Refresh();
 
-                this.contextualMenu.IsVisible = true;
-                this.contextualMenu.TabDataCollection[0].IsSelected = true;
+                this.ShowContextMenu();
             }
             catch (Exception ex)
             {

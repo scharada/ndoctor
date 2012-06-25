@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System;
 
     using Probel.Mvvm;
+    using Probel.NDoctor.Domain.DTO.Validators;
 
     /// <summary>
     /// Represents a prescription. That's a drug with notes about how to take it.    
@@ -33,6 +34,15 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private TagDto tag;
 
         #endregion Fields
+
+        #region Constructors
+
+        public PrescriptionDto()
+            : base(new PrescriptionValidator())
+        {
+        }
+
+        #endregion Constructors
 
         #region Properties
 

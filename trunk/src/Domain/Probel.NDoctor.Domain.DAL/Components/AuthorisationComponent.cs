@@ -33,6 +33,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DAL.EqualityComparers;
     using Probel.NDoctor.Domain.DAL.Helpers;
     using Probel.NDoctor.Domain.DAL.Properties;
+    using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
@@ -65,17 +66,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="role">The role.</param>
         /// <returns></returns>
-        public void Create(RoleDto role)
+        public long Create(RoleDto role)
         {
-            var entity = Mapper.Map<RoleDto, Role>(role);
-            using (var tx = this.Session.Transaction)
-            {
-                tx.Begin();
-                entity = this.Session.Merge(entity);
-                this.Session.SaveOrUpdate(entity);
-                tx.Commit();
-            }
-            Mapper.Map<Role, RoleDto>(entity, role);
+            return new Creator(this.Session).Create(role);
         }
 
         /// <summary>
@@ -85,16 +78,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         /// The id of the created item
         /// </returns>
-        public void Create(TaskDto task)
+        public long Create(TaskDto task)
         {
-            var entity = Mapper.Map<TaskDto, Task>(task);
-            using (var tx = this.Session.Transaction)
-            {
-                tx.Begin();
-                var id = (long)this.Session.Save(entity);
-                tx.Commit();
-            }
-            Mapper.Map<Task, TaskDto>(entity, task);
+            return new Creator(this.Session).Create(task);
         }
 
         /// <summary>

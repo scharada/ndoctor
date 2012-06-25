@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.Helpers.Conversions;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -66,17 +67,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="patient">The patient.</param>
         public void CreateBmi(BmiDto bmi, LightPatientDto patient)
         {
-            patient.Height = bmi.Height;
-
-            var entity = this.Session.Get<Patient>(patient.Id);
-
-            if (entity != null)
-            {
-                entity.Height = bmi.Height;
-                entity.BmiHistory.Add(Mapper.Map<BmiDto, Bmi>(bmi));
-                this.Session.Update(entity);
-            }
-            else { throw new EntityNotFoundException(typeof(Bmi)); }
+            new Creator(this.Session).Create(bmi, patient);
         }
 
         /// <summary>

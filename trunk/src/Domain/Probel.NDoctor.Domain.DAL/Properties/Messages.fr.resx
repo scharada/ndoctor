@@ -237,4 +237,8 @@
     <value>La base est dans un état invalide: il n'existe pas de super admin.</value>
     <comment>The database is in a wrong state: there is no super admin.</comment>
   </data>
+  <data name="Invalid_Data" xml:space="preserve">
+    <value>Vous avez entré des données invalides</value>
+    <comment>You typed invalid data</comment>
+  </data>
 </root>

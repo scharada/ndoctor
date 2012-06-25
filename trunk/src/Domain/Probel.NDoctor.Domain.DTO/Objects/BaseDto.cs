@@ -22,6 +22,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using Probel.Helpers.Data;
     using Probel.Helpers.Events;
     using Probel.Mvvm;
+    using Probel.Mvvm.Validation;
 
     [Serializable]
     public abstract class BaseDto : BaseDto<long>, ICloneable
@@ -33,6 +34,15 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #endregion Fields
 
         #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseDto"/> class.
+        /// </summary>
+        public BaseDto(IValidator validator)
+            : base(validator)
+        {
+            this.IsImported = false;
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseDto"/> class.

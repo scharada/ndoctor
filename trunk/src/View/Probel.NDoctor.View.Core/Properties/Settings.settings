@@ -14,5 +14,8 @@
     <Setting Name="SlotDuration" Type="Probel.NDoctor.Domain.DTO.Helpers.SlotDuration" Scope="User">
       <Value Profile="(Default)">ThirtyMinutes</Value>
     </Setting>
+    <Setting Name="AutomaticContextMenu" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

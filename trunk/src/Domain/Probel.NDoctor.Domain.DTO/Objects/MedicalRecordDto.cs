@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System;
 
     using Probel.Mvvm;
+    using Probel.NDoctor.Domain.DTO.Validators;
 
     /// <summary>
     /// Represents a medical record item
@@ -43,6 +44,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// Set the creation date to now
         /// </summary>
         public MedicalRecordDto()
+            : base(new MedicalRecordValidator())
         {
             this.creationDate
                 = this.lastUpdate

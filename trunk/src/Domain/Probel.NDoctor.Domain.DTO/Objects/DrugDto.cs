@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System;
 
     using Probel.Mvvm;
+    using Probel.NDoctor.Domain.DTO.Validators;
 
     /// <summary>
     /// Represents a drug with some notes about this drug.
@@ -40,6 +41,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// Initializes a new instance of the <see cref="DrugDto"/> class.
         /// </summary>
         public DrugDto()
+            : base(new DrugValidator())
         {
             this.Tag = new TagDto(TagCategory.Drug);
         }

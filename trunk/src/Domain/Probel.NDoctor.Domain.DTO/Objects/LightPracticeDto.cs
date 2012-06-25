@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System;
 
     using Probel.Mvvm;
+    using Probel.NDoctor.Domain.DTO.Validators;
 
     [Serializable]
     public class LightPracticeDto : BaseDto
@@ -28,6 +29,15 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private string name;
 
         #endregion Fields
+
+        #region Constructors
+
+        public LightPracticeDto()
+            : base(new PracticeValidator())
+        {
+        }
+
+        #endregion Constructors
 
         #region Properties
 

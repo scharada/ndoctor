@@ -127,6 +127,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         long Create(InsuranceDto insurance);
 
         /// <summary>
+        /// Creates the specified doctor.
+        /// </summary>
+        /// <param name="doctor">The doctor.</param>
+        /// <returns></returns>
+        long Create(DoctorDto doctor);
+
+        /// <summary>
         /// Gets all doctors.
         /// </summary>
         /// <returns></returns>

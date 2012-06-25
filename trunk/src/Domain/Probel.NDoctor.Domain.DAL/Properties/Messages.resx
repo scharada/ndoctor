@@ -233,4 +233,8 @@
     <value>The database is in a wrong state: there is no super admin.</value>
     <comment>The database is in a wrong state: there is no super admin.</comment>
   </data>
+  <data name="Invalid_Data" xml:space="preserve">
+    <value>You typed invalid data</value>
+    <comment>You typed invalid data</comment>
+  </data>
 </root>

@@ -21,12 +21,11 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using Probel.Mvvm;
 
     [Serializable]
-    public class PracticeDto : BaseDto
+    public class PracticeDto : LightPracticeDto
     {
         #region Fields
 
         private AddressDto address;
-        private string name;
         private string notes;
         private string phone;
 
@@ -59,22 +58,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.address = value;
                 this.OnPropertyChanged(() => Address);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the name.
-        /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
-        public string Name
-        {
-            get { return this.name; }
-            set
-            {
-                this.name = value;
-                this.OnPropertyChanged(() => Name);
             }
         }
 
@@ -122,7 +105,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// </returns>
         public override string ToString()
         {
-            return string.Format("{0}, name: {1}", base.ToString(), this.name);
+            return string.Format("{0}, name: {1}", base.ToString(), this.Name);
         }
 
         #endregion Methods

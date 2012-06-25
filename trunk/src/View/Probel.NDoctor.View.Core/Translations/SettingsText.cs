@@ -22,6 +22,11 @@ namespace Probel.NDoctor.View.Core.Translations
     {
         #region Properties
 
+        public static string AutomaticContextMenu
+        {
+            get { return Messages.Title_AutomaticShowContext; }
+        }
+
         public static string BtnSave
         {
             get { return Messages.Btn_Save; }
@@ -35,6 +40,11 @@ namespace Probel.NDoctor.View.Core.Translations
         public static string TitleLanguage
         {
             get { return Messages.Title_Languages; }
+        }
+
+        public static string TitleMisc
+        {
+            get { return Messages.Title_Miscellaneous; }
         }
 
         public static string TitleSettings

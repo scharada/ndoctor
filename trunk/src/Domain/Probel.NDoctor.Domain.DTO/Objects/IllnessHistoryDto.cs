@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System.Collections.ObjectModel;
 
     using Probel.Mvvm;
+    using Probel.NDoctor.Domain.DTO.Validators;
 
     /// <summary>
     /// Represents the illness history of a patient
@@ -36,6 +37,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #region Constructors
 
         public IllnessHistoryDto()
+            : base(new IllnessHistoryValidator())
         {
             this.Periods = new ObservableCollection<IllnessPeriodDto>();
         }
@@ -56,7 +58,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.patient = value;
-                this.OnPropertyChanged(()=>this.Patient);
+                this.OnPropertyChanged(() => this.Patient);
             }
         }
 

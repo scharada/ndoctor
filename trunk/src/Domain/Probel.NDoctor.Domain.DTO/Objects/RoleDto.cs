@@ -22,6 +22,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 
     using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.DTO.Validators;
 
     [Serializable]
     public class RoleDto : BaseDto
@@ -39,6 +40,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// Initializes a new instance of the <see cref="RoleDto"/> class.
         /// </summary>
         public RoleDto()
+            : base(new RoleValidator())
         {
             this.Tasks = new ObservableCollection<TaskDto>();
         }

@@ -26,6 +26,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using NHibernate.Linq;
 
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
 
@@ -60,8 +61,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="patients"></param>
         public void Create(IEnumerable<PatientFullDto> patients)
         {
-            var entities = Mapper.Map<IEnumerable<PatientFullDto>, Patient[]>(patients);
-            this.Save(entities);
+            new Creator(this.Session).Create(patients);
         }
 
         private void ForEach<T>(IList<T> collection, Action<T> merge)
@@ -81,22 +81,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
                 if (loaded != null) { item = loaded; }
                 else { this.Session.Save(item); }
             }
-        }
-
-        private void Save(Entity[] entities)
-        {
-            try
-            {
-                using (var tx = this.Session.BeginTransaction())
-                {
-                    foreach (var entity in entities)
-                    {
-                        this.Session.SaveOrUpdate(entity);
-                    }
-                    tx.Commit();
-                }
-            }
-            catch (Exception ex) { throw new QueryException(ex); }
         }
 
         #endregion Methods

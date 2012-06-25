@@ -26,8 +26,6 @@ namespace Probel.NDoctor.Plugins.PatientData
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
-    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -53,7 +51,6 @@ namespace Probel.NDoctor.Plugins.PatientData
         private ICommand addReputationCommand;
         private ICommand addSpecialisationCommand;
         private IPatientDataComponent component;
-        private RibbonContextualTabGroupData contextualMenu;
         private ICommand navigateCommand;
         private Workbench workbench;
 
@@ -173,8 +170,7 @@ namespace Probel.NDoctor.Plugins.PatientData
             this.ViewModel.Refresh();
             this.workbench.DataContext = this.ViewModel;
 
-            this.contextualMenu.IsVisible = true;
-            this.contextualMenu.TabDataCollection[0].IsSelected = true;
+            this.ShowContextMenu();
         }
 
         #endregion Methods

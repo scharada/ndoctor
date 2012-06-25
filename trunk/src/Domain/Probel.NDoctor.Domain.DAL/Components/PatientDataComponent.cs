@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Helpers;
+    using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -80,18 +81,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="profession">The profession.</param>
         public long Create(ProfessionDto profession)
         {
-            Assert.IsNotNull(profession, "The item to create shouldn't be null");
-
-            var found = (from p in this.Session.Query<Profession>()
-                         where p.Id == profession.Id
-                            || profession.Name.ToLower() == p.Name.ToLower()
-                         select p).Count() > 0;
-            if (found) throw new ExistingItemException();
-
-            var entity = Mapper.Map<ProfessionDto, Profession>(profession);
-            entity.Id = 0;
-
-            return (long)this.Session.Save(entity);
+            return new Creator(this.Session).Create(profession);
         }
 
         /// <summary>
@@ -100,16 +90,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="reputation">The item to add in the database</param>
         public long Create(ReputationDto reputation)
         {
-            Assert.IsNotNull(reputation, "The item to create shouldn't be null");
-
-            var exist = (from p in this.Session.Query<Reputation>()
-                         where reputation.Name.ToUpper() == p.Name.ToUpper()
-                         || p.Id == reputation.Id
-                         select p).Count() > 0;
-            if (exist) throw new ExistingItemException();
-
-            var entity = Mapper.Map<ReputationDto, Reputation>(reputation);
-            return (long)this.Session.Save(entity);
+            return new Creator(this.Session).Create(reputation);
         }
 
         /// <summary>
@@ -118,16 +99,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="reputation">The item to add in the database</param>
         public long Create(InsuranceDto insurance)
         {
-            Assert.IsNotNull(insurance, "The item to create shouldn't be null");
-
-            var exist = (from i in this.Session.Query<Insurance>()
-                         where insurance.Name.ToUpper() == i.Name.ToUpper()
-                            || i.Id == insurance.Id
-                         select i).Count() > 0;
-            if (exist) throw new ExistingItemException();
-
-            var entity = Mapper.Map<InsuranceDto, Insurance>(insurance);
-            return (long)this.Session.Save(entity);
+            return new Creator(this.Session).Create(insurance);
         }
 
         /// <summary>
@@ -136,16 +108,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="reputation">The item to add in the database</param>
         public long Create(PracticeDto practice)
         {
-            Assert.IsNotNull(practice, "The item to create shouldn't be null");
-
-            var exist = (from i in this.Session.Query<Practice>()
-                         where practice.Name.ToUpper() == i.Name.ToUpper()
-                            || i.Id == practice.Id
-                         select i).Count() > 0;
-            if (exist) throw new ExistingItemException();
-
-            var entity = Mapper.Map<PracticeDto, Practice>(practice);
-            return (long)this.Session.Save(entity);
+            return new Creator(this.Session).Create(practice);
         }
 
         /// <summary>
@@ -155,19 +118,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public long Create(DoctorDto doctor)
         {
-            Assert.IsNotNull(doctor, "The item to create shouldn't be null");
-
-            var found = (from p in this.Session.Query<Doctor>()
-                         where p.Id == doctor.Id
-                            || (doctor.FirstName.ToUpper() == p.FirstName.ToUpper()
-                            && doctor.LastName.ToUpper() == p.LastName.ToUpper())
-                         select p).Count() > 0;
-            if (found) throw new ExistingItemException();
-
-            var entity = Mapper.Map<DoctorDto, Doctor>(doctor);
-            entity.Id = 0;
-
-            return (long)this.Session.Save(entity);
+            return new Creator(this.Session).Create(doctor);
         }
 
         /// <summary>

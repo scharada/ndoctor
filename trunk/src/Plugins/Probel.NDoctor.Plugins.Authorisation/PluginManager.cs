@@ -44,7 +44,6 @@ namespace Probel.NDoctor.Plugins.Authorisation
         private const string imgUri = @"\Probel.NDoctor.Plugins.Authorisation;component/Images\{0}.png";
 
         private IAuthorisationComponent component;
-        private RibbonContextualTabGroupData contextualMenu;
         private PageEventArgs.DisplayedPage displayed;
         private ManageUserView manageUserView;
         private ICommand navigateCommand;
@@ -128,7 +127,7 @@ namespace Probel.NDoctor.Plugins.Authorisation
 
         private bool CanNavigateRole()
         {
-            return  this.displayed != PageEventArgs.DisplayedPage.RoleManager
+            return this.displayed != PageEventArgs.DisplayedPage.RoleManager
                 && PluginContext.DoorKeeper.IsUserGranted(To.Administer);
         }
 

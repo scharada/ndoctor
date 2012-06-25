@@ -221,4 +221,32 @@
     <value>Médecins</value>
     <comment>Doctors</comment>
   </data>
+  <data name="Msg_ItemAdded" xml:space="preserve">
+    <value>Elément ajouté.</value>
+    <comment>Item added.</comment>
+  </data>
+  <data name="Title_AddInsurance" xml:space="preserve">
+    <value>Ajouter une mutuelle</value>
+    <comment>Add an insurance</comment>
+  </data>
+  <data name="Title_AddPractice" xml:space="preserve">
+    <value>Ajouter un cabinet</value>
+    <comment>Add a practice</comment>
+  </data>
+  <data name="Title_AddProfession" xml:space="preserve">
+    <value>Ajouter une profession</value>
+    <comment>Add a profession</comment>
+  </data>
+  <data name="Title_AddReputation" xml:space="preserve">
+    <value>Ajouter une réputation</value>
+    <comment>Add a reputation</comment>
+  </data>
+  <data name="Title_AddSpecialisation" xml:space="preserve">
+    <value>Ajouter une spécialisation</value>
+    <comment>Add a new specialisation</comment>
+  </data>
+  <data name="Title_AddDoctor" xml:space="preserve">
+    <value>Ajouter un médecin</value>
+    <comment>Add a doctor</comment>
+  </data>
 </root>

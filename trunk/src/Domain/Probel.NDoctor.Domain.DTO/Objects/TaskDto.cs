@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,8 +16,13 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#endregion Header
+
 namespace Probel.NDoctor.Domain.DTO.Objects
 {
+    using Probel.NDoctor.Domain.DTO.Validators;
+
     public class TaskDto : BaseDto
     {
         #region Fields
@@ -33,6 +40,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// </summary>
         /// <param name="refName">Name of the ref.</param>
         public TaskDto(string refName)
+            : base(new TaskValidator())
         {
             this.refName = refName;
         }

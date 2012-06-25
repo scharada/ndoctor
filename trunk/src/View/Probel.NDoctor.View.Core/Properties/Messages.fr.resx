@@ -386,4 +386,12 @@ L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
     <value>Personne</value>
     <comment>Nobody</comment>
   </data>
+  <data name="Title_Miscellaneous" xml:space="preserve">
+    <value>Divers</value>
+    <comment>Miscellaneous</comment>
+  </data>
+  <data name="Title_AutomaticShowContext" xml:space="preserve">
+    <value>Afficher automatiquement les menus contextuels</value>
+    <comment>Automatically display contextual menus</comment>
+  </data>
 </root>

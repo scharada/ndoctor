@@ -84,8 +84,33 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Translations\WorkbenchText.cs" />
+    <Compile Include="ViewModel\AddDoctorViewModel.cs" />
+    <Compile Include="ViewModel\AddInsuranceViewModel.cs" />
+    <Compile Include="ViewModel\AddPracticeViewModel.cs" />
+    <Compile Include="ViewModel\AddProfessionViewModel.cs" />
+    <Compile Include="ViewModel\AddReputationViewModel.cs" />
+    <Compile Include="ViewModel\AddSpecialisationViewModel.cs" />
+    <Compile Include="ViewModel\BaseBoxViewModel.cs" />
     <Compile Include="ViewModel\TagViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
+    <Compile Include="View\AddDoctorView.xaml.cs">
+      <DependentUpon>AddDoctorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddInsuranceView.xaml.cs">
+      <DependentUpon>AddInsuranceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddPracticeView.xaml.cs">
+      <DependentUpon>AddPracticeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddProfessionView.xaml.cs">
+      <DependentUpon>AddProfessionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddReputationView.xaml.cs">
+      <DependentUpon>AddReputationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddSpecialisationView.xaml.cs">
+      <DependentUpon>AddSpecialisationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Workbench.xaml.cs">
       <DependentUpon>Workbench.xaml</DependentUpon>
     </Compile>
@@ -143,6 +168,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\AddDoctorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddInsuranceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddPracticeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddProfessionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddReputationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddSpecialisationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Workbench.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,6 +205,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\New.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

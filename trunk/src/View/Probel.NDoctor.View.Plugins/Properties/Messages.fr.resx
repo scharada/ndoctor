@@ -170,6 +170,14 @@ Chemin: {1}</value>
     <value>Le type du contexte de données n'est pas celui attendu.</value>
     <comment>The data context of the item is not at the expected type.</comment>
   </data>
+  <data name="Group_Action" xml:space="preserve">
+    <value>Actions</value>
+    <comment>Actions</comment>
+  </data>
+  <data name="Menu_File" xml:space="preserve">
+    <value>Fichier</value>
+    <comment>File</comment>
+  </data>
   <data name="Msg_ErrorAuthorisation" xml:space="preserve">
     <value>Vous n'avez pas les droits pour exécuter cette fonctionnalité</value>
     <comment>You are not granted to execute this feature</comment>

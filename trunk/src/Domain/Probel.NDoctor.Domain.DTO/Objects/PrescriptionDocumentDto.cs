@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System.Collections.ObjectModel;
 
     using Probel.Mvvm;
+    using Probel.NDoctor.Domain.DTO.Validators;
 
     /// <summary>
     /// Represents a set of drug prescriptions.
@@ -41,6 +42,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// Initializes a new instance of the <see cref="PrescriptionDocumentDto"/> class.
         /// </summary>
         public PrescriptionDocumentDto()
+            : base(new PrescriptionDocumentValidator())
         {
             this.Prescriptions = new ObservableCollection<PrescriptionDto>();
         }

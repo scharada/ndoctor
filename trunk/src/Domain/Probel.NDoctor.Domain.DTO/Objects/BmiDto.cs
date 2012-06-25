@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System;
 
     using Probel.Mvvm;
+    using Probel.NDoctor.Domain.DTO.Validators;
 
     /// <summary>
     /// Represents an item of the Bmi history of a Patient
@@ -40,6 +41,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// Initializes a new instance of the <see cref="BmiDto"/> class.
         /// </summary>
         public BmiDto()
+            : base(new BmiValidator())
         {
             this.date = DateTime.Today;
         }

@@ -23,6 +23,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using AutoMapper;
 
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
 
@@ -37,11 +38,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="patient">The patient.</param>
         public void Create(PrescriptionDocumentDto document, LightPatientDto patient)
         {
-            var entity = this.Session.Get<Patient>(patient.Id);
-            var prescriptionEntity = Mapper.Map<PrescriptionDocumentDto, PrescriptionDocument>(document);
-
-            entity.PrescriptionDocuments.Add(prescriptionEntity);
-            this.Session.SaveOrUpdate(entity);
+            new Creator(this.Session).Create(document, patient);
         }
 
         /// <summary>

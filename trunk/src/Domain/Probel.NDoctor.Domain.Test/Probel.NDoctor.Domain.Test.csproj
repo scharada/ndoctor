@@ -82,6 +82,10 @@
     <Compile Include="Helpers\GlobalConfigurator.cs" />
     <Compile Include="Helpers\MockBaseComponent.cs" />
     <Compile Include="Helpers\PictureCreator.cs" />
+    <Compile Include="Validations\MedicalRecord.cs" />
+    <Compile Include="Validations\MedicalRecordFolder.cs" />
+    <Compile Include="Validations\Pathology.cs" />
+    <Compile Include="Validations\Practice.cs" />
     <Compile Include="Helpers\TestBase.cs" />
     <Compile Include="Components\TestBaseComponent.cs" />
     <Compile Include="Components\TestBaseComponentNullArguments.cs" />
@@ -95,6 +99,21 @@
     <Compile Include="Helpers\InMemoryDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Components\TestBaseComponentWhenNullSession.cs" />
+    <Compile Include="Validations\Appointment.cs" />
+    <Compile Include="Validations\Bmi.cs" />
+    <Compile Include="Helpers\Categories.cs" />
+    <Compile Include="Validations\Person.cs" />
+    <Compile Include="Validations\Drug.cs" />
+    <Compile Include="Validations\Family.cs" />
+    <Compile Include="Validations\IllnessHistory.cs" />
+    <Compile Include="Validations\Insurance.cs" />
+    <Compile Include="Validations\Prescription.cs" />
+    <Compile Include="Validations\PrescriptionDocument.cs" />
+    <Compile Include="Validations\Profession.cs" />
+    <Compile Include="Validations\Reputation.cs" />
+    <Compile Include="Validations\Role.cs" />
+    <Compile Include="Validations\Tag.cs" />
+    <Compile Include="Validations\Task.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

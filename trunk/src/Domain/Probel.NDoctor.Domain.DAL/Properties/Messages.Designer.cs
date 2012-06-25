@@ -169,6 +169,15 @@ namespace Probel.NDoctor.Domain.DAL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You typed invalid data.
+        /// </summary>
+        internal static string Invalid_Data {
+            get {
+                return ResourceManager.GetString("Invalid_Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Impossible to create the database.
         /// </summary>
         internal static string Msg_ErrorDbCreationImpossible {

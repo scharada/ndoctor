@@ -17,8 +17,11 @@
 namespace Probel.NDoctor.Plugins.Administration
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.Composition;
+    using System.Windows.Controls;
     using System.Windows.Input;
+    using System.Windows.Media;
 
     using AutoMapper;
 
@@ -32,6 +35,7 @@ namespace Probel.NDoctor.Plugins.Administration
     using Probel.NDoctor.Plugins.Administration.Properties;
     using Probel.NDoctor.Plugins.Administration.View;
     using Probel.NDoctor.Plugins.Administration.ViewModel;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
@@ -112,7 +116,34 @@ namespace Probel.NDoctor.Plugins.Administration
         /// </summary>
         private void BuildContextMenu()
         {
-            //No context menu
+            var tab = new RibbonTabData() { Header = BaseText.Menu_File, ContextualTabGroupHeader = Messages.Title_AdministratorManager };
+            this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_AdministratorManager, tab) { Background = Brushes.OrangeRed, IsVisible = false, };
+            var cgroup = new RibbonGroupData(BaseText.Group_Action, 1);
+
+            tab.GroupDataCollection.Add(cgroup);
+            PluginContext.Host.AddContextualMenu(this.contextualMenu);
+            PluginContext.Host.AddTab(tab);
+
+            var buttons = new List<RibbonButtonData>();
+            buttons.Add(new RibbonButtonData(Messages.Title_AddDoctor, imgUri.FormatWith("Save")
+                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddDoctor, new AddDoctorView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))));
+
+            buttons.Add(new RibbonButtonData(Messages.Title_AddInsurance, imgUri.FormatWith("Save")
+                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddInsurance, new AddInsuranceView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))));
+
+            buttons.Add(new RibbonButtonData(Messages.Title_AddPractice, imgUri.FormatWith("Save")
+                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPractice, new AddPracticeView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))));
+
+            buttons.Add(new RibbonButtonData(Messages.Title_AddProfession, imgUri.FormatWith("Save")
+                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddProfession, new AddProfessionView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))));
+
+            buttons.Add(new RibbonButtonData(Messages.Title_Reputation, imgUri.FormatWith("Save")
+                , new RelayCommand(() => InnerWindow.Show(Messages.Title_Reputation, new AddReputationView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))));
+
+            buttons.Add(new RibbonButtonData(Messages.Title_AddSpecialisation, imgUri.FormatWith("Save")
+                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddSpecialisation, new AddSpecialisationView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))));
+
+            foreach (var button in buttons) { cgroup.ButtonDataCollection.Add(button); }
         }
 
         private bool CanNavigate()
@@ -130,6 +161,9 @@ namespace Probel.NDoctor.Plugins.Administration
         {
             PluginContext.Host.Navigate(this.Workbench);
             ((WorkbenchViewModel)this.Workbench.DataContext).Refresh();
+
+            this.contextualMenu.IsVisible = true;
+            this.contextualMenu.TabDataCollection[0].IsSelected = PluginContext.Configuration.AutomaticContextMenu;
         }
 
         #endregion Methods

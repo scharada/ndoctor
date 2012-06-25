@@ -47,9 +47,19 @@ namespace Probel.NDoctor.View.Plugins.Helpers
             get { return Messages.Title_Error; }
         }
 
+        public static string Group_Action
+        {
+            get { return Messages.Group_Action; }
+        }
+
         public static string Information
         {
             get { return Messages.Title_Information; }
+        }
+
+        public static string Menu_File
+        {
+            get { return Messages.Menu_File; }
         }
 
         public static string OK

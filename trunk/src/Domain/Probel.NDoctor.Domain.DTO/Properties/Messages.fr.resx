@@ -209,6 +209,50 @@
     <value>Homme</value>
     <comment>Male</comment>
   </data>
+  <data name="Invalid_Data" xml:space="preserve">
+    <value>Vous avez entré des données invalides</value>
+    <comment>You entered invalid data</comment>
+  </data>
+  <data name="Invalid_Date" xml:space="preserve">
+    <value>La date doit être après le 1/1/1900</value>
+    <comment>The date should be after 1/1/1900</comment>
+  </data>
+  <data name="Invalid_EmptyPrescription" xml:space="preserve">
+    <value>Ce document ne contient aucune prescription</value>
+    <comment>This document doesn't have prescription</comment>
+  </data>
+  <data name="Invalid_EmptyValue" xml:space="preserve">
+    <value>Ne peut pas être vide.</value>
+    <comment>Can't be empty.</comment>
+  </data>
+  <data name="Invalid_Family" xml:space="preserve">
+    <value>Veuillez indiquer la personne à laquelle cette famille appartient</value>
+    <comment>Please indicate of whom this family is</comment>
+  </data>
+  <data name="Invalid_Height" xml:space="preserve">
+    <value>La taille doit être comprise entre 10 et 300 cm</value>
+    <comment>The height should be between 10 and 300 cm</comment>
+  </data>
+  <data name="Invalid_IllnessHistory" xml:space="preserve">
+    <value>Cet historique de maladie ne contient pas de patient.</value>
+    <comment>This illness history is not related to any patient</comment>
+  </data>
+  <data name="Invalid_Prescription_NoDrug" xml:space="preserve">
+    <value>Cette prescription ne contient aucun médicament</value>
+    <comment>There's no drug in this prescription</comment>
+  </data>
+  <data name="Invalid_Relation" xml:space="preserve">
+    <value>Une relation doit contenir deux personnes</value>
+    <comment>A relation should contain two persons</comment>
+  </data>
+  <data name="Invalid_TimeSpan" xml:space="preserve">
+    <value>La date de début doit être antérieure à la date de fin</value>
+    <comment>The start date should be before the end date</comment>
+  </data>
+  <data name="Invalid_Weight" xml:space="preserve">
+    <value>Le poids doit être compris entre 1 et 500 Kg</value>
+    <comment>The weight should be between 1 and 500 Kg</comment>
+  </data>
   <data name="TagType_Appointment" xml:space="preserve">
     <value>Rendez-vous</value>
     <comment>Appointment</comment>

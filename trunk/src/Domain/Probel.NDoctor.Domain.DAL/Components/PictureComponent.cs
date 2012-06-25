@@ -26,6 +26,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
     using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -61,18 +62,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="patient">The patient.</param>
         public void Create(PictureDto picture, LightPatientDto forPatient)
         {
-            Assert.IsNotNull(picture, "The item to create shouldn't be null");
-
-            var foundPatient = (from p in this.Session.Query<Patient>()
-                                where p.Id == forPatient.Id
-                                select p).FirstOrDefault();
-            if (foundPatient == null) throw new ExistingItemException();
-
-            var newItem = Mapper.Map<PictureDto, Picture>(picture);
-
-            foundPatient.Pictures.Add(newItem);
-
-            this.Session.SaveOrUpdate(foundPatient);
+            new Creator(this.Session).Create(picture, forPatient);
         }
 
         /// <summary>

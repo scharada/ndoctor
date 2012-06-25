@@ -11,8 +11,8 @@
              xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
              xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Core.Controls"
              
-             Width="200"
              mc:Ignorable="d"
+             Width="200"
              Loaded="this_Loaded">
     <StackPanel>
         <Border Style="{StaticResource BorderStyle}">

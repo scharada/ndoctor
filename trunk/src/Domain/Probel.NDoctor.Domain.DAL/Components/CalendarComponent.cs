@@ -26,6 +26,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
     using Probel.Helpers.Data;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Helpers;
@@ -46,11 +47,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         [Granted(To.EditCalendar)]
         public void Create(AppointmentDto meeting, LightPatientDto patient)
         {
-            var patientEntity = this.Session.Get<Patient>(patient.Id);
-            var meetingEntity = Mapper.Map<AppointmentDto, Appointment>(meeting);
-
-            patientEntity.Appointments.Add(meetingEntity);
-            this.Session.SaveOrUpdate(patientEntity);
+            new Creator(this.Session).Create(meeting, patient);
         }
 
         /// <summary>

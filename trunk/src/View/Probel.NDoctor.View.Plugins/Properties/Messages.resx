@@ -170,6 +170,14 @@ Path: {1}</value>
     <value>The data context of the item is not at the expected type.</value>
     <comment>The data context of the item is not at the expected type.</comment>
   </data>
+  <data name="Group_Action" xml:space="preserve">
+    <value>Actions</value>
+    <comment>Actions</comment>
+  </data>
+  <data name="Menu_File" xml:space="preserve">
+    <value>File</value>
+    <comment>File</comment>
+  </data>
   <data name="Msg_ErrorAuthorisation" xml:space="preserve">
     <value>You are not granted to execute this feature</value>
     <comment>You are not granted to execute this feature</comment>

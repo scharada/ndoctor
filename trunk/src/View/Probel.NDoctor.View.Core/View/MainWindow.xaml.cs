@@ -448,6 +448,15 @@ namespace Probel.NDoctor.View.Core.View
             this.OnNewUserConnected();
         }
 
+        private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            #if DEBUG
+            this.WindowState = System.Windows.WindowState.Normal;
+            #else
+            this.WindowState = System.Windows.WindowState.Maximized;
+            #endif
+        }
+
         private void WriteStatus(LightPatientDto value)
         {
             var name = string.Format("{0} {1}", value.FirstName, value.LastName);
@@ -455,14 +464,5 @@ namespace Probel.NDoctor.View.Core.View
         }
 
         #endregion Methods
-
-        private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-#if DEBUG
-            this.WindowState = System.Windows.WindowState.Normal;
-#else
-            this.WindowState = System.Windows.WindowState.Maximized;
-#endif
-        }
     }
 }

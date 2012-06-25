@@ -19,6 +19,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System;
 
     using Probel.Mvvm;
+    using Probel.Mvvm.Validation;
+    using Probel.NDoctor.Domain.DTO.Validators;
 
     [Serializable]
     public class LightInsuranceDto : BaseDto
@@ -28,6 +30,20 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private string name;
 
         #endregion Fields
+
+        #region Constructors
+
+        public LightInsuranceDto()
+            : base(new InsuranceValidator())
+        {
+        }
+
+        protected LightInsuranceDto(IValidator validator)
+            : base(validator)
+        {
+        }
+
+        #endregion Constructors
 
         #region Properties
 

@@ -40,7 +40,7 @@ namespace Probel.NDoctor.View.Core.Controls
         public static DependencyProperty OkCommandProperty = DependencyProperty.RegisterAttached("OkCommand", typeof(ICommand)
             , typeof(SpecialisationBox)
             , new UIPropertyMetadata(null));
-        public static DependencyProperty ReputationProperty = DependencyProperty.RegisterAttached("Specialisation", typeof(TagDto)
+        public static DependencyProperty SpecialisationProperty = DependencyProperty.RegisterAttached("Specialisation", typeof(TagDto)
             , typeof(SpecialisationBox)
             , new UIPropertyMetadata(null));
 
@@ -91,7 +91,7 @@ namespace Probel.NDoctor.View.Core.Controls
 
         public static TagDto GetSpecialisation(DependencyObject target)
         {
-            return target.GetValue(ReputationProperty) as TagDto;
+            return target.GetValue(SpecialisationProperty) as TagDto;
         }
 
         public static void SetButtonName(DependencyObject target, string value)
@@ -106,7 +106,7 @@ namespace Probel.NDoctor.View.Core.Controls
 
         public static void SetSpecialisation(DependencyObject target, TagDto value)
         {
-            target.SetValue(ReputationProperty, value);
+            target.SetValue(SpecialisationProperty, value);
         }
 
         private void this_Loaded(object sender, RoutedEventArgs e)

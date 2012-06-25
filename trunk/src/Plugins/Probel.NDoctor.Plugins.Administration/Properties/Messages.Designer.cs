@@ -106,6 +106,69 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Item added..
+        /// </summary>
+        internal static string Msg_ItemAdded {
+            get {
+                return ResourceManager.GetString("Msg_ItemAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ajouter un médecin.
+        /// </summary>
+        internal static string Title_AddDoctor {
+            get {
+                return ResourceManager.GetString("Title_AddDoctor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add an insurance.
+        /// </summary>
+        internal static string Title_AddInsurance {
+            get {
+                return ResourceManager.GetString("Title_AddInsurance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a practice.
+        /// </summary>
+        internal static string Title_AddPractice {
+            get {
+                return ResourceManager.GetString("Title_AddPractice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a profession.
+        /// </summary>
+        internal static string Title_AddProfession {
+            get {
+                return ResourceManager.GetString("Title_AddProfession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a reputation.
+        /// </summary>
+        internal static string Title_AddReputation {
+            get {
+                return ResourceManager.GetString("Title_AddReputation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a new specialisation.
+        /// </summary>
+        internal static string Title_AddSpecialisation {
+            get {
+                return ResourceManager.GetString("Title_AddSpecialisation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage data.
         /// </summary>
         internal static string Title_AdministratorManager {

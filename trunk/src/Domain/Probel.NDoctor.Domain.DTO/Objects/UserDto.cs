@@ -22,16 +22,14 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using Probel.Mvvm;
 
     [Serializable]
-    public class UserDto : BaseDto
+    public class UserDto : PersonDto
     {
         #region Fields
 
         private RoleDto assignedRole;
         private decimal fee;
-        private string firstName;
         private string header;
         private bool isDefaultUser;
-        private string lastName;
         private PracticeDto practice;
         private string proMail;
         private string proMobile;
@@ -47,6 +45,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// </summary>
         /// <param name="isSuperAdmin">if set to <c>true</c> [is super admin].</param>
         public UserDto(bool isSuperAdmin)
+            : base()
         {
             this.IsSuperAdmin = isSuperAdmin;
         }
@@ -107,22 +106,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         }
 
         /// <summary>
-        /// Gets or sets the first name.
-        /// </summary>
-        /// <value>
-        /// The first name.
-        /// </value>
-        public string FirstName
-        {
-            get { return this.firstName; }
-            set
-            {
-                this.firstName = value;
-                this.OnPropertyChanged(() => FirstName);
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the header that will be displayed in the prescriptions or
         /// other places where a header is needed.
         /// </summary>
@@ -158,23 +141,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 
         public bool IsSuperAdmin
         {
-            get; private set;
-        }
-
-        /// <summary>
-        /// Gets or sets the last name.
-        /// </summary>
-        /// <value>
-        /// The last name.
-        /// </value>
-        public string LastName
-        {
-            get { return this.lastName; }
-            set
-            {
-                this.lastName = value;
-                this.OnPropertyChanged(() => LastName);
-            }
+            get;
+            private set;
         }
 
         /// <summary>

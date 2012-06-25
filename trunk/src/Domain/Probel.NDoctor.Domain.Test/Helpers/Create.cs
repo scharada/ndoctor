@@ -251,12 +251,12 @@ namespace Probel.NDoctor.Domain.Test.Helpers
             var tag3 = new Tag() { Category = TagCategory.MedicalRecord, Name = "tag3" };
 
             List<MedicalRecord> records = new List<MedicalRecord>();
-            records.Add(new MedicalRecord() { Tag = tag1 });
-            records.Add(new MedicalRecord() { Tag = tag1 });
-            records.Add(new MedicalRecord() { Tag = tag2 });
-            records.Add(new MedicalRecord() { Tag = tag2 });
-            records.Add(new MedicalRecord() { Tag = tag3 });
-            records.Add(new MedicalRecord() { Tag = tag3 });
+            records.Add(new MedicalRecord() { Id = 1, Tag = tag1 });
+            records.Add(new MedicalRecord() { Id = 2, Tag = tag1 });
+            records.Add(new MedicalRecord() { Id = 3, Tag = tag2 });
+            records.Add(new MedicalRecord() { Id = 4, Tag = tag2 });
+            records.Add(new MedicalRecord() { Id = 5, Tag = tag3 });
+            records.Add(new MedicalRecord() { Id = 6, Tag = tag3 });
 
             foreach (var record in records) patient.MedicalRecords.Add(record);
 

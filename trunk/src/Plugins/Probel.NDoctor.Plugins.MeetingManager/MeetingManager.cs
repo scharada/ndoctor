@@ -49,7 +49,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.MeetingManager;component/Images\{0}.png";
 
-        private RibbonContextualTabGroupData contextualMenu = null;
         private ICommand navigateCommand;
         private Workbench workbench;
 
@@ -168,12 +167,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager
             {
                 //this.ViewModel.Refresh();
                 PluginContext.Host.Navigate(this.workbench);
-
-                if (this.contextualMenu != null)
-                {
-                    this.contextualMenu.IsVisible = true;
-                    this.contextualMenu.TabDataCollection[0].IsSelected = true;
-                }
+                this.ShowContextMenu();
 
                 Notifyer.OnRefreshed(this);
             }

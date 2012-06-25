@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System;
 
     using Probel.Mvvm;
+    using Probel.NDoctor.Domain.DTO.Validators;
 
     /// <summary>
     /// Represents a pathology
@@ -37,6 +38,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #region Constructors
 
         public PathologyDto()
+            : base(new PathologyValidator())
         {
             this.Tag = new TagDto(TagCategory.Pathology);
         }

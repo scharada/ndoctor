@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.Helpers.Data;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -48,12 +49,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="patient">The patient.</param>
         public void Create(IllnessPeriodDto period, LightPatientDto patient)
         {
-            var entity = this.Session.Get<Patient>(patient.Id);
-            var illnessPeriod = Mapper.Map<IllnessPeriodDto, IllnessPeriod>(period);
-            illnessPeriod.Id = 0;
-
-            entity.IllnessHistory.Add(illnessPeriod);
-            this.Session.SaveOrUpdate(entity);
+            new Creator(this.Session).Create(period, patient);
         }
 
         /// <summary>
@@ -62,16 +58,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The item.</param>
         public void Create(PathologyDto item)
         {
-            var found = (from p in this.Session.Query<Pathology>()
-                         where p.Id == item.Id
-                            || item.Name.ToLower() == p.Name.ToLower()
-                         select p).Count() > 0;
-            if (found) throw new ExistingItemException();
-
-            var entity = Mapper.Map<PathologyDto, Pathology>(item);
-            entity.Id = 0;
-
-            this.Session.Save(entity);
+            new Creator(this.Session).Create(item);
         }
 
         /// <summary>

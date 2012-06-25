@@ -24,7 +24,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     /// Represent a DTO of a patient
     /// </summary>
     [Serializable]
-    public class PatientDto : BaseDto
+    public class PatientDto : PersonDto
     {
         #region Fields
 
@@ -32,14 +32,12 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private DateTime birthdate = DateTime.Today;
         private int counter;
         private decimal fee;
-        private string firstName;
         private Gender gender;
         private string header;
         private long height;
         private DateTime inscriptionDate = DateTime.Today;
         private LightInsuranceDto insurance = new LightInsuranceDto();
         private bool isComplete;
-        private string lastName;
         private DateTime lastUpdate = DateTime.Today;
         private string placeOfBirth;
         private LightPracticeDto practice = new LightPracticeDto();
@@ -132,22 +130,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.fee = value;
                 this.OnPropertyChanged(() => Fee);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the first name.
-        /// </summary>
-        /// <value>
-        /// The first name.
-        /// </value>
-        public string FirstName
-        {
-            get { return this.firstName; }
-            set
-            {
-                this.firstName = value;
-                this.OnPropertyChanged(() => FirstName);
             }
         }
 
@@ -248,22 +230,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.isComplete = value;
                 this.OnPropertyChanged(() => IsComplete);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the last name.
-        /// </summary>
-        /// <value>
-        /// The last name.
-        /// </value>
-        public string LastName
-        {
-            get { return this.lastName; }
-            set
-            {
-                this.lastName = value;
-                this.OnPropertyChanged(() => LastName);
             }
         }
 
