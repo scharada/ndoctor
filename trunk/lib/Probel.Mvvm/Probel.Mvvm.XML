@@ -105,6 +105,15 @@
             <param name="error">The error to display if the property is not valid.</param>
             <exception cref="!:ExistingRuleException">If a validation is already set for the specified property</exception>
         </member>
+        <member name="M:Probel.Mvvm.Validation.ValidatableObject.IsValid">
+            <summary>
+            Determines whether this instance is valid. That's all the validation rules are
+            returning <c>True</c>
+            </summary>
+            <returns>
+              <c>true</c> if this instance is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
         <member name="P:Probel.Mvvm.Validation.ValidatableObject.Error">
             <summary>
             Gets an error message indicating what is wrong with this object.
@@ -144,6 +153,24 @@
             <summary>
               Looks up a localized string similar to Nothing is binded to the type &apos;{0}&apos;.
             </summary>
+        </member>
+        <member name="T:Probel.Mvvm.DataBinding.CommandExtension">
+            <summary>
+            Provides additional features to the ICommand
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.DataBinding.CommandExtension.TryExecute(System.Windows.Input.ICommand)">
+            <summary>
+            Executes if the specified <see cref="T:System.Windows.Input.ICommand"/> with <c>NULL</c> argument if it can be executed.
+            </summary>
+            <param name="command">The command to try to execute.</param>
+        </member>
+        <member name="M:Probel.Mvvm.DataBinding.CommandExtension.TryExecute(System.Windows.Input.ICommand,System.Object)">
+            <summary>
+            Executes if the specified <see cref="T:System.Windows.Input.ICommand"/> with the specified argument if it can be executed.
+            </summary>
+            <param name="command">The command to try to execute.</param>
+            <param name="arg">The arg specified in the command.</param>
         </member>
         <member name="T:Probel.Mvvm.Validation.ValidationRule">
             <summary>
@@ -417,19 +444,6 @@
             Gets or sets the state. That's if this instance is clean, created, removed or updated
             </summary>
             <value>The state.</value>
-        </member>
-        <member name="M:Probel.Mvvm.DataBinding.CommandExtension.TryExecute(System.Windows.Input.ICommand)">
-            <summary>
-            Executes if the specified <see cref="T:System.Windows.Input.ICommand"/> with <c>NULL</c> argument if it can be executed.
-            </summary>
-            <param name="command">The command to try to execute.</param>
-        </member>
-        <member name="M:Probel.Mvvm.DataBinding.CommandExtension.TryExecute(System.Windows.Input.ICommand,System.Object)">
-            <summary>
-            Executes if the specified <see cref="T:System.Windows.Input.ICommand"/> with the specified argument if it can be executed.
-            </summary>
-            <param name="command">The command to try to execute.</param>
-            <param name="arg">The arg specified in the command.</param>
         </member>
     </members>
 </doc>
