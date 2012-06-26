@@ -21,9 +21,10 @@
 
 namespace Probel.NDoctor.Domain.DTO.Validators
 {
+    using System;
+
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.DTO.Properties;
-    using System;
 
     [Serializable]
     internal class MedicalRecordFolderValidator : Validator<MedicalRecordFolderDto>

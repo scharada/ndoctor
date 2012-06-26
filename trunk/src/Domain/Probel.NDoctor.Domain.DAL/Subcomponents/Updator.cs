@@ -33,9 +33,9 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Helpers;
+    using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Domain.DAL.Properties;
 
     internal class Updator
     {
@@ -246,7 +246,6 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         {
             var entity = this.Session.Get<User>(item.Id);
             Mapper.Map<UserDto, User>(item, entity);
-
 
             if (string.IsNullOrWhiteSpace(entity.Password)) throw new BusinessLogicException(Messages.Validation_PasswordCantBeEmpty);
             this.Session.Update(entity);
