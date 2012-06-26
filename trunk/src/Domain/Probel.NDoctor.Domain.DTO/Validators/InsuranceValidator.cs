@@ -18,7 +18,9 @@ namespace Probel.NDoctor.Domain.DTO.Validators
 {
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.DTO.Properties;
+    using System;
 
+    [Serializable]
     internal class InsuranceValidator : Validator<LightInsuranceDto>
     {
         #region Methods

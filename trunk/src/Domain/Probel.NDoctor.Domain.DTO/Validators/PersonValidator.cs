@@ -16,9 +16,12 @@
 */
 namespace Probel.NDoctor.Domain.DTO.Validators
 {
+    using System;
+
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.DTO.Properties;
 
+    [Serializable]
     internal class PersonValidator : Validator<PersonDto>
     {
         #region Methods

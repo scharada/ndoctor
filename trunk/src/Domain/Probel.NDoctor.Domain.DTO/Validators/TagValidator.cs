@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Domain.DTO.Validators
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.DTO.Properties;
 
+    [Serializable]
     internal class TagValidator : Validator<TagDto>
     {
         #region Methods
