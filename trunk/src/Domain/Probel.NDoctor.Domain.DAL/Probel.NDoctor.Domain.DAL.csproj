@@ -51,7 +51,7 @@
     </Reference>
     <Reference Include="Probel.Mvvm, Version=1.0.0.39, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\nDoctor-Release\bin\lib\Probel.Mvvm\Probel.Mvvm.dll</HintPath>
+      <HintPath>..\..\..\lib\Probel.Mvvm\Probel.Mvvm.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
