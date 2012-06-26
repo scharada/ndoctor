@@ -107,8 +107,7 @@
         </member>
         <member name="M:Probel.Mvvm.Validation.ValidatableObject.IsValid">
             <summary>
-            Determines whether this instance is valid. That's all the validation rules are
-            returning <c>True</c>
+            Determines whether this item is valid. That's whether all condition returns <c>true</c>
             </summary>
             <returns>
               <c>true</c> if this instance is valid; otherwise, <c>false</c>.
