@@ -695,12 +695,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <typeparam name="T">The type of the item to remove</typeparam>
         /// <param name="id">The id of the item to remove.</param>
+        [Obsolete("User the remover instead")]
         protected void Remove(MedicalRecordDto item)
         {
             Assert.IsNotNull(item, "item");
             this.Remove<MedicalRecord>(item);
         }
 
+        [Obsolete("User the remover instead")]
         protected void Remove<TEntity>(BaseDto item)
             where TEntity : Entity
         {
@@ -717,16 +719,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The insurance.</param>
         protected void Update(MedicalRecordDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-
-            var entity = this.Session.Get<MedicalRecord>(item.Id);
-            var tag = this.Session.Get<Tag>(entity.Tag.Id);
-
-            //Reload the tag to avoid exception from nhibernate
-            Mapper.Map<MedicalRecordDto, MedicalRecord>(item, entity);
-
-            entity.Tag = tag;
-            this.Session.Merge(entity);
+            new Updator(this.Session).Update(item);
         }
 
         private void CloseSession()

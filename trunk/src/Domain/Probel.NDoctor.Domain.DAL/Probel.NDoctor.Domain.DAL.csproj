@@ -130,6 +130,8 @@
       <DependentUpon>Messages.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="Subcomponents\Creator.cs" />
+    <Compile Include="Subcomponents\Remover.cs" />
+    <Compile Include="Subcomponents\Updator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_Design\Domain\MedicalRecords.cd" />

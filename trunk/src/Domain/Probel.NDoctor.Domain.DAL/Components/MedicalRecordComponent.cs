@@ -111,35 +111,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="cabinet">The cabinet.</param>
         public void UpdateCabinet(LightPatientDto patient, MedicalRecordCabinetDto cabinet)
         {
-            using (var tx = this.Session.BeginTransaction())
-            {
-                cabinet.ForeachRecords(record =>
-                {
-                    switch (record.State)
-                    {
-                        case State.Clean:
-                            //Nothing to do
-                            break;
-                        case State.Updated:
-                            record.LastUpdate = DateTime.Now;
-                            this.Update(record);
-                            break;
-                        case State.Created:
-                            record.LastUpdate
-                                = record.CreationDate
-                                = DateTime.Now;
-                            this.Create(record);
-                            break;
-                        case State.Removed:
-                            this.Remove(record);
-                            break;
-                        default:
-                            Assert.FailOnEnumeration(record.State);
-                            break;
-                    }
-                });
-                tx.Commit();
-            }
+            new Updator(this.Session).Update(patient, cabinet);
         }
 
         #endregion Methods

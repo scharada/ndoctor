@@ -109,10 +109,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="patient">The patient.</param>
         public void Remove(IList<IllnessPeriodDto> illnessPeriods, LightPatientDto patient)
         {
-            foreach (var illnessPeriod in illnessPeriods)
-            {
-                this.Remove(illnessPeriod, patient);
-            }
+            new Remover(this.Session).Remove(illnessPeriods, patient);
         }
 
         /// <summary>
@@ -123,20 +120,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="patient">The patient.</param>
         public void Remove(IllnessPeriodDto illnessPeriod, LightPatientDto patient)
         {
-            Assert.IsNotNull(illnessPeriod, "illnessPeriod");
-            Assert.IsNotNull(patient, "patient");
-
-            var entity = this.Session.Get<Patient>(patient.Id);
-
-            for (int i = 0; i < entity.IllnessHistory.Count; i++)
-            {
-                if (entity.IllnessHistory[i].Id == illnessPeriod.Id)
-                {
-                    entity.IllnessHistory.RemoveAt(i);
-                    break;
-                }
-            }
-            this.Session.Update(entity);
+            new Remover(this.Session).Remove(illnessPeriod, patient);
         }
 
         #endregion Methods

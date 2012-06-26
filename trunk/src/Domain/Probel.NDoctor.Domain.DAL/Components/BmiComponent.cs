@@ -129,11 +129,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="dto">The dto to remove.</param>
         public void Remove(BmiDto bmi, LightPatientDto from)
         {
-            var ebmi = this.Session.Get<Bmi>(bmi.Id);
-            this.Session.Delete(ebmi);
-
-            var patient = this.Session.Get<Patient>(from.Id);
-            this.Session.Update(patient);
+            new Remover(this.Session).Remove(bmi, from);
         }
 
         /// <summary>
@@ -142,21 +138,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="date">The date.</param>
         public void RemoveBmiWithDate(LightPatientDto patient, DateTime date)
         {
-            var current = (from p in this.Session.Query<Patient>()
-                           where p.Id == patient.Id
-                           select p).FirstOrDefault();
-
-            var deletedCount = 0;
-            for (int i = 0; i < current.BmiHistory.Count; i++)
-            {
-                if (current.BmiHistory[i].Date.Date == date.Date)
-                {
-                    current.BmiHistory.Remove(current.BmiHistory[i]);
-                    deletedCount++;
-                    i--; //I've deleted one item, I step back and continue to check for deletion
-                }
-            }
-            this.Session.Update(current);
+            new Remover(this.Session).RemoveBmi(patient, date);
         }
 
         #endregion Methods

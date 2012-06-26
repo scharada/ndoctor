@@ -30,6 +30,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -236,20 +237,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
         private bool UpdateParent(LightPatientDto member, Patient entity)
         {
-            var isUpdated = false;
-            if (entity.Father != null && entity.Father.Id == member.Id)
-            {
-                entity.Father = null;
-                isUpdated = true;
-            }
-            if (entity.Mother != null && entity.Mother.Id == member.Id)
-            {
-                entity.Mother = null;
-                isUpdated = true;
-            }
-
-            if (isUpdated) this.Session.Update(entity);
-            return isUpdated;
+            return new Updator(this.Session).UpdateParent(member, entity);
         }
 
         #endregion Methods

@@ -45,9 +45,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </returns>
         public bool CanRemove(PathologyDto item)
         {
-            return (from t in this.Session.Query<Patient>()
-                    where t.IllnessHistory.Where(e => e.Pathology.Id == item.Id).Count() > 0
-                    select t).Count() == 0;
+            return new Remover(this.Session).CanRemove(item);
         }
 
         /// <summary>
@@ -59,9 +57,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </returns>
         public bool CanRemove(InsuranceDto item)
         {
-            return (from t in this.Session.Query<Patient>()
-                    where t.Insurance.Id == item.Id
-                    select t).Count() == 0;
+            return new Remover(this.Session).CanRemove(item);
         }
 
         /// <summary>
@@ -73,9 +69,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </returns>
         public bool CanRemove(PracticeDto item)
         {
-            return (from t in this.Session.Query<Patient>()
-                    where t.Practice.Id == item.Id
-                    select t).Count() == 0;
+            return new Remover(this.Session).CanRemove(item);
         }
 
         /// <summary>
@@ -87,12 +81,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </returns>
         public bool CanRemove(DrugDto item)
         {
-            return (from t in this.Session.Query<Patient>()
-                    where t.PrescriptionDocuments
-                        .Where(e => e.Prescriptions
-                            .Where(p => p.Drug.Id == item.Id).Count() > 0)
-                            .Count() > 0
-                    select t).Count() == 0;
+            return new Remover(this.Session).CanRemove(item);
         }
 
         /// <summary>
@@ -104,9 +93,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </returns>
         public bool CanRemove(ReputationDto item)
         {
-            return (from t in this.Session.Query<Patient>()
-                    where t.Reputation.Id == item.Id
-                    select t).Count() == 0;
+            return new Remover(this.Session).CanRemove(item);
         }
 
         /// <summary>
@@ -118,29 +105,12 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </returns>
         public bool CanRemove(TagDto item)
         {
-            var entity = this.Session.Get<Tag>(item.Id);
-            switch (item.Category)
-            {
-                case TagCategory.Doctor: return this.CanRemoveSpecialisation(entity);
-                case TagCategory.Picture: return this.CanRemovePictureTag(entity);
-                case TagCategory.MedicalRecord: return this.CanRemoveRecordTag(entity);
-                case TagCategory.Patient: return this.CanRemovePersonTag(entity);
-                case TagCategory.Drug: return this.CanRemoveDrugTag(entity);
-                case TagCategory.Prescription: return this.CanRemovePrescriptionTag(entity);
-                case TagCategory.PrescriptionDocument: return this.CanRemovePrescriptionDocumentTag(entity);
-                case TagCategory.Pathology: return this.CanRemovePathologyTag(entity);
-                case TagCategory.Appointment: return this.CanRemoveAppointmentTag(entity);
-                default:
-                    Assert.FailOnEnumeration(item.Category);
-                    return false;
-            }
+            return new Remover(this.Session).CanRemove(item);
         }
 
         public bool CanRemove(ProfessionDto item)
         {
-            return (from t in this.Session.Query<Patient>()
-                    where t.Profession.Id == item.Id
-                    select t).Count() == 0;
+            return new Remover(this.Session).CanRemove(item);
         }
 
         /// <summary>
@@ -152,9 +122,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </returns>
         public bool CanRemove(DoctorDto item)
         {
-            return (from t in this.Session.Query<Patient>()
-                    where t.Doctors.Where(e => e.Id == item.Id).Count() > 0
-                    select t).Count() == 0;
+            return new Remover(this.Session).CanRemove(item);
         }
 
         /// <summary>
@@ -229,9 +197,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item"></param>
         public void Remove(TagDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-            if (!this.CanRemove(item)) throw new ReferencialIntegrityException(Messages.Ex_ReferencialIntegrityException_Deletion);
-            this.Remove<Tag>(item);
+            new Remover(this.Session).Remove(item);
         }
 
         /// <summary>
@@ -240,9 +206,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The item to remove</param>
         public void Remove(PathologyDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-            if (!this.CanRemove(item)) throw new ReferencialIntegrityException(Messages.Ex_ReferencialIntegrityException_Deletion);
-            this.Remove<Pathology>(item);
+            new Remover(this.Session).Remove(item);
         }
 
         /// <summary>
@@ -251,7 +215,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The item to remove</param>
         public void Remove(DrugDto item)
         {
-            throw new System.NotImplementedException();
+            new Remover(this.Session).Remove(item);
         }
 
         /// <summary>
@@ -261,9 +225,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="id">The id of the item to remove.</param>
         public void Remove(InsuranceDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-            if (!this.CanRemove(item)) throw new ReferencialIntegrityException(Messages.Ex_ReferencialIntegrityException_Deletion);
-            this.Remove<Insurance>(item);
+            new Remover(this.Session).Remove(item);
         }
 
         /// <summary>
@@ -273,9 +235,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="id">The id of the item to remove.</param>
         public void Remove(PracticeDto item)
         {
-            Assert.IsNotNull(item, "item");
-            if (!this.CanRemove(item)) throw new ReferencialIntegrityException(Messages.Ex_ReferencialIntegrityException_Deletion);
-            this.Remove<Practice>(item);
+            new Remover(this.Session).Remove(item);
         }
 
         /// <summary>
@@ -284,9 +244,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The item.</param>
         public void Remove(DoctorDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-            if (!this.CanRemove(item)) throw new ReferencialIntegrityException(Messages.Ex_ReferencialIntegrityException_Deletion);
-            this.Remove<Doctor>(item);
+            new Remover(this.Session).Remove(item);
         }
 
         /// <summary>
@@ -295,8 +253,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="tag">The tag.</param>
         public void Update(TagDto tag)
         {
-            var entity = Mapper.Map<TagDto, Tag>(tag);
-            this.Session.Update(entity);
+            new Updator(this.Session).Update(tag);
         }
 
         /// <summary>
@@ -305,8 +262,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="profession">The tag.</param>
         public void Update(ProfessionDto profession)
         {
-            var entity = Mapper.Map<ProfessionDto, Profession>(profession);
-            this.Session.Update(entity);
+            new Updator(this.Session).Update(profession);
         }
 
         /// <summary>
@@ -315,8 +271,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="reputation">The tag.</param>
         public void Update(ReputationDto reputation)
         {
-            var entity = Mapper.Map<ReputationDto, Reputation>(reputation);
-            this.Session.Update(entity);
+            new Updator(this.Session).Update(reputation);
         }
 
         /// <summary>
@@ -325,8 +280,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="drug">The drug.</param>
         public void Update(DrugDto drug)
         {
-            var entity = Mapper.Map<DrugDto, Drug>(drug);
-            this.Session.Update(entity);
+            new Updator(this.Session).Update(drug);
         }
 
         /// <summary>
@@ -335,8 +289,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="pathology">The drug.</param>
         public void Update(PathologyDto pathology)
         {
-            var entity = Mapper.Map<PathologyDto, Pathology>(pathology);
-            this.Session.Update(entity);
+            new Updator(this.Session).Update(pathology);
         }
 
         /// <summary>
@@ -345,8 +298,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="practice">The drug.</param>
         public void Update(PracticeDto practice)
         {
-            var entity = Mapper.Map<PracticeDto, Practice>(practice);
-            this.Session.Update(entity);
+            new Updator(this.Session).Update(practice);
         }
 
         /// <summary>
@@ -355,8 +307,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="insurance">The drug.</param>
         public void Update(InsuranceDto insurance)
         {
-            var entity = Mapper.Map<InsuranceDto, Insurance>(insurance);
-            this.Session.Update(entity);
+            new Updator(this.Session).Update(insurance);
         }
 
         /// <summary>
@@ -365,71 +316,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The item.</param>
         public void Update(DoctorDto item)
         {
-            var entity = Mapper.Map<DoctorDto, Doctor>(item);
-            this.Session.Update(entity);
-        }
-
-        private bool CanRemoveAppointmentTag(Tag entity)
-        {
-            return (from p in this.Session.Query<Appointment>()
-                    where p.Tag.Id == entity.Id
-                    select p).Count() == 0;
-        }
-
-        private bool CanRemoveDrugTag(Tag entity)
-        {
-            return (from p in this.Session.Query<Drug>()
-                    where p.Tag.Id == entity.Id
-                    select p).Count() == 0;
-        }
-
-        private bool CanRemovePathologyTag(Tag entity)
-        {
-            return (from p in this.Session.Query<Pathology>()
-                    where p.Tag.Id == entity.Id
-                    select p).Count() == 0;
-        }
-
-        private bool CanRemovePersonTag(Tag entity)
-        {
-            return (from p in this.Session.Query<Person>()
-                    where p.Tag.Id == entity.Id
-                    select p).Count() == 0;
-        }
-
-        private bool CanRemovePictureTag(Tag entity)
-        {
-            return (from p in this.Session.Query<Picture>()
-                    where p.Tag.Id == entity.Id
-                    select p).Count() == 0;
-        }
-
-        private bool CanRemovePrescriptionDocumentTag(Tag entity)
-        {
-            return (from p in this.Session.Query<Prescription>()
-                    where p.Tag.Id == entity.Id
-                    select p).Count() == 0;
-        }
-
-        private bool CanRemovePrescriptionTag(Tag entity)
-        {
-            return (from p in this.Session.Query<Prescription>()
-                    where p.Tag.Id == entity.Id
-                    select p).Count() == 0;
-        }
-
-        private bool CanRemoveRecordTag(Tag entity)
-        {
-            return (from r in this.Session.Query<MedicalRecord>()
-                    where r.Tag.Id == entity.Id
-                    select r).Count() == 0;
-        }
-
-        private bool CanRemoveSpecialisation(Tag tag)
-        {
-            return (from d in this.Session.Query<Doctor>()
-                    where d.Specialisation.Id == tag.Id
-                    select d).Count() == 0;
+            new Updator(this.Session).Update(item);
         }
 
         #endregion Methods

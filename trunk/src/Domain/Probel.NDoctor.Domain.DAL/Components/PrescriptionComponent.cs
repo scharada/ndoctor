@@ -65,12 +65,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The item.</param>
         public void Remove(PrescriptionDocumentDto item)
         {
-            foreach (var prescription in item.Prescriptions)
-            {
-                this.Remove<Prescription>(item);
-            }
-
-            this.Remove<PrescriptionDocument>(item);
+            new Remover(this.Session).Remove(item);
         }
 
         /// <summary>
@@ -79,7 +74,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The item.</param>
         public void Remove(PrescriptionDto item)
         {
-            this.Remove<Prescription>(item);
+            new Remover(this.Session).Remove(item);
         }
 
         /// <summary>
@@ -88,10 +83,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The item.</param>
         public void Update(PrescriptionDto item)
         {
-            var entity = this.Session.Get<Prescription>(item.Id);
-            Mapper.Map<PrescriptionDto, Prescription>(item, entity);
-
-            this.Session.Update(entity);
+            new Updator(this.Session).Update(item);
         }
 
         #endregion Methods

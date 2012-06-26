@@ -132,17 +132,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         [Granted(To.EditCalendar)]
         public void Remove(AppointmentDto meeting, LightPatientDto patient)
         {
-            var patientEntity = this.Session.Get<Patient>(patient.Id);
-
-            var toRemove = (from a in patientEntity.Appointments
-                            where a.Id == meeting.Id
-                            select a).FirstOrDefault();
-            if (toRemove == null) throw new EntityNotFoundException(typeof(Appointment));
-
-            patientEntity.Appointments.Remove(toRemove);
-
-            this.Session.Update(patientEntity);
-            this.Session.Delete(toRemove);
+            new Remover(this.Session).Remove(meeting, patient);
         }
 
         private bool IsNotOverlapping(List<Appointment> appointments, DateRange slot)

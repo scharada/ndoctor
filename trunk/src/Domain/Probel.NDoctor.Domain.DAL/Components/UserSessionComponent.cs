@@ -121,9 +121,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         [Granted(To.MetaWrite)]
         public void Update(UserDto item)
         {
-            var entity = this.Session.Get<User>(item.Id);
-            Mapper.Map<UserDto, User>(item, entity);
-            this.Session.Update(entity);
+            new Updator(this.Session).Update(item);
         }
 
         /// <summary>
@@ -134,11 +132,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         [Granted(To.MetaWrite)]
         public void UpdatePassword(LightUserDto user, string password)
         {
-            var entity = this.Session.Get<User>(user.Id);
-            if (entity == null) throw new EntityNotFoundException(typeof(User));
-
-            entity.Password = password;
-            this.Session.Update(entity);
+            new Updator(this.Session).Update(user, password);
         }
 
         #endregion Methods

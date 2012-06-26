@@ -204,42 +204,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="doctor">The doctor.</param>
         public void RemoveDoctorFor(LightPatientDto patient, LightDoctorDto doctor)
         {
-            var patientEntity = this.Session.Get<Patient>(patient.Id);
-            var doctorEntity = this.Session.Get<Doctor>(doctor.Id);
-
-            var doctorToDel = this.FindDoctorToDel(doctor, patientEntity);
-            var patientToDel = this.FindPatientToDel(patient, doctorEntity);
-
-            patientEntity.Doctors.Remove(doctorToDel);
-            doctorEntity.Patients.Remove(patientToDel);
-
-            using (var tx = this.Session.Transaction)
-            {
-                tx.Begin();
-                this.Session.Update(patientEntity);
-                this.Session.Update(doctorEntity);
-                tx.Commit();
-            }
-        }
-
-        private Doctor FindDoctorToDel(LightDoctorDto doctor, Patient patientEntity)
-        {
-            var doctorToDel = (from d in patientEntity.Doctors
-                               where d.Id == doctor.Id
-                               select d).FirstOrDefault();
-
-            if (doctorToDel == null) throw new EntityNotFoundException(typeof(Doctor));
-            else return doctorToDel;
-        }
-
-        private Patient FindPatientToDel(LightPatientDto patient, Doctor doctorEntity)
-        {
-            var patientToDel = (from p in doctorEntity.Patients
-                                where p.Id == patient.Id
-                                select p).FirstOrDefault();
-
-            if (patientToDel == null) throw new EntityNotFoundException(typeof(Patient));
-            else return patientToDel;
+            new Remover(this.Session).Remove(doctor, patient);
         }
 
         private bool NotIn(Patient patient, Doctor toCheck)

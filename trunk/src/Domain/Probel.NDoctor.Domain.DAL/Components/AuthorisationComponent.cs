@@ -31,7 +31,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.EqualityComparers;
-    using Probel.NDoctor.Domain.DAL.Helpers;
     using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO;
@@ -202,8 +201,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="role">The role.</param>
         public void Update(RoleDto role)
         {
-            var entity = Mapper.Map<RoleDto, Role>(role);
-            this.Session.Update(entity);
+            new Updator(this.Session).Update(role);
         }
 
         /// <summary>
@@ -212,10 +210,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="user">The user.</param>
         public void Update(LightUserDto user)
         {
-            var entity = this.Session.Get<User>(user.Id);
-            Mapper.Map<LightUserDto, User>(user, entity);
-
-            this.Session.Update(entity);
+            new Updator(this.Session).Update(user);
         }
 
         #endregion Methods
