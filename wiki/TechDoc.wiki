@@ -1,7 +1,7 @@
 = Documentation: =
 Here's the repository of the documentation about external tools and API used in nDoctor project
 == nAnt: ==
-[http://www.codeproject.com/Articles/38718/Building-and-Deploying-Using-NAnt Basic tutorial] (in French)
+[http://www.codeproject.com/Articles/38718/Building-and-Deploying-Using-NAnt Basic tutorial]
 
 == Rich text editor ==
 [http://deepin.developpez.com/tutoriels/silverlight/editeur-texte-riche/ Tutorial]
