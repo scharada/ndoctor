@@ -17,6 +17,7 @@
 namespace Probel.NDoctor.Plugins.MeetingManager.View
 {
     using System.Windows.Controls;
+
     using Probel.NDoctor.Plugins.MeetingManager.ViewModel;
 
     /// <summary>

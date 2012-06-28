@@ -17,6 +17,7 @@
 namespace Probel.NDoctor.Plugins.PictureManager.View
 {
     using System.Windows.Controls;
+
     using Probel.NDoctor.Plugins.PictureManager.ViewModel;
 
     /// <summary>

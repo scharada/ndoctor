@@ -34,6 +34,7 @@ namespace Probel.NDoctor.Plugins.Administration.View
     using System.Windows.Media.Imaging;
     using System.Windows.Navigation;
     using System.Windows.Shapes;
+
     using Probel.NDoctor.Plugins.Administration.ViewModel;
 
     /// <summary>
