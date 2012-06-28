@@ -43,11 +43,11 @@ namespace Probel.NDoctor.Plugins.Authorisation
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.Authorisation;component/Images\{0}.png";
 
+        private readonly ViewService ViewService = new ViewService();
+
         private IAuthorisationComponent component;
         private PageEventArgs.DisplayedPage displayed;
-        private ManageUserView manageUserView;
         private ICommand navigateCommand;
-        private Workbench workbench;
 
         #endregion Fields
 
@@ -69,6 +69,11 @@ namespace Probel.NDoctor.Plugins.Authorisation
 
         #region Methods
 
+        public override void Close()
+        {
+            this.ViewService.CloseAll();
+        }
+
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
         /// Every task that could throw exception should be in this method and not in the ctor.
@@ -76,11 +81,6 @@ namespace Probel.NDoctor.Plugins.Authorisation
         public override void Initialise()
         {
             Assert.IsNotNull(PluginContext.Host, "To initialise the plugin, IPluginHost should be set.");
-            PluginContext.Host.Invoke(() =>
-            {
-                this.workbench = new Workbench();
-                this.manageUserView = new ManageUserView();
-            });
             this.BuildButtons();
             this.BuildContextMenu();
         }
@@ -152,8 +152,8 @@ namespace Probel.NDoctor.Plugins.Authorisation
 
         private void NavigateRole()
         {
-            PluginContext.Host.Navigate(this.workbench);
-            ((WorkbenchViewModel)this.workbench.DataContext).Refresh();
+            PluginContext.Host.Navigate(this.ViewService.WorkbenchView);
+            this.ViewService.WorkbenchViewModel.Refresh();
             this.displayed = PageEventArgs.DisplayedPage.RoleManager;
 
             this.contextualMenu.IsVisible = true;
@@ -162,8 +162,8 @@ namespace Probel.NDoctor.Plugins.Authorisation
 
         private void NavigateUser()
         {
-            PluginContext.Host.Navigate(this.manageUserView);
-            ((ManageUserViewModel)this.manageUserView.DataContext).Refresh();
+            PluginContext.Host.Navigate(this.ViewService.ManageUserView);
+            this.ViewService.ManageUserViewModel.Refresh();
             this.displayed = PageEventArgs.DisplayedPage.UserManager;
             Notifyer.OnShowing(this, PageEventArgs.DisplayedPage.UserManager);
 

@@ -80,8 +80,8 @@
     <Compile Include="View\AddBmiView.xaml.cs">
       <DependentUpon>AddBmiView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Workbench.xaml.cs">
-      <DependentUpon>Workbench.xaml</DependentUpon>
+    <Compile Include="View\WorkbenchView.xaml.cs">
+      <DependentUpon>WorkbenchView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -160,7 +160,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Workbench.xaml">
+    <Page Include="View\WorkbenchView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

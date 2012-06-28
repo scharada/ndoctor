@@ -34,6 +34,11 @@ namespace Probel.NDoctor.View.Test.Stubs
 
         #region Methods
 
+        public override void Close()
+        {
+            Console.WriteLine("Close plugin");
+        }
+
         public override void Initialise()
         {
             Console.WriteLine("Initialise method of 'PluginStub' called.");

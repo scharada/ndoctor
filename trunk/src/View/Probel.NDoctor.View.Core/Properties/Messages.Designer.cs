@@ -115,6 +115,24 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Female.
+        /// </summary>
+        internal static string Gender_Female {
+            get {
+                return ResourceManager.GetString("Gender_Female", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Male.
+        /// </summary>
+        internal static string Gender_Male {
+            get {
+                return ResourceManager.GetString("Gender_Male", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         internal static string Language_Englisg {

@@ -47,6 +47,7 @@ namespace Probel.NDoctor.View.Plugins
         [ImportingConstructor]
         public Plugin(Version version)
         {
+            PluginContext.Host.PluginsClosing += (sender, e) => this.Close();
             this.errorHandler = new ErrorHandler(this);
             this.Version = version;
         }
@@ -110,7 +111,8 @@ namespace Probel.NDoctor.View.Plugins
 
         protected RibbonContextualTabGroupData contextualMenu
         {
-            get; set;
+            get;
+            set;
         }
 
         protected CultureInfo CultureInfo
@@ -143,6 +145,11 @@ namespace Probel.NDoctor.View.Plugins
         {
             this.IsActive = true;
         }
+
+        /// <summary>
+        /// Closes this plugin. That's unload all the data. Typically used when the connected user disconnect.
+        /// </summary>        
+        public abstract void Close();
 
         /// <summary>
         /// Deactivates this plugin. That's the PluginHost CAN'T display and the user CAN'T use this plugin.
@@ -226,25 +233,6 @@ namespace Probel.NDoctor.View.Plugins
             if (this.Validator == null) throw new PluginException(Messages.Ex_PluginException_NoValidator);
 
             return this.Validator.IsValid(host);
-        }
-
-        /// <summary>
-        /// Shows this instance into the workbench area.
-        /// </summary>
-        /// <exception cref="DeactivatedPluginException">When the user try to show a deactivated plugin</exception>
-        public void Show()
-        {
-            if (this.IsActive) PluginContext.Host.Navigate(this.Page);
-            else throw new DeactivatedPluginException();
-        }
-
-        /// <summary>
-        /// If the plugin is activated, shows it in the workbench area.
-        /// Otherwise, does nothing.d
-        /// </summary>
-        public void TryShow()
-        {
-            if (this.IsActive) PluginContext.Host.Navigate(this.Page);
         }
 
         /// <summary>

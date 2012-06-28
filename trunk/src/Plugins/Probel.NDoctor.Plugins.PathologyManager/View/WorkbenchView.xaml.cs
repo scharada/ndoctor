@@ -14,35 +14,24 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Plugins.FamilyManager.View
+namespace Probel.NDoctor.Plugins.PathologyManager.View
 {
     using System.Windows.Controls;
-    using System.Windows.Input;
-
-    using Probel.NDoctor.Plugins.FamilyManager.ViewModel;
+    using Probel.NDoctor.Plugins.PathologyManager.ViewModel;
 
     /// <summary>
-    /// Interaction logic for RemoveFamilyWorkbench.xaml
+    /// Interaction logic for Workbench.xaml
     /// </summary>
-    public partial class RemoveFamilyWorkbench : UserControl
+    public partial class WorkbenchView : Page
     {
         #region Constructors
 
-        public RemoveFamilyWorkbench()
+        public WorkbenchView()
         {
             InitializeComponent();
-            this.DataContext = new RemoveFamilyViewModel();
+            this.DataContext = new WorkbenchViewModel();
         }
 
         #endregion Constructors
-
-        #region Methods
-
-        private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            Keyboard.Focus(this.focused);
-        }
-
-        #endregion Methods
     }
 }

@@ -46,6 +46,8 @@ namespace Probel.NDoctor.Plugins.BmiRecord
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.BmiRecord;component/Images\{0}.png";
 
+        private readonly ViewService ViewService = new ViewService();
+
         private IBmiComponent component;
         private ICommand navigateCommand;
 
@@ -74,6 +76,11 @@ namespace Probel.NDoctor.Plugins.BmiRecord
 
         #region Methods
 
+        public override void Close()
+        {
+            this.ViewService.CloseAll();
+        }
+
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
         /// Every task that could throw exception should be in this method and not in the ctor.
@@ -83,7 +90,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord
             this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
             PluginContext.Host.Invoke(() =>
             {
-                //this.workbench = ViewFactory.Workbench;
                 this.BuildButtons();
                 this.BuildContextMenu();
             });
@@ -113,7 +119,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
             PluginContext.Host.AddContextualMenu(this.contextualMenu);
             PluginContext.Host.AddTab(tab);
 
-            ICommand addPeriodCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddBmi, ViewFactory.AddBmiView), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            ICommand addPeriodCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddBmi, this.ViewService.AddBmiView), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddBmi, imgUri.FormatWith("Add"), addPeriodCommand) { Order = 1, });
         }
 
@@ -129,8 +135,8 @@ namespace Probel.NDoctor.Plugins.BmiRecord
 
         private void Navigate()
         {
-            PluginContext.Host.Navigate(ViewFactory.Workbench);
-            ((WorkbenchViewModel)ViewFactory.Workbench.DataContext).Refresh();
+            PluginContext.Host.Navigate(this.ViewService.WorkbenchView);
+            ((WorkbenchViewModel)this.ViewService.WorkbenchView.DataContext).Refresh();
 
             this.ShowContextMenu();
         }

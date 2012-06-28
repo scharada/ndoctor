@@ -394,4 +394,12 @@ The application will close. Check the logs for further  information</value>
     <value>Automatically display contextual menus</value>
     <comment>Automatically display contextual menus</comment>
   </data>
+  <data name="Gender_Female" xml:space="preserve">
+    <value>Female</value>
+    <comment>Female</comment>
+  </data>
+  <data name="Gender_Male" xml:space="preserve">
+    <value>Male</value>
+    <comment>Male</comment>
+  </data>
 </root>

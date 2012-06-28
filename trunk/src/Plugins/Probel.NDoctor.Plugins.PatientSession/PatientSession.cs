@@ -66,6 +66,14 @@ namespace Probel.NDoctor.Plugins.PatientSession
         #region Methods
 
         /// <summary>
+        /// Closes this plugin. That's unload all the data. Typically used when the connected user disconnect.
+        /// </summary>
+        public override void Close()
+        {
+            //Nothing to close. It is only InnerWindows
+        }
+
+        /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
         /// Every task that could throw exception should be in this method and not in the ctor.
         /// </summary>

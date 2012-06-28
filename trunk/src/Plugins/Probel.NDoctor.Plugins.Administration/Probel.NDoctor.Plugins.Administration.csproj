@@ -85,6 +85,7 @@
     </Compile>
     <Compile Include="Translations\WorkbenchText.cs" />
     <Compile Include="ViewModel\AddDoctorViewModel.cs" />
+    <Compile Include="ViewModel\AddDrugViewModel.cs" />
     <Compile Include="ViewModel\AddInsuranceViewModel.cs" />
     <Compile Include="ViewModel\AddPracticeViewModel.cs" />
     <Compile Include="ViewModel\AddProfessionViewModel.cs" />
@@ -95,6 +96,9 @@
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
     <Compile Include="View\AddDoctorView.xaml.cs">
       <DependentUpon>AddDoctorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddDrugView.xaml.cs">
+      <DependentUpon>AddDrugView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddInsuranceView.xaml.cs">
       <DependentUpon>AddInsuranceView.xaml</DependentUpon>
@@ -111,8 +115,8 @@
     <Compile Include="View\AddSpecialisationView.xaml.cs">
       <DependentUpon>AddSpecialisationView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Workbench.xaml.cs">
-      <DependentUpon>Workbench.xaml</DependentUpon>
+    <Compile Include="View\WorkbenchView.xaml.cs">
+      <DependentUpon>WorkbenchView.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Messages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -172,6 +176,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AddDrugView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddInsuranceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -192,7 +200,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Workbench.xaml">
+    <Page Include="View\WorkbenchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

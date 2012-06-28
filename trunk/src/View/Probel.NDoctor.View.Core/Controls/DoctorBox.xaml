@@ -67,11 +67,7 @@
                          Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Doctor.LastName, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Doctor.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <ComboBox Grid.Column="0"  Style="{StaticResource controlStyle}"                                  
-                                  ItemsSource="{Binding Path=Genders}"
-                                  SelectedItem="{Binding Path=SelectedGender}"
-                                  DisplayMemberPath="Item1"
-                                  SelectedIndex="0"/>
+                <ctrl:GenderBox Gender="{Binding ElementName=this, Path=Doctor.Gender, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 <ComboBox Grid.Column="0" Style="{StaticResource controlStyle}"
                           ItemsSource="{Binding ElementName=this, Path=Specialisations}"
                           SelectedItem="{Binding ElementName=this, Path=Doctor.Specialisation}"

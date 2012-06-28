@@ -23,11 +23,11 @@ namespace Probel.NDoctor.Plugins.BmiRecord.View
     /// <summary>
     /// Interaction logic for Workbench.xaml
     /// </summary>
-    public partial class Workbench : Page
+    public partial class WorkbenchView : Page
     {
         #region Constructors
 
-        public Workbench()
+        public WorkbenchView()
         {
             InitializeComponent();
             this.DataContext = new WorkbenchViewModel();

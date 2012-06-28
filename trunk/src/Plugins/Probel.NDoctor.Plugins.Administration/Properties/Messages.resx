@@ -145,6 +145,10 @@
     <value>Ajouter un médecin</value>
     <comment>Add a doctor</comment>
   </data>
+  <data name="Title_AddDrug" xml:space="preserve">
+    <value>Add a drug</value>
+    <comment>Add a drug</comment>
+  </data>
   <data name="Title_AddInsurance" xml:space="preserve">
     <value>Add an insurance</value>
     <comment>Add an insurance</comment>

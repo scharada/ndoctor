@@ -19,34 +19,57 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.View.Core.Translations
+namespace Probel.NDoctor.Plugins.PictureManager.Helpers
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
 
-    using Probel.NDoctor.View.Core.Properties;
+    using Probel.NDoctor.Plugins.PictureManager.View;
+    using Probel.NDoctor.Plugins.PictureManager.ViewModel;
 
-    public static class BoxText
+    public class ViewService
     {
+        #region Fields
+
+        private static WorkbenchView workbenchView;
+
+        #endregion Fields
+
         #region Properties
 
-        public static string BtnAdd
+        public WorkbenchView WorkbenchView
         {
-            get { return Messages.Btn_Add; }
+            get
+            {
+                if (workbenchView == null) { workbenchView = new WorkbenchView(); }
+                return workbenchView;
+            }
         }
 
-        public static string Female
+        public WorkbenchViewModel WorkbenchViewModel
         {
-            get { return Messages.Gender_Female; }
-        }
-
-        public static string Male
-        {
-            get { return Messages.Gender_Male; }
+            get
+            {
+                return (WorkbenchViewModel)this.WorkbenchView.DataContext;
+            }
         }
 
         #endregion Properties
+
+        #region Methods
+
+        public void CloseAll()
+        {
+            this.CloseWorkbenchView();
+        }
+
+        private void CloseWorkbenchView()
+        {
+            workbenchView = null;
+        }
+
+        #endregion Methods
     }
 }

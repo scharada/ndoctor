@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,25 +16,39 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Plugins.Authorisation.View
+
+#endregion Header
+
+namespace Probel.NDoctor.Plugins.Administration.ViewModel
 {
-    using System.Windows.Controls;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
-    using Probel.NDoctor.Plugins.Authorisation.ViewModel;
+    using Probel.NDoctor.Domain.DTO.Objects;
 
-    /// <summary>
-    /// Interaction logic for Workbench.xaml
-    /// </summary>
-    public partial class Workbench : Page
+    class AddDrugViewModel : BaseBoxViewModel<DrugDto>
     {
         #region Constructors
 
-        public Workbench()
+        public AddDrugViewModel()
         {
-            InitializeComponent();
-            this.DataContext = new WorkbenchViewModel();
+            this.BoxItem = new DrugDto();
         }
 
         #endregion Constructors
+
+        #region Methods
+
+        protected override void AddItem()
+        {
+            using (this.Component.UnitOfWork)
+            {
+                this.Component.Create(this.BoxItem);
+            }
+        }
+
+        #endregion Methods
     }
 }

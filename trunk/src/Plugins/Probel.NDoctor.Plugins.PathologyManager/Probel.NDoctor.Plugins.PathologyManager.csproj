@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\Notifyer.cs" />
+    <Compile Include="Helpers\ViewService.cs" />
     <Compile Include="PathologyManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -105,8 +106,8 @@
     <Compile Include="View\AddPathologyView.xaml.cs">
       <DependentUpon>AddPathologyView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Workbench.xaml.cs">
-      <DependentUpon>Workbench.xaml</DependentUpon>
+    <Compile Include="View\WorkbenchView.xaml.cs">
+      <DependentUpon>WorkbenchView.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Messages.fr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -178,7 +179,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Workbench.xaml">
+    <Page Include="View\WorkbenchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

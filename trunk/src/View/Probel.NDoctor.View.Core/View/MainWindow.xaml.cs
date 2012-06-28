@@ -59,8 +59,6 @@ namespace Probel.NDoctor.View.Core.View
         public MainWindow()
         {
             InitializeComponent();
-
-            this.Logger = LogManager.GetLogger(typeof(MainWindow));
             PluginContext.Host = this;
             this.DataContext = new MainWindowViewModel();
             this.WriteStatus(StatusType.Info, Messages.Msg_Ready);
@@ -74,6 +72,11 @@ namespace Probel.NDoctor.View.Core.View
         /// Occurs when a new user has connected.
         /// </summary>
         public event EventHandler NewUserConnected;
+
+        /// <summary>
+        /// Notify all the plugins that a closing demand was triggered
+        /// </summary>
+        public event EventHandler<EventArgs> PluginsClosing;
 
         #endregion Events
 
@@ -168,12 +171,6 @@ namespace Probel.NDoctor.View.Core.View
             }
         }
 
-        private ILog Logger
-        {
-            get;
-            set;
-        }
-
         #endregion Properties
 
         #region Methods
@@ -263,6 +260,14 @@ namespace Probel.NDoctor.View.Core.View
         }
 
         /// <summary>
+        /// Closes the plugins.
+        /// </summary>
+        public void ClosePlugins()
+        {
+            this.OnPluginsClosing();
+        }
+
+        /// <summary>
         /// Finds in the home menu the control with the specified name in the specified group.
         /// </summary>
         /// <param name="name">The name.</param>
@@ -312,7 +317,7 @@ namespace Probel.NDoctor.View.Core.View
         /// Navigates to specified page.
         /// </summary>
         /// <param name="page">The page.</param>
-        public void Navigate(Page page)
+        public void Navigate(object page)
         {
             Assert.IsNotNull(page, "The page where to navigate shouldn't be null");
 
@@ -390,6 +395,14 @@ namespace Probel.NDoctor.View.Core.View
         public void WriteStatusReady()
         {
             this.WriteStatus(StatusType.Info, Messages.Msg_Ready);
+        }
+
+        protected void OnPluginsClosing()
+        {
+            if (this.PluginsClosing != null)
+            {
+                this.PluginsClosing(this, EventArgs.Empty);
+            }
         }
 
         private void AddButton(RibbonTabData tab, string goupName, RibbonControlData button)

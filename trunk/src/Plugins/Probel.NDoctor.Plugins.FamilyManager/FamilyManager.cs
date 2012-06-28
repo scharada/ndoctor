@@ -30,6 +30,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.FamilyManager.Helpers;
     using Probel.NDoctor.Plugins.FamilyManager.Properties;
     using Probel.NDoctor.Plugins.FamilyManager.View;
     using Probel.NDoctor.Plugins.FamilyManager.ViewModel;
@@ -45,10 +46,11 @@ namespace Probel.NDoctor.Plugins.FamilyManager
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.FamilyManager;component/Images\{0}.png";
 
+        private readonly ViewService ViewService = new ViewService();
+
         private ICommand navAddRelationCommand;
         private ICommand navigateCommand;
         private ICommand navRemoveRelationCommand;
-        private Workbench workbench;
 
         #endregion Fields
 
@@ -65,27 +67,12 @@ namespace Probel.NDoctor.Plugins.FamilyManager
 
         #endregion Constructors
 
-        #region Properties
-
-        private WorkbenchViewModel ViewModel
-        {
-            get
-            {
-                Assert.IsNotNull(PluginContext.Host, string.Format(
-                    "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin '{0}'", this.GetType().Name));
-                if (this.workbench.DataContext == null) this.workbench.DataContext = new WorkbenchViewModel();
-                return this.workbench.DataContext as WorkbenchViewModel;
-            }
-            set
-            {
-                Assert.IsNotNull(this.workbench.DataContext);
-                this.workbench.DataContext = value;
-            }
-        }
-
-        #endregion Properties
-
         #region Methods
+
+        public override void Close()
+        {
+            this.ViewService.CloseAll();
+        }
 
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
@@ -97,7 +84,6 @@ namespace Probel.NDoctor.Plugins.FamilyManager
 
             PluginContext.Host.Invoke(() =>
             {
-                this.workbench = new Workbench();
                 this.BuildButtons();
                 this.BuildContextMenu();
             });
@@ -121,7 +107,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager
             {
                 try
                 {
-                    if (this.ViewModel != null) this.ViewModel.Reset();
+                    this.ViewService.WorkbenchViewModel.Reset();
 
                     InnerWindow.Show(Messages.Btn_Add, new AddFamilyWorkbench());
                 }
@@ -134,7 +120,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager
             {
                 try
                 {
-                    if (this.ViewModel != null) this.ViewModel.Reset();
+                    this.ViewService.WorkbenchViewModel.Reset();
 
                     InnerWindow.Show(Messages.Btn_Remove, new RemoveFamilyWorkbench());
                 }
@@ -185,8 +171,8 @@ namespace Probel.NDoctor.Plugins.FamilyManager
         {
             try
             {
-                this.ViewModel.Refresh();
-                PluginContext.Host.Navigate(this.workbench);
+                this.ViewService.WorkbenchViewModel.Refresh();
+                PluginContext.Host.Navigate(this.ViewService.WorkbenchView);
 
                 this.ShowContextMenu();
             }

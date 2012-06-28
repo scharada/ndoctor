@@ -193,10 +193,6 @@
     <value>Une erreur est apparue pendant la recherche de prescriptions.</value>
     <comment>An error occured while searching prescriptions.</comment>
   </data>
-  <data name="Msg_FailToLoadPrescriptionManager" xml:space="preserve">
-    <value>Une erreur c'est produite pendant le chargement du gestionnaire de prescriptions.</value>
-    <comment>An error occured when loading the prescription manager.</comment>
-  </data>
   <data name="Msg_FoundPrescription" xml:space="preserve">
     <value>Prescriptions trouvées</value>
     <comment>Prescriptions were found</comment>

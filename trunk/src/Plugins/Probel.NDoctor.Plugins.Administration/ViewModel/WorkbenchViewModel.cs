@@ -73,7 +73,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                 PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAdministrationComponent>();
             }
 
-            Notifyer.ItemChanged += (sender, e) => this.Refresh();
+            Notifyer.Refreshing += (sender, e) => this.Refresh();
 
             #region Instanciates collections
             this.Insurances = new ObservableCollection<InsuranceDto>();
@@ -109,7 +109,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             this.RemoveDoctorCommand = new RelayCommand(() => this.RemoveDoctor(), () => this.SelectedDoctor != null);
             #endregion
 
-            Notifyer.ItemChanged += (sender, e) => this.Refresh();
+            Notifyer.Refreshing += (sender, e) => this.Refresh();
         }
 
         #endregion Constructors
@@ -413,7 +413,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                             this.component.Update(this.SelectedDoctor);
                         }
                         InnerWindow.Close();
-                        Notifyer.OnItemChanged(this);
+                        Notifyer.OnRefreshing(this);
                     }
                     catch (Exception ex) { this.HandleError(ex); }
                 }),
@@ -439,7 +439,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                             this.component.Update(this.SelectedDrug);
                         }
                         InnerWindow.Close();
-                        Notifyer.OnItemChanged(this);
+                        Notifyer.OnRefreshing(this);
                     }
                     catch (Exception ex) { this.HandleError(ex); }
                 }),
@@ -461,7 +461,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                             this.component.Update(this.SelectedInsurance);
                         }
                         InnerWindow.Close();
-                        Notifyer.OnItemChanged(this);
+                        Notifyer.OnRefreshing(this);
                     }
                     catch (Exception ex) { this.HandleError(ex); }
                 })
@@ -487,7 +487,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                             this.component.Update(this.SelectedPathology);
                         }
                         InnerWindow.Close();
-                        Notifyer.OnItemChanged(this);
+                        Notifyer.OnRefreshing(this);
                     }
                     catch (Exception ex) { this.HandleError(ex); }
                 }),
@@ -509,7 +509,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                             this.component.Update(this.SelectedPractice);
                         }
                         InnerWindow.Close();
-                        Notifyer.OnItemChanged(this);
+                        Notifyer.OnRefreshing(this);
                     }
                     catch (Exception ex) { this.HandleError(ex); }
                 }),
@@ -531,7 +531,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                             this.component.Update(this.SelectedProfession);
                         }
                         InnerWindow.Close();
-                        Notifyer.OnItemChanged(this);
+                        Notifyer.OnRefreshing(this);
                     }
                     catch (Exception ex) { this.HandleError(ex); }
                 }),
@@ -553,7 +553,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                             this.component.Update(this.SelectedReputation);
                         }
                         InnerWindow.Close();
-                        Notifyer.OnItemChanged(this);
+                        Notifyer.OnRefreshing(this);
                     }
                     catch (Exception ex) { this.HandleError(ex); }
                 }),
@@ -577,7 +577,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                             this.component.Update(this.SelectedTag);
                         }
                         InnerWindow.Close();
-                        Notifyer.OnItemChanged(this);
+                        Notifyer.OnRefreshing(this);
                     }
                     catch (Exception ex) { this.HandleError(ex); }
                 }),
@@ -598,7 +598,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         }
                         else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
                     }
-                    Notifyer.OnItemChanged(this);
+                    Notifyer.OnRefreshing(this);
                 }
             }
             catch (Exception ex) { this.HandleError(ex); }
@@ -616,6 +616,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                     }
                     else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
                 }
+                Notifyer.OnRefreshing(this);
             }
             catch (Exception ex) { this.HandleError(ex); }
         }
@@ -634,7 +635,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         }
                         else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
                     }
-                    Notifyer.OnItemChanged(this);
+                    Notifyer.OnRefreshing(this);
                 }
             }
             catch (Exception ex) { this.HandleError(ex); }
@@ -654,7 +655,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         }
                         else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
                     }
-                    Notifyer.OnItemChanged(this);
+                    Notifyer.OnRefreshing(this);
                 }
             }
             catch (Exception ex) { this.HandleError(ex); }
@@ -674,7 +675,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         }
                         else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
                     }
-                    Notifyer.OnItemChanged(this);
+                    Notifyer.OnRefreshing(this);
                 }
             }
             catch (Exception ex) { this.HandleError(ex); }
@@ -694,7 +695,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         }
                         else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
                     }
-                    Notifyer.OnItemChanged(this);
+                    Notifyer.OnRefreshing(this);
                 }
             }
             catch (Exception ex) { this.HandleError(ex); }
@@ -714,7 +715,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         }
                         else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
                     }
-                    Notifyer.OnItemChanged(this);
+                    Notifyer.OnRefreshing(this);
                 }
             }
             catch (Exception ex) { this.HandleError(ex); }
@@ -734,7 +735,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         }
                         else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
                     }
-                    Notifyer.OnItemChanged(this);
+                    Notifyer.OnRefreshing(this);
                 }
             }
             catch (Exception ex) { this.HandleError(ex); }
@@ -754,7 +755,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         }
                         else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
                     }
-                    Notifyer.OnItemChanged(this);
+                    Notifyer.OnRefreshing(this);
                 }
             }
             catch (Exception ex) { this.HandleError(ex); }

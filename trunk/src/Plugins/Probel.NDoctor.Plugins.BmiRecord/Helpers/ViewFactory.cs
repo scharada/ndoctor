@@ -3,20 +3,55 @@
     using Probel.NDoctor.Plugins.BmiRecord.View;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public static class ViewFactory
+    public class ViewService
     {
+        #region Fields
+
+        private static AddBmiView addBmiView;
+        private static WorkbenchView workbenchView;
+
+        #endregion Fields
+
         #region Properties
 
-        public static AddBmiView AddBmiView
+        public AddBmiView AddBmiView
         {
-            get { return new AddBmiView(); }
+            get
+            {
+                if (addBmiView == null) { addBmiView = new AddBmiView(); }
+                return addBmiView;
+            }
         }
 
-        public static Workbench Workbench
+        public WorkbenchView WorkbenchView
         {
-            get { return new Workbench(); }
+            get
+            {
+                if (workbenchView == null) { workbenchView = new WorkbenchView(); }
+                return workbenchView;
+            }
         }
 
         #endregion Properties
+
+        #region Methods
+
+        public void CloseAll()
+        {
+            this.CloseAddBmiView();
+            this.CloseWorkbenchView();
+        }
+
+        private void CloseAddBmiView()
+        {
+            addBmiView = null;
+        }
+
+        private void CloseWorkbenchView()
+        {
+            workbenchView = null;
+        }
+
+        #endregion Methods
     }
 }

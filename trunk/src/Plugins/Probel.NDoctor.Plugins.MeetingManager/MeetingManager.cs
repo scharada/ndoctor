@@ -24,19 +24,15 @@ namespace Probel.NDoctor.Plugins.MeetingManager
     using AutoMapper;
 
     using Probel.Helpers.Assertion;
-    using Probel.Helpers.Data;
     using Probel.Helpers.Strings;
     using Probel.Helpers.WPF.Calendar.Model;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
-    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MeetingManager.Helpers;
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.Plugins.MeetingManager.View;
     using Probel.NDoctor.Plugins.MeetingManager.ViewModel;
-    using Probel.NDoctor.View.Core.Controls;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -49,8 +45,9 @@ namespace Probel.NDoctor.Plugins.MeetingManager
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.MeetingManager;component/Images\{0}.png";
 
+        private readonly ViewService ViewService = new ViewService();
+
         private ICommand navigateCommand;
-        private Workbench workbench;
 
         #endregion Fields
 
@@ -77,25 +74,14 @@ namespace Probel.NDoctor.Plugins.MeetingManager
             }
         }
 
-        private WorkbenchViewModel ViewModel
-        {
-            get
-            {
-                Assert.IsNotNull(PluginContext.Host, string.Format(
-                    "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin '{0}'", this.GetType().Name));
-                if (this.workbench.DataContext == null) this.workbench.DataContext = new WorkbenchViewModel();
-                return this.workbench.DataContext as WorkbenchViewModel;
-            }
-            set
-            {
-                Assert.IsNotNull(this.workbench.DataContext);
-                this.workbench.DataContext = value;
-            }
-        }
-
         #endregion Properties
 
         #region Methods
+
+        public override void Close()
+        {
+            this.ViewService.CloseAll();
+        }
 
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
@@ -104,12 +90,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager
         public override void Initialise()
         {
             Assert.IsNotNull(PluginContext.Host, "To initialise the plugin, IPluginHost should be set.");
-
-            PluginContext.Host.Invoke(() =>
-            {
-                this.workbench = new Workbench();
-                this.workbench.DataContext = this.ViewModel;
-            });
             this.BuildButtons();
             this.BuildContextMenu();
         }
@@ -141,13 +121,13 @@ namespace Probel.NDoctor.Plugins.MeetingManager
             PluginContext.Host.AddContextualMenu(this.contextualMenu);
             PluginContext.Host.AddTab(tab);
 
-            ICommand addCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddMeeting, ViewFactory.AddMeetingView), () => IsCalendatEditor);
+            ICommand addCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddMeeting, this.ViewService.AddMeetingView), () => IsCalendatEditor);
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddMeeting, imgUri.FormatWith("Add"), addCommand) { Order = 1, });
 
-            ICommand removeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_RemoveMeeting, ViewFactory.RemoveMeetingView), () => IsCalendatEditor);
+            ICommand removeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_RemoveMeeting, this.ViewService.RemoveMeetingView), () => IsCalendatEditor);
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_RemoveMeeting, imgUri.FormatWith("Delete"), removeCommand) { Order = 2, });
 
-            ICommand addCategoryCommand = new RelayCommand(() => InnerWindow.Show(Messages.Msg_AddCategory, ViewFactory.AddCategoryView), () => IsCalendatEditor);
+            ICommand addCategoryCommand = new RelayCommand(() => InnerWindow.Show(Messages.Msg_AddCategory, this.ViewService.AddCategoryView), () => IsCalendatEditor);
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Msg_AddCategory, imgUri.FormatWith("AddCategory"), addCategoryCommand) { Order = 3, });
         }
 
@@ -166,7 +146,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager
             try
             {
                 //this.ViewModel.Refresh();
-                PluginContext.Host.Navigate(this.workbench);
+                PluginContext.Host.Navigate(this.ViewService.WorkbenchView);
                 this.ShowContextMenu();
 
                 Notifyer.OnRefreshed(this);

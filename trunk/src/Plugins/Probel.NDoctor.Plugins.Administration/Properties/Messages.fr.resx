@@ -249,4 +249,8 @@
     <value>Ajouter un médecin</value>
     <comment>Add a doctor</comment>
   </data>
+  <data name="Title_AddDrug" xml:space="preserve">
+    <value>Ajouter un médicament</value>
+    <comment>Add a drug</comment>
+  </data>
 </root>

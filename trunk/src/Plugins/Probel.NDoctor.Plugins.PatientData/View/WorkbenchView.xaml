@@ -1,4 +1,4 @@
-﻿<Page x:Class="Probel.NDoctor.Plugins.PatientData.View.Workbench"
+﻿<Page x:Class="Probel.NDoctor.Plugins.PatientData.View.WorkbenchView"
       
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,6 +6,7 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PatientData.Translations"
       xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PatientData.View"
+      xmlns:c="clr-namespace:Probel.NDoctor.View.Core.Controls;assembly=Probel.NDoctor.View.Core"
       
 	  mc:Ignorable="d" 
 	  d:DesignHeight="1223" d:DesignWidth="1453"      
@@ -93,10 +94,13 @@
                     <DatePicker Style="{StaticResource textBoxStyle}" SelectedDate="{Binding Path=Patient.Birthdate, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=Patient.PlaceOfBirth, UpdateSourceTrigger=PropertyChanged}"/>
 
-                    <ComboBox Grid.Column="0"  Style="{StaticResource controlStyle}"
+                    <!--<ComboBox Grid.Column="0"  Style="{StaticResource controlStyle}"
                               ItemsSource="{Binding Path=Genders}"
                               SelectedItem="{Binding Path=SelectedGender}"
-                              DisplayMemberPath="Item1"/>
+                              DisplayMemberPath="Item1"/>-->
+                    <c:GenderBox Grid.Column="0"
+                                 Gender="{Binding Path=Patient.Gender, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    
                     <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=Patient.Fee, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <ComboBox Style="{StaticResource textBoxStyle}"

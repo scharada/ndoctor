@@ -1,4 +1,4 @@
-﻿<Page x:Class="Probel.NDoctor.Plugins.PictureManager.View.Workbench"
+﻿<Page x:Class="Probel.NDoctor.Plugins.PictureManager.View.WorkbenchView"
       
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

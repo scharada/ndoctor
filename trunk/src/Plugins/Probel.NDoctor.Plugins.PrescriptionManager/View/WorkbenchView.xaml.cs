@@ -14,20 +14,22 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Plugins.PathologyManager.View
+namespace Probel.NDoctor.Plugins.PrescriptionManager.View
 {
     using System.Windows.Controls;
+    using Probel.NDoctor.Plugins.PrescriptionManager.ViewModel;
 
     /// <summary>
     /// Interaction logic for Workbench.xaml
     /// </summary>
-    public partial class Workbench : Page
+    public partial class WorkbenchView : Page
     {
         #region Constructors
 
-        public Workbench()
+        public WorkbenchView()
         {
             InitializeComponent();
+            this.DataContext = new WorkbenchViewModel();
         }
 
         #endregion Constructors

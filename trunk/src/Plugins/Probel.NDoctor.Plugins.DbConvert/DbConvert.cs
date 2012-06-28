@@ -56,6 +56,11 @@ namespace Probel.NDoctor.Plugins.DbConvert
 
         #region Methods
 
+        public override void Close()
+        {
+            //Nothing to close.
+        }
+
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
         /// Every task that could throw exception should be in this method and not in the ctor.
@@ -102,7 +107,7 @@ namespace Probel.NDoctor.Plugins.DbConvert
 
         private void Navigate()
         {
-            InnerWindow.Show(Messages.Title_Import, new Workbench());
+            InnerWindow.Show(Messages.Title_Import, new WorkbenchView());
         }
 
         #endregion Methods

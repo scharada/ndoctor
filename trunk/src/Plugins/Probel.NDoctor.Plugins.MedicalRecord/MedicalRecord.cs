@@ -47,6 +47,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.MedicalRecord;component/Images\{0}.png";
 
+        private readonly ViewService ViewService = new ViewService();
+
         private ICommand addFolderCommand;
         private ICommand addRecordCommand;
         private RibbonToggleButtonData boldButton;
@@ -61,7 +63,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         private RibbonButtonData numberingButton;
         private RibbonToggleButtonData rightAllignButton;
         private RibbonToggleButtonData underlineButton;
-        private Workbench workbench;
 
         #endregion Fields
 
@@ -96,25 +97,14 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             }
         }
 
-        private WorkbenchViewModel ViewModel
-        {
-            get
-            {
-                Assert.IsNotNull(PluginContext.Host, string.Format(
-                    "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin '{0}'", this.GetType().Name));
-                if (this.workbench.DataContext == null) this.workbench.DataContext = new WorkbenchViewModel();
-                return this.workbench.DataContext as WorkbenchViewModel;
-            }
-            set
-            {
-                Assert.IsNotNull(this.workbench.DataContext);
-                this.workbench.DataContext = value;
-            }
-        }
-
         #endregion Properties
 
         #region Methods
+
+        public override void Close()
+        {
+            PluginContext.Host.Invoke(() => this.ViewService.CloseAll());
+        }
 
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
@@ -126,7 +116,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
             PluginContext.Host.Invoke(() =>
             {
-                this.workbench = new Workbench();
+                this.ViewService.CloseAll();
                 this.BuildButtons();
                 this.BuildContextMenu();
             });
@@ -213,7 +203,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
         private void ConfigureSaveMenu(RibbonTabData tab)
         {
-            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.ViewModel.SaveCommand);
+            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.ViewService.WorkbenchViewModel.SaveCommand);
             var splitButton = this.ConfigureSplitButton();
 
             var cgroup = new RibbonGroupData(Messages.Menu_Actions, 1);
@@ -321,8 +311,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         {
             try
             {
-                ((RelayCommand)this.ViewModel.RefreshCommand).TryExecute(); ;
-                PluginContext.Host.Navigate(this.workbench);
+                this.ViewService.WorkbenchViewModel.RefreshCommand.TryExecute();
+                PluginContext.Host.Navigate(this.ViewService.WorkbenchView);
 
                 this.ShowContextMenu();
             }

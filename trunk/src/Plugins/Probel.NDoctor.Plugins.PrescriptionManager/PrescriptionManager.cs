@@ -26,8 +26,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
-    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -48,7 +46,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         private const string icoUri = @"\Probel.NDoctor.Plugins.PrescriptionManager;component/Images\{0}.ico";
         private const string imgUri = @"\Probel.NDoctor.Plugins.PrescriptionManager;component/Images\{0}.png";
 
-        private AddPrescriptionView addPrescriptionView;
+        private readonly ViewService ViewService = new ViewService();
+
         private bool isSaveCommandActivated = false;
         private bool isSearching = false;
         private LastNavigation lastNavigation;
@@ -57,7 +56,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         private ICommand navSearchCommand;
         private ICommand navWorkbenchCommand;
         private ICommand saveCommand;
-        private Workbench workbench;
 
         #endregion Fields
 
@@ -92,42 +90,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
 
         #endregion Enumerations
 
-        #region Properties
-
-        private AddPrescriptionViewModel AddPrescriptionViewModel
-        {
-            get
-            {
-                Assert.IsNotNull(PluginContext.Host, string.Format(
-                    "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin '{0}'", this.GetType().Name));
-                if (this.addPrescriptionView.DataContext == null) this.workbench.DataContext = new AddPrescriptionViewModel();
-                return this.addPrescriptionView.DataContext as AddPrescriptionViewModel;
-            }
-            set
-            {
-                Assert.IsNotNull(this.workbench.DataContext);
-                this.workbench.DataContext = value;
-            }
-        }
-
-        private WorkbenchViewModel ViewModel
-        {
-            get
-            {
-                Assert.IsNotNull(PluginContext.Host, string.Format(
-                    "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin '{0}'", this.GetType().Name));
-                if (this.workbench.DataContext == null) this.workbench.DataContext = new WorkbenchViewModel();
-                return this.workbench.DataContext as WorkbenchViewModel;
-            }
-            set
-            {
-                Assert.IsNotNull(this.workbench.DataContext);
-                this.workbench.DataContext = value;
-            }
-        }
-
-        #endregion Properties
-
         #region Methods
 
         /// <summary>
@@ -137,14 +99,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         public override void Initialise()
         {
             Assert.IsNotNull(PluginContext.Host, "To initialise the plugin, IPluginHost should be set.");
-            PluginContext.Host.Invoke(() =>
-            {
-                this.workbench = new Workbench();
-                this.workbench.DataContext = this.ViewModel;
-
-                this.addPrescriptionView = new AddPrescriptionView();
-                this.addPrescriptionView.DataContext = new AddPrescriptionViewModel();
-            });
 
             this.BuildButtons();
             this.BuildContextMenu();
@@ -278,17 +232,15 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             try
             {
                 this.isSaveCommandActivated = true;
-                var datacontext = new AddPrescriptionViewModel();
-                datacontext.Refresh();
-                this.addPrescriptionView.DataContext = datacontext;
-                PluginContext.Host.Navigate(this.addPrescriptionView);
+                this.ViewService.AddPrescriptionViewModel.Refresh();
+                PluginContext.Host.Navigate(this.ViewService.AddPrescriptionView);
 
                 this.ShowContextMenu();
                 this.lastNavigation = LastNavigation.AddPrescription;
             }
             catch (Exception ex)
             {
-                this.HandleError(ex, Messages.Msg_FailToLoadPrescriptionManager.FormatWith(ex.Message));
+                this.HandleError(ex);
             }
         }
 
@@ -304,24 +256,25 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             try
             {
                 this.isSaveCommandActivated = false;
-                PluginContext.Host.Navigate(this.workbench);
-                this.workbench.DataContext = this.ViewModel;
+                PluginContext.Host.Navigate(this.ViewService.WorkbenchView);
 
                 this.ShowContextMenu();
                 this.lastNavigation = LastNavigation.Workbench;
                 this.LoadDefaultPrescriptions();
             }
-            catch (Exception ex)
-            {
-                this.HandleError(ex, Messages.Msg_FailToLoadPrescriptionManager.FormatWith(ex.Message));
-            }
+            catch (Exception ex) { this.HandleError(ex); }
         }
 
         private void Save()
         {
-            (this.addPrescriptionView.DataContext as AddPrescriptionViewModel).SaveCommand.TryExecute();
+            this.ViewService.AddPrescriptionViewModel.SaveCommand.TryExecute();
         }
 
         #endregion Methods
+
+        public override void Close()
+        {
+            this.ViewService.CloseAll();
+        }
     }
 }

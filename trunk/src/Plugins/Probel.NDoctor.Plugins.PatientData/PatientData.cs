@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Plugins.PatientData
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.PatientData.Helpers;
     using Probel.NDoctor.Plugins.PatientData.Properties;
     using Probel.NDoctor.Plugins.PatientData.View;
     using Probel.NDoctor.Plugins.PatientData.ViewModel;
@@ -44,6 +45,8 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.PatientData;component/Images\{0}.png";
 
+        private readonly ViewService ViewService = new ViewService();
+
         private ICommand addDoctorCommand;
         private ICommand addInsuranceCommand;
         private ICommand addPracticeCommand;
@@ -52,7 +55,6 @@ namespace Probel.NDoctor.Plugins.PatientData
         private ICommand addSpecialisationCommand;
         private IPatientDataComponent component;
         private ICommand navigateCommand;
-        private Workbench workbench;
 
         #endregion Fields
 
@@ -77,19 +79,14 @@ namespace Probel.NDoctor.Plugins.PatientData
             private set;
         }
 
-        private WorkbenchViewModel ViewModel
-        {
-            get
-            {
-                if (this.workbench == null) this.workbench = new Workbench();
-
-                return this.workbench.DataContext as WorkbenchViewModel;
-            }
-        }
-
         #endregion Properties
 
         #region Methods
+
+        public override void Close()
+        {
+            this.ViewService.CloseAll();
+        }
 
         public override void Initialise()
         {
@@ -121,9 +118,9 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         private void BuildContextMenu()
         {
-            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.ViewModel.SaveCommand);
+            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.ViewService.WorkbenchViewModel.SaveCommand);
 
-            var rollbackButton = new RibbonButtonData(Messages.Title_Rollback, imgUri.FormatWith("Save"), this.ViewModel.RollbackCommand);
+            var rollbackButton = new RibbonButtonData(Messages.Title_Rollback, imgUri.FormatWith("Save"), this.ViewService.WorkbenchViewModel.RollbackCommand);
 
             var splitter = new RibbonMenuItemData(Messages.Btn_Add, imgUri.FormatWith("Add"), null);
             splitter.ControlDataCollection.Add(new RibbonMenuItemData(Messages.Title_AddDoctor, imgUri.FormatWith("Add"), this.addDoctorCommand));
@@ -164,12 +161,8 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         private void Navigate()
         {
-            Assert.IsNotNull(this.ViewModel, "ViewModel");
-
-            PluginContext.Host.Navigate(this.workbench);
-            this.ViewModel.Refresh();
-            this.workbench.DataContext = this.ViewModel;
-
+            PluginContext.Host.Navigate(this.ViewService.WorkbenchView);
+            this.ViewService.WorkbenchViewModel.Refresh();
             this.ShowContextMenu();
         }
 

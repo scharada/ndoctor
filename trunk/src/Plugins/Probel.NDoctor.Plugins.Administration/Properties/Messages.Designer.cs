@@ -124,6 +124,15 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add a drug.
+        /// </summary>
+        internal static string Title_AddDrug {
+            get {
+                return ResourceManager.GetString("Title_AddDrug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add an insurance.
         /// </summary>
         internal static string Title_AddInsurance {

@@ -182,6 +182,7 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         private void Disconnect()
         {
+            PluginContext.Host.ClosePlugins();
             PluginContext.Host.ConnectedUser = null;
             PluginContext.Host.HideMainMenu();
             PluginContext.Host.Navigate(this.ConnectionPage);
@@ -238,5 +239,10 @@ namespace Probel.NDoctor.Plugins.UserSession
         }
 
         #endregion Methods
+
+        public override void Close()
+        {
+            PluginContext.Host.SelectedPatient = null;
+        }
     }
 }

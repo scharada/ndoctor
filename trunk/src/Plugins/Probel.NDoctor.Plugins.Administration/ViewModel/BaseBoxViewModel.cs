@@ -68,7 +68,7 @@
             try
             {
                 this.AddItem();
-                Notifyer.OnItemChanged(this);
+                Notifyer.OnRefreshing(this);
                 InnerWindow.Close();
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_ItemAdded);
             }

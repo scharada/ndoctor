@@ -19,34 +19,55 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Plugins.MeetingManager.View
+namespace Probel.NDoctor.View.Core.Controls
 {
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Input;
 
-    using Probel.NDoctor.Plugins.MeetingManager.ViewModel;
+    using Probel.NDoctor.Domain.DTO.Objects;
 
     /// <summary>
-    /// Interaction logic for RemoveMeetingView.xaml
+    /// Interaction logic for GenderBox.xaml
     /// </summary>
-    public partial class RemoveMeetingView : UserControl
+    public partial class GenderBox : UserControl
     {
+        #region Fields
+
+        public static DependencyProperty GenderProperty = DependencyProperty.RegisterAttached("Gender", typeof(Gender)
+            , typeof(GenderBox)
+            , new UIPropertyMetadata(Gender.Male));
+
+        #endregion Fields
+
         #region Constructors
 
-        public RemoveMeetingView()
+        public GenderBox()
         {
             InitializeComponent();
-            this.DataContext = new RemoveMeetingViewModel();
         }
 
         #endregion Constructors
 
+        #region Properties
+
+        public Gender Gender
+        {
+            get { return GetGender(this); }
+            set { SetGender(this, value); }
+        }
+
+        #endregion Properties
+
         #region Methods
 
-        private void this_Loaded(object sender, RoutedEventArgs e)
+        public static Gender GetGender(DependencyObject target)
         {
-            Keyboard.Focus(this.focused);
+            return (Gender)target.GetValue(GenderProperty);
+        }
+
+        public static void SetGender(DependencyObject target, Gender value)
+        {
+            target.SetValue(GenderProperty, value);
         }
 
         #endregion Methods

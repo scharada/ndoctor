@@ -116,7 +116,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 if (this.memento == null) this.memento = value.Clone() as PatientDto;
 
                 this.OnPropertyChanged(() => this.Patient);
-                this.OnPropertyChanged(() => this.SelectedGender);
             }
         }
 
@@ -154,21 +153,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         {
             get;
             private set;
-        }
-
-        public Tuple<string, Gender> SelectedGender
-        {
-            get
-            {
-                return (this.Patient != null)
-                    ? new Tuple<string, Gender>(this.Patient.Gender.Translate(), this.Patient.Gender)
-                    : new Tuple<string, Gender>(Gender.Female.Translate(), Gender.Female);
-            }
-            set
-            {
-                this.Patient.Gender = value.Item2;
-                this.OnPropertyChanged(() => SelectedGender);
-            }
         }
 
         #endregion Properties
@@ -218,7 +202,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         private bool CanSave()
         {
-            return PluginContext.DoorKeeper.IsUserGranted(To.Write);
+            return this.Patient.IsValid()
+                && PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         private void ChangeImage()

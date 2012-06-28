@@ -68,6 +68,11 @@ namespace Probel.NDoctor.View.Plugins
         void Activate();
 
         /// <summary>
+        /// Closes this plugin. That's unload all the data. Typically used when the connected user disconnect.
+        /// </summary>
+        void Close();
+
+        /// <summary>
         /// Deactivates this plugin. That's the PluginHost CAN'T display and the user CAN'T use this plugin.
         /// It means that at least one validation have FAILED on this plugin.
         /// </summary>
@@ -86,17 +91,6 @@ namespace Probel.NDoctor.View.Plugins
         ///   <c>true</c> if this plugin is valid; otherwise, <c>false</c>.
         /// </returns>
         bool IsValid(IPluginHost host);
-
-        /// <summary>
-        /// Shows this instance into the workbench area.
-        /// </summary>
-        void Show();
-
-        /// <summary>
-        /// If the plugin is activated, shows it in the workbench area.
-        /// Otherwise, does nothing.
-        /// </summary>
-        void TryShow();
 
         #endregion Methods
     }

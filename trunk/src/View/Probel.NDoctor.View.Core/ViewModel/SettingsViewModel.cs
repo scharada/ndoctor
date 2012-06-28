@@ -153,6 +153,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             Settings.Default.WorkDayStart = this.Start.ToString("HH:mm");
             Settings.Default.WorkDayEnd = this.End.ToString("HH:mm");
             Settings.Default.Language = this.SelectedLanguage;
+            Settings.Default.AutomaticContextMenu = this.AutomaticContextMenu;
 
             Settings.Default.Save();
             InnerWindow.Close();

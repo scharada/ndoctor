@@ -22,7 +22,7 @@ namespace Probel.NDoctor.Plugins.Administration.Helpers
     {
         #region Events
 
-        public static event EventHandler ItemChanged;
+        public static event EventHandler Refreshing;
 
         public static event EventHandler TagsChanged;
 
@@ -30,11 +30,11 @@ namespace Probel.NDoctor.Plugins.Administration.Helpers
 
         #region Methods
 
-        public static void OnItemChanged(object sender)
+        public static void OnRefreshing(object sender)
         {
-            if (ItemChanged != null)
+            if (Refreshing != null)
             {
-                ItemChanged(sender, EventArgs.Empty);
+                Refreshing(sender, EventArgs.Empty);
             }
         }
 

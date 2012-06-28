@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
     using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Plugins.PictureManager.Helpers;
     using Probel.NDoctor.Plugins.PictureManager.Properties;
     using Probel.NDoctor.Plugins.PictureManager.View;
     using Probel.NDoctor.Plugins.PictureManager.ViewModel;
@@ -41,8 +42,9 @@ namespace Probel.NDoctor.Plugins.PictureManager
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.PictureManager;component/Images\{0}.png";
 
+        private readonly ViewService ViewService = new ViewService();
+
         private ICommand navigateCommand;
-        private Workbench workbench;
 
         #endregion Fields
 
@@ -62,27 +64,12 @@ namespace Probel.NDoctor.Plugins.PictureManager
 
         #endregion Constructors
 
-        #region Properties
-
-        private WorkbenchViewModel ViewModel
-        {
-            get
-            {
-                Assert.IsNotNull(PluginContext.Host, string.Format(
-                    "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin '{0}'", this.GetType().Name));
-                if (this.workbench.DataContext == null) this.workbench.DataContext = new WorkbenchViewModel();
-                return this.workbench.DataContext as WorkbenchViewModel;
-            }
-            set
-            {
-                Assert.IsNotNull(this.workbench.DataContext);
-                this.workbench.DataContext = value;
-            }
-        }
-
-        #endregion Properties
-
         #region Methods
+
+        public override void Close()
+        {
+            this.ViewService.CloseAll();
+        }
 
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
@@ -92,8 +79,6 @@ namespace Probel.NDoctor.Plugins.PictureManager
         {
             PluginContext.Host.Invoke(() =>
             {
-                this.workbench = new Workbench();
-                this.workbench.DataContext = this.ViewModel;
                 this.BuildButtons();
                 this.BuildContextMenu();
             });
@@ -136,21 +121,21 @@ namespace Probel.NDoctor.Plugins.PictureManager
         private ICommand GetAddCategoryCommand()
         {
             ICommand cmd = null;
-            PluginContext.Host.Invoke(() => cmd = this.ViewModel.AddTypeCommand);
+            PluginContext.Host.Invoke(() => cmd = this.ViewService.WorkbenchViewModel.AddTypeCommand);
             return cmd;
         }
 
         private ICommand GetAddPicCommand()
         {
             ICommand cmd = null;
-            PluginContext.Host.Invoke(() => cmd = this.ViewModel.AddPictureCommand);
+            PluginContext.Host.Invoke(() => cmd = this.ViewService.WorkbenchViewModel.AddPictureCommand);
             return cmd;
         }
 
         private ICommand GetSaveCommand()
         {
             ICommand cmd = null;
-            PluginContext.Host.Invoke(() => cmd = this.ViewModel.SaveCommand);
+            PluginContext.Host.Invoke(() => cmd = this.ViewService.WorkbenchViewModel.SaveCommand);
             return cmd;
         }
 
@@ -158,10 +143,9 @@ namespace Probel.NDoctor.Plugins.PictureManager
         {
             try
             {
-                PluginContext.Host.Navigate(this.workbench);
-                this.workbench.DataContext = this.ViewModel;
+                PluginContext.Host.Navigate(this.ViewService.WorkbenchView);
 
-                this.ViewModel.Refresh();
+                this.ViewService.WorkbenchViewModel.Refresh();
 
                 this.ShowContextMenu();
             }

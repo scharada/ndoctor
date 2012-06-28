@@ -394,4 +394,12 @@ L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
     <value>Afficher automatiquement les menus contextuels</value>
     <comment>Automatically display contextual menus</comment>
   </data>
+  <data name="Gender_Female" xml:space="preserve">
+    <value>Femme</value>
+    <comment>Female</comment>
+  </data>
+  <data name="Gender_Male" xml:space="preserve">
+    <value>Fomme</value>
+    <comment>Male</comment>
+  </data>
 </root>

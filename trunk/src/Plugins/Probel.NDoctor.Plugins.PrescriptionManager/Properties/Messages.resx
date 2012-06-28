@@ -193,10 +193,6 @@
     <value>An error occured while searching prescriptions.</value>
     <comment>An error occured while searching prescriptions.</comment>
   </data>
-  <data name="Msg_FailToLoadPrescriptionManager" xml:space="preserve">
-    <value>An error occured when loading the prescription manager.</value>
-    <comment>An error occured when loading the prescription manager.</comment>
-  </data>
   <data name="Msg_FoundPrescription" xml:space="preserve">
     <value>Prescriptions were found</value>
     <comment>Prescriptions were found</comment>

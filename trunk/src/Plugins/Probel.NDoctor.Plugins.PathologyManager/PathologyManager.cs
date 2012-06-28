@@ -31,6 +31,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.PathologyManager.Helpers;
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
     using Probel.NDoctor.Plugins.PathologyManager.View;
     using Probel.NDoctor.Plugins.PathologyManager.ViewModel;
@@ -46,8 +47,9 @@ namespace Probel.NDoctor.Plugins.PathologyManager
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.PathologyManager;component/Images\{0}.png";
 
+        private readonly ViewService ViewService = new ViewService();
+
         private ICommand navigateCommand = null;
-        private Workbench workbench;
 
         #endregion Fields
 
@@ -64,27 +66,12 @@ namespace Probel.NDoctor.Plugins.PathologyManager
 
         #endregion Constructors
 
-        #region Properties
-
-        private WorkbenchViewModel ViewModel
-        {
-            get
-            {
-                Assert.IsNotNull(PluginContext.Host, string.Format(
-                    "The IPluginHost is not set. It is impossible to setup the data context of the workbench of the plugin '{0}'", this.GetType().Name));
-                if (this.workbench.DataContext == null) this.workbench.DataContext = new WorkbenchViewModel();
-                return this.workbench.DataContext as WorkbenchViewModel;
-            }
-            set
-            {
-                Assert.IsNotNull(this.workbench.DataContext);
-                this.workbench.DataContext = value;
-            }
-        }
-
-        #endregion Properties
-
         #region Methods
+
+        public override void Close()
+        {
+            this.ViewService.CloseAll();
+        }
 
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
@@ -96,7 +83,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager
 
             PluginContext.Host.Invoke(() =>
             {
-                workbench = new Workbench();
                 this.BuildButtons();
                 this.BuildContextMenu();
             });
@@ -160,9 +146,9 @@ namespace Probel.NDoctor.Plugins.PathologyManager
         {
             try
             {
-                this.ViewModel.Refresh();
+                this.ViewService.WorkbenchViewModel.Refresh();
                 PluginContext.Host.WriteStatusReady();
-                PluginContext.Host.Navigate(this.workbench);
+                PluginContext.Host.Navigate(this.ViewService.WorkbenchView);
 
                 this.ShowContextMenu();
             }
