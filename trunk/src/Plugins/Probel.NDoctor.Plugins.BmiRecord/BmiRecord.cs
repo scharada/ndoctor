@@ -76,7 +76,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord
 
         #region Methods
 
-
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
         /// Every task that could throw exception should be in this method and not in the ctor.

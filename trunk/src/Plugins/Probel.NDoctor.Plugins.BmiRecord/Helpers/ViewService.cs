@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -15,16 +17,22 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Probel.NDoctor.Plugins.BmiRecord.View;
-using Probel.NDoctor.Plugins.BmiRecord.ViewModel;
+#endregion Header
 
 namespace Probel.NDoctor.Plugins.BmiRecord.Helpers
 {
+    using Probel.NDoctor.Plugins.BmiRecord.View;
+    using Probel.NDoctor.Plugins.BmiRecord.ViewModel;
+
     class ViewService
     {
+        #region Methods
+
         internal WorkbenchViewModel GetViewModel(WorkbenchView view)
         {
             return (WorkbenchViewModel)view.DataContext;
         }
+
+        #endregion Methods
     }
 }

@@ -21,21 +21,18 @@
 
 namespace Probel.NDoctor.Plugins.PictureManager.Helpers
 {
-
     using Probel.NDoctor.Plugins.PictureManager.View;
     using Probel.NDoctor.Plugins.PictureManager.ViewModel;
 
     public class ViewService
     {
-
-        #region Properties
+        #region Methods
 
         public WorkbenchViewModel GetViewModel(WorkbenchView view)
         {
             return (WorkbenchViewModel)view.DataContext;
         }
 
-
-        #endregion Properties
+        #endregion Methods
     }
 }

@@ -26,14 +26,13 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Helpers
 
     public class ViewService
     {
-
-        #region Properties
-
+        #region Methods
 
         public AddPrescriptionViewModel GetViewModel(AddPrescriptionView view)
         {
             return (AddPrescriptionViewModel)view.DataContext;
         }
+
         public AddDrugTypeViewModel GetViewModel(AddDrugTypeView view)
         {
             return (AddDrugTypeViewModel)view.DataContext;
@@ -44,6 +43,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Helpers
             return (WorkbenchViewModel)view.DataContext;
         }
 
-        #endregion Properties
+        #endregion Methods
     }
 }

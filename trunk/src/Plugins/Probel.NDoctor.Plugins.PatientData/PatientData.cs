@@ -156,7 +156,6 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         private void Navigate()
         {
-
             this.ViewService.GetViewModel(this.View).Refresh();
             PluginContext.Host.Navigate(this.View);
             this.ShowContextMenu();

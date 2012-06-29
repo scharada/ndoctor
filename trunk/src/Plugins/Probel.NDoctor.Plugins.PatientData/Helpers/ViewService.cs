@@ -26,15 +26,13 @@ namespace Probel.NDoctor.Plugins.PatientData.Helpers
 
     public class ViewService
     {
-
-        #region Properties
+        #region Methods
 
         public WorkbenchViewModel GetViewModel(WorkbenchView view)
         {
             return (WorkbenchViewModel)view.DataContext;
         }
 
-
-        #endregion Properties
+        #endregion Methods
     }
 }

@@ -300,6 +300,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
                 Command = EditingCommands.ToggleNumbering,
             };
         }
+
         private void NavigateAdd()
         {
             try

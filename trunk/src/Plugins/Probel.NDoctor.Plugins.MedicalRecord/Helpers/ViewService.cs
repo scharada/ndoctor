@@ -26,26 +26,23 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
 
     public class ViewService
     {
-
-        #region Properties
+        #region Methods
 
         public AddFolderViewModel GetViewModel(AddFolderView view)
         {
             return (AddFolderViewModel)view.DataContext;
         }
 
-
         public AddRecordViewModel GetViewModel(AddRecordView view)
         {
             return (AddRecordViewModel)view.DataContext;
         }
-
 
         public WorkbenchViewModel GetViewModel(WorkbenchView view)
         {
             return (WorkbenchViewModel)view.DataContext;
         }
 
-        #endregion Properties
+        #endregion Methods
     }
 }

@@ -26,21 +26,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
         /// Occurs when refreshed the plugin needs a refresh of all the data.
         /// </summary>
         public static event EventHandler Refreshed;
+
         /// <summary>
         /// Occurs when use is saving medical records.
         /// </summary>
         public static event EventHandler Saving;
-        /// <summary>
-        /// Called when user is saving medical records.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        public static void OnSaving(object sender)
-        {
-            if (Saving != null)
-            {
-                Saving(sender, EventArgs.Empty);
-            }
-        }
+
         #endregion Events
 
         #region Methods
@@ -52,6 +43,18 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
         {
             if (Refreshed != null)
                 Refreshed(new Object(), EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Called when user is saving medical records.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        public static void OnSaving(object sender)
+        {
+            if (Saving != null)
+            {
+                Saving(sender, EventArgs.Empty);
+            }
         }
 
         #endregion Methods
