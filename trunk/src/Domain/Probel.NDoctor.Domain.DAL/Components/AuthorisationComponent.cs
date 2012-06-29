@@ -167,7 +167,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Remove(RoleDto item)
         {
             Assert.IsNotNull(item, "item");
-            this.Remove<Role>(item);
+            new Remover(this.Session).Remove<Role>(item);
         }
 
         /// <summary>

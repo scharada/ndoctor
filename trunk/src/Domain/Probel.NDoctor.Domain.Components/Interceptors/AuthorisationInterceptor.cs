@@ -79,7 +79,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
                         , invocation.TargetType.Name);
                     hasRight = true;
                 }
-                else if (!string.IsNullOrEmpty(authAttribute))
+                else if (!string.IsNullOrWhiteSpace(authAttribute))
                 {
                     hasRight = IsGrantedWithAttribute(invocation);
                 }

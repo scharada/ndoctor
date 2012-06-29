@@ -589,7 +589,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Remove(ProfessionDto item)
         {
             Assert.IsNotNull(item, "item");
-            this.Remove<Profession>(item);
+            new Remover(this.Session).Remove<Profession>(item);
         }
 
         /// <summary>
@@ -600,7 +600,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Remove(ReputationDto item)
         {
             Assert.IsNotNull(item, "item");
-            this.Remove<Reputation>(item);
+            new Remover(this.Session).Remove<Reputation>(item);
         }
 
         /// <summary>
@@ -611,7 +611,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Remove(LightDoctorDto item)
         {
             Assert.IsNotNull(item, "item");
-            this.Remove<Doctor>(item);
+            new Remover(this.Session).Remove<Doctor>(item);
         }
 
         /// <summary>
@@ -621,7 +621,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Remove(LightPatientDto item)
         {
             Assert.IsNotNull(item, "item");
-            this.Remove<Patient>(item);
+            new Remover(this.Session).Remove<Patient>(item);
         }
 
         /// <summary>
@@ -631,7 +631,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Remove(PatientDto item)
         {
             Assert.IsNotNull(item, "item");
-            this.Remove<Patient>(item);
+            new Remover(this.Session).Remove<Patient>(item);
         }
 
         /// <summary>
@@ -688,29 +688,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         protected void Create(MedicalRecordDto item)
         {
             new Creator(this.Session).Create(item);
-        }
-
-        /// <summary>
-        /// Removes item with the specified id.
-        /// </summary>
-        /// <typeparam name="T">The type of the item to remove</typeparam>
-        /// <param name="id">The id of the item to remove.</param>
-        [Obsolete("User the remover instead")]
-        protected void Remove(MedicalRecordDto item)
-        {
-            Assert.IsNotNull(item, "item");
-            this.Remove<MedicalRecord>(item);
-        }
-
-        [Obsolete("User the remover instead")]
-        protected void Remove<TEntity>(BaseDto item)
-            where TEntity : Entity
-        {
-            var loaded = this.Session.Get<TEntity>(item.Id);
-            if (item != null)
-            {
-                this.Session.Delete(loaded);
-            }
         }
 
         /// <summary>
