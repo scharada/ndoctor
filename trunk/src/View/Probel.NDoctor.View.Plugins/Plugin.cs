@@ -149,7 +149,10 @@ namespace Probel.NDoctor.View.Plugins
         /// <summary>
         /// Closes this plugin. That's unload all the data. Typically used when the connected user disconnect.
         /// </summary>        
-        public abstract void Close();
+        public virtual void Close()
+        {
+            //By default it does nothing
+        }
 
         /// <summary>
         /// Deactivates this plugin. That's the PluginHost CAN'T display and the user CAN'T use this plugin.

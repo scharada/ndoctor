@@ -49,7 +49,6 @@ namespace Probel.NDoctor.Plugins.Administration
         private const string imgUri = @"\Probel.NDoctor.Plugins.Administration;component/Images\{0}.png";
 
         private ICommand navigateCommand;
-        private WorkbenchView workbench;
 
         #endregion Fields
 
@@ -69,23 +68,12 @@ namespace Probel.NDoctor.Plugins.Administration
         #region Methods
 
         /// <summary>
-        /// Closes this plugin. That's unload all the data. Typically used when the connected user disconnect.
-        /// </summary>
-        public override void Close()
-        {
-            PluginContext.Host.Invoke(() => this.workbench = new WorkbenchView());
-        }
-
-        /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
         /// Every task that could throw exception should be in this method and not in the ctor.
         /// </summary>
         public override void Initialise()
         {
             Assert.IsNotNull(PluginContext.Host, "To initialise the plugin, IPluginHost should be set.");
-
-            PluginContext.Host.Invoke(() => this.workbench = new WorkbenchView());
-
             this.BuildButtons();
             this.BuildContextMenu();
         }
@@ -156,7 +144,7 @@ namespace Probel.NDoctor.Plugins.Administration
 
         private void Navigate()
         {
-            PluginContext.Host.Navigate(this.workbench);
+            PluginContext.Host.Navigate(new WorkbenchView());
             Notifyer.OnRefreshing(this);
 
             this.contextualMenu.IsVisible = true;

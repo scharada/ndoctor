@@ -69,11 +69,6 @@ namespace Probel.NDoctor.Plugins.FamilyManager
 
         #region Methods
 
-        public override void Close()
-        {
-            this.ViewService.CloseAll();
-        }
-
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
         /// Every task that could throw exception should be in this method and not in the ctor.
@@ -107,9 +102,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager
             {
                 try
                 {
-                    this.ViewService.WorkbenchViewModel.Reset();
-
-                    InnerWindow.Show(Messages.Btn_Add, new AddFamilyWorkbench());
+                    InnerWindow.Show(Messages.Btn_Add, new AddFamilyView());
                 }
                 catch (Exception ex) { this.HandleError(ex, Messages.Msg_FailToLoadFamilyManager); }
             }, () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
@@ -120,9 +113,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager
             {
                 try
                 {
-                    this.ViewService.WorkbenchViewModel.Reset();
-
-                    InnerWindow.Show(Messages.Btn_Remove, new RemoveFamilyWorkbench());
+                    InnerWindow.Show(Messages.Btn_Remove, new RemoveFamilyView());
                 }
                 catch (Exception ex)
                 {
@@ -171,8 +162,9 @@ namespace Probel.NDoctor.Plugins.FamilyManager
         {
             try
             {
-                this.ViewService.WorkbenchViewModel.Refresh();
-                PluginContext.Host.Navigate(this.ViewService.WorkbenchView);
+                var view = new WorkbenchView();
+                this.ViewService.GetViewModel(view).Refresh();
+                PluginContext.Host.Navigate(view);
 
                 this.ShowContextMenu();
             }

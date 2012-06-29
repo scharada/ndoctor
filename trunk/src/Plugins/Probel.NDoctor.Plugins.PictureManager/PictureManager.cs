@@ -36,7 +36,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
-    public class PictureManager : Plugin
+    public class PictureManager : StaticViewPlugin<WorkbenchView>
     {
         #region Fields
 
@@ -65,11 +65,6 @@ namespace Probel.NDoctor.Plugins.PictureManager
         #endregion Constructors
 
         #region Methods
-
-        public override void Close()
-        {
-            this.ViewService.CloseAll();
-        }
 
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
@@ -121,21 +116,21 @@ namespace Probel.NDoctor.Plugins.PictureManager
         private ICommand GetAddCategoryCommand()
         {
             ICommand cmd = null;
-            PluginContext.Host.Invoke(() => cmd = this.ViewService.WorkbenchViewModel.AddTypeCommand);
+            PluginContext.Host.Invoke(() => cmd = this.ViewService.GetViewModel(this.View).AddTypeCommand);
             return cmd;
         }
 
         private ICommand GetAddPicCommand()
         {
             ICommand cmd = null;
-            PluginContext.Host.Invoke(() => cmd = this.ViewService.WorkbenchViewModel.AddPictureCommand);
+            PluginContext.Host.Invoke(() => cmd = this.ViewService.GetViewModel(this.View).AddPictureCommand);
             return cmd;
         }
 
         private ICommand GetSaveCommand()
         {
             ICommand cmd = null;
-            PluginContext.Host.Invoke(() => cmd = this.ViewService.WorkbenchViewModel.SaveCommand);
+            PluginContext.Host.Invoke(() => cmd = this.ViewService.GetViewModel(this.View).SaveCommand);
             return cmd;
         }
 
@@ -143,9 +138,9 @@ namespace Probel.NDoctor.Plugins.PictureManager
         {
             try
             {
-                PluginContext.Host.Navigate(this.ViewService.WorkbenchView);
+                PluginContext.Host.Navigate(this.View);
 
-                this.ViewService.WorkbenchViewModel.Refresh();
+                this.ViewService.GetViewModel(this.View).Refresh();
 
                 this.ShowContextMenu();
             }

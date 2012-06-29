@@ -39,7 +39,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
-    public class PrescriptionManager : Plugin
+    public class PrescriptionManager : StaticViewPlugin<AddPrescriptionView>
     {
         #region Fields
 
@@ -91,11 +91,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         #endregion Enumerations
 
         #region Methods
-
-        public override void Close()
-        {
-            this.ViewService.CloseAll();
-        }
 
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
@@ -237,8 +232,9 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             try
             {
                 this.isSaveCommandActivated = true;
-                this.ViewService.AddPrescriptionViewModel.Refresh();
-                PluginContext.Host.Navigate(this.ViewService.AddPrescriptionView);
+
+                this.ViewService.GetViewModel(this.View).Refresh();
+                PluginContext.Host.Navigate(this.View);
 
                 this.ShowContextMenu();
                 this.lastNavigation = LastNavigation.AddPrescription;
@@ -261,7 +257,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             try
             {
                 this.isSaveCommandActivated = false;
-                PluginContext.Host.Navigate(this.ViewService.WorkbenchView);
+                PluginContext.Host.Navigate(new WorkbenchView());
 
                 this.ShowContextMenu();
                 this.lastNavigation = LastNavigation.Workbench;
@@ -272,7 +268,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
 
         private void Save()
         {
-            this.ViewService.AddPrescriptionViewModel.SaveCommand.TryExecute();
+            this.ViewService.GetViewModel(this.View).SaveCommand.TryExecute();
         }
 
         #endregion Methods

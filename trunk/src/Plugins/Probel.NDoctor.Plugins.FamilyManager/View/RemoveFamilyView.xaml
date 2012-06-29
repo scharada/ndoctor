@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Probel.NDoctor.Plugins.FamilyManager.View.RemoveFamilyWorkbench"
+﻿<UserControl x:Class="Probel.NDoctor.Plugins.FamilyManager.View.RemoveFamilyView"
              x:Name="this"
              
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

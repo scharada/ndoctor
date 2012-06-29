@@ -21,55 +21,21 @@
 
 namespace Probel.NDoctor.Plugins.PictureManager.Helpers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     using Probel.NDoctor.Plugins.PictureManager.View;
     using Probel.NDoctor.Plugins.PictureManager.ViewModel;
 
     public class ViewService
     {
-        #region Fields
-
-        private static WorkbenchView workbenchView;
-
-        #endregion Fields
 
         #region Properties
 
-        public WorkbenchView WorkbenchView
+        public WorkbenchViewModel GetViewModel(WorkbenchView view)
         {
-            get
-            {
-                if (workbenchView == null) { workbenchView = new WorkbenchView(); }
-                return workbenchView;
-            }
+            return (WorkbenchViewModel)view.DataContext;
         }
 
-        public WorkbenchViewModel WorkbenchViewModel
-        {
-            get
-            {
-                return (WorkbenchViewModel)this.WorkbenchView.DataContext;
-            }
-        }
 
         #endregion Properties
-
-        #region Methods
-
-        public void CloseAll()
-        {
-            this.CloseWorkbenchView();
-        }
-
-        private void CloseWorkbenchView()
-        {
-            workbenchView = null;
-        }
-
-        #endregion Methods
     }
 }

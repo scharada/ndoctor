@@ -2,8 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Components;
@@ -15,13 +13,7 @@
     public class ViewService
     {
         #region Fields
-
-        private static AddCategoryView addCategoryView;
-        private static AddMeetingView addMeetingView;
         private static ICalendarComponent Component = PluginContext.ComponentFactory.GetInstance<ICalendarComponent>();
-        private static RemoveMeetingView removeMeetingView;
-        private static WorkbenchView workbenchView;
-
         #endregion Fields
 
         #region Constructors
@@ -35,101 +27,34 @@
 
         #region Properties
 
-        public AddCategoryView AddCategoryView
+        public AddMeetingView NewAddMeetingView()
         {
-            get
+            var view = new AddMeetingView();
+            try
             {
-                if (addCategoryView == null) { addCategoryView = new AddCategoryView(); }
-                return addCategoryView;
-            }
-        }
-
-        public AddMeetingView AddMeetingView
-        {
-            get
-            {
-                if (addCategoryView == null) { addMeetingView = new AddMeetingView(); }
-                try
+                IList<TagDto> tags;
+                using (Component.UnitOfWork)
                 {
-                    IList<TagDto> tags;
-                    using (Component.UnitOfWork)
-                    {
-                        tags = Component.FindTags(TagCategory.Appointment);
-                    }
-                    this.AddMeetingViewModel.AppointmentTags.Refill(tags);
+                    tags = Component.FindTags(TagCategory.Appointment);
                 }
-                catch (Exception ex) { new ErrorHandler(this).HandleError(ex); }
-
-                return addMeetingView;
+                this.GetViewModel(view).AppointmentTags.Refill(tags);
             }
+            catch (Exception ex) { new ErrorHandler(this).HandleError(ex); }
+
+            return view;
         }
 
-        public AddMeetingViewModel AddMeetingViewModel
+        private AddMeetingViewModel GetViewModel(AddMeetingView view)
         {
-            get
-            {
-                return (AddMeetingViewModel)this.AddMeetingView.DataContext;
-            }
+            return (AddMeetingViewModel)view.DataContext;
         }
 
-        public RemoveMeetingView RemoveMeetingView
+        public WorkbenchViewModel GetViewModel(WorkbenchView view)
         {
-            get
-            {
-                if (removeMeetingView == null) { removeMeetingView = new RemoveMeetingView(); }
-                return removeMeetingView;
-            }
+            return (WorkbenchViewModel)view.DataContext;
         }
-
-        public RemoveMeetingViewModel RemoveMeetingViewModel
-        {
-            get
-            {
-                return (RemoveMeetingViewModel)RemoveMeetingView.DataContext;
-            }
-        }
-
-        public WorkbenchView WorkbenchView
-        {
-            get
-            {
-                if (workbenchView == null) { workbenchView = new WorkbenchView(); }
-                return workbenchView;
-            }
-        }
-
         #endregion Properties
 
-        #region Methods
 
-        public void CloseAll()
-        {
-            this.CloseAddCategoryView();
-            this.CloseAddMeetingView();
-            this.CloseRemoveMeetingView();
-            this.CloseWorkbenchView();
-        }
-
-        private void CloseAddCategoryView()
-        {
-            addCategoryView = null;
-        }
-
-        private void CloseAddMeetingView()
-        {
-            addMeetingView = null;
-        }
-
-        private void CloseRemoveMeetingView()
-        {
-            removeMeetingView = null;
-        }
-
-        private void CloseWorkbenchView()
-        {
-            workbenchView = null;
-        }
-
-        #endregion Methods
     }
 }

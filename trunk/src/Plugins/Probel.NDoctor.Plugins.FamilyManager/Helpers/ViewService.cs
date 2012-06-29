@@ -26,45 +26,12 @@ namespace Probel.NDoctor.Plugins.FamilyManager.Helpers
 
     public class ViewService
     {
-        #region Fields
-
-        private static WorkbenchView workbenchView;
-
-        #endregion Fields
-
         #region Properties
-
-        public WorkbenchView WorkbenchView
+        public WorkbenchViewModel GetViewModel(WorkbenchView view)
         {
-            get
-            {
-                if (workbenchView == null) { workbenchView = new WorkbenchView(); }
-                return workbenchView;
-            }
-        }
-
-        public WorkbenchViewModel WorkbenchViewModel
-        {
-            get
-            {
-                return (WorkbenchViewModel)this.WorkbenchView.DataContext;
-            }
+            return (WorkbenchViewModel)view.DataContext;
         }
 
         #endregion Properties
-
-        #region Methods
-
-        public void CloseAll()
-        {
-            this.CloseWorkbenchView();
-        }
-
-        private void CloseWorkbenchView()
-        {
-            workbenchView = null;
-        }
-
-        #endregion Methods
     }
 }

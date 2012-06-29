@@ -68,11 +68,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager
 
         #region Methods
 
-        public override void Close()
-        {
-            this.ViewService.CloseAll();
-        }
-
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
         /// Every task that could throw exception should be in this method and not in the ctor.
@@ -146,9 +141,10 @@ namespace Probel.NDoctor.Plugins.PathologyManager
         {
             try
             {
-                this.ViewService.WorkbenchViewModel.Refresh();
+                var view = new WorkbenchView();
+                this.ViewService.GetViewModel(view).Refresh();
                 PluginContext.Host.WriteStatusReady();
-                PluginContext.Host.Navigate(this.ViewService.WorkbenchView);
+                PluginContext.Host.Navigate(view);
 
                 this.ShowContextMenu();
             }

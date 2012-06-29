@@ -21,77 +21,21 @@
 
 namespace Probel.NDoctor.Plugins.Authorisation.Helpers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     using Probel.NDoctor.Plugins.Authorisation.View;
     using Probel.NDoctor.Plugins.Authorisation.ViewModel;
 
     public class ViewService
     {
-        #region Fields
-
-        private static ManageUserView manageUserView;
-        private static WorkbenchView workbenchView;
-
-        #endregion Fields
-
-        #region Properties
-
-        public ManageUserView ManageUserView
-        {
-            get
-            {
-                if (manageUserView == null) { manageUserView = new ManageUserView(); }
-                return manageUserView;
-            }
-        }
-
-        public ManageUserViewModel ManageUserViewModel
-        {
-            get
-            {
-                return (ManageUserViewModel)manageUserView.DataContext;
-            }
-        }
-
-        public WorkbenchView WorkbenchView
-        {
-            get
-            {
-                if (workbenchView == null) { workbenchView = new WorkbenchView(); }
-                return workbenchView;
-            }
-        }
-
-        public WorkbenchViewModel WorkbenchViewModel
-        {
-            get
-            {
-                return (WorkbenchViewModel)workbenchView.DataContext;
-            }
-        }
-
-        #endregion Properties
-
         #region Methods
 
-        public void CloseAll()
+        public WorkbenchViewModel GetViewModel(WorkbenchView view)
         {
-            this.CloseManageUserView();
-            this.CloseWorkbenchView();
+            return (WorkbenchViewModel)view.DataContext;
         }
 
-        public void CloseManageUserView()
+        public ManageUserViewModel GetViewModel(ManageUserView view)
         {
-            manageUserView = null;
-        }
-
-        public void CloseWorkbenchView()
-        {
-            workbenchView = null;
+            return (ManageUserViewModel)view.DataContext;
         }
 
         #endregion Methods

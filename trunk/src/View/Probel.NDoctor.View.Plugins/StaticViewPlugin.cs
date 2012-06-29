@@ -14,35 +14,37 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Plugins.FamilyManager.View
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Probel.NDoctor.View.Plugins
 {
-    using System.Windows.Controls;
-    using System.Windows.Input;
-
-    using Probel.NDoctor.Plugins.FamilyManager.ViewModel;
-
     /// <summary>
-    /// Interaction logic for ManageFamilyWorkbench.xaml
+    /// This plugin has a static workbench. That's it only can exist one instance of the workbench
     /// </summary>
-    public partial class AddFamilyWorkbench : UserControl
+    /// <typeparam name="T"></typeparam>
+    public abstract class StaticViewPlugin<T> : Plugin
+        where T : new()
     {
-        #region Constructors
-
-        public AddFamilyWorkbench()
+        public StaticViewPlugin(Version version)
+            : base(version)
         {
-            InitializeComponent();
-            this.DataContext = new AddFamilyViewModel();
+
         }
-
-        #endregion Constructors
-
-        #region Methods
-
-        private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private T view;
+        /// <summary>
+        /// Gets the static workbench.
+        /// </summary>
+        protected T View
         {
-            Keyboard.Focus(this.focused);
+            get
+            {
+                if (view == null) view = new T();
+                return view;
+            }
         }
-
-        #endregion Methods
     }
 }

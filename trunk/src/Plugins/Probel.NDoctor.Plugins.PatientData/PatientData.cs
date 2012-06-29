@@ -39,7 +39,7 @@ namespace Probel.NDoctor.Plugins.PatientData
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
-    public class PatientData : Plugin
+    public class PatientData : StaticViewPlugin<WorkbenchView>
     {
         #region Fields
 
@@ -83,11 +83,6 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         #region Methods
 
-        public override void Close()
-        {
-            this.ViewService.CloseAll();
-        }
-
         public override void Initialise()
         {
             this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
@@ -118,9 +113,9 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         private void BuildContextMenu()
         {
-            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.ViewService.WorkbenchViewModel.SaveCommand);
+            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.ViewService.GetViewModel(this.View).SaveCommand);
 
-            var rollbackButton = new RibbonButtonData(Messages.Title_Rollback, imgUri.FormatWith("Save"), this.ViewService.WorkbenchViewModel.RollbackCommand);
+            var rollbackButton = new RibbonButtonData(Messages.Title_Rollback, imgUri.FormatWith("Save"), this.ViewService.GetViewModel(this.View).RollbackCommand);
 
             var splitter = new RibbonMenuItemData(Messages.Btn_Add, imgUri.FormatWith("Add"), null);
             splitter.ControlDataCollection.Add(new RibbonMenuItemData(Messages.Title_AddDoctor, imgUri.FormatWith("Add"), this.addDoctorCommand));
@@ -161,8 +156,9 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         private void Navigate()
         {
-            PluginContext.Host.Navigate(this.ViewService.WorkbenchView);
-            this.ViewService.WorkbenchViewModel.Refresh();
+
+            this.ViewService.GetViewModel(this.View).Refresh();
+            PluginContext.Host.Navigate(this.View);
             this.ShowContextMenu();
         }
 

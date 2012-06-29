@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -16,36 +14,35 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-#endregion Header
-
-namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
+namespace Probel.NDoctor.Plugins.FamilyManager.View
 {
-    using Probel.NDoctor.Plugins.MedicalRecord.View;
-    using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
+    using System.Windows.Controls;
+    using System.Windows.Input;
 
-    public class ViewService
+    using Probel.NDoctor.Plugins.FamilyManager.ViewModel;
+
+    /// <summary>
+    /// Interaction logic for ManageFamilyWorkbench.xaml
+    /// </summary>
+    public partial class AddFamilyView : UserControl
     {
+        #region Constructors
 
-        #region Properties
-
-        public AddFolderViewModel GetViewModel(AddFolderView view)
+        public AddFamilyView()
         {
-            return (AddFolderViewModel)view.DataContext;
+            InitializeComponent();
+            this.DataContext = new AddFamilyViewModel();
         }
 
+        #endregion Constructors
 
-        public AddRecordViewModel GetViewModel(AddRecordView view)
+        #region Methods
+
+        private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            return (AddRecordViewModel)view.DataContext;
+            Keyboard.Focus(this.focused);
         }
 
-
-        public WorkbenchViewModel GetViewModel(WorkbenchView view)
-        {
-            return (WorkbenchViewModel)view.DataContext;
-        }
-
-        #endregion Properties
+        #endregion Methods
     }
 }

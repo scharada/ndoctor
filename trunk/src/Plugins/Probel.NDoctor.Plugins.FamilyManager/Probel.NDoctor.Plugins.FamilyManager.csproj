@@ -93,11 +93,11 @@
     <Compile Include="ViewModel\AddFamilyViewModel.cs" />
     <Compile Include="ViewModel\RemoveFamilyViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
-    <Compile Include="View\AddFamilyWorkbench.xaml.cs">
-      <DependentUpon>AddFamilyWorkbench.xaml</DependentUpon>
+    <Compile Include="View\AddFamilyView.xaml.cs">
+      <DependentUpon>AddFamilyView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\RemoveFamilyWorkbench.xaml.cs">
-      <DependentUpon>RemoveFamilyWorkbench.xaml</DependentUpon>
+    <Compile Include="View\RemoveFamilyView.xaml.cs">
+      <DependentUpon>RemoveFamilyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WorkbenchView.xaml.cs">
       <DependentUpon>WorkbenchView.xaml</DependentUpon>
@@ -148,11 +148,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="View\AddFamilyWorkbench.xaml">
+    <Page Include="View\AddFamilyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\RemoveFamilyWorkbench.xaml">
+    <Page Include="View\RemoveFamilyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

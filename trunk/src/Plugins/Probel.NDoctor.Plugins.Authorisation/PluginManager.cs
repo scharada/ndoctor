@@ -69,11 +69,6 @@ namespace Probel.NDoctor.Plugins.Authorisation
 
         #region Methods
 
-        public override void Close()
-        {
-            this.ViewService.CloseAll();
-        }
-
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
         /// Every task that could throw exception should be in this method and not in the ctor.
@@ -152,8 +147,9 @@ namespace Probel.NDoctor.Plugins.Authorisation
 
         private void NavigateRole()
         {
-            PluginContext.Host.Navigate(this.ViewService.WorkbenchView);
-            this.ViewService.WorkbenchViewModel.Refresh();
+            var view = new WorkbenchView();
+            PluginContext.Host.Navigate(view);
+            this.ViewService.GetViewModel(view).Refresh();
             this.displayed = PageEventArgs.DisplayedPage.RoleManager;
 
             this.contextualMenu.IsVisible = true;
@@ -162,8 +158,9 @@ namespace Probel.NDoctor.Plugins.Authorisation
 
         private void NavigateUser()
         {
-            PluginContext.Host.Navigate(this.ViewService.ManageUserView);
-            this.ViewService.ManageUserViewModel.Refresh();
+            var view = new ManageUserView();
+            PluginContext.Host.Navigate(view);
+            this.ViewService.GetViewModel(view).Refresh();
             this.displayed = PageEventArgs.DisplayedPage.UserManager;
             Notifyer.OnShowing(this, PageEventArgs.DisplayedPage.UserManager);
 

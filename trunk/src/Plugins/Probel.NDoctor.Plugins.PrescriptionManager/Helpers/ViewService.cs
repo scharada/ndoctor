@@ -26,69 +26,24 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Helpers
 
     public class ViewService
     {
-        #region Fields
-
-        private static AddPrescriptionView addPrescriptionView;
-        private static WorkbenchView workbenchView;
-
-        #endregion Fields
 
         #region Properties
 
-        public AddPrescriptionView AddPrescriptionView
+
+        public AddPrescriptionViewModel GetViewModel(AddPrescriptionView view)
         {
-            get
-            {
-                if (addPrescriptionView == null) addPrescriptionView = new AddPrescriptionView();
-                return addPrescriptionView;
-            }
+            return (AddPrescriptionViewModel)view.DataContext;
+        }
+        public AddDrugTypeViewModel GetViewModel(AddDrugTypeView view)
+        {
+            return (AddDrugTypeViewModel)view.DataContext;
         }
 
-        public AddPrescriptionViewModel AddPrescriptionViewModel
+        public WorkbenchViewModel GetViewModel(WorkbenchView view)
         {
-            get
-            {
-                return (AddPrescriptionViewModel)this.AddPrescriptionView.DataContext;
-            }
-        }
-
-        public WorkbenchView WorkbenchView
-        {
-            get
-            {
-                if (workbenchView == null) { workbenchView = new WorkbenchView(); }
-                return workbenchView;
-            }
-        }
-
-        public WorkbenchViewModel WorkbenchViewModel
-        {
-            get
-            {
-                return (WorkbenchViewModel)this.WorkbenchView.DataContext;
-            }
+            return (WorkbenchViewModel)view.DataContext;
         }
 
         #endregion Properties
-
-        #region Methods
-
-        public void CloseAll()
-        {
-            this.CloseWorkbenchView();
-            this.CloseAddPrescriptionView();
-        }
-
-        private void CloseAddPrescriptionView()
-        {
-            addPrescriptionView = null;
-        }
-
-        private void CloseWorkbenchView()
-        {
-            workbenchView = null;
-        }
-
-        #endregion Methods
     }
 }

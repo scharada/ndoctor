@@ -78,11 +78,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager
 
         #region Methods
 
-        public override void Close()
-        {
-            this.ViewService.CloseAll();
-        }
-
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
         /// Every task that could throw exception should be in this method and not in the ctor.
@@ -121,13 +116,13 @@ namespace Probel.NDoctor.Plugins.MeetingManager
             PluginContext.Host.AddContextualMenu(this.contextualMenu);
             PluginContext.Host.AddTab(tab);
 
-            ICommand addCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddMeeting, this.ViewService.AddMeetingView), () => IsCalendatEditor);
+            ICommand addCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddMeeting, this.ViewService.NewAddMeetingView()), () => IsCalendatEditor);
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddMeeting, imgUri.FormatWith("Add"), addCommand) { Order = 1, });
 
-            ICommand removeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_RemoveMeeting, this.ViewService.RemoveMeetingView), () => IsCalendatEditor);
+            ICommand removeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_RemoveMeeting, new RemoveMeetingView()), () => IsCalendatEditor);
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_RemoveMeeting, imgUri.FormatWith("Delete"), removeCommand) { Order = 2, });
 
-            ICommand addCategoryCommand = new RelayCommand(() => InnerWindow.Show(Messages.Msg_AddCategory, this.ViewService.AddCategoryView), () => IsCalendatEditor);
+            ICommand addCategoryCommand = new RelayCommand(() => InnerWindow.Show(Messages.Msg_AddCategory, new AddCategoryView()), () => IsCalendatEditor);
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Msg_AddCategory, imgUri.FormatWith("AddCategory"), addCategoryCommand) { Order = 3, });
         }
 
@@ -145,8 +140,9 @@ namespace Probel.NDoctor.Plugins.MeetingManager
         {
             try
             {
-                //this.ViewModel.Refresh();
-                PluginContext.Host.Navigate(this.ViewService.WorkbenchView);
+                var view = new WorkbenchView();
+                //this.ViewService.GetViewModel(view).Refresh();
+                PluginContext.Host.Navigate(view);
                 this.ShowContextMenu();
 
                 Notifyer.OnRefreshed(this);

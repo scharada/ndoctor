@@ -24,11 +24,11 @@ namespace Probel.NDoctor.Plugins.FamilyManager.View
     /// <summary>
     /// Interaction logic for RemoveFamilyWorkbench.xaml
     /// </summary>
-    public partial class RemoveFamilyWorkbench : UserControl
+    public partial class RemoveFamilyView : UserControl
     {
         #region Constructors
 
-        public RemoveFamilyWorkbench()
+        public RemoveFamilyView()
         {
             InitializeComponent();
             this.DataContext = new RemoveFamilyViewModel();

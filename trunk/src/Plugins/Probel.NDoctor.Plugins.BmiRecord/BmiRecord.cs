@@ -76,10 +76,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord
 
         #region Methods
 
-        public override void Close()
-        {
-            this.ViewService.CloseAll();
-        }
 
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
@@ -119,7 +115,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
             PluginContext.Host.AddContextualMenu(this.contextualMenu);
             PluginContext.Host.AddTab(tab);
 
-            ICommand addPeriodCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddBmi, this.ViewService.AddBmiView), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            ICommand addPeriodCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddBmi, new AddBmiView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddBmi, imgUri.FormatWith("Add"), addPeriodCommand) { Order = 1, });
         }
 
@@ -135,8 +131,9 @@ namespace Probel.NDoctor.Plugins.BmiRecord
 
         private void Navigate()
         {
-            PluginContext.Host.Navigate(this.ViewService.WorkbenchView);
-            ((WorkbenchViewModel)this.ViewService.WorkbenchView.DataContext).Refresh();
+            var view = new WorkbenchView();
+            PluginContext.Host.Navigate(view);
+            this.ViewService.GetViewModel(view).Refresh();
 
             this.ShowContextMenu();
         }

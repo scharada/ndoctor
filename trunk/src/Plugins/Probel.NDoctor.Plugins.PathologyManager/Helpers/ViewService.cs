@@ -26,45 +26,15 @@ namespace Probel.NDoctor.Plugins.PathologyManager.Helpers
 
     public class ViewService
     {
-        #region Fields
-
-        private static WorkbenchView workbench;
-
-        #endregion Fields
 
         #region Properties
 
-        public WorkbenchView WorkbenchView
+        public WorkbenchViewModel GetViewModel(WorkbenchView view)
         {
-            get
-            {
-                if (workbench == null) { workbench = new WorkbenchView(); }
-                return workbench;
-            }
+            return (WorkbenchViewModel)view.DataContext;
         }
 
-        public WorkbenchViewModel WorkbenchViewModel
-        {
-            get
-            {
-                return (WorkbenchViewModel)this.WorkbenchView.DataContext;
-            }
-        }
 
         #endregion Properties
-
-        #region Methods
-
-        public void CloseAll()
-        {
-            this.CloseWorkbenchView();
-        }
-
-        private void CloseWorkbenchView()
-        {
-            workbench = null;
-        }
-
-        #endregion Methods
     }
 }

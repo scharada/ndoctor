@@ -41,7 +41,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
-    public class MedicalRecord : Plugin
+    public class MedicalRecord : StaticViewPlugin<WorkbenchView>
     {
         #region Fields
 
@@ -101,11 +101,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
         #region Methods
 
-        public override void Close()
-        {
-            PluginContext.Host.Invoke(() => this.ViewService.CloseAll());
-        }
-
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
         /// Every task that could throw exception should be in this method and not in the ctor.
@@ -116,7 +111,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
             PluginContext.Host.Invoke(() =>
             {
-                this.ViewService.CloseAll();
                 this.BuildButtons();
                 this.BuildContextMenu();
             });
@@ -203,7 +197,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
         private void ConfigureSaveMenu(RibbonTabData tab)
         {
-            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.ViewService.WorkbenchViewModel.SaveCommand);
+            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.ViewService.GetViewModel(View).SaveCommand);
             var splitButton = this.ConfigureSplitButton();
 
             var cgroup = new RibbonGroupData(Messages.Menu_Actions, 1);
@@ -306,13 +300,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
                 Command = EditingCommands.ToggleNumbering,
             };
         }
-
         private void NavigateAdd()
         {
             try
             {
-                this.ViewService.WorkbenchViewModel.RefreshCommand.TryExecute();
-                PluginContext.Host.Navigate(this.ViewService.WorkbenchView);
+                this.ViewService.GetViewModel(this.View).RefreshCommand.TryExecute();
+                PluginContext.Host.Navigate(this.View);
 
                 this.ShowContextMenu();
             }
