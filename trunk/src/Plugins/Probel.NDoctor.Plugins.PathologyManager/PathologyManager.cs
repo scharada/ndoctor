@@ -26,10 +26,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
-    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO;
-    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PathologyManager.Helpers;
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
@@ -114,7 +111,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager
                 , () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPeriods, imgUri.FormatWith("Add"), addPeriodCommand) { Order = 1, });
 
-            ICommand addPathologyCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPathology, new AddPathologyView())
+            ICommand addPathologyCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPathology, this.ViewService.NewAddPathologyView())
                 , () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPathology, imgUri.FormatWith("Add"), addPathologyCommand) { Order = 2 });
 

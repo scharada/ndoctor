@@ -13,7 +13,9 @@
     public class ViewService
     {
         #region Fields
+
         private static ICalendarComponent Component = PluginContext.ComponentFactory.GetInstance<ICalendarComponent>();
+
         #endregion Fields
 
         #region Constructors
@@ -25,21 +27,17 @@
 
         #endregion Constructors
 
-        #region Properties
+        #region Methods
+
+        public WorkbenchViewModel GetViewModel(WorkbenchView view)
+        {
+            return (WorkbenchViewModel)view.DataContext;
+        }
 
         public AddMeetingView NewAddMeetingView()
         {
             var view = new AddMeetingView();
-            try
-            {
-                IList<TagDto> tags;
-                using (Component.UnitOfWork)
-                {
-                    tags = Component.FindTags(TagCategory.Appointment);
-                }
-                this.GetViewModel(view).AppointmentTags.Refill(tags);
-            }
-            catch (Exception ex) { new ErrorHandler(this).HandleError(ex); }
+            this.GetViewModel(view).Refresh();
 
             return view;
         }
@@ -49,12 +47,6 @@
             return (AddMeetingViewModel)view.DataContext;
         }
 
-        public WorkbenchViewModel GetViewModel(WorkbenchView view)
-        {
-            return (WorkbenchViewModel)view.DataContext;
-        }
-        #endregion Properties
-
-
+        #endregion Methods
     }
 }

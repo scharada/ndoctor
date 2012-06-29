@@ -50,7 +50,7 @@ namespace Probel.NDoctor.View.Core.Controls
         public static DependencyProperty OkCommandProperty = DependencyProperty.RegisterAttached("OkCommand", typeof(ICommand)
             , typeof(EditionBox)
             , new UIPropertyMetadata(null));
-        public static DependencyProperty ValueProperty = DependencyProperty.RegisterAttached("Value", typeof(ReferenceObject<string>)
+        public static DependencyProperty ValueProperty = DependencyProperty.RegisterAttached("Value", typeof(ReferencedObject<string>)
             , typeof(EditionBox)
             , new UIPropertyMetadata(null));
 
@@ -79,7 +79,7 @@ namespace Probel.NDoctor.View.Core.Controls
             set { EditionBox.SetOkCommand(this, value); }
         }
 
-        public ReferenceObject<string> Value
+        public ReferencedObject<string> Value
         {
             get { return EditionBox.GetValue(this); }
             set { EditionBox.SetValue(this, value); }
@@ -99,9 +99,9 @@ namespace Probel.NDoctor.View.Core.Controls
             return target.GetValue(OkCommandProperty) as ICommand;
         }
 
-        public static ReferenceObject<string> GetValue(DependencyObject target)
+        public static ReferencedObject<string> GetValue(DependencyObject target)
         {
-            return target.GetValue(ValueProperty) as ReferenceObject<string>;
+            return target.GetValue(ValueProperty) as ReferencedObject<string>;
         }
 
         public static void SetButtonName(DependencyObject target, string value)
@@ -114,7 +114,7 @@ namespace Probel.NDoctor.View.Core.Controls
             target.SetValue(OkCommandProperty, value);
         }
 
-        public static void SetValue(DependencyObject target, ReferenceObject<string> value)
+        public static void SetValue(DependencyObject target, ReferencedObject<string> value)
         {
             target.SetValue(ValueProperty, value);
         }

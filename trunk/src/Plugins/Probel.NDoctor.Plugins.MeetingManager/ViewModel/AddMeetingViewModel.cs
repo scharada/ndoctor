@@ -22,6 +22,7 @@
 namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 {
     using System;
+    using System.Collections.Generic;
     using System.Timers;
     using System.Windows.Input;
 
@@ -75,6 +76,20 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         #endregion Properties
 
         #region Methods
+
+        public void Refresh()
+        {
+            IList<TagDto> tags;
+            try
+            {
+                using (Component.UnitOfWork)
+                {
+                    tags = Component.FindTags(TagCategory.Appointment);
+                }
+                AppointmentTags.Refill(tags);
+            }
+            catch (Exception ex) { new ErrorHandler(this).HandleError(ex); }
+        }
 
         protected override void ClearSlotZone()
         {

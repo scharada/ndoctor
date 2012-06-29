@@ -1,4 +1,4 @@
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -15,14 +15,20 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System.Reflection;
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
-[assembly:AssemblyVersion("3.0.1.606")]
+using System.Windows.Controls;
+using Probel.NDoctor.Plugins.Administration.ViewModel;
+
+namespace Probel.NDoctor.Plugins.Administration.View
+{
+    /// <summary>
+    /// Interaction logic for AddPathologyTypeView.xaml
+    /// </summary>
+    public partial class AddPathologyTypeView : UserControl
+    {
+        public AddPathologyTypeView()
+        {
+            InitializeComponent();
+            this.DataContext = new AddPathologyTypeViewModel();
+        }
+    }
+}

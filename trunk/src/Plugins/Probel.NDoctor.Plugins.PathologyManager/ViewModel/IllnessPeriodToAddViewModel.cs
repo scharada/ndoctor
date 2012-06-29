@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PathologyManager.Helpers;
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
 
     public class IllnessPeriodToAddViewModel : IllnessPeriodDto
@@ -111,6 +112,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
                 }
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PeriodAdded);
                 Notifyer.OnItemChanged(this);
+                InnerWindow.Close();
             }
             catch (Exception ex)
             {

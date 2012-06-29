@@ -149,9 +149,21 @@
     <value>Add a drug</value>
     <comment>Add a drug</comment>
   </data>
+  <data name="Title_AddDrugType" xml:space="preserve">
+    <value>Add a new drug type</value>
+    <comment>Add a new drug type</comment>
+  </data>
   <data name="Title_AddInsurance" xml:space="preserve">
     <value>Add an insurance</value>
     <comment>Add an insurance</comment>
+  </data>
+  <data name="Title_AddPathology" xml:space="preserve">
+    <value>Add a pathology</value>
+    <comment>Add a pathology</comment>
+  </data>
+  <data name="Title_AddPathologyType" xml:space="preserve">
+    <value>Ajouter un type de maladie</value>
+    <comment>Add a new pathology type</comment>
   </data>
   <data name="Title_AddPractice" xml:space="preserve">
     <value>Add a practice</value>
@@ -166,7 +178,7 @@
     <comment>Add a reputation</comment>
   </data>
   <data name="Title_AddSpecialisation" xml:space="preserve">
-    <value>Add a new specialisation</value>
+    <value>Ajouter une spécialisation</value>
     <comment>Add a new specialisation</comment>
   </data>
   <data name="Title_AdministratorManager" xml:space="preserve">

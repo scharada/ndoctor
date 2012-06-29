@@ -118,29 +118,28 @@ INSERT INTO Bmi(Date, Height, Weight, Patient_id, IsImported) VALUES ('2007-01-0
 INSERT INTO Bmi(Date, Height, Weight, Patient_id, IsImported) VALUES ('2007-01-10', 180, 89, 4, 0);
 INSERT INTO Bmi(Date, Height, Weight, Patient_id, IsImported) VALUES ('2007-01-11', 180, 90, 4, 0);
 
-INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(1, '2010-01-01', 'Title 1'    , 'Demonstration Title" Hello world as a medical record 1 text', 1, 3, 0);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(2, '2010-01-01', 'Title 1 bis', 'Demonstration Title" Hello world as a medical record 1 bis text', 1, 3, 0);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(3, '2010-01-01', 'Title 2'    , 'Demonstration Title" Hello world as a medical record 2 text', 2, 3, 0);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(4, '2010-01-01', 'Title 3'    , 'Demonstration Title" Hello world as a medical record 3 text', 3, 3, 0);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(5, '2010-01-01', 'Title 4'    , 'Demonstration Title" Hello world as a medical record 4 text', 1, 4, 0);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(6, '2010-01-01', 'Title 5'    , 'Demonstration Title" Hello world as a medical record 5 text', 2, 4, 0);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(7, '2010-01-01', 'Title 6'    , 'Demonstration Title" Hello world as a medical record 6 text', 3, 4, 0);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES( 1, '2010-01-01', 'Title 01', 'Demonstration Title" Hello world as a medical record 01 text', 1,  3, 0);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES( 2, '2010-01-01', 'Title 02', 'Demonstration Title" Hello world as a medical record 02 text', 1,  4, 0);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES( 3, '2010-01-01', 'Title 03', 'Demonstration Title" Hello world as a medical record 03 text', 2,  7, 0);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES( 4, '2010-01-01', 'Title 04', 'Demonstration Title" Hello world as a medical record 04 text', 3,  8, 0);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES( 5, '2010-01-01', 'Title 05', 'Demonstration Title" Hello world as a medical record 05 text', 1,  9, 0);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES( 6, '2010-01-01', 'Title 06', 'Demonstration Title" Hello world as a medical record 06 text', 2, 10, 0);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES( 7, '2010-01-01', 'Title 07', 'Demonstration Title" Hello world as a medical record 07 text', 3, 11, 0);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES( 8, '2010-01-01', 'Title 08', 'Demonstration Title" Hello world as a medical record 08 text', 3, 12, 0);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES( 9, '2010-01-01', 'Title 09', 'Demonstration Title" Hello world as a medical record 09 text', 3, 13, 0);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(10, '2010-01-01', 'Title 10', 'Demonstration Title" Hello world as a medical record 10 text', 3, 14, 0);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(11, '2010-01-01', 'Title 11', 'Demonstration Title" Hello world as a medical record 11 text', 3,  3, 0);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(12, '2010-01-01', 'Title 12', 'Demonstration Title" Hello world as a medical record 12 text', 3,  4, 0);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(13, '2010-01-01', 'Title 13', 'Demonstration Title" Hello world as a medical record 13 text', 3,  7, 0);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(14, '2010-01-01', 'Title 14', 'Demonstration Title" Hello world as a medical record 14 text', 3,  8, 0);
+INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(15, '2010-01-01', 'Title 15', 'Demonstration Title" Hello world as a medical record 15 text', 3,  9, 0);
 
-INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(8, '2010-01-01', 'Title 6' , 'Demonstration Title" Hello world as a medical record 6 text ', 3, 4, 0);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(9, '2010-01-01', 'Title 6' , 'Demonstration Title" Hello world as a medical record 6 text ', 3, 7, 0);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(10, '2010-01-01', 'Title 6', 'Demonstration Title" Hello world as a medical record 6 text ', 3, 8, 0);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(11, '2010-01-01', 'Title 6', 'Demonstration Title" Hello world as a medical record 6 text ', 3, 9, 0);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(12, '2010-01-01', 'Title 6', 'Demonstration Title" Hello world as a medical record 6 text ', 3, 10, 0);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(13, '2010-01-01', 'Title 6', 'Demonstration Title" Hello world as a medical record 6 text ', 3, 11, 0);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(14, '2010-01-01', 'Title 6', 'Demonstration Title" Hello world as a medical record 6 text ', 3, 12, 0);
-INSERT INTO MedicalRecord(Id, CreationDate, Name, rtf, Tag_Id, Patient_Id, IsImported) VALUES(15, '2010-01-01', 'Title 6', 'Demonstration Title" Hello world as a medical record 6 text ', 3, 13, 0);
-
-INSERT INTO IllnessPeriod (Id, Start, End, Pathology_Id, Notes, Patient_Id, IsImported) VALUES (1, '2010-01-01', '2010-01-05', 1, 'Some notes about the period', 7, 0);
-INSERT INTO IllnessPeriod (Id, Start, End, Pathology_Id, Notes, Patient_Id, IsImported) VALUES (2, '2010-01-02', '2010-01-07', 2, 'Some notes about the period', 7, 0);
-INSERT INTO IllnessPeriod (Id, Start, End, Pathology_Id, Notes, Patient_Id, IsImported) VALUES (3, '2010-01-03', '2010-01-09', 3, 'Some notes about the period', 7, 0);
-INSERT INTO IllnessPeriod (Id, Start, End, Pathology_Id, Notes, Patient_Id, IsImported) VALUES (4, '2010-01-04', '2010-01-15', 4, 'Some notes about the period', 7, 0);
-INSERT INTO IllnessPeriod (Id, Start, End, Pathology_Id, Notes, Patient_Id, IsImported) VALUES (5, '2010-01-05', '2010-01-22', 1, 'Some notes about the period', 7, 0);
-INSERT INTO IllnessPeriod (Id, Start, End, Pathology_Id, Notes, Patient_Id, IsImported) VALUES (6, '2010-01-06', '2010-01-10', 3, 'Some notes about the period', 7, 0);
+INSERT INTO IllnessPeriod (Id, Start, End, Pathology_Id, Notes, Patient_Id, IsImported) VALUES (1, '2010-01-01', '2010-01-05', 1, 'Some notes about the period 1', 7, 0);
+INSERT INTO IllnessPeriod (Id, Start, End, Pathology_Id, Notes, Patient_Id, IsImported) VALUES (2, '2010-01-02', '2010-01-07', 2, 'Some notes about the period 2', 7, 0);
+INSERT INTO IllnessPeriod (Id, Start, End, Pathology_Id, Notes, Patient_Id, IsImported) VALUES (3, '2010-01-03', '2010-01-09', 3, 'Some notes about the period 3', 7, 0);
+INSERT INTO IllnessPeriod (Id, Start, End, Pathology_Id, Notes, Patient_Id, IsImported) VALUES (4, '2010-01-04', '2010-01-15', 4, 'Some notes about the period 4', 7, 0);
+INSERT INTO IllnessPeriod (Id, Start, End, Pathology_Id, Notes, Patient_Id, IsImported) VALUES (5, '2010-01-05', '2010-01-22', 1, 'Some notes about the period 5', 7, 0);
+INSERT INTO IllnessPeriod (Id, Start, End, Pathology_Id, Notes, Patient_Id, IsImported) VALUES (6, '2010-01-06', '2010-01-10', 3, 'Some notes about the period 6', 7, 0);
 
 INSERT INTO Drug(Id, Name, Notes, Tag_Id, IsImported) VALUES (1, 'Aspirine' , 'For headaches', 13, 0);
 INSERT INTO Drug(Id, Name, Notes, Tag_Id, IsImported) VALUES (2, 'Vitamin C', 'For energy'   , 14, 0);

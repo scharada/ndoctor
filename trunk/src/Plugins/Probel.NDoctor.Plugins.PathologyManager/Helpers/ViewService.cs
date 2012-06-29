@@ -21,20 +21,53 @@
 
 namespace Probel.NDoctor.Plugins.PathologyManager.Helpers
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PathologyManager.View;
     using Probel.NDoctor.Plugins.PathologyManager.ViewModel;
+    using Probel.NDoctor.View.Plugins.Helpers;
 
     public class ViewService
     {
+        #region Fields
 
-        #region Properties
+        private IPathologyComponent component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
+
+        #endregion Fields
+
+        #region Constructors
+
+        public ViewService()
+        {
+            PluginContext.Host.NewUserConnected += (sender, e) => component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
+        }
+
+        #endregion Constructors
+
+        #region Methods
 
         public WorkbenchViewModel GetViewModel(WorkbenchView view)
         {
             return (WorkbenchViewModel)view.DataContext;
         }
 
+        public AddPathologyView NewAddPathologyView()
+        {
+            var view = new AddPathologyView();
+            this.GetViewModel(view).Refresh();
 
-        #endregion Properties
+            return view;
+        }
+
+        private AddPathologyViewModel GetViewModel(AddPathologyView view)
+        {
+            return (AddPathologyViewModel)view.DataContext;
+        }
+
+        #endregion Methods
     }
 }

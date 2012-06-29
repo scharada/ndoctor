@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
+    using Probel.NDoctor.Plugins.PrescriptionManager.View;
     using Probel.NDoctor.View.Core.Controls;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
@@ -82,7 +83,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
         public ICommand EditPrescriptionCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public DateTime EndCriteria
@@ -166,7 +168,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         {
             try
             {
-                var refObj = new ReferenceObject<string>(this.SelectedPrescription.Notes);
+                var refObj = new ReferencedObject<string>(this.SelectedPrescription.Notes);
                 InnerWindow.Show(BaseText.Edit, new EditionBox()
                 {
                     Value = refObj,

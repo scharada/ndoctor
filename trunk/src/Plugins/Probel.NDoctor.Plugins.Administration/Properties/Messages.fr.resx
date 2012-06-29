@@ -253,4 +253,16 @@
     <value>Ajouter un médicament</value>
     <comment>Add a drug</comment>
   </data>
+  <data name="Title_AddPathology" xml:space="preserve">
+    <value>Ajouter une maladie</value>
+    <comment>Add a pathology</comment>
+  </data>
+  <data name="Title_AddDrugType" xml:space="preserve">
+    <value>Ajouter un type de médicament</value>
+    <comment>Add a new drug type</comment>
+  </data>
+  <data name="Title_AddPathologyType" xml:space="preserve">
+    <value>Ajouter un type de maladie</value>
+    <comment>Add a new pathology type</comment>
+  </data>
 </root>

@@ -25,9 +25,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
     using AutoMapper;
 
-    using Probel.Helpers.Conversions;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;

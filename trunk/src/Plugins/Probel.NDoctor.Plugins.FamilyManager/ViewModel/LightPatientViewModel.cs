@@ -32,6 +32,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.FamilyManager.Properties;
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
 
     public class LightPatientViewModel : LightPatientDto
@@ -62,12 +63,6 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
         }
 
         #endregion Constructors
-
-        #region Events
-
-        public event EventHandler<EventArgs<State>> Refreshed;
-
-        #endregion Events
 
         #region Properties
 
@@ -148,7 +143,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
                 {
                     this.component.Update(this.BuildFamily());
                 }
-                this.OnRefreshed(State.Created);
+                Notifyer.OnRefreshed(this);
                 this.BuildFamily();
 
                 Notifyer.OnRefreshed(this);
@@ -196,15 +191,10 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
                 {
                     this.component.RemoveFamilyMember(member, this.SessionPatient);
                 }
-                this.OnRefreshed(State.Removed);
+                Notifyer.OnRefreshed(this);
+                //InnerWindow.Close();
             }
             catch (Exception ex) { this.ErrorHandler.HandleError(ex); }
-        }
-
-        private void OnRefreshed(State state)
-        {
-            if (this.Refreshed != null)
-                this.Refreshed(this, new EventArgs<State>(state));
         }
 
         private void SetParent(FamilyDto family, LightPatientDto current)

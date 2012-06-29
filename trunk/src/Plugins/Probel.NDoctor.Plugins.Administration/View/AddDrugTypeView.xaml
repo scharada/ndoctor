@@ -1,5 +1,4 @@
-﻿<UserControl x:Class="Probel.NDoctor.Plugins.Administration.View.AddReputationView"
-             
+﻿<UserControl x:Class="Probel.NDoctor.Plugins.Administration.View.AddDrugTypeView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -16,8 +15,7 @@
                     Command="iw:InnerWindow.CancelCommand" />
     </UserControl.InputBindings>
 
-    <ctrl:ReputationBox Reputation="{Binding BoxItem}"
-                        ButtonName="{Binding Source={x:Static Member=t:BaseText.Add}}"
-                        OkCommand="{Binding AddCommand}"/>
+    <ctrl:TagBox Stamp="{Binding BoxItem}"
+                 ButtonName="{Binding Source={x:Static Member=t:BaseText.Add}}"
+                 OkCommand="{Binding AddCommand}"/>
 </UserControl>
-

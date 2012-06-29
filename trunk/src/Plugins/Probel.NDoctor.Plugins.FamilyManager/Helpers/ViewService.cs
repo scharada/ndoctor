@@ -21,17 +21,70 @@
 
 namespace Probel.NDoctor.Plugins.FamilyManager.Helpers
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.FamilyManager.View;
     using Probel.NDoctor.Plugins.FamilyManager.ViewModel;
+    using Probel.NDoctor.View.Plugins.Helpers;
 
     public class ViewService
     {
-        #region Properties
+        #region Fields
+
+        private IFamilyComponent Component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
+
+        #endregion Fields
+
+        #region Constructors
+
+        public ViewService()
+        {
+            PluginContext.Host.NewUserConnected += (sendere, e) => this.Component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
+        }
+
+        #endregion Constructors
+
+        #region Methods
+
         public WorkbenchViewModel GetViewModel(WorkbenchView view)
         {
             return (WorkbenchViewModel)view.DataContext;
         }
 
-        #endregion Properties
+        public RemoveFamilyViewModel GetViewModel(RemoveFamilyView view)
+        {
+            return (RemoveFamilyViewModel)view.DataContext;
+        }
+
+        public RemoveFamilyView NewRemoveFamilyView()
+        {
+            var view = new RemoveFamilyView();
+            IEnumerable<LightPatientDto> family;
+
+            try
+            {
+                using (Component.UnitOfWork)
+                {
+                    family = this.Component.GetAllFamilyMembers(PluginContext.Host.SelectedPatient);
+                }
+
+                var mappedCollection = AutoMapper.Mapper.Map<IEnumerable<LightPatientDto>, IEnumerable<LightPatientViewModel>>(family);
+
+                foreach (var mapped in mappedCollection)
+                {
+                    mapped.SessionPatient = PluginContext.Host.SelectedPatient;
+                }
+                this.GetViewModel(view).FamilyMembers.Refill(mappedCollection);
+            }
+            catch (Exception ex) { new ErrorHandler(this).HandleError(ex); }
+
+            return view;
+        }
+
+        #endregion Methods
     }
 }

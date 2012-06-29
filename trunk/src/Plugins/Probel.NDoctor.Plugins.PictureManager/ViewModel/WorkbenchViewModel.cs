@@ -28,7 +28,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.Helpers.Conversions;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;

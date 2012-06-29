@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.FamilyManager.Properties;
+    using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
@@ -48,6 +49,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
 
             this.FamilyMembers = new ObservableCollection<LightPatientViewModel>();
+            Notifyer.Refreshed += (sender, e) => this.Refresh();
         }
 
         #endregion Constructors
@@ -84,12 +86,12 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
                 for (int i = 0; i < mapped.Count; i++)
                 {
                     mapped[i].SessionPatient = PluginContext.Host.SelectedPatient;
-                    mapped[i].Refreshed += (sender, e) =>
-                    {
-                        this.Refresh();
-                        if (e.Data == State.Created) { PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationAdded); }
-                        else if (e.Data == State.Removed) { PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationRemoved); }
-                    };
+                    //mapped[i].Refreshed += (sender, e) =>
+                    //{
+                    //    this.Refresh();
+                    //    if (e.Data == State.Created) { PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationAdded); }
+                    //    else if (e.Data == State.Removed) { PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationRemoved); }
+                    //};
                 }
                 this.FamilyMembers.Refill(mapped);
                 PluginContext.Host.WriteStatusReady();

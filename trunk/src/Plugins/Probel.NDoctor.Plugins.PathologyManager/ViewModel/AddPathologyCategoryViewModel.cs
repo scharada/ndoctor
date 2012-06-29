@@ -58,7 +58,7 @@
         {
             try
             {
-                var tag = new TagDto(TagCategory.Appointment) { Name = this.CategoryName };
+                var tag = new TagDto(TagCategory.Pathology) { Name = this.CategoryName };
                 using (Component.UnitOfWork)
                 {
                     Component.Create(tag);

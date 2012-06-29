@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -17,38 +15,20 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#endregion Header
+using System.Windows.Controls;
+using Probel.NDoctor.Plugins.Administration.ViewModel;
 
-namespace Probel.NDoctor.View.Core.Helpers
+namespace Probel.NDoctor.Plugins.Administration.View
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
-    /// This object is used with databinding to keep the "by reference" feature when developer pass
-    /// a string or a value object
+    /// Interaction logic for AddDrugTypeView.xaml
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class ReferenceObject<T>
+    public partial class AddDrugTypeView : UserControl
     {
-        #region Constructors
-
-        public ReferenceObject(T value)
+        public AddDrugTypeView()
         {
-            this.Value = value;
+            InitializeComponent();
+            this.DataContext = new AddDrugTypeViewModel();
         }
-
-        #endregion Constructors
-
-        #region Properties
-
-        public T Value
-        {
-            get; set;
-        }
-
-        #endregion Properties
     }
 }

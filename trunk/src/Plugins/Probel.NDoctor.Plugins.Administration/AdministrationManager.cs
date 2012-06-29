@@ -105,28 +105,38 @@ namespace Probel.NDoctor.Plugins.Administration
             PluginContext.Host.AddContextualMenu(this.contextualMenu);
             PluginContext.Host.AddTab(tab);
 
+            int i = 0;
             var buttons = new List<RibbonButtonData>();
 
-            buttons.Add(new RibbonButtonData(Messages.Title_AddInsurance, imgUri.FormatWith("Save")
-                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddInsurance, new AddInsuranceView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = 1 });
+            buttons.Add(new RibbonButtonData(Messages.Title_AddInsurance, imgUri.FormatWith("New")
+                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddInsurance, new AddInsuranceView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
-            buttons.Add(new RibbonButtonData(Messages.Title_AddPractice, imgUri.FormatWith("Save")
-                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPractice, new AddPracticeView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = 2 });
+            buttons.Add(new RibbonButtonData(Messages.Title_AddPractice, imgUri.FormatWith("New")
+                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPractice, new AddPracticeView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
-            buttons.Add(new RibbonButtonData(Messages.Title_AddDrug, imgUri.FormatWith("Save")
-                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddDrug, new AddDrugView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = 3 });
+            buttons.Add(new RibbonButtonData(Messages.Title_AddDrug, imgUri.FormatWith("New")
+                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddDrug, new AddDrugView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
-            buttons.Add(new RibbonButtonData(Messages.Title_AddProfession, imgUri.FormatWith("Save")
-                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddProfession, new AddProfessionView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = 4 });
+            buttons.Add(new RibbonButtonData(Messages.Title_AddDrugType, imgUri.FormatWith("New")
+                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddDrugType, new AddDrugTypeView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
-            buttons.Add(new RibbonButtonData(Messages.Title_Reputation, imgUri.FormatWith("Save")
-                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddReputation, new AddReputationView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = 5 });
+            buttons.Add(new RibbonButtonData(Messages.Title_AddPathologyType, imgUri.FormatWith("New")
+                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPathologyType, new AddPathologyTypeView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
-            buttons.Add(new RibbonButtonData(Messages.Title_AddSpecialisation, imgUri.FormatWith("Save")
-                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddSpecialisation, new AddSpecialisationView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = 6 });
+            buttons.Add(new RibbonButtonData(Messages.Title_AddDrug, imgUri.FormatWith("New")
+                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPathology, new AddPathologyView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
-            buttons.Add(new RibbonButtonData(Messages.Title_AddDoctor, imgUri.FormatWith("Save")
-                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddDoctor, new AddDoctorView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = 7 });
+            buttons.Add(new RibbonButtonData(Messages.Title_AddProfession, imgUri.FormatWith("New")
+                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddProfession, new AddProfessionView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
+
+            buttons.Add(new RibbonButtonData(Messages.Title_AddReputation, imgUri.FormatWith("New")
+                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddReputation, new AddReputationView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
+
+            buttons.Add(new RibbonButtonData(Messages.Title_AddSpecialisation, imgUri.FormatWith("New")
+                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddSpecialisation, new AddSpecialisationView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
+
+            buttons.Add(new RibbonButtonData(Messages.Title_AddDoctor, imgUri.FormatWith("New")
+                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddDoctor, new AddDoctorView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
             foreach (var button in buttons) { cgroup.ButtonDataCollection.Add(button); }
         }

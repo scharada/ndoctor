@@ -113,12 +113,9 @@ namespace Probel.NDoctor.Plugins.FamilyManager
             {
                 try
                 {
-                    InnerWindow.Show(Messages.Btn_Remove, new RemoveFamilyView());
+                    InnerWindow.Show(Messages.Btn_Remove, this.ViewService.NewRemoveFamilyView());
                 }
-                catch (Exception ex)
-                {
-                    this.HandleError(ex, Messages.Msg_FailToLoadFamilyManager);
-                }
+                catch (Exception ex) { this.HandleError(ex, Messages.Msg_FailToLoadFamilyManager); }
             }, () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             #endregion
         }

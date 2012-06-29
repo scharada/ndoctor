@@ -85,8 +85,11 @@
     </Compile>
     <Compile Include="Translations\WorkbenchText.cs" />
     <Compile Include="ViewModel\AddDoctorViewModel.cs" />
+    <Compile Include="ViewModel\AddDrugTypeViewModel.cs" />
     <Compile Include="ViewModel\AddDrugViewModel.cs" />
     <Compile Include="ViewModel\AddInsuranceViewModel.cs" />
+    <Compile Include="ViewModel\AddPathologyTypeViewModel.cs" />
+    <Compile Include="ViewModel\AddPathologyViewModel.cs" />
     <Compile Include="ViewModel\AddPracticeViewModel.cs" />
     <Compile Include="ViewModel\AddProfessionViewModel.cs" />
     <Compile Include="ViewModel\AddReputationViewModel.cs" />
@@ -97,11 +100,20 @@
     <Compile Include="View\AddDoctorView.xaml.cs">
       <DependentUpon>AddDoctorView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AddDrugTypeView.xaml.cs">
+      <DependentUpon>AddDrugTypeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddDrugView.xaml.cs">
       <DependentUpon>AddDrugView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddInsuranceView.xaml.cs">
       <DependentUpon>AddInsuranceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddPathologyTypeView.xaml.cs">
+      <DependentUpon>AddPathologyTypeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddPathologyView.xaml.cs">
+      <DependentUpon>AddPathologyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddPracticeView.xaml.cs">
       <DependentUpon>AddPracticeView.xaml</DependentUpon>
@@ -176,11 +188,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AddDrugTypeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddDrugView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddInsuranceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddPathologyTypeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddPathologyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

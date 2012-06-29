@@ -133,11 +133,38 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add a new drug type.
+        /// </summary>
+        internal static string Title_AddDrugType {
+            get {
+                return ResourceManager.GetString("Title_AddDrugType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add an insurance.
         /// </summary>
         internal static string Title_AddInsurance {
             get {
                 return ResourceManager.GetString("Title_AddInsurance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a pathology.
+        /// </summary>
+        internal static string Title_AddPathology {
+            get {
+                return ResourceManager.GetString("Title_AddPathology", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ajouter un type de maladie.
+        /// </summary>
+        internal static string Title_AddPathologyType {
+            get {
+                return ResourceManager.GetString("Title_AddPathologyType", resourceCulture);
             }
         }
         
@@ -169,7 +196,7 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add a new specialisation.
+        ///   Looks up a localized string similar to Ajouter une spécialisation.
         /// </summary>
         internal static string Title_AddSpecialisation {
             get {

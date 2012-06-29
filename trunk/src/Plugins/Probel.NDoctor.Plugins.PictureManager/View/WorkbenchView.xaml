@@ -121,7 +121,7 @@
                 </Border>
 
             </StackPanel>
-            <Expander Visibility="{Binding SelectedPicture.Notes, Converter={StaticResource bytesToImage},UpdateSourceTrigger=PropertyChanged}"
+            <Expander Visibility="{Binding SelectedPicture.Notes,UpdateSourceTrigger=PropertyChanged}"
                       DockPanel.Dock="Bottom"
                       ExpandDirection="Up"
                       IsExpanded="{Binding Path=IsInformationExpanded}"
