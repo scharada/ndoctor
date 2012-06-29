@@ -24,6 +24,15 @@
 
         #endregion Fields
 
+        #region Constructors
+
+        public ViewService()
+        {
+            PluginContext.Host.NewUserConnected += (sender, e) => Component = PluginContext.ComponentFactory.GetInstance<ICalendarComponent>();
+        }
+
+        #endregion Constructors
+
         #region Properties
 
         public AddCategoryView AddCategoryView
@@ -40,12 +49,17 @@
             get
             {
                 if (addCategoryView == null) { addMeetingView = new AddMeetingView(); }
-                IList<TagDto> tags;
-                using (Component.UnitOfWork)
+                try
                 {
-                    tags = Component.FindTags(TagCategory.Appointment);
+                    IList<TagDto> tags;
+                    using (Component.UnitOfWork)
+                    {
+                        tags = Component.FindTags(TagCategory.Appointment);
+                    }
+                    this.AddMeetingViewModel.AppointmentTags.Refill(tags);
                 }
-                this.AddMeetingViewModel.AppointmentTags.Refill(tags);
+                catch (Exception ex) { new ErrorHandler(this).HandleError(ex); }
+
                 return addMeetingView;
             }
         }
