@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -15,32 +17,39 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Probel.NDoctor.Plugins.Administration.ViewModel;
+#endregion Header
 
 namespace Probel.NDoctor.Plugins.Administration.View
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Documents;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+    using System.Windows.Navigation;
+    using System.Windows.Shapes;
+
+    using Probel.NDoctor.Plugins.Administration.ViewModel;
+
     /// <summary>
     /// Interaction logic for AddPathologyView.xaml
     /// </summary>
     public partial class AddPathologyView : UserControl
     {
+        #region Constructors
+
         public AddPathologyView()
         {
             InitializeComponent();
             this.DataContext = new AddPathologyViewModel();
         }
+
+        #endregion Constructors
     }
 }

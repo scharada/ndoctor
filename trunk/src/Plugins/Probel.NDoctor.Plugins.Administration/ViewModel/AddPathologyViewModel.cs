@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -15,10 +17,12 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Probel.NDoctor.Domain.DTO.Objects;
+#endregion Header
 
 namespace Probel.NDoctor.Plugins.Administration.ViewModel
 {
+    using Probel.NDoctor.Domain.DTO.Objects;
+
     public class AddPathologyViewModel : BaseBoxViewModel<PathologyDto>
     {
         #region Constructors

@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -15,20 +17,30 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Probel.NDoctor.Domain.DTO.Objects;
+#endregion Header
 
 namespace Probel.NDoctor.Plugins.Administration.ViewModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using Probel.NDoctor.Domain.DTO.Objects;
+
     internal class AddPathologyTypeViewModel : BaseBoxViewModel<TagDto>
     {
+        #region Constructors
+
         public AddPathologyTypeViewModel()
         {
             this.BoxItem = new TagDto(TagCategory.Pathology);
         }
+
+        #endregion Constructors
+
+        #region Methods
+
         protected override void AddItem()
         {
             using (this.Component.UnitOfWork)
@@ -36,5 +48,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                 this.Component.Create(this.BoxItem);
             }
         }
+
+        #endregion Methods
     }
 }

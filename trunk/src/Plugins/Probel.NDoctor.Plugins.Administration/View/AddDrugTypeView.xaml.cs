@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -15,20 +17,27 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System.Windows.Controls;
-using Probel.NDoctor.Plugins.Administration.ViewModel;
+#endregion Header
 
 namespace Probel.NDoctor.Plugins.Administration.View
 {
+    using System.Windows.Controls;
+
+    using Probel.NDoctor.Plugins.Administration.ViewModel;
+
     /// <summary>
     /// Interaction logic for AddDrugTypeView.xaml
     /// </summary>
     public partial class AddDrugTypeView : UserControl
     {
+        #region Constructors
+
         public AddDrugTypeView()
         {
             InitializeComponent();
             this.DataContext = new AddDrugTypeViewModel();
         }
+
+        #endregion Constructors
     }
 }
