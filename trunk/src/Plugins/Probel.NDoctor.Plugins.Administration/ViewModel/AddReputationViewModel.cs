@@ -2,7 +2,7 @@
 {
     using Probel.NDoctor.Domain.DTO.Objects;
 
-    public class AddReputationViewModel : BaseBoxViewModel<ReputationDto>
+    internal class AddReputationViewModel : BaseBoxViewModel<ReputationDto>
     {
         #region Constructors
 

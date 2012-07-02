@@ -13,7 +13,7 @@
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public abstract class BaseBoxViewModel<T> : BaseViewModel
+    internal abstract class BaseBoxViewModel<T> : BaseViewModel
         where T : BaseDto
     {
         #region Fields

@@ -265,4 +265,8 @@
     <value>Ajouter un type de maladie</value>
     <comment>Add a new pathology type</comment>
   </data>
+  <data name="Title_AddPictureType" xml:space="preserve">
+    <value>Ajouter une catégorie de photo</value>
+    <comment>Add picture category</comment>
+  </data>
 </root>

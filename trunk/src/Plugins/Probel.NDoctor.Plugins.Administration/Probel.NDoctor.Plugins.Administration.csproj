@@ -90,6 +90,7 @@
     <Compile Include="ViewModel\AddInsuranceViewModel.cs" />
     <Compile Include="ViewModel\AddPathologyTypeViewModel.cs" />
     <Compile Include="ViewModel\AddPathologyViewModel.cs" />
+    <Compile Include="ViewModel\AddPictureTypeViewModel.cs" />
     <Compile Include="ViewModel\AddPracticeViewModel.cs" />
     <Compile Include="ViewModel\AddProfessionViewModel.cs" />
     <Compile Include="ViewModel\AddReputationViewModel.cs" />
@@ -114,6 +115,9 @@
     </Compile>
     <Compile Include="View\AddPathologyView.xaml.cs">
       <DependentUpon>AddPathologyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddPictureTypeView.xaml.cs">
+      <DependentUpon>AddPictureTypeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddPracticeView.xaml.cs">
       <DependentUpon>AddPracticeView.xaml</DependentUpon>
@@ -205,6 +209,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddPathologyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddPictureTypeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

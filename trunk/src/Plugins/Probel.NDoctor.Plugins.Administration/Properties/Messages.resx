@@ -165,6 +165,10 @@
     <value>Ajouter un type de maladie</value>
     <comment>Add a new pathology type</comment>
   </data>
+  <data name="Title_AddPictureType" xml:space="preserve">
+    <value>Add picture category</value>
+    <comment>Add picture category</comment>
+  </data>
   <data name="Title_AddPractice" xml:space="preserve">
     <value>Add a practice</value>
     <comment>Add a practice</comment>

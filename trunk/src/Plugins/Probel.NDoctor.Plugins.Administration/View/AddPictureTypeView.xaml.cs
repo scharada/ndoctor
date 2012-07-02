@@ -19,31 +19,25 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Plugins.Administration.ViewModel
+namespace Probel.NDoctor.Plugins.Administration.View
 {
-    using Probel.NDoctor.Domain.DTO.Objects;
+    using System.Windows.Controls;
 
-    internal class AddDrugTypeViewModel : BaseBoxViewModel<TagDto>
+    using Probel.NDoctor.Plugins.Administration.ViewModel;
+
+    /// <summary>
+    /// Interaction logic for AddPictureTypeView.xaml
+    /// </summary>
+    public partial class AddPictureTypeView : UserControl
     {
         #region Constructors
 
-        public AddDrugTypeViewModel()
+        public AddPictureTypeView()
         {
-            this.BoxItem = new TagDto(TagCategory.Drug);
+            InitializeComponent();
+            this.DataContext = new AddPictureTypeViewModel();
         }
 
         #endregion Constructors
-
-        #region Methods
-
-        protected override void AddItem()
-        {
-            using (this.Component.UnitOfWork)
-            {
-                this.Component.Create(this.BoxItem);
-            }
-        }
-
-        #endregion Methods
     }
 }

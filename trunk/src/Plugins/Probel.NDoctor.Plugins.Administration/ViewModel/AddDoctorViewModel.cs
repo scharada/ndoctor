@@ -7,7 +7,7 @@
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Objects;
 
-    public class AddDoctorViewModel : BaseBoxViewModel<DoctorDto>
+    internal class AddDoctorViewModel : BaseBoxViewModel<DoctorDto>
     {
         #region Constructors
 

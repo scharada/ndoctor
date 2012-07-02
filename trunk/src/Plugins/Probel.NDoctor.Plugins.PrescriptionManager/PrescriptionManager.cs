@@ -39,7 +39,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
-    public class PrescriptionManager : StaticViewPlugin<AddPrescriptionView>
+    public class PrescriptionManager : Plugin
     {
         #region Fields
 
@@ -51,11 +51,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         private bool isSaveCommandActivated = false;
         private bool isSearching = false;
         private LastNavigation lastNavigation;
-        private ICommand navAddPrescriptionCommand;
-        private ICommand navPrescriptionCommand;
-        private ICommand navSearchCommand;
-        private ICommand navWorkbenchCommand;
-        private ICommand saveCommand;
 
         #endregion Fields
 
@@ -69,12 +64,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             this.ConfigureAutoMapper();
 
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
-
-            this.saveCommand = new RelayCommand(() => this.Save(), () => CanSave());
-            this.navSearchCommand = new RelayCommand(() => this.NavigateSearch(), () => this.CanNavigateSearch());
-            this.navAddPrescriptionCommand = new RelayCommand(() => this.NavigateAddPrescription(), () => CanNavigateToAddPrescription());
-            this.navWorkbenchCommand = new RelayCommand(() => this.NavigateWorkbench(), () => this.CanNavigateWorkbench());
-            this.navPrescriptionCommand = new RelayCommand(() => this.NavigateWorkbench(), () => this.CanNavigatePrescription());
         }
 
         #endregion Constructors
@@ -89,6 +78,15 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         }
 
         #endregion Enumerations
+
+        #region Properties
+
+        private AddPrescriptionView View
+        {
+            get; set;
+        }
+
+        #endregion Properties
 
         #region Methods
 
@@ -113,7 +111,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
 
             var navigateButton = new RibbonButtonData(Messages.Title_PrescriptionManager
                     , imgUri.FormatWith("Prescription")
-                    , navWorkbenchCommand) { Order = 4 };
+                    , new RelayCommand(() => this.NavigateWorkbench(), () => this.CanNavigateWorkbench())) { Order = 4 };
             PluginContext.Host.AddInHome(navigateButton, Groups.Managers);
             #endregion
         }
@@ -125,19 +123,19 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         {
             var navAddPrescriptionButton = new RibbonButtonData(Messages.Title_AddPrescription
                 , imgUri.FormatWith("Add")
-                , navAddPrescriptionCommand);
+                , new RelayCommand(() => this.NavigateAddPrescription(), () => CanNavigateToAddPrescription()));
 
             var navWorkbenchButton = new RibbonButtonData(Messages.Title_PrescriptionManager
                 , imgUri.FormatWith("Prescription")
-                , navPrescriptionCommand);
+                , new RelayCommand(() => this.NavigateWorkbench(), () => this.CanNavigatePrescription()));
 
             var saveButton = new RibbonButtonData(Messages.Btn_Save
                 , imgUri.FormatWith("Save")
-                , saveCommand);
+                , new RelayCommand(() => this.Save(), () => CanSave()));
 
             var navSearchButton = new RibbonButtonData(Messages.Btn_Search
                 , icoUri.FormatWith("Search")
-                , navSearchCommand);
+                , new RelayCommand(() => this.NavigateSearch(), () => this.CanNavigateSearch()));
 
             var addDrugButton = new RibbonButtonData(Messages.Btn_AddDrug
                 , imgUri.FormatWith("Drug")
@@ -233,6 +231,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             {
                 this.isSaveCommandActivated = true;
 
+                this.View = new AddPrescriptionView();
                 this.ViewService.GetViewModel(this.View).Refresh();
                 PluginContext.Host.Navigate(this.View);
 

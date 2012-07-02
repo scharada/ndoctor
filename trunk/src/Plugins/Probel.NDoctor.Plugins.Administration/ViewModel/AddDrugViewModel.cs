@@ -28,7 +28,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
     using Probel.NDoctor.Domain.DTO.Objects;
 
-    class AddDrugViewModel : BaseBoxViewModel<DrugDto>
+    internal class AddDrugViewModel : BaseBoxViewModel<DrugDto>
     {
         #region Constructors
 

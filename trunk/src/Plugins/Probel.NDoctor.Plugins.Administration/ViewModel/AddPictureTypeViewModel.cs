@@ -23,13 +23,13 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 {
     using Probel.NDoctor.Domain.DTO.Objects;
 
-    internal class AddDrugTypeViewModel : BaseBoxViewModel<TagDto>
+    internal class AddPictureTypeViewModel : BaseBoxViewModel<TagDto>
     {
         #region Constructors
 
-        public AddDrugTypeViewModel()
+        public AddPictureTypeViewModel()
         {
-            this.BoxItem = new TagDto(TagCategory.Drug);
+            this.BoxItem = new TagDto(TagCategory.Picture);
         }
 
         #endregion Constructors

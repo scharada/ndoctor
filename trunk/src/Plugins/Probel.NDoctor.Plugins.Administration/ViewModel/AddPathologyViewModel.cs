@@ -23,7 +23,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 {
     using Probel.NDoctor.Domain.DTO.Objects;
 
-    public class AddPathologyViewModel : BaseBoxViewModel<PathologyDto>
+    internal class AddPathologyViewModel : BaseBoxViewModel<PathologyDto>
     {
         #region Constructors
 

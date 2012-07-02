@@ -2,7 +2,7 @@
 {
     using Probel.NDoctor.Domain.DTO.Objects;
 
-    public class AddPracticeViewModel : BaseBoxViewModel<PracticeDto>
+    internal class AddPracticeViewModel : BaseBoxViewModel<PracticeDto>
     {
         #region Constructors
 

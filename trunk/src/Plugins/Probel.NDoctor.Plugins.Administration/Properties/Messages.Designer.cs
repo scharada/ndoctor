@@ -169,6 +169,15 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add picture category.
+        /// </summary>
+        internal static string Title_AddPictureType {
+            get {
+                return ResourceManager.GetString("Title_AddPictureType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add a practice.
         /// </summary>
         internal static string Title_AddPractice {

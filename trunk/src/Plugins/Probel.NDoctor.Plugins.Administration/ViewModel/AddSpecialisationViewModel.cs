@@ -2,7 +2,7 @@
 {
     using Probel.NDoctor.Domain.DTO.Objects;
 
-    public class AddSpecialisationViewModel : BaseBoxViewModel<TagDto>
+    internal class AddSpecialisationViewModel : BaseBoxViewModel<TagDto>
     {
         #region Constructors
 

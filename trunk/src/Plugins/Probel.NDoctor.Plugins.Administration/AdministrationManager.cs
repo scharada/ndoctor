@@ -132,6 +132,9 @@ namespace Probel.NDoctor.Plugins.Administration
             buttons.Add(new RibbonButtonData(Messages.Title_AddReputation, imgUri.FormatWith("New")
                 , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddReputation, new AddReputationView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
+            buttons.Add(new RibbonButtonData(Messages.Title_AddPictureType, imgUri.FormatWith("New")
+                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPictureType, new AddPictureTypeView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
+
             buttons.Add(new RibbonButtonData(Messages.Title_AddSpecialisation, imgUri.FormatWith("New")
                 , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddSpecialisation, new AddSpecialisationView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 

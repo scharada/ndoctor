@@ -31,7 +31,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.NDoctor.Plugins.Administration.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class TagViewModel : TagDto
+    internal class TagViewModel : TagDto
     {
         #region Fields
 
