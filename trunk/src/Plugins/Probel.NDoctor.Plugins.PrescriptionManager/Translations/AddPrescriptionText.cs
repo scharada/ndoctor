@@ -23,6 +23,11 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Translations
     {
         #region Properties
 
+        public static string AddDrug
+        {
+            get { return Messages.Btn_AddDrug; }
+        }
+
         public static string BtnAdd
         {
             get { return Messages.Btn_Add; }

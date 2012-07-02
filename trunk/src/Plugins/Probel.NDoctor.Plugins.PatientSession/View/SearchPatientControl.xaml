@@ -64,9 +64,9 @@
         </DockPanel>
         <ScrollViewer>
             <ListView DockPanel.Dock="Bottom"
-                  ItemsSource="{Binding FoundPatients}"
-                  IsSynchronizedWithCurrentItem="True"
-                  VerticalAlignment="Stretch">
+                      ItemsSource="{Binding FoundPatients}"
+                      IsSynchronizedWithCurrentItem="True"
+                      VerticalAlignment="Stretch">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="IsSelected" Value="{Binding IsSelected}"/>

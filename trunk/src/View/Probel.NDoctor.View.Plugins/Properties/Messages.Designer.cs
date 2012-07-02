@@ -260,6 +260,15 @@ namespace Probel.NDoctor.View.Plugins.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        internal static string Remove {
+            get {
+                return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Editer.
         /// </summary>
         internal static string Title_Edit {

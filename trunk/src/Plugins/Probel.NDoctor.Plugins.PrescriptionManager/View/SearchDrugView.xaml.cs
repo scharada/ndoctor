@@ -19,35 +19,37 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Plugins.PrescriptionManager.Helpers
+namespace Probel.NDoctor.Plugins.PrescriptionManager.View
 {
-    using Probel.NDoctor.Plugins.PrescriptionManager.View;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Documents;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+    using System.Windows.Navigation;
+    using System.Windows.Shapes;
+
     using Probel.NDoctor.Plugins.PrescriptionManager.ViewModel;
 
-    internal class ViewService
+    /// <summary>
+    /// Interaction logic for SearchDrugView.xaml
+    /// </summary>
+    public partial class SearchDrugView : UserControl
     {
-        #region Methods
+        #region Constructors
 
-        public AddPrescriptionViewModel GetViewModel(AddPrescriptionView view)
+        public SearchDrugView()
         {
-            return (AddPrescriptionViewModel)view.DataContext;
+            InitializeComponent();
+            this.DataContext = new SearchDrugViewModel();
         }
 
-        public AddDrugTypeViewModel GetViewModel(AddDrugTypeView view)
-        {
-            return (AddDrugTypeViewModel)view.DataContext;
-        }
-
-        public WorkbenchViewModel GetViewModel(WorkbenchView view)
-        {
-            return (WorkbenchViewModel)view.DataContext;
-        }
-
-        internal SearchDrugViewModel GetViewModel(SearchDrugView view)
-        {
-            return (SearchDrugViewModel)view.DataContext;
-        }
-
-        #endregion Methods
+        #endregion Constructors
     }
 }

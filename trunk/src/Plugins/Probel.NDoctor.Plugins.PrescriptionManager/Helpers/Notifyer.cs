@@ -25,9 +25,11 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Helpers
     /// <summary>
     /// Static repository that fires statis events
     /// </summary>
-    public static class Notifyer
+    internal static class Notifyer
     {
         #region Events
+
+        public static event EventHandler<EventArgs<DrugDto>> DrugSelected;
 
         /// <summary>
         /// Occurs when an item is added/removed/updated.
@@ -39,9 +41,22 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Helpers
         /// </summary>
         public static event EventHandler<EventArgs<PrescriptionResultDto>> PrescriptionFound;
 
+        /// <summary>
+        /// Occurs when the user is removing a prescription.
+        /// </summary>
+        public static event EventHandler<EventArgs<PrescriptionDto>> PrescriptionRemoving;
+
         #endregion Events
 
         #region Methods
+
+        public static void OnDrugSelected(ViewModel.SearchDrugViewModel sender, DrugDto selectedDrug)
+        {
+            if (DrugSelected != null)
+            {
+                DrugSelected(sender, new EventArgs<DrugDto>(selectedDrug));
+            }
+        }
 
         /// <summary>
         /// Called when an item was added/removed/updated.
@@ -63,6 +78,18 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Helpers
             if (PrescriptionFound != null)
             {
                 PrescriptionFound(sender, new EventArgs<PrescriptionResultDto>(result));
+            }
+        }
+
+        /// <summary>
+        /// Called when user is removing a prescription.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        public static void OnPrescriptionRemoving(object sender, PrescriptionDto prescription)
+        {
+            if (PrescriptionRemoving != null)
+            {
+                PrescriptionRemoving(sender, new EventArgs<PrescriptionDto>(prescription));
             }
         }
 

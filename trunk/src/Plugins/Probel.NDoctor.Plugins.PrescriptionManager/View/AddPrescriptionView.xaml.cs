@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,9 +16,24 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#endregion Header
+
 namespace Probel.NDoctor.Plugins.PrescriptionManager.View
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Documents;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+    using System.Windows.Navigation;
+    using System.Windows.Shapes;
 
     using Probel.NDoctor.Plugins.PrescriptionManager.ViewModel;
 
@@ -27,13 +44,9 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.View
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AddPrescriptionView"/> class.
-        /// </summary>
-        /// <param name="host">The host.</param>
         public AddPrescriptionView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             this.DataContext = new AddPrescriptionViewModel();
         }
 

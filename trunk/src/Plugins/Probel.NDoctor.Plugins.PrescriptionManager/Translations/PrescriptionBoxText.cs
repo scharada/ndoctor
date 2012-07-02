@@ -1,3 +1,5 @@
+﻿#region Header
+
 /*
     This file is part of NDoctor.
 
@@ -15,14 +17,27 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System.Reflection;
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
-[assembly:AssemblyVersion("3.0.1.611")]
+#endregion Header
+
+namespace Probel.NDoctor.Plugins.PrescriptionManager.Translations
+{
+    using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
+    using Probel.NDoctor.View.Plugins.Helpers;
+
+    internal static class PrescriptionBoxText
+    {
+        #region Properties
+
+        public static string Notes
+        {
+            get { return Messages.Title_AddNotesHere; }
+        }
+
+        public static string Remove
+        {
+            get { return BaseText.Remove; }
+        }
+
+        #endregion Properties
+    }
+}

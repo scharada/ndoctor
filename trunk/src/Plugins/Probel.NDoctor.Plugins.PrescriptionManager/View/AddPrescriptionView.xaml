@@ -4,140 +4,38 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:this="clr-namespace:Probel.NDoctor.Plugins.PrescriptionManager.ViewModel"
-      xmlns:dto="clr-namespace:Probel.NDoctor.Domain.DTO.Objects;assembly=Probel.NDoctor.Domain.DTO"
-      xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PrescriptionManager.Translations"
-      xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PrescriptionManager.View"
       xmlns:h="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
-      
       xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+      xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PrescriptionManager.Translations"
+      xmlns:dto="clr-namespace:Probel.NDoctor.Domain.DTO.Objects;assembly=Probel.NDoctor.Domain.DTO"
+      xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PrescriptionManager.Controls"
+      
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="650"
-      Title="AddPrescriptionView">
+      d:DesignHeight="300" d:DesignWidth="650">
 
-    <Page.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Probel.NDoctor.Plugins.PrescriptionManager;component/Themes/Generic.xaml" />
-                <ResourceDictionary Source="/Probel.NDoctor.Plugins.PrescriptionManager;component/Resources/Resource.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Page.Resources>
-
-    <DockPanel>
-        <GroupBox DockPanel.Dock="Top" 
-                  Header="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleSearchDrugs}}">
-            <DockPanel LastChildFill="True">
-                <DockPanel DockPanel.Dock="Top">
-                    <Border Style="{StaticResource BorderStyle}">
-                        <RadioButton DockPanel.Dock="Left" x:Name="radioButtonName"
-                                     Grid.Row="0" 
-                                     Grid.Column="0"
-                                     GroupName="Search"
-                                     Content="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleName}}"
-                                     HorizontalAlignment="Left"
-                                     VerticalAlignment="Center"/>
-                    </Border>
-                    <Border Style="{StaticResource BorderStyle}">
-                        <toolkit:WatermarkTextBox Grid.Column="0" 
-                                                  Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}"                                                
-                                                  IsEnabled="{Binding ElementName=radioButtonName, Path=IsChecked}">
-                            <toolkit:WatermarkTextBox.Watermark>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
-                                           Height="15"
-                                           Width="15" />
-                                    <TextBlock Text="{Binding Source={x:Static Member=text:AddPrescriptionText.Watermark}}"
-                                               Margin="4,0,0,0"/>
-                                </StackPanel>
-                            </toolkit:WatermarkTextBox.Watermark>
-                        </toolkit:WatermarkTextBox>
-                    </Border>
-                </DockPanel>
-                <DockPanel DockPanel.Dock="Top">
-                    <Border Style="{StaticResource BorderStyle}">
-                        <RadioButton DockPanel.Dock="Left"
-                                 x:Name="radioButtonTag"
-                                 IsChecked="{Binding SearchOnTags}"                                                            
-                                 GroupName="Search"
-                                 Content="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleTag}}"
-                                 HorizontalAlignment="Left"
-                                 VerticalAlignment="Center"/>
-                    </Border>
-                    <Border Style="{StaticResource BorderStyle}">
-                        <ComboBox IsEnabled="{Binding ElementName=radioButtonTag, Path=IsChecked}"
-                                  ItemsSource="{Binding Path=Tags}"
-                                  DisplayMemberPath="Name"
-                                  SelectedIndex="0"
-                                  SelectedItem="{Binding Path=SelectedTag}"
-                                  h:SelectorBehaviour.SelectionChanged="{Binding SearchCommand}"/>
-                    </Border>
-                </DockPanel>
-
-                <ListView Grid.Row="2"
-                          ItemsSource="{Binding Path=FoundDrugs}"
-                          SelectedItem="{Binding Path=SelectedDrug}"
-                          Height="150">
-
-                    <ListView.Resources>
-                        <DataTemplate DataType="{x:Type this:DrugViewModel}">
-                            <StackPanel>
-                                <Label  Content="{Binding Path=Name}"/>
-                                <Button Content="{Binding Source={x:Static Member=text:AddPrescriptionText.BtnSelect}}"
-                                    Command="{Binding Path=SelectDrugCommand}"
-                                    Visibility="{Binding Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.Resources>
-
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
-            </DockPanel>
-        </GroupBox>
-        <GroupBox DockPanel.Dock="Top"
-                  Header="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleCreatePrescription}}">
-            <DockPanel LastChildFill="True">
-                <DockPanel DockPanel.Dock="top">
-                    <Label DockPanel.Dock="Left"
-                           Content="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleCreationDate}}"/>
-                    <DatePicker DockPanel.Dock="Right" 
-                                SelectedDate="{Binding Path=PrescriptionDocumentToCreate.CreationDate}"/>
-                </DockPanel>
-                <StackPanel>
-                    <DataGrid DockPanel.Dock="Bottom"
-                          ItemsSource="{Binding Path=PrescriptionDocumentToCreate.Prescriptions, UpdateSourceTrigger=PropertyChanged}"
-                          AutoGenerateColumns="False"
-                          SelectedItem="{Binding Path=CurrentPrescription, UpdateSourceTrigger=PropertyChanged}"
-                          CanUserAddRows="False"
-                          CanUserDeleteRows="False">
-                        <DataGrid.RowDetailsTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <Label Content="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleAddNotesHere}}"/>
-                                    <ScrollViewer>
-                                        <TextBox Height="70" 
-                                         Text="{Binding Path=Notes, UpdateSourceTrigger=PropertyChanged}"/>
-                                    </ScrollViewer>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGrid.RowDetailsTemplate>
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Path=Drug.Name, UpdateSourceTrigger=PropertyChanged}" 
-                                        Header="{Binding Source={x:Static Member=text:AddPrescriptionText.ColDrug}}"
-                                        IsReadOnly="True" />
-
-                            <DataGridTextColumn Binding="{Binding Path=Notes, UpdateSourceTrigger=PropertyChanged}" 
-                                        Header="{Binding  Source={x:Static Member=text:AddPrescriptionText.ColNotes}}"
-                                        Width="*"
-                                        IsReadOnly="True" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </StackPanel>
-            </DockPanel>
-        </GroupBox>
+    <DockPanel LastChildFill="True">
+        <DockPanel DockPanel.Dock="top">
+            <Border Style="{StaticResource BorderStyle}">
+                <Button Content="{Binding Source={x:Static Member=text:AddPrescriptionText.AddDrug}}"
+                        Command="{Binding SearchCommand}"/>
+            </Border>
+            <Label DockPanel.Dock="Left"
+                   VerticalAlignment="Center"
+                   Content="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleCreationDate}}"/>
+            <DatePicker DockPanel.Dock="Right" 
+                        VerticalAlignment="Center"
+                        SelectedDate="{Binding Path=CreationDate}"/>
+        </DockPanel>
+        <ItemsControl DockPanel.Dock="Bottom"
+                  ItemsSource="{Binding Prescriptions}"
+                  HorizontalContentAlignment="Stretch">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel LastChildFill="True">
+                        <ctrl:PrescriptionBox Prescription="{Binding}"/>
+                    </DockPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </DockPanel>
 </Page>

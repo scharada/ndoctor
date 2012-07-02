@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,16 +16,15 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#endregion Header
+
 namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 {
     using System;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Timers;
     using System.Windows;
     using System.Windows.Input;
-
-    using AutoMapper;
 
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO;
@@ -31,98 +32,74 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
+    using Probel.NDoctor.Plugins.PrescriptionManager.View;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class AddPrescriptionViewModel : BaseViewModel
+    internal class AddPrescriptionViewModel : BaseViewModel
     {
         #region Fields
 
-        private static readonly Timer Countdown = new Timer(250) { AutoReset = true };
+        private readonly ViewService ViewService = new ViewService();
 
         private IPrescriptionComponent component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
-        private string criteria;
+        private DateTime creationDate;
         private PrescriptionDto currentPrescription;
-        private PrescriptionDocumentDto prescriptionDocumentToCreate;
-        private bool searchOnTags;
-        private DrugViewModel selectedDrug;
-        private PrescriptionDto selectedPrescriptionToDelete;
-        private TagDto selectedTag;
 
         #endregion Fields
 
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AddPrescriptionViewModel"/> class.
-        /// </summary>
-        /// <param name="host">The host.</param>
         public AddPrescriptionViewModel()
-            : base()
         {
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
 
-            this.Tags = new ObservableCollection<TagDto>();
-            this.FoundDrugs = new ObservableCollection<DrugViewModel>();
-            this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());
-            this.PrescriptionDocumentToCreate = new PrescriptionDocumentDto() { CreationDate = DateTime.Today };
-
-            this.SelectDrugCommand = new RelayCommand(() => this.SelectDrug());
             this.SaveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
+            this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());
 
-            Notifyer.ItemChanged += (sender, e) => this.Refresh();
+            this.Prescriptions = new ObservableCollection<PrescriptionDto>();
+            this.CreationDate = DateTime.Today;
 
-            Countdown.Elapsed += (sender, e) => PluginContext.Host.Invoke(() =>
-            {
-                this.SearchCommand.TryExecute();
-                Countdown.Stop();
-            });
+            Notifyer.DrugSelected += (sender, e) => this.AddDrug(e.Data);
+            Notifyer.PrescriptionRemoving += (sender, e) => this.Remove(e.Data);
+        }
+
+        private void Remove(PrescriptionDto prescription)
+        {
+            this.Prescriptions.Remove(prescription);
         }
 
         #endregion Constructors
 
         #region Properties
 
-        public string Criteria
+        public DateTime CreationDate
         {
-            get { return this.criteria; }
+            get { return this.creationDate; }
             set
             {
-                Countdown.Start();
-                this.criteria = value;
-                this.OnPropertyChanged(() => Criteria);
+                this.creationDate = value;
+                this.OnPropertyChanged(() => CreationDate);
             }
         }
 
-        public PrescriptionDto CurrentPrescription
-        {
-            get { return this.currentPrescription; }
-            set
-            {
-                this.currentPrescription = value;
-                this.OnPropertyChanged(() => CurrentPrescription);
-            }
-        }
-
-        public ObservableCollection<DrugViewModel> FoundDrugs
+        public ObservableCollection<PrescriptionDto> Prescriptions
         {
             get;
             private set;
         }
 
-        public PrescriptionDocumentDto PrescriptionDocumentToCreate
+        public ICommand RemoveCommand
         {
-            get { return this.prescriptionDocumentToCreate; }
-            set
-            {
-                this.prescriptionDocumentToCreate = value;
-                this.OnPropertyChanged(() => PrescriptionDocumentToCreate);
-            }
+            get;
+            private set;
         }
 
         public ICommand SaveCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public ICommand SearchCommand
@@ -131,175 +108,74 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             private set;
         }
 
-        public bool SearchOnTags
-        {
-            get { return this.searchOnTags; }
-            set
-            {
-                this.searchOnTags = value;
-                this.OnPropertyChanged(() => SearchOnTags);
-            }
-        }
-
-        public ICommand SelectDrugCommand
-        {
-            get;
-            private set;
-        }
-
-        public DrugViewModel SelectedDrug
-        {
-            get { return this.selectedDrug; }
-            set
-            {
-                this.selectedDrug = value;
-                this.OnPropertyChanged(() => SelectedDrug);
-            }
-        }
-
-        public PrescriptionDto SelectedPrescriptionToDelete
-        {
-            get { return this.selectedPrescriptionToDelete; }
-            set
-            {
-                this.selectedPrescriptionToDelete = value;
-                this.OnPropertyChanged(() => SelectedPrescriptionToDelete);
-            }
-        }
-
-        public TagDto SelectedTag
-        {
-            get { return this.selectedTag; }
-            set
-            {
-                this.selectedTag = value;
-                this.OnPropertyChanged(() => SelectedTag);
-            }
-        }
-
-        public ICommand SelectPrescriptionCommand
-        {
-            get;
-            private set;
-        }
-
-        public ObservableCollection<TagDto> Tags
-        {
-            get;
-            private set;
-        }
-
-        public string TitlePrescriptionDocumentCreated
-        {
-            get { return Messages.Title_PrescriptionDocumentCreated; }
-        }
-
-        private bool IsDocumentInvalid
-        {
-            get
-            {
-                foreach (var prescription in this.PrescriptionDocumentToCreate.Prescriptions)
-                {
-                    if (string.IsNullOrWhiteSpace(prescription.Notes))
-                    {
-                        var dr = MessageBox.Show(Messages.Msg_EmptyNotesForPrescriptions
-                            , Messages.Question
-                            , MessageBoxButton.YesNo
-                            , MessageBoxImage.Asterisk);
-
-                        return (dr == MessageBoxResult.No);
-                    }
-                }
-                return false;
-            }
-        }
-
-        private bool IsPrescriptionEmpty
-        {
-            get
-            {
-                if (this.prescriptionDocumentToCreate.Prescriptions.Count == 0)
-                {
-                    MessageBox.Show(Messages.Msg_NothingToSave
-                        , Messages.Warning
-                        , MessageBoxButton.OK
-                        , MessageBoxImage.Exclamation);
-                    return true;
-                }
-                return false;
-            }
-        }
-
         #endregion Properties
 
         #region Methods
 
-        public void Refresh()
+        internal void Refresh()
         {
-            using (this.component.UnitOfWork)
-            {
-                var tags = this.component.FindTags(TagCategory.Drug);
-                this.Tags.Refill(tags);
-            }
-            PluginContext.Host.WriteStatusReady();
+        }
+
+        internal void ResetPage()
+        {
+            this.CreationDate = DateTime.Today;
+            this.Prescriptions.Clear();
+        }
+
+        private void AddDrug(DrugDto drug)
+        {
+            var prescription = new PrescriptionDto() { Drug = drug };
+            this.Prescriptions.Add(prescription);
         }
 
         private bool CanSave()
         {
-            return PluginContext.DoorKeeper.IsUserGranted(To.Write);
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write)
+                && this.Prescriptions.Count > 0;
         }
 
         private bool CanSearch()
         {
-            if (this.SearchOnTags)
+            return PluginContext.DoorKeeper.IsUserGranted(To.Read);
+        }
+
+        private bool HasEmptyPrescriptions()
+        {
+            foreach (var prescription in this.Prescriptions)
             {
-                return this.SelectedTag != null;
+                if (string.IsNullOrWhiteSpace(prescription.Notes)) return true;
             }
-            else
-            {
-                return !(string.IsNullOrWhiteSpace(this.Criteria));
-            }
+            return false;
         }
 
         private void Save()
         {
             try
             {
-                if (this.IsPrescriptionEmpty) return;
-                if (this.IsDocumentInvalid) return;
+                if (this.HasEmptyPrescriptions())
+                {
+                    var dr = MessageBox.Show(Messages.Msg_EmptyNotesForPrescriptions, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (dr == MessageBoxResult.No) return;
+                }
+
+                var document = new PrescriptionDocumentDto() { CreationDate = this.CreationDate };
+                document.Prescriptions.AddRange(this.Prescriptions);
 
                 using (this.component.UnitOfWork)
                 {
-
-                    this.component.Create(this.PrescriptionDocumentToCreate, PluginContext.Host.SelectedPatient);
+                    this.component.Create(document, PluginContext.Host.SelectedPatient);
                 }
-                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PrescriptionSaved);
+
+                this.ResetPage();
             }
-            catch (Exception ex)
-            {
-                this.HandleError(ex, Messages.Msg_ErrorSavingPrescription);
-            }
+            catch (Exception ex) { this.HandleError(ex); }
         }
 
         private void Search()
         {
-            IList<DrugDto> drugs;
-            using (this.component.UnitOfWork)
-            {
-                if (this.SearchOnTags) drugs = this.component.FindDrugsByTags(this.SelectedTag.Name);
-                else drugs = this.component.FindDrugsByName(this.Criteria);
-            }
-            var mapped = Mapper.Map<IList<DrugDto>, IList<DrugViewModel>>(drugs);
-            for (int i = 0; i < mapped.Count; i++) { mapped[i].Parent = this; }
-            this.FoundDrugs.Refill(mapped);
-        }
-
-        private void SelectDrug()
-        {
-            this.PrescriptionDocumentToCreate.Prescriptions.Add(new PrescriptionDto()
-            {
-                Drug = this.SelectedDrug,
-            });
+            var view = new SearchDrugView();
+            this.ViewService.GetViewModel(view).Refresh();
+            InnerWindow.Show(Messages.Btn_AddDrug, view);
         }
 
         #endregion Methods

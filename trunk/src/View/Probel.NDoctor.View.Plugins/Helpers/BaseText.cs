@@ -27,6 +27,10 @@ namespace Probel.NDoctor.View.Plugins.Helpers
     {
         #region Properties
 
+        public static string Remove
+        {
+            get { return Messages.Remove; }
+        }
         public static string Add
         {
             get { return Messages.Btn_Add; }

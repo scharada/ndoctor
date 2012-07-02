@@ -61,7 +61,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             : base(version)
         {
             this.lastNavigation = LastNavigation.None;
-            this.ConfigureAutoMapper();
 
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
         }
@@ -83,7 +82,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
 
         private AddPrescriptionView View
         {
-            get; set;
+            get;
+            set;
         }
 
         #endregion Properties
@@ -148,7 +148,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
 
                     InnerWindow.Show(Messages.Btn_Add, view);
                 }
-                    , () => this.lastNavigation == LastNavigation.AddPrescription && PluginContext.DoorKeeper.IsUserGranted(To.Write)));
+                , () => this.lastNavigation == LastNavigation.AddPrescription && PluginContext.DoorKeeper.IsUserGranted(To.Write)));
 
             var addDrugTypeButton = new RibbonButtonData(Messages.Btn_AddDrugType
                 , imgUri.FormatWith("DrugType")
@@ -206,11 +206,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             return this.isSaveCommandActivated;
         }
 
-        private void ConfigureAutoMapper()
-        {
-            Mapper.CreateMap<DrugDto, DrugViewModel>();
-        }
-
         private void LoadDefaultPrescriptions()
         {
             var component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
@@ -238,10 +233,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
                 this.ShowContextMenu();
                 this.lastNavigation = LastNavigation.AddPrescription;
             }
-            catch (Exception ex)
-            {
-                this.HandleError(ex);
-            }
+            catch (Exception ex) { this.HandleError(ex); }
         }
 
         private void NavigateSearch()

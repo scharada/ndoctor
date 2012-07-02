@@ -206,6 +206,10 @@ Path: {1}</value>
     <value>Data refreshed</value>
     <comment>Data refreshed</comment>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+    <comment>Remove</comment>
+  </data>
   <data name="Title_Edit" xml:space="preserve">
     <value>Editer</value>
     <comment>Edit</comment>
