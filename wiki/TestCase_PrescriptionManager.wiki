@@ -3,20 +3,29 @@
 [Prescriptions See here]
 
 = Manage patient's prescriptions: =
-== Steps ==
+== Case 1 ==
+=== Steps ===
  # Connect into nDoctor with user that has write privileges
  # Open a session for a user
  # Create a prescription.
   # Search a drug and select it for the prescription and cancel this drug
   # Search another drug, select it for the prescription and a comment and save
   # Just after executing the previous step, select another drug add a comment and save again.
-== Expected results ==
+=== Expected results ===
  # ...
  # ...
  # Here are the expected results:
   # You can remove the drug from the prescription
   # The prescription is saved
   # The prescription is saved into the same prescription document (*NOT* a new one)
+
+== Save prescription with different drugs of the same type ==
+=== Steps ===
+ # Create a prescription with different drugs of the same time
+ # Save this prescription
+=== Results ==
+ # ...
+ # The prescription is saved without error messages
 == Issues ==
 === version 3.0.2: ===
  * n.a.
