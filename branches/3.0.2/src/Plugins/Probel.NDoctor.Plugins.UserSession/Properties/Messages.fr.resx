@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Btn_Add" xml:space="preserve">
+    <value>Ajouter</value>
+    <comment>Add</comment>
+  </data>
+  <data name="Btn_Cancel" xml:space="preserve">
+    <value>Annuler</value>
+    <comment>Cancel</comment>
+  </data>
+  <data name="Btn_Save" xml:space="preserve">
+    <value>Sauver</value>
+    <comment>Save</comment>
+  </data>
+  <data name="Menu_Actions" xml:space="preserve">
+    <value>Actions</value>
+    <comment>Actions</comment>
+  </data>
+  <data name="Menu_Exit" xml:space="preserve">
+    <value>Quitter</value>
+    <comment>Exit</comment>
+  </data>
+  <data name="Menu_File" xml:space="preserve">
+    <value>Fichier</value>
+    <comment>File</comment>
+  </data>
+  <data name="Menu_ManagePersonalData" xml:space="preserve">
+    <value>Gérer mes données personnelles</value>
+    <comment>Manage my personal data</comment>
+  </data>
+  <data name="Menu_Print" xml:space="preserve">
+    <value>Imprimer</value>
+    <comment>Print card</comment>
+  </data>
+  <data name="Menu_Save" xml:space="preserve">
+    <value>Sauver</value>
+    <comment>Save</comment>
+  </data>
+  <data name="Msg_AskAddUser" xml:space="preserve">
+    <value>Voulez-vous ajouter cet utilisateur?</value>
+    <comment>Do you want to add this user?</comment>
+  </data>
+  <data name="Msg_Connection" xml:space="preserve">
+    <value>Connexion</value>
+    <comment>Connection</comment>
+  </data>
+  <data name="Msg_CreateAdministrator" xml:space="preserve">
+    <value>Créer l'administrateur</value>
+    <comment>Create the administrator</comment>
+  </data>
+  <data name="Msg_ErrorAddUser" xml:space="preserve">
+    <value>Une erreur est survenue pendant l'ajout d'un utilisateur</value>
+    <comment>An error occured while adding a new user</comment>
+  </data>
+  <data name="Msg_ErrorChangingPwd" xml:space="preserve">
+    <value>Une erreur est survenue pendant le changement du mot de passe</value>
+    <comment>An error occured while changing the password</comment>
+  </data>
+  <data name="Msg_ErrorUpdateUser" xml:space="preserve">
+    <value>Une erreur est apparue pendant la mise à jour de l'utilisateur</value>
+    <comment>An error occured while updating the user</comment>
+  </data>
+  <data name="Msg_ErrorWhileLoadingUser" xml:space="preserve">
+    <value>Une erreur est apparue pendant le chargement d'un utilisateur.</value>
+    <comment>An error occured while loading the data of a user.</comment>
+  </data>
+  <data name="Msg_ErrorWrongPassword" xml:space="preserve">
+    <value>Mot de passe erroné.</value>
+    <comment>Wrong password</comment>
+  </data>
+  <data name="Msg_NotYetImplemented" xml:space="preserve">
+    <value>Fonctionnalité à venir</value>
+    <comment>Not yet implemented</comment>
+  </data>
+  <data name="Msg_PwdChanged" xml:space="preserve">
+    <value>Mot de passe mis à jour.</value>
+    <comment>Password updated.</comment>
+  </data>
+  <data name="Msg_Ready" xml:space="preserve">
+    <value>Prêt.</value>
+    <comment>Ready.</comment>
+  </data>
+  <data name="Msg_UserAdded" xml:space="preserve">
+    <value>Un utilisateur a été ajouté.</value>
+    <comment>A user has been added.</comment>
+  </data>
+  <data name="Msg_UserUpdated" xml:space="preserve">
+    <value>Utilisateur mis à jour.</value>
+    <comment>User saved.</comment>
+  </data>
+  <data name="Msg_WarnDefaultUser" xml:space="preserve">
+    <value>Attention, cette action à la priorité sur tout utilisateur qui aurait déjà été configuré comme utilisateur par défaut. Voulez-vous être l'utilisateur par défaut?</value>
+    <comment>Bear in mind that this action will replace any configured default patient. Do you want to set yourself as the default user?</comment>
+  </data>
+  <data name="Title_BusinessCard" xml:space="preserve">
+    <value>Carte de visite</value>
+    <comment>Business card</comment>
+  </data>
+  <data name="Title_ButtonAddUser" xml:space="preserve">
+    <value>Ajouter un utilisateur</value>
+    <comment>Add a new user</comment>
+  </data>
+  <data name="Title_ChangePwd" xml:space="preserve">
+    <value>Changer mon mot de passe</value>
+    <comment>Change my password</comment>
+  </data>
+  <data name="Title_ContextMenu" xml:space="preserve">
+    <value>Gestion utilisateur</value>
+    <comment>User management</comment>
+  </data>
+  <data name="Title_Deconnection" xml:space="preserve">
+    <value>Se déconnecter</value>
+    <comment>Disconnect</comment>
+  </data>
+  <data name="Title_DefaultUser" xml:space="preserve">
+    <value>Connecter cet utilisateur par défaut.</value>
+    <comment>Load this user by default.</comment>
+  </data>
+  <data name="Title_Fee" xml:space="preserve">
+    <value>Honoraire</value>
+    <comment>Fee</comment>
+  </data>
+  <data name="Title_FirstName" xml:space="preserve">
+    <value>Prénom:</value>
+    <comment>First name</comment>
+  </data>
+  <data name="Title_Header" xml:space="preserve">
+    <value>Entête:</value>
+    <comment>Header</comment>
+  </data>
+  <data name="Title_Info" xml:space="preserve">
+    <value>Information</value>
+    <comment>Information</comment>
+  </data>
+  <data name="Title_LastName" xml:space="preserve">
+    <value>Nom:</value>
+    <comment>Last Name</comment>
+  </data>
+  <data name="Title_MailPro" xml:space="preserve">
+    <value>Mail pro:</value>
+    <comment>Professionnal mail</comment>
+  </data>
+  <data name="Title_MobilePro" xml:space="preserve">
+    <value>Tél. mobile pro:</value>
+    <comment>Professional mobile</comment>
+  </data>
+  <data name="Title_OldPwd" xml:space="preserve">
+    <value>Mot de passe actuel:</value>
+    <comment>Current password:</comment>
+  </data>
+  <data name="Title_Password" xml:space="preserve">
+    <value>Mot de passe:</value>
+    <comment>Password:</comment>
+  </data>
+  <data name="Title_PhonePro" xml:space="preserve">
+    <value>Tél. pro:</value>
+    <comment>Professional phone</comment>
+  </data>
+  <data name="Title_Practice" xml:space="preserve">
+    <value>Cabinet médical:</value>
+    <comment>Medical practice</comment>
+  </data>
+  <data name="Title_Question" xml:space="preserve">
+    <value>Question</value>
+    <comment>Question</comment>
+  </data>
+  <data name="Title_RepeatPasword" xml:space="preserve">
+    <value>Confirmez le mot de passe:</value>
+    <comment>Confirm password:</comment>
+  </data>
+  <data name="Title_Role" xml:space="preserve">
+    <value>Rôle</value>
+    <comment>Role</comment>
+  </data>
+  <data name="Title_SepContact" xml:space="preserve">
+    <value>Contact</value>
+    <comment>Contact</comment>
+  </data>
+  <data name="Title_SepHeader" xml:space="preserve">
+    <value>Entête</value>
+    <comment>Header</comment>
+  </data>
+  <data name="Title_SepMisc" xml:space="preserve">
+    <value>Divers</value>
+    <comment>Miscellaneous</comment>
+  </data>
+  <data name="Title_SepPersonalData" xml:space="preserve">
+    <value>Données personnelles</value>
+    <comment>Personal data</comment>
+  </data>
+  <data name="Title_ValidatePwdChange" xml:space="preserve">
+    <value>Valider</value>
+    <comment>Validate</comment>
+  </data>
+  <data name="Title_Warning" xml:space="preserve">
+    <value>Attention</value>
+    <comment>Warning</comment>
+  </data>
+</root>

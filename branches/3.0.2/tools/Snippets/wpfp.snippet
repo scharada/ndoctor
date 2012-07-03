@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>wpfp</Title>
+      <Author>Microsoft</Author>
+      <Description>
+      </Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>wpfp</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>type</ID>
+          <ToolTip>type</ToolTip>
+          <Default>string</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>member</ID>
+          <ToolTip>member</ToolTip>
+          <Default>property</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>Member</ID>
+          <ToolTip>Member</ToolTip>
+          <Default>Property</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[        private $type$ $member$;
+        public $type$ $Member$
+        {
+            get { return this.$member$; }
+            set
+            {
+                this.$member$ = value;
+                this.OnPropertyChanged(() => $Member$);
+            }
+        }     ]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

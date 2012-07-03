@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Btn_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Cancel</comment>
+  </data>
+  <data name="Btn_Delete" xml:space="preserve">
+    <value>Supprimer</value>
+    <comment>Delete</comment>
+  </data>
+  <data name="Btn_Search" xml:space="preserve">
+    <value>Search</value>
+    <comment>Search</comment>
+  </data>
+  <data name="Header_BmiChart" xml:space="preserve">
+    <value>Bmi chart</value>
+    <comment>Bmi chart</comment>
+  </data>
+  <data name="Header_Chart" xml:space="preserve">
+    <value>Charts</value>
+    <comment>Charts</comment>
+  </data>
+  <data name="Header_Data" xml:space="preserve">
+    <value>Raw data</value>
+    <comment>Raw data</comment>
+  </data>
+  <data name="Header_Date" xml:space="preserve">
+    <value>Date</value>
+    <comment>Date</comment>
+  </data>
+  <data name="Header_HeightChart" xml:space="preserve">
+    <value>Height chart</value>
+    <comment>Height chart</comment>
+  </data>
+  <data name="Header_WeightChart" xml:space="preserve">
+    <value>Weight chart</value>
+    <comment>Weight chart</comment>
+  </data>
+  <data name="Menu_Actions" xml:space="preserve">
+    <value>Actions</value>
+    <comment>Actions</comment>
+  </data>
+  <data name="Menu_File" xml:space="preserve">
+    <value>File</value>
+    <comment>File</comment>
+  </data>
+  <data name="Msg_AskDeleteBmi" xml:space="preserve">
+    <value>Voulez-vous supprimer cet entrée?</value>
+    <comment>Do you want to delete this item?</comment>
+  </data>
+  <data name="Msg_BmiAdded" xml:space="preserve">
+    <value>Item added into BMI history</value>
+    <comment>Item added into BMI history</comment>
+  </data>
+  <data name="Msg_BmiDeleted" xml:space="preserve">
+    <value>BMI entry deleted</value>
+    <comment>BMI entry deleted</comment>
+  </data>
+  <data name="Msg_BmiHistoryLoaded" xml:space="preserve">
+    <value>BMI history loaded</value>
+    <comment>BMI history loaded</comment>
+  </data>
+  <data name="Msg_ErrAddBmi" xml:space="preserve">
+    <value>An error occured while adding an item into the BMI history</value>
+    <comment>An error occured while adding an item into the BMI history</comment>
+  </data>
+  <data name="Msg_Error" xml:space="preserve">
+    <value>An error occured</value>
+    <comment>An error occured</comment>
+  </data>
+  <data name="Msg_ErrorOccured" xml:space="preserve">
+    <value>Une erreur est survenue. Vérifiez les logs pour plus d'informations</value>
+    <comment>An error occured. Check the logs for furher information</comment>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Question</value>
+    <comment>Question</comment>
+  </data>
+  <data name="Title_AddBmi" xml:space="preserve">
+    <value>Add a BMI entry</value>
+    <comment>Add a BMI entry</comment>
+  </data>
+  <data name="Title_Bmi" xml:space="preserve">
+    <value>Bmi</value>
+    <comment>Bmi</comment>
+  </data>
+  <data name="Title_BmiDate" xml:space="preserve">
+    <value>Date</value>
+    <comment>Date</comment>
+  </data>
+  <data name="Title_BmiHeight" xml:space="preserve">
+    <value>Height</value>
+    <comment>Height</comment>
+  </data>
+  <data name="Title_BmiObesity" xml:space="preserve">
+    <value>Obesity</value>
+    <comment>Obesity</comment>
+  </data>
+  <data name="Title_BmiOverweight" xml:space="preserve">
+    <value>Overweight</value>
+    <comment>Overweight</comment>
+  </data>
+  <data name="Title_BmiRecordManager" xml:space="preserve">
+    <value>BMI</value>
+    <comment>BMI</comment>
+  </data>
+  <data name="Title_BmiUnderweight" xml:space="preserve">
+    <value>Underweight</value>
+    <comment>Underweight</comment>
+  </data>
+  <data name="Title_BmiWeight" xml:space="preserve">
+    <value>Weight</value>
+    <comment>Weight</comment>
+  </data>
+  <data name="Title_BmiXAxes" xml:space="preserve">
+    <value>Dates</value>
+    <comment>Dates</comment>
+  </data>
+  <data name="Title_BmiYAxes" xml:space="preserve">
+    <value>BMI index</value>
+    <comment>BMI index</comment>
+  </data>
+  <data name="Title_BtnAdd" xml:space="preserve">
+    <value>Add</value>
+    <comment>Add</comment>
+  </data>
+  <data name="Title_BtnDelete" xml:space="preserve">
+    <value>Delete</value>
+    <comment>Delete</comment>
+  </data>
+  <data name="Title_ExpanderHeaderAdd" xml:space="preserve">
+    <value>Add new bmi entry</value>
+    <comment>Add new bmi entry</comment>
+  </data>
+  <data name="Title_ExpanderHeaderDelete" xml:space="preserve">
+    <value>Delete BMI entry</value>
+    <comment>Delete BMI entry</comment>
+  </data>
+  <data name="Title_From" xml:space="preserve">
+    <value>From</value>
+    <comment>From</comment>
+  </data>
+  <data name="Title_RollbackBmi" xml:space="preserve">
+    <value>Rollback the last deletion</value>
+    <comment>Rollback the last deletion</comment>
+  </data>
+  <data name="Title_To" xml:space="preserve">
+    <value>To</value>
+    <comment>To</comment>
+  </data>
+</root>

@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Default_RecordType" xml:space="preserve">
+    <value>Dossiers médicaux</value>
+    <comment>Medical records</comment>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Erreur</value>
+    <comment>Error</comment>
+  </data>
+  <data name="Error_ImportFailed" xml:space="preserve">
+    <value>L'import des données a échoué</value>
+    <comment>The import failed</comment>
+  </data>
+  <data name="Error_ImpossibleToMap" xml:space="preserve">
+    <value>Impossible convertir '{0}'</value>
+    <comment>Impossibla to map '{0}'</comment>
+  </data>
+  <data name="Log_DbChosen" xml:space="preserve">
+    <value>Base de données sélectionnée</value>
+    <comment>Database selected</comment>
+  </data>
+  <data name="Log_DoctorCount" xml:space="preserve">
+    <value>{0} médecin(s) pour le patient '{1}'</value>
+    <comment>{0} doctor(s) for the patient '{1}'</comment>
+  </data>
+  <data name="Log_EndImporting" xml:space="preserve">
+    <value>L'import c'est déroulé avec succès!</value>
+    <comment>Import succeeded!</comment>
+  </data>
+  <data name="Log_InvalidDb" xml:space="preserve">
+    <value>La base de données sélectionnée est invalide</value>
+    <comment>The selected database is invalid</comment>
+  </data>
+  <data name="Log_NoItem" xml:space="preserve">
+    <value>Aucune données avec l'identifiant '{0}'</value>
+    <comment>No item with id '{0}' was found</comment>
+  </data>
+  <data name="Log_PatientCount" xml:space="preserve">
+    <value>{0} patient(s) importé(s).</value>
+    <comment>{0} patient(s) imported.</comment>
+  </data>
+  <data name="Log_RecordCount" xml:space="preserve">
+    <value>{0} élément(s) importé pour le patient '{1}'</value>
+    <comment>{0} item(s) imported for the patient '{1}'</comment>
+  </data>
+  <data name="Log_StartImporting" xml:space="preserve">
+    <value>Début de l'import...</value>
+    <comment>Start importing...</comment>
+  </data>
+  <data name="Menu_Actions" xml:space="preserve">
+    <value>Action</value>
+    <comment>Action</comment>
+  </data>
+  <data name="Menu_File" xml:space="preserve">
+    <value>Fichier</value>
+    <comment>File</comment>
+  </data>
+  <data name="Msg_DoneByConverter" xml:space="preserve">
+    <value>Ceci a été créé par l'outil d'import de nDoctor 3</value>
+    <comment>This was done by the nDoctor 3 import facility</comment>
+  </data>
+  <data name="Msg_PatientsSaved" xml:space="preserve">
+    <value>Les patients sont importés dans la base de données.</value>
+    <comment>The patients are imported in the database.</comment>
+  </data>
+  <data name="Title_ChoseOldDb" xml:space="preserve">
+    <value>BD nDoctor 2</value>
+    <comment>Select nDoctor 2 Db</comment>
+  </data>
+  <data name="Title_DbConvertManager" xml:space="preserve">
+    <value>Importation de données</value>
+    <comment>Import data</comment>
+  </data>
+  <data name="Title_DefaultAppointementType" xml:space="preserve">
+    <value>Travail</value>
+    <comment>Work</comment>
+  </data>
+  <data name="Title_DefaultPictureType" xml:space="preserve">
+    <value>Images médicales</value>
+    <comment>Medical pictures</comment>
+  </data>
+  <data name="Title_DefaultPrescription" xml:space="preserve">
+    <value>Prescription</value>
+    <comment>Prescription</comment>
+  </data>
+  <data name="Title_Import" xml:space="preserve">
+    <value>Importer</value>
+    <comment>Import</comment>
+  </data>
+</root>

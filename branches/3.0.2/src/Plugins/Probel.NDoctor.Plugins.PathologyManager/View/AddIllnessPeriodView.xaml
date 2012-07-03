@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="Probel.NDoctor.Plugins.PathologyManager.View.AddIllnessPeriodView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:this="clr-namespace:Probel.NDoctor.Plugins.PathologyManager.ViewModel"
+             xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PathologyManager.View"       
+             
+             xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PathologyManager.Translations"
+             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+             xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
+             mc:Ignorable="d" 
+             
+             Height="450" 
+             Width="450"
+             Loaded="this_Loaded">
+    <UserControl.InputBindings>
+        <KeyBinding Key="Enter"
+                    Command="{Binding AddCommand}"/>
+        <KeyBinding Key="Escape"
+                    Command="iw:InnerWindow.CancelCommand" />
+    </UserControl.InputBindings>
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    <DockPanel LastChildFill="True">
+        <Grid DockPanel.Dock="Top">
+            <Border Style="{StaticResource BorderStyle}">
+                <toolkit:WatermarkTextBox x:Name="focused"
+                                          Grid.Column="0" 
+                                          Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}">
+                    <toolkit:WatermarkTextBox.Watermark>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
+                               Height="15"
+                               Width="15" />
+                            <TextBlock Text="{Binding Source={x:Static Member=text:AddIllnessPeriodText.Watermark}}"
+                                   Margin="4,0,0,0"/>
+                        </StackPanel>
+                    </toolkit:WatermarkTextBox.Watermark>
+                </toolkit:WatermarkTextBox>
+            </Border>
+        </Grid>
+        <ScrollViewer DockPanel.Dock="Bottom">
+            <ListView Grid.Row="1" ItemsSource="{Binding Path=FoundPathologies}"
+                      SelectedItem="{Binding Path=SelectedPathology}">
+                <ListView.Resources>
+                    <DataTemplate DataType="{x:Type this:IllnessPeriodToAddViewModel}">
+                        <StackPanel>
+                            <Label  Content="{Binding Path=Pathology.Name}"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"
+                                       Content="{Binding Path=StartAsText}"/>
+                                <Label Grid.Column="1"
+                                       Content="{Binding Path=EndAsText}"/>
+                                <Label Grid.Column="2"
+                                       Content="{Binding Path=DurationAsText}"/>
+                            </Grid>
+                            <StackPanel Visibility="{Binding Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0"
+                                           VerticalContentAlignment="Center"
+                                           HorizontalContentAlignment="Right"
+                                           Content="{Binding Path=TitleIllFrom}"/>
+
+                                    <DatePicker Grid.Column="1"
+                                                SelectedDate="{Binding Path=Start}"/>
+
+                                    <Label Grid.Column="2"
+                                           VerticalContentAlignment="Center"
+                                           HorizontalContentAlignment="Right"
+                                           Content="{Binding Path=TitleTo}"/>
+
+                                    <DatePicker Grid.Column="3"
+                                                SelectedDate="{Binding Path=End}"/>
+                                </Grid>
+                                <Button Content="{Binding Path=BtnAdd}"
+                                        Command="{Binding AddCommand}"/>
+
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+
+                </ListView.Resources>
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+            </ListView>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>

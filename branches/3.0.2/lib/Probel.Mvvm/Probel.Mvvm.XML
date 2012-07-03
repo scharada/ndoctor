@@ -1,0 +1,448 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Probel.Mvvm</name>
+    </assembly>
+    <members>
+        <member name="T:Probel.Mvvm.Gui.IWindowManager">
+            <summary>
+            To be a Window Manager, a class should implements these basic features
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.Gui.IWindowManager.Reset">
+            <summary>
+            Resets the repository.
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.Gui.IWindowManager.Show``1">
+            <summary>
+            Shows the Window linkned to this ViewModel as a model window.
+            </summary>
+            <typeparam name="TViewModel">The type of the view model.</typeparam>
+        </member>
+        <member name="M:Probel.Mvvm.Gui.IWindowManager.ShowDialog``1">
+            <summary>
+            Shows the Window linkned to this ViewModel as a dialog window.
+            </summary>
+            <typeparam name="TViewModel">The type of the view model.</typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Probel.Mvvm.DataBinding.RelayCommand">
+            <summary>
+            A command whose sole purpose is to relay its functionality to other
+            objects by invoking delegates. The default return value for the CanExecute
+            method is 'true'.
+            </summary>
+        </member>
+        <member name="F:Probel.Mvvm.DataBinding.RelayCommand.Empty">
+            <summary>
+            Null to inducate the command is empty
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.DataBinding.RelayCommand.#ctor(System.Action)">
+            <summary>
+            Initializes a new instance of the RelayCommand class
+            </summary>
+            <param name="execute">The execution logic.</param>
+        </member>
+        <member name="M:Probel.Mvvm.DataBinding.RelayCommand.#ctor(System.Action,System.Func{System.Boolean})">
+            <summary>
+            Initializes a new instance of the RelayCommand class
+            </summary>
+            <param name="execute">The execution logic.</param>
+            <param name="canExecute">The execution status logic.</param>
+        </member>
+        <member name="T:Probel.Mvvm.Validation.ValidatableObject">
+            <summary>
+            Every objects that derive from this class will have the features to validates its properties
+            and be used with WPF technology because it implements the IDataErrorInfo interface.
+            </summary>
+        </member>
+        <member name="T:Probel.Mvvm.DataBinding.ObservableObject">
+            <summary>
+            Basic implementation of <see cref="T:System.ComponentModel.INotifyPropertyChanged"/>
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.DataBinding.ObservableObject.OnPropertyChanged``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+            Notifies subscribers of the property change.
+            </summary>
+            <typeparam name="TProperty">The type of the property.</typeparam>
+            <param name="property">The property expression.</param>
+        </member>
+        <member name="M:Probel.Mvvm.DataBinding.ObservableObject.OnPropertyChanged(System.String[])">
+            <summary>
+            Raises this object's PropertyChanged event on multiple properties changed
+            </summary>
+            <param name="propertyName">The name of the property that has a new value.</param>
+        </member>
+        <member name="M:Probel.Mvvm.DataBinding.ObservableObject.VerifyPropertyName(System.String)">
+            <summary>
+            Warns the developer if this object does not have a public property with
+            the specified name. This method does not exist in a Release build.
+            </summary>
+        </member>
+        <member name="E:Probel.Mvvm.DataBinding.ObservableObject.PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.Validation.ValidatableObject.#ctor(Probel.Mvvm.Validation.IValidator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Probel.Mvvm.Validation.ValidatableObject"/> class.
+            </summary>
+            <param name="error">The error.</param>
+        </member>
+        <member name="M:Probel.Mvvm.Validation.ValidatableObject.AddValidationRule``1(System.Linq.Expressions.Expression{System.Func{``0}},System.Func{System.Boolean},System.String)">
+            <summary>
+            Adds a new valudation rule.
+            The validation returns <c>True</c> when the property tested is valid; otherwise <c>False</c>
+            </summary>
+            <typeparam name="TProperty">The type of the property.</typeparam>
+            <param name="property">The property to validate.</param>
+            <param name="validation">The validation condition. This returns <c>True</c> 
+            if the property is valid; otherwise <c>False</c></param>
+            <param name="error">The error to display if the property is not valid.</param>
+            <exception cref="!:ExistingRuleException">If a validation is already set for the specified property</exception>
+        </member>
+        <member name="M:Probel.Mvvm.Validation.ValidatableObject.IsValid">
+            <summary>
+            Determines whether this item is valid. That's whether all condition returns <c>true</c>
+            </summary>
+            <returns>
+              <c>true</c> if this instance is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="P:Probel.Mvvm.Validation.ValidatableObject.Error">
+            <summary>
+            Gets an error message indicating what is wrong with this object.
+            </summary>
+            <value></value>
+            <returns>An error message indicating what is wrong with this object. The default is an empty string ("").</returns>
+        </member>
+        <member name="P:Probel.Mvvm.Validation.ValidatableObject.Item(System.String)">
+            <summary>
+            Gets the error message for the property with the given name.
+            </summary>
+            <value>The name of the property whose error message to get.</value>
+            <returns>The error message for the property. The default is an empty string ("").</returns>
+        </member>
+        <member name="T:Probel.Mvvm.Properties.Messages">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Probel.Mvvm.Properties.Messages.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Probel.Mvvm.Properties.Messages.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Probel.Mvvm.Properties.Messages.ExistingValidationRuleException">
+            <summary>
+              Looks up a localized string similar to The validation rule for this property is already set.
+            </summary>
+        </member>
+        <member name="P:Probel.Mvvm.Properties.Messages.KeyNotFoundException">
+            <summary>
+              Looks up a localized string similar to Nothing is binded to the type &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="T:Probel.Mvvm.DataBinding.CommandExtension">
+            <summary>
+            Provides additional features to the ICommand
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.DataBinding.CommandExtension.TryExecute(System.Windows.Input.ICommand)">
+            <summary>
+            Executes if the specified <see cref="T:System.Windows.Input.ICommand"/> with <c>NULL</c> argument if it can be executed.
+            </summary>
+            <param name="command">The command to try to execute.</param>
+        </member>
+        <member name="M:Probel.Mvvm.DataBinding.CommandExtension.TryExecute(System.Windows.Input.ICommand,System.Object)">
+            <summary>
+            Executes if the specified <see cref="T:System.Windows.Input.ICommand"/> with the specified argument if it can be executed.
+            </summary>
+            <param name="command">The command to try to execute.</param>
+            <param name="arg">The arg specified in the command.</param>
+        </member>
+        <member name="T:Probel.Mvvm.Validation.ValidationRule">
+            <summary>
+            Represents a validaton rule to check whether a property's value is valid or not
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.Validation.ValidationRule.#ctor(System.Func{System.Boolean},System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Probel.Mvvm.Validation.ValidationRule"/> class.
+            </summary>
+            <param name="condition">The condition to succeed to have a valid property's value.</param>
+            <param name="error">The error.</param>
+        </member>
+        <member name="P:Probel.Mvvm.Validation.ValidationRule.CheckCondition">
+            <summary>
+            Gets or sets the condition to succeed to have a valid property's value.
+            </summary>
+            <value>The condition.</value>
+        </member>
+        <member name="P:Probel.Mvvm.Validation.ValidationRule.Error">
+            <summary>
+            Gets or sets the error message to display if the condition failed.
+            If the value is <c>Null</c>, it means that the tested value is valid
+            </summary>
+            <value>The error message.</value>
+        </member>
+        <member name="T:Probel.Mvvm.Gui.WindowManager">
+            <summary>
+            This manager will keep links between View and ViewModel to help user to open new windows
+            just by knowing the type of the ViewModel.
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.Gui.WindowManager.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Probel.Mvvm.Gui.WindowManager"/> class.
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.Gui.WindowManager.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Probel.Mvvm.Gui.WindowManager"/> class.
+            </summary>
+            <param name="throwsIfNotBinded">if set to <c>true</c> [throws if not binded].</param>
+        </member>
+        <member name="M:Probel.Mvvm.Gui.WindowManager.Bind(System.Func{System.Windows.Window},System.Type)">
+            <summary>
+            Binds the specified ctor to the specified type. It means that when user ask to show a window
+            this specified lambda will returns a fresh instance of a window
+            </summary>
+            <param name="ctor">The lambda that should create a fresh instance of a window.</param>
+            <param name="type">The type linked to the lambda.</param>
+        </member>
+        <member name="M:Probel.Mvvm.Gui.WindowManager.Bind``1(System.Func{System.Windows.Window})">
+            <summary>
+            Binds the specified lambda to the specified TViewModel.
+            </summary>
+            <typeparam name="TViewModel">The type of the view model.</typeparam>
+            <param name="ctor">The lambda that will create a fresh instance of the Window.</param>
+        </member>
+        <member name="M:Probel.Mvvm.Gui.WindowManager.Bind``2">
+            <summary>
+            Binds the TView type to the TViewModel.
+            </summary>
+            <typeparam name="TView">The type of the view.</typeparam>
+            <typeparam name="TViewModel">The type of the view model.</typeparam>
+        </member>
+        <member name="M:Probel.Mvvm.Gui.WindowManager.Reset">
+            <summary>
+            Resets the whole repository.
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.Gui.WindowManager.Show``1">
+            <summary>
+            Shows the window linked to the TViewModel type as a modal box.
+            </summary>
+            <typeparam name="TViewModel">The type of the view model.</typeparam>
+        </member>
+        <member name="M:Probel.Mvvm.Gui.WindowManager.ShowDialog``1">
+            <summary>
+            Shows window linked to the TViewModel type as a dialog box.
+            </summary>
+            <typeparam name="TViewModel">The type of the view model.</typeparam>
+            <returns></returns>
+        </member>
+        <member name="P:Probel.Mvvm.Gui.WindowManager.ThrowsIfNotBinded">
+            <summary>
+            Gets or sets a value indicating whether to throws an exception if a window is already binded.
+            </summary>
+            <value><c>true</c> if an exception should be thrown if the window is already binded; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:Probel.Mvvm.Validation.EmptyValidator">
+            <summary>
+            This is a mocked validator. This does no validation
+            </summary>
+        </member>
+        <member name="T:Probel.Mvvm.Validation.IValidator">
+            <summary>
+            Set all the validation rules to a <see cref="T:Probel.Mvvm.Validation.ValidatableObject"/>
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.Validation.IValidator.SetValidationLogic(Probel.Mvvm.Validation.ValidatableObject)">
+            <summary>
+            Sets the validation rules for the specified instance.
+            </summary>
+            <param name="item">The item.</param>
+        </member>
+        <member name="P:Probel.Mvvm.Validation.IValidator.Error">
+            <summary>
+            Gets an error message indicating what is wrong with this object.
+            </summary>
+            <value></value>
+            <returns>An error message indicating what is wrong with this object. The default is an empty string ("").</returns>
+        </member>
+        <member name="T:Probel.Mvvm.ExpressionExtension">
+            <summary>
+            Add features to an <see cref="T:System.Linq.Expressions.Expression"/>
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.ExpressionExtension.GetMemberInfo(System.Linq.Expressions.Expression)">
+            <summary>
+            Converts an expression into a <see cref="T:System.Reflection.MemberInfo"/>.
+            </summary>
+            <param name="expression">The expression to convert.</param>
+            <returns>The member info.</returns>
+        </member>
+        <member name="T:Probel.Mvvm.DataBinding.ObservableCollectionFiller">
+            <summary>
+            Allow to refill, add items to an ObservableCollection
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.DataBinding.ObservableCollectionFiller.AddRange``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Adds specified collection into the ObservableCollection.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="oCollection">The o collection.</param>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="M:Probel.Mvvm.DataBinding.ObservableCollectionFiller.Refill``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Clears the ObservableCollection and refill it with the specified collection
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="oCollection">The o collection.</param>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="T:Probel.Mvvm.Validation.ExistingValidationRuleException">
+            <summary>
+            A validation rule has been set for this property
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.Validation.ExistingValidationRuleException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="!:ExistingRuleException"/> class.
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.Validation.ExistingValidationRuleException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="!:ExistingRuleException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Probel.Mvvm.Validation.ExistingValidationRuleException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="!:ExistingRuleException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="M:Probel.Mvvm.Validation.ExistingValidationRuleException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="!:ExistingRuleException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info"/> parameter is null. </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">The class name is null or <see cref="P:System.Exception.HResult"/> is zero (0). </exception>
+        </member>
+        <member name="T:Probel.Mvvm.DataBinding.State">
+            <summary>
+            Indicates the states of the dto
+            </summary>
+        </member>
+        <member name="F:Probel.Mvvm.DataBinding.State.Clean">
+            <summary>
+            The DTO was not modified
+            </summary>
+        </member>
+        <member name="F:Probel.Mvvm.DataBinding.State.Updated">
+            <summary>
+            The DTO was updated
+            </summary>
+        </member>
+        <member name="F:Probel.Mvvm.DataBinding.State.Created">
+            <summary>
+            The DTO is new and should be inserted into the database
+            </summary>
+        </member>
+        <member name="F:Probel.Mvvm.DataBinding.State.Removed">
+            <summary>
+            The DTO is deleted and should be deleted from the database
+            </summary>
+        </member>
+        <member name="T:Probel.Mvvm.BaseDtoComparer`1">
+            <summary>
+            Compare BaseDto by its Id
+            </summary>
+            <typeparam name="TId">The type of the id.</typeparam>
+        </member>
+        <member name="M:Probel.Mvvm.BaseDtoComparer`1.Equals(Probel.Mvvm.BaseDto{`0},Probel.Mvvm.BaseDto{`0})">
+            <summary>
+            Equalses the specified x.
+            </summary>
+            <param name="x">The x.</param>
+            <param name="y">The y.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Probel.Mvvm.BaseDtoComparer`1.GetHashCode(Probel.Mvvm.BaseDto{`0})">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <param name="obj">The obj.</param>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="T:Probel.Mvvm.BaseDto`1">
+            <summary>
+            Provide a base class to manage DTO. 
+              - It manage object's. That's, it'll say if the state is dirty or clean whenever <see cref="!:PropertyChanged"/>
+                is triggered.
+              - It has a default ID
+              - It can ignore defined properties during the state analysis phase.
+            </summary>
+            <typeparam name="TId">The type of the id.</typeparam>
+        </member>
+        <member name="M:Probel.Mvvm.BaseDto`1.#ctor(Probel.Mvvm.Validation.IValidator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Probel.Mvvm.BaseDto`1"/> class.
+            </summary>
+            <param name="validator">The validator to check the data of this instance</param>
+        </member>
+        <member name="M:Probel.Mvvm.BaseDto`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Probel.Mvvm.BaseDto`1"/> class.
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.BaseDto`1.Clean">
+            <summary>
+            Cleans the state of this instance.
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.BaseDto`1.Remove">
+            <summary>
+            Set the state of this instance to Removed
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.BaseDto`1.Ignore``1(System.Linq.Expressions.Expression{System.Func{``0}}[])">
+            <summary>
+            Ignores the specified properties. That's, modification of these properties won't modify the state of this instance
+            </summary>
+            <param name="properties">The properties.</param>
+        </member>
+        <member name="P:Probel.Mvvm.BaseDto`1.Id">
+            <summary>
+            Gets or sets the id of this DTO.
+            </summary>
+            <value>The id.</value>
+        </member>
+        <member name="P:Probel.Mvvm.BaseDto`1.State">
+            <summary>
+            Gets or sets the state. That's if this instance is clean, created, removed or updated
+            </summary>
+            <value>The state.</value>
+        </member>
+    </members>
+</doc>

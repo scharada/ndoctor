@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="Probel.NDoctor.Plugins.PatientData.View.BindDoctorView"
+             
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"             
+             
+             xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PatientData.Translations"
+             xmlns:vm="clr-namespace:Probel.NDoctor.Plugins.PatientData.ViewModel"
+             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"             
+             xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
+             
+             mc:Ignorable="d"
+             Height="300"
+             MinWidth="300">
+    <UserControl.InputBindings>
+        <KeyBinding Key="Escape"
+                    Command="iw:InnerWindow.CancelCommand" />
+    </UserControl.InputBindings>
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    <DockPanel LastChildFill="True">
+        <DockPanel DockPanel.Dock="Top"
+                   LastChildFill="True">
+            <Border Style="{StaticResource BorderStyle}">
+                <toolkit:WatermarkTextBox Grid.Column="0" 
+                                          Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}">
+                    <toolkit:WatermarkTextBox.Watermark>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
+                               Height="15"
+                               Width="15" />
+                            <TextBlock Text="{Binding Source={x:Static Member=text:AddDoctorText.Watermark}}"
+                                   Margin="4,0,0,0"/>
+                        </StackPanel>
+                    </toolkit:WatermarkTextBox.Watermark>
+                </toolkit:WatermarkTextBox>
+            </Border>
+
+
+        </DockPanel>
+        <ScrollViewer>
+            <ListView ItemsSource="{Binding Path=FoundDoctors}"
+                      SelectedItem="{Binding Path=SelectedDoctor}">
+                <ListView.Resources>
+                    <DataTemplate DataType="{x:Type vm:LightDoctorViewModel}">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"
+                                           Content="{Binding Source={x:Static Member=text:AddDoctorText.TitleFullName}}"/>
+                                <Label Grid.Column="1"
+                                           Content="{Binding Path=DisplayedName}"/>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"
+                                           Content="{Binding Source={x:Static Member=text:AddDoctorText.TitleSpecialisation}}"/>
+                                <Label Grid.Column="1"
+                                           Content="{Binding Path=Specialisation.Name}"/>
+                            </Grid>
+                            <Button Command="{Binding Path=AddDoctorCommand}" 
+                                        Content="{Binding Source={x:Static Member=text:AddDoctorText.BtnAddDoctor}}"
+                                        Visibility="{Binding Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.Resources>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>

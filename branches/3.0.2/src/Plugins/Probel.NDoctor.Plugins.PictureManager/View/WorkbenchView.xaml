@@ -1,0 +1,149 @@
+﻿<Page x:Class="Probel.NDoctor.Plugins.PictureManager.View.WorkbenchView"
+      
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:conv="clr-namespace:Probel.NDoctor.View.Plugins.Converters;assembly=Probel.NDoctor.View.Plugins" 
+      xmlns:dto="clr-namespace:Probel.NDoctor.Domain.DTO.Objects;assembly=Probel.NDoctor.Domain.DTO"
+      xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PictureManager.Translations"
+      xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PictureManager.View"
+      xmlns:h="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
+      
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+	Title="Workbench">
+    <Page.Resources>
+        <conv:ByteArrayToImageConverter x:Key="bytesToImage"/>
+        <conv:NullToVisibilityConverter x:Key="nullToVisibility"/>
+        <conv:StringToVisibilityConverter x:Key="stringToVisibility"/>
+
+        <!-- Main photo catalog view -->
+        <Style TargetType="{x:Type ListBox}" x:Key="PhotoListBoxStyle">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}" >
+                        <WrapPanel Margin="5" IsItemsHost="True" Orientation="Horizontal" 
+                                   VerticalAlignment="Top" HorizontalAlignment="Stretch" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--Info about the pictures-->
+        <Style TargetType="{x:Type Border}" x:Key="StatusBorder">
+            <Setter Property="Padding" Value="4"/>
+            <Setter Property="Background" Value="White"                       />
+            <Setter Property="BorderBrush" Value="#22000000"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <!--<Setter Property="Width" Value="170"/>-->
+        </Style>
+
+        <DataTemplate DataType="{x:Type dto:PictureDto}">
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="6">
+                <!-- Drop Shadow -->
+                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="4" Background="#44000000">
+                    <Border.RenderTransform>
+                        <TranslateTransform X="5" Y="5" />
+                    </Border.RenderTransform>
+                    <Border.BitmapEffect>
+                        <BlurBitmapEffect Radius="8" />
+                    </Border.BitmapEffect>
+                </Border>
+                <!-- Image Template -->
+                <Border Padding="4" Background="White" BorderBrush="#22000000" BorderThickness="1">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding Bitmap, Converter={StaticResource bytesToImage},UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Content="{Binding LastUpdate}">
+                            <Label.ToolTip>
+                                Only JPeg images with a stored thumbnail will display a thumbnail during preview.
+                            </Label.ToolTip>
+                        </Label>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </DataTemplate>
+
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="175"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Column="2">
+            <DockPanel>
+
+                <ComboBox DockPanel.Dock="Top"
+					      DisplayMemberPath="Name"
+					      SelectedValuePath="Name"
+                          SelectedItem="{Binding Path=FilterTag}"
+					      ItemsSource="{Binding Path=FilterTags}"
+                          h:SelectorBehaviour.SelectionChanged="{Binding FilterPictureCommand}"/>
+
+                <ScrollViewer  DockPanel.Dock="Bottom">
+                    <ListBox Style="{StaticResource PhotoListBoxStyle}"
+                             ItemsSource="{Binding Pictures}"
+                             SelectedItem="{Binding SelectedPicture, Mode=OneWayToSource}"
+                             IsSynchronizedWithCurrentItem="True"/>
+                </ScrollViewer>
+            </DockPanel>
+        </DockPanel>
+        <GridSplitter Width="8"/>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Bottom"
+                        Orientation="Horizontal">
+
+                <Border Style="{StaticResource StatusBorder}">
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="1"   
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Center"
+                               Text="{Binding TitleCreationDate}"/>
+                </Border>
+                <Border Style="{StaticResource StatusBorder}">
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="2" 
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Center"
+                               Text="{Binding TitleLastUpdate}"/>
+                </Border>
+                <Border Style="{StaticResource StatusBorder}">
+                    <DockPanel LastChildFill="True">
+                        <Label Content="{Binding Source={x:Static Member=text:WorkbenchText.TitleCategory}}"/>
+                        <ComboBox Grid.Column="0"
+                                  DisplayMemberPath="Name"
+                                  SelectedValuePath="Name"
+                                  SelectedItem="{Binding Path=SelectedTag}"
+                                  SelectedIndex="0"
+                                  ItemsSource="{Binding Path=Tags, UpdateSourceTrigger=PropertyChanged}"/>
+                    </DockPanel>
+                </Border>
+
+            </StackPanel>
+            <Expander Visibility="{Binding SelectedPicture.Notes,UpdateSourceTrigger=PropertyChanged}"
+                      DockPanel.Dock="Bottom"
+                      ExpandDirection="Up"
+                      IsExpanded="{Binding Path=IsInformationExpanded}"
+                      Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderInformation}}">
+
+                <ScrollViewer Height="100">
+                    <TextBox Grid.Row="1" Grid.ColumnSpan="3"                              
+                             Text="{Binding Path=SelectedPicture.Notes, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" 
+                             AcceptsReturn="True" 
+                             AcceptsTab="True"/>
+                </ScrollViewer>
+            </Expander>
+            <!-- Image -->
+            <Border DockPanel.Dock="Top"
+                    Grid.Column="0"
+                    Padding="4" 
+                    Background="White" 
+                    BorderBrush="#22000000" 
+                    BorderThickness="1">
+                <Image Source="{Binding SelectedPicture.Bitmap, Converter={StaticResource bytesToImage},UpdateSourceTrigger=PropertyChanged}"
+                           Stretch="Uniform"/>
+            </Border>
+        </DockPanel>
+    </Grid>
+</Page>

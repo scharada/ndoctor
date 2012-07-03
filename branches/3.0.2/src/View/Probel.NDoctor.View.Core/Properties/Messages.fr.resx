@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Btn_Add" xml:space="preserve">
+    <value>Ajouter</value>
+    <comment>Add</comment>
+  </data>
+  <data name="Btn_Save" xml:space="preserve">
+    <value>Sauver</value>
+    <comment>Save</comment>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Une erreur est survenue. Lisez les logs pour plus d'informations</value>
+    <comment>An error occured. Read logs for further information.</comment>
+  </data>
+  <data name="Error_UnauthorisedAction" xml:space="preserve">
+    <value>Vous n'ête pas autorisé à executer cette fonctionnalité</value>
+    <comment>You are not granted to executie this feature</comment>
+  </data>
+  <data name="Ex_NDoctorConfigurationException_HostNull" xml:space="preserve">
+    <value>L'hôte du plugin n'est pas configuré. Vérifier l'état du contexte du plugin.</value>
+    <comment>The plugin host is not configured. Check the state of the plugin context.</comment>
+  </data>
+  <data name="Ex_PluginException_StartPageAlreadySet" xml:space="preserve">
+    <value>La page de démarrage a déjà été configurée par un autre plugin</value>
+    <comment>The start page was already configured by a plugin.</comment>
+  </data>
+  <data name="Language_Englisg" xml:space="preserve">
+    <value>Anglais</value>
+    <comment>English</comment>
+  </data>
+  <data name="Language_French" xml:space="preserve">
+    <value>Français</value>
+    <comment>French</comment>
+  </data>
+  <data name="Menu_Exit" xml:space="preserve">
+    <value>Quitter</value>
+    <comment>Exit</comment>
+  </data>
+  <data name="Menu_Home" xml:space="preserve">
+    <value>Page d'acceuil</value>
+    <comment>Start page</comment>
+  </data>
+  <data name="Menu_Select" xml:space="preserve">
+    <value>Charger ce patient</value>
+    <comment>Load this patient</comment>
+  </data>
+  <data name="Msg_AskForShutdown" xml:space="preserve">
+    <value>Voulez-vous quitter l'application?</value>
+    <comment>Do you want to quit the application?</comment>
+  </data>
+  <data name="Msg_ConfiguringConfigFile" xml:space="preserve">
+    <value>Configuration du fichier de configuration...</value>
+    <comment>Configuring config file...</comment>
+  </data>
+  <data name="Msg_ConfiguringNHibernate" xml:space="preserve">
+    <value>Configuration de nHibernate...</value>
+    <comment>Configuring nHibernate...</comment>
+  </data>
+  <data name="Msg_ConfiguringPlugins" xml:space="preserve">
+    <value>Configuration des plugins...</value>
+    <comment>Configuring plugins...</comment>
+  </data>
+  <data name="Msg_ConfiguringStructureMap" xml:space="preserve">
+    <value>Configuration de StructureMap</value>
+    <comment>Configuring StructureMap</comment>
+  </data>
+  <data name="Msg_ConnectedPatient" xml:space="preserve">
+    <value>Patient: {0}</value>
+    <comment>Patient: {0}</comment>
+  </data>
+  <data name="Msg_ErrorDatabaseNotFound" xml:space="preserve">
+    <value>Le chemin spécifié pour la base de données est incorrect.</value>
+    <comment>The path specified for the database is incorrect.</comment>
+  </data>
+  <data name="Msg_ErrorOccured" xml:space="preserve">
+    <value>Une erreur est apparue. {0}</value>
+    <comment>An error occured.</comment>
+  </data>
+  <data name="Msg_FatalErrorOccured" xml:space="preserve">
+    <value>{0}
+L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
+    <comment>An error occured: {0}</comment>
+  </data>
+  <data name="Msg_Loading" xml:space="preserve">
+    <value>Chargement...</value>
+    <comment>Loading...</comment>
+  </data>
+  <data name="Msg_Progess" xml:space="preserve">
+    <value>Progrès: {0,3}%</value>
+    <comment>Progress: {0,3}%</comment>
+  </data>
+  <data name="Msg_Ready" xml:space="preserve">
+    <value>Prêt.</value>
+    <comment>Ready.</comment>
+  </data>
+  <data name="Msg_SelectPatient" xml:space="preserve">
+    <value>Ouverture du dossier de  {0}</value>
+    <comment>Open record of {0}</comment>
+  </data>
+  <data name="Msg_WarningOccured" xml:space="preserve">
+    <value>Attention. {0}</value>
+    <comment>Warning: {0}</comment>
+  </data>
+  <data name="PluginException_HomeMenuVoid" xml:space="preserve">
+    <value>Le menu principal de l'application n'existe pas.</value>
+    <comment>The main menu of the application does't exist.</comment>
+  </data>
+  <data name="SlotDuration_OneHour" xml:space="preserve">
+    <value>1 heure</value>
+    <comment>1 hour</comment>
+  </data>
+  <data name="SlotDuration_ThirtyMinutes" xml:space="preserve">
+    <value>30 minutes</value>
+    <comment>30 minutes</comment>
+  </data>
+  <data name="Title_Address" xml:space="preserve">
+    <value>Adresse</value>
+    <comment>Addresse</comment>
+  </data>
+  <data name="Title_Box" xml:space="preserve">
+    <value>Boîte:</value>
+    <comment>Box:</comment>
+  </data>
+  <data name="Title_City" xml:space="preserve">
+    <value>Ville:</value>
+    <comment>City:</comment>
+  </data>
+  <data name="Title_Data" xml:space="preserve">
+    <value>Informations</value>
+    <comment>Data</comment>
+  </data>
+  <data name="Title_End" xml:space="preserve">
+    <value>Fin</value>
+    <comment>End</comment>
+  </data>
+  <data name="Title_Error" xml:space="preserve">
+    <value>Erreur</value>
+    <comment>Error</comment>
+  </data>
+  <data name="Title_Fatal" xml:space="preserve">
+    <value>Erreur fatale</value>
+    <comment>Fatal error</comment>
+  </data>
+  <data name="Title_GlobalTools" xml:space="preserve">
+    <value>Gestion</value>
+    <comment>Management</comment>
+  </data>
+  <data name="Title_Home" xml:space="preserve">
+    <value>Accueil</value>
+    <comment>Home</comment>
+  </data>
+  <data name="Title_Interogation" xml:space="preserve">
+    <value>Question</value>
+    <comment>Question</comment>
+  </data>
+  <data name="Title_Languages" xml:space="preserve">
+    <value>Langue</value>
+    <comment>Language</comment>
+  </data>
+  <data name="Title_Managers" xml:space="preserve">
+    <value>Session</value>
+    <comment>Session</comment>
+  </data>
+  <data name="Title_Name" xml:space="preserve">
+    <value>Nom:</value>
+    <comment>Name:</comment>
+  </data>
+  <data name="Title_Notes" xml:space="preserve">
+    <value>Notes:</value>
+    <comment>Notes:</comment>
+  </data>
+  <data name="Title_NoUserConnected" xml:space="preserve">
+    <value>nDoctor 3 </value>
+    <comment>nDoctor 3</comment>
+  </data>
+  <data name="Title_Phone" xml:space="preserve">
+    <value>Tél.:</value>
+    <comment>Phone:</comment>
+  </data>
+  <data name="Title_PostalCode" xml:space="preserve">
+    <value>Code postal:</value>
+    <comment>Postal code:</comment>
+  </data>
+  <data name="Title_SelectedPatient" xml:space="preserve">
+    <value>Patient: {0}</value>
+    <comment>Patient: {0}</comment>
+  </data>
+  <data name="Title_SelectedUser" xml:space="preserve">
+    <value>nDoctor 3 - Connecté en tant que {0}</value>
+    <comment>nDoctor 3 - Connected as {0}</comment>
+  </data>
+  <data name="Title_SessionManagers" xml:space="preserve">
+    <value>Session</value>
+    <comment>Session</comment>
+  </data>
+  <data name="Title_Settings" xml:space="preserve">
+    <value>Préférences</value>
+    <comment>Customise</comment>
+  </data>
+  <data name="Title_SlotDuration" xml:space="preserve">
+    <value>Durée de rendez-vous</value>
+    <comment>Slot duration</comment>
+  </data>
+  <data name="Title_Start" xml:space="preserve">
+    <value>Début</value>
+    <comment>Start</comment>
+  </data>
+  <data name="Title_Street" xml:space="preserve">
+    <value>Rue:</value>
+    <comment>Street:</comment>
+  </data>
+  <data name="Title_StreetNr" xml:space="preserve">
+    <value>Nr:</value>
+    <comment>Nr:</comment>
+  </data>
+  <data name="Title_Tools" xml:space="preserve">
+    <value>Outils</value>
+    <comment>Tools</comment>
+  </data>
+  <data name="Title_Warning" xml:space="preserve">
+    <value>Attention</value>
+    <comment>Warning</comment>
+  </data>
+  <data name="Title_Workday" xml:space="preserve">
+    <value>Journée de travail</value>
+    <comment>Workday</comment>
+  </data>
+  <data name="Title_Contact" xml:space="preserve">
+    <value>Contact</value>
+    <comment>Contact</comment>
+  </data>
+  <data name="Title_ContactData" xml:space="preserve">
+    <value>Données de contact</value>
+    <comment>Contact data</comment>
+  </data>
+  <data name="Title_FirstName" xml:space="preserve">
+    <value>Prénom:</value>
+    <comment>First name:</comment>
+  </data>
+  <data name="Title_Gender" xml:space="preserve">
+    <value>Sexe:</value>
+    <comment>Gender:</comment>
+  </data>
+  <data name="Title_LastName" xml:space="preserve">
+    <value>Nom:</value>
+    <comment>Last name:</comment>
+  </data>
+  <data name="Title_PersonalData" xml:space="preserve">
+    <value>Données personnelles</value>
+    <comment>Private data</comment>
+  </data>
+  <data name="Title_ProMail" xml:space="preserve">
+    <value>Courriel:</value>
+    <comment>Mail:</comment>
+  </data>
+  <data name="Title_ProMobile" xml:space="preserve">
+    <value>Gsm:</value>
+    <comment>Gsm:</comment>
+  </data>
+  <data name="Title_ProPhone" xml:space="preserve">
+    <value>Tél:</value>
+    <comment>Tél:</comment>
+  </data>
+  <data name="Title_Specialisation" xml:space="preserve">
+    <value>Spécialisation:</value>
+    <comment>Specialisation:</comment>
+  </data>
+  <data name="Msg_Nobody" xml:space="preserve">
+    <value>Personne</value>
+    <comment>Nobody</comment>
+  </data>
+  <data name="Title_Miscellaneous" xml:space="preserve">
+    <value>Divers</value>
+    <comment>Miscellaneous</comment>
+  </data>
+  <data name="Title_AutomaticShowContext" xml:space="preserve">
+    <value>Afficher automatiquement les menus contextuels</value>
+    <comment>Automatically display contextual menus</comment>
+  </data>
+  <data name="Gender_Female" xml:space="preserve">
+    <value>Femme</value>
+    <comment>Female</comment>
+  </data>
+  <data name="Gender_Male" xml:space="preserve">
+    <value>Fomme</value>
+    <comment>Male</comment>
+  </data>
+</root>
