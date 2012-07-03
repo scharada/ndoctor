@@ -113,6 +113,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                     // and exports a database schema from it
                     new SchemaExport(configuration)
                       .Create(false, true);
+
                     executeScript = true;
                 };
             }

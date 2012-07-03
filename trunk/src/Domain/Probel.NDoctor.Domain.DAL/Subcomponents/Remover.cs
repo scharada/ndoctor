@@ -192,7 +192,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             where TEntity : Entity
         {
             var loaded = this.Session.Get<TEntity>(item.Id);
-            if (item != null)
+            if (loaded != null)
             {
                 this.Session.Delete(loaded);
             }
@@ -372,7 +372,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         {
             foreach (var prescription in item.Prescriptions)
             {
-                this.Remove<Prescription>(item);
+                this.Remove<Prescription>(prescription);
             }
 
             this.Remove<PrescriptionDocument>(item);

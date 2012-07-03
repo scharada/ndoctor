@@ -203,7 +203,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
 
         private bool CanSave()
         {
-            return this.isSaveCommandActivated;
+            return this.isSaveCommandActivated
+                && this.ViewService.GetViewModel(this.View).SaveCommand.CanExecute(null);
         }
 
         private void LoadDefaultPrescriptions()

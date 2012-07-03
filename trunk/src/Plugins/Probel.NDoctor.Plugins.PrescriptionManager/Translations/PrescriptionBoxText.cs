@@ -38,6 +38,11 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Translations
             get { return BaseText.Remove; }
         }
 
+        public static string Tag
+        {
+            get { return Messages.Title_PrescripitonTag; }
+        }
+
         #endregion Properties
     }
 }

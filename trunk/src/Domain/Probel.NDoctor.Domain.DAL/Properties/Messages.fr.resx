@@ -241,4 +241,8 @@
     <value>Vous avez entré des données invalides</value>
     <comment>You typed invalid data</comment>
   </data>
+  <data name="Tag_Default_Prescription" xml:space="preserve">
+    <value>Prescription</value>
+    <comment>Prescription</comment>
+  </data>
 </root>

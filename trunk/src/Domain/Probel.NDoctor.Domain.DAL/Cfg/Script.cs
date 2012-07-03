@@ -79,8 +79,11 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                     component.Create(secretary);
 
                     //Uncomment to create a superadmin as a first user
-                    //var superadmin = new UserDto(true) { FirstName = "Superadmin", LastName = "Superadmin", IsDefault = true };
+                    //var superadmin = new UserDto(true) { FirstName = "Superadmin", LastName = "Superadmin", AssignedRole = administrator, IsDefault = true };
                     //component.Create(superadmin);
+                    //component.Update(superadmin, "superadmin"); //Set a default password
+
+                    component.Create(new TagDto(TagCategory.Prescription) { Name = Messages.Tag_Default_Prescription });
 
                     Logger.Info("Script is done...");
                 }

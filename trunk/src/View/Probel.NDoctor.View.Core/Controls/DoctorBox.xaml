@@ -63,7 +63,7 @@
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="1">
                 <Label Style="{StaticResource separatorStyle}" Content="{Binding Source={x:Static Member=txt:DoctorBoxText.SeparatorPersonalData}}"/>
-                <TextBox  Name="focused"
+                <TextBox Name="focused"
                          Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Doctor.LastName, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Doctor.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
 

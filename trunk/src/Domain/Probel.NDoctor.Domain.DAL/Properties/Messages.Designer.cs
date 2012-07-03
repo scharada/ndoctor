@@ -268,6 +268,15 @@ namespace Probel.NDoctor.Domain.DAL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Prescription.
+        /// </summary>
+        internal static string Tag_Default_Prescription {
+            get {
+                return ResourceManager.GetString("Tag_Default_Prescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Administer.
         /// </summary>
         internal static string Task_Administer {

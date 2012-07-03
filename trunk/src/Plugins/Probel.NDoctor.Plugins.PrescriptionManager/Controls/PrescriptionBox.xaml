@@ -6,11 +6,35 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PrescriptionManager.Translations"
+             xmlns:conv="clr-namespace:Probel.NDoctor.View.Plugins.Converters;assembly=Probel.NDoctor.View.Plugins"
+             xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
              
              mc:Ignorable="d" 
              d:DesignWidth="300">
+    <UserControl.InputBindings>
+        <KeyBinding Key="Enter"
+                    Command="{Binding AddCommand}"/>
+        <KeyBinding Key="Escape"
+                    Command="iw:InnerWindow.CancelCommand" />
+    </UserControl.InputBindings>
+    <UserControl.Resources>
+        <conv:IntToVisibilityConverter x:Key="IntToVisibility"/>
+    </UserControl.Resources>
     <DockPanel LastChildFill="True">
-        <Label DockPanel.Dock="Top" Content="{Binding ElementName=this, Path=Prescription.Drug.Name}"/>
+        <DockPanel DockPanel.Dock="Top">
+            <ComboBox x:Name="comboBox" DockPanel.Dock="Right" 
+                      ItemsSource="{Binding ElementName=this, Path=Tags}"
+                      SelectedIndex="0"
+                      Visibility="{Binding ElementName=comboBox, Path=Items.Count, Converter={StaticResource IntToVisibility}, UpdateSourceTrigger=PropertyChanged}"
+                      DisplayMemberPath="Name"
+                      SelectionChanged="comboBox_SelectionChanged"/>
+            <Label DockPanel.Dock="Left"
+                   Content="{Binding ElementName=this, Path=Prescription.Drug.Name}"/>
+            <Label DockPanel.Dock="Left"
+                   HorizontalContentAlignment="Right"
+                   Visibility="{Binding ElementName=comboBox, Path=Items.Count, Converter={StaticResource IntToVisibility}, UpdateSourceTrigger=PropertyChanged}"
+                   Content="{Binding Source={x:Static Member=text:PrescriptionBoxText.Tag}}"/>
+        </DockPanel>
         <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
             <Border Style="{StaticResource BorderStyle}">
                 <Button Content="{Binding Source={x:Static Member=text:PrescriptionBoxText.Remove}}"

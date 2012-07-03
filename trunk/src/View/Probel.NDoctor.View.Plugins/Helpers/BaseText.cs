@@ -27,10 +27,6 @@ namespace Probel.NDoctor.View.Plugins.Helpers
     {
         #region Properties
 
-        public static string Remove
-        {
-            get { return Messages.Remove; }
-        }
         public static string Add
         {
             get { return Messages.Btn_Add; }
@@ -87,6 +83,11 @@ namespace Probel.NDoctor.View.Plugins.Helpers
             {
                 return Messages.Refreshed;
             }
+        }
+
+        public static string Remove
+        {
+            get { return Messages.Remove; }
         }
 
         public static string Warning

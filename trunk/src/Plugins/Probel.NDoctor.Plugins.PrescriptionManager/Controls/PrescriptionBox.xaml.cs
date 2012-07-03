@@ -21,6 +21,7 @@
 
 namespace Probel.NDoctor.Plugins.PrescriptionManager.Controls
 {
+    using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
@@ -37,6 +38,10 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Controls
 
         public static DependencyProperty PrescriptionProperty = DependencyProperty.RegisterAttached("Prescription"
             , typeof(PrescriptionDto)
+            , typeof(PrescriptionBox)
+            , new PropertyMetadata(null));
+        public static DependencyProperty TagsProperty = DependencyProperty.RegisterAttached("Tags"
+            , typeof(IEnumerable<TagDto>)
             , typeof(PrescriptionBox)
             , new PropertyMetadata(null));
 
@@ -59,6 +64,12 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Controls
             set { SetPrescription(this, value); }
         }
 
+        public IEnumerable<TagDto> Tags
+        {
+            get { return GetTags(this); }
+            set { SetTags(this, value); }
+        }
+
         #endregion Properties
 
         #region Methods
@@ -68,16 +79,31 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Controls
             return (PrescriptionDto)target.GetValue(PrescriptionProperty);
         }
 
+        public static IEnumerable<TagDto> GetTags(DependencyObject target)
+        {
+            return (IEnumerable<TagDto>)target.GetValue(TagsProperty);
+        }
+
         public static void SetPrescription(DependencyObject target, PrescriptionDto value)
         {
             target.SetValue(PrescriptionProperty, value);
         }
 
-        #endregion Methods
+        public static void SetTags(DependencyObject target, IEnumerable<TagDto> tags)
+        {
+            target.SetValue(TagsProperty, tags);
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Notifyer.OnPrescriptionRemoving(this, this.Prescription);
         }
+
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.Prescription.Tag = (TagDto)e.AddedItems[0];
+        }
+
+        #endregion Methods
     }
 }

@@ -420,9 +420,11 @@
         public void Create(PrescriptionDocumentDto document, LightPatientDto patient)
         {
             var entity = this.Session.Get<Patient>(patient.Id);
-            var prescriptionEntity = Mapper.Map<PrescriptionDocumentDto, PrescriptionDocument>(document);
+            var documentEntity = Mapper.Map<PrescriptionDocumentDto, PrescriptionDocument>(document);
 
-            entity.PrescriptionDocuments.Add(prescriptionEntity);
+            ReloadTagsFor(documentEntity);
+
+            entity.PrescriptionDocuments.Add(documentEntity);
             this.Session.SaveOrUpdate(entity);
         }
 
@@ -470,6 +472,23 @@
                           select u).Take(2);
 
             return result.Count() == 0;
+        }
+
+        private void ReloadTagsFor(PrescriptionDocument prescriptionDocument)
+        {
+            foreach (var prescripiton in prescriptionDocument.Prescriptions)
+            {
+                if (prescripiton.Tag != null)
+                {
+                    prescripiton.Tag = (from t in this.Session.Query<Tag>()
+                                        where t.Id == prescripiton.Tag.Id
+                                        select t).First();
+                }
+
+                prescripiton.Drug.Tag = (from t in this.Session.Query<Tag>()
+                                         where t.Id == prescripiton.Drug.Tag.Id
+                                         select t).First();
+            }
         }
 
         private void RemoveDefaultUser()

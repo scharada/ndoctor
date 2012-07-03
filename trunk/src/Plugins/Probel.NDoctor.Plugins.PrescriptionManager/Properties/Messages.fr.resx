@@ -249,6 +249,10 @@
     <value>L'opération s'est déroulée avec succès.</value>
     <comment>The operation succeeded.</comment>
   </data>
+  <data name="Title_PrescripitonTag" xml:space="preserve">
+    <value>Etiquette:</value>
+    <comment>Tag:</comment>
+  </data>
   <data name="Title_PrescriptionDocumentCreated" xml:space="preserve">
     <value>Prescription crée le:</value>
     <comment>Prescription created on:</comment>

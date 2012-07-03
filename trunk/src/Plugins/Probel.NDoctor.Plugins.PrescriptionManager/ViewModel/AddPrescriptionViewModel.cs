@@ -22,6 +22,7 @@
 namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Input;
@@ -54,20 +55,15 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         public AddPrescriptionViewModel()
         {
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
+            Notifyer.DrugSelected += (sender, e) => this.AddDrug(e.Data);
+            Notifyer.PrescriptionRemoving += (sender, e) => this.Remove(e.Data);
 
             this.SaveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
             this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());
 
             this.Prescriptions = new ObservableCollection<PrescriptionDto>();
+            this.Tags = new ObservableCollection<TagDto>();
             this.CreationDate = DateTime.Today;
-
-            Notifyer.DrugSelected += (sender, e) => this.AddDrug(e.Data);
-            Notifyer.PrescriptionRemoving += (sender, e) => this.Remove(e.Data);
-        }
-
-        private void Remove(PrescriptionDto prescription)
-        {
-            this.Prescriptions.Remove(prescription);
         }
 
         #endregion Constructors
@@ -108,15 +104,31 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             private set;
         }
 
+        public ObservableCollection<TagDto> Tags
+        {
+            get;
+            private set;
+        }
+
         #endregion Properties
 
         #region Methods
 
-        internal void Refresh()
+        public void Refresh()
         {
+            try
+            {
+                IEnumerable<TagDto> results;
+                using (this.component.UnitOfWork)
+                {
+                    results = this.component.FindTags(TagCategory.Prescription);
+                }
+                this.Tags.Refill(results);
+            }
+            catch (Exception ex) { this.HandleError(ex); }
         }
 
-        internal void ResetPage()
+        public void ResetPage()
         {
             this.CreationDate = DateTime.Today;
             this.Prescriptions.Clear();
@@ -146,6 +158,11 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 if (string.IsNullOrWhiteSpace(prescription.Notes)) return true;
             }
             return false;
+        }
+
+        private void Remove(PrescriptionDto prescription)
+        {
+            this.Prescriptions.Remove(prescription);
         }
 
         private void Save()

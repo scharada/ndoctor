@@ -358,6 +358,15 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tag:.
+        /// </summary>
+        internal static string Title_PrescripitonTag {
+            get {
+                return ResourceManager.GetString("Title_PrescripitonTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Prescription created on:.
         /// </summary>
         internal static string Title_PrescriptionDocumentCreated {
