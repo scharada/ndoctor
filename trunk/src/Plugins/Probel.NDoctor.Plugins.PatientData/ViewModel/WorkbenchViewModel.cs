@@ -70,6 +70,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             this.BindDoctorCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_BindDoctor, new BindDoctorView()), () => this.Patient != null);
 
             this.SaveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
+            this.RollbackCommand = new RelayCommand(() => this.Rollback(), () => this.CanRollback());
         }
 
         #endregion Constructors
@@ -142,6 +143,12 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             set;
         }
 
+        public ICommand RollbackCommand
+        {
+            get;
+            private set;
+        }
+
         public ICommand SaveCommand
         {
             get;
@@ -160,6 +167,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             try
             {
                 if (PluginContext.Host.SelectedPatient == null) { return; }
+                if (this.Patient != null && PluginContext.DoorKeeper.IsUserGranted(To.Write)) { this.Save(); }
 
                 using (this.component.UnitOfWork)
                 {
@@ -184,6 +192,12 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         private bool CanChangePicture()
         {
             return this.Patient != null;
+        }
+
+        private bool CanRollback()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write)
+                && this.memento != null;
         }
 
         private bool CanSave()
@@ -251,6 +265,13 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                                            where p.Id == this.Patient.Profession.Id
                                            select p).FirstOrDefault();
             }
+        }
+
+        private void Rollback()
+        {
+            this.patient = this.memento;
+            this.Save();
+            this.Refresh();
         }
 
         private void Save()

@@ -60,6 +60,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Tools", ".Tools", "{B78C3AA9-F3E2-4919-8965-B43DA42EE324}"
 	ProjectSection(SolutionItems) = preProject
 		..\tools\Makefile\nDoctor.build.xml = ..\tools\Makefile\nDoctor.build.xml
+		Version.template = Version.template
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{13A03ED8-FAF2-4AF1-BC08-21DD43068BEA}"
