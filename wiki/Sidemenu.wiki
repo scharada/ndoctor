@@ -39,3 +39,4 @@
   * [PatientSessionTestSuite Patient session]
  * [Deploy Deploy]
  * Support
+  * [BetaInstallation Install the beta]
