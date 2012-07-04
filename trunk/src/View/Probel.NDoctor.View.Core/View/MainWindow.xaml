@@ -171,7 +171,6 @@
 		<Style TargetType="{x:Type ribbon:RibbonComboBox}" BasedOn="{StaticResource {x:Type ribbon:RibbonMenuButton}}">
 			<Setter Property="IsEditable" Value="True" />
             <Setter Property="TextSearch.TextPath" Value="{Binding Label}" />
-            <Setter Property="DataContext" Value="{Binding DataContext}"/>
             <Setter Property="SelectionBoxWidth" Value="{Binding SelectionBoxWidth}"/>
 		</Style>
 
