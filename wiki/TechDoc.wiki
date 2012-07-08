@@ -9,5 +9,9 @@ Here's the repository of the documentation about external tools and API used in 
 == Castle Dynamic Proxy: ==
 [http://kozmic.pl/dynamic-proxy-tutorial/ Krzysztof Koźmic tutorial ]
 
+== Regular expression ==
+
+[http://www.regular-expressions.info/ tutorial]
+
 == Bug fixing ==
 Whenever you fix a bug, put the reference in the comment to keep tracks in the issue tracker. You can find more information [http://code.google.com/p/support/wiki/IssueTracker#Integration_with_version_control here] 
