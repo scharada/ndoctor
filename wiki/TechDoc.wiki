@@ -11,7 +11,7 @@ Here's the repository of the documentation about external tools and API used in 
 
 == Regular expression ==
 
-[http://www.regular-expressions.info/ tutorial]
+[http://www.regular-expressions.info/ Tutorial]
 
 == Bug fixing ==
 Whenever you fix a bug, put the reference in the comment to keep tracks in the issue tracker. You can find more information [http://code.google.com/p/support/wiki/IssueTracker#Integration_with_version_control here] 
