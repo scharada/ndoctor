@@ -61,6 +61,15 @@ namespace Probel.NDoctor.Domain.DAL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The macro is not valid or is malformed.
+        /// </summary>
+        internal static string Ex_InvalidMacroException {
+            get {
+                return ResourceManager.GetString("Ex_InvalidMacroException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The database is in a wrong state: there is no super admin..
         /// </summary>
         internal static string Ex_NoSuperAdmin {

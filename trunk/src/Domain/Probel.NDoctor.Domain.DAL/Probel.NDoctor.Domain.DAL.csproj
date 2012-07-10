@@ -78,6 +78,7 @@
     <Compile Include="Components\PathologyComponent.cs" />
     <Compile Include="Components\PrescriptionComponent.cs" />
     <Compile Include="Components\SqlComponent.cs" />
+    <Compile Include="Entities\Macro.cs" />
     <Compile Include="Entities\Task.cs" />
     <Compile Include="EqualityComparers\TaskEqualityComparerOnName.cs" />
     <Compile Include="GrantedAttribute.cs" />
@@ -90,6 +91,15 @@
     <Compile Include="Helpers\EntityEqualityComparer.cs" />
     <Compile Include="Helpers\ComponentDecorator.cs" />
     <Compile Include="Helpers\InspectionIgnoredAttribute.cs" />
+    <Compile Include="Macro\InvalidMacroException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Macro\MacroBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Macro\Markups.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Mappings\AutoMapperMapping.cs" />
     <Compile Include="Components\BaseComponent.cs" />
     <Compile Include="Components\BmiComponent.cs" />

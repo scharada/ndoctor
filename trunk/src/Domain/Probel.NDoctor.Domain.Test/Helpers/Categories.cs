@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Domain.Test.Helpers
         public const string Authorisation = "Authorisation";
         public const string Database = "Database";
         public const string DomainData = "Domain data";
+        public const string Macros = "Macros";
         public const string Mappings = "Mappings";
         public const string Validation = "Validation";
 

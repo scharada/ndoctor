@@ -75,6 +75,7 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<DoctorFullDto, Doctor>();
             Mapper.CreateMap<RoleDto, Role>();
             Mapper.CreateMap<TaskDto, Task>();
+            Mapper.CreateMap<MacroDto, Macro>();
         }
 
         private static void MapEntityToDto()
@@ -115,6 +116,7 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<Patient, PatientFullDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Doctor, DoctorFullDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Role, RoleDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Macro, MacroDto>().AfterMap((entity, dto) => Clean(dto));
 
             Mapper.CreateMap<Task, TaskDto>()
                 .AfterMap((entity, dto) => Clean(dto))

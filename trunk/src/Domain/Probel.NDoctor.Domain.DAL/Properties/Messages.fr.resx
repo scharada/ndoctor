@@ -245,4 +245,8 @@
     <value>Prescription</value>
     <comment>Prescription</comment>
   </data>
+  <data name="Ex_InvalidMacroException" xml:space="preserve">
+    <value>La macro n'est pas valide ou est mal formée</value>
+    <comment>The macro is not valid or is malformed</comment>
+  </data>
 </root>

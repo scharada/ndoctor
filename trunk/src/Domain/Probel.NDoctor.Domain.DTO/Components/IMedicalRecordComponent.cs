@@ -49,6 +49,20 @@ namespace Probel.NDoctor.Domain.DTO.Components
         MedicalRecordCabinetDto FindMedicalRecordCabinet(LightPatientDto patient);
 
         /// <summary>
+        /// Gets all the macros.
+        /// </summary>
+        /// <returns></returns>
+        MacroDto[] GetAllMacros();
+
+        /// <summary>
+        /// Resolves the specified macro with the data of the specified patient.
+        /// </summary>
+        /// <param name="macro">The macro.</param>
+        /// <param name="patient">The patient.</param>
+        /// <returns></returns>
+        string Resolve(string macro, LightPatientDto patient);
+
+        /// <summary>
         /// Commits the changes on medical record cabinet.
         /// </summary>
         /// <param name="patient">The patient.</param>

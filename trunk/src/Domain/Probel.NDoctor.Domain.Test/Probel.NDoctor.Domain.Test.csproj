@@ -75,6 +75,7 @@
     </Compile>
     <Compile Include="Authorisation\TestAuthorisation.cs" />
     <Compile Include="Components\TestFamilyComponent.cs" />
+    <Compile Include="Data\TestMacros.cs" />
     <Compile Include="Data\TestTimeSlotCollection.cs" />
     <Compile Include="Data\TestWorkday.cs" />
     <Compile Include="Helpers\Create.cs" />

@@ -16,7 +16,7 @@
 */
 namespace Probel.NDoctor.Domain.DAL.Components
 {
-    using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     using AutoMapper;
@@ -24,10 +24,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using NHibernate;
     using NHibernate.Linq;
 
-    using Probel.Helpers.Assertion;
-    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Entities;
-    using Probel.NDoctor.Domain.DAL.Helpers;
+    using Probel.NDoctor.Domain.DAL.Macro;
     using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
@@ -102,6 +100,32 @@ namespace Probel.NDoctor.Domain.DAL.Components
             if (selectedPatient == null) throw new EntityNotFoundException(string.Format("No patient with id '{0}' was found.", patient.Id));
 
             return Mapper.Map<Patient, MedicalRecordCabinetDto>(selectedPatient);
+        }
+
+        /// <summary>
+        /// Gets all the macros.
+        /// </summary>
+        /// <returns></returns>
+        public MacroDto[] GetAllMacros()
+        {
+            var dto = (from macro in this.Session.Query<Macro>()
+                       select macro);
+            return Mapper.Map<IEnumerable<Macro>, MacroDto[]>(dto);
+        }
+
+        /// <summary>
+        /// Resolves the specified macro with the data of the specified patient.
+        /// </summary>
+        /// <param name="macro">The macro.</param>
+        /// <param name="patient">The patient.</param>
+        /// <returns></returns>
+        public string Resolve(string macro, LightPatientDto patient)
+        {
+            var p = this.Session.Get<Patient>(patient.Id);
+            if (p == null) throw new EntityNotFoundException(typeof(Patient));
+
+            var builder = new MacroBuilder(p);
+            return builder.Resolve(macro);
         }
 
         /// <summary>
