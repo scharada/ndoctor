@@ -2,7 +2,7 @@
 
 = Introduction: =
 
-While nDoctor is still in beta and heavy development, the issue repoting is done manually. As soon as the is released, a built-in reporting engine will be implemented.
+While nDoctor is still in beta and heavy development, the issue reporting is done manually. As soon as the is released, a built-in reporting engine will be implemented.
 
 = Prerequisites: =
 == Get a Gmail address ==
