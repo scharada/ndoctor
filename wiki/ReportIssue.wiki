@@ -48,6 +48,7 @@ https://lh6.googleusercontent.com/-_HusGkTexfw/UAQo_IXpGtI/AAAAAAAAAMY/Yggd3rSsz
   # Attach files
    * Attach the log file ([ReportIssue#Get_the_logs_of_the_application See here how to get the logs])
    * If needed attach a print screen that show the issue
+  # Click on *Submit issue*
 
 https://lh5.googleusercontent.com/-5jpUIsiLfc4/UAQuqFa824I/AAAAAAAAANA/u7xfviaF39k/s964/5.png
  * You're job is done, mine starts and I'll fix the problem as fast as possible.
