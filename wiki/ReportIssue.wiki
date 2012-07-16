@@ -1,0 +1,38 @@
+#summary One-sentence summary of this page.
+
+= Introduction: =
+
+While nDoctor is still in beta and heavy development, the issue repoting is manually. As soon as the is released, a built-in reporting engine will be implemented.
+
+= Prerequisites: =
+== Get a Gmail address ==
+As this opensource project is kindly hosted by Google, you need a gmail address.
+
+If you still don't have an gmail address, follow these steps to register (Bear in mind it is totally free!)
+
+ * Go to [http://gmail.com]
+ * Click on "Create an account"
+ * Simply follow the steps
+
+
+https://lh4.googleusercontent.com/-7hKaasqmdXI/UAQo9x10rxI/AAAAAAAAAMM/gRF8UUAxlHo/s946/1.png
+
+== Get the logs of the application == 
+
+`[Explanation here]`
+
+= How to report: =
+
+ * Go to the [http://code.google.com/p/ndoctor/issues/list issue tracker]
+ * Sign in with your Gmail account (For further information, please read the [http://www.google.com/intl/en/policies/privacy/ Google Privacy Agreement]).
+https://lh5.googleusercontent.com/-JP1agpHkA1Y/UAQo-OZQibI/AAAAAAAAAMI/Slw2fiLTQr8/s946/2.png
+https://lh6.googleusercontent.com/-lYqO4Q3Nd2g/UAQo-Uns3KI/AAAAAAAAAMQ/Q5zQOf1v4o4/s946/3.png
+
+ * Report the issue:
+  # Click on the *Issue* tab
+  # Click on *New issue*
+https://lh6.googleusercontent.com/-_HusGkTexfw/UAQo_IXpGtI/AAAAAAAAAMY/Yggd3rSsz6c/s946/4.png
+ * Fill up the form
+  # Write a really little summary that explains in a small phrase the issue
+  # Explain as clearly as possible the issue you encountered.
+  # Attach the log file [ReportIssue# See here how to get the logs]
