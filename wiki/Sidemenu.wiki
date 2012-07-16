@@ -39,6 +39,6 @@
   * [PatientSessionTestSuite Patient session]
  * [Deploy Deploy]
  * Support
-  * [AskFeature Ask a feature or discuss about nDoctor]
+  * [AskFeature Ask a feature]
   * [ReportIssue Report an issue]
   * [BetaInstallation Install the beta]
