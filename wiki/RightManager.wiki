@@ -6,7 +6,7 @@ The role manager is divided into two parts: the roles and the tasks.
 
 A *task* is an action the connected user can perform or not depending on the assigned *role* he/she has. nDoctor has a built-in list of tasks that *cannot* be modified.
 
-A *role* is a batch of tasks. A user has an assigned role that allows him/her that grants certain actions. Any administrator user can create roles.
+A *role* is a batch of tasks. A user has an assigned role that allows him/her to execute certain actions. Any administrator user can create roles.
 
 = Tasks list =
 ||  *Nr* || *Id*             || *Name*                                   ||
