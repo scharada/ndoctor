@@ -39,7 +39,7 @@
   * [PatientSessionTestSuite Patient session]
  * [Deploy Deploy]
  * Support
+  * [BetaInstallation Install the beta]
   * [GetGmail Get a Gmail address]
   * [AskFeature Ask a feature]
   * [ReportIssue Report an issue]
-  * [BetaInstallation Install the beta]
