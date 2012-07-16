@@ -17,4 +17,4 @@ The GUI is divided into different parts
  # Workbench: it is the workbench of the selected item of the selected module. Here you manage the data of nDoctor.
  # The application has only one *Message Box* at a time. This is for two reason. 
   # Usability: the user don't have to juggle between too many windows.
-  # Simpleness the development stays easy.
+  # Simpleness: the development stays easy.
