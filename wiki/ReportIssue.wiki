@@ -37,9 +37,9 @@ https://lh6.googleusercontent.com/-_HusGkTexfw/UAQo_IXpGtI/AAAAAAAAAMY/Yggd3rSsz
   # Write a really little summary that explains in a small phrase the issue
   # Explain as clearly as possible the issue you encountered.
   # Attach files
-   * Attach the log file ([ReportIssue#Get_the_logs_of_the_application See here how to get the logs])
-   * If needed attach a print screen that show the issue
+   * Attach the log file ([ReportIssue#Get_the_logs_of_the_application Explanations are here])
+   * If needed attach a print screen that shows the issue
   # Click on *Submit issue*
 
 https://lh6.googleusercontent.com/-pnTvtOvb7Y4/UAQzpCspgAI/AAAAAAAAANY/a6i0a5HCx44/s964/5.png
- * You're job is done, mine starts and I'll fix the problem as fast as possible.
+ * Your job is done, mine starts and I'll fix the problem as fast as possible.
