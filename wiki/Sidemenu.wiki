@@ -39,4 +39,5 @@
   * [PatientSessionTestSuite Patient session]
  * [Deploy Deploy]
  * Support
+  * [FindLogs Find the logs]
   * [BetaInstallation Install the beta]
