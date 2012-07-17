@@ -18,6 +18,8 @@ https://docs.google.com/drawings/pub?id=1pydNaRvjOFSUEPOmvy7QS5cLBWJFRysMJb5ORMR
 
 A macro is a text that contains tags that will be replaced with values from the database depending the context.
 
+*The macro edition and management is granted to administrator only*
+
 === Gui ===
 
 The user interface is a dialogue box with:
