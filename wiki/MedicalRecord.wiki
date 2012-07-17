@@ -56,3 +56,5 @@ Which will be result as this with the session of the patient John Doe
    Hello *John Doe*. Today, *2012-12-21*, you are *38* years old 
 
 == Auto Save ==
+
+The application will automatically save the current medical record every minutes. The time span could be configured but this feature depends on the *plugin configuration engine* that is not yet configured.
