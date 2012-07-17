@@ -9,15 +9,15 @@ A *task* is an action the connected user can perform or not depending on the ass
 A *role* is a batch of tasks. A user has an assigned role that allows him/her to execute certain actions. Only administrators can create roles.
 
 = Tasks list =
-||  *Nr* || *Id*             || *Name*                                   ||
-||  1    || Administer       || Regroup all the features that can read/write data related to the application management (such as authorisation or data import)            ||
-||  2    || Meta_write       || Regroup all the features that are about the connected user           ||
-||  3    || Write            || Regroup all the features that can modify the data              ||
-||  4    || Read             || Regroup all the features that read data              ||
-||  5    || !Edit_Calendar   || Regroup all the features that can modify the data of the calendar                  ||
+|| *Id*             || *Name*                                   ||
+|| Administer       || Regroup all the features that can read/write data related to the application management (such as authorisation or data import)            ||
+|| Meta_write       || Regroup all the features that are about the connected user           ||
+|| Write            || Regroup all the features that can modify the data              ||
+|| Read             || Regroup all the features that read data              ||
+|| !Edit_Calendar   || Regroup all the features that can modify the data of the calendar                  ||
 
 = Built-in role list =
-||  *Nr* || *Id*             || *Name*                                   ||
-||  1    || Administrator    || this user has got all the privileges in the application            ||
-||  2    || Doctor           || this user can read and write all the data but the authorisation or any administration pieces of data       ||
-||  3    || Secretary        || this user can read all the data but can only modify data related to calendar and appointment management.               ||
+|| *Id*             || *Name*                                   ||
+|| Administrator    || this user has got all the privileges in the application            ||
+|| Doctor           || this user can read and write all the data but the authorisation or any administration pieces of data       ||
+|| Secretary        || this user can read all the data but can only modify data related to calendar and appointment management.               ||
