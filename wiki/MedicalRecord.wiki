@@ -12,7 +12,7 @@ https://docs.google.com/drawings/pub?id=1pydNaRvjOFSUEPOmvy7QS5cLBWJFRysMJb5ORMR
  * A tree view shows the hierarchy of the record
  * ~~A search box exist to find a record by name or by type~~ [`Maybe it is a useless feature`]
  * The tool box has all the feature to modify the text appearance such as colour, size, bold or italic.
- * An button exist to rollback the text to the sate it was when loaded.
+ * ~~An button exist to rollback the text to the sate it was when loaded.~~ [`This feature will be changed with the autosave`]
 
 == Macro Editor ==
 
@@ -58,3 +58,5 @@ Which will be result as this with the session of the patient John Doe
 == Auto Save ==
 
 The application will automatically save the current medical record every minutes. The time span could be configured but this feature depends on the *plugin configuration engine* that is not yet configured.
+
+The last 10 auto-saved states are stacked into a _redo/undo stack_ that allows to roll-back to one of the last auto-saved state.
