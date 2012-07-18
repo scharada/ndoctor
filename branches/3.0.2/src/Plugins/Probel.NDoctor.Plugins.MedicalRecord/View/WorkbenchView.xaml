@@ -67,7 +67,7 @@
                 <!-- The binding to enable/disable the richtext box is done in code behind. -->
                 <ctrl:RichTextBox x:Name="richTextBox"
                                   DockPanel.Dock="Right"
-                                  Text="{Binding Path=SelectedRecord.Rtf, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                  Text="{Binding Path=SelectedRecord.Rtf, Mode=TwoWay}">
                     <ctrl:RichTextBoxFormatBarManager.FormatBar>
                         <ctrl:RichTextBoxFormatBar />
                     </ctrl:RichTextBoxFormatBarManager.FormatBar>
