@@ -24,4 +24,7 @@ The calendar:
   * as an agenda (a list of events)
 
 == Overview of the Google Agenda ==
+ * Create a left panel with the info
+ * Allow search with the appointment title
+
 [`To be written`]
