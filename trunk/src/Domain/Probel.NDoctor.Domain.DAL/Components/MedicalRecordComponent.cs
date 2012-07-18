@@ -138,6 +138,15 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Removes the specified item.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        public void Remove(MacroDto item)
+        {
+            new Remover(this.Session).Remove(item);
+        }
+
+        /// <summary>
         /// Resolves the specified macro with the data of the specified patient.
         /// </summary>
         /// <param name="macro">The macro.</param>

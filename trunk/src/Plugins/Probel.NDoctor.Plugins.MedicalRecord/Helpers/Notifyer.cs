@@ -23,12 +23,17 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
         #region Events
 
         /// <summary>
+        /// Occurs when updated the macros.
+        /// </summary>
+        public static event EventHandler MacroUpdated;
+
+        /// <summary>
         /// Occurs when refreshed the plugin needs a refresh of all the data.
         /// </summary>
         public static event EventHandler Refreshed;
 
         /// <summary>
-        /// Occurs when use is saving medical records.
+        /// Occurs when user is saving medical records.
         /// </summary>
         public static event EventHandler Saving;
 
@@ -37,12 +42,25 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
         #region Methods
 
         /// <summary>
+        /// Called when macros are updated.
+        /// </summary>
+        public static void OnMacroUpdated()
+        {
+            if (MacroUpdated != null)
+            {
+                MacroUpdated(new object(), EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
         /// Called to trigger the <see cref="Refreshed"/> event 
         /// </summary>
         public static void OnRefreshed()
         {
             if (Refreshed != null)
+            {
                 Refreshed(new Object(), EventArgs.Empty);
+            }
         }
 
         /// <summary>

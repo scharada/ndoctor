@@ -133,6 +133,10 @@
     <value>OK</value>
     <comment>OK</comment>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Fermer</value>
+    <comment>Close</comment>
+  </data>
   <data name="Ex_DeactivatedPluginException" xml:space="preserve">
     <value>Le plugin que vous essayer d'afficher est désactivé</value>
     <comment>The plugin you try to show is deactivated.</comment>

@@ -184,6 +184,10 @@
     <value>Une erreur est survenue pendant le chargement du dossier médical. {0}</value>
     <comment>An error occured while loading medical records. {0}</comment>
   </data>
+  <data name="Msg_MacroRemoved" xml:space="preserve">
+    <value>Macro '{0}' supprimée.</value>
+    <comment>Macro '{0}' removed.</comment>
+  </data>
   <data name="Msg_MacroUpdated" xml:space="preserve">
     <value>La macro '{0}' a été enregistrée.</value>
     <comment>Macro' {0}' has been updated.</comment>
@@ -215,6 +219,10 @@
   <data name="Question_CreateMacro" xml:space="preserve">
     <value>Voulez-vous créer une nouvelle macro? Si vous n'avez pas sauver la macro en cours, vous perdrez toutes les informations.</value>
     <comment>Do you want to create a new macro? If you don't save modification of the current macro, all the modification will be lost.</comment>
+  </data>
+  <data name="Question_RemoveMacro" xml:space="preserve">
+    <value>Voulez-vous supprimer la macro '{0}'?</value>
+    <comment>Do you want to remove the macro'{0}'?</comment>
   </data>
   <data name="Title_AddFolder" xml:space="preserve">
     <value>Créer un nouveau répertoire</value>

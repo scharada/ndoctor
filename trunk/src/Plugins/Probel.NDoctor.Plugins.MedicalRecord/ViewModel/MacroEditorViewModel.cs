@@ -34,8 +34,9 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.MedicalRecord.Editor;
+    using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.Plugins.MedicalRecord.Properties;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
@@ -66,6 +67,9 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             this.RefreshCommand = new RelayCommand(() => this.Refresh());
             this.UpdateCommand = new RelayCommand(() => this.Update(), () => this.CanUpdate());
             this.CreateCommand = new RelayCommand(() => this.Create(), () => this.CanCreate());
+            this.RemoveCommand = new RelayCommand(() => this.Remove(), () => this.CanRemove());
+
+            InnerWindow.Closed += (sender, e) => this.UpdateCommand.TryExecute();
         }
 
         #endregion Constructors
@@ -90,6 +94,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             private set;
         }
 
+        public ICommand RemoveCommand
+        {
+            get;
+            private set;
+        }
+
         public string ResolvedMacro
         {
             get { return this.resolvedMacro; }
@@ -105,6 +115,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             get { return this.selectedMacro; }
             set
             {
+
                 this.selectedMacro = value;
 
                 var text = (value != null)
@@ -149,6 +160,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             return PluginContext.DoorKeeper.IsUserGranted(To.Administer);
         }
 
+        private bool CanRemove()
+        {
+            return this.SelectedMacro != null
+                && PluginContext.DoorKeeper.IsUserGranted(To.Administer);
+        }
+
         private bool CanUpdate()
         {
             return PluginContext.DoorKeeper.IsUserGranted(To.Administer)
@@ -158,8 +175,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         private void Create()
         {
-            var dr = MessageBox.Show(Messages.Question_CreateMacro, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (dr != MessageBoxResult.Yes) return;
+            // Save previous macro.
+            if (this.SelectedMacro != null) { this.Update(); }
 
             this.SelectedMacro = new MacroDto()
             {
@@ -174,6 +191,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 }
             }
             catch (Exception ex) { this.HandleError(ex); }
+
+            Notifyer.OnMacroUpdated();
             this.Refresh();
         }
 
@@ -185,6 +204,27 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 macros = this.Component.GetAllMacros();
             }
             if (macros != null) { this.Macros.Refill(macros); }
+        }
+
+        private void Remove()
+        {
+            var dr = MessageBox.Show(Messages.Question_RemoveMacro.FormatWith(this.SelectedMacro.Title), BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (dr != MessageBoxResult.Yes) return;
+
+            try
+            {
+                using (this.Component.UnitOfWork)
+                {
+                    this.Component.Remove(this.SelectedMacro);
+                }
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_MacroRemoved.FormatWith(this.SelectedMacro.Title));
+
+                this.SelectedMacro = null;
+
+                Notifyer.OnMacroUpdated();
+                this.Refresh();
+            }
+            catch (Exception ex) { this.HandleError(ex); }
         }
 
         private void TestMacro()
@@ -222,6 +262,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                     : Messages.NoName;
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_MacroUpdated.FormatWith(macroName));
+                Notifyer.OnMacroUpdated();
             }
             catch (Exception ex) { this.HandleError(ex); }
         }

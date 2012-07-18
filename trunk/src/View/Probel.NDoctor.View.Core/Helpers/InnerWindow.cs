@@ -70,7 +70,8 @@ namespace Probel.NDoctor.View.Core.Helpers
 
         public static ICommand CancelCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public static string Caption
@@ -204,13 +205,13 @@ namespace Probel.NDoctor.View.Core.Helpers
         private static void OnContentChanged()
         {
             if (ContentChanged != null)
-                ContentChanged(new Object(), EventArgs.Empty);
+                ContentChanged(Content, EventArgs.Empty);
         }
 
         private static void OnLoaded()
         {
             if (Loaded != null)
-                Loaded(new Object(), EventArgs.Empty);
+                Loaded(Content, EventArgs.Empty);
         }
 
         private static void Show(string caption, UserControl content, bool isModal)

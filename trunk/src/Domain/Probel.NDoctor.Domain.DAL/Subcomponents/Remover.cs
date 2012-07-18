@@ -188,16 +188,6 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             this.Remove<MedicalRecord>(item);
         }
 
-        public void Remove<TEntity>(BaseDto item)
-            where TEntity : Entity
-        {
-            var loaded = this.Session.Get<TEntity>(item.Id);
-            if (loaded != null)
-            {
-                this.Session.Delete(loaded);
-            }
-        }
-
         /// <summary>
         /// Removes item with the specified id.
         /// </summary>
@@ -387,6 +377,12 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             this.Remove<Prescription>(item);
         }
 
+        public void Remove(MacroDto item)
+        {
+            Assert.IsNotNull(item, "The item to remove shouldn't be null");
+            this.Remove<Macro>(item);
+        }
+
         /// <summary>
         /// Deletes the bmi with the specified date.
         /// </summary>
@@ -408,6 +404,16 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
                 }
             }
             this.Session.Update(current);
+        }
+
+        internal void Remove<TEntity>(BaseDto item)
+            where TEntity : Entity
+        {
+            var loaded = this.Session.Get<TEntity>(item.Id);
+            if (loaded != null)
+            {
+                this.Session.Delete(loaded);
+            }
         }
 
         private bool CanRemoveAppointmentTag(Tag entity)

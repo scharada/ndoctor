@@ -90,7 +90,9 @@ namespace Probel.NDoctor.Domain.DAL.Macro
 
         private string Standardise(string macro)
         {
-            return Regex.Replace(macro, TEMPLATE, e => e.ToString().ToLower());
+            return (macro == null)
+                ? string.Empty
+                : Regex.Replace(macro, TEMPLATE, e => e.ToString().ToLower());
         }
 
         #endregion Methods

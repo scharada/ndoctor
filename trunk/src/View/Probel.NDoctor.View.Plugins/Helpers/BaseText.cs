@@ -37,6 +37,11 @@ namespace Probel.NDoctor.View.Plugins.Helpers
             get { return Messages.Btn_Cancel; }
         }
 
+        public static string Close
+        {
+            get { return Messages.Close; }
+        }
+
         public static string Edit
         {
             get { return Messages.Title_Edit; }

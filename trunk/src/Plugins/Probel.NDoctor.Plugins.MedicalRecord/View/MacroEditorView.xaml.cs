@@ -66,7 +66,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
         {
             if (this.DataContext is MacroEditorViewModel)
             {
-                (this.DataContext as MacroEditorViewModel).UpdateCommand.TryExecute();
+                var vm = this.DataContext as MacroEditorViewModel;
+                vm.UpdateCommand.TryExecute();
             }
         }
 

@@ -18,6 +18,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Input;
 
@@ -27,12 +28,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MedicalRecord.Dto;
+    using Probel.NDoctor.Plugins.MedicalRecord.Editor;
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.Plugins.MedicalRecord.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using System.Collections.ObjectModel;
-    using Probel.NDoctor.Plugins.MedicalRecord.Editor;
 
     public class WorkbenchViewModel : BaseViewModel
     {
@@ -57,12 +57,15 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         {
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
 
+            Notifyer.MacroUpdated += (sender, e) => this.Refresh();
+
             this.MacroMenu = new ObservableCollection<MacroMenuItem>();
 
             this.RefreshCommand = new RelayCommand(() => this.Refresh());
             this.SaveCommand = new RelayCommand(() => Save(), () => this.CanSave());
 
             Notifyer.Refreshed += (sender, e) => this.Refresh();
+            Notifyer.MacroUpdated += (sender, e) => { using (this.component.UnitOfWork) { this.RefreshMacroMenu(); } };
         }
 
         #endregion Constructors
@@ -95,6 +98,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         public bool IsRecordSelected
         {
             get { return this.SelectedRecord != null; }
+        }
+
+        public ObservableCollection<MacroMenuItem> MacroMenu
+        {
+            get;
+            private set;
         }
 
         public ICommand RefreshCommand
@@ -156,6 +165,19 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             catch (Exception ex) { this.HandleError(ex); }
         }
 
+        private ICommand BuildMenuItemCommand(MacroDto macro)
+        {
+            return new RelayCommand(() =>
+            {
+                string text;
+                using (this.component.UnitOfWork)
+                {
+                    text = this.component.Resolve(macro, PluginContext.Host.SelectedPatient);
+                }
+                Context.RichTextBox.CaretPosition.InsertTextInRun(text);
+            });
+        }
+
         private bool CanSave()
         {
             this.IsGranted = PluginContext.DoorKeeper.IsUserGranted(To.Write);
@@ -201,19 +223,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             this.MacroMenu.Refill(macros);
         }
 
-        private ICommand BuildMenuItemCommand(MacroDto macro)
-        {
-            return new RelayCommand(() =>
-            {
-                string text;
-                using (this.component.UnitOfWork)
-                {
-                    text = this.component.Resolve(macro, PluginContext.Host.SelectedPatient);
-                }
-                Context.RichTextBox.CaretPosition.InsertTextInRun(text);
-            });
-        }
-
         private void Save()
         {
             try
@@ -243,12 +252,5 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         }
 
         #endregion Methods
-
-
-        public ObservableCollection<MacroMenuItem> MacroMenu
-        {
-            get;
-            private set;
-        }
     }
 }

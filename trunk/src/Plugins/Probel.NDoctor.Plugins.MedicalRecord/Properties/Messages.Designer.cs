@@ -232,6 +232,15 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Macro &apos;{0}&apos; removed..
+        /// </summary>
+        internal static string Msg_MacroRemoved {
+            get {
+                return ResourceManager.GetString("Msg_MacroRemoved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Macro&apos; {0}&apos; has been updated..
         /// </summary>
         internal static string Msg_MacroUpdated {
@@ -300,6 +309,15 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Properties {
         internal static string Question_CreateMacro {
             get {
                 return ResourceManager.GetString("Question_CreateMacro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voulez-vous supprimer la macro &apos;{0}&apos;?.
+        /// </summary>
+        internal static string Question_RemoveMacro {
+            get {
+                return ResourceManager.GetString("Question_RemoveMacro", resourceCulture);
             }
         }
         

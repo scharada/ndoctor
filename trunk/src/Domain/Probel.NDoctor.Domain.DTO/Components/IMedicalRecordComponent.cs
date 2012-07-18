@@ -71,6 +71,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         bool IsValid(MacroDto macro);
 
         /// <summary>
+        /// Removes the specified item.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        void Remove(MacroDto item);
+
+        /// <summary>
         /// Resolves the specified macro with the data of the specified patient.
         /// </summary>
         /// <param name="macro">The macro.</param>

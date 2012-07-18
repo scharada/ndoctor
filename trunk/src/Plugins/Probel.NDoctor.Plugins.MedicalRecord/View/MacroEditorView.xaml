@@ -12,14 +12,19 @@
              xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
              
              mc:Ignorable="d" 
-             Height="450" Width="600">
+             Height="600" Width="800">
     <UserControl.Resources>
         <converter:NullToBooleanConverter x:Key="NullToBool"/>
     </UserControl.Resources>
     <DockPanel LastChildFill="True">
-        <ctrl:OKCancelBox DockPanel.Dock="Bottom"
-                          ButtonName="{Binding Source={x:Static Member=t:BaseText.Save}}"
-                          OkCommand="{Binding UpdateCommand}"/>
+        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
+            <Border Style="{StaticResource BorderStyle}"
+                    DockPanel.Dock="Right" >
+                <Button Width="100"
+                    Command="iw:InnerWindow.CancelCommand"                
+                    Content="{Binding Source={x:Static Member=t:BaseText.Close}}"/>
+            </Border>
+        </DockPanel>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150" />
@@ -38,9 +43,22 @@
                        Content="{x:Static Member=text:MacroEditorText.Macro}"
                        HorizontalAlignment="Center"/>
                     <ListView Name="list"
-                          ItemsSource="{Binding Macros}"
-                          DisplayMemberPath="Title"
-                          SelectedItem="{Binding SelectedMacro}" SelectionChanged="list_SelectionChanged" />
+                              ItemsSource="{Binding Macros}"
+                              DisplayMemberPath="Title"
+                              SelectedItem="{Binding SelectedMacro}" SelectionChanged="list_SelectionChanged">
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="{Binding Source={x:Static Member=t:BaseText.Remove}}"
+                                          Command="{Binding RemoveCommand}">
+                                    <MenuItem.Icon>
+                                        <Image Source="\Probel.NDoctor.Plugins.MedicalRecord;component/Images\Delete.png"
+                                               Height="20"
+                                               Width="20"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </ListView.ContextMenu>
+                    </ListView>
                 </DockPanel>
             </Border>
 
@@ -64,7 +82,7 @@
                     <Border Style="{StaticResource BorderStyle}">
                         <avalonEdit:TextEditor Name="textEditor"
                                                FontFamily="Consolas"
-                                               FontSize="10pt"
+                                               FontSize="12pt"
                                                SyntaxHighlighting="Macro Highlighting"
                                                TextChanged="textEditor_TextChanged"
                                                Document="{Binding TextDocument, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0"
