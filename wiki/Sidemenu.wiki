@@ -34,7 +34,7 @@
   * [CodingConventions Coding conventions]
   * [ComponentAop Components & AOP]
   * [PluginFeatures Plugin API ]
- * [QA QA]
+ * QA ([QA Manual])
   * [UserTestSuite User Session]
   * [PatientSessionTestSuite Patient session]
  * [Deploy Deploy]
