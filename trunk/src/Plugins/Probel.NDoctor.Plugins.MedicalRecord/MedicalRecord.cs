@@ -199,10 +199,23 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         {
             var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.ViewService.GetViewModel(View).SaveCommand);
             var splitButton = this.ConfigureSplitButton();
+            var macroButton = new RibbonButtonData(Messages.Title_Macro, imgUri.FormatWith("Edit"), new RelayCommand(
+                () =>
+                {
+                    try
+                    {
+                        var view = new MacroEditorView();
+                        this.ViewService.GetViewModel(view).RefreshCommand.TryExecute();
+                        InnerWindow.Show(Messages.Title_Macro, view);
+                    }
+                    catch (Exception ex) { this.HandleError(ex); }
+                },
+                () => PluginContext.DoorKeeper.IsUserGranted(To.Administer)));
 
             var cgroup = new RibbonGroupData(Messages.Menu_Actions, 1);
             cgroup.ButtonDataCollection.Add(saveButton);
             cgroup.ButtonDataCollection.Add(splitButton);
+            cgroup.ButtonDataCollection.Add(macroButton);
             tab.GroupDataCollection.Add(cgroup);
         }
 

@@ -148,9 +148,17 @@
   <data name="Edition_Underline" xml:space="preserve">
     <value>Underline</value>
   </data>
+  <data name="Err_InvalidMacro" xml:space="preserve">
+    <value>The macro is invalid</value>
+    <comment>The macro is invalid</comment>
+  </data>
   <data name="Header_MedicalRecords" xml:space="preserve">
     <value>Medical records</value>
     <comment>Medical records</comment>
+  </data>
+  <data name="Lbl_Macros" xml:space="preserve">
+    <value>Macros</value>
+    <comment>Macros</comment>
   </data>
   <data name="Menu_Actions" xml:space="preserve">
     <value>Actions</value>
@@ -207,6 +215,10 @@
   <data name="Title_BtnAdd" xml:space="preserve">
     <value>Add</value>
     <comment>Add</comment>
+  </data>
+  <data name="Title_Macro" xml:space="preserve">
+    <value>Edit macros</value>
+    <comment>Edit macros</comment>
   </data>
   <data name="Title_MedicalRecord" xml:space="preserve">
     <value>Medical record</value>

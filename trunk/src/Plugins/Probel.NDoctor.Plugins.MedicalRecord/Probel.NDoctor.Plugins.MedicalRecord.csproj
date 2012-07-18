@@ -40,6 +40,9 @@
     <Reference Include="AutoMapper, Version=1.1.0.188, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AutoMapper.1.1.0.118\lib\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit">
+      <HintPath>..\..\packages\AvalonEdit.4.2.0.8783\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
@@ -54,6 +57,7 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -65,6 +69,8 @@
     <Compile Include="Dto\TitledMedicalRecordCabinetDto.cs" />
     <Compile Include="Dto\TitledMedicalRecordDto.cs" />
     <Compile Include="Dto\TitledMedicalRecordFolderDto.cs" />
+    <Compile Include="Editor\CompletionData.cs" />
+    <Compile Include="Editor\TextToDocumentConverter.cs" />
     <Compile Include="Helpers\Notifyer.cs" />
     <Compile Include="Helpers\Context.cs" />
     <Compile Include="Helpers\ViewService.cs" />
@@ -89,15 +95,20 @@
     </Compile>
     <Compile Include="Translations\AddFolderText.cs" />
     <Compile Include="Translations\AddRecordText.cs" />
+    <Compile Include="Translations\MacroEditorText.cs" />
     <Compile Include="Translations\WorkbenchText.cs" />
     <Compile Include="ViewModel\AddFolderViewModel.cs" />
     <Compile Include="ViewModel\AddRecordViewModel.cs" />
+    <Compile Include="ViewModel\MacroEditorViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
     <Compile Include="View\AddFolderView.xaml.cs">
       <DependentUpon>AddFolderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddRecordView.xaml.cs">
       <DependentUpon>AddRecordView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MacroEditorView.xaml.cs">
+      <DependentUpon>MacroEditorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WorkbenchView.xaml.cs">
       <DependentUpon>WorkbenchView.xaml</DependentUpon>
@@ -111,6 +122,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Editor\MacroHighlighting.xshd" />
     <None Include="packages.config" />
     <None Include="Probel.NDoctor.Plugins.MedicalRecord.licenseheader" />
     <None Include="Properties\Settings.settings">
@@ -154,6 +166,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\MacroEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\WorkbenchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -190,6 +206,9 @@
     <Resource Include="Images\Bold.png" />
     <Resource Include="Images\Bullets.png" />
     <Resource Include="Images\CenterAlign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Edit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

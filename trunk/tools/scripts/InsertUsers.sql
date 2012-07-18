@@ -171,4 +171,7 @@ INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patien
 INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES (17, '2011-10-16 16:00', '2011-10-16 16:30', 'Meeting', 19, 1, 7, 0);
 INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES (18, '2011-10-16 16:30', '2011-10-16 17:00', 'Meeting', 19, 1, 7, 0);
 
+INSERT INTO Macro(Id, Expression, Notes, Title, IsImported) VALUES (1, 'Hello $firstname$ $lastname$.', 'Says hello to connected patient', 'Hello', 0);
+INSERT INTO Macro(Id, Expression, Notes, Title, IsImported) VALUES (2, '$firstname$ $lastname$ is $age$ old.', 'Says the age of the connected patient', 'Age', 0);
+
 --commit;

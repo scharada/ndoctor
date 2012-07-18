@@ -97,9 +97,6 @@
     <Compile Include="Macro\MacroBuilder.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Macro\Markups.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Mappings\AutoMapperMapping.cs" />
     <Compile Include="Components\BaseComponent.cs" />
     <Compile Include="Components\BmiComponent.cs" />

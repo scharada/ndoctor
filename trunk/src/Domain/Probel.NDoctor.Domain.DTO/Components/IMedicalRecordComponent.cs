@@ -55,12 +55,21 @@ namespace Probel.NDoctor.Domain.DTO.Components
         MacroDto[] GetAllMacros();
 
         /// <summary>
+        /// Determines whether the specified macro is valid.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>
+        ///   <c>true</c> if macro is valid; otherwise, <c>false</c>.
+        /// </returns>
+        bool IsValid(MacroDto macro);
+
+        /// <summary>
         /// Resolves the specified macro with the data of the specified patient.
         /// </summary>
         /// <param name="macro">The macro.</param>
         /// <param name="patient">The patient.</param>
         /// <returns></returns>
-        string Resolve(string macro, LightPatientDto patient);
+        string Resolve(MacroDto macro, LightPatientDto patient);
 
         /// <summary>
         /// Commits the changes on medical record cabinet.

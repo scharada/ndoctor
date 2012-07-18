@@ -269,6 +269,15 @@ namespace Probel.NDoctor.View.Plugins.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Editer.
         /// </summary>
         internal static string Title_Edit {

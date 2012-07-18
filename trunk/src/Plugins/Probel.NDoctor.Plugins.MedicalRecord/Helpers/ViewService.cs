@@ -43,6 +43,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
             return (WorkbenchViewModel)view.DataContext;
         }
 
+        public MacroEditorViewModel GetViewModel(MacroEditorView view)
+        {
+            return (MacroEditorViewModel)view.DataContext;
+        }
+
         #endregion Methods
     }
 }

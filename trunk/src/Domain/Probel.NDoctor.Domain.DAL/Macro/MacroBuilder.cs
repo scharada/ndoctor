@@ -25,6 +25,7 @@ namespace Probel.NDoctor.Domain.DAL.Macro
     using System.Text.RegularExpressions;
 
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DTO.Objects;
 
     public class MacroBuilder
     {
@@ -47,20 +48,7 @@ namespace Probel.NDoctor.Domain.DAL.Macro
 
         #region Methods
 
-        public string Resolve(string macro)
-        {
-            macro = this.Standardise(macro);
-
-            if (this.IsValidExpression(macro))
-            {
-                macro = macro.Replace(Markups.FirstName, patient.FirstName);
-                macro = macro.Replace(Markups.LastName, patient.LastName);
-                return macro;
-            }
-            else { throw new InvalidMacroException(); }
-        }
-
-        private bool IsValidExpression(string macro)
+        public static bool IsValidExpression(string macro)
         {
             var regex = new Regex(TEMPLATE);
             var markups = Markups.All();
@@ -73,6 +61,19 @@ namespace Probel.NDoctor.Domain.DAL.Macro
                 if (count == 0) return false;
             }
             return true;
+        }
+
+        public string Resolve(string macro)
+        {
+            macro = this.Standardise(macro);
+
+            if (MacroBuilder.IsValidExpression(macro))
+            {
+                macro = macro.Replace(Markups.FirstName, patient.FirstName);
+                macro = macro.Replace(Markups.LastName, patient.LastName);
+                return macro;
+            }
+            else { throw new InvalidMacroException(); }
         }
 
         private string Standardise(string macro)

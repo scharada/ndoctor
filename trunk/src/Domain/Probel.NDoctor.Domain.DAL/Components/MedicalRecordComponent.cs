@@ -114,18 +114,34 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Determines whether the specified macro is valid.
+        /// </summary>
+        /// <param name="macro"></param>
+        /// <returns>
+        ///   <c>true</c> if macro is valid; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsValid(MacroDto macro)
+        {
+            return (macro != null)
+                ? MacroBuilder.IsValidExpression(macro.Expression)
+                : false;
+        }
+
+        /// <summary>
         /// Resolves the specified macro with the data of the specified patient.
         /// </summary>
         /// <param name="macro">The macro.</param>
         /// <param name="patient">The patient.</param>
         /// <returns></returns>
-        public string Resolve(string macro, LightPatientDto patient)
+        public string Resolve(MacroDto macro, LightPatientDto patient)
         {
+            if (macro == null || patient == null) return string.Empty;
+
             var p = this.Session.Get<Patient>(patient.Id);
             if (p == null) throw new EntityNotFoundException(typeof(Patient));
 
             var builder = new MacroBuilder(p);
-            return builder.Resolve(macro);
+            return builder.Resolve(macro.Expression);
         }
 
         /// <summary>

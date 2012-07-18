@@ -151,11 +151,29 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The macro is invalid.
+        /// </summary>
+        internal static string Err_InvalidMacro {
+            get {
+                return ResourceManager.GetString("Err_InvalidMacro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Medical records.
         /// </summary>
         internal static string Header_MedicalRecords {
             get {
                 return ResourceManager.GetString("Header_MedicalRecords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Macros.
+        /// </summary>
+        internal static string Lbl_Macros {
+            get {
+                return ResourceManager.GetString("Lbl_Macros", resourceCulture);
             }
         }
         
@@ -282,6 +300,15 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Properties {
         internal static string Title_BtnAdd {
             get {
                 return ResourceManager.GetString("Title_BtnAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit macros.
+        /// </summary>
+        internal static string Title_Macro {
+            get {
+                return ResourceManager.GetString("Title_Macro", resourceCulture);
             }
         }
         

@@ -94,6 +94,7 @@
     <Compile Include="Objects\LightDoctorDto.cs" />
     <Compile Include="Objects\LightPatientDto.cs" />
     <Compile Include="Objects\MacroDto.cs" />
+    <Compile Include="Objects\Markups.cs" />
     <Compile Include="Objects\PersonDto.cs" />
     <Compile Include="Objects\RoleDto.cs" />
     <Compile Include="Objects\MedicalRecordDto.cs" />

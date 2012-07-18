@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Domain.Test.Data
 
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Macro;
+    using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.Test.Helpers;
 
     namespace Interview.Test

@@ -154,6 +154,7 @@ copy "%rsxCore%" "%directory%\fr"
 copy "%rsxViewPlugin%" "%directory%\fr"
 copy "%root%\Probel.NDoctor.Plugins.MedicalRecord\bin\%releaseMode%\Smith.WPF.HtmlEditor.dll" "%directory%"
 copy "%root%\Probel.NDoctor.Plugins.MedicalRecord\bin\%releaseMode%\WPFToolkit.Extended.dll" "%directory%"
+copy "%root%\Probel.NDoctor.Plugins.MedicalRecord\bin\%releaseMode%\ICSharpCode.AvalonEdit.dll" "%directory%"
 
 echo=======================================================================================================
 set "pluginName=PictureManager"

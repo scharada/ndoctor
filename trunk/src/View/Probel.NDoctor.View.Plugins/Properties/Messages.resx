@@ -210,6 +210,10 @@ Path: {1}</value>
     <value>Remove</value>
     <comment>Remove</comment>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+    <comment>Save</comment>
+  </data>
   <data name="Title_Edit" xml:space="preserve">
     <value>Editer</value>
     <comment>Edit</comment>

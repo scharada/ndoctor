@@ -90,6 +90,11 @@ namespace Probel.NDoctor.View.Plugins.Helpers
             get { return Messages.Remove; }
         }
 
+        public static string Save
+        {
+            get { return Messages.Save; }
+        }
+
         public static string Warning
         {
             get { return Messages.Title_Warning; }
