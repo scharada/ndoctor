@@ -184,6 +184,10 @@
     <value>Une erreur est survenue pendant le chargement du dossier médical. {0}</value>
     <comment>An error occured while loading medical records. {0}</comment>
   </data>
+  <data name="Msg_MacroUpdated" xml:space="preserve">
+    <value>La macro '{0}' a été enregistrée.</value>
+    <comment>Macro' {0}' has been updated.</comment>
+  </data>
   <data name="Msg_RecordAdded" xml:space="preserve">
     <value>Nouvelle fiche ajoutée au dossier</value>
     <comment>New card added to the record</comment>
@@ -200,9 +204,17 @@
     <value>Le répertoire '{0}' a été créé</value>
     <comment>The folder '{0}' was created</comment>
   </data>
+  <data name="NoName" xml:space="preserve">
+    <value>Vide</value>
+    <comment>Empty</comment>
+  </data>
   <data name="Question" xml:space="preserve">
     <value>Question</value>
     <comment>Question</comment>
+  </data>
+  <data name="Question_CreateMacro" xml:space="preserve">
+    <value>Voulez-vous créer une nouvelle macro? Si vous n'avez pas sauver la macro en cours, vous perdrez toutes les informations.</value>
+    <comment>Do you want to create a new macro? If you don't save modification of the current macro, all the modification will be lost.</comment>
   </data>
   <data name="Title_AddFolder" xml:space="preserve">
     <value>Créer un nouveau répertoire</value>
@@ -216,9 +228,17 @@
     <value>Ajouter</value>
     <comment>Add</comment>
   </data>
+  <data name="Title_DefaultMacroTitle" xml:space="preserve">
+    <value>Nouvelle macro</value>
+    <comment>New macro</comment>
+  </data>
   <data name="Title_Macro" xml:space="preserve">
     <value>Editer les macros</value>
     <comment>Edit macros</comment>
+  </data>
+  <data name="Title_MacroName" xml:space="preserve">
+    <value>Titre de la macro:</value>
+    <comment>Title of the macro:</comment>
   </data>
   <data name="Title_MedicalRecord" xml:space="preserve">
     <value>Dossiers médicaux</value>

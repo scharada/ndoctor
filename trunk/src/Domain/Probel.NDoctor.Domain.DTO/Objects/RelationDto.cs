@@ -19,7 +19,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System;
 
     using Probel.Helpers.Assertion;
-    using Probel.Mvvm;
 
     /// <summary>
     /// Represents a relation with a patient. It's part of a family

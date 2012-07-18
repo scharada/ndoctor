@@ -26,8 +26,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Editor
 
     using ICSharpCode.AvalonEdit.Document;
 
-    using Probel.NDoctor.Domain.DTO.Objects;
-
     [ValueConversion(typeof(string), typeof(TextDocument))]
     public class TextToDocumentConverter : IValueConverter
     {

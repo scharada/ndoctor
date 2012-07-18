@@ -26,6 +26,10 @@ namespace Probel.NDoctor.Domain.DTO.Validators
     {
         #region Methods
 
+        /// <summary>
+        /// Sets the validation logic.
+        /// </summary>
+        /// <param name="item">The item.</param>
         public override void SetValidationLogic(AppointmentDto item)
         {
             item.AddValidationRule(() => item.StartTime

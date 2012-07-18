@@ -71,6 +71,16 @@
                     <ctrl:RichTextBoxFormatBarManager.FormatBar>
                         <ctrl:RichTextBoxFormatBar />
                     </ctrl:RichTextBoxFormatBarManager.FormatBar>
+                    <ctrl:RichTextBox.ContextMenu>
+                        <ContextMenu ItemsSource="{Binding Path=MacroMenu}">
+                            <ContextMenu.ItemContainerStyle>
+                                <Style TargetType="{x:Type MenuItem}">
+                                    <Setter Property="Command" Value="{Binding Command}"/>
+                                    <Setter Property="Header" Value="{Binding Header}"/>
+                                </Style>
+                            </ContextMenu.ItemContainerStyle>
+                        </ContextMenu>
+                    </ctrl:RichTextBox.ContextMenu>
                 </ctrl:RichTextBox>
             </ScrollViewer>
         </Grid>

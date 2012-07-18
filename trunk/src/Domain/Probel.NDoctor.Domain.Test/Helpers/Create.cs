@@ -19,9 +19,7 @@ namespace Probel.NDoctor.Domain.Test.Helpers
     using System;
     using System.Collections.Generic;
 
-    using Probel.NDoctor.Domain.DAL;
     using Probel.NDoctor.Domain.DAL.Entities;
-    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     public static class Create

@@ -19,7 +19,6 @@ namespace Probel.NDoctor.View.Plugins.MenuData
     using System.Collections.ObjectModel;
     using System.Linq;
 
-    using Probel.Helpers.Conversions;
     using Probel.Mvvm.DataBinding;
 
     public class RibbonTabData : RibbonBase

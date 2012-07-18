@@ -21,15 +21,20 @@
 
 namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 {
+    using System;
     using System.Collections.ObjectModel;
     using System.Timers;
+    using System.Windows;
     using System.Windows.Input;
 
     using ICSharpCode.AvalonEdit.Document;
 
+    using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.MedicalRecord.Editor;
     using Probel.NDoctor.Plugins.MedicalRecord.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -42,8 +47,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         private readonly object locker = new object();
         private readonly Timer timer;
 
-        private MacroDto selectedMacro;
         private string resolvedMacro;
+        private MacroDto selectedMacro;
         private TextDocument textDocument;
 
         #endregion Fields
@@ -57,12 +62,21 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             this.timer.Start();
 
             this.Macros = new ObservableCollection<MacroDto>();
+
             this.RefreshCommand = new RelayCommand(() => this.Refresh());
+            this.UpdateCommand = new RelayCommand(() => this.Update(), () => this.CanUpdate());
+            this.CreateCommand = new RelayCommand(() => this.Create(), () => this.CanCreate());
         }
 
         #endregion Constructors
 
         #region Properties
+
+        public ICommand CreateCommand
+        {
+            get;
+            private set;
+        }
 
         public ObservableCollection<MacroDto> Macros
         {
@@ -76,17 +90,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             private set;
         }
 
-        public MacroDto SelectedMacro
-        {
-            get { return this.selectedMacro; }
-            set
-            {
-                this.selectedMacro = value;
-                this.TextDocument = new TextDocument(value.Expression);
-                this.OnPropertyChanged(() => SelectedMacro);
-            }
-        }
-
         public string ResolvedMacro
         {
             get { return this.resolvedMacro; }
@@ -94,6 +97,22 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             {
                 this.resolvedMacro = value;
                 this.OnPropertyChanged(() => ResolvedMacro);
+            }
+        }
+
+        public MacroDto SelectedMacro
+        {
+            get { return this.selectedMacro; }
+            set
+            {
+                this.selectedMacro = value;
+
+                var text = (value != null)
+                    ? value.Expression ?? string.Empty
+                    : string.Empty;
+
+                this.TextDocument = new TextDocument(text);
+                this.OnPropertyChanged(() => SelectedMacro);
             }
         }
 
@@ -107,16 +126,55 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             }
         }
 
+        public ICommand UpdateCommand
+        {
+            get;
+            private set;
+        }
+
         #endregion Properties
 
         #region Methods
 
-        public void Update()
+        public void StartTimer()
         {
             if (this.SelectedMacro != null)
             {
                 this.timer.Start();
             }
+        }
+
+        private bool CanCreate()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Administer);
+        }
+
+        private bool CanUpdate()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Administer)
+                && this.SelectedMacro != null
+                && this.SelectedMacro.IsValid();
+        }
+
+        private void Create()
+        {
+            var dr = MessageBox.Show(Messages.Question_CreateMacro, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (dr != MessageBoxResult.Yes) return;
+
+            this.SelectedMacro = new MacroDto()
+            {
+                Title = Messages.Title_DefaultMacroTitle,
+            };
+
+            try
+            {
+                using (this.Component.UnitOfWork)
+                {
+                    this.Component.Create(this.SelectedMacro);
+                }
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+            this.Refresh();
         }
 
         private void Refresh()
@@ -131,6 +189,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         private void TestMacro()
         {
+            //Todo: this code has a problem with multithread. If this thread is running, all component method call will throw an SessionException
             timer.Stop();
             lock (this.locker)
             {
@@ -148,6 +207,23 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                     }
                 });
             }
+        }
+
+        private void Update()
+        {
+            try
+            {
+                using (this.Component.UnitOfWork)
+                {
+                    this.Component.Update(this.SelectedMacro);
+                }
+                var macroName = (this.SelectedMacro != null)
+                    ? this.SelectedMacro.Title ?? Messages.NoName
+                    : Messages.NoName;
+
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_MacroUpdated.FormatWith(macroName));
+            }
+            catch (Exception ex) { this.HandleError(ex); }
         }
 
         #endregion Methods

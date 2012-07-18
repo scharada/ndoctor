@@ -21,7 +21,6 @@
 
 namespace Probel.NDoctor.View.Core.Controls
 {
-    using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
@@ -29,32 +28,29 @@ namespace Probel.NDoctor.View.Core.Controls
     using Probel.NDoctor.Domain.DTO.Objects;
 
     /// <summary>
-    /// Interaction logic for DrugBox.xaml
+    /// Interaction logic for MacroBox.xaml
     /// </summary>
-    public partial class DrugBox : UserControl
+    public partial class MacroBox : UserControl
     {
         #region Fields
 
         public static DependencyProperty ButtonNameProperty = DependencyProperty.RegisterAttached("ButtonName", typeof(string)
-            , typeof(DrugBox)
-            , new UIPropertyMetadata(null));
-        public static DependencyProperty CategoriesProperty = DependencyProperty.RegisterAttached("Categories", typeof(ObservableCollection<TagDto>)
-            , typeof(DrugBox)
-            , new UIPropertyMetadata(null));
-        public static DependencyProperty DrugyProperty = DependencyProperty.RegisterAttached("Drug", typeof(DrugDto)
-            , typeof(DrugBox)
+            , typeof(MacroBox)
             , new UIPropertyMetadata(null));
         public static DependencyProperty OkCommandProperty = DependencyProperty.RegisterAttached("OkCommand", typeof(ICommand)
-            , typeof(DrugBox)
+            , typeof(MacroBox)
+            , new UIPropertyMetadata(null));
+        public static DependencyProperty ProfessionProperty = DependencyProperty.RegisterAttached("Macro", typeof(MacroDto)
+            , typeof(MacroBox)
             , new UIPropertyMetadata(null));
 
         #endregion Fields
 
         #region Constructors
 
-        public DrugBox()
+        public MacroBox()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion Constructors
@@ -63,26 +59,20 @@ namespace Probel.NDoctor.View.Core.Controls
 
         public string ButtonName
         {
-            get { return DrugBox.GetButtonName(this); }
-            set { DrugBox.SetButtonName(this, value); }
+            get { return MacroBox.GetButtonName(this); }
+            set { MacroBox.SetButtonName(this, value); }
         }
 
-        public ObservableCollection<TagDto> Categories
+        public MacroDto Macro
         {
-            get { return DrugBox.GetCategories(this); }
-            set { DrugBox.SetCategories(this, value); }
-        }
-
-        public DrugDto Drug
-        {
-            get { return DrugBox.GetDrug(this); }
-            set { DrugBox.SetDrug(this, value); }
+            get { return MacroBox.GetMacro(this); }
+            set { MacroBox.SetMacro(this, value); }
         }
 
         public ICommand OkCommand
         {
-            get { return DrugBox.GetOkCommand(this); }
-            set { DrugBox.SetOkCommand(this, value); }
+            get { return MacroBox.GetOkCommand(this); }
+            set { MacroBox.SetOkCommand(this, value); }
         }
 
         #endregion Properties
@@ -94,14 +84,9 @@ namespace Probel.NDoctor.View.Core.Controls
             return target.GetValue(ButtonNameProperty) as string ?? "No value";
         }
 
-        public static ObservableCollection<TagDto> GetCategories(DependencyObject target)
+        public static MacroDto GetMacro(DependencyObject target)
         {
-            return target.GetValue(CategoriesProperty) as ObservableCollection<TagDto>;
-        }
-
-        public static DrugDto GetDrug(DependencyObject target)
-        {
-            return target.GetValue(DrugyProperty) as DrugDto;
+            return target.GetValue(ProfessionProperty) as MacroDto;
         }
 
         public static ICommand GetOkCommand(DependencyObject target)
@@ -114,14 +99,9 @@ namespace Probel.NDoctor.View.Core.Controls
             target.SetValue(ButtonNameProperty, value);
         }
 
-        public static void SetCategories(DependencyObject target, ObservableCollection<TagDto> value)
+        public static void SetMacro(DependencyObject target, MacroDto value)
         {
-            target.SetValue(CategoriesProperty, value);
-        }
-
-        public static void SetDrug(DependencyObject target, DrugDto value)
-        {
-            target.SetValue(DrugyProperty, value);
+            target.SetValue(ProfessionProperty, value);
         }
 
         public static void SetOkCommand(DependencyObject target, ICommand value)

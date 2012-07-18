@@ -21,11 +21,6 @@
 
 namespace Probel.NDoctor.View.Core.Helpers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
     /// This object is used with databinding to keep the "by reference" feature when developer pass
     /// a string or a value object

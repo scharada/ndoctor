@@ -19,7 +19,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
     using Probel.NDoctor.Domain.DTO.Objects;
 
     /// <summary>
-    /// 
+    /// Provides business logic for the medical record management
     /// </summary>
     public interface IMedicalRecordComponent : IBaseComponent
     {
@@ -31,6 +31,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="record">The record.</param>
         /// <param name="forPatient">For patient.</param>
         void Create(MedicalRecordDto record, LightPatientDto forPatient);
+
+        /// <summary>
+        /// Creates the specified macro.
+        /// </summary>
+        /// <param name="macro">The macro.</param>
+        /// <returns>The id of the created macro</returns>
+        long Create(MacroDto macro);
 
         /// <summary>
         /// Finds the medical record by id.
@@ -70,6 +77,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="patient">The patient.</param>
         /// <returns></returns>
         string Resolve(MacroDto macro, LightPatientDto patient);
+
+        /// <summary>
+        /// Updates the specified macro.
+        /// </summary>
+        /// <param name="macro">The macro.</param>
+        void Update(MacroDto macro);
 
         /// <summary>
         /// Commits the changes on medical record cabinet.

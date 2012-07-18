@@ -133,6 +133,7 @@
     <Compile Include="To.cs" />
     <Compile Include="Validators\AppointmentValidator.cs" />
     <Compile Include="Validators\BmiValidator.cs" />
+    <Compile Include="Validators\MacroValidator.cs" />
     <Compile Include="Validators\MedicalRecordFolderValidator.cs" />
     <Compile Include="Validators\MedicalRecordValidator.cs" />
     <Compile Include="Validators\PathologyValidator.cs" />

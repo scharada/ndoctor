@@ -26,7 +26,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using NHibernate.Linq;
 
     using Probel.Helpers.Assertion;
-    using Probel.Helpers.Conversions;
     using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Entities;

@@ -19,8 +19,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System;
     using System.Drawing;
 
-    using Probel.Mvvm;
-
     [Serializable]
     public class UserDto : PersonDto
     {

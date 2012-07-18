@@ -16,7 +16,6 @@
 */
 namespace Probel.Helpers.WPF.Behaviours
 {
-    using System;
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;

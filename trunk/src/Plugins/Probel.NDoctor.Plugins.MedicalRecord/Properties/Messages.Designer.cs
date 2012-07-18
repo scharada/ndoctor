@@ -232,6 +232,15 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Macro&apos; {0}&apos; has been updated..
+        /// </summary>
+        internal static string Msg_MacroUpdated {
+            get {
+                return ResourceManager.GetString("Msg_MacroUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New card added to the record.
         /// </summary>
         internal static string Msg_RecordAdded {
@@ -268,11 +277,29 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Empty.
+        /// </summary>
+        internal static string NoName {
+            get {
+                return ResourceManager.GetString("NoName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Question.
         /// </summary>
         internal static string Question {
             get {
                 return ResourceManager.GetString("Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to create a new macro? If you don&apos;t save modification of the current macro, all the modification will be lost..
+        /// </summary>
+        internal static string Question_CreateMacro {
+            get {
+                return ResourceManager.GetString("Question_CreateMacro", resourceCulture);
             }
         }
         
@@ -304,11 +331,29 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New macro.
+        /// </summary>
+        internal static string Title_DefaultMacroTitle {
+            get {
+                return ResourceManager.GetString("Title_DefaultMacroTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit macros.
         /// </summary>
         internal static string Title_Macro {
             get {
                 return ResourceManager.GetString("Title_Macro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Titre de la macro:.
+        /// </summary>
+        internal static string Title_MacroName {
+            get {
+                return ResourceManager.GetString("Title_MacroName", resourceCulture);
             }
         }
         

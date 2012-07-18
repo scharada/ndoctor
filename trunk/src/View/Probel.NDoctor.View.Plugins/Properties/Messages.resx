@@ -125,6 +125,10 @@
     <value>Cancel</value>
     <comment>Cancel</comment>
   </data>
+  <data name="Btn_New" xml:space="preserve">
+    <value>New...</value>
+    <comment>New...</comment>
+  </data>
   <data name="Btn_OK" xml:space="preserve">
     <value>OK</value>
     <comment>OK</comment>

@@ -21,6 +21,7 @@
 
 namespace Probel.NDoctor.Domain.DAL.Macro
 {
+    using System;
     using System.Linq;
     using System.Text.RegularExpressions;
 
@@ -71,9 +72,20 @@ namespace Probel.NDoctor.Domain.DAL.Macro
             {
                 macro = macro.Replace(Markups.FirstName, patient.FirstName);
                 macro = macro.Replace(Markups.LastName, patient.LastName);
+                macro = macro.Replace(Markups.Birthdate, patient.BirthDate.ToShortDateString());
+                macro = macro.Replace(Markups.Height, patient.Height.ToString());
+                macro = macro.Replace(Markups.Now, DateTime.Now.ToString("HH:mm"));
+                macro = macro.Replace(Markups.Today, DateTime.Today.ToShortDateString());
+                macro = macro.Replace(Markups.Age, this.GetAge(patient));
                 return macro;
             }
             else { throw new InvalidMacroException(); }
+        }
+
+        private string GetAge(Patient patient)
+        {
+            var timeSpan = DateTime.Now - patient.BirthDate;
+            return (timeSpan.Days / 365).ToString();
         }
 
         private string Standardise(string macro)

@@ -21,11 +21,6 @@
 
 namespace Probel.NDoctor.Plugins.MedicalRecord.Translations
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     using Probel.NDoctor.Plugins.MedicalRecord.Properties;
 
     public static class MacroEditorText
@@ -35,6 +30,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Translations
         public static string Macro
         {
             get { return Messages.Lbl_Macros; }
+        }
+
+        public static string MacroName
+        {
+            get { return Messages.Title_MacroName; }
         }
 
         #endregion Properties

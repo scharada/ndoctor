@@ -21,12 +21,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using System.Windows;
     using System.Windows.Input;
 
-    using AutoMapper;
-
     using Probel.Helpers.Assertion;
-    using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -35,6 +31,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.Plugins.MedicalRecord.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using System.Collections.ObjectModel;
+    using Probel.NDoctor.Plugins.MedicalRecord.Editor;
 
     public class WorkbenchViewModel : BaseViewModel
     {
@@ -58,6 +56,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             : base()
         {
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
+
+            this.MacroMenu = new ObservableCollection<MacroMenuItem>();
 
             this.RefreshCommand = new RelayCommand(() => this.Refresh());
             this.SaveCommand = new RelayCommand(() => Save(), () => this.CanSave());
@@ -170,7 +170,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 Assert.IsNotNull(PluginContext.Host);
                 Assert.IsNotNull(PluginContext.Host.SelectedPatient);
 
-                using (this.component.UnitOfWork)
+                using (var unitOfWork = this.component.UnitOfWork)
                 {
                     var result = this.component.FindMedicalRecordCabinet(PluginContext.Host.SelectedPatient);
                     this.Cabinet = TitledMedicalRecordCabinetDto.CreateFrom(result);
@@ -183,10 +183,35 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                             ? TitledMedicalRecordDto.CreateFrom(record)
                             : null;
                     }
+                    this.RefreshMacroMenu();
                 }
+
                 PluginContext.Host.WriteStatus(StatusType.Info, BaseText.Refreshed);
             }
             catch (Exception ex) { this.HandleError(ex); }
+        }
+
+        private void RefreshMacroMenu()
+        {
+            var macros = new List<MacroMenuItem>();
+            foreach (var macro in this.component.GetAllMacros())
+            {
+                macros.Add(new MacroMenuItem(macro.Title, this.BuildMenuItemCommand(macro)));
+            }
+            this.MacroMenu.Refill(macros);
+        }
+
+        private ICommand BuildMenuItemCommand(MacroDto macro)
+        {
+            return new RelayCommand(() =>
+            {
+                string text;
+                using (this.component.UnitOfWork)
+                {
+                    text = this.component.Resolve(macro, PluginContext.Host.SelectedPatient);
+                }
+                Context.RichTextBox.CaretPosition.InsertTextInRun(text);
+            });
         }
 
         private void Save()
@@ -218,5 +243,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         }
 
         #endregion Methods
+
+
+        public ObservableCollection<MacroMenuItem> MacroMenu
+        {
+            get;
+            private set;
+        }
     }
 }

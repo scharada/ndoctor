@@ -69,6 +69,16 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Creates the specified macro.
+        /// </summary>
+        /// <param name="macro">The macro.</param>
+        /// <returns>The id of the created macro</returns>
+        public long Create(MacroDto macro)
+        {
+            return new Creator(this.Session).Create(macro);
+        }
+
+        /// <summary>
         /// Finds the medical record by id.
         /// </summary>
         /// <param name="id">The id.</param>
@@ -142,6 +152,15 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
             var builder = new MacroBuilder(p);
             return builder.Resolve(macro.Expression);
+        }
+
+        /// <summary>
+        /// Updates the specified macro.
+        /// </summary>
+        /// <param name="macro">The macro.</param>
+        public void Update(MacroDto macro)
+        {
+            new Updator(this.Session).Update(macro);
         }
 
         /// <summary>

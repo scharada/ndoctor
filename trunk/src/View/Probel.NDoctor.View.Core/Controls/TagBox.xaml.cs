@@ -25,7 +25,6 @@ namespace Probel.NDoctor.View.Core.Controls
     using System.Windows.Controls;
     using System.Windows.Input;
 
-    using Probel.NDoctor.Domain.DTO.Collections;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     /// <summary>

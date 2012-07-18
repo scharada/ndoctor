@@ -16,7 +16,6 @@
 */
 namespace Probel.NDoctor.View.Plugins.MenuData
 {
-    using System;
     using System.Windows.Input;
 
     public class RibbonSplitButtonData : RibbonMenuButtonData

@@ -17,9 +17,6 @@
 namespace Probel.NDoctor.View.Plugins.MenuData
 {
     using System.Collections.ObjectModel;
-    using System.Linq;
-
-    using Probel.Helpers.Conversions;
 
     public class RibbonGroupData : RibbonBase
     {

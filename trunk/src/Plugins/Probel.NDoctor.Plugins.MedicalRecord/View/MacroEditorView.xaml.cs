@@ -24,24 +24,15 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Documents;
-    using System.Windows.Input;
-    using System.Windows.Media;
-    using System.Windows.Media.Imaging;
-    using System.Windows.Navigation;
-    using System.Windows.Shapes;
-    using System.Windows.Threading;
     using System.Xml;
 
     using ICSharpCode.AvalonEdit.CodeCompletion;
     using ICSharpCode.AvalonEdit.Highlighting;
 
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Plugins.MedicalRecord.Editor;
+    using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
 
     /// <summary>
@@ -70,6 +61,14 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
         #endregion Constructors
 
         #region Methods
+
+        private void list_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.DataContext is MacroEditorViewModel)
+            {
+                (this.DataContext as MacroEditorViewModel).UpdateCommand.TryExecute();
+            }
+        }
 
         private void PreSetupAvalonEdit()
         {
@@ -129,7 +128,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
             if (this.DataContext is MacroEditorViewModel)
             {
                 var vm = this.DataContext as MacroEditorViewModel;
-                vm.Update();
+                vm.StartTimer();
             }
         }
 

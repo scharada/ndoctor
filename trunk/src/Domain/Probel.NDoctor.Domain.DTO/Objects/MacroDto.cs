@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,8 +16,13 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#endregion Header
+
 namespace Probel.NDoctor.Domain.DTO.Objects
 {
+    using Probel.NDoctor.Domain.DTO.Validators;
+
     /// <summary>
     /// A macro is a text with markups that will be replaced with values from the database. 
     /// For instance, it allows to display the birthdate of the connected patient.
@@ -29,6 +36,15 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private string title;
 
         #endregion Fields
+
+        #region Constructors
+
+        public MacroDto()
+            : base(new MacroValidator())
+        {
+        }
+
+        #endregion Constructors
 
         #region Properties
 

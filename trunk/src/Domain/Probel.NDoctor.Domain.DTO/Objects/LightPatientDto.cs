@@ -18,8 +18,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
-    using Probel.Mvvm;
-
     /// <summary>
     /// Represents a light weight data patient
     /// </summary>

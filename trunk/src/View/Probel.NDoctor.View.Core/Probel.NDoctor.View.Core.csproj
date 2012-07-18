@@ -113,6 +113,9 @@
     <Compile Include="Controls\GenderBox.xaml.cs">
       <DependentUpon>GenderBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MacroBox.xaml.cs">
+      <DependentUpon>MacroBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\OKCancelBox.xaml.cs">
       <DependentUpon>OKCancelBox.xaml</DependentUpon>
     </Compile>
@@ -186,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\GenderBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MacroBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

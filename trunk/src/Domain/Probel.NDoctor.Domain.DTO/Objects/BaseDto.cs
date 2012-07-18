@@ -17,10 +17,8 @@
 namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
-    using System.Collections.Generic;
 
     using Probel.Helpers.Data;
-    using Probel.Helpers.Events;
     using Probel.Mvvm;
     using Probel.Mvvm.Validation;
 

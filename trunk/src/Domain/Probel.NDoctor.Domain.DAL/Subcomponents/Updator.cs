@@ -58,6 +58,16 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         #region Methods
 
         /// <summary>
+        /// Updates the specified macro.
+        /// </summary>
+        /// <param name="macro">The macro.</param>
+        public void Update(MacroDto macro)
+        {
+            var entity = Mapper.Map<MacroDto, Macro>(macro);
+            this.Session.Update(entity);
+        }
+
+        /// <summary>
         /// Updates the specified tag.
         /// </summary>
         /// <param name="tag">The tag.</param>

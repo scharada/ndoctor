@@ -19,46 +19,29 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.View.Plugins
+namespace Probel.NDoctor.Domain.DTO.Validators
 {
-    using System;
+    using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.DTO.Properties;
 
-    /// <summary>
-    /// This plugin has a static workbench. That's it only can exist one instance of the workbench
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public abstract class StaticViewPlugin<T> : Plugin
-        where T : new()
+    internal class MacroValidator : Validator<MacroDto>
     {
-        #region Fields
-
-        private T view;
-
-        #endregion Fields
-
-        #region Constructors
-
-        public StaticViewPlugin(Version version)
-            : base(version)
-        {
-        }
-
-        #endregion Constructors
-
-        #region Properties
+        #region Methods
 
         /// <summary>
-        /// Gets the static workbench.
+        /// Sets the validation logic.
         /// </summary>
-        protected T View
+        /// <param name="item">The item.</param>
+        public override void SetValidationLogic(MacroDto item)
         {
-            get
-            {
-                if (view == null) view = new T();
-                return view;
-            }
+            item.AddValidationRule(() => item.Expression
+                , () => !string.IsNullOrWhiteSpace(item.Expression)
+                , Messages.Invalid_EmptyValue);
+            item.AddValidationRule(() => item.Title
+                , () => !string.IsNullOrWhiteSpace(item.Title)
+                , Messages.Invalid_EmptyValue);
         }
 
-        #endregion Properties
+        #endregion Methods
     }
 }

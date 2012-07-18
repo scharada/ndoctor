@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,38 +16,37 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Domain.DTO.Exceptions
+
+#endregion Header
+
+namespace Probel.NDoctor.Plugins.MedicalRecord.Editor
 {
-    using System;
-    using System.Runtime.Serialization;
+    using System.Windows.Input;
 
-    using Probel.NDoctor.Domain.DTO.Properties;
-
-    [Serializable]
-    public class ReferencialIntegrityException : ApplicationException
+    public class MacroMenuItem
     {
         #region Constructors
 
-        public ReferencialIntegrityException()
-            : this(Messages.Ex_ReferencialIntegrityException)
+        public MacroMenuItem(string header, ICommand command)
         {
-        }
-
-        public ReferencialIntegrityException(string message)
-            : base(message)
-        {
-        }
-
-        public ReferencialIntegrityException(string message, Exception inner)
-            : base(message, inner)
-        {
-        }
-
-        protected ReferencialIntegrityException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
+            this.Header = header;
+            this.Command = command;
         }
 
         #endregion Constructors
+
+        #region Properties
+
+        public ICommand Command
+        {
+            get; private set;
+        }
+
+        public string Header
+        {
+            get; private set;
+        }
+
+        #endregion Properties
     }
 }

@@ -29,7 +29,6 @@ namespace Probel.NDoctor.View.Core.Controls
 
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.View.Plugins.Helpers;
 
     /// <summary>
     /// Interaction logic for DoctorBox.xaml

@@ -18,8 +18,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
-    using Probel.Mvvm;
-
     /// <summary>
     /// Represent a DTO of a patient
     /// </summary>

@@ -21,8 +21,6 @@
 
 namespace Probel.NDoctor.Domain.Components.Interceptors
 {
-    using System.Linq;
-
     using Castle.DynamicProxy;
 
     using log4net;

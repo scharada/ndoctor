@@ -20,8 +20,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
 
-    using Probel.Mvvm;
-
     /// <summary>
     /// Contains a list of prescription and the first and last creation date
     /// </summary>

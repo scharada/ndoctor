@@ -18,8 +18,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
-    using Probel.Mvvm;
-
     /// <summary>
     /// Represents a illness period while a patient was ill
     /// </summary>

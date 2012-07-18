@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,18 +16,19 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#endregion Header
+
 namespace Probel.NDoctor.View.Plugins.Converters
 {
     using System;
-    using System.Windows;
     using System.Windows.Data;
 
     /// <summary>
-    /// Convert a string into visibility. That's a empty (or null) string is converted into Visibility.Collapsed.
-    /// Otherwise the visibility is set to Visibility.Visible
+    /// Convertu a null reference into a boolean. That's if the value is <c>Null</c>, it returns true; otherwise false
     /// </summary>
-    [ValueConversion(typeof(string), typeof(Visibility))]
-    public class StringToVisibilityConverter : IValueConverter
+    [ValueConversion(typeof(object), typeof(bool))]
+    public class NullToBooleanConverter : IValueConverter
     {
         #region Methods
 
@@ -41,9 +44,7 @@ namespace Probel.NDoctor.View.Plugins.Converters
         /// </returns>
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var str = value as string;
-            if (string.IsNullOrWhiteSpace(str)) return Visibility.Collapsed;
-            else return Visibility.Visible;
+            return (value != null);
         }
 
         /// <summary>

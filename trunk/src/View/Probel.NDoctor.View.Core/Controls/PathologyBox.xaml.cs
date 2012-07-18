@@ -27,7 +27,6 @@ namespace Probel.NDoctor.View.Core.Controls
     using System.Windows.Input;
 
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.View.Core.ViewModel;
 
     /// <summary>
     /// Interaction logic for IllnessBox.xaml

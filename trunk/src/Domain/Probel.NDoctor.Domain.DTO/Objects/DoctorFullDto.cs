@@ -17,12 +17,6 @@
 namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
-    using Probel.Mvvm;
-    using Probel.NDoctor.Domain.DTO.Validators;
 
     [Serializable]
     public class DoctorFullDto : DoctorDto

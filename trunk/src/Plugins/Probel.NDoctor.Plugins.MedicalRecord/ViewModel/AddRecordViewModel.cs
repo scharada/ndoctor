@@ -17,13 +17,10 @@
 namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 {
     using System;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
 
-    using Probel.Helpers.Conversions;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;

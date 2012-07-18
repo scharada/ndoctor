@@ -70,6 +70,7 @@
     <Compile Include="Dto\TitledMedicalRecordDto.cs" />
     <Compile Include="Dto\TitledMedicalRecordFolderDto.cs" />
     <Compile Include="Editor\CompletionData.cs" />
+    <Compile Include="Editor\MacroMenuItem.cs" />
     <Compile Include="Editor\TextToDocumentConverter.cs" />
     <Compile Include="Helpers\Notifyer.cs" />
     <Compile Include="Helpers\Context.cs" />

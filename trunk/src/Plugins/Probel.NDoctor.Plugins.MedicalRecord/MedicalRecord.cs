@@ -34,7 +34,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.Plugins.MedicalRecord.Properties;
     using Probel.NDoctor.Plugins.MedicalRecord.View;
-    using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;

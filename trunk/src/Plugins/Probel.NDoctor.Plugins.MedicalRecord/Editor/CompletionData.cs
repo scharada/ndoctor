@@ -83,7 +83,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Editor
 
             foreach (var keyword in Markups.All())
             {
-                completion.Add(new CompletionData(keyword));
+                var word = keyword.Remove(0, 1); // remove the first '$'
+                completion.Add(new CompletionData(word));
             }
             return completion as IList<ICompletionData>;
         }

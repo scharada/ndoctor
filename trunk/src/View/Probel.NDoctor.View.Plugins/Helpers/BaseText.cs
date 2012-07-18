@@ -62,6 +62,11 @@ namespace Probel.NDoctor.View.Plugins.Helpers
             get { return Messages.Menu_File; }
         }
 
+        public static string New
+        {
+            get { return Messages.Btn_New; }
+        }
+
         public static string OK
         {
             get { return Messages.Btn_OK; }

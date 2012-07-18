@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.View.Plugins.Properties {
-    using System;
-    
-    
+namespace Probel.NDoctor.View.Plugins.Properties
+{
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -75,6 +75,15 @@ namespace Probel.NDoctor.View.Plugins.Properties {
         internal static string Btn_Cancel {
             get {
                 return ResourceManager.GetString("Btn_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New....
+        /// </summary>
+        internal static string Btn_New {
+            get {
+                return ResourceManager.GetString("Btn_New", resourceCulture);
             }
         }
         

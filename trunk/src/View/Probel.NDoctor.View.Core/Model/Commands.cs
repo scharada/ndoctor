@@ -21,7 +21,6 @@ namespace Probel.NDoctor.View.Core.Model
 
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.View.Core.Properties;
-    using Probel.NDoctor.View.Plugins.Helpers;
 
     /// <summary>
     /// Set of generic command reusable thoughout the application.

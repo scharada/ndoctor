@@ -24,11 +24,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using NHibernate;
     using NHibernate.Linq;
 
-    using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
-    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     public class PictureComponent : BaseComponent, IPictureComponent

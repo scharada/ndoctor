@@ -18,7 +18,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
-    using Probel.Mvvm;
     using Probel.Mvvm.Validation;
     using Probel.NDoctor.Domain.DTO.Validators;
 

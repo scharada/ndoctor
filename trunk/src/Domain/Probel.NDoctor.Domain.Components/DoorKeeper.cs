@@ -21,15 +21,7 @@
 
 namespace Probel.NDoctor.Domain.Components
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     using Probel.NDoctor.Domain.Components.AuthorisationPolicies;
-    using Probel.NDoctor.Domain.DAL.Entities;
-    using Probel.NDoctor.Domain.DTO;
-    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     using StructureMap;

@@ -23,7 +23,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using NHibernate;
     using NHibernate.Linq;
 
-    using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DAL.Subcomponents;

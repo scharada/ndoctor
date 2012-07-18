@@ -18,9 +18,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
-    using Probel.Mvvm;
-    using Probel.NDoctor.Domain.DTO.Validators;
-
     [Serializable]
     public class InsuranceDto : LightInsuranceDto
     {

@@ -19,7 +19,6 @@ namespace Probel.NDoctor.View.Core.View
     using System.Windows.Controls;
     using System.Windows.Input;
 
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
 
     /// <summary>

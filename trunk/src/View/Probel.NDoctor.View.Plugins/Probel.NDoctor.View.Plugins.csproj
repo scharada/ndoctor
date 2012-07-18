@@ -72,6 +72,7 @@
     <Compile Include="Converters\GenderToImageConverter.cs" />
     <Compile Include="Converters\IntToVisibilityConverter.cs" />
     <Compile Include="Converters\InvertVisibilityConverter.cs" />
+    <Compile Include="Converters\NullToBooleanConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Converters\StatusTypeToImageConverter.cs" />
     <Compile Include="Converters\StringToVisibilityConverter.cs" />

@@ -17,12 +17,9 @@
 namespace Probel.Helpers.Data
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
-    using System.Text;
 
     /// <summary>
     /// Reference Article http://www.codeproject.com/KB/tips/SerializedObjectCloner.aspx

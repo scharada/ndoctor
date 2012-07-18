@@ -20,7 +20,6 @@ namespace Probel.NDoctor.Domain.Test.Validations
 
     using NUnit.Framework;
 
-    using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.Test.Helpers;
 

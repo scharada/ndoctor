@@ -18,10 +18,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.Collections.Specialized;
 
-    using Probel.Mvvm;
-    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Validators;
 
     [Serializable]

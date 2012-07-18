@@ -16,8 +16,6 @@
 */
 namespace Probel.NDoctor.Domain.DTO.Components
 {
-    using System;
-
     using Probel.NDoctor.Domain.DTO.Objects;
 
     public interface IAuthorisationComponent : IBaseComponent

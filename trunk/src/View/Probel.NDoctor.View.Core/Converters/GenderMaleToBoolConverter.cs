@@ -21,7 +21,6 @@
 
 namespace Probel.NDoctor.View.Core.Converters
 {
-    using System;
     using System.Windows.Data;
 
     using Probel.Helpers.Assertion;

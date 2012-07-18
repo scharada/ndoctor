@@ -19,8 +19,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System;
     using System.Collections.ObjectModel;
 
-    using Probel.Mvvm;
-
     [Serializable]
     public class PatientFullDto : PatientDto
     {

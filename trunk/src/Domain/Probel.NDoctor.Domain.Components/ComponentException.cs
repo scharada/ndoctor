@@ -22,10 +22,7 @@
 namespace Probel.NDoctor.Domain.Components
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Runtime.Serialization;
-    using System.Text;
 
     using Probel.NDoctor.Domain.Components.Properties;
 

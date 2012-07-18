@@ -36,6 +36,19 @@
 
         #region Methods
 
+        public long Create(MacroDto item)
+        {
+            Assert.IsNotNull(item, "The item to create shouldn't be null");
+
+            var exist = (from i in this.Session.Query<MacroDto>()
+                         where i.Id == item.Id
+                         select i).ToList().Count() > 0;
+            if (exist) throw new ExistingItemException();
+
+            var entity = Mapper.Map<MacroDto, Macro>(item);
+            return (long)this.Session.Save(entity);
+        }
+
         /// <summary>
         /// Create the specified item into the database
         /// </summary>
