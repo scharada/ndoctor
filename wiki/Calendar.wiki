@@ -6,6 +6,8 @@ The calendar allows to manage time in the medical practice
 
 = Features =
 
+== Basic feature ==
+
 The calendar:
  * Allows to add, remove or update a meeting.
  * Allows to add a tag for the meeting.
@@ -20,3 +22,6 @@ The calendar:
  * Allows two ways to display meeting
   * a graphic way (the same as Outlook)
   * as an agenda (a list of events)
+
+== Overview of the Google Agenda ==
+[`To be written`]
