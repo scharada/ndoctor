@@ -136,12 +136,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
         private void SearchPathology()
         {
-            IList<PathologyDto> pathologies;
-            using (this.component.UnitOfWork)
-            {
-                pathologies = this.component.FindPathology(this.criteria);
-            }
-
+            var pathologies = this.component.FindPathology(this.criteria);
             var result = Mapper.Map<IList<PathologyDto>, IList<IllnessPeriodToAddViewModel>>(pathologies);
             this.FoundPathologies.Refill(result);
         }

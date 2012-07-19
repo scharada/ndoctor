@@ -96,12 +96,9 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         {
             try
             {
-                using (this.component.UnitOfWork)
-                {
-                    var result = this.component.FindAppointments(this.DateToDisplay);
-                    var mappedResult = Mapper.Map<IList<AppointmentDto>, AppointmentCollection>(result);
-                    this.DayAppointments.Refill(mappedResult);
-                }
+                var result = this.component.FindAppointments(this.DateToDisplay);
+                var mappedResult = Mapper.Map<IList<AppointmentDto>, AppointmentCollection>(result);
+                this.DayAppointments.Refill(mappedResult);
             }
             catch (Exception ex)
             {

@@ -132,11 +132,8 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 
         public void Refresh()
         {
-            using (component.UnitOfWork)
-            {
-                var users = this.component.GetAllUsers();
-                this.Users.Refill(users);
-            }
+            var users = this.component.GetAllUsers();
+            this.Users.Refill(users);
         }
 
         private void AddUser()
@@ -146,11 +143,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 
         private void Connect()
         {
-            bool isConnected = false;
-            using (this.component.UnitOfWork)
-            {
-                isConnected = this.component.CanConnect(this.SelectedUser, this.Password);
-            }
+            var isConnected = this.component.CanConnect(this.SelectedUser, this.Password);
 
             if (isConnected)
             {

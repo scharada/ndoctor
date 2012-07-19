@@ -88,7 +88,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
                 this.OnLogged(Messages.Log_PatientCount, count);
             }
 
-            using (this.Component.UnitOfWork) { this.Component.Create(newPatients); }
+            this.Component.Create(newPatients);
         }
 
         private static int Percentage(long count, long step)

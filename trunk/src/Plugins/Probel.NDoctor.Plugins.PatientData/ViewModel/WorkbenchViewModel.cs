@@ -169,22 +169,19 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 if (PluginContext.Host.SelectedPatient == null) { return; }
                 if (this.Patient != null && PluginContext.DoorKeeper.IsUserGranted(To.Write)) { this.Save(); }
 
-                using (this.component.UnitOfWork)
-                {
-                    var result = this.component.FindDoctorOf(PluginContext.Host.SelectedPatient);
-                    var mapped = Mapper.Map<IList<LightDoctorDto>, IList<LightDoctorViewModel>>(result);
-                    this.Doctors.Refill(mapped);
+                var result = this.component.FindDoctorOf(PluginContext.Host.SelectedPatient);
+                var mapped = Mapper.Map<IList<LightDoctorDto>, IList<LightDoctorViewModel>>(result);
+                this.Doctors.Refill(mapped);
 
-                    //Refill the collections BEFORE refreshing the patient.
-                    this.Insurances.Refill(this.component.GetAllInsurancesLight());
-                    this.Practices.Refill(this.component.GetAllPracticesLight());
-                    this.Reputations.Refill(this.component.GetAllReputations());
-                    this.Professions.Refill(this.component.GetAllProfessions());
+                //Refill the collections BEFORE refreshing the patient.
+                this.Insurances.Refill(this.component.GetAllInsurancesLight());
+                this.Practices.Refill(this.component.GetAllPracticesLight());
+                this.Reputations.Refill(this.component.GetAllReputations());
+                this.Professions.Refill(this.component.GetAllProfessions());
 
-                    //Refresh the patient with the refreshed collection binding
-                    this.Patient = this.component.FindPatient(PluginContext.Host.SelectedPatient);
-                    this.RefreshPatientData();
-                }
+                //Refresh the patient with the refreshed collection binding
+                this.Patient = this.component.FindPatient(PluginContext.Host.SelectedPatient);
+                this.RefreshPatientData();
             }
             catch (Exception ex) { this.HandleError(ex); }
         }
@@ -278,10 +275,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         {
             try
             {
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Update(this.Patient);
-                }
+                this.component.Update(this.Patient);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
             }
             catch (Exception ex) { this.HandleError(ex); }

@@ -85,7 +85,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 
         private void IncrementCounter()
         {
-            using (this.component.UnitOfWork) { this.component.IncrementPatientCounter(PluginContext.Host.SelectedPatient); }
+            this.component.IncrementPatientCounter(PluginContext.Host.SelectedPatient);
         }
 
         #endregion Methods

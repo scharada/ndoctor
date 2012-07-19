@@ -58,10 +58,9 @@
             try
             {
                 var tag = new TagDto(TagCategory.Appointment) { Name = this.Value, };
-                using (Component.UnitOfWork)
-                {
-                    Component.Create(tag);
-                }
+
+                Component.Create(tag);
+
                 InnerWindow.Close();
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_CategoryAdded);
             }

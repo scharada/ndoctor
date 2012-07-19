@@ -210,15 +210,12 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         private void LoadDefaultPrescriptions()
         {
             var component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
-            using (component.UnitOfWork)
-            {
-                var from = DateTime.Today.AddMonths(-1);
-                var to = DateTime.Today;
+            var from = DateTime.Today.AddMonths(-1);
+            var to = DateTime.Today;
 
-                var found = component.FindPrescriptionsByDates(PluginContext.Host.SelectedPatient, from, to);
+            var found = component.FindPrescriptionsByDates(PluginContext.Host.SelectedPatient, from, to);
 
-                Notifyer.OnPrescriptionFound(this, new PrescriptionResultDto(found, from, to));
-            }
+            Notifyer.OnPrescriptionFound(this, new PrescriptionResultDto(found, from, to));
         }
 
         private void NavigateAddPrescription()

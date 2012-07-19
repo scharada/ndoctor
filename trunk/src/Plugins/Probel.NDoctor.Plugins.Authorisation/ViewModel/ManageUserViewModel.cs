@@ -113,13 +113,9 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
         {
             try
             {
-                LightUserDto[] users;
-                RoleDto[] roles;
-                using (this.component.UnitOfWork)
-                {
-                    users = this.component.GetAllLightUsers();
-                    roles = this.component.GetAllRoles();
-                }
+
+                var users = this.component.GetAllLightUsers();
+                var roles = this.component.GetAllRoles();
 
                 this.Users.Refill(users);
                 this.Roles.Refill(roles);
@@ -145,17 +141,15 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
             try
             {
-                using (this.component.UnitOfWork)
+                if (this.component.IsSuperAdmin(this.SelectedUser))
                 {
-                    if (this.component.IsSuperAdmin(this.SelectedUser))
-                    {
-                        MessageBox.Show(Messages.Msg_CantRemoveSuperadmin, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                    else
-                    {
-                        this.component.Remove(this.SelectedUser);
-                    }
+                    MessageBox.Show(Messages.Msg_CantRemoveSuperadmin, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
+                else
+                {
+                    this.component.Remove(this.SelectedUser);
+                }
+
                 this.Refresh();
             }
             catch (Exception ex) { this.HandleError(ex); }

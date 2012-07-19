@@ -43,10 +43,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         protected override void AddItem()
         {
-            using (this.Component.UnitOfWork)
-            {
-                this.Component.Create(this.BoxItem);
-            }
+            this.Component.Create(this.BoxItem);
         }
 
         #endregion Methods

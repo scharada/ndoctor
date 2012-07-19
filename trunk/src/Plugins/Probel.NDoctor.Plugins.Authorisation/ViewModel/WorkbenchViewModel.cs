@@ -160,11 +160,8 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
         {
             try
             {
-                RoleDto[] result;
-                using (this.component.UnitOfWork)
-                {
-                    result = this.component.GetAllRoles();
-                }
+                var result = this.component.GetAllRoles();
+
                 this.Roles.Refill(result);
             }
             catch (Exception ex) { this.HandleError(ex); }
@@ -195,12 +192,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
         private bool CanRemoveRole(RoleDto roleDto)
         {
-            var result = false;
-            using (component.UnitOfWork)
-            {
-                result = component.CanRemove(roleDto);
-            }
-            return result;
+            return component.CanRemove(roleDto);
         }
 
         private void EditRole()
@@ -212,11 +204,8 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
         {
             try
             {
-                TaskDto[] result;
-                using (this.component.UnitOfWork)
-                {
-                    result = this.component.GetAvailableTasks(this.SelectedRole);
-                }
+                var result = this.component.GetAvailableTasks(this.SelectedRole);
+
                 this.AvailableTasks.Refill(result);
             }
             catch (Exception ex) { this.HandleError(ex); }
@@ -229,10 +218,8 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
                 var result = MessageBox.Show(Messages.Question_DeleteRole, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result != MessageBoxResult.Yes) return;
 
-                using (component.UnitOfWork)
-                {
-                    component.Remove(this.SelectedRole);
-                }
+                component.Remove(this.SelectedRole);
+
                 this.Refresh();
             }
             else
@@ -257,10 +244,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
         {
             try
             {
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Update(this.SelectedRole);
-                }
+                this.component.Update(this.SelectedRole);
             }
             catch (Exception ex) { this.HandleError(ex); }
         }

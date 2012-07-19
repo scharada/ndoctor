@@ -79,13 +79,9 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
         public void Refresh()
         {
-            IList<TagDto> tags;
             try
             {
-                using (Component.UnitOfWork)
-                {
-                    tags = Component.FindTags(TagCategory.Appointment);
-                }
+                var tags = Component.FindTags(TagCategory.Appointment);
                 AppointmentTags.Refill(tags);
             }
             catch (Exception ex) { new ErrorHandler(this).HandleError(ex); }
@@ -100,18 +96,16 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         {
             try
             {
-                using (this.Component.UnitOfWork)
+                var appointment = new AppointmentDto()
                 {
-                    var appointment = new AppointmentDto()
-                    {
-                        StartTime = this.SelectedSlot.StartTime,
-                        EndTime = this.SelectedSlot.EndTime,
-                        Subject = string.Format("{0} - {1}", this.SelectedAppointmentTag.Name, this.SelectedPatient.DisplayedName),
-                        User = PluginContext.Host.ConnectedUser,
-                        Tag = this.SelectedAppointmentTag,
-                    };
-                    this.Component.Create(appointment, this.SelectedPatient);
-                }
+                    StartTime = this.SelectedSlot.StartTime,
+                    EndTime = this.SelectedSlot.EndTime,
+                    Subject = string.Format("{0} - {1}", this.SelectedAppointmentTag.Name, this.SelectedPatient.DisplayedName),
+                    User = PluginContext.Host.ConnectedUser,
+                    Tag = this.SelectedAppointmentTag,
+                };
+                this.Component.Create(appointment, this.SelectedPatient);
+
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_AppointmentAdded);
                 Notifyer.OnRefreshed(this);
@@ -130,11 +124,8 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         {
             try
             {
-                var freeSlots = new TimeSlotCollection();
-                using (this.Component.UnitOfWork)
-                {
-                    freeSlots = this.Component.FindSlots(this.StartDate, this.EndDate, PluginContext.Host.Workday);
-                }
+                var freeSlots = this.Component.FindSlots(this.StartDate, this.EndDate, PluginContext.Host.Workday);
+
                 this.FreeSlots.Refill(freeSlots);
             }
             catch (Exception ex) { this.HandleError(ex); }

@@ -136,13 +136,9 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
                 , MessageBoxImage.Question);
             if (dr == MessageBoxResult.No) return;
 
-            //this.State = State.Created;
             try
             {
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Update(this.BuildFamily());
-                }
+                this.component.Update(this.BuildFamily());
                 Notifyer.OnRefreshed(this);
                 this.BuildFamily();
 
@@ -187,12 +183,10 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
             try
             {
                 var member = Mapper.Map<LightPatientViewModel, LightPatientDto>(this);
-                using (this.component.UnitOfWork)
-                {
-                    this.component.RemoveFamilyMember(member, this.SessionPatient);
-                }
+
+                this.component.RemoveFamilyMember(member, this.SessionPatient);
+
                 Notifyer.OnRefreshed(this);
-                //InnerWindow.Close();
             }
             catch (Exception ex) { this.ErrorHandler.HandleError(ex); }
         }

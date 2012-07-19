@@ -117,12 +117,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
         {
             try
             {
-                IList<LightPatientDto> result = new List<LightPatientDto>();
-                using (this.component.UnitOfWork)
-                {
-                    result = this.component.FindPatientNotFamilyMembers(PluginContext.Host.SelectedPatient, this.Criteria, SearchOn.FirstAndLastName);
-                }
-
+                var result = this.component.FindPatientNotFamilyMembers(PluginContext.Host.SelectedPatient, this.Criteria, SearchOn.FirstAndLastName);
                 var mappedResult = Mapper.Map<IList<LightPatientDto>, IList<LightPatientViewModel>>(result);
 
                 for (int i = 0; i < mappedResult.Count; i++)

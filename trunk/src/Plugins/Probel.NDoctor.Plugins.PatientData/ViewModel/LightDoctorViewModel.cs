@@ -90,10 +90,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                      , MessageBoxImage.Question);
                 if (dr == MessageBoxResult.No) return;
 
-                using (this.component.UnitOfWork)
-                {
-                    this.component.AddDoctorTo(PluginContext.Host.SelectedPatient, (LightDoctorDto)this);
-                }
+                this.component.AddDoctorTo(PluginContext.Host.SelectedPatient, (LightDoctorDto)this);
+
                 Notifyer.OnSateliteDataChanged(this);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DoctorAded);
             }
@@ -113,10 +111,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                     , MessageBoxImage.Question);
                 if (dr == MessageBoxResult.No) return;
 
-                using (this.component.UnitOfWork)
-                {
-                    this.component.RemoveDoctorFor(PluginContext.Host.SelectedPatient, (LightDoctorDto)this);
-                }
+                this.component.RemoveDoctorFor(PluginContext.Host.SelectedPatient, (LightDoctorDto)this);
+
                 Notifyer.OnSateliteDataChanged(this);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DoctorRemoved);
             }

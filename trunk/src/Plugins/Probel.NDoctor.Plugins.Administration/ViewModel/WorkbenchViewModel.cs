@@ -356,26 +356,15 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         public void Refresh()
         {
-            IList<InsuranceDto> insurances = null;
-            IList<PracticeDto> practices = null;
-            IList<PathologyDto> pathologies = null;
-            IList<TagDto> tags = null;
-            IList<DrugDto> drugs = null;
-            IList<ReputationDto> reputations = null;
-            IList<ProfessionDto> professions = null;
-            IList<DoctorDto> doctors = null;
 
-            using (this.component.UnitOfWork)
-            {
-                insurances = this.component.GetAllInsurances();
-                practices = this.component.GetAllPractices();
-                pathologies = this.component.GetAllPathologies();
-                tags = this.component.GetAllTags();
-                drugs = this.component.GetAllDrugs();
-                reputations = this.component.GetAllReputations();
-                professions = this.component.GetAllProfessions();
-                doctors = this.component.GetAllDoctors();
-            }
+            var insurances = this.component.GetAllInsurances();
+            var practices = this.component.GetAllPractices();
+            var pathologies = this.component.GetAllPathologies();
+            var tags = this.component.GetAllTags();
+            var drugs = this.component.GetAllDrugs();
+            var reputations = this.component.GetAllReputations();
+            var professions = this.component.GetAllProfessions();
+            var doctors = this.component.GetAllDoctors();
 
             this.Insurances.Refill(insurances);
             this.Practices.Refill(practices);
@@ -396,8 +385,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         private void EditDoctor()
         {
-            IList<TagDto> specialisations = new List<TagDto>();
-            using (this.component.UnitOfWork) { specialisations = this.component.FindTags(TagCategory.Doctor); }
+            var specialisations = this.component.FindTags(TagCategory.Doctor);
 
             InnerWindow.Show(Messages.Title_Edit, new DoctorBox()
             {
@@ -408,10 +396,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                 {
                     try
                     {
-                        using (this.component.UnitOfWork)
-                        {
-                            this.component.Update(this.SelectedDoctor);
-                        }
+                        this.component.Update(this.SelectedDoctor);
                         InnerWindow.Close();
                         Notifyer.OnRefreshing(this);
                     }
@@ -422,8 +407,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         private void EditDrug()
         {
-            IList<TagDto> categories;
-            using (this.component.UnitOfWork) { categories = this.component.FindTags(TagCategory.Drug); }
+            var categories = this.component.FindTags(TagCategory.Drug);
 
             InnerWindow.Show(Messages.Title_Edit, new DrugBox()
             {
@@ -434,10 +418,8 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                 {
                     try
                     {
-                        using (this.component.UnitOfWork)
-                        {
-                            this.component.Update(this.SelectedDrug);
-                        }
+                        this.component.Update(this.SelectedDrug);
+
                         InnerWindow.Close();
                         Notifyer.OnRefreshing(this);
                     }
@@ -456,10 +438,8 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                 {
                     try
                     {
-                        using (this.component.UnitOfWork)
-                        {
-                            this.component.Update(this.SelectedInsurance);
-                        }
+                        this.component.Update(this.SelectedInsurance);
+
                         InnerWindow.Close();
                         Notifyer.OnRefreshing(this);
                     }
@@ -470,8 +450,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         private void EditPathology()
         {
-            IList<TagDto> categories = new List<TagDto>();
-            using (this.component.UnitOfWork) { categories = this.component.FindTags(TagCategory.Pathology); }
+            var categories = this.component.FindTags(TagCategory.Pathology);
 
             InnerWindow.Show(Messages.Title_Edit, new PathologyBox()
             {
@@ -482,10 +461,8 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                 {
                     try
                     {
-                        using (this.component.UnitOfWork)
-                        {
-                            this.component.Update(this.SelectedPathology);
-                        }
+                        this.component.Update(this.SelectedPathology);
+
                         InnerWindow.Close();
                         Notifyer.OnRefreshing(this);
                     }
@@ -504,10 +481,8 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                 {
                     try
                     {
-                        using (this.component.UnitOfWork)
-                        {
-                            this.component.Update(this.SelectedPractice);
-                        }
+                        this.component.Update(this.SelectedPractice);
+
                         InnerWindow.Close();
                         Notifyer.OnRefreshing(this);
                     }
@@ -526,10 +501,8 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                 {
                     try
                     {
-                        using (this.component.UnitOfWork)
-                        {
-                            this.component.Update(this.SelectedProfession);
-                        }
+                        this.component.Update(this.SelectedProfession);
+
                         InnerWindow.Close();
                         Notifyer.OnRefreshing(this);
                     }
@@ -548,10 +521,8 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                 {
                     try
                     {
-                        using (this.component.UnitOfWork)
-                        {
-                            this.component.Update(this.SelectedReputation);
-                        }
+                        this.component.Update(this.SelectedReputation);
+
                         InnerWindow.Close();
                         Notifyer.OnRefreshing(this);
                     }
@@ -572,10 +543,8 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                 {
                     try
                     {
-                        using (this.component.UnitOfWork)
-                        {
-                            this.component.Update(this.SelectedTag);
-                        }
+                        this.component.Update(this.SelectedTag);
+
                         InnerWindow.Close();
                         Notifyer.OnRefreshing(this);
                     }
@@ -590,14 +559,12 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             {
                 if (this.AskToDelete())
                 {
-                    using (this.component.UnitOfWork)
+                    if (this.component.CanRemove(this.SelectedDoctor))
                     {
-                        if (this.component.CanRemove(this.SelectedDoctor))
-                        {
-                            this.component.Remove(this.SelectedDoctor);
-                        }
-                        else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+                        this.component.Remove(this.SelectedDoctor);
                     }
+                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+
                     Notifyer.OnRefreshing(this);
                 }
             }
@@ -608,14 +575,12 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         {
             try
             {
-                using (this.component.UnitOfWork)
+                if (this.component.CanRemove(this.SelectedDrug))
                 {
-                    if (this.component.CanRemove(this.SelectedDrug))
-                    {
-                        this.component.Remove(this.SelectedDrug);
-                    }
-                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+                    this.component.Remove(this.SelectedDrug);
                 }
+                else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+
                 Notifyer.OnRefreshing(this);
             }
             catch (Exception ex) { this.HandleError(ex); }
@@ -627,14 +592,12 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             {
                 if (this.AskToDelete())
                 {
-                    using (this.component.UnitOfWork)
+                    if (this.component.CanRemove(this.selectedInsurance))
                     {
-                        if (this.component.CanRemove(this.selectedInsurance))
-                        {
-                            component.Remove(this.selectedInsurance);
-                        }
-                        else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+                        component.Remove(this.selectedInsurance);
                     }
+                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+
                     Notifyer.OnRefreshing(this);
                 }
             }
@@ -647,14 +610,12 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             {
                 if (this.AskToDelete())
                 {
-                    using (this.component.UnitOfWork)
+                    if (this.component.CanRemove(this.SelectedPathology))
                     {
-                        if (this.component.CanRemove(this.SelectedPathology))
-                        {
-                            this.component.Remove(this.SelectedPathology);
-                        }
-                        else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+                        this.component.Remove(this.SelectedPathology);
                     }
+                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+
                     Notifyer.OnRefreshing(this);
                 }
             }
@@ -667,14 +628,12 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             {
                 if (this.AskToDelete())
                 {
-                    using (this.component.UnitOfWork)
+                    if (this.component.CanRemove(this.SelectedPathology) && this.AskToDelete())
                     {
-                        if (this.component.CanRemove(this.SelectedPathology) && this.AskToDelete())
-                        {
-                            this.component.Remove(this.SelectedPathology);
-                        }
-                        else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+                        this.component.Remove(this.SelectedPathology);
                     }
+                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+
                     Notifyer.OnRefreshing(this);
                 }
             }
@@ -687,14 +646,12 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             {
                 if (this.AskToDelete())
                 {
-                    using (this.component.UnitOfWork)
+                    if (this.component.CanRemove(this.SelectedPractice) && this.AskToDelete())
                     {
-                        if (this.component.CanRemove(this.SelectedPractice) && this.AskToDelete())
-                        {
-                            this.component.Remove(this.SelectedPractice);
-                        }
-                        else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+                        this.component.Remove(this.SelectedPractice);
                     }
+                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+
                     Notifyer.OnRefreshing(this);
                 }
             }
@@ -707,14 +664,12 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             {
                 if (this.AskToDelete())
                 {
-                    using (this.component.UnitOfWork)
+                    if (this.component.CanRemove(this.SelectedProfession) && this.AskToDelete())
                     {
-                        if (this.component.CanRemove(this.SelectedProfession) && this.AskToDelete())
-                        {
-                            this.component.Remove(this.SelectedProfession);
-                        }
-                        else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+                        this.component.Remove(this.SelectedProfession);
                     }
+                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+
                     Notifyer.OnRefreshing(this);
                 }
             }
@@ -727,14 +682,12 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             {
                 if (this.AskToDelete())
                 {
-                    using (this.component.UnitOfWork)
+                    if (this.component.CanRemove(this.SelectedReputation) && this.AskToDelete())
                     {
-                        if (this.component.CanRemove(this.SelectedReputation) && this.AskToDelete())
-                        {
-                            this.component.Remove(this.SelectedReputation);
-                        }
-                        else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+                        this.component.Remove(this.SelectedReputation);
                     }
+                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+
                     Notifyer.OnRefreshing(this);
                 }
             }
@@ -747,14 +700,12 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             {
                 if (this.AskToDelete())
                 {
-                    using (this.component.UnitOfWork)
+                    if (this.component.CanRemove(this.SelectedTag))
                     {
-                        if (this.component.CanRemove(this.SelectedTag))
-                        {
-                            this.component.Remove(this.SelectedTag);
-                        }
-                        else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+                        this.component.Remove(this.SelectedTag);
                     }
+                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
+
                     Notifyer.OnRefreshing(this);
                 }
             }

@@ -83,10 +83,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         {
             try
             {
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Create(this.SelectedTag);
-                }
+                this.component.Create(this.SelectedTag);
+
                 Notifyer.OnItemChanged(this);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
                 this.SelectedTag = new TagDto(TagCategory.Drug);

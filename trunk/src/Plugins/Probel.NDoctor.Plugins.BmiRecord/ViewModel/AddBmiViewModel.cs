@@ -89,19 +89,17 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
             Assert.IsNotNull(PluginContext.Host.SelectedPatient, "A patient should be selected if you want to manage data of a patient");
             Assert.IsNotNull(this.CurrentBmi, "The BMI to add shouldn't be null in order to add the item to the BMI history");
 
-            using (this.component.UnitOfWork)
+            try
             {
-                try
-                {
-                    this.component.CreateBmi(this.CurrentBmi, PluginContext.Host.SelectedPatient);
-                    PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiAdded);
-                    this.CurrentBmi = new BmiDto();
-                }
-                catch (Exception ex)
-                {
-                    this.HandleError(ex, Messages.Msg_ErrAddBmi);
-                }
+                this.component.CreateBmi(this.CurrentBmi, PluginContext.Host.SelectedPatient);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiAdded);
+                this.CurrentBmi = new BmiDto();
             }
+            catch (Exception ex)
+            {
+                this.HandleError(ex, Messages.Msg_ErrAddBmi);
+            }
+
             Notifyer.OnItemChanged(this);
             InnerWindow.Close();
         }

@@ -237,12 +237,8 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
 
             try
             {
-                PatientBmiDto patient = null;
+                var patient = this.component.GetPatientWithBmiHistory(PluginContext.Host.SelectedPatient);
 
-                using (this.component.UnitOfWork)
-                {
-                    patient = this.component.GetPatientWithBmiHistory(PluginContext.Host.SelectedPatient);
-                }
                 this.Patient = patient;
                 this.BmiHistory.Refill(this.Patient.BmiHistory);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiHistoryLoaded);
@@ -262,10 +258,9 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
             {
                 var dr = MessageBox.Show(Messages.Msg_AskDeleteBmi, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (dr != MessageBoxResult.Yes) return;
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Remove(this.SelectedBmi, this.Patient);
-                }
+
+                this.component.Remove(this.SelectedBmi, this.Patient);
+
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiDeleted);
                 Notifyer.OnItemChanged(this);
             }

@@ -103,11 +103,8 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
         public void Refresh()
         {
-            RoleDto[] roles;
-            using (component.UnitOfWork)
-            {
-                roles = component.GetAllRoles();
-            }
+            var roles = component.GetAllRoles();
+
             this.Roles.Refill(roles);
             if (this.SelectedUser != null && this.SelectedUser.AssignedRole != null)
             {
@@ -128,10 +125,9 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             try
             {
                 this.SelectedUser.AssignedRole = this.SelectedRole;
-                using (component.UnitOfWork)
-                {
-                    component.Update(this.SelectedUser);
-                }
+
+                component.Update(this.SelectedUser);
+
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RoleUpdatedFor.FormatWith(this.SelectedUser.DisplayedName));
                 InnerWindow.Close();
                 Notifyer.OnUserRefreshing(this);

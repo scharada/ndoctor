@@ -42,12 +42,12 @@ namespace Probel.NDoctor.Domain.DAL.Components
     /* REFACTOR: 1027 lines of code => refactor this god object.
      * I should split the responsibilities....
      */
-    public abstract class BaseComponent : IBaseComponent
+    public abstract class BaseComponent : IBaseComponent, IDisposable
     {
         #region Fields
 
-        private Action<object> dispose;
-        private Func<object, object> init;
+        //private Action<object> dispose;
+        //private Func<object, object> init;
 
         #endregion Fields
 
@@ -62,20 +62,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public BaseComponent()
         {
             this.Logger = LogManager.GetLogger(this.GetType());
-            this.init = (context) =>
-            {
-                this.Logger.DebugFormat("\t[{0}] Opening session", this.GetType().Name);
-                this.OpenSession();
-                return null;
-            };
-
-            this.dispose = (context) =>
-            {
-                this.Logger.DebugFormat("\t[{0}] Closing session", this.GetType().Name);
-                this.CloseSession();
-            };
+            this.Logger.DebugFormat("\t[{0}] Opening session", this.GetType().Name);
+            this.OpenSession();
         }
-
         #endregion Constructors
 
         #region Properties
@@ -93,19 +82,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
             {
                 if (this.Session == null) return false;
                 return this.Session.IsOpen;
-            }
-        }
-
-        public UnitOfWork UnitOfWork
-        {
-            [InspectionIgnored]
-            get
-            {
-                if (this.Session != null && this.Session.IsOpen) { throw new SessionException(Messages.Msg_ErrorSessionAlreadyOpenException); }
-                else
-                {
-                    return new UnitOfWork(init, dispose);
-                }
             }
         }
 
@@ -186,6 +162,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         [InspectionIgnored]
         public void Dispose()
         {
+            this.Logger.DebugFormat("\t[{0}] Closing session", this.GetType().Name);
             this.CloseSession();
         }
 

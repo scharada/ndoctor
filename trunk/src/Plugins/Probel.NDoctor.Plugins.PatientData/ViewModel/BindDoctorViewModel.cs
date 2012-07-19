@@ -112,11 +112,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         private void Search()
         {
-            IList<LightDoctorDto> result;
-            using (this.component.UnitOfWork)
-            {
-                result = this.component.FindNotLinkedDoctorsFor(PluginContext.Host.SelectedPatient, this.Criteria, SearchOn.FirstAndLastName);
-            }
+            var result = this.component.FindNotLinkedDoctorsFor(PluginContext.Host.SelectedPatient, this.Criteria, SearchOn.FirstAndLastName);
             var mapped = Mapper.Map<IList<LightDoctorDto>, IList<LightDoctorViewModel>>(result);
             this.FoundDoctors.Refill(mapped);
         }

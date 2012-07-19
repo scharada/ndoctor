@@ -199,31 +199,27 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             {
                 if (PluginContext.Host.ConnectedUser == null) return;
 
-                using (this.component.UnitOfWork)
+                this.Practices = this.component.GetAllPractices().ToObservableCollection();
+                this.Roles = this.component.GetAllRolesLight().ToObservableCollection();
+
+                var user = this.component.LoadUser(PluginContext.Host.ConnectedUser);
+                this.User = user;
+
+                if (this.User.Practice != null)
                 {
-                    this.Practices = this.component.GetAllPractices().ToObservableCollection();
-                    this.Roles = this.component.GetAllRolesLight().ToObservableCollection();
-
-                    var user = this.component.LoadUser(PluginContext.Host.ConnectedUser);
-                    this.User = user;
-
-                    if (this.User.Practice != null)
-                    {
-                        this.SelectedPractice = (from p in this.Practices
-                                                 where p.Id == this.User.Practice.Id
-                                                 select p).FirstOrDefault();
-                    }
-
-                    if (this.User.AssignedRole != null)
-                    {
-                        this.SelectedRole = (from r in this.Roles
-                                             where r.Id == this.User.AssignedRole.Id
-                                             select r).FirstOrDefault();
-                    }
-
-                    PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_Ready);
+                    this.SelectedPractice = (from p in this.Practices
+                                             where p.Id == this.User.Practice.Id
+                                             select p).FirstOrDefault();
                 }
 
+                if (this.User.AssignedRole != null)
+                {
+                    this.SelectedRole = (from r in this.Roles
+                                         where r.Id == this.User.AssignedRole.Id
+                                         select r).FirstOrDefault();
+                }
+
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_Ready);
             }
             catch (Exception ex) { this.HandleError(ex); }
         }
@@ -241,10 +237,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             {
                 var component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
 
-                using (component.UnitOfWork)
-                {
-                    component.Update(this.User);
-                }
+                component.Update(this.User);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_UserUpdated);
             }
             catch (Exception ex) { this.HandleError(ex); }

@@ -114,10 +114,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         {
             try
             {
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Create(this.Doctor);
-                }
+                this.component.Create(this.Doctor);
+
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
                 this.Doctor = new DoctorDto();
             }
@@ -144,11 +142,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         private void Refresh()
         {
-            IList<TagDto> result = null;
-            using (this.component.UnitOfWork)
-            {
-                result = this.component.FindTags(TagCategory.Doctor);
-            }
+            var result = this.component.FindTags(TagCategory.Doctor);
             this.Specialisations.Refill(result);
         }
 

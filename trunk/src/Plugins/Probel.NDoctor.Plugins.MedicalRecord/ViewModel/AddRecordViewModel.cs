@@ -105,11 +105,9 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         {
             try
             {
-                using (this.component.UnitOfWork)
-                {
-                    this.recordToAdd.Tag = this.SelectedTag;
-                    this.component.Create(this.recordToAdd, PluginContext.Host.SelectedPatient);
-                }
+                this.recordToAdd.Tag = this.SelectedTag;
+                this.component.Create(this.recordToAdd, PluginContext.Host.SelectedPatient);
+
                 InnerWindow.Close();
                 Notifyer.OnRefreshed();
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RecordAdded);
@@ -127,10 +125,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         {
             try
             {
-                using (this.component.UnitOfWork)
-                {
-                    this.Tags.Refill(this.component.FindTags(TagCategory.MedicalRecord));
-                }
+                this.Tags.Refill(this.component.FindTags(TagCategory.MedicalRecord));
             }
             catch (Exception ex) { this.HandleError(ex); }
         }

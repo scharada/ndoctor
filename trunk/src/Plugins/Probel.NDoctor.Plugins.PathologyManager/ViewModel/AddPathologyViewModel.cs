@@ -108,11 +108,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
         internal void Refresh()
         {
-            IList<TagDto> result = new List<TagDto>();
-            using (this.component.UnitOfWork)
-            {
-                result = this.component.FindTags(TagCategory.Pathology);
-            }
+            var result = this.component.FindTags(TagCategory.Pathology);
             this.Tags.Refill(result);
         }
 
@@ -120,10 +116,8 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
         {
             try
             {
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Create(this.Pathology);
-                }
+                this.component.Create(this.Pathology);
+
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Title_OperationDone);
                 this.IsPopupOpened = false;
                 Notifyer.OnPathologyAdded(this, this.Pathology.Name);

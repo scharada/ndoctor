@@ -92,14 +92,12 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
         {
             try
             {
-                using (component.UnitOfWork)
+                this.component.Create(new RoleDto()
                 {
-                    this.component.Create(new RoleDto()
-                    {
-                        Name = this.Name,
-                        Description=this.Description,
-                    });
-                }
+                    Name = this.Name,
+                    Description = this.Description,
+                });
+
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RoleCreated);
                 Notifyer.OnRoleRefreshing(this);
                 InnerWindow.Close();

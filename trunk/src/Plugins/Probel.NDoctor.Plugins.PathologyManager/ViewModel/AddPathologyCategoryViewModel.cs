@@ -59,10 +59,9 @@
             try
             {
                 var tag = new TagDto(TagCategory.Pathology) { Name = this.CategoryName };
-                using (Component.UnitOfWork)
-                {
-                    Component.Create(tag);
-                }
+
+                Component.Create(tag);
+
                 InnerWindow.Close();
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_CategoryAdded);
                 Notifyer.OnItemChanged(this);

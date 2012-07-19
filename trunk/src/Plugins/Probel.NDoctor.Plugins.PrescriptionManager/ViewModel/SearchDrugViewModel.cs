@@ -142,11 +142,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         {
             try
             {
-                IList<TagDto> results;
-                using (this.component.UnitOfWork)
-                {
-                    results = this.component.FindTags(TagCategory.Drug);
-                }
+                var results = this.component.FindTags(TagCategory.Drug);
                 this.Tags.Refill(results);
             }
             catch (Exception ex) { this.HandleError(ex); }
@@ -175,11 +171,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         {
             try
             {
-                IList<DrugDto> results;
-                using (this.component.UnitOfWork)
-                {
-                    results = this.component.FindDrugsByName(this.CriteriaName);
-                }
+                var results = this.component.FindDrugsByName(this.CriteriaName);
                 this.FoundDrugs.Refill(results);
             }
             catch (Exception ex) { this.HandleError(ex); }
@@ -189,11 +181,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         {
             try
             {
-                IList<DrugDto> results;
-                using (this.component.UnitOfWork)
-                {
-                    results = this.component.FindDrugsByTags(this.CriteriaTag.Name);
-                }
+                var results = this.component.FindDrugsByTags(this.CriteriaTag.Name);
                 this.FoundDrugs.Refill(results);
             }
             catch (Exception ex) { this.HandleError(ex); }

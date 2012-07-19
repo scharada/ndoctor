@@ -185,10 +185,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
             try
             {
-                using (this.Component.UnitOfWork)
-                {
-                    this.Component.Create(this.SelectedMacro);
-                }
+                this.Component.Create(this.SelectedMacro);
             }
             catch (Exception ex) { this.HandleError(ex); }
 
@@ -198,11 +195,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         private void Refresh()
         {
-            MacroDto[] macros;
-            using (this.Component.UnitOfWork)
-            {
-                macros = this.Component.GetAllMacros();
-            }
+            var macros = this.Component.GetAllMacros();
             if (macros != null) { this.Macros.Refill(macros); }
         }
 
@@ -213,10 +206,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
             try
             {
-                using (this.Component.UnitOfWork)
-                {
-                    this.Component.Remove(this.SelectedMacro);
-                }
+                this.Component.Remove(this.SelectedMacro);
+
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_MacroRemoved.FormatWith(this.SelectedMacro.Title));
 
                 this.SelectedMacro = null;
@@ -237,14 +228,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 {
                     if (this.SelectedMacro != null) { this.SelectedMacro.Expression = this.TextDocument.Text; }
 
-                    using (this.Component.UnitOfWork)
+                    if (this.Component.IsValid(this.SelectedMacro))
                     {
-                        if (this.Component.IsValid(this.SelectedMacro))
-                        {
-                            this.ResolvedMacro = this.Component.Resolve(this.SelectedMacro, PluginContext.Host.SelectedPatient);
-                        }
-                        else { this.ResolvedMacro = Messages.Err_InvalidMacro; }
+                        this.ResolvedMacro = this.Component.Resolve(this.SelectedMacro, PluginContext.Host.SelectedPatient);
                     }
+                    else { this.ResolvedMacro = Messages.Err_InvalidMacro; }
                 });
             }
         }
@@ -253,10 +241,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         {
             try
             {
-                using (this.Component.UnitOfWork)
-                {
-                    this.Component.Update(this.SelectedMacro);
-                }
+                this.Component.Update(this.SelectedMacro);
                 var macroName = (this.SelectedMacro != null)
                     ? this.SelectedMacro.Title ?? Messages.NoName
                     : Messages.NoName;

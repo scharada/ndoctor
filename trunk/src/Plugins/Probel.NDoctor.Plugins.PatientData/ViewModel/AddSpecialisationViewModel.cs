@@ -81,7 +81,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         {
             try
             {
-                using (this.component.UnitOfWork) { this.component.Create(this.Tag); }
+                this.component.Create(this.Tag);
 
                 this.Tag = new TagDto(TagCategory.Doctor);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);

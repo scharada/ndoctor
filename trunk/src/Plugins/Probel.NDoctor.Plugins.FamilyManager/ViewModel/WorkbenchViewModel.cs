@@ -158,10 +158,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
 
         public void Refresh()
         {
-            using (this.familyComponent.UnitOfWork)
-            {
-                this.Family = this.familyComponent.FindFamily(PluginContext.Host.SelectedPatient);
-            }
+            this.Family = this.familyComponent.FindFamily(PluginContext.Host.SelectedPatient);
         }
 
         /// <summary>
@@ -176,10 +173,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
         {
             if (this.SelectedMember != null)
             {
-                using (this.medicalRecordComponent.UnitOfWork)
-                {
-                    this.MedicalRecordCabinet = this.medicalRecordComponent.FindMedicalRecordCabinet(this.SelectedMember);
-                }
+                this.MedicalRecordCabinet = this.medicalRecordComponent.FindMedicalRecordCabinet(this.SelectedMember);
             }
             else { this.Logger.Warn("Impossible to load the medical record cabinet because the selected member is null"); }
         }

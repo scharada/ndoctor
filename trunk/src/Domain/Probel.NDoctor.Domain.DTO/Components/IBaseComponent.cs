@@ -37,14 +37,6 @@ namespace Probel.NDoctor.Domain.DTO.Components
             get;
         }
 
-        /// <summary>
-        /// Gets an initialised unit of work
-        /// </summary>
-        UnitOfWork UnitOfWork
-        {
-            get;
-        }
-
         #endregion Properties
 
         #region Methods

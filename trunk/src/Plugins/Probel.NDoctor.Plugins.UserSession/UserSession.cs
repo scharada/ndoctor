@@ -195,8 +195,7 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         private void InitialiseConnectionPage()
         {
-            LightUserDto defaultUser = null;
-            using (this.component.UnitOfWork) { defaultUser = this.component.FindDefaultUser(); }
+            var defaultUser = this.component.FindDefaultUser();
 
             if (defaultUser == null)
             {
@@ -231,13 +230,9 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         private void PrintBusinessCard()
         {
-            BusinessCard card;
-            UserDto user;
-            using (this.component.UnitOfWork)
-            {
-                card = new BusinessCard();
-                user = this.component.FindUserById(PluginContext.Host.ConnectedUser.Id);
-            }
+            var card = new BusinessCard();
+            var user = this.component.FindUserById(PluginContext.Host.ConnectedUser.Id);
+
             card.DataContext = BusinessCardViewModel.CreateFrom(user);
 
             card.Print();

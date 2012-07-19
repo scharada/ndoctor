@@ -65,7 +65,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             this.SaveCommand = new RelayCommand(() => Save(), () => this.CanSave());
 
             Notifyer.Refreshed += (sender, e) => this.Refresh();
-            Notifyer.MacroUpdated += (sender, e) => { using (this.component.UnitOfWork) { this.RefreshMacroMenu(); } };
+            Notifyer.MacroUpdated += (sender, e) => this.RefreshMacroMenu();
         }
 
         #endregion Constructors
@@ -169,11 +169,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         {
             return new RelayCommand(() =>
             {
-                string text;
-                using (this.component.UnitOfWork)
-                {
-                    text = this.component.Resolve(macro, PluginContext.Host.SelectedPatient);
-                }
+                var text = this.component.Resolve(macro, PluginContext.Host.SelectedPatient);
                 Context.RichTextBox.CaretPosition.InsertTextInRun(text);
             });
         }
@@ -192,21 +188,18 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 Assert.IsNotNull(PluginContext.Host);
                 Assert.IsNotNull(PluginContext.Host.SelectedPatient);
 
-                using (var unitOfWork = this.component.UnitOfWork)
-                {
-                    var result = this.component.FindMedicalRecordCabinet(PluginContext.Host.SelectedPatient);
-                    this.Cabinet = TitledMedicalRecordCabinetDto.CreateFrom(result);
-                    this.Tags = this.component.FindTags(TagCategory.MedicalRecord);
+                var result = this.component.FindMedicalRecordCabinet(PluginContext.Host.SelectedPatient);
+                this.Cabinet = TitledMedicalRecordCabinetDto.CreateFrom(result);
+                this.Tags = this.component.FindTags(TagCategory.MedicalRecord);
 
-                    if (this.SelectedRecord != null)
-                    {
-                        var record = this.component.FindMedicalRecordById(this.SelectedRecord.Id);
-                        this.SelectedRecord = (record != null)
-                            ? TitledMedicalRecordDto.CreateFrom(record)
-                            : null;
-                    }
-                    this.RefreshMacroMenu();
+                if (this.SelectedRecord != null)
+                {
+                    var record = this.component.FindMedicalRecordById(this.SelectedRecord.Id);
+                    this.SelectedRecord = (record != null)
+                        ? TitledMedicalRecordDto.CreateFrom(record)
+                        : null;
                 }
+                this.RefreshMacroMenu();
 
                 PluginContext.Host.WriteStatus(StatusType.Info, BaseText.Refreshed);
             }
@@ -241,10 +234,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 }
                     , s => s.Id == this.SelectedRecord.Id);
 
-                using (this.component.UnitOfWork)
-                {
-                    this.component.UpdateCabinet(PluginContext.Host.SelectedPatient, this.Cabinet);
-                }
+                this.component.UpdateCabinet(PluginContext.Host.SelectedPatient, this.Cabinet);
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RecordsSaved);
             }

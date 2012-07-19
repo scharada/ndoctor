@@ -114,19 +114,16 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
         /// </summary>
         public void Refresh()
         {
-            using (this.component.UnitOfWork)
+            var history = this.component.GetIllnessHistory(PluginContext.Host.SelectedPatient);
+            var viewModels = Mapper.Map<IList<IllnessPeriodDto>, IList<IllnessPeriodViewModel>>(history.Periods);
+
+            for (int i = 0; i < viewModels.Count; i++)
             {
-                var history = this.component.GetIllnessHistory(PluginContext.Host.SelectedPatient);
-                var viewModels = Mapper.Map<IList<IllnessPeriodDto>, IList<IllnessPeriodViewModel>>(history.Periods);
-
-                for (int i = 0; i < viewModels.Count; i++)
-                {
-                    viewModels[i].Refreshed += (sender, e) => this.Refresh();
-                }
-                this.IllnessHistory.Refill(viewModels);
-
-                this.Chart = this.component.GetIlnessAsChart(PluginContext.Host.SelectedPatient);
+                viewModels[i].Refreshed += (sender, e) => this.Refresh();
             }
+            this.IllnessHistory.Refill(viewModels);
+
+            this.Chart = this.component.GetIlnessAsChart(PluginContext.Host.SelectedPatient);
         }
 
         private bool CanRemoveIllessPeriod()
@@ -142,10 +139,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
                 var dr = MessageBox.Show(Messages.Msg_DeleteIllnessPeriod, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (dr != MessageBoxResult.Yes) return;
 
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Remove(this.SelectedIllnessPeriod, PluginContext.Host.SelectedPatient);
-                }
+                this.component.Remove(this.SelectedIllnessPeriod, PluginContext.Host.SelectedPatient);
 
                 Notifyer.OnItemChanged(this);
             }

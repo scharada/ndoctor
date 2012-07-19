@@ -131,10 +131,8 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 
             try
             {
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Create(this.User, this.Password);
-                }
+                this.component.Create(this.User, this.Password);
+
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_UserAdded);
                 Notifyer.OnUserAdded(this);
             }

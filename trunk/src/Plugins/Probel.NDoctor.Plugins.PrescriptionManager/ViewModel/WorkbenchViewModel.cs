@@ -176,10 +176,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                     OkCommand = new RelayCommand(() =>
                     {
                         this.SelectedPrescription.Notes = refObj.Value;
-                        using (this.component.UnitOfWork)
-                        {
-                            this.component.Update(this.SelectedPrescription);
-                        }
+                        this.component.Update(this.SelectedPrescription);
+
                         InnerWindow.Close();
                     }, () => this.SelectedPrescription != null),
                 });
@@ -194,10 +192,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 var dr = MessageBox.Show(BaseText.Question_Delete, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (dr == MessageBoxResult.No) return;
 
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Remove(this.SelectedPrescription);
-                }
+                this.component.Remove(this.SelectedPrescription);
+
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PrescriptionDeleted);
                 this.searcher.SearchPrescription(this.StartCriteria, this.EndCriteria);
             }
@@ -211,10 +207,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 var dr = MessageBox.Show(BaseText.Question_Delete, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (dr == MessageBoxResult.No) return;
 
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Remove(this.SelectedPrescriptionDocument);
-                }
+                this.component.Remove(this.SelectedPrescriptionDocument);
+
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PrescriptionDeleted);
                 this.searcher.SearchPrescription(this.StartCriteria, this.EndCriteria);
             }

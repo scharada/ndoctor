@@ -83,10 +83,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         {
             try
             {
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Create(this.Profession);
-                }
+                this.component.Create(this.Profession);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Title_OperationDone);
                 Notifyer.OnSateliteDataChanged(this);
             }

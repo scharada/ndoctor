@@ -119,11 +119,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 
         public void Refresh()
         {
-            IList<LightPatientDto> result;
-            using (this.component.UnitOfWork)
-            {
-                result = this.component.GetTopXPatient(10);
-            }
+            var result = this.component.GetTopXPatient(10);
             var patients = Mapper.Map<IList<LightPatientDto>, IList<LightPatientViewModel>>(result);
             this.Top10Patients.Refill(patients);
         }
@@ -135,11 +131,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 
         private void Search()
         {
-            IList<LightPatientDto> result;
-            using (this.component.UnitOfWork)
-            {
-                result = this.component.FindPatientsByNameLight(this.Criteria, SearchOn.FirstAndLastName);
-            }
+            var result = this.component.FindPatientsByNameLight(this.Criteria, SearchOn.FirstAndLastName);
             var patients = Mapper.Map<IList<LightPatientDto>, IList<LightPatientViewModel>>(result);
             this.FoundPatients.Refill(patients);
 

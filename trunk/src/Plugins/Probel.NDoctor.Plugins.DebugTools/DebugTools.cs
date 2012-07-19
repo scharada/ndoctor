@@ -76,8 +76,7 @@ namespace Probel.NDoctor.Plugins.DebugTools
 
         private void FillDefaultDatabase()
         {
-            bool isDataBaseEmpty = false;
-            using (this.component.UnitOfWork) { isDataBaseEmpty = this.component.IsDatabaseEmpty(); }
+            var isDataBaseEmpty = this.component.IsDatabaseEmpty();
 
             if (isDataBaseEmpty)
             {
@@ -88,7 +87,7 @@ namespace Probel.NDoctor.Plugins.DebugTools
                 string sql;
 
                 using (var reader = new StreamReader(stream, Encoding.UTF8)) { sql = reader.ReadToEnd(); }
-                using (this.component.UnitOfWork) { this.component.ExecuteSql(sql); }
+                this.component.ExecuteSql(sql);
             }
             else
             {
@@ -101,17 +100,14 @@ namespace Probel.NDoctor.Plugins.DebugTools
         {
             PluginContext.Host.Invoke(() =>
             {
-                using (this.component.UnitOfWork)
-                {
-                    var patients = this.component.FindPatientsByNameLight("Robris", SearchOn.LastName);
-                    if (patients.Count == 0) return;
+                var patients = this.component.FindPatientsByNameLight("Robris", SearchOn.LastName);
+                if (patients.Count == 0) return;
 
-                    PluginContext.Host.SelectedPatient = patients[0];
+                PluginContext.Host.SelectedPatient = patients[0];
 
-                    this.Logger.DebugFormat("Default patient '{0} {1}' loaded for debug"
-                        , patients[0].FirstName
-                        , patients[0].LastName);
-                }
+                this.Logger.DebugFormat("Default patient '{0} {1}' loaded for debug"
+                    , patients[0].FirstName
+                    , patients[0].LastName);
             });
         }
 

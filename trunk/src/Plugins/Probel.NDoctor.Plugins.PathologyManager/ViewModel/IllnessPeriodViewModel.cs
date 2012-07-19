@@ -49,10 +49,8 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
                 var dr = MessageBox.Show(Messages.Msg_DeleteIllnessPeriod, Messages.Title_Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (dr == MessageBoxResult.Yes)
                 {
-                    using (this.component.UnitOfWork)
-                    {
-                        this.component.Remove(this, PluginContext.Host.SelectedPatient);
-                    }
+                    this.component.Remove(this, PluginContext.Host.SelectedPatient);
+
                     PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_IllnessRemoved);
                     this.OnRefreshed(State.Removed);
                 }

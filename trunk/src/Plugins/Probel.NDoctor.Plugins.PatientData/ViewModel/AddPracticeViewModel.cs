@@ -103,10 +103,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         {
             try
             {
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Create(this.Practice);
-                }
+                this.component.Create(this.Practice);
+
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Title_OperationDone);
                 this.IsPopupOpened = false;
                 Notifyer.OnSateliteDataChanged(this);

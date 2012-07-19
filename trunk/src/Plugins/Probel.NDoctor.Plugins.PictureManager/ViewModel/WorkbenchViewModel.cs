@@ -219,13 +219,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             try
             {
                 this.SelectedPicture = new PictureDto();
-
-                IList<TagDto> tags;
-
-                using (this.component.UnitOfWork)
-                {
-                    tags = this.component.FindTags(TagCategory.Picture);
-                }
+                var tags = this.component.FindTags(TagCategory.Picture);
 
                 this.Tags.Refill(tags);
                 this.InsertJokerTag(tags);
@@ -280,17 +274,15 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         private void Filter()
         {
             IList<PictureDto> pictures;
-            using (this.component.UnitOfWork)
+            if (this.FilterTag != null && this.FilterTag.Name == Messages.Msg_AllTags)
             {
-                if (this.FilterTag != null && this.FilterTag.Name == Messages.Msg_AllTags)
-                {
-                    pictures = this.component.FindPictures(PluginContext.Host.SelectedPatient);
-                }
-                else
-                {
-                    pictures = this.component.FindPictures(PluginContext.Host.SelectedPatient, this.FilterTag);
-                }
+                pictures = this.component.FindPictures(PluginContext.Host.SelectedPatient);
             }
+            else
+            {
+                pictures = this.component.FindPictures(PluginContext.Host.SelectedPatient, this.FilterTag);
+            }
+
             this.Pictures.Refill(pictures);
 
             if (this.Pictures.Count > 0)
@@ -320,15 +312,13 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 this.SelectedPicture.Tag = this.SelectedTag;
 
                 Assert.IsNotNull(this.SelectedTag, "All pictures should have a tag");
-                using (this.component.UnitOfWork)
+
+                if (this.creatingNewPicture)
                 {
-                    if (this.creatingNewPicture)
-                    {
-                        this.component.Create(this.SelectedPicture, PluginContext.Host.SelectedPatient);
-                        this.creatingNewPicture = false;
-                    }
-                    else this.component.Update(this.SelectedPicture);
+                    this.component.Create(this.SelectedPicture, PluginContext.Host.SelectedPatient);
+                    this.creatingNewPicture = false;
                 }
+                else this.component.Update(this.SelectedPicture);
 
                 this.Refresh();
 

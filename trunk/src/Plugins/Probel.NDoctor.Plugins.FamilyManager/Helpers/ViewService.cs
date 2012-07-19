@@ -63,14 +63,10 @@ namespace Probel.NDoctor.Plugins.FamilyManager.Helpers
         public RemoveFamilyView NewRemoveFamilyView()
         {
             var view = new RemoveFamilyView();
-            IEnumerable<LightPatientDto> family;
 
             try
             {
-                using (Component.UnitOfWork)
-                {
-                    family = this.Component.GetAllFamilyMembers(PluginContext.Host.SelectedPatient);
-                }
+                var family = this.Component.GetAllFamilyMembers(PluginContext.Host.SelectedPatient);
 
                 var mappedCollection = AutoMapper.Mapper.Map<IEnumerable<LightPatientDto>, IEnumerable<LightPatientViewModel>>(family);
 

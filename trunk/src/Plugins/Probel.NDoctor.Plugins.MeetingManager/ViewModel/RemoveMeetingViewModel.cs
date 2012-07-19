@@ -106,11 +106,8 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
         private void FindSlots()
         {
-            IList<AppointmentDto> slots;
-            using (this.Component.UnitOfWork)
-            {
-                slots = this.Component.FindAppointments(this.SelectedPatient, this.StartDate, this.EndDate);
-            }
+            var slots = this.Component.FindAppointments(this.SelectedPatient, this.StartDate, this.EndDate);
+
             this.BusyAppointments.Refill(slots);
 
             if (slots.Count == 0) { MessageBox.Show(Messages.Msg_NothingFound, BaseText.Information, MessageBoxButton.OK, MessageBoxImage.Information); }
@@ -120,10 +117,8 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         {
             try
             {
-                using (this.Component.UnitOfWork)
-                {
-                    this.Component.Remove(this.SelectedAppointment, this.SelectedPatient);
-                }
+                this.Component.Remove(this.SelectedAppointment, this.SelectedPatient);
+
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_AppointmentAdded);
                 Notifyer.OnRefreshed(this);

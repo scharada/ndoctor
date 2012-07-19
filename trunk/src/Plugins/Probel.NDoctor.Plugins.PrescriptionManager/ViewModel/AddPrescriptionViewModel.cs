@@ -46,7 +46,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
         private IPrescriptionComponent component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
         private DateTime creationDate;
-        private PrescriptionDto currentPrescription;
 
         #endregion Fields
 
@@ -118,11 +117,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         {
             try
             {
-                IEnumerable<TagDto> results;
-                using (this.component.UnitOfWork)
-                {
-                    results = this.component.FindTags(TagCategory.Prescription);
-                }
+                var results = this.component.FindTags(TagCategory.Prescription);
                 this.Tags.Refill(results);
             }
             catch (Exception ex) { this.HandleError(ex); }
@@ -178,10 +173,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 var document = new PrescriptionDocumentDto() { CreationDate = this.CreationDate };
                 document.Prescriptions.AddRange(this.Prescriptions);
 
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Create(document, PluginContext.Host.SelectedPatient);
-                }
+                this.component.Create(document, PluginContext.Host.SelectedPatient);
 
                 this.ResetPage();
             }

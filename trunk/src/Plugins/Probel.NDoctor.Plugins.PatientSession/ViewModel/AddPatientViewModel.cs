@@ -99,7 +99,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
         {
             try
             {
-                using (this.component.UnitOfWork) { this.component.Create(this.Patient); }
+                this.component.Create(this.Patient);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PatientAdded);
                 InnerWindow.Close();
             }

@@ -48,45 +48,43 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
         {
             try
             {
-                using (component.UnitOfWork)
-                {
-                    Logger.Info("Start default value insertion's script");
+                Logger.Info("Start default value insertion's script");
 
-                    var administer = new TaskDto(To.Administer) { Name = Messages.Task_Administer, Notes = Messages.Explanation_Administer };
-                    var metawrite = new TaskDto(To.MetaWrite) { Name = Messages.Task_Metawrite, Notes = Messages.Explanation_Metawrite };
-                    var read = new TaskDto(To.Read) { Name = Messages.Task_Read, Notes = Messages.Explanation_Read };
-                    var write = new TaskDto(To.Write) { Name = Messages.Task_Write, Notes = Messages.Explanation_Write };
-                    var editcalendar = new TaskDto(To.EditCalendar) { Name = Messages.Task_EditCalendar, Notes = Messages.Explanation_EditCalendar };
-                    CheckTaksNumber(administer, metawrite, read, write, editcalendar);
+                var administer = new TaskDto(To.Administer) { Name = Messages.Task_Administer, Notes = Messages.Explanation_Administer };
+                var metawrite = new TaskDto(To.MetaWrite) { Name = Messages.Task_Metawrite, Notes = Messages.Explanation_Metawrite };
+                var read = new TaskDto(To.Read) { Name = Messages.Task_Read, Notes = Messages.Explanation_Read };
+                var write = new TaskDto(To.Write) { Name = Messages.Task_Write, Notes = Messages.Explanation_Write };
+                var editcalendar = new TaskDto(To.EditCalendar) { Name = Messages.Task_EditCalendar, Notes = Messages.Explanation_EditCalendar };
+                CheckTaksNumber(administer, metawrite, read, write, editcalendar);
 
-                    component.Create(administer);
-                    component.Create(metawrite);
-                    component.Create(read);
-                    component.Create(write);
-                    component.Create(editcalendar);
+                component.Create(administer);
+                component.Create(metawrite);
+                component.Create(read);
+                component.Create(write);
+                component.Create(editcalendar);
 
-                    var administrator = BuildRole(Messages.Role_Administrator, Messages.Explanation_Administrator
-                        , administer, metawrite, read, write, editcalendar);
+                var administrator = BuildRole(Messages.Role_Administrator, Messages.Explanation_Administrator
+                    , administer, metawrite, read, write, editcalendar);
 
-                    var doctor = BuildRole(Messages.Role_Doctor, Messages.Explanation_Doctor
-                        , metawrite, read, write, editcalendar);
+                var doctor = BuildRole(Messages.Role_Doctor, Messages.Explanation_Doctor
+                    , metawrite, read, write, editcalendar);
 
-                    var secretary = BuildRole(Messages.Role_Secretary, Messages.Explanation_Secretary
-                        , metawrite, read, editcalendar);
+                var secretary = BuildRole(Messages.Role_Secretary, Messages.Explanation_Secretary
+                    , metawrite, read, editcalendar);
 
-                    component.Create(administrator);
-                    component.Create(doctor);
-                    component.Create(secretary);
+                component.Create(administrator);
+                component.Create(doctor);
+                component.Create(secretary);
 
-                    //Uncomment to create a superadmin as a first user
-                    //var superadmin = new UserDto(true) { FirstName = "Superadmin", LastName = "Superadmin", AssignedRole = administrator, IsDefault = true };
-                    //component.Create(superadmin);
-                    //component.Update(superadmin, "superadmin"); //Set a default password
+                //Uncomment to create a superadmin as a first user
+                //var superadmin = new UserDto(true) { FirstName = "Superadmin", LastName = "Superadmin", AssignedRole = administrator, IsDefault = true };
+                //component.Create(superadmin);
+                //component.Update(superadmin, "superadmin"); //Set a default password
 
-                    component.Create(new TagDto(TagCategory.Prescription) { Name = Messages.Tag_Default_Prescription });
+                component.Create(new TagDto(TagCategory.Prescription) { Name = Messages.Tag_Default_Prescription });
 
-                    Logger.Info("Script is done...");
-                }
+                Logger.Info("Script is done...");
+
             }
             catch (Exception)
             {

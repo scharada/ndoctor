@@ -109,10 +109,9 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
         {
             this.SelectedRole.Name = this.Name;
             this.SelectedRole.Description = this.Description;
-            using (component.UnitOfWork)
-            {
-                component.Update(this.SelectedRole);
-            }
+
+            component.Update(this.SelectedRole);
+
             InnerWindow.Close();
             Notifyer.OnRoleRefreshing(this);
         }

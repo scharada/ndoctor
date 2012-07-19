@@ -50,15 +50,12 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Helpers
 
         public void SearchPrescription(DateTime from, DateTime to)
         {
-            using (this.component.UnitOfWork)
-            {
-                var found = this.component.FindPrescriptionsByDates(PluginContext.Host.SelectedPatient, from, to);
-                Notifyer.OnPrescriptionFound(this, new PrescriptionResultDto(found, from, to));
-                InnerWindow.Close();
+            var found = this.component.FindPrescriptionsByDates(PluginContext.Host.SelectedPatient, from, to);
+            Notifyer.OnPrescriptionFound(this, new PrescriptionResultDto(found, from, to));
+            InnerWindow.Close();
 
-                if (found.Count > 0) PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_FoundPrescription);
-                else PluginContext.Host.WriteStatus(StatusType.Warning, Messages.Msg_NothingFound);
-            }
+            if (found.Count > 0) PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_FoundPrescription);
+            else PluginContext.Host.WriteStatus(StatusType.Warning, Messages.Msg_NothingFound);
         }
 
         #endregion Methods

@@ -131,12 +131,7 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
 
         private bool IsValidPassword()
         {
-            var isValidPwd = false;
-            using (this.component.UnitOfWork)
-            {
-                isValidPwd = this.component.CanConnect(PluginContext.Host.ConnectedUser, this.OldPassword);
-            }
-            return isValidPwd;
+            return this.component.CanConnect(PluginContext.Host.ConnectedUser, this.OldPassword);
         }
 
         private void Save()
@@ -149,10 +144,8 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
                 }
                 else
                 {
-                    using (this.component.UnitOfWork)
-                    {
-                        this.component.UpdatePassword(PluginContext.Host.ConnectedUser, this.NewPassword);
-                    }
+                    this.component.UpdatePassword(PluginContext.Host.ConnectedUser, this.NewPassword);
+
                     this.IsPopupOpened = false;
                     PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PwdChanged);
                     InnerWindow.Close();

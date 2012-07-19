@@ -18,11 +18,8 @@
 
             try
             {
-                IList<TagDto> result = new List<TagDto>();
-                using (this.Component.UnitOfWork)
-                {
-                    result = this.Component.FindTags(TagCategory.Doctor);
-                }
+                var result = this.Component.FindTags(TagCategory.Doctor);
+
                 this.Specialisations.Refill(result);
             }
             catch (Exception ex) { this.HandleError(ex); }
@@ -44,10 +41,7 @@
 
         protected override void AddItem()
         {
-            using (this.Component.UnitOfWork)
-            {
-                this.Component.Create(this.BoxItem);
-            }
+            this.Component.Create(this.BoxItem);
         }
 
         #endregion Methods

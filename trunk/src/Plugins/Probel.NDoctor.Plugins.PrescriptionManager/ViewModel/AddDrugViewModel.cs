@@ -92,11 +92,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
         public void Refresh()
         {
-            IList<TagDto> result;
-            using (this.component.UnitOfWork)
-            {
-                result = this.component.FindTags(TagCategory.Drug);
-            }
+            var result = this.component.FindTags(TagCategory.Drug);
             this.Tags.Refill(result);
         }
 
@@ -104,10 +100,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         {
             try
             {
-                using (this.component.UnitOfWork)
-                {
-                    this.component.Create(this.SelectedDrug);
-                }
+                this.component.Create(this.SelectedDrug);
+
                 Notifyer.OnItemChanged(this);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
                 this.SelectedDrug = new DrugDto();

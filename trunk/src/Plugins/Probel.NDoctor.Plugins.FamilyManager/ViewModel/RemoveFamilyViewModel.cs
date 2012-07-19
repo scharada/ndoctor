@@ -78,24 +78,21 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
 
         public void Refresh()
         {
-            using (this.component.UnitOfWork)
-            {
-                var result = this.component.GetAllFamilyMembers(PluginContext.Host.SelectedPatient);
-                var mapped = Mapper.Map<IList<LightPatientDto>, IList<LightPatientViewModel>>(result);
+            var result = this.component.GetAllFamilyMembers(PluginContext.Host.SelectedPatient);
+            var mapped = Mapper.Map<IList<LightPatientDto>, IList<LightPatientViewModel>>(result);
 
-                for (int i = 0; i < mapped.Count; i++)
-                {
-                    mapped[i].SessionPatient = PluginContext.Host.SelectedPatient;
-                    //mapped[i].Refreshed += (sender, e) =>
-                    //{
-                    //    this.Refresh();
-                    //    if (e.Data == State.Created) { PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationAdded); }
-                    //    else if (e.Data == State.Removed) { PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationRemoved); }
-                    //};
-                }
-                this.FamilyMembers.Refill(mapped);
-                PluginContext.Host.WriteStatusReady();
+            for (int i = 0; i < mapped.Count; i++)
+            {
+                mapped[i].SessionPatient = PluginContext.Host.SelectedPatient;
+                //mapped[i].Refreshed += (sender, e) =>
+                //{
+                //    this.Refresh();
+                //    if (e.Data == State.Created) { PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationAdded); }
+                //    else if (e.Data == State.Removed) { PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationRemoved); }
+                //};
             }
+            this.FamilyMembers.Refill(mapped);
+            PluginContext.Host.WriteStatusReady();
         }
 
         #endregion Methods
