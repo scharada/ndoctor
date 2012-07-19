@@ -35,6 +35,7 @@
   * [ComponentAop Components & AOP]
   * [PluginFeatures Plugin API ]
  * QA ([QA Manual])
+  * [FeatureList Feature list]
   * [UserTestSuite User Session]
   * [PatientSessionTestSuite Patient session]
  * [Deploy Deploy]
