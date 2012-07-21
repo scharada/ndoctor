@@ -26,4 +26,5 @@ This list is all the features implemented into nDoctor:
    * Add a new macro
    * Edit an existing macro
    * Remove a macro
-   
+
+ [`Work in progress...`]  
