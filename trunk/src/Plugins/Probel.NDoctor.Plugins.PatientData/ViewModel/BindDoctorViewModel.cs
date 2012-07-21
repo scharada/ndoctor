@@ -23,10 +23,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
     using AutoMapper;
 
-    using Probel.Helpers.Conversions;
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.ViewModel;

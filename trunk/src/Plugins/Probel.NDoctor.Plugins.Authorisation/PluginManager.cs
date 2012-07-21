@@ -24,13 +24,11 @@ namespace Probel.NDoctor.Plugins.Authorisation
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Plugins.Authorisation.Helpers;
     using Probel.NDoctor.Plugins.Authorisation.Properties;
     using Probel.NDoctor.Plugins.Authorisation.View;
-    using Probel.NDoctor.Plugins.Authorisation.ViewModel;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;

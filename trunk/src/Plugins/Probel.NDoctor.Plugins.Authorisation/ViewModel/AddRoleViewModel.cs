@@ -24,9 +24,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
     using System;
     using System.Windows.Input;
 
-    using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.Authorisation.Helpers;

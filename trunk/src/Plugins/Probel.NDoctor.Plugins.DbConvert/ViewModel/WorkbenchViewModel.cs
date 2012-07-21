@@ -28,7 +28,6 @@ namespace Probel.NDoctor.Plugins.DbConvert.ViewModel
 
     using Probel.Helpers.Assertion;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Plugins.DbConvert.Domain;
     using Probel.NDoctor.Plugins.DbConvert.Properties;

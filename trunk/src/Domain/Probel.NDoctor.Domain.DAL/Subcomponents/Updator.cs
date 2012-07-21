@@ -188,17 +188,6 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         }
 
         /// <summary>
-        /// Updates the specified family.
-        /// When the members' state is set to new, it'll create a new relation for the patient.
-        /// All other members' state will throw a <see cref="BusinessLogicException"/>.
-        /// </summary>
-        /// <param name="family">The family.</param>
-        public void Update(FamilyDto family)
-        {
-            new Updator(this.Session).Update(family);
-        }
-
-        /// <summary>
         /// Commits the changes on medical record cabinet.
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -258,6 +247,18 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             Mapper.Map<UserDto, User>(item, entity);
 
             if (string.IsNullOrWhiteSpace(entity.Password)) throw new BusinessLogicException(Messages.Validation_PasswordCantBeEmpty);
+            this.Session.Update(entity);
+        }
+
+        /// <summary>
+        /// Updates the specified item.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        public void Update(MacroDto item)
+        {
+            var entity = this.Session.Get<Macro>(item.Id);
+            Mapper.Map<MacroDto, Macro>(item, entity);
+
             this.Session.Update(entity);
         }
 

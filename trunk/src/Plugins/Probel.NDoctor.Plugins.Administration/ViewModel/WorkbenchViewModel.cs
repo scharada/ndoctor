@@ -24,13 +24,10 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
     using AutoMapper;
 
-    using Probel.Helpers.Conversions;
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Collections;
     using Probel.NDoctor.Domain.DTO.Components;
-    using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.Administration.Helpers;
     using Probel.NDoctor.Plugins.Administration.Properties;
@@ -356,7 +353,6 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         public void Refresh()
         {
-
             var insurances = this.component.GetAllInsurances();
             var practices = this.component.GetAllPractices();
             var pathologies = this.component.GetAllPathologies();

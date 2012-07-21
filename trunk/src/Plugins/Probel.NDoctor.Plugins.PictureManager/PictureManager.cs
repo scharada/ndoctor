@@ -21,16 +21,11 @@ namespace Probel.NDoctor.Plugins.PictureManager
     using System.Windows.Input;
     using System.Windows.Media;
 
-    using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
-    using Probel.NDoctor.Domain.DAL.Components;
-    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Plugins.PictureManager.Helpers;
     using Probel.NDoctor.Plugins.PictureManager.Properties;
     using Probel.NDoctor.Plugins.PictureManager.View;
-    using Probel.NDoctor.Plugins.PictureManager.ViewModel;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;

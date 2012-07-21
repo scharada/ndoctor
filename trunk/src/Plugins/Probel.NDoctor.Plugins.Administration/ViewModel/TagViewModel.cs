@@ -17,18 +17,10 @@
 namespace Probel.NDoctor.Plugins.Administration.ViewModel
 {
     using System;
-    using System.Windows.Input;
 
-    using Probel.Helpers.WPF;
-    using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
-    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Collections;
-    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.Administration.Helpers;
-    using Probel.NDoctor.Plugins.Administration.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
 
     internal class TagViewModel : TagDto

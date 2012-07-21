@@ -21,19 +21,13 @@ namespace Probel.NDoctor.Plugins.BmiRecord
     using System.Windows.Input;
     using System.Windows.Media;
 
-    using AutoMapper;
-
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
-    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
-    using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.BmiRecord.Helpers;
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
     using Probel.NDoctor.Plugins.BmiRecord.View;
-    using Probel.NDoctor.Plugins.BmiRecord.ViewModel;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;

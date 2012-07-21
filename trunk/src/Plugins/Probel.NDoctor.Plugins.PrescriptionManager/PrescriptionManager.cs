@@ -18,10 +18,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
 {
     using System;
     using System.ComponentModel.Composition;
-    using System.Windows.Input;
     using System.Windows.Media;
-
-    using AutoMapper;
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;

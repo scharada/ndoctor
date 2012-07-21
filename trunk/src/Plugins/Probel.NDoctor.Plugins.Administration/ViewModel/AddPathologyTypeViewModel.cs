@@ -21,11 +21,6 @@
 
 namespace Probel.NDoctor.Plugins.Administration.ViewModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     using Probel.NDoctor.Domain.DTO.Objects;
 
     internal class AddPathologyTypeViewModel : BaseBoxViewModel<TagDto>

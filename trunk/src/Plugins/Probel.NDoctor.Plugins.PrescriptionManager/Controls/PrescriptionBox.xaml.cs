@@ -24,7 +24,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Controls
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Input;
 
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;

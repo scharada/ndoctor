@@ -22,7 +22,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using Probel.Helpers.Assertion;
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.BmiRecord.Helpers;

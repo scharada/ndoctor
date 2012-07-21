@@ -16,11 +16,6 @@
 */
 namespace Probel.NDoctor.Plugins.PrescriptionManager.Translations
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
 

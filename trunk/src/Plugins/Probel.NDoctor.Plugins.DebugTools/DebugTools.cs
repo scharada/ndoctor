@@ -18,12 +18,10 @@ namespace Probel.NDoctor.Plugins.DebugTools
 {
     using System;
     using System.ComponentModel.Composition;
-    using System.Diagnostics;
     using System.IO;
     using System.Reflection;
     using System.Text;
 
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;

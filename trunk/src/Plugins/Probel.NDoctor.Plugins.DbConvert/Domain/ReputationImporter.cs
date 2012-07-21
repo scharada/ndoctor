@@ -16,13 +16,11 @@
 */
 namespace Probel.NDoctor.Plugins.DbConvert.Domain
 {
-    using System;
     using System.Data.SQLite;
     using System.Linq;
 
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.DbConvert.Properties;
 
     public class ReputationImporter : SingleImporter<ReputationDto>
     {

@@ -20,15 +20,11 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
     using System.Windows;
     using System.Windows.Input;
 
-    using Microsoft.Windows.Controls;
-
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Plugins.UserSession.Properties;
-    using Probel.NDoctor.Plugins.UserSession.View;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;

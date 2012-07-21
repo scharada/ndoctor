@@ -24,10 +24,8 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
     using AutoMapper;
 
-    using Probel.Helpers.Conversions;
     using Probel.Helpers.Data;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;

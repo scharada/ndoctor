@@ -17,7 +17,6 @@
 namespace Probel.NDoctor.Plugins.BmiRecord.Translations
 {
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
-    using Probel.NDoctor.View.Plugins.Helpers;
 
     public static class AddBmiText
     {

@@ -22,7 +22,6 @@
 namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 {
     using System;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Timers;
     using System.Windows.Input;

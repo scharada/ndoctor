@@ -18,12 +18,9 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Data;
     using System.Data.SQLite;
-    using System.Threading;
 
-    using Probel.Helpers.Conversions;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;

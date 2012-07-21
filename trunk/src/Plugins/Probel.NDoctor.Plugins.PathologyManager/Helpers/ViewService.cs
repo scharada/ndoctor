@@ -21,12 +21,7 @@
 
 namespace Probel.NDoctor.Plugins.PathologyManager.Helpers
 {
-    using System;
-    using System.Collections.Generic;
-
-    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
-    using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PathologyManager.View;
     using Probel.NDoctor.Plugins.PathologyManager.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;

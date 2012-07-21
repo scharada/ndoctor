@@ -19,7 +19,6 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using System.Windows.Input;
 
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PatientSession.Properties;

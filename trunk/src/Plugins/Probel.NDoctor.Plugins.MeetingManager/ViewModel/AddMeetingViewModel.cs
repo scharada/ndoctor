@@ -22,8 +22,6 @@
 namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 {
     using System;
-    using System.Collections.Generic;
-    using System.Timers;
     using System.Windows.Input;
 
     using Probel.Mvvm.DataBinding;
@@ -105,7 +103,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                     Tag = this.SelectedAppointmentTag,
                 };
                 this.Component.Create(appointment, this.SelectedPatient);
-
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_AppointmentAdded);
                 Notifyer.OnRefreshed(this);

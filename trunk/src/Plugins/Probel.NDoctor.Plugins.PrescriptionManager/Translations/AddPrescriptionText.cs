@@ -17,7 +17,6 @@
 namespace Probel.NDoctor.Plugins.PrescriptionManager.Translations
 {
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
-    using Probel.NDoctor.View.Plugins.Helpers;
 
     public static class AddPrescriptionText
     {

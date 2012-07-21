@@ -17,19 +17,14 @@
 namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
 {
     using System;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.ComponentModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Input;
 
-    using AutoMapper;
-
     using Probel.Helpers.Assertion;
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;

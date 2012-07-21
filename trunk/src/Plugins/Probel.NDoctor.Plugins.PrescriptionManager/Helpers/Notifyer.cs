@@ -17,7 +17,6 @@
 namespace Probel.NDoctor.Plugins.PrescriptionManager.Helpers
 {
     using System;
-    using System.Collections.Generic;
 
     using Probel.Helpers.Events;
     using Probel.NDoctor.Domain.DTO.Objects;

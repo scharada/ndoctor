@@ -22,9 +22,7 @@ namespace Probel.NDoctor.Plugins.DbConvert
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO;
-    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Plugins.DbConvert.Properties;
     using Probel.NDoctor.Plugins.DbConvert.View;
     using Probel.NDoctor.View.Core.Helpers;

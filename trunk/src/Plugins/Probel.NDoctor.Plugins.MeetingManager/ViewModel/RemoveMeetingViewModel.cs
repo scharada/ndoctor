@@ -22,9 +22,7 @@
 namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 {
     using System;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Timers;
     using System.Windows;
     using System.Windows.Input;
 
@@ -118,7 +116,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             try
             {
                 this.Component.Remove(this.SelectedAppointment, this.SelectedPatient);
-
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_AppointmentAdded);
                 Notifyer.OnRefreshed(this);

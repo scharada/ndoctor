@@ -47,6 +47,7 @@ namespace Probel.NDoctor.Domain.Components
 
         private static readonly ProxyGenerator generator = new ProxyGenerator(new PersistentProxyBuilder());
 
+        private AuthorisationInterceptor authorisationInterceptor;
         private bool componentLogginEnabled = false;
         private ILog logger = LogManager.GetLogger(typeof(ComponentFactory));
         private LightUserDto user;
@@ -129,8 +130,16 @@ namespace Probel.NDoctor.Domain.Components
         {
             this.user = user;
             this.componentLogginEnabled = componentLogginEnabled;
+            this.authorisationInterceptor = new AuthorisationInterceptor(user);
         }
-
+        /// <summary>
+        /// Connects the specified user into the application.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        public void ConnectUser(LightUserDto user)
+        {
+            this.user = user;
+        }
         #endregion Constructors
 
         #region Methods
@@ -161,7 +170,7 @@ namespace Probel.NDoctor.Domain.Components
 
             if (this.componentLogginEnabled) { interceptors.Add(new LogInterceptor()); }
             interceptors.Add(new CheckerInterceptor());
-            interceptors.Add(new AuthorisationInterceptor(user));
+            interceptors.Add(this.authorisationInterceptor);
 
             return interceptors.ToArray();
         }

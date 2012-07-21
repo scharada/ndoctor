@@ -44,13 +44,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
      */
     public abstract class BaseComponent : IBaseComponent, IDisposable
     {
-        #region Fields
-
-        //private Action<object> dispose;
-        //private Func<object, object> init;
-
-        #endregion Fields
-
         #region Constructors
 
         public BaseComponent(ISession session)
@@ -65,6 +58,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             this.Logger.DebugFormat("\t[{0}] Opening session", this.GetType().Name);
             this.OpenSession();
         }
+
         #endregion Constructors
 
         #region Properties
@@ -775,5 +769,12 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         #endregion Methods
+
+        #region Other
+
+        //private Action<object> dispose;
+        //private Func<object, object> init;
+
+        #endregion Other
     }
 }

@@ -19,7 +19,6 @@ namespace Probel.NDoctor.Plugins.Administration
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.Composition;
-    using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media;
 
@@ -28,9 +27,7 @@ namespace Probel.NDoctor.Plugins.Administration
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO;
-    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.Administration.Helpers;
     using Probel.NDoctor.Plugins.Administration.Properties;

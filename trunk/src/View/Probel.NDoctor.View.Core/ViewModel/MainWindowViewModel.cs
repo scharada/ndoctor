@@ -94,6 +94,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             set
             {
                 this.connectedUser = value;
+                PluginContext.ComponentFactory.ConnectUser(value);
 
                 this.OnPropertyChanged(() => ConnectedUser);
                 this.OnPropertyChanged(() => WindowTitle);
