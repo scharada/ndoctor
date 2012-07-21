@@ -1,0 +1,25 @@
+= Introduction =
+
+This list of features is used to make a fast test without administrative overhead.
+
+= Features =
+
+This list is all the features implemented into nDoctor:
+
+ * Patient data
+  * Save
+  * Undo
+  * Add
+   * Doctor
+   * Specialisation
+   * Insurance
+   * Reputation
+   * Practice
+   * Profession
+ * Medical records
+  * Save
+  * Add
+   * Record
+   * Directory
+  * Edit a record
+   
