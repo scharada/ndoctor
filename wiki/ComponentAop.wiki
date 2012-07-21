@@ -14,7 +14,13 @@ Before any call a of component's methods, all the configured dynamic proxies are
 = How to tweak it? =
 
 == Session checking ==
+
+`[Deprecated]`
 You can avoid the execution of the session check by decorating your method with `InspectionIgnored` attribute
+
+== Automatic transaction ==
+
+`[To be written]`
 
 == Authorisation ==
 You an decorate the methods of the DAL with `GrantedAttribute` that uses a string that defines the granted task. You can decorate a class or its members. When a class is decorated, it overrides all the member decoration.
