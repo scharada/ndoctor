@@ -34,11 +34,11 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
     using NHConfiguration = NHibernate.Cfg.Configuration;
 
-    public class DAL
+    public class DalConfigurator
     {
         #region Fields
 
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(DAL));
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(DalConfigurator));
 
         private static ISessionFactory sessionFactory;
 
@@ -49,22 +49,22 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
         #region Properties
 
-        public bool IsConfigured
-        {
-            get;
-            private set;
-        }
-
         /// <summary>
         /// Gets the nHibernate's session factory.
         /// </summary>
-        internal static ISessionFactory SessionFactory
+        public static ISessionFactory SessionFactory
         {
             get
             {
                 if (sessionFactory == null) throw new NullSessionFactoryException();
                 else return sessionFactory;
             }
+        }
+
+        public bool IsConfigured
+        {
+            get;
+            private set;
         }
 
         private NHibernate.Cfg.Configuration Configuration

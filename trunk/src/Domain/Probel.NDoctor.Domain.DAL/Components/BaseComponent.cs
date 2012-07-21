@@ -28,7 +28,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using NHibernate.Linq;
 
     using Probel.Helpers.Assertion;
-    using Probel.Helpers.Management;
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Helpers;
@@ -79,10 +78,16 @@ namespace Probel.NDoctor.Domain.DAL.Components
             }
         }
 
-        internal ISession Session
+        /// <summary>
+        /// Gets or sets the nHibernate session.
+        /// </summary>
+        /// <value>
+        /// The session.
+        /// </value>
+        public ISession Session
         {
             get;
-            private set;
+            set;
         }
 
         protected ILog Logger
@@ -764,7 +769,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         private void OpenSession()
         {
             if (Session == null || !Session.IsOpen)
-                this.Session = DAL.SessionFactory.OpenSession();
+                this.Session = DalConfigurator.SessionFactory.OpenSession();
             else throw new DalSessionException(Messages.Msg_ErrorSessionAlreadyOpenException);
         }
 

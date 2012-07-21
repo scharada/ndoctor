@@ -114,7 +114,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
                 this.BuildContextMenu();
             });
 
-            Context.RichTextBox.SelectionChanged += (sender, e) => this.UpdateToggleButtonState();
+            TextEditor.Control.SelectionChanged += (sender, e) => this.UpdateToggleButtonState();
         }
 
         private void BuildButtons()
@@ -330,7 +330,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
         private void UpdateItemCheckedState(RibbonToggleButtonData button, DependencyProperty formattingProperty, object expectedValue)
         {
-            object currentValue = Context.RichTextBox.Selection.GetPropertyValue(formattingProperty);
+            object currentValue = TextEditor.Control.Selection.GetPropertyValue(formattingProperty);
             button.IsChecked = (currentValue == DependencyProperty.UnsetValue) ? false : currentValue != null && currentValue.Equals(expectedValue);
         }
 

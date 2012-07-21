@@ -106,6 +106,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             try
             {
                 this.recordToAdd.Tag = this.SelectedTag;
+                this.recordToAdd.Rtf = string.Empty;
                 this.component.Create(this.recordToAdd, PluginContext.Host.SelectedPatient);
 
                 InnerWindow.Close();

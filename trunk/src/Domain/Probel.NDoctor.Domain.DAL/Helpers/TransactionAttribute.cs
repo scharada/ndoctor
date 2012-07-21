@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,27 +16,29 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#endregion Header
+
 namespace Probel.NDoctor.Domain.DAL.Helpers
 {
     using System;
 
     /// <summary>
-    /// When decarated with this attribute, the method will be ignored by the
-    /// inspectors of the Castle Dynamic Proxy.
+    /// When decorated with the attribute, the method won't be wrapped into a transaction.
     /// </summary>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property,
         AllowMultiple = false,
         Inherited = true)]
-    public class InspectionIgnoredAttribute : Attribute
+    public class ExcludeFromTransactionAttribute : Attribute
     {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InspectionIgnoredAttribute"/> class.
+        /// Initializes a new instance of the <see cref="ExcludeFromTransactionAttribute"/> class.
         /// </summary>
-        public InspectionIgnoredAttribute()
+        public ExcludeFromTransactionAttribute()
         {
-            this.Ignore = true;
+            this.IsTransaction = true;
         }
 
         #endregion Constructors
@@ -45,9 +49,9 @@ namespace Probel.NDoctor.Domain.DAL.Helpers
         /// Returns always true.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if ignore; otherwise, <c>false</c>.
+        ///   <c>true</c> this method will be encapsulated into a transaction; otherwise, <c>false</c>.
         /// </value>
-        public bool Ignore
+        public bool IsTransaction
         {
             get;
             private set;

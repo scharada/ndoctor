@@ -38,8 +38,9 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     {
         #region Fields
 
+        private readonly IMedicalRecordComponent Component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
+
         private TitledMedicalRecordCabinetDto cabinet;
-        private IMedicalRecordComponent component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
         private bool isGranted = true;
         private TitledMedicalRecordDto selectedRecord;
         private IList<TagDto> tags = new List<TagDto>();
@@ -55,8 +56,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         public WorkbenchViewModel()
             : base()
         {
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
-
             Notifyer.MacroUpdated += (sender, e) => this.Refresh();
 
             this.MacroMenu = new ObservableCollection<MacroMenuItem>();
@@ -169,8 +168,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         {
             return new RelayCommand(() =>
             {
-                var text = this.component.Resolve(macro, PluginContext.Host.SelectedPatient);
-                Context.RichTextBox.CaretPosition.InsertTextInRun(text);
+                var text = this.Component.Resolve(macro, PluginContext.Host.SelectedPatient);
+                TextEditor.Control.CaretPosition.InsertTextInRun(text);
             });
         }
 
@@ -188,13 +187,13 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 Assert.IsNotNull(PluginContext.Host);
                 Assert.IsNotNull(PluginContext.Host.SelectedPatient);
 
-                var result = this.component.FindMedicalRecordCabinet(PluginContext.Host.SelectedPatient);
+                var result = this.Component.FindMedicalRecordCabinet(PluginContext.Host.SelectedPatient);
                 this.Cabinet = TitledMedicalRecordCabinetDto.CreateFrom(result);
-                this.Tags = this.component.FindTags(TagCategory.MedicalRecord);
+                this.Tags = this.Component.FindTags(TagCategory.MedicalRecord);
 
                 if (this.SelectedRecord != null)
                 {
-                    var record = this.component.FindMedicalRecordById(this.SelectedRecord.Id);
+                    var record = this.Component.FindMedicalRecordById(this.SelectedRecord.Id);
                     this.SelectedRecord = (record != null)
                         ? TitledMedicalRecordDto.CreateFrom(record)
                         : null;
@@ -209,7 +208,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         private void RefreshMacroMenu()
         {
             var macros = new List<MacroMenuItem>();
-            foreach (var macro in this.component.GetAllMacros())
+            foreach (var macro in this.Component.GetAllMacros())
             {
                 macros.Add(new MacroMenuItem(macro.Title, this.BuildMenuItemCommand(macro)));
             }
@@ -223,18 +222,20 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 Assert.IsNotNull(PluginContext.Host);
                 Assert.IsNotNull(PluginContext.Host.SelectedPatient);
 
+                TextEditor.UpdateBinding();
+
                 this.Cabinet.ForEachRecord(x =>
                 {
-                    if (x.Rtf != this.selectedRecord.Rtf)
+                    if (x.Id == this.selectedRecord.Id
+                        && x.Rtf != this.selectedRecord.Rtf)
                     {
                         x.Rtf = this.SelectedRecord.Rtf;
-                        //x.State = State.Updated;
                         x.LastUpdate = DateTime.Now;
                     }
                 }
                     , s => s.Id == this.SelectedRecord.Id);
 
-                this.component.UpdateCabinet(PluginContext.Host.SelectedPatient, this.Cabinet);
+                this.Component.UpdateCabinet(PluginContext.Host.SelectedPatient, this.Cabinet);
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RecordsSaved);
             }

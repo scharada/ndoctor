@@ -21,46 +21,36 @@
 
 namespace Probel.NDoctor.Domain.Components.Interceptors
 {
-    using System;
-
     using Castle.DynamicProxy;
 
-    using log4net;
-
+    using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DAL.Helpers;
 
-    internal class CheckerInterceptor : BaseInterceptor
+    internal class TransactionInterceptor : BaseInterceptor
     {
-        #region Fields
-
-        private readonly ILog log = LogManager.GetLogger(typeof(CheckerInterceptor));
-
-        #endregion Fields
-
         #region Methods
 
         public override void Intercept(IInvocation invocation)
         {
-            try
+            if (invocation.InvocationTarget is BaseComponent
+                && !this.IsDecoratedWith<ExcludeFromTransactionAttribute>(invocation))
             {
-                if (invocation.InvocationTarget is BaseComponent)
+                var component = invocation.InvocationTarget as BaseComponent;
+                using (component.Session = DalConfigurator.SessionFactory.OpenSession())
+                using (var tx = component.Session.BeginTransaction())
                 {
-                    if (!this.Ignore(invocation))
-                    {
-                        var component = invocation.InvocationTarget as BaseComponent;
-
-                        new ComponentDecorator(component).CheckSession();
-                    }
+                    invocation.Proceed();
+                    tx.Commit();
                 }
             }
-            catch (Exception ex)
+            else
             {
-                log.Warn(string.Format("An error occured when intercepting the method '{0}' of the component '{1}'", invocation.Method.Name, invocation.TargetType.Name)
-                    , ex);
-                throw;
+                this.Logger.DebugFormat("Method '{0}' of component '{1}' is excluded from a transaction."
+                    , invocation.Method.Name
+                    , invocation.TargetType.Name);
+                invocation.Proceed();
             }
-            finally { invocation.Proceed(); }
         }
 
         #endregion Methods

@@ -58,16 +58,6 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         #region Methods
 
         /// <summary>
-        /// Updates the specified macro.
-        /// </summary>
-        /// <param name="macro">The macro.</param>
-        public void Update(MacroDto macro)
-        {
-            var entity = Mapper.Map<MacroDto, Macro>(macro);
-            this.Session.Update(entity);
-        }
-
-        /// <summary>
         /// Updates the specified tag.
         /// </summary>
         /// <param name="tag">The tag.</param>
@@ -194,35 +184,31 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// <param name="cabinet">The cabinet.</param>
         public void Update(LightPatientDto patient, MedicalRecordCabinetDto cabinet)
         {
-            using (var tx = this.Session.BeginTransaction())
+            cabinet.ForeachRecords(record =>
             {
-                cabinet.ForeachRecords(record =>
+                switch (record.State)
                 {
-                    switch (record.State)
-                    {
-                        case State.Clean:
-                            //Nothing to do
-                            break;
-                        case State.Updated:
-                            record.LastUpdate = DateTime.Now;
-                            this.Update(record);
-                            break;
-                        case State.Created:
-                            record.LastUpdate
-                                = record.CreationDate
-                                = DateTime.Now;
-                            new Creator(this.Session).Create(record);
-                            break;
-                        case State.Removed:
-                            new Remover(this.Session).Remove(record);
-                            break;
-                        default:
-                            Assert.FailOnEnumeration(record.State);
-                            break;
-                    }
-                });
-                tx.Commit();
-            }
+                    case State.Clean:
+                        //Nothing to do
+                        break;
+                    case State.Updated:
+                        record.LastUpdate = DateTime.Now;
+                        this.Update(record);
+                        break;
+                    case State.Created:
+                        record.LastUpdate
+                            = record.CreationDate
+                            = DateTime.Now;
+                        new Creator(this.Session).Create(record);
+                        break;
+                    case State.Removed:
+                        new Remover(this.Session).Remove(record);
+                        break;
+                    default:
+                        Assert.FailOnEnumeration(record.State);
+                        break;
+                }
+            });
         }
 
         /// <summary>

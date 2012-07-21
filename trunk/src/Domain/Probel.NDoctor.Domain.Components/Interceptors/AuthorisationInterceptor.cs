@@ -23,10 +23,9 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
 {
     using Castle.DynamicProxy;
 
-    using log4net;
-
     using Probel.NDoctor.Domain.Components.AuthorisationPolicies;
     using Probel.NDoctor.Domain.DAL;
+    using Probel.NDoctor.Domain.DAL.Helpers;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
 
@@ -42,7 +41,6 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
     {
         #region Fields
 
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(AuthorisationInterceptor));
         private static readonly IAuthorisationPolicy policy = ObjectFactory.GetInstance<IAuthorisationPolicy>();
         private static readonly string[] ReadAuthorisations = new string[] { "find", "getall" };
         private static readonly string[] WriteAuthorisations = new string[] { "create", "remove", "update" };
@@ -67,7 +65,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
             var hasRight = true;
             var authAttribute = GetAuthAttribute(invocation);
 
-            if (!this.Ignore(invocation))
+            if (!this.IsDecoratedWith<InspectionIgnoredAttribute>(invocation))
             {
                 var name = invocation.MethodInvocationTarget.Name.ToLower();
                 if (this.user == null && authAttribute.ToLower() == To.Everyone.ToLower())

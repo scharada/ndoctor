@@ -132,6 +132,11 @@ namespace Probel.NDoctor.Domain.Components
             this.componentLogginEnabled = componentLogginEnabled;
             this.authorisationInterceptor = new AuthorisationInterceptor(user);
         }
+
+        #endregion Constructors
+
+        #region Methods
+
         /// <summary>
         /// Connects the specified user into the application.
         /// </summary>
@@ -140,9 +145,6 @@ namespace Probel.NDoctor.Domain.Components
         {
             this.user = user;
         }
-        #endregion Constructors
-
-        #region Methods
 
         public T GetInstance<T>()
             where T : class
@@ -169,7 +171,7 @@ namespace Probel.NDoctor.Domain.Components
             var interceptors = new List<IInterceptor>();
 
             if (this.componentLogginEnabled) { interceptors.Add(new LogInterceptor()); }
-            interceptors.Add(new CheckerInterceptor());
+            interceptors.Add(new TransactionInterceptor());
             interceptors.Add(this.authorisationInterceptor);
 
             return interceptors.ToArray();

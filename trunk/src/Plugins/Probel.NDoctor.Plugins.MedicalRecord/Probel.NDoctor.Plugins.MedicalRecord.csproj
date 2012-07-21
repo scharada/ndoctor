@@ -73,7 +73,7 @@
     <Compile Include="Editor\MacroMenuItem.cs" />
     <Compile Include="Editor\TextToDocumentConverter.cs" />
     <Compile Include="Helpers\Notifyer.cs" />
-    <Compile Include="Helpers\Context.cs" />
+    <Compile Include="Helpers\TextEditor.cs" />
     <Compile Include="Helpers\ViewService.cs" />
     <Compile Include="MedicalRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

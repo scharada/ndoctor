@@ -21,12 +21,29 @@
 
 namespace Probel.NDoctor.Domain.Components.Interceptors
 {
+    using System;
+
     using Castle.DynamicProxy;
 
-    using Probel.NDoctor.Domain.DAL.Helpers;
+    using log4net;
 
     internal abstract class BaseInterceptor : IInterceptor
     {
+        #region Fields
+
+        protected readonly ILog Logger;
+
+        #endregion Fields
+
+        #region Constructors
+
+        public BaseInterceptor()
+        {
+            this.Logger = LogManager.GetLogger(this.GetType());
+        }
+
+        #endregion Constructors
+
         #region Methods
 
         /// <summary>
@@ -36,17 +53,21 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
         public abstract void Intercept(IInvocation invocation);
 
         /// <summary>
-        /// Indicates whether the invocated method should be invoked or not.
+        /// Indicates whether the invocated method is decorated with the specified attribute.
         /// A method should be ignored when it is eihter:
-        ///  - a non public method
-        ///  - a ctor
-        ///  - a method marked with the <see cref="InspectionIngnoredAttribute"/> attribute
+        /// - a non public method
+        /// - a ctor
+        /// - a method marked with the <see cref="InspectionIngnoredAttribute"/> attribute
         /// </summary>
+        /// <typeparam name="T">The type of the attribute to check</typeparam>
         /// <param name="invocation">The invocation.</param>
-        /// <returns><c>True</c> if this method should be ignored; otherwise <c>False</c></returns>
-        protected bool Ignore(IInvocation invocation)
+        /// <returns>
+        ///   <c>True</c> if this method should be ignored; otherwise <c>False</c>
+        /// </returns>
+        protected bool IsDecoratedWith<T>(IInvocation invocation)
+            where T : Attribute
         {
-            var attributes = invocation.MethodInvocationTarget.GetCustomAttributes(typeof(InspectionIgnoredAttribute), true);
+            var attributes = invocation.MethodInvocationTarget.GetCustomAttributes(typeof(T), true);
             return attributes.Length > 0 && invocation.Method.IsPublic && !invocation.Method.IsConstructor;
         }
 

@@ -14,7 +14,6 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 namespace Probel.NDoctor.Plugins.MedicalRecord.View
 {
     using System;
@@ -28,7 +27,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
 
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Plugins.MedicalRecord.Editor;
-    using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
 
     /// <summary>

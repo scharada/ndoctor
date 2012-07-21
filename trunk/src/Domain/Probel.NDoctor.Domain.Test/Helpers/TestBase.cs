@@ -69,7 +69,7 @@ namespace Probel.NDoctor.Domain.Test.Helpers
         public void FixtureSetup()
         {
             this.ConfigureAutoMapper();
-            new DAL().ConfigureInMemory();
+            new DalConfigurator().ConfigureInMemory();
             this.Component = this.GetComponentInstance();
             //Build.Database(this.Database.Session);
             DbBuilder.Create(this.Database.Session);

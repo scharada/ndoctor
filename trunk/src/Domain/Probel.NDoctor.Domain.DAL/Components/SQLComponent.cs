@@ -30,7 +30,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="sql">The SQL.</param>
         /// <returns>The result of the query</returns>
-        [InspectionIgnored]
+        [ExcludeFromTransaction]
         public object ExecuteNonQuery(string sql)
         {
             var query = this.Session.CreateSQLQuery(sql);
@@ -41,7 +41,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Executes the specified SQL.
         /// </summary>
         /// <param name="sql">The SQL.</param>
-        [InspectionIgnored]
+        [ExcludeFromTransaction]
         public void ExecuteSql(string sql)
         {
             var regex = new Regex(";", RegexOptions.IgnoreCase | RegexOptions.Multiline);
@@ -66,7 +66,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         ///   <c>true</c> if the database is empty; otherwise, <c>false</c>.
         /// </returns>
-        [InspectionIgnored]
+        [ExcludeFromTransaction]
         public bool IsDatabaseEmpty()
         {
             var sql = "SELECT count(*) FROM sqlite_sequence WHERE seq > 0";
