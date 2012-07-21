@@ -22,4 +22,8 @@ This list is all the features implemented into nDoctor:
    * Record
    * Directory
   * Edit a record
+  * Edit macros
+   * Add a new macro
+   * Edit an existing macro
+   * Remove a macro
    
