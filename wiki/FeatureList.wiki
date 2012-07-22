@@ -70,6 +70,4 @@ This list is all the features implemented into nDoctor:
  * *Calendar*
   * Add a new appointment.
   * Remove an appointment.
-  * Add an appointment category
-
- [`Work in progress...`]  
+  * Add an appointment category 
