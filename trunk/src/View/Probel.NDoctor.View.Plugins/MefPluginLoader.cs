@@ -21,18 +21,28 @@ namespace Probel.NDoctor.View.Plugins
     using System.ComponentModel.Composition;
     using System.ComponentModel.Composition.Hosting;
     using System.Globalization;
+    using System.IO;
     using System.Threading;
 
     using StructureMap;
-    using System.IO;
 
     public class MefPluginLoader : LogObject, IPluginLoader
     {
+        #region Fields
+
         private readonly string Repository = @".\Plugins";
+
+        #endregion Fields
+
+        #region Constructors
+
         public MefPluginLoader(string repository)
         {
             this.Repository = repository;
         }
+
+        #endregion Constructors
+
         #region Methods
 
         public void RetrievePlugins(PluginContainer container, IPluginHost host)
