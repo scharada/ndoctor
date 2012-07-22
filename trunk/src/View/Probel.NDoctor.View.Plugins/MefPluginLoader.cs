@@ -23,51 +23,34 @@ namespace Probel.NDoctor.View.Plugins
     using System.Globalization;
     using System.Threading;
 
-    using Probel.NDoctor.View.Plugins.Configuration;
-
     using StructureMap;
+    using System.IO;
 
     public class MefPluginLoader : LogObject, IPluginLoader
     {
-        #region Fields
-
-        private IPluginConfigurationLoader configurationLoader = ObjectFactory.GetInstance<IPluginConfigurationLoader>();
-        private List<PluginConfiguration> pluginConfiguration = new List<PluginConfiguration>();
-
-        #endregion Fields
-
+        private readonly string Repository = @".\Plugins";
+        public MefPluginLoader(string repository)
+        {
+            this.Repository = repository;
+        }
         #region Methods
 
         public void RetrievePlugins(PluginContainer container, IPluginHost host)
         {
-            this.pluginConfiguration = configurationLoader.LoadConfiguration();
             this.Compose(container, host);
         }
 
         private void Compose(PluginContainer pluginContainer, IPluginHost host)
         {
-            Logger.DebugFormat("Found {0} plugin(s) in configuration file", this.pluginConfiguration.Count);
-
-            var activatedPluginCount = 0;
-            var deactivatedPluginCount = 0;
-
             var catalog = new AggregateCatalog();
-
-            foreach (var plugin in this.pluginConfiguration)
+            var count = 0;
+            foreach (var directory in Directory.GetDirectories(Repository))
             {
-                var directory = configurationLoader.GetPluginDir(plugin);
-                this.Logger.DebugFormat("\tDir: {0}", directory);
-
-                if (plugin.IsActivated)
-                {
-                    catalog.Catalogs.Add(new DirectoryCatalog(directory));
-                    activatedPluginCount++;
-                }
-                else deactivatedPluginCount++;
+                Logger.DebugFormat("Found plugin in '{0}'", directory);
+                catalog.Catalogs.Add(new DirectoryCatalog(directory));
+                count++;
             }
-
-            this.Logger.DebugFormat("Activated plugin(s): {0}. Deactivated plugin(s): {1}", activatedPluginCount, deactivatedPluginCount);
-
+            Logger.InfoFormat("{0} plugin(s) found and loaded", count);
             var container = new CompositionContainer(catalog);
             container.ComposeExportedValue<Version>("version", host.HostVersion);
             container.ComposeExportedValue<CultureInfo>("cultureInfo", Thread.CurrentThread.CurrentUICulture);

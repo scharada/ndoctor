@@ -33,7 +33,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Core.Model;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins.Configuration;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
 
@@ -223,19 +222,13 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         private void ConfigureStructureMap()
         {
-            string configFile = "Plugins.config.xml";
-            string configPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Plugins\");
-            string xPath = @"/Plugins/Plugin";
+            string repository = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Plugins\");
 
             this.Logger.Info("Configuring StructureMap...");
             ObjectFactory.Configure(x =>
              {
-                 x.For<IPluginLoader>().Add<MefPluginLoader>();
-
-                 x.For<IPluginConfigurationLoader>().Add<XmlPluginConfigurationLoader>()
-                     .Ctor<string>("configPath").Is(c => configPath)
-                     .Ctor<string>("configFile").Is(c => configFile)
-                     .Ctor<string>("xPath").Is(c => xPath);
+                 x.For<IPluginLoader>().Add<MefPluginLoader>()
+                     .Ctor<string>("repository").Is(repository);
              });
         }
 

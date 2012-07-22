@@ -92,7 +92,6 @@
     <Compile Include="Helpers\PluginContext.cs" />
     <Compile Include="Helpers\StatusType.cs" />
     <Compile Include="IPlugin.cs" />
-    <Compile Include="Configuration\IPluginConfigurationLoader.cs" />
     <Compile Include="LogObject.cs" />
     <Compile Include="MefPluginLoader.cs" />
     <Compile Include="MenuData\RibbonComboBoxData.cs" />
@@ -112,8 +111,6 @@
     <Compile Include="Plugin.cs" />
     <Compile Include="IPluginHost.cs" />
     <Compile Include="IPluginLoader.cs" />
-    <Compile Include="Configuration\XmlPluginConfigurationLoader.cs" />
-    <Compile Include="Configuration\PluginConfiguration.cs" />
     <Compile Include="PluginContainer.cs" />
     <Compile Include="PluginValidator.cs" />
     <Compile Include="Properties\Messages.Designer.cs">
