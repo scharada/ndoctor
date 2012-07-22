@@ -13,6 +13,7 @@
 
     using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
 
@@ -135,9 +136,11 @@
             if (found) throw new ExistingItemException();
 
             if (item.IsDefault) this.ReplaceDefaultUser();
+
             this.Session.Flush();
 
             var entity = Mapper.Map<UserDto, User>(item);
+            if (string.IsNullOrWhiteSpace(entity.Password)) throw new BusinessLogicException(Messages.Validation_PasswordCantBeEmpty);
 
             if (this.IsFirstUser()) { entity.IsSuperAdmin = true; }
             return (long)this.Session.Save(entity);
@@ -520,14 +523,14 @@
 
         private void ReplaceDefaultUser()
         {
-            var users = (from user in this.Session.Query<User>()
-                         where user.IsDefault == true
-                         select user).ToList();
+            var user = (from u in this.Session.Query<User>()
+                        where u.IsDefault == true
+                        select u).FirstOrDefault();
 
-            if (users.Count == 0) return;
+            if (user == null) return;
 
-            users[0].IsDefault = false;
-            this.Session.Update(users[0]);
+            user.IsDefault = false;
+            this.Session.Update(user);
         }
 
         private void Save(Entity[] entities)
