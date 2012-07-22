@@ -249,4 +249,8 @@
     <value>La macro n'est pas valide ou est mal formée</value>
     <comment>The macro is not valid or is malformed</comment>
   </data>
+  <data name="Ex_ArgumentException_NotBaseComponent" xml:space="preserve">
+    <value>Le composant n'est pas de type 'BaseComponent' mais de type '{0}'!</value>
+    <comment>The component is not of type 'BaseComponent' but of type '{0}'!</comment>
+  </data>
 </root>

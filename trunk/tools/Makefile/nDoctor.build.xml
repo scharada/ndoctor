@@ -97,9 +97,6 @@
     </copy>
 
     <echo message="Deactivate debug plugin if exists"/>
-    <loadfile file="${nest-dir}\Plugins\plugins.config.xml" property="file-content"/>
-    <echo file="${nest-dir}\Plugins\plugins.config.xml"
-          message="${string::replace(file-content, '  &lt;Plugin name=&quot;Debug Tools&quot;            path=&quot;DebugTools&quot;          activated=&quot;true&quot;/&gt;','')}"/>
     <delete dir="${nest-dir}\Plugins\DebugTools" failonerror="false"/>
 
     <loadfile file="${code-dir}\src\Version.cs" property="version-file"/>

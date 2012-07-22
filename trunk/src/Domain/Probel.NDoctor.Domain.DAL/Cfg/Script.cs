@@ -27,6 +27,8 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
     using log4net;
 
+    using Probel.Helpers.Assertion;
+    using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DTO;
@@ -57,12 +59,6 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                 var editcalendar = new TaskDto(To.EditCalendar) { Name = Messages.Task_EditCalendar, Notes = Messages.Explanation_EditCalendar };
                 CheckTaksNumber(administer, metawrite, read, write, editcalendar);
 
-                component.Create(administer);
-                component.Create(metawrite);
-                component.Create(read);
-                component.Create(write);
-                component.Create(editcalendar);
-
                 var administrator = BuildRole(Messages.Role_Administrator, Messages.Explanation_Administrator
                     , administer, metawrite, read, write, editcalendar);
 
@@ -72,23 +68,36 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                 var secretary = BuildRole(Messages.Role_Secretary, Messages.Explanation_Secretary
                     , metawrite, read, editcalendar);
 
-                component.Create(administrator);
-                component.Create(doctor);
-                component.Create(secretary);
+                if (component is BaseComponent)
+                {
+                    using ((component as BaseComponent).Session = DalConfigurator.SessionFactory.OpenSession())
+                    {
+                        component.Create(administer);
+                        component.Create(metawrite);
+                        component.Create(read);
+                        component.Create(write);
+                        component.Create(editcalendar);
 
-                //Uncomment to create a superadmin as a first user
-                //var superadmin = new UserDto(true) { FirstName = "Superadmin", LastName = "Superadmin", AssignedRole = administrator, IsDefault = true };
-                //component.Create(superadmin);
-                //component.Update(superadmin, "superadmin"); //Set a default password
+                        component.Create(administrator);
+                        component.Create(doctor);
+                        component.Create(secretary);
 
-                component.Create(new TagDto(TagCategory.Prescription) { Name = Messages.Tag_Default_Prescription });
+                        //Uncomment to create a superadmin as a first user
+                        //var superadmin = new UserDto(true) { FirstName = "Superadmin", LastName = "Superadmin", AssignedRole = administrator, IsDefault = true };
+                        //component.Create(superadmin);
+                        //component.Update(superadmin, "superadmin"); //Set a default password
+
+                        component.Create(new TagDto(TagCategory.Prescription) { Name = Messages.Tag_Default_Prescription });
+                    }
+                }
+                else { throw new ArgumentException(Messages.Ex_ArgumentException_NotBaseComponent.FormatWith(component.GetType().Name)); }
 
                 Logger.Info("Script is done...");
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Logger.Warn("Script failed");
+                Logger.Warn("Script failed", ex);
                 throw;
             }
         }

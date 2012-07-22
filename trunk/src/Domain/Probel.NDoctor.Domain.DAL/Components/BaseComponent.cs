@@ -54,8 +54,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public BaseComponent()
         {
             this.Logger = LogManager.GetLogger(this.GetType());
-            this.Logger.DebugFormat("\t[{0}] Opening session", this.GetType().Name);
-            this.OpenSession();
         }
 
         #endregion Constructors
@@ -766,20 +764,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return result;
         }
 
-        private void OpenSession()
-        {
-            if (Session == null || !Session.IsOpen)
-                this.Session = DalConfigurator.SessionFactory.OpenSession();
-            else throw new DalSessionException(Messages.Msg_ErrorSessionAlreadyOpenException);
-        }
-
         #endregion Methods
-
-        #region Other
-
-        //private Action<object> dispose;
-        //private Func<object, object> init;
-
-        #endregion Other
     }
 }

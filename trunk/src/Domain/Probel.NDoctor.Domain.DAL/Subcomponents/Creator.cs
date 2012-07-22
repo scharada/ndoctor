@@ -315,12 +315,7 @@
         public long Create(TaskDto task)
         {
             var entity = Mapper.Map<TaskDto, Task>(task);
-            using (var tx = this.Session.Transaction)
-            {
-                tx.Begin();
-                var id = (long)this.Session.Save(entity);
-                tx.Commit();
-            }
+            var id = (long)this.Session.Save(entity);
             Mapper.Map<Task, TaskDto>(entity, task);
             return entity.Id;
         }

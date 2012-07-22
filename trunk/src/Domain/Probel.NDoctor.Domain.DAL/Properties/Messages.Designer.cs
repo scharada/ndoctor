@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Domain.DAL.Properties
-{
-
-
+namespace Probel.NDoctor.Domain.DAL.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -57,6 +57,15 @@ namespace Probel.NDoctor.Domain.DAL.Properties
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The component is not of type &apos;BaseComponent&apos; but of type &apos;{0}&apos;!.
+        /// </summary>
+        internal static string Ex_ArgumentException_NotBaseComponent {
+            get {
+                return ResourceManager.GetString("Ex_ArgumentException_NotBaseComponent", resourceCulture);
             }
         }
         

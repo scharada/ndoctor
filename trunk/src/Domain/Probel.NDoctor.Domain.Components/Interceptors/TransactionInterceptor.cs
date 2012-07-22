@@ -33,15 +33,17 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
 
         public override void Intercept(IInvocation invocation)
         {
-            if (invocation.InvocationTarget is BaseComponent
-                && !this.IsDecoratedWith<ExcludeFromTransactionAttribute>(invocation))
+            if (invocation.InvocationTarget is BaseComponent)
             {
                 var component = invocation.InvocationTarget as BaseComponent;
-                using (component.Session = DalConfigurator.SessionFactory.OpenSession())
-                using (var tx = component.Session.BeginTransaction())
+
+                if (!this.IsDecoratedWith<ExcludeFromTransactionAttribute>(invocation))
                 {
-                    invocation.Proceed();
-                    tx.Commit();
+                    this.WrapInTransaction(invocation, component);
+                }
+                else
+                {
+                    this.WrapInSession(invocation, component);
                 }
             }
             else
@@ -50,6 +52,24 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
                     , invocation.Method.Name
                     , invocation.TargetType.Name);
                 invocation.Proceed();
+            }
+        }
+
+        private void WrapInSession(IInvocation invocation, BaseComponent component)
+        {
+            using (component.Session = DalConfigurator.SessionFactory.OpenSession())
+            {
+                invocation.Proceed();
+            }
+        }
+
+        private void WrapInTransaction(IInvocation invocation, BaseComponent component)
+        {
+            using (component.Session = DalConfigurator.SessionFactory.OpenSession())
+            using (var tx = component.Session.BeginTransaction())
+            {
+                invocation.Proceed();
+                tx.Commit();
             }
         }
 
