@@ -26,5 +26,10 @@ This list is all the features implemented into nDoctor:
    * Add 
    * Update
    * Remove
+ * *Pathology manager*
+  * Add illness period
+  * Remove a illness period
+  * Add a new pathology
+  * Add a new pathology category
 
  [`Work in progress...`]  
