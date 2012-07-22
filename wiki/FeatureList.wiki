@@ -31,5 +31,20 @@ This list is all the features implemented into nDoctor:
   * Remove a illness period
   * Add a new pathology
   * Add a new pathology category
+ * *Prescription manager*
+  * Search prescriptions
+  * Delete a prescription
+  * Create a prescription
+  * Add a new drug
+  * Add a new drug category
+ * *BMI manager*
+  * Add a new BMI entry (Keeps height of connected patient)
+  * Remove a BMI entry
+ * *Picture manager*
+  * Add a new picture (catégory - notes - time)
+  * Add a picture category
+ * *Family manager*
+  * Add a family member
+  * Remove a family member
 
  [`Work in progress...`]  
