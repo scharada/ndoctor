@@ -108,6 +108,11 @@ namespace Probel.NDoctor.Domain.DAL.Entities
             set;
         }
 
+        public override string ToString()
+        {
+            return string.Format("{0} Rtf: {1}", base.ToString(), this.Rtf);
+        }
+
         #endregion Properties
     }
 }

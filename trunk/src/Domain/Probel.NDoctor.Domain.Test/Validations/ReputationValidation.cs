@@ -25,14 +25,14 @@ namespace Probel.NDoctor.Domain.Test.Validations
 
     [TestFixture]
     [Category(Categories.Validation)]
-    public class Tag
+    public class ReputationValidation
     {
         #region Methods
 
         [Test]
         public void IsInvalid()
         {
-            var item = new TagDto(TagCategory.Appointment)
+            var item = new ReputationDto()
             {
                 Name = string.Empty,
             };
@@ -42,7 +42,7 @@ namespace Probel.NDoctor.Domain.Test.Validations
         [Test]
         public void IsValid()
         {
-            var item = new TagDto(TagCategory.Appointment)
+            var item = new ReputationDto()
             {
                 Name = Guid.NewGuid().ToString(),
             };

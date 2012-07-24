@@ -14,40 +14,21 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Domain.Test.Validations
+namespace Probel.NDoctor.Domain.DAL.Mementos
 {
-    using System;
-
-    using NUnit.Framework;
-
-    using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Domain.Test.Helpers;
-
-    [TestFixture]
-    [Category(Categories.Validation)]
-    public class Pathology
+    /// <summary>
+    /// Generic memento.
+    /// </summary>
+    /// <typeparam name="T">The type to save into the memento</typeparam>
+    public interface IMemento<T>
     {
         #region Methods
 
-        [Test]
-        public void IsInvalid()
-        {
-            var item = new PathologyDto()
-            {
-                Name = string.Empty,
-            };
-            Assert.IsFalse(item.IsValid());
-        }
-
-        [Test]
-        public void IsValid()
-        {
-            var item = new PathologyDto()
-            {
-                Name = Guid.NewGuid().ToString(),
-            };
-            Assert.IsTrue(item.IsValid());
-        }
+        /// <summary>
+        /// Saves the state.
+        /// </summary>
+        /// <param name="item">The item to save.</param>
+        void SaveState(T item);
 
         #endregion Methods
     }

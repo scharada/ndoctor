@@ -16,43 +16,57 @@
 */
 namespace Probel.NDoctor.Domain.Test.Validations
 {
-    using System;
-
     using NUnit.Framework;
 
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.Test.Helpers;
 
-    using Assert = NUnit.Framework.Assert;
-
     [TestFixture]
     [Category(Categories.Validation)]
-    public class Appointment
+    public class BmiValidation
     {
         #region Methods
 
         [Test]
-        public void IsInvalid_Subject()
+        public void IsInvalid_TooHeavy()
         {
-            var now = DateTime.Now;
-            var item = new AppointmentDto()
+            var item = new BmiDto()
             {
-                EndTime = now.AddHours(4),
-                StartTime = now,
-                Subject = string.Empty,
+                Weight = 501,
+                Height = 150,
             };
             Assert.IsFalse(item.IsValid());
         }
 
         [Test]
-        public void IsInvalid_Time()
+        public void IsInvalid_TooHigh()
         {
-            var now = DateTime.Now;
-            var item = new AppointmentDto()
+            var item = new BmiDto()
             {
-                EndTime = now,
-                StartTime = now.AddHours(4),
-                Subject = Guid.NewGuid().ToString(),
+                Height = 301,
+                Weight = 150,
+            };
+            Assert.IsFalse(item.IsValid());
+        }
+
+        [Test]
+        public void IsInvalid_TooLight()
+        {
+            var item = new BmiDto()
+            {
+                Weight = 0.999F,
+                Height = 150,
+            };
+            Assert.IsFalse(item.IsValid());
+        }
+
+        [Test]
+        public void IsInvalid_TooTiny()
+        {
+            var item = new BmiDto()
+            {
+                Height = 1,
+                Weight = 150,
             };
             Assert.IsFalse(item.IsValid());
         }
@@ -60,12 +74,10 @@ namespace Probel.NDoctor.Domain.Test.Validations
         [Test]
         public void IsValid()
         {
-            var now = DateTime.Now;
-            var item = new AppointmentDto()
+            var item = new BmiDto()
             {
-                EndTime = now.AddHours(4),
-                StartTime = now,
-                Subject = Guid.NewGuid().ToString(),
+                Height = 300,
+                Weight = 500,
             };
             Assert.IsTrue(item.IsValid());
         }

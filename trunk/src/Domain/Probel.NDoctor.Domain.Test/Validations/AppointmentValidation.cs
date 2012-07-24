@@ -23,29 +23,36 @@ namespace Probel.NDoctor.Domain.Test.Validations
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.Test.Helpers;
 
+    using Assert = NUnit.Framework.Assert;
+
     [TestFixture]
     [Category(Categories.Validation)]
-    public class Prescription
+    public class AppointmentValidation
     {
         #region Methods
 
         [Test]
-        public void IsInvalid_NoDrug()
+        public void IsInvalid_Subject()
         {
-            var item = new PrescriptionDto()
+            var now = DateTime.Now;
+            var item = new AppointmentDto()
             {
-                Notes = Guid.NewGuid().ToString(),
+                EndTime = now.AddHours(4),
+                StartTime = now,
+                Subject = string.Empty,
             };
             Assert.IsFalse(item.IsValid());
         }
 
         [Test]
-        public void IsInvalid_NoNotes()
+        public void IsInvalid_Time()
         {
-            var item = new PrescriptionDto()
+            var now = DateTime.Now;
+            var item = new AppointmentDto()
             {
-                Drug = new DrugDto(),
-                Notes = string.Empty,
+                EndTime = now,
+                StartTime = now.AddHours(4),
+                Subject = Guid.NewGuid().ToString(),
             };
             Assert.IsFalse(item.IsValid());
         }
@@ -53,10 +60,12 @@ namespace Probel.NDoctor.Domain.Test.Validations
         [Test]
         public void IsValid()
         {
-            var item = new PrescriptionDto()
+            var now = DateTime.Now;
+            var item = new AppointmentDto()
             {
-                Drug = new DrugDto(),
-                Notes = Guid.NewGuid().ToString(),
+                EndTime = now.AddHours(4),
+                StartTime = now,
+                Subject = Guid.NewGuid().ToString(),
             };
             Assert.IsTrue(item.IsValid());
         }

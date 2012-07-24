@@ -25,14 +25,14 @@ namespace Probel.NDoctor.Domain.Test.Validations
 
     [TestFixture]
     [Category(Categories.Validation)]
-    public class MedicalRecordFolder
+    public class RoleValidation
     {
         #region Methods
 
         [Test]
         public void IsInvalid()
         {
-            var item = new MedicalRecordFolderDto()
+            var item = new RoleDto()
             {
                 Name = string.Empty,
             };
@@ -42,7 +42,7 @@ namespace Probel.NDoctor.Domain.Test.Validations
         [Test]
         public void IsValid()
         {
-            var item = new MedicalRecordFolderDto()
+            var item = new RoleDto()
             {
                 Name = Guid.NewGuid().ToString(),
             };

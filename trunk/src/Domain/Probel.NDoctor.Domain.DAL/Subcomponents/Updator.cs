@@ -36,6 +36,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
     using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.DAL.Mementos;
 
     internal class Updator
     {
@@ -174,7 +175,11 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             Mapper.Map<MedicalRecordDto, MedicalRecord>(item, entity);
 
             entity.Tag = tag;
-            this.Session.Merge(entity);
+
+            //Save the state
+            new MedicalRecordMemento().SaveState(entity);
+
+            this.Session.Update(entity);
         }
 
         /// <summary>

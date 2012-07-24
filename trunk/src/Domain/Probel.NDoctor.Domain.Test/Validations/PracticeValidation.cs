@@ -25,27 +25,50 @@ namespace Probel.NDoctor.Domain.Test.Validations
 
     [TestFixture]
     [Category(Categories.Validation)]
-    public class Profession
+    public class PracticeValidation
     {
         #region Methods
 
         [Test]
         public void IsInvalid()
         {
-            var item = new ProfessionDto()
+            var item = new PracticeDto()
             {
                 Name = string.Empty,
             };
+
+            Assert.IsFalse(item.IsValid());
+        }
+
+        [Test]
+        public void IsInvalid_Light()
+        {
+            var item = new LightPracticeDto()
+            {
+                Name = string.Empty,
+            };
+
             Assert.IsFalse(item.IsValid());
         }
 
         [Test]
         public void IsValid()
         {
-            var item = new ProfessionDto()
+            var item = new PracticeDto()
             {
                 Name = Guid.NewGuid().ToString(),
             };
+            Assert.IsTrue(item.IsValid());
+        }
+
+        [Test]
+        public void IsValid_Light()
+        {
+            var item = new LightPracticeDto()
+            {
+                Name = Guid.NewGuid().ToString(),
+            };
+
             Assert.IsTrue(item.IsValid());
         }
 

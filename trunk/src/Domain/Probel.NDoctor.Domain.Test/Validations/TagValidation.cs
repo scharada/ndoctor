@@ -20,20 +20,19 @@ namespace Probel.NDoctor.Domain.Test.Validations
 
     using NUnit.Framework;
 
-    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.Test.Helpers;
 
     [TestFixture]
     [Category(Categories.Validation)]
-    public class Task
+    public class TagValidation
     {
         #region Methods
 
         [Test]
         public void IsInvalid()
         {
-            var item = new TaskDto(To.Write)
+            var item = new TagDto(TagCategory.Appointment)
             {
                 Name = string.Empty,
             };
@@ -43,7 +42,7 @@ namespace Probel.NDoctor.Domain.Test.Validations
         [Test]
         public void IsValid()
         {
-            var item = new TaskDto(To.Write)
+            var item = new TagDto(TagCategory.Appointment)
             {
                 Name = Guid.NewGuid().ToString(),
             };

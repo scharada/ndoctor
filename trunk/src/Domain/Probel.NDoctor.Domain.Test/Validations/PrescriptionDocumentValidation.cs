@@ -25,16 +25,27 @@ namespace Probel.NDoctor.Domain.Test.Validations
 
     [TestFixture]
     [Category(Categories.Validation)]
-    public class Role
+    public class PrescriptionDocumentValidation
     {
         #region Methods
 
         [Test]
-        public void IsInvalid()
+        public void IsInvalid_EmptyName()
         {
-            var item = new RoleDto()
+            var item = new PrescriptionDocumentDto()
             {
-                Name = string.Empty,
+                Title = string.Empty,
+            };
+            item.Prescriptions.Add(new PrescriptionDto());
+            Assert.IsFalse(item.IsValid());
+        }
+
+        [Test]
+        public void IsInvalid_NoDocument()
+        {
+            var item = new PrescriptionDocumentDto()
+            {
+                Title = Guid.NewGuid().ToString(),
             };
             Assert.IsFalse(item.IsValid());
         }
@@ -42,10 +53,11 @@ namespace Probel.NDoctor.Domain.Test.Validations
         [Test]
         public void IsValid()
         {
-            var item = new RoleDto()
+            var item = new PrescriptionDocumentDto()
             {
-                Name = Guid.NewGuid().ToString(),
+                Title = Guid.NewGuid().ToString(),
             };
+            item.Prescriptions.Add(new PrescriptionDto());
             Assert.IsTrue(item.IsValid());
         }
 

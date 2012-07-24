@@ -16,57 +16,26 @@
 */
 namespace Probel.NDoctor.Domain.Test.Validations
 {
+    using System;
+
     using NUnit.Framework;
 
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.Test.Helpers;
 
     [TestFixture]
     [Category(Categories.Validation)]
-    public class Bmi
+    public class TaskValidation
     {
         #region Methods
 
         [Test]
-        public void IsInvalid_TooHeavy()
+        public void IsInvalid()
         {
-            var item = new BmiDto()
+            var item = new TaskDto(To.Write)
             {
-                Weight = 501,
-                Height = 150,
-            };
-            Assert.IsFalse(item.IsValid());
-        }
-
-        [Test]
-        public void IsInvalid_TooHigh()
-        {
-            var item = new BmiDto()
-            {
-                Height = 301,
-                Weight = 150,
-            };
-            Assert.IsFalse(item.IsValid());
-        }
-
-        [Test]
-        public void IsInvalid_TooLight()
-        {
-            var item = new BmiDto()
-            {
-                Weight = 0.999F,
-                Height = 150,
-            };
-            Assert.IsFalse(item.IsValid());
-        }
-
-        [Test]
-        public void IsInvalid_TooTiny()
-        {
-            var item = new BmiDto()
-            {
-                Height = 1,
-                Weight = 150,
+                Name = string.Empty,
             };
             Assert.IsFalse(item.IsValid());
         }
@@ -74,10 +43,9 @@ namespace Probel.NDoctor.Domain.Test.Validations
         [Test]
         public void IsValid()
         {
-            var item = new BmiDto()
+            var item = new TaskDto(To.Write)
             {
-                Height = 300,
-                Weight = 500,
+                Name = Guid.NewGuid().ToString(),
             };
             Assert.IsTrue(item.IsValid());
         }

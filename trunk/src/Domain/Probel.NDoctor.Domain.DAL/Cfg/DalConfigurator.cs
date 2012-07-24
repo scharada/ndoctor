@@ -33,6 +33,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
     using Probel.NDoctor.Domain.DTO.Exceptions;
 
     using NHConfiguration = NHibernate.Cfg.Configuration;
+    using FluentNHibernate.Conventions;
 
     public class DalConfigurator
     {
@@ -136,10 +137,14 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
         {
             sessionFactory = this.CreateSessionFactory();
 
-            AutoMapperMapping.Configure();
+            this.ConfigureAutoMapper();
             this.IsConfigured = true;
         }
 
+        public void ConfigureAutoMapper()
+        {
+            AutoMapperMapping.Configure();
+        }
         private AutoPersistenceModel CreateModel()
         {
             return AutoMap.AssemblyOf<Entity>(new CustomAutomappingConfiguration())
@@ -155,7 +160,15 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                         patient.HasMany<Appointment>(x => x.Appointments).KeyColumn("Patient_Id");
                     })
 
-                    .Conventions.Add(DefaultCascade.SaveUpdate());
+                    .Conventions.Add(this.MappingConvention);
+        }
+
+        private IHibernateMappingConvention MappingConvention
+        {
+            get
+            {
+                return DefaultCascade.SaveUpdate();
+            }
         }
 
         private ISessionFactory CreateSessionFactory()
@@ -168,7 +181,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                      .Add(this.CreateModel());
 
                     m.FluentMappings
-                     .Conventions.Add(DefaultCascade.None());
+                     .Conventions.Add(this.MappingConvention);
                 })
             .ExposeConfiguration(setupConfiguration)
             .BuildSessionFactory();

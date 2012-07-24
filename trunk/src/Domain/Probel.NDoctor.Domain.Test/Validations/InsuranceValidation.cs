@@ -16,6 +16,8 @@
 */
 namespace Probel.NDoctor.Domain.Test.Validations
 {
+    using System;
+
     using NUnit.Framework;
 
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -23,16 +25,26 @@ namespace Probel.NDoctor.Domain.Test.Validations
 
     [TestFixture]
     [Category(Categories.Validation)]
-    public class IllnessHistory
+    public class InsuranceValidation
     {
         #region Methods
 
         [Test]
         public void IsInvalid()
         {
-            var item = new IllnessHistoryDto()
+            var item = new InsuranceDto()
             {
-                Patient = null,
+                Name = string.Empty,
+            };
+            Assert.IsFalse(item.IsValid());
+        }
+
+        [Test]
+        public void IsInvalid_Light()
+        {
+            var item = new LightInsuranceDto()
+            {
+                Name = string.Empty,
             };
             Assert.IsFalse(item.IsValid());
         }
@@ -40,9 +52,19 @@ namespace Probel.NDoctor.Domain.Test.Validations
         [Test]
         public void IsValid()
         {
-            var item = new IllnessHistoryDto()
+            var item = new InsuranceDto()
             {
-                Patient = new LightPatientDto(),
+                Name = Guid.NewGuid().ToString(),
+            };
+            Assert.IsTrue(item.IsValid());
+        }
+
+        [Test]
+        public void IsValid_Light()
+        {
+            var item = new LightInsuranceDto()
+            {
+                Name = Guid.NewGuid().ToString(),
             };
             Assert.IsTrue(item.IsValid());
         }

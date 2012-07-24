@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -16,9 +14,6 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-#endregion Header
-
 namespace Probel.NDoctor.Domain.Test.Validations
 {
     using System;
@@ -30,39 +25,26 @@ namespace Probel.NDoctor.Domain.Test.Validations
 
     [TestFixture]
     [Category(Categories.Validation)]
-    public class MedicalRecord
+    public class DrugValidation
     {
         #region Methods
 
         [Test]
-        public void IsInvalid_NoDate()
+        public void IsInvalid_Drug()
         {
-            var item = new MedicalRecordDto()
-            {
-                Name = Guid.NewGuid().ToString(),
-                CreationDate = DateTime.MinValue,
-            };
-            Assert.IsFalse(item.IsValid());
-        }
-
-        [Test]
-        public void IsInvalid_NoName()
-        {
-            var item = new MedicalRecordDto()
+            var item = new DrugDto()
             {
                 Name = string.Empty,
-                CreationDate = DateTime.Today,
             };
             Assert.IsFalse(item.IsValid());
         }
 
         [Test]
-        public void IsValid()
+        public void IsValid_Drug()
         {
-            var item = new MedicalRecordDto()
+            var item = new DrugDto()
             {
                 Name = Guid.NewGuid().ToString(),
-                CreationDate = DateTime.Today,
             };
             Assert.IsTrue(item.IsValid());
         }

@@ -25,14 +25,14 @@ namespace Probel.NDoctor.Domain.Test.Validations
 
     [TestFixture]
     [Category(Categories.Validation)]
-    public class Drug
+    public class PathologyValidation
     {
         #region Methods
 
         [Test]
-        public void IsInvalid_Drug()
+        public void IsInvalid()
         {
-            var item = new DrugDto()
+            var item = new PathologyDto()
             {
                 Name = string.Empty,
             };
@@ -40,9 +40,9 @@ namespace Probel.NDoctor.Domain.Test.Validations
         }
 
         [Test]
-        public void IsValid_Drug()
+        public void IsValid()
         {
-            var item = new DrugDto()
+            var item = new PathologyDto()
             {
                 Name = Guid.NewGuid().ToString(),
             };

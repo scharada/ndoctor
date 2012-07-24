@@ -25,7 +25,7 @@ namespace Probel.NDoctor.Domain.Test.Validations
 
     [TestFixture]
     [Category(Categories.Validation)]
-    public class Person
+    public class PersonValidation
     {
         #region Methods
 

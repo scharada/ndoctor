@@ -83,10 +83,11 @@
     <Compile Include="Helpers\GlobalConfigurator.cs" />
     <Compile Include="Helpers\MockBaseComponent.cs" />
     <Compile Include="Helpers\PictureCreator.cs" />
-    <Compile Include="Validations\MedicalRecord.cs" />
-    <Compile Include="Validations\MedicalRecordFolder.cs" />
-    <Compile Include="Validations\Pathology.cs" />
-    <Compile Include="Validations\Practice.cs" />
+    <Compile Include="Mementos\TestMemento.cs" />
+    <Compile Include="Validations\MedicalRecordValidation.cs" />
+    <Compile Include="Validations\MedicalRecordFolderValidation.cs" />
+    <Compile Include="Validations\PathologyValidation.cs" />
+    <Compile Include="Validations\PracticeValidation.cs" />
     <Compile Include="Helpers\TestBase.cs" />
     <Compile Include="Components\TestBaseComponent.cs" />
     <Compile Include="Components\TestBaseComponentNullArguments.cs" />
@@ -100,21 +101,21 @@
     <Compile Include="Helpers\InMemoryDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Components\TestBaseComponentWhenNullSession.cs" />
-    <Compile Include="Validations\Appointment.cs" />
-    <Compile Include="Validations\Bmi.cs" />
+    <Compile Include="Validations\AppointmentValidation.cs" />
+    <Compile Include="Validations\BmiValidation.cs" />
     <Compile Include="Helpers\Categories.cs" />
-    <Compile Include="Validations\Person.cs" />
-    <Compile Include="Validations\Drug.cs" />
-    <Compile Include="Validations\Family.cs" />
-    <Compile Include="Validations\IllnessHistory.cs" />
-    <Compile Include="Validations\Insurance.cs" />
-    <Compile Include="Validations\Prescription.cs" />
-    <Compile Include="Validations\PrescriptionDocument.cs" />
-    <Compile Include="Validations\Profession.cs" />
-    <Compile Include="Validations\Reputation.cs" />
-    <Compile Include="Validations\Role.cs" />
-    <Compile Include="Validations\Tag.cs" />
-    <Compile Include="Validations\Task.cs" />
+    <Compile Include="Validations\PersonValidation.cs" />
+    <Compile Include="Validations\DrugValidation.cs" />
+    <Compile Include="Validations\FamilyValidation.cs" />
+    <Compile Include="Validations\IllnessHistoryValidation.cs" />
+    <Compile Include="Validations\InsuranceValidation.cs" />
+    <Compile Include="Validations\PrescriptionValidation.cs" />
+    <Compile Include="Validations\PrescriptionDocumentValidation.cs" />
+    <Compile Include="Validations\ProfessionValidation.cs" />
+    <Compile Include="Validations\ReputationValidation.cs" />
+    <Compile Include="Validations\RoleValidation.cs" />
+    <Compile Include="Validations\TagValidation.cs" />
+    <Compile Include="Validations\TaskValidation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -150,6 +151,7 @@
     <EmbeddedResource Include="Images\picture7.jpg" />
     <EmbeddedResource Include="Images\picture8.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

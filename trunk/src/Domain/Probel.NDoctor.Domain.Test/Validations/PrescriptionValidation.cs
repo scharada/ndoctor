@@ -25,16 +25,27 @@ namespace Probel.NDoctor.Domain.Test.Validations
 
     [TestFixture]
     [Category(Categories.Validation)]
-    public class Reputation
+    public class PrescriptionValidation
     {
         #region Methods
 
         [Test]
-        public void IsInvalid()
+        public void IsInvalid_NoDrug()
         {
-            var item = new ReputationDto()
+            var item = new PrescriptionDto()
             {
-                Name = string.Empty,
+                Notes = Guid.NewGuid().ToString(),
+            };
+            Assert.IsFalse(item.IsValid());
+        }
+
+        [Test]
+        public void IsInvalid_NoNotes()
+        {
+            var item = new PrescriptionDto()
+            {
+                Drug = new DrugDto(),
+                Notes = string.Empty,
             };
             Assert.IsFalse(item.IsValid());
         }
@@ -42,9 +53,10 @@ namespace Probel.NDoctor.Domain.Test.Validations
         [Test]
         public void IsValid()
         {
-            var item = new ReputationDto()
+            var item = new PrescriptionDto()
             {
-                Name = Guid.NewGuid().ToString(),
+                Drug = new DrugDto(),
+                Notes = Guid.NewGuid().ToString(),
             };
             Assert.IsTrue(item.IsValid());
         }

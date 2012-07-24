@@ -23,7 +23,7 @@ namespace Probel.NDoctor.Domain.Test.Validations
 
     [TestFixture]
     [Category(Categories.Validation)]
-    public class Family
+    public class FamilyValidation
     {
         #region Methods
 

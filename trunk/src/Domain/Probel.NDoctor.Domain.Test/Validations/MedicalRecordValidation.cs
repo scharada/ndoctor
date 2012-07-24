@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,6 +16,9 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#endregion Header
+
 namespace Probel.NDoctor.Domain.Test.Validations
 {
     using System;
@@ -25,27 +30,28 @@ namespace Probel.NDoctor.Domain.Test.Validations
 
     [TestFixture]
     [Category(Categories.Validation)]
-    public class PrescriptionDocument
+    public class MedicalRecordValidation
     {
         #region Methods
 
         [Test]
-        public void IsInvalid_EmptyName()
+        public void IsInvalid_NoDate()
         {
-            var item = new PrescriptionDocumentDto()
+            var item = new MedicalRecordDto()
             {
-                Title = string.Empty,
+                Name = Guid.NewGuid().ToString(),
+                CreationDate = DateTime.MinValue,
             };
-            item.Prescriptions.Add(new PrescriptionDto());
             Assert.IsFalse(item.IsValid());
         }
 
         [Test]
-        public void IsInvalid_NoDocument()
+        public void IsInvalid_NoName()
         {
-            var item = new PrescriptionDocumentDto()
+            var item = new MedicalRecordDto()
             {
-                Title = Guid.NewGuid().ToString(),
+                Name = string.Empty,
+                CreationDate = DateTime.Today,
             };
             Assert.IsFalse(item.IsValid());
         }
@@ -53,11 +59,11 @@ namespace Probel.NDoctor.Domain.Test.Validations
         [Test]
         public void IsValid()
         {
-            var item = new PrescriptionDocumentDto()
+            var item = new MedicalRecordDto()
             {
-                Title = Guid.NewGuid().ToString(),
+                Name = Guid.NewGuid().ToString(),
+                CreationDate = DateTime.Today,
             };
-            item.Prescriptions.Add(new PrescriptionDto());
             Assert.IsTrue(item.IsValid());
         }
 
