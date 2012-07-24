@@ -235,7 +235,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 }
                     , s => s.Id == this.SelectedRecord.Id);
 
-                this.Component.UpdateCabinet(PluginContext.Host.SelectedPatient, this.Cabinet);
+                this.Component.Update(this.Cabinet);
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RecordsSaved);
             }

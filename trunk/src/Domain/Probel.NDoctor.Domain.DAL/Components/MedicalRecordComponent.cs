@@ -177,9 +177,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <param name="cabinet">The cabinet.</param>
-        public void UpdateCabinet(LightPatientDto patient, MedicalRecordCabinetDto cabinet)
+        public void Update(MedicalRecordCabinetDto cabinet)
         {
-            new Updator(this.Session).Update(patient, cabinet);
+            new Updator(this.Session).Update(cabinet);
         }
 
         #endregion Methods

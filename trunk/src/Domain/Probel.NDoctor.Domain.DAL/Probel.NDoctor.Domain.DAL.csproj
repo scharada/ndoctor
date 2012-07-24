@@ -79,6 +79,7 @@
     <Compile Include="Components\PrescriptionComponent.cs" />
     <Compile Include="Components\SqlComponent.cs" />
     <Compile Include="Entities\Macro.cs" />
+    <Compile Include="Entities\MedicalRecordState.cs" />
     <Compile Include="Entities\Task.cs" />
     <Compile Include="EqualityComparers\TaskEqualityComparerOnName.cs" />
     <Compile Include="GrantedAttribute.cs" />

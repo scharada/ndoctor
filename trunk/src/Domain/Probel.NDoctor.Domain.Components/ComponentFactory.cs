@@ -45,12 +45,14 @@ namespace Probel.NDoctor.Domain.Components
     {
         #region Fields
 
+        /// <summary>
+        /// First instanciation into the static ctor because it needs the StructureMap configuration before.
+        /// </summary>
+        private static readonly AuthorisationInterceptor authorisationInterceptor;
         private static readonly ProxyGenerator generator = new ProxyGenerator(new PersistentProxyBuilder());
 
-        private AuthorisationInterceptor authorisationInterceptor;
         private bool componentLogginEnabled = false;
         private ILog logger = LogManager.GetLogger(typeof(ComponentFactory));
-        private LightUserDto user;
 
         #endregion Fields
 
@@ -119,6 +121,8 @@ namespace Probel.NDoctor.Domain.Components
                 //Authorisation policies
                 x.For<IAuthorisationPolicy>().Add<AuthorisationPolicy>();
             });
+
+            authorisationInterceptor = new AuthorisationInterceptor();
         }
 
         /// <summary>
@@ -128,9 +132,7 @@ namespace Probel.NDoctor.Domain.Components
         /// <param name="componentLogginEnabled">if set to <c>true</c> component loggin is enabled.</param>
         public ComponentFactory(LightUserDto user, bool componentLogginEnabled)
         {
-            this.user = user;
             this.componentLogginEnabled = componentLogginEnabled;
-            this.authorisationInterceptor = new AuthorisationInterceptor(user);
         }
 
         #endregion Constructors
@@ -143,7 +145,7 @@ namespace Probel.NDoctor.Domain.Components
         /// <param name="user">The user.</param>
         public void ConnectUser(LightUserDto user)
         {
-            this.user = user;
+            authorisationInterceptor.User = user;
         }
 
         public T GetInstance<T>()
@@ -172,7 +174,7 @@ namespace Probel.NDoctor.Domain.Components
 
             if (this.componentLogginEnabled) { interceptors.Add(new LogInterceptor()); }
             interceptors.Add(new TransactionInterceptor());
-            interceptors.Add(this.authorisationInterceptor);
+            interceptors.Add(authorisationInterceptor);
 
             return interceptors.ToArray();
         }

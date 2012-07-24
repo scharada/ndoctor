@@ -182,7 +182,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <param name="cabinet">The cabinet.</param>
-        public void Update(LightPatientDto patient, MedicalRecordCabinetDto cabinet)
+        public void Update(MedicalRecordCabinetDto cabinet)
         {
             cabinet.ForeachRecords(record =>
             {

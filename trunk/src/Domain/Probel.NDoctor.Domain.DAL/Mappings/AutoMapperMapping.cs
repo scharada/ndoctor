@@ -30,6 +30,7 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             MapEntityToDto();
             MapDtoToEntity();
             MapDtoToDto();
+            MapEntityToEntity();
 
             MedicalRecordMapping.Configure();
         }
@@ -121,6 +122,12 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<Task, TaskDto>()
                 .AfterMap((entity, dto) => Clean(dto))
                 .ConstructUsing(e => new TaskDto(e.RefName));
+        }
+
+        private static void MapEntityToEntity()
+        {
+            Mapper.CreateMap<MedicalRecord, MedicalRecordState>();
+            Mapper.CreateMap<MedicalRecordState, MedicalRecord>();
         }
 
         #endregion Methods

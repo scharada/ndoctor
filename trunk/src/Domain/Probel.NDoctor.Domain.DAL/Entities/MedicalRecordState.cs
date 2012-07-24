@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,15 +16,14 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#endregion Header
+
 namespace Probel.NDoctor.Domain.DAL.Entities
 {
     using System;
-    using System.Collections.Generic;
 
-    /// <summary>
-    /// This is the medical record of a patient
-    /// </summary>
-    public class MedicalRecord : Entity
+    public class MedicalRecordState : Entity
     {
         #region Constructors
 
@@ -30,9 +31,16 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         /// Initializes a new instance of the <see cref="MedicalRecord"/> class.
         /// Set the creation date to now
         /// </summary>
-        public MedicalRecord()
+        public MedicalRecordState(DateTime creationDate)
         {
-            this.PreviousStates = new List<MedicalRecordState>();
+            this.CreationDate = creationDate;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MedicalRecordState"/> class.
+        /// </summary>
+        public MedicalRecordState()
+        {
             this.CreationDate = DateTime.Now;
         }
 
@@ -74,11 +82,6 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         {
             get;
             set;
-        }
-
-        public virtual IList<MedicalRecordState> PreviousStates
-        {
-            get; set;
         }
 
         /// <summary>

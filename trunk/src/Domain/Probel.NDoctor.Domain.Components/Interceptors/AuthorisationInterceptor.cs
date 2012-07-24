@@ -45,18 +45,16 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
         private static readonly string[] ReadAuthorisations = new string[] { "find", "getall" };
         private static readonly string[] WriteAuthorisations = new string[] { "create", "remove", "update" };
 
-        private LightUserDto user;
-
         #endregion Fields
 
-        #region Constructors
+        #region Properties
 
-        public AuthorisationInterceptor(LightUserDto user)
+        public LightUserDto User
         {
-            this.user = user;
+            get; set;
         }
 
-        #endregion Constructors
+        #endregion Properties
 
         #region Methods
 
@@ -68,11 +66,8 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
             if (!this.IsDecoratedWith<InspectionIgnoredAttribute>(invocation))
             {
                 var name = invocation.MethodInvocationTarget.Name.ToLower();
-                if (this.user == null && authAttribute.ToLower() == To.Everyone.ToLower())
+                if (this.User == null && authAttribute.ToLower() == To.Everyone.ToLower())
                 {
-                    Logger.WarnFormat("No user connected, proceed the invocation of method {0} of assembly {1}"
-                        , invocation.Method.Name
-                        , invocation.TargetType.Name);
                     hasRight = true;
                 }
                 else if (!string.IsNullOrWhiteSpace(authAttribute))
@@ -81,11 +76,11 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
                 }
                 else if (this.IsWriteMethod(name))
                 {
-                    hasRight = policy.IsGranted(To.Write, this.user);
+                    hasRight = policy.IsGranted(To.Write, this.User);
                 }
                 else if (this.IsReadMethod(name))
                 {
-                    hasRight = policy.IsGranted(To.Read, this.user);
+                    hasRight = policy.IsGranted(To.Read, this.User);
                 }
             }
 
@@ -95,7 +90,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
                 Logger.WarnFormat("Not granted to execute {0}.{1} [Role: '{2}']"
                     , invocation.TargetType.Name
                     , invocation.Method.Name
-                    , (this.user != null && this.user.AssignedRole != null) ? this.user.AssignedRole.Name : "EMPTY");
+                    , (this.User != null && this.User.AssignedRole != null) ? this.User.AssignedRole.Name : "EMPTY");
                 throw new AuthorisationException(invocation.TargetType, invocation.Method);
             }
         }
@@ -128,7 +123,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
         private bool IsGrantedWithAttribute(IInvocation invocation)
         {
             var granted = GetAuthAttribute(invocation);
-            return policy.IsGranted(granted, this.user);
+            return policy.IsGranted(granted, this.User);
         }
 
         private bool IsReadMethod(string name)

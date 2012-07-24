@@ -93,9 +93,8 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <summary>
         /// Commits the changes on medical record cabinet.
         /// </summary>
-        /// <param name="patient">The patient.</param>
         /// <param name="cabinet">The cabinet.</param>
-        void UpdateCabinet(LightPatientDto patient, MedicalRecordCabinetDto cabinet);
+        void Update(MedicalRecordCabinetDto cabinet);
 
         #endregion Methods
     }
