@@ -180,7 +180,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
                                where p.Id == id
                                select p).FirstOrDefault();
 
-            if (fullPatient == null) throw new EntityNotFoundException(typeof(Patient));
+            if (fullPatient == null) { throw new EntityNotFoundException(typeof(Patient)); }
+
+            // Fix for patient created before issue 76: if address is null
+            // It's impossible to update the address with the databinding.
+            if (fullPatient.Address == null) { fullPatient.Address = new Address(); }
 
             return Mapper.Map<Patient, PatientDto>(fullPatient);
         }
