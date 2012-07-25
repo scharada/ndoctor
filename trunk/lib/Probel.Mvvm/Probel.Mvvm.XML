@@ -91,7 +91,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:Probel.Mvvm.Validation.ValidatableObject"/> class.
             </summary>
-            <param name="error">The error.</param>
+            <param name="validator">The validator in charge to validate the data of this instance.</param>
         </member>
         <member name="M:Probel.Mvvm.Validation.ValidatableObject.AddValidationRule``1(System.Linq.Expressions.Expression{System.Func{``0}},System.Func{System.Boolean},System.String)">
             <summary>
@@ -103,7 +103,7 @@
             <param name="validation">The validation condition. This returns <c>True</c> 
             if the property is valid; otherwise <c>False</c></param>
             <param name="error">The error to display if the property is not valid.</param>
-            <exception cref="!:ExistingRuleException">If a validation is already set for the specified property</exception>
+            <exception cref="T:Probel.Mvvm.Validation.ExistingValidationRuleException">If a validation is already set for the specified property</exception>
         </member>
         <member name="M:Probel.Mvvm.Validation.ValidatableObject.IsValid">
             <summary>
@@ -443,6 +443,31 @@
             Gets or sets the state. That's if this instance is clean, created, removed or updated
             </summary>
             <value>The state.</value>
+        </member>
+        <member name="T:Probel.Mvvm.DataBinding.RelayArgCommand">
+            <summary>
+            A command whose sole purpose is to relay its functionality to other
+            objects by invoking delegates. The default return value for the CanExecute
+            method is 'true'.
+            </summary>
+        </member>
+        <member name="F:Probel.Mvvm.DataBinding.RelayArgCommand.Empty">
+            <summary>
+            Null to inducate the command is empty
+            </summary>
+        </member>
+        <member name="M:Probel.Mvvm.DataBinding.RelayArgCommand.#ctor(System.Action{System.Object})">
+            <summary>
+            Initializes a new instance of the RelayCommand class
+            </summary>
+            <param name="execute">The execution logic.</param>
+        </member>
+        <member name="M:Probel.Mvvm.DataBinding.RelayArgCommand.#ctor(System.Action{System.Object},System.Func{System.Object,System.Boolean})">
+            <summary>
+            Initializes a new instance of the RelayCommand class
+            </summary>
+            <param name="execute">The execution logic.</param>
+            <param name="canExecute">The execution status logic.</param>
         </member>
     </members>
 </doc>
