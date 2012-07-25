@@ -31,6 +31,7 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         /// </summary>
         public Patient()
         {
+            this.Address = new Address();
             this.BmiHistory = new List<Bmi>();
             this.MedicalRecords = new List<MedicalRecord>();
             this.Pictures = new List<Picture>();
@@ -88,7 +89,8 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         /// </value>
         public virtual IList<Doctor> Doctors
         {
-            get; set;
+            get;
+            set;
         }
 
         /// <summary>
