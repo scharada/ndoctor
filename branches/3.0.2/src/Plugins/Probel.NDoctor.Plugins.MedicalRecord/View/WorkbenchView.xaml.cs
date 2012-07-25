@@ -36,7 +36,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
         {
             InitializeComponent();
             this.DataContext = new WorkbenchViewModel();
-            Context.RichTextBox = this.richTextBox;
+            TextEditor.Control = this.richTextBox;
+            TextEditor.LoosingFocus += (sender, e) => Keyboard.Focus(treeView);
             this.richTextBox.IsEnabled = false;
         }
 

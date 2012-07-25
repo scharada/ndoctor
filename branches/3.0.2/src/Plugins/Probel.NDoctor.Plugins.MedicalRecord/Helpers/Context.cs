@@ -16,17 +16,38 @@
 */
 namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
 {
+    using System;
+
     using Microsoft.Windows.Controls;
 
-    public static class Context
+    public static class TextEditor
     {
+        #region Events
+
+        public static event EventHandler LoosingFocus;
+
+        #endregion Events
+
         #region Properties
 
-        public static RichTextBox RichTextBox
+        public static RichTextBox Control
         {
-            get; set;
+            get;
+            set;
         }
 
         #endregion Properties
+
+        #region Methods
+
+        public static void UpdateBinding()
+        {
+            if (LoosingFocus != null && Control != null)
+            {
+                LoosingFocus(Control, EventArgs.Empty);
+            }
+        }
+
+        #endregion Methods
     }
 }

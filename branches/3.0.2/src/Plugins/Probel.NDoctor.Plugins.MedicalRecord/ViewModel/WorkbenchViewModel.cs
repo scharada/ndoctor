@@ -196,6 +196,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 Assert.IsNotNull(PluginContext.Host);
                 Assert.IsNotNull(PluginContext.Host.SelectedPatient);
 
+                TextEditor.UpdateBinding();
+
                 this.Cabinet.ForEachRecord(x =>
                 {
                     if (x.Rtf != this.selectedRecord.Rtf)
