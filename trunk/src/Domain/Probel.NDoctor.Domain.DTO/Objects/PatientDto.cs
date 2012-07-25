@@ -53,6 +53,18 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 
         #endregion Fields
 
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PatientDto"/> class.
+        /// </summary>
+        public PatientDto()
+        {
+            this.Address = new AddressDto();
+        }
+
+        #endregion Constructors
+
         #region Properties
 
         /// <summary>
