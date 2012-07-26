@@ -113,6 +113,14 @@ namespace Probel.NDoctor.Domain.DAL.Entities
             return string.Format("{0} Rtf: {1}", base.ToString(), this.Rtf);
         }
 
+        /// <summary>
+        /// Gets or sets the counter used to calculate the index into the previous states list.
+        /// </summary>
+        /// <value>
+        /// The counter.
+        /// </value>
+        public virtual int Counter { get; set; }
+
         #endregion Properties
     }
 }

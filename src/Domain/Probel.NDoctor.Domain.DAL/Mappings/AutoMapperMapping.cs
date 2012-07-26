@@ -126,8 +126,11 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
 
         private static void MapEntityToEntity()
         {
-            Mapper.CreateMap<MedicalRecord, MedicalRecordState>();
-            Mapper.CreateMap<MedicalRecordState, MedicalRecord>();
+            Mapper.CreateMap<MedicalRecord, MedicalRecordState>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
+
+            Mapper.CreateMap<MedicalRecordState, MedicalRecord>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
         }
 
         #endregion Methods
