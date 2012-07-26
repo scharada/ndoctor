@@ -30,7 +30,7 @@ namespace Probel.NDoctor.Domain.DAL.Mementos
 
     public class MedicalRecordMemento : IMemento<MedicalRecord>
     {
-        private const int MEMENTO_SIZE = 10;
+        private const int MEMENTO_SIZE = 50;
         #region Methods
 
         /// <summary>
