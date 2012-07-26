@@ -30,7 +30,7 @@ namespace Probel.NDoctor.Domain.DAL.Mementos
 
     public class MedicalRecordMemento : IMemento<MedicalRecord>
     {
-
+        private const int MEMENTO_SIZE = 10;
         #region Methods
 
         /// <summary>
@@ -41,16 +41,29 @@ namespace Probel.NDoctor.Domain.DAL.Mementos
         {
             var state = Mapper.Map<MedicalRecord, MedicalRecordState>(item);
 
-            state.LastUpdate = DateTime.Now;
-            state.Id = 0;//Clear the ID to mock a new entity
+            if (item.PreviousStates.Count >= MEMENTO_SIZE)
+            {
+                var index = (from c in item.PreviousStates
+                             select c).Max(e => e.Counter) + 1;
 
-            item.PreviousStates.Add(state);
+                /* The modulo calculation is used to find the index where to add the new state in the stack*/
+                Mapper.Map<MedicalRecordState, MedicalRecordState>(state, item.PreviousStates[index % MEMENTO_SIZE]);
+                item.PreviousStates[index % MEMENTO_SIZE].Counter = index;
+                item.PreviousStates[index % MEMENTO_SIZE].LastUpdate = DateTime.Now;
 
-            item.PreviousStates = (from s in item.PreviousStates
-                                   select s)
-                                     .OrderByDescending(e => e.LastUpdate)
-                                     .Take(10)
-                                     .ToList();
+                /* Reset the counter to avoid int overflow. After counting during two loops, everything is reset
+                 * such as it was the first time the stack was filled */
+                if (index % (MEMENTO_SIZE * 2) == MEMENTO_SIZE - 1)
+                {
+                    for (int i = 0; i < item.PreviousStates.Count; i++) { item.PreviousStates[i].Counter = i; }
+                }
+            }
+            else
+            {
+                state.LastUpdate = DateTime.Now;
+                state.Counter = item.PreviousStates.Count;
+                item.PreviousStates.Add(state);
+            }
         }
 
         #endregion Methods
