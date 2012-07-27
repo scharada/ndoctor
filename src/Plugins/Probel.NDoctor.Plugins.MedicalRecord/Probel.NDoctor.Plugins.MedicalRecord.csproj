@@ -97,10 +97,12 @@
     <Compile Include="Translations\AddFolderText.cs" />
     <Compile Include="Translations\AddRecordText.cs" />
     <Compile Include="Translations\MacroEditorText.cs" />
+    <Compile Include="Translations\RecordHistoryText.cs" />
     <Compile Include="Translations\WorkbenchText.cs" />
     <Compile Include="ViewModel\AddFolderViewModel.cs" />
     <Compile Include="ViewModel\AddRecordViewModel.cs" />
     <Compile Include="ViewModel\MacroEditorViewModel.cs" />
+    <Compile Include="ViewModel\RecordHistoryViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
     <Compile Include="View\AddFolderView.xaml.cs">
       <DependentUpon>AddFolderView.xaml</DependentUpon>
@@ -110,6 +112,9 @@
     </Compile>
     <Compile Include="View\MacroEditorView.xaml.cs">
       <DependentUpon>MacroEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RecordHistoryView.xaml.cs">
+      <DependentUpon>RecordHistoryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WorkbenchView.xaml.cs">
       <DependentUpon>WorkbenchView.xaml</DependentUpon>
@@ -171,6 +176,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\RecordHistoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\WorkbenchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -213,6 +222,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Undo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

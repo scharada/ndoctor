@@ -46,10 +46,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.MedicalRecord;component/Images\{0}.png";
 
+        private readonly ICommand AddFolderCommand;
+        private readonly ICommand AddRecordCommand;
+        private readonly ICommand NavigateWorkbenchCommand;
         private readonly ViewService ViewService = new ViewService();
 
-        private ICommand addFolderCommand;
-        private ICommand addRecordCommand;
         private RibbonToggleButtonData boldButton;
         private RibbonButtonData bulletsButton;
         private RibbonToggleButtonData centerAllignButton;
@@ -58,7 +59,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         private RibbonToggleButtonData italicButton;
         private RibbonToggleButtonData justifyAllignButton;
         private RibbonToggleButtonData leftAllignButton;
-        private ICommand navigateCommand;
         private RibbonButtonData numberingButton;
         private RibbonToggleButtonData rightAllignButton;
         private RibbonToggleButtonData underlineButton;
@@ -76,6 +76,10 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             this.InitialiseFontButtons();
             this.InitialiseParagraphButtons();
             this.ConfigureAutoMapper();
+
+            this.NavigateWorkbenchCommand = new RelayCommand(() => this.NavigateWorkbench(), () => this.CanNavigateWorkbench());
+            this.AddRecordCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddRecord, new AddRecordView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.AddFolderCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddFolder, new AddFolderView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
         }
 
         #endregion Constructors
@@ -119,11 +123,9 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
         private void BuildButtons()
         {
-            this.navigateCommand = new RelayCommand(() => this.NavigateAdd(), () => this.CanNavigateAdd());
-
             var navigateButton = new RibbonButtonData(Messages.Title_MedicalRecord
                 , imgUri.FormatWith("MedicalRecord")
-                , navigateCommand) { Order = 2 };
+                , this.NavigateWorkbenchCommand) { Order = 2 };
 
             PluginContext.Host.AddInHome(navigateButton, Groups.Managers);
         }
@@ -150,7 +152,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             PluginContext.Host.AddContextualMenu(this.contextualMenu);
         }
 
-        private bool CanNavigateAdd()
+        private bool CanNavigateWorkbench()
         {
             return PluginContext.Host.SelectedPatient != null;
         }
@@ -196,7 +198,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
         private void ConfigureSaveMenu(RibbonTabData tab)
         {
-            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.ViewService.GetViewModel(View).SaveCommand);
+            var revisionsButton = new RibbonButtonData(Messages.Btn_Revisions, imgUri.FormatWith("Undo"), this.ViewService.GetViewModel(this.View).ShowRevisionsCommand);
+            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.ViewService.GetViewModel(this.View).SaveCommand);
             var splitButton = this.ConfigureSplitButton();
             var macroButton = new RibbonButtonData(Messages.Title_Macro, imgUri.FormatWith("Edit"), new RelayCommand(
                 () =>
@@ -213,6 +216,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
             var cgroup = new RibbonGroupData(Messages.Menu_Actions, 1);
             cgroup.ButtonDataCollection.Add(saveButton);
+            cgroup.ButtonDataCollection.Add(revisionsButton);
             cgroup.ButtonDataCollection.Add(splitButton);
             cgroup.ButtonDataCollection.Add(macroButton);
             tab.GroupDataCollection.Add(cgroup);
@@ -220,12 +224,9 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
         private RibbonMenuButtonData ConfigureSplitButton()
         {
-            this.addRecordCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddRecord, new AddRecordView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
-            this.addFolderCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddFolder, new AddFolderView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
-
-            var splitButton = new RibbonMenuButtonData(Messages.Title_BtnAdd, imgUri.FormatWith("Add"), addRecordCommand);
-            var addRecordButton = new RibbonMenuItemData(Messages.Title_AddRecord, imgUri.FormatWith("Add"), addRecordCommand);
-            var addFolderButton = new RibbonMenuItemData(Messages.Title_AddFolder, imgUri.FormatWith("Add"), addFolderCommand);
+            var splitButton = new RibbonMenuButtonData(Messages.Title_BtnAdd, imgUri.FormatWith("Add"), AddRecordCommand);
+            var addRecordButton = new RibbonMenuItemData(Messages.Title_AddRecord, imgUri.FormatWith("Add"), AddRecordCommand);
+            var addFolderButton = new RibbonMenuItemData(Messages.Title_AddFolder, imgUri.FormatWith("Add"), AddFolderCommand);
 
             splitButton.ControlDataCollection.Add(addRecordButton);
             splitButton.ControlDataCollection.Add(addFolderButton);
@@ -313,7 +314,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             };
         }
 
-        private void NavigateAdd()
+        private void NavigateWorkbench()
         {
             try
             {

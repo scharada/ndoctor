@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Domain.DAL.Components
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -24,6 +25,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using NHibernate;
     using NHibernate.Linq;
 
+    using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Macro;
     using Probel.NDoctor.Domain.DAL.Subcomponents;
@@ -124,6 +126,17 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets the history of the specified medical record.
+        /// </summary>
+        /// <param name="record">The record.</param>
+        /// <returns>The items contained in the history</returns>
+        public IEnumerable<MedicalRecordStateDto> GetHistory(MedicalRecordDto record)
+        {
+            var history = this.Session.Get<MedicalRecord>(record.Id);
+            return Mapper.Map<IEnumerable<MedicalRecordState>, IEnumerable<MedicalRecordStateDto>>(history.PreviousStates);
+        }
+
+        /// <summary>
         /// Determines whether the specified macro is valid.
         /// </summary>
         /// <param name="macro"></param>
@@ -161,6 +174,22 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
             var builder = new MacroBuilder(p);
             return builder.Resolve(macro.Expression);
+        }
+
+        /// <summary>
+        /// Revert the specified medical record into the specified state
+        /// </summary>
+        /// <param name="record">The record.</param>
+        /// <param name="toState">The state.</param>
+        public void Revert(MedicalRecordDto record, MedicalRecordStateDto toState)
+        {
+            Assert.IsNotNull(toState);
+
+            record.Rtf = toState.Rtf;
+            record.Tag = toState.Tag;
+            record.LastUpdate = DateTime.Now;
+
+            new Updator(this.Session).Update(record);
         }
 
         /// <summary>

@@ -117,6 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Btn_Revisions" xml:space="preserve">
+    <value>Show revisions</value>
+    <comment>Show revisions</comment>
+  </data>
+  <data name="Btn_Rollback" xml:space="preserve">
+    <value>Charger cette révision</value>
+    <comment>Load this revision</comment>
+  </data>
   <data name="Btn_SearchFor" xml:space="preserve">
     <value>Search</value>
     <comment>Search</comment>
@@ -255,6 +263,10 @@
   <data name="Title_MedicalRecordTitle" xml:space="preserve">
     <value>{0} | Created {1} | Last update: {2}</value>
     <comment>{0} | Created {1} | Last update: {2}</comment>
+  </data>
+  <data name="Title_Rollback" xml:space="preserve">
+    <value>Historique des révisions</value>
+    <comment>Revisions history</comment>
   </data>
   <data name="Title_Save" xml:space="preserve">
     <value>Save</value>

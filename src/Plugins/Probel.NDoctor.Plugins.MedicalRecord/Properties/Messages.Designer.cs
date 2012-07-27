@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Plugins.MedicalRecord.Properties
-{
-
-
+namespace Probel.NDoctor.Plugins.MedicalRecord.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -57,6 +57,24 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Properties
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show revisions.
+        /// </summary>
+        internal static string Btn_Revisions {
+            get {
+                return ResourceManager.GetString("Btn_Revisions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Charger cette révision.
+        /// </summary>
+        internal static string Btn_Rollback {
+            get {
+                return ResourceManager.GetString("Btn_Rollback", resourceCulture);
             }
         }
         
@@ -390,6 +408,15 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Properties
         internal static string Title_MedicalRecordTitle {
             get {
                 return ResourceManager.GetString("Title_MedicalRecordTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Historique des révisions.
+        /// </summary>
+        internal static string Title_Rollback {
+            get {
+                return ResourceManager.GetString("Title_Rollback", resourceCulture);
             }
         }
         

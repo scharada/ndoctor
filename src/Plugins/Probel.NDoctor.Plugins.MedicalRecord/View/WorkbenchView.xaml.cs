@@ -35,7 +35,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
             InitializeComponent();
             this.DataContext = new WorkbenchViewModel();
             TextEditor.Control = this.richTextBox;
-            TextEditor.LoosingFocus += (sender, e) => Keyboard.Focus(treeView);
             this.richTextBox.IsEnabled = false;
         }
 
@@ -51,8 +50,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
 
                 if (this.treeView.SelectedItem is TitledMedicalRecordDto)
                 {
-                    viewModel.SaveOnUserAction();
-
                     viewModel.SelectedRecord = this.treeView.SelectedItem as TitledMedicalRecordDto;
                     viewModel.SelectedRecord.Clean();
 

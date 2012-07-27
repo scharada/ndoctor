@@ -77,6 +77,7 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<RoleDto, Role>();
             Mapper.CreateMap<TaskDto, Task>();
             Mapper.CreateMap<MacroDto, Macro>();
+            Mapper.CreateMap<MedicalRecordState, MedicalRecordStateDto>();
         }
 
         private static void MapEntityToDto()
