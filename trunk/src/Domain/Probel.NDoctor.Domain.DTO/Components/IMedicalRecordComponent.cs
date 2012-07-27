@@ -16,6 +16,8 @@
 */
 namespace Probel.NDoctor.Domain.DTO.Components
 {
+    using System.Collections.Generic;
+
     using Probel.NDoctor.Domain.DTO.Objects;
 
     /// <summary>
@@ -62,6 +64,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         MacroDto[] GetAllMacros();
 
         /// <summary>
+        /// Gets the history of the specified medical record.
+        /// </summary>
+        /// <param name="record">The record.</param>
+        /// <returns>The items contained in the history</returns>
+        IEnumerable<MedicalRecordStateDto> GetHistory(MedicalRecordDto record);
+
+        /// <summary>
         /// Determines whether the specified macro is valid.
         /// </summary>
         /// <param name="expression">The expression.</param>
@@ -83,6 +92,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="patient">The patient.</param>
         /// <returns></returns>
         string Resolve(MacroDto macro, LightPatientDto patient);
+
+        /// <summary>
+        /// Revert the specified medical record into the specified state
+        /// </summary>
+        /// <param name="record">The record.</param>
+        /// <param name="toState">The state.</param>
+        void Revert(MedicalRecordDto record, MedicalRecordStateDto toState);
 
         /// <summary>
         /// Updates the specified macro.

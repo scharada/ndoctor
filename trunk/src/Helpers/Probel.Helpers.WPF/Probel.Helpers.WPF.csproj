@@ -53,6 +53,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviours\FocusBehaviour.cs" />
     <Compile Include="Behaviours\SelectorBehaviour.cs" />
     <Compile Include="Behaviours\TreeViewBehaviour.cs" />
     <Compile Include="Behaviours\WebBrowserBehaviour.cs" />

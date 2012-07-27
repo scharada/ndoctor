@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,31 +16,22 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
+
+#endregion Header
+
+namespace Probel.NDoctor.Plugins.MedicalRecord.Translations
 {
-    using System;
+    using Probel.NDoctor.Plugins.MedicalRecord.Properties;
 
-    using Microsoft.Windows.Controls;
-
-    public static class TextEditor
+    public static class RecordHistoryText
     {
         #region Properties
 
-        public static RichTextBox Control
+        public static string Rollback
         {
-            get;
-            set;
+            get { return Messages.Btn_Rollback; }
         }
 
         #endregion Properties
-
-        #region Methods
-
-        public static void UpdateBinding()
-        {
-            Control.GetBindingExpression(RichTextBox.TextProperty).UpdateSource();
-        }
-
-        #endregion Methods
     }
 }

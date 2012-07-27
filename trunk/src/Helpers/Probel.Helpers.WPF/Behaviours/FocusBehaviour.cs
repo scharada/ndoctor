@@ -21,16 +21,12 @@ namespace Probel.Helpers.WPF.Behaviours
     using System.Windows.Controls;
     using System.Windows.Input;
 
-    public class TreeViewBehaviour
+    public class FocusBehaviour
     {
         #region Fields
 
-        public static readonly DependencyProperty SelectedItemChangedProperty = 
-            DependencyProperty.RegisterAttached("SelectedItemChanged", typeof(ICommand), typeof(TreeViewBehaviour), new UIPropertyMetadata(null, SelectedItemChangedPropertyChangedCallback));
-
-        // Using a DependencyProperty as the backing store for SelectedItem.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty SelectedItemProperty = 
-            DependencyProperty.RegisterAttached("SelectedItem", typeof(object), typeof(TreeViewBehaviour), new UIPropertyMetadata(null, SelectedItemChangedPropertyChangedCallback));
+        public static readonly DependencyProperty LostFocusProperty = 
+            DependencyProperty.RegisterAttached("LostFocus", typeof(ICommand), typeof(FocusBehaviour), new UIPropertyMetadata(null, LostFocusPropertyCallback));
 
         private static Dictionary<DependencyObject, Behaviour> behaviours = new Dictionary<DependencyObject, Behaviour>();
 
@@ -38,30 +34,19 @@ namespace Probel.Helpers.WPF.Behaviours
 
         #region Methods
 
-        public static object GetSelectedItem(DependencyObject target)
-        {
-            return (object)target.GetValue(TreeViewBehaviour.SelectedItemProperty);
-        }
-
         [AttachedPropertyBrowsableForChildren]
-        public static void SetSelectedItem(DependencyObject target, object value)
+        public static void SetLostFocus(DependencyObject target, ICommand command)
         {
-            target.SetValue(TreeViewBehaviour.SelectedItemProperty, value);
+            target.SetValue(FocusBehaviour.LostFocusProperty, command);
         }
 
-        [AttachedPropertyBrowsableForChildren]
-        public static void SetSelectedItemChanged(DependencyObject target, ICommand command)
+        private static void LostFocusPropertyCallback(DependencyObject target, DependencyPropertyChangedEventArgs e)
         {
-            target.SetValue(TreeViewBehaviour.SelectedItemChangedProperty, command);
-        }
-
-        private static void SelectedItemChangedPropertyChangedCallback(DependencyObject target, DependencyPropertyChangedEventArgs e)
-        {
-            if (!(target is TreeView))
+            if (!(target is Control))
                 return;
 
             if (!behaviours.ContainsKey(target))
-                behaviours.Add(target, new Behaviour(target as TreeView));
+                behaviours.Add(target, new Behaviour(target as Control));
         }
 
         #endregion Methods
@@ -72,18 +57,17 @@ namespace Probel.Helpers.WPF.Behaviours
         {
             #region Fields
 
-            TreeView view;
+            Control view;
 
             #endregion Fields
 
             #region Constructors
 
-            public Behaviour(TreeView view)
+            public Behaviour(Control view)
             {
                 this.view = view;
-                view.SelectedItemChanged += (sender, e) =>
+                view.LostFocus += (sender, e) =>
                 {
-                    TreeViewBehaviour.SetSelectedItem(view, e.NewValue);
                     ExecuteCommand(sender);
                 };
             }
@@ -94,8 +78,8 @@ namespace Probel.Helpers.WPF.Behaviours
 
             private static void ExecuteCommand(object sender)
             {
-                var element = (UIElement)sender;
-                var command = (ICommand)element.GetValue(TreeViewBehaviour.SelectedItemChangedProperty);
+                var element = (Control)sender;
+                var command = (ICommand)element.GetValue(FocusBehaviour.LostFocusProperty);
 
                 if (command.CanExecute(null))
                 {

@@ -31,6 +31,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.Plugins.MedicalRecord.Editor;
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.Plugins.MedicalRecord.Properties;
+    using Probel.NDoctor.Plugins.MedicalRecord.View;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
@@ -39,6 +41,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         #region Fields
 
         private readonly IMedicalRecordComponent Component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
+        private readonly ViewService ViewService = new ViewService();
 
         private TitledMedicalRecordCabinetDto cabinet;
         private bool isGranted = true;
@@ -62,9 +65,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
             this.RefreshCommand = new RelayCommand(() => this.Refresh());
             this.SaveCommand = new RelayCommand(() => Save(), () => this.CanSave());
+            this.ShowRevisionsCommand = new RelayCommand(() => this.ShowRevisions(), () => this.CanShowRevisions());
 
             Notifyer.Refreshed += (sender, e) => this.Refresh();
             Notifyer.MacroUpdated += (sender, e) => this.RefreshMacroMenu();
+
+            InnerWindow.Closed += (sender, e) => this.Refresh();
         }
 
         #endregion Constructors
@@ -128,6 +134,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             }
         }
 
+        public ICommand ShowRevisionsCommand
+        {
+            get;
+            private set;
+        }
+
         /// <summary>
         /// Gets or sets the tags.
         /// </summary>
@@ -148,22 +160,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         #region Methods
 
-        /// <summary>
-        /// Saves the record if the user interaction demand saving.
-        /// </summary>
-        internal void SaveOnUserAction()
-        {
-            try
-            {
-                if (this.SelectedRecord != null && this.SelectedRecord.State == State.Updated)
-                {
-                    var dr = MessageBox.Show(Messages.Msg_SaveMedicalRecord, Messages.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (dr == MessageBoxResult.Yes) { this.Save(); }
-                }
-            }
-            catch (Exception ex) { this.HandleError(ex); }
-        }
-
         private ICommand BuildMenuItemCommand(MacroDto macro)
         {
             return new RelayCommand(() =>
@@ -178,6 +174,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             this.IsGranted = PluginContext.DoorKeeper.IsUserGranted(To.Write);
 
             return this.SelectedRecord != null && this.IsGranted;
+        }
+
+        private bool CanShowRevisions()
+        {
+            return this.SelectedRecord != null
+                && PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         private void Refresh()
@@ -240,6 +242,17 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RecordsSaved);
             }
             catch (Exception ex) { this.HandleError(ex); }
+        }
+
+        private void ShowRevisions()
+        {
+            var history = this.Component.GetHistory(this.SelectedRecord);
+            var view = new RecordHistoryView();
+
+            this.ViewService.GetViewModel(view).History.Refill(history);
+            this.ViewService.GetViewModel(view).Record = this.SelectedRecord;
+
+            InnerWindow.Show(Messages.Title_Rollback, view);
         }
 
         #endregion Methods

@@ -23,6 +23,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
     {
         #region Methods
 
+        public RecordHistoryViewModel GetViewModel(RecordHistoryView view)
+        {
+            return (RecordHistoryViewModel)view.DataContext;
+        }
+
         public AddFolderViewModel GetViewModel(AddFolderView view)
         {
             return (AddFolderViewModel)view.DataContext;

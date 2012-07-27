@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,31 +16,28 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
+
+#endregion Header
+
+namespace Probel.NDoctor.Plugins.MedicalRecord.View
 {
-    using System;
+    using System.Windows.Controls;
 
-    using Microsoft.Windows.Controls;
+    using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
 
-    public static class TextEditor
+    /// <summary>
+    /// Interaction logic for MedicalRecordHistoryView.xaml
+    /// </summary>
+    public partial class RecordHistoryView : UserControl
     {
-        #region Properties
+        #region Constructors
 
-        public static RichTextBox Control
+        public RecordHistoryView()
         {
-            get;
-            set;
+            InitializeComponent();
+            this.DataContext = new RecordHistoryViewModel();
         }
 
-        #endregion Properties
-
-        #region Methods
-
-        public static void UpdateBinding()
-        {
-            Control.GetBindingExpression(RichTextBox.TextProperty).UpdateSource();
-        }
-
-        #endregion Methods
+        #endregion Constructors
     }
 }

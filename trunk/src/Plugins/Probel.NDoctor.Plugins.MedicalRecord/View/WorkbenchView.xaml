@@ -8,6 +8,7 @@
       xmlns:c="clr-namespace:Probel.Helpers.WPF.Calendar.Controls;assembly=Probel.Helpers.WPF"
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.MedicalRecord.Translations"
       xmlns:ctrl="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+      xmlns:behaviour="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
       
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
@@ -68,7 +69,9 @@
                 <!-- If trigger on PropertyChanged, control is very slow with lon g text -->
                 <ctrl:RichTextBox x:Name="richTextBox"
                                   DockPanel.Dock="Right"
-                                  Text="{Binding Path=SelectedRecord.Rtf, Mode=TwoWay, UpdateSourceTrigger=LostFocus}">
+                                  Text="{Binding Path=SelectedRecord.Rtf, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                                  behaviour:FocusBehaviour.LostFocus="{Binding SaveCommand}"
+                                  >
                     <ctrl:RichTextBoxFormatBarManager.FormatBar>
                         <ctrl:RichTextBoxFormatBar />
                     </ctrl:RichTextBoxFormatBarManager.FormatBar>
