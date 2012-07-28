@@ -31,13 +31,16 @@ namespace Probel.NDoctor.View.Core.ViewModel
     {
         #region Fields
 
+        public readonly string configuredLanguage = Settings.Default.Language;
+
         private DateTime end;
+        private bool showRestart;
         private DateTime start;
 
         #endregion Fields
 
         #region Constructors
-        public readonly string configuredLanguage = Settings.Default.Language;
+
         public DefaultSettingsViewModel()
         {
             this.SlotDurations = new ObservableCollection<Tuple<string, SlotDuration>>();
@@ -68,6 +71,11 @@ namespace Probel.NDoctor.View.Core.ViewModel
                     = value;
                 this.OnPropertyChanged(() => AutomaticContextMenu);
             }
+        }
+
+        public ICommand ChangeLanguageCommand
+        {
+            get; private set;
         }
 
         public DateTime End
@@ -104,6 +112,16 @@ namespace Probel.NDoctor.View.Core.ViewModel
             }
         }
 
+        public bool ShowRestart
+        {
+            get { return this.showRestart; }
+            set
+            {
+                this.showRestart = value;
+                this.OnPropertyChanged(() => ShowRestart);
+            }
+        }
+
         public ObservableCollection<Tuple<string, SlotDuration>> SlotDurations
         {
             get;
@@ -126,18 +144,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
             private set;
         }
 
-        public ICommand ChangeLanguageCommand { get; private set; }
-
-        private bool showRestart;
-        public bool ShowRestart
-        {
-            get { return this.showRestart; }
-            set
-            {
-                this.showRestart = value;
-                this.OnPropertyChanged(() => ShowRestart);
-            }
-        }
         #endregion Properties
 
         #region Methods

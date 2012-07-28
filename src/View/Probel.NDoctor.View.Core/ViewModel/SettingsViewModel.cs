@@ -21,18 +21,24 @@
 
 namespace Probel.NDoctor.View.Core.ViewModel
 {
+    using System.Collections.ObjectModel;
+    using System.Windows.Controls;
     using System.Windows.Input;
 
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.View.Core.Helpers;
-    using Probel.NDoctor.View.Plugins.Helpers;
-    using System.Collections.ObjectModel;
-    using System.Windows.Controls;
     using Probel.NDoctor.View.Core.View;
+    using Probel.NDoctor.View.Plugins.Helpers;
 
     public class SettingsViewModel : BaseViewModel
     {
+        #region Fields
+
+        private SettingUi selectedControl;
+
+        #endregion Fields
+
         #region Constructors
 
         public SettingsViewModel()
@@ -51,6 +57,22 @@ namespace Probel.NDoctor.View.Core.ViewModel
             private set;
         }
 
+        public SettingUi SelectedControl
+        {
+            get { return this.selectedControl; }
+            set
+            {
+                this.selectedControl = value;
+                this.OnPropertyChanged(() => SelectedControl);
+            }
+        }
+
+        public ObservableCollection<SettingUi> SettingCollection
+        {
+            get;
+            private set;
+        }
+
         #endregion Properties
 
         #region Methods
@@ -64,24 +86,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
         {
             Notifyer.OnSavingSettings(this);
             InnerWindow.Close();
-        }
-
-
-        private SettingUi selectedControl;
-        public SettingUi SelectedControl
-        {
-            get { return this.selectedControl; }
-            set
-            {
-                this.selectedControl = value;
-                this.OnPropertyChanged(() => SelectedControl);
-            }
-        }       
-
-        public ObservableCollection<SettingUi> SettingCollection
-        {
-            get;
-            private set;
         }
 
         #endregion Methods

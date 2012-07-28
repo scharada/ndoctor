@@ -20,6 +20,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Configuration;
+    using System.Diagnostics;
     using System.Globalization;
     using System.IO;
     using System.Reflection;
@@ -37,7 +38,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Plugins.MenuData;
 
     using StructureMap;
-    using System.Diagnostics;
 
     public class SpashScreenViewModel : BaseViewModel
     {
