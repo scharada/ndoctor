@@ -14,3 +14,6 @@ To fix it I:
 
 == AnkhSVN is not working with Visual Studio: ==
 You just need to enable SVN as source control as explained [http://stackoverflow.com/questions/3869404/ankhsvn-not-integrated-to-visual-studio-2010 here]
+
+== Windows 7 UAC always ask me to grant execution of Pencil or Everything ==
+[http://www.microsofttranslator.com/translate_url?doit=done&tt=url&intl=1&fr=bf-home&trurl=http://www.helmrohr.de/Guides/Vista/TaskCreate.htm&lp=de_en&btnTrUrl=%C3%9Cbersetzen Here yo can find how to solve that problem]
