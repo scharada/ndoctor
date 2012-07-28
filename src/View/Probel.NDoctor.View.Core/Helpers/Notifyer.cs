@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,34 +16,39 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.View.Core.View
+
+#endregion Header
+
+namespace Probel.NDoctor.View.Core.Helpers
 {
-    using System.Windows.Controls;
-    using System.Windows.Input;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
-    using Probel.NDoctor.View.Core.ViewModel;
-
-    /// <summary>
-    /// Interaction logic for SettingsView.xaml
-    /// </summary>
-    public partial class SettingsView : UserControl
+    internal static class Notifyer
     {
-        #region Constructors
+        #region Events
 
-        public SettingsView()
-        {
-            InitializeComponent();
-            this.DataContext = new SettingsViewModel();
-        }
+        /// <summary>
+        /// Occurs when user is saving the settings.
+        /// </summary>
+        public static event EventHandler SavingSettings;
 
-        #endregion Constructors
+        #endregion Events
 
         #region Methods
 
-        private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        /// <summary>
+        /// Called when user is saving the settings.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        public static void OnSavingSettings(object sender)
         {
-            this.list.GetBindingExpression(ListView.ItemsSourceProperty).UpdateTarget();
-            Keyboard.Focus(this.focused);
+            if (SavingSettings != null)
+            {
+                SavingSettings(sender, EventArgs.Empty);
+            }
         }
 
         #endregion Methods

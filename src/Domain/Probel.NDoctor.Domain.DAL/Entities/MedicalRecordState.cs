@@ -49,6 +49,17 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         #region Properties
 
         /// <summary>
+        /// Gets or sets the counter used to calculate the index into the previous states list.
+        /// </summary>
+        /// <value>
+        /// The counter.
+        /// </value>
+        public virtual int Counter
+        {
+            get; set;
+        }
+
+        /// <summary>
         /// Gets or sets the date of creation creation.
         /// </summary>
         /// <value>
@@ -108,19 +119,15 @@ namespace Probel.NDoctor.Domain.DAL.Entities
             set;
         }
 
+        #endregion Properties
+
+        #region Methods
+
         public override string ToString()
         {
             return string.Format("{0} Rtf: {1}", base.ToString(), this.Rtf);
         }
 
-        /// <summary>
-        /// Gets or sets the counter used to calculate the index into the previous states list.
-        /// </summary>
-        /// <value>
-        /// The counter.
-        /// </value>
-        public virtual int Counter { get; set; }
-
-        #endregion Properties
+        #endregion Methods
     }
 }

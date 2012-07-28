@@ -402,4 +402,12 @@ L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
     <value>Fomme</value>
     <comment>Male</comment>
   </data>
+  <data name="Title_DefaultSettings" xml:space="preserve">
+    <value>Général</value>
+    <comment>Miscellaneous</comment>
+  </data>
+  <data name="Msg_NeedRestart" xml:space="preserve">
+    <value>Redémarrez nDoctor pour appliquer les changements!</value>
+    <comment>Restart nDoctor to apply changes!</comment>
+  </data>
 </root>

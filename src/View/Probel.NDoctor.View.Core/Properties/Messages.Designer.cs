@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.View.Core.Properties
-{
-
-
+namespace Probel.NDoctor.View.Core.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -269,6 +269,15 @@ namespace Probel.NDoctor.View.Core.Properties
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restart nDoctor to apply changes!.
+        /// </summary>
+        internal static string Msg_NeedRestart {
+            get {
+                return ResourceManager.GetString("Msg_NeedRestart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nobody.
         /// </summary>
         internal static string Msg_Nobody {
@@ -400,6 +409,15 @@ namespace Probel.NDoctor.View.Core.Properties
         internal static string Title_Data {
             get {
                 return ResourceManager.GetString("Title_Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Miscellaneous.
+        /// </summary>
+        internal static string Title_DefaultSettings {
+            get {
+                return ResourceManager.GetString("Title_DefaultSettings", resourceCulture);
             }
         }
         

@@ -68,5 +68,11 @@ namespace Probel.NDoctor.View.Core.Translations
         }
 
         #endregion Properties
+
+
+        public static string NeedRestart
+        {
+            get { return Messages.Msg_NeedRestart; }
+        }
     }
 }
