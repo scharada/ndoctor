@@ -44,6 +44,7 @@ namespace Probel.NDoctor.View.Core.Helpers
         #endregion Fields
 
         #region Constructors
+
         static SettingsConfigurator()
         {
             settingControls = new ObservableCollection<SettingUi>();

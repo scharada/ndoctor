@@ -32,6 +32,11 @@ namespace Probel.NDoctor.View.Core.Translations
             get { return Messages.Btn_Save; }
         }
 
+        public static string NeedRestart
+        {
+            get { return Messages.Msg_NeedRestart; }
+        }
+
         public static string TitleEnd
         {
             get { return Messages.Title_End; }
@@ -68,11 +73,5 @@ namespace Probel.NDoctor.View.Core.Translations
         }
 
         #endregion Properties
-
-
-        public static string NeedRestart
-        {
-            get { return Messages.Msg_NeedRestart; }
-        }
     }
 }
