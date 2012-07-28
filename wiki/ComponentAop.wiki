@@ -13,7 +13,7 @@ Before any call a of component's methods, all the configured dynamic proxies are
 
 = How to tweak it? =
 
-== `[Deprecated]` Session checking ==
+== `[Removed]` Session checking ==
 
 You can avoid the execution of the session check by decorating your method with `InspectionIgnored` attribute
 
