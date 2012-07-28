@@ -88,7 +88,6 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="RibbonControlsLibrary" />
-    <Reference Include="Microsoft.Windows.Shell" />
     <Reference Include="WPFToolkit.Extended">
       <HintPath>..\..\..\lib\WPFToolkit.Extended.dll</HintPath>
     </Reference>
@@ -142,9 +141,11 @@
     </Compile>
     <Compile Include="Converters\GenderFemaleToBoolConverter.cs" />
     <Compile Include="Converters\GenderMaleToBoolConverter.cs" />
+    <Compile Include="Helpers\Notifyer.cs" />
     <Compile Include="Helpers\ReferencedObject.cs" />
     <Compile Include="Helpers\Languages.cs" />
     <Compile Include="Helpers\PasswordBoxAssistant.cs" />
+    <Compile Include="Helpers\SettingsConfigurator.cs" />
     <Compile Include="Helpers\TranslateExtension.cs" />
     <Compile Include="Helpers\InnerWindow.cs" />
     <Compile Include="Model\Commands.cs" />
@@ -165,8 +166,13 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ChildWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\DefaultSettingsViewModel.cs" />
+    <Compile Include="ViewModel\PluginSettingsViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\SpashScreenViewModel.cs" />
+    <Compile Include="View\DefaultSettingsView.xaml.cs">
+      <DependentUpon>DefaultSettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
@@ -227,6 +233,10 @@
     <Page Include="Controls\TagBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\DefaultSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

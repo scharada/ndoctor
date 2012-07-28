@@ -21,31 +21,32 @@
 
 namespace Probel.NDoctor.View.Core.ViewModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
     using System.Windows.Input;
 
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using System.Collections.ObjectModel;
-    using System.Windows.Controls;
-    using Probel.NDoctor.View.Core.View;
 
-    public class SettingsViewModel : BaseViewModel
+    public abstract class PluginSettingsViewModel : BaseViewModel
     {
         #region Constructors
 
-        public SettingsViewModel()
+        public PluginSettingsViewModel()
         {
-            this.SettingCollection = new ObservableCollection<SettingUi>(new SettingsConfigurator().Controls);
-            this.SaveSettingsCommand = new RelayCommand(() => this.SaveSettings(), () => this.CanSaveSettings());
+            this.SaveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
+            Notifyer.SavingSettings += (sender, e) => this.SaveCommand.TryExecute();
         }
 
         #endregion Constructors
 
         #region Properties
 
-        public ICommand SaveSettingsCommand
+        public ICommand SaveCommand
         {
             get;
             private set;
@@ -55,34 +56,9 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         #region Methods
 
-        private bool CanSaveSettings()
-        {
-            return PluginContext.DoorKeeper.IsUserGranted(To.Write);
-        }
+        protected abstract bool CanSave();
 
-        private void SaveSettings()
-        {
-            Notifyer.OnSavingSettings(this);
-            InnerWindow.Close();
-        }
-
-
-        private SettingUi selectedControl;
-        public SettingUi SelectedControl
-        {
-            get { return this.selectedControl; }
-            set
-            {
-                this.selectedControl = value;
-                this.OnPropertyChanged(() => SelectedControl);
-            }
-        }       
-
-        public ObservableCollection<SettingUi> SettingCollection
-        {
-            get;
-            private set;
-        }
+        protected abstract void Save();
 
         #endregion Methods
     }

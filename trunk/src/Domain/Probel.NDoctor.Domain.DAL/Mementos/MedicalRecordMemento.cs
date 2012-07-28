@@ -21,16 +21,21 @@
 
 namespace Probel.NDoctor.Domain.DAL.Mementos
 {
+    using System;
     using System.Linq;
 
     using AutoMapper;
 
     using Probel.NDoctor.Domain.DAL.Entities;
-    using System;
 
     public class MedicalRecordMemento : IMemento<MedicalRecord>
     {
+        #region Fields
+
         private const int MEMENTO_SIZE = 50;
+
+        #endregion Fields
+
         #region Methods
 
         /// <summary>

@@ -21,23 +21,26 @@
 
 namespace Probel.NDoctor.Domain.Test.Mementos
 {
+    using System.Threading;
+
     using NUnit.Framework;
+
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Mementos;
     using Probel.NDoctor.Domain.Test.Helpers;
-    using System.Threading;
 
     [Category(Categories.Memento)]
     [TestFixture]
     public class TestMemento
     {
+        #region Methods
+
         [TestFixtureSetUp]
         public void Configure()
         {
             new DalConfigurator().ConfigureAutoMapper();
         }
-        #region Methods
 
         [Test]
         public void CreateMemento_AddAState_StateAdded()

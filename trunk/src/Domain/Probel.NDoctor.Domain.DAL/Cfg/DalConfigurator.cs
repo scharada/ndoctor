@@ -21,6 +21,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
     using FluentNHibernate.Automapping;
     using FluentNHibernate.Cfg.Db;
+    using FluentNHibernate.Conventions;
     using FluentNHibernate.Conventions.Helpers;
 
     using log4net;
@@ -33,7 +34,6 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
     using Probel.NDoctor.Domain.DTO.Exceptions;
 
     using NHConfiguration = NHibernate.Cfg.Configuration;
-    using FluentNHibernate.Conventions;
 
     public class DalConfigurator
     {
@@ -74,9 +74,22 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
             set;
         }
 
+        private IHibernateMappingConvention MappingConvention
+        {
+            get
+            {
+                return DefaultCascade.SaveUpdate();
+            }
+        }
+
         #endregion Properties
 
         #region Methods
+
+        public void ConfigureAutoMapper()
+        {
+            AutoMapperMapping.Configure();
+        }
 
         /// <summary>
         /// Configures the DAL.
@@ -141,10 +154,6 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
             this.IsConfigured = true;
         }
 
-        public void ConfigureAutoMapper()
-        {
-            AutoMapperMapping.Configure();
-        }
         private AutoPersistenceModel CreateModel()
         {
             return AutoMap.AssemblyOf<Entity>(new CustomAutomappingConfiguration())
@@ -161,14 +170,6 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                     })
 
                     .Conventions.Add(this.MappingConvention);
-        }
-
-        private IHibernateMappingConvention MappingConvention
-        {
-            get
-            {
-                return DefaultCascade.SaveUpdate();
-            }
         }
 
         private ISessionFactory CreateSessionFactory()

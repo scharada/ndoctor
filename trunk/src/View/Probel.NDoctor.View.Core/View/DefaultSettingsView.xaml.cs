@@ -1,3 +1,5 @@
+﻿#region Header
+
 /*
     This file is part of NDoctor.
 
@@ -15,14 +17,27 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System.Reflection;
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
-[assembly:AssemblyVersion("3.0.3.715")]
+#endregion Header
+
+namespace Probel.NDoctor.View.Core.View
+{
+    using System.Windows.Controls;
+
+    using Probel.NDoctor.View.Core.ViewModel;
+
+    /// <summary>
+    /// Interaction logic for DefaultSettingsView.xaml
+    /// </summary>
+    public partial class DefaultSettingsView : UserControl
+    {
+        #region Constructors
+
+        public DefaultSettingsView()
+        {
+            InitializeComponent();
+            this.DataContext = new DefaultSettingsViewModel();
+        }
+
+        #endregion Constructors
+    }
+}

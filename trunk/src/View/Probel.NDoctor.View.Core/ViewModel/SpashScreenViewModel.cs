@@ -37,6 +37,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Plugins.MenuData;
 
     using StructureMap;
+    using System.Diagnostics;
 
     public class SpashScreenViewModel : BaseViewModel
     {
@@ -126,10 +127,14 @@ namespace Probel.NDoctor.View.Core.ViewModel
         {
             this.Logger.InfoFormat("Current culture: '{0}'", this.cultureInfo.ToString());
             var thread = new BackgroundWorker();
+
             thread.DoWork += (sender, e) =>
             {
                 try
                 {
+                    var stopwatch = new Stopwatch();
+                    stopwatch.Start();
+
                     Thread.CurrentThread.CurrentUICulture = cultureInfo;
 
                     this.BuildApplicationMenu();
@@ -150,6 +155,9 @@ namespace Probel.NDoctor.View.Core.ViewModel
                     this.ConfigurePlugins();
                     this.Progress = 100;
                     this.Logger.Info("Configuration done.");
+
+                    stopwatch.Stop();
+                    this.Logger.InfoFormat("Loading time {0},{1} sec", stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
 
                 }
                 catch (Exception ex)

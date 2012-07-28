@@ -33,10 +33,10 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Helpers;
+    using Probel.NDoctor.Domain.DAL.Mementos;
     using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Domain.DAL.Mementos;
 
     internal class Updator
     {

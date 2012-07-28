@@ -402,4 +402,12 @@ The application will close. Check the logs for further  information</value>
     <value>Male</value>
     <comment>Male</comment>
   </data>
+  <data name="Title_DefaultSettings" xml:space="preserve">
+    <value>Miscellaneous</value>
+    <comment>Miscellaneous</comment>
+  </data>
+  <data name="Msg_NeedRestart" xml:space="preserve">
+    <value>Restart nDoctor to apply changes!</value>
+    <comment>Restart nDoctor to apply changes!</comment>
+  </data>
 </root>
