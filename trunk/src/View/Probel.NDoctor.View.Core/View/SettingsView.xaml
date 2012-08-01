@@ -34,9 +34,12 @@
                       DockPanel.Dock="Left"
                       ItemsSource="{Binding SettingCollection}"    
                       DisplayMemberPath="Name"/>
-            
-            <ContentControl DockPanel.Dock="Right"
+            <ScrollViewer Height="350"
+                          Width="450"
+                          HorizontalScrollBarVisibility="Auto">
+                <ContentControl DockPanel.Dock="Right"
                             Content="{Binding SelectedItem.Control, ElementName=list}"/>
+            </ScrollViewer>
         </DockPanel>
     </DockPanel>
 </UserControl>

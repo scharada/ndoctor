@@ -75,7 +75,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         public ICommand ChangeLanguageCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public DateTime End
@@ -90,7 +91,10 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         public string SelectedLanguage
         {
-            get { return Settings.Default.Language; }
+            get
+            {
+                return Settings.Default.Language;
+            }
             set
             {
                 Settings.Default.Language = value;
