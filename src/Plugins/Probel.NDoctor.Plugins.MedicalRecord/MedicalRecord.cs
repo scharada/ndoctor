@@ -116,6 +116,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             {
                 this.BuildButtons();
                 this.BuildContextMenu();
+                new SettingsConfigurator().Add(Messages.Title_MedicalRecord, () => new SettingsView());
             });
 
             TextEditor.Control.SelectionChanged += (sender, e) => this.UpdateToggleButtonState();

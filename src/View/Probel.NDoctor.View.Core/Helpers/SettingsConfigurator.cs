@@ -48,7 +48,7 @@ namespace Probel.NDoctor.View.Core.Helpers
         static SettingsConfigurator()
         {
             settingControls = new ObservableCollection<SettingUi>();
-            settingControls.Add(new SettingUi(Messages.Title_DefaultSettings, new DefaultSettingsView()));
+            settingControls.Add(new SettingUi(Messages.Title_DefaultSettings,()=> new DefaultSettingsView()));
         }
 
         #endregion Constructors
@@ -71,13 +71,13 @@ namespace Probel.NDoctor.View.Core.Helpers
         /// Adds a new settings UI for a plugin with a name for the setting tab.
         /// </summary>
         /// <param name="name">The name of the control. It will be used in the tabs to choose the settings control.</param>
-        /// <param name="control">The control that contains all the settings logic.</param>
-        public void Add(string name, UserControl control)
+        /// <param name="ctor">The control that contains all the settings logic.</param>
+        public void Add(string name, Func<UserControl> ctor)
         {
             if (this.Contains(name)) { throw new ArgumentException("A setting UI has already been configured with the name '{0}'".FormatWith(name)); }
             else
             {
-                settingControls.Add(new SettingUi(name, control));
+                settingControls.Add(new SettingUi(name, ctor));
             }
         }
 
@@ -102,12 +102,18 @@ namespace Probel.NDoctor.View.Core.Helpers
 
     public class SettingUi
     {
+        #region Fields
+
+        private Func<UserControl> ctor;
+
+        #endregion Fields
+
         #region Constructors
 
-        internal SettingUi(string name, UserControl control)
+        internal SettingUi(string name, Func<UserControl> ctor)
         {
             this.Name = name;
-            this.Control = control;
+            this.ctor = ctor;
         }
 
         #endregion Constructors
@@ -116,8 +122,7 @@ namespace Probel.NDoctor.View.Core.Helpers
 
         public UserControl Control
         {
-            get;
-            private set;
+            get { return this.ctor(); }
         }
 
         public string Name
