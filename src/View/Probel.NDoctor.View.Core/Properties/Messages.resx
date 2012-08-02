@@ -410,4 +410,20 @@ The application will close. Check the logs for further  information</value>
     <value>Restart nDoctor to apply changes!</value>
     <comment>Restart nDoctor to apply changes!</comment>
   </data>
+  <data name="Title_WrittenBy" xml:space="preserve">
+    <value>Written by {0}</value>
+    <comment>Written by {0}</comment>
+  </data>
+  <data name="Title_About" xml:space="preserve">
+    <value>About nDoctor</value>
+    <comment>About nDoctor</comment>
+  </data>
+  <data name="Btn_OpenLogs" xml:space="preserve">
+    <value>Open log directory</value>
+    <comment>Open log directory</comment>
+  </data>
+  <data name="Btn_OpenSite" xml:space="preserve">
+    <value>Go to nDoctor web site...</value>
+    <comment>Go to nDoctor web site...</comment>
+  </data>
 </root>

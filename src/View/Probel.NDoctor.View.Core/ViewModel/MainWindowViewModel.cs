@@ -17,6 +17,7 @@
 namespace Probel.NDoctor.View.Core.ViewModel
 {
     using System;
+    using System.Collections.Generic;
     using System.Windows.Input;
 
     using Probel.Helpers.Strings;
@@ -24,6 +25,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.Helpers;
+    using Probel.NDoctor.View.Core.Model;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Core.View;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -38,23 +40,39 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         private const string uriImage = @"\Probel.NDoctor.View.Core;component/Images\{0}.png";
 
+        private readonly ICommand aboutCommand;
+        private readonly ICommand homeCommand;
+        private readonly ICommand settingCommand;
+        private readonly ViewService ViewService = new ViewService();
+
         private LightUserDto connectedUser;
         private string message;
         private LightPatientDto selectedPatient;
-        private ICommand settingCommand;
         private StatusType type;
 
         #endregion Fields
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainWindowViewModel"/> class.
+        /// </summary>
         public MainWindowViewModel()
             : base()
         {
             this.settingCommand = new RelayCommand(() => this.NavigateToSetting(), () => this.CanNavigateToSetting());
+            this.aboutCommand = new RelayCommand(() => this.About());
+            this.homeCommand = new RelayCommand(() => PluginContext.Host.NavigateToStartPage());
 
-            var menu = new RibbonControlData(Messages.Title_Settings, uriImage.FormatWith("Settings"), settingCommand) { Order = 5 };
-            PluginContext.Host.AddToApplicationMenu(menu);
+            var buttons = new List<RibbonControlData>();
+            buttons.Add(new RibbonControlData(Messages.Menu_Home, "/Images/Home.png", homeCommand) { Order = 1 });
+            buttons.Add(new RibbonSeparatorData(2));
+            buttons.Add(new RibbonControlData(Messages.Title_Settings, uriImage.FormatWith("Settings"), settingCommand) { Order = int.MaxValue - 21 });
+            buttons.Add(new RibbonControlData(Messages.Title_About, uriImage.FormatWith("Info"), aboutCommand) { Order = int.MaxValue - 20 });
+            buttons.Add(new RibbonSeparatorData(int.MaxValue - 10));
+            buttons.Add(new RibbonControlData(Messages.Menu_Exit, "", Commands.Shutdown) { Order = int.MaxValue });
+
+            foreach (var button in buttons) { PluginContext.Host.AddToApplicationMenu(button); }
 
             App.RibbonData.ApplicationMenuData.LargeImage = new Uri(uriImage.FormatWith("Home"), UriKind.Relative);
             App.RibbonData.ApplicationMenuData.SmallImage = new Uri(uriImage.FormatWith("Home"), UriKind.Relative);
@@ -187,6 +205,13 @@ namespace Probel.NDoctor.View.Core.ViewModel
         #endregion Properties
 
         #region Methods
+
+        private void About()
+        {
+            var view = new AboutBoxView();
+            this.ViewService.GetViewModel(view).RefreshCommand.TryExecute();
+            InnerWindow.Show(Messages.Title_About, view);
+        }
 
         private bool CanNavigateToSetting()
         {

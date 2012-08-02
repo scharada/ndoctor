@@ -145,7 +145,7 @@ namespace Probel.NDoctor.Plugins.UserSession
 
             var navigateButton = new RibbonButtonData(Messages.Title_Deconnection
                 , uri.FormatWith("Administration")
-                , this.DisconnectCommand) { Order = 850 };
+                , this.DisconnectCommand) { Order = int.MaxValue - 1 };
 
             PluginContext.Host.AddToApplicationMenu(navigateButton);
 

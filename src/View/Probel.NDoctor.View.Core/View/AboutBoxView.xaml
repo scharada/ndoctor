@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="Probel.NDoctor.View.Core.View.AboutBoxView"
+             
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
+             xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
+             xmlns:txt="clr-namespace:Probel.NDoctor.View.Core.Translations"
+             
+             mc:Ignorable="d" 
+             Height="480" Width="640">
+    <Grid>
+        <Image Height="227" HorizontalAlignment="Left" Margin="12,12,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="216" Source="/Probel.NDoctor.View.Core;component/Images/about.jpg" />
+        <Label Content="{Binding Application}" Height="80" HorizontalAlignment="Center" Margin="234,12,0,0" Name="label1" VerticalAlignment="Top" Width="394" FontSize="32" FontStretch="Expanded" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+        <Label Content="{Binding Author}" Height="28" HorizontalAlignment="Left" Margin="240,98,0,0" Name="label2" VerticalAlignment="Top" Width="388" />
+        <Label Content="{Binding Copyright}" Height="28" HorizontalAlignment="Left" Margin="240,132,0,0" Name="label3" VerticalAlignment="Top" Width="388" />
+        <TextBox Height="273" HorizontalAlignment="Left" Margin="240,166,0,0" Name="textBox1" VerticalAlignment="Top" Width="388" Text="{Binding License}" VerticalScrollBarVisibility="Auto" />
+        <Button Content="{Binding Source={x:Static Member=t:BaseText.Close}}" 
+                Command="iw:InnerWindow.CancelCommand"
+                Height="23" HorizontalAlignment="Left" Margin="553,445,0,0" Name="button1" VerticalAlignment="Top" Width="75" />
+        <Button Content="{Binding Source={x:Static Member=txt:AboutBoxText.OpenLogDir}}" 
+                Command="{Binding OpenLogCommand}" Height="23" HorizontalAlignment="Left" Margin="12,416,0,0" Name="button2" VerticalAlignment="Top" Width="216" />
+        <TextBlock Margin="12,245,412,213" HorizontalAlignment="Center">
+            <Hyperlink NavigateUri="http://www.phoenixsuite.tuxfamily.org/blog/" Click="Hyperlink_Click">
+                <TextBlock Text="{Binding Source={x:Static Member=txt:AboutBoxText.WebSite}}" TextAlignment="Center" />
+            </Hyperlink>
+        </TextBlock>
+    </Grid>
+</UserControl>

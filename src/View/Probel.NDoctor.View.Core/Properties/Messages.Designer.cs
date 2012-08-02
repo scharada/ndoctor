@@ -70,6 +70,24 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open log directory.
+        /// </summary>
+        internal static string Btn_OpenLogs {
+            get {
+                return ResourceManager.GetString("Btn_OpenLogs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go to nDoctor web site....
+        /// </summary>
+        internal static string Btn_OpenSite {
+            get {
+                return ResourceManager.GetString("Btn_OpenSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string Btn_Save {
@@ -346,6 +364,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         internal static string SlotDuration_ThirtyMinutes {
             get {
                 return ResourceManager.GetString("SlotDuration_ThirtyMinutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About nDoctor.
+        /// </summary>
+        internal static string Title_About {
+            get {
+                return ResourceManager.GetString("Title_About", resourceCulture);
             }
         }
         
@@ -715,6 +742,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         internal static string Title_Workday {
             get {
                 return ResourceManager.GetString("Title_Workday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Written by {0}.
+        /// </summary>
+        internal static string Title_WrittenBy {
+            get {
+                return ResourceManager.GetString("Title_WrittenBy", resourceCulture);
             }
         }
     }

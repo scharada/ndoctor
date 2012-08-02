@@ -410,4 +410,20 @@ L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
     <value>Redémarrez nDoctor pour appliquer les changements!</value>
     <comment>Restart nDoctor to apply changes!</comment>
   </data>
+  <data name="Title_WrittenBy" xml:space="preserve">
+    <value>Ecrit par {0}</value>
+    <comment>Written by {0}</comment>
+  </data>
+  <data name="Title_About" xml:space="preserve">
+    <value>A propos de nDoctor</value>
+    <comment>About nDoctor</comment>
+  </data>
+  <data name="Btn_OpenLogs" xml:space="preserve">
+    <value>Ouvrir le répertoire de log</value>
+    <comment>Open log directory</comment>
+  </data>
+  <data name="Btn_OpenSite" xml:space="preserve">
+    <value>Allez sur le site internet de nDoctor...</value>
+    <comment>Go to nDoctor web site...</comment>
+  </data>
 </root>
