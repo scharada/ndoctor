@@ -25,7 +25,7 @@ Here's the list of tools used to develop nDoctor
  * [http://automapper.codeplex.com/ Automapper] 
  * [http://community.jboss.org/wiki/NHibernateForNET nHibernate]
  * [http://www.microsoft.com/download/en/details.aspx?id=11877 Microsoft Ribbon for WPF]
- * [http://nini.sourceforge.net/ Nini <Not used anymore>]
+ * [http://nini.sourceforge.net/ Nini]
  * [http://wpf.codeplex.com/ WPF Toolkit]
  * [http://wpftoolkit.codeplex.com/ WPF Toolkit extended]
  * [http://stw.castleproject.org/Default.aspx?Page=DynamicProxy&NS=Tools&AspxAutoDetectCookieSupport=1 Castle Dynamic Proxy]
