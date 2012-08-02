@@ -137,7 +137,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
                     Thread.CurrentThread.CurrentUICulture = cultureInfo;
 
-                    this.BuildApplicationMenu();
                     this.BuildHomeMenu();
 
                     var version = Assembly.GetExecutingAssembly().GetName().Version;
@@ -173,27 +172,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
             };
             thread.RunWorkerCompleted += (sender, e) => this.OnLoaded();
             thread.RunWorkerAsync();
-        }
-
-        private void BuildApplicationMenu()
-        {
-            #region Quit menu
-            var shutdownMenu = new RibbonControlData(Messages.Menu_Exit, "", Commands.Shutdown) { Order = 999 };
-            PluginContext.Host.AddToApplicationMenu(shutdownMenu);
-
-            PluginContext.Host.AddToApplicationMenu(new RibbonSeparatorData(6));
-            #endregion
-
-            #region Home menu
-            ICommand homeCommand = new RelayCommand(() =>
-            {
-                PluginContext.Host.NavigateToStartPage();
-            });
-            var homeMenu = new RibbonControlData(Messages.Menu_Home, "/Images/Home.png", homeCommand) { Order = 1 };
-
-            PluginContext.Host.AddToApplicationMenu(homeMenu);
-            PluginContext.Host.AddToApplicationMenu(new RibbonSeparatorData(2));
-            #endregion
         }
 
         private void BuildHomeMenu()
