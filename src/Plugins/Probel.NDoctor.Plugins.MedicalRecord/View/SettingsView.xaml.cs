@@ -35,6 +35,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
     using System.Windows.Navigation;
     using System.Windows.Shapes;
 
+    using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
+
     /// <summary>
     /// Interaction logic for SettingsView.xaml
     /// </summary>
@@ -45,6 +47,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
         public SettingsView()
         {
             InitializeComponent();
+            this.DataContext = new SettingsViewModel();
         }
 
         #endregion Constructors

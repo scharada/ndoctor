@@ -232,6 +232,22 @@
     <value>Voulez-vous supprimer la macro '{0}'?</value>
     <comment>Do you want to remove the macro'{0}'?</comment>
   </data>
+  <data name="Settings_DefaultFont" xml:space="preserve">
+    <value>Default's editor font</value>
+    <comment>Default's editor font</comment>
+  </data>
+  <data name="Settings_FontFamily" xml:space="preserve">
+    <value>Font Family</value>
+    <comment>Font Family</comment>
+  </data>
+  <data name="Settings_Sample" xml:space="preserve">
+    <value>Sample text</value>
+    <comment>Sample text</comment>
+  </data>
+  <data name="Settings_Style" xml:space="preserve">
+    <value>Style Weight Stretch</value>
+    <comment>Style Weight Stretch</comment>
+  </data>
   <data name="Title_AddFolder" xml:space="preserve">
     <value>Create new directory</value>
     <comment>Create new directory</comment>
