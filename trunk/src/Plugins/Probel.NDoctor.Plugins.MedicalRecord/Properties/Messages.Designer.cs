@@ -340,6 +340,42 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default&apos;s editor font.
+        /// </summary>
+        internal static string Settings_DefaultFont {
+            get {
+                return ResourceManager.GetString("Settings_DefaultFont", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font Family.
+        /// </summary>
+        internal static string Settings_FontFamily {
+            get {
+                return ResourceManager.GetString("Settings_FontFamily", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sample text.
+        /// </summary>
+        internal static string Settings_Sample {
+            get {
+                return ResourceManager.GetString("Settings_Sample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Style Weight Stretch.
+        /// </summary>
+        internal static string Settings_Style {
+            get {
+                return ResourceManager.GetString("Settings_Style", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create new directory.
         /// </summary>
         internal static string Title_AddFolder {

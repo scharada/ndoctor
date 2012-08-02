@@ -21,10 +21,14 @@ namespace Probel.Helpers.WPF.Behaviours
     using System.Windows.Controls;
     using System.Windows.Input;
 
+    using Probel.Mvvm.DataBinding;
+
     public class FocusBehaviour
     {
         #region Fields
 
+        public static readonly DependencyProperty GotFocusProperty = 
+            DependencyProperty.RegisterAttached("GotFocus", typeof(ICommand), typeof(FocusBehaviour), new UIPropertyMetadata(null, GetFocusPropertyCallback));
         public static readonly DependencyProperty LostFocusProperty = 
             DependencyProperty.RegisterAttached("LostFocus", typeof(ICommand), typeof(FocusBehaviour), new UIPropertyMetadata(null, LostFocusPropertyCallback));
 
@@ -35,9 +39,24 @@ namespace Probel.Helpers.WPF.Behaviours
         #region Methods
 
         [AttachedPropertyBrowsableForChildren]
+        public static void SetGotFocus(DependencyObject target, ICommand command)
+        {
+            target.SetValue(FocusBehaviour.GotFocusProperty, command);
+        }
+
+        [AttachedPropertyBrowsableForChildren]
         public static void SetLostFocus(DependencyObject target, ICommand command)
         {
             target.SetValue(FocusBehaviour.LostFocusProperty, command);
+        }
+
+        private static void GetFocusPropertyCallback(DependencyObject target, DependencyPropertyChangedEventArgs e)
+        {
+            if (!(target is Control))
+                return;
+
+            if (!behaviours.ContainsKey(target))
+                behaviours.Add(target, new Behaviour(target as Control));
         }
 
         private static void LostFocusPropertyCallback(DependencyObject target, DependencyPropertyChangedEventArgs e)
@@ -66,25 +85,28 @@ namespace Probel.Helpers.WPF.Behaviours
             public Behaviour(Control view)
             {
                 this.view = view;
-                view.LostFocus += (sender, e) =>
-                {
-                    ExecuteCommand(sender);
-                };
+                this.view.LostFocus += (sender, e) => LostFocusExecuteCommand(sender);
+                this.view.GotFocus += (sender, e) => GotFocusExecuteCommand(sender);
             }
 
             #endregion Constructors
 
             #region Methods
 
-            private static void ExecuteCommand(object sender)
+            private static void GotFocusExecuteCommand(object sender)
+            {
+                var element = (Control)sender;
+                var command = (ICommand)element.GetValue(FocusBehaviour.GotFocusProperty);
+
+                command.TryExecute();
+            }
+
+            private static void LostFocusExecuteCommand(object sender)
             {
                 var element = (Control)sender;
                 var command = (ICommand)element.GetValue(FocusBehaviour.LostFocusProperty);
 
-                if (command.CanExecute(null))
-                {
-                    command.Execute(null);
-                }
+                command.TryExecute();
             }
 
             #endregion Methods

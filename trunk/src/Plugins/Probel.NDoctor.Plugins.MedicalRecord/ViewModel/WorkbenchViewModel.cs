@@ -21,6 +21,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Input;
+    using System.Windows.Media;
 
     using Probel.Helpers.Assertion;
     using Probel.Mvvm.DataBinding;
@@ -44,6 +45,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         private readonly ViewService ViewService = new ViewService();
 
         private TitledMedicalRecordCabinetDto cabinet;
+        private FontFamily defaultFontFamily;
+        private int defaultFontSize;
         private bool isGranted = true;
         private TitledMedicalRecordDto selectedRecord;
         private IList<TagDto> tags = new List<TagDto>();
@@ -66,6 +69,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             this.RefreshCommand = new RelayCommand(() => this.Refresh());
             this.SaveCommand = new RelayCommand(() => Save(), () => this.CanSave());
             this.ShowRevisionsCommand = new RelayCommand(() => this.ShowRevisions(), () => this.CanShowRevisions());
+            this.RefreshDefaultFontsCommand = new RelayCommand(() => this.RefreshDefaultFonts());
 
             Notifyer.Refreshed += (sender, e) => this.Refresh();
             Notifyer.MacroUpdated += (sender, e) => this.RefreshMacroMenu();
@@ -84,6 +88,26 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             {
                 this.cabinet = value;
                 this.OnPropertyChanged(() => Cabinet);
+            }
+        }
+
+        public FontFamily DefaultFontFamily
+        {
+            get { return this.defaultFontFamily; }
+            set
+            {
+                this.defaultFontFamily = value;
+                this.OnPropertyChanged(() => DefaultFontFamily);
+            }
+        }
+
+        public int DefaultFontSize
+        {
+            get { return this.defaultFontSize; }
+            set
+            {
+                this.defaultFontSize = value;
+                this.OnPropertyChanged(() => DefaultFontSize);
             }
         }
 
@@ -112,6 +136,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         }
 
         public ICommand RefreshCommand
+        {
+            get;
+            private set;
+        }
+
+        public ICommand RefreshDefaultFontsCommand
         {
             get;
             private set;
@@ -156,6 +186,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             }
         }
 
+        private PluginSettings PluginSettings
+        {
+            get { return new PluginSettings(); }
+        }
+
         #endregion Properties
 
         #region Methods
@@ -186,6 +221,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         {
             try
             {
+
                 Assert.IsNotNull(PluginContext.Host);
                 Assert.IsNotNull(PluginContext.Host.SelectedPatient);
 
@@ -200,11 +236,18 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                         ? TitledMedicalRecordDto.CreateFrom(record)
                         : null;
                 }
+
                 this.RefreshMacroMenu();
 
                 PluginContext.Host.WriteStatus(StatusType.Info, BaseText.Refreshed);
             }
             catch (Exception ex) { this.HandleError(ex); }
+        }
+
+        private void RefreshDefaultFonts()
+        {
+            this.DefaultFontFamily = this.PluginSettings.FontFamily;
+            this.DefaultFontSize = this.PluginSettings.FontSize;
         }
 
         private void RefreshMacroMenu()

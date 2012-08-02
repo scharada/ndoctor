@@ -46,6 +46,9 @@
     <Reference Include="log4net">
       <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Nini">
+      <HintPath>..\..\packages\Trove.Nini.1.1.0.0\lib\net20\Nini.dll</HintPath>
+    </Reference>
     <Reference Include="Probel.Mvvm">
       <HintPath>..\..\..\lib\Probel.Mvvm\Probel.Mvvm.dll</HintPath>
     </Reference>
@@ -72,6 +75,7 @@
     <Compile Include="Editor\CompletionData.cs" />
     <Compile Include="Editor\MacroMenuItem.cs" />
     <Compile Include="Editor\TextToDocumentConverter.cs" />
+    <Compile Include="Helpers\PluginSettings.cs" />
     <Compile Include="Helpers\Notifyer.cs" />
     <Compile Include="Helpers\TextEditor.cs" />
     <Compile Include="Helpers\ViewService.cs" />
@@ -98,11 +102,13 @@
     <Compile Include="Translations\AddRecordText.cs" />
     <Compile Include="Translations\MacroEditorText.cs" />
     <Compile Include="Translations\RecordHistoryText.cs" />
+    <Compile Include="Translations\SettingsText.cs" />
     <Compile Include="Translations\WorkbenchText.cs" />
     <Compile Include="ViewModel\AddFolderViewModel.cs" />
     <Compile Include="ViewModel\AddRecordViewModel.cs" />
     <Compile Include="ViewModel\MacroEditorViewModel.cs" />
     <Compile Include="ViewModel\RecordHistoryViewModel.cs" />
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
     <Compile Include="View\AddFolderView.xaml.cs">
       <DependentUpon>AddFolderView.xaml</DependentUpon>
@@ -133,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editor\MacroHighlighting.xshd" />
     <None Include="packages.config" />
+    <None Include="Probel.NDoctor.Plugins.MedicalRecord.dll.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Probel.NDoctor.Plugins.MedicalRecord.licenseheader" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
