@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -15,24 +17,31 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Probel.NDoctor.View.Core.Properties;
+#endregion Header
 
 namespace Probel.NDoctor.View.Core.Translations
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using Probel.NDoctor.View.Core.Properties;
+
     public static class AboutBoxText
     {
+        #region Properties
+
+        public static string OpenLogDir
+        {
+            get { return Messages.Btn_OpenLogs; }
+        }
 
         public static string WebSite
         {
             get { return Messages.Btn_OpenSite; }
         }
-        public static string OpenLogDir
-        {
-            get { return Messages.Btn_OpenLogs; }
-        }
+
+        #endregion Properties
     }
 }

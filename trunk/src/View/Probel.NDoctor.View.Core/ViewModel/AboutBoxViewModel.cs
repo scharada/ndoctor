@@ -22,16 +22,16 @@
 namespace Probel.NDoctor.View.Core.ViewModel
 {
     using System;
+    using System.Diagnostics;
+    using System.IO;
     using System.Reflection;
+    using System.Resources;
+    using System.Text;
     using System.Windows.Input;
 
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.View.Core.Properties;
-    using System.Resources;
-    using System.IO;
-    using System.Text;
-    using System.Diagnostics;
 
     public class AboutBoxViewModel : BaseViewModel
     {
@@ -44,6 +44,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         #endregion Fields
 
+        #region Constructors
 
         public AboutBoxViewModel()
         {
@@ -51,6 +52,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             this.OpenLogCommand = new RelayCommand(() => this.OpenLog());
         }
 
+        #endregion Constructors
 
         #region Properties
 
@@ -94,13 +96,29 @@ namespace Probel.NDoctor.View.Core.ViewModel
             }
         }
 
+        public ICommand OpenLogCommand
+        {
+            get; private set;
+        }
+
         public ICommand RefreshCommand
         {
             get;
             private set;
         }
 
-        public ICommand OpenLogCommand { get; private set; }
+        #endregion Properties
+
+        #region Methods
+
+        private string GetLicense()
+        {
+            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Probel.NDoctor.View.Core.License.txt");
+            if (stream == null) throw new NullReferenceException("The license is not foud in the resource of the executing assembly.");
+
+            using (var reader = new StreamReader(stream, Encoding.UTF8)) { return reader.ReadToEnd(); }
+        }
+
         private void OpenLog()
         {
             try
@@ -111,10 +129,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
             catch (Exception ex) { this.HandleError(ex); }
         }
 
-        #endregion Properties
-
-        #region Methods
-
         private void Refresh()
         {
             var asm = Assembly.GetAssembly(this.GetType());
@@ -122,14 +136,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
             this.Author = Messages.Title_WrittenBy.FormatWith("Jean-Baptiste Wautier");
             this.Copyright = "Copyright Probel 2006-{0}".FormatWith(DateTime.Today.Year);
             this.License = this.GetLicense().FormatWith(DateTime.Today.Year);
-        }
-
-        private string GetLicense()
-        {
-            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Probel.NDoctor.View.Core.License.txt");
-            if (stream == null) throw new NullReferenceException("The license is not foud in the resource of the executing assembly.");
-
-            using (var reader = new StreamReader(stream, Encoding.UTF8)) { return reader.ReadToEnd(); }
         }
 
         #endregion Methods

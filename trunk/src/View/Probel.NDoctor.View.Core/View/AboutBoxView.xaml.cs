@@ -21,16 +21,18 @@
 
 namespace Probel.NDoctor.View.Core.View
 {
-    using System.Windows.Controls;
-    using Probel.NDoctor.View.Core.ViewModel;
-    using System.Windows.Documents;
     using System.Diagnostics;
+    using System.Windows.Controls;
+    using System.Windows.Documents;
+
+    using Probel.NDoctor.View.Core.ViewModel;
 
     /// <summary>
     /// Interaction logic for AboutBoxView.xaml
     /// </summary>
     public partial class AboutBoxView : UserControl
     {
+        #region Constructors
 
         public AboutBoxView()
         {
@@ -38,10 +40,16 @@ namespace Probel.NDoctor.View.Core.View
             this.DataContext = new AboutBoxViewModel();
         }
 
+        #endregion Constructors
+
+        #region Methods
+
         private void Hyperlink_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             var uri = ((Hyperlink)sender).NavigateUri.AbsoluteUri;
             Process.Start(uri);
         }
+
+        #endregion Methods
     }
 }
