@@ -37,6 +37,11 @@ namespace Probel.NDoctor.View.Core.Translations
             get { return Messages.Btn_OpenLogs; }
         }
 
+        public static string TitlePlugins
+        {
+            get { return Messages.Title_Plugins; }
+        }
+
         public static string WebSite
         {
             get { return Messages.Btn_OpenSite; }

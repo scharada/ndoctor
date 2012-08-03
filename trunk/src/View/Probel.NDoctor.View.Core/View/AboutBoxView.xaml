@@ -12,7 +12,7 @@
              Height="480" Width="640">
     <Grid>
         <Image Height="227" HorizontalAlignment="Left" Margin="12,12,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="216" Source="/Probel.NDoctor.View.Core;component/Images/about.jpg" />
-        <Label Content="{Binding Application}" Height="80" HorizontalAlignment="Center" Margin="234,12,0,0" Name="label1" VerticalAlignment="Top" Width="394" FontSize="32" FontStretch="Expanded" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+        <Label Content="{Binding Title}" Height="80" HorizontalAlignment="Center" Margin="234,12,0,0" Name="label1" VerticalAlignment="Top" Width="394" FontSize="32" FontStretch="Expanded" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
         <Label Content="{Binding Author}" Height="28" HorizontalAlignment="Left" Margin="240,98,0,0" Name="label2" VerticalAlignment="Top" Width="388" />
         <Label Content="{Binding Copyright}" Height="28" HorizontalAlignment="Left" Margin="240,132,0,0" Name="label3" VerticalAlignment="Top" Width="388" />
         <TextBox Height="273" HorizontalAlignment="Left" Margin="240,166,0,0" Name="textBox1" VerticalAlignment="Top" Width="388" Text="{Binding License}" VerticalScrollBarVisibility="Auto" />
@@ -26,5 +26,19 @@
                 <TextBlock Text="{Binding Source={x:Static Member=txt:AboutBoxText.WebSite}}" TextAlignment="Center" />
             </Hyperlink>
         </TextBlock>
+        <Border Margin="12,307,412,70" BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding Plugins}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel LastChildFill="True">
+                                <TextBlock Text="{Binding}"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+        <Label Content="{Binding Source={x:Static Member=txt:AboutBoxText.TitlePlugins}}" Height="28" HorizontalAlignment="Left" Margin="12,273,0,0" Name="label4" VerticalAlignment="Top" Width="216" />
     </Grid>
 </UserControl>

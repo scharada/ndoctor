@@ -426,4 +426,8 @@ The application will close. Check the logs for further  information</value>
     <value>Go to nDoctor web site...</value>
     <comment>Go to nDoctor web site...</comment>
   </data>
+  <data name="Title_Plugins" xml:space="preserve">
+    <value>Installed plugins:</value>
+    <comment>Installed plugins:</comment>
+  </data>
 </root>
