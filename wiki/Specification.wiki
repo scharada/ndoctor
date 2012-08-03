@@ -1,0 +1,10 @@
+= Introduction =
+
+The specification pattern is used to refine a search done against the database.
+
+[`To be completed`]
+
+
+= Documentation =
+
+[http://devlicio.us/blogs/jeff_perrin/archive/2006/12/13/the-specification-pattern.aspx The specification pattern]
