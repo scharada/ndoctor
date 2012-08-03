@@ -602,6 +602,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Installed plugins:.
+        /// </summary>
+        internal static string Title_Plugins {
+            get {
+                return ResourceManager.GetString("Title_Plugins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Postal code:.
         /// </summary>
         internal static string Title_PostalCode {

@@ -426,4 +426,8 @@ L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
     <value>Allez sur le site internet de nDoctor...</value>
     <comment>Go to nDoctor web site...</comment>
   </data>
+  <data name="Title_Plugins" xml:space="preserve">
+    <value>Plugins installés:</value>
+    <comment>Installed plugins:</comment>
+  </data>
 </root>
