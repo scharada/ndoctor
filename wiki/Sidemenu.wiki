@@ -33,6 +33,7 @@
   * [TechDoc Documentation/Tutorials]
   * [CodingConventions Coding conventions]
   * [ComponentAop Components & AOP]
+  * [Specification Search refining]
   * [PluginFeatures Plugin API ]
  * QA ([QA Manual])
   * [FeatureList Feature list]
