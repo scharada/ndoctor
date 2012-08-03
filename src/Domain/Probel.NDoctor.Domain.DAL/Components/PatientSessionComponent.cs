@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.DTO.Specification;
 
     /// <summary>
     /// Get the features of the patient session
@@ -59,11 +60,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// the refiner will be executed.
         /// </summary>
         /// <param name="criteria">The criteria.</param>
-        /// <param name="refiner">The refiner.</param>
+        /// <param name="specification"></param>
         /// <returns>
         /// All the patient that fullfill the criteria
         /// </returns>
-        public IList<LightPatientDto> FindPatientsByNameLight(string criteria, Predicate<PatientDto> refiner)
+        public IList<LightPatientDto> FindPatientsByNameLight(string criteria, SpecificationExpression<PatientDto> specification)
         {
             List<Patient> patients = new List<Patient>();
             if (criteria != "*")
@@ -81,7 +82,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
             var entities = Mapper.Map<List<Patient>, List<PatientDto>>(patients);
 
-            return Mapper.Map<List<PatientDto>, IList<LightPatientDto>>(entities.FindAll(refiner));
+            return Mapper.Map<List<PatientDto>, IList<LightPatientDto>>(entities.FindAll(specification.IsSatisfiedBy));
         }
 
         /// <summary>

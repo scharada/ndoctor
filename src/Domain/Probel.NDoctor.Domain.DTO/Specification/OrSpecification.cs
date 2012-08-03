@@ -1,4 +1,4 @@
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,15 +14,26 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+namespace Probel.NDoctor.Domain.DTO.Specification
+{
+    public class OrSpecification<T> : CompositeSpecification<T>
+    {
+        #region Constructors
 
-using System.Reflection;
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
-[assembly:AssemblyVersion("3.0.3.727")]
+        public OrSpecification(Specification<T> leftSide, Specification<T> rightSide)
+            : base(leftSide, rightSide)
+        {
+        }
+
+        #endregion Constructors
+
+        #region Methods
+
+        public override bool IsSatisfiedBy(T obj)
+        {
+            return leftSide.IsSatisfiedBy(obj) || rightSide.IsSatisfiedBy(obj);
+        }
+
+        #endregion Methods
+    }
+}

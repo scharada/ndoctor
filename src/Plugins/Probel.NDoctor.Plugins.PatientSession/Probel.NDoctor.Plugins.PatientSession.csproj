@@ -66,6 +66,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Translations\AddPatientText.cs" />
+    <Compile Include="Translations\CriteriaText.cs" />
+    <Compile Include="Translations\SearchPatientExtendedText.cs" />
     <Compile Include="ViewModel\LightPatientViewModel.cs" />
     <Compile Include="Properties\Messages.fr.Designer.cs">
       <DependentUpon>Messages.fr.resx</DependentUpon>
@@ -93,12 +95,19 @@
     </Compile>
     <Compile Include="Translations\WorkbenchText.cs" />
     <Compile Include="ViewModel\AddPatientViewModel.cs" />
+    <Compile Include="ViewModel\SearchPatientExtendedViewModel.cs" />
     <Compile Include="ViewModel\SearchPatientViewModel.cs" />
     <Compile Include="View\AddPatientControl.xaml.cs">
       <DependentUpon>AddPatientControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CriteriaControl.xaml.cs">
+      <DependentUpon>CriteriaControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SearchPatientControl.xaml.cs">
       <DependentUpon>SearchPatientControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SearchPatientExtendedControl.xaml.cs">
+      <DependentUpon>SearchPatientExtendedControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TopTenControl.xaml.cs">
       <DependentUpon>TopTenControl.xaml</DependentUpon>
@@ -150,7 +159,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\CriteriaControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\SearchPatientControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SearchPatientExtendedControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

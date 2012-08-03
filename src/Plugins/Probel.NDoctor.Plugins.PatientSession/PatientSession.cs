@@ -42,9 +42,10 @@ namespace Probel.NDoctor.Plugins.PatientSession
         private const string uriIco = @"\Probel.NDoctor.Plugins.PatientSession;component/Images\{0}.ico";
         private const string uriPng = @"\Probel.NDoctor.Plugins.PatientSession;component/Images\{0}.png";
 
-        private ICommand addCommand;
-        private ICommand searchCommand;
-        private ICommand showTopTenCommand;
+        private readonly ICommand AddCommand;
+        private readonly ICommand ExtendedSearchCommand;
+        private readonly ICommand SearchCommand;
+        private readonly ICommand ShowTopTenCommand;
 
         #endregion Fields
 
@@ -54,6 +55,11 @@ namespace Probel.NDoctor.Plugins.PatientSession
         public PatientSession([Import("version")] Version version)
             : base(version)
         {
+            this.SearchCommand = new RelayCommand(() => this.NavigateSearchPatient(), () => this.CanSearchPatient());
+            this.AddCommand = new RelayCommand(() => this.NavigateAddPatient(), () => this.CanNavigateAddPatient());
+            this.ShowTopTenCommand = new RelayCommand(() => this.NavigateTopTen(), () => this.CanSearchPatient());
+            this.ExtendedSearchCommand = new RelayCommand(() => this.NavigateExtendedSearch(), () => this.CanSearchPatient());
+
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
             this.ConfigureAutoMapper();
         }
@@ -94,37 +100,41 @@ namespace Probel.NDoctor.Plugins.PatientSession
                 };
             }
 
-            this.addCommand = new RelayCommand(() => this.NavigateAddPatient(), () => this.CanNavigateAddPatient());
-            var addButton = new RibbonMenuItemData(Messages.Title_ButtonAddPatient, uriPng.FormatWith("Add"), this.addCommand)
+            var addButton = new RibbonMenuItemData(Messages.Title_ButtonAddPatient, uriPng.FormatWith("Add"), this.AddCommand)
             {
                 Order = 2,
             };
 
-            (splitter as RibbonMenuButtonData).Command = addCommand;
+            (splitter as RibbonMenuButtonData).Command = AddCommand;
             (splitter as RibbonMenuButtonData).ControlDataCollection.Add(addButton);
             if (!splitterExist) PluginContext.Host.AddInHome((splitter as RibbonMenuButtonData), Groups.Tools);
             #endregion
 
             #region Search
-            this.searchCommand = new RelayCommand(() => this.NavigateSearchPatient(), () => this.CanSearchPatient());
-            var searchButton = new RibbonButtonData(Messages.Title_SearchPatient, this.searchCommand)
+            var searchButton = new RibbonButtonData(Messages.Title_SearchPatient, this.SearchCommand)
             {
                 SmallImage = new Uri(uriPng.FormatWith("SearchSmall"), UriKind.Relative),
                 Order = 0,
             };
 
-            this.showTopTenCommand = new RelayCommand(() => this.NavigateTopTen(), () => this.CanSearchPatient());
-            var topTenButton = new RibbonButtonData(Messages.Title_MostUsed, this.showTopTenCommand)
+            var extendedSerchButton = new RibbonButtonData(Messages.Title_ExtendedSearchPatient, this.ExtendedSearchCommand)
             {
                 SmallImage = new Uri(uriPng.FormatWith("SearchSmall"), UriKind.Relative),
                 Order = 0,
             };
 
-            var searchSplitButton = new RibbonSplitButtonData(Messages.Title_ButtonSearch, uriIco.FormatWith("Search"), this.searchCommand)
+            var topTenButton = new RibbonButtonData(Messages.Title_MostUsed, this.ShowTopTenCommand)
+            {
+                SmallImage = new Uri(uriPng.FormatWith("SearchSmall"), UriKind.Relative),
+                Order = 0,
+            };
+
+            var searchSplitButton = new RibbonSplitButtonData(Messages.Title_ButtonSearch, uriIco.FormatWith("Search"), this.SearchCommand)
             {
                 Order = 0,
             };
             searchSplitButton.ControlDataCollection.Add(searchButton);
+            searchSplitButton.ControlDataCollection.Add(extendedSerchButton);
             searchSplitButton.ControlDataCollection.Add(topTenButton);
 
             PluginContext.Host.AddInHome(searchSplitButton, Groups.Tools);
@@ -150,6 +160,11 @@ namespace Probel.NDoctor.Plugins.PatientSession
         private void NavigateAddPatient()
         {
             InnerWindow.Show(Messages.Title_AddPatient, new AddPatientControl());
+        }
+
+        private void NavigateExtendedSearch()
+        {
+            InnerWindow.Show(Messages.Title_ExtendedSearchPatient, new SearchPatientExtendedControl());
         }
 
         private void NavigateSearchPatient()
