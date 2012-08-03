@@ -26,19 +26,27 @@
     <DockPanel LastChildFill="True">
         <Grid DockPanel.Dock="Top">
             <Border Style="{StaticResource BorderStyle}">
-                <toolkit:WatermarkTextBox x:Name="focused"
+                <DockPanel>
+                    <Button DockPanel.Dock="Right" Background="White" BorderBrush="White" BorderThickness="0"
+                            Command="{Binding SearchCommand}">
+                        <Image DataContext="{Binding}" Source="/Probel.NDoctor.Plugins.PathologyManager;component/Images/search.bmp"
+                               Height="15"
+                               Width="15"/>
+                    </Button>
+                    <toolkit:WatermarkTextBox x:Name="focused"
                                           Grid.Column="0" 
                                           Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}">
-                    <toolkit:WatermarkTextBox.Watermark>
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
-                               Height="15"
-                               Width="15" />
-                            <TextBlock Text="{Binding Source={x:Static Member=text:AddIllnessPeriodText.Watermark}}"
+                        <toolkit:WatermarkTextBox.Watermark>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
+                                       Height="15"
+                                       Width="15" />
+                                <TextBlock Text="{Binding Source={x:Static Member=text:AddIllnessPeriodText.Watermark}}"
                                    Margin="4,0,0,0"/>
-                        </StackPanel>
-                    </toolkit:WatermarkTextBox.Watermark>
-                </toolkit:WatermarkTextBox>
+                            </StackPanel>
+                        </toolkit:WatermarkTextBox.Watermark>
+                    </toolkit:WatermarkTextBox>
+                </DockPanel>
             </Border>
         </Grid>
         <ScrollViewer DockPanel.Dock="Bottom">
