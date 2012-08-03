@@ -121,9 +121,37 @@
     <value>Ajouter</value>
     <comment>Add</comment>
   </data>
+  <data name="Criteria_ByName" xml:space="preserve">
+    <value>Nom ou prénom contient</value>
+    <comment>first or last name contains</comment>
+  </data>
+  <data name="Criteria_ByProfession" xml:space="preserve">
+    <value>Profession</value>
+    <comment>Profession</comment>
+  </data>
+  <data name="Criteria_ByYear" xml:space="preserve">
+    <value>Année de naissance</value>
+    <comment>Birth year</comment>
+  </data>
+  <data name="Criteria_Create" xml:space="preserve">
+    <value>Créer un nouveau critère de recherche</value>
+    <comment>Create a new search criteria</comment>
+  </data>
+  <data name="Criteria_Specification" xml:space="preserve">
+    <value>Spécification:</value>
+    <comment>Specification:</comment>
+  </data>
+  <data name="Criteria_Value" xml:space="preserve">
+    <value>Critère:</value>
+    <comment>Criteria:</comment>
+  </data>
   <data name="Error_AddPatient" xml:space="preserve">
     <value>Une erreur est apparue pendant la création d'un patient</value>
     <comment>An error occured while adding a new patient</comment>
+  </data>
+  <data name="Ex_NotNumericValue" xml:space="preserve">
+    <value>La valeur spécifiée n'est pas numérique.</value>
+    <comment>The specified value is not numeric</comment>
   </data>
   <data name="Information" xml:space="preserve">
     <value>Information</value>
@@ -164,6 +192,10 @@
   <data name="Title_ButtonSearch" xml:space="preserve">
     <value>Chercher</value>
     <comment>Search</comment>
+  </data>
+  <data name="Title_ExtendedSearchPatient" xml:space="preserve">
+    <value>Recherche avancée</value>
+    <comment>Advanced search</comment>
   </data>
   <data name="Title_FirstName" xml:space="preserve">
     <value>Prénom</value>

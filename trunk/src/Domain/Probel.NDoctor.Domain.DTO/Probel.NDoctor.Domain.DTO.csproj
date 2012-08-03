@@ -131,6 +131,15 @@
     <Compile Include="Objects\TagCategory.cs" />
     <Compile Include="Objects\TagDto.cs" />
     <Compile Include="Objects\UserDto.cs" />
+    <Compile Include="Specification\AndSpecification.cs" />
+    <Compile Include="Specification\SpecificationExpression.cs" />
+    <Compile Include="Specification\CompositeSpecification.cs" />
+    <Compile Include="Specification\FindPatientByBirthYearSpecification.cs" />
+    <Compile Include="Specification\FindPatientByNameSpecification.cs" />
+    <Compile Include="Specification\FindPatientByProfessionSpecification.cs" />
+    <Compile Include="Specification\NotSpecification.cs" />
+    <Compile Include="Specification\OrSpecification.cs" />
+    <Compile Include="Specification\Specification.cs" />
     <Compile Include="To.cs" />
     <Compile Include="Validators\AppointmentValidator.cs" />
     <Compile Include="Validators\BmiValidator.cs" />
