@@ -707,24 +707,48 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
         private List<Patient> FindPatientsByFirstAndLastName(string criterium)
         {
-            return (from patient in this.Session.Query<Patient>()
-                    where patient.FirstName.Contains(criterium)
-                       || patient.LastName.Contains(criterium)
-                    select patient).ToList();
+            if (criterium != "*")
+            {
+                return (from patient in this.Session.Query<Patient>()
+                        where patient.FirstName.Contains(criterium)
+                           || patient.LastName.Contains(criterium)
+                        select patient).ToList();
+            }
+            else
+            {
+                return (from patient in this.Session.Query<Patient>()
+                        select patient).ToList();
+            }
         }
 
         private List<Patient> FindPatientsByOnFirstName(string criterium)
         {
-            return (from patient in this.Session.Query<Patient>()
-                    where patient.FirstName.Contains(criterium)
-                    select patient).ToList();
+            if (criterium != "*")
+            {
+                return (from patient in this.Session.Query<Patient>()
+                        where patient.FirstName.Contains(criterium)
+                        select patient).ToList();
+            }
+            else
+            {
+                return (from patient in this.Session.Query<Patient>()
+                        select patient).ToList();
+            }
         }
 
         private List<Patient> FindPatientsByOnLastName(string criterium)
         {
-            return (from patient in this.Session.Query<Patient>()
-                    where patient.LastName.Contains(criterium)
-                    select patient).ToList();
+            if (criterium != "*")
+            {
+                return (from patient in this.Session.Query<Patient>()
+                        where patient.LastName.Contains(criterium)
+                        select patient).ToList();
+            }
+            else
+            {
+                return (from patient in this.Session.Query<Patient>()
+                        select patient).ToList();
+            }
         }
 
         private List<Insurance> GetAllEntitiesInsurances()
