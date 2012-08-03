@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Domain.DAL.Components
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -51,6 +52,37 @@ namespace Probel.NDoctor.Domain.DAL.Components
         #endregion Constructors
 
         #region Methods
+
+        /// <summary>
+        /// Execute a search on the name of the patient and refines the result with the predicates.
+        /// If the criteria is an "*" (asterisk), all the patient will be loaded in memory and afterward
+        /// the refiner will be executed.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <param name="refiner">The refiner.</param>
+        /// <returns>
+        /// All the patient that fullfill the criteria
+        /// </returns>
+        public IList<LightPatientDto> FindPatientsByNameLight(string criteria, Predicate<PatientDto> refiner)
+        {
+            List<Patient> patients = new List<Patient>();
+            if (criteria != "*")
+            {
+                patients = (from p in this.Session.Query<Patient>()
+                            where p.FirstName.ToLower().Contains(criteria.ToLower())
+                            || p.LastName.ToLower().Contains(criteria.ToLower())
+                            select p).ToList();
+            }
+            else
+            {
+                patients = (from p in this.Session.Query<Patient>()
+                            select p).ToList();
+            }
+
+            var entities = Mapper.Map<List<Patient>, List<PatientDto>>(patients);
+
+            return Mapper.Map<List<PatientDto>, IList<LightPatientDto>>(entities.FindAll(refiner));
+        }
 
         /// <summary>
         /// Gets the top X patient. Where X is specified as an argument.

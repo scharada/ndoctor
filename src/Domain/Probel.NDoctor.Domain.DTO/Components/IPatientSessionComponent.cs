@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
     using System.Collections.Generic;
 
     using Probel.NDoctor.Domain.DTO.Objects;
+using System;
 
     #region Enumerations
 
@@ -64,6 +65,16 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="patient">The patient.</param>
         void IncrementPatientCounter(LightPatientDto patient);
+
+        /// <summary>
+        /// Execute a search on the name of the patient and refines the result with the predicates.
+        /// If the criteria is an "*" (asterisk), all the patient will be loaded in memory and afterward
+        /// the refiner will be executed.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <param name="refiner">The refiner.</param>
+        /// <returns>All the patient that fullfill the criteria</returns>
+        IList<LightPatientDto> FindPatientsByNameLight(string criteria, Predicate<PatientDto> refiner)
 
         #endregion Methods
     }
