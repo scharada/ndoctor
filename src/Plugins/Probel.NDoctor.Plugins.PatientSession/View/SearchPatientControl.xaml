@@ -47,19 +47,27 @@
         <DockPanel DockPanel.Dock="Top"
                    LastChildFill="True">
             <Border Style="{StaticResource BorderStyle}">
-                <toolkit:WatermarkTextBox x:Name="focused"
+                <DockPanel>
+                    <Button DockPanel.Dock="Right" Background="White" BorderBrush="White" BorderThickness="0"
+                            Command="{Binding SearchCommand}">
+                        <Image DataContext="{Binding}" Source="/Probel.NDoctor.Plugins.PatientSession;component/Images/SearchSmall.png"
+                               Height="15"
+                               Width="15"/>
+                    </Button>
+                    <toolkit:WatermarkTextBox x:Name="focused"
                                           Grid.Column="0" 
                                           Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}">
-                    <toolkit:WatermarkTextBox.Watermark>
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
+                        <toolkit:WatermarkTextBox.Watermark>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
                                Height="15"
                                Width="15" />
-                            <TextBlock Text="{Binding Source={x:Static Member=text:WorkbenchText.TitleWatermark}}"
+                                <TextBlock Text="{Binding Source={x:Static Member=text:WorkbenchText.TitleWatermark}}"
                                    Margin="4,0,0,0"/>
-                        </StackPanel>
-                    </toolkit:WatermarkTextBox.Watermark>
-                </toolkit:WatermarkTextBox>
+                            </StackPanel>
+                        </toolkit:WatermarkTextBox.Watermark>
+                    </toolkit:WatermarkTextBox>
+                </DockPanel>
             </Border>
         </DockPanel>
         <ScrollViewer>
