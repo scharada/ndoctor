@@ -1,6 +1,6 @@
 = Introduction =
 
-The specification pattern is used to refine a search done against the database.
+The specification pattern is used to refine in memory a search done against the database.
 
 [`To be completed`]
 
