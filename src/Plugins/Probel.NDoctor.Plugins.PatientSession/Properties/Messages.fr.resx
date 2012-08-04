@@ -122,16 +122,16 @@
     <comment>Add</comment>
   </data>
   <data name="Criteria_ByName" xml:space="preserve">
-    <value>Nom ou prénom contient</value>
-    <comment>first or last name contains</comment>
+    <value>Nom ou prénom:</value>
+    <comment>First or :ast name:</comment>
   </data>
   <data name="Criteria_ByProfession" xml:space="preserve">
-    <value>Profession</value>
-    <comment>Profession</comment>
+    <value>Profession:</value>
+    <comment>Profession:</comment>
   </data>
   <data name="Criteria_ByYear" xml:space="preserve">
-    <value>Année de naissance</value>
-    <comment>Birth year</comment>
+    <value>Année de naissance:</value>
+    <comment>Birth year:</comment>
   </data>
   <data name="Criteria_Create" xml:space="preserve">
     <value>Créer un nouveau critère de recherche</value>

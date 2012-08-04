@@ -202,6 +202,10 @@ Chemin: {1}</value>
     <value>Le paramètre '{0}' n'a pas été configuré. Veuillez l'ajouter dans le fichier de configuration.</value>
     <comment>The parameter '{0}' is not set in the configuration file. Please set it up.</comment>
   </data>
+  <data name="Msg_PleaseWait" xml:space="preserve">
+    <value>Veuillez attendre...</value>
+    <comment>Please wait...</comment>
+  </data>
   <data name="Question" xml:space="preserve">
     <value>Question</value>
     <comment>Question</comment>

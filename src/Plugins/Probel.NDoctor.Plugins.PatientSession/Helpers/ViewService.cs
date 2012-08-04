@@ -1,3 +1,5 @@
+﻿#region Header
+
 /*
     This file is part of NDoctor.
 
@@ -15,14 +17,22 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System.Reflection;
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
-[assembly:AssemblyVersion("3.0.3.732")]
+#endregion Header
+
+namespace Probel.NDoctor.Plugins.PatientSession.Helpers
+{
+    using Probel.NDoctor.Plugins.PatientSession.View;
+    using Probel.NDoctor.Plugins.PatientSession.ViewModel;
+
+    internal class ViewService
+    {
+        #region Methods
+
+        public SearchPatientExtendedViewModel GetViewModel(SearchPatientExtendedControl view)
+        {
+            return view.DataContext as SearchPatientExtendedViewModel;
+        }
+
+        #endregion Methods
+    }
+}

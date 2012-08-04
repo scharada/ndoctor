@@ -29,8 +29,8 @@ namespace Probel.NDoctor.Domain.DTO.Specification
 
         public CompositeSpecification(Specification<T> leftSide, Specification<T> rightSide)
         {
-            leftSide = leftSide;
-            rightSide = rightSide;
+            this.leftSide = leftSide;
+            this.rightSide = rightSide;
         }
 
         #endregion Constructors

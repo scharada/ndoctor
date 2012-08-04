@@ -77,6 +77,11 @@ namespace Probel.NDoctor.View.Plugins.Helpers
             get { return Messages.Btn_OK; }
         }
 
+        public static string PleaseWait
+        {
+            get { return Messages.Msg_PleaseWait; }
+        }
+
         public static string Question
         {
             get { return Messages.Question; }

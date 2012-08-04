@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.View.Plugins.Properties
-{
-
-
+namespace Probel.NDoctor.View.Plugins.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -247,6 +247,15 @@ namespace Probel.NDoctor.View.Plugins.Properties
         internal static string Msg_MissingParameterInConfiguration {
             get {
                 return ResourceManager.GetString("Msg_MissingParameterInConfiguration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please wait....
+        /// </summary>
+        internal static string Msg_PleaseWait {
+            get {
+                return ResourceManager.GetString("Msg_PleaseWait", resourceCulture);
             }
         }
         

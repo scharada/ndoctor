@@ -26,6 +26,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.PatientSession.Helpers;
     using Probel.NDoctor.Plugins.PatientSession.Properties;
     using Probel.NDoctor.Plugins.PatientSession.View;
     using Probel.NDoctor.Plugins.PatientSession.ViewModel;
@@ -46,6 +47,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
         private readonly ICommand ExtendedSearchCommand;
         private readonly ICommand SearchCommand;
         private readonly ICommand ShowTopTenCommand;
+        private readonly ViewService ViewService = new ViewService();
 
         #endregion Fields
 
@@ -164,7 +166,10 @@ namespace Probel.NDoctor.Plugins.PatientSession
 
         private void NavigateExtendedSearch()
         {
-            InnerWindow.Show(Messages.Title_ExtendedSearchPatient, new SearchPatientExtendedControl());
+            var view = new SearchPatientExtendedControl();
+            this.ViewService.GetViewModel(view).RefreshCommand.TryExecute();
+
+            InnerWindow.Show(Messages.Title_ExtendedSearchPatient, view);
         }
 
         private void NavigateSearchPatient()

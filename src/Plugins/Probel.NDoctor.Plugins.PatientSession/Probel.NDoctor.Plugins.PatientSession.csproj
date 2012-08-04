@@ -65,6 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\ViewService.cs" />
     <Compile Include="Translations\AddPatientText.cs" />
     <Compile Include="Translations\CriteriaText.cs" />
     <Compile Include="Translations\SearchPatientExtendedText.cs" />
@@ -140,6 +141,10 @@
     <ProjectReference Include="..\..\Domain\Probel.NDoctor.Domain.DTO\Probel.NDoctor.Domain.DTO.csproj">
       <Project>{DB2E15D4-BA31-457B-BF73-71208922A0A0}</Project>
       <Name>Probel.NDoctor.Domain.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Helpers\Probel.Helpers.WPF\Probel.Helpers.WPF.csproj">
+      <Project>{031C3942-6CE3-4999-89A7-D6DAAD781645}</Project>
+      <Name>Probel.Helpers.WPF</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Helpers\Probel.Helpers\Probel.Helpers.csproj">
       <Project>{18F7EA3E-0BF5-430F-9B1D-258BDAB6304E}</Project>

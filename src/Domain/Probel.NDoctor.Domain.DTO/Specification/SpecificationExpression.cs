@@ -36,6 +36,11 @@ namespace Probel.NDoctor.Domain.DTO.Specification
             this.expression = start;
         }
 
+        public SpecificationExpression()
+        {
+            this.expression = new AllowAllSpecification<T>();
+        }
+
         #endregion Constructors
 
         #region Methods

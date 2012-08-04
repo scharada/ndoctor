@@ -22,149 +22,189 @@
 namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
     using System.Windows.Input;
 
-    using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.DTO.Specification;
-    using Probel.NDoctor.Plugins.PatientSession.Properties;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
-    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View.Plugins.Helpers;
 
     public class SearchPatientExtendedViewModel : BaseViewModel
     {
         #region Fields
+
         private readonly IPatientSessionComponent Component;
-        private SpecificationExpression<PatientDto> expression;
-        private string selectedSpecification;
-        private string value;
+
+        private bool isBusy;
+        private bool isByProfession;
+        private string name;
+        private LightPatientDto selectedPatient;
+        private ProfessionDto selectedProfession;
 
         #endregion Fields
 
         #region Constructors
-        private void Search()
-        {
-            var patients = this.Component.FindPatientsByNameLight("*", this.expression);
-            this.FoundPatients.Refill(patients);
-        }
+
         public SearchPatientExtendedViewModel()
         {
             this.Component = PluginContext.ComponentFactory.GetInstance<IPatientSessionComponent>();
 
             this.FoundPatients = new ObservableCollection<LightPatientDto>();
-            this.Specifications = new ObservableCollection<string>();
-            this.Specifications.Add(Messages.Criteria_ByProfession);
-            this.Specifications.Add(Messages.Criteria_ByYear);
-            this.Specifications.Add(Messages.Criteria_ByName);
+            this.Professions = new ObservableCollection<ProfessionDto>();
 
-            this.AddSpecificationCommand = new RelayCommand(() => this.AddSpecification(), () => this.CanAddSpecification());
-            this.SearchCommand = new RelayCommand(() => this.Search());
+            this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());
+            this.RefreshCommand = new RelayCommand(() => this.Refresh());
+            this.SelectPatientCommand = new RelayCommand(() => this.SelectPatient(), () => this.CanSelectPatient());
+
+            this.Name = "*";
+            this.IsBusy = false;
         }
 
         #endregion Constructors
 
         #region Properties
 
-        public ICommand AddSpecificationCommand
-        {
-            get;
-            private set;
-        }
-
-        public ICommand SearchCommand { get; set; }
-
         public ObservableCollection<LightPatientDto> FoundPatients
         {
             get;
-            set;
+            private set;
         }
 
-        public string SelectedSpecification
+        public bool IsBusy
         {
-            get { return this.selectedSpecification; }
+            get { return this.isBusy; }
             set
             {
-                this.selectedSpecification = value;
-                this.OnPropertyChanged(() => SelectedSpecification);
+                this.isBusy = value;
+                this.OnPropertyChanged(() => IsBusy);
             }
         }
 
-        public ObservableCollection<string> Specifications
+        public bool IsByProfession
+        {
+            get { return this.isByProfession; }
+            set
+            {
+                this.isByProfession = value;
+                this.OnPropertyChanged(() => IsByProfession);
+            }
+        }
+
+        public string Name
+        {
+            get { return this.name; }
+            set
+            {
+                this.name = value;
+                this.OnPropertyChanged(() => Name);
+            }
+        }
+
+        public ObservableCollection<ProfessionDto> Professions
         {
             get;
             private set;
         }
 
-        public string Value
+        public ICommand RefreshCommand
         {
-            get { return this.value; }
+            get;
+            private set;
+        }
+
+        public ICommand SearchCommand
+        {
+            get;
+            private set;
+        }
+
+        public LightPatientDto SelectedPatient
+        {
+            get { return this.selectedPatient; }
             set
             {
-                this.value = value;
-                this.OnPropertyChanged(() => Value);
+                this.selectedPatient = value;
+                this.OnPropertyChanged(() => SelectedPatient);
             }
+        }
+
+        public ProfessionDto SelectedProfession
+        {
+            get { return this.selectedProfession; }
+            set
+            {
+                this.selectedProfession = value;
+                this.OnPropertyChanged(() => SelectedProfession);
+            }
+        }
+
+        public ICommand SelectPatientCommand
+        {
+            get; private set;
         }
 
         #endregion Properties
 
         #region Methods
 
-        private void AddSpecification()
+        private bool CanSearch()
+        {
+            return this.SelectedProfession != null
+                && !string.IsNullOrWhiteSpace(this.Name);
+        }
+
+        private bool CanSelectPatient()
+        {
+            return this.SelectedPatient != null;
+        }
+
+        private void Refresh()
         {
             try
             {
-                if (this.expression == null)
-                {
-                    this.expression = this.BuildExpression();
-                }
-                else if (this.SelectedSpecification == Messages.Criteria_ByProfession)
-                {
-                    this.expression.And(new FindPatientByProfessionSpecification(this.Value));
-                }
-                else if (this.SelectedSpecification == Messages.Criteria_ByYear)
-                {
-                    int year;
-                    if (Int32.TryParse(this.Value, out year))
-                    {
-                        this.expression.And(new FindPatientByBirthYearSpecification(year));
-                    }
-                    else { throw new ArgumentException(Messages.Ex_NotNumericValue); }
-                }
-                else if (this.SelectedSpecification == Messages.Criteria_ByName) { this.expression.And(new FindPatientByNameSpecification(this.Value)); }
-                else { throw new NotSupportedException("The specification '{0}'is not yet supported".FormatWith(this.Value)); }
+                this.Professions.Refill(this.Component.GetAllProfessions());
             }
             catch (Exception ex) { this.HandleError(ex); }
         }
 
-        private SpecificationExpression<PatientDto> BuildExpression()
+        private void RefreshSearchResult(Task<IList<LightPatientDto>> e)
         {
-            if (this.SelectedSpecification == Messages.Criteria_ByProfession)
-            {
-                return new SpecificationExpression<PatientDto>(new FindPatientByProfessionSpecification(this.Value));
-            }
-            else if (this.SelectedSpecification == Messages.Criteria_ByYear)
-            {
-                int year;
-                if (Int32.TryParse(this.Value, out year))
-                {
-                    return new SpecificationExpression<PatientDto>(new FindPatientByBirthYearSpecification(year));
-                }
-                else { throw new ArgumentException(Messages.Ex_NotNumericValue); }
-            }
-            else if (this.SelectedSpecification == Messages.Criteria_ByName)
-            {
-                return new SpecificationExpression<PatientDto>(new FindPatientByNameSpecification(this.Value));
-            }
-            else { throw new NotSupportedException("The specification '{0}'is not yet supported".FormatWith(this.Value)); }
+            this.FoundPatients.Refill(e.Result);
+            this.IsBusy = false;
         }
 
-        private bool CanAddSpecification()
+        private void Search()
         {
-            return !string.IsNullOrEmpty(this.SelectedSpecification)
-                && !string.IsNullOrEmpty(this.Value);
+            try
+            {
+                var expression = new SpecificationExpression<PatientDto>();
+
+                if (this.IsByProfession) { expression.And(new FindPatientByProfessionSpecification(this.SelectedProfession)); }
+
+                var context = TaskScheduler.FromCurrentSynchronizationContext();
+                var task = Task.Factory
+                    .StartNew<IList<LightPatientDto>>(() => this.SearchAsync(expression))
+                    .ContinueWith(e => RefreshSearchResult(e), context);
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+        }
+
+        private IList<LightPatientDto> SearchAsync(SpecificationExpression<PatientDto> expression)
+        {
+            this.IsBusy = true;
+            return this.Component.FindPatientsByNameLight(this.Name, expression);
+        }
+
+        private void SelectPatient()
+        {
+            PluginContext.Host.SelectedPatient = this.SelectedPatient;
+            InnerWindow.Close();
         }
 
         #endregion Methods
