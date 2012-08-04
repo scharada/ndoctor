@@ -20,6 +20,7 @@ namespace Probel.NDoctor.View.Core.View
     using System.Linq;
     using System.Reflection;
     using System.Windows.Controls;
+    using System.Windows.Input;
 
     using AvalonDock;
 
@@ -363,6 +364,22 @@ namespace Probel.NDoctor.View.Core.View
         public void NavigateToStartPage()
         {
             this.Navigate(startpage);
+        }
+
+        /// <summary>
+        /// Sets the arrow cursor.
+        /// </summary>
+        public void SetArrowCursor()
+        {
+            PluginContext.Host.Invoke(() => Mouse.OverrideCursor = Cursors.Arrow);
+        }
+
+        /// <summary>
+        /// Sets the wait cursor.
+        /// </summary>
+        public void SetWaitCursor()
+        {
+            PluginContext.Host.Invoke(() => Mouse.OverrideCursor = Cursors.Wait);
         }
 
         /// <summary>

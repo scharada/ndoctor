@@ -16,8 +16,11 @@
 */
 namespace Probel.NDoctor.Plugins.PatientSession.View
 {
+    using System;
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
+    using System.Windows.Threading;
 
     using Probel.NDoctor.Plugins.PatientSession.ViewModel;
 

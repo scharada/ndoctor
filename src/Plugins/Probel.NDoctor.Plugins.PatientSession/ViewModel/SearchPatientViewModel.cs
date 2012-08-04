@@ -16,9 +16,11 @@
 */
 namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Timers;
     using System.Windows.Input;
 
@@ -29,6 +31,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PatientSession.Properties;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
@@ -40,6 +43,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 
         private IPatientSessionComponent component;
         private string criteria = string.Empty;
+        private bool isBusy;
 
         #endregion Fields
 
@@ -51,10 +55,11 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
         public SearchPatientViewModel()
             : base()
         {
-            this.FoundPatients = new ObservableCollection<LightPatientViewModel>();
-            this.Top10Patients = new ObservableCollection<LightPatientViewModel>();
+            this.FoundPatients = new ObservableCollection<LightPatientDto>();
+            this.Top10Patients = new ObservableCollection<LightPatientDto>();
             this.TodayPatients = new ObservableCollection<LightPatientViewModel>();
             this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());
+            this.SelectPatientCommand = new RelayCommand(() => this.SelectPatient(), () => this.CanSelectPatient());
 
             this.component = PluginContext.ComponentFactory.GetInstance<IPatientSessionComponent>();
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPatientSessionComponent>();
@@ -86,7 +91,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             }
         }
 
-        public ObservableCollection<LightPatientViewModel> FoundPatients
+        public ObservableCollection<LightPatientDto> FoundPatients
         {
             get;
             set;
@@ -98,13 +103,30 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             private set;
         }
 
+        private LightPatientDto selectedPatient;
+        public LightPatientDto SelectedPatient
+        {
+            get { return this.selectedPatient; }
+            set
+            {
+                this.selectedPatient = value;
+                this.OnPropertyChanged(() => SelectedPatient);
+            }
+        }
+
+        public ICommand SelectPatientCommand
+        {
+            get;
+            private set;
+        }
+
         public ObservableCollection<LightPatientViewModel> TodayPatients
         {
             get;
             set;
         }
 
-        public ObservableCollection<LightPatientViewModel> Top10Patients
+        public ObservableCollection<LightPatientDto> Top10Patients
         {
             get;
             set;
@@ -117,8 +139,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
         public void Refresh()
         {
             var result = this.component.GetTopXPatient(10);
-            var patients = Mapper.Map<IList<LightPatientDto>, IList<LightPatientViewModel>>(result);
-            this.Top10Patients.Refill(patients);
+            this.Top10Patients.Refill(result);
         }
 
         private bool CanSearch()
@@ -126,13 +147,39 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             return !string.IsNullOrEmpty(this.Criteria);
         }
 
+        private bool CanSelectPatient()
+        {
+            return this.SelectedPatient != null;
+        }
+
         private void Search()
         {
-            var result = this.component.FindPatientsByNameLight(this.Criteria, SearchOn.FirstAndLastName);
-            var patients = Mapper.Map<IList<LightPatientDto>, IList<LightPatientViewModel>>(result);
-            this.FoundPatients.Refill(patients);
+            try
+            {
+                var context = TaskScheduler.FromCurrentSynchronizationContext();
+                Task.Factory.StartNew<IList<LightPatientDto>>(() => this.SearchAsync())
+                    .ContinueWith(e => this.SearchCallback(e.Result), context);
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+        }
 
+        private IList<LightPatientDto> SearchAsync()
+        {
+            PluginContext.Host.SetWaitCursor();
+            return this.component.FindPatientsByNameLight(this.Criteria, SearchOn.FirstAndLastName);
+        }
+
+        private void SearchCallback(IList<LightPatientDto> result)
+        {
+            this.FoundPatients.Refill(result);
+            PluginContext.Host.SetArrowCursor();
             PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_SearchExecuted.FormatWith(result.Count()));
+        }
+
+        private void SelectPatient()
+        {
+            PluginContext.Host.SelectedPatient = this.SelectedPatient;
+            InnerWindow.Close();
         }
 
         #endregion Methods

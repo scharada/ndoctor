@@ -66,6 +66,7 @@
     <Compile Include="..\..\Version.cs">
       <Link>Version.cs</Link>
     </Compile>
+    <Compile Include="Converters\BoolToCursorConverter.cs" />
     <Compile Include="Converters\ByteArrayToImageConverter.cs" />
     <Compile Include="Converters\DateTimeToShortStringConverter.cs" />
     <Compile Include="Converters\DoctorGenderToImageConverter.cs" />

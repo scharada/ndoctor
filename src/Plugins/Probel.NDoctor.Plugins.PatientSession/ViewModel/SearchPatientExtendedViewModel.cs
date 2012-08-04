@@ -146,7 +146,8 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 
         public ICommand SelectPatientCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         #endregion Properties
@@ -173,12 +174,6 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             catch (Exception ex) { this.HandleError(ex); }
         }
 
-        private void RefreshSearchResult(Task<IList<LightPatientDto>> e)
-        {
-            this.FoundPatients.Refill(e.Result);
-            this.IsBusy = false;
-        }
-
         private void Search()
         {
             try
@@ -190,7 +185,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
                 var context = TaskScheduler.FromCurrentSynchronizationContext();
                 var task = Task.Factory
                     .StartNew<IList<LightPatientDto>>(() => this.SearchAsync(expression))
-                    .ContinueWith(e => RefreshSearchResult(e), context);
+                    .ContinueWith(e => this.SearchCallback(e), context);
             }
             catch (Exception ex) { this.HandleError(ex); }
         }
@@ -199,6 +194,12 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
         {
             this.IsBusy = true;
             return this.Component.FindPatientsByNameLight(this.Name, expression);
+        }
+
+        private void SearchCallback(Task<IList<LightPatientDto>> e)
+        {
+            this.FoundPatients.Refill(e.Result);
+            this.IsBusy = false;
         }
 
         private void SelectPatient()
