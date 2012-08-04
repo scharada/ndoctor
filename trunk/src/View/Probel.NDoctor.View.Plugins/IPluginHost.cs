@@ -195,6 +195,16 @@ namespace Probel.NDoctor.View.Plugins
         void NavigateToStartPage();
 
         /// <summary>
+        /// Sets the arrow cursor.
+        /// </summary>
+        void SetArrowCursor();
+
+        /// <summary>
+        /// Sets the wait cursor.
+        /// </summary>
+        void SetWaitCursor();
+
+        /// <summary>
         /// Activates the menu.
         /// </summary>
         void ShowMainMenu();

@@ -14,7 +14,7 @@
              xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
              xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
              xmlns:behaviours="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
-     
+             
              mc:Ignorable="d"
              Width="300"
              Height="450">
@@ -35,7 +35,6 @@
                 <TextBlock Text="{Binding LastName}" VerticalAlignment="Center"/>
             </StackPanel>
         </DataTemplate>
-
     </UserControl.Resources>
     <Grid>
         <toolkit:BusyIndicator IsBusy="{Binding IsBusy,UpdateSourceTrigger=PropertyChanged}"
