@@ -19,29 +19,31 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Plugins.PatientSession.Translations
+namespace Probel.NDoctor.View.Plugins.Converters
 {
-    using Probel.NDoctor.Plugins.PatientSession.Properties;
+    using System;
+    using System.Windows.Data;
 
-    public static class SearchPatientExtendedText
+    [ValueConversion(typeof(bool), typeof(bool))]
+    public class InverseBooleanConverter : IValueConverter
     {
-        #region Properties
+        #region Methods
 
-        public static string CriteriaByName
+        public object Convert(object value, Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
         {
-            get { return Messages.Criteria_ByName; }
+            if (targetType != typeof(bool))
+                throw new InvalidOperationException("The target must be a boolean");
+
+            return !(bool)value;
         }
 
-        public static string CriteriaByProfession
+        public object ConvertBack(object value, Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
         {
-            get { return Messages.Criteria_ByProfession; }
+            throw new NotSupportedException();
         }
 
-        public static string Search
-        {
-            get { return Messages.Title_SearchWatermark; }
-        }
-
-        #endregion Properties
+        #endregion Methods
     }
 }

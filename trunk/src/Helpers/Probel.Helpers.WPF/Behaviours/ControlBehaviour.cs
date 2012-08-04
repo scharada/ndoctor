@@ -23,14 +23,16 @@ namespace Probel.Helpers.WPF.Behaviours
 
     using Probel.Mvvm.DataBinding;
 
-    public class FocusBehaviour
+    public class ControlBehaviour
     {
         #region Fields
 
         public static readonly DependencyProperty GotFocusProperty = 
-            DependencyProperty.RegisterAttached("GotFocus", typeof(ICommand), typeof(FocusBehaviour), new UIPropertyMetadata(null, GetFocusPropertyCallback));
+            DependencyProperty.RegisterAttached("GotFocus", typeof(ICommand), typeof(ControlBehaviour), new UIPropertyMetadata(null, CallbackAction));
         public static readonly DependencyProperty LostFocusProperty = 
-            DependencyProperty.RegisterAttached("LostFocus", typeof(ICommand), typeof(FocusBehaviour), new UIPropertyMetadata(null, LostFocusPropertyCallback));
+            DependencyProperty.RegisterAttached("LostFocus", typeof(ICommand), typeof(ControlBehaviour), new UIPropertyMetadata(null, CallbackAction));
+        public static readonly DependencyProperty MouseDoubleClickProperty = 
+            DependencyProperty.RegisterAttached("MouseDoubleClick", typeof(ICommand), typeof(ControlBehaviour), new UIPropertyMetadata(null, CallbackAction));
 
         private static Dictionary<DependencyObject, Behaviour> behaviours = new Dictionary<DependencyObject, Behaviour>();
 
@@ -41,25 +43,22 @@ namespace Probel.Helpers.WPF.Behaviours
         [AttachedPropertyBrowsableForChildren]
         public static void SetGotFocus(DependencyObject target, ICommand command)
         {
-            target.SetValue(FocusBehaviour.GotFocusProperty, command);
+            target.SetValue(ControlBehaviour.GotFocusProperty, command);
         }
 
         [AttachedPropertyBrowsableForChildren]
         public static void SetLostFocus(DependencyObject target, ICommand command)
         {
-            target.SetValue(FocusBehaviour.LostFocusProperty, command);
+            target.SetValue(ControlBehaviour.LostFocusProperty, command);
         }
 
-        private static void GetFocusPropertyCallback(DependencyObject target, DependencyPropertyChangedEventArgs e)
+        [AttachedPropertyBrowsableForChildren]
+        public static void SetMouseDoubleClick(DependencyObject target, ICommand command)
         {
-            if (!(target is Control))
-                return;
-
-            if (!behaviours.ContainsKey(target))
-                behaviours.Add(target, new Behaviour(target as Control));
+            target.SetValue(ControlBehaviour.MouseDoubleClickProperty, command);
         }
 
-        private static void LostFocusPropertyCallback(DependencyObject target, DependencyPropertyChangedEventArgs e)
+        private static void CallbackAction(DependencyObject target, DependencyPropertyChangedEventArgs e)
         {
             if (!(target is Control))
                 return;
@@ -87,6 +86,7 @@ namespace Probel.Helpers.WPF.Behaviours
                 this.view = view;
                 this.view.LostFocus += (sender, e) => LostFocusExecuteCommand(sender);
                 this.view.GotFocus += (sender, e) => GotFocusExecuteCommand(sender);
+                this.view.MouseDoubleClick += (sender, e) => MouseDoubleClickCommand(sender);
             }
 
             #endregion Constructors
@@ -96,17 +96,25 @@ namespace Probel.Helpers.WPF.Behaviours
             private static void GotFocusExecuteCommand(object sender)
             {
                 var element = (Control)sender;
-                var command = (ICommand)element.GetValue(FocusBehaviour.GotFocusProperty);
+                var command = (ICommand)element.GetValue(ControlBehaviour.GotFocusProperty);
 
-                command.TryExecute();
+                if (command != null) { command.TryExecute(); }
             }
 
             private static void LostFocusExecuteCommand(object sender)
             {
                 var element = (Control)sender;
-                var command = (ICommand)element.GetValue(FocusBehaviour.LostFocusProperty);
+                var command = (ICommand)element.GetValue(ControlBehaviour.LostFocusProperty);
 
-                command.TryExecute();
+                if (command != null) { command.TryExecute(); }
+            }
+
+            private static void MouseDoubleClickCommand(object sender)
+            {
+                var element = (Control)sender;
+                var command = (ICommand)element.GetValue(ControlBehaviour.MouseDoubleClickProperty);
+
+                if (command != null) { command.TryExecute(); }
             }
 
             #endregion Methods

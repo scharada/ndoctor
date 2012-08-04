@@ -23,6 +23,7 @@ namespace Probel.NDoctor.Domain.DTO.Specification
 {
     using System;
 
+    using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     /// <summary>
@@ -40,9 +41,9 @@ namespace Probel.NDoctor.Domain.DTO.Specification
 
         #region Constructors
 
-        public FindPatientByProfessionSpecification(string profession)
+        public FindPatientByProfessionSpecification(ProfessionDto profession)
         {
-            this.profession = profession.ToLower();
+            this.profession = profession.Name.ToLower();
         }
 
         #endregion Constructors
@@ -51,7 +52,12 @@ namespace Probel.NDoctor.Domain.DTO.Specification
 
         public override bool IsSatisfiedBy(PatientDto obj)
         {
-            return obj.Profession.Name.ToLower().Contains(profession);
+            Assert.IsNotNull(obj);
+            if (obj.Profession == null || string.IsNullOrWhiteSpace(obj.Profession.Name)) return false;
+            else
+            {
+                return obj.Profession.Name.ToLower().Contains(profession);
+            }
         }
 
         #endregion Methods

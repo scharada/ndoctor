@@ -19,7 +19,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Windows;
     using System.Windows.Input;
     using System.Windows.Media;
 
@@ -66,7 +65,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
             this.MacroMenu = new ObservableCollection<MacroMenuItem>();
 
-            this.RefreshCommand = new RelayCommand(() => this.Refresh());
+            this.RefreshCommand = new RelayCommand(() => this.Refresh(), () => this.CanRefresh());
             this.SaveCommand = new RelayCommand(() => Save(), () => this.CanSave());
             this.ShowRevisionsCommand = new RelayCommand(() => this.ShowRevisions(), () => this.CanShowRevisions());
             this.RefreshDefaultFontsCommand = new RelayCommand(() => this.RefreshDefaultFonts());
@@ -202,6 +201,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 var text = this.Component.Resolve(macro, PluginContext.Host.SelectedPatient);
                 TextEditor.Control.CaretPosition.InsertTextInRun(text);
             });
+        }
+
+        private bool CanRefresh()
+        {
+            return PluginContext.Host != null
+                && PluginContext.Host.SelectedPatient != null;
         }
 
         private bool CanSave()

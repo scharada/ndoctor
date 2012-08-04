@@ -7,11 +7,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              
              xmlns:conv="clr-namespace:Probel.NDoctor.View.Plugins.Converters;assembly=Probel.NDoctor.View.Plugins"     
-             xmlns:my="clr-namespace:Probel.NDoctor.Plugins.PatientSession.ViewModel"
+             xmlns:my="clr-namespace:Probel.NDoctor.Domain.DTO.Objects;assembly=Probel.NDoctor.Domain.DTO"
              xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PatientSession.View"
              xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PatientSession.Translations"      
              xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
+             xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
+             xmlns:behaviours="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
      
              mc:Ignorable="d"
              Width="300"
@@ -25,56 +27,73 @@
     <UserControl.Resources>
         <conv:GenderToImageConverter x:Key="genderToImage"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-        <DataTemplate x:Name="SelectedItem" DataType="{x:Type my:LightPatientViewModel}">
-            <StackPanel>
-                <Grid>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Width="40" Height="40" Source="{Binding Gender, Converter={StaticResource genderToImage}}"/>
-                        <TextBlock Text="{Binding FirstName}" VerticalAlignment="Center"/>
-                        <TextBlock Text=" "/>
-                        <TextBlock Text="{Binding LastName}" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </Grid>
-                <Button Content="{Binding Path=ContextMenuSelect}"
-                        Command="{Binding Path=SelectPatientCommand}"
-                        Visibility="{Binding Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <DataTemplate x:Name="SelectedItem" DataType="{x:Type my:LightPatientDto}">
+            <StackPanel Orientation="Horizontal">
+                <Image Width="40" Height="40" Source="{Binding Gender, Converter={StaticResource genderToImage}}"/>
+                <TextBlock Text="{Binding FirstName}" VerticalAlignment="Center"/>
+                <TextBlock Text=" "/>
+                <TextBlock Text="{Binding LastName}" VerticalAlignment="Center"/>
             </StackPanel>
         </DataTemplate>
 
     </UserControl.Resources>
     <Grid>
-        <Popup IsOpen="{Binding ElementName=btn, Path=IsChecked}" 
-               PlacementTarget="{Binding ElementName=btn}"
-               StaysOpen="False">
-            <ctrl:CriteriaControl DataContext="{Binding}"/>
-        </Popup>
-        <DockPanel LastChildFill="True">
-            <DockPanel DockPanel.Dock="Top"
-                   LastChildFill="True">
-                <Border Style="{StaticResource BorderStyle}">
-                    <DockPanel>
-                        <ToggleButton DockPanel.Dock="Top"
-                                x:Name="btn"
-                                Content="Add criteria">
-                        </ToggleButton>
-                        <ContentControl DockPanel.Dock="Top"/>
+        <toolkit:BusyIndicator IsBusy="{Binding IsBusy,UpdateSourceTrigger=PropertyChanged}"
+                               BusyContent="{Binding Source={x:Static Member=t:BaseText.PleaseWait}}">
+            <DockPanel LastChildFill="True">
+                <DockPanel DockPanel.Dock="Top"
+                           LastChildFill="True">
+                    <DockPanel DockPanel.Dock="Top" LastChildFill="True">
+                        <DockPanel Margin="4">
+                            <toolkit:WatermarkTextBox x:Name="focused"
+                                              Grid.Column="0" 
+                                              Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}">
+                                <toolkit:WatermarkTextBox.Watermark>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
+                                       Height="15"
+                                       Width="15" />
+                                        <TextBlock Text="{Binding Source={x:Static Member=text:WorkbenchText.TitleWatermark}}"
+                                           Margin="4,0,0,0"/>
+                                    </StackPanel>
+                                </toolkit:WatermarkTextBox.Watermark>
+                            </toolkit:WatermarkTextBox>
+                        </DockPanel>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Top" LastChildFill="True">
+                        <CheckBox x:Name="isByProfession"
+                          IsChecked="{Binding IsByProfession}" 
+                          Content="{Binding Source={x:Static Member=text:SearchPatientExtendedText.CriteriaByProfession}}"
+                          Margin="4"
+                          HorizontalContentAlignment="Left"
+                          VerticalContentAlignment="Center"
+                          VerticalAlignment="Center"/>
+                        <ComboBox Margin="4" 
+                          ItemsSource="{Binding Professions}"
+                          IsEnabled="{Binding IsChecked, ElementName=isByProfession}"
+                          DisplayMemberPath="Name"
+                          SelectedItem="{Binding SelectedProfession}"/>
+                    </DockPanel>
+                    <Border Style="{StaticResource BorderStyle}">
                         <Button DockPanel.Dock="Bottom" Content="{Binding Source={x:Static text:SearchPatientExtendedText.Search}}"
                                 Command="{Binding SearchCommand}"/>
-                    </DockPanel>
-                </Border>
+                    </Border>
+                </DockPanel>
+                <ScrollViewer>
+                    <ListView DockPanel.Dock="Bottom"
+                              ItemsSource="{Binding FoundPatients}"
+                              IsSynchronizedWithCurrentItem="True"
+                              VerticalAlignment="Stretch"
+                              SelectedItem="{Binding SelectedPatient}"
+                              behaviours:ControlBehaviour.MouseDoubleClick="{Binding SelectPatientCommand}">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </ScrollViewer>
             </DockPanel>
-            <ScrollViewer>
-                <ListView DockPanel.Dock="Bottom"
-                      ItemsSource="{Binding FoundPatients}"
-                      IsSynchronizedWithCurrentItem="True"
-                      VerticalAlignment="Stretch">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
-            </ScrollViewer>
-        </DockPanel>
+        </toolkit:BusyIndicator>
     </Grid>
 </UserControl>

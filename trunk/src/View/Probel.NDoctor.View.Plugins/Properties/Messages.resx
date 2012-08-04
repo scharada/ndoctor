@@ -202,6 +202,10 @@ Path: {1}</value>
     <value>The parameter '{0}' is not set in the configuration file. Please set it up.</value>
     <comment>The parameter '{0}' is not set in the configuration file. Please set it up.</comment>
   </data>
+  <data name="Msg_PleaseWait" xml:space="preserve">
+    <value>Please wait...</value>
+    <comment>Please wait...</comment>
+  </data>
   <data name="Question" xml:space="preserve">
     <value>Question</value>
     <comment>Question</comment>

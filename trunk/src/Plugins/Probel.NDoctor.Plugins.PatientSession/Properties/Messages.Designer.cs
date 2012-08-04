@@ -70,7 +70,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to first or last name contains.
+        ///   Looks up a localized string similar to First or last name:.
         /// </summary>
         internal static string Criteria_ByName {
             get {
@@ -79,7 +79,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profession.
+        ///   Looks up a localized string similar to Profession:.
         /// </summary>
         internal static string Criteria_ByProfession {
             get {
@@ -88,7 +88,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Birth year.
+        ///   Looks up a localized string similar to Birth year:.
         /// </summary>
         internal static string Criteria_ByYear {
             get {

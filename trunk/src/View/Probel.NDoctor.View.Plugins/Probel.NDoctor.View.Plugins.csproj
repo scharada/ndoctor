@@ -71,6 +71,7 @@
     <Compile Include="Converters\DoctorGenderToImageConverter.cs" />
     <Compile Include="Converters\GenderToImageConverter.cs" />
     <Compile Include="Converters\IntToVisibilityConverter.cs" />
+    <Compile Include="Converters\InverseBooleanConverter.cs" />
     <Compile Include="Converters\InvertVisibilityConverter.cs" />
     <Compile Include="Converters\NullToBooleanConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
