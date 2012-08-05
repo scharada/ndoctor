@@ -102,7 +102,6 @@
     <Compile Include="Translations\WorkbenchText.cs" />
     <Compile Include="ViewModel\BindDoctorViewModel.cs" />
     <Compile Include="ViewModel\AddSpecialisationViewModel.cs" />
-    <Compile Include="ViewModel\LightDoctorViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
     <Compile Include="View\AddInsuranceView.xaml.cs">
       <DependentUpon>AddInsuranceView.xaml</DependentUpon>

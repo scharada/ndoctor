@@ -38,6 +38,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using System.Windows;
 
     public class WorkbenchViewModel : BaseViewModel
     {
@@ -67,6 +68,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
             this.ChangeImageCommand = new RelayCommand(() => this.ChangeImage(), () => this.CanChangePicture());
             this.BindDoctorCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_BindDoctor, new BindDoctorView()), () => this.Patient != null);
+            this.RemoveLinkCommand = new RelayCommand(() => this.RemoveLink());
 
             this.SaveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
             this.RollbackCommand = new RelayCommand(() => this.Rollback(), () => this.CanRollback());
@@ -88,7 +90,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             private set;
         }
 
-        public ObservableCollection<LightDoctorViewModel> Doctors
+        public ObservableCollection<LightDoctorDto> Doctors
         {
             get;
             private set;
@@ -154,6 +156,16 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             private set;
         }
 
+        private LightDoctorDto selectedDoctor;
+        public LightDoctorDto SelectedDoctor
+        {
+            get { return this.selectedDoctor; }
+            set
+            {
+                this.selectedDoctor = value;
+                this.OnPropertyChanged(() => SelectedDoctor);
+            }
+        }
         #endregion Properties
 
         #region Methods
@@ -169,8 +181,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 if (this.Patient != null && PluginContext.DoorKeeper.IsUserGranted(To.Write)) { this.Save(); }
 
                 var result = this.component.FindDoctorOf(PluginContext.Host.SelectedPatient);
-                var mapped = Mapper.Map<IList<LightDoctorDto>, IList<LightDoctorViewModel>>(result);
-                this.Doctors.Refill(mapped);
+                this.Doctors.Refill(result);
 
                 //Refill the collections BEFORE refreshing the patient.
                 this.Insurances.Refill(this.component.GetAllInsurancesLight());
@@ -224,7 +235,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             this.Reputations = new ObservableCollection<ReputationDto>();
             this.Professions = new ObservableCollection<ProfessionDto>();
             this.Practices = new ObservableCollection<LightPracticeDto>();
-            this.Doctors = new ObservableCollection<LightDoctorViewModel>();
+            this.Doctors = new ObservableCollection<LightDoctorDto>();
 
             this.Genders = new ObservableCollection<Tuple<string, Gender>>();
             this.Genders.Add(new Tuple<string, Gender>(Gender.Male.Translate(), Gender.Male));
@@ -281,5 +292,27 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         }
 
         #endregion Methods
+
+        private void RemoveLink()
+        {
+            try
+            {
+                var dr = MessageBox.Show(Messages.Msg_AskRemoveLink
+                    , Messages.Question
+                    , MessageBoxButton.YesNo
+                    , MessageBoxImage.Question);
+                if (dr == MessageBoxResult.No) return;
+
+                this.component.RemoveDoctorFor(PluginContext.Host.SelectedPatient, this.SelectedDoctor);
+
+                Notifyer.OnSateliteDataChanged(this);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DoctorRemoved);
+            }
+            catch (Exception ex)
+            {
+                this.HandleError(ex, Messages.Msg_ErrorRemovingDoctor);
+            }
+        }
+
     }
 }

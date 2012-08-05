@@ -345,13 +345,8 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             patientEntity.Doctors.Remove(doctorToDel);
             doctorEntity.Patients.Remove(patientToDel);
 
-            using (var tx = this.Session.Transaction)
-            {
-                tx.Begin();
-                this.Session.Update(patientEntity);
-                this.Session.Update(doctorEntity);
-                tx.Commit();
-            }
+            this.Session.Update(patientEntity);
+            this.Session.Update(doctorEntity);
         }
 
         /// <summary>

@@ -425,4 +425,12 @@
     <value>Chercher...</value>
     <comment>Search...</comment>
   </data>
+  <data name="Msg_CantSelectDoctor" xml:space="preserve">
+    <value>Impossible de modifier les informations du patient</value>
+    <comment>Impossible to modify the patient's data</comment>
+  </data>
+  <data name="Msg_CantSelectDoctor_NotGranted" xml:space="preserve">
+    <value>Vous n'avez pas les droits pour modifier un patient</value>
+    <comment>You are not granted to modify patient's data</comment>
+  </data>
 </root>

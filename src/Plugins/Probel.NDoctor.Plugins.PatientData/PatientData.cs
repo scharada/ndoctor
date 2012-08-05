@@ -64,8 +64,6 @@ namespace Probel.NDoctor.Plugins.PatientData
             : base(version)
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
-
-            this.ConfigureAutoMapper();
         }
 
         #endregion Constructors
@@ -140,12 +138,6 @@ namespace Probel.NDoctor.Plugins.PatientData
         private bool CanNavigate()
         {
             return PluginContext.Host.SelectedPatient != null;
-        }
-
-        private void ConfigureAutoMapper()
-        {
-            Mapper.CreateMap<LightDoctorDto, LightDoctorViewModel>();
-            Mapper.CreateMap<LightDoctorViewModel, LightDoctorDto>();
         }
 
         private bool IsGrantedToWrite()

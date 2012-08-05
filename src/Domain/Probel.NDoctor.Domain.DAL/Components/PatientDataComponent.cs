@@ -66,13 +66,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
             patientEntity.Doctors.Add(doctorEntity);
             doctorEntity.Patients.Add(patientEntity);
 
-            using (var tx = this.Session.Transaction)
-            {
-                tx.Begin();
-                this.Session.Update(patientEntity);
-                this.Session.Update(doctorEntity);
-                tx.Commit();
-            }
+            this.Session.Update(patientEntity);
+            this.Session.Update(doctorEntity);
         }
 
         /// <summary>
