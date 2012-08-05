@@ -241,6 +241,7 @@
             <StackPanel Grid.Column="2"
                         Grid.Row="2">
                 <DataGrid ItemsSource="{Binding Path=Doctors, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding SelectedDoctor}"
                           AutoGenerateColumns="False"
                           CanUserAddRows="False"
                           CanUserDeleteRows="False">

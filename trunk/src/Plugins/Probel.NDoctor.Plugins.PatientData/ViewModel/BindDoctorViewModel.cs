@@ -18,17 +18,22 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
     using System.Timers;
     using System.Windows.Input;
-
     using AutoMapper;
-
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.Helpers.Assertion;
+    using System;
+    using Probel.NDoctor.Domain.DTO;
+    using Probel.NDoctor.Plugins.PatientData.Properties;
+    using Probel.NDoctor.Plugins.PatientData.Helpers;
+    using Probel.NDoctor.View.Core.Helpers;
 
     public class BindDoctorViewModel : BaseViewModel
     {
@@ -38,7 +43,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         private IPatientDataComponent component;
         private string criteria;
-        private LightDoctorViewModel selectedDoctor;
+        private LightDoctorDto selectedDoctor;
 
         #endregion Fields
 
@@ -52,8 +57,9 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
             }
 
-            this.FoundDoctors = new ObservableCollection<LightDoctorViewModel>();
+            this.FoundDoctors = new ObservableCollection<LightDoctorDto>();
             this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());
+            this.SelectDoctorCommand = new RelayCommand(() => this.SelectDoctor(), () => this.CanSelectDoctor());
 
             Countdown.Elapsed += (sender, e) => PluginContext.Host.Invoke(() =>
             {
@@ -77,7 +83,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             }
         }
 
-        public ObservableCollection<LightDoctorViewModel> FoundDoctors
+        public ObservableCollection<LightDoctorDto> FoundDoctors
         {
             get;
             private set;
@@ -89,7 +95,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             private set;
         }
 
-        public LightDoctorViewModel SelectedDoctor
+        public LightDoctorDto SelectedDoctor
         {
             get { return this.selectedDoctor; }
             set
@@ -110,11 +116,48 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         private void Search()
         {
-            var result = this.component.FindNotLinkedDoctorsFor(PluginContext.Host.SelectedPatient, this.Criteria, SearchOn.FirstAndLastName);
-            var mapped = Mapper.Map<IList<LightDoctorDto>, IList<LightDoctorViewModel>>(result);
-            this.FoundDoctors.Refill(mapped);
+            var context = TaskScheduler.FromCurrentSynchronizationContext();
+            Task.Factory
+                .StartNew<IList<LightDoctorDto>>(state => this.SearchAsync(state as LightPatientDto), PluginContext.Host.SelectedPatient)
+                .ContinueWith(e => this.FoundDoctors.Refill(e.Result), context);
+        }
+
+        private IList<LightDoctorDto> SearchAsync(LightPatientDto selectedPatient)
+        {
+            Assert.IsNotNull(selectedPatient);
+            PluginContext.Host.SetWaitCursor();
+            var result = this.component.FindNotLinkedDoctorsFor(selectedPatient, this.Criteria, SearchOn.FirstAndLastName);
+            PluginContext.Host.SetArrowCursor();
+            return result;
         }
 
         #endregion Methods
+
+        public ICommand SelectDoctorCommand { get; private set; }
+        private void SelectDoctor()
+        {
+            try
+            {
+                this.component.AddDoctorTo(PluginContext.Host.SelectedPatient, this.SelectedDoctor);
+                InnerWindow.Close();
+                Notifyer.OnSateliteDataChanged(this);
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+        }
+        private bool CanSelectDoctor()
+        {
+            var result = this.SelectedDoctor != null
+                && PluginContext.Host.SelectedPatient != null
+                && PluginContext.DoorKeeper.IsUserGranted(To.Write);
+
+            if (!result)
+            {
+                if (!PluginContext.DoorKeeper.IsUserGranted(To.Write)) { PluginContext.Host.WriteStatus(StatusType.Warning, Messages.Msg_CantSelectDoctor_NotGranted); }
+                else { PluginContext.Host.WriteStatus(StatusType.Warning, Messages.Msg_CantSelectDoctor); }
+            }
+
+
+            return result;
+        }
     }
 }

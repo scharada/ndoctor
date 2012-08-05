@@ -6,9 +6,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"             
              
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PatientData.Translations"
-             xmlns:vm="clr-namespace:Probel.NDoctor.Plugins.PatientData.ViewModel"
+             xmlns:my="clr-namespace:Probel.NDoctor.Domain.DTO.Objects;assembly=Probel.NDoctor.Domain.DTO"
              xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"             
              xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
+             xmlns:behaviours="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF" 
              
              mc:Ignorable="d"
              Height="300"
@@ -32,7 +33,7 @@
                                Width="15"/>
                     </Button>
                     <toolkit:WatermarkTextBox Grid.Column="0" 
-                                          Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}">
+                                              Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}">
                         <toolkit:WatermarkTextBox.Watermark>
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
@@ -50,9 +51,10 @@
         </DockPanel>
         <ScrollViewer>
             <ListView ItemsSource="{Binding Path=FoundDoctors}"
-                      SelectedItem="{Binding Path=SelectedDoctor}">
+                      SelectedItem="{Binding SelectedDoctor}"
+                      behaviours:ControlBehaviour.MouseDoubleClick="{Binding SelectDoctorCommand}">
                 <ListView.Resources>
-                    <DataTemplate DataType="{x:Type vm:LightDoctorViewModel}">
+                    <DataTemplate DataType="{x:Type my:LightDoctorDto}">
                         <StackPanel>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -74,17 +76,9 @@
                                 <Label Grid.Column="1"
                                            Content="{Binding Path=Specialisation.Name}"/>
                             </Grid>
-                            <Button Command="{Binding Path=AddDoctorCommand}" 
-                                        Content="{Binding Source={x:Static Member=text:AddDoctorText.BtnAddDoctor}}"
-                                        Visibility="{Binding Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.Resources>
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
-                    </Style>
-                </ListView.ItemContainerStyle>
             </ListView>
         </ScrollViewer>
     </DockPanel>
