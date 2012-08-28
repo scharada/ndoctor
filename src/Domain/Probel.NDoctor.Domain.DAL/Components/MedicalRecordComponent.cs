@@ -198,7 +198,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="macro">The macro.</param>
         public void Update(MacroDto macro)
         {
-            new Updator(this.Session).Update(macro);
+            new Creator(this.Session).Create(macro);
         }
 
         /// <summary>
@@ -209,6 +209,20 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Update(MedicalRecordCabinetDto cabinet)
         {
             new Updator(this.Session).Update(cabinet);
+        }
+
+        /// <summary>
+        /// Updates the specified macros.
+        /// </summary>
+        /// <param name="macros">The macros.</param>
+        public void Update(IEnumerable<MacroDto> macros)
+        {
+            var updator = new Updator(this.Session);
+
+            foreach (var macro in macros)
+            {
+                updator.Update(macro);
+            }
         }
 
         #endregion Methods

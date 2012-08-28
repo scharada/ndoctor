@@ -168,6 +168,10 @@
     <value>Macros</value>
     <comment>Macros</comment>
   </data>
+  <data name="Macro_New" xml:space="preserve">
+    <value>Nouvelle macro</value>
+    <comment>New macro</comment>
+  </data>
   <data name="Menu_Actions" xml:space="preserve">
     <value>Actions</value>
     <comment>Actions</comment>
@@ -196,9 +200,9 @@
     <value>Macro '{0}' supprimée.</value>
     <comment>Macro '{0}' removed.</comment>
   </data>
-  <data name="Msg_MacroUpdated" xml:space="preserve">
-    <value>La macro '{0}' a été enregistrée.</value>
-    <comment>Macro' {0}' has been updated.</comment>
+  <data name="Msg_MacrosUpdated" xml:space="preserve">
+    <value>Les macros ont été enregistrées.</value>
+    <comment>Macros have been updated.</comment>
   </data>
   <data name="Msg_RecordAdded" xml:space="preserve">
     <value>Nouvelle fiche ajoutée au dossier</value>

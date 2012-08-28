@@ -10,6 +10,7 @@
              xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
              xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Core.Controls;assembly=Probel.NDoctor.View.Core"
              xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
+             xmlns:behaviours="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
              
              mc:Ignorable="d" 
              Height="600" Width="800">
@@ -45,7 +46,7 @@
                     <ListView Name="list"
                               ItemsSource="{Binding Macros}"
                               DisplayMemberPath="Title"
-                              SelectedItem="{Binding SelectedMacro}" SelectionChanged="list_SelectionChanged">
+                              SelectedItem="{Binding SelectedMacro}">
                         <ListView.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="{Binding Source={x:Static Member=t:BaseText.Remove}}"
@@ -84,7 +85,6 @@
                                                FontFamily="Consolas"
                                                FontSize="12pt"
                                                SyntaxHighlighting="Macro Highlighting"
-                                               TextChanged="textEditor_TextChanged"
                                                Document="{Binding TextDocument, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0"
                                                IsEnabled="{Binding ElementName=textEditor,Path=Document, Converter={StaticResource NullToBool}}">
                         </avalonEdit:TextEditor>

@@ -196,6 +196,15 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New macro.
+        /// </summary>
+        internal static string Macro_New {
+            get {
+                return ResourceManager.GetString("Macro_New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Actions.
         /// </summary>
         internal static string Menu_Actions {
@@ -259,11 +268,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Macro&apos; {0}&apos; has been updated..
+        ///   Looks up a localized string similar to Macros have been updated..
         /// </summary>
-        internal static string Msg_MacroUpdated {
+        internal static string Msg_MacrosUpdated {
             get {
-                return ResourceManager.GetString("Msg_MacroUpdated", resourceCulture);
+                return ResourceManager.GetString("Msg_MacrosUpdated", resourceCulture);
             }
         }
         
@@ -421,7 +430,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Titre de la macro:.
+        ///   Looks up a localized string similar to Title of the macro:.
         /// </summary>
         internal static string Title_MacroName {
             get {
@@ -448,7 +457,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Historique des révisions.
+        ///   Looks up a localized string similar to Revisions history.
         /// </summary>
         internal static string Title_Rollback {
             get {

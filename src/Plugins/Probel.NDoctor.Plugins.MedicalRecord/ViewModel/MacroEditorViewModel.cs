@@ -18,13 +18,10 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.Timers;
-    using System.Windows;
     using System.Windows.Input;
 
     using ICSharpCode.AvalonEdit.Document;
 
-    using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
@@ -40,10 +37,9 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         #region Fields
 
         private readonly IMedicalRecordComponent Component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
-        private readonly object locker = new object();
-        private readonly Timer timer;
+        private readonly ICommand createCommand;
+        private readonly ICommand refreshCommand;
 
-        private string resolvedMacro;
         private MacroDto selectedMacro;
         private TextDocument textDocument;
 
@@ -53,18 +49,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         public MacroEditorViewModel()
         {
-            this.timer = new Timer(500) { AutoReset = true };
-            this.timer.Elapsed += (sender, e) => this.TestMacro();
-            this.timer.Start();
-
             this.Macros = new ObservableCollection<MacroDto>();
 
-            this.RefreshCommand = new RelayCommand(() => this.Refresh());
-            this.UpdateCommand = new RelayCommand(() => this.Update(), () => this.CanUpdate());
-            this.CreateCommand = new RelayCommand(() => this.Create(), () => this.CanCreate());
-            this.RemoveCommand = new RelayCommand(() => this.Remove(), () => this.CanRemove());
+            this.refreshCommand = new RelayCommand(() => this.Refresh(), () => this.CanRefresh());
+            this.createCommand = new RelayCommand(() => this.Create(), () => this.CanCreate());
 
-            InnerWindow.Closed += (sender, e) => this.UpdateCommand.TryExecute();
+            InnerWindow.Closed += (sender, e) => this.Save();
         }
 
         #endregion Constructors
@@ -73,8 +63,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         public ICommand CreateCommand
         {
-            get;
-            private set;
+            get { return this.createCommand; }
         }
 
         public ObservableCollection<MacroDto> Macros
@@ -85,24 +74,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         public ICommand RefreshCommand
         {
-            get;
-            private set;
-        }
-
-        public ICommand RemoveCommand
-        {
-            get;
-            private set;
-        }
-
-        public string ResolvedMacro
-        {
-            get { return this.resolvedMacro; }
-            set
-            {
-                this.resolvedMacro = value;
-                this.OnPropertyChanged(() => ResolvedMacro);
-            }
+            get { return this.refreshCommand; }
         }
 
         public MacroDto SelectedMacro
@@ -110,14 +82,19 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             get { return this.selectedMacro; }
             set
             {
-
                 this.selectedMacro = value;
 
                 var text = (value != null)
                     ? value.Expression ?? string.Empty
                     : string.Empty;
 
+                this.TextDocument = null;
                 this.TextDocument = new TextDocument(text);
+                this.TextDocument.TextChanged += (sender, e) =>
+                {
+                    if (this.SelectedMacro != null) { this.SelectedMacro.Expression = this.TextDocument.Text; }
+                };
+
                 this.OnPropertyChanged(() => SelectedMacro);
             }
         }
@@ -132,116 +109,48 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             }
         }
 
-        public ICommand UpdateCommand
-        {
-            get;
-            private set;
-        }
-
         #endregion Properties
 
         #region Methods
 
-        public void StartTimer()
-        {
-            if (this.SelectedMacro != null)
-            {
-                this.timer.Start();
-            }
-        }
-
         private bool CanCreate()
         {
-            return PluginContext.DoorKeeper.IsUserGranted(To.Administer);
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
-        private bool CanRemove()
+        private bool CanRefresh()
         {
-            return this.SelectedMacro != null
-                && PluginContext.DoorKeeper.IsUserGranted(To.Administer);
-        }
-
-        private bool CanUpdate()
-        {
-            return PluginContext.DoorKeeper.IsUserGranted(To.Administer)
-                && this.SelectedMacro != null
-                && this.SelectedMacro.IsValid();
+            return true;
         }
 
         private void Create()
         {
-            // Save previous macro.
-            if (this.SelectedMacro != null) { this.Update(); }
-
-            this.SelectedMacro = new MacroDto()
-            {
-                Title = Messages.Title_DefaultMacroTitle,
-            };
-
             try
             {
-                this.Component.Create(this.SelectedMacro);
+                var macro = new MacroDto() { Title = Messages.Macro_New };
+                this.Component.Create(macro);
+                this.Macros.Add(macro);
             }
             catch (Exception ex) { this.HandleError(ex); }
-
-            Notifyer.OnMacroUpdated();
-            this.Refresh();
         }
 
         private void Refresh()
         {
-            var macros = this.Component.GetAllMacros();
-            if (macros != null) { this.Macros.Refill(macros); }
-        }
-
-        private void Remove()
-        {
-            var dr = MessageBox.Show(Messages.Question_RemoveMacro.FormatWith(this.SelectedMacro.Title), BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (dr != MessageBoxResult.Yes) return;
-
             try
             {
-                this.Component.Remove(this.SelectedMacro);
-
-                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_MacroRemoved.FormatWith(this.SelectedMacro.Title));
-
-                this.SelectedMacro = null;
-
-                Notifyer.OnMacroUpdated();
-                this.Refresh();
+                var macros = this.Component.GetAllMacros();
+                if (macros != null) { this.Macros.Refill(macros); }
             }
             catch (Exception ex) { this.HandleError(ex); }
         }
 
-        private void TestMacro()
-        {
-            //Todo: this code has a problem with multithread. If this thread is running, all component method call will throw an SessionException
-            timer.Stop();
-            lock (this.locker)
-            {
-                PluginContext.Host.Invoke(() =>
-                {
-                    if (this.SelectedMacro != null) { this.SelectedMacro.Expression = this.TextDocument.Text; }
-
-                    if (this.Component.IsValid(this.SelectedMacro))
-                    {
-                        this.ResolvedMacro = this.Component.Resolve(this.SelectedMacro, PluginContext.Host.SelectedPatient);
-                    }
-                    else { this.ResolvedMacro = Messages.Err_InvalidMacro; }
-                });
-            }
-        }
-
-        private void Update()
+        private void Save()
         {
             try
             {
-                this.Component.Update(this.SelectedMacro);
-                var macroName = (this.SelectedMacro != null)
-                    ? this.SelectedMacro.Title ?? Messages.NoName
-                    : Messages.NoName;
+                this.Component.Update(this.Macros);
 
-                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_MacroUpdated.FormatWith(macroName));
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_MacrosUpdated);
                 Notifyer.OnMacroUpdated();
             }
             catch (Exception ex) { this.HandleError(ex); }

@@ -112,6 +112,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="cabinet">The cabinet.</param>
         void Update(MedicalRecordCabinetDto cabinet);
 
+        /// <summary>
+        /// Updates the specified macros.
+        /// </summary>
+        /// <param name="macros">The macros.</param>
+        void Update(IEnumerable<MacroDto> macros);
+
         #endregion Methods
     }
 }

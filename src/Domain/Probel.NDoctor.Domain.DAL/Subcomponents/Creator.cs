@@ -47,7 +47,8 @@
             if (exist) throw new ExistingItemException();
 
             var entity = Mapper.Map<MacroDto, Macro>(item);
-            return (long)this.Session.Save(entity);
+            item.Id = (long)this.Session.Save(entity);
+            return item.Id;
         }
 
         /// <summary>
@@ -65,7 +66,8 @@
             if (exist) throw new ExistingItemException();
 
             var entity = Mapper.Map<DrugDto, Drug>(item);
-            return (long)this.Session.Save(entity);
+            item.Id = (long)this.Session.Save(entity);
+            return item.Id;
         }
 
         /// <summary>
@@ -82,7 +84,8 @@
             if (found) throw new ExistingItemException();
 
             var entity = Mapper.Map<PatientDto, Patient>(item);
-            return (long)this.Session.Save(entity);
+            item.Id = (long)this.Session.Save(entity);
+            return item.Id;
         }
 
         /// <summary>
@@ -99,7 +102,8 @@
             if (found) throw new ExistingItemException();
 
             var entity = Mapper.Map<LightDoctorDto, Doctor>(item);
-            return (long)this.Session.Save(entity);
+            item.Id = (long)this.Session.Save(entity);
+            return item.Id;
         }
 
         /// <summary>
@@ -119,7 +123,8 @@
             if (exist) throw new ExistingItemException();
 
             var entity = Mapper.Map<TagDto, Tag>(item);
-            return (long)this.Session.Save(entity);
+            item.Id = (long)this.Session.Save(entity);
+            return item.Id;
         }
 
         /// <summary>
@@ -143,7 +148,9 @@
             if (string.IsNullOrWhiteSpace(entity.Password)) throw new BusinessLogicException(Messages.Validation_PasswordCantBeEmpty);
 
             if (this.IsFirstUser()) { entity.IsSuperAdmin = true; }
-            return (long)this.Session.Save(entity);
+
+            item.Id = (long)this.Session.Save(entity);
+            return item.Id;
         }
 
         /// <summary>
@@ -162,50 +169,54 @@
                          )
                          select p).Count() > 0;
 
-            var newPatient = Mapper.Map<LightPatientDto, Patient>(item);
-            newPatient.InscriptionDate = DateTime.Today;
+            var newEntity = Mapper.Map<LightPatientDto, Patient>(item);
+            newEntity.InscriptionDate = DateTime.Today;
 
             if (found) throw new ExistingItemException();
 
-            return (long)this.Session.Save(newPatient);
+            item.Id = (long)this.Session.Save(newEntity);
+            return item.Id;
         }
 
         /// <summary>
         /// Creates the specified profession.
         /// </summary>
-        /// <param name="profession">The profession.</param>
-        public long Create(ProfessionDto profession)
+        /// <param name="item">The profession.</param>
+        public long Create(ProfessionDto item)
         {
-            Assert.IsNotNull(profession, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "The item to create shouldn't be null");
 
             var found = (from p in this.Session.Query<Profession>()
-                         where p.Id == profession.Id
-                            || profession.Name.ToLower() == p.Name.ToLower()
+                         where p.Id == item.Id
+                            || item.Name.ToLower() == p.Name.ToLower()
                          select p).Count() > 0;
             if (found) throw new ExistingItemException();
 
-            var entity = Mapper.Map<ProfessionDto, Profession>(profession);
+            var entity = Mapper.Map<ProfessionDto, Profession>(item);
             entity.Id = 0;
 
-            return (long)this.Session.Save(entity);
+            item.Id = (long)this.Session.Save(entity);
+            return item.Id;
         }
 
         /// <summary>
         /// Create the specified item into the database
         /// </summary>
-        /// <param name="reputation">The item to add in the database</param>
-        public long Create(ReputationDto reputation)
+        /// <param name="item">The item to add in the database</param>
+        public long Create(ReputationDto item)
         {
-            Assert.IsNotNull(reputation, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "The item to create shouldn't be null");
 
             var exist = (from p in this.Session.Query<Reputation>()
-                         where reputation.Name.ToUpper() == p.Name.ToUpper()
-                         || p.Id == reputation.Id
+                         where item.Name.ToUpper() == p.Name.ToUpper()
+                         || p.Id == item.Id
                          select p).Count() > 0;
             if (exist) throw new ExistingItemException();
 
-            var entity = Mapper.Map<ReputationDto, Reputation>(reputation);
-            return (long)this.Session.Save(entity);
+            var entity = Mapper.Map<ReputationDto, Reputation>(item);
+
+            item.Id = (long)this.Session.Save(entity);
+            return item.Id;
         }
 
         /// <summary>
@@ -223,43 +234,48 @@
             var entity = Mapper.Map<PathologyDto, Pathology>(item);
             entity.Id = 0;
 
-            return (long)this.Session.Save(entity);
+            item.Id = (long)this.Session.Save(entity);
+            return item.Id;
         }
 
         /// <summary>
         /// Create the specified item into the database
         /// </summary>
         /// <param name="reputation">The item to add in the database</param>
-        public long Create(PracticeDto practice)
+        public long Create(PracticeDto item)
         {
-            Assert.IsNotNull(practice, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "The item to create shouldn't be null");
 
             var exist = (from i in this.Session.Query<Practice>()
-                         where practice.Name.ToUpper() == i.Name.ToUpper()
-                            || i.Id == practice.Id
+                         where item.Name.ToUpper() == i.Name.ToUpper()
+                            || i.Id == item.Id
                          select i).Count() > 0;
             if (exist) throw new ExistingItemException();
 
-            var entity = Mapper.Map<PracticeDto, Practice>(practice);
-            return (long)this.Session.Save(entity);
+            var entity = Mapper.Map<PracticeDto, Practice>(item);
+
+            item.Id = (long)this.Session.Save(entity);
+            return item.Id;
         }
 
         /// <summary>
         /// Create the specified item into the database
         /// </summary>
         /// <param name="reputation">The item to add in the database</param>
-        public long Create(InsuranceDto insurance)
+        public long Create(InsuranceDto item)
         {
-            Assert.IsNotNull(insurance, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "The item to create shouldn't be null");
 
             var exist = (from i in this.Session.Query<Insurance>()
-                         where insurance.Name.ToUpper() == i.Name.ToUpper()
-                            || i.Id == insurance.Id
+                         where item.Name.ToUpper() == i.Name.ToUpper()
+                            || i.Id == item.Id
                          select i).Count() > 0;
             if (exist) throw new ExistingItemException();
 
-            var entity = Mapper.Map<InsuranceDto, Insurance>(insurance);
-            return (long)this.Session.Save(entity);
+            var entity = Mapper.Map<InsuranceDto, Insurance>(item);
+
+            item.Id = (long)this.Session.Save(entity);
+            return item.Id;
         }
 
         /// <summary>
@@ -283,17 +299,18 @@
             if (entity.IsDefault) this.RemoveDefaultUser();
             if (this.IsFirstUser()) { entity.IsSuperAdmin = true; }
 
-            return (long)this.Session.Save(entity);
+            item.Id = (long)this.Session.Save(entity);
+            return item.Id;
         }
 
         /// <summary>
         /// Creates a new role in the repository.
         /// </summary>
-        /// <param name="role">The role.</param>
+        /// <param name="item">The role.</param>
         /// <returns></returns>
-        public long Create(RoleDto role)
+        public long Create(RoleDto item)
         {
-            var entity = Mapper.Map<RoleDto, Role>(role);
+            var entity = Mapper.Map<RoleDto, Role>(item);
             using (var tx = this.Session.Transaction)
             {
                 tx.Begin();
@@ -301,23 +318,31 @@
                 this.Session.SaveOrUpdate(entity);
                 tx.Commit();
             }
-            Mapper.Map<Role, RoleDto>(entity, role);
+            Mapper.Map<Role, RoleDto>(entity, item);
+
+            item.Id = entity.Id;
             return entity.Id;
         }
 
         /// <summary>
         /// Creates the specified task.
         /// </summary>
-        /// <param name="task">The task.</param>
+        /// <param name="item">The task.</param>
         /// <returns>
         /// The id of the created item
         /// </returns>
-        public long Create(TaskDto task)
+        public long Create(TaskDto item)
         {
-            var entity = Mapper.Map<TaskDto, Task>(task);
-            var id = (long)this.Session.Save(entity);
-            Mapper.Map<Task, TaskDto>(entity, task);
-            return entity.Id;
+            Assert.IsNotNull(item, "The item to create shouldn't be null");
+
+            var exist = (from i in this.Session.Query<TaskDto>()
+                         where i.Id == item.Id
+                         select i).ToList().Count() > 0;
+            if (exist) throw new ExistingItemException();
+
+            var entity = Mapper.Map<TaskDto, Task>(item);
+            item.Id = (long)this.Session.Save(entity);
+            return item.Id;
         }
 
         /// <summary>
@@ -383,23 +408,24 @@
         /// <summary>
         /// Create the specified item into the database
         /// </summary>
-        /// <param name="doctor"></param>
+        /// <param name="item"></param>
         /// <returns></returns>
-        public long Create(DoctorDto doctor)
+        public long Create(DoctorDto item)
         {
-            Assert.IsNotNull(doctor, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "The item to create shouldn't be null");
 
             var found = (from p in this.Session.Query<Doctor>()
-                         where p.Id == doctor.Id
-                            || (doctor.FirstName.ToUpper() == p.FirstName.ToUpper()
-                            && doctor.LastName.ToUpper() == p.LastName.ToUpper())
+                         where p.Id == item.Id
+                            || (item.FirstName.ToUpper() == p.FirstName.ToUpper()
+                            && item.LastName.ToUpper() == p.LastName.ToUpper())
                          select p).Count() > 0;
             if (found) throw new ExistingItemException();
 
-            var entity = Mapper.Map<DoctorDto, Doctor>(doctor);
+            var entity = Mapper.Map<DoctorDto, Doctor>(item);
             entity.Id = 0;
 
-            return (long)this.Session.Save(entity);
+            item.Id = (long)this.Session.Save(entity);
+            return item.Id;
         }
 
         /// <summary>
