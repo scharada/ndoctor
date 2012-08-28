@@ -25,6 +25,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
     using ICSharpCode.AvalonEdit.CodeCompletion;
     using ICSharpCode.AvalonEdit.Highlighting;
 
+    using log4net;
+
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Plugins.MedicalRecord.Editor;
     using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
@@ -55,15 +57,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
         #endregion Constructors
 
         #region Methods
-
-        private void list_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (this.DataContext is MacroEditorViewModel)
-            {
-                var vm = this.DataContext as MacroEditorViewModel;
-                vm.UpdateCommand.TryExecute();
-            }
-        }
 
         private void PreSetupAvalonEdit()
         {
@@ -116,15 +109,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
                 }
 
             };
-        }
-
-        private void textEditor_TextChanged(object sender, EventArgs e)
-        {
-            if (this.DataContext is MacroEditorViewModel)
-            {
-                var vm = this.DataContext as MacroEditorViewModel;
-                vm.StartTimer();
-            }
         }
 
         #endregion Methods

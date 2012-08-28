@@ -168,6 +168,10 @@
     <value>Macros</value>
     <comment>Macros</comment>
   </data>
+  <data name="Macro_New" xml:space="preserve">
+    <value>New macro</value>
+    <comment>New macro</comment>
+  </data>
   <data name="Menu_Actions" xml:space="preserve">
     <value>Actions</value>
     <comment>Actions</comment>
@@ -196,9 +200,9 @@
     <value>Macro '{0}' removed.</value>
     <comment>Macro '{0}' removed.</comment>
   </data>
-  <data name="Msg_MacroUpdated" xml:space="preserve">
-    <value>Macro' {0}' has been updated.</value>
-    <comment>Macro' {0}' has been updated.</comment>
+  <data name="Msg_MacrosUpdated" xml:space="preserve">
+    <value>Macros have been updated.</value>
+    <comment>Macros have been updated.</comment>
   </data>
   <data name="Msg_RecordAdded" xml:space="preserve">
     <value>New card added to the record</value>
@@ -269,7 +273,7 @@
     <comment>Edit macros</comment>
   </data>
   <data name="Title_MacroName" xml:space="preserve">
-    <value>Titre de la macro:</value>
+    <value>Title of the macro:</value>
     <comment>Title of the macro:</comment>
   </data>
   <data name="Title_MedicalRecord" xml:space="preserve">
@@ -281,7 +285,7 @@
     <comment>{0} | Created {1} | Last update: {2}</comment>
   </data>
   <data name="Title_Rollback" xml:space="preserve">
-    <value>Historique des révisions</value>
+    <value>Revisions history</value>
     <comment>Revisions history</comment>
   </data>
   <data name="Title_Save" xml:space="preserve">

@@ -31,9 +31,9 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     {
         #region Fields
 
-        private string expression;
-        private string notes;
-        private string title;
+        private string expression = string.Empty;
+        private string notes = string.Empty;
+        private string title = string.Empty;
 
         #endregion Fields
 

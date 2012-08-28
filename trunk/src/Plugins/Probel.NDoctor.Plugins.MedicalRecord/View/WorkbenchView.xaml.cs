@@ -54,7 +54,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
                     viewModel.SelectedRecord.Clean();
 
                     this.richTextBox.IsEnabled = viewModel.IsGranted;
-
                 }
                 else
                 {
