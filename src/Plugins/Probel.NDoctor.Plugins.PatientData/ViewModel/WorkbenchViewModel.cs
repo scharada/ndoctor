@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Windows;
     using System.Windows.Input;
 
     using AutoMapper;
@@ -38,7 +39,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using System.Windows;
 
     public class WorkbenchViewModel : BaseViewModel
     {
@@ -47,6 +47,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         private IPatientDataComponent component;
         private PatientDto memento = null;
         private PatientDto patient;
+        private LightDoctorDto selectedDoctor;
 
         #endregion Fields
 
@@ -60,7 +61,9 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             : base()
         {
             this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
+
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
+            PluginContext.Host.PatientSessionClosed += (sender, e) => this.Refresh();
 
             Notifyer.SateliteDataChanged += (sender, e) => this.Refresh();
 
@@ -156,7 +159,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             private set;
         }
 
-        private LightDoctorDto selectedDoctor;
         public LightDoctorDto SelectedDoctor
         {
             get { return this.selectedDoctor; }
@@ -166,6 +168,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 this.OnPropertyChanged(() => SelectedDoctor);
             }
         }
+
         #endregion Properties
 
         #region Methods
@@ -274,25 +277,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             }
         }
 
-        private void Rollback()
-        {
-            this.patient = this.memento;
-            this.Save();
-            this.Refresh();
-        }
-
-        private void Save()
-        {
-            try
-            {
-                this.component.Update(this.Patient);
-                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
-            }
-            catch (Exception ex) { this.HandleError(ex); }
-        }
-
-        #endregion Methods
-
         private void RemoveLink()
         {
             try
@@ -314,5 +298,23 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             }
         }
 
+        private void Rollback()
+        {
+            this.patient = this.memento;
+            this.Save();
+            this.Refresh();
+        }
+
+        private void Save()
+        {
+            try
+            {
+                this.component.Update(this.Patient);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+        }
+
+        #endregion Methods
     }
 }

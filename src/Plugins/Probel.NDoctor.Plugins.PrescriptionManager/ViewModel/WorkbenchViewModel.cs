@@ -58,7 +58,9 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             : base()
         {
             this.searcher = new SearchService(this.component);
+
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
+            PluginContext.Host.PatientSessionClosed += (sender, e) => this.FoundPrescriptions.Clear();
 
             this.RemovePrescriptionDocumentCommand = new RelayCommand(() => this.RemovePrescriptionDocument(), () => this.SelectedPrescriptionDocument != null);
             this.RemovePrescriptionCommand = new RelayCommand(() => this.RemovePrescription(), () => this.SelectedPrescription != null);

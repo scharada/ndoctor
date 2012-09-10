@@ -36,6 +36,11 @@ namespace Probel.NDoctor.View.Plugins
         /// </summary>
         event EventHandler NewUserConnected;
 
+        /// <summary>
+        /// Occurs when a patient session is closed.
+        /// </summary>
+        event EventHandler PatientSessionClosed;
+
         #endregion Events
 
         #region Properties

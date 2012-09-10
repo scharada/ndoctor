@@ -61,7 +61,10 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         public WorkbenchViewModel()
             : base()
         {
-            Notifyer.MacroUpdated += (sender, e) => this.Refresh();
+            PluginContext.Host.PatientSessionClosed += (sender, e) =>
+            {
+                this.SelectedRecord = null;
+            };
 
             this.MacroMenu = new ObservableCollection<MacroMenuItem>();
 
@@ -72,6 +75,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
             Notifyer.Refreshed += (sender, e) => this.Refresh();
             Notifyer.MacroUpdated += (sender, e) => this.RefreshMacroMenu();
+            Notifyer.MacroUpdated += (sender, e) => this.Refresh();
 
             InnerWindow.Closed += (sender, e) => this.Refresh();
         }

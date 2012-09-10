@@ -74,6 +74,11 @@ namespace Probel.NDoctor.View.Core.View
         /// </summary>
         public event EventHandler NewUserConnected;
 
+        /// <summary>
+        /// Occurs when a patient session is closed.
+        /// </summary>
+        public event EventHandler PatientSessionClosed;
+
         #endregion Events
 
         #region Properties
@@ -148,6 +153,7 @@ namespace Probel.NDoctor.View.Core.View
                 if (this.DataContext != null && this.DataContext is MainWindowViewModel)
                 {
                     (this.DataContext as MainWindowViewModel).SelectedPatient = value;
+                    this.OnPatientSessionClosed();
                 }
                 else { throw new WrongDataContextException(); }
             }
@@ -441,6 +447,14 @@ namespace Probel.NDoctor.View.Core.View
             if (this.NewUserConnected != null)
             {
                 this.NewUserConnected(this, EventArgs.Empty);
+            }
+        }
+
+        private void OnPatientSessionClosed()
+        {
+            if (this.PatientSessionClosed != null)
+            {
+                this.PatientSessionClosed(this, EventArgs.Empty);
             }
         }
 
