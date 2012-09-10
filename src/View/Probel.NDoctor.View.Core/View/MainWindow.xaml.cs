@@ -74,11 +74,6 @@ namespace Probel.NDoctor.View.Core.View
         /// </summary>
         public event EventHandler NewUserConnected;
 
-        /// <summary>
-        /// Notify all the plugins that a closing demand was triggered
-        /// </summary>
-        public event EventHandler<EventArgs> PluginsClosing;
-
         #endregion Events
 
         #region Properties
@@ -261,14 +256,6 @@ namespace Probel.NDoctor.View.Core.View
         }
 
         /// <summary>
-        /// Closes the plugins.
-        /// </summary>
-        public void ClosePlugins()
-        {
-            this.OnPluginsClosing();
-        }
-
-        /// <summary>
         /// Finds in the home menu the control with the specified name in the specified group.
         /// </summary>
         /// <param name="name">The name.</param>
@@ -414,14 +401,6 @@ namespace Probel.NDoctor.View.Core.View
             this.WriteStatus(StatusType.Info, Messages.Msg_Ready);
         }
 
-        protected void OnPluginsClosing()
-        {
-            if (this.PluginsClosing != null)
-            {
-                this.PluginsClosing(this, EventArgs.Empty);
-            }
-        }
-
         private void AddButton(RibbonTabData tab, string goupName, RibbonControlData button)
         {
             var group = (from g in tab.GroupDataCollection
@@ -480,11 +459,11 @@ namespace Probel.NDoctor.View.Core.View
 
         private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-#if DEBUG
+            #if DEBUG
             this.WindowState = System.Windows.WindowState.Normal;
-#else
+            #else
             this.WindowState = System.Windows.WindowState.Maximized;
-#endif
+            #endif
         }
 
         private void WriteStatus(LightPatientDto value)

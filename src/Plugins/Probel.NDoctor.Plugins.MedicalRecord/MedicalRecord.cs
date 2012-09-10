@@ -51,6 +51,9 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         private readonly ICommand NavigateWorkbenchCommand;
         private readonly ViewService ViewService = new ViewService();
 
+        //DOTO: replace with the window manager
+        private static MacroEditorView __macroEditorView; //Dont use the variable, use the property instead
+
         private RibbonToggleButtonData boldButton;
         private RibbonButtonData bulletsButton;
         private RibbonToggleButtonData centerAllignButton;
@@ -97,6 +100,15 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
                     32.0, 34.0, 36.0, 38.0, 40.0, 44.0, 48.0, 52.0, 56.0, 60.0, 64.0, 68.0, 72.0, 76.0,
                     80.0, 88.0, 96.0, 104.0, 112.0, 120.0, 128.0, 136.0, 144.0
                     };
+            }
+        }
+
+        private static MacroEditorView MacroEditorView
+        {
+            get
+            {
+                if (__macroEditorView == null) __macroEditorView = new MacroEditorView();
+                return __macroEditorView;
             }
         }
 
@@ -228,9 +240,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         {
             try
             {
-                var view = new MacroEditorView();
-                this.ViewService.GetViewModel(view).RefreshCommand.TryExecute();
-                InnerWindow.Show(Messages.Title_Macro, view);
+                this.ViewService.GetViewModel(MacroEditorView).RefreshCommand.TryExecute();
+                InnerWindow.Show(Messages.Title_Macro, MacroEditorView);
             }
             catch (Exception ex) { this.HandleError(ex); }
         }

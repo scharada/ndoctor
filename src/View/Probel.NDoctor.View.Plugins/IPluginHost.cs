@@ -36,11 +36,6 @@ namespace Probel.NDoctor.View.Plugins
         /// </summary>
         event EventHandler NewUserConnected;
 
-        /// <summary>
-        /// Notify all the plugins that a closing demand was triggered
-        /// </summary>
-        event EventHandler<EventArgs> PluginsClosing;
-
         #endregion Events
 
         #region Properties
@@ -145,11 +140,6 @@ namespace Probel.NDoctor.View.Plugins
         /// </summary>
         /// <param name="control">The control.</param>
         void AddToApplicationMenu(RibbonControlData control);
-
-        /// <summary>
-        /// Closes the plugins.
-        /// </summary>
-        void ClosePlugins();
 
         /// <summary>
         /// Finds in the home menu the control with the specified name in the specified group.

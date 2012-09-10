@@ -156,6 +156,13 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             }
         }
 
+        /// <summary>
+        /// Determines whether this instance can remove the specified item.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can remove the specified item; otherwise, <c>false</c>.
+        /// </returns>
         public bool CanRemove(ProfessionDto item)
         {
             return (from t in this.Session.Query<Patient>()

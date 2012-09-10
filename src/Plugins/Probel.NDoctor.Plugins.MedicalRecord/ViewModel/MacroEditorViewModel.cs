@@ -39,6 +39,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         private readonly IMedicalRecordComponent Component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
         private readonly ICommand createCommand;
         private readonly ICommand refreshCommand;
+        private readonly ICommand removeCommand;
 
         private MacroDto selectedMacro;
         private TextDocument textDocument;
@@ -53,6 +54,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
             this.refreshCommand = new RelayCommand(() => this.Refresh(), () => this.CanRefresh());
             this.createCommand = new RelayCommand(() => this.Create(), () => this.CanCreate());
+            this.removeCommand = new RelayCommand(() => this.Remove(), () => this.CanRemove());
 
             InnerWindow.Closed += (sender, e) => this.Save();
         }
@@ -75,6 +77,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         public ICommand RefreshCommand
         {
             get { return this.refreshCommand; }
+        }
+
+        public ICommand RemoveCommand
+        {
+            get { return this.removeCommand; }
         }
 
         public MacroDto SelectedMacro
@@ -123,6 +130,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             return true;
         }
 
+        private bool CanRemove()
+        {
+            return true;
+        }
+
         private void Create()
         {
             try
@@ -140,6 +152,20 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             {
                 var macros = this.Component.GetAllMacros();
                 if (macros != null) { this.Macros.Refill(macros); }
+            }
+            catch (Exception ex) { this.HandleError(ex); }
+        }
+
+        private void Remove()
+        {
+            try
+            {
+                if (this.SelectedMacro != null)
+                {
+                    this.Component.Remove(this.SelectedMacro);
+                    this.Macros.Remove(this.SelectedMacro);
+                    this.refreshCommand.TryExecute();
+                }
             }
             catch (Exception ex) { this.HandleError(ex); }
         }
