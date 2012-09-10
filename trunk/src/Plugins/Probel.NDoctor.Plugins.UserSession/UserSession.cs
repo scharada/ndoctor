@@ -110,11 +110,6 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         #region Methods
 
-        public override void Close()
-        {
-            PluginContext.Host.SelectedPatient = null;
-        }
-
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
         /// Every task that could throw exception should be in this method and not in the ctor.
@@ -186,7 +181,6 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         private void Disconnect()
         {
-            PluginContext.Host.ClosePlugins();
             PluginContext.Host.ConnectedUser = null;
             PluginContext.Host.HideMainMenu();
             PluginContext.Host.Navigate(this.ConnectionPage);

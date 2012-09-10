@@ -43,7 +43,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 
         private IPatientSessionComponent component;
         private string criteria = string.Empty;
-        private bool isBusy;
+        private LightPatientDto selectedPatient;
 
         #endregion Fields
 
@@ -103,7 +103,6 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             private set;
         }
 
-        private LightPatientDto selectedPatient;
         public LightPatientDto SelectedPatient
         {
             get { return this.selectedPatient; }

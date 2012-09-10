@@ -57,11 +57,6 @@ namespace Probel.NDoctor.Plugins.DebugTools
 
         #region Methods
 
-        public override void Close()
-        {
-            //Nothing to close, well this is debug tool ;)
-        }
-
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost.
         /// Every task that could throw exception should be in this method and not in the ctor.

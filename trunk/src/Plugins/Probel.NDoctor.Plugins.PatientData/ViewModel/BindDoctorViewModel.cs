@@ -16,24 +16,26 @@
 */
 namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
     using System.Timers;
     using System.Windows.Input;
+
     using AutoMapper;
+
+    using Probel.Helpers.Assertion;
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.PatientData.Helpers;
+    using Probel.NDoctor.Plugins.PatientData.Properties;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.Helpers.Assertion;
-    using System;
-    using Probel.NDoctor.Domain.DTO;
-    using Probel.NDoctor.Plugins.PatientData.Properties;
-    using Probel.NDoctor.Plugins.PatientData.Helpers;
-    using Probel.NDoctor.View.Core.Helpers;
 
     public class BindDoctorViewModel : BaseViewModel
     {
@@ -95,6 +97,11 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             private set;
         }
 
+        public ICommand SelectDoctorCommand
+        {
+            get; private set;
+        }
+
         public LightDoctorDto SelectedDoctor
         {
             get { return this.selectedDoctor; }
@@ -114,6 +121,21 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             return !string.IsNullOrWhiteSpace(this.Criteria);
         }
 
+        private bool CanSelectDoctor()
+        {
+            var result = this.SelectedDoctor != null
+                && PluginContext.Host.SelectedPatient != null
+                && PluginContext.DoorKeeper.IsUserGranted(To.Write);
+
+            if (!result)
+            {
+                if (!PluginContext.DoorKeeper.IsUserGranted(To.Write)) { PluginContext.Host.WriteStatus(StatusType.Warning, Messages.Msg_CantSelectDoctor_NotGranted); }
+                else { PluginContext.Host.WriteStatus(StatusType.Warning, Messages.Msg_CantSelectDoctor); }
+            }
+
+            return result;
+        }
+
         private void Search()
         {
             var context = TaskScheduler.FromCurrentSynchronizationContext();
@@ -131,9 +153,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             return result;
         }
 
-        #endregion Methods
-
-        public ICommand SelectDoctorCommand { get; private set; }
         private void SelectDoctor()
         {
             try
@@ -144,20 +163,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             }
             catch (Exception ex) { this.HandleError(ex); }
         }
-        private bool CanSelectDoctor()
-        {
-            var result = this.SelectedDoctor != null
-                && PluginContext.Host.SelectedPatient != null
-                && PluginContext.DoorKeeper.IsUserGranted(To.Write);
 
-            if (!result)
-            {
-                if (!PluginContext.DoorKeeper.IsUserGranted(To.Write)) { PluginContext.Host.WriteStatus(StatusType.Warning, Messages.Msg_CantSelectDoctor_NotGranted); }
-                else { PluginContext.Host.WriteStatus(StatusType.Warning, Messages.Msg_CantSelectDoctor); }
-            }
-
-
-            return result;
-        }
+        #endregion Methods
     }
 }

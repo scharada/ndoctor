@@ -45,6 +45,8 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
         public WorkbenchViewModel()
             : base()
         {
+            PluginContext.Host.PatientSessionClosed += (sender, e) => this.Refresh();
+
             this.MemberSelectedCommand = new RelayCommand(() => this.LoadCabinet());
 
             Notifyer.Refreshed += (sender, e) => this.Refresh();
