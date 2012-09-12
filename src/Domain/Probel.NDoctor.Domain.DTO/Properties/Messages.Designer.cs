@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Domain.DTO.Properties
-{
-
-
+namespace Probel.NDoctor.Domain.DTO.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -318,6 +318,15 @@ namespace Probel.NDoctor.Domain.DTO.Properties
         internal static string Invalid_Family {
             get {
                 return ResourceManager.GetString("Invalid_Family", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The current patient can&apos;t be it&apos;s own parent or child.
+        /// </summary>
+        internal static string Invalid_Family_CircularLink {
+            get {
+                return ResourceManager.GetString("Invalid_Family_CircularLink", resourceCulture);
             }
         }
         
