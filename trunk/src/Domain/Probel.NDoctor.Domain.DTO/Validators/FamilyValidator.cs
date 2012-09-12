@@ -31,6 +31,23 @@ namespace Probel.NDoctor.Domain.DTO.Validators
             item.AddValidationRule(() => item.Current
                 , () => item.Current != null
                 , Messages.Invalid_Family);
+
+            item.AddValidationRule(() => item.Current
+                , () => !this.HasCircularLinks(item)
+                , Messages.Invalid_Family_CircularLink);
+        }
+
+        private bool HasCircularLinks(FamilyDto item)
+        {
+            foreach (var parent in item.Fathers)
+            {
+                if (item.Id == parent.Id) { return true; }
+            }
+            foreach (var child in item.Children)
+            {
+                if (item.Id == child.Id) { return true; }
+            }
+            return false;
         }
 
         #endregion Methods

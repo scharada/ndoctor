@@ -157,14 +157,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
             if (patient == null) throw new EntityNotFoundException(typeof(Patient));
 
-            if (family.Fathers != null
+            if (family.Fathers != null //If the father has been added then replace the father of the connected patient
                 && (family.Fathers.Count > 0 && family.Fathers[0].State == State.Created))
             {
                 var father = this.Session.Get<Patient>(family.Fathers[0].Id);
                 patient.Father = father;
             }
 
-            if (family.Mothers != null
+            if (family.Mothers != null //If the mother has been added then replace the mother of the connected patient
                 && (family.Mothers.Count > 0 && family.Mothers[0].State == State.Created))
             {
                 var mother = this.Session.Get<Patient>(family.Mothers[0].Id);

@@ -121,11 +121,6 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
                 for (int i = 0; i < mappedResult.Count; i++)
                 {
                     mappedResult[i].SessionPatient = PluginContext.Host.SelectedPatient;
-                    //mappedResult[i].Refreshed += (sender, e) =>
-                    //{
-                    //    PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RelationAdded);
-                    //    this.Search();
-                    //};
                 }
 
                 this.FoundPatients.Refill(mappedResult);

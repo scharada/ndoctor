@@ -229,6 +229,10 @@
     <value>Veuillez indiquer la personne à laquelle cette famille appartient</value>
     <comment>Please indicate of whom this family is</comment>
   </data>
+  <data name="Invalid_Family_CircularLink" xml:space="preserve">
+    <value>Le patient courant ne peut être son propre parent.</value>
+    <comment>The current patient can't be it's own parent or child</comment>
+  </data>
   <data name="Invalid_Height" xml:space="preserve">
     <value>La taille doit être comprise entre 10 et 300 cm</value>
     <comment>The height should be between 10 and 300 cm</comment>
