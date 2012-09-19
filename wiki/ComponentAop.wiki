@@ -19,7 +19,9 @@ You can avoid the execution of the session check by decorating your method with 
 
 == Automatic transaction ==
 
-`[To be written]`
+Every call of a component's method is wrapped in a session. That's, a session is opened before the call and closed just after.
+
+If the developer doesn't use the `ExcludeFromTransaction` attribute, the call is wrapped into a transaction otherwise, it is only wrapped in a nHibernate's session
 
 == Authorisation ==
 You an decorate the methods of the DAL with `GrantedAttribute` that uses a string that defines the granted task. You can decorate a class or its members. When a class is decorated, it overrides all the member decoration.
