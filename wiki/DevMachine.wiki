@@ -1,9 +1,9 @@
 = Configure the development machine =
 Before starting development, you have to configure your machine as follow:
 
-== Allow PowerShell to execute local scripts ==
+== Allow `PowerShell` to execute local scripts ==
 
- # Open a powershell session as administrator
+ # Open a `PowerShell` session as administrator
  # Type this comment `Set-ExecutionPolicy RemoteSigned`
  # Follow the instructions
 
