@@ -19,6 +19,7 @@ Here's the list of tools used to develop nDoctor
  * [http://nantcontrib.sourceforge.net/ nAnt Contrib]
  * [https://www.virtualbox.org/ Virtual Box]
  * [http://www.python.org/download/ Python]
+ * [http://powergui.org/index.jspa PowerGui]
 
 = API =
  * [http://structuremap.net/structuremap/ StructureMap]
