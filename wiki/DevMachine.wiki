@@ -7,6 +7,15 @@ Before starting development, you have to configure your machine as follow:
  # Type this comment `Set-ExecutionPolicy RemoteSigned`
  # Follow the instructions
 
+== Configure Visual Studio to be able to execute the script that copies the plugin files ==
+
+To add this tool in Visual Studio follow these steps:
+ # In Visual Studion go to Tools\External Tools
+ # Fill the window as follow:
+   # Title            : cp plugins(or whatever name you want)
+   # Command          : `powershell.exe ` (if you haven't configured the environment variables, type the full path)
+   # Arguments        : -ExecutionPolicy RemoteSigned -File "[working copy]\tools\CopyPluginsFiles.ps1" debug (replace _debug_ with _release_ if you compile in release mode)
+
 == Checkout the code: ==
 
  # Ask the `write` privilege to the project owner sending him a mail to *`ndoctor(dot)software(at)gmail(dot)com`* explaining why you'd like to be part of the team.
