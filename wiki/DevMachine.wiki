@@ -1,6 +1,12 @@
 = Configure the development machine =
 Before starting development, you have to configure your machine as follow:
 
+== Allow PowerShell to execute local scripts ==
+
+ # Open a powershell session as administrator
+ # Type this comment `Set-ExecutionPolicy RemoteSigned`
+ # Follow the instructions
+
 == Checkout the code: ==
 
  # Ask the `write` privilege to the project owner sending him a mail to *`ndoctor(dot)software(at)gmail(dot)com`* explaining why you'd like to be part of the team.
