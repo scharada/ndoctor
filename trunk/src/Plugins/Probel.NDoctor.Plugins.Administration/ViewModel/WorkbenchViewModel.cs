@@ -105,8 +105,6 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             this.RemoveTagCommand = new RelayCommand(() => this.RemoveTag(), () => this.SelectedTag != null);
             this.RemoveDoctorCommand = new RelayCommand(() => this.RemoveDoctor(), () => this.SelectedDoctor != null);
             #endregion
-
-            Notifyer.Refreshing += (sender, e) => this.Refresh();
         }
 
         #endregion Constructors

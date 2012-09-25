@@ -318,7 +318,7 @@
 
     <!--DataGrid -->
     <Style TargetType='{x:Type controls:DataGrid}'>
-        <Setter Property='ScrollViewer.CanContentScroll' Value='False' />
+        <!--<Setter Property='ScrollViewer.CanContentScroll' Value='False' />-->
         <Setter Property='AutoGenerateColumns' Value='False' />
         <Setter Property="IsTabStop" Value="True" />
         <Setter Property="RowBackground" Value="#FFFFFFFF"/>
