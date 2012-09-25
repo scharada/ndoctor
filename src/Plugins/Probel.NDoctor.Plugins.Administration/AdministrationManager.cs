@@ -45,6 +45,9 @@ namespace Probel.NDoctor.Plugins.Administration
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.Administration;component/Images\{0}.png";
 
+        //DOTO: replace with the window manager
+        private static WorkbenchView __workbenchview; //Dont use the variable, use the property instead
+
         private ICommand navigateCommand;
 
         #endregion Fields
@@ -61,6 +64,19 @@ namespace Probel.NDoctor.Plugins.Administration
         }
 
         #endregion Constructors
+
+        #region Properties
+
+        public WorkbenchView WorkbenchView
+        {
+            get
+            {
+                if (__workbenchview == null) { __workbenchview = new WorkbenchView(); }
+                return __workbenchview;
+            }
+        }
+
+        #endregion Properties
 
         #region Methods
 
@@ -154,7 +170,7 @@ namespace Probel.NDoctor.Plugins.Administration
 
         private void Navigate()
         {
-            PluginContext.Host.Navigate(new WorkbenchView());
+            PluginContext.Host.Navigate(this.WorkbenchView);
             Notifyer.OnRefreshing(this);
 
             this.contextualMenu.IsVisible = true;

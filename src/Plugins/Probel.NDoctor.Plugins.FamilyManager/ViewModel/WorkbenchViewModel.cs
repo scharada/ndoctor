@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
 {
+    using System;
     using System.Windows.Input;
 
     using Probel.Mvvm.DataBinding;
@@ -24,7 +25,6 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using System;
 
     public class WorkbenchViewModel : BaseViewModel
     {
