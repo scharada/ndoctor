@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Input;
 
@@ -351,23 +352,10 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         public void Refresh()
         {
-            var insurances = this.component.GetAllInsurances();
-            var practices = this.component.GetAllPractices();
-            var pathologies = this.component.GetAllPathologies();
-            var tags = this.component.GetAllTags();
-            var drugs = this.component.GetAllDrugs();
-            var reputations = this.component.GetAllReputations();
-            var professions = this.component.GetAllProfessions();
-            var doctors = this.component.GetAllDoctors();
-
-            this.Insurances.Refill(insurances);
-            this.Practices.Refill(practices);
-            this.Pathologies.Refill(pathologies);
-            this.Drugs.Refill(drugs);
-            this.Reputations.Refill(reputations);
-            this.Tags.Refill(Mapper.Map<IList<TagDto>, IList<TagViewModel>>(tags));
-            this.Professions.Refill(professions);
-            this.Doctors.Refill(doctors);
+            var context = TaskScheduler.FromCurrentSynchronizationContext();
+            var task = Task.Factory
+                .StartNew<TaskArgs>(() => this.GetAllListAsync())
+                .ContinueWith(e => this.RefreshGui(e.Result), context);
         }
 
         private bool AskToDelete()
@@ -547,6 +535,32 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             });
         }
 
+        private TaskArgs GetAllListAsync()
+        {
+            var args = new TaskArgs();
+            args.Insurances = this.component.GetAllInsurances();
+            args.Practices = this.component.GetAllPractices();
+            args.Pathologies = this.component.GetAllPathologies();
+            args.Tags = this.component.GetAllTags();
+            args.Drugs = this.component.GetAllDrugs();
+            args.Reputations = this.component.GetAllReputations();
+            args.Professions = this.component.GetAllProfessions();
+            args.Doctors = this.component.GetAllDoctors();
+            return args;
+        }
+
+        private void RefreshGui(TaskArgs e)
+        {
+            this.Insurances.Refill(e.Insurances);
+            this.Practices.Refill(e.Practices);
+            this.Pathologies.Refill(e.Pathologies);
+            this.Drugs.Refill(Drugs);
+            this.Reputations.Refill(e.Reputations);
+            this.Tags.Refill(Mapper.Map<IList<TagDto>, IList<TagViewModel>>(e.Tags));
+            this.Professions.Refill(e.Professions);
+            this.Doctors.Refill(e.Doctors);
+        }
+
         private void RemoveDoctor()
         {
             try
@@ -707,5 +721,56 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         }
 
         #endregion Methods
+
+        #region Nested Types
+
+        private struct TaskArgs
+        {
+            #region Properties
+
+            public IList<DoctorDto> Doctors
+            {
+                get; set;
+            }
+
+            public IList<DrugDto> Drugs
+            {
+                get; set;
+            }
+
+            public IList<InsuranceDto> Insurances
+            {
+                get; set;
+            }
+
+            public IList<PathologyDto> Pathologies
+            {
+                get; set;
+            }
+
+            public IList<PracticeDto> Practices
+            {
+                get; set;
+            }
+
+            public IList<ProfessionDto> Professions
+            {
+                get; set;
+            }
+
+            public IList<ReputationDto> Reputations
+            {
+                get; set;
+            }
+
+            public IList<TagDto> Tags
+            {
+                get; set;
+            }
+
+            #endregion Properties
+        }
+
+        #endregion Nested Types
     }
 }
