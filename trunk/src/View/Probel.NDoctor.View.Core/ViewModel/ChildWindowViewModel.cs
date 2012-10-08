@@ -19,6 +19,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Microsoft.Windows.Controls;
 
     using Probel.NDoctor.View.Core.Helpers;
+
     using Xceed.Wpf.Toolkit;
 
     public class ChildWindowViewModel : BaseViewModel
