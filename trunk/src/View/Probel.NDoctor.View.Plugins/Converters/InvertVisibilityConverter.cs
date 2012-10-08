@@ -45,7 +45,7 @@ namespace Probel.NDoctor.View.Plugins.Converters
         /// </returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Assert.OfType(typeof(Visibility), value);
+            Assert.OfType<Visibility>(value);
             var visibility = (Visibility)value;
 
             var result = Visibility.Visible;

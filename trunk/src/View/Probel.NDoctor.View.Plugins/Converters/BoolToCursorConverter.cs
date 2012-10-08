@@ -49,7 +49,7 @@ namespace Probel.NDoctor.View.Plugins.Converters
         {
             if (value == null) return null;
 
-            Assert.OfType(typeof(bool), value, "The expected type is 'bool' but is '{0}'", value.GetType().Name);
+            Assert.OfType<bool>(value, "The expected type is 'bool' but is '{0}'", value.GetType().Name);
 
             return ((bool)value)
                 ? Cursors.Wait

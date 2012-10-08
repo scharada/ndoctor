@@ -41,7 +41,7 @@ namespace Probel.NDoctor.View.Plugins.Converters
         /// </returns>
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            Assert.OfType(typeof(DateTime), value);
+            Assert.OfType<DateTime>(value);
             var dt = (DateTime)value;
 
             return dt.ToShortDateString();

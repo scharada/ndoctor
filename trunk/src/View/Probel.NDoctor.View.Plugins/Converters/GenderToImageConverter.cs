@@ -44,7 +44,7 @@ namespace Probel.NDoctor.View.Plugins.Converters
         public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             var uri = @"\Probel.NDoctor.View.Plugins;component/Images\{0}.png";
-            Assert.OfType(typeof(Gender), value);
+            Assert.OfType<Gender>(value);
             var gender = (Gender)value;
 
             Uri result = new Uri("None.ico", UriKind.Relative);

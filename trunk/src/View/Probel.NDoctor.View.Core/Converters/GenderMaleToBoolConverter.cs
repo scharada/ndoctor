@@ -46,7 +46,7 @@ namespace Probel.NDoctor.View.Core.Converters
         /// </returns>
         public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            Assert.OfType(typeof(Gender), value);
+            Assert.OfType<Gender>(value);
             var gender = (Gender)value;
 
             return gender == Gender.Male;
@@ -64,7 +64,7 @@ namespace Probel.NDoctor.View.Core.Converters
         /// </returns>
         public object ConvertBack(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            Assert.OfType(typeof(bool), value);
+            Assert.OfType<bool>(value);
             var isMale = (bool)value;
 
             return isMale

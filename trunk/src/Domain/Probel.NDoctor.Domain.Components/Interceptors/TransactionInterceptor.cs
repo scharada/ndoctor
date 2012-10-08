@@ -29,26 +29,35 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
 
     internal class TransactionInterceptor : BaseInterceptor
     {
+        #region Fields
+
+        private static readonly object locker = new object();
+
+        #endregion Fields
+
         #region Methods
 
         public override void Intercept(IInvocation invocation)
         {
             if (invocation.InvocationTarget is BaseComponent)
             {
-                var component = invocation.InvocationTarget as BaseComponent;
+                lock (locker)
+                {
+                    var component = invocation.InvocationTarget as BaseComponent;
 
-                if (!this.IsDecoratedWith<ExcludeFromTransactionAttribute>(invocation))
-                {
-                    this.WrapInTransaction(invocation, component);
-                }
-                else
-                {
-                    this.WrapInSession(invocation, component);
+                    if (!this.IsDecoratedWith<ExcludeFromTransactionAttribute>(invocation))
+                    {
+                        this.WrapInTransaction(invocation, component);
+                    }
+                    else
+                    {
+                        this.WrapInSession(invocation, component);
+                    }
                 }
             }
             else
             {
-                this.Logger.DebugFormat("Method '{0}' of component '{1}' is excluded from a transaction."
+                this.Logger.DebugFormat("Method '{0}' of component '{1}' is not executed into a transaction."
                     , invocation.Method.Name
                     , invocation.TargetType.Name);
                 invocation.Proceed();
