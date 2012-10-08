@@ -355,7 +355,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             var context = TaskScheduler.FromCurrentSynchronizationContext();
             var task = Task.Factory
                 .StartNew<TaskArgs>(() => this.GetAllListAsync())
-                .ContinueWith(e => this.RefreshGui(e.Result), context);
+                .ContinueWith(e => this.GetAllListCallback(e.Result), context);
         }
 
         private bool AskToDelete()
@@ -549,7 +549,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             return args;
         }
 
-        private void RefreshGui(TaskArgs e)
+        private void GetAllListCallback(TaskArgs e)
         {
             this.Insurances.Refill(e.Insurances);
             this.Practices.Refill(e.Practices);

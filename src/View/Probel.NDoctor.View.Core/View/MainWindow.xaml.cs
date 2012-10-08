@@ -77,7 +77,7 @@ namespace Probel.NDoctor.View.Core.View
         /// <summary>
         /// Occurs when a patient session is closed.
         /// </summary>
-        public event EventHandler PatientSessionClosed;
+        public event EventHandler NewPatientConnected;
 
         #endregion Events
 
@@ -153,7 +153,8 @@ namespace Probel.NDoctor.View.Core.View
                 if (this.DataContext != null && this.DataContext is MainWindowViewModel)
                 {
                     (this.DataContext as MainWindowViewModel).SelectedPatient = value;
-                    this.OnPatientSessionClosed();
+                    this.OnNewPatientConnected(); //TODO: the new session is opening. The event should be triggered
+                    //                              before the new patient is set
                 }
                 else { throw new WrongDataContextException(); }
             }
@@ -450,11 +451,11 @@ namespace Probel.NDoctor.View.Core.View
             }
         }
 
-        private void OnPatientSessionClosed()
+        private void OnNewPatientConnected()
         {
-            if (this.PatientSessionClosed != null)
+            if (this.NewPatientConnected != null)
             {
-                this.PatientSessionClosed(this, EventArgs.Empty);
+                this.NewPatientConnected(this, EventArgs.Empty);
             }
         }
 
@@ -473,11 +474,11 @@ namespace Probel.NDoctor.View.Core.View
 
         private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            #if DEBUG
+#if DEBUG
             this.WindowState = System.Windows.WindowState.Normal;
-            #else
+#else
             this.WindowState = System.Windows.WindowState.Maximized;
-            #endif
+#endif
         }
 
         private void WriteStatus(LightPatientDto value)
