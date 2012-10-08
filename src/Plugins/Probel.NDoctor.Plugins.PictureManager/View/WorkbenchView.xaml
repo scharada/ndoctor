@@ -42,7 +42,7 @@
             <!--<Setter Property="Width" Value="170"/>-->
         </Style>
 
-        <DataTemplate DataType="{x:Type dto:PictureDto}">
+        <DataTemplate DataType="{x:Type dto:LightPictureDto}">
             <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="6">
                 <!-- Drop Shadow -->
                 <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="4" Background="#44000000">
@@ -56,7 +56,7 @@
                 <!-- Image Template -->
                 <Border Padding="4" Background="White" BorderBrush="#22000000" BorderThickness="1">
                     <StackPanel Orientation="Vertical">
-                        <Image Source="{Binding Bitmap, Converter={StaticResource bytesToImage},UpdateSourceTrigger=PropertyChanged}"/>
+                        <Image Source="{Binding ThumbnailBitmap, Converter={StaticResource bytesToImage},UpdateSourceTrigger=PropertyChanged}"/>
                         <Label Content="{Binding LastUpdate}">
                             <Label.ToolTip>
                                 Only JPeg images with a stored thumbnail will display a thumbnail during preview.
@@ -88,7 +88,8 @@
                         <ScrollViewer  DockPanel.Dock="Bottom">
                             <ListBox Style="{StaticResource PhotoListBoxStyle}"
                                      ItemsSource="{Binding Pictures}"
-                                     SelectedItem="{Binding SelectedPicture, Mode=OneWayToSource}"
+                                     SelectedItem="{Binding SelectedThumbnail, Mode=OneWayToSource}"
+                                     h:SelectorBehaviour.SelectionChanged="{Binding SelectPictureCommand}"
                                      IsSynchronizedWithCurrentItem="True"/>
                         </ScrollViewer>
                     </DockPanel>

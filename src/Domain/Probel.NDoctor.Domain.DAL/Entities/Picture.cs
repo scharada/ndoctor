@@ -85,6 +85,18 @@ namespace Probel.NDoctor.Domain.DAL.Entities
             set;
         }
 
+        /// <summary>
+        /// Gets or sets the thumbnailed bitmap.
+        /// </summary>
+        /// <value>
+        /// The thumbnailed bitmap.
+        /// </value>
+        public virtual byte[] ThumbnailBitmap
+        {
+            get;
+            set;
+        }
+
         #endregion Properties
     }
 }

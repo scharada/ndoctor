@@ -46,6 +46,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         #region Fields
 
         private readonly TagDto ALL_PICTURE_TAG = new TagDto(TagCategory.Picture) { Name = Messages.Msg_AllTags };
+        private readonly ICommand selectPictureCommand;
 
         private IPictureComponent component;
         private bool creatingNewPicture = false;
@@ -55,6 +56,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         private bool isInformationExpanded;
         private PictureDto selectedPicture;
         private TagDto selectedTag;
+        private LightPictureDto selectedThumbnail;
 
         #endregion Fields
 
@@ -63,8 +65,8 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         public WorkbenchViewModel()
             : base()
         {
-            this.IsBusy = false;
-            this.Pictures = new ObservableCollection<PictureDto>();
+            this.IsBusy = true;
+            this.Pictures = new ObservableCollection<LightPictureDto>();
             this.Tags = new ObservableCollection<TagDto>();
             this.FilterTags = new ObservableCollection<TagDto>();
 
@@ -79,6 +81,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             this.AddTypeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPicType, new AddTagView()), () => this.CanAddSomething());
             this.SaveCommand = new RelayCommand(() => Save(), () => CanSave());
             this.FilterPictureCommand = new RelayCommand(() => this.Filter());
+            this.selectPictureCommand = new RelayCommand(() => this.SelectPicture(), () => this.CanSelectPicture());
 
             Notifyer.ItemChanged += (sender, e) => this.Refresh();
         }
@@ -146,7 +149,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             }
         }
 
-        public ObservableCollection<PictureDto> Pictures
+        public ObservableCollection<LightPictureDto> Pictures
         {
             get;
             private set;
@@ -187,10 +190,19 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             }
         }
 
+        public LightPictureDto SelectedThumbnail
+        {
+            get { return this.selectedThumbnail; }
+            set
+            {
+                this.selectedThumbnail = value;
+                this.OnPropertyChanged(() => SelectedThumbnail);
+            }
+        }
+
         public ICommand SelectPictureCommand
         {
-            get;
-            private set;
+            get { return this.selectPictureCommand; }
         }
 
         public ObservableCollection<TagDto> Tags
@@ -293,6 +305,11 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                   && PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
+        private bool CanSelectPicture()
+        {
+            return true;
+        }
+
         private void Filter()
         {
             if (this.isFilterDisabled)
@@ -316,20 +333,21 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
             var input = args as TaskArgs;
             var result = new TaskArgs();
+
             Thread.CurrentThread.CurrentUICulture = input.CurrentUICulture;
 
             if (this.FilterTag != null && this.FilterTag.Name == Messages.Msg_AllTags)
             {
-                result.Pictures = this.component.FindPictures(input.SelectedPatient);
+                result.Pictures = this.component.FindLightPictures(input.SelectedPatient);
             }
             else
             {
-                result.Pictures = this.component.FindPictures(input.SelectedPatient, this.FilterTag);
+                result.Pictures = this.component.FindLightPictures(input.SelectedPatient, this.FilterTag);
             }
 
             if (result.Pictures.Count > 0)
             {
-                result.SelectedPicture = result.Pictures[0];
+                result.SelectedPicture = component.FindPicture(result.Pictures[0]);
             }
             else { result.SelectedPicture = null; }
 
@@ -361,6 +379,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         {
             try
             {
+                this.IsBusy = true;
                 this.SelectedPicture.LastUpdate = DateTime.Now;
                 this.SelectedPicture.Tag = this.SelectedTag;
 
@@ -393,6 +412,14 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             }
         }
 
+        private void SelectPicture()
+        {
+            if (this.selectedThumbnail != null)
+            {
+                this.SelectedPicture = this.component.FindPicture(this.SelectedThumbnail);
+            }
+        }
+
         private void SelectTagOfPicture()
         {
             if (this.SelectedPicture == null) return;
@@ -422,10 +449,11 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
             public CultureInfo CurrentUICulture
             {
-                get; private set;
+                get;
+                private set;
             }
 
-            public IList<PictureDto> Pictures
+            public IList<LightPictureDto> Pictures
             {
                 get;
                 set;
@@ -433,7 +461,8 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
             public LightPatientDto SelectedPatient
             {
-                get; set;
+                get;
+                set;
             }
 
             public PictureDto SelectedPicture

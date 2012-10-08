@@ -80,6 +80,7 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<TaskDto, Task>();
             Mapper.CreateMap<MacroDto, Macro>();
             Mapper.CreateMap<MedicalRecordState, MedicalRecordStateDto>();
+            Mapper.CreateMap<LightPictureDto, Picture>();
         }
 
         private static void MapEntityToDto()
@@ -95,6 +96,10 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<User, UserDto>()
                 .AfterMap((entity, dto) => Clean(dto))
                 .ConstructUsing(e => new UserDto(e.IsSuperAdmin));
+
+            Mapper.CreateMap<Task, TaskDto>()
+                .AfterMap((entity, dto) => Clean(dto))
+                .ConstructUsing(e => new TaskDto(e.RefName));
 
             Mapper.CreateMap<Address, AddressDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Practice, PracticeDto>().AfterMap((entity, dto) => Clean(dto));
@@ -121,10 +126,7 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<Doctor, DoctorFullDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Role, RoleDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Macro, MacroDto>().AfterMap((entity, dto) => Clean(dto));
-
-            Mapper.CreateMap<Task, TaskDto>()
-                .AfterMap((entity, dto) => Clean(dto))
-                .ConstructUsing(e => new TaskDto(e.RefName));
+            Mapper.CreateMap<Picture, LightPictureDto>().AfterMap((entity, dto) => Clean(dto));
         }
 
         private static void MapEntityToEntity()

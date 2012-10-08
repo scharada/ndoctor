@@ -20,6 +20,7 @@ namespace Probel.Helpers.Conversions
     using System.ComponentModel;
     using System.Data.Common;
     using System.Drawing;
+    using System.Drawing.Imaging;
     using System.IO;
     using System.Runtime.InteropServices;
     using System.Windows;
@@ -38,7 +39,7 @@ namespace Probel.Helpers.Conversions
         /// Convert the specified Byte array into image?
         /// </summary>
         /// <param name="bytes">The bytes.</param>
-        /// <returns></returns>
+        /// <returns>The converted byte array into an image</returns>
         public static Image ByteArrayToImage(byte[] bytes)
         {
             try
@@ -57,7 +58,7 @@ namespace Probel.Helpers.Conversions
         /// Convert the file specified by the fileName into a byte array.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
-        /// <returns></returns>
+        /// <returns>The converted file into a byte array</returns>
         public static byte[] FileToByteArray(string fileName)
         {
             Assert.IsFalse(string.IsNullOrEmpty(fileName), Messages.Ex_ConversionException_WrongPath);
@@ -101,6 +102,18 @@ namespace Probel.Helpers.Conversions
                 }
                 return stream.ToArray();
             }
+        }
+
+        /// <summary>
+        /// Converts the specified image into an array of bytes
+        /// </summary>
+        /// <param name="image">The image to convert.</param>
+        /// <returns>The converted image into a byte array</returns>
+        public static byte[] ImageToByteArray(Image image)
+        {
+            var stream = new MemoryStream();
+            image.Save(stream, (ImageFormat.Jpeg));
+            return stream.ToArray();
         }
 
         /// <summary>

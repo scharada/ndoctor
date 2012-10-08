@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Domain.DAL.Components
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -24,9 +25,12 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using NHibernate;
     using NHibernate.Linq;
 
+    using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DAL.Helpers;
     using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     public class PictureComponent : BaseComponent, IPictureComponent
@@ -64,6 +68,58 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets the pictures (only the thumbnails) for the specified patient and with the specified tag.
+        /// If the specified tag is null, it'll select all the picture of the specified
+        /// patient
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <param name="tag">The criteria of the search. If null, it'll take all the picture for the specified patient</param>
+        /// <returns>
+        /// A list of pictures
+        /// </returns>
+        public IList<LightPictureDto> FindLightPictures(LightPatientDto patient, TagDto tag)
+        {
+            var pictures = FindEntityPictures(patient, tag);
+            return Mapper.Map<IList<Picture>, IList<LightPictureDto>>(pictures);
+        }
+
+        /// <summary>
+        /// Gets the pictures (only the thumbnails) for the specified patient and with the specified tag.
+        /// If the specified tag is null, it'll select all the picture of the specified
+        /// patient
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <returns>
+        /// A list of pictures
+        /// </returns>
+        public IList<LightPictureDto> FindLightPictures(LightPatientDto patient)
+        {
+            var pictures = FindEntityPictures(patient, null);
+            return Mapper.Map<IList<Picture>, IList<LightPictureDto>>(pictures);
+        }
+
+        /// <summary>
+        /// Finds the full picture from the thumbnail.
+        /// </summary>
+        /// <param name="picture">The picture.</param>
+        /// <returns></returns>
+        public PictureDto FindPicture(LightPictureDto picture)
+        {
+            Assert.IsNotNull(picture);
+            try
+            {
+                var result = (from p in this.Session.Query<Picture>()
+                              where p.Id == picture.Id
+                              select p).First();
+                return Mapper.Map<Picture, PictureDto>(result);
+            }
+            catch (Exception ex)
+            {
+                throw new EntityNotFoundException(typeof(Picture), ex);
+            }
+        }
+
+        /// <summary>
         /// Gets the pictures for the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -87,13 +143,20 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </returns>
         public IList<PictureDto> FindPictures(LightPatientDto patient, TagDto tag)
         {
+            IList<Picture> pictures = this.FindEntityPictures(patient, tag);
+            return Mapper.Map<IList<Picture>, IList<PictureDto>>(pictures);
+        }
+
+        private IList<Picture> FindEntityPictures(LightPatientDto patient, TagDto tag)
+        {
+            IList<Picture> pictures = new List<Picture>();
             var entity = (from p in this.Session.Query<Patient>()
                           where p.Id == patient.Id
                           select p).FirstOrDefault();
 
-            if (entity == null) return new List<PictureDto>();
+            if (entity == null) return new List<Picture>();
 
-            IList<Picture> pictures = new List<Picture>();
+            pictures = new List<Picture>();
 
             // If there's a non null criterium execute a search;
             // otherwise, select all the pictures
@@ -104,8 +167,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
                             where p.Tag.Id == tag.Id
                             select p).ToList();
             }
-
-            return Mapper.Map<IList<Picture>, IList<PictureDto>>(pictures);
+            if (new ImageHelper().TryCreateThumbnail(pictures))
+            {
+                new Updator(this.Session).Update(pictures);
+            }
+            return pictures;
         }
 
         #endregion Methods

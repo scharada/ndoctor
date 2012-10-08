@@ -13,6 +13,7 @@
 
     using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DAL.Helpers;
     using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -445,6 +446,7 @@
             var newItem = Mapper.Map<PictureDto, Picture>(picture);
 
             foundPatient.Pictures.Add(newItem);
+            new ImageHelper().TryCreateThumbnail(foundPatient.Pictures);
 
             this.Session.SaveOrUpdate(foundPatient);
         }

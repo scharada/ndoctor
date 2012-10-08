@@ -91,6 +91,7 @@
     <Compile Include="Entities\PrescriptionDocument.cs" />
     <Compile Include="Helpers\EntityEqualityComparer.cs" />
     <Compile Include="Helpers\ComponentDecorator.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\InspectionIgnoredAttribute.cs" />
     <Compile Include="Helpers\TransactionAttribute.cs" />
     <Compile Include="Macro\InvalidMacroException.cs">

@@ -45,6 +45,11 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
         {
         }
 
+        public EntityNotFoundException(Type searchedType, Exception inner)
+            : this(Messages.Ex_EntityNotFoundException.FormatWith(searchedType.Name), inner)
+        {
+        }
+
         protected EntityNotFoundException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
