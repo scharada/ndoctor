@@ -7,7 +7,7 @@
       xmlns:this="clr-namespace:Probel.NDoctor.Plugins.MedicalRecord.Dto"
       xmlns:c="clr-namespace:Probel.Helpers.WPF.Calendar.Controls;assembly=Probel.Helpers.WPF"
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.MedicalRecord.Translations"
-      xmlns:ctrl="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+      xmlns:ctrl="http://schemas.xceed.com/wpf/xaml/toolkit"
       xmlns:behaviour="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
       
       mc:Ignorable="d" 

@@ -7,7 +7,7 @@
              xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PathologyManager.View"       
              
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PathologyManager.Translations"
-             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
              mc:Ignorable="d" 
              

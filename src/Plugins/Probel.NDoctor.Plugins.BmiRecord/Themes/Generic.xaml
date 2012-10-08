@@ -12,7 +12,7 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     >
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Probel.NDoctor.Plugins.Authorisation;component/Themes/Generic_brushes.xaml" />
+        <ResourceDictionary Source="/Probel.NDoctor.Plugins.BmiRecord;component/Themes/Generic_brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <!--ColumnHeader-->

@@ -19,6 +19,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Microsoft.Windows.Controls;
 
     using Probel.NDoctor.View.Core.Helpers;
+    using Xceed.Wpf.Toolkit;
 
     public class ChildWindowViewModel : BaseViewModel
     {
@@ -62,7 +63,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             set { InnerWindow.IsModal = value; }
         }
 
-        public Microsoft.Windows.Controls.WindowStartupLocation WindowStartupLocation
+        public WindowStartupLocation WindowStartupLocation
         {
             get { return InnerWindow.WindowStartupLocation; }
             set { InnerWindow.WindowStartupLocation = value; }

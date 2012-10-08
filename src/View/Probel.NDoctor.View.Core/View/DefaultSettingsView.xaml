@@ -1,6 +1,6 @@
 ﻿<UserControl x:Class="Probel.NDoctor.View.Core.View.DefaultSettingsView"
              
-             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:text="clr-namespace:Probel.NDoctor.View.Core.Translations"
              
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

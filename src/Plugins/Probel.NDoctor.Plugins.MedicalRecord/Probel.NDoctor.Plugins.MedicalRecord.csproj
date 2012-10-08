@@ -65,7 +65,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WPFToolkit.Extended">
-      <HintPath>..\..\..\lib\WPFToolkit.Extended.dll</HintPath>
+      <HintPath>..\..\packages\Extended.Wpf.Toolkit.1.7.0\lib\net40\WPFToolkit.Extended.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
