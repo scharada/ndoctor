@@ -23,6 +23,7 @@ namespace Probel.NDoctor.View.Core.Helpers
     using Microsoft.Windows.Controls;
 
     using Probel.Mvvm.DataBinding;
+
     using Xceed.Wpf.Toolkit;
 
     public static class InnerWindow

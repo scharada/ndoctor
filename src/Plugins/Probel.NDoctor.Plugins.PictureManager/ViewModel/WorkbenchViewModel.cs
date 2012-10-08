@@ -19,7 +19,9 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Globalization;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using System.Windows.Input;
 
@@ -38,8 +40,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using System.Threading;
-    using System.Globalization;
 
     public class WorkbenchViewModel : BaseViewModel
     {
@@ -50,6 +50,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         private IPictureComponent component;
         private bool creatingNewPicture = false;
         private TagDto filterTag;
+        private bool isBusy;
         private bool isFilterDisabled = false;
         private bool isInformationExpanded;
         private PictureDto selectedPicture;
@@ -62,6 +63,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         public WorkbenchViewModel()
             : base()
         {
+            this.IsBusy = false;
             this.Pictures = new ObservableCollection<PictureDto>();
             this.Tags = new ObservableCollection<TagDto>();
             this.FilterTags = new ObservableCollection<TagDto>();
@@ -122,6 +124,16 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         {
             get;
             private set;
+        }
+
+        public bool IsBusy
+        {
+            get { return this.isBusy; }
+            set
+            {
+                this.isBusy = value;
+                this.OnPropertyChanged(() => IsBusy);
+            }
         }
 
         public bool IsInformationExpanded
@@ -289,11 +301,10 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 return;
             }
 
-            this.Logger.DebugFormat("Filtering pictures with tag '{0}'", (this.SelectedTag == null) ? "<NULL>" : this.SelectedTag.Name);
-
             var context = TaskScheduler.FromCurrentSynchronizationContext();
             var input = new TaskArgs() { SelectedPatient = PluginContext.Host.SelectedPatient };
 
+            this.IsBusy = true;
             Task.Factory
                 .StartNew<TaskArgs>(e => this.FilterAsync(e), input)
                 .ContinueWith(e => this.FilterCallback(e.Result), context);
@@ -302,9 +313,10 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         private TaskArgs FilterAsync(object args)
         {
             Assert.OfType(typeof(TaskArgs), args);
+
             var input = args as TaskArgs;
-            Thread.CurrentThread.CurrentUICulture = input.CurrentUICulture;
             var result = new TaskArgs();
+            Thread.CurrentThread.CurrentUICulture = input.CurrentUICulture;
 
             if (this.FilterTag != null && this.FilterTag.Name == Messages.Msg_AllTags)
             {
@@ -330,6 +342,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             this.Pictures.Refill(args.Pictures);
             this.SelectedPicture = args.SelectedPicture;
             this.Logger.Debug("\tRefreshed GUI after pictures filtering");
+            this.IsBusy = false;
         }
 
         private void InsertJokerTag(IList<TagDto> tags)
@@ -396,16 +409,31 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
         private class TaskArgs
         {
+            #region Constructors
+
             public TaskArgs()
             {
                 this.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
             }
+
+            #endregion Constructors
+
             #region Properties
-            public CultureInfo CurrentUICulture { get; private set; }
+
+            public CultureInfo CurrentUICulture
+            {
+                get; private set;
+            }
+
             public IList<PictureDto> Pictures
             {
                 get;
                 set;
+            }
+
+            public LightPatientDto SelectedPatient
+            {
+                get; set;
             }
 
             public PictureDto SelectedPicture
@@ -413,8 +441,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 get;
                 set;
             }
-
-            public LightPatientDto SelectedPatient { get; set; }
 
             #endregion Properties
         }
