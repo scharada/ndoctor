@@ -8,7 +8,7 @@
       xmlns:dto="clr-namespace:Probel.NDoctor.Domain.DTO.Objects;assembly=Probel.NDoctor.Domain.DTO"
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PictureManager.Translations"
       xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PictureManager.View"
-      xmlns:h="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
+      xmlns:h="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"   
       
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"

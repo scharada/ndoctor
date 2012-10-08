@@ -70,14 +70,14 @@ namespace Probel.NDoctor.View.Core.View
         #region Events
 
         /// <summary>
-        /// Occurs when a new user has connected.
-        /// </summary>
-        public event EventHandler NewUserConnected;
-
-        /// <summary>
         /// Occurs when a patient session is closed.
         /// </summary>
         public event EventHandler NewPatientConnected;
+
+        /// <summary>
+        /// Occurs when a new user has connected.
+        /// </summary>
+        public event EventHandler NewUserConnected;
 
         #endregion Events
 
@@ -153,8 +153,7 @@ namespace Probel.NDoctor.View.Core.View
                 if (this.DataContext != null && this.DataContext is MainWindowViewModel)
                 {
                     (this.DataContext as MainWindowViewModel).SelectedPatient = value;
-                    this.OnNewPatientConnected(); //TODO: the new session is opening. The event should be triggered
-                    //                              before the new patient is set
+                    this.OnNewPatientConnected();
                 }
                 else { throw new WrongDataContextException(); }
             }
@@ -443,19 +442,19 @@ namespace Probel.NDoctor.View.Core.View
             return criteria;
         }
 
-        private void OnNewUserConnected()
-        {
-            if (this.NewUserConnected != null)
-            {
-                this.NewUserConnected(this, EventArgs.Empty);
-            }
-        }
-
         private void OnNewPatientConnected()
         {
             if (this.NewPatientConnected != null)
             {
                 this.NewPatientConnected(this, EventArgs.Empty);
+            }
+        }
+
+        private void OnNewUserConnected()
+        {
+            if (this.NewUserConnected != null)
+            {
+                this.NewUserConnected(this, EventArgs.Empty);
             }
         }
 
@@ -474,11 +473,11 @@ namespace Probel.NDoctor.View.Core.View
 
         private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-#if DEBUG
+            #if DEBUG
             this.WindowState = System.Windows.WindowState.Normal;
-#else
+            #else
             this.WindowState = System.Windows.WindowState.Maximized;
-#endif
+            #endif
         }
 
         private void WriteStatus(LightPatientDto value)

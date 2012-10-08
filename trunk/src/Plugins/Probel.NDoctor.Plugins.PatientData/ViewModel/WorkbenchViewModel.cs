@@ -63,7 +63,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
 
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
-            PluginContext.Host.PatientSessionClosed += (sender, e) => this.Refresh();
+            PluginContext.Host.NewPatientConnected += (sender, e) => this.Refresh();
 
             Notifyer.SateliteDataChanged += (sender, e) => this.Refresh();
 

@@ -61,7 +61,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         public WorkbenchViewModel()
             : base()
         {
-            PluginContext.Host.PatientSessionClosed += (sender, e) =>
+            PluginContext.Host.NewPatientConnected += (sender, e) =>
             {
                 this.SelectedRecord = null;
             };
