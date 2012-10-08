@@ -35,7 +35,7 @@ foreach($item in $items)
 		}	
 	}
 }
-	""
-	"Cleaning done:"
-	"$dirCount folder(s) deleted"
-	"$fileCount file(s) deleted"
+""
+"Cleaning done:"
+"$dirCount folder(s) deleted"
+"$fileCount file(s) deleted"
