@@ -136,7 +136,7 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
             {
                 if (!this.IsValidPassword())
                 {
-                    Microsoft.Windows.Controls.MessageBox.Show(Messages.Msg_ErrorWrongPassword, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show(Messages.Msg_ErrorWrongPassword, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else
                 {

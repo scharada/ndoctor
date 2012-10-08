@@ -6,7 +6,7 @@
 					 xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
 					 xmlns:menu="clr-namespace:Probel.NDoctor.View.Plugins.MenuData;assembly=Probel.NDoctor.View.Plugins"           
 					 xmlns:data="clr-namespace:Probel.NDoctor.View.Core"                    
-					 xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"   
+					 xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"   
 					 xmlns:converter="clr-namespace:Probel.NDoctor.View.Plugins.Converters;assembly=Probel.NDoctor.View.Plugins"
 					 xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock"
 					 

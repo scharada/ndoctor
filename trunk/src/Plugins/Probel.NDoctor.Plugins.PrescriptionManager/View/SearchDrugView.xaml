@@ -5,7 +5,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:h="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PrescriptionManager.Translations"
              xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"

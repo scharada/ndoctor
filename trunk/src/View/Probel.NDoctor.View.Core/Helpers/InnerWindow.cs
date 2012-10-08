@@ -23,6 +23,7 @@ namespace Probel.NDoctor.View.Core.Helpers
     using Microsoft.Windows.Controls;
 
     using Probel.Mvvm.DataBinding;
+    using Xceed.Wpf.Toolkit;
 
     public static class InnerWindow
     {
@@ -32,7 +33,7 @@ namespace Probel.NDoctor.View.Core.Helpers
         private static System.Windows.Visibility closeButtonVisibility = System.Windows.Visibility.Visible;
         private static System.Windows.Controls.UserControl content;
         private static bool isModal = false;
-        private static Microsoft.Windows.Controls.WindowStartupLocation windowStartupLocation;
+        private static WindowStartupLocation windowStartupLocation;
         private static WindowState windowState = WindowState.Closed;
 
         #endregion Fields
@@ -143,7 +144,7 @@ namespace Probel.NDoctor.View.Core.Helpers
 
         public static void Close()
         {
-            WindowState = Microsoft.Windows.Controls.WindowState.Closed;
+            WindowState = WindowState.Closed;
         }
 
         public static void OnCaptionChanged()

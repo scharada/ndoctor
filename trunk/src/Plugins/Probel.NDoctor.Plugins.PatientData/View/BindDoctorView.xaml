@@ -7,7 +7,7 @@
              
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PatientData.Translations"
              xmlns:my="clr-namespace:Probel.NDoctor.Domain.DTO.Objects;assembly=Probel.NDoctor.Domain.DTO"
-             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"             
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"             
              xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
              xmlns:behaviours="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF" 
              

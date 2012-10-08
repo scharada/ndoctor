@@ -7,7 +7,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
              
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.MeetingManager.Translations"
-             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
              
              mc:Ignorable="d" 

@@ -7,7 +7,7 @@
       xmlns:my="clr-namespace:Probel.NDoctor.Plugins.FamilyManager.View" 
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.FamilyManager.Translations"
       xmlns:h="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
-      xmlns:ctrl="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+      xmlns:ctrl="http://schemas.xceed.com/wpf/xaml/toolkit"
       
       mc:Ignorable="d" 
       d:DesignHeight="446" d:DesignWidth="666"
