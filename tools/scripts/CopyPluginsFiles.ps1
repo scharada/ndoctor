@@ -59,17 +59,12 @@ CopyPluginFiles("MeetingManager");
 CopyPluginFiles("Administration");
 CopyPluginFiles("Authorisation");
 CopyPluginFiles("PictureManager");
-
-$currentPlugin = "BmiRecord"
-CopyPluginFiles($currentPlugin)
-$dir = GetDirectory($currentPlugin)
-copy "$root\Probel.NDoctor.Plugins.BmiRecord\bin\$releaseMode\System.Windows.Controls.DataVisualization.Toolkit.dll" "$dir" 
-copy "$root\Probel.NDoctor.Plugins.BmiRecord\bin\$releaseMode\WPFToolkit.dll" "$dir"                                        
+CopyPluginFiles("BmiRecord");
+CopyPluginFiles("PathologyManager");
 
 $currentPlugin = "MedicalRecord"
 CopyPluginFiles($currentPlugin)
-$dir = GetDirectory($currentPlugin)
-copy "$root\Probel.NDoctor.Plugins.MedicalRecord\bin\$releaseMode\WPFToolkit.Extended.dll" "$dir"                         
+$dir = GetDirectory($currentPlugin)                       
 copy "$root\Probel.NDoctor.Plugins.MedicalRecord\bin\$releaseMode\ICSharpCode.AvalonEdit.dll" "$dir"                      
 copy "$root\Probel.NDoctor.Plugins.MedicalRecord\bin\$releaseMode\Probel.NDoctor.Plugins.MedicalRecord.dll.config" "$dir" 
 copy "$root\Probel.NDoctor.Plugins.MedicalRecord\bin\$releaseMode\Nini.dll" "$dir"                                        
@@ -78,12 +73,6 @@ $currentPlugin = "FamilyManager"
 CopyPluginFiles($currentPlugin)
 $dir = GetDirectory($currentPlugin)
 copy "$root\Probel.NDoctor.Plugins.MedicalRecord\bin\$releaseMode\Probel.Helpers.WPF.dll" "$dir" 
-
-$currentPlugin = "PathologyManager"
-CopyPluginFiles($currentPlugin)
-$dir = GetDirectory($currentPlugin)
-copy "$root\Probel.NDoctor.Plugins.BmiRecord\bin\$releaseMode\System.Windows.Controls.DataVisualization.Toolkit.dll" "$dir" 
-copy "$root\Probel.NDoctor.Plugins.BmiRecord\bin\$releaseMode\WPFToolkit.dll" "$dir"                                        
 
 ""
 "Script executed"
