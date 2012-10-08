@@ -41,7 +41,7 @@ namespace Probel.NDoctor.View.Plugins.Converters
         /// </returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Assert.OfType(typeof(StatusType), value);
+            Assert.OfType<StatusType>(value);
 
             var status = (StatusType)value;
             var path = string.Empty;

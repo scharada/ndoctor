@@ -73,7 +73,7 @@ namespace Probel.Helpers.Test
                 Console.WriteLine("---");
                 catchCounter++;
             }
-            try { ContractAssert.OfType(typeof(DateTime), new object()); }
+            try { ContractAssert.OfType<DateTime>(new object()); }
             catch (ContractException ex)
             {
                 Console.WriteLine(ex.Message);
@@ -140,13 +140,13 @@ namespace Probel.Helpers.Test
         [Test]
         public void TestOfTypeConstraint_Failed()
         {
-            Probel.Helpers.Assertion.Assert.OfType(typeof(DateTime), 4);
+            Probel.Helpers.Assertion.Assert.OfType<DateTime>(4);
         }
 
         [Test]
         public void TestOfTypeConstraint_Succeeded()
         {
-            Probel.Helpers.Assertion.Assert.OfType(typeof(DateTime), DateTime.Now);
+            Probel.Helpers.Assertion.Assert.OfType<DateTime>(DateTime.Now);
         }
 
         #endregion Methods

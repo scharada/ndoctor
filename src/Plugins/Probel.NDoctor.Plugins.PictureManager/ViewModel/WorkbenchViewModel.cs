@@ -329,7 +329,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
         private TaskArgs FilterAsync(object args)
         {
-            Assert.OfType(typeof(TaskArgs), args);
+            Assert.OfType<TaskArgs>(args);
 
             var input = args as TaskArgs;
             var result = new TaskArgs();

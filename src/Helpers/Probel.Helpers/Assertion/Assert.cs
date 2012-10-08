@@ -169,9 +169,9 @@ namespace Probel.Helpers.Assertion
         /// <param name="message">The message to dislpay is assertion failed.</param>
         /// <param name="args">An <see cref="System.Object"/> array containing zero or more objects to format.</param>
         [DebuggerStepThrough]
-        public static void OfType(Type type, object expression, object message, params object[] args)
+        public static void OfType<T>(object expression, object message, params object[] args)
         {
-            That(expression, Is.OfType(type), message, args);
+            That(expression, Is.OfType(typeof(T)), message, args);
         }
 
         /// <summary>
@@ -180,9 +180,9 @@ namespace Probel.Helpers.Assertion
         /// <param name="type">The type.</param>
         /// <param name="expression">The expression.</param>
         [DebuggerStepThrough]
-        public static void OfType(Type type, object expression)
+        public static void OfType<T>(object expression)
         {
-            OfType(type, expression, null);
+            OfType<T>(expression, null);
         }
 
         /// <summary>

@@ -42,7 +42,7 @@ namespace Probel.NDoctor.View.Plugins.Converters
         {
             if (value == null) return null;
 
-            Assert.OfType(typeof(byte[]), value, "The expected type is 'byte[]' but is '{0}'", value.GetType().Name);
+            Assert.OfType<byte[]>(value, "The expected type is 'byte[]' but is '{0}'", value.GetType().Name);
 
             var bytes = (byte[])value;
             var image = Converter.ByteArrayToImage(bytes);
