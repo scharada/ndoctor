@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Windows.Input;
 
     using Microsoft.Win32;
@@ -37,6 +38,8 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using System.Threading;
+    using System.Globalization;
 
     public class WorkbenchViewModel : BaseViewModel
     {
@@ -47,6 +50,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         private IPictureComponent component;
         private bool creatingNewPicture = false;
         private TagDto filterTag;
+        private bool isFilterDisabled = false;
         private bool isInformationExpanded;
         private PictureDto selectedPicture;
         private TagDto selectedTag;
@@ -223,12 +227,16 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 this.SelectedPicture = new PictureDto();
                 var tags = this.component.FindTags(TagCategory.Picture);
 
+                this.isFilterDisabled = true;
+
                 this.Tags.Refill(tags);
                 this.InsertJokerTag(tags);
                 this.FilterTags.Refill(tags);
                 this.creatingNewPicture = false;
-
                 this.SelectFirstTag();
+
+                this.isFilterDisabled = false;
+
                 this.Filter();
             }
             catch (Exception ex)
@@ -275,23 +283,53 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
         private void Filter()
         {
-            IList<PictureDto> pictures;
+            if (this.isFilterDisabled)
+            {
+                this.Logger.Debug("Picture filter canceled...");
+                return;
+            }
+
+            this.Logger.DebugFormat("Filtering pictures with tag '{0}'", (this.SelectedTag == null) ? "<NULL>" : this.SelectedTag.Name);
+
+            var context = TaskScheduler.FromCurrentSynchronizationContext();
+            var input = new TaskArgs() { SelectedPatient = PluginContext.Host.SelectedPatient };
+
+            Task.Factory
+                .StartNew<TaskArgs>(e => this.FilterAsync(e), input)
+                .ContinueWith(e => this.FilterCallback(e.Result), context);
+        }
+
+        private TaskArgs FilterAsync(object args)
+        {
+            Assert.OfType(typeof(TaskArgs), args);
+            var input = args as TaskArgs;
+            Thread.CurrentThread.CurrentUICulture = input.CurrentUICulture;
+            var result = new TaskArgs();
+
             if (this.FilterTag != null && this.FilterTag.Name == Messages.Msg_AllTags)
             {
-                pictures = this.component.FindPictures(PluginContext.Host.SelectedPatient);
+                result.Pictures = this.component.FindPictures(input.SelectedPatient);
             }
             else
             {
-                pictures = this.component.FindPictures(PluginContext.Host.SelectedPatient, this.FilterTag);
+                result.Pictures = this.component.FindPictures(input.SelectedPatient, this.FilterTag);
             }
 
-            this.Pictures.Refill(pictures);
-
-            if (this.Pictures.Count > 0)
+            if (result.Pictures.Count > 0)
             {
-                this.SelectedPicture = this.Pictures[0];
+                result.SelectedPicture = result.Pictures[0];
             }
-            else { this.SelectedPicture = null; }
+            else { result.SelectedPicture = null; }
+
+            this.Logger.Debug("\tThread finished: Filtered pictures");
+            return result;
+        }
+
+        private void FilterCallback(TaskArgs args)
+        {
+            this.Pictures.Refill(args.Pictures);
+            this.SelectedPicture = args.SelectedPicture;
+            this.Logger.Debug("\tRefreshed GUI after pictures filtering");
         }
 
         private void InsertJokerTag(IList<TagDto> tags)
@@ -353,5 +391,34 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         }
 
         #endregion Methods
+
+        #region Nested Types
+
+        private class TaskArgs
+        {
+            public TaskArgs()
+            {
+                this.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
+            }
+            #region Properties
+            public CultureInfo CurrentUICulture { get; private set; }
+            public IList<PictureDto> Pictures
+            {
+                get;
+                set;
+            }
+
+            public PictureDto SelectedPicture
+            {
+                get;
+                set;
+            }
+
+            public LightPatientDto SelectedPatient { get; set; }
+
+            #endregion Properties
+        }
+
+        #endregion Nested Types
     }
 }
