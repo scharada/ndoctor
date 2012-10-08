@@ -32,6 +32,36 @@ namespace Probel.NDoctor.Domain.DTO.Components
         void Create(PictureDto picture, LightPatientDto forPatient);
 
         /// <summary>
+        /// Gets the pictures (only the thumbnails) for the specified patient and with the specified tag.
+        /// If the specified tag is null, it'll select all the picture of the specified
+        /// patient
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <param name="tag">The criteria of the search. If null, it'll take all the picture for the specified patient</param>
+        /// <returns>
+        /// A list of pictures
+        /// </returns>
+        IList<LightPictureDto> FindLightPictures(LightPatientDto patient, TagDto tag);
+
+        /// <summary>
+        /// Gets the pictures (only the thumbnails) for the specified patient and with the specified tag.
+        /// If the specified tag is null, it'll select all the picture of the specified
+        /// patient
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <returns>
+        /// A list of pictures
+        /// </returns>
+        IList<LightPictureDto> FindLightPictures(LightPatientDto patient);
+
+        /// <summary>
+        /// Finds the full picture from the thumbnail.
+        /// </summary>
+        /// <param name="picture">The picture.</param>
+        /// <returns></returns>
+        PictureDto FindPicture(LightPictureDto picture);
+
+        /// <summary>
         /// Gets the pictures for the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>

@@ -19,7 +19,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System;
 
     [Serializable]
-    public class PictureDto : BaseDto
+    public class PictureDto : LightPictureDto
     {
         #region Fields
 

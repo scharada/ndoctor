@@ -22,6 +22,7 @@
 namespace Probel.NDoctor.Domain.DAL.Subcomponents
 {
     using System;
+    using System.Collections.Generic;
 
     using AutoMapper;
 
@@ -251,6 +252,18 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             Mapper.Map<MacroDto, Macro>(item, entity);
 
             this.Session.Update(entity);
+        }
+
+        /// <summary>
+        /// Updates the specified pictures.
+        /// </summary>
+        /// <param name="pictures">The pictures.</param>
+        public void Update(IEnumerable<Picture> pictures)
+        {
+            foreach (var picture in pictures)
+            {
+                this.Session.Update(picture);
+            }
         }
 
         /// <summary>

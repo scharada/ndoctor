@@ -70,6 +70,15 @@ namespace Probel.NDoctor.Domain.DAL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The picture already has a thumbnail.
+        /// </summary>
+        internal static string Ex_HasThumbnail {
+            get {
+                return ResourceManager.GetString("Ex_HasThumbnail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The macro is not valid or is malformed.
         /// </summary>
         internal static string Ex_InvalidMacroException {
