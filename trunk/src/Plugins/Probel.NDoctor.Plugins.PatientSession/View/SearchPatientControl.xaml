@@ -40,6 +40,9 @@
     <DockPanel LastChildFill="True">
         <DockPanel DockPanel.Dock="Top"
                    LastChildFill="True">
+            <Label DockPanel.Dock="Top"
+                   Content="{Binding Source={x:Static Member=text:TopTenText.DoubleClick}}" 
+                   HorizontalAlignment="Center" BorderThickness="0" Margin="0" />
             <Border Style="{StaticResource BorderStyle}">
                 <DockPanel>
                     <Button DockPanel.Dock="Right" Background="White" BorderBrush="White" BorderThickness="0"
