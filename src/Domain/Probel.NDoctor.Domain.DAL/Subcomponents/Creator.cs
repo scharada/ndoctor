@@ -448,7 +448,7 @@
             foundPatient.Pictures.Add(newItem);
             new ImageHelper().TryCreateThumbnail(foundPatient.Pictures);
 
-            this.Session.SaveOrUpdate(foundPatient);
+            this.Session.Update(foundPatient);
         }
 
         /// <summary>

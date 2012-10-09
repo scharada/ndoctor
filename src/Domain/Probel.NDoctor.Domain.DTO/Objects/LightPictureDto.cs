@@ -23,11 +23,28 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     {
         #region Fields
 
+        private TagDto tag;
         private byte[] thumbnailedBitmap;
 
         #endregion Fields
 
         #region Properties
+
+        /// <summary>
+        /// Gets or sets the tag to categorise this picture.
+        /// </summary>
+        /// <value>
+        /// The tag.
+        /// </value>
+        public TagDto Tag
+        {
+            get { return this.tag; }
+            set
+            {
+                this.tag = value;
+                this.OnPropertyChanged(() => this.Tag);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the thumbnail of the picture.
