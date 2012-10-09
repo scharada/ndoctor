@@ -40,6 +40,9 @@
         <toolkit:BusyIndicator IsBusy="{Binding IsBusy,UpdateSourceTrigger=PropertyChanged}"
                                BusyContent="{Binding Source={x:Static Member=t:BaseText.PleaseWait}}">
             <DockPanel LastChildFill="True">
+                <Label DockPanel.Dock="Top"
+                       Content="{Binding Source={x:Static Member=text:TopTenText.DoubleClick}}" 
+                       HorizontalAlignment="Center" />
                 <DockPanel DockPanel.Dock="Top"
                            LastChildFill="True">
                     <DockPanel DockPanel.Dock="Top" LastChildFill="True">
