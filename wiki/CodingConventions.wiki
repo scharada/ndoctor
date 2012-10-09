@@ -121,7 +121,7 @@ While writing a component, developer have to follow these rules:
 
  * All the components are suffixed with "*`Component`*". For instance, the medical record's component will be called `MedicalRecordComponent`.
  * A methods to retrieve all the entities of a type will be prefixed with *`GetAll`*. A methods to get all the patients will be called `GetAllPatients()`.
- * A method to find entities based on criteria should be prefixed with *`Find`* and suffixed with "*`By...`*" which translates on what the search will be done.
+ * A method to find entities based on criteria should be prefixed with *`Get`* and suffixed with "*`By...`*" which translates on what the search will be done.
  * A DTO object is suffixed with `Dto`. For example a patient dto is called `PatientDto`
 
 = Gui- Xaml, Mvvm: =
