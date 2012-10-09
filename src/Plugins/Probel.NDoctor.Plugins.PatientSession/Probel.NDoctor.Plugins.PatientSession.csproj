@@ -69,6 +69,7 @@
     <Compile Include="Translations\AddPatientText.cs" />
     <Compile Include="Translations\CriteriaText.cs" />
     <Compile Include="Translations\SearchPatientExtendedText.cs" />
+    <Compile Include="Translations\TopTenText.cs" />
     <Compile Include="ViewModel\LightPatientViewModel.cs" />
     <Compile Include="Properties\Messages.fr.Designer.cs">
       <DependentUpon>Messages.fr.resx</DependentUpon>

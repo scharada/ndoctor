@@ -75,15 +75,13 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             this.component = PluginContext.ComponentFactory.GetInstance<IPictureComponent>();
 
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPictureComponent>();
-            PluginContext.Host.NewPatientConnected += (sender, e) => this.Refresh();
+            Notifyer.ItemChanged += (sender, e) => this.Refresh();
 
             this.AddPictureCommand = new RelayCommand(() => AddPicture(), () => this.CanAddSomething());
             this.AddTypeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPicType, new AddTagView()), () => this.CanAddSomething());
             this.SaveCommand = new RelayCommand(() => Save(), () => CanSave());
             this.FilterPictureCommand = new RelayCommand(() => this.Filter());
             this.selectPictureCommand = new RelayCommand(() => this.SelectPicture(), () => this.CanSelectPicture());
-
-            Notifyer.ItemChanged += (sender, e) => this.Refresh();
         }
 
         #endregion Constructors

@@ -161,6 +161,10 @@
     <value>Sélectionner</value>
     <comment>Select</comment>
   </data>
+  <data name="Msg_DoubleClick" xml:space="preserve">
+    <value>Double cliquez pour sélectionner le patient</value>
+    <comment>Double click to select the patient</comment>
+  </data>
   <data name="Msg_PatientAdded" xml:space="preserve">
     <value>Patient ajouté.</value>
     <comment>Patient added.</comment>
