@@ -143,7 +143,7 @@ this.DrinkABeerCommand = new RelayCommand(() => this.DrinkABeer(), () => this.Ca
 The authorisation is build on the pattern [http://en.wikipedia.org/wiki/Convention_over_configuration Convention over configuration]. 
 
 Without the attribute `GrantedAttribute` the authorisation is set as follow:
-  * Every method prefixed with *`Find`* or *`GetAll`* behaves as if they were decorated with `[Granted("Read")]`
+  * Every method prefixed with *`Get`* or *`GetAll`* behaves as if they were decorated with `[Granted("Read")]`
   * Every method prefixed with *`Create`*, *`Remove`* or *`Update`* behaves as if they were decorated with `[Granted("Write")]`
   * Not decorated method are considered as granted to everyone
   * Methods that are decorated with `InspectionIgnoredAttribute` are considered as granted to everyone
