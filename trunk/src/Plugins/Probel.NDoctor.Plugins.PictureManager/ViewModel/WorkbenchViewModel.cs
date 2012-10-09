@@ -33,6 +33,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.MemoryComponents;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PictureManager.Helpers;
     using Probel.NDoctor.Plugins.PictureManager.Properties;
@@ -54,6 +55,8 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         private bool isBusy;
         private bool isFilterDisabled = false;
         private bool isInformationExpanded;
+        private bool isRefreshMuted = false;
+        private LightPictureMemoryComponent memoryComponent = LightPictureMemoryComponent.Empty;
         private PictureDto selectedPicture;
         private TagDto selectedTag;
         private LightPictureDto selectedThumbnail;
@@ -75,6 +78,8 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             this.component = PluginContext.ComponentFactory.GetInstance<IPictureComponent>();
 
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPictureComponent>();
+            PluginContext.Host.NewPatientConnected += (sender, e) => this.isRefreshMuted = false;
+
             Notifyer.ItemChanged += (sender, e) => this.Refresh();
 
             this.AddPictureCommand = new RelayCommand(() => AddPicture(), () => this.CanAddSomething());
@@ -244,6 +249,8 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
         public void Refresh()
         {
+            //If there's no change since last time, don't reload the data.
+            if (this.isRefreshMuted) { return; }
             try
             {
                 this.SelectedPicture = new PictureDto();
@@ -260,6 +267,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 this.isFilterDisabled = false;
 
                 this.Filter();
+                this.isRefreshMuted = true; //We've just refresh, don't need to refresh next time.
             }
             catch (Exception ex)
             {
@@ -317,48 +325,86 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             }
 
             var context = TaskScheduler.FromCurrentSynchronizationContext();
-            var input = new TaskArgs() { SelectedPatient = PluginContext.Host.SelectedPatient };
+            var input = new TaskArgs()
+            {
+                SelectedPatient = PluginContext.Host.SelectedPatient,
+                MemoryComponent = this.memoryComponent,
+            };
 
             this.IsBusy = true;
-            Task.Factory
-                .StartNew<TaskArgs>(e => this.FilterAsync(e), input)
-                .ContinueWith(e => this.FilterCallback(e.Result), context);
+            if (!this.isRefreshMuted)
+            {
+                Task.Factory
+                    .StartNew<TaskArgs>(e => this.FilterAsync(e as TaskArgs), input as TaskArgs)
+                    .ContinueWith(e => this.FilterCallback(e.Result), context);
+            }
+            else //If nothing has changed, optimise filter doing this in memory
+            {
+                Task.Factory
+                    .StartNew<Tuple<LightPictureDto[], PictureDto>>(() => this.FilterInMemoryAsync())
+                    .ContinueWith(e => this.FilterInMemoryCallback(e), context);
+            }
         }
 
-        private TaskArgs FilterAsync(object args)
+        private TaskArgs FilterAsync(TaskArgs input)
         {
-            Assert.OfType<TaskArgs>(args);
-
-            var input = args as TaskArgs;
-            var result = new TaskArgs();
-
             Thread.CurrentThread.CurrentUICulture = input.CurrentUICulture;
 
             if (this.FilterTag != null && this.FilterTag.Name == Messages.Msg_AllTags)
             {
-                result.Pictures = this.component.FindLightPictures(input.SelectedPatient);
+                input.Pictures = this.component.FindLightPictures(input.SelectedPatient);
+                input.MemoryComponent = new LightPictureMemoryComponent(input.Pictures);
             }
             else
             {
-                result.Pictures = this.component.FindLightPictures(input.SelectedPatient, this.FilterTag);
+                input.Pictures = this.component.FindLightPictures(input.SelectedPatient, input.FilterTag);
             }
 
-            if (result.Pictures.Count > 0)
+            if (input.Pictures.Count > 0)
             {
-                result.SelectedPicture = component.FindPicture(result.Pictures[0]);
+                input.SelectedPicture = component.FindPicture(input.Pictures[0]);
             }
-            else { result.SelectedPicture = null; }
+            else { input.SelectedPicture = null; }
 
             this.Logger.Debug("\tThread finished: Filtered pictures");
-            return result;
+            return input;
         }
 
         private void FilterCallback(TaskArgs args)
         {
+            this.memoryComponent = args.MemoryComponent ?? this.memoryComponent;
             this.Pictures.Refill(args.Pictures);
             this.SelectedPicture = args.SelectedPicture;
             this.Logger.Debug("\tRefreshed GUI after pictures filtering");
             this.IsBusy = false;
+        }
+
+        private Tuple<LightPictureDto[], PictureDto> FilterInMemoryAsync()
+        {
+            var foundItems = new LightPictureDto[] { };
+            var currentPic = new PictureDto();
+
+            if (this.FilterTag != null && this.FilterTag.Name != Messages.Msg_AllTags)
+            {
+                foundItems = memoryComponent.Find(this.FilterTag);
+            }
+            else { foundItems = memoryComponent.FindAll(); }
+
+            if (foundItems.Length > 0)
+            {
+                currentPic = component.FindPicture(foundItems[0]);
+            }
+            else { currentPic = null; }
+
+            return new Tuple<LightPictureDto[], PictureDto>(foundItems, currentPic);
+        }
+
+        private void FilterInMemoryCallback(Task<Tuple<LightPictureDto[], PictureDto>> e)
+        {
+            this.Pictures.Refill(e.Result.Item1);
+            this.SelectedPicture = e.Result.Item2;
+            this.IsBusy = false;
+            this.Logger.Debug("Filtered pictures in memory");
         }
 
         private void InsertJokerTag(IList<TagDto> tags)
@@ -383,23 +429,46 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
                 Assert.IsNotNull(this.SelectedTag, "All pictures should have a tag");
 
-                if (this.creatingNewPicture)
+                var context = TaskScheduler.FromCurrentSynchronizationContext();
+                var args = new TaskArgs()
                 {
-                    this.component.Create(this.SelectedPicture, PluginContext.Host.SelectedPatient);
-                    this.creatingNewPicture = false;
-                }
-                else this.component.Update(this.SelectedPicture);
+                    SelectedPatient = PluginContext.Host.SelectedPatient,
+                    SelectedPicture = this.SelectedPicture,
+                    CreatingNewPicture = this.creatingNewPicture,
+                };
 
-                this.Refresh();
-
-                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PictureUpdated);
-                this.SelectedPicture = new PictureDto();
-                this.IsInformationExpanded = false;
+                Task.Factory
+                    .StartNew<TaskArgs>(e => SaveAsync(e as TaskArgs), args)
+                    .ContinueWith(e => this.SaveCallback(e.Result), context);
             }
             catch (Exception ex)
             {
                 this.HandleError(ex, Messages.Msg_ErOnSavePicture);
             }
+        }
+
+        private TaskArgs SaveAsync(TaskArgs context)
+        {
+            if (context.CreatingNewPicture)
+            {
+                this.component.Create(context.SelectedPicture, context.SelectedPatient);
+                context.CreatingNewPicture = false;
+            }
+            else { this.component.Update(context.SelectedPicture); }
+            return context;
+        }
+
+        private void SaveCallback(TaskArgs context)
+        {
+            this.isRefreshMuted = false;
+            this.Refresh();
+
+            this.creatingNewPicture = context.CreatingNewPicture;
+            this.IsBusy = false;
+
+            PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PictureUpdated);
+            this.SelectedPicture = new PictureDto();
+            this.IsInformationExpanded = false;
         }
 
         private void SelectFirstTag()
@@ -445,10 +514,28 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
             #region Properties
 
+            public bool CreatingNewPicture
+            {
+                get;
+                set;
+            }
+
             public CultureInfo CurrentUICulture
             {
                 get;
                 private set;
+            }
+
+            public TagDto FilterTag
+            {
+                get;
+                set;
+            }
+
+            public LightPictureMemoryComponent MemoryComponent
+            {
+                get;
+                set;
             }
 
             public IList<LightPictureDto> Pictures

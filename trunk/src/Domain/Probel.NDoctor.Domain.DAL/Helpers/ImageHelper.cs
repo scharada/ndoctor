@@ -23,6 +23,8 @@ namespace Probel.NDoctor.Domain.DAL.Helpers
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Threading;
 
     using log4net;
 
@@ -35,7 +37,7 @@ namespace Probel.NDoctor.Domain.DAL.Helpers
     {
         #region Fields
 
-        private const int WIDTH = 170;
+        private const int HEIGHT = 170;
 
         private static ILog Logger = LogManager.GetLogger(typeof(ImageHelper));
 
@@ -91,7 +93,6 @@ namespace Probel.NDoctor.Domain.DAL.Helpers
             if (!this.HasThumbnail(picture)) { return false; }
             else
             {
-                Logger.DebugFormat("Create a thumbnail for picture {0}", picture.Id);
                 this.UpdateThumbnail(picture);
                 return true;
             }
@@ -105,12 +106,23 @@ namespace Probel.NDoctor.Domain.DAL.Helpers
         /// <returns><c>True</c> if at least one thumbnail is created; otherwise <c>False</c></returns>
         public bool TryCreateThumbnail(IEnumerable<Picture> pictures)
         {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             var result = true;
+            var count = 0;
             foreach (var picture in pictures)
             {
                 var temp = this.TryCreateThumbnail(picture);
-                if (result == true) { result = temp; }
+                if (result == true)
+                {
+                    result = temp;
+                    count++;
+                }
             }
+
+            stopwatch.Stop();
+            Logger.DebugFormat("Create {0} thumbnails in {1},{2} sec", count, stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
             return result;
         }
 
@@ -121,10 +133,10 @@ namespace Probel.NDoctor.Domain.DAL.Helpers
         public void UpdateThumbnail(Picture picture)
         {
             var img = Converter.ByteArrayToImage(picture.Bitmap);
-            var ratio = img.Width / WIDTH;
-            var height = img.Height / ratio;
+            var ratio = img.Height / HEIGHT;
+            var width = img.Width / ratio;
 
-            var thumb = img.GetThumbnailImage(WIDTH, height, () => false, IntPtr.Zero);
+            var thumb = img.GetThumbnailImage(width, HEIGHT, () => false, IntPtr.Zero);
 
             picture.ThumbnailBitmap = Converter.ImageToByteArray(thumb);
         }

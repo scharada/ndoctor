@@ -27,7 +27,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private DateTime creation;
         private DateTime lastUpdate;
         private string notes;
-        private TagDto tag;
 
         #endregion Fields
 
@@ -106,22 +105,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.notes = value;
                 this.OnPropertyChanged(() => this.Notes);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the tag to categorise this picture.
-        /// </summary>
-        /// <value>
-        /// The tag.
-        /// </value>
-        public TagDto Tag
-        {
-            get { return this.tag; }
-            set
-            {
-                this.tag = value;
-                this.OnPropertyChanged(() => this.Tag);
             }
         }
 
