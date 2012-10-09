@@ -57,7 +57,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
                 this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
 
                 PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
-                PluginContext.Host.NewPatientConnected += (sender, e) => this.Refresh();
             }
             this.SelectedBmi = new BmiDto();
             this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();

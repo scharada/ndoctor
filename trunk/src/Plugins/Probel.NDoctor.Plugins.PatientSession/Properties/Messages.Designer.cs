@@ -160,6 +160,15 @@ namespace Probel.NDoctor.Plugins.PatientSession.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Double click to select the patient.
+        /// </summary>
+        internal static string Msg_DoubleClick {
+            get {
+                return ResourceManager.GetString("Msg_DoubleClick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Patient added..
         /// </summary>
         internal static string Msg_PatientAdded {

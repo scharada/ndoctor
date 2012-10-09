@@ -58,7 +58,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
             : base()
         {
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
-            PluginContext.Host.NewPatientConnected += (sender, e) => this.Refresh();
 
             this.IllnessHistory = new ObservableCollection<IllnessPeriodViewModel>();
             Notifyer.ItemChanged += (sender, e) => this.Refresh();

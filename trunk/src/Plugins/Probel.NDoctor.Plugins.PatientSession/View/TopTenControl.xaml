@@ -26,7 +26,10 @@
         </DataTemplate>
 
     </UserControl.Resources>
-    <Grid>
+    <DockPanel LastChildFill="True">
+        <Label DockPanel.Dock="Top"
+               Content="{Binding Source={x:Static Member=text:TopTenText.DoubleClick}}" 
+               HorizontalAlignment="Center" />
         <ScrollViewer>
             <ListView x:Name="focused"
                       ItemsSource="{Binding Top10Patients}"
@@ -34,5 +37,5 @@
                       SelectedItem="{Binding SelectedPatient}"
                       behaviours:ControlBehaviour.MouseDoubleClick="{Binding SelectPatientCommand}"/>
         </ScrollViewer>
-    </Grid>
+    </DockPanel>
 </UserControl>

@@ -61,10 +61,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         public WorkbenchViewModel()
             : base()
         {
-            PluginContext.Host.NewPatientConnected += (sender, e) =>
-            {
-                this.SelectedRecord = null;
-            };
+            PluginContext.Host.NewPatientConnected += (sender, e) => this.SelectedRecord = null;
 
             this.MacroMenu = new ObservableCollection<MacroMenuItem>();
 

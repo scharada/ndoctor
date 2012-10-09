@@ -206,6 +206,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
         {
             PluginContext.Host.SelectedPatient = this.SelectedPatient;
             InnerWindow.Close();
+            PluginContext.Host.NavigateToStartPage();
         }
 
         #endregion Methods
