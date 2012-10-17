@@ -102,8 +102,8 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PatientAdded);
                 InnerWindow.Close();
             }
-            catch (ExistingItemException ex) { this.HandleWarning(ex, ex.Message); }
-            catch (Exception ex) { this.HandleError(ex, Messages.Error_AddPatient); }
+            catch (ExistingItemException ex) { this.Handle.Warning(ex, ex.Message); }
+            catch (Exception ex) { this.Handle.Error(ex, Messages.Error_AddPatient); }
         }
 
         private bool CanAdd()

@@ -141,7 +141,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
             }
             catch (Exception ex)
             {
-                this.HandleError(ex, Messages.Msg_FailToLoadMedicalPictures.FormatWith(ex.Message));
+                this.Handle.Error(ex, Messages.Msg_FailToLoadMedicalPictures.FormatWith(ex.Message));
             }
         }
 

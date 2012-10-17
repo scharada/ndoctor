@@ -72,7 +72,7 @@
                 InnerWindow.Close();
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_ItemAdded);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private bool CanAdd()

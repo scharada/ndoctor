@@ -36,7 +36,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     {
         #region Fields
 
-        private readonly ErrorHandler ErrorHandler;
+        private readonly ErrorHandler Handle;
 
         private IFamilyComponent component;
         private bool isSelected = false;
@@ -49,7 +49,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
 
         public LightPatientViewModel()
         {
-            this.ErrorHandler = new ErrorHandler(this);
+            this.Handle = new ErrorHandler(this);
             this.component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
 
@@ -141,7 +141,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
 
                 Notifyer.OnRefreshed(this);
             }
-            catch (Exception ex) { this.ErrorHandler.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private FamilyDto BuildFamily()
@@ -185,7 +185,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
 
                 Notifyer.OnRefreshed(this);
             }
-            catch (Exception ex) { this.ErrorHandler.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void SetParent(FamilyDto family, LightPatientDto current)

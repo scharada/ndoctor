@@ -147,7 +147,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager
             }
             catch (Exception ex)
             {
-                this.HandleError(ex, Messages.Msg_FailToLoadPathologyManager);
+                this.Handle.Error(ex, Messages.Msg_FailToLoadPathologyManager);
             }
         }
 

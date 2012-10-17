@@ -84,7 +84,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
                 Notifyer.OnRefreshed();
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
             finally { InnerWindow.Close(); }
         }
 

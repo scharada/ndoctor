@@ -228,7 +228,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
                 this.ShowContextMenu();
                 this.lastNavigation = LastNavigation.AddPrescription;
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void NavigateSearch()
@@ -249,7 +249,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
                 this.lastNavigation = LastNavigation.Workbench;
                 this.LoadDefaultPrescriptions();
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void Save()

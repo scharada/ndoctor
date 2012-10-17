@@ -106,11 +106,11 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             }
             catch (ExistingItemException ex)
             {
-                this.HandleWarning(ex, ex.Message);
+                this.Handle.Warning(ex, ex.Message);
             }
             catch (Exception ex)
             {
-                this.HandleError(ex, Messages.Msg_ErrorOccured);
+                this.Handle.Error(ex, Messages.Msg_ErrorOccured);
             }
         }
 

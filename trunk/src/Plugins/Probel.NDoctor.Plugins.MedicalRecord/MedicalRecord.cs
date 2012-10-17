@@ -243,7 +243,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
                 this.ViewService.GetViewModel(MacroEditorView).RefreshCommand.TryExecute();
                 InnerWindow.Show(Messages.Title_Macro, MacroEditorView);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void InitialiseFontButtons()
@@ -338,7 +338,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             }
             catch (Exception ex)
             {
-                this.HandleError(ex, Messages.Msg_FailToLoadMedicalRecords.FormatWith(ex.Message));
+                this.Handle.Error(ex, Messages.Msg_FailToLoadMedicalRecords.FormatWith(ex.Message));
             }
         }
 

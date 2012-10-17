@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <log4net>
+  <!-- Allows writing to a log file -->
   <appender name="FileAppender" type="log4net.Appender.RollingFileAppender">
     <file value="${APPDATA}\Probel\nDoctor\Logs\nDoctor.log"/>
     <appendToFile value="true"/>
@@ -7,14 +8,16 @@
     <maxSizeRollBackups value="20"/>
 
     <layout type="log4net.Layout.PatternLayout">
-      <!-- Print the date in ISO 8601 format -->
-      <!--<conversionPattern value="%date | %-20thread | %-5level | %-55logger | %-30M | %message%newline"/>-->
       <conversionPattern value="%date | %-5level | %message%newline"/>
     </layout>
 
+    <filter type="log4net.Filter.LevelRangeFilter">
+      <levelMin value="DEBUG" />
+      <levelMax value="FATAL" />
+    </filter>
   </appender>
 
-  <!-- Writes to the console. The console is only visible in debug builds of SharpDevelop. -->
+  <!-- Writes to the console. The console is only visible in debug builds of nDoctor. -->
   <appender name="ColoredConsoleAppender" type="log4net.Appender.ColoredConsoleAppender">
     <mapping>
       <level value="FATAL" />
@@ -37,15 +40,39 @@
       <level value="DEBUG" />
       <foreColor value="Green, HighIntensity" />
     </mapping>
+    
     <layout type="log4net.Layout.PatternLayout">
       <conversionPattern value="%date | %-5level | %message%newline" />
     </layout>
+    
+    <filter type="log4net.Filter.LevelRangeFilter">
+      <levelMin value="DEBUG" />
+      <levelMax value="FATAL" />
+    </filter>
+  </appender>
+
+  <!-- Writes to OutputDebugString - use a tool like Sysinternals DebugView to view the log  -->
+  <appender name="DebugAppender" type="log4net.Appender.OutputDebugStringAppender">
+    <layout type="log4net.Layout.PatternLayout">
+      <conversionPattern value="nDoctor - [%3thread] | %-5level | %message%newline" />
+    </layout>
+    
+    <filter type="log4net.Filter.LevelRangeFilter">
+      <levelMin value="DEBUG" />
+      <levelMax value="FATAL" />
+    </filter>
+  </appender>
+
+  <!--- Keeps the last few log entries and appends them to bug reports when an exception occurs -->
+  <appender name="Recorder" type="Probel.Helpers.Logging.LogMessageRecorder, Probel.Helpers">
+    <bufferSize value="25" />
   </appender>
 
   <root>
     <level value="DEBUG"/>
     <appender-ref ref="FileAppender"/>
     <appender-ref ref="ColoredConsoleAppender"/>
+    <appender-ref ref="DebugAppender"/>
   </root>
 
   <logger name="NHibernate">

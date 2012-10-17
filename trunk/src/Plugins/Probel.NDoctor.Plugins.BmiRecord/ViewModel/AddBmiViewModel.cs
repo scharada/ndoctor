@@ -96,7 +96,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
             }
             catch (Exception ex)
             {
-                this.HandleError(ex, Messages.Msg_ErrAddBmi);
+                this.Handle.Error(ex, Messages.Msg_ErrAddBmi);
             }
 
             Notifyer.OnItemChanged(this);

@@ -118,8 +118,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
                 this.Doctor = new DoctorDto();
             }
-            catch (ExistingItemException ex) { this.HandleWarning(ex, ex.Message); }
-            catch (Exception ex) { this.HandleError(ex, Messages.Msg_ErrorOccured); }
+            catch (ExistingItemException ex) { this.Handle.Warning(ex, ex.Message); }
+            catch (Exception ex) { this.Handle.Error(ex, Messages.Msg_ErrorOccured); }
             finally { InnerWindow.Close(); }
         }
 

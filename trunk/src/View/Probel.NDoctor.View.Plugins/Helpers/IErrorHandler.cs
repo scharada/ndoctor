@@ -43,7 +43,7 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         /// Handles the error, log it and shows a message box with the error.
         /// </summary>
         /// <param name="ex">The exception to log.</param>
-        void HandleError(Exception ex);
+        void Error(Exception ex);
 
         /// <summary>
         /// Handles the error, log it and shows a message box with the error.
@@ -51,7 +51,7 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         /// <param name="ex">The exception to log..</param>
         /// <param name="format">The format.</param>
         /// <param name="args">The args.</param>
-        void HandleError(Exception ex, string format, params object[] args);
+        void Error(Exception ex, string format, params object[] args);
 
         /// <summary>
         /// Handles the error, log it and DOESN'T show a message box with the error.
@@ -59,7 +59,7 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         /// <param name="ex">The exception to log..</param>
         /// <param name="format">The format.</param>
         /// <param name="args">The args.</param>
-        void HandleErrorSilently(Exception ex, string format, params object[] args);
+        void ErrorSilently(Exception ex, string format, params object[] args);
 
         /// <summary>
         /// Handles the error, log it and shows a message box with the error.
@@ -68,7 +68,7 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         /// <param name="ex">The exception to log..</param>
         /// <param name="format">The format.</param>
         /// <param name="args">The args.</param>
-        void HandleWarning(Exception ex, string format, params object[] args);
+        void Warning(Exception ex, string format, params object[] args);
 
         /// <summary>
         /// Handles the error, log it and DOESN'T show a message box with the error.
@@ -77,7 +77,7 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         /// <param name="ex">The exception to log..</param>
         /// <param name="format">The format.</param>
         /// <param name="args">The args.</param>
-        void HandleWarningSilently(Exception ex, string format, params object[] args);
+        void WarningSilently(Exception ex, string format, params object[] args);
 
         #endregion Methods
     }

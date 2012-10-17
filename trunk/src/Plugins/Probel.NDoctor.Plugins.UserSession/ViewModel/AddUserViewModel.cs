@@ -134,7 +134,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             }
             catch (Exception ex)
             {
-                this.HandleError(ex, Messages.Msg_ErrorAddUser);
+                this.Handle.Error(ex, Messages.Msg_ErrorAddUser);
             }
         }
 

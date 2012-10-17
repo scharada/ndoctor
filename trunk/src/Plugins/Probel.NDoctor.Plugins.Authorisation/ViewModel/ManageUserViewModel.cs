@@ -119,7 +119,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
                 this.Users.Refill(users);
                 this.Roles.Refill(roles);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private bool CanRemoveUser()
@@ -151,7 +151,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
                 this.Refresh();
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void UpdateUser()

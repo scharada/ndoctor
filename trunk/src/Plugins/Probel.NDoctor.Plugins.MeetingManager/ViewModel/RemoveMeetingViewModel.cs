@@ -116,7 +116,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                 Notifyer.OnRefreshed(this);
                 InnerWindow.Close();
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods

@@ -134,7 +134,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             }
             catch (Exception ex)
             {
-                this.HandleError(ex);
+                this.Handle.Error(ex);
             }
         }
 

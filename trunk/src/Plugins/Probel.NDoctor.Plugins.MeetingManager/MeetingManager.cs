@@ -148,7 +148,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager
             }
             catch (Exception ex)
             {
-                this.HandleError(ex, Messages.Msg_FailToLoadCalendar);
+                this.Handle.Error(ex, Messages.Msg_FailToLoadCalendar);
             }
         }
 

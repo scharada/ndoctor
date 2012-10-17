@@ -126,7 +126,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
                 this.FoundPatients.Refill(mappedResult);
                 PluginContext.Host.WriteStatusReady();
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods

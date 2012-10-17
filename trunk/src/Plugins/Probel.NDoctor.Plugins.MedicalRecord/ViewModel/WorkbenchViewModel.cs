@@ -247,7 +247,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
                 PluginContext.Host.WriteStatus(StatusType.Info, BaseText.Refreshed);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void RefreshDefaultFonts()
@@ -290,7 +290,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RecordsSaved);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void ShowRevisions()

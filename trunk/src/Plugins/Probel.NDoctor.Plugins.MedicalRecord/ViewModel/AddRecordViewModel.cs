@@ -113,7 +113,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 Notifyer.OnRefreshed();
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RecordAdded);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
             finally { InnerWindow.Close(); }
         }
 
@@ -128,7 +128,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             {
                 this.Tags.Refill(this.component.FindTags(TagCategory.MedicalRecord));
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods

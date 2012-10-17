@@ -80,7 +80,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                 InnerWindow.Close();
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_CategoryAdded);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private bool CanAdd()
