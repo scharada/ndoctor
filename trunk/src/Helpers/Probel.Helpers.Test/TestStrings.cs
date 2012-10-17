@@ -28,7 +28,7 @@ namespace Probel.Helpers.Test
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void FailsOnEmptyArgs()
+        public void CheckFormatWith_SpecifyNullArgs_ThrowArgumentNullException()
         {
             object[] args = null;
             "Hello".FormatWith(args);
