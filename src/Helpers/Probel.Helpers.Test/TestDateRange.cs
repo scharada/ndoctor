@@ -22,21 +22,12 @@ namespace Probel.Helpers.Test
 
     using Probel.Helpers.Data;
 
-    public class TestData : TestBase
+    public class TestDateRange : TestBase
     {
         #region Methods
 
         [Test]
-        public void CanDetectEquality()
-        {
-            var baseRange = new DateRange(DateTime.Today, DateTime.Today.AddHours(4));
-            var range1 = new DateRange(DateTime.Today, DateTime.Today.AddHours(4));
-
-            Assert.IsTrue(baseRange.AreEqualTimeSpan(range1), "This ranges should be equal");
-        }
-
-        [Test]
-        public void CanDetectNonOverlapping()
+        public void ComprareDateRange_CompareNonOverlappingDateRange_AreNotOverlapping()
         {
             var baseRange = new DateRange(DateTime.Today, DateTime.Today.AddHours(4));
             var range1 = new DateRange(DateTime.Today.AddHours(-5), DateTime.Today.AddHours(-1));
@@ -49,7 +40,7 @@ namespace Probel.Helpers.Test
         }
 
         [Test]
-        public void CanDetectOverlapping()
+        public void ComprareDateRange_CompareOverlappingDateRange_AreOverlapping()
         {
             var baseRange = new DateRange(DateTime.Today, DateTime.Today.AddHours(4));
             var range1 = new DateRange(DateTime.Today.AddHours(-5), DateTime.Today.AddHours(2));
@@ -59,6 +50,15 @@ namespace Probel.Helpers.Test
             Assert.IsTrue(baseRange.Overlaps(range1), "Range 1 should overlap");
             Assert.IsTrue(baseRange.Overlaps(range2), "Range 2 should overlap");
             Assert.IsTrue(baseRange.Overlaps(range3), "Range 3 should overlap");
+        }
+
+        [Test]
+        public void ComprareDateRange_CompareSameDateRange_AreEqual()
+        {
+            var baseRange = new DateRange(DateTime.Today, DateTime.Today.AddHours(4));
+            var range1 = new DateRange(DateTime.Today, DateTime.Today.AddHours(4));
+
+            Assert.IsTrue(baseRange.AreEqualTimeSpan(range1), "This ranges should be equal");
         }
 
         #endregion Methods

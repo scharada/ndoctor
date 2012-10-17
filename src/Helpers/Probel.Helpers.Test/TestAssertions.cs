@@ -26,12 +26,77 @@ namespace Probel.Helpers.Test
 
     using NUnitAssert = NUnit.Framework.Assert;
 
-    public class TestContract : TestBase
+    public class TestAssertion : TestBase
     {
         #region Methods
 
+        [ExpectedException(typeof(ContractException))]
         [Test]
-        public void TestFailingValues()
+        public void AssertBoolean_SpecifyInvalidData_ThrowsAsertionException()
+        {
+            Probel.Helpers.Assertion.Assert.IsFalse(true);
+        }
+
+        [Test]
+        public void AssertBoolean_SpecifyValidData_Valid()
+        {
+            ContractAssert.IsFalse(false);
+        }
+
+        [ExpectedException(typeof(ContractException))]
+        [Test]
+        public void AssertIsNotNull_SpecifyInvalidData_ThrowsAsertionException()
+        {
+            ContractAssert.IsNull(new object());
+        }
+
+        [ExpectedException(typeof(ContractException))]
+        [Test]
+        public void AssertIsNotNull_SpecifyNull_ThrowsAsertionException()
+        {
+            ContractAssert.IsNotNull(null);
+        }
+
+        [Test]
+        public void AssertIsNotNull_SpecifyValidData_Valid()
+        {
+            ContractAssert.IsNotNull(new object());
+        }
+
+        [Test]
+        public void AssertIsNull_SpecifyValidData_Valid()
+        {
+            ContractAssert.IsNull(null);
+        }
+
+        [ExpectedException(typeof(ContractException))]
+        [Test]
+        public void AssertIsTrue_SpecifyInvalidData_ThrowsAsertionException()
+        {
+            ContractAssert.IsTrue(false);
+        }
+
+        [Test]
+        public void AssertIsTrue_SpecifyValidData_Valid()
+        {
+            ContractAssert.IsTrue(true);
+        }
+
+        [ExpectedException(typeof(ContractException))]
+        [Test]
+        public void AssertOfType_SpecifyInt_Valid()
+        {
+            Probel.Helpers.Assertion.Assert.OfType<DateTime>(4);
+        }
+
+        [Test]
+        public void AssertOfType_SpecifyNow_Valid()
+        {
+            Probel.Helpers.Assertion.Assert.OfType<DateTime>(DateTime.Now);
+        }
+
+        [Test]
+        public void AssertsValues_SpecifyInvalidData_ThrowsAsertionException()
         {
             var catchCounter = 0;
             try { ContractAssert.IsNull(new object(), "Some message"); }
@@ -82,71 +147,6 @@ namespace Probel.Helpers.Test
             }
 
             NUnitAssert.AreEqual(catchCounter, 6, "All the assertion should throw exception");
-        }
-
-        [ExpectedException(typeof(ContractException))]
-        [Test]
-        public void TestIsFalseConstraint_Failed()
-        {
-            Probel.Helpers.Assertion.Assert.IsFalse(true);
-        }
-
-        [Test]
-        public void TestIsFalseConstraint_Succeed()
-        {
-            ContractAssert.IsFalse(false);
-        }
-
-        [ExpectedException(typeof(ContractException))]
-        [Test]
-        public void TestIsNotNullConstraint_Failed()
-        {
-            ContractAssert.IsNotNull(null);
-        }
-
-        [Test]
-        public void TestIsNotNullConstraint_Suceed()
-        {
-            ContractAssert.IsNotNull(new object());
-        }
-
-        [ExpectedException(typeof(ContractException))]
-        [Test]
-        public void TestIsNullConstraint_Failed()
-        {
-            ContractAssert.IsNull(new object());
-        }
-
-        [Test]
-        public void TestIsNullConstraint_Suceed()
-        {
-            ContractAssert.IsNull(null);
-        }
-
-        [ExpectedException(typeof(ContractException))]
-        [Test]
-        public void TestIsTrueConstraint_Failed()
-        {
-            ContractAssert.IsTrue(false);
-        }
-
-        [Test]
-        public void TestIsTrueConstraint_Succeed()
-        {
-            ContractAssert.IsTrue(true);
-        }
-
-        [ExpectedException(typeof(ContractException))]
-        [Test]
-        public void TestOfTypeConstraint_Failed()
-        {
-            Probel.Helpers.Assertion.Assert.OfType<DateTime>(4);
-        }
-
-        [Test]
-        public void TestOfTypeConstraint_Succeeded()
-        {
-            Probel.Helpers.Assertion.Assert.OfType<DateTime>(DateTime.Now);
         }
 
         #endregion Methods

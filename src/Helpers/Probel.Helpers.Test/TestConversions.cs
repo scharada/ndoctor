@@ -30,7 +30,7 @@ namespace Probel.Helpers.Test
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void FailOnNullArgument()
+        public void ConvertToObservableCollection_SpecifyANullCollection_ThrowsErgumentNullException()
         {
             ObservableCollection<object> list = null;
             list.ToObservableCollection();
@@ -38,7 +38,7 @@ namespace Probel.Helpers.Test
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void FailOnRefillNull()
+        public void RefillTheCollection_RefillsWithNullValue_ThrowsErgumentNullException()
         {
             ObservableCollection<object> list = new ObservableCollection<object>();
             list.Refill(null);
