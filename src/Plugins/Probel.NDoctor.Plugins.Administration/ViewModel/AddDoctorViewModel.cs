@@ -21,7 +21,7 @@
 
                 this.Specialisations.Refill(result);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Constructors

@@ -27,7 +27,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     {
         #region Fields
 
-        private ErrorHandler errorHandler;
+        private readonly ErrorHandler Handle;
 
         #endregion Fields
 
@@ -36,7 +36,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         public TagViewModel()
             : base(TagCategory.Appointment)
         {
-            this.errorHandler = new ErrorHandler(this);
+            this.Handle = new ErrorHandler(this);
             this.Categories = TagCategoryCollection.Build();
         }
 

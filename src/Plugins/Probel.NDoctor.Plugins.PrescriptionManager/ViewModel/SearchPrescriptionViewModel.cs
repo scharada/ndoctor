@@ -91,7 +91,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             }
             catch (Exception ex)
             {
-                this.HandleError(ex, Messages.Msg_ErrorSearchingPrescriptions);
+                this.Handle.Error(ex, Messages.Msg_ErrorSearchingPrescriptions);
             }
         }
 

@@ -159,7 +159,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
                 this.SelectedFolder = null;
                 this.SelectedRecord = null;
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
                 }
                 else { this.Logger.Warn("Impossible to load the medical record cabinet because the selected member is null"); }
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods

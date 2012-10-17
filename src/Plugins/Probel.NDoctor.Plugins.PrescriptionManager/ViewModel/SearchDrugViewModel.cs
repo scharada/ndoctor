@@ -144,7 +144,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 var results = this.component.FindTags(TagCategory.Drug);
                 this.Tags.Refill(results);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private bool CanSearchOnName()
@@ -173,7 +173,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 var results = this.component.FindDrugsByName(this.CriteriaName);
                 this.FoundDrugs.Refill(results);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void SearchOnTag()
@@ -183,7 +183,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 var results = this.component.FindDrugsByTags(this.CriteriaTag.Name);
                 this.FoundDrugs.Refill(results);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void Select()

@@ -271,7 +271,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             }
             catch (Exception ex)
             {
-                this.HandleError(ex, Messages.Msg_ErrorFailToRefreshPicture);
+                this.Handle.Error(ex, Messages.Msg_ErrorFailToRefreshPicture);
             }
         }
 
@@ -443,7 +443,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             }
             catch (Exception ex)
             {
-                this.HandleError(ex, Messages.Msg_ErOnSavePicture);
+                this.Handle.Error(ex, Messages.Msg_ErOnSavePicture);
             }
         }
 

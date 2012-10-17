@@ -239,7 +239,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
                 this.BmiHistory.Refill(this.Patient.BmiHistory);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiHistoryLoaded);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private bool CanRemoveBmi()
@@ -260,7 +260,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiDeleted);
                 Notifyer.OnItemChanged(this);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods

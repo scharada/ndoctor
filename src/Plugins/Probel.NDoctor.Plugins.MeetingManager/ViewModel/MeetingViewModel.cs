@@ -177,7 +177,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                 this.FoundPatients.Refill(patients);
                 this.AppointmentTags.Refill(tags);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods

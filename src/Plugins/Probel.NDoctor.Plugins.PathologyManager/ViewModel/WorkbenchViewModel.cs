@@ -142,7 +142,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
                 Notifyer.OnItemChanged(this);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
             finally { InnerWindow.Close(); }
         }
 

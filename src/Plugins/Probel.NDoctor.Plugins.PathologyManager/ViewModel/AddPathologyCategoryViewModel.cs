@@ -67,10 +67,10 @@
                 Notifyer.OnItemChanged(this);
                 InnerWindow.Close();
             }
-            catch (ExistingItemException ex) { this.HandleWarning(ex, ex.Message); }
+            catch (ExistingItemException ex) { this.Handle.Warning(ex, ex.Message); }
             catch (Exception ex)
             {
-                this.HandleError(ex);
+                this.Handle.Error(ex);
                 InnerWindow.Close();
             }
         }

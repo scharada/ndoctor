@@ -100,7 +100,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
                 Notifyer.OnRoleRefreshing(this);
                 InnerWindow.Close();
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private bool CanAddRole()

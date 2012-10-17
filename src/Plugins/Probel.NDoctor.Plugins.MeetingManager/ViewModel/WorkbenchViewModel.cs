@@ -98,7 +98,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             }
             catch (Exception ex)
             {
-                this.HandleError(ex, Messages.Error_RefreshingCalendar);
+                this.Handle.Error(ex, Messages.Error_RefreshingCalendar);
             }
         }
 

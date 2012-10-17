@@ -159,7 +159,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
                 Task.Factory.StartNew<IList<LightPatientDto>>(() => this.SearchAsync())
                     .ContinueWith(e => this.SearchCallback(e.Result), context);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private IList<LightPatientDto> SearchAsync()

@@ -221,7 +221,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_Ready);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private bool CanUpdateUser()
@@ -240,7 +240,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                 component.Update(this.User);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_UserUpdated);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
             finally { InnerWindow.Close(); }
         }
 

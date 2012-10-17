@@ -171,7 +171,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             {
                 this.Professions.Refill(this.Component.GetAllProfessions());
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void Search()
@@ -187,7 +187,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
                     .StartNew<IList<LightPatientDto>>(() => this.SearchAsync(expression))
                     .ContinueWith(e => this.SearchCallback(e), context);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private IList<LightPatientDto> SearchAsync(SpecificationExpression<PatientDto> expression)

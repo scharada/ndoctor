@@ -143,7 +143,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 this.Component.Create(macro);
                 this.Macros.Add(macro);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void Refresh()
@@ -153,7 +153,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 var macros = this.Component.GetAllMacros();
                 if (macros != null) { this.Macros.Refill(macros); }
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void Remove()
@@ -167,7 +167,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                     this.refreshCommand.TryExecute();
                 }
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void Save()
@@ -179,7 +179,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_MacrosUpdated);
                 Notifyer.OnMacroUpdated();
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods

@@ -62,9 +62,9 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         /// Handles the error, log it and shows a message box with the error.
         /// </summary>
         /// <param name="ex">The exception to log.</param>
-        public void HandleError(Exception ex)
+        public void Error(Exception ex)
         {
-            this.HandleError(ex, ex.Message);
+            this.Error(ex, ex.Message);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         /// <param name="ex">The exception to log..</param>
         /// <param name="format">The format.</param>
         /// <param name="args">The args.</param>
-        public void HandleError(Exception ex, string format, params object[] args)
+        public void Error(Exception ex, string format, params object[] args)
         {
             this.HandleError(false, ex, format, args);
         }
@@ -84,7 +84,7 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         /// <param name="ex">The exception to log..</param>
         /// <param name="format">The format.</param>
         /// <param name="args">The args.</param>
-        public void HandleErrorSilently(Exception ex, string format, params object[] args)
+        public void ErrorSilently(Exception ex, string format, params object[] args)
         {
             this.HandleError(false, ex, format, args);
         }
@@ -96,7 +96,7 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         /// <param name="ex">The exception to log..</param>
         /// <param name="format">The format.</param>
         /// <param name="args">The args.</param>
-        public void HandleWarning(Exception ex, string format, params object[] args)
+        public void Warning(Exception ex, string format, params object[] args)
         {
             this.HandleWarning(false, ex, format, args);
         }
@@ -108,7 +108,7 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         /// <param name="ex">The exception to log..</param>
         /// <param name="format">The format.</param>
         /// <param name="args">The args.</param>
-        public void HandleWarningSilently(Exception ex, string format, params object[] args)
+        public void WarningSilently(Exception ex, string format, params object[] args)
         {
             this.HandleWarning(true, ex, format, args);
         }

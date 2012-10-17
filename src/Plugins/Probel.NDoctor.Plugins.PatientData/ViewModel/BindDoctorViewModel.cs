@@ -161,7 +161,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 InnerWindow.Close();
                 Notifyer.OnSateliteDataChanged(this);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods

@@ -195,7 +195,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 this.Patient = this.component.FindPatient(PluginContext.Host.SelectedPatient);
                 this.RefreshPatientData();
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private bool CanChangePicture()
@@ -293,7 +293,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             }
             catch (Exception ex)
             {
-                this.HandleError(ex, Messages.Msg_ErrorRemovingDoctor);
+                this.Handle.Error(ex, Messages.Msg_ErrorRemovingDoctor);
             }
         }
 
@@ -311,7 +311,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 this.component.Update(this.Patient);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods

@@ -77,7 +77,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                 var tags = Component.FindTags(TagCategory.Appointment);
                 AppointmentTags.Refill(tags);
             }
-            catch (Exception ex) { new ErrorHandler(this).HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         protected override void ClearSlotZone()
@@ -103,7 +103,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                 Notifyer.OnRefreshed(this);
                 InnerWindow.Close();
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private bool CanAddAppointment()
@@ -120,7 +120,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
                 this.FreeSlots.Refill(freeSlots);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods

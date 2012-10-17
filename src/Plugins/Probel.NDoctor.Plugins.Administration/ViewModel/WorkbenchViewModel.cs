@@ -382,7 +382,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         InnerWindow.Close();
                         Notifyer.OnRefreshing(this);
                     }
-                    catch (Exception ex) { this.HandleError(ex); }
+                    catch (Exception ex) { this.Handle.Error(ex); }
                 }),
             });
         }
@@ -405,7 +405,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         InnerWindow.Close();
                         Notifyer.OnRefreshing(this);
                     }
-                    catch (Exception ex) { this.HandleError(ex); }
+                    catch (Exception ex) { this.Handle.Error(ex); }
                 }),
             });
         }
@@ -425,7 +425,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         InnerWindow.Close();
                         Notifyer.OnRefreshing(this);
                     }
-                    catch (Exception ex) { this.HandleError(ex); }
+                    catch (Exception ex) { this.Handle.Error(ex); }
                 })
             });
         }
@@ -448,7 +448,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         InnerWindow.Close();
                         Notifyer.OnRefreshing(this);
                     }
-                    catch (Exception ex) { this.HandleError(ex); }
+                    catch (Exception ex) { this.Handle.Error(ex); }
                 }),
             });
         }
@@ -468,7 +468,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         InnerWindow.Close();
                         Notifyer.OnRefreshing(this);
                     }
-                    catch (Exception ex) { this.HandleError(ex); }
+                    catch (Exception ex) { this.Handle.Error(ex); }
                 }),
             });
         }
@@ -488,7 +488,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         InnerWindow.Close();
                         Notifyer.OnRefreshing(this);
                     }
-                    catch (Exception ex) { this.HandleError(ex); }
+                    catch (Exception ex) { this.Handle.Error(ex); }
                 }),
             });
         }
@@ -508,7 +508,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         InnerWindow.Close();
                         Notifyer.OnRefreshing(this);
                     }
-                    catch (Exception ex) { this.HandleError(ex); }
+                    catch (Exception ex) { this.Handle.Error(ex); }
                 }),
             });
         }
@@ -530,7 +530,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         InnerWindow.Close();
                         Notifyer.OnRefreshing(this);
                     }
-                    catch (Exception ex) { this.HandleError(ex); }
+                    catch (Exception ex) { this.Handle.Error(ex); }
                 }),
             });
         }
@@ -576,7 +576,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                     Notifyer.OnRefreshing(this);
                 }
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void RemoveDrug()
@@ -591,7 +591,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
                 Notifyer.OnRefreshing(this);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void RemoveInsurance()
@@ -609,7 +609,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                     Notifyer.OnRefreshing(this);
                 }
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void RemovePathlogy()
@@ -627,7 +627,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                     Notifyer.OnRefreshing(this);
                 }
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void RemovePathology()
@@ -645,7 +645,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                     Notifyer.OnRefreshing(this);
                 }
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void RemovePractice()
@@ -663,7 +663,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                     Notifyer.OnRefreshing(this);
                 }
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void RemoveProfession()
@@ -681,7 +681,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                     Notifyer.OnRefreshing(this);
                 }
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void RemoveReputation()
@@ -699,7 +699,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                     Notifyer.OnRefreshing(this);
                 }
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void RemoveTag()
@@ -717,7 +717,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                     Notifyer.OnRefreshing(this);
                 }
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods

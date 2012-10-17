@@ -149,7 +149,7 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
             }
             catch (Exception ex)
             {
-                this.HandleError(ex, Messages.Msg_ErrorChangingPwd);
+                this.Handle.Error(ex, Messages.Msg_ErrorChangingPwd);
             }
         }
 

@@ -162,7 +162,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
                 this.Roles.Refill(result);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void AddTask()
@@ -175,7 +175,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
                 this.UpdateRoles();
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_TaskCreated);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private bool CanModifyRole()
@@ -206,7 +206,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
                 this.AvailableTasks.Refill(result);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void RemoveRole()
@@ -235,7 +235,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
                 this.RefreshAvailableTasks();
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_TaskRemoved);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void UpdateRoles()
@@ -244,7 +244,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             {
                 this.component.Update(this.SelectedRole);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods

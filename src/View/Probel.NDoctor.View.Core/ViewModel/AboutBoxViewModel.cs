@@ -150,7 +150,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
                 var appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
                 Process.Start(Path.Combine(appdata, @"Probel\nDoctor"));
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void Refresh()

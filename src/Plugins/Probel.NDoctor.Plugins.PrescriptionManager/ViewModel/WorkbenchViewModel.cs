@@ -183,7 +183,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                     }, () => this.SelectedPrescription != null),
                 });
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void RemovePrescription()
@@ -198,7 +198,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PrescriptionDeleted);
                 this.searcher.SearchPrescription(this.StartCriteria, this.EndCriteria);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void RemovePrescriptionDocument()
@@ -213,7 +213,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PrescriptionDeleted);
                 this.searcher.SearchPrescription(this.StartCriteria, this.EndCriteria);
             }
-            catch (Exception ex) { this.HandleError(ex); }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods
