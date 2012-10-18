@@ -70,6 +70,8 @@
     <Compile Include="Converters\ByteArrayToImageConverter.cs" />
     <Compile Include="Converters\DateTimeToShortStringConverter.cs" />
     <Compile Include="Converters\DoctorGenderToImageConverter.cs" />
+    <Compile Include="Converters\GenderFemaleToBoolConverter.cs" />
+    <Compile Include="Converters\GenderMaleToBoolConverter.cs" />
     <Compile Include="Converters\GenderToImageConverter.cs" />
     <Compile Include="Converters\IntToVisibilityConverter.cs" />
     <Compile Include="Converters\InverseBooleanConverter.cs" />

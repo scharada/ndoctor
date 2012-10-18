@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -17,9 +15,7 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#endregion Header
-
-namespace Probel.NDoctor.View.Core.Converters
+namespace Probel.NDoctor.View.Plugins.Converters
 {
     using System.Windows.Data;
 
@@ -30,7 +26,7 @@ namespace Probel.NDoctor.View.Core.Converters
     /// Convert the gender into a representative .ico file
     /// </summary>
     [ValueConversion(typeof(Gender), typeof(bool))]
-    public class GenderMaleToBoolConverter : IValueConverter
+    public class GenderFemaleToBoolConverter : IValueConverter
     {
         #region Methods
 
@@ -49,7 +45,7 @@ namespace Probel.NDoctor.View.Core.Converters
             Assert.OfType<Gender>(value);
             var gender = (Gender)value;
 
-            return gender == Gender.Male;
+            return gender == Gender.Female;
         }
 
         /// <summary>
@@ -68,8 +64,8 @@ namespace Probel.NDoctor.View.Core.Converters
             var isMale = (bool)value;
 
             return isMale
-                ? Gender.Male
-                : Gender.Female;
+                ? Gender.Female
+                : Gender.Male;
         }
 
         #endregion Methods

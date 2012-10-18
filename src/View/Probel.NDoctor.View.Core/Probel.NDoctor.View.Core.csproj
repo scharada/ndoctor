@@ -152,8 +152,6 @@
     <Compile Include="Controls\TagBox.xaml.cs">
       <DependentUpon>TagBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\GenderFemaleToBoolConverter.cs" />
-    <Compile Include="Converters\GenderMaleToBoolConverter.cs" />
     <Compile Include="Helpers\Notifyer.cs" />
     <Compile Include="Helpers\ReferencedObject.cs" />
     <Compile Include="Helpers\Languages.cs" />

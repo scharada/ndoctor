@@ -19,7 +19,7 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.View.Core.Converters
+namespace Probel.NDoctor.View.Plugins.Converters
 {
     using System.Windows.Data;
 
@@ -30,7 +30,7 @@ namespace Probel.NDoctor.View.Core.Converters
     /// Convert the gender into a representative .ico file
     /// </summary>
     [ValueConversion(typeof(Gender), typeof(bool))]
-    public class GenderFemaleToBoolConverter : IValueConverter
+    public class GenderMaleToBoolConverter : IValueConverter
     {
         #region Methods
 
@@ -49,7 +49,7 @@ namespace Probel.NDoctor.View.Core.Converters
             Assert.OfType<Gender>(value);
             var gender = (Gender)value;
 
-            return gender == Gender.Female;
+            return gender == Gender.Male;
         }
 
         /// <summary>
@@ -68,8 +68,8 @@ namespace Probel.NDoctor.View.Core.Converters
             var isMale = (bool)value;
 
             return isMale
-                ? Gender.Female
-                : Gender.Male;
+                ? Gender.Male
+                : Gender.Female;
         }
 
         #endregion Methods
