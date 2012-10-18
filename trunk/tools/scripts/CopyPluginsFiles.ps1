@@ -61,6 +61,7 @@ CopyPluginFiles("Authorisation");
 CopyPluginFiles("PictureManager");
 CopyPluginFiles("BmiRecord");
 CopyPluginFiles("PathologyManager");
+CopyPluginFiles("PatientData");
 
 $currentPlugin = "MedicalRecord"
 CopyPluginFiles($currentPlugin)
