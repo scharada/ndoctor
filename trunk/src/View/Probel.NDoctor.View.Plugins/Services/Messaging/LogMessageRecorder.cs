@@ -15,7 +15,7 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Probel.NDoctor.View.Plugins.Helpers
+namespace Probel.NDoctor.View.Plugins.Services.Messaging
 {
     using System.Collections.Generic;
     using System.Globalization;

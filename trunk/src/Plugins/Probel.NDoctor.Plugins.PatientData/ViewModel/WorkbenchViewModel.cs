@@ -17,13 +17,11 @@
 namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 {
     using System;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Input;
 
-    using AutoMapper;
 
     using Microsoft.Win32;
 
@@ -39,6 +37,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins.Services.Messaging;
 
     internal class WorkbenchViewModel : BaseViewModel
     {

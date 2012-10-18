@@ -31,6 +31,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins.Services.Messaging;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin

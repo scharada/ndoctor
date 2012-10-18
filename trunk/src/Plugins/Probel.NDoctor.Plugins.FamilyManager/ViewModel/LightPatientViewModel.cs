@@ -31,6 +31,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     using Probel.NDoctor.Plugins.FamilyManager.Properties;
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins.Services.Messaging;
 
     internal class LightPatientViewModel : LightPatientDto
     {

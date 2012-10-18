@@ -21,8 +21,8 @@ namespace Probel.NDoctor.View.Plugins
 
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.View.Plugins.Services.Messaging;
 
     /// <summary>
     /// 

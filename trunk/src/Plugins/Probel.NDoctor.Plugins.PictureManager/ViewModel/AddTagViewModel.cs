@@ -30,6 +30,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins.Services.Messaging;
 
     internal class AddTagViewModel : BaseViewModel
     {

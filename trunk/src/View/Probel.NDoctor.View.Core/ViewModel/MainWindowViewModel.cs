@@ -30,6 +30,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Core.View;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.View.Plugins.Services.Messaging;
 
     /// <summary>
     /// This ViewModel should contain all the information about the

@@ -24,7 +24,6 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using System.Timers;
     using System.Windows.Input;
 
-    using AutoMapper;
 
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
@@ -34,6 +33,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins.Services.Messaging;
 
     internal class SearchPatientViewModel : BaseViewModel
     {

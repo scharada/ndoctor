@@ -32,6 +32,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins.Services.Messaging;
 
     internal class WorkbenchViewModel : BaseViewModel
     {
