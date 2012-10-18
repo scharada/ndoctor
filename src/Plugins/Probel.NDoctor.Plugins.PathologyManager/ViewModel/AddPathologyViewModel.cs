@@ -31,7 +31,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class AddPathologyViewModel : BaseViewModel
+    internal class AddPathologyViewModel : BaseViewModel
     {
         #region Fields
 

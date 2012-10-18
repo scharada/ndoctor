@@ -13,7 +13,7 @@
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class AddPathologyCategoryViewModel : BaseViewModel
+    internal class AddPathologyCategoryViewModel : BaseViewModel
     {
         #region Fields
 

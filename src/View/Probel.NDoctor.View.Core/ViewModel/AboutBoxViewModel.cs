@@ -36,7 +36,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.View.Core.Properties;
 
-    public class AboutBoxViewModel : BaseViewModel
+    internal class AboutBoxViewModel : BaseViewModel
     {
         #region Fields
 

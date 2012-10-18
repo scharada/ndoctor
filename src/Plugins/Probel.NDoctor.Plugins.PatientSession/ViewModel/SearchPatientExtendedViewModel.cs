@@ -35,7 +35,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class SearchPatientExtendedViewModel : BaseViewModel
+    internal class SearchPatientExtendedViewModel : BaseViewModel
     {
         #region Fields
 

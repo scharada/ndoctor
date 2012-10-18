@@ -34,7 +34,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     /// <summary>
     /// This ViewModel should contain all the information about the
     /// </summary>
-    public class MainWindowViewModel : BaseViewModel
+    internal class MainWindowViewModel : BaseViewModel
     {
         #region Fields
 

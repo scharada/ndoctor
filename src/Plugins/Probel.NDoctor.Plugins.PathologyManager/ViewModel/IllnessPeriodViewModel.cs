@@ -27,7 +27,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class IllnessPeriodViewModel : IllnessPeriodDto
+    internal class IllnessPeriodViewModel : IllnessPeriodDto
     {
         #region Fields
 

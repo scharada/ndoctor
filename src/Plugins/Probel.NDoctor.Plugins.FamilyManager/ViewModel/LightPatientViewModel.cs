@@ -32,7 +32,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class LightPatientViewModel : LightPatientDto
+    internal class LightPatientViewModel : LightPatientDto
     {
         #region Fields
 

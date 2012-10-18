@@ -15,7 +15,7 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Probel.NDoctor.View.Core.Helpers
+namespace Probel.NDoctor.View.Plugins.Helpers
 {
     using System.Collections.Generic;
     using System.Globalization;
@@ -124,12 +124,12 @@ namespace Probel.NDoctor.View.Core.Helpers
             LogMessageRecorder recorder = log.Logger.Repository.GetAppenders().OfType<LogMessageRecorder>().Single();
             foreach (LoggingEvent e in recorder.RecordedEvents)
             {
-                sb.Append(e.TimeStamp.ToString(@"HH\:mm\:ss\.fff", CultureInfo.InvariantCulture));
-                sb.Append(" [");
+                sb.Append(e.TimeStamp.ToString(@"HH\:mm\:ss\,fff", CultureInfo.InvariantCulture));
+                sb.Append(" | [");
                 sb.Append(e.ThreadName);
-                sb.Append("] ");
-                sb.Append(e.Level.Name);
-                sb.Append(" - ");
+                sb.Append("] | ");
+                sb.Append(string.Format("{0,-5}", e.Level.Name));
+                sb.Append(" | ");
                 sb.Append(e.RenderedMessage);
                 sb.AppendLine();
 

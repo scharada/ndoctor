@@ -28,7 +28,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class AddCategoryViewModel : BaseViewModel
+    internal class AddCategoryViewModel : BaseViewModel
     {
         #region Fields
 

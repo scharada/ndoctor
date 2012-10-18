@@ -27,7 +27,7 @@ namespace Probel.NDoctor.Plugins.PatientData.View
     {
         #region Fields
 
-        private WorkbenchViewModel vm;
+        private WorkbenchViewModel viewModel;
 
         #endregion Fields
 
@@ -43,12 +43,12 @@ namespace Probel.NDoctor.Plugins.PatientData.View
 
         #region Properties
 
-        public WorkbenchViewModel VM
+        internal WorkbenchViewModel ViewModel
         {
-            get { return this.vm; }
+            get { return this.viewModel; }
             set
             {
-                this.vm = value;
+                this.viewModel = value;
             }
         }
 

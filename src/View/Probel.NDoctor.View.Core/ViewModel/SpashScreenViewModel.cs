@@ -39,7 +39,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
     using StructureMap;
 
-    public class SpashScreenViewModel : BaseViewModel
+    internal class SpashScreenViewModel : BaseViewModel
     {
         #region Fields
 

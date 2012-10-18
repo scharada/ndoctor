@@ -25,7 +25,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class LightPatientViewModel : LightPatientDto
+    internal class LightPatientViewModel : LightPatientDto
     {
         #region Fields
 

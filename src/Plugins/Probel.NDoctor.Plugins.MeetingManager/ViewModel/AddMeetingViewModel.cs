@@ -27,7 +27,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class AddMeetingViewModel : MeetingViewModel
+    internal class AddMeetingViewModel : MeetingViewModel
     {
         #region Constructors
 

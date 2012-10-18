@@ -24,7 +24,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.Helpers
     using Probel.NDoctor.Plugins.Authorisation.View;
     using Probel.NDoctor.Plugins.Authorisation.ViewModel;
 
-    public class ViewService
+    internal class ViewService
     {
         #region Methods
 

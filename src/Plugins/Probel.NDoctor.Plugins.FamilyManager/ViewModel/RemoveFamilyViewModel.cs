@@ -28,7 +28,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class RemoveFamilyViewModel : BaseViewModel
+    internal class RemoveFamilyViewModel : BaseViewModel
     {
         #region Fields
 

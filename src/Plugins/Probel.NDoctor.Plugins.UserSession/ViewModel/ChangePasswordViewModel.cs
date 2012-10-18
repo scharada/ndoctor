@@ -29,7 +29,7 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class ChangePasswordViewModel : BaseViewModel
+    internal class ChangePasswordViewModel : BaseViewModel
     {
         #region Fields
 

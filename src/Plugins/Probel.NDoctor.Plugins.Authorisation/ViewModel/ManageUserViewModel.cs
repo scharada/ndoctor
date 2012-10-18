@@ -38,7 +38,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class ManageUserViewModel : BaseViewModel
+    internal class ManageUserViewModel : BaseViewModel
     {
         #region Fields
 

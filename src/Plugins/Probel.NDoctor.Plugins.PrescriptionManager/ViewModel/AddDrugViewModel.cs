@@ -31,7 +31,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class AddDrugViewModel : BaseViewModel
+    internal class AddDrugViewModel : BaseViewModel
     {
         #region Fields
 

@@ -21,7 +21,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
     using Probel.NDoctor.Plugins.MeetingManager.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class ViewService
+    internal class ViewService
     {
         #region Fields
 

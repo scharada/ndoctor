@@ -28,7 +28,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class RemoveMeetingViewModel : MeetingViewModel
+    internal class RemoveMeetingViewModel : MeetingViewModel
     {
         #region Fields
 
