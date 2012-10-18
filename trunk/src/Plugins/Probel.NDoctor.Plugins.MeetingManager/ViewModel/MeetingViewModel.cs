@@ -29,7 +29,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public abstract class MeetingViewModel : BaseViewModel
+    internal abstract class MeetingViewModel : BaseViewModel
     {
         #region Fields
 

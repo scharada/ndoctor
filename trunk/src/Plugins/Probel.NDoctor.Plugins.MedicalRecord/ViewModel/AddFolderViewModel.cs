@@ -29,7 +29,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class AddFolderViewModel : BaseViewModel
+    internal class AddFolderViewModel : BaseViewModel
     {
         #region Fields
 

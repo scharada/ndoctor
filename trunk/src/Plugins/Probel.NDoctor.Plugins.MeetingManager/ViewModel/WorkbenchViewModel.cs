@@ -33,7 +33,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     /// <summary>
     /// Workbench's ViewModel of the plugin
     /// </summary>
-    public class WorkbenchViewModel : BaseViewModel
+    internal class WorkbenchViewModel : BaseViewModel
     {
         #region Fields
 

@@ -27,7 +27,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
 
-    public class SettingsViewModel : PluginSettingsViewModel
+    internal class SettingsViewModel : PluginSettingsViewModel
     {
         #region Fields
 

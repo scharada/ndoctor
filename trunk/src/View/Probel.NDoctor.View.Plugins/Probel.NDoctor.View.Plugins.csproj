@@ -91,6 +91,7 @@
     <Compile Include="Helpers\ErrorHandler.cs" />
     <Compile Include="Helpers\IErrorHandler.cs" />
     <Compile Include="Helpers\ITreeNode.cs" />
+    <Compile Include="Helpers\LogMessageRecorder.cs" />
     <Compile Include="Helpers\PluginContext.cs" />
     <Compile Include="Helpers\StatusType.cs" />
     <Compile Include="IPlugin.cs" />

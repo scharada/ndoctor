@@ -40,7 +40,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class WorkbenchViewModel : BaseViewModel
+    internal class WorkbenchViewModel : BaseViewModel
     {
         #region Fields
 

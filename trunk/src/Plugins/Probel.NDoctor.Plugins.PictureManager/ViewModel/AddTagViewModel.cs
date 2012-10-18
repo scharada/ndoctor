@@ -31,7 +31,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class AddTagViewModel : BaseViewModel
+    internal class AddTagViewModel : BaseViewModel
     {
         #region Fields
 

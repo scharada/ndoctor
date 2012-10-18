@@ -31,7 +31,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Core.View;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class SettingsViewModel : BaseViewModel
+    internal class SettingsViewModel : BaseViewModel
     {
         #region Fields
 

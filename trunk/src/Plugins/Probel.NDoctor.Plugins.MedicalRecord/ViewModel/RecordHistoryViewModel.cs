@@ -37,7 +37,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class RecordHistoryViewModel : BaseViewModel
+    internal class RecordHistoryViewModel : BaseViewModel
     {
         #region Fields
 

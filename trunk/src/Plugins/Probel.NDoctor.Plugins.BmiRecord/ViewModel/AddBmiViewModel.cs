@@ -30,7 +30,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class AddBmiViewModel : BaseViewModel
+    internal class AddBmiViewModel : BaseViewModel
     {
         #region Fields
 

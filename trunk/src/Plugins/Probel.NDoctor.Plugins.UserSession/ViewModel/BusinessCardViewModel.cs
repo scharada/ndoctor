@@ -20,7 +20,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 
     using Probel.NDoctor.Domain.DTO.Objects;
 
-    public class BusinessCardViewModel : UserDto
+    internal class BusinessCardViewModel : UserDto
     {
         #region Constructors
 

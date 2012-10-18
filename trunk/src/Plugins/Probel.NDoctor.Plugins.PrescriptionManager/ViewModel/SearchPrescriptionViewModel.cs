@@ -26,7 +26,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class SearchPrescriptionViewModel : BaseViewModel
+    internal class SearchPrescriptionViewModel : BaseViewModel
     {
         #region Fields
 

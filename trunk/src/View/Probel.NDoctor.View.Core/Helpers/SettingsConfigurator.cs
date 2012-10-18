@@ -100,7 +100,7 @@ namespace Probel.NDoctor.View.Core.Helpers
         #endregion Methods
     }
 
-    public class SettingUi
+    internal class SettingUi
     {
         #region Fields
 

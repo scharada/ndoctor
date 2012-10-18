@@ -27,7 +27,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class DefaultSettingsViewModel : PluginSettingsViewModel
+    internal class DefaultSettingsViewModel : PluginSettingsViewModel
     {
         #region Fields
 

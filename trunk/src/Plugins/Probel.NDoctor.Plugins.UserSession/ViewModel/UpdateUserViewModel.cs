@@ -32,7 +32,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class UpdateUserViewModel : BaseViewModel
+    internal class UpdateUserViewModel : BaseViewModel
     {
         #region Fields
 

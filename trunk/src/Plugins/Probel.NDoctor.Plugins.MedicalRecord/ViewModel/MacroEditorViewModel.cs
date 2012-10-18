@@ -32,7 +32,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class MacroEditorViewModel : BaseViewModel
+    internal class MacroEditorViewModel : BaseViewModel
     {
         #region Fields
 

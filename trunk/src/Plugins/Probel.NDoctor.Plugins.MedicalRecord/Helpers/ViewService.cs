@@ -19,7 +19,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
     using Probel.NDoctor.Plugins.MedicalRecord.View;
     using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
 
-    public class ViewService
+    internal class ViewService
     {
         #region Methods
 

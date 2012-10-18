@@ -26,7 +26,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.Helpers
     using Probel.NDoctor.Plugins.PathologyManager.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class ViewService
+    internal class ViewService
     {
         #region Fields
 

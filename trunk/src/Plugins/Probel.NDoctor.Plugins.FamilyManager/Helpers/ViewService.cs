@@ -31,7 +31,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.Helpers
     using Probel.NDoctor.Plugins.FamilyManager.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
 
-    public class ViewService
+    internal class ViewService
     {
         #region Fields
         private readonly ErrorHandler Handle;

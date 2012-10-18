@@ -22,7 +22,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
     using Xceed.Wpf.Toolkit;
 
-    public class ChildWindowViewModel : BaseViewModel
+    internal class ChildWindowViewModel : BaseViewModel
     {
         #region Constructors
 
