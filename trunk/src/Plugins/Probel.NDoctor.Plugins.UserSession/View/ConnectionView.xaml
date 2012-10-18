@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:Helpers="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
       xmlns:Converter="clr-namespace:Probel.NDoctor.View.Toolbox.Converters;assembly=Probel.NDoctor.View.Toolbox"	
-      xmlns:Model="clr-namespace:Probel.NDoctor.View.Core.Model;assembly=Probel.NDoctor.View.Core"
+      xmlns:Model="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.UserSession.Translations"
       mc:Ignorable="d" 
       d:DesignHeight="334" d:DesignWidth="300"

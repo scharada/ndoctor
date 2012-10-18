@@ -31,13 +31,13 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     using Probel.NDoctor.Plugins.FamilyManager.Properties;
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.NDoctor.View.Plugins.Services.Messaging;
+    using Probel.NDoctor.View.Toolbox.Navigation;
 
     internal class LightPatientViewModel : LightPatientDto
     {
         #region Fields
 
-        private readonly ErrorHandler Handle;
+        private readonly IErrorHandler Handle;
 
         private IFamilyComponent component;
         private bool isSelected = false;
@@ -50,7 +50,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
 
         public LightPatientViewModel()
         {
-            this.Handle = new ErrorHandler(this);
+            this.Handle = new ErrorHandlerFactory().New(this);
             this.component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
 

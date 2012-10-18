@@ -232,7 +232,16 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Configuring StructureMap.
+        ///   Looks up a localized string similar to Configuring Status Writer....
+        /// </summary>
+        internal static string Msg_ConfiguringStatusWriter {
+            get {
+                return ResourceManager.GetString("Msg_ConfiguringStatusWriter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configuring StructureMap....
         /// </summary>
         internal static string Msg_ConfiguringStructureMap {
             get {

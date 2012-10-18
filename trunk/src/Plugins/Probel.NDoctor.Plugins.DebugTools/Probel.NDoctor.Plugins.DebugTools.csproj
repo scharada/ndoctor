@@ -128,6 +128,10 @@
       <Project>{DC16499E-E11E-4C24-A949-AEC52E8644A9}</Project>
       <Name>Probel.NDoctor.View.Plugins</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\View\Probel.NDoctor.View.Toolbox\Probel.NDoctor.View.Toolbox.csproj">
+      <Project>{C77966E1-28BF-4FA1-AEA0-A5A9B2A6B647}</Project>
+      <Name>Probel.NDoctor.View.Toolbox</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\tools\scripts\InsertUsers.sql">

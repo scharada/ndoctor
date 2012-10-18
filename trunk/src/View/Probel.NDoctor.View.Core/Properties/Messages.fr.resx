@@ -178,8 +178,8 @@
     <comment>Configuring plugins...</comment>
   </data>
   <data name="Msg_ConfiguringStructureMap" xml:space="preserve">
-    <value>Configuration de StructureMap</value>
-    <comment>Configuring StructureMap</comment>
+    <value>Configuration de StructureMap...</value>
+    <comment>Configuring StructureMap...</comment>
   </data>
   <data name="Msg_ConnectedPatient" xml:space="preserve">
     <value>Patient: {0}</value>
@@ -429,5 +429,9 @@ L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
   <data name="Title_Plugins" xml:space="preserve">
     <value>Plugins installés:</value>
     <comment>Installed plugins:</comment>
+  </data>
+  <data name="Msg_ConfiguringStatusWriter" xml:space="preserve">
+    <value>Configuration de gestionnaire de statu...</value>
+    <comment>Configuring Status Writer...</comment>
   </data>
 </root>

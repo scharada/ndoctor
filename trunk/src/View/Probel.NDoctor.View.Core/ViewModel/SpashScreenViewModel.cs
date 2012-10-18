@@ -31,11 +31,11 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Cfg;
-    using Probel.NDoctor.View.Core.Model;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.View.Toolbox.Navigation;
 
     using StructureMap;
 
@@ -144,11 +144,15 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
                     this.Status = Messages.Msg_ConfiguringNHibernate;
                     this.ConfigureNHibernate();
-                    this.Progress = 33;
+                    this.Progress = 25;
+
+                    this.Status = Messages.Msg_ConfiguringStatusWriter;
+                    this.ConfigureStatusWriter();
+                    this.Progress = 50;
 
                     this.Status = Messages.Msg_ConfiguringStructureMap;
                     this.ConfigureStructureMap();
-                    this.Progress = 66;
+                    this.Progress = 75;
 
                     this.Status = Messages.Msg_ConfiguringPlugins;
                     this.ConfigurePlugins();
@@ -204,6 +208,11 @@ namespace Probel.NDoctor.View.Core.ViewModel
             var loader = ObjectFactory.GetInstance<IPluginLoader>();
             var container = new PluginContainer(PluginContext.Host, loader);
             container.LoadPlugins();
+        }
+
+        private void ConfigureStatusWriter()
+        {
+            ErrorHandlerFactory.ConfigureStatusWriter(PluginContext.Host);
         }
 
         private void ConfigureStructureMap()

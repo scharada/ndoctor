@@ -151,10 +151,6 @@
       <Project>{18F7EA3E-0BF5-430F-9B1D-258BDAB6304E}</Project>
       <Name>Probel.Helpers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Probel.NDoctor.View.Toolbox\Probel.NDoctor.View.Toolbox.csproj">
-      <Project>{C77966E1-28BF-4FA1-AEA0-A5A9B2A6B647}</Project>
-      <Name>Probel.NDoctor.View.Toolbox</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\View\Probel.NDoctor.View.Core\Probel.NDoctor.View.Core.csproj">
       <Project>{D66CE619-F9E3-4875-80D7-4C5710977E00}</Project>
       <Name>Probel.NDoctor.View.Core</Name>
@@ -162,6 +158,10 @@
     <ProjectReference Include="..\..\View\Probel.NDoctor.View.Plugins\Probel.NDoctor.View.Plugins.csproj">
       <Project>{DC16499E-E11E-4C24-A949-AEC52E8644A9}</Project>
       <Name>Probel.NDoctor.View.Plugins</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\View\Probel.NDoctor.View.Toolbox\Probel.NDoctor.View.Toolbox.csproj">
+      <Project>{C77966E1-28BF-4FA1-AEA0-A5A9B2A6B647}</Project>
+      <Name>Probel.NDoctor.View.Toolbox</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

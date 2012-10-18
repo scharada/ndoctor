@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="Probel.NDoctor.View.Toolbox.Controls.GenderBox"
+             x:Name="this"
+             
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                      
+             xmlns:txt="clr-namespace:Probel.NDoctor.View.Toolbox.Translations"
+             
+             xmlns:t="clr-namespace:Probel.NDoctor.View.Toolbox.Helpers"
+             xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Toolbox.Controls"
+             xmlns:converter="clr-namespace:Probel.NDoctor.View.Toolbox.Converters"
+             
+             MinWidth="120"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <converter:GenderMaleToBoolConverter x:Key="GenderMaleToBool"/>
+        <converter:GenderFemaleToBoolConverter x:Key="GenderFemaleToBool"/>
+    </UserControl.Resources>
+    <Grid Grid.Column="0" Height="26">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <RadioButton Grid.Column="0" 
+                     GroupName="gender" 
+                     HorizontalAlignment="Center" 
+                     VerticalAlignment="Center"
+                     Content="{Binding Source={x:Static Member=txt:BoxText.Female}}"
+                     IsChecked="{Binding ElementName=this, Path=Gender, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource GenderFemaleToBool}}"/>
+
+        <RadioButton Grid.Column="1"
+                     GroupName="gender"
+                     HorizontalAlignment="Center" 
+                     VerticalAlignment="Center"
+                     Content="{Binding Source={x:Static Member=txt:BoxText.Male}}"
+                     IsChecked="{Binding ElementName=this, Path=Gender, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource GenderMaleToBool}}"/>
+    </Grid>
+</UserControl>

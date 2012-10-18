@@ -57,6 +57,7 @@
     <Compile Include="Behaviours\SelectorBehaviour.cs" />
     <Compile Include="Behaviours\TreeViewBehaviour.cs" />
     <Compile Include="Behaviours\WebBrowserBehaviour.cs" />
+    <Compile Include="Behaviours\WindowBehaviour.cs" />
     <Compile Include="Calendar\Controls\Calendar.cs" />
     <Compile Include="Calendar\Controls\CalendarAppointmentItem.cs" />
     <Compile Include="Calendar\Controls\CalendarDay.cs" />

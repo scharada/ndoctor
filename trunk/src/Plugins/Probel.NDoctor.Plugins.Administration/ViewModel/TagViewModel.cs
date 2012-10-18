@@ -21,13 +21,13 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.NDoctor.Domain.DTO.Collections;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.View.Plugins.Services.Messaging;
+    using Probel.NDoctor.View.Toolbox.Navigation;
 
     internal class TagViewModel : TagDto
     {
         #region Fields
 
-        private readonly ErrorHandler Handle;
+        private readonly IErrorHandler Handle;
 
         #endregion Fields
 
@@ -36,7 +36,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         public TagViewModel()
             : base(TagCategory.Appointment)
         {
-            this.Handle = new ErrorHandler(this);
+            this.Handle = new ErrorHandlerFactory().New(this);
             this.Categories = TagCategoryCollection.Build();
         }
 

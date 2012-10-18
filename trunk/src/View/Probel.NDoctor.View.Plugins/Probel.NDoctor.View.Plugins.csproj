@@ -76,10 +76,7 @@
     <Compile Include="Groups.cs" />
     <Compile Include="Helpers\BaseText.cs" />
     <Compile Include="Helpers\Configuration.cs" />
-    <Compile Include="Services\Messaging\ErrorHandler.cs" />
-    <Compile Include="Services\Messaging\IErrorHandler.cs" />
     <Compile Include="Helpers\ITreeNode.cs" />
-    <Compile Include="Services\Messaging\LogMessageRecorder.cs" />
     <Compile Include="Helpers\PluginContext.cs" />
     <Compile Include="IPlugin.cs" />
     <Compile Include="LogObject.cs" />
@@ -131,7 +128,7 @@
       <Project>{18F7EA3E-0BF5-430F-9B1D-258BDAB6304E}</Project>
       <Name>Probel.Helpers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Probel.NDoctor.View.Toolbox\Probel.NDoctor.View.Toolbox.csproj">
+    <ProjectReference Include="..\Probel.NDoctor.View.Toolbox\Probel.NDoctor.View.Toolbox.csproj">
       <Project>{C77966E1-28BF-4FA1-AEA0-A5A9B2A6B647}</Project>
       <Name>Probel.NDoctor.View.Toolbox</Name>
     </ProjectReference>

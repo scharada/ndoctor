@@ -24,14 +24,14 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Plugins.Exceptions;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.NDoctor.View.Plugins.Services.Messaging;
-    using Probel.NDoctor.View.Toolbox.Services.Messaging;
+    using Probel.NDoctor.View.Toolbox;
+    using Probel.NDoctor.View.Toolbox.Navigation;
 
     public abstract class BaseViewModel : ObservableObject
     {
         #region Fields
 
-        protected readonly ErrorHandler Handle;
+        protected readonly IErrorHandler Handle;
         protected readonly ILog Logger;
 
         #endregion Fields
@@ -41,7 +41,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         protected BaseViewModel()
         {
             this.Logger = LogManager.GetLogger(this.GetType());
-            this.Handle = new ErrorHandler(this);
+            this.Handle = new ErrorHandlerFactory().New(this);
 
             if (!Designer.IsDesignMode)
             {

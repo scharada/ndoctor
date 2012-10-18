@@ -22,13 +22,13 @@ namespace Probel.NDoctor.View.Plugins
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.View.Plugins.Services.Messaging;
-    using Probel.NDoctor.View.Toolbox.Services.Messaging;
+    using Probel.NDoctor.View.Toolbox;
+    using Probel.NDoctor.View.Toolbox.Navigation;
 
     /// <summary>
     /// 
     /// </summary>
-    public interface IPluginHost
+    public interface IPluginHost : IStatusWriter
     {
         #region Events
 
@@ -204,13 +204,6 @@ namespace Probel.NDoctor.View.Plugins
         /// Activates the menu.
         /// </summary>
         void ShowMainMenu();
-
-        /// <summary>
-        /// Writes a message in the StatusBar.
-        /// </summary>
-        /// <param name="type">The type.</param>
-        /// <param name="message">The message.</param>
-        void WriteStatus(StatusType type, string message);
 
         /// <summary>
         /// Write the status "Ready." in the status box

@@ -28,9 +28,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Helpers
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.NDoctor.View.Plugins.Services.Messaging;
+    using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Navigation;
-    using Probel.NDoctor.View.Toolbox.Services.Messaging;
 
     public class SearchService
     {
