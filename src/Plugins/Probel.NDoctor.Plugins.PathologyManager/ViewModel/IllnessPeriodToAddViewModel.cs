@@ -29,13 +29,16 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.Services.Messaging;
+    using Probel.NDoctor.View.Toolbox.Navigation;
+    using Probel.NDoctor.View.Toolbox.Services.Messaging;
 
     internal class IllnessPeriodToAddViewModel : IllnessPeriodDto
     {
         #region Fields
 
-        private IPathologyComponent component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
         private readonly ErrorHandler Handle;
+
+        private IPathologyComponent component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
         private bool isSelected;
 
         #endregion Fields

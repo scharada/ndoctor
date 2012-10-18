@@ -38,6 +38,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.View.Toolbox.Navigation;
 
     [Export(typeof(IPlugin))]
     public class MedicalRecord : StaticViewPlugin<WorkbenchView>

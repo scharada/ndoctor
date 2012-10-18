@@ -21,14 +21,9 @@
 
 namespace Probel.NDoctor.View.Core.Translations
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     using Probel.NDoctor.View.Core.Properties;
 
-    public static class AboutBoxText
+    internal static class AboutBoxText
     {
         #region Properties
 

@@ -32,10 +32,11 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.Administration.Helpers;
     using Probel.NDoctor.Plugins.Administration.Properties;
-    using Probel.NDoctor.View.Core.Controls;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Toolbox.Controls;
+    using Probel.NDoctor.View.Toolbox.Navigation;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -730,42 +731,50 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
             public IList<DoctorDto> Doctors
             {
-                get; set;
+                get;
+                set;
             }
 
             public IList<DrugDto> Drugs
             {
-                get; set;
+                get;
+                set;
             }
 
             public IList<InsuranceDto> Insurances
             {
-                get; set;
+                get;
+                set;
             }
 
             public IList<PathologyDto> Pathologies
             {
-                get; set;
+                get;
+                set;
             }
 
             public IList<PracticeDto> Practices
             {
-                get; set;
+                get;
+                set;
             }
 
             public IList<ProfessionDto> Professions
             {
-                get; set;
+                get;
+                set;
             }
 
             public IList<ReputationDto> Reputations
             {
-                get; set;
+                get;
+                set;
             }
 
             public IList<TagDto> Tags
             {
-                get; set;
+                get;
+                set;
             }
 
             #endregion Properties

@@ -113,52 +113,11 @@
     <Compile Include="..\..\Version.cs">
       <Link>Version.cs</Link>
     </Compile>
-    <Compile Include="Controls\DoctorBox.xaml.cs">
-      <DependentUpon>DoctorBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\DrugBox.xaml.cs">
-      <DependentUpon>DrugBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\EditionBox.xaml.cs">
-      <DependentUpon>EditionBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\GenderBox.xaml.cs">
-      <DependentUpon>GenderBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\MacroBox.xaml.cs">
-      <DependentUpon>MacroBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\OKCancelBox.xaml.cs">
-      <DependentUpon>OKCancelBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\PathologyBox.xaml.cs">
-      <DependentUpon>PathologyBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\InsuranceBox.xaml.cs">
-      <DependentUpon>InsuranceBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\PracticeBox.xaml.cs">
-      <DependentUpon>PracticeBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ProfessionBox.xaml.cs">
-      <DependentUpon>ProfessionBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ReputationBox.xaml.cs">
-      <DependentUpon>ReputationBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\SpecialisationBox.xaml.cs">
-      <DependentUpon>SpecialisationBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\TagBox.xaml.cs">
-      <DependentUpon>TagBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\Notifyer.cs" />
-    <Compile Include="Helpers\ReferencedObject.cs" />
     <Compile Include="Helpers\Languages.cs" />
     <Compile Include="Helpers\PasswordBoxAssistant.cs" />
     <Compile Include="Helpers\SettingsConfigurator.cs" />
     <Compile Include="Helpers\TranslateExtension.cs" />
-    <Compile Include="Helpers\InnerWindow.cs" />
     <Compile Include="Helpers\ViewService.cs" />
     <Compile Include="Model\Commands.cs" />
     <Compile Include="Properties\Messages.Designer.cs">
@@ -172,9 +131,6 @@
       <DependentUpon>Messages.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="Translations\AboutBoxText.cs" />
-    <Compile Include="Translations\BoxText.cs" />
-    <Compile Include="Translations\DoctorBoxText.cs" />
-    <Compile Include="Translations\InsuranceText.cs" />
     <Compile Include="Translations\SettingsText.cs" />
     <Compile Include="ViewModel\AboutBoxViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -199,58 +155,6 @@
     <Compile Include="View\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="Controls\DoctorBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\DrugBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\EditionBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\GenderBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\MacroBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\OKCancelBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\PathologyBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\InsuranceBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\PracticeBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\ProfessionBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\ReputationBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\SpecialisationBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\TagBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="View\AboutBoxView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -337,6 +241,10 @@
     <ProjectReference Include="..\..\Helpers\Probel.Helpers\Probel.Helpers.csproj">
       <Project>{18F7EA3E-0BF5-430F-9B1D-258BDAB6304E}</Project>
       <Name>Probel.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Probel.NDoctor.View.Toolbox\Probel.NDoctor.View.Toolbox.csproj">
+      <Project>{C77966E1-28BF-4FA1-AEA0-A5A9B2A6B647}</Project>
+      <Name>Probel.NDoctor.View.Toolbox</Name>
     </ProjectReference>
     <ProjectReference Include="..\Probel.NDoctor.View.Plugins\Probel.NDoctor.View.Plugins.csproj">
       <Project>{DC16499E-E11E-4C24-A949-AEC52E8644A9}</Project>

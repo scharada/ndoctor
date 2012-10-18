@@ -187,6 +187,26 @@ namespace Probel.NDoctor.View.Plugins
         }
 
         /// <summary>
+        /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
+        /// Every task that could throw exception should be in this method and not in the ctor.
+        /// </summary>
+        public abstract void Initialise();
+
+        /// <summary>
+        /// Determines whether this plugin is valid refering to the host version.
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns>
+        ///   <c>true</c> if this plugin is valid; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsValid(IPluginHost host)
+        {
+            if (this.Validator == null) throw new PluginException(Messages.Ex_PluginException_NoValidator);
+
+            return this.Validator.IsValid(host);
+        }
+
+        /// <summary>
         /// Handles the error, log it and shows a message box with the error.
         /// This error is showed as a warning
         /// </summary>
@@ -208,26 +228,6 @@ namespace Probel.NDoctor.View.Plugins
         public void WarningSilently(Exception ex, string format, params object[] args)
         {
             this.Handle.WarningSilently(ex, format, args);
-        }
-
-        /// <summary>
-        /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
-        /// Every task that could throw exception should be in this method and not in the ctor.
-        /// </summary>
-        public abstract void Initialise();
-
-        /// <summary>
-        /// Determines whether this plugin is valid refering to the host version.
-        /// </summary>
-        /// <param name="host"></param>
-        /// <returns>
-        ///   <c>true</c> if this plugin is valid; otherwise, <c>false</c>.
-        /// </returns>
-        public bool IsValid(IPluginHost host)
-        {
-            if (this.Validator == null) throw new PluginException(Messages.Ex_PluginException_NoValidator);
-
-            return this.Validator.IsValid(host);
         }
 
         /// <summary>

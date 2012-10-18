@@ -8,7 +8,7 @@
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PatientData.Translations"
              xmlns:my="clr-namespace:Probel.NDoctor.Domain.DTO.Objects;assembly=Probel.NDoctor.Domain.DTO"
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"             
-             xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
+             xmlns:iw="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
              xmlns:behaviours="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF" 
              
              mc:Ignorable="d"

@@ -35,6 +35,7 @@ namespace Probel.NDoctor.Plugins.UserSession
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.View.Toolbox.Navigation;
 
     /// <summary>
     /// When the application user has logged into the application, it opens a User session that contains the modules the logged user can use. 

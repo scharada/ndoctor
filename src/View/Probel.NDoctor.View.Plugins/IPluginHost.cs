@@ -23,6 +23,7 @@ namespace Probel.NDoctor.View.Plugins
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Plugins.Services.Messaging;
+    using Probel.NDoctor.View.Toolbox.Services.Messaging;
 
     /// <summary>
     /// 

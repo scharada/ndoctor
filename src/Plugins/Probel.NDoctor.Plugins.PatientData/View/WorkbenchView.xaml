@@ -6,7 +6,7 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PatientData.Translations"
       xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PatientData.View"
-      xmlns:c="clr-namespace:Probel.NDoctor.View.Core.Controls;assembly=Probel.NDoctor.View.Core"
+      xmlns:c="clr-namespace:Probel.NDoctor.View.Toolbox.Controls;assembly=Probel.NDoctor.View.Toolbox"
       
 	  mc:Ignorable="d" 
 	  d:DesignHeight="1223" d:DesignWidth="1453"      

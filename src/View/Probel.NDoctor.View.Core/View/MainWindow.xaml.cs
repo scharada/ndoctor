@@ -40,6 +40,7 @@ namespace Probel.NDoctor.View.Core.View
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Plugins.Services.Messaging;
+    using Probel.NDoctor.View.Toolbox.Services.Messaging;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml

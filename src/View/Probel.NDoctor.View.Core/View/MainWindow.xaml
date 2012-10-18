@@ -7,7 +7,7 @@
 					 xmlns:menu="clr-namespace:Probel.NDoctor.View.Plugins.MenuData;assembly=Probel.NDoctor.View.Plugins"           
 					 xmlns:data="clr-namespace:Probel.NDoctor.View.Core"                    
 					 xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"   
-					 xmlns:converter="clr-namespace:Probel.NDoctor.View.Plugins.Converters;assembly=Probel.NDoctor.View.Plugins"
+					 xmlns:converter="clr-namespace:Probel.NDoctor.View.Toolbox.Converters;assembly=Probel.NDoctor.View.Toolbox"
 					 xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock"
 					 
 					 Title="{Binding Path=WindowTitle}"

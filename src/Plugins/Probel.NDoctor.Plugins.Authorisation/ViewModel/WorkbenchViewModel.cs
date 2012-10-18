@@ -32,6 +32,8 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.Services.Messaging;
+    using Probel.NDoctor.View.Toolbox.Navigation;
+    using Probel.NDoctor.View.Toolbox.Services.Messaging;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
