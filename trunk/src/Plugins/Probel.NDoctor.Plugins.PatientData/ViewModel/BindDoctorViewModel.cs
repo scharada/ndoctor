@@ -23,7 +23,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using System.Timers;
     using System.Windows.Input;
 
-
     using Probel.Helpers.Assertion;
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
@@ -36,6 +35,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.Services.Messaging;
+    using Probel.NDoctor.View.Toolbox.Navigation;
+    using Probel.NDoctor.View.Toolbox.Services.Messaging;
 
     internal class BindDoctorViewModel : BaseViewModel
     {
@@ -99,7 +100,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         public ICommand SelectDoctorCommand
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public LightDoctorDto SelectedDoctor

@@ -8,7 +8,7 @@
              
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.MeetingManager.Translations"
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
-             xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
+             xmlns:iw="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
              
              mc:Ignorable="d" 
              Height="300" 

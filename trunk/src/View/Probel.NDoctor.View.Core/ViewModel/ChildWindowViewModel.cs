@@ -19,6 +19,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Microsoft.Windows.Controls;
 
     using Probel.NDoctor.View.Core.Helpers;
+    using Probel.NDoctor.View.Toolbox.Navigation;
 
     using Xceed.Wpf.Toolkit;
 

@@ -66,20 +66,6 @@
     <Compile Include="..\..\Version.cs">
       <Link>Version.cs</Link>
     </Compile>
-    <Compile Include="Converters\BoolToCursorConverter.cs" />
-    <Compile Include="Converters\ByteArrayToImageConverter.cs" />
-    <Compile Include="Converters\DateTimeToShortStringConverter.cs" />
-    <Compile Include="Converters\DoctorGenderToImageConverter.cs" />
-    <Compile Include="Converters\GenderFemaleToBoolConverter.cs" />
-    <Compile Include="Converters\GenderMaleToBoolConverter.cs" />
-    <Compile Include="Converters\GenderToImageConverter.cs" />
-    <Compile Include="Converters\IntToVisibilityConverter.cs" />
-    <Compile Include="Converters\InverseBooleanConverter.cs" />
-    <Compile Include="Converters\InvertVisibilityConverter.cs" />
-    <Compile Include="Converters\NullToBooleanConverter.cs" />
-    <Compile Include="Converters\NullToVisibilityConverter.cs" />
-    <Compile Include="Converters\StatusTypeToImageConverter.cs" />
-    <Compile Include="Converters\StringToVisibilityConverter.cs" />
     <Compile Include="Exceptions\DeactivatedPluginException.cs" />
     <Compile Include="Exceptions\NDoctorConfigurationException.cs" />
     <Compile Include="Exceptions\NullPluginValidatorException.cs" />
@@ -95,7 +81,6 @@
     <Compile Include="Helpers\ITreeNode.cs" />
     <Compile Include="Services\Messaging\LogMessageRecorder.cs" />
     <Compile Include="Helpers\PluginContext.cs" />
-    <Compile Include="Services\Messaging\StatusType.cs" />
     <Compile Include="IPlugin.cs" />
     <Compile Include="LogObject.cs" />
     <Compile Include="MefPluginLoader.cs" />
@@ -145,6 +130,10 @@
     <ProjectReference Include="..\..\Helpers\Probel.Helpers\Probel.Helpers.csproj">
       <Project>{18F7EA3E-0BF5-430F-9B1D-258BDAB6304E}</Project>
       <Name>Probel.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Probel.NDoctor.View.Toolbox\Probel.NDoctor.View.Toolbox.csproj">
+      <Project>{C77966E1-28BF-4FA1-AEA0-A5A9B2A6B647}</Project>
+      <Name>Probel.NDoctor.View.Toolbox</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

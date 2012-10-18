@@ -22,7 +22,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using System.Windows;
     using System.Windows.Input;
 
-
     using Microsoft.Win32;
 
     using Probel.Helpers.Conversions;
@@ -38,6 +37,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.Services.Messaging;
+    using Probel.NDoctor.View.Toolbox.Navigation;
+    using Probel.NDoctor.View.Toolbox.Services.Messaging;
 
     internal class WorkbenchViewModel : BaseViewModel
     {

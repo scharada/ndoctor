@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:Helpers="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
-      xmlns:Converter="clr-namespace:Probel.NDoctor.View.Plugins.Converters;assembly=Probel.NDoctor.View.Plugins"	
+      xmlns:Converter="clr-namespace:Probel.NDoctor.View.Toolbox.Converters;assembly=Probel.NDoctor.View.Toolbox"	
       xmlns:Model="clr-namespace:Probel.NDoctor.View.Core.Model;assembly=Probel.NDoctor.View.Core"
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.UserSession.Translations"
       mc:Ignorable="d" 

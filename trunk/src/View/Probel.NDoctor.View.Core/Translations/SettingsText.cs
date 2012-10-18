@@ -18,7 +18,7 @@ namespace Probel.NDoctor.View.Core.Translations
 {
     using Probel.NDoctor.View.Core.Properties;
 
-    public static class SettingsText
+    internal static class SettingsText
     {
         #region Properties
 

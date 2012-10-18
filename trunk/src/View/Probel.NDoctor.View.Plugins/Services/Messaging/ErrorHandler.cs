@@ -18,11 +18,14 @@ namespace Probel.NDoctor.View.Plugins.Services.Messaging
 {
     using System;
     using System.Windows;
+
     using log4net;
+
     using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.Properties;
+    using Probel.NDoctor.View.Toolbox.Services.Messaging;
 
     /// <summary>
     /// This class provides error handling methods

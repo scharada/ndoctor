@@ -16,7 +16,6 @@
 */
 namespace Probel.NDoctor.View.Core.ViewModel
 {
-
     using log4net;
 
     using Probel.Helpers.Strings;
@@ -26,12 +25,14 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Plugins.Exceptions;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.Services.Messaging;
+    using Probel.NDoctor.View.Toolbox.Services.Messaging;
 
     public abstract class BaseViewModel : ObservableObject
     {
         #region Fields
-        protected readonly ILog Logger;
+
         protected readonly ErrorHandler Handle;
+        protected readonly ILog Logger;
 
         #endregion Fields
 
