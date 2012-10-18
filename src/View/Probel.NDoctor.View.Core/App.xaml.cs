@@ -30,6 +30,7 @@ namespace Probel.NDoctor.View.Core
     using Probel.NDoctor.View.Core.View;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.View.Toolbox.Navigation;
 
     using MySplashScreen = Probel.NDoctor.View.Core.View.SplashScreen;
 
@@ -52,7 +53,7 @@ namespace Probel.NDoctor.View.Core
             //Hook the console to the application to have logging features
             AllocConsole();
             #endif
-            this.Logger = LogManager.GetLogger(typeof(App));
+            this.Logger = LogManager.GetLogger(typeof(LogManager));
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Settings.Default.Language);
 
             PluginContext.Configuration.ComponentLogginEnabled = bool.Parse(ConfigurationManager.AppSettings["ComponentLogginEnabled"]);
@@ -124,7 +125,7 @@ namespace Probel.NDoctor.View.Core
         {
             this.Logger.Fatal("An uncaught exception was thrown", e.Exception);
 
-            MessageBox.Show(e.Exception.Message, Messages.Title_Fatal, MessageBoxButton.OK, MessageBoxImage.Error);
+            new ErrorHandlerFactory().New(this).Fatal(e.Exception);
             e.Handled = this.DoHandle;
         }
 

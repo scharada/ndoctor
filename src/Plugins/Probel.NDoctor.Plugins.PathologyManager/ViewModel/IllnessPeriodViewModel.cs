@@ -26,8 +26,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.NDoctor.View.Plugins.Services.Messaging;
-    using Probel.NDoctor.View.Toolbox.Services.Messaging;
+    using Probel.NDoctor.View.Toolbox;
 
     internal class IllnessPeriodViewModel : IllnessPeriodDto
     {

@@ -30,12 +30,14 @@ namespace Probel.NDoctor.Plugins.FamilyManager.Helpers
     using Probel.NDoctor.Plugins.FamilyManager.View;
     using Probel.NDoctor.Plugins.FamilyManager.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.NDoctor.View.Plugins.Services.Messaging;
+    using Probel.NDoctor.View.Toolbox.Navigation;
 
     internal class ViewService
     {
         #region Fields
-        private readonly ErrorHandler Handle;
+
+        private readonly IErrorHandler Handle;
+
         private IFamilyComponent Component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
 
         #endregion Fields
@@ -45,7 +47,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.Helpers
         public ViewService()
         {
             PluginContext.Host.NewUserConnected += (sendere, e) => this.Component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
-            this.Handle = new ErrorHandler(this);
+            this.Handle = new ErrorHandlerFactory().New(this);
         }
 
         #endregion Constructors

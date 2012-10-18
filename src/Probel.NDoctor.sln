@@ -69,7 +69,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{13A03E
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Probel.NDoctor.View.Toolbox", "Probel.NDoctor.View.Toolbox\Probel.NDoctor.View.Toolbox.csproj", "{C77966E1-28BF-4FA1-AEA0-A5A9B2A6B647}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Probel.NDoctor.View.Toolbox", "View\Probel.NDoctor.View.Toolbox\Probel.NDoctor.View.Toolbox.csproj", "{C77966E1-28BF-4FA1-AEA0-A5A9B2A6B647}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

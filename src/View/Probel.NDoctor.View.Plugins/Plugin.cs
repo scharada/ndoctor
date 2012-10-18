@@ -27,13 +27,13 @@ namespace Probel.NDoctor.View.Plugins
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Plugins.Properties;
-    using Probel.NDoctor.View.Plugins.Services.Messaging;
+    using Probel.NDoctor.View.Toolbox.Navigation;
 
     public abstract class Plugin : IErrorHandler, IPlugin
     {
         #region Fields
 
-        protected ErrorHandler Handle;
+        protected IErrorHandler Handle;
 
         #endregion Fields
 
@@ -48,7 +48,7 @@ namespace Probel.NDoctor.View.Plugins
         [ImportingConstructor]
         public Plugin(Version version)
         {
-            this.Handle = new ErrorHandler(this);
+            this.Handle = new ErrorHandlerFactory().New(this);
             this.Version = version;
         }
 
@@ -184,6 +184,26 @@ namespace Probel.NDoctor.View.Plugins
         public void ErrorSilently(Exception ex, string format, params object[] args)
         {
             this.Handle.ErrorSilently(ex, format, args);
+        }
+
+        /// <summary>
+        /// Handles the fatal error, log it and shows a message box with the error.
+        /// </summary>
+        /// <param name="ex">The exception to log.</param>
+        public void Fatal(Exception ex)
+        {
+            this.Handle.Fatal(ex);
+        }
+
+        /// <summary>
+        /// Handles the fatal error, log it and shows a message box with the error.
+        /// </summary>
+        /// <param name="ex">The exception to log..</param>
+        /// <param name="format">The format.</param>
+        /// <param name="args">The args.</param>
+        public void Fatal(Exception ex, string format, params object[] args)
+        {
+            this.Handle.Fatal(ex, format, args);
         }
 
         /// <summary>

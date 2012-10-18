@@ -64,7 +64,7 @@
   </appender>
 
   <!--- Keeps the last few log entries and appends them to bug reports when an exception occurs -->
-  <appender name="Recorder" type="Probel.Helpers.Logging.LogMessageRecorder, Probel.Helpers">
+  <appender name="Recorder" type="Probel.NDoctor.View.Toolbox.Navigation.LogMessageRecorder, Probel.NDoctor.View.Toolbox">
     <bufferSize value="25" />
   </appender>
 
@@ -73,6 +73,7 @@
     <appender-ref ref="FileAppender"/>
     <appender-ref ref="ColoredConsoleAppender"/>
     <appender-ref ref="DebugAppender"/>
+    <appender-ref ref="Recorder"/>
   </root>
 
   <logger name="NHibernate">
