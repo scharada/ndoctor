@@ -88,12 +88,12 @@
     <Compile Include="Groups.cs" />
     <Compile Include="Helpers\BaseText.cs" />
     <Compile Include="Helpers\Configuration.cs" />
-    <Compile Include="Helpers\ErrorHandler.cs" />
-    <Compile Include="Helpers\IErrorHandler.cs" />
+    <Compile Include="Services\Messaging\ErrorHandler.cs" />
+    <Compile Include="Services\Messaging\IErrorHandler.cs" />
     <Compile Include="Helpers\ITreeNode.cs" />
-    <Compile Include="Helpers\LogMessageRecorder.cs" />
+    <Compile Include="Services\Messaging\LogMessageRecorder.cs" />
     <Compile Include="Helpers\PluginContext.cs" />
-    <Compile Include="Helpers\StatusType.cs" />
+    <Compile Include="Services\Messaging\StatusType.cs" />
     <Compile Include="IPlugin.cs" />
     <Compile Include="LogObject.cs" />
     <Compile Include="MefPluginLoader.cs" />

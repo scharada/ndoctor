@@ -14,15 +14,14 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.View.Plugins.Helpers
+namespace Probel.NDoctor.View.Plugins.Services.Messaging
 {
     using System;
     using System.Windows;
-
     using log4net;
-
     using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.Components;
+    using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.Properties;
 
     /// <summary>

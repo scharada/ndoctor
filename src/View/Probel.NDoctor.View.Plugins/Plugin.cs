@@ -27,6 +27,7 @@ namespace Probel.NDoctor.View.Plugins
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Plugins.Properties;
+    using Probel.NDoctor.View.Plugins.Services.Messaging;
 
     public abstract class Plugin : IErrorHandler, IPlugin
     {

@@ -30,6 +30,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.Helpers
     using Probel.NDoctor.Plugins.FamilyManager.View;
     using Probel.NDoctor.Plugins.FamilyManager.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins.Services.Messaging;
 
     internal class ViewService
     {

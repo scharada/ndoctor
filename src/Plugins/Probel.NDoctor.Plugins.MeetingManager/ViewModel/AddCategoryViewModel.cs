@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins.Services.Messaging;
 
     internal class AddCategoryViewModel : BaseViewModel
     {

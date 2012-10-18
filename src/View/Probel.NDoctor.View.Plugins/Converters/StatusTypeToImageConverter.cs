@@ -22,7 +22,7 @@ namespace Probel.NDoctor.View.Plugins.Converters
     using System.Windows.Media.Imaging;
 
     using Probel.Helpers.Assertion;
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins.Services.Messaging;
 
     [ValueConversion(typeof(StatusType), typeof(string))]
     public class StatusTypeToImageConverter : IValueConverter
