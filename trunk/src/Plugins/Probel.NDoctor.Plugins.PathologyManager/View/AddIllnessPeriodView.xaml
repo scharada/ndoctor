@@ -24,6 +24,8 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
     <DockPanel LastChildFill="True">
+        <TextBlock DockPanel.Dock="Top" 
+                   Text="{Binding Source={x:Static Member=text:AddIllnessPeriodText.ExplainHowToAddPeriod}}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4" />
         <Grid DockPanel.Dock="Top">
             <Border Style="{StaticResource BorderStyle}">
                 <DockPanel>
@@ -38,7 +40,7 @@
                                           Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}">
                         <toolkit:WatermarkTextBox.Watermark>
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
+                                <Image Source="/Probel.NDoctor.Plugins.PathologyManager;Component/Images/Card.png"
                                        Height="15"
                                        Width="15" />
                                 <TextBlock Text="{Binding Source={x:Static Member=text:AddIllnessPeriodText.Watermark}}"
@@ -51,7 +53,7 @@
         </Grid>
         <ScrollViewer DockPanel.Dock="Bottom">
             <ListView Grid.Row="1" ItemsSource="{Binding Path=FoundPathologies}"
-                      SelectedItem="{Binding Path=SelectedPathology}">
+                      SelectedItem="{Binding Path=SelectedPathology}" Margin="4">
                 <ListView.Resources>
                     <DataTemplate DataType="{x:Type this:IllnessPeriodToAddViewModel}">
                         <StackPanel>

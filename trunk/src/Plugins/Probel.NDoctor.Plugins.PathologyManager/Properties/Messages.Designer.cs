@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Plugins.PathologyManager.Properties
-{
-
-
+namespace Probel.NDoctor.Plugins.PathologyManager.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -174,6 +174,18 @@ namespace Probel.NDoctor.Plugins.PathologyManager.Properties
         internal static string Msg_ErrorOccured {
             get {
                 return ResourceManager.GetString("Msg_ErrorOccured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to * Use the search box to find the pathology. 
+        ///* In the list, click on the pathology
+        ///* Choose the begin and the end date of the pathology period. 
+        ///* Click on &quot;Add&quot;.
+        /// </summary>
+        internal static string Msg_ExplainHowToAddPeriod {
+            get {
+                return ResourceManager.GetString("Msg_ExplainHowToAddPeriod", resourceCulture);
             }
         }
         
