@@ -79,6 +79,15 @@ namespace Probel.NDoctor.View.Toolbox.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Continue.
+        /// </summary>
+        internal static string Btn_Continue {
+            get {
+                return ResourceManager.GetString("Btn_Continue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New....
         /// </summary>
         internal static string Btn_New {
@@ -183,6 +192,15 @@ namespace Probel.NDoctor.View.Toolbox.Properties {
         internal static string Msg_CloseApplication {
             get {
                 return ResourceManager.GetString("Msg_CloseApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copier le message d&apos;erreur dans le presse-papier.
+        /// </summary>
+        internal static string Msg_CopyInClipboard {
+            get {
+                return ResourceManager.GetString("Msg_CopyInClipboard", resourceCulture);
             }
         }
         
@@ -367,6 +385,24 @@ namespace Probel.NDoctor.View.Toolbox.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An unhandled exception has occurred in nDoctor. This is unexpected and we&apos;d ask you to help us improve nDoctor by reporting this error to the nDoctor team..
+        /// </summary>
+        internal static string Title_ErrorMessageHelp {
+            get {
+                return ResourceManager.GetString("Title_ErrorMessageHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to report errors efficiently: We have set up a Web-based forum to report and track errors that are reported by users of nDoctor. To minimise necessary questions by the team members, in addition to providing the error message that is copied to the clipboard for easier pasting in the error report, we ask that you provide us with an as detailed as possible step-by-step procedure to reproduce this bug..
+        /// </summary>
+        internal static string Title_ErrorMessageHelp2 {
+            get {
+                return ResourceManager.GetString("Title_ErrorMessageHelp2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First name:.
         /// </summary>
         internal static string Title_FirstName {
@@ -435,6 +471,15 @@ namespace Probel.NDoctor.View.Toolbox.Properties {
         internal static string Title_Notes {
             get {
                 return ResourceManager.GetString("Title_Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ouvrir &quot;Problem Steps Recorder&quot;.
+        /// </summary>
+        internal static string Title_OpenPSR {
+            get {
+                return ResourceManager.GetString("Title_OpenPSR", resourceCulture);
             }
         }
         
@@ -552,6 +597,15 @@ namespace Probel.NDoctor.View.Toolbox.Properties {
         internal static string Title_StreetNr {
             get {
                 return ResourceManager.GetString("Title_StreetNr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unhandled exception has occured....
+        /// </summary>
+        internal static string Title_UnhandledException {
+            get {
+                return ResourceManager.GetString("Title_UnhandledException", resourceCulture);
             }
         }
         

@@ -24,6 +24,7 @@ namespace Probel.NDoctor.View.Toolbox.View
     using System.Windows;
 
     using Probel.NDoctor.View.Toolbox.ViewModel;
+    using System.Windows.Input;
 
     /// <summary>
     /// Interaction logic for ExceptionView.xaml
@@ -39,5 +40,10 @@ namespace Probel.NDoctor.View.Toolbox.View
         }
 
         #endregion Constructors
+
+        private void CloseCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

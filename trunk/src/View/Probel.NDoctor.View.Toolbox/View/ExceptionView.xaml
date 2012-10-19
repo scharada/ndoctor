@@ -9,23 +9,50 @@
         xmlns:behaviours="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
         
         behaviours:WindowBehaviour.Loaded="{Binding LoadedCommand}"
+        Title="{Binding Source={x:Static Member=txt:ExceptionViewText.WindowTitle}}"
         
-        Title="ExceptionView" Width="800" Height="600" WindowStartupLocation="CenterScreen">
+        Width="800" Height="600" 
+        WindowStartupLocation="CenterScreen" ShowInTaskbar="False" ResizeMode="NoResize">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Close"
+                        Executed="CloseCommandHandler"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Image Height="227" HorizontalAlignment="Left" Margin="12,12,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="216" Source="/Probel.NDoctor.View.Core;component/Images/about.jpg" />
+        <TextBlock Text="{Binding Source={x:Static Member=txt:ExceptionViewText.ErrorMessageHelp}}" 
+               Height="71" 
+               HorizontalAlignment="Center" 
+               Margin="253,12,36,0" 
+               VerticalAlignment="Top" 
+               TextWrapping="Wrap" Width="489" />
 
-    <DockPanel LastChildFill="True" Margin="4">
-        <Grid DockPanel.Dock="Bottom" Margin="4">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <TextBlock Text="{Binding Source={x:Static Member=txt:ExceptionViewText.ErrorMessageHelp2}}" 
+                   Height="98" 
+                   HorizontalAlignment="Right" 
+                   Margin="0,68,12,0"
+                   VerticalAlignment="Top" 
+                   Width="526" 
+                   TextWrapping="Wrap"/>
+        
+        <TextBox Height="274" HorizontalAlignment="Left" Margin="12,245,0,0" 
+                 VerticalAlignment="Top" Width="754" Text="{Binding LogStack}" 
+                 VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
+        
+        <Button Content="{Binding Source={x:Static Member=txt:ExceptionViewText.CloseApplication}}"
+                Command="{Binding CloseCommand}"
+                Height="23" HorizontalAlignment="Left" Margin="634,533,0,0" VerticalAlignment="Top" Width="132" />
 
-            <Button Grid.Column="0" Content="{Binding Source={x:Static Member=txt:ExceptionViewText.ReportIssue}}" Command="{Binding ReportIssueCommand}" Margin="4" />
-            <Button Grid.Column="1" Content="{Binding Source={x:Static Member=txt:ExceptionViewText.CloseApplication}}" Command="{Binding CloseCommand}" Margin="4" />
-        </Grid>
-            <ScrollViewer DockPanel.Dock="Top">
-                <TextBox x:Name="focused"
-                         Text="{Binding LogStack}"
-                         TextWrapping="Wrap"/>
-            </ScrollViewer>
-    </DockPanel>
+        <Button Content="{Binding Source={x:Static Member=txt:BaseText.Continue}}"
+                Command="Close"
+                Height="23" HorizontalAlignment="Left" Margin="496,533,0,0" VerticalAlignment="Top" Width="132" />
+
+        <Button Content="{Binding Source={x:Static Member=txt:ExceptionViewText.ReportIssue}}"
+                Command="{Binding ReportIssueCommand}" Height="23" HorizontalAlignment="Left" Margin="240,207,0,0" VerticalAlignment="Top" Width="225" />
+        <Button Content="{Binding Source={x:Static Member=txt:ExceptionViewText.OpenPSR}}"
+                Command="{Binding RecordIssueCommand}" Height="23" HorizontalAlignment="Left" Margin="517,207,0,0" VerticalAlignment="Top" Width="225" />
+
+        <CheckBox Content="{Binding Source={x:Static Member=txt:ExceptionViewText.CopyInClipboard}}" 
+                  IsChecked="{Binding IsClipboardChecked}"
+                  Height="16" HorizontalAlignment="Left" Margin="240,172,0,0" VerticalAlignment="Top" Width="526" />
+    </Grid>
 </Window>

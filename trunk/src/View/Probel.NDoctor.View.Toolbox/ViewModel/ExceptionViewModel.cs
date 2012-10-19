@@ -31,6 +31,7 @@ namespace Probel.NDoctor.View.Toolbox.ViewModel
 
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.View.Toolbox.Navigation;
+    using System;
 
     public class ExceptionViewModel : ObservableObject
     {
@@ -40,8 +41,10 @@ namespace Probel.NDoctor.View.Toolbox.ViewModel
 
         private readonly ICommand closeCommand;
         private readonly ICommand loadedCommand;
+        private readonly ICommand recordIssueCommand;
         private readonly ICommand reportIssueCommand;
 
+        private bool isClipboardChecked = true;
         private string logStack;
 
         #endregion Fields
@@ -53,6 +56,7 @@ namespace Probel.NDoctor.View.Toolbox.ViewModel
             this.closeCommand = new RelayCommand(() => this.Close(), () => this.CanClose());
             this.reportIssueCommand = new RelayCommand(() => this.ReportIssue(), () => this.CanReportIssue());
             this.loadedCommand = new RelayCommand(() => this.Loaded(), () => this.CanLoaded());
+            this.recordIssueCommand = new RelayCommand(() => this.RecordIssue(), () => this.canRecordIssue);
         }
 
         #endregion Constructors
@@ -62,6 +66,16 @@ namespace Probel.NDoctor.View.Toolbox.ViewModel
         public ICommand CloseCommand
         {
             get { return this.closeCommand; }
+        }
+
+        public bool IsClipboardChecked
+        {
+            get { return this.isClipboardChecked; }
+            set
+            {
+                this.isClipboardChecked = value;
+                this.OnPropertyChanged(() => IsClipboardChecked);
+            }
         }
 
         public ICommand LoadedCommand
@@ -77,6 +91,11 @@ namespace Probel.NDoctor.View.Toolbox.ViewModel
                 this.logStack = value;
                 this.OnPropertyChanged(() => LogStack);
             }
+        }
+
+        public ICommand RecordIssueCommand
+        {
+            get { return this.recordIssueCommand; }
         }
 
         public ICommand ReportIssueCommand
@@ -98,6 +117,8 @@ namespace Probel.NDoctor.View.Toolbox.ViewModel
             return true;
         }
 
+        private bool canRecordIssue = true;
+
         private bool CanReportIssue()
         {
             return true;
@@ -115,9 +136,18 @@ namespace Probel.NDoctor.View.Toolbox.ViewModel
             this.LogStack = sb.ToString();
         }
 
+        private void RecordIssue()
+        {
+            try
+            {
+                Process.Start("psr.exe");
+            }
+            catch (Exception) { this.canRecordIssue = false; }
+        }
+
         private void ReportIssue()
         {
-            Clipboard.SetText(this.LogStack);
+            if (this.IsClipboardChecked) { Clipboard.SetText(this.LogStack); }
 
             if (Thread.CurrentThread.CurrentUICulture.Name.ToLower().Contains("fr"))
             {
@@ -130,5 +160,6 @@ namespace Probel.NDoctor.View.Toolbox.ViewModel
         }
 
         #endregion Methods
+
     }
 }
