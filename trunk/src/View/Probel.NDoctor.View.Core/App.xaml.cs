@@ -53,11 +53,13 @@ namespace Probel.NDoctor.View.Core
             //Hook the console to the application to have logging features
             AllocConsole();
             #endif
+
             this.Logger = LogManager.GetLogger(typeof(LogManager));
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Settings.Default.Language);
 
             PluginContext.Configuration.ComponentLogginEnabled = bool.Parse(ConfigurationManager.AppSettings["ComponentLogginEnabled"]);
             PluginContext.Configuration.AutomaticContextMenu = Settings.Default.AutomaticContextMenu;
+            PluginContext.Configuration.ExecutionTimeThreshold = uint.Parse(ConfigurationManager.AppSettings["ExecutionTimeThreshold"]);
 
             var main = new MainWindow();
             var splash = new MySplashScreen();

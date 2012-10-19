@@ -32,7 +32,9 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
         public override void Intercept(IInvocation invocation)
         {
             if (!this.IsDecoratedWith<InspectionIgnoredAttribute>(invocation))
+            {
                 Logger.Debug(string.Format("Intercepting the method '{0}' of the component '{1}'", invocation.Method.Name, invocation.TargetType.Name));
+            }
             invocation.Proceed();
         }
 

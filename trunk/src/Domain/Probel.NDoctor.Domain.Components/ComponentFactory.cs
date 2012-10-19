@@ -48,11 +48,12 @@ namespace Probel.NDoctor.Domain.Components
         /// <summary>
         /// First instanciation into the static ctor because it needs the StructureMap configuration before.
         /// </summary>
-        private static readonly AuthorisationInterceptor authorisationInterceptor;
-        private static readonly ProxyGenerator generator = new ProxyGenerator(new PersistentProxyBuilder());
+        private static readonly AuthorisationInterceptor AuthorisationInterceptor;
+        private static readonly ProxyGenerator Generator = new ProxyGenerator(new PersistentProxyBuilder());
 
-        private bool componentLogginEnabled = false;
-        private ILog logger = LogManager.GetLogger(typeof(ComponentFactory));
+        private readonly bool ComponentLogginEnabled = false;
+        private readonly uint ExecutionTimeThreshold;
+        private readonly ILog Logger = LogManager.GetLogger(typeof(ComponentFactory));
 
         #endregion Fields
 
@@ -122,17 +123,17 @@ namespace Probel.NDoctor.Domain.Components
                 x.For<IAuthorisationPolicy>().Add<AuthorisationPolicy>();
             });
 
-            authorisationInterceptor = new AuthorisationInterceptor();
+            AuthorisationInterceptor = new AuthorisationInterceptor();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ComponentFactory"/> class.
         /// </summary>
-        /// <param name="user">The user connected into nDoctor.</param>
         /// <param name="componentLogginEnabled">if set to <c>true</c> component loggin is enabled.</param>
-        public ComponentFactory(LightUserDto user, bool componentLogginEnabled)
+        public ComponentFactory(bool componentLogginEnabled, uint executionTimeThreshold)
         {
-            this.componentLogginEnabled = componentLogginEnabled;
+            this.ComponentLogginEnabled = componentLogginEnabled;
+            this.ExecutionTimeThreshold = executionTimeThreshold;
         }
 
         #endregion Constructors
@@ -145,7 +146,7 @@ namespace Probel.NDoctor.Domain.Components
         /// <param name="user">The user.</param>
         public void ConnectUser(LightUserDto user)
         {
-            authorisationInterceptor.User = user;
+            AuthorisationInterceptor.User = user;
         }
 
         public T GetInstance<T>()
@@ -157,13 +158,13 @@ namespace Probel.NDoctor.Domain.Components
 
                 if (instance is BaseComponent)
                 {
-                    return generator.CreateInterfaceProxyWithTarget<T>(instance, this.GetInterceptors());
+                    return Generator.CreateInterfaceProxyWithTarget<T>(instance, this.GetInterceptors());
                 }
                 else { return instance; }
             }
             catch (Exception ex)
             {
-                this.logger.Warn("An error occured when instanciating a component", ex);
+                this.Logger.Warn("An error occured when instanciating a component", ex);
                 throw new ComponentException(Messages.Ex_ComponentException, ex);
             }
         }
@@ -172,9 +173,10 @@ namespace Probel.NDoctor.Domain.Components
         {
             var interceptors = new List<IInterceptor>();
 
-            if (this.componentLogginEnabled) { interceptors.Add(new LogInterceptor()); }
+            if (this.ComponentLogginEnabled) { interceptors.Add(new LogInterceptor()); }
             interceptors.Add(new TransactionInterceptor());
-            interceptors.Add(authorisationInterceptor);
+            interceptors.Add(AuthorisationInterceptor);
+            interceptors.Add(new BenchmarkInterceptor(this.ExecutionTimeThreshold));
 
             return interceptors.ToArray();
         }
