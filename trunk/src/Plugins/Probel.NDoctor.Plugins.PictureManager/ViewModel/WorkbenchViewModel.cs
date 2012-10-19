@@ -429,7 +429,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 this.SelectedPicture.LastUpdate = DateTime.Now;
                 this.SelectedPicture.Tag = this.SelectedTag;
 
-                Assert.IsNotNull(this.SelectedTag, "All pictures should have a tag");
+                Assert.IsNotNull(this.SelectedTag, "SelectedTag");
 
                 var context = TaskScheduler.FromCurrentSynchronizationContext();
                 var args = new TaskArgs()

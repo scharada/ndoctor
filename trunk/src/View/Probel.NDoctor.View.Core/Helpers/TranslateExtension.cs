@@ -54,7 +54,8 @@ namespace Probel.NDoctor.View.Core.Helpers
 
         public static ResourceManager ResourceManager
         {
-            get; set;
+            get;
+            set;
         }
 
         #endregion Properties
@@ -70,7 +71,7 @@ namespace Probel.NDoctor.View.Core.Helpers
         /// </returns>
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            Assert.IsNotNull(ResourceManager, "The resource manager wasn't configured");
+            Assert.IsNotNull(ResourceManager, "ResourceManager");
             var messages = (ResourceManager == null)
                 ? Messages.ResourceManager
                 : ResourceManager;

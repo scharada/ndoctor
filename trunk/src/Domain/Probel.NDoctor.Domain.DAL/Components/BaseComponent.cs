@@ -614,7 +614,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="item">The patient.</param>
         public void Update(PatientDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "item");
             item.LastUpdate = DateTime.Today;
 
             var entity = this.Session.Get<Patient>(item.Id);
@@ -642,7 +642,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <exception cref="DalSessionException">Is thrown when the session is not configured correctly</exception>
         internal void CheckSession()
         {
-            Assert.IsNotNull(this.Session, "The session is not configured. Every query to a component should be in a UnitOfWork!");
+            Assert.IsNotNull(this.Session, "Session");
             if (!Session.IsOpen) throw new DalSessionException(Messages.Msg_ErrorSessionNotOpen);
         }
 

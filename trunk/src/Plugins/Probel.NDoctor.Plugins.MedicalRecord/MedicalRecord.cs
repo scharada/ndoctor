@@ -123,7 +123,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         /// </summary>
         public override void Initialise()
         {
-            Assert.IsNotNull(PluginContext.Host, "To initialise the plugin, IPluginHost should be set.");
+            Assert.IsNotNull(PluginContext.Host, "PluginContext.Host");
 
             PluginContext.Host.Invoke(() =>
             {

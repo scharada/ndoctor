@@ -105,7 +105,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public PictureDto FindPicture(LightPictureDto picture)
         {
-            Assert.IsNotNull(picture);
+            Assert.IsNotNull(picture, "picture");
             try
             {
                 var result = (from p in this.Session.Query<Picture>()

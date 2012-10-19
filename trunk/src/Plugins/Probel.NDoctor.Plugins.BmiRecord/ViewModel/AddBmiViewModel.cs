@@ -86,9 +86,9 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
 
         private void AddBmi()
         {
-            Assert.IsNotNull(PluginContext.Host, "The host shouldn't be null");
-            Assert.IsNotNull(PluginContext.Host.SelectedPatient, "A patient should be selected if you want to manage data of a patient");
-            Assert.IsNotNull(this.CurrentBmi, "The BMI to add shouldn't be null in order to add the item to the BMI history");
+            Assert.IsNotNull(PluginContext.Host, "PluginContext.Host");
+            Assert.IsNotNull(PluginContext.Host.SelectedPatient, "PluginContext.Host.SelectedPatient");
+            Assert.IsNotNull(this.CurrentBmi, "CurrentBmi");
 
             try
             {

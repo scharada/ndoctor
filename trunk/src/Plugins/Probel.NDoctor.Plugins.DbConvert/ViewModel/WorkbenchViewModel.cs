@@ -169,7 +169,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.ViewModel
 
         private void RunInBackground(Func<bool> func)
         {
-            Assert.IsNotNull(func);
+            Assert.IsNotNull(func, "func");
 
             var worker = new BackgroundWorker();
             worker.RunWorkerCompleted += (sender, e) =>

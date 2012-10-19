@@ -65,7 +65,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         {
             get
             {
-                Assert.IsNotNull(this.type, "The type is null");
+                Assert.IsNotNull(this.type, "type");
                 return this.type.RightSideName;
             }
         }
