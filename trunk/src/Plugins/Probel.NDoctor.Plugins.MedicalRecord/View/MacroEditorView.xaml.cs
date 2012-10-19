@@ -64,7 +64,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
             IHighlightingDefinition customHighlighting;
             using (Stream stream = typeof(MacroEditorView).Assembly.GetManifestResourceStream("Probel.NDoctor.Plugins.MedicalRecord.Editor.MacroHighlighting.xshd"))
             {
-                if (stream == null) { throw new InvalidOperationException("Could not find embedded resource"); }
+                if (stream == null) { throw new InvalidOperationException("Could not Get embedded resource"); }
 
                 using (XmlReader reader = new XmlTextReader(stream))
                 {

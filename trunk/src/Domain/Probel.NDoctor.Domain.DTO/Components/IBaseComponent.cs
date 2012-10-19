@@ -83,104 +83,104 @@ namespace Probel.NDoctor.Domain.DTO.Components
         long Create(LightPatientDto patient);
 
         /// <summary>
-        /// Finds the doctors by name.
+        /// Gets the doctors by name.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="on">The on.</param>
         /// <returns></returns>
-        IList<LightDoctorDto> FindDoctorsByNameLight(string name, SearchOn on);
+        IList<LightDoctorDto> GetDoctorsByNameLight(string name, SearchOn on);
 
         /// <summary>
-        /// Finds the doctors by specialisation.
+        /// Gets the doctors by specialisation.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="on">The on.</param>
         /// <returns></returns>
-        IList<LightDoctorDto> FindDoctorsBySpecialisationLight(TagDto specialisation);
+        IList<LightDoctorDto> GetDoctorsBySpecialisationLight(TagDto specialisation);
 
         /// <summary>
-        /// Finds the drugs which has in their name the specified criteria.
+        /// Gets the drugs which has in their name the specified criteria.
         /// </summary>
         /// <param name="name">The criteria.</param>
         /// <returns>A list of drugs</returns>
-        IList<DrugDto> FindDrugsByName(string name);
+        IList<DrugDto> GetDrugsByName(string name);
 
         /// <summary>
-        /// Finds the drugs by tags.
+        /// Gets the drugs by tags.
         /// </summary>
         /// <param name="tag">The tag name.</param>
         /// <returns>A list of drugs</returns>
-        IList<DrugDto> FindDrugsByTags(string tagName);
+        IList<DrugDto> GetDrugsByTags(string tagName);
 
         /// <summary>
         /// Gets all insurances that contain the specified name.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns></returns>
-        IList<InsuranceDto> FindInsurances(string name);
+        IList<InsuranceDto> GetInsurances(string name);
 
         /// <summary>
-        /// Finds the light doctor by specialisation.
+        /// Gets the light doctor by specialisation.
         /// </summary>
         /// <param name="specialisation">The tag.</param>
         /// <returns></returns>
-        IList<LightDoctorDto> FindLightDoctor(TagDto specialisation);
+        IList<LightDoctorDto> GetLightDoctor(TagDto specialisation);
 
         /// <summary>
         /// Gets all pathologies that contains the specified name.
         /// </summary>
         /// <returns></returns>
-        IList<PathologyDto> FindPathology(string name);
+        IList<PathologyDto> GetPathology(string name);
 
         /// <summary>
-        /// Finds the patients that fullfill the specified criterium.
+        /// Gets the patients that fullfill the specified criterium.
         /// </summary>
         /// <param name="criterium">The criterium.</param>
         /// <param name="search">The search should be done on the specified property.</param>
         /// <returns></returns>
-        IList<LightPatientDto> FindPatientsByNameLight(string criterium, SearchOn search);
+        IList<LightPatientDto> GetPatientsByNameLight(string criterium, SearchOn search);
 
         /// <summary>
         /// Gets all practices that contains the specified name.
         /// </summary>
         /// <returns></returns>
-        IList<PracticeDto> FindPractices(string name);
+        IList<PracticeDto> GetPractices(string name);
 
         /// <summary>
         /// Gets all professions that contains the specified name.
         /// </summary>
         /// <returns></returns>
-        IList<ProfessionDto> FindProfessions(string name);
+        IList<ProfessionDto> GetProfessions(string name);
 
         /// <summary>
         /// Gets all reputations that contains the specified name.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns></returns>
-        IList<ReputationDto> FindReputations(string name);
+        IList<ReputationDto> GetReputations(string name);
 
         /// <summary>
         /// Gets all the tags with the specified catagory.
         /// </summary>
         /// <returns></returns>
-        IList<TagDto> FindTags(TagCategory category);
+        IList<TagDto> GetTags(TagCategory category);
 
         /// <summary>
         /// Gets the tag for patient that contain the specified name.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns></returns>
-        IList<TagDto> FindTags(string name, TagCategory type);
+        IList<TagDto> GetTags(string name, TagCategory type);
 
         /// <summary>
         /// Gets the user by id.
         /// </summary>
         /// <param name="id">The id.</param>
         /// <returns></returns>
-        UserDto FindUserById(long id);
+        UserDto GetUserById(long id);
 
         /// <summary>
-        /// Finds all doctors.
+        /// Gets all doctors.
         /// </summary>
         /// <returns>The light weight version of the doctors</returns>
         IList<LightDoctorDto> GetAllDoctorsLight();
@@ -210,7 +210,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         IList<PathologyDto> GetAllPathologies();
 
         /// <summary>
-        /// Finds all the patients.
+        /// Gets all the patients.
         /// </summary>
         /// <returns></returns>
         IList<LightPatientDto> GetAllPatientsLight();

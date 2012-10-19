@@ -67,10 +67,10 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <returns>A list of doctors</returns>
-        IList<LightDoctorDto> FindDoctorOf(LightPatientDto patient);
+        IList<LightDoctorDto> GetDoctorOf(LightPatientDto patient);
 
         /// <summary>
-        /// Finds the doctors that can be linked to the specified doctor.
+        /// Gets the doctors that can be linked to the specified doctor.
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <param name="criteria">The criteria.</param>
@@ -78,7 +78,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <returns>
         /// A list of doctor
         /// </returns>
-        IList<LightDoctorDto> FindNotLinkedDoctorsFor(LightPatientDto patient, string criteria, SearchOn on);
+        IList<LightDoctorDto> GetNotLinkedDoctorsFor(LightPatientDto patient, string criteria, SearchOn on);
 
         /// <summary>
         /// Loads all the data of the patient represented by the specified id.
@@ -86,7 +86,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="patient">The id of the patient to load.</param>
         /// <returns>A DTO with the whole data</returns>
         /// <exception cref="Probel.NDoctor.Domain.DAL.Exceptions.ItemNotFoundException">If the id is not linked to a patient</exception>
-        PatientDto FindPatient(long id);
+        PatientDto GetPatient(long id);
 
         /// <summary>
         /// Loads all the data of the patient.
@@ -94,7 +94,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="patient">The patient to load.</param>
         /// <returns>A DTO with the whole data</returns>
         /// <exception cref="Probel.NDoctor.Domain.DAL.Exceptions.ItemNotFoundException">If the patient doesn't exist</exception>
-        PatientDto FindPatient(LightPatientDto patient);
+        PatientDto GetPatient(LightPatientDto patient);
 
         /// <summary>
         /// Removes the link that existed between the specified patient and the specified doctor.

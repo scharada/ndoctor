@@ -36,13 +36,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         void Create(PrescriptionDocumentDto document, LightPatientDto patient);
 
         /// <summary>
-        /// Finds the prescriptions between the specified dates for the specified patient.
+        /// Gets the prescriptions between the specified dates for the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <param name="start">The start.</param>
         /// <param name="end">The end.</param>
         /// <returns>A list of prescriptions</returns>
-        IList<PrescriptionDocumentDto> FindPrescriptionsByDates(LightPatientDto patient, DateTime start, DateTime end);
+        IList<PrescriptionDocumentDto> GetPrescriptionsByDates(LightPatientDto patient, DateTime start, DateTime end);
 
         /// <summary>
         /// Removes the specified item but doesn't touch the drugs liked to it.

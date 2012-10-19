@@ -142,7 +142,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         {
             try
             {
-                var results = this.component.FindTags(TagCategory.Drug);
+                var results = this.component.GetTags(TagCategory.Drug);
                 this.Tags.Refill(results);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
@@ -171,7 +171,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         {
             try
             {
-                var results = this.component.FindDrugsByName(this.CriteriaName);
+                var results = this.component.GetDrugsByName(this.CriteriaName);
                 this.FoundDrugs.Refill(results);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
@@ -181,7 +181,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         {
             try
             {
-                var results = this.component.FindDrugsByTags(this.CriteriaTag.Name);
+                var results = this.component.GetDrugsByTags(this.CriteriaTag.Name);
                 this.FoundDrugs.Refill(results);
             }
             catch (Exception ex) { this.Handle.Error(ex); }

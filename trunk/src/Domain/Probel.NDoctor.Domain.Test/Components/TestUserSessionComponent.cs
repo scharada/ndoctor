@@ -44,7 +44,7 @@ namespace Probel.NDoctor.Domain.Test.Component
 
             this.Component.Create(dto);
 
-            var defaultUser = this.Component.FindDefaultUser();
+            var defaultUser = this.Component.GetDefaultUser();
             Assert.NotNull(defaultUser);
             Assert.AreEqual(user.FirstName, defaultUser.FirstName);
         }
@@ -64,7 +64,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [Test]
         public void CanFindDefaultUser()
         {
-            var result = this.Component.FindDefaultUser();
+            var result = this.Component.GetDefaultUser();
             Assert.NotNull(result, "Should be one default user.");
         }
 

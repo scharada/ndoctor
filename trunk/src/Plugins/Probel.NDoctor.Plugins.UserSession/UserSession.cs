@@ -123,7 +123,7 @@ namespace Probel.NDoctor.Plugins.UserSession
 
             TranslateExtension.ResourceManager = Messages.ResourceManager;
 
-            var splitter = PluginContext.Host.FindInHome("add", Groups.Tools);
+            var splitter = PluginContext.Host.GetInHome("add", Groups.Tools);
             var splitterExist = true;
             if (splitter == null || splitter.GetType() != typeof(RibbonMenuButtonData))
             {
@@ -189,7 +189,7 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         private void InitialiseConnectionPage()
         {
-            var defaultUser = this.component.FindDefaultUser();
+            var defaultUser = this.component.GetDefaultUser();
 
             if (defaultUser == null)
             {
@@ -225,7 +225,7 @@ namespace Probel.NDoctor.Plugins.UserSession
         private void PrintBusinessCard()
         {
             var card = new BusinessCard();
-            var user = this.component.FindUserById(PluginContext.Host.ConnectedUser.Id);
+            var user = this.component.GetUserById(PluginContext.Host.ConnectedUser.Id);
 
             card.DataContext = BusinessCardViewModel.CreateFrom(user);
 

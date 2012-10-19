@@ -40,7 +40,7 @@ namespace Probel.NDoctor.Domain.Test.Component
 
             this.Component.Create(pic, patients[0]);
 
-            var pics = this.Component.FindPictures(patients[0]);
+            var pics = this.Component.GetPictures(patients[0]);
             Assert.Greater(pics.Count, 0);
         }
 

@@ -34,7 +34,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
     /// <summary>
     /// This class manage authorisation. If the execution of the method is unauthorised, an exception is thrown.
     /// If no attribute is set to a method or a class, this implicit authorisation is done:
-    /// * Read : every method that contains "Find" or "GetAll"
+    /// * Read : every method that contains "Get" or "GetAll"
     /// * Write: every method that contains "Create", "Remove" or "Update"
     /// </summary>
     internal class AuthorisationInterceptor : BaseInterceptor
@@ -42,8 +42,8 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
         #region Fields
 
         private static readonly IAuthorisationPolicy policy = ObjectFactory.GetInstance<IAuthorisationPolicy>();
-        private static readonly string[] ReadAuthorisations = new string[] { "find", "getall" };
-        private static readonly string[] WriteAuthorisations = new string[] { "create", "remove", "update" };
+        private static readonly string[] ReadAuthorisations = new string[] { "get", "getall", "find", "findall" };
+        private static readonly string[] WriteAuthorisations = new string[] { "create", "insert", "remove", "delete", "update" };
 
         #endregion Fields
 
@@ -51,7 +51,8 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
 
         public LightUserDto User
         {
-            get; set;
+            get;
+            set;
         }
 
         #endregion Properties

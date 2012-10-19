@@ -33,7 +33,7 @@
                 <DataTemplate>
                     <DockPanel LastChildFill="True">
                         <ctrl:PrescriptionBox Prescription="{Binding}"
-                                              Tags="{Binding DataContext.Tags, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}"/>
+                                              Tags="{Binding DataContext.Tags, RelativeSource={RelativeSource GetAncestor, AncestorType={x:Type Page}}}"/>
                     </DockPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

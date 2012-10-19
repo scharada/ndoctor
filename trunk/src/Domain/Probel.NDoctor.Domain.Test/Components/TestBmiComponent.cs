@@ -35,7 +35,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [Test]
         public void CanAddBmiEntry()
         {
-            var patients = this.Component.FindPatientsByNameLight("Patient", SearchOn.FirstAndLastName);
+            var patients = this.Component.GetPatientsByNameLight("Patient", SearchOn.FirstAndLastName);
             Assert.Greater(patients.Count, 1, "No patient were found");
 
             var patient = this.Component.GetPatientWithBmiHistory(patients[0]);
@@ -43,7 +43,7 @@ namespace Probel.NDoctor.Domain.Test.Component
 
             this.Component.CreateBmi(new BmiDto() { Date = DateTime.Now, Height = 180, Weight = 85 }, patients[0]);
 
-            patients = this.Component.FindPatientsByNameLight("Patient", SearchOn.FirstAndLastName);
+            patients = this.Component.GetPatientsByNameLight("Patient", SearchOn.FirstAndLastName);
             Assert.Greater(patients.Count, 1, "No patient were found after add");
 
             patient = this.Component.GetPatientWithBmiHistory(patients[0]);
@@ -53,7 +53,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [Test]
         public void CanDeleteBmyEntry()
         {
-            var patients = this.Component.FindPatientsByNameLight("patient", SearchOn.FirstAndLastName);
+            var patients = this.Component.GetPatientsByNameLight("patient", SearchOn.FirstAndLastName);
             Assert.Greater(patients.Count, 1, "No patient were found");
 
             var patient = this.Component.GetPatientWithBmiHistory(patients[0]);
@@ -81,7 +81,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [Test]
         public void CanGetBmiHistory()
         {
-            var patients = this.Component.FindPatientsByNameLight("patient", SearchOn.FirstAndLastName);
+            var patients = this.Component.GetPatientsByNameLight("patient", SearchOn.FirstAndLastName);
             Assert.Greater(patients.Count, 1, "No patient were found");
 
             var patient = this.Component.GetPatientWithBmiHistory(patients[0]);

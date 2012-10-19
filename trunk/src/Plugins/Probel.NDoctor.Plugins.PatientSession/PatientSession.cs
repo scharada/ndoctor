@@ -84,7 +84,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
         {
             #region Add
             var splitterExist = true;
-            var splitter = PluginContext.Host.FindInHome("add", Groups.Tools);
+            var splitter = PluginContext.Host.GetInHome("add", Groups.Tools);
             if (splitter == null || splitter.GetType() != typeof(RibbonMenuButtonData))
             {
                 splitterExist = false;

@@ -346,8 +346,8 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             var patientEntity = this.Session.Get<Patient>(forPatient.Id);
             var doctorEntity = this.Session.Get<Doctor>(doctor.Id);
 
-            var doctorToDel = this.FindDoctorToDel(doctor, patientEntity);
-            var patientToDel = this.FindPatientToDel(forPatient, doctorEntity);
+            var doctorToDel = this.GetDoctorToDel(doctor, patientEntity);
+            var patientToDel = this.GetPatientToDel(forPatient, doctorEntity);
 
             patientEntity.Doctors.Remove(doctorToDel);
             doctorEntity.Patients.Remove(patientToDel);
@@ -481,7 +481,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
                     select d).Count() == 0;
         }
 
-        private Doctor FindDoctorToDel(LightDoctorDto doctor, Patient patientEntity)
+        private Doctor GetDoctorToDel(LightDoctorDto doctor, Patient patientEntity)
         {
             var doctorToDel = (from d in patientEntity.Doctors
                                where d.Id == doctor.Id
@@ -491,7 +491,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             else return doctorToDel;
         }
 
-        private Patient FindPatientToDel(LightPatientDto patient, Doctor doctorEntity)
+        private Patient GetPatientToDel(LightPatientDto patient, Doctor doctorEntity)
         {
             var patientToDel = (from p in doctorEntity.Patients
                                 where p.Id == patient.Id

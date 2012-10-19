@@ -37,7 +37,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         {
             this.FreeSlots = new TimeSlotCollection();
             this.AddAppointmentCommand = new RelayCommand(() => this.AddAppointment(), () => this.CanAddAppointment());
-            this.FindFreeSlotsCommand = new RelayCommand(() => this.FindFreeSlots(), () => this.CanFindSlots());
+            this.GetFreeSlotsCommand = new RelayCommand(() => this.GetFreeSlots(), () => this.CanFindSlots());
 
             Countdown.Elapsed += (sender, e) => PluginContext.Host.Invoke(() =>
             {
@@ -56,7 +56,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             private set;
         }
 
-        public ICommand FindFreeSlotsCommand
+        public ICommand GetFreeSlotsCommand
         {
             get;
             private set;
@@ -76,7 +76,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         {
             try
             {
-                var tags = Component.FindTags(TagCategory.Appointment);
+                var tags = Component.GetTags(TagCategory.Appointment);
                 AppointmentTags.Refill(tags);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
@@ -114,11 +114,11 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                 && this.SelectedAppointmentTag != null;
         }
 
-        private void FindFreeSlots()
+        private void GetFreeSlots()
         {
             try
             {
-                var freeSlots = this.Component.FindSlots(this.StartDate, this.EndDate, PluginContext.Host.Workday);
+                var freeSlots = this.Component.GetSlots(this.StartDate, this.EndDate, PluginContext.Host.Workday);
 
                 this.FreeSlots.Refill(freeSlots);
             }

@@ -181,7 +181,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 if (PluginContext.Host.SelectedPatient == null) { return; }
                 if (this.Patient != null && PluginContext.DoorKeeper.IsUserGranted(To.Write)) { this.Save(); }
 
-                var result = this.component.FindDoctorOf(PluginContext.Host.SelectedPatient);
+                var result = this.component.GetDoctorOf(PluginContext.Host.SelectedPatient);
                 this.Doctors.Refill(result);
 
                 //Refill the collections BEFORE refreshing the patient.
@@ -191,7 +191,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 this.Professions.Refill(this.component.GetAllProfessions());
 
                 //Refresh the patient with the refreshed collection binding
-                this.Patient = this.component.FindPatient(PluginContext.Host.SelectedPatient);
+                this.Patient = this.component.GetPatient(PluginContext.Host.SelectedPatient);
                 this.RefreshPatientData();
             }
             catch (Exception ex) { this.Handle.Error(ex); }

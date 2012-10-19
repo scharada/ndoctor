@@ -43,7 +43,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         public RemoveMeetingViewModel()
         {
             this.BusyAppointments = new ObservableCollection<AppointmentDto>();
-            this.FindSlotsCommand = new RelayCommand(() => this.FindSlots(), () => this.CanFindSlots());
+            this.GetSlotsCommand = new RelayCommand(() => this.GetSlots(), () => this.CanFindSlots());
             this.RemoveAppointmentCommand = new RelayCommand(() => this.RemoveAppointment(), () => CanRemoveAppointment());
             Countdown.Elapsed += (sender, e) => PluginContext.Host.Invoke(() =>
             {
@@ -62,7 +62,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             private set;
         }
 
-        public ICommand FindSlotsCommand
+        public ICommand GetSlotsCommand
         {
             get;
             private set;
@@ -99,9 +99,9 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                 && this.SelectedPatient != null;
         }
 
-        private void FindSlots()
+        private void GetSlots()
         {
-            var slots = this.Component.FindAppointments(this.SelectedPatient, this.StartDate, this.EndDate);
+            var slots = this.Component.GetAppointments(this.SelectedPatient, this.StartDate, this.EndDate);
 
             this.BusyAppointments.Refill(slots);
 

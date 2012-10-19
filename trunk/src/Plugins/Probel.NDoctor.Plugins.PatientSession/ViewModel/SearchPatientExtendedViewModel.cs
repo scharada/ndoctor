@@ -181,7 +181,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             {
                 var expression = new SpecificationExpression<PatientDto>();
 
-                if (this.IsByProfession) { expression.And(new FindPatientByProfessionSpecification(this.SelectedProfession)); }
+                if (this.IsByProfession) { expression.And(new GetPatientByProfessionSpecification(this.SelectedProfession)); }
 
                 var context = TaskScheduler.FromCurrentSynchronizationContext();
                 var task = Task.Factory
@@ -194,7 +194,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
         private IList<LightPatientDto> SearchAsync(SpecificationExpression<PatientDto> expression)
         {
             this.IsBusy = true;
-            return this.Component.FindPatientsByNameLight(this.Name, expression);
+            return this.Component.GetPatientsByNameLight(this.Name, expression);
         }
 
         private void SearchCallback(Task<IList<LightPatientDto>> e)

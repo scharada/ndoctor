@@ -77,9 +77,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         /// A list of pictures
         /// </returns>
-        public IList<LightPictureDto> FindLightPictures(LightPatientDto patient, TagDto tag)
+        public IList<LightPictureDto> GetLightPictures(LightPatientDto patient, TagDto tag)
         {
-            var pictures = FindEntityPictures(patient, tag);
+            var pictures = GetEntityPictures(patient, tag);
             return Mapper.Map<IList<Picture>, IList<LightPictureDto>>(pictures);
         }
 
@@ -92,18 +92,18 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         /// A list of pictures
         /// </returns>
-        public IList<LightPictureDto> FindLightPictures(LightPatientDto patient)
+        public IList<LightPictureDto> GetLightPictures(LightPatientDto patient)
         {
-            var pictures = FindEntityPictures(patient, null);
+            var pictures = GetEntityPictures(patient, null);
             return Mapper.Map<IList<Picture>, IList<LightPictureDto>>(pictures);
         }
 
         /// <summary>
-        /// Finds the full picture from the thumbnail.
+        /// Gets the full picture from the thumbnail.
         /// </summary>
         /// <param name="picture">The picture.</param>
         /// <returns></returns>
-        public PictureDto FindPicture(LightPictureDto picture)
+        public PictureDto GetPicture(LightPictureDto picture)
         {
             Assert.IsNotNull(picture, "picture");
             try
@@ -126,9 +126,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         /// A list of picture
         /// </returns>
-        public IList<PictureDto> FindPictures(LightPatientDto patient)
+        public IList<PictureDto> GetPictures(LightPatientDto patient)
         {
-            return this.FindPictures(patient, null);
+            return this.GetPictures(patient, null);
         }
 
         /// <summary>
@@ -141,13 +141,13 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         /// A list of pictures
         /// </returns>
-        public IList<PictureDto> FindPictures(LightPatientDto patient, TagDto tag)
+        public IList<PictureDto> GetPictures(LightPatientDto patient, TagDto tag)
         {
-            IList<Picture> pictures = this.FindEntityPictures(patient, tag);
+            IList<Picture> pictures = this.GetEntityPictures(patient, tag);
             return Mapper.Map<IList<Picture>, IList<PictureDto>>(pictures);
         }
 
-        private IList<Picture> FindEntityPictures(LightPatientDto patient, TagDto tag)
+        private IList<Picture> GetEntityPictures(LightPatientDto patient, TagDto tag)
         {
             IList<Picture> pictures = new List<Picture>();
             var entity = (from p in this.Session.Query<Patient>()

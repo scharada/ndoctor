@@ -16,7 +16,7 @@
              Loaded="this_Loaded">
     <UserControl.InputBindings>
         <KeyBinding Key="Enter"
-                    Command="{Binding FindFreeSlotsCommand}"/>
+                    Command="{Binding GetFreeSlotsCommand}"/>
         <KeyBinding Key="Escape"
                     Command="iw:InnerWindow.CancelCommand" />
     </UserControl.InputBindings>
@@ -86,7 +86,7 @@
                     <Border Style="{StaticResource BorderStyle}"
                             DockPanel.Dock="Top">
                         <Button Content="{Binding Source={x:Static Member=text:WorkbenchText.BtnSearch}}"
-                                Command="{Binding FindFreeSlotsCommand}"/>
+                                Command="{Binding GetFreeSlotsCommand}"/>
                     </Border>
                     <Label DockPanel.Dock="Top" Content="{Binding Source={x:Static Member=text:WorkbenchText.FreeSlots}}"/>
                     <Border Style="{StaticResource BorderStyle}"

@@ -46,11 +46,11 @@ namespace Probel.NDoctor.Domain.DTO.Components
         long Create(TaskDto task);
 
         /// <summary>
-        /// Finds the task by its reference name.
+        /// Gets the task by its reference name.
         /// </summary>
         /// <param name="refName">Name of the ref.</param>
         /// <returns>The found task or <c>Null</c> if nothing is found</returns>
-        TaskDto FindTaskByReference(string refName);
+        TaskDto GetTaskByReference(string refName);
 
         /// <summary>
         /// Gets all users stored in the database.

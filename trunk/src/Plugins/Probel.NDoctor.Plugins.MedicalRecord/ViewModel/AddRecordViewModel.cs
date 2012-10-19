@@ -128,7 +128,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         {
             try
             {
-                this.Tags.Refill(this.component.FindTags(TagCategory.MedicalRecord));
+                this.Tags.Refill(this.component.GetTags(TagCategory.MedicalRecord));
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }

@@ -211,7 +211,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             var from = DateTime.Today.AddMonths(-1);
             var to = DateTime.Today;
 
-            var found = component.FindPrescriptionsByDates(PluginContext.Host.SelectedPatient, from, to);
+            var found = component.GetPrescriptionsByDates(PluginContext.Host.SelectedPatient, from, to);
 
             Notifyer.OnPrescriptionFound(this, new PrescriptionResultDto(found, from, to));
         }

@@ -51,7 +51,7 @@ namespace Probel.NDoctor.Domain.DAL.Mementos
                 var index = (from c in item.PreviousStates
                              select c).Max(e => e.Counter) + 1;
 
-                /* The modulo calculation is used to find the index where to add the new state in the stack*/
+                /* The modulo calculation is used to Get the index where to add the new state in the stack*/
                 Mapper.Map<MedicalRecordState, MedicalRecordState>(state, item.PreviousStates[index % MEMENTO_SIZE]);
                 item.PreviousStates[index % MEMENTO_SIZE].Counter = index;
                 item.PreviousStates[index % MEMENTO_SIZE].LastUpdate = DateTime.Now;

@@ -148,12 +148,12 @@ namespace Probel.NDoctor.View.Plugins
         void AddToApplicationMenu(RibbonControlData control);
 
         /// <summary>
-        /// Finds in the home menu the control with the specified name in the specified group.
+        /// Gets in the home menu the control with the specified name in the specified group.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="group">The group.</param>
         /// <returns>The searched control or null is not found</returns>
-        RibbonBase FindInHome(string name, Groups group);
+        RibbonBase GetInHome(string name, Groups group);
 
         /// <summary>
         /// Deactivates the menu.
