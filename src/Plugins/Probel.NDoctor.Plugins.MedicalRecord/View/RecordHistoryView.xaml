@@ -20,7 +20,7 @@
                         Command="{Binding UpdateRecordCommand}"/>
             </Border>
             <ScrollViewer DockPanel.Dock="Left"                          
-                          MinWidth="150">
+                          MinWidth="150" Width="197">
             <ListView Name="list"
                       ItemsSource="{Binding History}"
                       SelectedItem="{Binding SelectedState}"

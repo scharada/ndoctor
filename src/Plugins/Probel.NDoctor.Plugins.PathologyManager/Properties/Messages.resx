@@ -169,6 +169,15 @@
     <value>Une erreur est survenue. Vérifier les logs pour plus d'informations.</value>
     <comment>An error occured. Check the logs for further information.</comment>
   </data>
+  <data name="Msg_ExplainHowToAddPeriod" xml:space="preserve">
+    <value>* Use the search box to find the pathology. 
+* In the list, click on the pathology
+* Choose the begin and the end date of the pathology period. 
+* Click on "Add"</value>
+    <comment>* Use the search box to find the pathology. 
+* In the list, click on the pathology and choose the begin and the end date of the pathology period. 
+* Click on "Add"</comment>
+  </data>
   <data name="Msg_FailAddIllnessPeriod" xml:space="preserve">
     <value>An error occured while adding an illness period</value>
     <comment>An error occured while adding an illness period</comment>

@@ -53,5 +53,10 @@ namespace Probel.NDoctor.Plugins.PathologyManager.Translations
         }
 
         #endregion Properties
+
+        public static string ExplainHowToAddPeriod
+        {
+            get { return Messages.Msg_ExplainHowToAddPeriod; }
+        }
     }
 }
