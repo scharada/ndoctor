@@ -24,6 +24,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows.Input;
+    using System.Windows.Threading;
 
     using Microsoft.Win32;
 
@@ -57,6 +58,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         private bool isBusy;
         private bool isFilterDisabled = false;
         private bool isInformationExpanded;
+        private bool isRefreshing = false;
         private bool isRefreshMuted = false;
         private LightPictureMemoryComponent memoryComponent = LightPictureMemoryComponent.Empty;
         private PictureDto selectedPicture;
@@ -251,10 +253,22 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
         public void Refresh()
         {
-            //If there's no change since last time, don't reload the data.
-            if (this.isRefreshMuted) { return; }
+            if (this.isRefreshing)
+            {
+                this.Logger.Debug("Already refreshing...");
+                return;
+            }
+
+            /* TODO: fix this issue
+             * This is an issue that I have to check if the refresh is muted. It means that multiple refresh
+             * are triggered. That's not the expected behaviour. Maybe check in the event NewUserConnected
+             * and NewPatientConnected*/
+            if (this.isRefreshMuted) { return; } //If there's no change since last time, don't reload the data.
+
             try
             {
+                this.isRefreshing = true;
+
                 this.SelectedPicture = new PictureDto();
                 var tags = this.component.GetTags(TagCategory.Picture);
 
@@ -271,10 +285,8 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 this.Filter();
                 this.isRefreshMuted = true; //We've just refresh, don't need to refresh next time.
             }
-            catch (Exception ex)
-            {
-                this.Handle.Error(ex, Messages.Msg_ErrorFailToRefreshPicture);
-            }
+            catch (Exception ex) { this.Handle.Error(ex, Messages.Msg_ErrorFailToRefreshPicture); }
+            finally { this.isRefreshing = false; }
         }
 
         private void AddPicture()
@@ -338,7 +350,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             {
                 Task.Factory
                     .StartNew<TaskArgs>(e => this.FilterAsync(e as TaskArgs), input as TaskArgs)
-                    .ContinueWith(e => this.FilterCallback(e.Result), context);
+                    .ContinueWith(e => this.FilterCallback(e), context);
             }
             else //If nothing has changed, optimise filter doing this in memory
             {
@@ -372,13 +384,17 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             return input;
         }
 
-        private void FilterCallback(TaskArgs args)
+        private void FilterCallback(Task<TaskArgs> e)
         {
-            this.memoryComponent = args.MemoryComponent ?? this.memoryComponent;
-            this.Pictures.Refill(args.Pictures);
-            this.SelectedPicture = args.SelectedPicture;
-            this.Logger.Debug("\tRefreshed GUI after pictures filtering");
-            this.IsBusy = false;
+            ExecuteIfTaskIsNotFaulted(e, () =>
+            {
+                var args = e.Result;
+                this.memoryComponent = args.MemoryComponent ?? this.memoryComponent;
+                this.Pictures.Refill(args.Pictures);
+                this.SelectedPicture = args.SelectedPicture;
+                this.Logger.Debug("\tRefreshed GUI after pictures filtering");
+                this.IsBusy = false;
+            });
         }
 
         private Tuple<LightPictureDto[], PictureDto> FilterInMemoryAsync()
@@ -403,10 +419,13 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
         private void FilterInMemoryCallback(Task<Tuple<LightPictureDto[], PictureDto>> e)
         {
-            this.Pictures.Refill(e.Result.Item1);
-            this.SelectedPicture = e.Result.Item2;
-            this.IsBusy = false;
-            this.Logger.Debug("Filtered pictures in memory");
+            this.ExecuteIfTaskIsNotFaulted(e, () =>
+            {
+                this.Pictures.Refill(e.Result.Item1);
+                this.SelectedPicture = e.Result.Item2;
+                this.IsBusy = false;
+                this.Logger.Debug("Filtered pictures in memory");
+            });
         }
 
         private void InsertJokerTag(IList<TagDto> tags)
@@ -441,7 +460,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
                 Task.Factory
                     .StartNew<TaskArgs>(e => SaveAsync(e as TaskArgs), args)
-                    .ContinueWith(e => this.SaveCallback(e.Result), context);
+                    .ContinueWith(e => this.SaveCallback(e), context);
             }
             catch (Exception ex)
             {
@@ -460,17 +479,21 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             return context;
         }
 
-        private void SaveCallback(TaskArgs context)
+        private void SaveCallback(Task<TaskArgs> e)
         {
-            this.isRefreshMuted = false;
-            this.Refresh();
+            this.ExecuteIfTaskIsNotFaulted(e, () =>
+            {
+                var context = e.Result;
+                this.isRefreshMuted = false;
+                this.Refresh();
 
-            this.creatingNewPicture = context.CreatingNewPicture;
-            this.IsBusy = false;
+                this.creatingNewPicture = context.CreatingNewPicture;
+                this.IsBusy = false;
 
-            PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PictureUpdated);
-            this.SelectedPicture = new PictureDto();
-            this.IsInformationExpanded = false;
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PictureUpdated);
+                this.SelectedPicture = new PictureDto();
+                this.IsInformationExpanded = false;
+            });
         }
 
         private void SelectFirstTag()

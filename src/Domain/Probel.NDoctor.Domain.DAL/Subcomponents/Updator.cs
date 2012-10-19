@@ -23,12 +23,14 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using AutoMapper;
 
     using log4net;
 
     using NHibernate;
+    using NHibernate.Linq;
 
     using Probel.Helpers.Assertion;
     using Probel.Mvvm.DataBinding;
@@ -58,6 +60,18 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         #endregion Constructors
 
         #region Methods
+
+        /// <summary>
+        /// Updates the state of the database.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        public void Update(DatabaseState item)
+        {
+            var state = (from i in this.Session.Query<DatabaseState>()
+                         select i).First();
+            Mapper.Map<DatabaseState, DatabaseState>(item, state);
+            this.Session.Update(state);
+        }
 
         /// <summary>
         /// Updates the specified tag.

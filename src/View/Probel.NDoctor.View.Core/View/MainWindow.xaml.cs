@@ -473,11 +473,11 @@ namespace Probel.NDoctor.View.Core.View
 
         private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-#if DEBUG
+            #if DEBUG
             this.WindowState = System.Windows.WindowState.Normal;
-#else
+            #else
             this.WindowState = System.Windows.WindowState.Maximized;
-#endif
+            #endif
         }
 
         private void WriteStatus(LightPatientDto value)

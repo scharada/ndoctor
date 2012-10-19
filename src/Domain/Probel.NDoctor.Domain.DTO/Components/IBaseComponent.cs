@@ -83,6 +83,84 @@ namespace Probel.NDoctor.Domain.DTO.Components
         long Create(LightPatientDto patient);
 
         /// <summary>
+        /// Gets all doctors.
+        /// </summary>
+        /// <returns>The light weight version of the doctors</returns>
+        IList<LightDoctorDto> GetAllDoctorsLight();
+
+        /// <summary>
+        /// Gets all drugs from the database.
+        /// </summary>
+        /// <returns></returns>
+        IList<DrugDto> GetAllDrugs();
+
+        /// <summary>
+        /// Gets all insurances stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        IList<InsuranceDto> GetAllInsurances();
+
+        /// <summary>
+        /// Gets all insurances stored in the database. Return a light version of the insurance
+        /// </summary>
+        /// <returns>A list of light weight insurance</returns>
+        IList<LightInsuranceDto> GetAllInsurancesLight();
+
+        /// <summary>
+        /// Gets all pathologies stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        IList<PathologyDto> GetAllPathologies();
+
+        /// <summary>
+        /// Gets all the patients.
+        /// </summary>
+        /// <returns></returns>
+        IList<LightPatientDto> GetAllPatientsLight();
+
+        /// <summary>
+        /// Gets all practices stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        IList<PracticeDto> GetAllPractices();
+
+        /// <summary>
+        /// Gets all practices stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        IList<LightPracticeDto> GetAllPracticesLight();
+
+        /// <summary>
+        /// Gets all professions stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        IList<ProfessionDto> GetAllProfessions();
+
+        /// <summary>
+        /// Gets all reputations stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        IList<ReputationDto> GetAllReputations();
+
+        /// <summary>
+        /// Gets all roles light.
+        /// </summary>
+        /// <returns>An array with all the roles</returns>
+        IList<RoleDto> GetAllRolesLight();
+
+        /// <summary>
+        /// Gets all the tags
+        /// </summary>
+        /// <returns></returns>
+        IList<TagDto> GetAllTags();
+
+        /// <summary>
+        /// Gets all users.
+        /// </summary>
+        /// <returns></returns>
+        IList<LightUserDto> GetAllUsers();
+
+        /// <summary>
         /// Gets the doctors by name.
         /// </summary>
         /// <param name="name">The name.</param>
@@ -178,84 +256,6 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="id">The id.</param>
         /// <returns></returns>
         UserDto GetUserById(long id);
-
-        /// <summary>
-        /// Gets all doctors.
-        /// </summary>
-        /// <returns>The light weight version of the doctors</returns>
-        IList<LightDoctorDto> GetAllDoctorsLight();
-
-        /// <summary>
-        /// Gets all drugs from the database.
-        /// </summary>
-        /// <returns></returns>
-        IList<DrugDto> GetAllDrugs();
-
-        /// <summary>
-        /// Gets all insurances stored in the database.
-        /// </summary>
-        /// <returns></returns>
-        IList<InsuranceDto> GetAllInsurances();
-
-        /// <summary>
-        /// Gets all insurances stored in the database. Return a light version of the insurance
-        /// </summary>
-        /// <returns>A list of light weight insurance</returns>
-        IList<LightInsuranceDto> GetAllInsurancesLight();
-
-        /// <summary>
-        /// Gets all pathologies stored in the database.
-        /// </summary>
-        /// <returns></returns>
-        IList<PathologyDto> GetAllPathologies();
-
-        /// <summary>
-        /// Gets all the patients.
-        /// </summary>
-        /// <returns></returns>
-        IList<LightPatientDto> GetAllPatientsLight();
-
-        /// <summary>
-        /// Gets all practices stored in the database.
-        /// </summary>
-        /// <returns></returns>
-        IList<PracticeDto> GetAllPractices();
-
-        /// <summary>
-        /// Gets all practices stored in the database.
-        /// </summary>
-        /// <returns></returns>
-        IList<LightPracticeDto> GetAllPracticesLight();
-
-        /// <summary>
-        /// Gets all professions stored in the database.
-        /// </summary>
-        /// <returns></returns>
-        IList<ProfessionDto> GetAllProfessions();
-
-        /// <summary>
-        /// Gets all reputations stored in the database.
-        /// </summary>
-        /// <returns></returns>
-        IList<ReputationDto> GetAllReputations();
-
-        /// <summary>
-        /// Gets all roles light.
-        /// </summary>
-        /// <returns>An array with all the roles</returns>
-        IList<RoleDto> GetAllRolesLight();
-
-        /// <summary>
-        /// Gets all the tags
-        /// </summary>
-        /// <returns></returns>
-        IList<TagDto> GetAllTags();
-
-        /// <summary>
-        /// Gets all users.
-        /// </summary>
-        /// <returns></returns>
-        IList<LightUserDto> GetAllUsers();
 
         /// <summary>
         /// Removes item with the specified id.

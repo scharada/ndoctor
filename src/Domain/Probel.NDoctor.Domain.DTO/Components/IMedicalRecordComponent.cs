@@ -42,6 +42,19 @@ namespace Probel.NDoctor.Domain.DTO.Components
         long Create(MacroDto macro);
 
         /// <summary>
+        /// Gets all the macros.
+        /// </summary>
+        /// <returns></returns>
+        MacroDto[] GetAllMacros();
+
+        /// <summary>
+        /// Gets the history of the specified medical record.
+        /// </summary>
+        /// <param name="record">The record.</param>
+        /// <returns>The items contained in the history</returns>
+        IEnumerable<MedicalRecordStateDto> GetHistory(MedicalRecordDto record);
+
+        /// <summary>
         /// Gets the medical record by id.
         /// </summary>
         /// <param name="id">The id.</param>
@@ -56,19 +69,6 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="patient">The patient.</param>
         /// <returns></returns>
         MedicalRecordCabinetDto GetMedicalRecordCabinet(LightPatientDto patient);
-
-        /// <summary>
-        /// Gets all the macros.
-        /// </summary>
-        /// <returns></returns>
-        MacroDto[] GetAllMacros();
-
-        /// <summary>
-        /// Gets the history of the specified medical record.
-        /// </summary>
-        /// <param name="record">The record.</param>
-        /// <returns>The items contained in the history</returns>
-        IEnumerable<MedicalRecordStateDto> GetHistory(MedicalRecordDto record);
 
         /// <summary>
         /// Determines whether the specified macro is valid.

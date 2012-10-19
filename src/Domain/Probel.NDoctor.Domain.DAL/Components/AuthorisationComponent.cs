@@ -83,19 +83,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Gets the task by its reference name.
-        /// </summary>
-        /// <param name="refName">Name of the ref.</param>
-        /// <returns>The found task or <c>Null</c> if nothing is found</returns>
-        public TaskDto GetTaskByReference(string refName)
-        {
-            var result = (from t in this.Session.Query<Task>()
-                          where t.RefName == refName
-                          select t).FirstOrDefault();
-            return Mapper.Map<Task, TaskDto>(result);
-        }
-
-        /// <summary>
         /// Gets all users stored in the database.
         /// </summary>
         /// <returns></returns>
@@ -142,6 +129,19 @@ namespace Probel.NDoctor.Domain.DAL.Components
             }
 
             return Mapper.Map<IEnumerable<Task>, TaskDto[]>(result);
+        }
+
+        /// <summary>
+        /// Gets the task by its reference name.
+        /// </summary>
+        /// <param name="refName">Name of the ref.</param>
+        /// <returns>The found task or <c>Null</c> if nothing is found</returns>
+        public TaskDto GetTaskByReference(string refName)
+        {
+            var result = (from t in this.Session.Query<Task>()
+                          where t.RefName == refName
+                          select t).FirstOrDefault();
+            return Mapper.Map<Task, TaskDto>(result);
         }
 
         /// <summary>

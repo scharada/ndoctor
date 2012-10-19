@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -16,38 +14,30 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-#endregion Header
-
-namespace Probel.NDoctor.View.Toolbox.View
+namespace Probel.NDoctor.Domain.DAL.Entities
 {
-    using System.Windows;
-    using System.Windows.Input;
-
-    using Probel.NDoctor.View.Toolbox.ViewModel;
-
     /// <summary>
-    /// Interaction logic for ExceptionView.xaml
+    /// Provides a state of the database. This is used to trigger some processing depending of the state.
+    /// For instance, nDoctor will know whether or not execute the thumbnail maker by checking this object
     /// </summary>
-    public partial class ExceptionView : Window
+    internal class DatabaseState : Entity
     {
         #region Constructors
 
-        public ExceptionView()
+        public DatabaseState()
         {
-            InitializeComponent();
-            this.DataContext = new ExceptionViewModel();
+            this.AreThumbnailsCreated = false;
         }
 
         #endregion Constructors
 
-        #region Methods
+        #region Properties
 
-        private void CloseCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        public virtual bool AreThumbnailsCreated
         {
-            this.Close();
+            get; set;
         }
 
-        #endregion Methods
+        #endregion Properties
     }
 }

@@ -22,6 +22,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
 
     using log4net;
 
+    using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.Components;
@@ -30,7 +31,6 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
     using Probel.NDoctor.View.Toolbox.Helpers;
     using Probel.NDoctor.View.Toolbox.Properties;
     using Probel.NDoctor.View.Toolbox.ViewModel;
-    using Probel.Helpers.Assertion;
 
     /// <summary>
     /// This class provides error handling methods

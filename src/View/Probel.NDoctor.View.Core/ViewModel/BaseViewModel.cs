@@ -16,6 +16,10 @@
 */
 namespace Probel.NDoctor.View.Core.ViewModel
 {
+    using System;
+    using System.Threading.Tasks;
+    using System.Windows.Threading;
+
     using log4net;
 
     using Probel.Helpers.Strings;
@@ -60,6 +64,26 @@ namespace Probel.NDoctor.View.Core.ViewModel
         public void SetStatusToReady()
         {
             if (PluginContext.Host != null) PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_Ready);
+        }
+
+        /// <summary>
+        /// Executes the specified action if the specified task is not in faulted state. Otherwise, it rethrow the exception.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="e">The e.</param>
+        /// <param name="action">The action.</param>
+        protected void ExecuteIfTaskIsNotFaulted<T>(Task<T> e, Action action)
+        {
+            if (!e.IsFaulted) { action(); }
+            else
+            {
+                Dispatcher.CurrentDispatcher.BeginInvoke(new Action(() =>
+                {
+                    this.Logger.ErrorFormat("Thread '{0}' is in faulted state. Further information follows.", e.Id);
+                    this.Handle.Fatal(e.Exception);
+                }));
+            }
+
         }
 
         private void IndicateError()

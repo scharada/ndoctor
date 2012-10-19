@@ -44,7 +44,7 @@
 
             var exist = (from i in this.Session.Query<MacroDto>()
                          where i.Id == item.Id
-                         select i).ToList().Count() > 0;
+                         select i).Count() > 0;
             if (exist) throw new ExistingItemException();
 
             var entity = Mapper.Map<MacroDto, Macro>(item);

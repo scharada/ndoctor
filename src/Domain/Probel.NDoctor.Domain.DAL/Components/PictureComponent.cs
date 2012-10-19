@@ -167,10 +167,16 @@ namespace Probel.NDoctor.Domain.DAL.Components
                             where p.Tag.Id == tag.Id
                             select p).ToList();
             }
-            if (new ImageHelper().TryCreateThumbnail(pictures))
+            var db = this.GetDatabaseState();
+            if (!db.AreThumbnailsCreated  )
             {
+                new ImageHelper().TryCreateThumbnail(pictures);
                 new Updator(this.Session).Update(pictures);
+                db.AreThumbnailsCreated = true;
+                new Updator(this.Session).Update(db);
+                this.Logger.Debug("Creation of the thumbnails created and database status updated");
             }
+            else { this.Logger.Debug("Thumbnails creation already executed. Action aborded."); }
             return pictures;
         }
 

@@ -164,6 +164,165 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets all doctors.
+        /// </summary>
+        /// <returns>The light weight version of the doctors</returns>
+        public IList<LightDoctorDto> GetAllDoctorsLight()
+        {
+            var results = (from item in this.Session.Query<Doctor>()
+                           select item).ToList();
+
+            return Mapper.Map<IList<Doctor>, IList<LightDoctorDto>>(results);
+        }
+
+        /// <summary>
+        /// Gets all drugs from the database.
+        /// </summary>
+        /// <returns></returns>
+        public IList<DrugDto> GetAllDrugs()
+        {
+            var tags = (from tag in this.Session.Query<Drug>()
+                        select tag).ToList();
+
+            return Mapper.Map<IList<Drug>, IList<DrugDto>>(tags);
+        }
+
+        /// <summary>
+        /// Gets all insurances stored in the database.
+        /// </summary>
+        /// <returns>A list of insurance</returns>
+        public IList<InsuranceDto> GetAllInsurances()
+        {
+            var insurances = this.GetAllEntitiesInsurances();
+
+            return Mapper.Map<IList<Insurance>, IList<InsuranceDto>>(insurances);
+        }
+
+        /// <summary>
+        /// Gets all insurances stored in the database. Return a light version of the insurance
+        /// </summary>
+        /// <returns>A list of light weight insurance</returns>
+        public IList<LightInsuranceDto> GetAllInsurancesLight()
+        {
+            var insurances = this.GetAllEntitiesInsurances();
+
+            return Mapper.Map<IList<Insurance>, IList<LightInsuranceDto>>(insurances);
+        }
+
+        /// <summary>
+        /// Gets all pathologies stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        public IList<PathologyDto> GetAllPathologies()
+        {
+            var pathologies = this.GetAllEntitiesPathologies();
+
+            return Mapper.Map<IList<Pathology>, IList<PathologyDto>>(pathologies);
+        }
+
+        /// <summary>
+        /// Gets all the patients in light version.
+        /// </summary>
+        /// <returns></returns>
+        public IList<LightPatientDto> GetAllPatientsLight()
+        {
+            var result = GetAllPatientEntities();
+
+            return Mapper.Map<IList<Patient>, IList<LightPatientDto>>(result);
+        }
+
+        /// <summary>
+        /// Gets all practices stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        public IList<PracticeDto> GetAllPractices()
+        {
+            var practices = this.GetAllEntitiesPractices();
+            return Mapper.Map<IList<Practice>, IList<PracticeDto>>(practices);
+        }
+
+        /// <summary>
+        /// Gets all practices stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        public IList<LightPracticeDto> GetAllPracticesLight()
+        {
+            var practices = this.GetAllEntitiesPractices();
+            return Mapper.Map<IList<Practice>, IList<LightPracticeDto>>(practices);
+        }
+
+        /// <summary>
+        /// Gets all professions stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        public IList<ProfessionDto> GetAllProfessions()
+        {
+            var professions = (from profession in this.Session.Query<Profession>()
+                               select profession)
+                                  .OrderBy(e => e.Name)
+                                  .ToList();
+
+            return Mapper.Map<IList<Profession>, IList<ProfessionDto>>(professions);
+        }
+
+        /// <summary>
+        /// Gets all reputations stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        public IList<ReputationDto> GetAllReputations()
+        {
+            var reputations = (from reputation in this.Session.Query<Reputation>()
+                               select reputation)
+                                    .OrderBy(e => e.Name)
+                                    .ToList();
+
+            return Mapper.Map<IList<Reputation>, IList<ReputationDto>>(reputations);
+        }
+
+        /// <summary>
+        /// Gets all roles light.
+        /// </summary>
+        /// <returns>An array with all the roles</returns>
+        public IList<RoleDto> GetAllRolesLight()
+        {
+            var roles = this.GetAllEntitiesRoles();
+            return Mapper.Map<IList<Role>, IList<RoleDto>>(roles);
+        }
+
+        /// <summary>
+        /// Gets all the tags
+        /// </summary>
+        /// <returns></returns>
+        public IList<TagDto> GetAllTags()
+        {
+            var tags = (from tag in this.Session.Query<Tag>()
+                        select tag)
+                            .OrderBy(e => e.Category)
+                            .ToList();
+
+            return Mapper.Map<IList<Tag>, IList<TagDto>>(tags);
+        }
+
+        /// <summary>
+        /// Gets all users.
+        /// </summary>
+        /// <returns></returns>
+        [Granted(To.Everyone)]
+        public IList<LightUserDto> GetAllUsers()
+        {
+            try
+            {
+                var result = (from user in Session.Query<User>()
+                              select user).ToList();
+                return Mapper.Map<IList<User>, IList<LightUserDto>>(result);
+            }
+            catch (Exception ex)
+            {
+                throw new QueryException(ex);
+            }
+        }
+
+        /// <summary>
         /// Gets the doctors by name.
         /// </summary>
         /// <param name="name">The name.</param>
@@ -397,165 +556,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Gets all doctors.
-        /// </summary>
-        /// <returns>The light weight version of the doctors</returns>
-        public IList<LightDoctorDto> GetAllDoctorsLight()
-        {
-            var results = (from item in this.Session.Query<Doctor>()
-                           select item).ToList();
-
-            return Mapper.Map<IList<Doctor>, IList<LightDoctorDto>>(results);
-        }
-
-        /// <summary>
-        /// Gets all drugs from the database.
-        /// </summary>
-        /// <returns></returns>
-        public IList<DrugDto> GetAllDrugs()
-        {
-            var tags = (from tag in this.Session.Query<Drug>()
-                        select tag).ToList();
-
-            return Mapper.Map<IList<Drug>, IList<DrugDto>>(tags);
-        }
-
-        /// <summary>
-        /// Gets all insurances stored in the database.
-        /// </summary>
-        /// <returns>A list of insurance</returns>
-        public IList<InsuranceDto> GetAllInsurances()
-        {
-            var insurances = this.GetAllEntitiesInsurances();
-
-            return Mapper.Map<IList<Insurance>, IList<InsuranceDto>>(insurances);
-        }
-
-        /// <summary>
-        /// Gets all insurances stored in the database. Return a light version of the insurance
-        /// </summary>
-        /// <returns>A list of light weight insurance</returns>
-        public IList<LightInsuranceDto> GetAllInsurancesLight()
-        {
-            var insurances = this.GetAllEntitiesInsurances();
-
-            return Mapper.Map<IList<Insurance>, IList<LightInsuranceDto>>(insurances);
-        }
-
-        /// <summary>
-        /// Gets all pathologies stored in the database.
-        /// </summary>
-        /// <returns></returns>
-        public IList<PathologyDto> GetAllPathologies()
-        {
-            var pathologies = this.GetAllEntitiesPathologies();
-
-            return Mapper.Map<IList<Pathology>, IList<PathologyDto>>(pathologies);
-        }
-
-        /// <summary>
-        /// Gets all the patients in light version.
-        /// </summary>
-        /// <returns></returns>
-        public IList<LightPatientDto> GetAllPatientsLight()
-        {
-            var result = GetAllPatientEntities();
-
-            return Mapper.Map<IList<Patient>, IList<LightPatientDto>>(result);
-        }
-
-        /// <summary>
-        /// Gets all practices stored in the database.
-        /// </summary>
-        /// <returns></returns>
-        public IList<PracticeDto> GetAllPractices()
-        {
-            var practices = this.GetAllEntitiesPractices();
-            return Mapper.Map<IList<Practice>, IList<PracticeDto>>(practices);
-        }
-
-        /// <summary>
-        /// Gets all practices stored in the database.
-        /// </summary>
-        /// <returns></returns>
-        public IList<LightPracticeDto> GetAllPracticesLight()
-        {
-            var practices = this.GetAllEntitiesPractices();
-            return Mapper.Map<IList<Practice>, IList<LightPracticeDto>>(practices);
-        }
-
-        /// <summary>
-        /// Gets all professions stored in the database.
-        /// </summary>
-        /// <returns></returns>
-        public IList<ProfessionDto> GetAllProfessions()
-        {
-            var professions = (from profession in this.Session.Query<Profession>()
-                               select profession)
-                                  .OrderBy(e => e.Name)
-                                  .ToList();
-
-            return Mapper.Map<IList<Profession>, IList<ProfessionDto>>(professions);
-        }
-
-        /// <summary>
-        /// Gets all reputations stored in the database.
-        /// </summary>
-        /// <returns></returns>
-        public IList<ReputationDto> GetAllReputations()
-        {
-            var reputations = (from reputation in this.Session.Query<Reputation>()
-                               select reputation)
-                                    .OrderBy(e => e.Name)
-                                    .ToList();
-
-            return Mapper.Map<IList<Reputation>, IList<ReputationDto>>(reputations);
-        }
-
-        /// <summary>
-        /// Gets all roles light.
-        /// </summary>
-        /// <returns>An array with all the roles</returns>
-        public IList<RoleDto> GetAllRolesLight()
-        {
-            var roles = this.GetAllEntitiesRoles();
-            return Mapper.Map<IList<Role>, IList<RoleDto>>(roles);
-        }
-
-        /// <summary>
-        /// Gets all the tags
-        /// </summary>
-        /// <returns></returns>
-        public IList<TagDto> GetAllTags()
-        {
-            var tags = (from tag in this.Session.Query<Tag>()
-                        select tag)
-                            .OrderBy(e => e.Category)
-                            .ToList();
-
-            return Mapper.Map<IList<Tag>, IList<TagDto>>(tags);
-        }
-
-        /// <summary>
-        /// Gets all users.
-        /// </summary>
-        /// <returns></returns>
-        [Granted(To.Everyone)]
-        public IList<LightUserDto> GetAllUsers()
-        {
-            try
-            {
-                var result = (from user in Session.Query<User>()
-                              select user).ToList();
-                return Mapper.Map<IList<User>, IList<LightUserDto>>(result);
-            }
-            catch (Exception ex)
-            {
-                throw new QueryException(ex);
-            }
-        }
-
-        /// <summary>
         /// Removes item with the specified id.
         /// </summary>
         /// <typeparam name="T">The type of the item to remove</typeparam>
@@ -647,6 +647,23 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Finds the state of the database. If there's no state, a fresh one is created and returned
+        /// </summary>
+        /// <returns>The state of the database</returns>
+        internal DatabaseState GetDatabaseState()
+        {
+            var state = (from i in this.Session.Query<DatabaseState>()
+                         select i).FirstOrDefault();
+            if (state == null)
+            {
+                state = new DatabaseState();
+                this.Session.Save(state);
+            }
+
+            return state;
+        }
+
+        /// <summary>
         /// Sets the session. This for test purpose
         /// </summary>
         /// <param name="session">The session.</param>
@@ -681,6 +698,43 @@ namespace Probel.NDoctor.Domain.DAL.Components
                 this.Session.Close();
             }
             else throw new DalSessionException(Messages.Msg_ErrorSessionNotOpen);
+        }
+
+        private List<Insurance> GetAllEntitiesInsurances()
+        {
+            var insurances = (from insurance in this.Session.Query<Insurance>()
+                              select insurance)
+                                .OrderBy(e => e.Name)
+                                .ToList();
+            return insurances;
+        }
+
+        private IList<Pathology> GetAllEntitiesPathologies()
+        {
+            var pathologies = (from insurance in this.Session.Query<Pathology>()
+                               select insurance).ToList();
+            return pathologies;
+        }
+
+        private List<Practice> GetAllEntitiesPractices()
+        {
+            return (from practice in this.Session.Query<Practice>()
+                    select practice)
+                              .OrderBy(e => e.Name)
+                              .ToList();
+        }
+
+        private IList<Role> GetAllEntitiesRoles()
+        {
+            return (from role in this.Session.Query<Role>()
+                    select role).ToList();
+        }
+
+        private List<Patient> GetAllPatientEntities()
+        {
+            var result = (from patient in this.Session.Query<Patient>()
+                          select patient).ToList();
+            return result;
         }
 
         private IList<Doctor> GetDoctorsByFirstAndLastName(string name)
@@ -749,43 +803,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
                 return (from patient in this.Session.Query<Patient>()
                         select patient).ToList();
             }
-        }
-
-        private List<Insurance> GetAllEntitiesInsurances()
-        {
-            var insurances = (from insurance in this.Session.Query<Insurance>()
-                              select insurance)
-                                .OrderBy(e => e.Name)
-                                .ToList();
-            return insurances;
-        }
-
-        private IList<Pathology> GetAllEntitiesPathologies()
-        {
-            var pathologies = (from insurance in this.Session.Query<Pathology>()
-                               select insurance).ToList();
-            return pathologies;
-        }
-
-        private List<Practice> GetAllEntitiesPractices()
-        {
-            return (from practice in this.Session.Query<Practice>()
-                    select practice)
-                              .OrderBy(e => e.Name)
-                              .ToList();
-        }
-
-        private IList<Role> GetAllEntitiesRoles()
-        {
-            return (from role in this.Session.Query<Role>()
-                    select role).ToList();
-        }
-
-        private List<Patient> GetAllPatientEntities()
-        {
-            var result = (from patient in this.Session.Query<Patient>()
-                          select patient).ToList();
-            return result;
         }
 
         #endregion Methods
