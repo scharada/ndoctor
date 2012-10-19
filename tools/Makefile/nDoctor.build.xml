@@ -62,9 +62,14 @@
     </msbuild>
 	
     <echo message="Copying plugins into the repository..."/>
-    <exec program="${tool-dir}\CopyPluginsFiles.cmd">
-      <arg value="${build-mode}"/>
-    </exec>
+	<exec program="powershell" workingdir="${tool-dir}" verbose="true">
+		<arg value="-noprofile"/>
+		<arg value="-nologo"/>
+		<arg value="-noninteractive"/>
+		<arg value="-command"/>
+		<arg value="${tool-dir}\scripts\CopyPluginsFiles.ps1"/>
+		<arg value="${build-mode}"/>
+	</exec>
   </target>
 
   <target name="Post-Build" description="Execute the post build actions" depends="Build">
