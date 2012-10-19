@@ -31,7 +31,7 @@ namespace Probel.NDoctor.Domain.DTO.Specification
     /// This specification uses the lower case version of the Profession.Name to 
     /// make the selection
     /// </summary>
-    public class FindPatientByProfessionSpecification : Specification<PatientDto>
+    public class GetPatientByProfessionSpecification : Specification<PatientDto>
     {
         #region Fields
 
@@ -41,7 +41,7 @@ namespace Probel.NDoctor.Domain.DTO.Specification
 
         #region Constructors
 
-        public FindPatientByProfessionSpecification(ProfessionDto profession)
+        public GetPatientByProfessionSpecification(ProfessionDto profession)
         {
             this.profession = profession.Name.ToLower();
         }

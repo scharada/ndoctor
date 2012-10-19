@@ -67,13 +67,13 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Finds the bmi history.
+        /// Gets the bmi history.
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <param name="start">The start.</param>
         /// <param name="end">The end.</param>
         /// <returns></returns>
-        public IList<BmiDto> FindBmiHistory(LightPatientDto patient, DateTime start, DateTime end)
+        public IList<BmiDto> GetBmiHistory(LightPatientDto patient, DateTime start, DateTime end)
         {
             var entity = this.Session.Get<Patient>(patient.Id);
 

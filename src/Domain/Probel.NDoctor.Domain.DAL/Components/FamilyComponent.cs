@@ -59,11 +59,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
         #region Methods
 
         /// <summary>
-        /// Finds the family of the specified patient.
+        /// Gets the family of the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <returns></returns>
-        public FamilyDto FindFamily(LightPatientDto patient)
+        public FamilyDto GetFamily(LightPatientDto patient)
         {
             var current = (from p in this.Session.Query<Patient>()
                            where patient.Id == p.Id
@@ -82,21 +82,21 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Find all the patient respecting the criteria and the search mode which
+        /// Get all the patient respecting the criteria and the search mode which
         /// aren't in the family of the specified patient
         /// </summary>
         /// <param name="patient">The patient connected into the session</param>
         /// <param name="criteria">The search criteria</param>
         /// <param name="search">The search mode</param>
         /// <returns>A list of patient</returns>
-        public IList<LightPatientDto> FindPatientNotFamilyMembers(LightPatientDto patient, string criteria, SearchOn search)
+        public IList<LightPatientDto> GetPatientNotFamilyMembers(LightPatientDto patient, string criteria, SearchOn search)
         {
-            var result = this.FindPatientsByNameLight(criteria, search);
+            var result = this.GetPatientsByNameLight(criteria, search);
             return this.RemoveFamilyMembers(result, patient);
         }
 
         /// <summary>
-        /// Find all family members for the specified Patient
+        /// Get all family members for the specified Patient
         /// </summary>
         /// <param name="patient">The connected patient</param>
         /// <returns>The list of the family members</returns>

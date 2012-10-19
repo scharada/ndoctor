@@ -60,14 +60,14 @@ namespace Probel.NDoctor.Domain.DTO.MemoryComponents
 
         #region Methods
 
-        public LightPictureDto[] Find(TagDto criteria)
+        public LightPictureDto[] Get(TagDto criteria)
         {
             return (from picture in this.pictures
                     where picture.Tag.Id == criteria.Id
                     select picture).ToArray();
         }
 
-        public LightPictureDto[] FindAll()
+        public LightPictureDto[] GetAll()
         {
             return this.pictures.ToArray();
         }

@@ -256,7 +256,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             try
             {
                 this.SelectedPicture = new PictureDto();
-                var tags = this.component.FindTags(TagCategory.Picture);
+                var tags = this.component.GetTags(TagCategory.Picture);
 
                 this.isFilterDisabled = true;
 
@@ -354,17 +354,17 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
             if (this.FilterTag != null && this.FilterTag.Name == Messages.Msg_AllTags)
             {
-                input.Pictures = this.component.FindLightPictures(input.SelectedPatient);
+                input.Pictures = this.component.GetLightPictures(input.SelectedPatient);
                 input.MemoryComponent = new LightPictureMemoryComponent(input.Pictures);
             }
             else
             {
-                input.Pictures = this.component.FindLightPictures(input.SelectedPatient, input.FilterTag);
+                input.Pictures = this.component.GetLightPictures(input.SelectedPatient, input.FilterTag);
             }
 
             if (input.Pictures.Count > 0)
             {
-                input.SelectedPicture = component.FindPicture(input.Pictures[0]);
+                input.SelectedPicture = component.GetPicture(input.Pictures[0]);
             }
             else { input.SelectedPicture = null; }
 
@@ -388,13 +388,13 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
             if (this.FilterTag != null && this.FilterTag.Name != Messages.Msg_AllTags)
             {
-                foundItems = memoryComponent.Find(this.FilterTag);
+                foundItems = memoryComponent.Get(this.FilterTag);
             }
-            else { foundItems = memoryComponent.FindAll(); }
+            else { foundItems = memoryComponent.GetAll(); }
 
             if (foundItems.Length > 0)
             {
-                currentPic = component.FindPicture(foundItems[0]);
+                currentPic = component.GetPicture(foundItems[0]);
             }
             else { currentPic = null; }
 
@@ -485,7 +485,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         {
             if (this.selectedThumbnail != null)
             {
-                this.SelectedPicture = this.component.FindPicture(this.SelectedThumbnail);
+                this.SelectedPicture = this.component.GetPicture(this.SelectedThumbnail);
             }
         }
 

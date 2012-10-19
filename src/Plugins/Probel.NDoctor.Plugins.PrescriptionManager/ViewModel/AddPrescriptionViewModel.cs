@@ -117,7 +117,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         {
             try
             {
-                var results = this.component.FindTags(TagCategory.Prescription);
+                var results = this.component.GetTags(TagCategory.Prescription);
                 this.Tags.Refill(results);
             }
             catch (Exception ex) { this.Handle.Error(ex); }

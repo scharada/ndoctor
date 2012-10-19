@@ -143,7 +143,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         private void Refresh()
         {
-            var result = this.component.FindTags(TagCategory.Doctor);
+            var result = this.component.GetTags(TagCategory.Doctor);
             this.Specialisations.Refill(result);
         }
 

@@ -121,14 +121,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <returns>A list of doctors</returns>
-        public IList<LightDoctorDto> FindDoctorOf(LightPatientDto patient)
+        public IList<LightDoctorDto> GetDoctorOf(LightPatientDto patient)
         {
             var entity = this.Session.Get<Patient>(patient.Id);
             return Mapper.Map<IList<Doctor>, IList<LightDoctorDto>>(entity.Doctors);
         }
 
         /// <summary>
-        /// Finds the doctors that can be linked to the specified doctor.
+        /// Gets the doctors that can be linked to the specified doctor.
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <param name="criteria">The criteria.</param>
@@ -136,7 +136,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         /// A list of doctor
         /// </returns>
-        public IList<LightDoctorDto> FindNotLinkedDoctorsFor(LightPatientDto patient, string criteria, SearchOn searchOn)
+        public IList<LightDoctorDto> GetNotLinkedDoctorsFor(LightPatientDto patient, string criteria, SearchOn searchOn)
         {
             var patientEntity = this.Session.Get<Patient>(patient.Id);
 
@@ -169,7 +169,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="patient">The id of the patient to load.</param>
         /// <returns>A DTO with the whole data</returns>
         /// <exception cref="Probel.NDoctor.Domain.DAL.Exceptions.EntityNotFoundException">If the id is not linked to a patient</exception>
-        public PatientDto FindPatient(long id)
+        public PatientDto GetPatient(long id)
         {
             var fullPatient = (from p in this.Session.Query<Patient>()
                                where p.Id == id
@@ -190,9 +190,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="patient">The patient to load.</param>
         /// <returns>A DTO with the whole data</returns>
         /// <exception cref="Probel.NDoctor.Domain.DAL.Exceptions.EntityNotFoundException">If the patient doesn't exist</exception>
-        public PatientDto FindPatient(LightPatientDto patient)
+        public PatientDto GetPatient(LightPatientDto patient)
         {
-            return this.FindPatient(patient.Id);
+            return this.GetPatient(patient.Id);
         }
 
         /// <summary>

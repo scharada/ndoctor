@@ -26,7 +26,7 @@ namespace Probel.NDoctor.Domain.DTO.Specification
     /// <summary>
     /// Select all the patient with the birth year specified in the ctor
     /// </summary>
-    public class FindPatientByBirthYearSpecification : Specification<PatientDto>
+    public class GetPatientByBirthYearSpecification : Specification<PatientDto>
     {
         #region Fields
 
@@ -36,7 +36,7 @@ namespace Probel.NDoctor.Domain.DTO.Specification
 
         #region Constructors
 
-        public FindPatientByBirthYearSpecification(int birthYear)
+        public GetPatientByBirthYearSpecification(int birthYear)
         {
             this.birthYear = birthYear;
         }

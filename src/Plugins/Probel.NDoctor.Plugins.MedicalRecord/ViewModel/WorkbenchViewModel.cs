@@ -234,13 +234,13 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
                 if (PluginContext.Host.SelectedPatient == null) { return; }
 
-                var result = this.Component.FindMedicalRecordCabinet(PluginContext.Host.SelectedPatient);
+                var result = this.Component.GetMedicalRecordCabinet(PluginContext.Host.SelectedPatient);
                 this.Cabinet = TitledMedicalRecordCabinetDto.CreateFrom(result);
-                this.Tags = this.Component.FindTags(TagCategory.MedicalRecord);
+                this.Tags = this.Component.GetTags(TagCategory.MedicalRecord);
 
                 if (this.SelectedRecord != null)
                 {
-                    var record = this.Component.FindMedicalRecordById(this.SelectedRecord.Id);
+                    var record = this.Component.GetMedicalRecordById(this.SelectedRecord.Id);
                     this.SelectedRecord = (record != null)
                         ? TitledMedicalRecordDto.CreateFrom(record)
                         : null;

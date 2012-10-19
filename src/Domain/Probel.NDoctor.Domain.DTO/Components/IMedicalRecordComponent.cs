@@ -42,11 +42,11 @@ namespace Probel.NDoctor.Domain.DTO.Components
         long Create(MacroDto macro);
 
         /// <summary>
-        /// Finds the medical record by id.
+        /// Gets the medical record by id.
         /// </summary>
         /// <param name="id">The id.</param>
         /// <returns>The medical record or <c>Null</c> if not found </returns>
-        MedicalRecordDto FindMedicalRecordById(long id);
+        MedicalRecordDto GetMedicalRecordById(long id);
 
         /// <summary>
         /// Gets all the medical records of the specified patient. The records are packed into a 
@@ -55,7 +55,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <returns></returns>
-        MedicalRecordCabinetDto FindMedicalRecordCabinet(LightPatientDto patient);
+        MedicalRecordCabinetDto GetMedicalRecordCabinet(LightPatientDto patient);
 
         /// <summary>
         /// Gets all the macros.

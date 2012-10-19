@@ -210,7 +210,7 @@ namespace Probel.NDoctor.View.Core.View
         /// <param name="group">The group.</param>
         public void AddInHome(RibbonControlData button, Groups group)
         {
-            string criteria = this.FindGroupName(group);
+            string criteria = this.GetGroupName(group);
 
             var tab = (from menu in App.RibbonData.TabDataCollection
                        where menu.Header == Messages.Title_Home
@@ -262,16 +262,16 @@ namespace Probel.NDoctor.View.Core.View
         }
 
         /// <summary>
-        /// Finds in the home menu the control with the specified name in the specified group.
+        /// Gets in the home menu the control with the specified name in the specified group.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="group">The group.</param>
         /// <returns>
         /// The searched control or null is not found
         /// </returns>
-        public RibbonBase FindInHome(string name, Groups group)
+        public RibbonBase GetInHome(string name, Groups group)
         {
-            string criteria = this.FindGroupName(group);
+            string criteria = this.GetGroupName(group);
 
             var tab = (from menu in App.RibbonData.TabDataCollection
                        where menu.Header == Messages.Title_Home
@@ -421,7 +421,7 @@ namespace Probel.NDoctor.View.Core.View
             group.ButtonDataCollection.Refill(group.ButtonDataCollection.OrderBy(e => e.Order).ToList());
         }
 
-        private string FindGroupName(Groups group)
+        private string GetGroupName(Groups group)
         {
             string criteria = string.Empty;
             switch (group)

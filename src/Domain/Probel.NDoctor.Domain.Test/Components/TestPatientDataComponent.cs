@@ -31,11 +31,11 @@ namespace Probel.NDoctor.Domain.Test.Component
         public void CanFillData()
         {
             var c = new PatientSessionComponent(this.Database.Session);
-            var patients = c.FindPatientsByNameLight("Patient", SearchOn.FirstAndLastName);
+            var patients = c.GetPatientsByNameLight("Patient", SearchOn.FirstAndLastName);
             Assert.Greater(patients.Count, 0, "A patient with the name 'Patient' should exist in the database");
 
             long id = patients[0].Id;
-            var loadedPatient = this.Component.FindPatient(id);
+            var loadedPatient = this.Component.GetPatient(id);
 
             Assert.NotNull(loadedPatient, "The patient with id {0} should exist", id);
             Assert.NotNull(loadedPatient.Insurance, "Insurance should be loaded");
@@ -50,7 +50,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         public void FailToLoadUnknownPatient()
         {
             long id = 123456789;
-            var loadedPatient = this.Component.FindPatient(id);
+            var loadedPatient = this.Component.GetPatient(id);
         }
 
         /// <summary>

@@ -81,13 +81,13 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Finds the medical record by id.
+        /// Gets the medical record by id.
         /// </summary>
         /// <param name="id">The id.</param>
         /// <returns>
         /// The medical record or <c>Null</c> if not found
         /// </returns>
-        public MedicalRecordDto FindMedicalRecordById(long id)
+        public MedicalRecordDto GetMedicalRecordById(long id)
         {
             var result = this.Session.Get<MedicalRecord>(id);
 
@@ -103,7 +103,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <returns></returns>
-        public MedicalRecordCabinetDto FindMedicalRecordCabinet(LightPatientDto patient)
+        public MedicalRecordCabinetDto GetMedicalRecordCabinet(LightPatientDto patient)
         {
             var selectedPatient = (from p in this.Session.Query<Patient>()
                                    where p.Id == patient.Id

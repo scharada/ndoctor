@@ -165,7 +165,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
         private IList<LightPatientDto> SearchAsync()
         {
             PluginContext.Host.SetWaitCursor();
-            return this.component.FindPatientsByNameLight(this.Criteria, SearchOn.FirstAndLastName);
+            return this.component.GetPatientsByNameLight(this.Criteria, SearchOn.FirstAndLastName);
         }
 
         private void SearchCallback(IList<LightPatientDto> result)

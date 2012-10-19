@@ -368,7 +368,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         private void EditDoctor()
         {
-            var specialisations = this.component.FindTags(TagCategory.Doctor);
+            var specialisations = this.component.GetTags(TagCategory.Doctor);
 
             InnerWindow.Show(Messages.Title_Edit, new DoctorBox()
             {
@@ -390,7 +390,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         private void EditDrug()
         {
-            var categories = this.component.FindTags(TagCategory.Drug);
+            var categories = this.component.GetTags(TagCategory.Drug);
 
             InnerWindow.Show(Messages.Title_Edit, new DrugBox()
             {
@@ -433,7 +433,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         private void EditPathology()
         {
-            var categories = this.component.FindTags(TagCategory.Pathology);
+            var categories = this.component.GetTags(TagCategory.Pathology);
 
             InnerWindow.Show(Messages.Title_Edit, new PathologyBox()
             {

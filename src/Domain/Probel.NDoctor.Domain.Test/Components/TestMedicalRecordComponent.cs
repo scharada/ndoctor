@@ -34,7 +34,7 @@ namespace Probel.NDoctor.Domain.Test.Component
             var uniqueId = Guid.NewGuid().ToString();
 
             var patients = this.Component.GetAllPatientsLight();
-            var tags = this.Component.FindTags(TagCategory.MedicalRecord);
+            var tags = this.Component.GetTags(TagCategory.MedicalRecord);
 
             var sql = "SELECT COUNT(*) FROM MedicalRecord";
             var cardCountBefore = (long)this.ExecuteNonQuery(sql);
@@ -54,7 +54,7 @@ namespace Probel.NDoctor.Domain.Test.Component
 
             Assert.Greater(patients.Count, 0, "No patient were found");
 
-            var cabinet = this.Component.FindMedicalRecordCabinet(patients[0]);
+            var cabinet = this.Component.GetMedicalRecordCabinet(patients[0]);
 
             Assert.Greater(cabinet.Folders.Length, 0, "No folders in the cabinet");
             Assert.Greater(cabinet.Folders[0].Records.Length, 0, "No records in folders");

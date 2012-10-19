@@ -60,7 +60,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="criteria">The criteria.</param>
         /// <param name="refiner">The specification expression that will refine the result.</param>
         /// <returns>All the patient that fullfill the criteria</returns>
-        IList<LightPatientDto> FindPatientsByNameLight(string criteria, SpecificationExpression<PatientDto> specification);
+        IList<LightPatientDto> GetPatientsByNameLight(string criteria, SpecificationExpression<PatientDto> specification);
 
         /// <summary>
         /// Gets the top X patient. Where X is specified as an argument.

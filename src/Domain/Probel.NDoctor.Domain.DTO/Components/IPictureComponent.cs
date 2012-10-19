@@ -41,7 +41,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <returns>
         /// A list of pictures
         /// </returns>
-        IList<LightPictureDto> FindLightPictures(LightPatientDto patient, TagDto tag);
+        IList<LightPictureDto> GetLightPictures(LightPatientDto patient, TagDto tag);
 
         /// <summary>
         /// Gets the pictures (only the thumbnails) for the specified patient and with the specified tag.
@@ -52,21 +52,21 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <returns>
         /// A list of pictures
         /// </returns>
-        IList<LightPictureDto> FindLightPictures(LightPatientDto patient);
+        IList<LightPictureDto> GetLightPictures(LightPatientDto patient);
 
         /// <summary>
-        /// Finds the full picture from the thumbnail.
+        /// Gets the full picture from the thumbnail.
         /// </summary>
         /// <param name="picture">The picture.</param>
         /// <returns></returns>
-        PictureDto FindPicture(LightPictureDto picture);
+        PictureDto GetPicture(LightPictureDto picture);
 
         /// <summary>
         /// Gets the pictures for the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <returns>A list of picture</returns>
-        IList<PictureDto> FindPictures(LightPatientDto patient);
+        IList<PictureDto> GetPictures(LightPatientDto patient);
 
         /// <summary>
         /// Gets the pictures for the specified patient and with the specified tag.
@@ -78,7 +78,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <returns>
         /// A list of pictures
         /// </returns>
-        IList<PictureDto> FindPictures(LightPatientDto patient, TagDto tag);
+        IList<PictureDto> GetPictures(LightPatientDto patient, TagDto tag);
 
         #endregion Methods
     }

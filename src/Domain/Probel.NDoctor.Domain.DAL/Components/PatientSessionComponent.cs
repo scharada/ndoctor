@@ -64,7 +64,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         /// All the patient that fullfill the criteria
         /// </returns>
-        public IList<LightPatientDto> FindPatientsByNameLight(string criteria, SpecificationExpression<PatientDto> specification)
+        public IList<LightPatientDto> GetPatientsByNameLight(string criteria, SpecificationExpression<PatientDto> specification)
         {
             List<Patient> patients = new List<Patient>();
             if (criteria != "*")

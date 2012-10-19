@@ -87,7 +87,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <returns></returns>
         [Granted(To.Everyone)]
-        public LightUserDto FindDefaultUser()
+        public LightUserDto GetDefaultUser()
         {
             var result = (from user in this.Session.Query<User>()
                           where user.IsDefault == true

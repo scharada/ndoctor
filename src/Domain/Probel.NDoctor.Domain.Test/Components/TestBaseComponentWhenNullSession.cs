@@ -45,7 +45,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [ExpectedException(typeof(Probel.Helpers.Assertion.AssertionException))]
         public void CanGetUserByItsId()
         {
-            var user = this.Component.FindUserById(1);
+            var user = this.Component.GetUserById(1);
 
             Assert.NotNull(user, "The user 'Robert Dupont' should be in the database");
             Assert.AreEqual("Robert", user.FirstName);
@@ -66,7 +66,7 @@ namespace Probel.NDoctor.Domain.Test.Component
             var countAfter = this.Component.GetAllDoctorsLight().Count;
             Assert.AreEqual(countBefore + 1, countAfter, "The practice wasn't added");
 
-            var result = this.Component.FindDoctorsByNameLight(uniqueName, SearchOn.LastName);
+            var result = this.Component.GetDoctorsByNameLight(uniqueName, SearchOn.LastName);
             Assert.AreEqual(1, result.Count, "The practice wasn't found");
 
             this.Transaction(() => this.Component.Remove(new LightDoctorDto() { Id = result[0].Id }));
@@ -94,7 +94,7 @@ namespace Probel.NDoctor.Domain.Test.Component
             countAfter = this.Component.GetAllPatientsLight().Count;
             Assert.AreEqual(countBefore + 1, countAfter, "The patient wasn't added");
 
-            var result = this.Component.FindPatientsByNameLight(uniqueName, SearchOn.FirstAndLastName);
+            var result = this.Component.GetPatientsByNameLight(uniqueName, SearchOn.FirstAndLastName);
             Assert.AreEqual(1, result.Count, "The patient wasn't found");
 
             this.Transaction(() => this.Component.Remove(new PatientDto() { Id = result[0].Id }));
@@ -123,7 +123,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [ExpectedException(typeof(Probel.Helpers.Assertion.AssertionException))]
         public void FailToGetAllInsurancesWithName()
         {
-            var result = this.Component.FindInsurances("Create");
+            var result = this.Component.GetInsurances("Create");
             Assert.AreEqual(1, result.Count);
         }
 
@@ -139,7 +139,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [ExpectedException(typeof(Probel.Helpers.Assertion.AssertionException))]
         public void FailToGetAllPracticesWithName()
         {
-            var result = this.Component.FindPractices("PracticeToFind");
+            var result = this.Component.GetPractices("PracticeToFind");
             Assert.AreEqual(1, result.Count);
         }
 
@@ -155,7 +155,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [ExpectedException(typeof(Probel.Helpers.Assertion.AssertionException))]
         public void FailToGetAllProfessionsWithName()
         {
-            var result = this.Component.FindProfessions("ProfessionToFind");
+            var result = this.Component.GetProfessions("ProfessionToFind");
             Assert.AreEqual(1, result.Count);
         }
 
@@ -163,7 +163,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [ExpectedException(typeof(Probel.Helpers.Assertion.AssertionException))]
         public void FailToGetAllReputations()
         {
-            var result = this.Component.FindReputations("ReputationToFind");
+            var result = this.Component.GetReputations("ReputationToFind");
 
             Assert.AreEqual(1, result.Count);
         }
@@ -181,7 +181,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [ExpectedException(typeof(Probel.Helpers.Assertion.AssertionException))]
         public void FailToGetAllTagsForPatient()
         {
-            var result = this.Component.FindTags(TagCategory.Patient);
+            var result = this.Component.GetTags(TagCategory.Patient);
 
             foreach (var item in result) Assert.AreEqual(item.Category, TagCategory.Patient);
 
@@ -192,7 +192,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [ExpectedException(typeof(Probel.Helpers.Assertion.AssertionException))]
         public void FailToGetAllTagsForPatientWithName()
         {
-            var result = this.Component.FindTags("TagToFind", TagCategory.Patient);
+            var result = this.Component.GetTags("TagToFind", TagCategory.Patient);
 
             foreach (var item in result) Assert.AreEqual(item.Category, TagCategory.Patient);
 
@@ -211,7 +211,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [ExpectedException(typeof(Probel.Helpers.Assertion.AssertionException))]
         public void FailToGetDoctorOnFirstAndLastName()
         {
-            var result = this.Component.FindDoctorsByNameLight("DoctorLastNameToFind", SearchOn.FirstAndLastName);
+            var result = this.Component.GetDoctorsByNameLight("DoctorLastNameToFind", SearchOn.FirstAndLastName);
             Assert.AreEqual(1, result.Count);
         }
 
@@ -219,7 +219,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [ExpectedException(typeof(Probel.Helpers.Assertion.AssertionException))]
         public void FailToGetDoctorOnFirstName()
         {
-            var result = this.Component.FindDoctorsByNameLight("DoctorLastNameToFind", SearchOn.FirstName);
+            var result = this.Component.GetDoctorsByNameLight("DoctorLastNameToFind", SearchOn.FirstName);
             Assert.AreEqual(1, result.Count);
         }
 
@@ -227,7 +227,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [ExpectedException(typeof(Probel.Helpers.Assertion.AssertionException))]
         public void FailToGetDoctorOnLastName()
         {
-            var result = this.Component.FindDoctorsByNameLight("DoctorFirstNameToFind", SearchOn.LastName);
+            var result = this.Component.GetDoctorsByNameLight("DoctorFirstNameToFind", SearchOn.LastName);
             Assert.AreEqual(1, result.Count);
         }
 
@@ -235,10 +235,10 @@ namespace Probel.NDoctor.Domain.Test.Component
         [ExpectedException(typeof(Probel.Helpers.Assertion.AssertionException))]
         public void FailToGetDoctorOnSpecialisation()
         {
-            var specialisations = this.Component.FindTags("SpecialisationToFind", TagCategory.Doctor);
+            var specialisations = this.Component.GetTags("SpecialisationToFind", TagCategory.Doctor);
             Assert.AreEqual(1, specialisations.Count, "Only one specialisation '{0}' should exist", "SpecialisationToFind");
 
-            var result = this.Component.FindDoctorsBySpecialisationLight(specialisations[0]);
+            var result = this.Component.GetDoctorsBySpecialisationLight(specialisations[0]);
             Assert.AreEqual(2, result.Count, "2 doctors with this specialisation are expected");
         }
 
@@ -251,7 +251,7 @@ namespace Probel.NDoctor.Domain.Test.Component
                 Name = "SpecialisationToFind",
             };
 
-            var result = this.Component.FindDoctorsBySpecialisationLight(specialisation);
+            var result = this.Component.GetDoctorsBySpecialisationLight(specialisation);
             Assert.AreEqual(2, result.Count, "2 doctors with this specialisation are expected");
         }
 
@@ -259,7 +259,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [ExpectedException(typeof(Probel.Helpers.Assertion.AssertionException))]
         public void FailToGetPatientOnFirstAndLastName()
         {
-            var result = this.Component.FindPatientsByNameLight("wa", SearchOn.FirstAndLastName);
+            var result = this.Component.GetPatientsByNameLight("wa", SearchOn.FirstAndLastName);
             Assert.NotNull(result);
             Assert.AreEqual(2, result.Count);
         }
@@ -268,7 +268,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [ExpectedException(typeof(Probel.Helpers.Assertion.AssertionException))]
         public void FailToGetPatientOnFirstName()
         {
-            var result = this.Component.FindPatientsByNameLight("Luc", SearchOn.FirstName);
+            var result = this.Component.GetPatientsByNameLight("Luc", SearchOn.FirstName);
             Assert.NotNull(result);
             Assert.AreEqual(2, result.Count);
         }
@@ -277,7 +277,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         [ExpectedException(typeof(Probel.Helpers.Assertion.AssertionException))]
         public void FailToGetPatientOnLastName()
         {
-            var result = this.Component.FindPatientsByNameLight("ke", SearchOn.LastName);
+            var result = this.Component.GetPatientsByNameLight("ke", SearchOn.LastName);
             Assert.NotNull(result);
             Assert.AreEqual(2, result.Count);
         }

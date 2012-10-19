@@ -164,24 +164,24 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Finds the doctors by name.
+        /// Gets the doctors by name.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="on">The on.</param>
         /// <returns></returns>
-        public IList<LightDoctorDto> FindDoctorsByNameLight(string name, SearchOn on)
+        public IList<LightDoctorDto> GetDoctorsByNameLight(string name, SearchOn on)
         {
             IList<Doctor> result = new List<Doctor>();
             switch (on)
             {
                 case SearchOn.FirstName:
-                    result = this.FindDoctorsByFirstName(name);
+                    result = this.GetDoctorsByFirstName(name);
                     break;
                 case SearchOn.LastName:
-                    result = this.FindDoctorsByLastName(name);
+                    result = this.GetDoctorsByLastName(name);
                     break;
                 case SearchOn.FirstAndLastName:
-                    result = this.FindDoctorsByFirstAndLastName(name);
+                    result = this.GetDoctorsByFirstAndLastName(name);
                     break;
                 default:
                     Assert.FailOnEnumeration(on);
@@ -193,12 +193,12 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Finds the doctors by specialisation.
+        /// Gets the doctors by specialisation.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="on">The on.</param>
         /// <returns></returns>
-        public IList<LightDoctorDto> FindDoctorsBySpecialisationLight(TagDto specialisation)
+        public IList<LightDoctorDto> GetDoctorsBySpecialisationLight(TagDto specialisation)
         {
             if (specialisation.Id <= 0) throw new DetachedEntityException();
 
@@ -211,11 +211,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Finds the drugs which has in their name the specified criteria.
+        /// Gets the drugs which has in their name the specified criteria.
         /// </summary>
         /// <param name="name">The criteria.</param>
         /// <returns>A list of drugs</returns>
-        public IList<DrugDto> FindDrugsByName(string name)
+        public IList<DrugDto> GetDrugsByName(string name)
         {
             var result = (from drug in this.Session.Query<Drug>()
                           where drug.Name.Contains(name)
@@ -224,11 +224,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Finds the drugs by tags.
+        /// Gets the drugs by tags.
         /// </summary>
         /// <param name="tag">The tag name.</param>
         /// <returns>A list of drugs</returns>
-        public IList<DrugDto> FindDrugsByTags(string criteria)
+        public IList<DrugDto> GetDrugsByTags(string criteria)
         {
             var result = (from drug in this.Session.Query<Drug>()
                           where drug.Tag.Name == criteria
@@ -241,7 +241,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns></returns>
-        public IList<InsuranceDto> FindInsurances(string name)
+        public IList<InsuranceDto> GetInsurances(string name)
         {
             var insurances = (from insurance in this.Session.Query<Insurance>()
                               where insurance.Name.Contains(name)
@@ -251,11 +251,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Finds the light doctor by specialisation.
+        /// Gets the light doctor by specialisation.
         /// </summary>
         /// <param name="specialisation">The tag.</param>
         /// <returns></returns>
-        public IList<LightDoctorDto> FindLightDoctor(TagDto specialisation)
+        public IList<LightDoctorDto> GetLightDoctor(TagDto specialisation)
         {
             var result = (from doctor in this.Session.Query<Doctor>()
                           where doctor.Specialisation.Id == specialisation.Id
@@ -268,7 +268,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Gets all pathologies that contains the specified name.
         /// </summary>
         /// <returns></returns>
-        public IList<PathologyDto> FindPathology(string name)
+        public IList<PathologyDto> GetPathology(string name)
         {
             var pathologies = (from pahology in this.Session.Query<Pathology>()
                                where pahology.Name.Contains(name)
@@ -278,13 +278,13 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Finds the patients that fullfill the specified criterium.
+        /// Gets the patients that fullfill the specified criterium.
         /// </summary>
         /// <param name="criterium">The criterium.</param>
         /// <param name="search">The search should be done on the specified property.</param>
         /// <returns></returns>
         [Granted(To.Everyone)]
-        public IList<LightPatientDto> FindPatientsByNameLight(string criterium, SearchOn search)
+        public IList<LightPatientDto> GetPatientsByNameLight(string criterium, SearchOn search)
         {
             if (string.IsNullOrEmpty(criterium)) return new List<LightPatientDto>().ToList();
 
@@ -295,17 +295,17 @@ namespace Probel.NDoctor.Domain.DAL.Components
             {
                 case SearchOn.FirstName:
                     {
-                        result = FindPatientsByOnFirstName(criterium);
+                        result = GetPatientsByOnFirstName(criterium);
                         break;
                     }
                 case SearchOn.LastName:
                     {
-                        result = FindPatientsByOnLastName(criterium);
+                        result = GetPatientsByOnLastName(criterium);
                         break;
                     }
                 case SearchOn.FirstAndLastName:
                     {
-                        result = FindPatientsByFirstAndLastName(criterium);
+                        result = GetPatientsByFirstAndLastName(criterium);
                         break;
                     }
                 default:
@@ -321,7 +321,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Gets all practices that contains the specified name.
         /// </summary>
         /// <returns></returns>
-        public IList<PracticeDto> FindPractices(string name)
+        public IList<PracticeDto> GetPractices(string name)
         {
             var practices = (from practice in this.Session.Query<Practice>()
                              where practice.Name.Contains(name)
@@ -334,7 +334,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Gets all professions that contains the specified name.
         /// </summary>
         /// <returns></returns>
-        public IList<ProfessionDto> FindProfessions(string name)
+        public IList<ProfessionDto> GetProfessions(string name)
         {
             var professions = (from profession in this.Session.Query<Profession>()
                                where profession.Name.Contains(name)
@@ -348,7 +348,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns></returns>
-        public IList<ReputationDto> FindReputations(string name)
+        public IList<ReputationDto> GetReputations(string name)
         {
             var reputations = (from reputation in this.Session.Query<Reputation>()
                                where reputation.Name.Contains(name)
@@ -361,7 +361,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Gets all the tags with the specified catagory.
         /// </summary>
         /// <returns></returns>
-        public IList<TagDto> FindTags(TagCategory category)
+        public IList<TagDto> GetTags(TagCategory category)
         {
             var tags = (from tag in this.Session.Query<Tag>()
                         where tag.Category == category
@@ -375,7 +375,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns></returns>
-        public IList<TagDto> FindTags(string name, TagCategory type)
+        public IList<TagDto> GetTags(string name, TagCategory type)
         {
             var tags = (from tag in this.Session.Query<Tag>()
                         where tag.Category == type
@@ -390,14 +390,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="id">The id.</param>
         /// <returns></returns>
-        public UserDto FindUserById(long id)
+        public UserDto GetUserById(long id)
         {
             var user = this.Session.Get<User>(id);
             return Mapper.Map<User, UserDto>(user);
         }
 
         /// <summary>
-        /// Finds all doctors.
+        /// Gets all doctors.
         /// </summary>
         /// <returns>The light weight version of the doctors</returns>
         public IList<LightDoctorDto> GetAllDoctorsLight()
@@ -454,7 +454,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Finds all the patients in light version.
+        /// Gets all the patients in light version.
         /// </summary>
         /// <returns></returns>
         public IList<LightPatientDto> GetAllPatientsLight()
@@ -683,7 +683,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             else throw new DalSessionException(Messages.Msg_ErrorSessionNotOpen);
         }
 
-        private IList<Doctor> FindDoctorsByFirstAndLastName(string name)
+        private IList<Doctor> GetDoctorsByFirstAndLastName(string name)
         {
             return (from doctor in this.Session.Query<Doctor>()
                     where doctor.FirstName.Contains(name)
@@ -691,21 +691,21 @@ namespace Probel.NDoctor.Domain.DAL.Components
                     select doctor).ToList();
         }
 
-        private IList<Doctor> FindDoctorsByFirstName(string name)
+        private IList<Doctor> GetDoctorsByFirstName(string name)
         {
             return (from doctor in this.Session.Query<Doctor>()
                     where doctor.FirstName.Contains(name)
                     select doctor).ToList();
         }
 
-        private IList<Doctor> FindDoctorsByLastName(string name)
+        private IList<Doctor> GetDoctorsByLastName(string name)
         {
             return (from doctor in this.Session.Query<Doctor>()
                     where doctor.LastName.Contains(name)
                     select doctor).ToList();
         }
 
-        private List<Patient> FindPatientsByFirstAndLastName(string criterium)
+        private List<Patient> GetPatientsByFirstAndLastName(string criterium)
         {
             if (criterium != "*")
             {
@@ -721,7 +721,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             }
         }
 
-        private List<Patient> FindPatientsByOnFirstName(string criterium)
+        private List<Patient> GetPatientsByOnFirstName(string criterium)
         {
             if (criterium != "*")
             {
@@ -736,7 +736,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             }
         }
 
-        private List<Patient> FindPatientsByOnLastName(string criterium)
+        private List<Patient> GetPatientsByOnLastName(string criterium)
         {
             if (criterium != "*")
             {

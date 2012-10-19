@@ -107,7 +107,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
         internal void Refresh()
         {
-            var result = this.component.FindTags(TagCategory.Pathology);
+            var result = this.component.GetTags(TagCategory.Pathology);
             this.Tags.Refill(result);
         }
 

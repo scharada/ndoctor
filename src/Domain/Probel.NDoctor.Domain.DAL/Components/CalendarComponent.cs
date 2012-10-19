@@ -50,26 +50,26 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Finds all the appointments of the specified patient.
+        /// Gets all the appointments of the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <returns></returns>
-        public IList<AppointmentDto> FindAppointments(LightPatientDto patient)
+        public IList<AppointmentDto> GetAppointments(LightPatientDto patient)
         {
             var entity = this.Session.Get<Patient>(patient.Id);
             return Mapper.Map<IList<Appointment>, IList<AppointmentDto>>(entity.Appointments);
         }
 
         /// <summary>
-        /// Finds all the appointments between the specified start and end threshold for the specified patient.
+        /// Gets all the appointments between the specified start and end threshold for the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <param name="startThreshold">The start threshold.</param>
         /// <param name="endThreshold">The end threshold.</param>
         /// <returns></returns>
-        public IList<AppointmentDto> FindAppointments(LightPatientDto patient, DateTime startThreshold, DateTime endThreshold)
+        public IList<AppointmentDto> GetAppointments(LightPatientDto patient, DateTime startThreshold, DateTime endThreshold)
         {
-            var result = this.FindAppointments(patient);
+            var result = this.GetAppointments(patient);
 
             return (from r in result
                     where r.StartTime >= startThreshold
@@ -78,11 +78,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Finds the appointments for the specified day.
+        /// Gets the appointments for the specified day.
         /// </summary>
         /// <param name="day">The day.</param>
         /// <returns>A list of appointments</returns>
-        public IList<AppointmentDto> FindAppointments(DateTime day)
+        public IList<AppointmentDto> GetAppointments(DateTime day)
         {
             var result = (from a in this.Session.Query<Appointment>()
                           where a.StartTime >= day.Date
@@ -92,17 +92,17 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// The doctor/secretary uses this method to find free allowable time for a appointment with a patient.
+        /// The doctor/secretary uses this method to Get free allowable time for a appointment with a patient.
         /// </summary>
-        /// <param name="startDate">The starting point for the search. That's, the search won't try to find free slots before this date (included)</param>
-        /// <param name="endDate">The end point for the search. That's, the search won't try to find free slots after this date (included)</param>
+        /// <param name="startDate">The starting point for the search. That's, the search won't try to Get free slots before this date (included)</param>
+        /// <param name="endDate">The end point for the search. That's, the search won't try to Get free slots after this date (included)</param>
         /// <param name="workday">The workday is defined by a start and an end time. A classic workday starts at 8:00 and finishes at 17:00. In other
         /// words, the method will search free slots between 8:00 and 17:00</param>
         /// <returns>
         /// A list of free allowable slots
         /// </returns>
         [Granted(To.EditCalendar)]
-        public TimeSlotCollection FindSlots(DateTime startDate, DateTime endDate, Workday workday)
+        public TimeSlotCollection GetSlots(DateTime startDate, DateTime endDate, Workday workday)
         {
             startDate = startDate.Date;
             endDate = endDate.Date;

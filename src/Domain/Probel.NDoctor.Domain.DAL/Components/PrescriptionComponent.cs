@@ -42,13 +42,13 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Finds the prescriptions between the specified dates for the specified patient.
+        /// Gets the prescriptions between the specified dates for the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <param name="start">The start.</param>
         /// <param name="end">The end.</param>
         /// <returns>A list of prescriptions</returns>
-        public IList<PrescriptionDocumentDto> FindPrescriptionsByDates(LightPatientDto patient, DateTime start, DateTime end)
+        public IList<PrescriptionDocumentDto> GetPrescriptionsByDates(LightPatientDto patient, DateTime start, DateTime end)
         {
             var entity = this.Session.Get<Patient>(patient.Id);
             var prescriptions = (from p in entity.PrescriptionDocuments

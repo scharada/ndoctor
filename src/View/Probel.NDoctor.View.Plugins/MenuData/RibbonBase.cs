@@ -53,7 +53,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
         }
 
         /// <summary>
-        /// Gets or sets the name of this control. It is used to find controls
+        /// Gets or sets the name of this control. It is used to Get controls
         /// </summary>
         /// <value>
         /// The name.

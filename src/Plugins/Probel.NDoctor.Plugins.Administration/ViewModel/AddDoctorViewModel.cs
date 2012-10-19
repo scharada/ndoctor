@@ -17,7 +17,7 @@
 
             try
             {
-                var result = this.Component.FindTags(TagCategory.Doctor);
+                var result = this.Component.GetTags(TagCategory.Doctor);
 
                 this.Specialisations.Refill(result);
             }

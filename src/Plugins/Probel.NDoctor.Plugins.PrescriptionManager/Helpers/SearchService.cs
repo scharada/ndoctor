@@ -52,7 +52,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Helpers
 
         public void SearchPrescription(DateTime from, DateTime to)
         {
-            var found = this.component.FindPrescriptionsByDates(PluginContext.Host.SelectedPatient, from, to);
+            var found = this.component.GetPrescriptionsByDates(PluginContext.Host.SelectedPatient, from, to);
             Notifyer.OnPrescriptionFound(this, new PrescriptionResultDto(found, from, to));
             InnerWindow.Close();
 

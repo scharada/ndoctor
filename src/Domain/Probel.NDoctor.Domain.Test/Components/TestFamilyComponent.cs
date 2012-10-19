@@ -31,7 +31,7 @@ namespace Probel.NDoctor.Domain.Test.Component
         {
             // The ID of the patient is 7 for the test. And god said, for this time
             // I'll allow a magic number. But never do it twice ;)
-            var family = this.Component.FindFamily(new LightPatientDto() { Id = 7 });
+            var family = this.Component.GetFamily(new LightPatientDto() { Id = 7 });
 
             Assert.NotNull(family.Current, "No current patient found");
             Assert.NotNull(family.Fathers, "No father found");

@@ -83,11 +83,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Finds the task by its reference name.
+        /// Gets the task by its reference name.
         /// </summary>
         /// <param name="refName">Name of the ref.</param>
         /// <returns>The found task or <c>Null</c> if nothing is found</returns>
-        public TaskDto FindTaskByReference(string refName)
+        public TaskDto GetTaskByReference(string refName)
         {
             var result = (from t in this.Session.Query<Task>()
                           where t.RefName == refName
