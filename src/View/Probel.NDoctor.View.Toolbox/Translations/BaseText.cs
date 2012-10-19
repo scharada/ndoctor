@@ -111,5 +111,11 @@ namespace Probel.NDoctor.View.Toolbox.Translations
         }
 
         #endregion Properties
+
+
+        public static string Continue
+        {
+            get { return Messages.Btn_Continue; }
+        }
     }
 }

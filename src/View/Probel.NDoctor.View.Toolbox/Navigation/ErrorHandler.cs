@@ -30,6 +30,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
     using Probel.NDoctor.View.Toolbox.Helpers;
     using Probel.NDoctor.View.Toolbox.Properties;
     using Probel.NDoctor.View.Toolbox.ViewModel;
+    using Probel.Helpers.Assertion;
 
     /// <summary>
     /// This class provides error handling methods
@@ -109,7 +110,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
         /// <param name="ex">The exception to log.</param>
         public void Fatal(Exception ex)
         {
-            this.Error(ex, ex.Message);
+            this.Fatal(ex, ex.Message);
         }
 
         /// <summary>
@@ -150,11 +151,13 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
         private void HandleError(bool silent, Exception ex, string format, params object[] args)
         {
             //Logs only error, not authorisation errors...
-            if (!(ex is AuthorisationException))
+            if (!(ex is AuthorisationException)) { this.Logger.Error(format.FormatWith(args), ex); }
+
+            if (ex is AssertionException) //Any AssertionException highlight a important issue, it FATAL
             {
-                this.Logger.Error(format.FormatWith(args), ex);
+                WindowManager.Show<ExceptionViewModel>();
             }
-            if (!silent)
+            else if (!silent) //Check if the error should be shown in the foreground.
             {
                 if (ex.GetType() == typeof(AuthorisationException))
                 {
@@ -163,6 +166,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
                 else
                 {
                     MessageBox.Show(format.FormatWith(args), Messages.Title_Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    //WindowManager.Show<ExceptionViewModel>();
                 }
             }
             this.WriteErrorInStatus();

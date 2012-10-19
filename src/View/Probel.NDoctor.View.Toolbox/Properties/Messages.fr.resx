@@ -125,6 +125,10 @@
     <value>Annuler</value>
     <comment>Cancel</comment>
   </data>
+  <data name="Btn_Continue" xml:space="preserve">
+    <value>Continuer</value>
+    <comment>Continue</comment>
+  </data>
   <data name="Btn_New" xml:space="preserve">
     <value>Nouveau...</value>
     <comment>New...</comment>
@@ -172,6 +176,10 @@
   <data name="Msg_CloseApplication" xml:space="preserve">
     <value>Quitter nDoctor</value>
     <comment>Exit nDoctor</comment>
+  </data>
+  <data name="Msg_CopyInClipboard" xml:space="preserve">
+    <value>Copier le message d'erreur dans le presse-papier</value>
+    <comment>Copy error message to clipboard</comment>
   </data>
   <data name="Msg_ErrorAuthorisation" xml:space="preserve">
     <value>Vous n'avez pas les droits pour exécuter cette fonctionnalité</value>
@@ -253,6 +261,14 @@
     <value>Erreur</value>
     <comment>Error</comment>
   </data>
+  <data name="Title_ErrorMessageHelp" xml:space="preserve">
+    <value>Une Exception non gérée est survenue dans nDoctor. Ceci n'est pas normal, et nous vous saurions gré de bien vouloir nous aider en rapportant cette erreur à l'équipe de développement nDoctor.</value>
+    <comment>An unhandled exception has occurred in nDoctor. This is unexpected and we'd ask you to help us improve nDoctor by reporting this error to the nDoctor team.</comment>
+  </data>
+  <data name="Title_ErrorMessageHelp2" xml:space="preserve">
+    <value>Comment rapporter les erreurs de manière efficace: nous avons mis à votre disposition un forum pour le rapport et le suivi des erreurs que vous nous soumettez. Pour réduire les questions de l'équipe de développement, en plus de fournir le message d'erreur copié dans votre presse-papier, veuillez nous décrire de manière détaillée la procédure pas à pas pour reproduire le bogue.</value>
+    <comment>How to report errors efficiently: We have set up a Web-based forum to report and track errors that are reported by users of nDoctor. To minimise necessary questions by the team members, in addition to providing the error message that is copied to the clipboard for easier pasting in the error report, we ask that you provide us with an as detailed as possible step-by-step procedure to reproduce this bug.</comment>
+  </data>
   <data name="Title_FirstName" xml:space="preserve">
     <value>Prénom:</value>
     <comment>First name:</comment>
@@ -284,6 +300,10 @@
   <data name="Title_Notes" xml:space="preserve">
     <value>Notes:</value>
     <comment>Notes:</comment>
+  </data>
+  <data name="Title_OpenPSR" xml:space="preserve">
+    <value>Ouvrir "Problem Steps Recorder"</value>
+    <comment>Open "Problem Steps Recorder"</comment>
   </data>
   <data name="Title_PersonalData" xml:space="preserve">
     <value>Données personnelles</value>
@@ -336,6 +356,10 @@
   <data name="Title_StreetNr" xml:space="preserve">
     <value>Nr:</value>
     <comment>Nr:</comment>
+  </data>
+  <data name="Title_UnhandledException" xml:space="preserve">
+    <value>Une Exception non gérée est survenue...</value>
+    <comment>Unhandled exception has occured...</comment>
   </data>
   <data name="Title_Warning" xml:space="preserve">
     <value>Attention</value>

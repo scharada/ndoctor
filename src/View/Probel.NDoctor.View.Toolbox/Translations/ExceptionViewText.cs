@@ -32,9 +32,34 @@ namespace Probel.NDoctor.View.Toolbox.Translations
             get { return Messages.Msg_CloseApplication; }
         }
 
+        public static string CopyInClipboard
+        {
+            get { return Messages.Msg_CopyInClipboard; }
+        }
+
+        public static string ErrorMessageHelp
+        {
+            get { return Messages.Title_ErrorMessageHelp; }
+        }
+
+        public static string ErrorMessageHelp2
+        {
+            get { return Messages.Title_ErrorMessageHelp2; }
+        }
+
+        public static string OpenPSR
+        {
+            get { return Messages.Title_OpenPSR; }
+        }
+
         public static string ReportIssue
         {
             get { return Messages.Msg_ReportIssue; }
+        }
+
+        public static string WindowTitle
+        {
+            get { return Messages.Title_UnhandledException; }
         }
 
         #endregion Properties
