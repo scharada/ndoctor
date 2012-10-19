@@ -66,6 +66,7 @@
     <Compile Include="DoorKeeper.cs" />
     <Compile Include="Interceptors\AuthorisationInterceptor.cs" />
     <Compile Include="Interceptors\BaseInterceptor.cs" />
+    <Compile Include="Interceptors\BenchmarkInterceptor.cs" />
     <Compile Include="Interceptors\LogInterceptor.cs" />
     <Compile Include="Interceptors\TransactionInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,6 +82,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Helpers\Probel.Helpers\Probel.Helpers.csproj">
+      <Project>{18F7EA3E-0BF5-430F-9B1D-258BDAB6304E}</Project>
+      <Name>Probel.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Probel.NDoctor.Domain.DAL\Probel.NDoctor.Domain.DAL.csproj">
       <Project>{96B7A128-8A98-4B49-A3CB-30AE783236E9}</Project>
       <Name>Probel.NDoctor.Domain.DAL</Name>

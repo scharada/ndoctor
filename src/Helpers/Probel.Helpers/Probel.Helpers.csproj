@@ -57,6 +57,7 @@
     <Compile Include="Assertion\Constraint\TrueConstraint.cs" />
     <Compile Include="Assertion\Message\IMessageWriter.cs" />
     <Compile Include="Assertion\Message\TextMessageWriter.cs" />
+    <Compile Include="Benchmarking\Benchmark.cs" />
     <Compile Include="Conversions\ConversionExtension.cs" />
     <Compile Include="Conversions\Converter.cs" />
     <Compile Include="Data\Chart.cs" />

@@ -21,6 +21,9 @@
 
 namespace Probel.NDoctor.View.Plugins.Helpers
 {
+    /// <summary>
+    /// Configuration of the application
+    /// </summary>
     public class Configuration
     {
         #region Properties
@@ -34,7 +37,8 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         /// </value>
         public bool AutomaticContextMenu
         {
-            get; set;
+            get;
+            set;
         }
 
         /// <summary>
@@ -47,6 +51,18 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         {
             get;
             set;
+        }
+
+        /// <summary>
+        /// Gets or sets the execution time threshold. That's after how many milliseconds the execution time
+        /// if concidered a high
+        /// </summary>
+        /// <value>
+        /// The execution time threshold (in milliseconds).
+        /// </value>
+        public uint ExecutionTimeThreshold
+        {
+            get; set;
         }
 
         #endregion Properties

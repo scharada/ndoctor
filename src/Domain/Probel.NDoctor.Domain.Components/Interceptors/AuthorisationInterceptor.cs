@@ -42,7 +42,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
         #region Fields
 
         private static readonly IAuthorisationPolicy policy = ObjectFactory.GetInstance<IAuthorisationPolicy>();
-        private static readonly string[] ReadAuthorisations = new string[] { "get", "getall", "find", "findall" };
+        private static readonly string[] ReadAuthorisations = new string[] { "get", "getall", "find", "findall" }; //"find" and "findall" are not officially supported
         private static readonly string[] WriteAuthorisations = new string[] { "create", "insert", "remove", "delete", "update" };
 
         #endregion Fields
