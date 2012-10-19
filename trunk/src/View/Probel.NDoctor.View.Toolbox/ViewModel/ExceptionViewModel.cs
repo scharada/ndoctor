@@ -21,6 +21,7 @@
 
 namespace Probel.NDoctor.View.Toolbox.ViewModel
 {
+    using System;
     using System.Diagnostics;
     using System.Text;
     using System.Threading;
@@ -31,7 +32,6 @@ namespace Probel.NDoctor.View.Toolbox.ViewModel
 
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.View.Toolbox.Navigation;
-    using System;
 
     public class ExceptionViewModel : ObservableObject
     {
@@ -44,6 +44,7 @@ namespace Probel.NDoctor.View.Toolbox.ViewModel
         private readonly ICommand recordIssueCommand;
         private readonly ICommand reportIssueCommand;
 
+        private bool canRecordIssue = true;
         private bool isClipboardChecked = true;
         private string logStack;
 
@@ -117,8 +118,6 @@ namespace Probel.NDoctor.View.Toolbox.ViewModel
             return true;
         }
 
-        private bool canRecordIssue = true;
-
         private bool CanReportIssue()
         {
             return true;
@@ -160,6 +159,5 @@ namespace Probel.NDoctor.View.Toolbox.ViewModel
         }
 
         #endregion Methods
-
     }
 }

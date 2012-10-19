@@ -56,13 +56,13 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             private set;
         }
 
-        public ICommand GetFreeSlotsCommand
+        public TimeSlotCollection FreeSlots
         {
             get;
             private set;
         }
 
-        public TimeSlotCollection FreeSlots
+        public ICommand GetFreeSlotsCommand
         {
             get;
             private set;

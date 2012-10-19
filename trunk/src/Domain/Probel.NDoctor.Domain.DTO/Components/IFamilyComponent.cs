@@ -25,6 +25,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         #region Methods
 
         /// <summary>
+        /// Get all family members for the specified Patient
+        /// </summary>
+        /// <param name="patient">The connected patient</param>
+        /// <returns>The list of the family members</returns>
+        IList<LightPatientDto> GetAllFamilyMembers(LightPatientDto patient);
+
+        /// <summary>
         /// Gets the family of the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -40,13 +47,6 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="search">The search mode</param>
         /// <returns>A list of patient</returns>
         IList<LightPatientDto> GetPatientNotFamilyMembers(LightPatientDto patient, string criteria, SearchOn search);
-
-        /// <summary>
-        /// Get all family members for the specified Patient
-        /// </summary>
-        /// <param name="patient">The connected patient</param>
-        /// <returns>The list of the family members</returns>
-        IList<LightPatientDto> GetAllFamilyMembers(LightPatientDto patient);
 
         /// <summary>
         /// Remove the specified member from the specified patient

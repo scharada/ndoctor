@@ -59,6 +59,17 @@ namespace Probel.NDoctor.Domain.DAL.Components
         #region Methods
 
         /// <summary>
+        /// Get all family members for the specified Patient
+        /// </summary>
+        /// <param name="patient">The connected patient</param>
+        /// <returns>The list of the family members</returns>
+        public IList<LightPatientDto> GetAllFamilyMembers(LightPatientDto patient)
+        {
+            var p = this.Session.Get<Patient>(patient.Id);
+            return this.GetAllFamilyMembers(p);
+        }
+
+        /// <summary>
         /// Gets the family of the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -82,6 +93,17 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Returns all the family members of the current patient
+        /// </summary>
+        /// <param name="patient">The patient </param>
+        /// <returns>The list of the familly members</returns>
+        public IList<LightPatientDto> GetFamilyMembers(LightPatientDto patient)
+        {
+            var entity = this.Session.Get<Patient>(patient.Id);
+            return this.GetAllFamilyMembers(entity);
+        }
+
+        /// <summary>
         /// Get all the patient respecting the criteria and the search mode which
         /// aren't in the family of the specified patient
         /// </summary>
@@ -93,28 +115,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         {
             var result = this.GetPatientsByNameLight(criteria, search);
             return this.RemoveFamilyMembers(result, patient);
-        }
-
-        /// <summary>
-        /// Get all family members for the specified Patient
-        /// </summary>
-        /// <param name="patient">The connected patient</param>
-        /// <returns>The list of the family members</returns>
-        public IList<LightPatientDto> GetAllFamilyMembers(LightPatientDto patient)
-        {
-            var p = this.Session.Get<Patient>(patient.Id);
-            return this.GetAllFamilyMembers(p);
-        }
-
-        /// <summary>
-        /// Returns all the family members of the current patient
-        /// </summary>
-        /// <param name="patient">The patient </param>
-        /// <returns>The list of the familly members</returns>
-        public IList<LightPatientDto> GetFamilyMembers(LightPatientDto patient)
-        {
-            var entity = this.Session.Get<Patient>(patient.Id);
-            return this.GetAllFamilyMembers(entity);
         }
 
         /// <summary>

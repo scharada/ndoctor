@@ -356,7 +356,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             var context = TaskScheduler.FromCurrentSynchronizationContext();
             var task = Task.Factory
                 .StartNew<TaskArgs>(() => this.GetAllListAsync())
-                .ContinueWith(e => this.GetAllListCallback(e.Result), context);
+                .ContinueWith(e => this.GetAllListCallback(e), context);
         }
 
         private bool AskToDelete()
@@ -550,16 +550,20 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             return args;
         }
 
-        private void GetAllListCallback(TaskArgs e)
+        private void GetAllListCallback(Task<TaskArgs> e)
         {
-            this.Insurances.Refill(e.Insurances);
-            this.Practices.Refill(e.Practices);
-            this.Pathologies.Refill(e.Pathologies);
-            this.Drugs.Refill(Drugs);
-            this.Reputations.Refill(e.Reputations);
-            this.Tags.Refill(Mapper.Map<IList<TagDto>, IList<TagViewModel>>(e.Tags));
-            this.Professions.Refill(e.Professions);
-            this.Doctors.Refill(e.Doctors);
+            this.ExecuteIfTaskIsNotFaulted(e, () =>
+            {
+                var context = e.Result;
+                this.Insurances.Refill(context.Insurances);
+                this.Practices.Refill(context.Practices);
+                this.Pathologies.Refill(context.Pathologies);
+                this.Drugs.Refill(Drugs);
+                this.Reputations.Refill(context.Reputations);
+                this.Tags.Refill(Mapper.Map<IList<TagDto>, IList<TagViewModel>>(context.Tags));
+                this.Professions.Refill(context.Professions);
+                this.Doctors.Refill(context.Doctors);
+            });
         }
 
         private void RemoveDoctor()

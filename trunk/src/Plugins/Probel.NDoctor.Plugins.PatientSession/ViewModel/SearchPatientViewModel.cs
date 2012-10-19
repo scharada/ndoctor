@@ -157,7 +157,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             {
                 var context = TaskScheduler.FromCurrentSynchronizationContext();
                 Task.Factory.StartNew<IList<LightPatientDto>>(() => this.SearchAsync())
-                    .ContinueWith(e => this.SearchCallback(e.Result), context);
+                    .ContinueWith(e => this.SearchCallback(e), context);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -168,11 +168,15 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             return this.component.GetPatientsByNameLight(this.Criteria, SearchOn.FirstAndLastName);
         }
 
-        private void SearchCallback(IList<LightPatientDto> result)
+        private void SearchCallback(Task<IList<LightPatientDto>> e)
         {
-            this.FoundPatients.Refill(result);
-            PluginContext.Host.SetArrowCursor();
-            PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_SearchExecuted.FormatWith(result.Count()));
+            this.ExecuteIfTaskIsNotFaulted(e, () =>
+            {
+                var result = e.Result;
+                this.FoundPatients.Refill(result);
+                PluginContext.Host.SetArrowCursor();
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_SearchExecuted.FormatWith(result.Count()));
+            });
         }
 
         private void SelectPatient()

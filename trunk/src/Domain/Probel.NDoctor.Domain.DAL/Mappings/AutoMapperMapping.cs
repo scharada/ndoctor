@@ -136,6 +136,9 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
 
             Mapper.CreateMap<MedicalRecordState, MedicalRecord>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
+
+            Mapper.CreateMap<DatabaseState, DatabaseState>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
         }
 
         #endregion Methods

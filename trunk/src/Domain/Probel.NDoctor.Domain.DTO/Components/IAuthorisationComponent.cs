@@ -46,13 +46,6 @@ namespace Probel.NDoctor.Domain.DTO.Components
         long Create(TaskDto task);
 
         /// <summary>
-        /// Gets the task by its reference name.
-        /// </summary>
-        /// <param name="refName">Name of the ref.</param>
-        /// <returns>The found task or <c>Null</c> if nothing is found</returns>
-        TaskDto GetTaskByReference(string refName);
-
-        /// <summary>
         /// Gets all users stored in the database.
         /// </summary>
         /// <returns></returns>
@@ -71,6 +64,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="role">The role.</param>
         /// <returns>A list of tasks</returns>
         TaskDto[] GetAvailableTasks(RoleDto role);
+
+        /// <summary>
+        /// Gets the task by its reference name.
+        /// </summary>
+        /// <param name="refName">Name of the ref.</param>
+        /// <returns>The found task or <c>Null</c> if nothing is found</returns>
+        TaskDto GetTaskByReference(string refName);
 
         /// <summary>
         /// Determines whether this specified usr is super admin.

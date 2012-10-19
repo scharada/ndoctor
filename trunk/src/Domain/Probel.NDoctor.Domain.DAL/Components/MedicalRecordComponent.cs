@@ -81,6 +81,28 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets all the macros.
+        /// </summary>
+        /// <returns></returns>
+        public MacroDto[] GetAllMacros()
+        {
+            var dto = (from macro in this.Session.Query<Macro>()
+                       select macro);
+            return Mapper.Map<IEnumerable<Macro>, MacroDto[]>(dto);
+        }
+
+        /// <summary>
+        /// Gets the history of the specified medical record.
+        /// </summary>
+        /// <param name="record">The record.</param>
+        /// <returns>The items contained in the history</returns>
+        public IEnumerable<MedicalRecordStateDto> GetHistory(MedicalRecordDto record)
+        {
+            var history = this.Session.Get<MedicalRecord>(record.Id);
+            return Mapper.Map<IEnumerable<MedicalRecordState>, IEnumerable<MedicalRecordStateDto>>(history.PreviousStates);
+        }
+
+        /// <summary>
         /// Gets the medical record by id.
         /// </summary>
         /// <param name="id">The id.</param>
@@ -112,28 +134,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
             if (selectedPatient == null) throw new EntityNotFoundException(string.Format("No patient with id '{0}' was found.", patient.Id));
 
             return Mapper.Map<Patient, MedicalRecordCabinetDto>(selectedPatient);
-        }
-
-        /// <summary>
-        /// Gets all the macros.
-        /// </summary>
-        /// <returns></returns>
-        public MacroDto[] GetAllMacros()
-        {
-            var dto = (from macro in this.Session.Query<Macro>()
-                       select macro);
-            return Mapper.Map<IEnumerable<Macro>, MacroDto[]>(dto);
-        }
-
-        /// <summary>
-        /// Gets the history of the specified medical record.
-        /// </summary>
-        /// <param name="record">The record.</param>
-        /// <returns>The items contained in the history</returns>
-        public IEnumerable<MedicalRecordStateDto> GetHistory(MedicalRecordDto record)
-        {
-            var history = this.Session.Get<MedicalRecord>(record.Id);
-            return Mapper.Map<IEnumerable<MedicalRecordState>, IEnumerable<MedicalRecordStateDto>>(history.PreviousStates);
         }
 
         /// <summary>

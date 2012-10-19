@@ -67,6 +67,23 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets all bmi history for the specified patient.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <returns>
+        /// A list of BMI
+        /// </returns>
+        public IList<BmiDto> GetAllBmiHistory(LightPatientDto patient)
+        {
+            var entity = this.Session.Get<Patient>(patient.Id);
+
+            var result = (from b in entity.BmiHistory
+                          select b).ToList();
+
+            return Mapper.Map<IList<Bmi>, IList<BmiDto>>(result);
+        }
+
+        /// <summary>
         /// Gets the bmi history.
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -80,23 +97,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
             var result = (from b in entity.BmiHistory
                           where b.Date >= start
                              && b.Date <= end
-                          select b).ToList();
-
-            return Mapper.Map<IList<Bmi>, IList<BmiDto>>(result);
-        }
-
-        /// <summary>
-        /// Gets all bmi history for the specified patient.
-        /// </summary>
-        /// <param name="patient">The patient.</param>
-        /// <returns>
-        /// A list of BMI
-        /// </returns>
-        public IList<BmiDto> GetAllBmiHistory(LightPatientDto patient)
-        {
-            var entity = this.Session.Get<Patient>(patient.Id);
-
-            var result = (from b in entity.BmiHistory
                           select b).ToList();
 
             return Mapper.Map<IList<Bmi>, IList<BmiDto>>(result);

@@ -36,6 +36,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         void CreateBmi(BmiDto bmi, LightPatientDto patient);
 
         /// <summary>
+        /// Gets all bmi history for the specified patient.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <returns>A list of BMI</returns>
+        IList<BmiDto> GetAllBmiHistory(LightPatientDto patient);
+
+        /// <summary>
         /// Gets the bmi history for the specified patient and that are between the start and end date.
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -43,13 +50,6 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="to">To.</param>
         /// <returns>A list of BMI</returns>
         IList<BmiDto> GetBmiHistory(LightPatientDto patient, DateTime from, DateTime to);
-
-        /// <summary>
-        /// Gets all bmi history for the specified patient.
-        /// </summary>
-        /// <param name="patient">The patient.</param>
-        /// <returns>A list of BMI</returns>
-        IList<BmiDto> GetAllBmiHistory(LightPatientDto patient);
 
         /// <summary>
         /// Gets the bmi history of the specified patient.
