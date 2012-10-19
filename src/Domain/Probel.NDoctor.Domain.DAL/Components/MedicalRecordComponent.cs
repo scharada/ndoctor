@@ -183,7 +183,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="toState">The state.</param>
         public void Revert(MedicalRecordDto record, MedicalRecordStateDto toState)
         {
-            Assert.IsNotNull(toState);
+            Assert.IsNotNull(toState, "toState");
 
             record.Rtf = toState.Rtf;
             record.Tag = toState.Tag;

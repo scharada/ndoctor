@@ -52,7 +52,7 @@ namespace Probel.NDoctor.Domain.DTO.Specification
 
         public override bool IsSatisfiedBy(PatientDto obj)
         {
-            Assert.IsNotNull(obj);
+            Assert.IsNotNull(obj, "obj");
             if (obj.Profession == null || string.IsNullOrWhiteSpace(obj.Profession.Name)) return false;
             else
             {

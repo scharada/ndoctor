@@ -313,7 +313,7 @@ namespace Probel.NDoctor.View.Core.View
         /// <param name="page">The page.</param>
         public void Navigate(object page)
         {
-            Assert.IsNotNull(page, "The page where to navigate shouldn't be null");
+            Assert.IsNotNull(page, "page");
 
             // Hide other context menus otherwise, the context menu of this page
             // will be added to the others.
@@ -473,11 +473,11 @@ namespace Probel.NDoctor.View.Core.View
 
         private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            #if DEBUG
+#if DEBUG
             this.WindowState = System.Windows.WindowState.Normal;
-            #else
+#else
             this.WindowState = System.Windows.WindowState.Maximized;
-            #endif
+#endif
         }
 
         private void WriteStatus(LightPatientDto value)

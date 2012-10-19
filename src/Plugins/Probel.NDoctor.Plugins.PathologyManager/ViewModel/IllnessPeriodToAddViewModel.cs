@@ -101,7 +101,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
         private void Add()
         {
-            Assert.IsNotNull(PluginContext.Host, "Host");
+            Assert.IsNotNull(PluginContext.Host, "PluginContext.Host");
 
             try
             {

@@ -167,7 +167,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// <param name="item">The insurance.</param>
         public void Update(MedicalRecordDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "item");
 
             var entity = this.Session.Get<MedicalRecord>(item.Id);
             var tag = this.Session.Get<Tag>(entity.Tag.Id);

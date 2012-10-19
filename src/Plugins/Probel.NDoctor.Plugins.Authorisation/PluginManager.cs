@@ -74,7 +74,7 @@ namespace Probel.NDoctor.Plugins.Authorisation
         /// </summary>
         public override void Initialise()
         {
-            Assert.IsNotNull(PluginContext.Host, "To initialise the plugin, IPluginHost should be set.");
+            Assert.IsNotNull(PluginContext.Host, "PluginContext.Host");
             this.BuildButtons();
             this.BuildContextMenu();
         }

@@ -40,7 +40,7 @@
 
         public long Create(MacroDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "item");
 
             var exist = (from i in this.Session.Query<MacroDto>()
                          where i.Id == item.Id
@@ -58,7 +58,7 @@
         /// <param name="item">The item to add in the database</param>
         public long Create(DrugDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "item");
 
             var exist = (from i in this.Session.Query<Drug>()
                          where i.Name.ToUpper() == item.Name.ToUpper()
@@ -77,7 +77,7 @@
         /// <param name="item">The item to add in the database</param>
         public long Create(PatientDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "item");
 
             var found = (from p in this.Session.Query<Patient>()
                          where p.Id == item.Id
@@ -95,7 +95,7 @@
         /// <param name="item">The item to add in the database</param>
         public long Create(LightDoctorDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "item");
 
             var found = (from p in this.Session.Query<Doctor>()
                          where p.Id == item.Id
@@ -113,8 +113,8 @@
         /// <param name="item">The item to add in the database</param>
         public long Create(TagDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
-            Assert.IsNotNull(item.Name, "The name of the tag shouldn't be null!");
+            Assert.IsNotNull(item, "item");
+            Assert.IsNotNull(item.Name, "item");
 
             var exist = (from p in this.Session.Query<Tag>()
                          where (p.Name.ToUpper() == item.Name.ToUpper()
@@ -134,7 +134,7 @@
         /// <param name="item">The item to add in the database</param>
         public long Create(UserDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "item");
 
             var found = (from p in this.Session.Query<User>()
                          where p.Id == item.Id
@@ -160,7 +160,7 @@
         /// <param name="item">The patient.</param>
         public long Create(LightPatientDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "item");
 
             var found = (from p in this.Session.Query<Patient>()
                          where p.Id == item.Id
@@ -183,9 +183,10 @@
         /// Creates the specified profession.
         /// </summary>
         /// <param name="item">The profession.</param>
+        /// <returns></returns>
         public long Create(ProfessionDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "item");
 
             var found = (from p in this.Session.Query<Profession>()
                          where p.Id == item.Id
@@ -206,7 +207,7 @@
         /// <param name="item">The item to add in the database</param>
         public long Create(ReputationDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "item");
 
             var exist = (from p in this.Session.Query<Reputation>()
                          where item.Name.ToUpper() == p.Name.ToUpper()
@@ -245,7 +246,7 @@
         /// <param name="reputation">The item to add in the database</param>
         public long Create(PracticeDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "item");
 
             var exist = (from i in this.Session.Query<Practice>()
                          where item.Name.ToUpper() == i.Name.ToUpper()
@@ -265,7 +266,7 @@
         /// <param name="reputation">The item to add in the database</param>
         public long Create(InsuranceDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "item");
 
             var exist = (from i in this.Session.Query<Insurance>()
                          where item.Name.ToUpper() == i.Name.ToUpper()
@@ -286,7 +287,7 @@
         /// <param name="password">The password.</param>
         public long Create(LightUserDto item, string password)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "item");
             if (string.IsNullOrEmpty(password)) throw new EmptyPasswordException();
 
             var found = (from p in this.Session.Query<Practice>()
@@ -334,7 +335,7 @@
         /// </returns>
         public long Create(TaskDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "item");
 
             var exist = (from i in this.Session.Query<TaskDto>()
                          where i.Id == item.Id
@@ -367,7 +368,7 @@
         /// <param name="forPatient">For patient.</param>
         public void Create(MedicalRecordDto record, LightPatientDto forPatient)
         {
-            Assert.IsNotNull(record, "The item to create shouldn't be null");
+            Assert.IsNotNull(record, "item");
 
             var foundPatient = (from p in this.Session.Query<Patient>()
                                 where p.Id == forPatient.Id
@@ -413,7 +414,7 @@
         /// <returns></returns>
         public long Create(DoctorDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "item");
 
             var found = (from p in this.Session.Query<Doctor>()
                          where p.Id == item.Id
@@ -436,7 +437,7 @@
         /// <param name="patient">The patient.</param>
         public void Create(PictureDto picture, LightPatientDto forPatient)
         {
-            Assert.IsNotNull(picture, "The item to create shouldn't be null");
+            Assert.IsNotNull(picture, "item");
 
             var foundPatient = (from p in this.Session.Query<Patient>()
                                 where p.Id == forPatient.Id
@@ -493,7 +494,7 @@
         /// <param name="item">The item to add in the database</param>
         public void Create(MedicalRecordDto item)
         {
-            Assert.IsNotNull(item, "The item to create shouldn't be null");
+            Assert.IsNotNull(item, "item");
 
             var found = (from p in this.Session.Query<MedicalRecord>()
                          where p.Id == item.Id

@@ -147,7 +147,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         private IList<LightDoctorDto> SearchAsync(LightPatientDto selectedPatient)
         {
-            Assert.IsNotNull(selectedPatient);
+            Assert.IsNotNull(selectedPatient, "selectedPatient");
             PluginContext.Host.SetWaitCursor();
             var result = this.component.FindNotLinkedDoctorsFor(selectedPatient, this.Criteria, SearchOn.FirstAndLastName);
             PluginContext.Host.SetArrowCursor();

@@ -230,8 +230,9 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             try
             {
 
-                Assert.IsNotNull(PluginContext.Host, "Host");
-                Assert.IsNotNull(PluginContext.Host.SelectedPatient, "SelectedPatient");
+                Assert.IsNotNull(PluginContext.Host, "PluginContext.Host");
+
+                if (PluginContext.Host.SelectedPatient == null) { return; }
 
                 var result = this.Component.FindMedicalRecordCabinet(PluginContext.Host.SelectedPatient);
                 this.Cabinet = TitledMedicalRecordCabinetDto.CreateFrom(result);
@@ -272,8 +273,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         {
             try
             {
-                Assert.IsNotNull(PluginContext.Host);
-                Assert.IsNotNull(PluginContext.Host.SelectedPatient);
+                Assert.IsNotNull(PluginContext.Host, "PluginContext.Host");
+                Assert.IsNotNull(PluginContext.Host.SelectedPatient, "PluginContext.Host.SelectedPatient");
 
                 TextEditor.UpdateBinding();
 

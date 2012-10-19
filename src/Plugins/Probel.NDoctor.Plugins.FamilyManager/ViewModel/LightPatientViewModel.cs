@@ -209,7 +209,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
 
         private string SetRelation(FamilyRelations relation)
         {
-            Assert.IsNotNull(this.SessionPatient, "Member");
+            Assert.IsNotNull(this.SessionPatient, "SessionPatient");
             return string.Format(Messages.Msg_Relation, relation.Translate(), this.SessionPatient.DisplayedName);
         }
 
