@@ -770,12 +770,28 @@ namespace Probel.NDoctor.Domain.DAL.Components
                 return (from patient in this.Session.Query<Patient>()
                         where patient.FirstName.Contains(criterium)
                            || patient.LastName.Contains(criterium)
-                        select patient).ToList();
+                        select new Patient
+                        {
+                            Id = patient.Id,
+                            FirstName = patient.FirstName,
+                            LastName = patient.LastName,
+                            Gender = patient.Gender,
+                            BirthDate = patient.BirthDate,
+                            Profession = patient.Profession,
+                        }).ToList();
             }
             else
             {
                 return (from patient in this.Session.Query<Patient>()
-                        select patient).ToList();
+                        select new Patient
+                        {
+                            Id = patient.Id,
+                            FirstName = patient.FirstName,
+                            LastName = patient.LastName,
+                            Gender = patient.Gender,
+                            BirthDate = patient.BirthDate,
+                            Profession = patient.Profession,
+                        }).ToList();
             }
         }
 
@@ -785,12 +801,28 @@ namespace Probel.NDoctor.Domain.DAL.Components
             {
                 return (from patient in this.Session.Query<Patient>()
                         where patient.FirstName.Contains(criterium)
-                        select patient).ToList();
+                        select new Patient
+                        {
+                            Id = patient.Id,
+                            FirstName = patient.FirstName,
+                            LastName = patient.LastName,
+                            Gender = patient.Gender,
+                            BirthDate = patient.BirthDate,
+                            Profession = patient.Profession,
+                        }).ToList();
             }
             else
             {
                 return (from patient in this.Session.Query<Patient>()
-                        select patient).ToList();
+                        select new Patient
+                        {
+                            Id = patient.Id,
+                            FirstName = patient.FirstName,
+                            LastName = patient.LastName,
+                            Gender = patient.Gender,
+                            BirthDate = patient.BirthDate,
+                            Profession = patient.Profession,
+                        }).ToList();
             }
         }
 

@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.DTO.Specification;
+    using Probel.Helpers.Benchmarking;
 
     /// <summary>
     /// Get the features of the patient session
@@ -64,12 +65,12 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         /// All the patient that fullfill the criteria
         /// </returns>
-        public IList<LightPatientDto> GetPatientsByNameLight(string criteria, SpecificationExpression<PatientDto> specification)
+        public IList<LightPatientDto> GetPatientsByNameLight(string criteria, SpecificationExpression<LightPatientDto> specification)
         {
             List<Patient> patients = new List<Patient>();
             var searchAll = false;
 
-            if (criteria != "*")
+            if (criteria != "*" || string.IsNullOrEmpty(criteria))
             {
                 patients = (from p in this.Session.Query<Patient>()
                             where p.FirstName.ToLower().Contains(criteria.ToLower())
@@ -99,14 +100,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
                 searchAll = true;
             }
 
-            var entities = Mapper.Map<List<Patient>, List<PatientDto>>(patients);
+            var preSearchResult = Mapper.Map<List<Patient>, List<LightPatientDto>>(patients);
+            this.CheckIfSearchAllReturnsZeroResult(preSearchResult, searchAll);
 
-            this.CheckIfSearchAllReturnsZeroResult(entities, searchAll);
-
-            return Mapper.Map<List<PatientDto>, IList<LightPatientDto>>(entities.FindAll(specification.IsSatisfiedBy));
+            var result = preSearchResult.FindAll(specification.IsSatisfiedBy);
+            return result;
         }
 
-        private void CheckIfSearchAllReturnsZeroResult(IList<PatientDto> patients, bool searchAll)
+        private void CheckIfSearchAllReturnsZeroResult(IList<LightPatientDto> patients, bool searchAll)
         {
             if (patients.Count == 0 && searchAll)
             {

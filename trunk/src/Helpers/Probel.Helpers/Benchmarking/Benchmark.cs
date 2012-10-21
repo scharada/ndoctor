@@ -43,9 +43,9 @@ namespace Probel.Helpers.Benchmarking
         /// </summary>
         /// <param name="afterExecution">The action to execute when the benchmarking is done.</param>
         public Benchmark(Action<TimeSpan> afterExecution)
+            : this()
         {
             this.OnDispose = afterExecution;
-            this.Stopwatch.Start();
         }
 
         /// <summary>
@@ -53,6 +53,7 @@ namespace Probel.Helpers.Benchmarking
         /// </summary>
         public Benchmark()
         {
+            this.Stopwatch.Start();
         }
 
         #endregion Constructors
@@ -70,13 +71,24 @@ namespace Probel.Helpers.Benchmarking
         }
 
         /// <summary>
-        /// Checks the now.
+        /// Execute the specified action that receives the elapsed time
         /// </summary>
-        /// <param name="action">The action.</param>
+        /// <param name="action">The action that manages the elapsed time.</param>
         public void CheckNow(Action<TimeSpan> action)
         {
             this.Stopwatch.Stop();
             action(this.Stopwatch.Elapsed);
+            this.Stopwatch.Start();
+        }
+
+        /// <summary>
+        /// Execute the specified action that receives the elapsed time
+        /// </summary>
+        /// <param name="action">The action that manages the text describing the elapsed time.</param>
+        public void CheckNowText(Action<string> action)
+        {
+            this.Stopwatch.Stop();
+            action(ToMessage(this.Stopwatch.Elapsed));
             this.Stopwatch.Start();
         }
 

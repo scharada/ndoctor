@@ -105,8 +105,6 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
 
             Mapper.CreateMap<Address, AddressDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Practice, PracticeDto>().AfterMap((entity, dto) => Clean(dto));
-            Mapper.CreateMap<Patient, LightPatientDto>().AfterMap((entity, dto) => Clean(dto));
-            Mapper.CreateMap<Patient, PatientDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Insurance, InsuranceDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Insurance, LightInsuranceDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Reputation, ReputationDto>().AfterMap((entity, dto) => Clean(dto));
@@ -127,6 +125,9 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<Doctor, DoctorFullDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Role, RoleDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Macro, MacroDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Patient, PatientDto>().AfterMap((entity, dto) => Clean(dto));
+
+            //Mapper.CreateMap<Patient, LightPatientDto>().AfterMap((entity, dto) => Clean(dto));
         }
 
         /// <summary>
@@ -135,28 +136,50 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
         private static void MapEntityToDto_Optimsised()
         {
             Mapper.CreateMap<Picture, PictureDto>().ConvertUsing(src =>
-            {
-                return new PictureDto()
                 {
-                    Id = src.Id,
-                    Creation = src.Creation,
-                    IsImported = src.IsImported,
-                    LastUpdate = src.LastUpdate,
-                    Notes = src.Notes,
-                    Tag = Mapper.Map<Tag, TagDto>(src.Tag),
-                    ThumbnailBitmap = src.ThumbnailBitmap,
-                    Bitmap = src.Bitmap,
-                };
-            });
+                    var dto = new PictureDto()
+                    {
+                        Id = src.Id,
+                        Creation = src.Creation,
+                        IsImported = src.IsImported,
+                        LastUpdate = src.LastUpdate,
+                        Notes = src.Notes,
+                        Tag = Mapper.Map<Tag, TagDto>(src.Tag),
+                        ThumbnailBitmap = src.ThumbnailBitmap,
+                        Bitmap = src.Bitmap,
+                    };
+                    Clean(dto);
+                    return dto;
+                });
+
             Mapper.CreateMap<Picture, LightPictureDto>().ConvertUsing(src =>
             {
-                return new LightPictureDto()
+                var dto = new LightPictureDto()
                 {
                     Id = src.Id,
                     IsImported = src.IsImported,
                     Tag = Mapper.Map<Tag, TagDto>(src.Tag),
                     ThumbnailBitmap = src.ThumbnailBitmap,
                 };
+                Clean(dto);
+                return dto;
+            });
+
+            Mapper.CreateMap<Patient, LightPatientDto>().ConvertUsing(src =>
+            {
+                var dto = new LightPatientDto()
+                {
+                    Birthdate = src.BirthDate,
+                    FirstName = src.FirstName,
+                    Gender = src.Gender,
+                    Height = (int)src.Height,
+                    Id = src.Id,
+                    IsImported = src.IsImported,
+                    LastName = src.LastName,
+                    Profession = Mapper.Map<ProfessionDto>(src.Profession),
+                };
+                Clean(dto);
+                return dto;
             });
         }
 
