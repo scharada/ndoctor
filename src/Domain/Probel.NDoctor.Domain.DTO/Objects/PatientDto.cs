@@ -31,7 +31,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private int counter;
         private decimal fee;
         private Gender gender;
-        private string header;
         private long height;
         private DateTime inscriptionDate = DateTime.Today;
         private LightInsuranceDto insurance = new LightInsuranceDto();
@@ -154,23 +153,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.gender = value;
                 this.OnPropertyChanged(() => Gender);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the header that will be displayed in the prescriptions or
-        /// other places where a header is needed.
-        /// </summary>
-        /// <value>
-        /// The header.
-        /// </value>
-        public string Header
-        {
-            get { return this.header; }
-            set
-            {
-                this.header = value;
-                this.OnPropertyChanged(() => Header);
             }
         }
 

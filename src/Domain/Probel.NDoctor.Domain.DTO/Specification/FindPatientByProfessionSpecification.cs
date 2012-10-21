@@ -31,7 +31,7 @@ namespace Probel.NDoctor.Domain.DTO.Specification
     /// This specification uses the lower case version of the Profession.Name to 
     /// make the selection
     /// </summary>
-    public class GetPatientByProfessionSpecification : Specification<PatientDto>
+    public class GetPatientByProfessionSpecification : Specification<LightPatientDto>
     {
         #region Fields
 
@@ -50,7 +50,7 @@ namespace Probel.NDoctor.Domain.DTO.Specification
 
         #region Methods
 
-        public override bool IsSatisfiedBy(PatientDto obj)
+        public override bool IsSatisfiedBy(LightPatientDto obj)
         {
             Assert.IsNotNull(obj, "obj");
             if (obj.Profession == null || string.IsNullOrWhiteSpace(obj.Profession.Name)) return false;

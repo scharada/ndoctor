@@ -62,7 +62,6 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             this.RefreshCommand = new RelayCommand(() => this.Refresh());
             this.SelectPatientCommand = new RelayCommand(() => this.SelectPatient(), () => this.CanSelectPatient());
 
-            this.Name = "*";
             this.IsBusy = false;
         }
 
@@ -156,8 +155,8 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 
         private bool CanSearch()
         {
-            return this.SelectedProfession != null
-                && !string.IsNullOrWhiteSpace(this.Name);
+            //" " (white space) or String.Empty will disable the search on the name
+            return this.SelectedProfession != null;
         }
 
         private bool CanSelectPatient()
@@ -178,7 +177,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
         {
             try
             {
-                var expression = new SpecificationExpression<PatientDto>();
+                var expression = new SpecificationExpression<LightPatientDto>();
 
                 if (this.IsByProfession) { expression.And(new GetPatientByProfessionSpecification(this.SelectedProfession)); }
 
@@ -190,7 +189,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             catch (Exception ex) { this.Handle.Error(ex); }
         }
 
-        private IList<LightPatientDto> SearchAsync(SpecificationExpression<PatientDto> expression)
+        private IList<LightPatientDto> SearchAsync(SpecificationExpression<LightPatientDto> expression)
         {
             this.IsBusy = true;
             return this.Component.GetPatientsByNameLight(this.Name, expression);

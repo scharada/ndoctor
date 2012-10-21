@@ -112,6 +112,42 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             }
         }
 
+
+
+        private DateTime birthdate;
+        /// <summary>
+        /// Gets or sets the birth date of the patient.
+        /// </summary>
+        /// <value>
+        /// The birth date.
+        /// </value>
+        public DateTime Birthdate
+        {
+            get { return this.birthdate; }
+            set
+            {
+                this.birthdate = value;
+                this.OnPropertyChanged(() => Birthdate);
+            }
+        }
+
+        private ProfessionDto profession;
+        /// <summary>
+        /// Gets or sets the profession of the patient.
+        /// </summary>
+        /// <value>
+        /// The profession.
+        /// </value>
+        public ProfessionDto Profession
+        {
+            get { return this.profession; }
+            set
+            {
+                this.profession = value;
+                this.OnPropertyChanged(() => Profession);
+            }
+        }
+
         #endregion Properties
 
         #region Methods

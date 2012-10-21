@@ -26,7 +26,7 @@ namespace Probel.NDoctor.Domain.DTO.Specification
     /// <summary>
     /// Select all the patient with the birth year specified in the ctor
     /// </summary>
-    public class GetPatientByBirthYearSpecification : Specification<PatientDto>
+    public class GetPatientByBirthYearSpecification : Specification<LightPatientDto>
     {
         #region Fields
 
@@ -45,7 +45,7 @@ namespace Probel.NDoctor.Domain.DTO.Specification
 
         #region Methods
 
-        public override bool IsSatisfiedBy(PatientDto obj)
+        public override bool IsSatisfiedBy(LightPatientDto obj)
         {
             return obj.Birthdate.Year == this.birthYear;
         }
