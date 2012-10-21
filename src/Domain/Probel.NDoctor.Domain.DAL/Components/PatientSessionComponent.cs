@@ -67,22 +67,55 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public IList<LightPatientDto> GetPatientsByNameLight(string criteria, SpecificationExpression<PatientDto> specification)
         {
             List<Patient> patients = new List<Patient>();
+            var searchAll = false;
+
             if (criteria != "*")
             {
                 patients = (from p in this.Session.Query<Patient>()
                             where p.FirstName.ToLower().Contains(criteria.ToLower())
                             || p.LastName.ToLower().Contains(criteria.ToLower())
-                            select p).ToList();
+                            select new Patient
+                            {
+                                Id = p.Id,
+                                FirstName = p.FirstName,
+                                LastName = p.LastName,
+                                Gender = p.Gender,
+                                BirthDate = p.BirthDate,
+                                Profession = p.Profession,
+                            }).ToList();
             }
             else
             {
                 patients = (from p in this.Session.Query<Patient>()
-                            select p).ToList();
+                            select new Patient
+                            {
+                                Id = p.Id,
+                                FirstName = p.FirstName,
+                                LastName = p.LastName,
+                                Gender = p.Gender,
+                                BirthDate = p.BirthDate,
+                                Profession = p.Profession,
+                            }).ToList();
+                searchAll = true;
             }
 
             var entities = Mapper.Map<List<Patient>, List<PatientDto>>(patients);
 
+            this.CheckIfSearchAllReturnsZeroResult(entities, searchAll);
+
             return Mapper.Map<List<PatientDto>, IList<LightPatientDto>>(entities.FindAll(specification.IsSatisfiedBy));
+        }
+
+        private void CheckIfSearchAllReturnsZeroResult(IList<PatientDto> patients, bool searchAll)
+        {
+            if (patients.Count == 0 && searchAll)
+            {
+                var msg = "A query that asks all the patients returned zero results after the execution of the specification pattern. Maybe you have some null properties (Checl the SELECT clause)";
+                this.Logger.Warn(msg);
+#if DEBUG
+                throw new NotImplementedException(msg);
+#endif
+            }
         }
 
         /// <summary>

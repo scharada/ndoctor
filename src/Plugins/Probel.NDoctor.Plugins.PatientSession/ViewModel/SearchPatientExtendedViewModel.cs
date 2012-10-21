@@ -31,7 +31,6 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.DTO.Specification;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox.Navigation;
@@ -199,8 +198,11 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 
         private void SearchCallback(Task<IList<LightPatientDto>> e)
         {
-            this.FoundPatients.Refill(e.Result);
-            this.IsBusy = false;
+            this.ExecuteIfTaskIsNotFaulted(e, () =>
+            {
+                this.FoundPatients.Refill(e.Result);
+                this.IsBusy = false;
+            });
         }
 
         private void SelectPatient()
