@@ -34,8 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\..\packages\AutoMapper.1.1.0.118\lib\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=2.0.0.232, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\AutoMapper.2.0.0\lib\net40-client\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.1.3.0.717\lib\FluentNHibernate.dll</HintPath>
@@ -69,6 +70,7 @@
     <Compile Include="..\..\Version.cs">
       <Link>Version.cs</Link>
     </Compile>
+    <Compile Include="AopConfiguration\BenchmarkThresholdAttribute.cs" />
     <Compile Include="Cfg\Script.cs" />
     <Compile Include="Components\AdministrationComponent.cs" />
     <Compile Include="Components\AuthorisationComponent.cs" />
@@ -93,7 +95,7 @@
     <Compile Include="Helpers\EntityEqualityComparer.cs" />
     <Compile Include="Helpers\ComponentDecorator.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
-    <Compile Include="Helpers\InspectionIgnoredAttribute.cs" />
+    <Compile Include="AopConfiguration\InspectionIgnoredAttribute.cs" />
     <Compile Include="Helpers\TransactionAttribute.cs" />
     <Compile Include="Macro\InvalidMacroException.cs">
       <SubType>Code</SubType>

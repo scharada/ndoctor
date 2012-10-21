@@ -58,6 +58,7 @@
     <Compile Include="TestBase.cs" />
     <Compile Include="TestAssertions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestBenchmark.cs" />
     <Compile Include="TestConversions.cs" />
     <Compile Include="TestDateRange.cs" />
     <Compile Include="TestStrings.cs" />

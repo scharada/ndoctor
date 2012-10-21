@@ -53,6 +53,24 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
         public abstract void Intercept(IInvocation invocation);
 
         /// <summary>
+        /// Get an array of all the specified attribute. If not decorated, returns <c>Null</c>
+        /// A method should be ignored when it is eihter:
+        /// - a non public method
+        /// - a ctor
+        /// - a method marked with the <see cref="InspectionIngnoredAttribute"/> attribute
+        /// </summary>
+        /// <typeparam name="T">The type of the attribute to check</typeparam>
+        /// <param name="invocation">The invocation.</param>
+        /// <returns>
+        ///   The array of all the specified attribute. If not decorated, returns <c>Null</c>
+        /// </returns>
+        protected T[] GetAttribute<T>(IInvocation invocation)
+            where T : Attribute
+        {
+            return invocation.MethodInvocationTarget.GetCustomAttributes(typeof(T), true) as T[];
+        }
+
+        /// <summary>
         /// Indicates whether the invocated method is decorated with the specified attribute.
         /// A method should be ignored when it is eihter:
         /// - a non public method

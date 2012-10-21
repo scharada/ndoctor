@@ -24,7 +24,9 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
     using System;
 
     using Castle.DynamicProxy;
+
     using Probel.Helpers.Benchmarking;
+    using Probel.NDoctor.Domain.DAL.AopConfiguration;
 
     /// <summary>
     /// Benchmarks the call of a method and logs if time if higher that a threshold
@@ -33,7 +35,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
     {
         #region Fields
 
-        private readonly uint Threshold;
+        private readonly uint DefaultThreshold;
 
         #endregion Fields
 
@@ -46,8 +48,9 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
         public BenchmarkInterceptor(uint threshold)
             : base()
         {
-            this.Threshold = threshold;
+            this.DefaultThreshold = threshold;
         }
+
         #endregion Constructors
 
         #region Methods
@@ -59,27 +62,38 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
         public override void Intercept(IInvocation invocation)
         {
             var methodName = string.Format("{0}.{1}", invocation.TargetType.Name, invocation.Method.Name);
-            using (new Benchmark(e => LogTime(e, methodName)))
+            var thresholdInfo = this.GetThreshold(invocation);
+            using (new Benchmark(e => LogTime(e, methodName, thresholdInfo.Item1, thresholdInfo.Item2)))
             {
                 invocation.Proceed();
             }
         }
 
-        private void LogTime(TimeSpan e, string methodName)
+        private Tuple<double, string> GetThreshold(IInvocation invocation)
         {
-            if (e.TotalMilliseconds > this.Threshold)
+            var attribute = this.GetAttribute<BenchmarkThresholdAttribute>(invocation);
+            return (attribute != null && attribute.Length > 0)
+                ? new Tuple<double, string>((double)attribute[0].Threshold, "[" + attribute[0].Explanation + "]")
+                : new Tuple<double, string>((double)this.DefaultThreshold, string.Empty);
+        }
+
+        private void LogTime(TimeSpan e, string methodName, double threshold, string explanation)
+        {
+            if (e.TotalMilliseconds > threshold)
             {
-                Logger.WarnFormat("Possible bottleneck | [{1,3}.{2:000} sec] ==> {0}."
+                Logger.WarnFormat("Possible bottleneck | [{1,3}.{2:000} sec] ==> {0} {3}"
                     , methodName
                     , e.Seconds
-                    , e.Milliseconds);
+                    , e.Milliseconds
+                    , explanation);
             }
             else
             {
-                Logger.DebugFormat("                    | [{1,3}.{2:000} sec] ==> {0}."
+                Logger.DebugFormat("                    | [{1,3}.{2:000} sec] ==> {0} {3}"
                     , methodName
                     , e.Seconds
-                    , e.Milliseconds);
+                    , e.Milliseconds
+                    , explanation);
             }
         }
 

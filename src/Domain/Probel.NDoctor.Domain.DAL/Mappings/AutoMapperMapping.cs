@@ -28,6 +28,8 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
         public static void Configure()
         {
             MapEntityToDto();
+            MapEntityToDto_Optimsised();
+
             MapDtoToEntity();
             MapDtoToDto();
             MapEntityToEntity();
@@ -114,7 +116,6 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<Practice, LightPracticeDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Bmi, BmiDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<MedicalRecord, MedicalRecordDto>().AfterMap((entity, dto) => Clean(dto));
-            Mapper.CreateMap<Picture, PictureDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<IllnessPeriod, IllnessPeriodDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Pathology, PathologyDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Drug, DrugDto>().AfterMap((entity, dto) => Clean(dto));
@@ -126,7 +127,37 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<Doctor, DoctorFullDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Role, RoleDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Macro, MacroDto>().AfterMap((entity, dto) => Clean(dto));
-            Mapper.CreateMap<Picture, LightPictureDto>().AfterMap((entity, dto) => Clean(dto));
+        }
+
+        /// <summary>
+        /// Optimisation of mapping when mapping is slow
+        /// </summary>
+        private static void MapEntityToDto_Optimsised()
+        {
+            Mapper.CreateMap<Picture, PictureDto>().ConvertUsing(src =>
+            {
+                return new PictureDto()
+                {
+                    Id = src.Id,
+                    Creation = src.Creation,
+                    IsImported = src.IsImported,
+                    LastUpdate = src.LastUpdate,
+                    Notes = src.Notes,
+                    Tag = Mapper.Map<Tag, TagDto>(src.Tag),
+                    ThumbnailBitmap = src.ThumbnailBitmap,
+                    Bitmap = src.Bitmap,
+                };
+            });
+            Mapper.CreateMap<Picture, LightPictureDto>().ConvertUsing(src =>
+            {
+                return new LightPictureDto()
+                {
+                    Id = src.Id,
+                    IsImported = src.IsImported,
+                    Tag = Mapper.Map<Tag, TagDto>(src.Tag),
+                    ThumbnailBitmap = src.ThumbnailBitmap,
+                };
+            });
         }
 
         private static void MapEntityToEntity()

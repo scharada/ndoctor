@@ -48,9 +48,37 @@ namespace Probel.Helpers.Benchmarking
             this.Stopwatch.Start();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Benchmark"/> class.
+        /// </summary>
+        public Benchmark()
+        {
+        }
+
         #endregion Constructors
 
         #region Methods
+
+        /// <summary>
+        /// Get a message displaying the elapsed time
+        /// </summary>
+        /// <param name="timespan">The timespan.</param>
+        /// <returns>The formatted message</returns>
+        public static string ToMessage(TimeSpan timespan)
+        {
+            return string.Format("=============> {0,3}.{1:000} sec", timespan.Seconds, timespan.Milliseconds);
+        }
+
+        /// <summary>
+        /// Checks the now.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        public void CheckNow(Action<TimeSpan> action)
+        {
+            this.Stopwatch.Stop();
+            action(this.Stopwatch.Elapsed);
+            this.Stopwatch.Start();
+        }
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -58,7 +86,10 @@ namespace Probel.Helpers.Benchmarking
         public void Dispose()
         {
             this.Stopwatch.Stop();
-            this.OnDispose(this.Stopwatch.Elapsed);
+            if (this.OnDispose != null)
+            {
+                this.OnDispose(this.Stopwatch.Elapsed);
+            }
         }
 
         #endregion Methods
