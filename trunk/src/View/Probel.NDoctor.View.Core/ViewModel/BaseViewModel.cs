@@ -83,7 +83,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
                     this.Handle.Fatal(e.Exception);
                 }));
             }
-
         }
 
         private void IndicateError()

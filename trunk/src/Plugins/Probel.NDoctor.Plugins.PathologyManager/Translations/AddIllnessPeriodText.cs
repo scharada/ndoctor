@@ -27,6 +27,11 @@ namespace Probel.NDoctor.Plugins.PathologyManager.Translations
             get { return Messages.Btn_Remove; }
         }
 
+        public static string ExplainHowToAddPeriod
+        {
+            get { return Messages.Msg_ExplainHowToAddPeriod; }
+        }
+
         public static string TitleAddPeriods
         {
             get { return Messages.Title_AddPeriods; }
@@ -53,10 +58,5 @@ namespace Probel.NDoctor.Plugins.PathologyManager.Translations
         }
 
         #endregion Properties
-
-        public static string ExplainHowToAddPeriod
-        {
-            get { return Messages.Msg_ExplainHowToAddPeriod; }
-        }
     }
 }

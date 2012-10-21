@@ -28,7 +28,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using NHibernate.Linq;
 
     using Probel.Helpers.Assertion;
-    using Probel.NDoctor.Domain.DAL.Cfg;
+    using Probel.Helpers.Benchmarking;
+    using Probel.NDoctor.Domain.DAL.AopConfiguration;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Helpers;
     using Probel.NDoctor.Domain.DAL.Properties;
@@ -450,28 +451,31 @@ namespace Probel.NDoctor.Domain.DAL.Components
             criterium = criterium.ToLower();
             var result = new List<Patient>();
 
-            switch (search)
+            using (var bench = new Benchmark())
             {
-                case SearchOn.FirstName:
-                    {
-                        result = GetPatientsByOnFirstName(criterium);
-                        break;
-                    }
-                case SearchOn.LastName:
-                    {
-                        result = GetPatientsByOnLastName(criterium);
-                        break;
-                    }
-                case SearchOn.FirstAndLastName:
-                    {
-                        result = GetPatientsByFirstAndLastName(criterium);
-                        break;
-                    }
-                default:
-                    {
-                        Assert.FailOnEnumeration(search);
-                        return null;
-                    }
+                switch (search)
+                {
+                    case SearchOn.FirstName:
+                        {
+                            result = GetPatientsByFirstName(criterium);
+                            break;
+                        }
+                    case SearchOn.LastName:
+                        {
+                            result = GetPatientsByLastName(criterium);
+                            break;
+                        }
+                    case SearchOn.FirstAndLastName:
+                        {
+                            result = GetPatientsByFirstAndLastName(criterium);
+                            break;
+                        }
+                    default:
+                        {
+                            Assert.FailOnEnumeration(search);
+                            return null;
+                        }
+                }
             }
             return Mapper.Map<IList<Patient>, IList<LightPatientDto>>(result);
         }
@@ -775,7 +779,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             }
         }
 
-        private List<Patient> GetPatientsByOnFirstName(string criterium)
+        private List<Patient> GetPatientsByFirstName(string criterium)
         {
             if (criterium != "*")
             {
@@ -790,7 +794,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             }
         }
 
-        private List<Patient> GetPatientsByOnLastName(string criterium)
+        private List<Patient> GetPatientsByLastName(string criterium)
         {
             if (criterium != "*")
             {

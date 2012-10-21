@@ -26,6 +26,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using NHibernate.Linq;
 
     using Probel.Helpers.Assertion;
+    using Probel.NDoctor.Domain.DAL.AopConfiguration;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Helpers;
     using Probel.NDoctor.Domain.DAL.Subcomponents;
@@ -77,10 +78,12 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         /// A list of pictures
         /// </returns>
+        [BenchmarkThreshold(1500, "The SQL query execution time for 169 pictures is about 1,5 sec")]
         public IList<LightPictureDto> GetLightPictures(LightPatientDto patient, TagDto tag)
         {
             var pictures = GetEntityPictures(patient, tag);
-            return Mapper.Map<IList<Picture>, IList<LightPictureDto>>(pictures);
+            var result = Mapper.Map<IList<Picture>, IList<LightPictureDto>>(pictures);
+            return result;
         }
 
         /// <summary>
@@ -92,10 +95,12 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         /// A list of pictures
         /// </returns>
+        [BenchmarkThreshold(1500, "The SQL query execution time for 169 pictures is about 1,5 sec")]
         public IList<LightPictureDto> GetLightPictures(LightPatientDto patient)
         {
             var pictures = GetEntityPictures(patient, null);
-            return Mapper.Map<IList<Picture>, IList<LightPictureDto>>(pictures);
+            var result = Mapper.Map<IList<Picture>, IList<LightPictureDto>>(pictures);
+            return result;
         }
 
         /// <summary>
@@ -147,28 +152,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return Mapper.Map<IList<Picture>, IList<PictureDto>>(pictures);
         }
 
-        private IList<Picture> GetEntityPictures(LightPatientDto patient, TagDto tag)
+        /// <summary>
+        /// Check the database state and creates the thumbnails if needed
+        /// </summary>
+        /// <param name="pictures">The pictures.</param>
+        private void CreateThumbnailsDependingOnDbState(IEnumerable<Picture> pictures)
         {
-            IList<Picture> pictures = new List<Picture>();
-            var entity = (from p in this.Session.Query<Patient>()
-                          where p.Id == patient.Id
-                          select p).FirstOrDefault();
-
-            if (entity == null) return new List<Picture>();
-
-            pictures = new List<Picture>();
-
-            // If there's a non null criterium execute a search;
-            // otherwise, select all the pictures
-            if (tag == null) pictures = entity.Pictures;
-            else
-            {
-                pictures = (from p in entity.Pictures
-                            where p.Tag.Id == tag.Id
-                            select p).ToList();
-            }
             var db = this.GetDatabaseState();
-            if (!db.AreThumbnailsCreated  )
+            if (!db.AreThumbnailsCreated)
             {
                 new ImageHelper().TryCreateThumbnail(pictures);
                 new Updator(this.Session).Update(pictures);
@@ -177,6 +168,40 @@ namespace Probel.NDoctor.Domain.DAL.Components
                 this.Logger.Debug("Creation of the thumbnails created and database status updated");
             }
             else { this.Logger.Debug("Thumbnails creation already executed. Action aborded."); }
+        }
+
+        private IList<Picture> GetEntityPictures(LightPatientDto patient, TagDto tag)
+        {
+            IList<Picture> pictures = new List<Picture>();
+
+            // If there's a null criterium, select all the pictures;
+            // otherwise, execute a search
+            if (tag == null)
+            {
+                pictures = (from p in this.Session.Query<Picture>()
+                            where p.Patient.Id == patient.Id
+                            select new Picture
+                            {
+                                Id = p.Id,
+                                Tag = p.Tag,
+                                ThumbnailBitmap = p.ThumbnailBitmap,
+                            }).ToList();
+            }
+            else
+            {
+                pictures = (from p in this.Session.Query<Picture>()
+                            where p.Patient.Id == patient.Id
+                            && p.Tag.Id == tag.Id
+                            select new Picture
+                            {
+                                Id = p.Id,
+                                Tag = p.Tag,
+                                ThumbnailBitmap = p.ThumbnailBitmap,
+                            }).ToList();
+            }
+
+            this.CreateThumbnailsDependingOnDbState(pictures);
+
             return pictures;
         }
 

@@ -97,6 +97,11 @@ namespace Probel.NDoctor.Domain.DAL.Entities
             set;
         }
 
+        /// <summary>
+        /// Gets the related patient of this picture.
+        /// </summary>
+        public virtual Patient Patient { get;  set; }
+
         #endregion Properties
     }
 }

@@ -25,6 +25,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
 
     using Probel.NDoctor.Domain.Components.AuthorisationPolicies;
     using Probel.NDoctor.Domain.DAL;
+    using Probel.NDoctor.Domain.DAL.AopConfiguration;
     using Probel.NDoctor.Domain.DAL.Helpers;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
