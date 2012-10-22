@@ -11,6 +11,7 @@
       xmlns:baseText="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
       xmlns:h="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"   
       xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:behaviours="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
       
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
@@ -73,7 +74,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
-                    <ColumnDefinition Width="175"/>
+                    <ColumnDefinition Width="215"/>
                 </Grid.ColumnDefinitions>
                 <DockPanel Grid.Column="2">
                     <DockPanel>
@@ -84,14 +85,52 @@
                                   SelectedItem="{Binding Path=FilterTag}"
                                   ItemsSource="{Binding Path=FilterTags}"
                                   h:SelectorBehaviour.SelectionChanged="{Binding FilterPictureCommand}"/>
-                        
-                        <ScrollViewer  DockPanel.Dock="Bottom">
-                            <ListBox Style="{StaticResource PhotoListBoxStyle}"
-                                     ItemsSource="{Binding Pictures}"
-                                     SelectedItem="{Binding SelectedThumbnail, Mode=OneWayToSource}"
-                                     h:SelectorBehaviour.SelectionChanged="{Binding SelectPictureCommand}"
-                                     IsSynchronizedWithCurrentItem="True"/>
-                        </ScrollViewer>
+
+                        <DataGrid DockPanel.Dock="Bottom"
+                                  ItemsSource="{Binding Pictures}"
+                                  SelectedItem="{Binding SelectedThumbnail, Mode=OneWayToSource}"
+                                  h:SelectorBehaviour.SelectionChanged="{Binding SelectPictureCommand}"
+                                  HeadersVisibility="None"
+                                  AutoGenerateColumns="False"
+                                  CanUserAddRows="False"
+                                  CanUserDeleteRows="False"
+                                  GridLinesVisibility="None" 
+                                  CanUserReorderColumns="False" 
+                                  CanUserResizeColumns="False" 
+                                  HorizontalContentAlignment="Center" 
+                                  VerticalContentAlignment="Center" 
+                                  ColumnWidth="180">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Thumbnail">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="6">
+                                                <!-- Drop Shadow -->
+                                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="4" Background="#44000000">
+                                                    <Border.RenderTransform>
+                                                        <TranslateTransform X="5" Y="5" />
+                                                    </Border.RenderTransform>
+                                                    <Border.BitmapEffect>
+                                                        <BlurBitmapEffect Radius="8" />
+                                                    </Border.BitmapEffect>
+                                                </Border>
+                                                <!-- Image Template -->
+                                                <Border Padding="4" Background="White" BorderBrush="#22000000" BorderThickness="1">
+                                                    <StackPanel Orientation="Vertical">
+                                                        <Image Source="{Binding ThumbnailBitmap, Converter={StaticResource bytesToImage},UpdateSourceTrigger=PropertyChanged}"/>
+                                                        <Label Content="{Binding LastUpdate}">
+                                                            <Label.ToolTip>
+                                                                Only JPeg images with a stored thumbnail will display a thumbnail during preview.
+                                                            </Label.ToolTip>
+                                                        </Label>
+                                                    </StackPanel>
+                                                </Border>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </DockPanel>
                 </DockPanel>
                 <GridSplitter Width="8"/>
@@ -124,14 +163,14 @@
                                           ItemsSource="{Binding Path=Tags, UpdateSourceTrigger=PropertyChanged}"/>
                             </DockPanel>
                         </Border>
-                        
+
                     </StackPanel>
                     <Expander Visibility="{Binding SelectedPicture.Notes,UpdateSourceTrigger=PropertyChanged}"
                               DockPanel.Dock="Bottom"
                               ExpandDirection="Up"
                               IsExpanded="{Binding Path=IsInformationExpanded}"
                               Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderInformation}}">
-                        
+
                         <ScrollViewer Height="100">
                             <TextBox Grid.Row="1" Grid.ColumnSpan="3"                              
                                      Text="{Binding Path=SelectedPicture.Notes, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" 
