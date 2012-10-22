@@ -9,9 +9,10 @@
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.FamilyManager.Translations"
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:iw="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+             xmlns:conv="clr-namespace:Probel.NDoctor.View.Toolbox.Converters;assembly=Probel.NDoctor.View.Toolbox"   
              
              mc:Ignorable="d"
-             Width="300"
+             Width="355"
              Height="300"
              Loaded="this_Loaded">
     <UserControl.InputBindings>
@@ -22,32 +23,10 @@
     </UserControl.InputBindings>
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <conv:GenderToImageConverter x:Key="genderToImage"/>
     </UserControl.Resources>
 
     <DockPanel LastChildFill="True">
-        <DockPanel.Resources>
-            <DataTemplate DataType="{x:Type vm:LightPatientViewModel}">
-                <StackPanel>
-                    <Label Content="{Binding Path=DisplayedName}"/>
-                    <Grid Visibility="{Binding Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="70"/>
-                        </Grid.ColumnDefinitions>
-
-                        <ComboBox Grid.Column="0"
-                                  ItemsSource="{Binding Path=Relations}"
-                                  DisplayMemberPath="Item2"
-                                  SelectedValue="{Binding Path=SelectedRelation}"
-                                  SelectedIndex="0"/>
-
-                        <Button   Grid.Column="1"
-                                  Content="{Binding Source={x:Static Member=text:LightPatientText.BtnAdd}}"
-                                  Command="{Binding AddCommand}"/>
-                    </Grid>
-                </StackPanel>
-            </DataTemplate>
-        </DockPanel.Resources>
 
         <Grid DockPanel.Dock="Top">
             <Border Style="{StaticResource BorderStyle}">
@@ -63,7 +42,7 @@
                      Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}">
                         <toolkit:WatermarkTextBox.Watermark>
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
+                                <Image Source="/Probel.NDoctor.Plugins.FamilyManager;Component/Images/Card.png"
                                    Height="15"
                                    Width="15" />
                                 <TextBlock Text="{Binding Source={x:Static Member=text:AddFamilyWorkbenchText.TitleWatermark}}"
@@ -74,17 +53,53 @@
                 </DockPanel>
             </Border>
         </Grid>
-        <ScrollViewer DockPanel.Dock="Top">
-            <ListView ItemsSource="{Binding Path=FoundPatients}"
-                      SelectedItem="SelectedPatient"
-                      IsSynchronizedWithCurrentItem="True">
+        <DataGrid DockPanel.Dock="Top"
+                  ItemsSource="{Binding FoundPatients}"
+                  SelectedItem="{Binding SelectedPatient}"
+                  HeadersVisibility="None"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  GridLinesVisibility="None">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Sex">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Width="40" Height="40" Source="{Binding Gender, Converter={StaticResource genderToImage}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
-                    </Style>
-                </ListView.ItemContainerStyle>
-            </ListView>
-        </ScrollViewer>
+                <DataGridTextColumn Binding="{Binding Path=DisplayedName, UpdateSourceTrigger=PropertyChanged}"                                     
+                                    Header="Name"
+                                    Width="*"
+                                    IsReadOnly="True" />
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate DataType="{x:Type vm:LightPatientViewModel}">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="70"/>
+                            </Grid.ColumnDefinitions>
+
+                            <ComboBox Grid.Column="0"
+                                      
+                                      ItemsSource="{Binding Path=Relations}"
+                                      DisplayMemberPath="Item2"
+                                      SelectedValue="{Binding Path=SelectedRelation}"
+                                      SelectedIndex="0"
+                                      Margin="4"/>
+                            
+                            <Button   Grid.Column="1"
+                                      Content="{Binding Source={x:Static Member=text:LightPatientText.BtnAdd}}"
+                                      Command="{Binding AddCommand}" 
+                                      Margin="4" />
+                        </Grid>
+                    </StackPanel>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
     </DockPanel>
 </UserControl>

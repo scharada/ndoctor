@@ -313,20 +313,11 @@ namespace Probel.NDoctor.Domain.DTO.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please indicate of whom this family is.
+        ///   Looks up a localized string similar to Invalid family relation.
         /// </summary>
         internal static string Invalid_Family {
             get {
                 return ResourceManager.GetString("Invalid_Family", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The current patient can&apos;t be it&apos;s own parent or child.
-        /// </summary>
-        internal static string Invalid_Family_CircularLink {
-            get {
-                return ResourceManager.GetString("Invalid_Family_CircularLink", resourceCulture);
             }
         }
         

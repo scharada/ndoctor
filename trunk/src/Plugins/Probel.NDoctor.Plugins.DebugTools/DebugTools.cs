@@ -93,7 +93,7 @@ namespace Probel.NDoctor.Plugins.DebugTools
         {
             PluginContext.Host.Invoke(() =>
             {
-                var patients = this.component.GetPatientsByNameLight("Robris", SearchOn.LastName);
+                var patients = this.component.GetPatientsByNameLight("Wautier", SearchOn.LastName);
                 if (patients.Count == 0) return;
 
                 PluginContext.Host.SelectedPatient = patients[0];

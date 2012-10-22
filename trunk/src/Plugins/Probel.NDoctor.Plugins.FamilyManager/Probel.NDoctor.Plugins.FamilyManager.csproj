@@ -178,6 +178,9 @@
   <ItemGroup>
     <Resource Include="Images\Delete.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Card.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

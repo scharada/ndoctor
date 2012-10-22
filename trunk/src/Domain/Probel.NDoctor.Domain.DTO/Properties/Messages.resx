@@ -228,12 +228,8 @@
     <comment>Can't be empty.</comment>
   </data>
   <data name="Invalid_Family" xml:space="preserve">
-    <value>Please indicate of whom this family is</value>
-    <comment>Please indicate of whom this family is</comment>
-  </data>
-  <data name="Invalid_Family_CircularLink" xml:space="preserve">
-    <value>The current patient can't be it's own parent or child</value>
-    <comment>The current patient can't be it's own parent or child</comment>
+    <value>Invalid family relation</value>
+    <comment>Invalid family relation</comment>
   </data>
   <data name="Invalid_Height" xml:space="preserve">
     <value>La taille doit être comprise entre 10 et 300 cm</value>
