@@ -29,12 +29,8 @@ namespace Probel.NDoctor.Domain.DTO.Validators
         public override void SetValidationLogic(FamilyDto item)
         {
             item.AddValidationRule(() => item.Current
-                , () => item.Current != null
+                , () => item.Current != null && !this.HasCircularLinks(item)
                 , Messages.Invalid_Family);
-
-            item.AddValidationRule(() => item.Current
-                , () => !this.HasCircularLinks(item)
-                , Messages.Invalid_Family_CircularLink);
         }
 
         private bool HasCircularLinks(FamilyDto item)
