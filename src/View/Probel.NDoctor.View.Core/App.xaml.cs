@@ -26,6 +26,7 @@ namespace Probel.NDoctor.View.Core
 
     using log4net;
 
+    using Probel.NDoctor.Domain.Components.Statistics;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Core.View;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -57,7 +58,7 @@ namespace Probel.NDoctor.View.Core
             this.Logger = LogManager.GetLogger(typeof(LogManager));
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Settings.Default.Language);
 
-            PluginContext.Configuration.ComponentLogginEnabled = bool.Parse(ConfigurationManager.AppSettings["ComponentLogginEnabled"]);
+            PluginContext.Configuration.BenchmarkEnabled = bool.Parse(ConfigurationManager.AppSettings["BenchmarkEnabled"]);
             PluginContext.Configuration.AutomaticContextMenu = Settings.Default.AutomaticContextMenu;
             PluginContext.Configuration.ExecutionTimeThreshold = uint.Parse(ConfigurationManager.AppSettings["ExecutionTimeThreshold"]);
 
@@ -129,6 +130,11 @@ namespace Probel.NDoctor.View.Core
 
             new ErrorHandlerFactory().New(this).Fatal(e.Exception);
             e.Handled = this.DoHandle;
+        }
+
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            new NDoctorStatistics().Flush();
         }
 
         #endregion Methods

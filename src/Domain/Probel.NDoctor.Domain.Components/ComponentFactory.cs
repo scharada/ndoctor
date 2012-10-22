@@ -51,7 +51,7 @@ namespace Probel.NDoctor.Domain.Components
         private static readonly AuthorisationInterceptor AuthorisationInterceptor;
         private static readonly ProxyGenerator Generator = new ProxyGenerator(new PersistentProxyBuilder());
 
-        private readonly bool ComponentLogginEnabled = false;
+        private readonly bool BenchmarkEnabled = false;
         private readonly uint ExecutionTimeThreshold;
         private readonly ILog Logger = LogManager.GetLogger(typeof(ComponentFactory));
 
@@ -129,10 +129,10 @@ namespace Probel.NDoctor.Domain.Components
         /// <summary>
         /// Initializes a new instance of the <see cref="ComponentFactory"/> class.
         /// </summary>
-        /// <param name="componentLogginEnabled">if set to <c>true</c> component loggin is enabled.</param>
-        public ComponentFactory(bool componentLogginEnabled, uint executionTimeThreshold)
+        /// <param name="benchmarkEnabled">if set to <c>true</c> component loggin is enabled.</param>
+        public ComponentFactory(bool benchmarkEnabled, uint executionTimeThreshold)
         {
-            this.ComponentLogginEnabled = componentLogginEnabled;
+            this.BenchmarkEnabled = benchmarkEnabled;
             this.ExecutionTimeThreshold = executionTimeThreshold;
         }
 
@@ -173,10 +173,10 @@ namespace Probel.NDoctor.Domain.Components
         {
             var interceptors = new List<IInterceptor>();
 
-            if (this.ComponentLogginEnabled) { interceptors.Add(new LogInterceptor()); }
+            if (this.BenchmarkEnabled) { interceptors.Add(new BenchmarkInterceptor(this.ExecutionTimeThreshold)); }
+            interceptors.Add(new LogInterceptor());
             interceptors.Add(new TransactionInterceptor());
             interceptors.Add(AuthorisationInterceptor);
-            interceptors.Add(new BenchmarkInterceptor(this.ExecutionTimeThreshold));
 
             return interceptors.ToArray();
         }

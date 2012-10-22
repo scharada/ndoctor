@@ -44,7 +44,7 @@
 
             var exist = (from i in this.Session.Query<MacroDto>()
                          where i.Id == item.Id
-                         select i).ToList().Count() >0;
+                         select i).ToList().Count() > 0;
             if (exist) throw new ExistingItemException();
 
             var entity = Mapper.Map<MacroDto, Macro>(item);
@@ -63,7 +63,7 @@
             var exist = (from i in this.Session.Query<Drug>()
                          where i.Name.ToUpper() == item.Name.ToUpper()
                             || i.Id == item.Id
-                         select i).ToList().Count() >0;
+                         select i).ToList().Count() > 0;
             if (exist) throw new ExistingItemException();
 
             var entity = Mapper.Map<DrugDto, Drug>(item);
@@ -81,7 +81,7 @@
 
             var found = (from p in this.Session.Query<Patient>()
                          where p.Id == item.Id
-                         select p).ToList().Count() >0;
+                         select p).ToList().Count() > 0;
             if (found) throw new ExistingItemException();
 
             var entity = Mapper.Map<PatientDto, Patient>(item);
@@ -99,7 +99,7 @@
 
             var found = (from p in this.Session.Query<Doctor>()
                          where p.Id == item.Id
-                         select p).ToList().Count() >0;
+                         select p).ToList().Count() > 0;
             if (found) throw new ExistingItemException();
 
             var entity = Mapper.Map<LightDoctorDto, Doctor>(item);
@@ -120,7 +120,7 @@
                          where (p.Name.ToUpper() == item.Name.ToUpper()
                              && p.Category == item.Category)
                              || p.Id == item.Id
-                         select p).ToList().Count() >0;
+                         select p).ToList().Count() > 0;
             if (exist) throw new ExistingItemException();
 
             var entity = Mapper.Map<TagDto, Tag>(item);
@@ -138,7 +138,7 @@
 
             var found = (from p in this.Session.Query<User>()
                          where p.Id == item.Id
-                         select p).ToList().Count() >0;
+                         select p).ToList().Count() > 0;
             if (found) throw new ExistingItemException();
 
             if (item.IsDefault) this.ReplaceDefaultUser();
@@ -168,7 +168,7 @@
                             p.FirstName.ToLower() == item.FirstName.ToLower()
                             && p.LastName.ToLower() == item.LastName.ToLower()
                          )
-                         select p).ToList().Count() >0;
+                         select p).ToList().Count() > 0;
 
             var newEntity = Mapper.Map<LightPatientDto, Patient>(item);
             newEntity.InscriptionDate = DateTime.Today;
@@ -191,7 +191,7 @@
             var found = (from p in this.Session.Query<Profession>()
                          where p.Id == item.Id
                             || item.Name.ToLower() == p.Name.ToLower()
-                         select p).ToList().Count() >0;
+                         select p).ToList().Count() > 0;
             if (found) throw new ExistingItemException();
 
             var entity = Mapper.Map<ProfessionDto, Profession>(item);
@@ -212,7 +212,7 @@
             var exist = (from p in this.Session.Query<Reputation>()
                          where item.Name.ToUpper() == p.Name.ToUpper()
                          || p.Id == item.Id
-                         select p).ToList().Count() >0;
+                         select p).ToList().Count() > 0;
             if (exist) throw new ExistingItemException();
 
             var entity = Mapper.Map<ReputationDto, Reputation>(item);
@@ -230,7 +230,7 @@
             var found = (from p in this.Session.Query<Pathology>()
                          where p.Id == item.Id
                             || item.Name.ToLower() == p.Name.ToLower()
-                         select p).ToList().Count() >0;
+                         select p).ToList().Count() > 0;
             if (found) throw new ExistingItemException();
 
             var entity = Mapper.Map<PathologyDto, Pathology>(item);
@@ -251,7 +251,7 @@
             var exist = (from i in this.Session.Query<Practice>()
                          where item.Name.ToUpper() == i.Name.ToUpper()
                             || i.Id == item.Id
-                         select i).ToList().Count() >0;
+                         select i).ToList().Count() > 0;
             if (exist) throw new ExistingItemException();
 
             var entity = Mapper.Map<PracticeDto, Practice>(item);
@@ -271,7 +271,7 @@
             var exist = (from i in this.Session.Query<Insurance>()
                          where item.Name.ToUpper() == i.Name.ToUpper()
                             || i.Id == item.Id
-                         select i).ToList().Count() >0;
+                         select i).ToList().Count() > 0;
             if (exist) throw new ExistingItemException();
 
             var entity = Mapper.Map<InsuranceDto, Insurance>(item);
@@ -292,7 +292,7 @@
 
             var found = (from p in this.Session.Query<Practice>()
                          where p.Id == item.Id
-                         select p).ToList().Count() >0;
+                         select p).ToList().Count() > 0;
             if (found) throw new ExistingItemException();
 
             var entity = Mapper.Map<LightUserDto, User>(item);
@@ -339,7 +339,7 @@
 
             var exist = (from i in this.Session.Query<TaskDto>()
                          where i.Id == item.Id
-                         select i).ToList().ToList().Count() >0;
+                         select i).ToList().ToList().Count() > 0;
             if (exist) throw new ExistingItemException();
 
             var entity = Mapper.Map<TaskDto, Task>(item);
@@ -420,7 +420,7 @@
                          where p.Id == item.Id
                             || (item.FirstName.ToUpper() == p.FirstName.ToUpper()
                             && item.LastName.ToUpper() == p.LastName.ToUpper())
-                         select p).ToList().Count() >0;
+                         select p).ToList().Count() > 0;
             if (found) throw new ExistingItemException();
 
             var entity = Mapper.Map<DoctorDto, Doctor>(item);
@@ -498,7 +498,7 @@
 
             var found = (from p in this.Session.Query<MedicalRecord>()
                          where p.Id == item.Id
-                         select p).ToList().Count() >0;
+                         select p).ToList().Count() > 0;
             if (found) throw new ExistingItemException();
 
             var entity = Mapper.Map<MedicalRecordDto, MedicalRecord>(item);

@@ -45,7 +45,7 @@ namespace Probel.NDoctor.View.Plugins.Helpers
             {
                 Assert.IsNotNull(Host, "Host");
 
-                return new ComponentFactory(Configuration.ComponentLogginEnabled, Configuration.ExecutionTimeThreshold);
+                return new ComponentFactory(Configuration.BenchmarkEnabled, Configuration.ExecutionTimeThreshold);
             }
         }
 

@@ -47,7 +47,7 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         /// <value>
         /// 	<c>true</c> if component loggin is enabled; otherwise, <c>false</c>.
         /// </value>
-        public bool ComponentLogginEnabled
+        public bool BenchmarkEnabled
         {
             get;
             set;

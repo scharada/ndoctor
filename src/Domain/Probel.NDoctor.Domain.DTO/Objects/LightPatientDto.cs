@@ -26,14 +26,32 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     {
         #region Fields
 
+        private DateTime birthdate;
         private string firstName;
         private Gender gender;
         private int height;
         private string lastName;
+        private ProfessionDto profession;
 
         #endregion Fields
 
         #region Properties
+
+        /// <summary>
+        /// Gets or sets the birth date of the patient.
+        /// </summary>
+        /// <value>
+        /// The birth date.
+        /// </value>
+        public DateTime Birthdate
+        {
+            get { return this.birthdate; }
+            set
+            {
+                this.birthdate = value;
+                this.OnPropertyChanged(() => Birthdate);
+            }
+        }
 
         /// <summary>
         /// Gets the name of the patient as a concatenation of the first name and
@@ -112,26 +130,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             }
         }
 
-
-
-        private DateTime birthdate;
-        /// <summary>
-        /// Gets or sets the birth date of the patient.
-        /// </summary>
-        /// <value>
-        /// The birth date.
-        /// </value>
-        public DateTime Birthdate
-        {
-            get { return this.birthdate; }
-            set
-            {
-                this.birthdate = value;
-                this.OnPropertyChanged(() => Birthdate);
-            }
-        }
-
-        private ProfessionDto profession;
         /// <summary>
         /// Gets or sets the profession of the patient.
         /// </summary>

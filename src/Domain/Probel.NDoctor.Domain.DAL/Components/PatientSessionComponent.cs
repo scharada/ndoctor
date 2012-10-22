@@ -25,11 +25,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using NHibernate;
     using NHibernate.Linq;
 
+    using Probel.Helpers.Benchmarking;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.DTO.Specification;
-    using Probel.Helpers.Benchmarking;
 
     /// <summary>
     /// Get the features of the patient session
@@ -107,18 +107,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return result;
         }
 
-        private void CheckIfSearchAllReturnsZeroResult(IList<LightPatientDto> patients, bool searchAll)
-        {
-            if (patients.Count == 0 && searchAll)
-            {
-                var msg = "A query that asks all the patients returned zero results after the execution of the specification pattern. Maybe you have some null properties (Checl the SELECT clause)";
-                this.Logger.Warn(msg);
-#if DEBUG
-                throw new NotImplementedException(msg);
-#endif
-            }
-        }
-
         /// <summary>
         /// Gets the top X patient. Where X is specified as an argument.
         /// Everytime a user is loaded in memory, a counter is incremented. This
@@ -149,6 +137,18 @@ namespace Probel.NDoctor.Domain.DAL.Components
             var entity = this.Session.Get<Patient>(patient.Id);
             entity.Counter++;
             this.Session.Update(entity);
+        }
+
+        private void CheckIfSearchAllReturnsZeroResult(IList<LightPatientDto> patients, bool searchAll)
+        {
+            if (patients.Count == 0 && searchAll)
+            {
+                var msg = "A query that asks all the patients returned zero results after the execution of the specification pattern. Maybe you have some null properties (Checl the SELECT clause)";
+                this.Logger.Warn(msg);
+            #if DEBUG
+                throw new NotImplementedException(msg);
+            #endif
+            }
         }
 
         #endregion Methods

@@ -26,7 +26,9 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
     using Castle.DynamicProxy;
 
     using Probel.Helpers.Benchmarking;
+    using Probel.NDoctor.Domain.Components.Statistics;
     using Probel.NDoctor.Domain.DAL.AopConfiguration;
+    using Probel.NDoctor.Domain.DAL.Entities;
 
     /// <summary>
     /// Benchmarks the call of a method and logs if time if higher that a threshold
@@ -61,40 +63,66 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
         /// <param name="invocation">The invocation.</param>
         public override void Intercept(IInvocation invocation)
         {
-            var methodName = string.Format("{0}.{1}", invocation.TargetType.Name, invocation.Method.Name);
-            var thresholdInfo = this.GetThreshold(invocation);
-            using (new Benchmark(e => LogTime(e, methodName, thresholdInfo.Item1, thresholdInfo.Item2)))
+            var attribute = this.GetAttribute<BenchmarkThresholdAttribute>(invocation);
+
+            var threshold = (attribute != null && attribute.Length > 0)
+                ? (double)attribute[0].Threshold
+                : (double)this.DefaultThreshold;
+
+            var message = (attribute != null && attribute.Length > 0)
+                ? attribute[0].Explanation
+                : string.Empty;
+
+            using (new Benchmark(e => this.CheckAndLog(e, threshold, invocation.TargetType.Name, invocation.Method.Name, message)))
             {
                 invocation.Proceed();
             }
         }
 
-        private Tuple<double, string> GetThreshold(IInvocation invocation)
+        private void CheckAndLog(TimeSpan e, double threshold, string targetTypeName, string methodName, string message)
         {
-            var attribute = this.GetAttribute<BenchmarkThresholdAttribute>(invocation);
-            return (attribute != null && attribute.Length > 0)
-                ? new Tuple<double, string>((double)attribute[0].Threshold, "[" + attribute[0].Explanation + "]")
-                : new Tuple<double, string>((double)this.DefaultThreshold, string.Empty);
+            this.CheckBottleneck(e, threshold, targetTypeName, methodName, message);
+            this.SaveStats(e, threshold, targetTypeName, methodName, message);
         }
 
-        private void LogTime(TimeSpan e, string methodName, double threshold, string explanation)
+        private void CheckBottleneck(TimeSpan e, double threshold, string targetTypeName, string methodName, string message)
         {
+            message = (string.IsNullOrEmpty(message))
+                ? string.Empty
+                : "[" + message + "]";
+
             if (e.TotalMilliseconds > threshold)
             {
-                Logger.WarnFormat("Possible bottleneck | [{1,3}.{2:000} sec] ==> {0} {3}"
-                    , methodName
+                Logger.WarnFormat("Possible bottleneck => [{0,3}.{1:000} sec] ==> {2}.{3}"
                     , e.Seconds
                     , e.Milliseconds
-                    , explanation);
+                    , targetTypeName
+                    , methodName
+                    , message);
             }
             else
             {
-                Logger.DebugFormat("                    | [{1,3}.{2:000} sec] ==> {0} {3}"
-                    , methodName
+                Logger.WarnFormat("                    => [{0,3}.{1:000} sec] ==> {2}.{3}"
                     , e.Seconds
                     , e.Milliseconds
-                    , explanation);
+                    , targetTypeName
+                    , methodName
+                    , message);
             }
+        }
+
+        private void SaveStats(TimeSpan e, double threshold, string targetTypeName, string methodName, string message)
+        {
+            new NDoctorStatistics().Add(new ApplicationStatistics()
+            {
+                ExecutionTime = e.TotalMilliseconds,
+                IsPossibleBottleneck = (e.TotalMilliseconds > threshold),
+                MethodName = methodName,
+                TargetTypeName = targetTypeName,
+                Threshold = threshold,
+                TimeStamp = DateTime.Now,
+                Message = message,
+            });
         }
 
         #endregion Methods

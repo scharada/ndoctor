@@ -67,6 +67,7 @@
     <Compile Include="Helpers\SlotDuration.cs" />
     <Compile Include="Helpers\TimeSlotCollection.cs" />
     <Compile Include="MemoryComponents\LightPictureMemoryComponent.cs" />
+    <Compile Include="Objects\ExecutionStatDto.cs" />
     <Compile Include="Objects\LightPictureDto.cs" />
     <Compile Include="Objects\MedicalRecordStateDto.cs" />
     <Compile Include="Objects\AddressDto.cs" />
