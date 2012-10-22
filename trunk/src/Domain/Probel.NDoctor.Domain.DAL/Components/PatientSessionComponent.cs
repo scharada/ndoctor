@@ -70,7 +70,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             List<Patient> patients = new List<Patient>();
             var searchAll = false;
 
-            if (criteria != "*" || string.IsNullOrEmpty(criteria))
+            if (criteria != "*" && !string.IsNullOrEmpty(criteria))
             {
                 patients = (from p in this.Session.Query<Patient>()
                             where p.FirstName.ToLower().Contains(criteria.ToLower())
