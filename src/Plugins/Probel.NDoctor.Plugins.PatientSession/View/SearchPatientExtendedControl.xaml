@@ -27,14 +27,6 @@
     <UserControl.Resources>
         <conv:GenderToImageConverter x:Key="genderToImage"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-        <DataTemplate x:Name="SelectedItem" DataType="{x:Type my:LightPatientDto}">
-            <StackPanel Orientation="Horizontal">
-                <Image Width="40" Height="40" Source="{Binding Gender, Converter={StaticResource genderToImage}}"/>
-                <TextBlock Text="{Binding FirstName}" VerticalAlignment="Center"/>
-                <TextBlock Text=" "/>
-                <TextBlock Text="{Binding LastName}" VerticalAlignment="Center"/>
-            </StackPanel>
-        </DataTemplate>
     </UserControl.Resources>
     <Grid>
         <toolkit:BusyIndicator IsBusy="{Binding IsBusy,UpdateSourceTrigger=PropertyChanged}"
@@ -81,7 +73,7 @@
                                 Command="{Binding SearchCommand}"/>
                     </Border>
                 </DockPanel>
-                <ScrollViewer>
+                <!--<ScrollViewer>
                     <ListView DockPanel.Dock="Bottom"
                               ItemsSource="{Binding FoundPatients}"
                               IsSynchronizedWithCurrentItem="True"
@@ -94,7 +86,31 @@
                             </Style>
                         </ListView.ItemContainerStyle>
                     </ListView>
-                </ScrollViewer>
+                </ScrollViewer>-->
+                <DataGrid DockPanel.Dock="Bottom"
+                  ItemsSource="{Binding FoundPatients}"
+                  SelectedItem="{Binding SelectedPatient}"
+                  behaviours:ControlBehaviour.MouseDoubleClick="{Binding SelectPatientCommand}" 
+                  HeadersVisibility="None"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  GridLinesVisibility="None">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Sex">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Width="40" Height="40" Source="{Binding Gender, Converter={StaticResource genderToImage}}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Binding="{Binding Path=DisplayedName, UpdateSourceTrigger=PropertyChanged}" 
+                                        Header="Name"
+                                        Width="*"
+                                        IsReadOnly="True" />
+                    </DataGrid.Columns>
+                </DataGrid>
             </DockPanel>
         </toolkit:BusyIndicator>
     </Grid>
