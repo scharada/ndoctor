@@ -31,7 +31,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
     {
         #region Fields
 
-        private static readonly object locker = new object();
+        private readonly object locker = new object();
 
         #endregion Fields
 
@@ -47,11 +47,19 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
 
                     if (!this.IsDecoratedWith<ExcludeFromTransactionAttribute>(invocation))
                     {
-                        this.WrapInTransaction(invocation, component);
+                        using (component.Session = DalConfigurator.SessionFactory.OpenSession())
+                        {
+                            invocation.Proceed();
+                        }
                     }
                     else
                     {
-                        this.WrapInSession(invocation, component);
+                        using (component.Session = DalConfigurator.SessionFactory.OpenSession())
+                        using (var tx = component.Session.BeginTransaction())
+                        {
+                            invocation.Proceed();
+                            tx.Commit();
+                        }
                     }
                 }
             }
@@ -61,24 +69,6 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
                     , invocation.Method.Name
                     , invocation.TargetType.Name);
                 invocation.Proceed();
-            }
-        }
-
-        private void WrapInSession(IInvocation invocation, BaseComponent component)
-        {
-            using (component.Session = DalConfigurator.SessionFactory.OpenSession())
-            {
-                invocation.Proceed();
-            }
-        }
-
-        private void WrapInTransaction(IInvocation invocation, BaseComponent component)
-        {
-            using (component.Session = DalConfigurator.SessionFactory.OpenSession())
-            using (var tx = component.Session.BeginTransaction())
-            {
-                invocation.Proceed();
-                tx.Commit();
             }
         }
 

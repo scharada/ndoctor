@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,96 +16,99 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#endregion Header
+
 namespace Probel.NDoctor.Domain.DAL.Entities
 {
     using System;
 
-    /// <summary>
-    /// Represents a medical picture with information about it
-    /// </summary>
-    public class Picture : Entity
+    public class ApplicationStatistics : Entity
     {
         #region Properties
 
         /// <summary>
-        /// Gets or sets the bitmap. That is the picture
+        /// Gets or sets the execution time in milliseconds.
         /// </summary>
         /// <value>
-        /// The bitmap.
+        /// The execution time.
         /// </value>
-        public virtual byte[] Bitmap
+        public virtual double ExecutionTime
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Gets or sets the creation date.
+        /// Gets or sets a value indicating whether the execution time is a possible bottleneck.
         /// </summary>
         /// <value>
-        /// The creation.
+        /// 	<c>true</c> if this instance is possible bottleneck; otherwise, <c>false</c>.
         /// </value>
-        public virtual DateTime Creation
+        public virtual bool IsPossibleBottleneck
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Gets or sets the last update for this picture.
+        /// Gets or sets the name of the method.
         /// </summary>
         /// <value>
-        /// The last update.
+        /// The name of the method.
         /// </value>
-        public virtual DateTime LastUpdate
+        public virtual string MethodName
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Gets or sets the notes about this picture.
+        /// Gets or sets the name of the target type.
         /// </summary>
         /// <value>
-        /// The notes.
+        /// The name of the target type.
         /// </value>
-        public virtual string Notes
+        public virtual string TargetTypeName
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Gets the related patient of this picture.
-        /// </summary>
-        public virtual Patient Patient
-        {
-            get;  set;
-        }
-
-        /// <summary>
-        /// Gets or sets the tag to categorise this picture.
+        /// Gets or sets the threshold in milliseconds. When
+        /// execution time is above threshold, the method is
+        /// considered as a bottleneck
         /// </summary>
         /// <value>
-        /// The tag.
+        /// The threshold.
         /// </value>
-        public virtual Tag Tag
+        public virtual double Threshold
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Gets or sets the thumbnailed bitmap.
+        /// Indicates when the methods was executed
         /// </summary>
         /// <value>
-        /// The thumbnailed bitmap.
+        /// The time stamp.
         /// </value>
-        public virtual byte[] ThumbnailBitmap
+        public virtual DateTime TimeStamp
         {
             get;
             set;
         }
+
+        /// <summary>
+        /// Gets or sets the message related to this statistic.
+        /// A message  and a new threshold can be set thank to <see cref="BenchmarkThresholdAttribute"/>
+        /// </summary>
+        /// <value>
+        /// The message.
+        /// </value>
+        public virtual string Message { get; set; }
 
         #endregion Properties
     }
