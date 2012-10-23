@@ -19,7 +19,7 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Domain.DAL.Helpers
+namespace Probel.NDoctor.Domain.DAL.AopConfiguration
 {
     using System;
 

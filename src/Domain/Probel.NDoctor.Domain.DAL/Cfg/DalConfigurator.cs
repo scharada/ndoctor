@@ -92,6 +92,14 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
         }
 
         /// <summary>
+        /// Manually configure the SessionFactory. This method is meant to receive a ISessionFactory mock        
+        /// </summary>
+        public void ConfigureForUnitTest(ISessionFactory factory)
+        {
+            sessionFactory = factory;
+        }
+
+        /// <summary>
         /// Configures the DAL.
         /// </summary>
         public void ConfigureInMemory()

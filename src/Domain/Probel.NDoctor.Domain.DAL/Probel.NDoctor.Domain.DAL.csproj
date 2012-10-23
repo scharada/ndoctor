@@ -97,7 +97,7 @@
     <Compile Include="Helpers\ComponentDecorator.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="AopConfiguration\InspectionIgnoredAttribute.cs" />
-    <Compile Include="Helpers\TransactionAttribute.cs" />
+    <Compile Include="AopConfiguration\ExcludeFromTransactionAttribute.cs" />
     <Compile Include="Macro\InvalidMacroException.cs">
       <SubType>Code</SubType>
     </Compile>

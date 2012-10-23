@@ -27,7 +27,7 @@ namespace Probel.NDoctor.Domain.Test.Helpers
     using Probel.NDoctor.Domain.DTO.Objects;
 
     [TestFixture]
-    [Category("Database")]
+    [Category(Categories.FunctionalTest)]
     public abstract class TestBase<T> : IDisposable
     {
         #region Constructors

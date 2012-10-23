@@ -23,17 +23,26 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
 {
     using Castle.DynamicProxy;
 
+    using Probel.NDoctor.Domain.DAL.AopConfiguration;
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Components;
-    using Probel.NDoctor.Domain.DAL.Helpers;
 
-    internal class TransactionInterceptor : BaseInterceptor
+    public class TransactionInterceptor : BaseInterceptor
     {
         #region Fields
 
         private readonly object locker = new object();
 
         #endregion Fields
+
+        #region Properties
+
+        public bool WasTransactional
+        {
+            get; private set;
+        }
+
+        #endregion Properties
 
         #region Methods
 
@@ -45,12 +54,13 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
                 {
                     var component = invocation.InvocationTarget as BaseComponent;
 
-                    if (!this.IsDecoratedWith<ExcludeFromTransactionAttribute>(invocation))
+                    if (this.IsDecoratedWith<ExcludeFromTransactionAttribute>(invocation))
                     {
                         using (component.Session = DalConfigurator.SessionFactory.OpenSession())
                         {
                             invocation.Proceed();
                         }
+                        this.WasTransactional = false;
                     }
                     else
                     {
@@ -60,6 +70,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
                             invocation.Proceed();
                             tx.Commit();
                         }
+                        this.WasTransactional = true;
                     }
                 }
             }

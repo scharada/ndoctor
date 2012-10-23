@@ -30,7 +30,7 @@ namespace Probel.NDoctor.Domain.Test.Mementos
     using Probel.NDoctor.Domain.DAL.Mementos;
     using Probel.NDoctor.Domain.Test.Helpers;
 
-    [Category(Categories.Memento)]
+    [Category(Categories.UnitTest)]
     [TestFixture]
     public class TestMemento
     {
@@ -60,15 +60,14 @@ namespace Probel.NDoctor.Domain.Test.Mementos
             var record = new MedicalRecord() { Rtf = "1" };
             var memento = new MedicalRecordMemento();
 
-            for (int i = 0; i < 19; i++)
+            for (int i = 0; i < 150; i++)
             {
-                Thread.Sleep(10);
                 record.Rtf = (i + 1).ToString();
                 memento.SaveState(record);
             }
 
-            Assert.AreEqual(10, record.PreviousStates.Count);
-            Assert.AreEqual("19", record.PreviousStates[0].Rtf);
+            Assert.AreEqual(50, record.PreviousStates.Count);
+            Assert.AreNotEqual("1", record.PreviousStates[0].Rtf);
         }
 
         #endregion Methods

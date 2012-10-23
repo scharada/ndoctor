@@ -18,7 +18,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
 {
     using System.Text.RegularExpressions;
 
-    using Probel.NDoctor.Domain.DAL.Helpers;
+    using Probel.NDoctor.Domain.DAL.AopConfiguration;
     using Probel.NDoctor.Domain.DTO.Components;
 
     public class SqlComponent : BaseComponent, ISqlComponent

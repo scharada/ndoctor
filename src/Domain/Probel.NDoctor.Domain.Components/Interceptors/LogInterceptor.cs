@@ -1,4 +1,4 @@
-﻿﻿#region Header
+﻿#region Header
 
 /*
     This file is part of NDoctor.
