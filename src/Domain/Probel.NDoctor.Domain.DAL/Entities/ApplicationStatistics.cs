@@ -52,6 +52,18 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         }
 
         /// <summary>
+        /// Gets or sets the message related to this statistic.
+        /// A message  and a new threshold can be set thank to <see cref="BenchmarkThresholdAttribute"/>
+        /// </summary>
+        /// <value>
+        /// The message.
+        /// </value>
+        public virtual string Message
+        {
+            get; set;
+        }
+
+        /// <summary>
         /// Gets or sets the name of the method.
         /// </summary>
         /// <value>
@@ -100,15 +112,6 @@ namespace Probel.NDoctor.Domain.DAL.Entities
             get;
             set;
         }
-
-        /// <summary>
-        /// Gets or sets the message related to this statistic.
-        /// A message  and a new threshold can be set thank to <see cref="BenchmarkThresholdAttribute"/>
-        /// </summary>
-        /// <value>
-        /// The message.
-        /// </value>
-        public virtual string Message { get; set; }
 
         #endregion Properties
     }
