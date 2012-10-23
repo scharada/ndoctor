@@ -202,7 +202,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             return new RelayCommand(() =>
             {
                 var text = this.Component.Resolve(macro, PluginContext.Host.SelectedPatient);
-                TextEditor.Control.CaretPosition.InsertTextInRun(text);
+                //TextEditor.Control.CaretPosition.InsertTextInRun(text);
+                TextEditor.Control.Selection.Text = text;
             });
         }
 
