@@ -175,7 +175,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
         private void HandleFatal(Exception ex, string format, params object[] args)
         {
             this.Logger.Fatal(format.FormatWith(args), ex);
-            this.WindowManager.Show<ExceptionViewModel>();
+            this.WindowManager.ShowDialog<ExceptionViewModel>();
         }
 
         private void HandleWarning(bool silent, Exception ex, string format, params object[] args)
