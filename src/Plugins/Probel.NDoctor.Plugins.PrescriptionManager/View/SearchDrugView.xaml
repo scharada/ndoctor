@@ -21,14 +21,11 @@
                     Command="iw:InnerWindow.CancelCommand" />
     </UserControl.InputBindings>
     <DockPanel LastChildFill="True">
-        <Border DockPanel.Dock="Bottom"
-                Style="{StaticResource BorderStyle}">
-            <Button Content="{Binding Source={x:Static Member=text:AddPrescriptionText.BtnSelect}}"
-                    Command="{Binding SelectCommand}"/>
-        </Border>
+        <Button DockPanel.Dock="Bottom"
+                Margin="4" Content="{Binding Source={x:Static Member=text:AddPrescriptionText.BtnSelect}}"
+                Command="{Binding SelectCommand}"/>
 
         <DockPanel DockPanel.Dock="Top">
-            <Border Style="{StaticResource BorderStyle}">
                 <RadioButton DockPanel.Dock="Left" x:Name="rb_OnName"
                              Grid.Row="0" 
                              Grid.Column="0"
@@ -36,9 +33,7 @@
                              Content="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleName}}"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Center"/>
-            </Border>
-            <Border Style="{StaticResource BorderStyle}">
-                <DockPanel>
+                <DockPanel Margin="4">
                     <Button DockPanel.Dock="Right" Background="White" BorderBrush="White" BorderThickness="0"
                             Command="{Binding SearchOnNameCommand}">
                         <Image DataContext="{Binding}" Source="/Probel.NDoctor.Plugins.PrescriptionManager;component/Images/search.bmp"
@@ -60,27 +55,23 @@
                         </toolkit:WatermarkTextBox.Watermark>
                     </toolkit:WatermarkTextBox>
                 </DockPanel>
-            </Border>
         </DockPanel>
         
         <DockPanel DockPanel.Dock="Top">
-            <Border Style="{StaticResource BorderStyle}">
-                <RadioButton DockPanel.Dock="Left"
-                                 x:Name="radioButtonTag"
-                                 IsChecked="{Binding SearchOnTags}"                                                            
-                                 GroupName="Search"
-                                 Content="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleTag}}"
-                                 HorizontalAlignment="Left"
-                                 VerticalAlignment="Center"/>
-            </Border>
-            <Border Style="{StaticResource BorderStyle}">
-                <ComboBox IsEnabled="{Binding ElementName=radioButtonTag, Path=IsChecked}"
-                          ItemsSource="{Binding Path=Tags}"
-                          DisplayMemberPath="Name"
-                          SelectedIndex="0"
-                          SelectedItem="{Binding Path=CriteriaTag}"
-                          h:SelectorBehaviour.SelectionChanged="{Binding SearchOnTagCommand}"/>
-            </Border>
+            <RadioButton Margin="4" DockPanel.Dock="Left"
+                         x:Name="radioButtonTag"
+                         IsChecked="{Binding SearchOnTags}"                                                            
+                         GroupName="Search"
+                         Content="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleTag}}"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"/>
+            <ComboBox Margin="4"
+                      IsEnabled="{Binding ElementName=radioButtonTag, Path=IsChecked}"
+                      ItemsSource="{Binding Path=Tags}"
+                      DisplayMemberPath="Name"
+                      SelectedIndex="0"
+                      SelectedItem="{Binding Path=CriteriaTag}"
+                      h:SelectorBehaviour.SelectionChanged="{Binding SearchOnTagCommand}"/>
         </DockPanel>
 
         <ListView ItemsSource="{Binding Path=FoundDrugs}"
