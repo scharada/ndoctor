@@ -250,6 +250,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thumbnails creation....
+        /// </summary>
+        internal static string Msg_ConfiguringThumbnails {
+            get {
+                return ResourceManager.GetString("Msg_ConfiguringThumbnails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Patient: {0}.
         /// </summary>
         internal static string Msg_ConnectedPatient {

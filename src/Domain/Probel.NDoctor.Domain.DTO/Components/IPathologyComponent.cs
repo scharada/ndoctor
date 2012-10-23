@@ -44,6 +44,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         void Create(IllnessPeriodDto period, LightPatientDto patient);
 
         /// <summary>
+        /// Create the specified item into the database
+        /// </summary>
+        /// <param name="item">The item to add in the database</param>
+        /// <returns>The id of the just created item</returns>
+        long Create(TagDto item);
+
+        /// <summary>
         /// Gets the illness history for the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -59,6 +66,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// as <see cref="TimeSpan"/> for the duration of the illness.
         /// </returns>
         Chart<string, double> GetIlnessAsChart(LightPatientDto patient);
+
+        /// <summary>
+        /// Gets all the tags with the specified catagory.
+        /// </summary>
+        /// <returns></returns>
+        IList<TagDto> GetTags(TagCategory category);
 
         /// <summary>
         /// Removes the specified illness period list from the specified patient's

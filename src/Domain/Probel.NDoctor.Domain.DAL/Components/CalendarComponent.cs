@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO;
+    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
 
@@ -47,6 +48,18 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Create(AppointmentDto meeting, LightPatientDto patient)
         {
             new Creator(this.Session).Create(meeting, patient);
+        }
+
+        /// <summary>
+        /// Create the specified item into the database
+        /// </summary>
+        /// <param name="item">The item to add in the database</param>
+        /// <returns>
+        /// The id of the just created item
+        /// </returns>
+        public long Create(TagDto item)
+        {
+            return new Creator(this.Session).Create(item);
         }
 
         /// <summary>
@@ -92,6 +105,17 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets the patients that fullfill the specified criterium.
+        /// </summary>
+        /// <param name="criterium">The criterium.</param>
+        /// <param name="search">The search should be done on the specified property.</param>
+        /// <returns></returns>
+        public IList<LightPatientDto> GetPatientsByNameLight(string criterium, SearchOn search)
+        {
+            return new Selector(this.Session).GetPatientsByNameLight(criterium, search);
+        }
+
+        /// <summary>
         /// The doctor/secretary uses this method to Get free allowable time for a appointment with a patient.
         /// </summary>
         /// <param name="startDate">The starting point for the search. That's, the search won't try to Get free slots before this date (included)</param>
@@ -121,6 +145,16 @@ namespace Probel.NDoctor.Domain.DAL.Components
                           select slot);
 
             return TimeSlotCollection.Create(result);
+        }
+
+        /// <summary>
+        /// Gets all the tags with the specified catagory.
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        public IList<TagDto> GetTags(TagCategory category)
+        {
+            return new Selector(this.Session).GetTags(category);
         }
 
         /// <summary>

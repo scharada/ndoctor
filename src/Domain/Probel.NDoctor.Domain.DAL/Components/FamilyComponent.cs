@@ -103,6 +103,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return this.GetAllFamilyMembers(entity);
         }
 
+        public IList<PathologyDto> GetPathology(string name)
+        {
+            return new Selector(this.Session).GetPathology(name);
+        }
+
         /// <summary>
         /// Get all the patient respecting the criteria and the search mode which
         /// aren't in the family of the specified patient
@@ -113,8 +118,13 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>A list of patient</returns>
         public IList<LightPatientDto> GetPatientNotFamilyMembers(LightPatientDto patient, string criteria, SearchOn search)
         {
-            var result = this.GetPatientsByNameLight(criteria, search);
+            var result = new Selector(this.Session).GetPatientsByNameLight(criteria, search);
             return this.RemoveFamilyMembers(result, patient);
+        }
+
+        public IList<TagDto> GetTags(TagCategory category)
+        {
+            return new Selector(this.Session).GetTags(category);
         }
 
         /// <summary>
@@ -158,14 +168,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
             if (patient == null) throw new EntityNotFoundException(typeof(Patient));
 
             if (family.Fathers != null //If the father has been added then replace the father of the connected patient
-                && (family.Fathers.Count > 0 ))//&& family.Fathers[0].State == State.Created))
+                && (family.Fathers.Count > 0))//&& family.Fathers[0].State == State.Created))
             {
                 var father = this.Session.Get<Patient>(family.Fathers[0].Id);
                 patient.Father = father;
             }
 
             if (family.Mothers != null //If the mother has been added then replace the mother of the connected patient
-                && (family.Mothers.Count > 0 )) //&& family.Mothers[0].State == State.Created))
+                && (family.Mothers.Count > 0)) //&& family.Mothers[0].State == State.Created))
             {
                 var mother = this.Session.Get<Patient>(family.Mothers[0].Id);
                 patient.Mother = mother;

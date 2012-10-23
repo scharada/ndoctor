@@ -32,6 +32,19 @@ namespace Probel.NDoctor.Domain.DTO.Components
         void Create(PictureDto picture, LightPatientDto forPatient);
 
         /// <summary>
+        /// Create the specified item into the database
+        /// </summary>
+        /// <param name="item">The item to add in the database</param>
+        /// <returns>The id of the just created item</returns>
+        long Create(TagDto item);
+
+        /// <summary>
+        /// Check the database state and creates the thumbnails if needed
+        /// </summary>
+        /// <param name="pictures">The pictures.</param>
+        void CreateAllThumbnails();
+
+        /// <summary>
         /// Gets the pictures (only the thumbnails) for the specified patient and with the specified tag.
         /// If the specified tag is null, it'll select all the picture of the specified
         /// patient
@@ -79,6 +92,18 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// A list of pictures
         /// </returns>
         IList<PictureDto> GetPictures(LightPatientDto patient, TagDto tag);
+
+        /// <summary>
+        /// Gets all the tags with the specified catagory.
+        /// </summary>
+        /// <returns></returns>
+        IList<TagDto> GetTags(TagCategory category);
+
+        /// <summary>
+        /// Updates the specified picture.
+        /// </summary>
+        /// <param name="picture">The picture.</param>
+        void Update(PictureDto item);
 
         #endregion Methods
     }

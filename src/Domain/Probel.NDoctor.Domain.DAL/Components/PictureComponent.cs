@@ -26,6 +26,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using NHibernate.Linq;
 
     using Probel.Helpers.Assertion;
+    using Probel.Helpers.Benchmarking;
     using Probel.NDoctor.Domain.DAL.AopConfiguration;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Helpers;
@@ -66,6 +67,49 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Create(PictureDto picture, LightPatientDto forPatient)
         {
             new Creator(this.Session).Create(picture, forPatient);
+        }
+
+        /// <summary>
+        /// Create the specified item into the database
+        /// </summary>
+        /// <param name="item">The item to add in the database</param>
+        /// <returns>
+        /// The id of the just created item
+        /// </returns>
+        public long Create(TagDto item)
+        {
+            return new Creator(this.Session).Create(item);
+        }
+
+        /// <summary>
+        /// Check the database state and creates the thumbnails if needed
+        /// </summary>
+        /// <param name="pictures">The pictures.</param>
+        [BenchmarkThreshold(60000, "Create 169 pictures takes about 1 minute!")]
+        [ExcludeFromTransaction]
+        public void CreateAllThumbnails()
+        {
+            var db = this.GetDatabaseState();
+            if (!db.AreThumbnailsCreated)
+            {
+                this.Logger.Info("Creation of the thumbnails");
+                using (var bench = new Benchmark(e => this.Logger.InfoFormat("Thumbnails created in {0,3}.{1:###} sec", e.Seconds, e.Milliseconds)))
+                {
+                    var pictures = (from p in this.Session.Query<Picture>()
+                                    select p).ToList();
+                    new ImageHelper().TryCreateThumbnail(pictures);
+                    using (var tx = this.Session.BeginTransaction())
+                    {
+                        new Updator(this.Session).Update(pictures);
+                        bench.CheckNow(e => this.Logger.DebugFormat("Thumbnails created in memory in {0,3}.{1:###} sec", e.Seconds, e.Milliseconds));
+                        db.AreThumbnailsCreated = true;
+                        new Updator(this.Session).Update(db);
+                        tx.Commit();
+                        bench.CheckNow(e => this.Logger.DebugFormat("Transaction commited {0,3}.{1:###} sec", e.Seconds, e.Milliseconds));
+                    }
+                }
+            }
+            else { this.Logger.Debug("Thumbnails creation already executed. Action aborded."); }
         }
 
         /// <summary>
@@ -153,21 +197,26 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Check the database state and creates the thumbnails if needed
+        /// Gets all the tags with the specified catagory.
         /// </summary>
-        /// <param name="pictures">The pictures.</param>
-        private void CreateThumbnailsDependingOnDbState(IEnumerable<Picture> pictures)
+        /// <param name="category"></param>
+        /// <returns></returns>
+        public IList<TagDto> GetTags(TagCategory category)
         {
-            var db = this.GetDatabaseState();
-            if (!db.AreThumbnailsCreated)
-            {
-                new ImageHelper().TryCreateThumbnail(pictures);
-                new Updator(this.Session).Update(pictures);
-                db.AreThumbnailsCreated = true;
-                new Updator(this.Session).Update(db);
-                this.Logger.Debug("Creation of the thumbnails created and database status updated");
-            }
-            else { this.Logger.Debug("Thumbnails creation already executed. Action aborded."); }
+            return new Selector(this.Session).GetTags(category);
+        }
+
+        /// <summary>
+        /// Updates the specified picture.
+        /// </summary>
+        /// <param name="picture">The picture.</param>
+        public void Update(PictureDto item)
+        {
+            var entity = this.Session.Get<Picture>(item.Id);
+            if (entity == null) throw new EntityNotFoundException(typeof(Picture));
+
+            Mapper.Map<PictureDto, Picture>(item, entity);
+            this.Session.Update(entity);
         }
 
         private IList<Picture> GetEntityPictures(LightPatientDto patient, TagDto tag)
@@ -200,10 +249,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
                             }).ToList();
             }
 
-            this.CreateThumbnailsDependingOnDbState(pictures);
-
             return pictures;
         }
+
 
         #endregion Methods
     }

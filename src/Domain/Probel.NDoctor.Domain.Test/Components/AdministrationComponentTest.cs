@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,27 +16,35 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Domain.Test.Helpers
+
+#endregion Header
+
+namespace Probel.NDoctor.Domain.Test.Components
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
-    using System.Reflection;
+    using System.Linq;
+    using System.Text;
 
-    public static class Build
+    using NUnit.Framework;
+
+    using Probel.NDoctor.Domain.DAL.Cfg;
+    using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.Test.Helpers;
+
+    [TestFixture]
+    [Category(Categories.FunctionalTest)]
+    public class AdministrationComponentTest : BaseComponentTest<AuthorisationComponent>
     {
         #region Methods
 
-        public static byte[] Picture(int index)
+        //Todo implement tests
+        [SetUp]
+        public void SetupFixture()
         {
-            if (index <= 0 || index > 8) throw new IndexOutOfRangeException("The index should be above zero and below or equal to 8");
-            var path = string.Format("Probel.NDoctor.Domain.Test.Images.picture{0}.jpg", index);
-
-            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path))
-            using (var reader = new BinaryReader(stream))
-            {
-                var length = stream.Length;
-                return reader.ReadBytes((int)length);
-            }
+            this.BuildComponent(session => new AuthorisationComponent(session));
         }
 
         #endregion Methods

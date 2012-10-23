@@ -26,6 +26,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
     using AutoMapper;
 
+    using NHibernate;
     using NHibernate.Linq;
 
     using Probel.Helpers.Assertion;
@@ -44,6 +45,27 @@ namespace Probel.NDoctor.Domain.DAL.Components
     [Granted(To.Administer)]
     public class AuthorisationComponent : BaseComponent, IAuthorisationComponent
     {
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuthorisationComponent"/> class.
+        /// </summary>
+        /// <param name="session">The session.</param>
+        public AuthorisationComponent(ISession session)
+            : base(session)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuthorisationComponent"/> class.
+        /// </summary>
+        public AuthorisationComponent()
+            : base()
+        {
+        }
+
+        #endregion Constructors
+
         #region Methods
 
         /// <summary>
@@ -80,6 +102,18 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public long Create(TaskDto task)
         {
             return new Creator(this.Session).Create(task);
+        }
+
+        /// <summary>
+        /// Create the specified item into the database
+        /// </summary>
+        /// <param name="item">The item to add in the database</param>
+        /// <returns>
+        /// The id of the just created item
+        /// </returns>
+        public long Create(TagDto item)
+        {
+            return new Creator(this.Session).Create(item);
         }
 
         /// <summary>

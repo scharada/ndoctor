@@ -35,6 +35,13 @@ namespace Probel.NDoctor.Domain.DAL.Components
         void Create(AppointmentDto meeting, LightPatientDto patient);
 
         /// <summary>
+        /// Create the specified item into the database
+        /// </summary>
+        /// <param name="item">The item to add in the database</param>
+        /// <returns>The id of the just created item</returns>
+        long Create(TagDto item);
+
+        /// <summary>
         /// Gets all the appointments of the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -58,6 +65,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
         IList<AppointmentDto> GetAppointments(DateTime day);
 
         /// <summary>
+        /// Gets the patients that fullfill the specified criterium.
+        /// </summary>
+        /// <param name="criterium">The criterium.</param>
+        /// <param name="search">The search should be done on the specified property.</param>
+        /// <returns></returns>
+        IList<LightPatientDto> GetPatientsByNameLight(string criterium, SearchOn search);
+
+        /// <summary>
         /// The doctor/secretary uses this method to Get free allowable time for a appointment with a patient.
         /// </summary>
         /// <param name="startDate">The starting point for the search. That's, the search won't try to Get free slots before this date (included)</param>
@@ -66,6 +81,12 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// words, the method will search free slots between 8:00 and 17:00</param>
         /// <returns>A list of free allowable slots</returns>
         TimeSlotCollection GetSlots(DateTime startDate, DateTime endDate, Workday workday);
+
+        /// <summary>
+        /// Gets all the tags with the specified catagory.
+        /// </summary>
+        /// <returns></returns>
+        IList<TagDto> GetTags(TagCategory category);
 
         /// <summary>
         /// Removes the specified meeting.

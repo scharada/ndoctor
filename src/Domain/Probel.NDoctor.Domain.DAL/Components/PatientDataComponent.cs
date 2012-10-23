@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Domain.DAL.Components
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -117,6 +118,56 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Create the specified item into the database
+        /// </summary>
+        /// <param name="item">The item to add in the database</param>
+        /// <returns>
+        /// The id of the just created item
+        /// </returns>
+        public long Create(TagDto item)
+        {
+            return new Creator(this.Session).Create(item);
+        }
+
+        /// <summary>
+        /// Gets all insurances stored in the database. Return a light version of the insurance
+        /// </summary>
+        /// <returns>
+        /// A list of light weight insurance
+        /// </returns>
+        public IList<LightInsuranceDto> GetAllInsurancesLight()
+        {
+            return new Selector(this.Session).GetAllInsurancesLight();
+        }
+
+        /// <summary>
+        /// Gets all practices stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        public IList<LightPracticeDto> GetAllPracticesLight()
+        {
+            return new Selector(this.Session).GetAllPracticesLight();
+        }
+
+        /// <summary>
+        /// Gets all professions stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        public IList<ProfessionDto> GetAllProfessions()
+        {
+            return new Selector(this.Session).GetAllProfessions();
+        }
+
+        /// <summary>
+        /// Gets all reputations stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        public IList<ReputationDto> GetAllReputations()
+        {
+            return new Selector(this.Session).GetAllReputations();
+        }
+
+        /// <summary>
         /// Gets the doctors linked to the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -196,6 +247,16 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets all the tags with the specified catagory.
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        public IList<TagDto> GetTags(TagCategory category)
+        {
+            return new Selector(this.Session).GetTags(category);
+        }
+
+        /// <summary>
         /// Removes the link that existed between the specified patient and the specified doctor.
         /// </summary>
         /// <exception cref="EntityNotFoundException">If there's no link between the doctor and the patient</exception>
@@ -204,6 +265,21 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void RemoveDoctorFor(LightPatientDto patient, LightDoctorDto doctor)
         {
             new Remover(this.Session).Remove(doctor, patient);
+        }
+
+        /// <summary>
+        /// Updates the patient with the new data.
+        /// </summary>
+        /// <param name="item">The patient.</param>
+        public void Update(PatientDto item)
+        {
+            Assert.IsNotNull(item, "item");
+            item.LastUpdate = DateTime.Today;
+
+            var entity = this.Session.Get<Patient>(item.Id);
+
+            Mapper.Map<PatientDto, Patient>(item, entity);
+            this.Session.Update(entity);
         }
 
         private bool NotIn(Patient patient, Doctor toCheck)

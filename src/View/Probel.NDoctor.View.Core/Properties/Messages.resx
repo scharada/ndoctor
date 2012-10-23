@@ -434,4 +434,8 @@ The application will close. Check the logs for further  information</value>
     <value>Configuring Status Writer...</value>
     <comment>Configuring Status Writer...</comment>
   </data>
+  <data name="Msg_ConfiguringThumbnails" xml:space="preserve">
+    <value>Thumbnails creation...</value>
+    <comment>Thumbnails creation...</comment>
+  </data>
 </root>

@@ -68,7 +68,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
             private set;
         }
 
-        private NHibernate.Cfg.Configuration Configuration
+        private static NHibernate.Cfg.Configuration Configuration
         {
             get;
             set;
@@ -85,6 +85,16 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
         #endregion Properties
 
         #region Methods
+
+        /// <summary>
+        /// Builds the schema of the database. Should only be used for unit testing
+        /// </summary>
+        /// <param name="session">The session.</param>
+        public static void BuildSchema(ISession session)
+        {
+            var export = new SchemaExport(Configuration);
+            export.Execute(true, true, false, session.Connection, null);
+        }
 
         public void ConfigureAutoMapper()
         {
@@ -104,7 +114,15 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
         /// </summary>
         public void ConfigureInMemory()
         {
-            this.setupConfiguration = (configuration) => this.Configuration = configuration;
+            this.setupConfiguration = (configuration) =>
+            {
+                // this NHibernate tool takes a configuration (with mapping info in)
+                // and exports a database schema from it
+                new SchemaExport(configuration)
+                  .Create(false, true);
+
+                Configuration = configuration;
+            };
             this.persistenceConfigurer
                 = SQLiteConfiguration
                     .Standard
@@ -123,7 +141,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
             {
                 this.setupConfiguration = (configuration) =>
                 {
-                    this.Configuration = configuration;
+                    Configuration = configuration;
 
                     // delete the existing db on each run
                     if (File.Exists(path)) File.Delete(path);
@@ -141,7 +159,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                 var update = new SchemaUpdate(configuration);
                 update.Execute(false, true);
 
-                this.Configuration = configuration;
+                Configuration = configuration;
             };
 
             this.persistenceConfigurer

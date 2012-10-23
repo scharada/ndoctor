@@ -434,4 +434,8 @@ L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
     <value>Configuration de gestionnaire de statu...</value>
     <comment>Configuring Status Writer...</comment>
   </data>
+  <data name="Msg_ConfiguringThumbnails" xml:space="preserve">
+    <value>Création des miniatures...</value>
+    <comment>Thumbnails creation...</comment>
+  </data>
 </root>

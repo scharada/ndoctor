@@ -134,10 +134,71 @@ namespace Probel.NDoctor.Domain.DTO.Components
         long Create(DoctorDto doctor);
 
         /// <summary>
+        /// Create the specified item into the database
+        /// </summary>
+        /// <param name="item">The item to add in the database</param>
+        long Create(DrugDto item);
+
+        /// <summary>
+        /// Create the specified item into the database
+        /// </summary>
+        /// <param name="item">The item to add in the database</param>
+        /// <returns>The id of the just created item</returns>
+        long Create(TagDto item);
+
+        /// <summary>
         /// Gets all doctors.
         /// </summary>
         /// <returns></returns>
         IList<DoctorDto> GetAllDoctors();
+
+        /// <summary>
+        /// Gets all drugs from the database.
+        /// </summary>
+        /// <returns></returns>
+        IList<DrugDto> GetAllDrugs();
+
+        /// <summary>
+        /// Gets all insurances stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        IList<InsuranceDto> GetAllInsurances();
+
+        /// <summary>
+        /// Gets all pathologies stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        IList<PathologyDto> GetAllPathologies();
+
+        /// <summary>
+        /// Gets all practices stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        IList<PracticeDto> GetAllPractices();
+
+        /// <summary>
+        /// Gets all professions stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        IList<ProfessionDto> GetAllProfessions();
+
+        /// <summary>
+        /// Gets all reputations stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        IList<ReputationDto> GetAllReputations();
+
+        /// <summary>
+        /// Gets all the tags
+        /// </summary>
+        /// <returns></returns>
+        IList<TagDto> GetAllTags();
+
+        /// <summary>
+        /// Gets all the tags with the specified catagory.
+        /// </summary>
+        /// <returns></returns>
+        IList<TagDto> GetTags(TagCategory category);
 
         /// <summary>
         /// Removes the specified item.

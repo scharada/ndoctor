@@ -53,6 +53,19 @@ namespace Probel.NDoctor.Domain.DTO.Components
         #region Methods
 
         /// <summary>
+        /// Create the specified item into the database
+        /// </summary>
+        /// <param name="item">The item to add in the database</param>
+        /// <returns>The id of the just created item</returns>
+        long Create(LightPatientDto item);
+
+        /// <summary>
+        /// Gets all professions stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        IList<ProfessionDto> GetAllProfessions();
+
+        /// <summary>
         /// Execute a search on the name of the patient and refines the result with the predicates.
         /// If the criteria is an "*" (asterisk), all the patient will be loaded in memory and afterward
         /// the refiner will be executed.
@@ -61,6 +74,20 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="refiner">The specification expression that will refine the result.</param>
         /// <returns>All the patient that fullfill the criteria</returns>
         IList<LightPatientDto> GetPatientsByNameLight(string criteria, SpecificationExpression<LightPatientDto> specification);
+
+        /// <summary>
+        /// Gets the patients that fullfill the specified criterium.
+        /// </summary>
+        /// <param name="criterium">The criterium.</param>
+        /// <param name="search">The search should be done on the specified property.</param>
+        /// <returns></returns>
+        IList<LightPatientDto> GetPatientsByNameLight(string criterium, SearchOn search);
+
+        /// <summary>
+        /// Gets all the tags with the specified catagory.
+        /// </summary>
+        /// <returns></returns>
+        IList<TagDto> GetTags(TagCategory category);
 
         /// <summary>
         /// Gets the top X patient. Where X is specified as an argument.

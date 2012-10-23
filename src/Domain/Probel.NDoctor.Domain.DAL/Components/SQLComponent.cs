@@ -16,13 +16,40 @@
 */
 namespace Probel.NDoctor.Domain.DAL.Components
 {
+    using System.Collections.Generic;
     using System.Text.RegularExpressions;
 
+    using NHibernate;
+
     using Probel.NDoctor.Domain.DAL.AopConfiguration;
+    using Probel.NDoctor.Domain.DAL.Subcomponents;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Objects;
 
     public class SqlComponent : BaseComponent, ISqlComponent
     {
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlComponent"/> class.
+        /// </summary>
+        public SqlComponent()
+            : base()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlComponent"/> class.
+        /// </summary>
+        /// <param name="session">The session.</param>
+        public SqlComponent(ISession session)
+            : base(session)
+        {
+        }
+
+        #endregion Constructors
+
         #region Methods
 
         /// <summary>
@@ -58,6 +85,18 @@ namespace Probel.NDoctor.Domain.DAL.Components
                 }
                 tx.Commit();
             }
+        }
+
+        /// <summary>
+        /// Gets the patients by name light.
+        /// </summary>
+        /// <param name="criterium">The criterium.</param>
+        /// <param name="search">The search.</param>
+        /// <returns></returns>
+        [Granted(To.Everyone)]
+        public IList<LightPatientDto> GetPatientsByNameLight(string criterium, SearchOn search)
+        {
+            return new Selector(this.Session).GetPatientsByNameLight(criterium, search);
         }
 
         /// <summary>

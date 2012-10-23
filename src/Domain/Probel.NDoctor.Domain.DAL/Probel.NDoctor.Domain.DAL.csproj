@@ -122,7 +122,6 @@
     <Compile Include="Entities\Reputation.cs" />
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Helpers\MedicalRecordCabinetHelper.cs" />
-    <Compile Include="Helpers\TestTools.cs" />
     <Compile Include="Cfg\CustomAutomappingConfiguration.cs" />
     <Compile Include="Cfg\DalConfigurator.cs" />
     <Compile Include="Entities\Address.cs" />
@@ -148,6 +147,7 @@
     </Compile>
     <Compile Include="Subcomponents\Creator.cs" />
     <Compile Include="Subcomponents\Remover.cs" />
+    <Compile Include="Subcomponents\Selector.cs" />
     <Compile Include="Subcomponents\Updator.cs" />
   </ItemGroup>
   <ItemGroup>
