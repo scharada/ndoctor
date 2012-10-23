@@ -26,7 +26,7 @@ namespace Probel.NDoctor.Domain.Test.Mappings
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.Test.Helpers;
 
-    [Category(Categories.Mappings)]
+    [Category(Categories.UnitTest)]
     [TestFixture]
     public class TestMapping
     {

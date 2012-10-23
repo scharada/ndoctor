@@ -35,7 +35,7 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
     {
         #region Fields
 
-        private static readonly Timer Countdown = new Timer(250) { AutoReset = true };
+        private readonly Timer Countdown = new Timer(250) { AutoReset = true };
 
         private IFamilyComponent component;
         private string criteria;

@@ -24,7 +24,7 @@ namespace Probel.NDoctor.Domain.Test.Data
     using Probel.NDoctor.Domain.Test.Helpers;
 
     [TestFixture]
-    [Category(Categories.DomainData)]
+    [Category(Categories.UnitTest)]
     public class TestTimeSlotCollection
     {
         #region Methods

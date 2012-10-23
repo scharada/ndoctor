@@ -18,12 +18,12 @@ namespace Probel.NDoctor.View.Test
 {
     using System;
 
+    using NSubstitute;
+
     using NUnit.Framework;
 
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
-
-    using Rhino.Mocks;
 
     [TestFixture]
     [Category("View")]
@@ -80,8 +80,8 @@ namespace Probel.NDoctor.View.Test
         [TestFixtureSetUp]
         public void FixtureSetup()
         {
-            PluginContext.Host = MockRepository.GenerateMock<IPluginHost>();
-            PluginContext.Host.Stub(x => x.HostVersion).Return(new Version("2.0.0.0"));
+            PluginContext.Host = Substitute.For<IPluginHost>();
+            PluginContext.Host.HostVersion.Returns(new Version("2.0.0.0"));
         }
 
         #endregion Methods

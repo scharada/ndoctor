@@ -26,7 +26,7 @@ namespace Probel.NDoctor.Domain.Test.Validations
     using Assert = NUnit.Framework.Assert;
 
     [TestFixture]
-    [Category(Categories.Validation)]
+    [Category(Categories.UnitTest)]
     public class AppointmentValidation
     {
         #region Methods

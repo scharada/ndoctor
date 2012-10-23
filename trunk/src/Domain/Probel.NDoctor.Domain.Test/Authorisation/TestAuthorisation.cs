@@ -21,9 +21,10 @@ namespace Probel.NDoctor.Domain.Test.Authorisation
     using NUnit.Framework;
 
     using Probel.NDoctor.Domain.DTO;
+    using Probel.NDoctor.Domain.Test.Helpers;
 
     [TestFixture]
-    [Category("Authorisation")]
+    [Category(Categories.UnitTest)]
     public class TestAuthorisation
     {
         #region Methods

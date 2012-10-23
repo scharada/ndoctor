@@ -19,13 +19,13 @@ namespace Probel.NDoctor.View.Test
     using System;
     using System.Collections.Generic;
 
+    using NSubstitute;
+
     using NUnit.Framework;
 
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Test.Stubs;
-
-    using Rhino.Mocks;
 
     [TestFixture]
     [Category("View")]
@@ -43,7 +43,7 @@ namespace Probel.NDoctor.View.Test
         [Test]
         public void CanLoadValidPlugins()
         {
-            PluginContext.Host.Stub(x => x.HostVersion).Return(new Version("1.0.0.0"));
+            PluginContext.Host.HostVersion.Returns(new Version("1.0.0.0"));
             container.Plugins = this.CreatePlugins("1.0.0.0", new PluginValidator("1.0.0.0", ValidationMode.Strict));
             container.LoadPlugins();
 
@@ -53,7 +53,7 @@ namespace Probel.NDoctor.View.Test
         [Test]
         public void FailToLoadInvalidPlugins()
         {
-            PluginContext.Host.Stub(x => x.HostVersion).Return(new Version("2.0.0.0"));
+            PluginContext.Host.HostVersion.Returns(new Version("2.0.0.0"));
             container.Plugins = this.CreatePlugins("1.0.0.0", new PluginValidator("4.0.0.0", ValidationMode.Strict));
             container.LoadPlugins();
 
@@ -63,8 +63,8 @@ namespace Probel.NDoctor.View.Test
         [TestFixtureSetUp]
         public void PluginFixture()
         {
-            PluginContext.Host = MockRepository.GenerateMock<IPluginHost>();
-            this.loader = MockRepository.GenerateMock<IPluginLoader>();
+            PluginContext.Host = Substitute.For<IPluginHost>();
+            this.loader = Substitute.For<IPluginLoader>();
             this.container = new PluginContainer(PluginContext.Host, loader);
         }
 

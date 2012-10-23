@@ -20,13 +20,8 @@ namespace Probel.NDoctor.Domain.Test.Helpers
     {
         #region Fields
 
-        public const string Authorisation = "Authorisation";
-        public const string Database = "Database";
-        public const string DomainData = "Domain data";
-        public const string Macros = "Macros";
-        public const string Mappings = "Mappings";
-        public const string Memento = "Memento";
-        public const string Validation = "Validation";
+        public const string FunctionalTest = "Functional tests";
+        public const string UnitTest = "Unit tests";
 
         #endregion Fields
     }
