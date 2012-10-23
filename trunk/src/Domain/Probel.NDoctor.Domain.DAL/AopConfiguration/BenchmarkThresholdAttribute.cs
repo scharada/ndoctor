@@ -27,6 +27,9 @@ namespace Probel.NDoctor.Domain.DAL.AopConfiguration
     /// This attribute is used to override the threshold that indicates when the execution time of a method
     /// could be a bottleneck.
     /// </summary>
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property,
+        AllowMultiple = false,
+        Inherited = true)]
     public class BenchmarkThresholdAttribute : Attribute
     {
         #region Constructors
