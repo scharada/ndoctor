@@ -106,9 +106,6 @@ namespace Probel.NDoctor.Domain.DAL.Helpers
         /// <returns><c>True</c> if at least one thumbnail is created; otherwise <c>False</c></returns>
         public bool TryCreateThumbnail(IEnumerable<Picture> pictures)
         {
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
-
             var result = true;
             var count = 0;
             foreach (var picture in pictures)
@@ -120,9 +117,6 @@ namespace Probel.NDoctor.Domain.DAL.Helpers
                     count++;
                 }
             }
-
-            stopwatch.Stop();
-            Logger.DebugFormat("Create {0} thumbnails in {1},{2} sec", count, stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
             return result;
         }
 

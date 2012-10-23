@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,21 +16,41 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Domain.DAL.Helpers
+
+#endregion Header
+
+namespace Probel.NDoctor.Domain.Test.Components
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using NHibernate;
+
+    using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Components;
 
-    public static class TestTools
+    public class BaseComponentTest<T>
+        where T : BaseComponent
     {
+        #region Properties
+
+        protected T Component
+        {
+            get; private set;
+        }
+
+        #endregion Properties
+
         #region Methods
 
-        /// <summary>
-        /// Sets the session of the specified component to null.
-        /// </summary>
-        /// <param name="component">The component.</param>
-        public static void NullifySession(BaseComponent component)
+        protected void BuildComponent(Func<ISession, T> ctor)
         {
-            component.SetSession(null);
+            new DalConfigurator().ConfigureInMemory();
+            var component = ctor(DalConfigurator.SessionFactory.OpenSession());
+            DalConfigurator.BuildSchema(component.Session);
+            this.Component = component;
         }
 
         #endregion Methods

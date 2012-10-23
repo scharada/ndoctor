@@ -66,7 +66,7 @@ namespace Probel.NDoctor.Domain.Components
 
                 //Administration plugin
                 x.For<IAdministrationComponent>().Add<AdministrationComponent>();
-                x.SelectConstructor<IAdministrationComponent>(() => new AdministrationComponent());
+                x.SelectConstructor<AdministrationComponent>(() => new AdministrationComponent());
 
                 //BmiRecord plugin
                 x.For<IBmiComponent>().Add<BmiComponent>();
@@ -78,6 +78,7 @@ namespace Probel.NDoctor.Domain.Components
 
                 //Debug plugin
                 x.For<ISqlComponent>().Add<SqlComponent>();
+                x.SelectConstructor<SqlComponent>(()=>new SqlComponent());;
 
                 //Family manager plugin
                 x.For<IFamilyComponent>().Add<FamilyComponent>();

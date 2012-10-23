@@ -63,6 +63,37 @@ namespace Probel.NDoctor.Domain.DTO.Components
         long Create(DoctorDto doctor);
 
         /// <summary>
+        /// Create the specified item into the database
+        /// </summary>
+        /// <param name="item">The item to add in the database</param>
+        /// <returns>The id of the just created item</returns>
+        long Create(TagDto item);
+
+        /// <summary>
+        /// Gets all insurances stored in the database. Return a light version of the insurance
+        /// </summary>
+        /// <returns>A list of light weight insurance</returns>
+        IList<LightInsuranceDto> GetAllInsurancesLight();
+
+        /// <summary>
+        /// Gets all practices stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        IList<LightPracticeDto> GetAllPracticesLight();
+
+        /// <summary>
+        /// Gets all professions stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        IList<ProfessionDto> GetAllProfessions();
+
+        /// <summary>
+        /// Gets all reputations stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        IList<ReputationDto> GetAllReputations();
+
+        /// <summary>
         /// Gets the doctors linked to the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -97,12 +128,24 @@ namespace Probel.NDoctor.Domain.DTO.Components
         PatientDto GetPatient(LightPatientDto patient);
 
         /// <summary>
+        /// Gets all the tags with the specified catagory.
+        /// </summary>
+        /// <returns></returns>
+        IList<TagDto> GetTags(TagCategory category);
+
+        /// <summary>
         /// Removes the link that existed between the specified patient and the specified doctor.
         /// </summary>
         /// <exception cref="EntityNotFoundException">If there's no link between the doctor and the patient</exception>
         /// <param name="patient">The patient.</param>
         /// <param name="doctor">The doctor.</param>
         void RemoveDoctorFor(LightPatientDto patient, LightDoctorDto doctor);
+
+        /// <summary>
+        /// Updates the patient with the new data.
+        /// </summary>
+        /// <param name="item">The patient.</param>
+        void Update(PatientDto item);
 
         #endregion Methods
     }

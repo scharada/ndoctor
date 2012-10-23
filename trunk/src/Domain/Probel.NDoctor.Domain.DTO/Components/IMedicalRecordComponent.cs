@@ -42,6 +42,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         long Create(MacroDto macro);
 
         /// <summary>
+        /// Create the specified item into the database
+        /// </summary>
+        /// <param name="item">The item to add in the database</param>
+        /// <returns>The id of the just created item</returns>
+        long Create(TagDto item);
+
+        /// <summary>
         /// Gets all the macros.
         /// </summary>
         /// <returns></returns>
@@ -69,6 +76,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="patient">The patient.</param>
         /// <returns></returns>
         MedicalRecordCabinetDto GetMedicalRecordCabinet(LightPatientDto patient);
+
+        /// <summary>
+        /// Gets all the tags with the specified catagory.
+        /// </summary>
+        /// <returns></returns>
+        IList<TagDto> GetTags(TagCategory category);
 
         /// <summary>
         /// Determines whether the specified macro is valid.

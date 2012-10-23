@@ -46,6 +46,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         long Create(TaskDto task);
 
         /// <summary>
+        /// Create the specified item into the database
+        /// </summary>
+        /// <param name="item">The item to add in the database</param>
+        /// <returns>The id of the just created item</returns>
+        long Create(TagDto item);
+
+        /// <summary>
         /// Gets all users stored in the database.
         /// </summary>
         /// <returns></returns>

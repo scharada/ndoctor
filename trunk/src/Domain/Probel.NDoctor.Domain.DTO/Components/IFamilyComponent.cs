@@ -39,6 +39,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         FamilyDto GetFamily(LightPatientDto patient);
 
         /// <summary>
+        /// Gets all pathologies that contains the specified name.
+        /// </summary>
+        /// <returns></returns>
+        IList<PathologyDto> GetPathology(string name);
+
+        /// <summary>
         /// Get all the patient respecting the criteria and the search mode which
         /// aren't in the family of the specified patient
         /// </summary>
@@ -47,6 +53,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="search">The search mode</param>
         /// <returns>A list of patient</returns>
         IList<LightPatientDto> GetPatientNotFamilyMembers(LightPatientDto patient, string criteria, SearchOn search);
+
+        /// <summary>
+        /// Gets all the tags with the specified catagory.
+        /// </summary>
+        /// <returns></returns>
+        IList<TagDto> GetTags(TagCategory category);
 
         /// <summary>
         /// Remove the specified member from the specified patient

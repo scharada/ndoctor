@@ -21,15 +21,41 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
     using AutoMapper;
 
+    using NHibernate;
     using NHibernate.Linq;
 
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Subcomponents;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class AdministrationComponent : BaseComponent, IAdministrationComponent
     {
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdministrationComponent"/> class.
+        /// </summary>
+        public AdministrationComponent()
+            : base()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdministrationComponent"/> class.
+        /// </summary>
+        /// <param name="session">The session.</param>
+        public AdministrationComponent(ISession session)
+            : base(session)
+        {
+        }
+
+        #endregion Constructors
+
         #region Methods
 
         /// <summary>
@@ -122,6 +148,17 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Creates the specified tag.
+        /// </summary>
+        /// <param name="tag">The tag.</param>
+        /// <returns></returns>
+        [Granted(To.Everyone)]
+        public long Create(TagDto tag)
+        {
+            return new Creator(this.Session).Create(tag);
+        }
+
+        /// <summary>
         /// Creates the specified profession.
         /// </summary>
         /// <param name="profession">The tag.</param>
@@ -177,6 +214,16 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Create the specified item into the database
+        /// </summary>
+        /// <param name="item">The item to add in the database</param>
+        /// <returns></returns>
+        public long Create(DrugDto item)
+        {
+            return new Creator(this.Session).Create(item);
+        }
+
+        /// <summary>
         /// Gets all doctors.
         /// </summary>
         /// <returns></returns>
@@ -185,6 +232,79 @@ namespace Probel.NDoctor.Domain.DAL.Components
             var entities = (from d in this.Session.Query<Doctor>()
                             select d).ToList();
             return Mapper.Map<IList<Doctor>, IList<DoctorDto>>(entities);
+        }
+
+        /// <summary>
+        /// Gets all drugs from the database.
+        /// </summary>
+        /// <returns></returns>
+        public IList<DrugDto> GetAllDrugs()
+        {
+            return new Selector(this.Session).GetAllDrugs();
+        }
+
+        /// <summary>
+        /// Gets all insurances stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        public IList<InsuranceDto> GetAllInsurances()
+        {
+            return new Selector(this.Session).GetAllInsurances();
+        }
+
+        /// <summary>
+        /// Gets all pathologies stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        public IList<PathologyDto> GetAllPathologies()
+        {
+            return new Selector(this.Session).GetAllPathologies();
+        }
+
+        /// <summary>
+        /// Gets all practices stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        public IList<PracticeDto> GetAllPractices()
+        {
+            return new Selector(this.Session).GetAllPractices();
+        }
+
+        /// <summary>
+        /// Gets all professions stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        public IList<ProfessionDto> GetAllProfessions()
+        {
+            return new Selector(this.Session).GetAllProfessions();
+        }
+
+        /// <summary>
+        /// Gets all reputations stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        public IList<ReputationDto> GetAllReputations()
+        {
+            return new Selector(this.Session).GetAllReputations();
+        }
+
+        /// <summary>
+        /// Gets all the tags
+        /// </summary>
+        /// <returns></returns>
+        public IList<TagDto> GetAllTags()
+        {
+            return new Selector(this.Session).GetAllTags();
+        }
+
+        /// <summary>
+        /// Gets all the tags with the specified catagory.
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        public IList<TagDto> GetTags(TagCategory category)
+        {
+            return new Selector(this.Session).GetTags(category);
         }
 
         /// <summary>
@@ -241,6 +361,20 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Remove(DoctorDto item)
         {
             new Remover(this.Session).Remove(item);
+        }
+
+        public void Remove(ProfessionDto item)
+        {
+            var remover = new Remover(this.Session);
+
+            if (remover.CanRemove(item)) { remover.Remove<Profession>(item); }
+        }
+
+        public void Remove(ReputationDto item)
+        {
+            var remover = new Remover(this.Session);
+
+            if (remover.CanRemove(item)) { remover.Remove<Reputation>(item); }
         }
 
         /// <summary>

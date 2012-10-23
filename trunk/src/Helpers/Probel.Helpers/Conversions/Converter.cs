@@ -42,10 +42,10 @@ namespace Probel.Helpers.Conversions
         /// <returns>The converted byte array into an image</returns>
         public static Image ByteArrayToImage(byte[] bytes)
         {
+            Assert.IsNotNull(bytes, "bytes");
+            Assert.IsTrue(bytes.Length > 0, "The image byte array has 0 element");
             try
             {
-                if (bytes.Length == 0) return null;
-
                 using (var stream = new MemoryStream(bytes))
                 {
                     return Image.FromStream(stream);

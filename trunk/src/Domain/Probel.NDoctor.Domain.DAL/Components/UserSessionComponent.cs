@@ -82,6 +82,21 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return new Creator(this.Session).Create(item, password);
         }
 
+        public System.Collections.Generic.IList<PracticeDto> GetAllPractices()
+        {
+            return new Selector(this.Session).GetAllPractices();
+        }
+
+        public System.Collections.Generic.IList<RoleDto> GetAllRolesLight()
+        {
+            return new Selector(this.Session).GetAllRolesLight();
+        }
+
+        public System.Collections.Generic.IList<LightUserDto> GetAllUsers()
+        {
+            return new Selector(this.Session).GetAllUsers();
+        }
+
         /// <summary>
         /// Gets user used for default connection or null if none is selected.
         /// </summary>
@@ -96,6 +111,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
             if (result.Count == 0) return null;
             else if (result.Count > 1) throw new DalQueryException(Messages.Ex_QueryException_SeveralDefaultUsers);
             else return Mapper.Map<User, LightUserDto>(result[0]);
+        }
+
+        public UserDto GetUserById(long id)
+        {
+            return new Selector(this.Session).GetUserById(id);
         }
 
         /// <summary>

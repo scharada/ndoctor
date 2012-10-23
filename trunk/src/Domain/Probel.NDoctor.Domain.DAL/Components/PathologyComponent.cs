@@ -57,6 +57,18 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Create the specified item into the database
+        /// </summary>
+        /// <param name="item">The item to add in the database</param>
+        /// <returns>
+        /// The id of the just created item
+        /// </returns>
+        public long Create(TagDto item)
+        {
+            return new Creator(this.Session).Create(item);
+        }
+
+        /// <summary>
         /// Gets the illness history for the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -94,6 +106,15 @@ namespace Probel.NDoctor.Domain.DAL.Components
                 chart.AddPoint(item.Name, item.TotalDays);
             }
             return chart;
+        }
+
+        /// <summary>
+        /// Gets all the tags with the specified catagory.
+        /// </summary>
+        /// <returns></returns>
+        public IList<TagDto> GetTags(TagCategory category)
+        {
+            return new Selector(this.Session).GetTags(category);
         }
 
         /// <summary>

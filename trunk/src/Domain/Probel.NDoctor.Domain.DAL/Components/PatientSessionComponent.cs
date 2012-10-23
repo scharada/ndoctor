@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
     using Probel.Helpers.Benchmarking;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.DTO.Specification;
@@ -54,6 +55,27 @@ namespace Probel.NDoctor.Domain.DAL.Components
         #endregion Constructors
 
         #region Methods
+
+        /// <summary>
+        /// Create the specified item into the database
+        /// </summary>
+        /// <param name="item">The item to add in the database</param>
+        /// <returns>
+        /// The id of the just created item
+        /// </returns>
+        public long Create(LightPatientDto item)
+        {
+            return new Creator(this.Session).Create(item);
+        }
+
+        /// <summary>
+        /// Gets all professions stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        public IList<ProfessionDto> GetAllProfessions()
+        {
+            return new Selector(this.Session).GetAllProfessions();
+        }
 
         /// <summary>
         /// Execute a search on the name of the patient and refines the result with the predicates.
@@ -105,6 +127,27 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
             var result = preSearchResult.FindAll(specification.IsSatisfiedBy);
             return result;
+        }
+
+        /// <summary>
+        /// Gets the patients that fullfill the specified criterium.
+        /// </summary>
+        /// <param name="criterium">The criterium.</param>
+        /// <param name="search">The search should be done on the specified property.</param>
+        /// <returns></returns>
+        public IList<LightPatientDto> GetPatientsByNameLight(string criterium, SearchOn search)
+        {
+            return new Selector(this.Session).GetPatientsByNameLight(criterium, search);
+        }
+
+        /// <summary>
+        /// Gets all the tags with the specified catagory.
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        public IList<TagDto> GetTags(TagCategory category)
+        {
+            return new Selector(this.Session).GetTags(category);
         }
 
         /// <summary>

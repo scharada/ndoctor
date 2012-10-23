@@ -16,6 +16,8 @@
 */
 namespace Probel.NDoctor.Domain.DTO.Components
 {
+    using System.Collections.Generic;
+
     using Probel.NDoctor.Domain.DTO.Objects;
 
     /// <summary>
@@ -42,10 +44,35 @@ namespace Probel.NDoctor.Domain.DTO.Components
         long Create(LightUserDto item, string password);
 
         /// <summary>
+        /// Gets all practices stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        IList<PracticeDto> GetAllPractices();
+
+        /// <summary>
+        /// Gets all roles light.
+        /// </summary>
+        /// <returns>An array with all the roles</returns>
+        IList<RoleDto> GetAllRolesLight();
+
+        /// <summary>
+        /// Gets all users.
+        /// </summary>
+        /// <returns></returns>
+        IList<LightUserDto> GetAllUsers();
+
+        /// <summary>
         /// Gets user used for default connection or null if none is selected.
         /// </summary>
         /// <returns></returns>
         LightUserDto GetDefaultUser();
+
+        /// <summary>
+        /// Gets the user by id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns></returns>
+        UserDto GetUserById(long id);
 
         /// <summary>
         /// Gets the whole data of the specified connected user.

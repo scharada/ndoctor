@@ -38,6 +38,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Toolbox.Navigation;
 
     using StructureMap;
+    using Probel.NDoctor.Domain.Components;
+    using Probel.NDoctor.Domain.DTO.Components;
 
     internal class SpashScreenViewModel : BaseViewModel
     {
@@ -144,18 +146,22 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
                     this.Status = Messages.Msg_ConfiguringNHibernate;
                     this.ConfigureNHibernate();
-                    this.Progress = 25;
+                    this.Progress = 20;
 
                     this.Status = Messages.Msg_ConfiguringStatusWriter;
                     this.ConfigureStatusWriter();
-                    this.Progress = 50;
+                    this.Progress = 40;
 
                     this.Status = Messages.Msg_ConfiguringStructureMap;
                     this.ConfigureStructureMap();
-                    this.Progress = 75;
+                    this.Progress = 60;
 
                     this.Status = Messages.Msg_ConfiguringPlugins;
                     this.ConfigurePlugins();
+                    this.Progress = 80;
+
+                    this.Status = Messages.Msg_ConfiguringThumbnails;
+                    this.CongigureThumbnails();
                     this.Progress = 100;
                     this.Logger.Info("Configuration done.");
 
@@ -176,6 +182,13 @@ namespace Probel.NDoctor.View.Core.ViewModel
             };
             thread.RunWorkerCompleted += (sender, e) => this.OnLoaded();
             thread.RunWorkerAsync();
+        }
+
+        private void CongigureThumbnails()
+        {
+            PluginContext.ComponentFactory
+                .GetInstance<IPictureComponent>()
+                .CreateAllThumbnails();
         }
 
         private void BuildHomeMenu()
