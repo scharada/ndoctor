@@ -43,7 +43,7 @@ namespace Probel.Helpers.Conversions
         public static Image ByteArrayToImage(byte[] bytes)
         {
             Assert.IsNotNull(bytes, "bytes");
-            Assert.IsTrue(bytes.Length > 0, "The image byte array has 0 element");
+            if (bytes.Length == 0) { return null; }
             try
             {
                 using (var stream = new MemoryStream(bytes))

@@ -252,7 +252,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return pictures;
         }
 
-
         #endregion Methods
     }
 }
