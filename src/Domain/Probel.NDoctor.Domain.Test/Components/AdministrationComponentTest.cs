@@ -21,17 +21,10 @@
 
 namespace Probel.NDoctor.Domain.Test.Components
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
 
     using NUnit.Framework;
 
-    using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Components;
-    using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.Test.Helpers;
 
     [TestFixture]

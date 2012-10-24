@@ -30,7 +30,9 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DAL.Cfg;
+    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -38,8 +40,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Toolbox.Navigation;
 
     using StructureMap;
-    using Probel.NDoctor.Domain.Components;
-    using Probel.NDoctor.Domain.DTO.Components;
 
     internal class SpashScreenViewModel : BaseViewModel
     {
@@ -184,13 +184,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
             thread.RunWorkerAsync();
         }
 
-        private void CongigureThumbnails()
-        {
-            PluginContext.ComponentFactory
-                .GetInstance<IPictureComponent>()
-                .CreateAllThumbnails();
-        }
-
         private void BuildHomeMenu()
         {
             var cmd = new RelayCommand(() => MessageBox.Show("Hello World!"));
@@ -238,6 +231,13 @@ namespace Probel.NDoctor.View.Core.ViewModel
                  x.For<IPluginLoader>().Add<MefPluginLoader>()
                      .Ctor<string>("repository").Is(repository);
              });
+        }
+
+        private void CongigureThumbnails()
+        {
+            PluginContext.ComponentFactory
+                .GetInstance<IPictureComponent>()
+                .CreateAllThumbnails();
         }
 
         private void LogDatabaseCreation()
