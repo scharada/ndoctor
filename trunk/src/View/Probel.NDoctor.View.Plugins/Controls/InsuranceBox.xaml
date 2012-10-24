@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Probel.NDoctor.View.Core.Controls.InsuranceBox"
+﻿<UserControl x:Class="Probel.NDoctor.View.Plugins.Controls.InsuranceBox"
              x:Name="this"
              
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
