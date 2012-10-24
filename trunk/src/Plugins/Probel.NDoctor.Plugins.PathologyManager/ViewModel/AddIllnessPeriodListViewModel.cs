@@ -37,7 +37,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
         private static Timer Countdown = new Timer(250) { AutoReset = true };
 
-        private IFamilyComponent component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
+        private IPathologyComponent component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
         private string criteria;
         private IllnessPeriodToAddViewModel selectedPathology;
 
@@ -52,7 +52,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
         public AddIllnessPeriodListViewModel()
             : base()
         {
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
+            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
             this.FoundPathologies = new ObservableCollection<IllnessPeriodToAddViewModel>();
             this.SearchCommand = new RelayCommand(() => this.SearchPathology(), () => this.CanSearchPathology());
 
@@ -134,7 +134,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
         private void SearchPathology()
         {
-            var pathologies = this.component.GetPathology(this.criteria);
+            var pathologies = this.component.GetPathologiesByName(this.criteria);
             var result = Mapper.Map<IList<PathologyDto>, IList<IllnessPeriodToAddViewModel>>(pathologies);
             this.FoundPathologies.Refill(result);
         }

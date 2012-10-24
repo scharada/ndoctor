@@ -109,6 +109,16 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets the pathologies with the specified name.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns></returns>
+        public IList<PathologyDto> GetPathologiesByName(string criteria)
+        {
+            return new Selector(this.Session).GetPathologiesByName(criteria);
+        }
+
+        /// <summary>
         /// Gets all the tags with the specified catagory.
         /// </summary>
         /// <returns></returns>
