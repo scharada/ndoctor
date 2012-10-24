@@ -318,16 +318,16 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         }
 
         /// <summary>
-        /// Gets the patients that fullfill the specified criterium.
+        /// Gets all pathologies that contains the specified name.
         /// </summary>
-        /// <param name="criterium">The criterium.</param>
-        /// <param name="search">The search should be done on the specified property.</param>
         /// <returns></returns>
-        [Granted(To.Everyone)]
-        public IList<LightPatientDto> GetPatientByNameLight(string criterium, SearchOn search)
+        public IList<PathologyDto> GetPathologiesByName(string name)
         {
-            var result = this.GetLightPatientEntities(criterium, search);
-            return Mapper.Map<IList<Patient>, IList<LightPatientDto>>(result);
+            var pathologies = (from pahology in this.Session.Query<Pathology>()
+                               where pahology.Name.Contains(name)
+                               select pahology).ToList();
+
+            return Mapper.Map<IList<Pathology>, IList<PathologyDto>>(pathologies);
         }
 
         /// <summary>
@@ -343,16 +343,16 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         }
 
         /// <summary>
-        /// Gets all pathologies that contains the specified name.
+        /// Gets the patients that fullfill the specified criterium.
         /// </summary>
+        /// <param name="criterium">The criterium.</param>
+        /// <param name="search">The search should be done on the specified property.</param>
         /// <returns></returns>
-        public IList<PathologyDto> GetPathology(string name)
+        [Granted(To.Everyone)]
+        public IList<LightPatientDto> GetPatientByNameLight(string criterium, SearchOn search)
         {
-            var pathologies = (from pahology in this.Session.Query<Pathology>()
-                               where pahology.Name.Contains(name)
-                               select pahology).ToList();
-
-            return Mapper.Map<IList<Pathology>, IList<PathologyDto>>(pathologies);
+            var result = this.GetLightPatientEntities(criterium, search);
+            return Mapper.Map<IList<Patient>, IList<LightPatientDto>>(result);
         }
 
         /// <summary>

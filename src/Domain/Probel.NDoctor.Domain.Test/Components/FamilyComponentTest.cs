@@ -37,12 +37,11 @@ namespace Probel.NDoctor.Domain.Test.Components
     {
         #region Methods
 
-
         /// <summary>
         /// Issue 87
         /// </summary>
         [Test]
-        public void GetValueFromFamily_ExecutionTimeShouldBeLow_ExecutionTimeIsLow()
+        public void UpdateFamily_AddFatherAndAChild_ThePatientHasAFatherAndAChild()
         {
             var cmp = new UnitTestComponent(this.Session);
             var users = cmp.GetPatientsByNameLight("*", SearchOn.FirstAndLastName);
@@ -57,6 +56,63 @@ namespace Probel.NDoctor.Domain.Test.Components
             var persistedFamily = this.ComponentUnderTest.GetFamily(users[0]);
             Assert.AreEqual(users[1].Id, family.Fathers[0].Id, "The father has an unexpected ID");
 
+            var family2 = new FamilyDto() { Current = users[0], };
+            family.Children.Add(users[2]);
+
+            this.ComponentUnderTest.Update(family);
+
+            var persistedFamily2 = this.ComponentUnderTest.GetFamily(users[0]);
+            Assert.AreEqual(users[1].Id, family.Fathers[0].Id, "The father has an unexpected ID");
+            Assert.AreEqual(users[2].Id, family.Children[0].Id, "The child has an unexpected ID");
+        }
+
+        /// <summary>
+        /// Issue 87
+        /// </summary>
+        [Test]
+        public void UpdateFamily_AddFatherAndAMother_ThePatientHasAFatherAndAMother()
+        {
+            var cmp = new UnitTestComponent(this.Session);
+            var users = cmp.GetPatientsByNameLight("*", SearchOn.FirstAndLastName);
+
+            Assert.Greater(users.Count, 4, "Not enought data to execute the test");
+
+            var family = new FamilyDto() { Current = users[0], };
+            family.Fathers.Add(users[1]);
+
+            this.ComponentUnderTest.Update(family);
+
+            var persistedFamily = this.ComponentUnderTest.GetFamily(users[0]);
+            Assert.AreEqual(users[1].Id, family.Fathers[0].Id, "The father has an unexpected ID");
+
+            var family2 = new FamilyDto() { Current = users[0], };
+            family.Mothers.Add(users[2]);
+
+            this.ComponentUnderTest.Update(family);
+
+            var persistedFamily2 = this.ComponentUnderTest.GetFamily(users[0]);
+            Assert.AreEqual(users[1].Id, family.Fathers[0].Id, "The father has an unexpected ID");
+            Assert.AreEqual(users[2].Id, family.Mothers[0].Id, "The child has an unexpected ID");
+        }
+
+        /// <summary>
+        /// Issue 87
+        /// </summary>
+        [Test]
+        public void UpdateFamily_AddFatherAndChangeIt_ThePatientHasANewFather()
+        {
+            var cmp = new UnitTestComponent(this.Session);
+            var users = cmp.GetPatientsByNameLight("*", SearchOn.FirstAndLastName);
+
+            Assert.Greater(users.Count, 4, "Not enought data to execute the test");
+
+            var family = new FamilyDto() { Current = users[0], };
+            family.Fathers.Add(users[1]);
+
+            this.ComponentUnderTest.Update(family);
+
+            var persistedFamily = this.ComponentUnderTest.GetFamily(users[0]);
+            Assert.AreEqual(users[1].Id, family.Fathers[0].Id, "The father has an unexpected ID");
 
             var family2 = new FamilyDto() { Current = users[0], };
             family.Fathers.Add(users[2]);
@@ -65,6 +121,34 @@ namespace Probel.NDoctor.Domain.Test.Components
 
             var persistedFamily2 = this.ComponentUnderTest.GetFamily(users[0]);
             Assert.AreEqual(users[2].Id, family.Fathers[0].Id, "The father has an unexpected ID");
+        }
+
+        /// <summary>
+        /// Issue 87
+        /// </summary>
+        [Test]
+        public void UpdateFamily_AddMotherAndChangeIt_ThePatientHasANewMother()
+        {
+            var cmp = new UnitTestComponent(this.Session);
+            var users = cmp.GetPatientsByNameLight("*", SearchOn.FirstAndLastName);
+
+            Assert.Greater(users.Count, 4, "Not enought data to execute the test");
+
+            var family = new FamilyDto() { Current = users[0], };
+            family.Mothers.Add(users[1]);
+
+            this.ComponentUnderTest.Update(family);
+
+            var persistedFamily = this.ComponentUnderTest.GetFamily(users[0]);
+            Assert.AreEqual(users[1].Id, family.Mothers[0].Id, "The father has an unexpected ID");
+
+            var family2 = new FamilyDto() { Current = users[0], };
+            family.Mothers.Add(users[2]);
+
+            this.ComponentUnderTest.Update(family);
+
+            var persistedFamily2 = this.ComponentUnderTest.GetFamily(users[0]);
+            Assert.AreEqual(users[2].Id, family.Mothers[0].Id, "The father has an unexpected ID");
         }
 
         public override void _Setup()

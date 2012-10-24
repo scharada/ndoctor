@@ -68,6 +68,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         Chart<string, double> GetIlnessAsChart(LightPatientDto patient);
 
         /// <summary>
+        /// Gets the pathologies with the specified name.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns></returns>
+        IList<PathologyDto> GetPathologiesByName(string criteria);
+
+        /// <summary>
         /// Gets all the tags with the specified catagory.
         /// </summary>
         /// <returns></returns>
