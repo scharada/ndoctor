@@ -317,7 +317,7 @@
             {
                 tx.Begin();
                 entity = this.Session.Merge(entity);
-                this.Session.SaveOrUpdate(entity);
+                this.Session.Save(entity);
                 tx.Commit();
             }
             Mapper.Map<Role, RoleDto>(entity, item);

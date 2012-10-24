@@ -73,7 +73,8 @@ namespace Probel.NDoctor.Domain.Test.Interceptors
         [SetUp]
         public void FixtureSetup()
         {
-            new DalConfigurator().ConfigureForUnitTest(Substitute.For<ISessionFactory>());
+            new NUnitConfigWrapper(new DalConfigurator())
+                .ConfigureForUnitTest(Substitute.For<ISessionFactory>());
         }
 
         /// <summary>

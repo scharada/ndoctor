@@ -65,13 +65,14 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
         {
             var attribute = this.GetAttribute<BenchmarkThresholdAttribute>(invocation);
 
-            var threshold = (attribute != null && attribute.Length > 0)
-                ? (double)attribute[0].Threshold
-                : (double)this.DefaultThreshold;
+            var threshold = this.DefaultThreshold;
+            var message = string.Empty;
 
-            var message = (attribute != null && attribute.Length > 0)
-                ? attribute[0].Explanation
-                : string.Empty;
+            if (attribute != null && attribute.Length > 0)
+            {
+                threshold = attribute[0].Threshold;
+                message = attribute[0].Explanation;
+            }
 
             using (new Benchmark(e => this.CheckAndLog(e, threshold, invocation.TargetType.Name, invocation.Method.Name, message)))
             {
@@ -102,7 +103,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
             }
             else
             {
-                Logger.WarnFormat("                    => [{0,3}.{1:000} sec] ==> {2}.{3}"
+                Logger.InfoFormat("                    => [{0,3}.{1:000} sec] ==> {2}.{3}"
                     , e.Seconds
                     , e.Milliseconds
                     , targetTypeName

@@ -128,12 +128,6 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
 
         private void Add()
         {
-            var dr = MessageBox.Show(Messages.Msg_AskAddMember
-                , Messages.Question
-                , MessageBoxButton.YesNo
-                , MessageBoxImage.Question);
-            if (dr == MessageBoxResult.No) return;
-
             try
             {
                 this.component.Update(this.BuildFamily());

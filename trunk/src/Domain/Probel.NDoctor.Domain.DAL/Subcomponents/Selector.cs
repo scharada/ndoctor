@@ -32,6 +32,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
     using NHibernate.Linq;
 
     using Probel.Helpers.Assertion;
+    using Probel.NDoctor.Domain.DAL.AopConfiguration;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
@@ -201,7 +202,6 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// Gets all users.
         /// </summary>
         /// <returns></returns>
-        [Granted(To.Everyone)]
         public IList<LightUserDto> GetAllUsers()
         {
             try
@@ -318,6 +318,31 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         }
 
         /// <summary>
+        /// Gets the patients that fullfill the specified criterium.
+        /// </summary>
+        /// <param name="criterium">The criterium.</param>
+        /// <param name="search">The search should be done on the specified property.</param>
+        /// <returns></returns>
+        [Granted(To.Everyone)]
+        public IList<LightPatientDto> GetPatientByNameLight(string criterium, SearchOn search)
+        {
+            var result = this.GetLightPatientEntities(criterium, search);
+            return Mapper.Map<IList<Patient>, IList<LightPatientDto>>(result);
+        }
+
+        /// <summary>
+        /// Gets the patients that fullfill the specified criterium.
+        /// </summary>
+        /// <param name="criterium">The criterium.</param>
+        /// <param name="search">The search should be done on the specified property.</param>
+        /// <returns></returns>
+        public IList<PatientDto> GetPatientByName(string criterium, SearchOn search)
+        {
+            var result = this.GetLightPatientEntities(criterium, search);
+            return Mapper.Map<IList<Patient>, IList<PatientDto>>(result);
+        }
+
+        /// <summary>
         /// Gets all pathologies that contains the specified name.
         /// </summary>
         /// <returns></returns>
@@ -328,46 +353,6 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
                                select pahology).ToList();
 
             return Mapper.Map<IList<Pathology>, IList<PathologyDto>>(pathologies);
-        }
-
-        /// <summary>
-        /// Gets the patients that fullfill the specified criterium.
-        /// </summary>
-        /// <param name="criterium">The criterium.</param>
-        /// <param name="search">The search should be done on the specified property.</param>
-        /// <returns></returns>
-        [Granted(To.Everyone)]
-        public IList<LightPatientDto> GetPatientsByNameLight(string criterium, SearchOn search)
-        {
-            if (string.IsNullOrEmpty(criterium)) return new List<LightPatientDto>().ToList();
-
-            criterium = criterium.ToLower();
-            var result = new List<Patient>();
-
-            switch (search)
-            {
-                case SearchOn.FirstName:
-                    {
-                        result = GetPatientsByFirstName(criterium);
-                        break;
-                    }
-                case SearchOn.LastName:
-                    {
-                        result = GetPatientsByLastName(criterium);
-                        break;
-                    }
-                case SearchOn.FirstAndLastName:
-                    {
-                        result = GetPatientsByFirstAndLastName(criterium);
-                        break;
-                    }
-                default:
-                    {
-                        Assert.FailOnEnumeration(search);
-                        return null;
-                    }
-            }
-            return Mapper.Map<IList<Patient>, IList<LightPatientDto>>(result);
         }
 
         /// <summary>
@@ -506,6 +491,39 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             return (from doctor in this.Session.Query<Doctor>()
                     where doctor.LastName.Contains(name)
                     select doctor).ToList();
+        }
+
+        private IList<Patient> GetLightPatientEntities(string criterium, SearchOn search)
+        {
+            if (string.IsNullOrEmpty(criterium)) return new List<Patient>().ToList();
+
+            criterium = criterium.ToLower();
+            var result = new List<Patient>();
+
+            switch (search)
+            {
+                case SearchOn.FirstName:
+                    {
+                        result = GetPatientsByFirstName(criterium);
+                        break;
+                    }
+                case SearchOn.LastName:
+                    {
+                        result = GetPatientsByLastName(criterium);
+                        break;
+                    }
+                case SearchOn.FirstAndLastName:
+                    {
+                        result = GetPatientsByFirstAndLastName(criterium);
+                        break;
+                    }
+                default:
+                    {
+                        Assert.FailOnEnumeration(search);
+                        break;
+                    }
+            }
+            return result;
         }
 
         private List<Patient> GetPatientsByFirstAndLastName(string criterium)

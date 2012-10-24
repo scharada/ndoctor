@@ -29,11 +29,18 @@ namespace Probel.NDoctor.Domain.Test.Components
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
 
+    /// <summary>
+    /// 
+    /// </summary>
     [TestFixture]
     public class FamilyComponentTest : BaseComponentTest<FamilyComponent>
     {
         #region Methods
 
+
+        /// <summary>
+        /// Issue 87
+        /// </summary>
         [Test]
         public void GetValueFromFamily_ExecutionTimeShouldBeLow_ExecutionTimeIsLow()
         {

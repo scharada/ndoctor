@@ -71,6 +71,7 @@
       <Link>Version.cs</Link>
     </Compile>
     <Compile Include="AopConfiguration\BenchmarkThresholdAttribute.cs" />
+    <Compile Include="Cfg\NUnitConfigWrapper.cs" />
     <Compile Include="Cfg\Script.cs" />
     <Compile Include="Components\AdministrationComponent.cs" />
     <Compile Include="Components\AuthorisationComponent.cs" />
@@ -80,21 +81,21 @@
     <Compile Include="Components\PathologyComponent.cs" />
     <Compile Include="Components\PrescriptionComponent.cs" />
     <Compile Include="Components\SqlComponent.cs" />
+    <Compile Include="Components\UnitTestComponent.cs" />
     <Compile Include="Entities\DatabaseState.cs" />
     <Compile Include="Entities\ApplicationStatistics.cs" />
     <Compile Include="Entities\Macro.cs" />
     <Compile Include="Entities\MedicalRecordState.cs" />
     <Compile Include="Entities\Task.cs" />
     <Compile Include="EqualityComparers\TaskEqualityComparerOnName.cs" />
-    <Compile Include="GrantedAttribute.cs" />
+    <Compile Include="AopConfiguration\GrantedAttribute.cs" />
     <Compile Include="Entities\Drug.cs" />
     <Compile Include="Entities\IllnessPeriod.cs" />
     <Compile Include="Entities\Appointment.cs" />
     <Compile Include="Entities\Pathology.cs" />
     <Compile Include="Entities\Prescription.cs" />
     <Compile Include="Entities\PrescriptionDocument.cs" />
-    <Compile Include="Helpers\EntityEqualityComparer.cs" />
-    <Compile Include="Helpers\ComponentDecorator.cs" />
+    <Compile Include="EqualityComparers\EntityEqualityComparer.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="AopConfiguration\InspectionIgnoredAttribute.cs" />
     <Compile Include="AopConfiguration\ExcludeFromTransactionAttribute.cs" />

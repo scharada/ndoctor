@@ -418,6 +418,18 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             }
         }
 
+        internal void Remove<TEntity, TDto>(TDto item, Action<TEntity> updateBefore)
+            where TEntity : Entity
+            where TDto : BaseDto
+        {
+            var entity = this.Session.Get<TEntity>(item.Id);
+            updateBefore(entity);
+            this.Session.Update(entity);
+
+            this.Session.Update(entity);
+            this.Remove<TEntity>(item);
+        }
+
         private bool CanRemoveAppointmentTag(Tag entity)
         {
             return (from p in this.Session.Query<Appointment>()

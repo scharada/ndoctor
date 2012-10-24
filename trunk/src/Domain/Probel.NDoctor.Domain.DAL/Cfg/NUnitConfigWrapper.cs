@@ -19,32 +19,46 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Domain.DAL.Helpers
+namespace Probel.NDoctor.Domain.DAL.Cfg
 {
-    using Probel.NDoctor.Domain.DAL.Components;
+    using NHibernate;
 
-    public class ComponentDecorator
+    /// <summary>
+    /// Wraps a <see cref="DalConfigurator"/> and opens its interface to 
+    /// allow unit test with a in memory SQLite database
+    /// </summary>
+    public class NUnitConfigWrapper
     {
         #region Fields
 
-        private BaseComponent component;
+        private readonly DalConfigurator Configurator;
 
         #endregion Fields
 
         #region Constructors
 
-        public ComponentDecorator(BaseComponent component)
+        public NUnitConfigWrapper(DalConfigurator configurator)
         {
-            this.component = component;
+            this.Configurator = configurator;
         }
 
         #endregion Constructors
 
         #region Methods
 
-        public void CheckSession()
+        public void ConfigureForUnitTest(ISessionFactory factory)
         {
-            this.component.CheckSession();
+            this.Configurator.ConfigureForUnitTest(factory);
+        }
+
+        public NUnitConfigWrapper ConfigureInMemory(out ISession session)
+        {
+            return new NUnitConfigWrapper(Configurator.ConfigureInMemory(out session));
+        }
+
+        public void InjectDefaultData(ISession session)
+        {
+            this.Configurator.InjectDefaultData(session);
         }
 
         #endregion Methods
