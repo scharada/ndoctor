@@ -19,7 +19,7 @@ namespace Probel.Helpers.Assertion.Message
     using Probel.Helpers.Assertion.Constraint;
 
     /// <summary>
-    /// It formats the assertion message into a generic way.S
+    /// It formats the assertion message into a generic way.
     /// </summary>
     public interface IMessageWriter
     {

@@ -25,6 +25,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using NHibernate.Linq;
 
     using Probel.Helpers.Data;
+    using Probel.NDoctor.Domain.DAL.AopConfiguration;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO;
@@ -112,7 +113,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public IList<LightPatientDto> GetPatientsByNameLight(string criterium, SearchOn search)
         {
-            return new Selector(this.Session).GetPatientsByNameLight(criterium, search);
+            return new Selector(this.Session).GetPatientByNameLight(criterium, search);
         }
 
         /// <summary>

@@ -28,7 +28,7 @@ namespace Probel.NDoctor.Domain.DAL.EqualityComparers
     /// <summary>
     /// Check equality of task based on their name
     /// </summary>
-    class TaskEqualityComparerOnName : IEqualityComparer<Task>
+    internal class TaskEqualityComparerOnName : IEqualityComparer<Task>
     {
         #region Methods
 

@@ -27,6 +27,8 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
     using log4net;
 
+    using NHibernate;
+
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DAL.Components;
@@ -39,14 +41,13 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
     {
         #region Fields
 
-        private static readonly IAuthorisationComponent component = new AuthorisationComponent();
         private static readonly ILog Logger = LogManager.GetLogger(typeof(Script));
 
         #endregion Fields
 
         #region Methods
 
-        public void Execute()
+        public void Execute(ISession session)
         {
             try
             {
@@ -68,29 +69,26 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                 var secretary = BuildRole(Messages.Role_Secretary, Messages.Explanation_Secretary
                     , metawrite, read, editcalendar);
 
-                if (component is BaseComponent)
-                {
-                    using ((component as BaseComponent).Session = DalConfigurator.SessionFactory.OpenSession())
-                    {
-                        component.Create(administer);
-                        component.Create(metawrite);
-                        component.Create(read);
-                        component.Create(write);
-                        component.Create(editcalendar);
+                var component = (session == null)
+                    ? new AuthorisationComponent()         //Used in production
+                    : new AuthorisationComponent(session); //Used in unit test sessions
 
-                        component.Create(administrator);
-                        component.Create(doctor);
-                        component.Create(secretary);
+                component.Create(administer);
+                component.Create(metawrite);
+                component.Create(read);
+                component.Create(write);
+                component.Create(editcalendar);
 
-                        //Uncomment to create a superadmin as a first user
-                        //var superadmin = new UserDto(true) { FirstName = "Superadmin", LastName = "Superadmin", AssignedRole = administrator, IsDefault = true };
-                        //component.Create(superadmin);
-                        //component.Update(superadmin, "superadmin"); //Set a default password
+                component.Create(administrator);
+                component.Create(doctor);
+                component.Create(secretary);
 
-                        component.Create(new TagDto(TagCategory.Prescription) { Name = Messages.Tag_Default_Prescription });
-                    }
-                }
-                else { throw new ArgumentException(Messages.Ex_ArgumentException_NotBaseComponent.FormatWith(component.GetType().Name)); }
+                //Uncomment to create a superadmin as a first user
+                //var superadmin = new UserDto(true) { FirstName = "Superadmin", LastName = "Superadmin", AssignedRole = administrator, IsDefault = true };
+                //component.Create(superadmin);
+                //component.Update(superadmin, "superadmin"); //Set a default password
+
+                component.Create(new TagDto(TagCategory.Prescription) { Name = Messages.Tag_Default_Prescription });
 
                 Logger.Info("Script is done...");
 
@@ -100,6 +98,11 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                 Logger.Warn("Script failed", ex);
                 throw;
             }
+        }
+
+        internal void Execute()
+        {
+            this.Execute(null);
         }
 
         private static RoleDto BuildRole(string name, string description, params TaskDto[] tasks)

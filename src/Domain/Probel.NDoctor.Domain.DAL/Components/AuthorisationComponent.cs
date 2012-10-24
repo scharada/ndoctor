@@ -30,6 +30,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using NHibernate.Linq;
 
     using Probel.Helpers.Assertion;
+    using Probel.NDoctor.Domain.DAL.AopConfiguration;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.EqualityComparers;
     using Probel.NDoctor.Domain.DAL.Properties;
@@ -139,6 +140,17 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets all tasks the repository contains.
+        /// </summary>
+        /// <returns></returns>
+        public TaskDto[] GetAllTasks()
+        {
+            var entities = (from r in this.Session.Query<Task>()
+                            select r).ToList();
+            return Mapper.Map<IList<Task>, TaskDto[]>(entities);
+        }
+
+        /// <summary>
         /// Gets the tasks that are not yet binded to the specified role.
         /// If the specified role is null, it'll return all the tasks stored in the 
         /// database
@@ -201,7 +213,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Remove(RoleDto item)
         {
             Assert.IsNotNull(item, "item");
-            new Remover(this.Session).Remove<Role>(item);
+            new Remover(this.Session).Remove<Role, RoleDto>(item, e => e.Tasks.Clear());
         }
 
         /// <summary>

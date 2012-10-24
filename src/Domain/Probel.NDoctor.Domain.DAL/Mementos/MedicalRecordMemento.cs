@@ -44,7 +44,7 @@ namespace Probel.NDoctor.Domain.DAL.Mementos
         /// <param name="item">The item.</param>
         public void SaveState(MedicalRecord item)
         {
-            var newState = Mapper.Map<MedicalRecord, MedicalRecordState>(item);
+            var actualState = Mapper.Map<MedicalRecord, MedicalRecordState>(item);
 
             if (item.PreviousStates.Count >= MEMENTO_SIZE)
             {
@@ -52,7 +52,7 @@ namespace Probel.NDoctor.Domain.DAL.Mementos
                              select c).Max(e => e.Counter) + 1;
 
                 /* The modulo calculation is used to Get the index where to add the new state in the stack*/
-                item.PreviousStates[index % MEMENTO_SIZE] = newState;
+                item.PreviousStates[index % MEMENTO_SIZE] = actualState;
                 item.PreviousStates[index % MEMENTO_SIZE].Counter = index;
                 item.PreviousStates[index % MEMENTO_SIZE].LastUpdate = DateTime.Now;
 
@@ -65,9 +65,9 @@ namespace Probel.NDoctor.Domain.DAL.Mementos
             }
             else
             {
-                newState.LastUpdate = DateTime.Now;
-                newState.Counter = item.PreviousStates.Count;
-                item.PreviousStates.Add(newState);
+                actualState.LastUpdate = DateTime.Now;
+                actualState.Counter = item.PreviousStates.Count;
+                item.PreviousStates.Add(actualState);
             }
         }
 

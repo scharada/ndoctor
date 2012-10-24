@@ -103,11 +103,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return this.GetAllFamilyMembers(entity);
         }
 
-        public IList<PathologyDto> GetPathology(string name)
-        {
-            return new Selector(this.Session).GetPathology(name);
-        }
-
         /// <summary>
         /// Get all the patient respecting the criteria and the search mode which
         /// aren't in the family of the specified patient
@@ -118,10 +113,15 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>A list of patient</returns>
         public IList<LightPatientDto> GetPatientNotFamilyMembers(LightPatientDto patient, string criteria, SearchOn search)
         {
-            var result = new Selector(this.Session).GetPatientsByNameLight(criteria, search);
+            var result = new Selector(this.Session).GetPatientByNameLight(criteria, search);
             return this.RemoveFamilyMembers(result, patient);
         }
 
+        /// <summary>
+        /// Gets all the tags with the specified catagory.
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
         public IList<TagDto> GetTags(TagCategory category)
         {
             return new Selector(this.Session).GetTags(category);

@@ -23,34 +23,72 @@ namespace Probel.NDoctor.Domain.Test.Components
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
+    using System.Reflection;
     using System.Text;
 
     using NHibernate;
 
+    using NUnit.Framework;
+
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Components;
 
-    public class BaseComponentTest<T>
+    public abstract class BaseComponentTest<T>
         where T : BaseComponent
     {
         #region Properties
 
-        protected T Component
+        protected T ComponentUnderTest
         {
-            get; private set;
+            get;
+            private set;
+        }
+
+        protected ISession Session
+        {
+            get;
+            private set;
         }
 
         #endregion Properties
 
         #region Methods
 
+        [TearDown]
+        public void Teardown()
+        {
+            if (this.Session.IsOpen)
+            {
+                this.Session.Close();
+            }
+        }
+
+        [SetUp]
+        public abstract void _Setup();
+
         protected void BuildComponent(Func<ISession, T> ctor)
         {
-            new DalConfigurator().ConfigureInMemory();
-            var component = ctor(DalConfigurator.SessionFactory.OpenSession());
-            DalConfigurator.BuildSchema(component.Session);
-            this.Component = component;
+            ISession session;
+            new NUnitConfigWrapper(new DalConfigurator())
+                .ConfigureInMemory(out session)
+                .InjectDefaultData(session);
+
+            this.Session = session;
+            this.ComponentUnderTest = ctor(this.Session);
+            this.InjectTestData();
+        }
+
+        private void InjectTestData()
+        {
+            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Probel.NDoctor.Domain.Test.InsertUsers.sql");
+            if (stream == null) throw new NullReferenceException("The embedded script to create the database can't be loaded or doesn't exist.");
+
+            string sql;
+
+            using (var reader = new StreamReader(stream, Encoding.UTF8)) { sql = reader.ReadToEnd(); }
+            new SqlComponent(this.Session).ExecuteSql(sql);
         }
 
         #endregion Methods

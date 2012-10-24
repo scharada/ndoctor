@@ -88,7 +88,7 @@
                                       
                                       ItemsSource="{Binding Path=Relations}"
                                       DisplayMemberPath="Item2"
-                                      SelectedValue="{Binding Path=SelectedRelation}"
+                                      SelectedValue="{Binding Path=SelectedRelation, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedIndex="0"
                                       Margin="4"/>
                             

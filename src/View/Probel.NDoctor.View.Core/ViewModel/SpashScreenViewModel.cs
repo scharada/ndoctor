@@ -205,7 +205,9 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
             this.Logger.DebugFormat("Database path: {0}", path);
             this.LogDatabaseCreation();
-            new DalConfigurator().ConfigureUsingFile(path, this.CreateDatabase);
+            new DalConfigurator()
+                .ConfigureUsingFile(path, this.CreateDatabase)
+                .InjectDefaultData();
         }
 
         private void ConfigurePlugins()

@@ -160,6 +160,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         public void Update(RoleDto role)
         {
             var entity = Mapper.Map<RoleDto, Role>(role);
+            entity = this.Session.Merge(entity);
             this.Session.Update(entity);
         }
 

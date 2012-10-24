@@ -14,13 +14,13 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Domain.DAL.Helpers
+namespace Probel.NDoctor.Domain.DAL.EqualityComparers
 {
     using System.Collections.Generic;
 
     using Probel.NDoctor.Domain.DAL.Entities;
 
-    public class EntityEqualityComparer : IEqualityComparer<Entity>
+    internal class EntityEqualityComparer : IEqualityComparer<Entity>
     {
         #region Methods
 

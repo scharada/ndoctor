@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
     using NHibernate;
     using NHibernate.Tool.hbm2ddl;
 
+    using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Mappings;
     using Probel.NDoctor.Domain.DTO.Exceptions;
@@ -43,6 +44,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
         private static ISessionFactory sessionFactory;
 
+        private bool executeScript = false;
         private IPersistenceConfigurer persistenceConfigurer;
         private Action<NHConfiguration> setupConfiguration;
 
@@ -86,55 +88,13 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
         #region Methods
 
-        /// <summary>
-        /// Builds the schema of the database. Should only be used for unit testing
-        /// </summary>
-        /// <param name="session">The session.</param>
-        public static void BuildSchema(ISession session)
-        {
-            var export = new SchemaExport(Configuration);
-            export.Execute(true, true, false, session.Connection, null);
-        }
-
         public void ConfigureAutoMapper()
         {
             AutoMapperMapping.Configure();
         }
 
-        /// <summary>
-        /// Manually configure the SessionFactory. This method is meant to receive a ISessionFactory mock        
-        /// </summary>
-        public void ConfigureForUnitTest(ISessionFactory factory)
+        public DalConfigurator ConfigureUsingFile(string path, bool create)
         {
-            sessionFactory = factory;
-        }
-
-        /// <summary>
-        /// Configures the DAL.
-        /// </summary>
-        public void ConfigureInMemory()
-        {
-            this.setupConfiguration = (configuration) =>
-            {
-                // this NHibernate tool takes a configuration (with mapping info in)
-                // and exports a database schema from it
-                new SchemaExport(configuration)
-                  .Create(false, true);
-
-                Configuration = configuration;
-            };
-            this.persistenceConfigurer
-                = SQLiteConfiguration
-                    .Standard
-                    .InMemory()
-                    .ShowSql();
-
-            this.Configure();
-        }
-
-        public void ConfigureUsingFile(string path, bool create)
-        {
-            bool executeScript = false;
             if (!File.Exists(path)) create = true;
 
             if (create)
@@ -168,8 +128,68 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                 .UsingFile(path);
 
             this.Configure();
+            return this;
+        }
 
-            if (executeScript) { this.ExecuteScript(); }
+        public void InjectDefaultData()
+        {
+            this.InjectDefaultData(null);
+        }
+
+        /// <summary>
+        /// Manually configure the SessionFactory. This method is meant to receive a ISessionFactory mock        
+        /// </summary>
+        internal void ConfigureForUnitTest(ISessionFactory factory)
+        {
+            sessionFactory = factory;
+        }
+
+        /// <summary>
+        /// Configures the DAL.
+        /// </summary>
+        internal DalConfigurator ConfigureInMemory(out ISession session)
+        {
+            this.setupConfiguration = (configuration) =>
+            {
+                // this NHibernate tool takes a configuration (with mapping info in)
+                // and exports a database schema from it
+                new SchemaExport(configuration)
+                  .Create(false, true);
+
+                Configuration = configuration;
+            };
+            this.persistenceConfigurer
+                = SQLiteConfiguration
+                    .Standard
+                    .InMemory()
+                    .ShowSql();
+
+            this.Configure();
+            session = DalConfigurator.SessionFactory.OpenSession();
+            this.executeScript = true;
+            this.BuildSchema(session);
+            return this;
+        }
+
+        internal void InjectDefaultData(ISession session)
+        {
+            if (this.executeScript)
+            {
+                Logger.Info("Inject default data [SQL]");
+                if (session != null) { new Script().Execute(session); }
+                else { new Script().Execute(); }
+            }
+            else { Logger.Info("Data injection script aborded. Data already in the database."); }
+        }
+
+        /// <summary>
+        /// Builds the schema of the database. Should only be used for unit testing
+        /// </summary>
+        /// <param name="session">The session.</param>
+        private void BuildSchema(ISession session)
+        {
+            var export = new SchemaExport(Configuration);
+            export.Execute(true, true, false, session.Connection, null);
         }
 
         private void Configure()
@@ -194,7 +214,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                         patient.HasMany<IllnessPeriod>(x => x.IllnessHistory).KeyColumn("Patient_Id");
                         patient.HasMany<Appointment>(x => x.Appointments).KeyColumn("Patient_Id");
                     })
-
+                    .Override<Role>(role => role.HasManyToMany(x => x.Tasks).Cascade.All())
                     .Conventions.Add(this.MappingConvention);
         }
 
@@ -212,12 +232,6 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                 })
             .ExposeConfiguration(setupConfiguration)
             .BuildSessionFactory();
-        }
-
-        private void ExecuteScript()
-        {
-            Logger.Info("Execute the database creation script [SQL]");
-            new Script().Execute();
         }
 
         #endregion Methods
