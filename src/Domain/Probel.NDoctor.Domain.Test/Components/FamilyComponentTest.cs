@@ -28,11 +28,13 @@ namespace Probel.NDoctor.Domain.Test.Components
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.Test.Helpers;
 
     /// <summary>
     /// 
     /// </summary>
     [TestFixture]
+    [Category(Categories.FunctionalTest)]
     public class FamilyComponentTest : BaseComponentTest<FamilyComponent>
     {
         #region Methods

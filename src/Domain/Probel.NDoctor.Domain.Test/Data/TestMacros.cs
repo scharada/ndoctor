@@ -26,7 +26,6 @@ namespace Probel.NDoctor.Domain.Test.Data
     namespace Interview.Test
     {
         [TestFixture]
-        [Category(Categories.UnitTest)]
         public class TestMacros
         {
             [Test]

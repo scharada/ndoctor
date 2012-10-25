@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Domain.DAL.Components
 {
+    using System.Collections.Generic;
     using System.Linq;
 
     using AutoMapper;
@@ -83,17 +84,32 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return new Creator(this.Session).Create(item, password);
         }
 
-        public System.Collections.Generic.IList<PracticeDto> GetAllPractices()
+        /// <summary>
+        /// Gets all practices stored in the database.
+        /// </summary>
+        /// <returns></returns>
+        public IList<PracticeDto> GetAllPractices()
         {
             return new Selector(this.Session).GetAllPractices();
         }
 
-        public System.Collections.Generic.IList<RoleDto> GetAllRolesLight()
+        /// <summary>
+        /// Gets all roles light.
+        /// </summary>
+        /// <returns>
+        /// An array with all the roles
+        /// </returns>
+        public IList<RoleDto> GetAllRolesLight()
         {
             return new Selector(this.Session).GetAllRolesLight();
         }
 
-        public System.Collections.Generic.IList<LightUserDto> GetAllUsers()
+        /// <summary>
+        /// Gets all users.
+        /// </summary>
+        /// <returns></returns>
+        [Granted(To.Everyone)]
+        public IList<LightUserDto> GetAllUsers()
         {
             return new Selector(this.Session).GetAllUsers();
         }

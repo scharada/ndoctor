@@ -24,7 +24,6 @@ namespace Probel.NDoctor.Domain.Test.Data
     using Probel.NDoctor.Domain.Test.Helpers;
 
     [TestFixture]
-    [Category(Categories.UnitTest)]
     public class TestWorkday
     {
         #region Methods

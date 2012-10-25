@@ -22,9 +22,13 @@ namespace Probel.NDoctor.Domain.Test.Authorisation
 
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.Test.Helpers;
+    using Probel.NDoctor.Domain.DAL.Components;
+    using System;
+    using Probel.NDoctor.Domain.DAL.AopConfiguration;
+    using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.DTO.Components;
 
     [TestFixture]
-    [Category(Categories.UnitTest)]
     public class TestAuthorisation
     {
         #region Methods
@@ -43,7 +47,54 @@ namespace Probel.NDoctor.Domain.Test.Authorisation
             Assert.IsTrue(roles.Contains(To.Write));
             Assert.IsTrue(roles.Contains(To.EditCalendar));
         }
+        [Test]
+        public void AuditMethods_AdministrationComponentCreateTag_MethodGrantedToEveryone()
+        {
+            var component = new AdministrationComponent();
 
+            var methodInfo = typeof(AdministrationComponent).GetMethod("Create", new Type[] { typeof(TagDto) });
+            var attribute = Attribute.GetCustomAttribute(methodInfo, typeof(GrantedAttribute), true);
+
+            Assert.NotNull(attribute, "attribute");
+        }
+
+        [Test]
+        public void AuditMethods_PictureComponentCreateAllThumbnails_MethodGrantedToEveryone()
+        {
+            var component = new PictureComponent();
+
+            var methodInfo = typeof(PictureComponent).GetMethod("CreateAllThumbnails");
+            var attribute = Attribute.GetCustomAttribute(methodInfo, typeof(GrantedAttribute), true);
+
+            Assert.NotNull(attribute, "attribute");
+        }
+
+        [Test]
+        public void AuditMethods_SqlComponentGetPatientsByNameLight_MethodGrantedToEveryone()
+        {
+            var methodInfo = typeof(SqlComponent).GetMethod("GetPatientsByNameLight", new Type[] { typeof(string), typeof(SearchOn) });
+            var attribute = Attribute.GetCustomAttribute(methodInfo, typeof(GrantedAttribute), true);
+
+            Assert.NotNull(attribute, "attribute");
+        }
+
+
+        [Test]
+        public void AuditMethods_UserSessionComponentCanConnect_MethodGrantedToEveryone()
+        {
+            var methodInfo = typeof(UserSessionComponent).GetMethod("CanConnect", new Type[] { typeof(LightUserDto), typeof(string) });
+            var attribute = Attribute.GetCustomAttribute(methodInfo, typeof(GrantedAttribute), true);
+
+            Assert.NotNull(attribute, "attribute");
+        }
+        [Test]
+        public void AuditMethods_UserSessionComponentCreate_MethodGrantedToEveryone()
+        {
+            var methodInfo = typeof(UserSessionComponent).GetMethod("Create", new Type[] { typeof(LightUserDto), typeof(string) });
+            var attribute = Attribute.GetCustomAttribute(methodInfo, typeof(GrantedAttribute), true);
+
+            Assert.NotNull(attribute, "attribute");
+        }
         #endregion Methods
     }
 }
