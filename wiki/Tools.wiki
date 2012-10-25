@@ -14,6 +14,7 @@ Here's the list of tools used to develop nDoctor
  * [http://www.voidtools.com/ Everything]
  * [http://getgreenshot.org/ Greenshot]
  * [http://www.7-zip.org/ 7-Zip]
+ * [http://sourceforge.net/projects/console/ Console2]
 == Developer tools ==
  * [http://www.webresourcesdepot.com/learn-test-regular-expressions-with-the-regulator/ Regulator]
  * [http://nant.sourceforge.net/ nAnt]
