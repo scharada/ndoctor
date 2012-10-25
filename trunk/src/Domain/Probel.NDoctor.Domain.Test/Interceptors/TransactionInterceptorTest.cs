@@ -60,9 +60,9 @@ namespace Probel.NDoctor.Domain.Test.Interceptors
             var interceptor = new TransactionInterceptor();
             var invocation = Substitute.For<IInvocation>();
 
-            invocation.InvocationTarget.Returns(new SqlComponent());
-            invocation.MethodInvocationTarget.Returns(typeof(SqlComponent).GetMethod("GetAllDrugs"));
-            invocation.Method.Returns(typeof(SqlComponent).GetMethod("GetAllDrugs"));
+            invocation.InvocationTarget.Returns(new AdministrationComponent());
+            invocation.MethodInvocationTarget.Returns(typeof(AdministrationComponent).GetMethod("GetAllDrugs"));
+            invocation.Method.Returns(typeof(AdministrationComponent).GetMethod("GetAllDrugs"));
             invocation.When(e => e.Proceed()).Do(e => Nothing());
 
             interceptor.Intercept(invocation);
