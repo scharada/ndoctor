@@ -105,6 +105,7 @@
     <Compile Include="View\WorkbenchView.xaml.cs">
       <DependentUpon>WorkbenchView.xaml</DependentUpon>
     </Compile>
+    <None Include="app.config" />
     <None Include="License.licenseheader" />
     <AppDesigner Include="Properties\" />
     <None Include="packages.config" />
