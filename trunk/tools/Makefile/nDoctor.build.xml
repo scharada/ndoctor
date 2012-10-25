@@ -19,6 +19,7 @@
   <property name="build-mode" value="release" overwrite="false"/>
   <property name="svn-repository" value="http://ndoctor.googlecode.com/svn/trunk/"/>
   <property name="nest-dir" value="${release-dir}\Nest\nDoctor"/>
+  <property name="output-dir" value="${release-dir}\output"/>
 
   <!-- Targets -->
   <target name="Pre-Build" description="Export the code locally">
@@ -58,7 +59,7 @@
     <echo message="Build mode: ${build-mode}"/>
 	<echo message="Building file: ${code-dir}\src\${sln-file}"/>
     <msbuild project="${code-dir}\src\${sln-file}"
-             verbosity="Normal">
+             verbosity="Minimal">
       <property name="Configuration" value="${build-mode}"/>
     </msbuild>
 	
@@ -74,7 +75,13 @@
   </target>
 
   <target name="Post-Build" description="Execute the post build actions" depends="Build">
+  
+    <mkdir dir="${output-dir}"/>
    <!-- Here should go the unit tests execution... -->
+    <echo message="Test file: ${code-dir}\Probel.Mvvm.Test\bin\Release\Probel.Mvvm.Test.dll"/>
+    <echo message="Run the unit tests..."/>
+    <exec program="nunit-console-x86.exe"
+		  commandline="${code-dir}\src\Probel.Mvvm.nunit /result=${output-dir}\nunit-output.xml"/>
   </target>
 
   <!-- Create a release package with the binaries -->
