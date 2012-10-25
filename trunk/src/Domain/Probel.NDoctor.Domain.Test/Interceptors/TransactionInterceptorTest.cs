@@ -35,7 +35,6 @@ namespace Probel.NDoctor.Domain.Test.Interceptors
     using Probel.NDoctor.Domain.Test.Helpers;
 
     [TestFixture]
-    [Category(Categories.UnitTest)]
     public class TransactionInterceptorTest
     {
         #region Methods

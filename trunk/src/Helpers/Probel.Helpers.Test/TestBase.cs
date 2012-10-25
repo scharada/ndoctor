@@ -19,7 +19,6 @@ namespace Probel.Helpers.Test
     using NUnit.Framework;
 
     [TestFixture]
-    [Category("Helpers")]
     public abstract class TestBase
     {
     }

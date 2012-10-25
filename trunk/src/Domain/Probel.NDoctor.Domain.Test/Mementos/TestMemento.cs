@@ -30,7 +30,6 @@ namespace Probel.NDoctor.Domain.Test.Mementos
     using Probel.NDoctor.Domain.DAL.Mementos;
     using Probel.NDoctor.Domain.Test.Helpers;
 
-    [Category(Categories.UnitTest)]
     [TestFixture]
     public class TestMemento
     {

@@ -24,7 +24,6 @@ namespace Probel.NDoctor.Domain.Test.Validations
     using Probel.NDoctor.Domain.Test.Helpers;
 
     [TestFixture]
-    [Category(Categories.UnitTest)]
     public class InsuranceValidation
     {
         #region Methods
