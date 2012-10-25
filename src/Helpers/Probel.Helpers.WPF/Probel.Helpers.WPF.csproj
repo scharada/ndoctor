@@ -37,9 +37,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Probel.Mvvm, Version=1.0.1.51, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Probel.Mvvm.1.0.1\lib\Probel.Mvvm.dll</HintPath>
+    <Reference Include="Probel.Mvvm">
+      <HintPath>..\..\packages\Probel.Mvvm.1.0.1.1\lib\Probel.Mvvm.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -113,9 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Calendar\Readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Probel.Mvvm.XML" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Themes\Generic.xaml">
