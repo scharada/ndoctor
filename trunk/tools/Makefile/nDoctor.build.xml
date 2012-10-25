@@ -58,7 +58,7 @@
     <echo message="Build mode: ${build-mode}"/>
 	<echo message="Building file: ${code-dir}\src\${sln-file}"/>
     <msbuild project="${code-dir}\src\${sln-file}"
-             verbosity="Minimal">
+             verbosity="Normal">
       <property name="Configuration" value="${build-mode}"/>
     </msbuild>
 	
