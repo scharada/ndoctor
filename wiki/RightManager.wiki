@@ -21,3 +21,12 @@ A *role* is a batch of tasks. A user has an assigned role that allows him/her to
 || Administrator    || this user has got all the privileges in the application            ||
 || Doctor           || this user can read and write all the data but the authorisation or any administration pieces of data       ||
 || Secretary        || this user can read all the data but can only modify data related to calendar and appointment management.               ||
+
+= List of features granted to everyone =
+
+|| *Component*              || *Granted action*                            ||
+|| Administration Component || Creation of a new tag                       ||
+|| Picture Component        || Creation of all the thumbnails              ||
+|| SQL Component            || Find patients by name and/od surname        ||
+|| User Session Component   || Check if a patient can connect into nDoctor ||
+|| Selector                 || Create a new user with a password           ||
