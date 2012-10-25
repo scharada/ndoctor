@@ -78,10 +78,10 @@
   
     <mkdir dir="${output-dir}"/>
    <!-- Here should go the unit tests execution... -->
-    <echo message="Test file: ${code-dir}\Probel.Mvvm.Test\bin\Release\Probel.Mvvm.Test.dll"/>
+    <echo message="Test file: ${code-dir}\src\Probel.NDoctor.nunit /result=${output-dir}\nunit-output.xml"/>
     <echo message="Run the unit tests..."/>
     <exec program="nunit-console-x86.exe"
-		  commandline="${code-dir}\src\Probel.Mvvm.nunit /result=${output-dir}\nunit-output.xml"/>
+		  commandline="${code-dir}\src\Probel.NDoctor.nunit /result=${output-dir}\nunit-output.xml"/>
   </target>
 
   <!-- Create a release package with the binaries -->
