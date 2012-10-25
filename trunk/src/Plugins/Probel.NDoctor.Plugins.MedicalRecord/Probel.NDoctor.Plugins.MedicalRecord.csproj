@@ -139,6 +139,7 @@
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Editor\MacroHighlighting.xshd" />
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Probel.NDoctor.Plugins.MedicalRecord.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

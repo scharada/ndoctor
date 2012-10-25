@@ -129,6 +129,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Probel.NDoctor.Plugins.PrescriptionManager.licenseheader" />
     <None Include="Properties\Settings.settings">

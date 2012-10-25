@@ -181,6 +181,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <AppDesigner Include="Properties\" />
     <None Include="Probel.NDoctor.View.Toolbox.licenseheader" />
