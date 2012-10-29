@@ -40,7 +40,6 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
         private readonly IErrorHandler Handle;
 
         private IFamilyComponent component;
-        private bool isSelected = false;
         private Tuple<FamilyRelations, string> selectedRelation;
         private LightPatientDto sessionPatient;
 
@@ -68,22 +67,6 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
         {
             get;
             private set;
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether this instance is selected in the ListView.
-        /// </summary>
-        /// <value>
-        /// 	<c>true</c> if this instance is selected; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsSelected
-        {
-            get { return this.isSelected; }
-            set
-            {
-                this.isSelected = value;
-                this.OnPropertyChanged(() => IsSelected);
-            }
         }
 
         public List<Tuple<FamilyRelations, string>> Relations
@@ -130,33 +113,20 @@ namespace Probel.NDoctor.Plugins.FamilyManager.ViewModel
         {
             try
             {
-                this.component.Update(this.BuildFamily());
-                Notifyer.OnRefreshed(this);
-                this.BuildFamily();
-
+                switch (this.SelectedRelation.Item1)
+                {
+                    case FamilyRelations.Parent:
+                        this.component.AddNewParent(this.SessionPatient, this);
+                        break;
+                    case FamilyRelations.Child:
+                        this.component.AddNewChild(this.SessionPatient, this);
+                        break;
+                    default:
+                        break;
+                }
                 Notifyer.OnRefreshed(this);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
-        }
-
-        private FamilyDto BuildFamily()
-        {
-            var family = new FamilyDto() { Current = this.SessionPatient };
-            var current = Mapper.Map<LightPatientViewModel, LightPatientDto>(this);
-
-            switch (this.SelectedRelation.Item1)
-            {
-                case FamilyRelations.Parent:
-                    this.SetParent(family, current);
-                    break;
-                case FamilyRelations.Child:
-                    family.Children.Add(current);
-                    break;
-                default:
-                    Assert.FailOnEnumeration(this.SelectedRelation.Item1);
-                    break;
-            }
-            return family;
         }
 
         private bool CanAdd()

@@ -33,7 +33,6 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             MapDtoToEntity();
             MapDtoToDto();
             MapEntityToEntity();
-
             MedicalRecordMapping.Configure();
         }
 
@@ -109,7 +108,6 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<Insurance, LightInsuranceDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Reputation, ReputationDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Profession, ProfessionDto>().AfterMap((entity, dto) => Clean(dto));
-            Mapper.CreateMap<Tag, TagDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<User, LightUserDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Practice, LightPracticeDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Bmi, BmiDto>().AfterMap((entity, dto) => Clean(dto));
@@ -127,7 +125,9 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<Macro, MacroDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Patient, PatientDto>().AfterMap((entity, dto) => Clean(dto));
 
-            //Mapper.CreateMap<Patient, LightPatientDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<MedicalRecord, MedicalRecordDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Tag, MedicalRecordFolderDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Tag, TagDto>().AfterMap((entity, dto) => Clean(dto));
         }
 
         /// <summary>

@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Domain.DAL.Mappings
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -36,44 +37,77 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
         /// </summary>
         public static void Configure()
         {
-            Mapper.CreateMap<Tag, MedicalRecordFolderDto>();
-            Mapper.CreateMap<MedicalRecord, MedicalRecordDto>();
 
             Mapper.CreateMap<Patient, MedicalRecordCabinetDto>()
-                .ForMember(dest => dest.Folders, opt => opt.MapFrom(src => GetFolders(src)));
+                .ConvertUsing(src => CustomConversion(src));
         }
 
-        private static List<MedicalRecordFolderDto> GetFolders(Patient patient)
+        private static MedicalRecordFolderDto[] BuildFolders(IList<MedicalRecord> records)
         {
-            var folders = Mapper.Map<List<Tag>, List<MedicalRecordFolderDto>>(GetTags(patient));
+            var folders = new List<MedicalRecordFolderDto>();
+            var tags = (from r in records
+                        group r by r.Tag into t
+                        select t.Key).ToList();
 
-            foreach (var folder in folders)
+            foreach (var tag in tags)
             {
-                folder.Records = GetRecords(patient, folder);
-                foreach (var item in folder.Records) { item.Clean(); }
+                var folder = new MedicalRecordFolderDto()
+                {
+                    Name = tag.Name,
+                    Notes = tag.Notes,
+                };
+                folder.Records = BuildRecords(records, tag);
+                folders.Add(folder);
             }
-
-            return folders;
+            return folders.ToArray();
         }
 
-        private static MedicalRecordDto[] GetRecords(Patient patient, MedicalRecordFolderDto folder)
+        private static MedicalRecordDto[] BuildRecords(IList<MedicalRecord> records, Tag tag)
         {
-            var result = (from r in patient.MedicalRecords
-                          where r.Tag.Name == folder.Name
-                          select r).ToList();
+            var result = (from record in records
+                          where record.Tag.Id == tag.Id
+                          select record).ToArray();
 
-            var buffer = Mapper.Map<List<MedicalRecord>, List<MedicalRecordDto>>(result).ToArray();
-            foreach (var item in buffer) { item.Clean(); }
-            return buffer;
+            return Mapper.Map<MedicalRecord[], MedicalRecordDto[]>(result);
         }
 
-        private static List<Tag> GetTags(Patient patient)
+        private static MedicalRecordCabinetDto CustomConversion(Patient src)
         {
-            return (from r in patient.MedicalRecords
-                    group r by r.Tag into tags
-                    select tags.Key).ToList();
+            var cabinet = new MedicalRecordCabinetDto();
+            cabinet.Folders = BuildFolders(src.MedicalRecords);
+            return cabinet;
         }
 
         #endregion Methods
+
+        #region Other
+
+        //private static List<MedicalRecordFolderDto> GetFolders(Patient patient)
+        //{
+        //    var folders = Mapper.Map<List<Tag>, List<MedicalRecordFolderDto>>(GetTags(patient));
+        //    foreach (var folder in folders)
+        //    {
+        //        folder.Records = GetRecords(patient, folder);
+        //        foreach (var item in folder.Records) { item.Clean(); }
+        //    }
+        //    return folders;
+        //}
+        //private static MedicalRecordDto[] GetRecords(Patient patient, MedicalRecordFolderDto folder)
+        //{
+        //    var result = (from r in patient.MedicalRecords
+        //                  where r.Tag.Name == folder.Name
+        //                  select r).ToList();
+        //    var buffer = Mapper.Map<List<MedicalRecord>, List<MedicalRecordDto>>(result).ToArray();
+        //    foreach (var item in buffer) { item.Clean(); }
+        //    return buffer;
+        //}
+        //private static List<Tag> GetTags(Patient patient)
+        //{
+        //    return (from r in patient.MedicalRecords
+        //            group r by r.Tag into tags
+        //            select tags.Key).ToList();
+        //}
+
+        #endregion Other
     }
 }

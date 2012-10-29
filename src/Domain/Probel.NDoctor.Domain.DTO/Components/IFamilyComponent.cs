@@ -25,6 +25,25 @@ namespace Probel.NDoctor.Domain.DTO.Components
         #region Methods
 
         /// <summary>
+        /// Adds the new child to the specified patient.
+        /// Under the hood, the child will receive the specifed
+        /// patient as a father or a mother depending on the gender
+        /// of the patient.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <param name="child">The child.</param>
+        void AddNewChild(LightPatientDto patient, LightPatientDto child);
+
+        /// <summary>
+        /// Adds the new parent to the specified patient. A check
+        /// on the gende of the parent will infer whether the parent
+        /// is the father or the mother
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <param name="parent">The parent.</param>
+        void AddNewParent(LightPatientDto patient, LightPatientDto parent);
+
+        /// <summary>
         /// Get all family members for the specified Patient
         /// </summary>
         /// <param name="patient">The connected patient</param>
@@ -60,14 +79,6 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="member">The family member to remove</param>
         /// <param name="patient">The family of this patient will be updated</param>
         void RemoveFamilyMember(LightPatientDto member, LightPatientDto patient);
-
-        /// <summary>
-        /// Updates the specified family.
-        /// When the members' state is set to new, it'll create a new relation for the patient.
-        /// All other members' state will throw a <see cref="BusinessLogicException"/>.
-        /// </summary>
-        /// <param name="family">The family.</param>
-        void Update(FamilyDto family);
 
         #endregion Methods
     }

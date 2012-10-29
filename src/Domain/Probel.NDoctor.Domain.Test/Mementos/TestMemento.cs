@@ -21,6 +21,7 @@
 
 namespace Probel.NDoctor.Domain.Test.Mementos
 {
+    using System;
     using System.Threading;
 
     using NUnit.Framework;
@@ -28,6 +29,7 @@ namespace Probel.NDoctor.Domain.Test.Mementos
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Mementos;
+    using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.Test.Helpers;
 
     [TestFixture]
@@ -44,7 +46,7 @@ namespace Probel.NDoctor.Domain.Test.Mementos
         [Test]
         public void CreateMemento_AddAState_StateAdded()
         {
-            var record = new MedicalRecord() { Rtf = "1" };
+            var record = new MedicalRecord() { Rtf = "1", Tag = new Tag() { Category = TagCategory.Doctor } };
             var memento = new MedicalRecordMemento();
 
             Assert.AreEqual(0, record.PreviousStates.Count);

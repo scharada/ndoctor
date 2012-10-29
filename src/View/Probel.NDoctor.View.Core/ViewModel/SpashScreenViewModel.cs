@@ -161,7 +161,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
                     this.Progress = 80;
 
                     this.Status = Messages.Msg_ConfiguringThumbnails;
-                    this.CongigureThumbnails();
+                    this.CreateThumbnails();
                     this.Progress = 100;
                     this.Logger.Info("Configuration done.");
 
@@ -235,7 +235,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
              });
         }
 
-        private void CongigureThumbnails()
+        private void CreateThumbnails()
         {
             PluginContext.ComponentFactory
                 .GetInstance<IPictureComponent>()

@@ -253,4 +253,8 @@
     <value>The picture already has a thumbnail</value>
     <comment>The picture already has a thumbnail</comment>
   </data>
+  <data name="Ex_CirularLinkFamily" xml:space="preserve">
+    <value>You try to add a patient as his/her child or parent</value>
+    <comment>You try to add a patient as his/her child or parent</comment>
+  </data>
 </root>
