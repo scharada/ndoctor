@@ -42,6 +42,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
         #region Methods
 
+        public long Create(LightPatientDto patient)
+        {
+            return new Creator(this.Session).Create(patient);
+        }
+
         public IList<PatientDto> GetPatientsByName(string criteria, SearchOn searchOn)
         {
             return new Selector(this.Session).GetPatientByName(criteria, searchOn);

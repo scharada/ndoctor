@@ -70,6 +70,15 @@ namespace Probel.NDoctor.Domain.DAL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You try to add a patient as his/her child or parent.
+        /// </summary>
+        internal static string Ex_CirularLinkFamily {
+            get {
+                return ResourceManager.GetString("Ex_CirularLinkFamily", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The picture already has a thumbnail.
         /// </summary>
         internal static string Ex_HasThumbnail {

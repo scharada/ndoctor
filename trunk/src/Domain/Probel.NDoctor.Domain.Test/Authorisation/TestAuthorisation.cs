@@ -16,37 +16,23 @@
 */
 namespace Probel.NDoctor.Domain.Test.Authorisation
 {
+    using System;
     using System.Linq;
 
     using NUnit.Framework;
 
-    using Probel.NDoctor.Domain.DTO;
-    using Probel.NDoctor.Domain.Test.Helpers;
-    using Probel.NDoctor.Domain.DAL.Components;
-    using System;
     using Probel.NDoctor.Domain.DAL.AopConfiguration;
-    using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.Test.Helpers;
 
     [TestFixture]
     public class TestAuthorisation
     {
         #region Methods
 
-        [Test]
-        public void CanListRoles()
-        {
-            string[] roles = To.ToStringArray();
-
-            Assert.AreEqual(6, roles.Length);
-
-            Assert.IsTrue(roles.Contains(To.Everyone));
-            Assert.IsTrue(roles.Contains(To.MetaWrite));
-            Assert.IsTrue(roles.Contains(To.Administer));
-            Assert.IsTrue(roles.Contains(To.Read));
-            Assert.IsTrue(roles.Contains(To.Write));
-            Assert.IsTrue(roles.Contains(To.EditCalendar));
-        }
         [Test]
         public void AuditMethods_AdministrationComponentCreateTag_MethodGrantedToEveryone()
         {
@@ -78,7 +64,6 @@ namespace Probel.NDoctor.Domain.Test.Authorisation
             Assert.NotNull(attribute, "attribute");
         }
 
-
         [Test]
         public void AuditMethods_UserSessionComponentCanConnect_MethodGrantedToEveryone()
         {
@@ -87,6 +72,7 @@ namespace Probel.NDoctor.Domain.Test.Authorisation
 
             Assert.NotNull(attribute, "attribute");
         }
+
         [Test]
         public void AuditMethods_UserSessionComponentCreate_MethodGrantedToEveryone()
         {
@@ -95,6 +81,22 @@ namespace Probel.NDoctor.Domain.Test.Authorisation
 
             Assert.NotNull(attribute, "attribute");
         }
+
+        [Test]
+        public void CanListRoles()
+        {
+            string[] roles = To.ToStringArray();
+
+            Assert.AreEqual(6, roles.Length);
+
+            Assert.IsTrue(roles.Contains(To.Everyone));
+            Assert.IsTrue(roles.Contains(To.MetaWrite));
+            Assert.IsTrue(roles.Contains(To.Administer));
+            Assert.IsTrue(roles.Contains(To.Read));
+            Assert.IsTrue(roles.Contains(To.Write));
+            Assert.IsTrue(roles.Contains(To.EditCalendar));
+        }
+
         #endregion Methods
     }
 }

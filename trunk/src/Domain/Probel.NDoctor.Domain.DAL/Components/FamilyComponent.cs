@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
@@ -57,6 +58,66 @@ namespace Probel.NDoctor.Domain.DAL.Components
         #endregion Constructors
 
         #region Methods
+
+        /// <summary>
+        /// Adds the new child to the specified patient.
+        /// Under the hood, the child will receive the specifed
+        /// patient as a father or a mother depending on the gender
+        /// of the patient.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <param name="child">The child.</param>
+        public void AddNewChild(LightPatientDto patient, LightPatientDto child)
+        {
+            if (patient.Id == child.Id) { throw new BusinessLogicException(Messages.Ex_CirularLinkFamily); }
+
+            var ePatient = this.Session.Get<Patient>(patient.Id);
+            var eChild = this.Session.Get<Patient>(child.Id);
+
+            switch (ePatient.Gender)
+            {
+                case Gender.Male:
+                    eChild.Father = ePatient;
+                    break;
+                case Gender.Female:
+                    eChild.Mother = ePatient;
+                    break;
+                default:
+                    Assert.FailOnEnumeration(eChild.Gender);
+                    break;
+            }
+
+            this.Session.Update(eChild);
+        }
+
+        /// <summary>
+        /// Adds the new parent to the specified patient. A check
+        /// on the gende of the parent will infer whether the parent
+        /// is the father or the mother
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <param name="parent">The parent.</param>
+        public void AddNewParent(LightPatientDto patient, LightPatientDto parent)
+        {
+            if (patient.Id == parent.Id) { throw new BusinessLogicException(Messages.Ex_CirularLinkFamily); }
+
+            var ePatient = this.Session.Get<Patient>(patient.Id);
+            var eParent = this.Session.Get<Patient>(parent.Id);
+
+            switch (eParent.Gender)
+            {
+                case Gender.Male:
+                    ePatient.Father = eParent;
+                    break;
+                case Gender.Female:
+                    ePatient.Mother = eParent;
+                    break;
+                default:
+                    Assert.FailOnEnumeration(eParent.Gender);
+                    break;
+            }
+            this.Session.Update(ePatient);
+        }
 
         /// <summary>
         /// Get all family members for the specified Patient
@@ -151,57 +212,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
                     }
                 }
             }
-        }
-
-        /// <summary>
-        /// Updates the specified family.
-        /// When the members' state is set to new, it'll create a new relation for the patient.
-        /// All other members' state will throw a <see cref="BusinessLogicException"/>.
-        /// </summary>
-        /// <param name="family">The family.</param>
-        public void Update(FamilyDto family)
-        {
-            var patient = (from p in this.Session.Query<Patient>()
-                           where p.Id == family.Current.Id
-                           select p).FirstOrDefault();
-
-            if (patient == null) throw new EntityNotFoundException(typeof(Patient));
-
-            if (family.Fathers != null //If the father has been added then replace the father of the connected patient
-                && (family.Fathers.Count > 0))//&& family.Fathers[0].State == State.Created))
-            {
-                var father = this.Session.Get<Patient>(family.Fathers[0].Id);
-                patient.Father = father;
-            }
-
-            if (family.Mothers != null //If the mother has been added then replace the mother of the connected patient
-                && (family.Mothers.Count > 0)) //&& family.Mothers[0].State == State.Created))
-            {
-                var mother = this.Session.Get<Patient>(family.Mothers[0].Id);
-                patient.Mother = mother;
-            }
-
-            foreach (var child in family.Children)
-            {
-                if (child.State == State.Created)
-                {
-                    var currentChild = this.Session.Get<Patient>(child.Id);
-                    switch (patient.Gender)
-                    {
-                        case Gender.Male:
-                            currentChild.Father = patient;
-                            break;
-                        case Gender.Female:
-                            currentChild.Mother = patient;
-                            break;
-                        default:
-                            Assert.FailOnEnumeration(patient.Gender);
-                            break;
-                    }
-                    this.Session.Save(currentChild);
-                }
-            }
-            this.Session.SaveOrUpdate(patient);
         }
 
         private IList<LightPatientDto> GetAllFamilyMembers(Patient patient)

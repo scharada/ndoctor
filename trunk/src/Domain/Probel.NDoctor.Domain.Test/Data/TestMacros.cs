@@ -23,62 +23,59 @@ namespace Probel.NDoctor.Domain.Test.Data
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.Test.Helpers;
 
-    namespace Interview.Test
+    [TestFixture]
+    public class TestMacros
     {
-        [TestFixture]
-        public class TestMacros
+        [Test]
+        public void CreateMacro_ReplaceFullName_MarkupsReplacedWithValue()
         {
-            [Test]
-            public void CreateMacro_ReplaceFullName_MarkupsReplacedWithValue()
-            {
-                var robert = "Robert";
-                var dupont = "Dupont";
+            var robert = "Robert";
+            var dupont = "Dupont";
 
-                var macro = "Hello $firstname$ $lastname$";
-                var expected = "Hello " + robert + " " + dupont;
+            var macro = "Hello $firstname$ $lastname$";
+            var expected = "Hello " + robert + " " + dupont;
 
-                var patient = new Patient() { FirstName = robert, LastName = dupont };
+            var patient = new Patient() { FirstName = robert, LastName = dupont };
 
-                var builder = new MacroBuilder(patient);
-                var result = builder.Resolve(macro);
+            var builder = new MacroBuilder(patient);
+            var result = builder.Resolve(macro);
 
-                Assert.AreEqual(expected, result);
-            }
+            Assert.AreEqual(expected, result);
+        }
 
-            [Test]
-            public void CreateMacro_UsingUpperCaseMarkups_MarkupsReplacesWithValues()
-            {
-                var robert = "Robert";
-                var dupont = "Dupont";
+        [Test]
+        public void CreateMacro_UsingUpperCaseMarkups_MarkupsReplacesWithValues()
+        {
+            var robert = "Robert";
+            var dupont = "Dupont";
 
-                var macro = "Hello $FIRSTNAME$ $LASTNAME$";
-                var expected = "Hello " + robert + " " + dupont;
+            var macro = "Hello $FIRSTNAME$ $LASTNAME$";
+            var expected = "Hello " + robert + " " + dupont;
 
-                var patient = new Patient() { FirstName = robert, LastName = dupont };
+            var patient = new Patient() { FirstName = robert, LastName = dupont };
 
-                var builder = new MacroBuilder(patient);
-                var result = builder.Resolve(macro);
+            var builder = new MacroBuilder(patient);
+            var result = builder.Resolve(macro);
 
-                Assert.AreEqual(expected, result);
-            }
+            Assert.AreEqual(expected, result);
+        }
 
-            [Test]
-            public void ListMarkups_ListAllTheMarkups_AllIsListed()
-            {
-                var result = Markups.All();
+        [Test]
+        public void ListMarkups_ListAllTheMarkups_AllIsListed()
+        {
+            var result = Markups.All();
 
-                Assert.AreEqual(7, result.Length);
-            }
+            Assert.AreEqual(7, result.Length);
+        }
 
-            [Test]
-            public void CreateMacro_UsingUnknownMarkups_ExceptionIsThrown()
-            {
-                var macro = "Hello $unknown$ $LASTNAME$";
-                var patient = new Patient() { FirstName = "ROBERT", LastName = "DUPONT" };
+        [Test]
+        public void CreateMacro_UsingUnknownMarkups_ExceptionIsThrown()
+        {
+            var macro = "Hello $unknown$ $LASTNAME$";
+            var patient = new Patient() { FirstName = "ROBERT", LastName = "DUPONT" };
 
-                var builder = new MacroBuilder(patient);
-                Assert.Throws<InvalidMacroException>(() => builder.Resolve(macro));
-            }
+            var builder = new MacroBuilder(patient);
+            Assert.Throws<InvalidMacroException>(() => builder.Resolve(macro));
         }
     }
 }
