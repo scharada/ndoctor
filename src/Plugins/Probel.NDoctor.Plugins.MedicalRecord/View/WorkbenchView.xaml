@@ -31,7 +31,7 @@
                     </HierarchicalDataTemplate>
 
                     <HierarchicalDataTemplate DataType="{x:Type this:TitledMedicalRecordFolderDto}"
-                                          ItemsSource="{Binding Path=TitledRecords}">
+                                              ItemsSource="{Binding Path=TitledRecords}">
                         <TextBlock Text="{Binding Path=Name}"/>
                     </HierarchicalDataTemplate>
 
