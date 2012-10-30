@@ -473,8 +473,6 @@
         /// <param name="forPatient">The patient.</param>
         public void Create(BmiDto bmi, LightPatientDto forPatient)
         {
-            forPatient.Height = bmi.Height;
-
             var entity = this.Session.Get<Patient>(forPatient.Id);
 
             if (entity != null)
@@ -482,6 +480,8 @@
                 entity.Height = bmi.Height;
                 entity.BmiHistory.Add(Mapper.Map<BmiDto, Bmi>(bmi));
                 this.Session.Update(entity);
+
+                forPatient.Height = bmi.Height;
             }
             else { throw new EntityNotFoundException(typeof(Bmi)); }
         }
