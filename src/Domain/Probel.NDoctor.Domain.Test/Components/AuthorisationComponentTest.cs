@@ -24,6 +24,7 @@ namespace Probel.NDoctor.Domain.Test.Components
     using NUnit.Framework;
 
     using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     [TestFixture]
@@ -55,7 +56,11 @@ namespace Probel.NDoctor.Domain.Test.Components
             });
         }
 
+        /// <summary>
+        /// Issue 94
+        /// </summary>
         [Test]
+        [ExpectedException(typeof(NullItemInListException))]
         public void ManageAuthorisation_UpdateARoleWithAnEmptyTask_NullItemInListExceptionIsThrown()
         {
             var role = new RoleDto()

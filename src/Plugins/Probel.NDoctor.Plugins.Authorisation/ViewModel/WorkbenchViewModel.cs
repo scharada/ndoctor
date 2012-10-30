@@ -64,8 +64,8 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             this.Roles = new ObservableCollection<RoleDto>();
             this.AvailableTasks = new ObservableCollection<TaskDto>();
 
-            this.AddCommand = new RelayCommand(() => this.AddTask(), () => this.CanModifyTask());
-            this.RemoveTaskCommand = new RelayCommand(() => this.RemoveTask(), () => this.CanModifyTask());
+            this.AddCommand = new RelayCommand(() => this.AddTask(), () => this.CanAddTask());
+            this.RemoveTaskCommand = new RelayCommand(() => this.RemoveTask(), () => this.CanRemoveTask());
             this.RefreshRoleCommand = new RelayCommand(() => this.RefreshAvailableTasks());
             this.EditRoleCommand = new RelayCommand(() => this.EditRole(), () => this.CanModifyRole());
             this.RemoveRoleCommand = new RelayCommand(() => this.RemoveRole(), () => this.CanModifyRole());
@@ -180,12 +180,13 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             catch (Exception ex) { this.Handle.Error(ex); }
         }
 
-        private bool CanModifyRole()
+        private bool CanAddTask()
         {
-            return this.SelectedRole != null;
+            return this.CanRemoveTask()
+                && this.ComboBoxTask != null;
         }
 
-        private bool CanModifyTask()
+        private bool CanModifyRole()
         {
             return this.SelectedRole != null;
         }
@@ -193,6 +194,11 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
         private bool CanRemoveRole(RoleDto roleDto)
         {
             return component.CanRemove(roleDto);
+        }
+
+        private bool CanRemoveTask()
+        {
+            return this.SelectedRole != null;
         }
 
         private void EditRole()

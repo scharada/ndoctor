@@ -241,7 +241,7 @@ namespace Probel.NDoctor.Domain.DTO.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A list of the object to save has at least on null element.
+        ///   Looks up a localized string similar to A list of the object to save has at least one null element.
         /// </summary>
         internal static string Ex_NullItemInListException {
             get {
