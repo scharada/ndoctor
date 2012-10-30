@@ -22,13 +22,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
     using AutoMapper;
 
+    using NHibernate;
+
     using Probel.Helpers.Data;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using NHibernate;
 
     /// <summary>
     /// Provides all the features to query the database about the 
@@ -36,16 +37,20 @@ namespace Probel.NDoctor.Domain.DAL.Components
     /// </summary>
     public class PathologyComponent : BaseComponent, IPathologyComponent
     {
+        #region Constructors
+
         public PathologyComponent(ISession session)
             : base(session)
         {
-
         }
+
         public PathologyComponent()
             : base()
         {
-
         }
+
+        #endregion Constructors
+
         #region Methods
 
         /// <summary>

@@ -22,22 +22,22 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
     using Probel.NDoctor.Domain.DTO.Properties;
 
     [Serializable]
-    public class ReferencialIntegrityException : ApplicationException
+    public class ReferencialIntegrityException : TranslateableException
     {
         #region Constructors
 
         public ReferencialIntegrityException()
-            : this(Messages.Ex_ReferencialIntegrityException)
+            : this("This action wasn't executed to keep the integrity of the data.", Messages.Ex_ReferencialIntegrityException)
         {
         }
 
-        public ReferencialIntegrityException(string message)
-            : base(message)
+        public ReferencialIntegrityException(string message, string translated)
+            : base(message, translated)
         {
         }
 
-        public ReferencialIntegrityException(string message, Exception inner)
-            : base(message, inner)
+        public ReferencialIntegrityException(string message, string translated, Exception inner)
+            : base(message, translated, inner)
         {
         }
 

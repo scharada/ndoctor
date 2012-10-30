@@ -69,7 +69,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="child">The child.</param>
         public void AddNewChild(LightPatientDto patient, LightPatientDto child)
         {
-            if (patient.Id == child.Id) { throw new BusinessLogicException(Messages.Ex_CirularLinkFamily); }
+            if (patient.Id == child.Id) { throw new BusinessLogicException("You try to add a patient as his/her child or parent", Messages.Ex_CirularLinkFamily); }
 
             //Using load it faster as explained here http://ayende.com/blog/3988/nhibernate-the-difference-between-get-load-and-querying-by-id
             //TODO: check cascade: http://martin.podval.eu/2010/11/nhibernate-performance-issues-cascade.html
@@ -101,7 +101,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="parent">The parent.</param>
         public void AddNewParent(LightPatientDto patient, LightPatientDto parent)
         {
-            if (patient.Id == parent.Id) { throw new BusinessLogicException(Messages.Ex_CirularLinkFamily); }
+            if (patient.Id == parent.Id) { throw new BusinessLogicException("You try to add a patient as his/her child or parent", Messages.Ex_CirularLinkFamily); }
 
             //Using load it faster as explained here http://ayende.com/blog/3988/nhibernate-the-difference-between-get-load-and-querying-by-id
             //TODO: check cascade: http://martin.podval.eu/2010/11/nhibernate-performance-issues-cascade.html

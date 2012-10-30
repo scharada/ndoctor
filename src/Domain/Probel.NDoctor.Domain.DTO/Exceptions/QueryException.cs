@@ -25,7 +25,7 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
     /// The exception that is thrown when query failed 
     /// </summary>
     [Serializable]
-    public class DalQueryException : ApplicationException
+    public class DalQueryException : TranslateableException
     {
         #region Constructors
 
@@ -33,7 +33,7 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
         /// Initializes a new instance of the <see cref="DalQueryException"/> class.
         /// </summary>
         public DalQueryException()
-            : this(Messages.Ex_QueryException)
+            : this("An error occured during the execution of a query.", Messages.Ex_QueryException)
         {
         }
 
@@ -41,8 +41,8 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
         /// Initializes a new instance of the <see cref="DalQueryException"/> class.
         /// </summary>
         /// <param name="message">The message.</param>
-        public DalQueryException(string message)
-            : base(message)
+        public DalQueryException(string message, string translated)
+            : base(message, translated)
         {
         }
 
@@ -51,8 +51,8 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="inner">The inner.</param>
-        public DalQueryException(string message, Exception inner)
-            : base(message, inner)
+        public DalQueryException(string message, string translated, Exception inner)
+            : base(message, translated, inner)
         {
         }
 

@@ -22,6 +22,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
     using AutoMapper;
 
+    using NHibernate;
     using NHibernate.Linq;
 
     using Probel.Helpers.Data;
@@ -32,21 +33,26 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using NHibernate;
 
     /// <summary>
     /// Provides features to manage the meetings
     /// </summary>
     public class CalendarComponent : BaseComponent, ICalendarComponent
     {
-        public CalendarComponent(ISession session):base(session)
-        {
+        #region Constructors
 
-        }
-        public CalendarComponent():base()
+        public CalendarComponent(ISession session)
+            : base(session)
         {
-
         }
+
+        public CalendarComponent()
+            : base()
+        {
+        }
+
+        #endregion Constructors
+
         #region Methods
 
         /// <summary>

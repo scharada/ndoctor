@@ -146,7 +146,7 @@
             this.Session.Flush();
 
             var entity = Mapper.Map<UserDto, User>(item);
-            if (string.IsNullOrWhiteSpace(entity.Password)) throw new BusinessLogicException(Messages.Validation_PasswordCantBeEmpty);
+            if (string.IsNullOrWhiteSpace(entity.Password)) throw new EmptyPasswordException();
 
             if (this.IsFirstUser()) { entity.IsSuperAdmin = true; }
 

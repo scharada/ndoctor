@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,6 +16,9 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#endregion Header
+
 namespace Probel.NDoctor.Domain.DTO.Exceptions
 {
     using System;
@@ -21,30 +26,38 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
 
     using Probel.NDoctor.Domain.DTO.Properties;
 
-    /// <summary>
-    /// The exception that is thrown when the session used to query the database when session is closed
-    /// </summary>
     [Serializable]
-    public class DalSessionException : TranslateableException
+    public class ComponentException : TranslateableException
     {
+        #region Fields
+
+        private const string ErrorMsg = "An error occured in the DAL components. See inner exception for details.";
+
+        #endregion Fields
+
         #region Constructors
 
-        public DalSessionException()
-            : this("An error occured in the session", Messages.Ex_SessionException)
+        public ComponentException()
+            : this(ErrorMsg, Messages.Ex_ComponentException)
         {
         }
 
-        public DalSessionException(string message, string translated)
+        public ComponentException(Exception inner)
+            : this(ErrorMsg, Messages.Ex_ComponentException, inner)
+        {
+        }
+
+        public ComponentException(string message, string translated)
             : base(message, translated)
         {
         }
 
-        public DalSessionException(string message, string translated, Exception inner)
+        public ComponentException(string message, string translated, Exception inner)
             : base(message, translated, inner)
         {
         }
 
-        protected DalSessionException(SerializationInfo info, StreamingContext context)
+        protected ComponentException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }

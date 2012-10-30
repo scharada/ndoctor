@@ -143,7 +143,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
                                    where p.Id == patient.Id
                                    select p).FirstOrDefault();
 
-            if (selectedPatient == null) throw new EntityNotFoundException(string.Format("No patient with id '{0}' was found.", patient.Id));
+            if (selectedPatient == null) throw new EntityNotFoundException(typeof(Patient));
 
             return Mapper.Map<Patient, MedicalRecordCabinetDto>(selectedPatient);
         }

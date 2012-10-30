@@ -22,7 +22,7 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
     using Probel.NDoctor.Domain.DTO.Properties;
 
     [Serializable]
-    public class EmptyPasswordException : Exception
+    public class EmptyPasswordException : TranslateableException
     {
         #region Constructors
 
@@ -30,7 +30,7 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
         /// Initializes a new instance of the <see cref="EmptyPasswordException"/> class.
         /// </summary>
         public EmptyPasswordException()
-            : this(Messages.Ex_EmptyPasswordException)
+            : this("Empty password are not accepted", Messages.Ex_EmptyPasswordException)
         {
         }
 
@@ -38,8 +38,8 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
         /// Initializes a new instance of the <see cref="EmptyPasswordException"/> class.
         /// </summary>
         /// <param name="message">The message.</param>
-        public EmptyPasswordException(string message)
-            : base(message)
+        public EmptyPasswordException(string message, string translated)
+            : base(message, translated)
         {
         }
 
@@ -48,8 +48,8 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="inner">The inner.</param>
-        public EmptyPasswordException(string message, Exception inner)
-            : base(message, inner)
+        public EmptyPasswordException(string message, string translated, Exception inner)
+            : base(message, translated, inner)
         {
         }
 

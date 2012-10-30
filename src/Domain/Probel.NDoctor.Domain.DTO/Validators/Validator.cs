@@ -54,7 +54,6 @@ namespace Probel.NDoctor.Domain.DTO.Validators
         public void SetValidationLogic(ValidatableObject item)
         {
             T toValidate = item as T;
-            if (toValidate == null) throw new ValidationException("Impossible to cast to a validateable type. Are you sure you specified the good item to validate?");
             this.SetValidationLogic(toValidate);
         }
 

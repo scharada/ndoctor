@@ -27,7 +27,7 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
     /// actions.
     /// </summary>
     [Serializable]
-    public class BusinessLogicException : ApplicationException
+    public class BusinessLogicException : TranslateableException
     {
         #region Constructors
 
@@ -35,7 +35,7 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
         /// Initializes a new instance of the <see cref="BusinessLogicException"/> class.
         /// </summary>
         public BusinessLogicException()
-            : this(Messages.Ex_BusinessLogicException)
+            : this("Impossible to execute this action. This is a unexpected state that wasn't forseen or it will break business logic rules.", Messages.Ex_BusinessLogicException)
         {
         }
 
@@ -43,8 +43,8 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
         /// Initializes a new instance of the <see cref="BusinessLogicException"/> class.
         /// </summary>
         /// <param name="message">The message.</param>
-        public BusinessLogicException(string message)
-            : base(message)
+        public BusinessLogicException(string message, string translated)
+            : base(message, translated)
         {
         }
 
@@ -53,8 +53,8 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="inner">The inner.</param>
-        public BusinessLogicException(string message, Exception inner)
-            : base(message, inner)
+        public BusinessLogicException(string message, string translated, Exception inner)
+            : base(message, translated, inner)
         {
         }
 

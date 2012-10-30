@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,41 +16,51 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#endregion Header
+
 namespace Probel.NDoctor.Domain.DTO.Exceptions
 {
     using System;
     using System.Runtime.Serialization;
 
-    using Probel.NDoctor.Domain.DTO.Properties;
-
-    /// <summary>
-    /// The exception that is thrown when the session used to query the database when session is closed
-    /// </summary>
+    //TODO: implement translation for exceptions
     [Serializable]
-    public class DalSessionException : TranslateableException
+    public abstract class TranslateableException : ApplicationException
     {
         #region Constructors
 
-        public DalSessionException()
-            : this("An error occured in the session", Messages.Ex_SessionException)
+        public TranslateableException()
         {
         }
 
-        public DalSessionException(string message, string translated)
-            : base(message, translated)
+        public TranslateableException(string message, string translated)
+            : base(message)
         {
+            this.TranslatedMessage = translated;
         }
 
-        public DalSessionException(string message, string translated, Exception inner)
-            : base(message, translated, inner)
+        public TranslateableException(string message, string translated, Exception inner)
+            : base(message, inner)
         {
+            this.TranslatedMessage = translated;
         }
 
-        protected DalSessionException(SerializationInfo info, StreamingContext context)
+        protected TranslateableException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
 
         #endregion Constructors
+
+        #region Properties
+
+        public string TranslatedMessage
+        {
+            get;
+            protected set;
+        }
+
+        #endregion Properties
     }
 }

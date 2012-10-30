@@ -26,27 +26,33 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
     /// The exception that is thrown when the searched item doesn't exist in the database
     /// </summary>
     [Serializable]
-    public class EntityNotFoundException : ApplicationException
+    public class EntityNotFoundException : TranslateableException
     {
+        #region Fields
+
+        private const string ErrorMsg = "The searched item of type '{0}' doesn't exist in the database";
+
+        #endregion Fields
+
         #region Constructors
 
         public EntityNotFoundException(Type searchedType)
-            : this(Messages.Ex_EntityNotFoundException.FormatWith(searchedType.Name))
+            : this(ErrorMsg.FormatWith(searchedType.Name), Messages.Ex_EntityNotFoundException.FormatWith(searchedType.Name))
         {
         }
 
-        public EntityNotFoundException(string message)
-            : base(message)
+        public EntityNotFoundException(string message, string translated)
+            : base(message, translated)
         {
         }
 
-        public EntityNotFoundException(string message, Exception inner)
-            : base(message, inner)
+        public EntityNotFoundException(string message, string translated, Exception inner)
+            : base(message, translated, inner)
         {
         }
 
         public EntityNotFoundException(Type searchedType, Exception inner)
-            : this(Messages.Ex_EntityNotFoundException.FormatWith(searchedType.Name), inner)
+            : this(ErrorMsg.FormatWith(searchedType.Name), Messages.Ex_EntityNotFoundException.FormatWith(searchedType.Name), inner)
         {
         }
 

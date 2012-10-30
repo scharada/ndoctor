@@ -287,7 +287,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// <param name="password">The password.</param>
         public void Update(LightUserDto user, string password)
         {
-            if (string.IsNullOrWhiteSpace(password)) throw new BusinessLogicException(Messages.Validation_PasswordCantBeEmpty);
+            if (string.IsNullOrWhiteSpace(password)) throw new EmptyPasswordException();
 
             var entity = this.Session.Get<User>(user.Id);
             if (entity == null) throw new EntityNotFoundException(typeof(User));

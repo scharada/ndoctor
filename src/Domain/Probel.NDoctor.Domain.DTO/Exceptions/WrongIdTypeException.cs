@@ -19,25 +19,27 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
     using System;
     using System.Runtime.Serialization;
 
+    using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DTO.Properties;
 
     [Serializable]
-    public class WrongIdTypeException : Exception
+    public class WrongIdTypeException : TranslateableException
     {
         #region Constructors
 
         public WrongIdTypeException(Type expected, Type current)
-            : this(string.Format(Messages.Ex_DalSessionException_UnknownId, expected.ToString(), current.ToString()))
+            : this("The ID type is '{0}' while expecting '{1}'".FormatWith(expected.ToString(), current.ToString())
+            , Messages.Ex_DalSessionException_UnknownId.FormatWith(expected.ToString(), current.ToString()))
         {
         }
 
-        public WrongIdTypeException(string message)
-            : base(message)
+        public WrongIdTypeException(string message, string translated)
+            : base(message, translated)
         {
         }
 
-        public WrongIdTypeException(string message, Exception inner)
-            : base(message, inner)
+        public WrongIdTypeException(string message, string translated, Exception inner)
+            : base(message, translated, inner)
         {
         }
 
