@@ -78,7 +78,7 @@
   
     <mkdir dir="${output-dir}"/>
    <!-- Here should go the unit tests execution... -->
-    <echo message="Test file: ${code-dir}\src\Probel.NDoctor.nunit /result=${output-dir}\nunit-output.xml"/>
+    <echo message="Test file: ${code-dir}\src\Probel.NDoctor.nunit /result=${output-dir}\nunit-output.xml \config=release"/>
     <echo message="Run the unit tests..."/>
     <exec program="nunit-console-x86.exe"
 		  commandline="${code-dir}\src\Probel.NDoctor.nunit /result=${output-dir}\nunit-output.xml"/>

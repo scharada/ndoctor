@@ -1,9 +1,13 @@
 ﻿<NUnitProject>
-  <Settings activeconfig="Debug" />
+  <Settings activeconfig="Release" />
   <Config name="Debug" binpathtype="None" runtimeFramework="v4.0">
     <assembly path="Domain\Probel.NDoctor.Domain.Test\bin\Debug\Probel.NDoctor.Domain.Test.dll" />
     <assembly path="Helpers\Probel.Helpers.Test\bin\Debug\Probel.Helpers.Test.dll" />
     <assembly path="View\Probel.NDoctor.View.Test\bin\Debug\Probel.NDoctor.View.Test.dll" />
   </Config>
-  <Config name="Release" binpathtype="Auto" />
+  <Config name="Release" binpathtype="None" runtimeFramework="v4.0">
+    <assembly path="Domain\Probel.NDoctor.Domain.Test\bin\Debug\Probel.NDoctor.Domain.Test.dll" />
+    <assembly path="Helpers\Probel.Helpers.Test\bin\Debug\Probel.Helpers.Test.dll" />
+    <assembly path="View\Probel.NDoctor.View.Test\bin\Debug\Probel.NDoctor.View.Test.dll" />
+  </Config>
 </NUnitProject>
