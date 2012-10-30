@@ -277,14 +277,6 @@
     <value>Le dossier est complet</value>
     <comment>Record is complete</comment>
   </data>
-  <data name="Msg_GenderFemale" xml:space="preserve">
-    <value>Femme</value>
-    <comment>Female</comment>
-  </data>
-  <data name="Msg_GenderMale" xml:space="preserve">
-    <value>Homme</value>
-    <comment>Male</comment>
-  </data>
   <data name="Msg_ErrorSave" xml:space="preserve">
     <value>Impossible de sauver le patient. {0}</value>
     <comment>Impossible to save the patient. {0}</comment>

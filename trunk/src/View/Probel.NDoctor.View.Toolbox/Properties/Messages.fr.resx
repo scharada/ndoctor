@@ -158,7 +158,7 @@
     <comment>Female</comment>
   </data>
   <data name="Gender_Male" xml:space="preserve">
-    <value>Fomme</value>
+    <value>Homme</value>
     <comment>Male</comment>
   </data>
   <data name="Group_Action" xml:space="preserve">

@@ -210,7 +210,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         private bool CanSave()
         {
-            return this.Patient.IsValid()
+            return this.Patient != null
+                && this.Patient.IsValid()
                 && PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 

@@ -58,5 +58,16 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         #endregion Methods
+
+        public IList<LightUserDto> GetAllUsers()
+        {
+            return new Selector(this.Session).GetAllUsers();
+        }
+
+        public IList<LightUserDto> GetUserByLastName(string criteria)
+        {
+            return new Selector(this.Session).GetUserByLastName(criteria);
+
+        }
     }
 }

@@ -71,8 +71,10 @@ namespace Probel.NDoctor.Domain.DAL.Components
         {
             if (patient.Id == child.Id) { throw new BusinessLogicException(Messages.Ex_CirularLinkFamily); }
 
-            var ePatient = this.Session.Get<Patient>(patient.Id);
-            var eChild = this.Session.Get<Patient>(child.Id);
+            //Using load it faster as explained here http://ayende.com/blog/3988/nhibernate-the-difference-between-get-load-and-querying-by-id
+            //TODO: check cascade: http://martin.podval.eu/2010/11/nhibernate-performance-issues-cascade.html
+            var ePatient = this.Session.Load<Patient>(patient.Id);
+            var eChild = this.Session.Load<Patient>(child.Id);
 
             switch (ePatient.Gender)
             {
@@ -101,8 +103,10 @@ namespace Probel.NDoctor.Domain.DAL.Components
         {
             if (patient.Id == parent.Id) { throw new BusinessLogicException(Messages.Ex_CirularLinkFamily); }
 
-            var ePatient = this.Session.Get<Patient>(patient.Id);
-            var eParent = this.Session.Get<Patient>(parent.Id);
+            //Using load it faster as explained here http://ayende.com/blog/3988/nhibernate-the-difference-between-get-load-and-querying-by-id
+            //TODO: check cascade: http://martin.podval.eu/2010/11/nhibernate-performance-issues-cascade.html
+            var ePatient = this.Session.Load<Patient>(patient.Id);
+            var eParent = this.Session.Load<Patient>(parent.Id);
 
             switch (eParent.Gender)
             {

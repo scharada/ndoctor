@@ -137,7 +137,7 @@ namespace Probel.NDoctor.Domain.Test.Components
             Assert.AreEqual(count, this.ComponentUnderTest.GetAllTasks().Length);
         }
 
-        public override void _Setup()
+        protected override void _Setup()
         {
             this.BuildComponent(session => new AuthorisationComponent(session));
         }

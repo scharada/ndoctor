@@ -39,7 +39,7 @@ namespace Probel.NDoctor.Domain.Test.Components
         where T : BaseComponent
     {
         #region Properties
-
+        public UnitTestComponent HelperComponent { get; private set; }
         protected T ComponentUnderTest
         {
             get;
@@ -66,7 +66,7 @@ namespace Probel.NDoctor.Domain.Test.Components
         }
 
         [SetUp]
-        public abstract void _Setup();
+        protected abstract void _Setup();
 
         protected void BuildComponent(Func<ISession, T> ctor)
         {
@@ -77,6 +77,7 @@ namespace Probel.NDoctor.Domain.Test.Components
 
             this.Session = session;
             this.ComponentUnderTest = ctor(this.Session);
+            this.HelperComponent = new UnitTestComponent(this.Session);
             this.InjectTestData();
         }
 
