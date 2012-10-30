@@ -250,24 +250,6 @@ namespace Probel.NDoctor.Plugins.PatientData.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Female.
-        /// </summary>
-        internal static string Msg_GenderFemale {
-            get {
-                return ResourceManager.GetString("Msg_GenderFemale", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Male.
-        /// </summary>
-        internal static string Msg_GenderMale {
-            get {
-                return ResourceManager.GetString("Msg_GenderMale", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Record is complete.
         /// </summary>
         internal static string Msg_RecordComplete {

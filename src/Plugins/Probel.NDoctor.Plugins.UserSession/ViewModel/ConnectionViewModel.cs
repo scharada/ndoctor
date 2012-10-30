@@ -36,7 +36,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         #region Fields
 
         private IUserSessionComponent component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
-        private string password;
+        private string password = string.Empty;
         private LightUserDto selectedUser;
 
         #endregion Fields
@@ -50,9 +50,10 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 
             this.Users = new ObservableCollection<LightUserDto>();
 
-            this.ConnectCommand = new RelayCommand(() => this.Connect(), () => !string.IsNullOrWhiteSpace(this.Password));
+            this.ConnectCommand = new RelayCommand(() => this.Connect());
 
             this.NavigateAddUserCommand = new RelayCommand(() => this.AddUser());
+
             Notifyer.UserAdded += (sender, e) =>
             {
                 InnerWindow.Close();

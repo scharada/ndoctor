@@ -70,7 +70,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
             var foundUser = Session.Get<User>(user.Id);
             if (user == null) return false;
 
-            return (password == foundUser.Password);
+            var userPwd = foundUser.Password ?? string.Empty;
+
+            return (password == userPwd);
         }
 
         /// <summary>

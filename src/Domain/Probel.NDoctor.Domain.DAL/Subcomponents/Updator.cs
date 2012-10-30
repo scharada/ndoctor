@@ -253,7 +253,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             var entity = this.Session.Get<User>(item.Id);
             Mapper.Map<UserDto, User>(item, entity);
 
-            if (string.IsNullOrWhiteSpace(entity.Password)) throw new BusinessLogicException(Messages.Validation_PasswordCantBeEmpty);
+            //if (string.IsNullOrWhiteSpace(entity.Password)) throw new BusinessLogicException(Messages.Validation_PasswordCantBeEmpty);
             this.Session.Update(entity);
         }
 

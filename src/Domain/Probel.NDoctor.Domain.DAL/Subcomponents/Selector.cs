@@ -605,5 +605,14 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         }
 
         #endregion Methods
+
+        public IList<LightUserDto> GetUserByLastName(string criteria)
+        {
+            criteria = criteria.ToLower();
+            var entities = (from u in this.Session.Query<User>()
+                            where u.LastName.ToLower() == criteria
+                            select u).ToList();
+            return Mapper.Map<IList<User>, IList<LightUserDto>>(entities);
+        }
     }
 }

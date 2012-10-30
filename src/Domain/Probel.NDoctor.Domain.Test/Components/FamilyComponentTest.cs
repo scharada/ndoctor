@@ -46,8 +46,7 @@ namespace Probel.NDoctor.Domain.Test.Components
         [Test]
         public void UpdateFamily_AddFatherAndAChild_ThePatientHasAFatherAndAChild()
         {
-            var cmp = new UnitTestComponent(this.Session);
-            var users = cmp.GetPatientsByNameLight("*", SearchOn.FirstAndLastName);
+            var users = this.HelperComponent.GetPatientsByNameLight("*", SearchOn.FirstAndLastName);
 
             Assert.Greater(users.Count, 4, "Not enought data to execute the test");
 
@@ -148,7 +147,7 @@ namespace Probel.NDoctor.Domain.Test.Components
             Assert.AreEqual(mother2.Id, persistedFamily2.Mothers[0].Id, "The father has an unexpected ID");
         }
 
-        public override void _Setup()
+        protected override void _Setup()
         {
             this.BuildComponent(session => new FamilyComponent(session));
         }

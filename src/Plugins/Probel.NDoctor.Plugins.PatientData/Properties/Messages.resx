@@ -273,14 +273,6 @@
     <value>Record is complete</value>
     <comment>Record is complete</comment>
   </data>
-  <data name="Msg_GenderFemale" xml:space="preserve">
-    <value>Female</value>
-    <comment>Female</comment>
-  </data>
-  <data name="Msg_GenderMale" xml:space="preserve">
-    <value>Male</value>
-    <comment>Male</comment>
-  </data>
   <data name="Msg_ErrorSave" xml:space="preserve">
     <value>Impossible to save the patient. {0}</value>
     <comment>Impossible to save the patient. {0}</comment>
