@@ -39,7 +39,7 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
         private IUserSessionComponent component;
         private bool isPopupOpened;
         private string newPassword;
-        private string oldPassword;
+        private string oldPassword = string.Empty;
 
         #endregion Fields
 
