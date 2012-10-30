@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -15,15 +17,60 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System;
-using NUnit.Framework;
-using Probel.NDoctor.Domain.DAL.Components;
+#endregion Header
 
 namespace Probel.NDoctor.Domain.Test.Components
 {
+    using System;
+
+    using NUnit.Framework;
+
+    using Probel.NDoctor.Domain.DAL.Components;
+
     [TestFixture]
     public class UserSessionComponentTest : BaseComponentTest<UserSessionComponent>
     {
+        #region Methods
+
+        [Test]
+        public void ConnectUser_ConnectAUserWithEmptyPasswordSendNull_UserCannotConnect()
+        {
+            /* The doctor No Pazwordz is, oh surpsise, a doctor with an empty password.
+             * It is set in the 'InsertUsers.sql' script file
+             */
+            var users = this.HelperComponent.GetUserByLastName("Pazwordz");
+            var canConnect = this.ComponentUnderTest.CanConnect(users[0], null);
+
+            Assert.IsFalse(canConnect);
+        }
+
+        [Test]
+        public void ConnectUser_ConnectAUserWithEmptyPasswordSendStringEmpty_UserConnects()
+        {
+            /* The doctor No Pazwordz is, oh surpsise, a doctor with an empty password.
+             * It is set in the 'InsertUsers.sql' script file
+             */
+            var users = this.HelperComponent.GetUserByLastName("Pazwordz");
+            var canConnect = this.ComponentUnderTest.CanConnect(users[0], string.Empty);
+
+            Assert.IsTrue(canConnect);
+        }
+
+        /// <summary>
+        /// Issue 90
+        /// </summary>
+        [Test]
+        public void ConnectUser_ConnectAUserWithNullPassword_UserCanConnects()
+        {
+            /* The doctor No Pazwordz is, oh surpsise, a doctor with an empty password.
+             * It is set in the 'InsertUsers.sql' script file
+             */
+            var users = this.HelperComponent.GetUserByLastName("NullPazwordz");
+            var canConnect = this.ComponentUnderTest.CanConnect(users[0], string.Empty);
+
+            Assert.IsTrue(canConnect);
+        }
+
         /// <summary>
         /// Issue 90
         /// </summary>
@@ -40,45 +87,12 @@ namespace Probel.NDoctor.Domain.Test.Components
 
             this.ComponentUnderTest.Update(fullUser);
         }
-        [Test]
-        public void ConnectUser_ConnectAUserWithEmptyPasswordSendStringEmpty_UserConnects()
-        {
-            /* The doctor No Pazwordz is, oh surpsise, a doctor with an empty password.
-             * It is set in the 'InsertUsers.sql' script file
-             */
-            var users = this.HelperComponent.GetUserByLastName("Pazwordz");
-            var canConnect = this.ComponentUnderTest.CanConnect(users[0], string.Empty);
 
-            Assert.IsTrue(canConnect);
-        }
-        [Test]
-        public void ConnectUser_ConnectAUserWithEmptyPasswordSendNull_UserCannotConnect()
-        {
-            /* The doctor No Pazwordz is, oh surpsise, a doctor with an empty password.
-             * It is set in the 'InsertUsers.sql' script file
-             */
-            var users = this.HelperComponent.GetUserByLastName("Pazwordz");
-            var canConnect = this.ComponentUnderTest.CanConnect(users[0], null);
-
-            Assert.IsFalse(canConnect);
-        }
-        /// <summary>
-        /// Issue 90
-        /// </summary>
-        [Test]
-        public void ConnectUser_ConnectAUserWithNullPassword_UserCanConnects()
-        {
-            /* The doctor No Pazwordz is, oh surpsise, a doctor with an empty password.
-             * It is set in the 'InsertUsers.sql' script file
-             */
-            var users = this.HelperComponent.GetUserByLastName("NullPazwordz");
-            var canConnect = this.ComponentUnderTest.CanConnect(users[0], string.Empty);
-
-            Assert.IsTrue(canConnect);
-        }
         protected override void _Setup()
         {
             this.BuildComponent(session => new UserSessionComponent(session));
         }
+
+        #endregion Methods
     }
 }

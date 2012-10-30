@@ -34,18 +34,29 @@ namespace Probel.NDoctor.Domain.Test.Components
 
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Components;
-    using StructureMap;
     using Probel.NDoctor.Domain.DTO.Components;
+
+    using StructureMap;
 
     public abstract class BaseComponentTest<T>
         where T : BaseComponent
     {
         #region Properties
-        public UnitTestComponent HelperComponent { get; private set; }
+
+        public UnitTestComponent HelperComponent
+        {
+            get; private set;
+        }
+
         protected T ComponentUnderTest
         {
             get;
             private set;
+        }
+
+        protected string RandomString
+        {
+            get { return Guid.NewGuid().ToString(); }
         }
 
         protected ISession Session
@@ -67,9 +78,6 @@ namespace Probel.NDoctor.Domain.Test.Components
             }
         }
 
-        [SetUp]
-        protected abstract void _Setup();
-
         protected void BuildComponent(Func<ISession, T> ctor)
         {
             ISession session;
@@ -83,6 +91,18 @@ namespace Probel.NDoctor.Domain.Test.Components
             this.InjectTestData();
         }
 
+        protected void WrapInTransaction(Action actionUnderTransaction)
+        {
+            using (var tx = this.Session.BeginTransaction())
+            {
+                actionUnderTransaction();
+                tx.Commit();
+            }
+        }
+
+        [SetUp]
+        protected abstract void _Setup();
+
         private void InjectTestData()
         {
             var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Probel.NDoctor.Domain.Test.InsertUsers.sql");
@@ -95,19 +115,5 @@ namespace Probel.NDoctor.Domain.Test.Components
         }
 
         #endregion Methods
-
-        protected void WrapInTransaction(Action actionUnderTransaction)
-        {
-            using (var tx = this.Session.BeginTransaction())
-            {
-                actionUnderTransaction();
-                tx.Commit();
-            }
-        }
-
-        protected string RandomString
-        {
-            get { return Guid.NewGuid().ToString(); }
-        }
     }
 }
