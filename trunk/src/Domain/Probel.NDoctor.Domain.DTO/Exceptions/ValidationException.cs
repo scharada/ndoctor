@@ -18,23 +18,25 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
 {
     using System;
 
+    using Probel.NDoctor.Domain.DTO.Properties;
+
     [Serializable]
-    public class ValidationException : Exception
+    public class ValidationException : TranslateableException
     {
         #region Constructors
 
         public ValidationException()
-            : this("An error occured during the validation of the DTO object.")
+            : this("An error occured during the validation of the DTO object.", Messages.Ex_ValidationException)
         {
         }
 
-        public ValidationException(string message)
-            : base(message)
+        public ValidationException(string message, string translated)
+            : base(message, translated)
         {
         }
 
-        public ValidationException(string message, Exception inner)
-            : base(message, inner)
+        public ValidationException(string message, string translated, Exception inner)
+            : base(message, translated, inner)
         {
         }
 

@@ -52,7 +52,7 @@ namespace Probel.NDoctor.Domain.DAL.Helpers
         /// <exception cref="BusinessLogicException">If the picture already has an exception</exception>
         public void CreateThumbnail(Picture picture)
         {
-            if (!this.HasThumbnail(picture)) { throw new BusinessLogicException(Messages.Ex_HasThumbnail); }
+            if (!this.HasThumbnail(picture)) { throw new ThumbnailSetException(); }
 
             this.UpdateThumbnail(picture);
         }

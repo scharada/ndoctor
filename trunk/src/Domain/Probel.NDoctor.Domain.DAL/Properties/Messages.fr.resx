@@ -145,17 +145,9 @@
     <value>Une session a déjà été ouverte. Veuillez fermer celle-ci avant d'en ouvrir une nouvelle.</value>
     <comment>A session is already opened. Please, close the opened session before opening a new one.</comment>
   </data>
-  <data name="Msg_ErrorSessionNotOpen" xml:space="preserve">
-    <value>La session n'est pas ouverte. Veuillez ouvrir une session avant d'interroger la base de données.</value>
-    <comment>The session is not open. Please open it before query the database.</comment>
-  </data>
   <data name="Msg_ErrorDbInvalidPath" xml:space="preserve">
     <value>Le chemin vers la base de données est incorrecte ou le fichier n'existe pas.</value>
     <comment>The path to the database is invalid or the file doesn't exist</comment>
-  </data>
-  <data name="Ex_QueryException_SeveralDefaultUsers" xml:space="preserve">
-    <value>Plus d'un utilisateur par défaut a été trouvé.</value>
-    <comment>More than one default user was found. </comment>
   </data>
   <data name="Explanation_Administer" xml:space="preserve">
     <value>Un utilisateur qui a ce droit peut écrire, lire et modifier les informations contenue dans la base de données et qui sont liées à l'administration (par exemple la gestion des droits)</value>
@@ -253,12 +245,12 @@
     <value>Le composant n'est pas de type 'BaseComponent' mais de type '{0}'!</value>
     <comment>The component is not of type 'BaseComponent' but of type '{0}'!</comment>
   </data>
-  <data name="Ex_HasThumbnail" xml:space="preserve">
-    <value>La photo contient déjà une miniature</value>
-    <comment>The picture already has a thumbnail</comment>
-  </data>
   <data name="Ex_CirularLinkFamily" xml:space="preserve">
     <value>Vous tentez d'ajouter un patient comme son propre enfant ou parent</value>
     <comment>You try to add a patient as his/her child or parent</comment>
+  </data>
+  <data name="Ex_QueryException_SeveralDefaultUsers" xml:space="preserve">
+    <value>Plus d'un utilisateur par défaut a été trouvé.</value>
+    <comment>More than one default user was found. </comment>
   </data>
 </root>

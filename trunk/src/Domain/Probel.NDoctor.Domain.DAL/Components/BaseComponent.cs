@@ -114,7 +114,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         internal void CheckSession()
         {
             Assert.IsNotNull(this.Session, "Session");
-            if (!Session.IsOpen) throw new DalSessionException(Messages.Msg_ErrorSessionNotOpen);
+            if (!Session.IsOpen) throw new SessionNotOpenedException();
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
                 this.Session.Flush();
                 this.Session.Close();
             }
-            else throw new DalSessionException(Messages.Msg_ErrorSessionNotOpen);
+            else throw new SessionNotOpenedException();
         }
 
         #endregion Methods

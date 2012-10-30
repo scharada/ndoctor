@@ -25,22 +25,22 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
     /// The exception that is thrown when 
     /// </summary>
     [Serializable]
-    public class ExistingItemException : ApplicationException
+    public class ExistingItemException : TranslateableException
     {
         #region Constructors
 
         public ExistingItemException()
-            : this(Messages.Ex_ExistingItemException)
+            : this("The item you want to create already exist in the database.", Messages.Ex_ExistingItemException)
         {
         }
 
-        public ExistingItemException(string message)
-            : base(message)
+        public ExistingItemException(string message, string translated)
+            : base(message, translated)
         {
         }
 
-        public ExistingItemException(string message, Exception inner)
-            : base(message, inner)
+        public ExistingItemException(string message, string translated, Exception inner)
+            : base(message, translated, inner)
         {
         }
 

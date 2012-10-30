@@ -47,6 +47,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return new Creator(this.Session).Create(patient);
         }
 
+        public IList<LightUserDto> GetAllUsers()
+        {
+            return new Selector(this.Session).GetAllUsers();
+        }
+
         public IList<PatientDto> GetPatientsByName(string criteria, SearchOn searchOn)
         {
             return new Selector(this.Session).GetPatientByName(criteria, searchOn);
@@ -57,22 +62,16 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return new Selector(this.Session).GetPatientByNameLight(criteria, searchOn);
         }
 
-        #endregion Methods
-
-        public IList<LightUserDto> GetAllUsers()
+        public IList<RoleDto> GetRoleByName(string description)
         {
-            return new Selector(this.Session).GetAllUsers();
+            return new Selector(this.Session).GetRoleByName(description);
         }
 
         public IList<LightUserDto> GetUserByLastName(string criteria)
         {
             return new Selector(this.Session).GetUserByLastName(criteria);
-
         }
 
-        public IList<RoleDto> GetRoleByName(string description)
-        {
-            return new Selector(this.Session).GetRoleByName(description);
-        }
+        #endregion Methods
     }
 }

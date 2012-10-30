@@ -19,34 +19,38 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Domain.Components
+namespace Probel.NDoctor.Domain.DTO.Exceptions
 {
     using System;
-    using System.Runtime.Serialization;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
-    using Probel.NDoctor.Domain.Components.Properties;
+    using Probel.NDoctor.Domain.DTO.Properties;
 
     [Serializable]
-    public class ComponentException : ApplicationException
+    public class SessionNotOpenedException : DalSessionException
     {
         #region Constructors
 
-        public ComponentException()
-            : this(Messages.Ex_ComponentException)
+        public SessionNotOpenedException()
+            : this("The session is not open. Please open it before query the database.", Messages.Ex_SessionNotOpenedException)
         {
         }
 
-        public ComponentException(string message)
-            : base(message)
+        public SessionNotOpenedException(string message, string translated)
+            : base(message, translated)
         {
         }
 
-        public ComponentException(string message, Exception inner)
-            : base(message, inner)
+        public SessionNotOpenedException(string message, string translated, Exception inner)
+            : base(message, translated, inner)
         {
         }
 
-        protected ComponentException(SerializationInfo info, StreamingContext context)
+        protected SessionNotOpenedException(
+            System.Runtime.Serialization.SerializationInfo info,
+            System.Runtime.Serialization.StreamingContext context)
             : base(info, context)
         {
         }

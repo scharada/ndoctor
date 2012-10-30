@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,37 +16,43 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#endregion Header
+
 namespace Probel.NDoctor.Domain.DTO.Exceptions
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Runtime.Serialization;
+    using System.Text;
 
     using Probel.NDoctor.Domain.DTO.Properties;
 
     /// <summary>
-    /// The exception that is thrown when the session used to query the database when session is closed
+    /// This exception is thrown when a Dto or en Entity has got a null item in one of its lists
     /// </summary>
     [Serializable]
-    public class DalSessionException : TranslateableException
+    public class NullItemInListException : TranslateableException
     {
         #region Constructors
 
-        public DalSessionException()
-            : this("An error occured in the session", Messages.Ex_SessionException)
+        public NullItemInListException()
+            : this("A list of the object to save has at least on null element", Messages.Ex_NullItemInListException)
         {
         }
 
-        public DalSessionException(string message, string translated)
+        public NullItemInListException(string message, string translated)
             : base(message, translated)
         {
         }
 
-        public DalSessionException(string message, string translated, Exception inner)
+        public NullItemInListException(string message, string translated, Exception inner)
             : base(message, translated, inner)
         {
         }
 
-        protected DalSessionException(SerializationInfo info, StreamingContext context)
+        protected NullItemInListException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }

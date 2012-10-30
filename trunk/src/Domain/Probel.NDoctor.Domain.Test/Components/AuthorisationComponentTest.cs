@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -15,19 +17,19 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using NUnit.Framework;
-using Probel.NDoctor.Domain.DAL.Components;
-using Probel.NDoctor.Domain.DTO.Objects;
+#endregion Header
 
 namespace Probel.NDoctor.Domain.Test.Components
 {
+    using NUnit.Framework;
+
+    using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DTO.Objects;
+
     [TestFixture]
     public class AuthorisationComponentTest : BaseComponentTest<AuthorisationComponent>
     {
-        protected override void _Setup()
-        {
-            this.BuildComponent(session => new AuthorisationComponent(session));
-        }
+        #region Methods
 
         /// <summary>
         /// Issue 93
@@ -52,5 +54,30 @@ namespace Probel.NDoctor.Domain.Test.Components
                 Assert.AreEqual(name, found[0].Name);
             });
         }
+
+        [Test]
+        public void ManageAuthorisation_UpdateARoleWithAnEmptyTask_NullItemInListExceptionIsThrown()
+        {
+            var role = new RoleDto()
+            {
+                Description = this.RandomString,
+                Name = this.RandomString,
+            };
+            this.ComponentUnderTest.Create(role);
+            this.Session.Flush();
+
+            role.Tasks.Add(new TaskDto(this.RandomString));
+            role.Tasks.Add(new TaskDto(this.RandomString));
+            role.Tasks.Add(null);
+
+            this.ComponentUnderTest.Update(role);
+        }
+
+        protected override void _Setup()
+        {
+            this.BuildComponent(session => new AuthorisationComponent(session));
+        }
+
+        #endregion Methods
     }
 }

@@ -202,7 +202,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         public void Remove(TagDto item)
         {
             Assert.IsNotNull(item, "item");
-            if (!this.CanRemove(item)) throw new ReferencialIntegrityException(Messages.Ex_ReferencialIntegrityException_Deletion);
+            if (!this.CanRemove(item)) throw new ReferencialIntegrityException();
             this.Remove<Tag>(item);
         }
 
@@ -213,7 +213,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         public void Remove(PathologyDto item)
         {
             Assert.IsNotNull(item, "item");
-            if (!this.CanRemove(item)) throw new ReferencialIntegrityException(Messages.Ex_ReferencialIntegrityException_Deletion);
+            if (!this.CanRemove(item)) throw new ReferencialIntegrityException();
             this.Remove<Pathology>(item);
         }
 
@@ -224,7 +224,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         public void Remove(DrugDto item)
         {
             Assert.IsNotNull(item, "item");
-            if (!this.CanRemove(item)) throw new ReferencialIntegrityException(Messages.Ex_ReferencialIntegrityException_Deletion);
+            if (!this.CanRemove(item)) throw new ReferencialIntegrityException();
             this.Remove<Drug>(item);
         }
 
@@ -236,7 +236,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         public void Remove(InsuranceDto item)
         {
             Assert.IsNotNull(item, "item");
-            if (!this.CanRemove(item)) throw new ReferencialIntegrityException(Messages.Ex_ReferencialIntegrityException_Deletion);
+            if (!this.CanRemove(item)) throw new ReferencialIntegrityException();
             this.Remove<Insurance>(item);
         }
 
@@ -248,7 +248,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         public void Remove(PracticeDto item)
         {
             Assert.IsNotNull(item, "item");
-            if (!this.CanRemove(item)) throw new ReferencialIntegrityException(Messages.Ex_ReferencialIntegrityException_Deletion);
+            if (!this.CanRemove(item)) throw new ReferencialIntegrityException();
             this.Remove<Practice>(item);
         }
 
@@ -259,7 +259,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         public void Remove(DoctorDto item)
         {
             Assert.IsNotNull(item, "item");
-            if (!this.CanRemove(item)) throw new ReferencialIntegrityException(Messages.Ex_ReferencialIntegrityException_Deletion);
+            if (!this.CanRemove(item)) throw new ReferencialIntegrityException();
             this.Remove<Doctor>(item);
         }
 

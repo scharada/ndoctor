@@ -115,6 +115,15 @@ namespace Probel.NDoctor.Domain.DTO.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are not granted to execute this action.
+        /// </summary>
+        internal static string Ex_AuthorisationException {
+            get {
+                return ResourceManager.GetString("Ex_AuthorisationException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Impossible to execute this action. This is a unexpected state that wasn&apos;t forseen or it will break business logic rules..
         /// </summary>
         internal static string Ex_BusinessLogicException {
@@ -129,6 +138,15 @@ namespace Probel.NDoctor.Domain.DTO.Properties {
         internal static string Ex_ClosedSessionException {
             get {
                 return ResourceManager.GetString("Ex_ClosedSessionException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occured in the DAL components. See inner exception for details..
+        /// </summary>
+        internal static string Ex_ComponentException {
+            get {
+                return ResourceManager.GetString("Ex_ComponentException", resourceCulture);
             }
         }
         
@@ -205,11 +223,29 @@ namespace Probel.NDoctor.Domain.DTO.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The picture already has a thumbnail.
+        /// </summary>
+        internal static string Ex_HasThumbnail {
+            get {
+                return ResourceManager.GetString("Ex_HasThumbnail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The entity you are using is detached  from the database..
         /// </summary>
         internal static string Ex_NotLoadedEntityException {
             get {
                 return ResourceManager.GetString("Ex_NotLoadedEntityException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A list of the object to save has at least on null element.
+        /// </summary>
+        internal static string Ex_NullItemInListException {
+            get {
+                return ResourceManager.GetString("Ex_NullItemInListException", resourceCulture);
             }
         }
         
@@ -223,7 +259,7 @@ namespace Probel.NDoctor.Domain.DTO.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occured during the execution of a query. {0}.
+        ///   Looks up a localized string similar to An error occured during the execution of a query..
         /// </summary>
         internal static string Ex_QueryException {
             get {
@@ -255,6 +291,24 @@ namespace Probel.NDoctor.Domain.DTO.Properties {
         internal static string Ex_SessionException {
             get {
                 return ResourceManager.GetString("Ex_SessionException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The session is not open. Please open it before query the database..
+        /// </summary>
+        internal static string Ex_SessionNotOpenedException {
+            get {
+                return ResourceManager.GetString("Ex_SessionNotOpenedException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occured during the validation of the DTO object..
+        /// </summary>
+        internal static string Ex_ValidationException {
+            get {
+                return ResourceManager.GetString("Ex_ValidationException", resourceCulture);
             }
         }
         

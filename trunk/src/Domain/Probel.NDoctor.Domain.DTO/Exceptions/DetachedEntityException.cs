@@ -25,22 +25,22 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
     /// The exception that is thrown when 
     /// </summary>
     [Serializable]
-    public class DetachedEntityException : ApplicationException
+    public class DetachedEntityException : TranslateableException
     {
         #region Constructors
 
         public DetachedEntityException()
-            : this(Messages.Ex_NotLoadedEntityException)
+            : this("The entity you are using is detached  from the database.", Messages.Ex_NotLoadedEntityException)
         {
         }
 
-        public DetachedEntityException(string message)
-            : base(message)
+        public DetachedEntityException(string message, string translated)
+            : base(message, translated)
         {
         }
 
-        public DetachedEntityException(string message, Exception inner)
-            : base(message, inner)
+        public DetachedEntityException(string message, string translated, Exception inner)
+            : base(message, translated, inner)
         {
         }
 

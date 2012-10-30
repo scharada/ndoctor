@@ -66,7 +66,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         {
             if (user == null || password == null) return false;
 
-            if (!Session.IsOpen) throw new SessionException(Messages.Msg_ErrorSessionNotOpen);
+            if (!Session.IsOpen) throw new SessionNotOpenedException();
             var foundUser = Session.Get<User>(user.Id);
             if (user == null) return false;
 
@@ -128,7 +128,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
                           select user).ToList();
 
             if (result.Count == 0) return null;
-            else if (result.Count > 1) throw new DalQueryException(Messages.Ex_QueryException_SeveralDefaultUsers);
+            else if (result.Count > 1) throw new DalQueryException("More than one default user was found.", Messages.Ex_QueryException_SeveralDefaultUsers);
             else return Mapper.Map<User, LightUserDto>(result[0]);
         }
 

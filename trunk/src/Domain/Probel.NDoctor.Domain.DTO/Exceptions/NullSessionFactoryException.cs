@@ -25,22 +25,22 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
     /// The exception that is thrown when the session factory is null
     /// </summary>
     [Serializable]
-    public class NullSessionFactoryException : ApplicationException
+    public class NullSessionFactoryException : TranslateableException
     {
         #region Constructors
 
         public NullSessionFactoryException()
-            : this(Messages.Ex_NullSessionFactoryException)
+            : this("The nHibernate session factory is not configured.", Messages.Ex_NullSessionFactoryException)
         {
         }
 
-        public NullSessionFactoryException(string message)
-            : base(message)
+        public NullSessionFactoryException(string message, string translated)
+            : base(message, translated)
         {
         }
 
-        public NullSessionFactoryException(string message, Exception inner)
-            : base(message, inner)
+        public NullSessionFactoryException(string message, string translated, Exception inner)
+            : base(message, translated, inner)
         {
         }
 

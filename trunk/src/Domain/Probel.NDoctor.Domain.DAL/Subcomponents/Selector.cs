@@ -434,6 +434,24 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             return Mapper.Map<User, UserDto>(user);
         }
 
+        public IList<LightUserDto> GetUserByLastName(string criteria)
+        {
+            criteria = criteria.ToLower();
+            var entities = (from u in this.Session.Query<User>()
+                            where u.LastName.ToLower() == criteria
+                            select u).ToList();
+            return Mapper.Map<IList<User>, IList<LightUserDto>>(entities);
+        }
+
+        internal IList<RoleDto> GetRoleByName(string name)
+        {
+            name = name.ToLower();
+            var result = (from r in this.Session.Query<Role>()
+                          where r.Name.ToLower() == name
+                          select r).ToList();
+            return Mapper.Map<IList<Role>, IList<RoleDto>>(result);
+        }
+
         private List<Insurance> GetAllEntitiesInsurance()
         {
             var insurances = (from insurance in this.Session.Query<Insurance>()
@@ -605,23 +623,5 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         }
 
         #endregion Methods
-
-        public IList<LightUserDto> GetUserByLastName(string criteria)
-        {
-            criteria = criteria.ToLower();
-            var entities = (from u in this.Session.Query<User>()
-                            where u.LastName.ToLower() == criteria
-                            select u).ToList();
-            return Mapper.Map<IList<User>, IList<LightUserDto>>(entities);
-        }
-
-        internal IList<RoleDto> GetRoleByName(string name)
-        {
-            name = name.ToLower();
-            var result = (from r in this.Session.Query<Role>()
-                          where r.Name.ToLower() == name
-                          select r).ToList();
-            return Mapper.Map<IList<Role>, IList<RoleDto>>(result);
-        }
     }
 }

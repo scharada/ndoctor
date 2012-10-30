@@ -30,9 +30,9 @@ namespace Probel.NDoctor.Domain.Components
 
     using Probel.NDoctor.Domain.Components.AuthorisationPolicies;
     using Probel.NDoctor.Domain.Components.Interceptors;
-    using Probel.NDoctor.Domain.Components.Properties;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     using StructureMap;
@@ -171,9 +171,10 @@ namespace Probel.NDoctor.Domain.Components
             catch (Exception ex)
             {
                 this.Logger.Warn("An error occured when instanciating a component", ex);
-                throw new ComponentException(Messages.Ex_ComponentException, ex);
+                throw new ComponentException(ex);
             }
         }
+
         /// <summary>
         /// Gets hte configured instance that will be used for unit tests for the specified interface.
         /// This instance will have only one dynamic proxy of type <see cref="TransactionInterceptor"/>.

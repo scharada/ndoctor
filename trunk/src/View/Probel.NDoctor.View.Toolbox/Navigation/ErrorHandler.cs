@@ -26,6 +26,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
     using Probel.Helpers.Strings;
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.Components;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Controls;
     using Probel.NDoctor.View.Toolbox.Helpers;
@@ -79,7 +80,14 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
         /// <param name="ex">The exception to log.</param>
         public void Error(Exception ex)
         {
-            this.Error(ex, ex.Message);
+            if (ex is TranslateableException)
+            {
+                this.Error(ex, (ex as TranslateableException).TranslatedMessage);
+            }
+            else
+            {
+                this.Error(ex, ex.Message);
+            }
         }
 
         /// <summary>
@@ -110,7 +118,14 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
         /// <param name="ex">The exception to log.</param>
         public void Fatal(Exception ex)
         {
-            this.Fatal(ex, ex.Message);
+            if (ex is TranslateableException)
+            {
+                this.Fatal(ex, (ex as TranslateableException).TranslatedMessage);
+            }
+            else
+            {
+                this.Fatal(ex, ex.Message);
+            }
         }
 
         /// <summary>
@@ -153,7 +168,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
             //Logs only error, not authorisation errors...
             if (!(ex is AuthorisationException)) { this.Logger.Error(format.FormatWith(args), ex); }
 
-            if (ex is AssertionException) //Any AssertionException highlight a important issue, it FATAL
+            if (ex is AssertionException) //Any AssertionException highlight a important issue, it's FATAL
             {
                 WindowManager.Show<ExceptionViewModel>();
             }

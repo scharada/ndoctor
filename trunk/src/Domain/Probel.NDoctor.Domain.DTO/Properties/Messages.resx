@@ -141,6 +141,10 @@
     <value>Impossible to convert "{0}" into time</value>
     <comment>Impossible to convert "{0}" into time</comment>
   </data>
+  <data name="Ex_AuthorisationException" xml:space="preserve">
+    <value>You are not granted to execute this action</value>
+    <comment>You are not granted to execute this action</comment>
+  </data>
   <data name="Ex_BusinessLogicException" xml:space="preserve">
     <value>Impossible to execute this action. This is a unexpected state that wasn't forseen or it will break business logic rules.</value>
     <comment>Impossible to execute this action. This is a unexpected state that wasn't forseen or it will break business logic rules.</comment>
@@ -148,6 +152,10 @@
   <data name="Ex_ClosedSessionException" xml:space="preserve">
     <value>The session you're using to query the database is closed.</value>
     <comment>The session you're using to query the database is closed.</comment>
+  </data>
+  <data name="Ex_ComponentException" xml:space="preserve">
+    <value>An error occured in the DAL components. See inner exception for details.</value>
+    <comment>An error occured in the DAL components. See inner exception for details.</comment>
   </data>
   <data name="Ex_DalConfigurationException" xml:space="preserve">
     <value>An error occured during the configuration of the database</value>
@@ -180,16 +188,25 @@
     <value>The item you want to create already exist in the database.</value>
     <comment>The item you want to create already exist in the database.</comment>
   </data>
+  <data name="Ex_HasThumbnail" xml:space="preserve">
+    <value>The picture already has a thumbnail</value>
+    <comment>The picture already has a thumbnail</comment>
+  </data>
   <data name="Ex_NotLoadedEntityException" xml:space="preserve">
     <value>The entity you are using is detached  from the database.</value>
     <comment>The entity you are using is detached  from the database.</comment>
+  </data>
+  <data name="Ex_NullItemInListException" xml:space="preserve">
+    <value>A list of the object to save has at least on null element</value>
+    <comment>A list of the object to save has at least on null element</comment>
   </data>
   <data name="Ex_NullSessionFactoryException" xml:space="preserve">
     <value>The nHibernate session factory is not configured.</value>
     <comment>The nHibernate session factory is not configured.</comment>
   </data>
   <data name="Ex_QueryException" xml:space="preserve">
-    <value>An error occured during the execution of a query. {0}</value>
+    <value>An error occured during the execution of a query.</value>
+    <comment>An error occured during the execution of a query.</comment>
   </data>
   <data name="Ex_QueryException_SeveralDefaultUsers" xml:space="preserve">
     <value>More than one default user was found.</value>
@@ -202,6 +219,14 @@
   <data name="Ex_SessionException" xml:space="preserve">
     <value>An error occured in the session</value>
     <comment>An error occured in the session</comment>
+  </data>
+  <data name="Ex_SessionNotOpenedException" xml:space="preserve">
+    <value>The session is not open. Please open it before query the database.</value>
+    <comment>The session is not open. Please open it before query the database.</comment>
+  </data>
+  <data name="Ex_ValidationException" xml:space="preserve">
+    <value>An error occured during the validation of the DTO object.</value>
+    <comment>An error occured during the validation of the DTO object.</comment>
   </data>
   <data name="Gender_Female" xml:space="preserve">
     <value>Female</value>

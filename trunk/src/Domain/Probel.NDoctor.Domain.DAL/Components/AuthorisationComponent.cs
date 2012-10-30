@@ -202,7 +202,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             var superadmin = (from u in this.Session.Query<User>()
                               where u.Id == user.Id
                               select u).FirstOrDefault();
-            if (superadmin == null) { throw new BusinessLogicException(Messages.Ex_NoSuperAdmin); }
+            if (superadmin == null) { throw new BusinessLogicException("The database is in a wrong state: there is no super admin.", Messages.Ex_NoSuperAdmin); }
             return superadmin.IsSuperAdmin;
         }
 

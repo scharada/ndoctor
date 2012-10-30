@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,37 +16,41 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#endregion Header
+
 namespace Probel.NDoctor.Domain.DTO.Exceptions
 {
     using System;
-    using System.Runtime.Serialization;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
     using Probel.NDoctor.Domain.DTO.Properties;
 
-    /// <summary>
-    /// The exception that is thrown when the session used to query the database when session is closed
-    /// </summary>
     [Serializable]
-    public class DalSessionException : TranslateableException
+    public class ThumbnailSetException : BusinessLogicException
     {
         #region Constructors
 
-        public DalSessionException()
-            : this("An error occured in the session", Messages.Ex_SessionException)
+        public ThumbnailSetException()
+            : this("The picture already has a thumbnail", Messages.Ex_HasThumbnail)
         {
         }
 
-        public DalSessionException(string message, string translated)
+        public ThumbnailSetException(string message, string translated)
             : base(message, translated)
         {
         }
 
-        public DalSessionException(string message, string translated, Exception inner)
+        public ThumbnailSetException(string message, string translated, Exception inner)
             : base(message, translated, inner)
         {
         }
 
-        protected DalSessionException(SerializationInfo info, StreamingContext context)
+        protected ThumbnailSetException(
+            System.Runtime.Serialization.SerializationInfo info,
+            System.Runtime.Serialization.StreamingContext context)
             : base(info, context)
         {
         }

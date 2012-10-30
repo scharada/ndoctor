@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -16,31 +14,34 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-#endregion Header
-
-namespace Probel.NDoctor.Domain.Components
+namespace Probel.NDoctor.Domain.DTO.Exceptions
 {
     using System;
     using System.Reflection;
     using System.Runtime.Serialization;
 
-    using Probel.NDoctor.Domain.Components.Properties;
+    using Probel.NDoctor.Domain.DTO.Properties;
 
     /// <summary>
     /// Whenever the execution of a method is not granted, this exception is thrown
     /// </summary>
     [Serializable]
-    public class AuthorisationException : ApplicationException
+    public class AuthorisationException : TranslateableException
     {
+        #region Fields
+
+        private const string ErrorMsg = "You are not granted to execute this action";
+
+        #endregion Fields
+
         #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthorisationException"/> class.
         /// </summary>
         /// <param name="message">The message.</param>
-        public AuthorisationException(string message)
-            : base(message)
+        public AuthorisationException(string message, string translated)
+            : base(message, translated)
         {
         }
 
@@ -49,12 +50,12 @@ namespace Probel.NDoctor.Domain.Components
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="inner">The inner.</param>
-        public AuthorisationException(string message, Exception inner)
-            : base(message, inner)
+        public AuthorisationException(string message, string translated, Exception inner)
+            : base(message, translated, inner)
         {
         }
 
-        internal AuthorisationException(Type type, MethodInfo methodInfo)
+        public AuthorisationException(Type type, MethodInfo methodInfo)
             : this()
         {
             this.TargetType = type;
@@ -75,7 +76,7 @@ namespace Probel.NDoctor.Domain.Components
         /// Initializes a new instance of the <see cref="AuthorisationException"/> class.
         /// </summary>
         private AuthorisationException()
-            : this(Messages.Ex_AuthorisationException)
+            : this(ErrorMsg, Messages.Ex_AuthorisationException)
         {
         }
 
@@ -85,12 +86,14 @@ namespace Probel.NDoctor.Domain.Components
 
         public MethodInfo CalledMethod
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public Type TargetType
         {
-            get; private set;
+            get;
+            private set;
         }
 
         #endregion Properties
