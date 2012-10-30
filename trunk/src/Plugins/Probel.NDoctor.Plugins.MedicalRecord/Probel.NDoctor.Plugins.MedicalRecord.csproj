@@ -141,7 +141,7 @@
     <EmbeddedResource Include="Editor\MacroHighlighting.xshd" />
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Probel.NDoctor.Plugins.MedicalRecord.dll.config">
+    <None Include="Plugin.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Probel.NDoctor.Plugins.MedicalRecord.licenseheader" />

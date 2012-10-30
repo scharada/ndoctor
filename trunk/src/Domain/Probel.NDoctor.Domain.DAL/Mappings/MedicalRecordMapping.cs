@@ -37,7 +37,6 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
         /// </summary>
         public static void Configure()
         {
-
             Mapper.CreateMap<Patient, MedicalRecordCabinetDto>()
                 .ConvertUsing(src => CustomConversion(src));
         }

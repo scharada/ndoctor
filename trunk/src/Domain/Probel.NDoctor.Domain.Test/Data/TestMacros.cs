@@ -26,6 +26,8 @@ namespace Probel.NDoctor.Domain.Test.Data
     [TestFixture]
     public class TestMacros
     {
+        #region Methods
+
         [Test]
         public void CreateMacro_ReplaceFullName_MarkupsReplacedWithValue()
         {
@@ -41,6 +43,16 @@ namespace Probel.NDoctor.Domain.Test.Data
             var result = builder.Resolve(macro);
 
             Assert.AreEqual(expected, result);
+        }
+
+        [Test]
+        public void CreateMacro_UsingUnknownMarkups_ExceptionIsThrown()
+        {
+            var macro = "Hello $unknown$ $LASTNAME$";
+            var patient = new Patient() { FirstName = "ROBERT", LastName = "DUPONT" };
+
+            var builder = new MacroBuilder(patient);
+            Assert.Throws<InvalidMacroException>(() => builder.Resolve(macro));
         }
 
         [Test]
@@ -68,14 +80,6 @@ namespace Probel.NDoctor.Domain.Test.Data
             Assert.AreEqual(7, result.Length);
         }
 
-        [Test]
-        public void CreateMacro_UsingUnknownMarkups_ExceptionIsThrown()
-        {
-            var macro = "Hello $unknown$ $LASTNAME$";
-            var patient = new Patient() { FirstName = "ROBERT", LastName = "DUPONT" };
-
-            var builder = new MacroBuilder(patient);
-            Assert.Throws<InvalidMacroException>(() => builder.Resolve(macro));
-        }
+        #endregion Methods
     }
 }
