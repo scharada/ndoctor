@@ -69,5 +69,10 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return new Selector(this.Session).GetUserByLastName(criteria);
 
         }
+
+        public IList<RoleDto> GetRoleByName(string description)
+        {
+            return new Selector(this.Session).GetRoleByName(description);
+        }
     }
 }

@@ -614,5 +614,14 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
                             select u).ToList();
             return Mapper.Map<IList<User>, IList<LightUserDto>>(entities);
         }
+
+        internal IList<RoleDto> GetRoleByName(string name)
+        {
+            name = name.ToLower();
+            var result = (from r in this.Session.Query<Role>()
+                          where r.Name.ToLower() == name
+                          select r).ToList();
+            return Mapper.Map<IList<Role>, IList<RoleDto>>(result);
+        }
     }
 }

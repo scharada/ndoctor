@@ -26,9 +26,20 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using NHibernate;
 
     public class PrescriptionComponent : BaseComponent, IPrescriptionComponent
     {
+        public PrescriptionComponent()
+            : base()
+        {
+
+        }
+        public PrescriptionComponent(ISession session)
+            : base(session)
+        {
+
+        }
         #region Methods
 
         /// <summary>

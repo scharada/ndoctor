@@ -63,6 +63,9 @@
     <Reference Include="Probel.Mvvm">
       <HintPath>..\..\packages\Probel.Mvvm.1.0.1.1\lib\Probel.Mvvm.dll</HintPath>
     </Reference>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
@@ -78,6 +81,7 @@
     </Compile>
     <Compile Include="Authorisation\TestAuthorisation.cs" />
     <Compile Include="Components\AdministrationComponentTest.cs" />
+    <Compile Include="Components\AuthorisationComponentTest.cs" />
     <Compile Include="Components\BaseComponentTest.cs" />
     <Compile Include="Components\FamilyComponentTest.cs" />
     <Compile Include="Components\UserSessionComponentTest.cs" />

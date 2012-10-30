@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using NHibernate;
 
     /// <summary>
     /// Provides all the features to query the database about the 
@@ -35,6 +36,16 @@ namespace Probel.NDoctor.Domain.DAL.Components
     /// </summary>
     public class PathologyComponent : BaseComponent, IPathologyComponent
     {
+        public PathologyComponent(ISession session)
+            : base(session)
+        {
+
+        }
+        public PathologyComponent()
+            : base()
+        {
+
+        }
         #region Methods
 
         /// <summary>

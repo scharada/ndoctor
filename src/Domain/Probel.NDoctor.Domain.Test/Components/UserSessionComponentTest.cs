@@ -16,13 +16,8 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NUnit.Framework;
 using Probel.NDoctor.Domain.DAL.Components;
-using Probel.NDoctor.Domain.DTO.Objects;
-using AutoMapper;
 
 namespace Probel.NDoctor.Domain.Test.Components
 {

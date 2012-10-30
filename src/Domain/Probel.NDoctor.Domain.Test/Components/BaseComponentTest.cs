@@ -34,6 +34,8 @@ namespace Probel.NDoctor.Domain.Test.Components
 
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Components;
+    using StructureMap;
+    using Probel.NDoctor.Domain.DTO.Components;
 
     public abstract class BaseComponentTest<T>
         where T : BaseComponent
@@ -74,8 +76,8 @@ namespace Probel.NDoctor.Domain.Test.Components
             new NUnitConfigWrapper(new DalConfigurator())
                 .ConfigureInMemory(out session)
                 .InjectDefaultData(session);
-
             this.Session = session;
+
             this.ComponentUnderTest = ctor(this.Session);
             this.HelperComponent = new UnitTestComponent(this.Session);
             this.InjectTestData();
@@ -93,5 +95,19 @@ namespace Probel.NDoctor.Domain.Test.Components
         }
 
         #endregion Methods
+
+        protected void WrapInTransaction(Action actionUnderTransaction)
+        {
+            using (var tx = this.Session.BeginTransaction())
+            {
+                actionUnderTransaction();
+                tx.Commit();
+            }
+        }
+
+        protected string RandomString
+        {
+            get { return Guid.NewGuid().ToString(); }
+        }
     }
 }

@@ -78,7 +78,7 @@ namespace Probel.NDoctor.Domain.Components
 
                 //Debug plugin
                 x.For<ISqlComponent>().Add<SqlComponent>();
-                x.SelectConstructor<SqlComponent>(()=>new SqlComponent());;
+                x.SelectConstructor<SqlComponent>(() => new SqlComponent()); ;
 
                 //Family manager plugin
                 x.For<IFamilyComponent>().Add<FamilyComponent>();
@@ -150,6 +150,11 @@ namespace Probel.NDoctor.Domain.Components
             AuthorisationInterceptor.User = user;
         }
 
+        /// <summary>
+        /// Gets hte configured instance for the specified interface.
+        /// </summary>
+        /// <typeparam name="T">The IoC Container will search for an instance of that specified interface</typeparam>
+        /// <returns>An instance that imlements the specified interface</returns>
         public T GetInstance<T>()
             where T : class
         {
@@ -169,7 +174,13 @@ namespace Probel.NDoctor.Domain.Components
                 throw new ComponentException(Messages.Ex_ComponentException, ex);
             }
         }
-
+        /// <summary>
+        /// Gets hte configured instance that will be used for unit tests for the specified interface.
+        /// This instance will have only one dynamic proxy of type <see cref="TransactionInterceptor"/>.
+        /// Using this 
+        /// </summary>
+        /// <typeparam name="T">The IoC Container will search for an instance of that specified interface</typeparam>
+        /// <returns>An instance that imlements the specified interface</returns>
         private IInterceptor[] GetInterceptors()
         {
             var interceptors = new List<IInterceptor>();
