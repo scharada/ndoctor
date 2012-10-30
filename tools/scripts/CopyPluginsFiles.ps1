@@ -67,7 +67,7 @@ $currentPlugin = "MedicalRecord"
 CopyPluginFiles($currentPlugin)
 $dir = GetDirectory($currentPlugin)                       
 copy "$root\Probel.NDoctor.Plugins.MedicalRecord\bin\$releaseMode\ICSharpCode.AvalonEdit.dll" "$dir"                      
-copy "$root\Probel.NDoctor.Plugins.MedicalRecord\bin\$releaseMode\Probel.NDoctor.Plugins.MedicalRecord.dll.config" "$dir" 
+copy "$root\Probel.NDoctor.Plugins.MedicalRecord\bin\$releaseMode\Plugin.config" "$dir" 
 copy "$root\Probel.NDoctor.Plugins.MedicalRecord\bin\$releaseMode\Nini.dll" "$dir"                                        
 
 $currentPlugin = "FamilyManager"
