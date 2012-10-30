@@ -313,13 +313,11 @@
         public long Create(RoleDto item)
         {
             var entity = Mapper.Map<RoleDto, Role>(item);
-            using (var tx = this.Session.Transaction)
-            {
-                tx.Begin();
-                entity = this.Session.Merge(entity);
-                this.Session.Save(entity);
-                tx.Commit();
-            }
+
+            entity = this.Session.Merge(entity);
+            this.Session.Save(entity);
+            this.Session.Flush();
+
             Mapper.Map<Role, RoleDto>(entity, item);
 
             item.Id = entity.Id;
