@@ -36,6 +36,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Navigation;
+    using AutoMapper;
 
     internal class WorkbenchViewModel : BaseViewModel
     {
@@ -308,5 +309,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         }
 
         #endregion Methods
+
+        internal void SelectedFreshRecord(TitledMedicalRecordDto record)
+        {
+            var freshRecord = this.Component.GetMedicalRecordById(record.Id);
+            this.SelectedRecord = Mapper.Map<MedicalRecordDto, TitledMedicalRecordDto>(freshRecord);
+        }
     }
 }

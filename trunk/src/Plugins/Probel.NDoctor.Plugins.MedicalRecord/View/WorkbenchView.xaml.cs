@@ -50,7 +50,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
 
                 if (this.treeView.SelectedItem is TitledMedicalRecordDto)
                 {
-                    viewModel.SelectedRecord = this.treeView.SelectedItem as TitledMedicalRecordDto;
+                    viewModel.SelectedFreshRecord(this.treeView.SelectedItem as TitledMedicalRecordDto);
                     viewModel.SelectedRecord.Clean();
 
                     this.richTextBox.IsEnabled = viewModel.IsGranted;
