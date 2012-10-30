@@ -36,7 +36,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
         private const int DefaultSize = 16;
         private const string PLUGIN_PATH = @"Plugins\MedicalRecord";
 
-        private readonly IConfigSource Source = new XmlConfigSource(Path.Combine(PLUGIN_PATH, "Probel.NDoctor.Plugins.MedicalRecord.dll.config"));
+        private readonly IConfigSource Source = new XmlConfigSource(Path.Combine(PLUGIN_PATH, "Plugin.config"));
 
         private static string CONFIG = "TextEditor";
 

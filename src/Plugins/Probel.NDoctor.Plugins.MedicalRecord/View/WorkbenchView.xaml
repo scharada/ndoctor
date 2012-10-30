@@ -69,7 +69,7 @@
                 <!-- If trigger on PropertyChanged, control is very slow with long text -->
                 <ctrl:RichTextBox x:Name="richTextBox"
                                   DockPanel.Dock="Right"
-                                  Text="{Binding Path=SelectedRecord.Rtf, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                                  Text="{Binding Path=SelectedRecord.Rtf}"
                                   behaviour:ControlBehaviour.LostFocus="{Binding SaveCommand}"
                                   behaviour:ControlBehaviour.GotFocus="{Binding RefreshDefaultFontsCommand}"
                                   FontSize="{Binding DefaultFontSize}"

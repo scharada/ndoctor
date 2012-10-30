@@ -35,17 +35,6 @@ namespace Probel.NDoctor.Domain.Test.Mapping
     [TestFixture]
     public class MappingTest
     {
-        #region Constructors
-
-        [SetUp]
-        public void Setup()
-        {
-            Mapper.Reset();
-            AutoMapperMapping.Configure();
-        }
-
-        #endregion Constructors
-
         #region Properties
 
         public Tag RandomTag
@@ -86,6 +75,37 @@ namespace Probel.NDoctor.Domain.Test.Mapping
         #region Methods
 
         [Test]
+        public void ListMapEntityToDto_MapDrugToDrugDto_MappingOccured()
+        {
+            var temp = new List<Drug>();
+            var tag = this.RandomTag;
+            var length = 10;
+
+            for (int i = 0; i < length; i++)
+            {
+                temp.Add(new Drug()
+                {
+                    Name = this.RandomString,
+                    Notes = this.RandomString,
+                    Tag = tag,
+                });
+            }
+
+            var record = temp.ToArray();
+            var mapped = Mapper.Map<Drug[], DrugDto[]>(record);
+
+            for (int i = 0; i < length; i++)
+            {
+                Assert.AreEqual(record[i].Id, mapped[i].Id);
+                Assert.AreEqual(record[i].Notes, mapped[i].Notes);
+                Assert.AreEqual(record[i].Name, mapped[i].Name);
+                Assert.AreEqual(record[i].Tag.Category, mapped[i].Tag.Category);
+                Assert.AreEqual(record[i].Tag.Name, mapped[i].Tag.Name);
+                Assert.AreEqual(record[i].Tag.Notes, mapped[i].Tag.Notes);
+            }
+        }
+
+        [Test]
         public void ListMapEntityToDto_MapMedicalRecordToMedicalRecordDto_MappingOccured()
         {
             var temp = new List<MedicalRecord>();
@@ -114,37 +134,6 @@ namespace Probel.NDoctor.Domain.Test.Mapping
                 Assert.AreEqual(record[i].LastUpdate, mapped[i].LastUpdate);
                 Assert.AreEqual(record[i].Name, mapped[i].Name);
                 Assert.AreEqual(record[i].Rtf, mapped[i].Rtf);
-                Assert.AreEqual(record[i].Tag.Category, mapped[i].Tag.Category);
-                Assert.AreEqual(record[i].Tag.Name, mapped[i].Tag.Name);
-                Assert.AreEqual(record[i].Tag.Notes, mapped[i].Tag.Notes);
-            }
-        }
-
-        [Test]
-        public void ListMapEntityToDto_MapDrugToDrugDto_MappingOccured()
-        {
-            var temp = new List<Drug>();
-            var tag = this.RandomTag;
-            var length = 10;
-
-            for (int i = 0; i < length; i++)
-            {
-                temp.Add(new Drug()
-                {
-                    Name = this.RandomString,
-                    Notes = this.RandomString,
-                    Tag = tag,
-                });
-            }
-
-            var record = temp.ToArray();
-            var mapped = Mapper.Map<Drug[], DrugDto[]>(record);
-
-            for (int i = 0; i < length; i++)
-            {
-                Assert.AreEqual(record[i].Id, mapped[i].Id);
-                Assert.AreEqual(record[i].Notes, mapped[i].Notes);
-                Assert.AreEqual(record[i].Name, mapped[i].Name);
                 Assert.AreEqual(record[i].Tag.Category, mapped[i].Tag.Category);
                 Assert.AreEqual(record[i].Tag.Name, mapped[i].Tag.Name);
                 Assert.AreEqual(record[i].Tag.Notes, mapped[i].Tag.Notes);
@@ -269,6 +258,13 @@ namespace Probel.NDoctor.Domain.Test.Mapping
             Assert.AreEqual(tag.Category, dto.Category);
             Assert.Null(dto.Notes);
             Assert.AreEqual(tag.Notes, dto.Notes);
+        }
+
+        [SetUp]
+        public void Setup()
+        {
+            Mapper.Reset();
+            AutoMapperMapping.Configure();
         }
 
         #endregion Methods
