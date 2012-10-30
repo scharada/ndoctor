@@ -138,7 +138,8 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         private bool CanNavigate()
         {
-            return PluginContext.Host.SelectedPatient != null;
+            return PluginContext.Host.SelectedPatient != null
+                && PluginContext.DoorKeeper.IsUserGranted(To.Read);
         }
 
         private bool IsGrantedToWrite()

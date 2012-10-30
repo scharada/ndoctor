@@ -191,12 +191,14 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
 
         private bool CanNavigateToAddPrescription()
         {
-            return this.lastNavigation != LastNavigation.AddPrescription && PluginContext.DoorKeeper.IsUserGranted(To.Write);
+            return this.lastNavigation != LastNavigation.AddPrescription
+                && PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         private bool CanNavigateWorkbench()
         {
-            return PluginContext.Host.SelectedPatient != null;
+            return PluginContext.Host.SelectedPatient != null
+                && PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         private bool CanSave()
