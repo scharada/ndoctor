@@ -81,7 +81,7 @@
     <echo message="Test file: ${code-dir}\src\Probel.NDoctor.nunit /result=${output-dir}\nunit-output.xml /config=Release"/>
     <echo message="Run the unit tests..."/>
     <exec program="nunit-console-x86.exe"
-		  commandline="${code-dir}\src\Probel.NDoctor.nunit /result=${output-dir}\nunit-output.xml"/>
+		  commandline="${code-dir}\src\Probel.NDoctor.nunit /result=${output-dir}\nunit-output.xml /config=Release"/>
   </target>
 
   <!-- Create a release package with the binaries -->
