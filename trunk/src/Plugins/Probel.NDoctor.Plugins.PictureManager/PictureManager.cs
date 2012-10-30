@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.Domain.DTO;
 
     [Export(typeof(IPlugin))]
     public class PictureManager : StaticViewPlugin<WorkbenchView>
@@ -105,7 +106,8 @@ namespace Probel.NDoctor.Plugins.PictureManager
 
         private bool CanNavigate()
         {
-            return PluginContext.Host.SelectedPatient != null;
+            return PluginContext.Host.SelectedPatient != null
+                && PluginContext.DoorKeeper.IsUserGranted(To.Read);
         }
 
         private ICommand GetAddCategoryCommand()

@@ -168,7 +168,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
         private bool CanNavigateWorkbench()
         {
-            return PluginContext.Host.SelectedPatient != null;
+            return PluginContext.Host.SelectedPatient != null
+                && PluginContext.DoorKeeper.IsUserGranted(To.Read);
         }
 
         private void ConfigureAutoMapper()

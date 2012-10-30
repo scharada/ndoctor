@@ -146,7 +146,8 @@ namespace Probel.NDoctor.Plugins.FamilyManager
 
         private bool CanNavigate()
         {
-            return PluginContext.Host.SelectedPatient != null;
+            return PluginContext.Host.SelectedPatient != null
+                && PluginContext.DoorKeeper.IsUserGranted(To.Read);
         }
 
         private void ConfigureAutoMapper()
