@@ -48,21 +48,23 @@
                     </ContextMenu>
                 </ListView.ContextMenu>
             </ListView>
-            <Border Style="{StaticResource BorderStyle}"
-                    DockPanel.Dock="Top">
-                <DockPanel LastChildFill="True">
+
+                <DockPanel LastChildFill="True" DockPanel.Dock="Top">
 
                     <Button DockPanel.Dock="Right"
-                        Content="{Binding Source={x:Static t:WorkbenchText.BtnAdd}}"
-                        Command="{Binding AddCommand}"/>
+                            Margin="4"
+                            Content="{Binding Source={x:Static t:WorkbenchText.BtnAdd}}"
+                            Command="{Binding AddCommand}"/>
 
-                    <Label Content="{Binding Source={x:Static t:WorkbenchText.AvailableTasks}}"/>
+                    <Label Margin="4"
+                           Content="{Binding Source={x:Static t:WorkbenchText.AvailableTasks}}"/>
 
                     <ComboBox ItemsSource="{Binding AvailableTasks}"
-                          SelectedItem="{Binding ComboBoxTask}"
-                          DisplayMemberPath="Name"/>
+                              Margin="4"
+                              SelectedItem="{Binding ComboBoxTask}"
+                              DisplayMemberPath="Name"/>
                 </DockPanel>
-            </Border>
+
 
             <GroupBox Header="{Binding Source={x:Static t:WorkbenchText.SelectedRole}}"
                     DockPanel.Dock="Top">
@@ -73,7 +75,8 @@
             </GroupBox>            
 
             <GroupBox Header="{Binding Source={x:Static t:WorkbenchText.AssignedTasks}}">
-                <DockPanel LastChildFill="True">
+                <DockPanel LastChildFill="True"
+                           Margin="4">
                     <GroupBox Header="{Binding Source={x:Static t:WorkbenchText.SelectedTask}}"
                     DockPanel.Dock="Bottom">
                         <ScrollViewer Height="40">

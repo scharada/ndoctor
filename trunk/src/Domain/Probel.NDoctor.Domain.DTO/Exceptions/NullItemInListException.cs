@@ -38,7 +38,7 @@ namespace Probel.NDoctor.Domain.DTO.Exceptions
         #region Constructors
 
         public NullItemInListException()
-            : this("A list of the object to save has at least on null element", Messages.Ex_NullItemInListException)
+            : this("A list of the object to save has at least one null element", Messages.Ex_NullItemInListException)
         {
         }
 

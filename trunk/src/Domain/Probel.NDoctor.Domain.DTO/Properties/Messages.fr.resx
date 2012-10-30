@@ -195,7 +195,7 @@
   </data>
   <data name="Ex_NullItemInListException" xml:space="preserve">
     <value>Un élément d'une des liste de l'objet à sauver contient au moins un élément null</value>
-    <comment>A list of the object to save has at least on null element</comment>
+    <comment>A list of the object to save has at least one null element</comment>
   </data>
   <data name="Ex_NullSessionFactoryException" xml:space="preserve">
     <value>La factory de session nHibernate n'est pas configurée.</value>

@@ -159,6 +159,11 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// <param name="role">The role.</param>
         public void Update(RoleDto role)
         {
+            foreach (var task in role.Tasks)
+            {
+                if (task == null) { throw new NullItemInListException(); }
+            }
+
             var entity = Mapper.Map<RoleDto, Role>(role);
             entity = this.Session.Merge(entity);
             this.Session.Update(entity);

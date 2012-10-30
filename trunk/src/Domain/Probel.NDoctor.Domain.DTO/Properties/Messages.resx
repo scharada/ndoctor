@@ -197,8 +197,8 @@
     <comment>The entity you are using is detached  from the database.</comment>
   </data>
   <data name="Ex_NullItemInListException" xml:space="preserve">
-    <value>A list of the object to save has at least on null element</value>
-    <comment>A list of the object to save has at least on null element</comment>
+    <value>A list of the object to save has at least one null element</value>
+    <comment>A list of the object to save has at least one null element</comment>
   </data>
   <data name="Ex_NullSessionFactoryException" xml:space="preserve">
     <value>The nHibernate session factory is not configured.</value>
