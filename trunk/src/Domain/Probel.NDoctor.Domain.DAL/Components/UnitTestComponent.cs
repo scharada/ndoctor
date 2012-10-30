@@ -28,6 +28,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.DAL.Entities;
+    using AutoMapper;
 
     public class UnitTestComponent : BaseComponent
     {
@@ -73,5 +75,10 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         #endregion Methods
+
+        public IList<LightPatientDto> GetAllPatientsLight()
+        {
+            return new Selector(this.Session).GetAllPatientsLight();
+        }
     }
 }
