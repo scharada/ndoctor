@@ -63,6 +63,7 @@ CopyPluginFiles("BmiRecord");
 CopyPluginFiles("PathologyManager");
 CopyPluginFiles("PatientData");
 CopyPluginFiles("DbConvert");
+CopyPluginFiles("FamilyManager");
 
 $currentPlugin = "MedicalRecord"
 CopyPluginFiles($currentPlugin)
@@ -70,11 +71,6 @@ $dir = GetDirectory($currentPlugin)
 copy "$root\Probel.NDoctor.Plugins.MedicalRecord\bin\$releaseMode\ICSharpCode.AvalonEdit.dll" "$dir"                      
 copy "$root\Probel.NDoctor.Plugins.MedicalRecord\bin\$releaseMode\Plugin.config" "$dir" 
 copy "$root\Probel.NDoctor.Plugins.MedicalRecord\bin\$releaseMode\Nini.dll" "$dir"                                        
-
-$currentPlugin = "FamilyManager"
-CopyPluginFiles($currentPlugin)
-$dir = GetDirectory($currentPlugin)
-copy "$root\Probel.NDoctor.Plugins.MedicalRecord\bin\$releaseMode\Probel.Helpers.WPF.dll" "$dir" 
 
 ""
 "Script executed"
