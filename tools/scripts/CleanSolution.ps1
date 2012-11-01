@@ -19,7 +19,7 @@ foreach($item in $items)
 {
 	$name = $item.Name.ToLower()
 	
-	if($item.Attributes -eq "Directory" -and ($name -eq "bin" -or $name -eq "obj" -or $name -eq "release" -or $name -eq "debug"))
+	if($item.Attributes -eq "Directory" -and ($name -eq "bin" -or $name -eq "obj" -or $name -eq "release" -or $name -eq "debug" -or $name -eq "packages"))
 	{
 			Write-Host "Deleting"$item.FullName -ForegroundColor Green
 			Remove-Item $item.FullName -Force -Recurse
