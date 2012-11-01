@@ -25,7 +25,7 @@ Here's the list of tools used to develop nDoctor
  * [http://www.nunit.org/index.php nUnit]
  * [https://www.virtualbox.org/ Virtual Box]
 == Scripting ==
- * [`Not used anymore`] [http://www.python.org/download/ Python]
+ * [http://www.python.org/download/ Python] [`Not used anymore`]
  * [http://powergui.org/index.jspa PowerGui]
 
 = API =
@@ -52,7 +52,7 @@ Here's the list of tools used to develop nDoctor
 
 = Review tools =
  * [http://www.mono-project.com/Gendarme Gendarme]
- * [http://msdn.microsoft.com/en-us/library/bb429476%28v=vs.80%29.aspx FxCop] <Not used anymore>
+ * [http://msdn.microsoft.com/en-us/library/bb429476%28v=vs.80%29.aspx FxCop] [`Not used anymore`]
  * [http://archive.msdn.microsoft.com/sourceanalysis StyleCop]
  * Visual Studio's code metrics
  * Visual Studio's code analysis
