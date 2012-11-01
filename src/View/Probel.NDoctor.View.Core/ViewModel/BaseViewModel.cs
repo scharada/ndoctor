@@ -25,13 +25,14 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.Helpers.Strings;
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Plugins.Exceptions;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Navigation;
 
-    public abstract class BaseViewModel : ObservableObject
+    public abstract class BaseViewModel : RequestCloseViewModel
     {
         #region Fields
 

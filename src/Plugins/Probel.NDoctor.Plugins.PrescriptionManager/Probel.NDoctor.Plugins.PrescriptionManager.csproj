@@ -45,8 +45,9 @@
       <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
-    <Reference Include="Probel.Mvvm">
-      <HintPath>..\..\packages\Probel.Mvvm.1.0.1.1\lib\Probel.Mvvm.dll</HintPath>
+    <Reference Include="Probel.Mvvm, Version=1.2.0.67, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Probel.Mvvm.1.2.0.67\lib\Probel.Mvvm.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />

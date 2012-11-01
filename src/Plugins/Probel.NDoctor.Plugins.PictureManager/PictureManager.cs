@@ -23,13 +23,15 @@ namespace Probel.NDoctor.Plugins.PictureManager
 
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Plugins.PictureManager.Helpers;
     using Probel.NDoctor.Plugins.PictureManager.Properties;
     using Probel.NDoctor.Plugins.PictureManager.View;
+    using Probel.NDoctor.Plugins.PictureManager.ViewModel;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.Domain.DTO;
 
     [Export(typeof(IPlugin))]
     public class PictureManager : StaticViewPlugin<WorkbenchView>
@@ -39,6 +41,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
         private const string imgUri = @"\Probel.NDoctor.Plugins.PictureManager;component/Images\{0}.png";
 
         private readonly ViewService ViewService = new ViewService();
+        private readonly WindowManager WindowManager = new WindowManager();
 
         private ICommand navigateCommand;
 
@@ -72,6 +75,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
             {
                 this.BuildButtons();
                 this.BuildContextMenu();
+                this.ConfigureWindowManager();
             });
         }
 
@@ -90,10 +94,8 @@ namespace Probel.NDoctor.Plugins.PictureManager
         {
             var addPicButton = new RibbonButtonData(Messages.Title_BtnAddPic, imgUri.FormatWith("Add"), this.GetAddPicCommand());
             var addTypeButton = new RibbonButtonData(Messages.Title_AddPicType, imgUri.FormatWith("Add"), this.GetAddCategoryCommand());
-            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.GetSaveCommand());
             var cgroup = new RibbonGroupData(Messages.Menu_Actions);
 
-            cgroup.ButtonDataCollection.Add(saveButton);
             cgroup.ButtonDataCollection.Add(addPicButton);
             cgroup.ButtonDataCollection.Add(addTypeButton);
 
@@ -110,6 +112,17 @@ namespace Probel.NDoctor.Plugins.PictureManager
                 && PluginContext.DoorKeeper.IsUserGranted(To.Read);
         }
 
+        private void ConfigureWindowManager()
+        {
+            this.WindowManager
+                .Bind<AddPictureView, AddPictureViewModel>()
+                .OnShow(vm => vm.RefreshCommand.TryExecute())
+                .OnClosing(vm =>
+                {
+                    if (vm.HasAddPicture) { this.ViewService.GetViewModel(base.View).ForceRefresh(); }
+                });
+        }
+
         private ICommand GetAddCategoryCommand()
         {
             ICommand cmd = null;
@@ -121,13 +134,6 @@ namespace Probel.NDoctor.Plugins.PictureManager
         {
             ICommand cmd = null;
             PluginContext.Host.Invoke(() => cmd = this.ViewService.GetViewModel(this.View).AddPictureCommand);
-            return cmd;
-        }
-
-        private ICommand GetSaveCommand()
-        {
-            ICommand cmd = null;
-            PluginContext.Host.Invoke(() => cmd = this.ViewService.GetViewModel(this.View).SaveCommand);
             return cmd;
         }
 

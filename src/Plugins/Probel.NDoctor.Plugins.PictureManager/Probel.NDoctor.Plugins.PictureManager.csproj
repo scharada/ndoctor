@@ -44,8 +44,9 @@
     <Reference Include="log4net">
       <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Probel.Mvvm">
-      <HintPath>..\..\packages\Probel.Mvvm.1.0.1.1\lib\Probel.Mvvm.dll</HintPath>
+    <Reference Include="Probel.Mvvm, Version=1.2.0.67, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Probel.Mvvm.1.2.0.67\lib\Probel.Mvvm.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -87,9 +88,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Translations\AddPictureText.cs" />
     <Compile Include="Translations\WorkbenchText.cs" />
+    <Compile Include="ViewModel\AddPictureViewModel.cs" />
     <Compile Include="ViewModel\AddTagViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
+    <Compile Include="View\AddPictureView.xaml.cs">
+      <DependentUpon>AddPictureView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddTagView.xaml.cs">
       <DependentUpon>AddTagView.xaml</DependentUpon>
     </Compile>
@@ -144,6 +150,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\AddPictureView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\AddTagView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

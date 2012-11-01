@@ -24,14 +24,11 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows.Input;
-    using System.Windows.Threading;
-
-    using Microsoft.Win32;
 
     using Probel.Helpers.Assertion;
-    using Probel.Helpers.Conversions;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.MemoryComponents;
@@ -39,7 +36,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.NDoctor.Plugins.PictureManager.Helpers;
     using Probel.NDoctor.Plugins.PictureManager.Properties;
     using Probel.NDoctor.Plugins.PictureManager.View;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
@@ -51,14 +47,13 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
         private readonly TagDto ALL_PICTURE_TAG = new TagDto(TagCategory.Picture) { Name = Messages.Msg_AllTags };
         private readonly ICommand selectPictureCommand;
+        private readonly WindowManager WindowManager = new WindowManager();
 
         private IPictureComponent component;
-        private bool creatingNewPicture = false;
         private TagDto filterTag;
         private bool isBusy;
         private bool isFilterDisabled = false;
         private bool isInformationExpanded;
-        private bool isRefreshing = false;
         private bool isRefreshMuted = false;
         private LightPictureMemoryComponent memoryComponent = LightPictureMemoryComponent.Empty;
         private PictureDto selectedPicture;
@@ -88,7 +83,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
             this.AddPictureCommand = new RelayCommand(() => AddPicture(), () => this.CanAddSomething());
             this.AddTypeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPicType, new AddTagView()), () => this.CanAddSomething());
-            this.SaveCommand = new RelayCommand(() => Save(), () => CanSave());
             this.FilterPictureCommand = new RelayCommand(() => this.Filter());
             this.selectPictureCommand = new RelayCommand(() => this.SelectPicture(), () => this.CanSelectPicture());
         }
@@ -162,12 +156,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             private set;
         }
 
-        public ICommand SaveCommand
-        {
-            get;
-            private set;
-        }
-
         public PictureDto SelectedPicture
         {
             get { return this.selectedPicture; }
@@ -177,7 +165,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
                 // Select manually the tag of the selected picture
                 SelectTagOfPicture();
-                this.creatingNewPicture = false;
 
                 this.OnPropertyChanged(() => SelectedPicture);
                 this.OnPropertyChanged(() => TitleCreationDate);
@@ -251,24 +238,10 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
         #region Methods
 
-        public void Refresh()
+        public void ForceRefresh()
         {
-            if (this.isRefreshing)
-            {
-                this.Logger.Debug("Already refreshing...");
-                return;
-            }
-
-            /* TODO: fix this issue
-             * This is an issue that I have to check if the refresh is muted. It means that multiple refresh
-             * are triggered. That's not the expected behaviour. Maybe check in the event NewUserConnected
-             * and NewPatientConnected*/
-            if (this.isRefreshMuted) { return; } //If there's no change since last time, don't reload the data.
-
             try
             {
-                this.isRefreshing = true;
-
                 this.SelectedPicture = new PictureDto();
                 var tags = this.component.GetTags(TagCategory.Picture);
 
@@ -277,7 +250,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 this.Tags.Refill(tags);
                 this.InsertJokerTag(tags);
                 this.FilterTags.Refill(tags);
-                this.creatingNewPicture = false;
                 this.SelectFirstTag();
 
                 this.isFilterDisabled = false;
@@ -286,43 +258,28 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 this.isRefreshMuted = true; //We've just refresh, don't need to refresh next time.
             }
             catch (Exception ex) { this.Handle.Error(ex, Messages.Msg_ErrorFailToRefreshPicture); }
-            finally { this.isRefreshing = false; }
+        }
+
+        public void Refresh()
+        {
+            /* TODO: fix this issue
+             * This is an issue that I have to check if the refresh is muted. It means that multiple refresh
+             * are triggered. That's not the expected behaviour. Maybe check in the event NewUserConnected
+             * and NewPatientConnected*/
+            if (this.isRefreshMuted) { return; } //If there's no change since last time, don't reload the data.
+
+            this.ForceRefresh();
         }
 
         private void AddPicture()
         {
-            var dialog = new OpenFileDialog()
-            {
-                Multiselect = false,
-                Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF",
-            };
-            var clickedOK = dialog.ShowDialog();
-            if (clickedOK.HasValue && clickedOK.Value)
-            {
-                this.IsInformationExpanded = true;
-                var bytes = Converter.FileToByteArray(dialog.FileName);
-                this.SelectedPicture = new PictureDto();
-                this.SelectedPicture.Bitmap = bytes;
-                this.creatingNewPicture = true;
-                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PictureAdded);
-                this.creatingNewPicture = true;
-            }
-            else return;
+            this.WindowManager.ShowDialog<AddPictureViewModel>();
         }
 
         private bool CanAddSomething()
         {
             return PluginContext.Host.SelectedPatient != null
                 && PluginContext.DoorKeeper.IsUserGranted(To.Write);
-        }
-
-        private bool CanSave()
-        {
-            return (this.SelectedPicture != null
-                  && this.selectedPicture.Bitmap != null
-                  && this.SelectedPicture.Bitmap.Length > 0
-                  && this.SelectedTag != null)
-                  && PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         private bool CanSelectPicture()
@@ -438,62 +395,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             {
                 tags.Insert(0, ALL_PICTURE_TAG);
             }
-        }
-
-        private void Save()
-        {
-            try
-            {
-                this.IsBusy = true;
-                this.SelectedPicture.LastUpdate = DateTime.Now;
-                this.SelectedPicture.Tag = this.SelectedTag;
-
-                Assert.IsNotNull(this.SelectedTag, "SelectedTag");
-
-                var context = TaskScheduler.FromCurrentSynchronizationContext();
-                var args = new TaskArgs()
-                {
-                    SelectedPatient = PluginContext.Host.SelectedPatient,
-                    SelectedPicture = this.SelectedPicture,
-                    CreatingNewPicture = this.creatingNewPicture,
-                };
-
-                Task.Factory
-                    .StartNew<TaskArgs>(e => SaveAsync(e as TaskArgs), args)
-                    .ContinueWith(e => this.SaveCallback(e), context);
-            }
-            catch (Exception ex)
-            {
-                this.Handle.Error(ex, Messages.Msg_ErOnSavePicture);
-            }
-        }
-
-        private TaskArgs SaveAsync(TaskArgs context)
-        {
-            if (context.CreatingNewPicture)
-            {
-                this.component.Create(context.SelectedPicture, context.SelectedPatient);
-                context.CreatingNewPicture = false;
-            }
-            else { this.component.Update(context.SelectedPicture); }
-            return context;
-        }
-
-        private void SaveCallback(Task<TaskArgs> e)
-        {
-            this.ExecuteIfTaskIsNotFaulted(e, () =>
-            {
-                var context = e.Result;
-                this.isRefreshMuted = false;
-                this.Refresh();
-
-                this.creatingNewPicture = context.CreatingNewPicture;
-                this.IsBusy = false;
-
-                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PictureUpdated);
-                this.SelectedPicture = new PictureDto();
-                this.IsInformationExpanded = false;
-            });
         }
 
         private void SelectFirstTag()
