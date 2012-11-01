@@ -1,0 +1,93 @@
+﻿<Window x:Class="Probel.NDoctor.Plugins.PictureManager.View.AddPictureView"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:txt="clr-namespace:Probel.NDoctor.Plugins.PictureManager.Translations"
+        xmlns:t="clr-namespace:Probel.NDoctor.View.Toolbox.Translations;assembly=Probel.NDoctor.View.Toolbox"
+        
+        Title="AddPictureView" Height="508" Width="593" ShowInTaskbar="False"
+        WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Topmost="True">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Close"
+                        Executed="CloseCommandHandler"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Button Content="{Binding Source={x:Static Member=txt:AddPictureText.BtnSelect}}" 
+                Height="23" 
+                HorizontalAlignment="Left" 
+                Margin="12,12,0,0"
+                VerticalAlignment="Top"
+                Width="177"
+                Command="{Binding SelectFileCommand}"/>
+        
+        <TextBox Height="23" 
+                 HorizontalAlignment="Right" 
+                 Margin="0,12,7,0" 
+                 VerticalAlignment="Top"
+                 Width="369" 
+                 Text="{Binding SelectedFile}"/>
+        
+        <GroupBox Header="{Binding Source={x:Static Member=txt:AddPictureText.GroupBox}}" 
+                  Height="394" 
+                  HorizontalAlignment="Left"
+                  Margin="12,41,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="552">
+            
+            <Grid>
+                <Label Content="{Binding Source={x:Static Member=txt:AddPictureText.LblCategory}}"
+                       Height="28"
+                       HorizontalAlignment="Left"
+                       Margin="6,6,0,0"
+                       VerticalAlignment="Top" 
+                       Width="136" />
+                
+                <ComboBox Height="23"
+                          Margin="0,6,6,0" 
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Right"
+                          Width="382"
+                          ItemsSource="{Binding Categories}"
+                          SelectedItem="{Binding SelectedCategory}"
+                          DisplayMemberPath="Name"/>
+                
+                <TextBox Height="101" 
+                         HorizontalAlignment="Left"
+                         Margin="10,263,0,0" 
+                         VerticalAlignment="Top"
+                         Width="524" 
+                         Text="{Binding Notes}"/>
+                
+                <Label Content="{Binding Source={x:Static Member=txt:AddPictureText.LblNotes}}" 
+                       Height="28" 
+                       HorizontalAlignment="Left" 
+                       Margin="6,229,0,0"
+                       VerticalAlignment="Top" 
+                       Width="524" />
+                
+                <Image Height="188" 
+                       HorizontalAlignment="Center"
+                       Margin="6,40,6,143" 
+                       Stretch="Uniform" 
+                       VerticalAlignment="Center" 
+                       Width="528" 
+                       Source="{Binding SelectedFile}"/>
+            </Grid>
+        </GroupBox>
+        <Button Content="{Binding Source={x:Static Member=t:BaseText.Add}}"
+                Height="23"
+                HorizontalAlignment="Left"
+                Margin="408,446,0,0" 
+                VerticalAlignment="Top" 
+                Width="75"
+                Command="{Binding SavePictureCommand}"/>
+        
+        <Button Content="{Binding Source={x:Static Member=t:BaseText.Cancel}}" 
+                Height="23"
+                HorizontalAlignment="Left" 
+                Margin="489,446,0,0"
+                VerticalAlignment="Top" 
+                Width="75"
+                Command="ApplicationCommands.Close" />
+    </Grid>
+</Window>

@@ -36,8 +36,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
-    <Reference Include="Probel.Mvvm">
-      <HintPath>..\..\packages\Probel.Mvvm.1.0.1.1\lib\Probel.Mvvm.dll</HintPath>
+    <Reference Include="Probel.Mvvm, Version=1.2.0.67, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Probel.Mvvm.1.2.0.67\lib\Probel.Mvvm.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

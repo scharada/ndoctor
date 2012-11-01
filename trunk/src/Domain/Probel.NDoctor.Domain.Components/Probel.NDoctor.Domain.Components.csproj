@@ -47,8 +47,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\NHibernate.3.3.2.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="Probel.Mvvm">
-      <HintPath>..\..\packages\Probel.Mvvm.1.0.1.1\lib\Probel.Mvvm.dll</HintPath>
+    <Reference Include="Probel.Mvvm, Version=1.2.0.67, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Probel.Mvvm.1.2.0.67\lib\Probel.Mvvm.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

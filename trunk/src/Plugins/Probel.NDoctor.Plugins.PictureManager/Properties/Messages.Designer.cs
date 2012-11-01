@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Plugins.PictureManager.Properties
-{
-
-
+namespace Probel.NDoctor.Plugins.PictureManager.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -61,11 +61,47 @@ namespace Probel.NDoctor.Plugins.PictureManager.Properties
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a picture.
+        /// </summary>
+        internal static string Btn_ChoosePicture {
+            get {
+                return ResourceManager.GetString("Btn_ChoosePicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Picture to add.
+        /// </summary>
+        internal static string Gb_Picture {
+            get {
+                return ResourceManager.GetString("Gb_Picture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Information.
         /// </summary>
         internal static string Header_Information {
             get {
                 return ResourceManager.GetString("Header_Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        internal static string Lbl_Category {
+            get {
+                return ResourceManager.GetString("Lbl_Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes:.
+        /// </summary>
+        internal static string Lbl_Notes {
+            get {
+                return ResourceManager.GetString("Lbl_Notes", resourceCulture);
             }
         }
         
@@ -246,6 +282,15 @@ namespace Probel.NDoctor.Plugins.PictureManager.Properties
         internal static string Title_Search {
             get {
                 return ResourceManager.GetString("Title_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a picture.
+        /// </summary>
+        internal static string Title_SelectPicture {
+            get {
+                return ResourceManager.GetString("Title_SelectPicture", resourceCulture);
             }
         }
     }
