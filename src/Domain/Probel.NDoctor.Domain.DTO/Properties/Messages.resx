@@ -157,6 +157,10 @@
     <value>An error occured in the DAL components. See inner exception for details.</value>
     <comment>An error occured in the DAL components. See inner exception for details.</comment>
   </data>
+  <data name="Ex_ConfigurationException" xml:space="preserve">
+    <value>You already configured the DAL</value>
+    <comment>You already configured the DAL</comment>
+  </data>
   <data name="Ex_DalConfigurationException" xml:space="preserve">
     <value>An error occured during the configuration of the database</value>
   </data>

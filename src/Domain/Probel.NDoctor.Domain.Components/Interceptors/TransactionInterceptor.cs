@@ -39,7 +39,8 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
 
         public bool WasTransactional
         {
-            get; private set;
+            get;
+            private set;
         }
 
         #endregion Properties

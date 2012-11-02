@@ -153,6 +153,10 @@
     <value>Une erreur est intervenue au niveau des composants du DAL. Vérifier dans la sous exception pour plus de détails.</value>
     <comment>An error occured in the DAL components. See inner exception for details.</comment>
   </data>
+  <data name="Ex_ConfigurationException" xml:space="preserve">
+    <value>La couche d'accès aux données à déjà été configurée</value>
+    <comment>You already configured the DAL</comment>
+  </data>
   <data name="Ex_DalConfigurationException" xml:space="preserve">
     <value>Une erreur est apparue lors de la création de la base de données</value>
     <comment>An error occured during the configuration of the database</comment>

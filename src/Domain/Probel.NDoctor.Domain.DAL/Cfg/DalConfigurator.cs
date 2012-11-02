@@ -64,11 +64,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
             }
         }
 
-        public bool IsConfigured
-        {
-            get;
-            private set;
-        }
+        public static bool isConfigured;
 
         private static NHibernate.Cfg.Configuration Configuration
         {
@@ -95,6 +91,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
         public DalConfigurator ConfigureUsingFile(string path, bool create)
         {
+            if (isConfigured) { throw new ConfigurationException(); }
             if (!File.Exists(path)) create = true;
 
             if (create)
@@ -143,12 +140,12 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
         {
             sessionFactory = factory;
         }
-
         /// <summary>
         /// Configures the DAL.
         /// </summary>
         internal DalConfigurator ConfigureInMemory(out ISession session)
         {
+            if (isConfigured) { throw new ConfigurationException(); }
             this.setupConfiguration = (configuration) =>
             {
                 // this NHibernate tool takes a configuration (with mapping info in)
@@ -162,7 +159,8 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                 = SQLiteConfiguration
                     .Standard
                     .InMemory()
-                    .ShowSql();
+                    .ShowSql()
+                    .Raw("hibernate.generate_statistics", "true");
 
             this.Configure();
             session = DalConfigurator.SessionFactory.OpenSession();
@@ -197,8 +195,14 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
             sessionFactory = this.CreateSessionFactory();
 
             this.ConfigureAutoMapper();
-            this.IsConfigured = true;
+            isConfigured = true;
         }
+
+        /// <summary>
+        /// Reset the configuration flag to allow another configuration.
+        /// This should be used only during unit testing.
+        /// </summary>
+        internal void ResetConfiguration() { isConfigured = false; }
 
         private AutoPersistenceModel CreateModel()
         {

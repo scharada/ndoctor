@@ -30,6 +30,7 @@ namespace Probel.NDoctor.Domain.Test.Components
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.Test.Helpers;
+    using Probel.Helpers.Benchmarking;
 
     /// <summary>
     /// 

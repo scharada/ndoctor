@@ -34,6 +34,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.DAL.Cfg;
 
     public class FamilyComponent : BaseComponent, IFamilyComponent
     {
@@ -90,6 +91,26 @@ namespace Probel.NDoctor.Domain.DAL.Components
             }
 
             this.Session.Update(eChild);
+
+            //if (patient.Id == child.Id) { throw new BusinessLogicException("You try to add a patient as his/her child or parent", Messages.Ex_CirularLinkFamily); }
+            //var session = DalConfigurator.SessionFactory.OpenStatelessSession(this.Session.Connection);
+
+            //var ePatient = session.Get<Patient>(patient.Id);
+            //var eChild = session.Get<Patient>(child.Id);
+
+            //switch (ePatient.Gender)
+            //{
+            //    case Gender.Male:
+            //        eChild.Father = ePatient;
+            //        break;
+            //    case Gender.Female:
+            //        eChild.Mother = ePatient;
+            //        break;
+            //    default:
+            //        Assert.FailOnEnumeration(eChild.Gender);
+            //        break;
+            //}
+            //session.Update(eChild);
         }
 
         /// <summary>
