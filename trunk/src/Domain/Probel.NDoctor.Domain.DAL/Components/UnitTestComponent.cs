@@ -23,13 +23,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
 {
     using System.Collections.Generic;
 
+    using AutoMapper;
+
     using NHibernate;
 
+    using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Domain.DAL.Entities;
-    using AutoMapper;
 
     public class UnitTestComponent : BaseComponent
     {
@@ -47,6 +48,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public long Create(LightPatientDto patient)
         {
             return new Creator(this.Session).Create(patient);
+        }
+
+        public IList<LightPatientDto> GetAllPatientsLight()
+        {
+            return new Selector(this.Session).GetAllPatientsLight();
         }
 
         public IList<LightUserDto> GetAllUsers()
@@ -75,10 +81,5 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         #endregion Methods
-
-        public IList<LightPatientDto> GetAllPatientsLight()
-        {
-            return new Selector(this.Session).GetAllPatientsLight();
-        }
     }
 }

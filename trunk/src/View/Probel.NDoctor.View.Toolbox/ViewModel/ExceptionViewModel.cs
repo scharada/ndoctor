@@ -45,6 +45,7 @@ namespace Probel.NDoctor.View.Toolbox.ViewModel
         private readonly ICommand reportIssueCommand;
 
         private bool canRecordIssue = true;
+        private Exception exception;
         private bool isClipboardChecked = true;
         private string logStack;
 
@@ -67,6 +68,16 @@ namespace Probel.NDoctor.View.Toolbox.ViewModel
         public ICommand CloseCommand
         {
             get { return this.closeCommand; }
+        }
+
+        public Exception Exception
+        {
+            get { return this.exception; }
+            set
+            {
+                this.exception = value;
+                this.OnPropertyChanged(() => Exception);
+            }
         }
 
         public bool IsClipboardChecked

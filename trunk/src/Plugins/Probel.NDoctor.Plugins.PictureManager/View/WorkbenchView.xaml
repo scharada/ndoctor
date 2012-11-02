@@ -15,7 +15,7 @@
       
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-	Title="Workbench">
+    Title="Workbench">
     <Page.Resources>
         <conv:ByteArrayToImageConverter x:Key="bytesToImage"/>
         <conv:NullToVisibilityConverter x:Key="nullToVisibility"/>
@@ -77,16 +77,15 @@
                     <ColumnDefinition Width="215"/>
                 </Grid.ColumnDefinitions>
                 <DockPanel Grid.Column="2">
-                    <DockPanel>
-
-                        <ComboBox DockPanel.Dock="Top"
+                    <ComboBox Margin="4"
+                                  DockPanel.Dock="Top"
                                   DisplayMemberPath="Name"
                                   SelectedValuePath="Name"
                                   SelectedItem="{Binding Path=FilterTag}"
                                   ItemsSource="{Binding Path=FilterTags}"
                                   h:SelectorBehaviour.SelectionChanged="{Binding FilterPictureCommand}"/>
 
-                        <DataGrid DockPanel.Dock="Bottom"
+                    <DataGrid DockPanel.Dock="Bottom"
                                   ItemsSource="{Binding Pictures}"
                                   SelectedItem="{Binding SelectedThumbnail, Mode=OneWayToSource}"
                                   h:SelectorBehaviour.SelectionChanged="{Binding SelectPictureCommand}"
@@ -100,83 +99,103 @@
                                   HorizontalContentAlignment="Center" 
                                   VerticalContentAlignment="Center" 
                                   ColumnWidth="180">
-                            <DataGrid.Columns>
-                                <DataGridTemplateColumn Header="Thumbnail">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="6">
-                                                <!-- Drop Shadow -->
-                                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="4" Background="#44000000">
-                                                    <Border.RenderTransform>
-                                                        <TranslateTransform X="5" Y="5" />
-                                                    </Border.RenderTransform>
-                                                    <Border.BitmapEffect>
-                                                        <BlurBitmapEffect Radius="8" />
-                                                    </Border.BitmapEffect>
-                                                </Border>
-                                                <!-- Image Template -->
-                                                <Border Padding="4" Background="White" BorderBrush="#22000000" BorderThickness="1">
-                                                    <StackPanel Orientation="Vertical">
-                                                        <Image Source="{Binding ThumbnailBitmap, Converter={StaticResource bytesToImage},UpdateSourceTrigger=PropertyChanged}"/>
-                                                        <Label Content="{Binding LastUpdate}">
-                                                            <Label.ToolTip>
-                                                                Only JPeg images with a stored thumbnail will display a thumbnail during preview.
-                                                            </Label.ToolTip>
-                                                        </Label>
-                                                    </StackPanel>
-                                                </Border>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </DockPanel>
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Thumbnail">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="6">
+                                            <!-- Drop Shadow -->
+                                            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="4" Background="#44000000">
+                                                <Border.RenderTransform>
+                                                    <TranslateTransform X="5" Y="5" />
+                                                </Border.RenderTransform>
+                                                <Border.BitmapEffect>
+                                                    <BlurBitmapEffect Radius="8" />
+                                                </Border.BitmapEffect>
+                                            </Border>
+                                            <!-- Image Template -->
+                                            <Border Padding="4" Background="White" BorderBrush="#22000000" BorderThickness="1">
+                                                <StackPanel Orientation="Vertical">
+                                                    <Image Source="{Binding ThumbnailBitmap, Converter={StaticResource bytesToImage},UpdateSourceTrigger=PropertyChanged}"/>
+                                                    <Label Content="{Binding LastUpdate}">
+                                                        <Label.ToolTip>
+                                                            Only JPeg images with a stored thumbnail will display a thumbnail during preview.
+                                                        </Label.ToolTip>
+                                                    </Label>
+                                                </StackPanel>
+                                            </Border>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </DockPanel>
                 <GridSplitter Width="8"/>
                 <DockPanel>
-                    <StackPanel DockPanel.Dock="Bottom"
-                        Orientation="Horizontal">
-
-                        <Border Style="{StaticResource StatusBorder}">
-                            <TextBlock Grid.Row="0"
-                                       Grid.Column="1"   
-                                       VerticalAlignment="Center" 
-                                       HorizontalAlignment="Center"
-                                       Text="{Binding TitleCreationDate}"/>
-                        </Border>
-                        <Border Style="{StaticResource StatusBorder}">
-                            <TextBlock Grid.Row="0"
-                                       Grid.Column="2" 
-                                       VerticalAlignment="Center" 
-                                       HorizontalAlignment="Center"
-                                       Text="{Binding TitleLastUpdate}"/>
-                        </Border>
-                        <Border Style="{StaticResource StatusBorder}">
-                            <DockPanel LastChildFill="True">
-                                <Label Content="{Binding Source={x:Static Member=text:WorkbenchText.TitleCategory}}"/>
-                                <ComboBox Grid.Column="0"
-                                          DisplayMemberPath="Name"
-                                          SelectedValuePath="Name"
-                                          SelectedItem="{Binding Path=SelectedTag}"
-                                          SelectedIndex="0"
-                                          ItemsSource="{Binding Path=Tags, UpdateSourceTrigger=PropertyChanged}"/>
-                            </DockPanel>
-                        </Border>
-
-                    </StackPanel>
                     <Expander Visibility="{Binding SelectedPicture.Notes,UpdateSourceTrigger=PropertyChanged}"
                               DockPanel.Dock="Bottom"
                               ExpandDirection="Up"
                               IsExpanded="{Binding Path=IsInformationExpanded}"
                               Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderInformation}}">
+                        <DockPanel>
+                            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Button Margin="4" Content="Edit" Command="{Binding EditCommand}"/>
+                                <Button Margin="4" Content="Save" Command="{Binding UpdateCommand}" IsEnabled="{Binding IsEditing}"/>
+                            </StackPanel>
 
-                        <ScrollViewer Height="100">
-                            <TextBox Grid.Row="1" Grid.ColumnSpan="3"                              
-                                     Text="{Binding Path=SelectedPicture.Notes, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" 
-                                     AcceptsReturn="True" 
-                                     AcceptsTab="True"/>
-                        </ScrollViewer>
+                            <DockPanel DockPanel.Dock="top"
+                                        LastChildFill="True">
+
+                                <TextBlock Margin="4"
+                                           DockPanel.Dock="Left"
+                                           Width="200"  
+                                           VerticalAlignment="Center" 
+                                           HorizontalAlignment="Center"
+                                           Text="{Binding TitleCreationDate}"  />
+
+                                <TextBlock Margin="4" 
+                                           DockPanel.Dock="Left"
+                                           Width="200"
+                                           VerticalAlignment="Center" 
+                                           HorizontalAlignment="Center"
+                                           Text="{Binding TitleLastUpdate}"
+                                           IsEnabled="{Binding IsEditing}"/>
+
+                                <DockPanel Margin="4"  LastChildFill="True"
+                                           DockPanel.Dock="Left">
+                                    <Label Margin="4" Content="{Binding Source={x:Static Member=text:WorkbenchText.TitleCategory}}"/>
+                                    <ComboBox Margin="4"
+                                              DisplayMemberPath="Name"
+                                              SelectedValuePath="Name"
+                                              SelectedItem="{Binding Path=SelectedTag}"
+                                              SelectedIndex="0"
+                                              ItemsSource="{Binding Path=Tags, UpdateSourceTrigger=PropertyChanged}"
+                                              IsEnabled="{Binding IsEditing}">
+                                        <ComboBox.Style>
+                                            <Style>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=IsEnabled}" Value="False">
+                                                        <Setter Property="ComboBox.Focusable" Value="False"/>
+                                                        <Setter Property="ComboBox.IsEnabled" Value="False"/>
+                                                        <Setter Property="ComboBox.IsHitTestVisible" Value="False"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </ComboBox.Style>
+                                    </ComboBox>
+                                </DockPanel>
+
+                            </DockPanel>
+                            <ScrollViewer Height="100" DockPanel.Dock="Bottom">
+                                <TextBox Grid.Row="1" Grid.ColumnSpan="3"                                            
+                                         Text="{Binding Path=SelectedPicture.Notes, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" 
+                                         AcceptsReturn="True" 
+                                         AcceptsTab="True"
+                                         IsEnabled="{Binding IsEditing}"/>
+                            </ScrollViewer>
+
+                        </DockPanel>
                     </Expander>
                     <!-- Image -->
                     <Border DockPanel.Dock="Top"

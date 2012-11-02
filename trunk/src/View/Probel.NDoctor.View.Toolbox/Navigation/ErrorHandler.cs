@@ -41,7 +41,6 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
         #region Fields
 
         private readonly IStatusWriter StatusWriter;
-        private readonly WindowManager WindowManager = new WindowManager();
 
         #endregion Fields
 
@@ -170,7 +169,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
 
             if (ex is AssertionException) //Any AssertionException highlight a important issue, it's FATAL
             {
-                WindowManager.Show<ExceptionViewModel>();
+                ViewService.Manager.Show<ExceptionViewModel>();
             }
             else if (!silent) //Check if the error should be shown in the foreground.
             {
@@ -181,7 +180,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
                 else
                 {
                     MessageBox.Show(format.FormatWith(args), Messages.Title_Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                    //WindowManager.Show<ExceptionViewModel>();
+                    //ViewService.Manager.Show<ExceptionViewModel>();
                 }
             }
             this.WriteErrorInStatus();
@@ -190,7 +189,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
         private void HandleFatal(Exception ex, string format, params object[] args)
         {
             this.Logger.Fatal(format.FormatWith(args), ex);
-            this.WindowManager.ShowDialog<ExceptionViewModel>();
+            ViewService.Manager.ShowDialog<ExceptionViewModel>(vm => vm.Exception = ex);
         }
 
         private void HandleWarning(bool silent, Exception ex, string format, params object[] args)

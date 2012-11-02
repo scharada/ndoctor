@@ -33,11 +33,20 @@
                    VerticalAlignment="Top" 
                    Width="526" 
                    TextWrapping="Wrap"/>
-        
-        <TextBox Height="274" HorizontalAlignment="Left" Margin="12,245,0,0" 
+        <TabControl Height="274" HorizontalAlignment="Left" Margin="12,245,0,0" 
+                    VerticalAlignment="Top" Width="754" >
+            <TabItem Header="Logs">
+                <TextBox Height="274" HorizontalAlignment="Left" Margin="12,245,0,0" 
                  VerticalAlignment="Top" Width="754" Text="{Binding LogStack}" 
-                 VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
-        
+                 VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" />
+            </TabItem>
+            <TabItem Header="Exception">
+                <TextBox Text="{Binding Exception}"
+                           VerticalScrollBarVisibility="Auto" 
+                           HorizontalScrollBarVisibility="Auto" IsReadOnly="True"/>
+            </TabItem>
+        </TabControl>
+
         <Button Content="{Binding Source={x:Static Member=txt:ExceptionViewText.CloseApplication}}"
                 Command="{Binding CloseCommand}"
                 Height="23" HorizontalAlignment="Left" Margin="634,533,0,0" VerticalAlignment="Top" Width="132" />
