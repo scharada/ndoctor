@@ -58,6 +58,7 @@
     <Compile Include="Exceptions\AuthorisationException.cs" />
     <Compile Include="Exceptions\BusinessLogicException.cs" />
     <Compile Include="Exceptions\ComponentException.cs" />
+    <Compile Include="Exceptions\ConfigurationException.cs" />
     <Compile Include="Exceptions\DalSessionException.cs" />
     <Compile Include="Exceptions\DetachedEntityException.cs" />
     <Compile Include="Exceptions\EmptyPasswordException.cs" />

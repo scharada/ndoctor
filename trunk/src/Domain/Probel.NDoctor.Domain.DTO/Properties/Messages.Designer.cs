@@ -151,6 +151,15 @@ namespace Probel.NDoctor.Domain.DTO.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You already configured the DAL.
+        /// </summary>
+        internal static string Ex_ConfigurationException {
+            get {
+                return ResourceManager.GetString("Ex_ConfigurationException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occured during the configuration of the database.
         /// </summary>
         internal static string Ex_DalConfigurationException {

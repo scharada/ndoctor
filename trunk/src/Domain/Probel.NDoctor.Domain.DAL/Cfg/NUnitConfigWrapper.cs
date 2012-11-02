@@ -40,6 +40,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
         public NUnitConfigWrapper(DalConfigurator configurator)
         {
             this.Configurator = configurator;
+            configurator.ResetConfiguration();
         }
 
         #endregion Constructors
