@@ -1,5 +1,8 @@
-﻿using NUnit.Framework;
-/*
+﻿namespace Probel.NDoctor.Domain.Test.Components
+{
+    using NUnit.Framework;
+
+    /*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,19 +17,26 @@
 
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
-*/
-using Probel.NDoctor.Domain.DAL.Components;
-using Probel.NDoctor.Domain.DTO.Objects;
-using Probel.NDoctor.Domain.DTO.Components;
+    */
+    using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Objects;
 
-namespace Probel.NDoctor.Domain.Test.Components
-{
     [TestFixture]
     public class BmiComponentTest : BaseComponentTest<BmiComponent>
     {
-        protected override void _Setup()
+        #region Methods
+
+        [Test]
+        public void CreateBmiEntry_CreateBmiWithNewHeight_DtoIsRefreshedWithNewHeight()
         {
-            this.BuildComponent(session => new BmiComponent(session));
+            var patients = this.HelperComponent.GetAllPatientsLight();
+
+            this.ComponentUnderTest.CreateBmi(new BmiDto() { Height = 199 }, patients[0]);
+
+            var updated = this.HelperComponent.GetPatientsByName(patients[0].LastName, SearchOn.LastName);
+
+            Assert.AreEqual(patients[0].Height, updated[0].Height);
         }
 
         [Test]
@@ -41,16 +51,11 @@ namespace Probel.NDoctor.Domain.Test.Components
             Assert.AreEqual(199, updated[0].Height);
         }
 
-        [Test]
-        public void CreateBmiEntry_CreateBmiWithNewHeight_DtoIsRefreshedWithNewHeight()
+        protected override void _Setup()
         {
-            var patients = this.HelperComponent.GetAllPatientsLight();
-
-            this.ComponentUnderTest.CreateBmi(new BmiDto() { Height = 199 }, patients[0]);
-
-            var updated = this.HelperComponent.GetPatientsByName(patients[0].LastName, SearchOn.LastName);
-
-            Assert.AreEqual(patients[0].Height, updated[0].Height);
+            this.BuildComponent(session => new BmiComponent(session));
         }
+
+        #endregion Methods
     }
 }

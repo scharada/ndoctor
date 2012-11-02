@@ -46,12 +46,14 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         #region Fields
 
         private readonly TagDto ALL_PICTURE_TAG = new TagDto(TagCategory.Picture) { Name = Messages.Msg_AllTags };
+        private readonly ICommand editCommand;
         private readonly ICommand selectPictureCommand;
-        private readonly WindowManager WindowManager = new WindowManager();
+        private readonly ICommand updateCommand;
 
         private IPictureComponent component;
         private TagDto filterTag;
         private bool isBusy;
+        private bool isEditing;
         private bool isFilterDisabled = false;
         private bool isInformationExpanded;
         private bool isRefreshMuted = false;
@@ -83,8 +85,10 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
             this.AddPictureCommand = new RelayCommand(() => AddPicture(), () => this.CanAddSomething());
             this.AddTypeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPicType, new AddTagView()), () => this.CanAddSomething());
-            this.FilterPictureCommand = new RelayCommand(() => this.Filter());
+            this.FilterPictureCommand = new RelayCommand(() => this.Filter(false));
             this.selectPictureCommand = new RelayCommand(() => this.SelectPicture(), () => this.CanSelectPicture());
+            this.editCommand = new RelayCommand(() => this.Edit(), () => this.CanEdit());
+            this.updateCommand = new RelayCommand(() => this.Update(), () => this.CanUpdate());
         }
 
         #endregion Constructors
@@ -106,6 +110,11 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         public string BtnSearch
         {
             get { return Messages.Title_BtnSearch; }
+        }
+
+        public ICommand EditCommand
+        {
+            get { return this.editCommand; }
         }
 
         public ICommand FilterPictureCommand
@@ -137,6 +146,16 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             {
                 this.isBusy = value;
                 this.OnPropertyChanged(() => IsBusy);
+            }
+        }
+
+        public bool IsEditing
+        {
+            get { return this.isEditing; }
+            set
+            {
+                this.isEditing = value;
+                this.OnPropertyChanged(() => IsEditing);
             }
         }
 
@@ -223,7 +242,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             {
                 if (selectedPicture != null)
                 {
-                    return Messages.Title_LastUpdate.FormatWith(this.SelectedPicture.LastUpdate);
+                    return Messages.Title_LastUpdate.FormatWith(this.SelectedPicture.LastUpdate.ToShortDateString());
                 }
                 else return string.Empty;
             }
@@ -232,6 +251,11 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         public string TitleRest
         {
             get { return Messages.Title_Search; }
+        }
+
+        public ICommand UpdateCommand
+        {
+            get { return this.updateCommand; }
         }
 
         #endregion Properties
@@ -254,7 +278,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
                 this.isFilterDisabled = false;
 
-                this.Filter();
+                this.Filter(true);
                 this.isRefreshMuted = true; //We've just refresh, don't need to refresh next time.
             }
             catch (Exception ex) { this.Handle.Error(ex, Messages.Msg_ErrorFailToRefreshPicture); }
@@ -273,7 +297,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
         private void AddPicture()
         {
-            this.WindowManager.ShowDialog<AddPictureViewModel>();
+            ViewService.Manager.ShowDialog<AddPictureViewModel>();
         }
 
         private bool CanAddSomething()
@@ -282,12 +306,28 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 && PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
+        private bool CanEdit()
+        {
+            return !this.IsEditing;
+        }
+
         private bool CanSelectPicture()
         {
             return true;
         }
 
-        private void Filter()
+        private bool CanUpdate()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write)
+                && this.IsEditing;
+        }
+
+        private void Edit()
+        {
+            this.IsEditing = true;
+        }
+
+        private void Filter(bool isForced)
         {
             if (this.isFilterDisabled)
             {
@@ -303,7 +343,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             };
 
             this.IsBusy = true;
-            if (!this.isRefreshMuted)
+            if (!this.isRefreshMuted || isForced)
             {
                 Task.Factory
                     .StartNew<TaskArgs>(e => this.FilterAsync(e as TaskArgs), input as TaskArgs)
@@ -311,8 +351,9 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             }
             else //If nothing has changed, optimise filter doing this in memory
             {
+                var cultureinfo = Thread.CurrentThread.CurrentUICulture;
                 Task.Factory
-                    .StartNew<Tuple<LightPictureDto[], PictureDto>>(() => this.FilterInMemoryAsync())
+                    .StartNew<Tuple<LightPictureDto[], PictureDto>>(() => this.FilterInMemoryAsync(cultureinfo))
                     .ContinueWith(e => this.FilterInMemoryCallback(e), context);
             }
         }
@@ -354,8 +395,9 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             });
         }
 
-        private Tuple<LightPictureDto[], PictureDto> FilterInMemoryAsync()
+        private Tuple<LightPictureDto[], PictureDto> FilterInMemoryAsync(CultureInfo cultureInfo)
         {
+            Thread.CurrentThread.CurrentUICulture = cultureInfo;
             var foundItems = new LightPictureDto[] { };
             var currentPic = new PictureDto();
 
@@ -421,6 +463,27 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             this.SelectedTag = (from t in this.FilterTags
                                 where t.Id == this.SelectedPicture.Tag.Id
                                 select t).FirstOrDefault();
+        }
+
+        private void Update()
+        {
+            this.IsEditing = false;
+            try
+            {
+                this.IsBusy = true;
+                var context = TaskScheduler.FromCurrentSynchronizationContext();
+                Task.Factory.StartNew(e =>
+                {
+                    var currentPic = e as PictureDto;
+                    this.SelectedPicture.Tag = this.selectedTag;
+                    this.component.Update(currentPic);
+                }, this.SelectedPicture)
+                .ContinueWith(e => this.ForceRefresh(), context);
+            }
+            catch (Exception ex)
+            {
+                this.Handle.Error(ex);
+            }
         }
 
         #endregion Methods

@@ -40,8 +40,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.PictureManager;component/Images\{0}.png";
 
-        private readonly ViewService ViewService = new ViewService();
-        private readonly WindowManager WindowManager = new WindowManager();
+        private readonly ViewModelService ViewModelService = new ViewModelService();
 
         private ICommand navigateCommand;
 
@@ -114,26 +113,25 @@ namespace Probel.NDoctor.Plugins.PictureManager
 
         private void ConfigureWindowManager()
         {
-            this.WindowManager
-                .Bind<AddPictureView, AddPictureViewModel>()
-                .OnShow(vm => vm.RefreshCommand.TryExecute())
-                .OnClosing(vm =>
-                {
-                    if (vm.HasAddPicture) { this.ViewService.GetViewModel(base.View).ForceRefresh(); }
-                });
+            ViewService.Configure(e =>
+            {
+                e.Bind<AddPictureView, AddPictureViewModel>()
+                 .OnShow(vm => vm.RefreshCommand.TryExecute())
+                 .OnClosing(vm => this.RefreshWorkbenchView(vm.HasAddPicture));
+            });
         }
 
         private ICommand GetAddCategoryCommand()
         {
             ICommand cmd = null;
-            PluginContext.Host.Invoke(() => cmd = this.ViewService.GetViewModel(this.View).AddTypeCommand);
+            PluginContext.Host.Invoke(() => cmd = this.ViewModelService.GetViewModel(this.View).AddTypeCommand);
             return cmd;
         }
 
         private ICommand GetAddPicCommand()
         {
             ICommand cmd = null;
-            PluginContext.Host.Invoke(() => cmd = this.ViewService.GetViewModel(this.View).AddPictureCommand);
+            PluginContext.Host.Invoke(() => cmd = this.ViewModelService.GetViewModel(this.View).AddPictureCommand);
             return cmd;
         }
 
@@ -143,13 +141,21 @@ namespace Probel.NDoctor.Plugins.PictureManager
             {
                 PluginContext.Host.Navigate(this.View);
 
-                this.ViewService.GetViewModel(this.View).Refresh();
+                this.ViewModelService.GetViewModel(this.View).Refresh();
 
                 this.ShowContextMenu();
             }
             catch (Exception ex)
             {
                 this.Handle.Error(ex, Messages.Msg_FailToLoadMedicalPictures.FormatWith(ex.Message));
+            }
+        }
+
+        private void RefreshWorkbenchView(bool doRefresh)
+        {
+            if (doRefresh)
+            {
+                this.ViewModelService.GetViewModel(base.View).ForceRefresh();
             }
         }
 

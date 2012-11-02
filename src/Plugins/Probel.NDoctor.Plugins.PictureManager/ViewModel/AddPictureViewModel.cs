@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using System.IO;
     using System.Linq;
     using System.Text;
+    using System.Threading.Tasks;
     using System.Windows.Input;
     using System.Windows.Shapes;
 
@@ -52,6 +53,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         private readonly ICommand selectFileCommand;
 
         private bool hasAddPicture = false;
+        private bool isBusy;
         private string notes;
         private TagDto selectedCategory;
         private string selectedFile;
@@ -87,6 +89,16 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             {
                 this.hasAddPicture = value;
                 this.OnPropertyChanged(() => HasAddPicture);
+            }
+        }
+
+        public bool IsBusy
+        {
+            get { return this.isBusy; }
+            set
+            {
+                this.isBusy = value;
+                this.OnPropertyChanged(() => IsBusy);
             }
         }
 
@@ -173,18 +185,37 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         {
             try
             {
-                this.PicToAdd.Tag = this.SelectedCategory;
-                this.PicToAdd.Notes = this.Notes;
+                this.IsBusy = true;
 
-                this.Component.Create(PicToAdd, PluginContext.Host.SelectedPatient);
+                var context = TaskScheduler.FromCurrentSynchronizationContext();
+                var args = new Tuple<PictureDto, LightPatientDto>(this.PicToAdd, PluginContext.Host.SelectedPatient);
+                Task.Factory.StartNew(e => this.SavePictureAsync(e as Tuple<PictureDto, LightPatientDto>), args)
+                            .ContinueWith(e => this.SavePictureCallback(), context);
+            }
+            catch (Exception ex) { this.Handle.Error(ex); }
+        }
+
+        private void SavePictureAsync(Tuple<PictureDto, LightPatientDto> context)
+        {
+            try
+            {
+                context.Item1.Tag = this.SelectedCategory;
+                context.Item1.Notes = this.Notes;
+
+                this.Component.Create(context.Item1, context.Item2);
+            }
+            catch (Exception ex) { this.Handle.Error(ex); }
+        }
+
+        private void SavePictureCallback()
+        {
+            try
+            {
                 this.HasAddPicture = true;
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PictureAdded);
                 this.OnCloseRequested();
             }
-            catch (Exception ex)
-            {
-                this.Handle.Error(ex);
-            }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void SelectFile()

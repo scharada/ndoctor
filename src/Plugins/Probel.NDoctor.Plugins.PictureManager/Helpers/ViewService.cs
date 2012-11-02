@@ -24,7 +24,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.Helpers
     using Probel.NDoctor.Plugins.PictureManager.View;
     using Probel.NDoctor.Plugins.PictureManager.ViewModel;
 
-    internal class ViewService
+    internal class ViewModelService
     {
         #region Methods
 
