@@ -130,7 +130,12 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
         public void InjectDefaultData()
         {
-            this.InjectDefaultData(null);
+            using (var session = SessionFactory.OpenSession())
+            using (var tx = session.BeginTransaction())
+            {
+                this.InjectDefaultData(null);
+                tx.Commit();
+            }
         }
 
         /// <summary>
