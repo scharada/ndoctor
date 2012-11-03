@@ -139,13 +139,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public MedicalRecordCabinetDto GetMedicalRecordCabinet(LightPatientDto patient)
         {
-            var selectedPatient = (from p in this.Session.Query<Patient>()
-                                   where p.Id == patient.Id
-                                   select p).FirstOrDefault();
-
-            if (selectedPatient == null) throw new EntityNotFoundException(typeof(Patient));
-
-            return Mapper.Map<Patient, MedicalRecordCabinetDto>(selectedPatient);
+            return new Selector(this.Session).GetMedicalRecordCabinet(patient);
         }
 
         /// <summary>

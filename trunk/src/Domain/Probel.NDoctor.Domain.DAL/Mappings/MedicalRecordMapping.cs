@@ -22,6 +22,7 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
 
     using AutoMapper;
 
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DTO.Objects;
 
@@ -55,7 +56,7 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
                     Name = tag.Name,
                     Notes = tag.Notes,
                 };
-                folder.Records = BuildRecords(records, tag);
+                folder.Records.Refill(BuildRecords(records, tag));
                 folders.Add(folder);
             }
             return folders.ToArray();
@@ -73,7 +74,7 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
         private static MedicalRecordCabinetDto CustomConversion(Patient src)
         {
             var cabinet = new MedicalRecordCabinetDto();
-            cabinet.Folders = BuildFolders(src.MedicalRecords);
+            cabinet.Folders.Refill(BuildFolders(src.MedicalRecords));
             return cabinet;
         }
 

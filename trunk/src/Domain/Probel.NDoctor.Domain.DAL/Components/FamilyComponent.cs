@@ -28,13 +28,13 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.Helpers.Assertion;
     using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Domain.DAL.Cfg;
 
     public class FamilyComponent : BaseComponent, IFamilyComponent
     {
@@ -187,6 +187,18 @@ namespace Probel.NDoctor.Domain.DAL.Components
         {
             var entity = this.Session.Get<Patient>(patient.Id);
             return this.GetAllFamilyMembers(entity);
+        }
+
+        /// <summary>
+        /// Gets all the medical records of the specified patient. The records are packed into a
+        /// medical record cabinet which contains medical records folders. Each folder contains a list
+        /// of medical records.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <returns></returns>
+        public MedicalRecordCabinetDto GetMedicalRecordCabinet(LightPatientDto patient)
+        {
+            return new Selector(this.Session).GetMedicalRecordCabinet(patient);
         }
 
         /// <summary>

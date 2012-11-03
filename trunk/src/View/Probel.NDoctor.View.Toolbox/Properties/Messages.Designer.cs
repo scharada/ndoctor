@@ -295,6 +295,24 @@ namespace Probel.NDoctor.View.Toolbox.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exception.
+        /// </summary>
+        internal static string Tab_Exception {
+            get {
+                return ResourceManager.GetString("Tab_Exception", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logs.
+        /// </summary>
+        internal static string Tab_Log {
+            get {
+                return ResourceManager.GetString("Tab_Log", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Addresse.
         /// </summary>
         internal static string Title_Address {

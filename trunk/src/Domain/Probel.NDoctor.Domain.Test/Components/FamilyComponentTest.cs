@@ -26,11 +26,11 @@ namespace Probel.NDoctor.Domain.Test.Components
 
     using NUnit.Framework;
 
+    using Probel.Helpers.Benchmarking;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.Test.Helpers;
-    using Probel.Helpers.Benchmarking;
 
     /// <summary>
     /// 
@@ -52,12 +52,12 @@ namespace Probel.NDoctor.Domain.Test.Components
             Assert.Greater(users.Count, 4, "Not enought data to execute the test");
 
             var family = new FamilyDto() { Current = users[0], };
-            family.Fathers.Add(users[1]);
+            family.Father = users[1];
 
             this.ComponentUnderTest.AddNewChild(users[0], users[1]);
 
             var persistedFamily = this.ComponentUnderTest.GetFamily(users[0]);
-            Assert.AreEqual(users[1].Id, family.Fathers[0].Id, "The father has an unexpected ID");
+            Assert.AreEqual(users[1].Id, family.Father.Id, "The father has an unexpected ID");
 
             var family2 = new FamilyDto() { Current = users[0], };
             family.Children.Add(users[2]);
@@ -65,7 +65,7 @@ namespace Probel.NDoctor.Domain.Test.Components
             this.ComponentUnderTest.AddNewChild(users[0], users[2]);
 
             var persistedFamily2 = this.ComponentUnderTest.GetFamily(users[0]);
-            Assert.AreEqual(users[1].Id, family.Fathers[0].Id, "The father has an unexpected ID");
+            Assert.AreEqual(users[1].Id, family.Father.Id, "The father has an unexpected ID");
             Assert.AreEqual(users[2].Id, family.Children[0].Id, "The child has an unexpected ID");
         }
 
@@ -81,21 +81,21 @@ namespace Probel.NDoctor.Domain.Test.Components
             Assert.Greater(users.Count, 4, "Not enought data to execute the test");
 
             var family = new FamilyDto() { Current = users[0], };
-            family.Fathers.Add(users[1]);
+            family.Father=users[1];
 
             this.ComponentUnderTest.AddNewParent(users[1], users[2]);
 
             var persistedFamily = this.ComponentUnderTest.GetFamily(users[0]);
-            Assert.AreEqual(users[1].Id, family.Fathers[0].Id, "The father has an unexpected ID");
+            Assert.AreEqual(users[1].Id, family.Father.Id, "The father has an unexpected ID");
 
             var family2 = new FamilyDto() { Current = users[0], };
-            family.Mothers.Add(users[2]);
+            family.Mother=users[2];
 
             this.ComponentUnderTest.AddNewParent(users[1], users[3]);
 
             var persistedFamily2 = this.ComponentUnderTest.GetFamily(users[0]);
-            Assert.AreEqual(users[1].Id, family.Fathers[0].Id, "The father has an unexpected ID");
-            Assert.AreEqual(users[2].Id, family.Mothers[0].Id, "The child has an unexpected ID");
+            Assert.AreEqual(users[1].Id, family.Father.Id, "The father has an unexpected ID");
+            Assert.AreEqual(users[2].Id, family.Mother.Id, "The child has an unexpected ID");
         }
 
         /// <summary>
@@ -115,12 +115,12 @@ namespace Probel.NDoctor.Domain.Test.Components
             this.ComponentUnderTest.AddNewParent(users[0], father1);
 
             var persistedFamily = this.ComponentUnderTest.GetFamily(users[0]);
-            Assert.AreEqual(father1.Id, persistedFamily.Fathers[0].Id, "The father has an unexpected ID");
+            Assert.AreEqual(father1.Id, persistedFamily.Father.Id, "The father has an unexpected ID");
 
             this.ComponentUnderTest.AddNewParent(users[0], father2);
 
             var persistedFamily2 = this.ComponentUnderTest.GetFamily(users[0]);
-            Assert.AreEqual(father2.Id, persistedFamily2.Fathers[0].Id, "The father has an unexpected ID");
+            Assert.AreEqual(father2.Id, persistedFamily2.Father.Id, "The father has an unexpected ID");
         }
 
         /// <summary>
@@ -140,12 +140,12 @@ namespace Probel.NDoctor.Domain.Test.Components
             this.ComponentUnderTest.AddNewParent(users[0], mother1);
 
             var persistedFamily = this.ComponentUnderTest.GetFamily(users[0]);
-            Assert.AreEqual(mother1.Id, persistedFamily.Mothers[0].Id, "The father has an unexpected ID");
+            Assert.AreEqual(mother1.Id, persistedFamily.Mother.Id, "The father has an unexpected ID");
 
             this.ComponentUnderTest.AddNewParent(users[0], mother2);
 
             var persistedFamily2 = this.ComponentUnderTest.GetFamily(users[0]);
-            Assert.AreEqual(mother2.Id, persistedFamily2.Mothers[0].Id, "The father has an unexpected ID");
+            Assert.AreEqual(mother2.Id, persistedFamily2.Mother.Id, "The father has an unexpected ID");
         }
 
         protected override void _Setup()

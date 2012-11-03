@@ -169,7 +169,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
 
             if (ex is AssertionException) //Any AssertionException highlight a important issue, it's FATAL
             {
-                ViewService.Manager.Show<ExceptionViewModel>();
+                ViewService.Manager.ShowDialog<ExceptionViewModel>(vm => vm.Exception = ex);
             }
             else if (!silent) //Check if the error should be shown in the foreground.
             {

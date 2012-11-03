@@ -18,6 +18,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
 
     [Serializable]
     public class MedicalRecordCabinetDto : BaseDto
@@ -26,7 +27,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 
         public MedicalRecordCabinetDto()
         {
-            this.Folders = new MedicalRecordFolderDto[] { };
+            this.Folders = new ObservableCollection<MedicalRecordFolderDto>();
         }
 
         #endregion Constructors
@@ -34,10 +35,10 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #region Properties
 
         //TODO: this should be readonly
-        public MedicalRecordFolderDto[] Folders
+        public ObservableCollection<MedicalRecordFolderDto> Folders
         {
             get;
-            set;
+            private set;
         }
 
         #endregion Properties

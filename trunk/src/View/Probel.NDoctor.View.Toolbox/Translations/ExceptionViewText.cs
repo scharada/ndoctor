@@ -47,6 +47,16 @@ namespace Probel.NDoctor.View.Toolbox.Translations
             get { return Messages.Title_ErrorMessageHelp2; }
         }
 
+        public static string Exception
+        {
+            get { return Messages.Tab_Exception; }
+        }
+
+        public static string Log
+        {
+            get { return Messages.Tab_Log; }
+        }
+
         public static string OpenPSR
         {
             get { return Messages.Title_OpenPSR; }

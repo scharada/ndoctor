@@ -78,10 +78,7 @@ namespace Probel.Helpers.WPF.Behaviours
 
                     var command = (ICommand)element.GetValue(SelectorBehaviour.SelectionChangedProperty);
 
-                    if (command.CanExecute(e))
-                    {
-                        command.Execute(e);
-                    }
+                    if (command.CanExecute(e.AddedItems)) { command.Execute(e.AddedItems); }
                 };
             }
 

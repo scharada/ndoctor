@@ -384,7 +384,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
         private void FilterCallback(Task<TaskArgs> e)
         {
-            ExecuteIfTaskIsNotFaulted(e, () =>
+            ExecuteIfTaskIsNotFaulted(e as Task, () =>
             {
                 var args = e.Result;
                 this.memoryComponent = args.MemoryComponent ?? this.memoryComponent;

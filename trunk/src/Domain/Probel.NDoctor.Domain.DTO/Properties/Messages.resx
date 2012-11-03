@@ -284,13 +284,29 @@
     <value>Le poids doit être compris entre 1 et 500 Kg</value>
     <comment>The weight should be between 1 and 500 Kg</comment>
   </data>
+  <data name="Msg_Children" xml:space="preserve">
+    <value>Childrens</value>
+    <comment>Childrens</comment>
+  </data>
+  <data name="Msg_Father" xml:space="preserve">
+    <value>Father</value>
+    <comment>Father</comment>
+  </data>
+  <data name="Msg_Mother" xml:space="preserve">
+    <value>Mother</value>
+    <comment>Mother</comment>
+  </data>
+  <data name="Msg_Sibling" xml:space="preserve">
+    <value>Brothers and sisters</value>
+    <comment>Brothers and sisters</comment>
+  </data>
   <data name="TagType_Appointment" xml:space="preserve">
     <value>Appointment</value>
     <comment>Appointment</comment>
   </data>
   <data name="TagType_Child" xml:space="preserve">
-    <value>Son</value>
-    <comment>Son</comment>
+    <value>Child</value>
+    <comment>Child</comment>
   </data>
   <data name="TagType_Doctor" xml:space="preserve">
     <value>Doctor</value>

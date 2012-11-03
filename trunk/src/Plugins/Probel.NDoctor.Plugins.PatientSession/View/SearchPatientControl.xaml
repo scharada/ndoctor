@@ -48,10 +48,10 @@
                         <toolkit:WatermarkTextBox.Watermark>
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
-                               Height="15"
-                               Width="15" />
+                                       Height="15"
+                                       Width="15" />
                                 <TextBlock Text="{Binding Source={x:Static Member=text:WorkbenchText.TitleWatermark}}"
-                                   Margin="4,0,0,0"/>
+                                           Margin="4,0,0,0"/>
                             </StackPanel>
                         </toolkit:WatermarkTextBox.Watermark>
                     </toolkit:WatermarkTextBox>

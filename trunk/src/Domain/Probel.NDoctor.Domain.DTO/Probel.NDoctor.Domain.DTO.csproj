@@ -74,6 +74,7 @@
     <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Exceptions\WrongIdTypeException.cs" />
     <Compile Include="Helpers\ConvertSlotDurationAndTimeSpan.cs" />
+    <Compile Include="Helpers\DtoExtentions.cs" />
     <Compile Include="Helpers\SlotDuration.cs" />
     <Compile Include="Helpers\TimeSlotCollection.cs" />
     <Compile Include="MemoryComponents\LightPictureMemoryComponent.cs" />

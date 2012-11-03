@@ -92,7 +92,7 @@
                 Margin="489,446,0,0"
                 VerticalAlignment="Top" 
                 Width="75"
-                Command="ApplicationCommands.Close" />
+                Command="Close" />
             </Grid>
         </toolkit:BusyIndicator>
     </Grid>
