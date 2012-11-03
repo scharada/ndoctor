@@ -50,11 +50,11 @@ namespace Probel.NDoctor.View.Core
 
         public App()
         {
-#if DEBUG
+            #if DEBUG
             //Hook the console to the application to have logging features
             AllocConsole();
-            HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
-#endif
+            //HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
+            #endif
 
             this.Logger = LogManager.GetLogger(typeof(LogManager));
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Settings.Default.Language);

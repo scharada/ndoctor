@@ -172,10 +172,10 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
         {
             this.ExecuteIfTaskIsNotFaulted(e, () =>
             {
-                var result = e.Result;
-                this.FoundPatients.Refill(result);
+                var foundPatients = e.Result;
+                this.FoundPatients.Refill(foundPatients);
                 PluginContext.Host.SetArrowCursor();
-                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_SearchExecuted.FormatWith(result.Count()));
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_SearchExecuted.FormatWith(foundPatients.Count()));
             });
         }
 

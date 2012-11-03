@@ -211,8 +211,8 @@ namespace Probel.NDoctor.Domain.Test.Mapping
 
             var cabinet = Mapper.Map<Patient, MedicalRecordCabinetDto>(patient);
 
-            Assert.AreEqual(1, cabinet.Folders.Length);
-            Assert.AreEqual(1, cabinet.Folders[0].Records.Length);
+            Assert.AreEqual(1, cabinet.Folders.Count);
+            Assert.AreEqual(1, cabinet.Folders[0].Records.Count);
 
             Assert.AreEqual(patient.MedicalRecords[0].CreationDate, cabinet.Folders[0].Records[0].CreationDate);
             Assert.AreEqual(patient.MedicalRecords[0].LastUpdate, cabinet.Folders[0].Records[0].LastUpdate);

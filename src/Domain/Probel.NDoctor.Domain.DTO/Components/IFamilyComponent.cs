@@ -58,6 +58,15 @@ namespace Probel.NDoctor.Domain.DTO.Components
         FamilyDto GetFamily(LightPatientDto patient);
 
         /// <summary>
+        /// Gets all the medical records of the specified patient. The records are packed into a 
+        /// medical record cabinet which contains medical records folders. Each folder contains a list 
+        /// of medical records.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <returns></returns>
+        MedicalRecordCabinetDto GetMedicalRecordCabinet(LightPatientDto patient);
+
+        /// <summary>
         /// Get all the patient respecting the criteria and the search mode which
         /// aren't in the family of the specified patient
         /// </summary>

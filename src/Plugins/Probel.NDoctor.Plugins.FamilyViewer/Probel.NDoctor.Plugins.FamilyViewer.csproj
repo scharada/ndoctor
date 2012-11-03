@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D8A6B367-B4F0-47E3-81C0-43DD271A2642}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Probel.NDoctor.Plugins.FamilyViewer</RootNamespace>
+    <AssemblyName>Probel.NDoctor.Plugins.FamilyViewer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\packages\AutoMapper.2.1.267\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Probel.Mvvm">
+      <HintPath>..\..\packages\Probel.Mvvm.1.2.0.69\lib\Probel.Mvvm.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit.Extended, Version=1.7.4644.13122, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Extended.Wpf.Toolkit.1.7.0\lib\net40\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Helpers\MvvmHelper.cs" />
+    <Compile Include="PluginManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helpers\Notifyer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Messages.fr.Designer.cs">
+      <DependentUpon>Messages.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Translations\AddRelationText.cs" />
+    <Compile Include="Translations\WorkbenchText.cs" />
+    <Compile Include="ViewModel\AddRelationViewModel.cs" />
+    <Compile Include="ViewModel\WorkbenchViewModel.cs" />
+    <Compile Include="View\AddRelationView.xaml.cs">
+      <DependentUpon>AddRelationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WorkbenchView.xaml.cs">
+      <DependentUpon>WorkbenchView.xaml</DependentUpon>
+    </Compile>
+    <None Include="License.licenseheader" />
+    <AppDesigner Include="Properties\" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\Probel.NDoctor.Domain.Components\Probel.NDoctor.Domain.Components.csproj">
+      <Project>{0B3E735D-EBB5-4191-93DA-4EB1EE173D18}</Project>
+      <Name>Probel.NDoctor.Domain.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Domain\Probel.NDoctor.Domain.DTO\Probel.NDoctor.Domain.DTO.csproj">
+      <Project>{DB2E15D4-BA31-457B-BF73-71208922A0A0}</Project>
+      <Name>Probel.NDoctor.Domain.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Helpers\Probel.Helpers.WPF\Probel.Helpers.WPF.csproj">
+      <Project>{031C3942-6CE3-4999-89A7-D6DAAD781645}</Project>
+      <Name>Probel.Helpers.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Helpers\Probel.Helpers\Probel.Helpers.csproj">
+      <Project>{18F7EA3E-0BF5-430F-9B1D-258BDAB6304E}</Project>
+      <Name>Probel.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\View\Probel.NDoctor.View.Core\Probel.NDoctor.View.Core.csproj">
+      <Project>{D66CE619-F9E3-4875-80D7-4C5710977E00}</Project>
+      <Name>Probel.NDoctor.View.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\View\Probel.NDoctor.View.Plugins\Probel.NDoctor.View.Plugins.csproj">
+      <Project>{DC16499E-E11E-4C24-A949-AEC52E8644A9}</Project>
+      <Name>Probel.NDoctor.View.Plugins</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\View\Probel.NDoctor.View.Toolbox\Probel.NDoctor.View.Toolbox.csproj">
+      <Project>{C77966E1-28BF-4FA1-AEA0-A5A9B2A6B647}</Project>
+      <Name>Probel.NDoctor.View.Toolbox</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="View\AddRelationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WorkbenchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Messages.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Glyph.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Card.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

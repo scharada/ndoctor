@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #region Fields
 
         private bool isImported;
+        private string segretator;
 
         #endregion Fields
 
@@ -84,6 +85,23 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             get
             {
                 return this.Id <= 0;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the list grouper. That's, a text that can be used in ListView
+        /// to group the DTO of a list.
+        /// </summary>
+        /// <value>
+        /// The list grouper.
+        /// </value>
+        public string Segretator
+        {
+            get { return this.segretator; }
+            set
+            {
+                this.segretator = value;
+                this.OnPropertyChanged(() => Segretator);
             }
         }
 

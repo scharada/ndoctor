@@ -11,7 +11,7 @@
         behaviours:WindowBehaviour.Loaded="{Binding LoadedCommand}"
         Title="{Binding Source={x:Static Member=txt:ExceptionViewText.WindowTitle}}"
         
-        Width="800" Height="600" 
+        Width="1024" Height="768" 
         WindowStartupLocation="CenterScreen" ShowInTaskbar="False" ResizeMode="NoResize" Topmost="True">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Close"
@@ -20,40 +20,48 @@
     <Grid>
         <Image Height="227" HorizontalAlignment="Left" Margin="12,12,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="216" Source="/Probel.NDoctor.View.Core;component/Images/about.jpg" />
         <TextBlock Text="{Binding Source={x:Static Member=txt:ExceptionViewText.ErrorMessageHelp}}" 
-               Height="71" 
+               Height="62" 
                HorizontalAlignment="Center" 
                Margin="253,12,36,0" 
                VerticalAlignment="Top" 
                TextWrapping="Wrap" Width="489" />
 
         <TextBlock Text="{Binding Source={x:Static Member=txt:ExceptionViewText.ErrorMessageHelp2}}" 
-                   Height="98" 
+                   Height="86" 
                    HorizontalAlignment="Right" 
-                   Margin="0,68,12,0"
+                   Margin="0,80,12,0"
                    VerticalAlignment="Top" 
-                   Width="526" 
+                   Width="750" 
                    TextWrapping="Wrap"/>
-        <TabControl Height="274" HorizontalAlignment="Left" Margin="12,245,0,0" 
-                    VerticalAlignment="Top" Width="754" >
-            <TabItem Header="Logs">
-                <TextBox Height="274" HorizontalAlignment="Left" Margin="12,245,0,0" 
-                 VerticalAlignment="Top" Width="754" Text="{Binding LogStack}" 
-                 VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" />
+        <TabControl Height="455" HorizontalAlignment="Left" Margin="12,245,0,0" 
+                    VerticalAlignment="Top" Width="978" >
+            <TabItem Header="{Binding Source={x:Static Member=txt:ExceptionViewText.Exception}}">
+                <DockPanel LastChildFill="True">
+                    <GroupBox DockPanel.Dock="Top" Header="Message" Height="97">
+                        <TextBox Text="{Binding Path=Exception.Message, Mode=OneWay}"
+                                 VerticalScrollBarVisibility="Auto" 
+                                 HorizontalScrollBarVisibility="Auto" IsReadOnly="True" />
+                    </GroupBox>
+                    <GroupBox DockPanel.Dock="Top" Header="Stack trace">
+                        <TextBox Text="{Binding Path=Exception.StackTrace, Mode=OneWay}"
+                                 VerticalScrollBarVisibility="Auto" 
+                                 HorizontalScrollBarVisibility="Auto" IsReadOnly="True"/>
+                    </GroupBox>
+                </DockPanel>
             </TabItem>
-            <TabItem Header="Exception">
-                <TextBox Text="{Binding Exception}"
-                           VerticalScrollBarVisibility="Auto" 
-                           HorizontalScrollBarVisibility="Auto" IsReadOnly="True"/>
+            <TabItem Header="{Binding Source={x:Static Member=txt:ExceptionViewText.Log}}">
+                <TextBox Text="{Binding LogStack}" 
+                         VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" />
             </TabItem>
         </TabControl>
 
         <Button Content="{Binding Source={x:Static Member=txt:ExceptionViewText.CloseApplication}}"
                 Command="{Binding CloseCommand}"
-                Height="23" HorizontalAlignment="Left" Margin="634,533,0,0" VerticalAlignment="Top" Width="132" />
+                Height="23" HorizontalAlignment="Left" Margin="870,706,0,0" VerticalAlignment="Top" Width="132" />
 
         <Button Content="{Binding Source={x:Static Member=txt:BaseText.Continue}}"
                 Command="Close"
-                Height="23" HorizontalAlignment="Left" Margin="496,533,0,0" VerticalAlignment="Top" Width="132" />
+                Height="23" HorizontalAlignment="Left" Margin="732,706,0,0" VerticalAlignment="Top" Width="132" />
 
         <Button Content="{Binding Source={x:Static Member=txt:ExceptionViewText.ReportIssue}}"
                 Command="{Binding ReportIssueCommand}" Height="23" HorizontalAlignment="Left" Margin="240,207,0,0" VerticalAlignment="Top" Width="225" />

@@ -73,7 +73,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         /// <typeparam name="T"></typeparam>
         /// <param name="e">The e.</param>
         /// <param name="action">The action.</param>
-        protected void ExecuteIfTaskIsNotFaulted<T>(Task<T> e, Action action)
+        protected void ExecuteIfTaskIsNotFaulted(Task e, Action action)
         {
             if (!e.IsFaulted) { action(); }
             else

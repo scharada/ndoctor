@@ -35,10 +35,8 @@ namespace Probel.NDoctor.Domain.DTO.Validators
 
         private bool HasCircularLinks(FamilyDto item)
         {
-            foreach (var parent in item.Fathers)
-            {
-                if (item.Id == parent.Id) { return true; }
-            }
+            if (item.Father != null && item.Id == item.Father.Id) { return true; }
+            if (item.Mother != null && item.Id == item.Mother.Id) { return true; }
             foreach (var child in item.Children)
             {
                 if (item.Id == child.Id) { return true; }

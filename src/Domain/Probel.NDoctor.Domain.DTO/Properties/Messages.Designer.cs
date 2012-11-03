@@ -439,6 +439,42 @@ namespace Probel.NDoctor.Domain.DTO.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Childrens.
+        /// </summary>
+        internal static string Msg_Children {
+            get {
+                return ResourceManager.GetString("Msg_Children", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Father.
+        /// </summary>
+        internal static string Msg_Father {
+            get {
+                return ResourceManager.GetString("Msg_Father", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mother.
+        /// </summary>
+        internal static string Msg_Mother {
+            get {
+                return ResourceManager.GetString("Msg_Mother", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brothers and sisters.
+        /// </summary>
+        internal static string Msg_Sibling {
+            get {
+                return ResourceManager.GetString("Msg_Sibling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Appointment.
         /// </summary>
         internal static string TagType_Appointment {
@@ -448,7 +484,7 @@ namespace Probel.NDoctor.Domain.DTO.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Son.
+        ///   Looks up a localized string similar to Child.
         /// </summary>
         internal static string TagType_Child {
             get {

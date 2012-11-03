@@ -39,7 +39,10 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
 
         static ErrorHandlerFactory()
         {
-            ViewService.Configure(e => e.Bind<ExceptionView, ExceptionViewModel>());
+            ViewService.Configure(e =>
+            {
+                e.Bind<ExceptionView, ExceptionViewModel>();
+            });
         }
 
         public ErrorHandlerFactory()

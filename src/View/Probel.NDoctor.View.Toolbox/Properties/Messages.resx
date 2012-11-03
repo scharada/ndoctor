@@ -221,6 +221,14 @@
     <value>Save</value>
     <comment>Save</comment>
   </data>
+  <data name="Tab_Exception" xml:space="preserve">
+    <value>Exception</value>
+    <comment>Exception</comment>
+  </data>
+  <data name="Tab_Log" xml:space="preserve">
+    <value>Logs</value>
+    <comment>Logs</comment>
+  </data>
   <data name="Title_Address" xml:space="preserve">
     <value>Addresse</value>
     <comment>Addresse</comment>

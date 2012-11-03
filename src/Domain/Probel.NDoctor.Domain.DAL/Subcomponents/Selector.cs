@@ -318,11 +318,32 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         }
 
         /// <summary>
+        /// Gets all the medical records of the specified patient. The records are packed into a 
+        /// medical record cabinet which contains medical records folders. Each folder contains a list 
+        /// of medical records.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <returns></returns>
+        public MedicalRecordCabinetDto GetMedicalRecordCabinet(LightPatientDto patient)
+        {
+            Assert.IsNotNull(patient, "patient");
+            var selectedPatient = (from p in this.Session.Query<Patient>()
+                                   where p.Id == patient.Id
+                                   select p).FirstOrDefault();
+
+            if (selectedPatient == null) throw new EntityNotFoundException(typeof(Patient));
+
+            return Mapper.Map<Patient, MedicalRecordCabinetDto>(selectedPatient);
+        }
+
+        /// <summary>
         /// Gets all pathologies that contains the specified name.
         /// </summary>
         /// <returns></returns>
         public IList<PathologyDto> GetPathologiesByName(string name)
         {
+            name = name ?? string.Empty;
+
             var pathologies = (from pahology in this.Session.Query<Pathology>()
                                where pahology.Name.Contains(name)
                                select pahology).ToList();

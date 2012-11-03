@@ -194,8 +194,8 @@
     <comment>Restart nDoctor to apply changes!</comment>
   </data>
   <data name="Msg_PleaseWait" xml:space="preserve">
-    <value>Veuillez attendre...</value>
-    <comment>Please wait...</comment>
+    <value>Chargement en cours...</value>
+    <comment>Loading...</comment>
   </data>
   <data name="Msg_ReportIssue" xml:space="preserve">
     <value>Rapporter le problème</value>
@@ -220,6 +220,14 @@
   <data name="Save" xml:space="preserve">
     <value>Sauver</value>
     <comment>Save</comment>
+  </data>
+  <data name="Tab_Exception" xml:space="preserve">
+    <value>Exception</value>
+    <comment>Exception</comment>
+  </data>
+  <data name="Tab_Log" xml:space="preserve">
+    <value>Journal</value>
+    <comment>Logs</comment>
   </data>
   <data name="Title_Address" xml:space="preserve">
     <value>Adresse</value>

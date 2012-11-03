@@ -17,6 +17,7 @@
 namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
+    using System.Collections.ObjectModel;
 
     using Probel.NDoctor.Domain.DTO.Validators;
 
@@ -36,7 +37,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         public MedicalRecordFolderDto()
             : base(new MedicalRecordFolderValidator())
         {
-            this.Records = new MedicalRecordDto[] { };
+            this.Records = new ObservableCollection<MedicalRecordDto>();
         }
 
         #endregion Constructors
@@ -63,14 +64,10 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             }
         }
 
-        public MedicalRecordDto[] Records
+        public ObservableCollection<MedicalRecordDto> Records
         {
-            get { return this.records; }
-            set
-            {
-                this.records = value;
-                this.OnPropertyChanged(() => Records);
-            }
+            get;
+            private set;
         }
 
         #endregion Properties

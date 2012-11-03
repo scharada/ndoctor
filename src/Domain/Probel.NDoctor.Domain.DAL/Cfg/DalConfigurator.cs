@@ -40,6 +40,8 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
     {
         #region Fields
 
+        public static bool isConfigured;
+
         private static readonly ILog Logger = LogManager.GetLogger(typeof(DalConfigurator));
 
         private static ISessionFactory sessionFactory;
@@ -63,8 +65,6 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                 else return sessionFactory;
             }
         }
-
-        public static bool isConfigured;
 
         private static NHibernate.Cfg.Configuration Configuration
         {
@@ -145,6 +145,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
         {
             sessionFactory = factory;
         }
+
         /// <summary>
         /// Configures the DAL.
         /// </summary>
@@ -186,6 +187,15 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
         }
 
         /// <summary>
+        /// Reset the configuration flag to allow another configuration.
+        /// This should be used only during unit testing.
+        /// </summary>
+        internal void ResetConfiguration()
+        {
+            isConfigured = false;
+        }
+
+        /// <summary>
         /// Builds the schema of the database. Should only be used for unit testing
         /// </summary>
         /// <param name="session">The session.</param>
@@ -202,12 +212,6 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
             this.ConfigureAutoMapper();
             isConfigured = true;
         }
-
-        /// <summary>
-        /// Reset the configuration flag to allow another configuration.
-        /// This should be used only during unit testing.
-        /// </summary>
-        internal void ResetConfiguration() { isConfigured = false; }
 
         private AutoPersistenceModel CreateModel()
         {

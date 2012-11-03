@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,24 +16,44 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Probel.NDoctor.Domain.DTO.Properties;
-using System.Runtime.Serialization;
+
+#endregion Header
 
 namespace Probel.NDoctor.Domain.DTO.Exceptions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Runtime.Serialization;
+    using System.Text;
+
+    using Probel.NDoctor.Domain.DTO.Properties;
+
     [Serializable]
     public class ConfigurationException : TranslateableException
     {
+        #region Constructors
+
         public ConfigurationException()
             : base("You already configured the DAL", Messages.Ex_ConfigurationException)
         {
         }
-        public ConfigurationException(string message, string translated) : base(message, translated) { }
-        public ConfigurationException(string message, string translated, Exception inner) : base(message, translated, inner) { }
-        protected ConfigurationException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+
+        public ConfigurationException(string message, string translated)
+            : base(message, translated)
+        {
+        }
+
+        public ConfigurationException(string message, string translated, Exception inner)
+            : base(message, translated, inner)
+        {
+        }
+
+        protected ConfigurationException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
+        }
+
+        #endregion Constructors
     }
 }

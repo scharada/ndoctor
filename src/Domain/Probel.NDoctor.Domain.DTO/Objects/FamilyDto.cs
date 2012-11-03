@@ -41,8 +41,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         public FamilyDto()
             : base(new FamilyValidator())
         {
-            this.Fathers = new ObservableCollection<LightPatientDto>();
-            this.Mothers = new ObservableCollection<LightPatientDto>();
             this.Children = new ObservableCollection<LightPatientDto>();
         }
 
@@ -56,8 +54,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         public FamilyDto(LightPatientDto current, LightPatientDto father, LightPatientDto mother, LightPatientDto[] children)
         {
             this.Current = current;
-            this.Fathers = new ObservableCollection<LightPatientDto>(new LightPatientDto[] { father });
-            this.Mothers = new ObservableCollection<LightPatientDto>(new LightPatientDto[] { mother });
+            this.Father = father;
+            this.Mother = mother;
             this.Children = new ObservableCollection<LightPatientDto>(children);
         }
 
@@ -89,20 +87,20 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// Gets or sets the father of the current patient
         /// </summary>
         /// <value>The father</value>
-        public ObservableCollection<LightPatientDto> Fathers
+        public LightPatientDto Father
         {
             get;
-            private set;
+            set;
         }
 
         /// <summary>
         /// Gets or sets the mother of the current patient
         /// </summary>
         /// <value>The mother</value>
-        public ObservableCollection<LightPatientDto> Mothers
+        public LightPatientDto Mother
         {
             get;
-            private set;
+            set;
         }
 
         #endregion Properties
