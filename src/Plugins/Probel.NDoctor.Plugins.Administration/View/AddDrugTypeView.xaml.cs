@@ -21,6 +21,7 @@
 
 namespace Probel.NDoctor.Plugins.Administration.View
 {
+    using System.Windows;
     using System.Windows.Controls;
 
     using Probel.NDoctor.Plugins.Administration.ViewModel;
@@ -28,7 +29,7 @@ namespace Probel.NDoctor.Plugins.Administration.View
     /// <summary>
     /// Interaction logic for AddDrugTypeView.xaml
     /// </summary>
-    public partial class AddDrugTypeView : UserControl
+    public partial class AddDrugTypeView : Window
     {
         #region Constructors
 

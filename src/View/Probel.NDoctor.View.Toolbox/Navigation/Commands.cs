@@ -19,6 +19,8 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
     using System.Windows;
     using System.Windows.Input;
 
+    using log4net;
+
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.View.Toolbox.Properties;
 
@@ -29,12 +31,24 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
     {
         #region Fields
 
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(Commands));
+
+        private static RelayArgCommand closeCommand;
         private static RelayCommand shutdown = new RelayCommand(() => Application.Current.Shutdown());
         private static RelayCommand shutdowWithConfirmation;
 
         #endregion Fields
 
         #region Properties
+
+        public static ICommand CloseView
+        {
+            get
+            {
+                if (closeCommand == null) { closeCommand = new RelayArgCommand(e => Close(e)); }
+                return closeCommand;
+            }
+        }
 
         /// <summary>
         /// Gets the shutdown command.
@@ -68,6 +82,18 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
         #endregion Properties
 
         #region Methods
+
+        private static void Close(object e)
+        {
+            if (e == null)
+            {
+                Logger.Warn("Null argument passed in the CloseView command");
+            }
+            else if (e is IRequestCloseViewModel)
+            {
+                (e as IRequestCloseViewModel).Close();
+            }
+        }
 
         private static void ShutDownWithConfirmationCommand()
         {

@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Plugins.Administration.Properties
-{
-
-
+namespace Probel.NDoctor.Plugins.Administration.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -115,7 +115,7 @@ namespace Probel.NDoctor.Plugins.Administration.Properties
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ajouter un médecin.
+        ///   Looks up a localized string similar to Add a doctor.
         /// </summary>
         internal static string Title_AddDoctor {
             get {
@@ -160,7 +160,7 @@ namespace Probel.NDoctor.Plugins.Administration.Properties
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ajouter un type de maladie.
+        ///   Looks up a localized string similar to Add a new pathology type.
         /// </summary>
         internal static string Title_AddPathologyType {
             get {
@@ -205,7 +205,7 @@ namespace Probel.NDoctor.Plugins.Administration.Properties
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ajouter une spécialisation.
+        ///   Looks up a localized string similar to Add a new specialisation.
         /// </summary>
         internal static string Title_AddSpecialisation {
             get {
@@ -241,7 +241,7 @@ namespace Probel.NDoctor.Plugins.Administration.Properties
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Médecins.
+        ///   Looks up a localized string similar to Doctors.
         /// </summary>
         internal static string Title_Doctor {
             get {

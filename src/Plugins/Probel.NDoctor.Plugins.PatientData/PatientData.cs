@@ -25,10 +25,10 @@ namespace Probel.NDoctor.Plugins.PatientData
 
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.PatientData.Helpers;
     using Probel.NDoctor.Plugins.PatientData.Properties;
     using Probel.NDoctor.Plugins.PatientData.View;
     using Probel.NDoctor.Plugins.PatientData.ViewModel;
@@ -44,8 +44,6 @@ namespace Probel.NDoctor.Plugins.PatientData
         #region Fields
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.PatientData;component/Images\{0}.png";
-
-        private readonly ViewService ViewService = new ViewService();
 
         private ICommand addDoctorCommand;
         private ICommand addInsuranceCommand;
@@ -86,6 +84,7 @@ namespace Probel.NDoctor.Plugins.PatientData
             this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
             PluginContext.Host.Invoke(() =>
             {
+                this.ConfigureViewService();
                 this.BuildButtons();
                 this.BuildContextMenu();
             });
@@ -95,12 +94,12 @@ namespace Probel.NDoctor.Plugins.PatientData
         {
             this.navigateCommand = new RelayCommand(() => this.Navigate(), () => this.CanNavigate());
 
-            this.addDoctorCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddDoctor, new CreateDoctorView()), () => this.IsGrantedToWrite());
-            this.addSpecialisationCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddSpecialisation, new AddSpecialisationView()), () => this.IsGrantedToWrite());
-            this.addInsuranceCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddInsurance, new AddInsuranceView()), () => this.IsGrantedToWrite());
-            this.addReputationCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddReputation, new AddReputationView()), () => this.IsGrantedToWrite());
-            this.addPracticeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPractice, new AddPracticeView()), () => this.IsGrantedToWrite());
-            this.addProfessionCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddProfession, new AddProfessionView()), () => this.IsGrantedToWrite());
+            this.addDoctorCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<CreateDoctorViewModel>(), () => this.IsGrantedToWrite());
+            this.addSpecialisationCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddSpecialisationViewModel>(), () => this.IsGrantedToWrite());
+            this.addInsuranceCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddInsuranceViewModel>(), () => this.IsGrantedToWrite());
+            this.addReputationCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddReputationViewModel>(), () => this.IsGrantedToWrite());
+            this.addPracticeCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddPracticeViewModel>(), () => this.IsGrantedToWrite());
+            this.addProfessionCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddProfessionViewModel>(), () => this.IsGrantedToWrite());
 
             var navigateButton = new RibbonButtonData(Messages.Title_PatientDataManager
                     , imgUri.FormatWith("Properties")
@@ -111,9 +110,9 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         private void BuildContextMenu()
         {
-            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.ViewService.GetViewModel(this.View).SaveCommand);
+            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.View.As<WorkbenchViewModel>().SaveCommand);
 
-            var rollbackButton = new RibbonButtonData(Messages.Title_Rollback, imgUri.FormatWith("Save"), this.ViewService.GetViewModel(this.View).RollbackCommand);
+            var rollbackButton = new RibbonButtonData(Messages.Title_Rollback, imgUri.FormatWith("Save"), this.View.As<WorkbenchViewModel>().RollbackCommand);
 
             var splitter = new RibbonMenuItemData(Messages.Btn_Add, imgUri.FormatWith("Add"), null);
             splitter.ControlDataCollection.Add(new RibbonMenuItemData(Messages.Title_AddDoctor, imgUri.FormatWith("Add"), this.addDoctorCommand));
@@ -142,6 +141,27 @@ namespace Probel.NDoctor.Plugins.PatientData
                 && PluginContext.DoorKeeper.IsUserGranted(To.Read);
         }
 
+        private void ConfigureViewService()
+        {
+            ViewService.Configure(e =>
+            {
+                e.Bind<CreateDoctorView, CreateDoctorViewModel>()
+                 .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
+                e.Bind<AddSpecialisationView, AddSpecialisationViewModel>()
+                    .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
+                e.Bind<AddInsuranceView, AddInsuranceViewModel>()
+                    .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
+                e.Bind<AddReputationView, AddReputationViewModel>()
+                    .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
+                e.Bind<AddPracticeView, AddPracticeViewModel>()
+                    .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
+                e.Bind<AddProfessionView, AddProfessionViewModel>()
+                    .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
+                e.Bind<BindDoctorView, BindDoctorViewModel>()
+                    .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
+            });
+        }
+
         private bool IsGrantedToWrite()
         {
             return PluginContext.DoorKeeper.IsUserGranted(To.Write);
@@ -149,7 +169,7 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         private void Navigate()
         {
-            this.ViewService.GetViewModel(this.View).Refresh();
+            this.View.As<WorkbenchViewModel>().Refresh();
             PluginContext.Host.Navigate(this.View);
             this.ShowContextMenu();
         }

@@ -26,11 +26,11 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
     using Probel.Helpers.Conversions;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.PatientData.Helpers;
     using Probel.NDoctor.Plugins.PatientData.Properties;
     using Probel.NDoctor.Plugins.PatientData.View;
     using Probel.NDoctor.View.Core.Helpers;
@@ -63,12 +63,10 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
 
-            Notifyer.SateliteDataChanged += (sender, e) => this.Refresh();
-
             this.InitialiseCollections();
 
             this.ChangeImageCommand = new RelayCommand(() => this.ChangeImage(), () => this.CanChangePicture());
-            this.BindDoctorCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_BindDoctor, new BindDoctorView()), () => this.Patient != null);
+            this.BindDoctorCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<BindDoctorViewModel>(), () => this.Patient != null);
             this.RemoveLinkCommand = new RelayCommand(() => this.RemoveLink());
 
             this.SaveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
@@ -288,7 +286,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
                 this.component.RemoveDoctorFor(PluginContext.Host.SelectedPatient, this.SelectedDoctor);
 
-                Notifyer.OnSateliteDataChanged(this);
+                this.Refresh();
+
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DoctorRemoved);
             }
             catch (Exception ex)

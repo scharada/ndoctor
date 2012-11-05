@@ -73,9 +73,9 @@
     <Reference Include="log4net">
       <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Probel.Mvvm, Version=1.2.0.73, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Probel.Mvvm, Version=1.2.0.75, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Probel.Mvvm.1.2.0.73\lib\Probel.Mvvm.dll</HintPath>
+      <HintPath>..\..\packages\Probel.Mvvm.1.2.0.75\lib\Probel.Mvvm.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -127,7 +127,6 @@
     <Compile Include="Helpers\PasswordBoxAssistant.cs" />
     <Compile Include="Helpers\SettingsConfigurator.cs" />
     <Compile Include="Helpers\TranslateExtension.cs" />
-    <Compile Include="Helpers\ViewService.cs" />
     <Compile Include="Properties\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

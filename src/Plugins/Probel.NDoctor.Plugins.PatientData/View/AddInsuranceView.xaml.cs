@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Plugins.PatientData.View
 {
+    using System.Windows;
     using System.Windows.Controls;
 
     using Probel.NDoctor.Plugins.PatientData.ViewModel;
@@ -23,7 +24,7 @@ namespace Probel.NDoctor.Plugins.PatientData.View
     /// <summary>
     /// Interaction logic for AddInsuranceView.xaml
     /// </summary>
-    public partial class AddInsuranceView : UserControl
+    public partial class AddInsuranceView : Window
     {
         #region Constructors
 

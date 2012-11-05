@@ -7,19 +7,17 @@
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.Administration.Helpers;
     using Probel.NDoctor.Plugins.Administration.Properties;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
-    using Probel.NDoctor.View.Toolbox.Navigation;
 
     internal abstract class BaseBoxViewModel<T> : BaseViewModel
         where T : BaseDto
     {
         #region Fields
 
+        private readonly ICommand closeCommand;
         private readonly IAdministrationComponent component;
 
         private T boxItem;
@@ -32,6 +30,7 @@
         {
             this.component = PluginContext.ComponentFactory.GetInstance<IAdministrationComponent>();
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
+            this.closeCommand = new RelayCommand(() => this.Close());
         }
 
         #endregion Constructors
@@ -54,6 +53,11 @@
             }
         }
 
+        public ICommand CloseCommand
+        {
+            get { return this.closeCommand; }
+        }
+
         public IAdministrationComponent Component
         {
             get { return this.component; }
@@ -70,8 +74,7 @@
             try
             {
                 this.AddItem();
-                Notifyer.OnRefreshing(this);
-                InnerWindow.Close();
+                this.Close();
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_ItemAdded);
             }
             catch (Exception ex) { this.Handle.Error(ex); }

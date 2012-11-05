@@ -213,7 +213,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             {
                 this.HasAddPicture = true;
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PictureAdded);
-                this.OnCloseRequested();
+                this.Close();
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }

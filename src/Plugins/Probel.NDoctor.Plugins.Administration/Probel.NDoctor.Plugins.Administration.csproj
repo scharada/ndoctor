@@ -45,9 +45,9 @@
       <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
-    <Reference Include="Probel.Mvvm, Version=1.2.0.73, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Probel.Mvvm, Version=1.2.0.75, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Probel.Mvvm.1.2.0.73\lib\Probel.Mvvm.dll</HintPath>
+      <HintPath>..\..\packages\Probel.Mvvm.1.2.0.75\lib\Probel.Mvvm.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -85,6 +85,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Translations\BoxText.cs" />
     <Compile Include="Translations\WorkbenchText.cs" />
     <Compile Include="ViewModel\AddDoctorViewModel.cs" />
     <Compile Include="ViewModel\AddDrugTypeViewModel.cs" />

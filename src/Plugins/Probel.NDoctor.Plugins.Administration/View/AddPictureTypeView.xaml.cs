@@ -21,6 +21,7 @@
 
 namespace Probel.NDoctor.Plugins.Administration.View
 {
+    using System.Windows;
     using System.Windows.Controls;
 
     using Probel.NDoctor.Plugins.Administration.ViewModel;
@@ -28,7 +29,7 @@ namespace Probel.NDoctor.Plugins.Administration.View
     /// <summary>
     /// Interaction logic for AddPictureTypeView.xaml
     /// </summary>
-    public partial class AddPictureTypeView : UserControl
+    public partial class AddPictureTypeView : Window
     {
         #region Constructors
 
