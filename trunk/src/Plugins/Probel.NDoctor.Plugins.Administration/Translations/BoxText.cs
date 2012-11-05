@@ -77,7 +77,7 @@ namespace Probel.NDoctor.Plugins.Administration.Translations
             get { return Messages.Title_AddReputation; }
         }
 
-        public static string Specialisation
+        public static string AddSpecialisation
         {
             get { return Messages.Title_AddSpecialisation; }
         }
