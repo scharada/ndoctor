@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Plugins.Administration
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.Administration.Helpers;
@@ -47,7 +48,7 @@ namespace Probel.NDoctor.Plugins.Administration
         private const string imgUri = @"\Probel.NDoctor.Plugins.Administration;component/Images\{0}.png";
 
         //DOTO: replace with the window manager
-        private static WorkbenchView __workbenchview; //Dont use the variable, use the property instead
+        //private static WorkbenchView __workbenchview; //Dont use the variable, use the property instead
 
         private ICommand navigateCommand;
 
@@ -61,6 +62,8 @@ namespace Probel.NDoctor.Plugins.Administration
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
 
+            LazyLoader.Set<WorkbenchView>(() => new WorkbenchView());
+
             this.ConfigureAutoMapper();
         }
 
@@ -72,8 +75,7 @@ namespace Probel.NDoctor.Plugins.Administration
         {
             get
             {
-                if (__workbenchview == null) { __workbenchview = new WorkbenchView(); }
-                return __workbenchview;
+                return LazyLoader.Get<WorkbenchView>();
             }
         }
 
