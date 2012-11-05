@@ -29,7 +29,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.PatientData.Helpers;
     using Probel.NDoctor.Plugins.PatientData.Properties;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
@@ -130,7 +129,10 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
             if (!result)
             {
-                if (!PluginContext.DoorKeeper.IsUserGranted(To.Write)) { PluginContext.Host.WriteStatus(StatusType.Warning, Messages.Msg_CantSelectDoctor_NotGranted); }
+                if (!PluginContext.DoorKeeper.IsUserGranted(To.Write))
+                {
+                    PluginContext.Host.WriteStatus(StatusType.Warning, Messages.Msg_CantSelectDoctor_NotGranted);
+                }
                 else { PluginContext.Host.WriteStatus(StatusType.Warning, Messages.Msg_CantSelectDoctor); }
             }
 
@@ -159,8 +161,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             try
             {
                 this.component.AddDoctorTo(PluginContext.Host.SelectedPatient, this.SelectedDoctor);
-                InnerWindow.Close();
-                Notifyer.OnSateliteDataChanged(this);
+                this.Close();
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }

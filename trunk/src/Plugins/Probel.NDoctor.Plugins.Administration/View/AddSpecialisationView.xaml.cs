@@ -1,13 +1,13 @@
 ﻿namespace Probel.NDoctor.Plugins.Administration.View
 {
-    using System.Windows.Controls;
+    using System.Windows;
 
     using Probel.NDoctor.Plugins.Administration.ViewModel;
 
     /// <summary>
     /// Interaction logic for AddSpecialisationView.xaml
     /// </summary>
-    public partial class AddSpecialisationView : UserControl
+    public partial class AddSpecialisationView : Window
     {
         #region Constructors
 

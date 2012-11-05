@@ -26,8 +26,9 @@ namespace Probel.NDoctor.Plugins.Administration
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
-    using Probel.Mvvm.DataBinding;
     using Probel.Mvvm;
+    using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.Administration.Helpers;
@@ -49,7 +50,6 @@ namespace Probel.NDoctor.Plugins.Administration
 
         //DOTO: replace with the window manager
         //private static WorkbenchView __workbenchview; //Dont use the variable, use the property instead
-
         private ICommand navigateCommand;
 
         #endregion Fields
@@ -90,6 +90,7 @@ namespace Probel.NDoctor.Plugins.Administration
         public override void Initialise()
         {
             Assert.IsNotNull(PluginContext.Host, "PluginContext.Host");
+            this.ConfigureViewService();
             this.BuildButtons();
             this.BuildContextMenu();
         }
@@ -125,37 +126,37 @@ namespace Probel.NDoctor.Plugins.Administration
             var buttons = new List<RibbonButtonData>();
 
             buttons.Add(new RibbonButtonData(Messages.Title_AddInsurance, imgUri.FormatWith("New")
-                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddInsurance, new AddInsuranceView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
+                , new RelayCommand(() => ViewService.Manager.ShowDialog<AddInsuranceViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
             buttons.Add(new RibbonButtonData(Messages.Title_AddPractice, imgUri.FormatWith("New")
-                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPractice, new AddPracticeView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
+                , new RelayCommand(() => ViewService.Manager.ShowDialog<AddPracticeViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
             buttons.Add(new RibbonButtonData(Messages.Title_AddDrug, imgUri.FormatWith("New")
-                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddDrug, new AddDrugView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
+                , new RelayCommand(() => ViewService.Manager.ShowDialog<AddDrugViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
             buttons.Add(new RibbonButtonData(Messages.Title_AddDrugType, imgUri.FormatWith("New")
-                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddDrugType, new AddDrugTypeView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
+                , new RelayCommand(() => ViewService.Manager.ShowDialog<AddDrugTypeViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
             buttons.Add(new RibbonButtonData(Messages.Title_AddPathologyType, imgUri.FormatWith("New")
-                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPathologyType, new AddPathologyTypeView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
+                , new RelayCommand(() => ViewService.Manager.ShowDialog<AddPathologyTypeViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
             buttons.Add(new RibbonButtonData(Messages.Title_AddDrug, imgUri.FormatWith("New")
-                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPathology, new AddPathologyView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
+                , new RelayCommand(() => ViewService.Manager.ShowDialog<AddPathologyViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
             buttons.Add(new RibbonButtonData(Messages.Title_AddProfession, imgUri.FormatWith("New")
-                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddProfession, new AddProfessionView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
+                , new RelayCommand(() => ViewService.Manager.ShowDialog<AddProfessionViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
             buttons.Add(new RibbonButtonData(Messages.Title_AddReputation, imgUri.FormatWith("New")
-                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddReputation, new AddReputationView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
+                , new RelayCommand(() => ViewService.Manager.ShowDialog<AddReputationViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
             buttons.Add(new RibbonButtonData(Messages.Title_AddPictureType, imgUri.FormatWith("New")
-                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPictureType, new AddPictureTypeView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
+                , new RelayCommand(() => ViewService.Manager.ShowDialog<AddPictureTypeViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
             buttons.Add(new RibbonButtonData(Messages.Title_AddSpecialisation, imgUri.FormatWith("New")
-                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddSpecialisation, new AddSpecialisationView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
+                , new RelayCommand(() => ViewService.Manager.ShowDialog<AddSpecialisationViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
             buttons.Add(new RibbonButtonData(Messages.Title_AddDoctor, imgUri.FormatWith("New")
-                , new RelayCommand(() => InnerWindow.Show(Messages.Title_AddDoctor, new AddDoctorView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
+                , new RelayCommand(() => ViewService.Manager.ShowDialog<AddDoctorViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
             foreach (var button in buttons) { cgroup.ButtonDataCollection.Add(button); }
         }
@@ -171,6 +172,35 @@ namespace Probel.NDoctor.Plugins.Administration
             Mapper.CreateMap<TagDto, TagViewModel>();
         }
 
+        private void ConfigureViewService()
+        {
+            ViewService.Configure(e =>
+            {
+                e.Bind<AddInsuranceView, AddInsuranceViewModel>()
+                    .OnClosing(() => this.Refresh());
+                e.Bind<AddPracticeView, AddPracticeViewModel>()
+                    .OnClosing(() => this.Refresh());
+                e.Bind<AddDrugView, AddDrugViewModel>()
+                    .OnClosing(() => this.Refresh());
+                e.Bind<AddDrugTypeView, AddDrugTypeViewModel>()
+                    .OnClosing(() => this.Refresh());
+                e.Bind<AddPathologyTypeView, AddPathologyTypeViewModel>()
+                    .OnClosing(() => this.Refresh());
+                e.Bind<AddPathologyView, AddPathologyViewModel>()
+                    .OnClosing(() => this.Refresh());
+                e.Bind<AddProfessionView, AddProfessionViewModel>()
+                    .OnClosing(() => this.Refresh());
+                e.Bind<AddReputationView, AddReputationViewModel>()
+                    .OnClosing(() => this.Refresh());
+                e.Bind<AddPictureTypeView, AddPictureTypeViewModel>()
+                    .OnClosing(() => this.Refresh());
+                e.Bind<AddSpecialisationView, AddSpecialisationViewModel>()
+                    .OnClosing(() => this.Refresh());
+                e.Bind<AddDoctorView, AddDoctorViewModel>()
+                    .OnClosing(() => this.Refresh());
+            });
+        }
+
         private void Navigate()
         {
             PluginContext.Host.Navigate(this.WorkbenchView);
@@ -178,6 +208,11 @@ namespace Probel.NDoctor.Plugins.Administration
 
             this.contextualMenu.IsVisible = true;
             this.contextualMenu.TabDataCollection[0].IsSelected = PluginContext.Configuration.AutomaticContextMenu;
+        }
+
+        private void Refresh()
+        {
+            this.WorkbenchView.As<WorkbenchViewModel>().Refresh();
         }
 
         #endregion Methods

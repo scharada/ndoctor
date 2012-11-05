@@ -142,7 +142,7 @@
     <comment>Item added.</comment>
   </data>
   <data name="Title_AddDoctor" xml:space="preserve">
-    <value>Ajouter un médecin</value>
+    <value>Add a doctor</value>
     <comment>Add a doctor</comment>
   </data>
   <data name="Title_AddDrug" xml:space="preserve">
@@ -162,7 +162,7 @@
     <comment>Add a pathology</comment>
   </data>
   <data name="Title_AddPathologyType" xml:space="preserve">
-    <value>Ajouter un type de maladie</value>
+    <value>Add a new pathology type</value>
     <comment>Add a new pathology type</comment>
   </data>
   <data name="Title_AddPictureType" xml:space="preserve">
@@ -182,7 +182,7 @@
     <comment>Add a reputation</comment>
   </data>
   <data name="Title_AddSpecialisation" xml:space="preserve">
-    <value>Ajouter une spécialisation</value>
+    <value>Add a new specialisation</value>
     <comment>Add a new specialisation</comment>
   </data>
   <data name="Title_AdministratorManager" xml:space="preserve">
@@ -198,7 +198,7 @@
     <comment>City</comment>
   </data>
   <data name="Title_Doctor" xml:space="preserve">
-    <value>Médecins</value>
+    <value>Doctors</value>
     <comment>Doctors</comment>
   </data>
   <data name="Title_Drug" xml:space="preserve">

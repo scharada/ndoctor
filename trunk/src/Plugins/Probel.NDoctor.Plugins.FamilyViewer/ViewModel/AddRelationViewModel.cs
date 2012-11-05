@@ -217,7 +217,7 @@ namespace Probel.NDoctor.Plugins.FamilyViewer.ViewModel
         private void AddRelationCallback()
         {
             this.IsBusy = false;
-            this.OnCloseRequested();
+            this.Close();
         }
 
         private bool CanAddRelation()

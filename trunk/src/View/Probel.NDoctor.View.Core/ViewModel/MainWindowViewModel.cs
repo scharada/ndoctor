@@ -44,7 +44,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
         private readonly ICommand aboutCommand;
         private readonly ICommand homeCommand;
         private readonly ICommand settingCommand;
-        private readonly ViewService ViewService = new ViewService();
 
         private LightUserDto connectedUser;
         private string message;
@@ -210,7 +209,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         private void About()
         {
             var view = new AboutBoxView();
-            this.ViewService.GetViewModel(view).RefreshCommand.TryExecute();
+            view.As<AboutBoxViewModel>().RefreshCommand.TryExecute();
             InnerWindow.Show(Messages.Title_About, view);
         }
 

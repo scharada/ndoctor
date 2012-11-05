@@ -6,7 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:txt="clr-namespace:Probel.NDoctor.View.Toolbox.Translations"   
-             xmlns:iw="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"          
+             xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
              
              mc:Ignorable="d">
     <Grid>
@@ -24,7 +24,8 @@
         <Border Grid.Column="1"
                 Style="{StaticResource BorderStyle}">
             <Button Content="{Binding Source={x:Static Member=txt:BaseText.Cancel}}"
-                    Command="iw:InnerWindow.CancelCommand"
+                    Command="cmd:Commands.CloseView"
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"
                     IsCancel="True"/>
         </Border>
     </Grid>
