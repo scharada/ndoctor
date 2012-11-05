@@ -6,6 +6,8 @@
         xmlns:iw="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
         xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
         xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Toolbox.Controls;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:txt="clr-namespace:Probel.NDoctor.Plugins.Administration.Translations"
+        Title="{Binding Source={x:Static Member=txt:BoxText.AddPathologyType}}"
         
         mc:Ignorable="d"
         WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Height="89" Width="262">
