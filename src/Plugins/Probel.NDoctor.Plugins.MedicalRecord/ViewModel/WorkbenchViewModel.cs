@@ -26,6 +26,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
     using Probel.Helpers.Assertion;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -38,7 +39,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Navigation;
-    using Probel.Mvvm.Gui;
 
     internal class WorkbenchViewModel : BaseViewModel
     {

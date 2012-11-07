@@ -29,7 +29,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.PathologyManager.Helpers;
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
@@ -45,7 +44,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
         private Chart<string, double> chart;
         private IPathologyComponent component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
-        private IllnessPeriodViewModel selectedIllnessPeriod;
+        private IllnessPeriodDto selectedIllnessPeriod;
 
         #endregion Fields
 
@@ -60,8 +59,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
         {
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
 
-            this.IllnessHistory = new ObservableCollection<IllnessPeriodViewModel>();
-            Notifyer.ItemChanged += (sender, e) => this.Refresh();
+            this.IllnessHistory = new ObservableCollection<IllnessPeriodDto>();
 
             this.RemoveIllessPeriodCommand = new RelayCommand(() => this.RemoveIllessPeriod(), () => this.CanRemoveIllessPeriod());
         }
@@ -80,10 +78,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
             }
         }
 
-        /// <summary>
-        /// Gets the illness history for the connected patient.
-        /// </summary>
-        public ObservableCollection<IllnessPeriodViewModel> IllnessHistory
+        public ObservableCollection<IllnessPeriodDto> IllnessHistory
         {
             get;
             private set;
@@ -95,7 +90,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
             private set;
         }
 
-        public IllnessPeriodViewModel SelectedIllnessPeriod
+        public IllnessPeriodDto SelectedIllnessPeriod
         {
             get { return this.selectedIllnessPeriod; }
             set
@@ -114,22 +109,18 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
         /// </summary>
         public void Refresh()
         {
-            var history = this.component.GetIllnessHistory(PluginContext.Host.SelectedPatient);
-            var viewModels = Mapper.Map<IList<IllnessPeriodDto>, IList<IllnessPeriodViewModel>>(history.Periods);
-
-            for (int i = 0; i < viewModels.Count; i++)
+            try
             {
-                viewModels[i].Refreshed += (sender, e) => this.Refresh();
+                this.Chart = this.component.GetIlnessAsChart(PluginContext.Host.SelectedPatient);
+                var history = this.component.GetIllnessHistory(PluginContext.Host.SelectedPatient);
+                this.IllnessHistory.Refill(history.Periods);
             }
-            this.IllnessHistory.Refill(viewModels);
-
-            this.Chart = this.component.GetIlnessAsChart(PluginContext.Host.SelectedPatient);
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private bool CanRemoveIllessPeriod()
         {
-            return PluginContext.DoorKeeper.IsUserGranted(To.Write)
-                && this.SelectedIllnessPeriod != null;
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         private void RemoveIllessPeriod()
@@ -140,8 +131,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
                 if (dr != MessageBoxResult.Yes) return;
 
                 this.component.Remove(this.SelectedIllnessPeriod, PluginContext.Host.SelectedPatient);
-
-                Notifyer.OnItemChanged(this);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
             finally { InnerWindow.Close(); }

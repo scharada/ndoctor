@@ -25,7 +25,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.View
     /// <summary>
     /// Interaction logic for AddMeetingView.xaml
     /// </summary>
-    public partial class AddMeetingView : UserControl
+    public partial class AddMeetingView : Window
     {
         #region Constructors
 

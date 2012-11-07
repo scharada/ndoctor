@@ -47,6 +47,11 @@ namespace Probel.NDoctor.Plugins.PathologyManager.Translations
             get { return Messages.Header_Start; }
         }
 
+        public static string Title
+        {
+            get { return Messages.Title_Add; }
+        }
+
         #endregion Properties
     }
 }

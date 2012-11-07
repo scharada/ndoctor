@@ -50,17 +50,17 @@
                         </ContextMenu>
                     </DataGrid.ContextMenu>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=StartAsText, UpdateSourceTrigger=PropertyChanged}" 
+                        <DataGridTextColumn Binding="{Binding Path=Start, StringFormat={}{0:dd MMMM yyyy}, UpdateSourceTrigger=PropertyChanged}" 
                                             Header="{Binding Source={x:Static Member=text:IllnessPeriodText.HeaderStart}}"
                                             IsReadOnly="True"
                                             Width="*"/>
 
-                        <DataGridTextColumn Binding="{Binding Path=EndAsText, UpdateSourceTrigger=PropertyChanged}" 
+                            <DataGridTextColumn Binding="{Binding Path=End, StringFormat={}{0:dd MMMM yyyy}, UpdateSourceTrigger=PropertyChanged}" 
                                             Header="{Binding Source={x:Static Member=text:IllnessPeriodText.HeaderEnd}}"
                                             IsReadOnly="True"
                                             Width="*"/>
 
-                        <DataGridTextColumn Binding="{Binding Path=DurationAsText, UpdateSourceTrigger=PropertyChanged}" 
+                        <DataGridTextColumn Binding="{Binding Path=Duration, UpdateSourceTrigger=PropertyChanged}" 
                                             Header="{Binding Source={x:Static Member=text:IllnessPeriodText.HeaderDuration}}"
                                             IsReadOnly="True"
                                             Width="*"/>

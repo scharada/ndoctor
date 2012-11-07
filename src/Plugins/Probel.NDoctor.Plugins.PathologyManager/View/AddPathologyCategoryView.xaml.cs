@@ -4,11 +4,12 @@
     using System.Windows.Input;
 
     using Probel.NDoctor.Plugins.PathologyManager.ViewModel;
+    using System.Windows;
 
     /// <summary>
     /// Interaction logic for AddPathologyCategoryView.xaml
     /// </summary>
-    public partial class AddPathologyCategoryView : UserControl
+    public partial class AddPathologyCategoryView : Window
     {
         #region Constructors
 

@@ -22,7 +22,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.MeetingManager.Helpers;
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -102,8 +101,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                 this.Component.Create(appointment, this.SelectedPatient);
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_AppointmentAdded);
-                Notifyer.OnRefreshed(this);
-                InnerWindow.Close();
+                this.Close();
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }

@@ -11,7 +11,14 @@
         Title="{Binding Source={x:Static Member=txt:AboutBoxText.Title}}"
         
         mc:Ignorable="d" 
-        SizeToContent="WidthAndHeight" Height="526" Width="652" ShowInTaskbar="False">
+        SizeToContent="WidthAndHeight" Height="526" Width="652" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+
+    <Window.InputBindings>
+        <KeyBinding Key="Escape"
+                    Command="cmd:Commands.CloseView" 
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
+    </Window.InputBindings>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>

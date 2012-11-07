@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Plugins.MeetingManager.View
 {
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
 
@@ -24,7 +25,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.View
     /// <summary>
     /// Interaction logic for AddCategoryView.xaml
     /// </summary>
-    public partial class AddCategoryView : UserControl
+    public partial class AddCategoryView : Window
     {
         #region Constructors
 

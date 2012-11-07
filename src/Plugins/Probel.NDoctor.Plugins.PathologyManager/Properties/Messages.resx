@@ -130,8 +130,8 @@
     <comment>Search</comment>
   </data>
   <data name="Header_Duration" xml:space="preserve">
-    <value>Duration</value>
-    <comment>Duration</comment>
+    <value>Duration (days)</value>
+    <comment>Duration (days)</comment>
   </data>
   <data name="Header_End" xml:space="preserve">
     <value>End</value>
@@ -226,6 +226,10 @@
     <value>Raw data</value>
     <comment>Raw data</comment>
   </data>
+  <data name="Title_From" xml:space="preserve">
+    <value>From</value>
+    <comment>From</comment>
+  </data>
   <data name="Title_IllFrom" xml:space="preserve">
     <value>Ill from</value>
     <comment>Ill from</comment>
@@ -259,7 +263,7 @@
     <comment>Search...</comment>
   </data>
   <data name="Title_To" xml:space="preserve">
-    <value>to</value>
-    <comment>to</comment>
+    <value>To</value>
+    <comment>To</comment>
   </data>
 </root>
