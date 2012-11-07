@@ -17,7 +17,7 @@
         mc:Ignorable="d" 
         SizeToContent="Height"
         Width="250"
-        Loaded="this_Loaded" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Loaded="this_Loaded" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" ShowInTaskbar="False">
     <Window.InputBindings>
         <KeyBinding Key="Enter"
                     Command="{Binding AddFolderCommand}"/>

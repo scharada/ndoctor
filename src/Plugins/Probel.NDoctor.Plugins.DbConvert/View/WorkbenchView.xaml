@@ -14,7 +14,7 @@
         mc:Ignorable="d"
         Height="300"
         Width="400"
-        Loaded="this_Loaded" WindowStartupLocation="CenterScreen">
+        Loaded="this_Loaded" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
 
     <Window.InputBindings>
         <KeyBinding Key="Escape"

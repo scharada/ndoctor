@@ -31,6 +31,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Navigation;
+    using Probel.Mvvm.Gui;
 
     /// <summary>
     /// This ViewModel should contain all the information about the
@@ -208,9 +209,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         private void About()
         {
-            var view = new AboutBoxView();
-            view.As<AboutBoxViewModel>().RefreshCommand.TryExecute();
-            InnerWindow.Show(Messages.Title_About, view);
+            ViewService.Manager.ShowDialog<AboutBoxViewModel>();
         }
 
         private bool CanNavigateToSetting()
@@ -220,7 +219,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         private void NavigateToSetting()
         {
-            InnerWindow.Show(Messages.Title_Settings, new SettingsView());
+            //InnerWindow.Show(Messages.Title_Settings, new SettingsView());
+            ViewService.Manager.ShowDialog<SettingsViewModel>();
         }
 
         #endregion Methods

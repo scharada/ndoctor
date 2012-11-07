@@ -1,27 +1,29 @@
-﻿<UserControl x:Class="Probel.NDoctor.View.Core.View.SettingsView"
-             x:Name="this"
+﻿<Window x:Class="Probel.NDoctor.View.Core.View.SettingsView"
+        x:Name="this"
              
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:text="clr-namespace:Probel.NDoctor.View.Core.Translations"
-             xmlns:iw="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
-             xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Toolbox.Controls;assembly=Probel.NDoctor.View.Toolbox"
-             
-             xmlns:settings="clr-namespace:Probel.NDoctor.View.Core.View"
-             
-             MinWidth="300"
-             MinHeight="300"
-             mc:Ignorable="d"
-             Loaded="this_Loaded">
-
-    <UserControl.InputBindings>
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:text="clr-namespace:Probel.NDoctor.View.Core.Translations"
+        xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Toolbox.Controls;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:txt="clr-namespace:Probel.NDoctor.View.Core.Translations"
+        xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        Title="{Binding Source={x:Static Member=txt:SettingsText.Title}}"
+        
+        xmlns:settings="clr-namespace:Probel.NDoctor.View.Core.View"
+        
+        SizeToContent="WidthAndHeight"
+        mc:Ignorable="d"
+        Loaded="this_Loaded" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    
+    <Window.InputBindings>
         <KeyBinding Key="Enter"
                     Command="{Binding Path=SaveCommand}"/>
         <KeyBinding Key="Escape"
-                    Command="iw:InnerWindow.CancelCommand" />
-    </UserControl.InputBindings>
+                    Command="cmd:Commands.CloseView" 
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
+    </Window.InputBindings>
     <DockPanel LastChildFill="True">
         <ctrl:OKCancelBox DockPanel.Dock="Bottom"  x:Name="focused"
                           OkCommand="{Binding Path=SaveSettingsCommand}"
@@ -42,4 +44,4 @@
             </ScrollViewer>
         </DockPanel>
     </DockPanel>
-</UserControl>
+</Window>

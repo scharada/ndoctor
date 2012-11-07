@@ -259,6 +259,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Configuring window manager....
+        /// </summary>
+        internal static string Msg_ConfiguringViewService {
+            get {
+                return ResourceManager.GetString("Msg_ConfiguringViewService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Patient: {0}.
         /// </summary>
         internal static string Msg_ConnectedPatient {

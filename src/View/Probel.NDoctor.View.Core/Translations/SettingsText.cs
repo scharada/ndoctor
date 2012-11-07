@@ -73,5 +73,10 @@ namespace Probel.NDoctor.View.Core.Translations
         }
 
         #endregion Properties
+
+        public static string Title
+        {
+            get { return Messages.Title_Settings; }
+        }
     }
 }

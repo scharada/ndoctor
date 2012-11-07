@@ -34,7 +34,7 @@ namespace Probel.NDoctor.View.Core.View
             var viewModel = new SpashScreenViewModel();
 
             viewModel.Loaded += (sender, e) => this.Dispatcher.Invoke((Action)delegate { this.Close(); });
-            viewModel.Failed += (sender1, e1) => this.IsOnError = true;
+            viewModel.Failed += (sender, e) => this.IsOnError = true;
 
             this.DataContext = viewModel;
             viewModel.Start();
@@ -46,7 +46,8 @@ namespace Probel.NDoctor.View.Core.View
 
         public bool IsOnError
         {
-            get; private set;
+            get;
+            private set;
         }
 
         #endregion Properties

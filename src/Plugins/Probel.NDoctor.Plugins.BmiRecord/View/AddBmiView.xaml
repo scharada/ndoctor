@@ -14,7 +14,7 @@
         
         Title="{Binding Source={x:Static Member=txt:AddBmiText.Title}}" 
         mc:Ignorable="d"             
-        Loaded="this_Loaded" SizeToContent="WidthAndHeight" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Loaded="this_Loaded" SizeToContent="WidthAndHeight" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" ShowInTaskbar="False">
     <Window.InputBindings>
         <KeyBinding Key="Enter"
                     Command="{Binding AddCommand}"/>
