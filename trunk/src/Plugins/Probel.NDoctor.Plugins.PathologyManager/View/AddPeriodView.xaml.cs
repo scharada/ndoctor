@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,35 +16,39 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#endregion Header
+
 namespace Probel.NDoctor.Plugins.PathologyManager.View
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Documents;
     using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+    using System.Windows.Shapes;
 
     using Probel.NDoctor.Plugins.PathologyManager.ViewModel;
 
     /// <summary>
-    /// Interaction logic for AddIllnessPeriodView.xaml
+    /// Interaction logic for AddPeriodView.xaml
     /// </summary>
-    public partial class AddIllnessPeriodView : UserControl
+    public partial class AddPeriodView : Window
     {
         #region Constructors
 
-        public AddIllnessPeriodView()
+        public AddPeriodView()
         {
             InitializeComponent();
-            this.DataContext = new AddIllnessPeriodListViewModel();
+            this.DataContext = new AddPeriodViewModel();
         }
 
         #endregion Constructors
-
-        #region Methods
-
-        private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            Keyboard.Focus(this.focused);
-        }
-
-        #endregion Methods
     }
 }

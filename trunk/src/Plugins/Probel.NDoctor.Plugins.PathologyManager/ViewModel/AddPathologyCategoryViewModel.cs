@@ -7,7 +7,6 @@
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.PathologyManager.Helpers;
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
@@ -66,8 +65,7 @@
 
                 InnerWindow.Close();
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_CategoryAdded);
-                Notifyer.OnItemChanged(this);
-                InnerWindow.Close();
+                this.Close();
             }
             catch (ExistingItemException ex) { this.Handle.Warning(ex, ex.Message); }
             catch (Exception ex)

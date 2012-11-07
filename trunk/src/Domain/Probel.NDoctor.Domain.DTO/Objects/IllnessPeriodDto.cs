@@ -47,7 +47,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.end = value;
-                this.OnPropertyChanged(()=>this.End);
+                this.OnPropertyChanged(() => this.End);
             }
         }
 
@@ -63,7 +63,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.notes = value;
-                this.OnPropertyChanged(()=>this.Notes);
+                this.OnPropertyChanged(() => this.Notes);
             }
         }
 
@@ -79,7 +79,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.pathology = value;
-                this.OnPropertyChanged(()=>this.Pathology);
+                this.OnPropertyChanged(() => this.Pathology);
             }
         }
 
@@ -95,7 +95,20 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             set
             {
                 this.start = value;
-                this.OnPropertyChanged(()=>this.Start);
+                this.OnPropertyChanged(() => this.Start);
+            }
+        }
+
+        /// <summary>
+        /// Gets the duration in days of the period.
+        /// </summary>
+        public double Duration
+        {
+            get
+            {
+                return (this.End != null && this.Start != null)
+                    ? (this.End - this.Start).TotalDays
+                    : 0;
             }
         }
 

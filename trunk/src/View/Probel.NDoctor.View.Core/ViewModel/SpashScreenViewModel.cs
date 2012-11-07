@@ -30,18 +30,18 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View.Core.Properties;
+    using Probel.NDoctor.View.Core.View;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox.Navigation;
 
     using StructureMap;
-    using Probel.Mvvm.Gui;
-    using Probel.NDoctor.View.Core.View;
 
     internal class SpashScreenViewModel : BaseViewModel
     {
@@ -158,7 +158,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
                     this.ConfigureStructureMap();
                     this.Progress = 48;
 
-
                     this.Status = Messages.Msg_ConfiguringViewService;
                     this.ConfigureViewService();
                     this.Progress = 64;
@@ -189,16 +188,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
             };
             thread.RunWorkerCompleted += (sender, e) => this.OnLoaded();
             thread.RunWorkerAsync();
-        }
-
-        private void ConfigureViewService()
-        {
-            ViewService.Configure(e =>
-            {
-                e.Bind<AboutBoxView, AboutBoxViewModel>()
-                    .OnShow(vm => vm.RefreshCommand.TryExecute());
-                e.Bind<SettingsView, SettingsViewModel>();
-            });
         }
 
         private void BuildHomeMenu()
@@ -250,6 +239,16 @@ namespace Probel.NDoctor.View.Core.ViewModel
                  x.For<IPluginLoader>().Add<MefPluginLoader>()
                      .Ctor<string>("repository").Is(repository);
              });
+        }
+
+        private void ConfigureViewService()
+        {
+            ViewService.Configure(e =>
+            {
+                e.Bind<AboutBoxView, AboutBoxViewModel>()
+                    .OnShow(vm => vm.RefreshCommand.TryExecute());
+                e.Bind<SettingsView, SettingsViewModel>();
+            });
         }
 
         private void CreateThumbnails()

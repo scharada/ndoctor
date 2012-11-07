@@ -80,8 +80,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\Notifyer.cs" />
-    <Compile Include="Helpers\ViewService.cs" />
     <Compile Include="PathologyManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -103,21 +101,20 @@
     </Compile>
     <Compile Include="Translations\AddIllnessPeriodText.cs" />
     <Compile Include="Translations\AddPathologyText.cs" />
+    <Compile Include="Translations\AddPeriodText.cs" />
     <Compile Include="Translations\IllnessPeriodText.cs" />
     <Compile Include="ViewModel\AddPathologyCategoryViewModel.cs" />
     <Compile Include="ViewModel\AddPathologyViewModel.cs" />
-    <Compile Include="ViewModel\AddIllnessPeriodListViewModel.cs" />
-    <Compile Include="ViewModel\IllnessPeriodToAddViewModel.cs" />
-    <Compile Include="ViewModel\IllnessPeriodViewModel.cs" />
+    <Compile Include="ViewModel\AddPeriodViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
-    <Compile Include="View\AddIllnessPeriodView.xaml.cs">
-      <DependentUpon>AddIllnessPeriodView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\AddPathologyCategoryView.xaml.cs">
       <DependentUpon>AddPathologyCategoryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddPathologyView.xaml.cs">
       <DependentUpon>AddPathologyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddPeriodView.xaml.cs">
+      <DependentUpon>AddPeriodView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WorkbenchView.xaml.cs">
       <DependentUpon>WorkbenchView.xaml</DependentUpon>
@@ -185,15 +182,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\AddIllnessPeriodView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\AddPathologyCategoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddPathologyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddPeriodView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -216,6 +213,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\search.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

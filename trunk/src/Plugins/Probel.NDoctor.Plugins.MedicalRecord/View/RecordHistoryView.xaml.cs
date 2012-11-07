@@ -21,10 +21,10 @@
 
 namespace Probel.NDoctor.Plugins.MedicalRecord.View
 {
+    using System.Windows;
     using System.Windows.Controls;
 
     using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
-    using System.Windows;
 
     /// <summary>
     /// Interaction logic for MedicalRecordHistoryView.xaml

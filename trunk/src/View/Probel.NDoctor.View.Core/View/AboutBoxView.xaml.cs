@@ -22,11 +22,11 @@
 namespace Probel.NDoctor.View.Core.View
 {
     using System.Diagnostics;
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Documents;
 
     using Probel.NDoctor.View.Core.ViewModel;
-    using System.Windows;
 
     /// <summary>
     /// Interaction logic for AboutBoxView.xaml

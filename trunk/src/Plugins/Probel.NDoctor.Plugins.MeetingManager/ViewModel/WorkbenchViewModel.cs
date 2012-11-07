@@ -25,7 +25,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.MeetingManager.Helpers;
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -56,7 +55,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             this.DateToDisplay = DateTime.Today;
             this.DayAppointments = new AppointmentCollection();
 
-            Notifyer.Refreshed += (sender, e) => this.DateToDisplay = this.DateToDisplay.AddMilliseconds(1);
             this.PropertyChanged += (sender, e) =>
             {
                 if (e.PropertyName == "DateToDisplay")
@@ -87,6 +85,11 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         #endregion Properties
 
         #region Methods
+
+        public void Refresh()
+        {
+            this.DateToDisplay = this.DateToDisplay.AddMilliseconds(1);
+        }
 
         private void RefreshCalendar()
         {

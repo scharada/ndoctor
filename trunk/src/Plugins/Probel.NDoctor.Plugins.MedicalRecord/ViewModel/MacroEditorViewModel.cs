@@ -42,6 +42,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         private readonly ICommand createCommand;
         private readonly ICommand refreshCommand;
         private readonly ICommand removeCommand;
+        private readonly ICommand saveCommand;
 
         private MacroDto selectedMacro;
         private TextDocument textDocument;
@@ -58,12 +59,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             this.createCommand = new RelayCommand(() => this.Create(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             this.removeCommand = new RelayCommand(() => this.Remove(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             this.saveCommand = new RelayCommand(() => this.Save(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
-        }
-
-        private readonly ICommand saveCommand;
-        public ICommand SaveCommand
-        {
-            get { return this.saveCommand; }
         }
 
         #endregion Constructors
@@ -89,6 +84,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         public ICommand RemoveCommand
         {
             get { return this.removeCommand; }
+        }
+
+        public ICommand SaveCommand
+        {
+            get { return this.saveCommand; }
         }
 
         public MacroDto SelectedMacro

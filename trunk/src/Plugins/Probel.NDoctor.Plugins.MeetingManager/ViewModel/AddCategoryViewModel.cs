@@ -79,7 +79,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
                 Component.Create(tag);
 
-                InnerWindow.Close();
+                this.Close();
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_CategoryAdded);
             }
             catch (Exception ex) { this.Handle.Error(ex); }

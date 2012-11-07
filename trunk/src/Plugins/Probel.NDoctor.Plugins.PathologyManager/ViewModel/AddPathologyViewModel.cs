@@ -25,7 +25,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.PathologyManager.Helpers;
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
@@ -119,8 +118,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Title_OperationDone);
                 this.IsPopupOpened = false;
-                Notifyer.OnPathologyAdded(this, this.Pathology.Name);
-                InnerWindow.Close();
+                this.Close();
             }
             catch (ExistingItemException ex)
             {

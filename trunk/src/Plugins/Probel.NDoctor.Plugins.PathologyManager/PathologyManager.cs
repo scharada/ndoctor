@@ -25,10 +25,11 @@ namespace Probel.NDoctor.Plugins.PathologyManager
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
+    using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.PathologyManager.Helpers;
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
     using Probel.NDoctor.Plugins.PathologyManager.View;
     using Probel.NDoctor.Plugins.PathologyManager.ViewModel;
@@ -44,8 +45,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager
         #region Fields
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.PathologyManager;component/Images\{0}.png";
-
-        private readonly ViewService ViewService = new ViewService();
 
         private ICommand navigateCommand = null;
 
@@ -64,6 +63,15 @@ namespace Probel.NDoctor.Plugins.PathologyManager
 
         #endregion Constructors
 
+        #region Properties
+
+        private WorkbenchView View
+        {
+            get { return LazyLoader.Get<WorkbenchView>(); }
+        }
+
+        #endregion Properties
+
         #region Methods
 
         /// <summary>
@@ -76,6 +84,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager
 
             PluginContext.Host.Invoke(() =>
             {
+                this.ConfigureViewService();
                 this.BuildButtons();
                 this.BuildContextMenu();
             });
@@ -108,15 +117,15 @@ namespace Probel.NDoctor.Plugins.PathologyManager
             PluginContext.Host.AddContextualMenu(this.contextualMenu);
             PluginContext.Host.AddTab(tab);
 
-            ICommand addPeriodCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_Add, new AddIllnessPeriodView())
+            ICommand addPeriodCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddPeriodViewModel>()
                 , () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPeriods, imgUri.FormatWith("Add"), addPeriodCommand) { Order = 1, });
 
-            ICommand addPathologyCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPathology, this.ViewService.NewAddPathologyView())
+            ICommand addPathologyCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddPathologyViewModel>()
                 , () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPathology, imgUri.FormatWith("Add"), addPathologyCommand) { Order = 2 });
 
-            ICommand addPathologyCategory = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPathologyCategory, new AddPathologyCategoryView())
+            ICommand addPathologyCategory = new RelayCommand(() => ViewService.Manager.ShowDialog<AddPathologyCategoryViewModel>()
                 , () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPathologyCategory, imgUri.FormatWith("Add"), addPathologyCategory) { Order = 3 });
         }
@@ -129,21 +138,32 @@ namespace Probel.NDoctor.Plugins.PathologyManager
 
         private void ConfigureAutoMapper()
         {
-            Mapper.CreateMap<IllnessPeriodViewModel, IllnessPeriodDto>();
-            Mapper.CreateMap<IllnessPeriodDto, IllnessPeriodViewModel>();
+        }
 
-            Mapper.CreateMap<PathologyDto, IllnessPeriodToAddViewModel>()
-                .ForMember(src => src.Pathology, opt => opt.MapFrom(dest => dest));
+        private void ConfigureViewService()
+        {
+            LazyLoader.Set<WorkbenchView>(() => new WorkbenchView());
+            ViewService.Configure(e =>
+            {
+                e.Bind<AddPathologyCategoryView, AddPathologyCategoryViewModel>()
+                    .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
+
+                e.Bind<AddPathologyView, AddPathologyViewModel>()
+                    .OnShow(vm => vm.Refresh())
+                    .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
+
+                e.Bind<AddPeriodView, AddPeriodViewModel>()
+                    .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
+            });
         }
 
         private void Navigate()
         {
             try
             {
-                var view = new WorkbenchView();
-                this.ViewService.GetViewModel(view).Refresh();
+                this.View.As<WorkbenchViewModel>().Refresh();
                 PluginContext.Host.WriteStatusReady();
-                PluginContext.Host.Navigate(view);
+                PluginContext.Host.Navigate(this.View);
 
                 this.ShowContextMenu();
             }

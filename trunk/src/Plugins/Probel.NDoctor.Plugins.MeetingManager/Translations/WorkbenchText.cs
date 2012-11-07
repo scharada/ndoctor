@@ -77,6 +77,21 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Translations
             get { return Messages.Lbl_SelectedPatient; }
         }
 
+        public static string TitleAddCategory
+        {
+            get { return Messages.Msg_AddCategory; }
+        }
+
+        public static string TitleAddMeeting
+        {
+            get { return Messages.Title_AddMeeting; }
+        }
+
+        public static string TitleRemoveMeeting
+        {
+            get { return Messages.Title_RemoveMeeting; }
+        }
+
         public static string TitleWatermark
         {
             get { return Messages.Title_SearchWatermark; }

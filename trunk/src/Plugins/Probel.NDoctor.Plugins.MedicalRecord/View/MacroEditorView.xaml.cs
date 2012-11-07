@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Windows;
     using System.Windows.Controls;
     using System.Xml;
 
@@ -30,7 +31,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Plugins.MedicalRecord.Editor;
     using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
-    using System.Windows;
 
     /// <summary>
     /// Interaction logic for MacroEditorView.xaml

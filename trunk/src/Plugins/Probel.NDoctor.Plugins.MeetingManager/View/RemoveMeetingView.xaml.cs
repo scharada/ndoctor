@@ -25,7 +25,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.View
     /// <summary>
     /// Interaction logic for RemoveMeetingView.xaml
     /// </summary>
-    public partial class RemoveMeetingView : UserControl
+    public partial class RemoveMeetingView : Window
     {
         #region Constructors
 

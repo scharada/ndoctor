@@ -88,7 +88,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Duration.
+        ///   Looks up a localized string similar to Duration (days).
         /// </summary>
         internal static string Header_Duration {
             get {
@@ -298,6 +298,15 @@ namespace Probel.NDoctor.Plugins.PathologyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to From.
+        /// </summary>
+        internal static string Title_From {
+            get {
+                return ResourceManager.GetString("Title_From", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ill from.
         /// </summary>
         internal static string Title_IllFrom {
@@ -370,7 +379,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to to.
+        ///   Looks up a localized string similar to To.
         /// </summary>
         internal static string Title_To {
             get {

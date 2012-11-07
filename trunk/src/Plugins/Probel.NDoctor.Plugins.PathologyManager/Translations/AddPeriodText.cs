@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,26 +16,37 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
+
+#endregion Header
+
+namespace Probel.NDoctor.Plugins.PathologyManager.Translations
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
-    public static class Notifyer
+    using Probel.NDoctor.Plugins.PathologyManager.Properties;
+
+    internal class AddPeriodText
     {
-        #region Events
+        #region Properties
 
-        public static event EventHandler Refreshed;
-
-        #endregion Events
-
-        #region Methods
-
-        public static void OnRefreshed(object sender)
+        public static string From
         {
-            if (Refreshed != null)
-                Refreshed(sender, EventArgs.Empty);
+            get { return Messages.Title_From; }
         }
 
-        #endregion Methods
+        public static string To
+        {
+            get { return Messages.Title_To; }
+        }
+
+        public static string Watermark
+        {
+            get { return Messages.Title_SearchWatermark; }
+        }
+
+        #endregion Properties
     }
 }

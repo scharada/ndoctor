@@ -26,12 +26,14 @@ namespace Probel.NDoctor.Plugins.MeetingManager
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Helpers.WPF.Calendar.Model;
+    using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.MeetingManager.Helpers;
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.Plugins.MeetingManager.View;
+    using Probel.NDoctor.Plugins.MeetingManager.ViewModel;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -44,8 +46,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager
         #region Fields
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.MeetingManager;component/Images\{0}.png";
-
-        private readonly ViewService ViewService = new ViewService();
 
         private ICommand navigateCommand;
 
@@ -74,6 +74,11 @@ namespace Probel.NDoctor.Plugins.MeetingManager
             }
         }
 
+        private WorkbenchView View
+        {
+            get { return LazyLoader.Get<WorkbenchView>(); }
+        }
+
         #endregion Properties
 
         #region Methods
@@ -85,6 +90,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager
         public override void Initialise()
         {
             Assert.IsNotNull(PluginContext.Host, "PluginContext.Host");
+            this.ConfigureViewService();
             this.BuildButtons();
             this.BuildContextMenu();
         }
@@ -116,13 +122,13 @@ namespace Probel.NDoctor.Plugins.MeetingManager
             PluginContext.Host.AddContextualMenu(this.contextualMenu);
             PluginContext.Host.AddTab(tab);
 
-            ICommand addCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddMeeting, this.ViewService.NewAddMeetingView()), () => IsCalendatEditor);
+            ICommand addCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddMeetingViewModel>(), () => IsCalendatEditor);
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddMeeting, imgUri.FormatWith("Add"), addCommand) { Order = 1, });
 
-            ICommand removeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_RemoveMeeting, new RemoveMeetingView()), () => IsCalendatEditor);
+            ICommand removeCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<RemoveMeetingViewModel>(), () => IsCalendatEditor);
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_RemoveMeeting, imgUri.FormatWith("Delete"), removeCommand) { Order = 2, });
 
-            ICommand addCategoryCommand = new RelayCommand(() => InnerWindow.Show(Messages.Msg_AddCategory, new AddCategoryView()), () => IsCalendatEditor);
+            ICommand addCategoryCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddCategoryViewModel>(), () => IsCalendatEditor);
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Msg_AddCategory, imgUri.FormatWith("AddCategory"), addCategoryCommand) { Order = 3, });
         }
 
@@ -136,21 +142,30 @@ namespace Probel.NDoctor.Plugins.MeetingManager
             Mapper.CreateMap<AppointmentDto, Appointment>();
         }
 
+        private void ConfigureViewService()
+        {
+            LazyLoader.Set<WorkbenchView>(() => new WorkbenchView());
+            ViewService.Configure(e =>
+            {
+                e.Bind<AddCategoryView, AddCategoryViewModel>()
+                    .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
+
+                e.Bind<AddMeetingView, AddMeetingViewModel>()
+                    .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
+
+                e.Bind<RemoveMeetingView, RemoveMeetingViewModel>()
+                    .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
+            });
+        }
+
         private void Navigate()
         {
             try
             {
-                var view = new WorkbenchView();
-                //this.ViewService.GetViewModel(view).Refresh();
-                PluginContext.Host.Navigate(view);
+                PluginContext.Host.Navigate(this.View);
                 this.ShowContextMenu();
-
-                Notifyer.OnRefreshed(this);
             }
-            catch (Exception ex)
-            {
-                this.Handle.Error(ex, Messages.Msg_FailToLoadCalendar);
-            }
+            catch (Exception ex) { this.Handle.Error(ex, Messages.Msg_FailToLoadCalendar); }
         }
 
         #endregion Methods

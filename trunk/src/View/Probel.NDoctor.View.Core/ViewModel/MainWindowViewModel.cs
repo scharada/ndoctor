@@ -22,6 +22,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.Helpers;
@@ -31,7 +32,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Navigation;
-    using Probel.Mvvm.Gui;
 
     /// <summary>
     /// This ViewModel should contain all the information about the

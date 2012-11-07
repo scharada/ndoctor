@@ -32,6 +32,11 @@ namespace Probel.NDoctor.View.Core.Translations
             get { return Messages.Btn_OpenLogs; }
         }
 
+        public static string Title
+        {
+            get { return Messages.Title_About; }
+        }
+
         public static string TitlePlugins
         {
             get { return Messages.Title_Plugins; }
@@ -43,10 +48,5 @@ namespace Probel.NDoctor.View.Core.Translations
         }
 
         #endregion Properties
-
-        public static string Title
-        {
-            get { return Messages.Title_About; }
-        }
     }
 }
