@@ -28,7 +28,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.BmiRecord.Helpers;
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -64,8 +63,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
             this.BmiHistory = new ObservableCollection<BmiDto>();
 
             this.RemoveBmiCommand = new RelayCommand(() => this.RemoveBmi(), () => this.CanRemoveBmi());
-
-            Notifyer.ItemChanged += (sender, e) => this.Refresh();
         }
 
         #endregion Constructors
@@ -259,7 +256,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
                 this.component.Remove(this.SelectedBmi, this.Patient);
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiDeleted);
-                Notifyer.OnItemChanged(this);
+                this.Refresh();
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }

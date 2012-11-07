@@ -24,7 +24,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.BmiRecord.Helpers;
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -99,9 +98,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
             {
                 this.Handle.Error(ex, Messages.Msg_ErrAddBmi);
             }
-
-            Notifyer.OnItemChanged(this);
-            InnerWindow.Close();
+            this.Close();
         }
 
         private bool CanAddBmi()

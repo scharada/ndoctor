@@ -20,11 +20,12 @@ namespace Probel.NDoctor.Plugins.BmiRecord.View
     using System.Windows.Input;
 
     using Probel.NDoctor.Plugins.BmiRecord.ViewModel;
+    using System.Windows;
 
     /// <summary>
     /// Interaction logic for AddBmiView.xaml
     /// </summary>
-    public partial class AddBmiView : UserControl
+    public partial class AddBmiView : Window
     {
         #region Constructors
 
