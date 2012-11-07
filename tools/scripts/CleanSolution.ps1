@@ -21,9 +21,9 @@ foreach($item in $items)
 	
 	if($item.Attributes -eq "Directory" -and ($name -eq "bin" -or $name -eq "obj" -or $name -eq "release" -or $name -eq "debug" -or $name -eq "packages"))
 	{
-			Write-Host "Deleting"$item.FullName -ForegroundColor Green
-			Remove-Item $item.FullName -Force -Recurse
-			$dirCount++
+		Write-Host "Deleting"$item.FullName -ForegroundColor Green
+		Remove-Item $item.FullName -Force -Recurse
+		$dirCount++
 	}
 	else
 	{
@@ -39,3 +39,6 @@ foreach($item in $items)
 "Cleaning done:"
 "$dirCount folder(s) deleted"
 "$fileCount file(s) deleted"
+
+Write-Host "Press any key to continue ..."
+$x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
