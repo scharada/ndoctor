@@ -63,8 +63,6 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
             this.UpdateUserCommand = new RelayCommand(() => this.UpdateUser(), () => this.CanUpdateUser());
 
-            Notifyer.UserRefreshing += (sender, e) => this.Refresh();
-
             this.RemoveUserCommand = new RelayCommand(() => this.RemoveUser(), () => this.CanRemoveUser());
         }
 

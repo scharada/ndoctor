@@ -30,11 +30,6 @@ namespace Probel.NDoctor.Plugins.Authorisation.Helpers
         /// </summary>
         public static event EventHandler<PageEventArgs> Showing;
 
-        /// <summary>
-        /// Occurs before the plugin refreshes the users.
-        /// </summary>
-        public static event EventHandler UserRefreshing;
-
         #endregion Events
 
         #region Methods
@@ -49,16 +44,6 @@ namespace Probel.NDoctor.Plugins.Authorisation.Helpers
             {
                 Showing(sender, new PageEventArgs(displayed));
             }
-        }
-
-        /// <summary>
-        /// Called when the plugin refreshes the users.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        public static void OnUserRefreshing(object sender)
-        {
-            if (UserRefreshing != null)
-                UserRefreshing(sender, EventArgs.Empty);
         }
 
         #endregion Methods
