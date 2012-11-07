@@ -27,13 +27,16 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
+    using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MedicalRecord.Dto;
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.Plugins.MedicalRecord.Properties;
     using Probel.NDoctor.Plugins.MedicalRecord.View;
+    using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -41,7 +44,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
     using Probel.NDoctor.View.Toolbox.Navigation;
 
     [Export(typeof(IPlugin))]
-    public class MedicalRecord : StaticViewPlugin<WorkbenchView>
+    public class MedicalRecord : Plugin
     {
         #region Fields
 
@@ -50,10 +53,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         private readonly ICommand AddFolderCommand;
         private readonly ICommand AddRecordCommand;
         private readonly ICommand NavigateWorkbenchCommand;
-        private readonly ViewService ViewService = new ViewService();
-
-        //DOTO: replace with the window manager
-        private static MacroEditorView __macroEditorView; //Dont use the variable, use the property instead
 
         private RibbonToggleButtonData boldButton;
         private RibbonButtonData bulletsButton;
@@ -80,10 +79,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             this.InitialiseFontButtons();
             this.InitialiseParagraphButtons();
             this.ConfigureAutoMapper();
+            this.ConfigureViewService();
 
             this.NavigateWorkbenchCommand = new RelayCommand(() => this.NavigateWorkbench(), () => this.CanNavigateWorkbench());
-            this.AddRecordCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddRecord, new AddRecordView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
-            this.AddFolderCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddFolder, new AddFolderView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.AddRecordCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddRecordViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.AddFolderCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddFolderViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
         }
 
         #endregion Constructors
@@ -104,13 +104,14 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             }
         }
 
-        private static MacroEditorView MacroEditorView
+        private MacroEditorView MacroEditorView
         {
-            get
-            {
-                if (__macroEditorView == null) __macroEditorView = new MacroEditorView();
-                return __macroEditorView;
-            }
+            get { return LazyLoader.Get<MacroEditorView>(); }
+        }
+
+        private WorkbenchView View
+        {
+            get { return LazyLoader.Get<WorkbenchView>(); }
         }
 
         #endregion Properties
@@ -213,8 +214,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
 
         private void ConfigureSaveMenu(RibbonTabData tab)
         {
-            var revisionsButton = new RibbonButtonData(Messages.Btn_Revisions, imgUri.FormatWith("Undo"), this.ViewService.GetViewModel(this.View).ShowRevisionsCommand);
-            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.ViewService.GetViewModel(this.View).SaveCommand);
+            var revisionsButton = new RibbonButtonData(Messages.Btn_Revisions, imgUri.FormatWith("Undo"), this.View.As<WorkbenchViewModel>().ShowRevisionsCommand);
+            var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.View.As<WorkbenchViewModel>().SaveCommand);
             var splitButton = this.ConfigureSplitButton();
             var macroButton = new RibbonButtonData(Messages.Title_Macro, imgUri.FormatWith("Edit"), new RelayCommand(
                 () => this.EditMacro(), () => PluginContext.DoorKeeper.IsUserGranted(To.Administer)));
@@ -238,12 +239,31 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             return splitButton;
         }
 
+        private void ConfigureViewService()
+        {
+            LazyLoader.Set<MacroEditorView>(() => new MacroEditorView());
+            LazyLoader.Set<WorkbenchView>(() => new WorkbenchView());
+
+            ViewService.Configure(e =>
+            {
+                e.Bind<AddRecordView, AddRecordViewModel>()
+                    .OnShow(vm => vm.Refresh())
+                    .OnClosing(() => this.View.As<WorkbenchViewModel>().RefreshCommand.TryExecute());
+                e.Bind<AddFolderView, AddFolderViewModel>()
+                    .OnClosing(() => this.View.As<WorkbenchViewModel>().RefreshCommand.TryExecute());
+                e.Bind<MacroEditorView, MacroEditorViewModel>()
+                    .OnShow(vm => vm.RefreshCommand.TryExecute())
+                    .OnClosing(() => this.View.As<WorkbenchViewModel>().RefreshCommand.TryExecute());
+                e.Bind<RecordHistoryView, RecordHistoryViewModel>();
+            });
+        }
+
         private void EditMacro()
         {
             try
             {
-                this.ViewService.GetViewModel(MacroEditorView).RefreshCommand.TryExecute();
-                InnerWindow.Show(Messages.Title_Macro, MacroEditorView);
+                this.MacroEditorView.As<MacroEditorViewModel>().RefreshCommand.TryExecute();
+                ViewService.Manager.ShowDialog<MacroEditorViewModel>();
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -333,7 +353,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         {
             try
             {
-                this.ViewService.GetViewModel(this.View).RefreshCommand.TryExecute();
+                this.View.As<WorkbenchViewModel>().RefreshCommand.TryExecute();
                 PluginContext.Host.Navigate(this.View);
 
                 this.ShowContextMenu();

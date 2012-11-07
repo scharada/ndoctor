@@ -32,6 +32,11 @@ namespace Probel.NDoctor.Plugins.DbConvert.Translations
             get { return Messages.Title_Import; }
         }
 
+        public static string Title
+        {
+            get { return Messages.Title_DbConvertManager; }
+        }
+
         #endregion Properties
     }
 }

@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Plugins.DbConvert.View
 {
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
 
@@ -24,7 +25,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.View
     /// <summary>
     /// Interaction logic for Workbench.xaml
     /// </summary>
-    public partial class WorkbenchView : UserControl
+    public partial class WorkbenchView : Window
     {
         #region Constructors
 

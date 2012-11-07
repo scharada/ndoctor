@@ -38,13 +38,13 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Navigation;
+    using Probel.Mvvm.Gui;
 
     internal class WorkbenchViewModel : BaseViewModel
     {
         #region Fields
 
         private readonly IMedicalRecordComponent Component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
-        private readonly ViewService ViewService = new ViewService();
 
         private TitledMedicalRecordCabinetDto cabinet;
         private FontFamily defaultFontFamily;
@@ -72,12 +72,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             this.SaveCommand = new RelayCommand(() => Save(), () => this.CanSave());
             this.ShowRevisionsCommand = new RelayCommand(() => this.ShowRevisions(), () => this.CanShowRevisions());
             this.RefreshDefaultFontsCommand = new RelayCommand(() => this.RefreshDefaultFonts());
-
-            Notifyer.Refreshed += (sender, e) => this.Refresh();
-            Notifyer.MacroUpdated += (sender, e) => this.RefreshMacroMenu();
-            Notifyer.MacroUpdated += (sender, e) => this.Refresh();
-
-            InnerWindow.Closed += (sender, e) => this.Refresh();
         }
 
         #endregion Constructors
@@ -237,7 +231,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         {
             try
             {
-
                 Assert.IsNotNull(PluginContext.Host, "PluginContext.Host");
 
                 if (PluginContext.Host.SelectedPatient == null) { return; }
@@ -306,13 +299,17 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         private void ShowRevisions()
         {
-            var history = this.Component.GetHistory(this.SelectedRecord);
-            var view = new RecordHistoryView();
+            try
+            {
+                var history = this.Component.GetHistory(this.SelectedRecord);
 
-            this.ViewService.GetViewModel(view).History.Refill(history);
-            this.ViewService.GetViewModel(view).Record = this.SelectedRecord;
-
-            InnerWindow.Show(Messages.Title_Rollback, view);
+                ViewService.Manager.ShowDialog<RecordHistoryViewModel>(vm =>
+                {
+                    vm.Record = this.SelectedRecord;
+                    vm.History.Refill(history);
+                });
+            }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods

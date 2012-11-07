@@ -22,19 +22,19 @@ namespace Probel.NDoctor.Plugins.BmiRecord
     using System.Windows.Media;
 
     using Probel.Helpers.Strings;
+    using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
     using Probel.NDoctor.Plugins.BmiRecord.View;
+    using Probel.NDoctor.Plugins.BmiRecord.ViewModel;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox.Navigation;
-    using Probel.Mvvm.Gui;
-    using Probel.NDoctor.Plugins.BmiRecord.ViewModel;
-    using Probel.Mvvm;
 
     [Export(typeof(IPlugin))]
     public class BmiRecord : Plugin
@@ -69,6 +69,15 @@ namespace Probel.NDoctor.Plugins.BmiRecord
 
         #endregion Constructors
 
+        #region Properties
+
+        private WorkbenchView Workbench
+        {
+            get { return LazyLoader.Get<WorkbenchView>(); }
+        }
+
+        #endregion Properties
+
         #region Methods
 
         /// <summary>
@@ -83,16 +92,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord
                 this.ConfigureViewService();
                 this.BuildButtons();
                 this.BuildContextMenu();
-            });
-        }
-
-        private void ConfigureViewService()
-        {
-            LazyLoader.Set<WorkbenchView>(() => new WorkbenchView());
-            ViewService.Configure(e =>
-            {
-                e.Bind<AddBmiView, AddBmiViewModel>()
-                 .OnClosing(() => this.Workbench.As<WorkbenchViewModel>().Refresh());
             });
         }
 
@@ -134,10 +133,17 @@ namespace Probel.NDoctor.Plugins.BmiRecord
         {
             //Nothing to do
         }
-        private WorkbenchView Workbench
+
+        private void ConfigureViewService()
         {
-            get { return LazyLoader.Get<WorkbenchView>(); }
+            LazyLoader.Set<WorkbenchView>(() => new WorkbenchView());
+            ViewService.Configure(e =>
+            {
+                e.Bind<AddBmiView, AddBmiViewModel>()
+                 .OnClosing(() => this.Workbench.As<WorkbenchViewModel>().Refresh());
+            });
         }
+
         private void Navigate()
         {
             PluginContext.Host.Navigate(this.Workbench);

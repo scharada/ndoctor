@@ -106,7 +106,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         private void UpdateRecord()
         {
             this.Component.Revert(this.Record, this.SelectedState);
-            InnerWindow.Close();
+            this.Close();
         }
 
         #endregion Methods

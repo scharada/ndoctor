@@ -16,11 +16,11 @@
 */
 namespace Probel.NDoctor.Plugins.BmiRecord.View
 {
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
 
     using Probel.NDoctor.Plugins.BmiRecord.ViewModel;
-    using System.Windows;
 
     /// <summary>
     /// Interaction logic for AddBmiView.xaml
