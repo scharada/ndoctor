@@ -175,7 +175,12 @@ namespace Probel.NDoctor.Plugins.Authorisation
                  .OnClosing(() => this.WorkbenView.As<WorkbenchViewModel>().Refresh());
 
                 e.Bind<EditAssignedRoleView, EditAssignedRoleViewModel>()
-                 .OnShow(vm => vm.Refresh());
+                 .OnShow(vm => vm.Refresh())
+                 .OnClosing(() =>
+                 {
+                     this.WorkbenView.As<WorkbenchViewModel>().Refresh();
+                     this.ManageUserView.As<ManageUserViewModel>().Refresh();
+                 });
             });
         }
 

@@ -131,7 +131,6 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RoleUpdatedFor.FormatWith(this.SelectedUser.DisplayedName));
                 this.Close();
-                Notifyer.OnUserRefreshing(this);
             }
             catch (Exception ex)
             {
