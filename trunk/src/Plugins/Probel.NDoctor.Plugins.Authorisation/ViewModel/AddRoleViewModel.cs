@@ -110,6 +110,5 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
         }
 
         #endregion Methods
-
     }
 }

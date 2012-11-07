@@ -20,11 +20,12 @@ namespace Probel.NDoctor.View.Core.View
     using System.Windows.Input;
 
     using Probel.NDoctor.View.Core.ViewModel;
+    using System.Windows;
 
     /// <summary>
     /// Interaction logic for SettingsView.xaml
     /// </summary>
-    public partial class SettingsView : UserControl
+    public partial class SettingsView : Window
     {
         #region Constructors
 

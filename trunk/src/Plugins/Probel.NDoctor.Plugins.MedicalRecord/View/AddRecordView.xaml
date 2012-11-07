@@ -17,7 +17,7 @@
         mc:Ignorable="d" 
         SizeToContent="Height"
         Width="250"
-        Loaded="this_Loaded" ResizeMode="NoResize" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
+        Loaded="this_Loaded" ResizeMode="NoResize" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
     
     <Window.InputBindings>
         <KeyBinding Key="Enter"

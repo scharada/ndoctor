@@ -438,4 +438,8 @@ L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
     <value>Création des miniatures...</value>
     <comment>Thumbnails creation...</comment>
   </data>
+  <data name="Msg_ConfiguringViewService" xml:space="preserve">
+    <value>Configuration du gestionnaire de fenêtre...</value>
+    <comment>Configuring window manager...</comment>
+  </data>
 </root>

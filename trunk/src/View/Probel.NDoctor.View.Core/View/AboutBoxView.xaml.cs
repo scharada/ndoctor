@@ -26,11 +26,12 @@ namespace Probel.NDoctor.View.Core.View
     using System.Windows.Documents;
 
     using Probel.NDoctor.View.Core.ViewModel;
+    using System.Windows;
 
     /// <summary>
     /// Interaction logic for AboutBoxView.xaml
     /// </summary>
-    public partial class AboutBoxView : UserControl
+    public partial class AboutBoxView : Window
     {
         #region Constructors
 

@@ -438,4 +438,8 @@ The application will close. Check the logs for further  information</value>
     <value>Thumbnails creation...</value>
     <comment>Thumbnails creation...</comment>
   </data>
+  <data name="Msg_ConfiguringViewService" xml:space="preserve">
+    <value>Configuring window manager...</value>
+    <comment>Configuring window manager...</comment>
+  </data>
 </root>

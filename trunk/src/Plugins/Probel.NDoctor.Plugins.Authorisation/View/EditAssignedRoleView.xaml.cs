@@ -21,11 +21,11 @@
 
 namespace Probel.NDoctor.Plugins.Authorisation.View
 {
+    using System.Windows;
     using System.Windows.Controls;
 
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.Authorisation.ViewModel;
-    using System.Windows;
 
     /// <summary>
     /// Interaction logic for EditRoleView.xaml
