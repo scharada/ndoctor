@@ -21,6 +21,7 @@
 
 namespace Probel.NDoctor.Plugins.Authorisation.View
 {
+    using System.Windows;
     using System.Windows.Controls;
 
     using Probel.NDoctor.Plugins.Authorisation.ViewModel;
@@ -28,7 +29,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.View
     /// <summary>
     /// Interaction logic for AddRoleView.xaml
     /// </summary>
-    public partial class AddRoleView : UserControl
+    public partial class AddRoleView : Window
     {
         #region Constructors
 

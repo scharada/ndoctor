@@ -10,7 +10,7 @@
         Title="{Binding Source={x:Static Member=txt:BoxText.AddPictureType}}"
         
         mc:Ignorable="d"
-        WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Height="88" Width="259">
+        WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
     <Window.InputBindings>
         <KeyBinding Key="Enter"
                     Command="{Binding AddCommand}"/>

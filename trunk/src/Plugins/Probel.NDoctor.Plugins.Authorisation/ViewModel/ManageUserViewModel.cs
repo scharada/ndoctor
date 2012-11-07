@@ -38,6 +38,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox.Navigation;
+    using Probel.Mvvm.Gui;
 
     internal class ManageUserViewModel : BaseViewModel
     {
@@ -157,9 +158,10 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
         private void UpdateUser()
         {
-            var view = new EditAssignedRoleView(this.SelectedUser);
-            ((EditAssignedRoleViewModel)view.DataContext).Refresh();
-            InnerWindow.Show(Messages.Msg_UpdateRole, view);
+            //var view = new EditAssignedRoleView(this.SelectedUser);
+            //((EditAssignedRoleViewModel)view.DataContext).Refresh();
+            //InnerWindow.Show(Messages.Msg_UpdateRole, view);
+            ViewService.Manager.ShowDialog<EditAssignedRoleViewModel>(vm => vm.SelectedUser = this.SelectedUser);
             this.Refresh();
         }
 

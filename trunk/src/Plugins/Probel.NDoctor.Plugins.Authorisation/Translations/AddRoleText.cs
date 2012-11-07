@@ -37,6 +37,11 @@ namespace Probel.NDoctor.Plugins.Authorisation.Translations
             get { return Messages.Lbl_RoleName; }
         }
 
+        public static string Title
+        {
+            get { return Messages.Title_AddRole; }
+        }
+
         #endregion Properties
     }
 }

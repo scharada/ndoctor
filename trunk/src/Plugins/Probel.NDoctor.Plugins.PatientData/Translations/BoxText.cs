@@ -27,6 +27,11 @@ namespace Probel.NDoctor.Plugins.PatientData.Translations
     {
         #region Properties
 
+        public static string AddDoctor
+        {
+            get { return Messages.Title_AddDoctor; }
+        }
+
         public static string AddInsurance
         {
             get { return Messages.Title_AddInsurance; }
@@ -55,11 +60,6 @@ namespace Probel.NDoctor.Plugins.PatientData.Translations
         public static string BindDoctor
         {
             get { return Messages.Title_BindDoctor; }
-        }
-
-        public static string AddDoctor
-        {
-            get { return Messages.Title_AddDoctor; }
         }
 
         #endregion Properties

@@ -64,7 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\PageEventArgs.cs" />
-    <Compile Include="Helpers\ViewService.cs" />
     <Compile Include="PluginManager.cs">
       <SubType>Code</SubType>
     </Compile>

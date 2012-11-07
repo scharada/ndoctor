@@ -1,15 +1,27 @@
-﻿<UserControl x:Class="Probel.NDoctor.Plugins.Authorisation.View.AddRoleView"
-             
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
-             xmlns:iw="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
-             xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
-             xmlns:txt="clr-namespace:Probel.NDoctor.Plugins.Authorisation.Translations"
-             
-             mc:Ignorable="d"
-             Width="300">
+﻿<Window x:Class="Probel.NDoctor.Plugins.Authorisation.View.AddRoleView"
+        x:Name="this"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
+        xmlns:iw="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
+        xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:txt="clr-namespace:Probel.NDoctor.Plugins.Authorisation.Translations"
+        
+        Title="{Binding Source={x:Static Member=txt:AddRoleText.Title}}"        
+        mc:Ignorable="d"
+        Width="300" SizeToContent="Height" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <Window.InputBindings>
+        <KeyBinding Key="Enter"
+                    Command="{Binding AddCommand}"/>
+        <KeyBinding Key="Escape"
+                    Command="cmd:Commands.CloseView" 
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
+    </Window.InputBindings>
+    
     <DockPanel LastChildFill="True">
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
@@ -23,7 +35,8 @@
 
             <Border Grid.Column="1" Style="{StaticResource BorderStyle}">
                 <Button Content="{Binding Source={x:Static Member=t:BaseText.Cancel}}"
-                        Command="iw:InnerWindow.CancelCommand"/>
+                        Command="cmd:Commands.CloseView"
+                        CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
             </Border>
         </Grid>
         <DockPanel DockPanel.Dock="Top"
@@ -46,4 +59,4 @@
             </Border>
         </DockPanel>
     </DockPanel>
-</UserControl>
+</Window>

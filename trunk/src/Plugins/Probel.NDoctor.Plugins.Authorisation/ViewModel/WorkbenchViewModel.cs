@@ -23,6 +23,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.Authorisation.Helpers;
@@ -69,8 +70,6 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             this.RefreshRoleCommand = new RelayCommand(() => this.RefreshAvailableTasks());
             this.EditRoleCommand = new RelayCommand(() => this.EditRole(), () => this.CanModifyRole());
             this.RemoveRoleCommand = new RelayCommand(() => this.RemoveRole(), () => this.CanModifyRole());
-
-            Notifyer.RoleRefreshing += (sender, e) => this.Refresh();
         }
 
         #endregion Constructors
@@ -203,7 +202,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
         private void EditRole()
         {
-            InnerWindow.Show(Messages.Menu_Edit, new EditRoleView(this.SelectedRole));
+            ViewService.Manager.ShowDialog<EditRoleViewModel>(vm => vm.SetViewData(this.SelectedRole));
         }
 
         private void RefreshAvailableTasks()

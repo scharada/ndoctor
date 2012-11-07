@@ -257,8 +257,12 @@
     <value>Autorisations</value>
     <comment>Authorisations</comment>
   </data>
+  <data name="Title_EditRole" xml:space="preserve">
+    <value>Editer un rôle</value>
+    <comment>Edit a role</comment>
+  </data>
   <data name="Title_Manage" xml:space="preserve">
-    <value>Manage roles</value>
+    <value>Gérer les rôles</value>
     <comment>Manage roles</comment>
   </data>
   <data name="Title_Page" xml:space="preserve">

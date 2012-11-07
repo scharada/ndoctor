@@ -45,13 +45,9 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
         #region Constructors
 
-        public EditRoleViewModel(RoleDto role)
+        public EditRoleViewModel()
         {
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
-
-            this.SelectedRole = role;
-            this.Name = role.Name;
-            this.Description = role.Description;
 
             this.UpdateCommand = new RelayCommand(() => this.Update(), () => this.CanUpdate());
         }
@@ -100,6 +96,13 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
         #region Methods
 
+        public void SetViewData(RoleDto role)
+        {
+            this.SelectedRole = role;
+            this.Name = role.Name;
+            this.Description = role.Description;
+        }
+
         private bool CanUpdate()
         {
             return !string.IsNullOrWhiteSpace(this.Name);
@@ -112,8 +115,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
             component.Update(this.SelectedRole);
 
-            InnerWindow.Close();
-            Notifyer.OnRoleRefreshing(this);
+            this.Close();
         }
 
         #endregion Methods
