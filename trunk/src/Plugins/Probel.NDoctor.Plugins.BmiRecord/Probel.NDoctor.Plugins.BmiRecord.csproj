@@ -75,8 +75,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BmiRecord.cs" />
-    <Compile Include="Helpers\Notifyer.cs" />
-    <Compile Include="Helpers\ViewService.cs" />
     <Compile Include="Properties\Messages.fr.Designer.cs">
       <DependentUpon>Messages.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>

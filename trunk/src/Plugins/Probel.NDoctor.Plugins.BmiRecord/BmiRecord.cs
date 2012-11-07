@@ -25,7 +25,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
-    using Probel.NDoctor.Plugins.BmiRecord.Helpers;
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
     using Probel.NDoctor.Plugins.BmiRecord.View;
     using Probel.NDoctor.View.Core.Helpers;
@@ -33,6 +32,9 @@ namespace Probel.NDoctor.Plugins.BmiRecord
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox.Navigation;
+    using Probel.Mvvm.Gui;
+    using Probel.NDoctor.Plugins.BmiRecord.ViewModel;
+    using Probel.Mvvm;
 
     [Export(typeof(IPlugin))]
     public class BmiRecord : Plugin
@@ -40,8 +42,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord
         #region Fields
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.BmiRecord;component/Images\{0}.png";
-
-        private readonly ViewService ViewService = new ViewService();
 
         private IBmiComponent component;
         private ICommand navigateCommand;
@@ -80,8 +80,19 @@ namespace Probel.NDoctor.Plugins.BmiRecord
             this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
             PluginContext.Host.Invoke(() =>
             {
+                this.ConfigureViewService();
                 this.BuildButtons();
                 this.BuildContextMenu();
+            });
+        }
+
+        private void ConfigureViewService()
+        {
+            LazyLoader.Set<WorkbenchView>(() => new WorkbenchView());
+            ViewService.Configure(e =>
+            {
+                e.Bind<AddBmiView, AddBmiViewModel>()
+                 .OnClosing(() => this.Workbench.As<WorkbenchViewModel>().Refresh());
             });
         }
 
@@ -109,7 +120,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
             PluginContext.Host.AddContextualMenu(this.contextualMenu);
             PluginContext.Host.AddTab(tab);
 
-            ICommand addPeriodCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddBmi, new AddBmiView()), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            ICommand addPeriodCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddBmiViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddBmi, imgUri.FormatWith("Add"), addPeriodCommand) { Order = 1, });
         }
 
@@ -123,12 +134,14 @@ namespace Probel.NDoctor.Plugins.BmiRecord
         {
             //Nothing to do
         }
-
+        private WorkbenchView Workbench
+        {
+            get { return LazyLoader.Get<WorkbenchView>(); }
+        }
         private void Navigate()
         {
-            var view = new WorkbenchView();
-            PluginContext.Host.Navigate(view);
-            this.ViewService.GetViewModel(view).Refresh();
+            PluginContext.Host.Navigate(this.Workbench);
+            this.Workbench.As<WorkbenchViewModel>().Refresh();
 
             this.ShowContextMenu();
         }
