@@ -32,6 +32,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Translations
             get { return Messages.Title_MacroName; }
         }
 
+        public static string Title
+        {
+            get { return Messages.Title_Macro; }
+        }
+
         #endregion Properties
     }
 }

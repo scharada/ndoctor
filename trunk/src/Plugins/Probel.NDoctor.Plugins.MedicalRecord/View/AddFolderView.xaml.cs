@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Plugins.MedicalRecord.View
 {
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
 
@@ -24,7 +25,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
     /// <summary>
     /// Interaction logic for AddFolderView.xaml
     /// </summary>
-    public partial class AddFolderView : UserControl
+    public partial class AddFolderView : Window
     {
         #region Constructors
 

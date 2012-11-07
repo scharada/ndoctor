@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Plugins.MedicalRecord.View
 {
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
 
@@ -24,7 +25,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
     /// <summary>
     /// Interaction logic for AddRecordView.xaml
     /// </summary>
-    public partial class AddRecordView : UserControl
+    public partial class AddRecordView : Window
     {
         #region Constructors
 

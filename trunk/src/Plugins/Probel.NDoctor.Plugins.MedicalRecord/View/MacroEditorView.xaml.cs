@@ -30,11 +30,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Plugins.MedicalRecord.Editor;
     using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
+    using System.Windows;
 
     /// <summary>
     /// Interaction logic for MacroEditorView.xaml
     /// </summary>
-    public partial class MacroEditorView : UserControl
+    public partial class MacroEditorView : Window
     {
         #region Fields
 

@@ -48,8 +48,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         public AddRecordViewModel()
         {
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
-
-            this.Refresh();
             this.recordToAdd = new MedicalRecordDto();
             this.addRecordCommand = new RelayCommand(() => this.AddRecord(), () => this.CanAddRecord());
         }
@@ -103,6 +101,15 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         #region Methods
 
+        public void Refresh()
+        {
+            try
+            {
+                this.Tags.Refill(this.component.GetTags(TagCategory.MedicalRecord));
+            }
+            catch (Exception ex) { this.Handle.Error(ex); }
+        }
+
         private void AddRecord()
         {
             try
@@ -111,8 +118,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 this.recordToAdd.Rtf = string.Empty;
                 this.component.Create(this.recordToAdd, PluginContext.Host.SelectedPatient);
 
-                InnerWindow.Close();
-                Notifyer.OnRefreshed();
+                this.Close();
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RecordAdded);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
@@ -122,15 +128,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         private bool CanAddRecord()
         {
             return this.selectedTag != null;
-        }
-
-        private void Refresh()
-        {
-            try
-            {
-                this.Tags.Refill(this.component.GetTags(TagCategory.MedicalRecord));
-            }
-            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods

@@ -54,11 +54,16 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         {
             this.Macros = new ObservableCollection<MacroDto>();
 
-            this.refreshCommand = new RelayCommand(() => this.Refresh(), () => this.CanRefresh());
-            this.createCommand = new RelayCommand(() => this.Create(), () => this.CanCreate());
-            this.removeCommand = new RelayCommand(() => this.Remove(), () => this.CanRemove());
+            this.refreshCommand = new RelayCommand(() => this.Refresh());
+            this.createCommand = new RelayCommand(() => this.Create(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.removeCommand = new RelayCommand(() => this.Remove(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.saveCommand = new RelayCommand(() => this.Save(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
+        }
 
-            InnerWindow.Closed += (sender, e) => this.Save();
+        private readonly ICommand saveCommand;
+        public ICommand SaveCommand
+        {
+            get { return this.saveCommand; }
         }
 
         #endregion Constructors
@@ -122,21 +127,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         #region Methods
 
-        private bool CanCreate()
-        {
-            return PluginContext.DoorKeeper.IsUserGranted(To.Write);
-        }
-
-        private bool CanRefresh()
-        {
-            return true;
-        }
-
-        private bool CanRemove()
-        {
-            return true;
-        }
-
         private void Create()
         {
             try
@@ -179,7 +169,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 this.Component.Update(this.Macros);
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_MacrosUpdated);
-                Notifyer.OnMacroUpdated();
+                //Notifyer.OnMacroUpdated();
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }

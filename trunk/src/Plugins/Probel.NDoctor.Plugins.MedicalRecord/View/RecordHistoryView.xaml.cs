@@ -24,11 +24,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
     using System.Windows.Controls;
 
     using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
+    using System.Windows;
 
     /// <summary>
     /// Interaction logic for MedicalRecordHistoryView.xaml
     /// </summary>
-    public partial class RecordHistoryView : UserControl
+    public partial class RecordHistoryView : Window
     {
         #region Constructors
 

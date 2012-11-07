@@ -21,10 +21,13 @@ namespace Probel.NDoctor.Plugins.DbConvert
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
+    using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Plugins.DbConvert.Properties;
     using Probel.NDoctor.Plugins.DbConvert.View;
+    using Probel.NDoctor.Plugins.DbConvert.ViewModel;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -63,6 +66,7 @@ namespace Probel.NDoctor.Plugins.DbConvert
         {
             Assert.IsNotNull(PluginContext.Host, "PluginContext.Host");
 
+            this.ConfigureViewService();
             this.BuildButtons();
             this.BuildContextMenu();
         }
@@ -99,9 +103,18 @@ namespace Probel.NDoctor.Plugins.DbConvert
             /*Nothing to do*/
         }
 
+        private void ConfigureViewService()
+        {
+            LazyLoader.Set<WorkbenchView>(() => new WorkbenchView());
+            ViewService.Configure(e =>
+            {
+                e.Bind<WorkbenchView, WorkbenchViewModel>();
+            });
+        }
+
         private void Navigate()
         {
-            InnerWindow.Show(Messages.Title_Import, new WorkbenchView());
+            ViewService.Manager.ShowDialog<WorkbenchViewModel>();
         }
 
         #endregion Methods

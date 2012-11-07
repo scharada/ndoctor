@@ -32,15 +32,16 @@ namespace Probel.NDoctor.Plugins.BmiRecord.Translations
             get { return Messages.Title_BmiHeight; }
         }
 
+        public static string Title
+        {
+            get { return Messages.Title_AddBmi; }
+        }
+
         public static string Weight
         {
             get { return Messages.Title_BmiWeight; }
         }
 
-        public static string Title
-        {
-            get { return Messages.Title_AddBmi; }
-        }
         #endregion Properties
     }
 }

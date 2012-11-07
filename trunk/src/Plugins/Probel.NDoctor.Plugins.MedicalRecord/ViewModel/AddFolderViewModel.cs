@@ -81,10 +81,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             {
                 this.component.Create(this.tagToAdd);
 
-                InnerWindow.Close();
+                this.Close();
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_TagAdded.FormatWith(this.tagToAdd.Name));
-
-                Notifyer.OnRefreshed();
             }
             catch (Exception ex) { this.Handle.Error(ex); }
             finally { InnerWindow.Close(); }
