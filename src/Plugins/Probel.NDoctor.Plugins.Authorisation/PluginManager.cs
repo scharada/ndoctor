@@ -23,12 +23,15 @@ namespace Probel.NDoctor.Plugins.Authorisation
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
+    using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Plugins.Authorisation.Helpers;
     using Probel.NDoctor.Plugins.Authorisation.Properties;
     using Probel.NDoctor.Plugins.Authorisation.View;
+    using Probel.NDoctor.Plugins.Authorisation.ViewModel;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -41,8 +44,6 @@ namespace Probel.NDoctor.Plugins.Authorisation
         #region Fields
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.Authorisation;component/Images\{0}.png";
-
-        private readonly ViewService ViewService = new ViewService();
 
         private IAuthorisationComponent component;
         private PageEventArgs.DisplayedPage displayed;
@@ -66,6 +67,20 @@ namespace Probel.NDoctor.Plugins.Authorisation
 
         #endregion Constructors
 
+        #region Properties
+
+        private ManageUserView ManageUserView
+        {
+            get { return LazyLoader.Get<ManageUserView>(); }
+        }
+
+        private WorkbenchView WorkbenView
+        {
+            get { return LazyLoader.Get<WorkbenchView>(); }
+        }
+
+        #endregion Properties
+
         #region Methods
 
         /// <summary>
@@ -75,6 +90,7 @@ namespace Probel.NDoctor.Plugins.Authorisation
         public override void Initialise()
         {
             Assert.IsNotNull(PluginContext.Host, "PluginContext.Host");
+            this.ConfigureViewService();
             this.BuildButtons();
             this.BuildContextMenu();
         }
@@ -115,7 +131,7 @@ namespace Probel.NDoctor.Plugins.Authorisation
             ICommand userCommand = new RelayCommand(() => this.NavigateUser(), () => this.CanNavigateUser());
             ngroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_UserManager, imgUri.FormatWith("UserSetup"), userCommand) { Order = 2, });
 
-            ICommand addRoleCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddRole, new AddRoleView()));
+            ICommand addRoleCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddRoleViewModel>());
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddRole, imgUri.FormatWith("New"), addRoleCommand) { Order = 2, });
         }
 
@@ -144,11 +160,29 @@ namespace Probel.NDoctor.Plugins.Authorisation
             //Add the mapping here...
         }
 
+        private void ConfigureViewService()
+        {
+            LazyLoader.Set<WorkbenchView>(() => new WorkbenchView());
+            LazyLoader.Set<ManageUserView>(() => new ManageUserView());
+            LazyLoader.Set<EditAssignedRoleView>(() => new EditAssignedRoleView());
+
+            ViewService.Configure(e =>
+            {
+                e.Bind<AddRoleView, AddRoleViewModel>()
+                 .OnClosing(() => this.WorkbenView.As<WorkbenchViewModel>().Refresh());
+
+                e.Bind<EditRoleView, EditRoleViewModel>()
+                 .OnClosing(() => this.WorkbenView.As<WorkbenchViewModel>().Refresh());
+
+                e.Bind<EditAssignedRoleView, EditAssignedRoleViewModel>()
+                 .OnShow(vm => vm.Refresh());
+            });
+        }
+
         private void NavigateRole()
         {
-            var view = new WorkbenchView();
-            PluginContext.Host.Navigate(view);
-            this.ViewService.GetViewModel(view).Refresh();
+            PluginContext.Host.Navigate(this.WorkbenView);
+            this.WorkbenView.As<WorkbenchViewModel>().Refresh();
             this.displayed = PageEventArgs.DisplayedPage.RoleManager;
 
             this.contextualMenu.IsVisible = true;
@@ -157,9 +191,8 @@ namespace Probel.NDoctor.Plugins.Authorisation
 
         private void NavigateUser()
         {
-            var view = new ManageUserView();
-            PluginContext.Host.Navigate(view);
-            this.ViewService.GetViewModel(view).Refresh();
+            PluginContext.Host.Navigate(this.ManageUserView);
+            this.ManageUserView.As<ManageUserViewModel>().Refresh();
             this.displayed = PageEventArgs.DisplayedPage.UserManager;
             Notifyer.OnShowing(this, PageEventArgs.DisplayedPage.UserManager);
 

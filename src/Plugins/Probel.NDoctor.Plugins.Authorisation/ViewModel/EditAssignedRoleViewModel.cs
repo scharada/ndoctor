@@ -51,7 +51,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
         #region Constructors
 
-        public EditAssignedRoleViewModel(LightUserDto user)
+        public EditAssignedRoleViewModel()
         {
             if (!Designer.IsDesignMode)
             {
@@ -59,7 +59,6 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
                 PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
             }
             this.Roles = new ObservableCollection<RoleDto>();
-            this.SelectedUser = user;
             this.UpdateCommand = new RelayCommand(() => this.Update(), () => this.CanUpdate());
         }
 
@@ -131,7 +130,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
                 component.Update(this.SelectedUser);
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RoleUpdatedFor.FormatWith(this.SelectedUser.DisplayedName));
-                InnerWindow.Close();
+                this.Close();
                 Notifyer.OnUserRefreshing(this);
             }
             catch (Exception ex)

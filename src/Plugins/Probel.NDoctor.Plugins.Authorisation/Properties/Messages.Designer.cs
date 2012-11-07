@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Plugins.Authorisation.Properties
-{
-
-
+namespace Probel.NDoctor.Plugins.Authorisation.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -381,6 +381,15 @@ namespace Probel.NDoctor.Plugins.Authorisation.Properties
         internal static string Title_AuthorisationManager {
             get {
                 return ResourceManager.GetString("Title_AuthorisationManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit a role.
+        /// </summary>
+        internal static string Title_EditRole {
+            get {
+                return ResourceManager.GetString("Title_EditRole", resourceCulture);
             }
         }
         

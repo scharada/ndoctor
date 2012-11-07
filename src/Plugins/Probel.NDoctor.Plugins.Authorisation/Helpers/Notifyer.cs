@@ -26,11 +26,6 @@ namespace Probel.NDoctor.Plugins.Authorisation.Helpers
         #region Events
 
         /// <summary>
-        /// Occurs before the plugin refreshes the roles.
-        /// </summary>
-        public static event EventHandler RoleRefreshing;
-
-        /// <summary>
         /// Occurs when showing user management page.
         /// </summary>
         public static event EventHandler<PageEventArgs> Showing;
@@ -43,18 +38,6 @@ namespace Probel.NDoctor.Plugins.Authorisation.Helpers
         #endregion Events
 
         #region Methods
-
-        /// <summary>
-        /// Called to ask a refresh of the plugin's data.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        public static void OnRoleRefreshing(object sender)
-        {
-            if (RoleRefreshing != null)
-            {
-                RoleRefreshing(sender, EventArgs.Empty);
-            }
-        }
 
         /// <summary>
         /// Called when showing user management.

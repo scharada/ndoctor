@@ -99,8 +99,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
                 });
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RoleCreated);
-                Notifyer.OnRoleRefreshing(this);
-                InnerWindow.Close();
+                this.Close();
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -111,5 +110,6 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
         }
 
         #endregion Methods
+
     }
 }

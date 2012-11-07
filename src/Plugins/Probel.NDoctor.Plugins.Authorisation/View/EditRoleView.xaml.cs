@@ -21,6 +21,7 @@
 
 namespace Probel.NDoctor.Plugins.Authorisation.View
 {
+    using System.Windows;
     using System.Windows.Controls;
 
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -29,14 +30,14 @@ namespace Probel.NDoctor.Plugins.Authorisation.View
     /// <summary>
     /// Interaction logic for EditRoleView.xaml
     /// </summary>
-    public partial class EditRoleView : UserControl
+    public partial class EditRoleView : Window
     {
         #region Constructors
 
-        public EditRoleView(RoleDto role)
+        public EditRoleView()
         {
             InitializeComponent();
-            this.DataContext = new EditRoleViewModel(role);
+            this.DataContext = new EditRoleViewModel();
         }
 
         #endregion Constructors
