@@ -70,6 +70,7 @@
     <Compile Include="Data\DateTimeExtensions.cs" />
     <Compile Include="Events\EventArgs.cs" />
     <Compile Include="Exceptions\ConversionException.cs" />
+    <Compile Include="ImageExtensions.cs" />
     <Compile Include="Management\GenericUnitOfWork.cs" />
     <Compile Include="Management\UnitOfWork.cs" />
     <Compile Include="Properties\Messages.fr.Designer.cs">

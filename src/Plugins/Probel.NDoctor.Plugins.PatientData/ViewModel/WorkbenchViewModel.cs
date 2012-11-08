@@ -18,6 +18,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 {
     using System;
     using System.Collections.ObjectModel;
+    using System.IO;
     using System.Linq;
     using System.Windows;
     using System.Windows.Input;
@@ -27,6 +28,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.Helpers.Conversions;
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
+    using Probel.Mvvm.Gui.FileServices;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
@@ -38,6 +40,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Navigation;
+    using System.Drawing;
+    using Probel.Helpers;
 
     internal class WorkbenchViewModel : BaseViewModel
     {
@@ -215,18 +219,19 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
         private void ChangeImage()
         {
-            var dialog = new OpenFileDialog()
+            var file = string.Empty;
+            var option = new Options()
             {
                 Multiselect = false,
-                Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF",
+                Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF"
             };
-            var clickedOK = dialog.ShowDialog();
-            if (clickedOK.HasValue && clickedOK.Value)
+            FileServiceFactory.Win32.SelectFile(e => file = e, option);
+
+            if (File.Exists(file))
             {
-                var bytes = Converter.FileToByteArray(dialog.FileName);
-                this.Patient.Thumbnail = bytes;
+                var img = Image.FromFile(file);
+                this.Patient.Thumbnail = img.GetThumbnail(); ;
             }
-            else return;
         }
 
         private void InitialiseCollections()

@@ -1,4 +1,4 @@
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,15 +14,25 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Drawing;
+using Probel.Helpers.Conversions;
 
-using System.Reflection;
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
-[assembly:AssemblyVersion("3.0.3.859")]
+namespace Probel.Helpers
+{
+    public static class ImageExtensions
+    {
+        private const int HEIGHT = 170;
+        public static byte[] GetThumbnail(this Image img)
+        {
+            var ratio = img.Height / HEIGHT;
+            var width = img.Width / ratio;
+
+            var thumb = img.GetThumbnailImage(width, HEIGHT, () => false, IntPtr.Zero);
+            return Converter.ImageToByteArray(thumb);
+        }
+    }
+}
