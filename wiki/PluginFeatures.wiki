@@ -15,6 +15,9 @@ The plugin host DLL offers a error handler to manage exception. Its role is pret
  * logs the exception in a file or in whatever way you've configured log4net
 
 == Inner Window ==
+
+===*This feature doesn't exist anymore. It is replaced by the `ViewService` *===
+`[Documentation needs to be updated]`
 The `InnerWindow` is an easy to use versatile message box. Here's the way to use it: 
 
 {{{
