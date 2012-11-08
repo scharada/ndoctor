@@ -21,8 +21,7 @@
                      Text="{Binding ElementName=this, Path=Stamp.Name, UpdateSourceTrigger=PropertyChanged}"
                      MinWidth="200"/>
         </Border>
-        <ctrl:OKCancelBox
-                          OkCommand="{Binding ElementName=this, Path=OkCommand, UpdateSourceTrigger=PropertyChanged}"
+        <ctrl:OKCancelBox OkCommand="{Binding ElementName=this, Path=OkCommand, UpdateSourceTrigger=PropertyChanged}"
                           ButtonName="{Binding ElementName=this, Path=ButtonName, UpdateSourceTrigger=PropertyChanged}"/>
     </StackPanel>
 </UserControl>

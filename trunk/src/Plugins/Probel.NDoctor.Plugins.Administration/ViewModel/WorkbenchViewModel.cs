@@ -27,10 +27,10 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO.Collections;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.Administration.Helpers;
     using Probel.NDoctor.Plugins.Administration.Properties;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
@@ -71,8 +71,6 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                 this.component = PluginContext.ComponentFactory.GetInstance<IAdministrationComponent>();
                 PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAdministrationComponent>();
             }
-
-            Notifyer.Refreshing += (sender, e) => this.Refresh();
 
             #region Instanciates collections
             this.Insurances = new ObservableCollection<InsuranceDto>();
@@ -368,172 +366,126 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         private void EditDoctor()
         {
-            var specialisations = this.component.GetTags(TagCategory.Doctor);
-
-            InnerWindow.Show(Messages.Title_Edit, new DoctorBox()
+            ViewService.Manager.ShowDialog<AddDoctorViewModel>(vm =>
             {
-                ButtonName = Messages.Btn_Apply,
-                Doctor = this.SelectedDoctor,
-                Specialisations = new ObservableCollection<TagDto>(specialisations),
-                OkCommand = new RelayCommand(() =>
+                vm.AddCommand = new RelayCommand(() =>
                 {
                     try
                     {
                         this.component.Update(this.SelectedDoctor);
-                        InnerWindow.Close();
-                        Notifyer.OnRefreshing(this);
+                        vm.Close();
                     }
                     catch (Exception ex) { this.Handle.Error(ex); }
-                }),
+                });
+                vm.BoxItem = this.SelectedDoctor;
             });
         }
 
         private void EditDrug()
         {
-            var categories = this.component.GetTags(TagCategory.Drug);
-
-            InnerWindow.Show(Messages.Title_Edit, new DrugBox()
+            ViewService.Manager.ShowDialog<AddDrugViewModel>(vm =>
             {
-                ButtonName = Messages.Btn_Apply,
-                Drug = this.SelectedDrug,
-                Categories = new ObservableCollection<TagDto>(categories),
-                OkCommand = new RelayCommand(() =>
+                vm.AddCommand = new RelayCommand(() =>
                 {
                     try
                     {
                         this.component.Update(this.SelectedDrug);
-
-                        InnerWindow.Close();
-                        Notifyer.OnRefreshing(this);
+                        vm.Close();
                     }
                     catch (Exception ex) { this.Handle.Error(ex); }
-                }),
+                });
+                vm.BoxItem = this.SelectedDrug;
             });
         }
 
         private void EditInsurance()
         {
-            InnerWindow.Show(Messages.Title_Edit, new InsuranceBox()
+            ViewService.Manager.ShowDialog<AddInsuranceViewModel>(vm =>
             {
-                ButtonName = Messages.Btn_Apply,
-                Insurance = this.SelectedInsurance,
-                OkCommand = new RelayCommand(() =>
+                vm.AddCommand = new RelayCommand(() =>
                 {
                     try
                     {
                         this.component.Update(this.SelectedInsurance);
-
-                        InnerWindow.Close();
-                        Notifyer.OnRefreshing(this);
+                        vm.Close();
                     }
                     catch (Exception ex) { this.Handle.Error(ex); }
-                })
+                });
+                vm.BoxItem = this.SelectedInsurance;
             });
         }
 
         private void EditPathology()
         {
-            var categories = this.component.GetTags(TagCategory.Pathology);
-
-            InnerWindow.Show(Messages.Title_Edit, new PathologyBox()
+            ViewService.Manager.ShowDialog<AddPathologyViewModel>(vm =>
             {
-                ButtonName = Messages.Btn_Apply,
-                Pathology = this.SelectedPathology,
-                Tags = new ObservableCollection<TagDto>(categories),
-                OkCommand = new RelayCommand(() =>
+                vm.AddCommand = new RelayCommand(() =>
                 {
                     try
                     {
                         this.component.Update(this.SelectedPathology);
-
-                        InnerWindow.Close();
-                        Notifyer.OnRefreshing(this);
+                        vm.Close();
                     }
                     catch (Exception ex) { this.Handle.Error(ex); }
-                }),
+                });
+                vm.BoxItem = this.SelectedPathology;
             });
         }
 
         private void EditPractice()
         {
-            InnerWindow.Show(Messages.Title_Edit, new PracticeBox()
+            ViewService.Manager.ShowDialog<AddPracticeViewModel>(vm =>
             {
-                ButtonName = Messages.Btn_Apply,
-                Profession = this.SelectedPractice,
-                OkCommand = new RelayCommand(() =>
+                vm.AddCommand = new RelayCommand(() =>
                 {
                     try
                     {
                         this.component.Update(this.SelectedPractice);
-
-                        InnerWindow.Close();
-                        Notifyer.OnRefreshing(this);
+                        vm.Close();
                     }
                     catch (Exception ex) { this.Handle.Error(ex); }
-                }),
+                });
+                vm.BoxItem = this.SelectedPractice;
             });
         }
 
         private void EditProfession()
         {
-            InnerWindow.Show(Messages.Title_Edit, new ProfessionBox()
+            ViewService.Manager.ShowDialog<AddProfessionViewModel>(vm =>
             {
-                ButtonName = Messages.Btn_Apply,
-                Profession = this.SelectedProfession,
-                OkCommand = new RelayCommand(() =>
+                vm.AddCommand = new RelayCommand(() =>
                 {
                     try
                     {
                         this.component.Update(this.SelectedProfession);
-
-                        InnerWindow.Close();
-                        Notifyer.OnRefreshing(this);
+                        vm.Close();
                     }
                     catch (Exception ex) { this.Handle.Error(ex); }
-                }),
+                });
+                vm.BoxItem = this.SelectedProfession;
             });
         }
 
         private void EditReputation()
         {
-            InnerWindow.Show(Messages.Title_Edit, new ReputationBox()
+            ViewService.Manager.ShowDialog<AddReputationViewModel>(vm =>
             {
-                ButtonName = Messages.Btn_Apply,
-                Reputation = this.SelectedReputation,
-                OkCommand = new RelayCommand(() =>
+                vm.AddCommand = new RelayCommand(() =>
                 {
                     try
                     {
                         this.component.Update(this.SelectedReputation);
-
-                        InnerWindow.Close();
-                        Notifyer.OnRefreshing(this);
+                        vm.Close();
                     }
                     catch (Exception ex) { this.Handle.Error(ex); }
-                }),
+                });
+                vm.BoxItem = this.SelectedReputation;
             });
         }
 
         private void EditTag()
         {
-            var categories = TagCategoryCollection.Build();
-
-            InnerWindow.Show(Messages.Title_Edit, new TagBox()
-            {
-                ButtonName = Messages.Btn_Apply,
-                Stamp = this.SelectedTag,
-                OkCommand = new RelayCommand(() =>
-                {
-                    try
-                    {
-                        this.component.Update(this.SelectedTag);
-
-                        InnerWindow.Close();
-                        Notifyer.OnRefreshing(this);
-                    }
-                    catch (Exception ex) { this.Handle.Error(ex); }
-                }),
-            });
+            ViewService.Manager.ShowDialog<EditTagViewModel>(vm => vm.BoxItem = this.SelectedTag);
         }
 
         private TaskArgs GetAllListAsync()
@@ -558,7 +510,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                 this.Insurances.Refill(context.Insurances);
                 this.Practices.Refill(context.Practices);
                 this.Pathologies.Refill(context.Pathologies);
-                this.Drugs.Refill(Drugs);
+                this.Drugs.Refill(context.Drugs);
                 this.Reputations.Refill(context.Reputations);
                 this.Tags.Refill(Mapper.Map<IList<TagDto>, IList<TagViewModel>>(context.Tags));
                 this.Professions.Refill(context.Professions);
@@ -578,7 +530,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                     }
                     else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
 
-                    Notifyer.OnRefreshing(this);
+                    this.Refresh();
                 }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
@@ -594,7 +546,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                 }
                 else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
 
-                Notifyer.OnRefreshing(this);
+                this.Refresh();
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -611,7 +563,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                     }
                     else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
 
-                    Notifyer.OnRefreshing(this);
+                    this.Refresh();
                 }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
@@ -629,7 +581,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                     }
                     else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
 
-                    Notifyer.OnRefreshing(this);
+                    this.Refresh();
                 }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
@@ -647,7 +599,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                     }
                     else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
 
-                    Notifyer.OnRefreshing(this);
+                    this.Refresh();
                 }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
@@ -665,7 +617,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                     }
                     else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
 
-                    Notifyer.OnRefreshing(this);
+                    this.Refresh();
                 }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
@@ -683,7 +635,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                     }
                     else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
 
-                    Notifyer.OnRefreshing(this);
+                    this.Refresh();
                 }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
@@ -701,7 +653,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                     }
                     else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
 
-                    Notifyer.OnRefreshing(this);
+                    this.Refresh();
                 }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
@@ -719,7 +671,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                     }
                     else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
 
-                    Notifyer.OnRefreshing(this);
+                    this.Refresh();
                 }
             }
             catch (Exception ex) { this.Handle.Error(ex); }

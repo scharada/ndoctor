@@ -1,4 +1,4 @@
-﻿<Window x:Class="Probel.NDoctor.Plugins.Administration.View.AddSpecialisationView"
+﻿<Window x:Class="Probel.NDoctor.Plugins.Administration.View.EditTagView"
         x:Name="this"
         
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -9,7 +9,7 @@
         xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
         xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Toolbox.Controls;assembly=Probel.NDoctor.View.Toolbox"
         xmlns:txt="clr-namespace:Probel.NDoctor.Plugins.Administration.Translations"
-        Title="{Binding Source={x:Static Member=txt:BoxText.AddSpecialisation}}"
+        Title="{Binding Source={x:Static Member=txt:BoxText.AddTag}}"
         
         mc:Ignorable="d"
         WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight" ShowInTaskbar="False">
@@ -20,7 +20,7 @@
                     Command="{Binding CloseCommand}" />
     </Window.InputBindings>
 
-    <ctrl:SpecialisationBox Specialisation="{Binding BoxItem}"
-                            ButtonName="{Binding Source={x:Static Member=t:BaseText.OK}}"
-                            OkCommand="{Binding AddCommand}"/>
+    <ctrl:TagBox Stamp="{Binding BoxItem}"
+                 ButtonName="{Binding Source={x:Static Member=t:BaseText.OK}}"
+                 OkCommand="{Binding AddCommand}"/>
 </Window>

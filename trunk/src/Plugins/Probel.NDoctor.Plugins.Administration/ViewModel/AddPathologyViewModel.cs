@@ -21,6 +21,9 @@
 
 namespace Probel.NDoctor.Plugins.Administration.ViewModel
 {
+    using System.Collections.ObjectModel;
+
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     internal class AddPathologyViewModel : BaseBoxViewModel<PathologyDto>
@@ -29,12 +32,28 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         public AddPathologyViewModel()
         {
+            this.Tags = new ObservableCollection<TagDto>();
             this.BoxItem = new PathologyDto();
         }
 
         #endregion Constructors
 
+        #region Properties
+
+        public ObservableCollection<TagDto> Tags
+        {
+            get;
+            private set;
+        }
+
+        #endregion Properties
+
         #region Methods
+
+        public void Refresh()
+        {
+            this.Tags.Refill(this.Component.GetTags(TagCategory.Pathology));
+        }
 
         protected override void AddItem()
         {

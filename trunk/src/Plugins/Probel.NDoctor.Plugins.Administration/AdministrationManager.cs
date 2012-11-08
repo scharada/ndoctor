@@ -31,7 +31,6 @@ namespace Probel.NDoctor.Plugins.Administration
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.Administration.Helpers;
     using Probel.NDoctor.Plugins.Administration.Properties;
     using Probel.NDoctor.Plugins.Administration.View;
     using Probel.NDoctor.Plugins.Administration.ViewModel;
@@ -181,12 +180,14 @@ namespace Probel.NDoctor.Plugins.Administration
                 e.Bind<AddPracticeView, AddPracticeViewModel>()
                     .OnClosing(() => this.Refresh());
                 e.Bind<AddDrugView, AddDrugViewModel>()
+                    .OnShow(vm => vm.Refresh())
                     .OnClosing(() => this.Refresh());
                 e.Bind<AddDrugTypeView, AddDrugTypeViewModel>()
                     .OnClosing(() => this.Refresh());
                 e.Bind<AddPathologyTypeView, AddPathologyTypeViewModel>()
                     .OnClosing(() => this.Refresh());
                 e.Bind<AddPathologyView, AddPathologyViewModel>()
+                    .OnShow(vm => vm.Refresh())
                     .OnClosing(() => this.Refresh());
                 e.Bind<AddProfessionView, AddProfessionViewModel>()
                     .OnClosing(() => this.Refresh());
@@ -197,14 +198,16 @@ namespace Probel.NDoctor.Plugins.Administration
                 e.Bind<AddSpecialisationView, AddSpecialisationViewModel>()
                     .OnClosing(() => this.Refresh());
                 e.Bind<AddDoctorView, AddDoctorViewModel>()
+                    .OnShow(vm => vm.Refresh())
                     .OnClosing(() => this.Refresh());
+                e.Bind<EditTagView, EditTagViewModel>();
             });
         }
 
         private void Navigate()
         {
             PluginContext.Host.Navigate(this.WorkbenchView);
-            Notifyer.OnRefreshing(this);
+            this.WorkbenchView.As<WorkbenchViewModel>().Refresh();
 
             this.contextualMenu.IsVisible = true;
             this.contextualMenu.TabDataCollection[0].IsSelected = PluginContext.Configuration.AutomaticContextMenu;

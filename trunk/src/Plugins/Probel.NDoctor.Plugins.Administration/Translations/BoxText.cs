@@ -82,6 +82,11 @@ namespace Probel.NDoctor.Plugins.Administration.Translations
             get { return Messages.Title_AddSpecialisation; }
         }
 
+        public static string AddTag
+        {
+            get { return Messages.Title_Tag; }
+        }
+
         #endregion Properties
     }
 }

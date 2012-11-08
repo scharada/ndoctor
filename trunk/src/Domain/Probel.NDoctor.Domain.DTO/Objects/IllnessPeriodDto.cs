@@ -36,6 +36,19 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #region Properties
 
         /// <summary>
+        /// Gets the duration in days of the period.
+        /// </summary>
+        public double Duration
+        {
+            get
+            {
+                return (this.End != null && this.Start != null)
+                    ? (this.End - this.Start).TotalDays
+                    : 0;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the end date of the period.
         /// </summary>
         /// <value>
@@ -96,19 +109,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.start = value;
                 this.OnPropertyChanged(() => this.Start);
-            }
-        }
-
-        /// <summary>
-        /// Gets the duration in days of the period.
-        /// </summary>
-        public double Duration
-        {
-            get
-            {
-                return (this.End != null && this.Start != null)
-                    ? (this.End - this.Start).TotalDays
-                    : 0;
             }
         }
 

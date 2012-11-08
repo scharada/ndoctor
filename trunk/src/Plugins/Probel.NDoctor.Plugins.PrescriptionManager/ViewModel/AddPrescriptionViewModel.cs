@@ -119,6 +119,11 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             catch (Exception ex) { this.Handle.Error(ex); }
         }
 
+        public void Remove(PrescriptionDto prescription)
+        {
+            this.Prescriptions.Remove(prescription);
+        }
+
         public void ResetPage()
         {
             this.CreationDate = DateTime.Today;
@@ -149,11 +154,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 if (string.IsNullOrWhiteSpace(prescription.Notes)) return true;
             }
             return false;
-        }
-
-        public void Remove(PrescriptionDto prescription)
-        {
-            this.Prescriptions.Remove(prescription);
         }
 
         private void Save()

@@ -27,8 +27,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager.Translations
             get { return Messages.Btn_Add; }
         }
 
-        #endregion Properties
-
         public static string Title
         {
             get { return Messages.Title_AddPathology; }
@@ -38,5 +36,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.Translations
         {
             get { return Messages.Title_AddPathologyCategory; }
         }
+
+        #endregion Properties
     }
 }

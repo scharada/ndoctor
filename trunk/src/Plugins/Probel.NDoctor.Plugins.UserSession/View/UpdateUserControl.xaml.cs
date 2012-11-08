@@ -16,11 +16,11 @@
 */
 namespace Probel.NDoctor.Plugins.UserSession.View
 {
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
 
     using Probel.NDoctor.Plugins.UserSession.ViewModel;
-    using System.Windows;
 
     /// <summary>
     /// Interaction logic for UpdateUserControl.xaml

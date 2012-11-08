@@ -14,38 +14,18 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Plugins.Administration.Helpers
+using Probel.NDoctor.Domain.DTO.Objects;
+
+namespace Probel.NDoctor.Plugins.Administration.ViewModel
 {
-    using System;
-
-    public static class Notifyer
+    internal class EditTagViewModel : BaseBoxViewModel<TagDto>
     {
-        #region Events
-
-        public static event EventHandler Refreshing;
-
-        public static event EventHandler TagsChanged;
-
-        #endregion Events
-
-        #region Methods
-
-        public static void OnRefreshing(object sender)
+        /// <summary>
+        /// This view is only used to update a TagDto
+        /// </summary>
+        protected override void AddItem()
         {
-            if (Refreshing != null)
-            {
-                Refreshing(sender, EventArgs.Empty);
-            }
+            this.Component.Update(this.BoxItem);
         }
-
-        public static void OnTagsChanged(object sender)
-        {
-            if (TagsChanged != null)
-            {
-                TagsChanged(sender, EventArgs.Empty);
-            }
-        }
-
-        #endregion Methods
     }
 }

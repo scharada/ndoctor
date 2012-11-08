@@ -14,36 +14,20 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Plugins.UserSession.View
+using System.Windows;
+using Probel.NDoctor.Plugins.Administration.ViewModel;
+
+namespace Probel.NDoctor.Plugins.Administration.View
 {
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Input;
-
-    using Probel.NDoctor.Plugins.UserSession.ViewModel;
-
     /// <summary>
-    /// Interaction logic for ChangePasswordView.xaml
+    /// Interaction logic for EditTagView.xaml
     /// </summary>
-    public partial class ChangePasswordView : Window
+    public partial class EditTagView : Window
     {
-        #region Constructors
-
-        public ChangePasswordView()
+        public EditTagView()
         {
             InitializeComponent();
-            this.DataContext = new ChangePasswordViewModel();
+            this.DataContext = new EditTagViewModel();
         }
-
-        #endregion Constructors
-
-        #region Methods
-
-        private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            Keyboard.Focus(this.focused);
-        }
-
-        #endregion Methods
     }
 }

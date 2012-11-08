@@ -32,6 +32,11 @@ namespace Probel.NDoctor.Plugins.UserSession.Translations
             get { return Messages.Msg_WarnDefaultUser; }
         }
 
+        public static string Title
+        {
+            get { return Messages.Title_ButtonAddUser; }
+        }
+
         public static string TitleAddUser
         {
             get { return Messages.Title_ButtonAddUser; }
@@ -63,10 +68,5 @@ namespace Probel.NDoctor.Plugins.UserSession.Translations
         }
 
         #endregion Properties
-
-        public static string Title
-        {
-            get { return Messages.Title_ButtonAddUser; }
-        }
     }
 }

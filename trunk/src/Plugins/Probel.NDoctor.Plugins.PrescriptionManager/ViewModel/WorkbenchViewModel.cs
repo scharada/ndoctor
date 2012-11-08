@@ -22,10 +22,12 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using System.Windows.Input;
 
     using Probel.Helpers.Strings;
+    using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
+    using Probel.NDoctor.Plugins.PrescriptionManager.View;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -33,8 +35,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.View.Toolbox.Controls;
     using Probel.NDoctor.View.Toolbox.Helpers;
     using Probel.NDoctor.View.Toolbox.Navigation;
-    using Probel.Mvvm;
-    using Probel.NDoctor.Plugins.PrescriptionManager.View;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -160,6 +160,14 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
         #region Methods
 
+        /// <summary>
+        /// Refreshes the prescriptions with the already specified start and end date.
+        /// </summary>
+        public void Refresh()
+        {
+            this.RefreshPrescriptions(this.StartCriteria, this.EndCriteria);
+        }
+
         public void RefreshPrescriptions(DateTime start, DateTime end)
         {
             try
@@ -227,13 +235,5 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         }
 
         #endregion Methods
-
-        /// <summary>
-        /// Refreshes the prescriptions with the already specified start and end date.
-        /// </summary>
-        public void Refresh()
-        {
-            this.RefreshPrescriptions(this.StartCriteria, this.EndCriteria);
-        }
     }
 }

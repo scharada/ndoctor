@@ -115,7 +115,7 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add a doctor.
+        ///   Looks up a localized string similar to Doctor.
         /// </summary>
         internal static string Title_AddDoctor {
             get {
@@ -124,7 +124,7 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add a drug.
+        ///   Looks up a localized string similar to Drug.
         /// </summary>
         internal static string Title_AddDrug {
             get {
@@ -133,7 +133,7 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add a new drug type.
+        ///   Looks up a localized string similar to New drug type.
         /// </summary>
         internal static string Title_AddDrugType {
             get {
@@ -142,7 +142,7 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add an insurance.
+        ///   Looks up a localized string similar to Insurance.
         /// </summary>
         internal static string Title_AddInsurance {
             get {
@@ -151,7 +151,7 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add a pathology.
+        ///   Looks up a localized string similar to Pathology.
         /// </summary>
         internal static string Title_AddPathology {
             get {
@@ -160,7 +160,7 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add a new pathology type.
+        ///   Looks up a localized string similar to Pathology type.
         /// </summary>
         internal static string Title_AddPathologyType {
             get {
@@ -169,7 +169,7 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add picture category.
+        ///   Looks up a localized string similar to Picture category.
         /// </summary>
         internal static string Title_AddPictureType {
             get {
@@ -178,7 +178,7 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add a practice.
+        ///   Looks up a localized string similar to Practice.
         /// </summary>
         internal static string Title_AddPractice {
             get {
@@ -187,7 +187,7 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add a profession.
+        ///   Looks up a localized string similar to Profession.
         /// </summary>
         internal static string Title_AddProfession {
             get {
@@ -196,7 +196,7 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add a reputation.
+        ///   Looks up a localized string similar to Reputation.
         /// </summary>
         internal static string Title_AddReputation {
             get {
@@ -205,7 +205,7 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add a new specialisation.
+        ///   Looks up a localized string similar to Specialisation.
         /// </summary>
         internal static string Title_AddSpecialisation {
             get {

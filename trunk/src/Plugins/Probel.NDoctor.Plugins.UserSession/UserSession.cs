@@ -23,7 +23,9 @@ namespace Probel.NDoctor.Plugins.UserSession
     using AutoMapper;
 
     using Probel.Helpers.Strings;
+    using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -36,8 +38,6 @@ namespace Probel.NDoctor.Plugins.UserSession
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox.Navigation;
-    using Probel.Mvvm.Gui;
-    using Probel.Mvvm;
 
     /// <summary>
     /// When the application user has logged into the application, it opens a User session that contains the modules the logged user can use. 
@@ -167,19 +167,6 @@ namespace Probel.NDoctor.Plugins.UserSession
                 , () => PluginContext.DoorKeeper.IsUserGranted(To.MetaWrite));
         }
 
-        private void ConfigureViewService()
-        {
-            LazyLoader.Set<ConnectionView>(() => new ConnectionView());
-
-            ViewService.Configure(e =>
-            {
-                e.Bind<AddUserControl, AddUserViewModel>()
-                    .OnClosing(() => LazyLoader.Get<ConnectionView>().As<ConnectionViewModel>().Refresh());
-                e.Bind<ChangePasswordView, ChangePasswordViewModel>();
-                e.Bind<UpdateUserControl, UpdateUserViewModel>()
-                    .OnShow(vm => vm.Refresh());
-            });
-        }
         private bool CanDisconnect()
         {
             return true;
@@ -194,6 +181,20 @@ namespace Probel.NDoctor.Plugins.UserSession
         {
             Mapper.CreateMap<UserDto, BusinessCardViewModel>();
             Mapper.CreateMap<BusinessCardViewModel, UserDto>();
+        }
+
+        private void ConfigureViewService()
+        {
+            LazyLoader.Set<ConnectionView>(() => new ConnectionView());
+
+            ViewService.Configure(e =>
+            {
+                e.Bind<AddUserControl, AddUserViewModel>()
+                    .OnClosing(() => LazyLoader.Get<ConnectionView>().As<ConnectionViewModel>().Refresh());
+                e.Bind<ChangePasswordView, ChangePasswordViewModel>();
+                e.Bind<UpdateUserControl, UpdateUserViewModel>()
+                    .OnShow(vm => vm.Refresh());
+            });
         }
 
         private void Disconnect()

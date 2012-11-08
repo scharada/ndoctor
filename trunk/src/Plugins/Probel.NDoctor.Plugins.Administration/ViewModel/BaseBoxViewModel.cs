@@ -40,7 +40,7 @@
         public ICommand AddCommand
         {
             get;
-            private set;
+            internal set; //The setter is open to allow versatility
         }
 
         public T BoxItem

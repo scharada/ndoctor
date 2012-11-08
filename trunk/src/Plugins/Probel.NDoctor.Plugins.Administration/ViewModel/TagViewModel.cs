@@ -23,6 +23,9 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Toolbox.Navigation;
 
+    /// <summary>
+    /// This View model is build to allow translation of the TagCategory
+    /// </summary>
     internal class TagViewModel : TagDto
     {
         #region Fields
