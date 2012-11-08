@@ -46,7 +46,7 @@ xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor
 
 == Plugin context ==
 This plugin context provides an small API to execute some generic tasks:
- * Loggin into the GUI
+ * Logging into the GUI
  * Create left pane dynamically
  * Checking authorisation
  * Build plugin's ribbon menu using `DataBinding`
