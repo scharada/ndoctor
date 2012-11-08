@@ -102,17 +102,16 @@ namespace Probel.NDoctor.Plugins.UserSession.Translations
             get { return Messages.Title_Role; }
         }
 
+        public static string Title
+        {
+            get { return Messages.Menu_ManagePersonalData; }
+        }
+
         public static string TitleDefaultUser
         {
             get { return Messages.Title_DefaultUser; }
         }
 
         #endregion Properties
-
-
-        public static string Title
-        {
-            get { return Messages.Menu_ManagePersonalData; }
-        }
     }
 }

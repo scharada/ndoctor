@@ -226,47 +226,47 @@
     <comment>Item added.</comment>
   </data>
   <data name="Title_AddInsurance" xml:space="preserve">
-    <value>Ajouter une mutuelle</value>
+    <value>Mutuelle</value>
     <comment>Add an insurance</comment>
   </data>
   <data name="Title_AddPractice" xml:space="preserve">
-    <value>Ajouter un cabinet</value>
+    <value>Cabinet</value>
     <comment>Add a practice</comment>
   </data>
   <data name="Title_AddProfession" xml:space="preserve">
-    <value>Ajouter une profession</value>
+    <value>Profession</value>
     <comment>Add a profession</comment>
   </data>
   <data name="Title_AddReputation" xml:space="preserve">
-    <value>Ajouter une réputation</value>
+    <value>Réputation</value>
     <comment>Add a reputation</comment>
   </data>
   <data name="Title_AddSpecialisation" xml:space="preserve">
-    <value>Ajouter une spécialisation</value>
+    <value>Spécialisation</value>
     <comment>Add a new specialisation</comment>
   </data>
   <data name="Title_AddDoctor" xml:space="preserve">
-    <value>Ajouter un médecin</value>
+    <value>Médecin</value>
     <comment>Add a doctor</comment>
   </data>
   <data name="Title_AddDrug" xml:space="preserve">
-    <value>Ajouter un médicament</value>
+    <value>Médicament</value>
     <comment>Add a drug</comment>
   </data>
   <data name="Title_AddPathology" xml:space="preserve">
-    <value>Ajouter une maladie</value>
+    <value>Maladie</value>
     <comment>Add a pathology</comment>
   </data>
   <data name="Title_AddDrugType" xml:space="preserve">
-    <value>Ajouter un type de médicament</value>
+    <value>Type de médicament</value>
     <comment>Add a new drug type</comment>
   </data>
   <data name="Title_AddPathologyType" xml:space="preserve">
-    <value>Ajouter un type de maladie</value>
+    <value>Maladie</value>
     <comment>Add a new pathology type</comment>
   </data>
   <data name="Title_AddPictureType" xml:space="preserve">
-    <value>Ajouter une catégorie de photo</value>
+    <value>Catégorie de photo</value>
     <comment>Add picture category</comment>
   </data>
 </root>

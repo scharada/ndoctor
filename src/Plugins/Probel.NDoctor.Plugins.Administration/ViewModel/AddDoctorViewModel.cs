@@ -14,14 +14,6 @@
         {
             this.Specialisations = new ObservableCollection<TagDto>();
             this.BoxItem = new DoctorDto();
-
-            try
-            {
-                var result = this.Component.GetTags(TagCategory.Doctor);
-
-                this.Specialisations.Refill(result);
-            }
-            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Constructors
@@ -34,9 +26,24 @@
             private set;
         }
 
+        private TagDto selectedTag;
+        public TagDto SelectedTag
+        {
+            get { return this.selectedTag; }
+            set
+            {
+                this.selectedTag = value;
+                this.OnPropertyChanged(() => SelectedTag);
+            }
+        }
         #endregion Properties
 
         #region Methods
+
+        public void Refresh()
+        {
+            this.Specialisations.Refill(this.Component.GetTags(TagCategory.Doctor));
+        }
 
         protected override void AddItem()
         {

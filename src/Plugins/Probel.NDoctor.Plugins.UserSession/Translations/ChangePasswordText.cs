@@ -20,12 +20,12 @@ namespace Probel.NDoctor.Plugins.UserSession.Translations
 
     public static class ChangePasswordText
     {
+        #region Properties
 
         public static string Title
         {
             get { return Messages.Title_ChangePwd; }
         }
-        #region Properties
 
         public static string TitleAgainPwd
         {

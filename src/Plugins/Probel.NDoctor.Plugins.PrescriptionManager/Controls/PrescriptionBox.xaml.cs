@@ -27,11 +27,11 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Controls
 
     using log4net;
 
-    using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.Mvvm;
+    using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.View;
     using Probel.NDoctor.Plugins.PrescriptionManager.ViewModel;
-    using Probel.Mvvm.DataBinding;
 
     /// <summary>
     /// Interaction logic for PrescriptionBox.xaml

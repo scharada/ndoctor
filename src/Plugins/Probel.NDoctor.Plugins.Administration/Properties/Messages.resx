@@ -142,47 +142,47 @@
     <comment>Item added.</comment>
   </data>
   <data name="Title_AddDoctor" xml:space="preserve">
-    <value>Add a doctor</value>
+    <value>Doctor</value>
     <comment>Add a doctor</comment>
   </data>
   <data name="Title_AddDrug" xml:space="preserve">
-    <value>Add a drug</value>
+    <value>Drug</value>
     <comment>Add a drug</comment>
   </data>
   <data name="Title_AddDrugType" xml:space="preserve">
-    <value>Add a new drug type</value>
+    <value>New drug type</value>
     <comment>Add a new drug type</comment>
   </data>
   <data name="Title_AddInsurance" xml:space="preserve">
-    <value>Add an insurance</value>
+    <value>Insurance</value>
     <comment>Add an insurance</comment>
   </data>
   <data name="Title_AddPathology" xml:space="preserve">
-    <value>Add a pathology</value>
+    <value>Pathology</value>
     <comment>Add a pathology</comment>
   </data>
   <data name="Title_AddPathologyType" xml:space="preserve">
-    <value>Add a new pathology type</value>
+    <value>Pathology type</value>
     <comment>Add a new pathology type</comment>
   </data>
   <data name="Title_AddPictureType" xml:space="preserve">
-    <value>Add picture category</value>
+    <value>Picture category</value>
     <comment>Add picture category</comment>
   </data>
   <data name="Title_AddPractice" xml:space="preserve">
-    <value>Add a practice</value>
+    <value>Practice</value>
     <comment>Add a practice</comment>
   </data>
   <data name="Title_AddProfession" xml:space="preserve">
-    <value>Add a profession</value>
+    <value>Profession</value>
     <comment>Add a profession</comment>
   </data>
   <data name="Title_AddReputation" xml:space="preserve">
-    <value>Add a reputation</value>
+    <value>Reputation</value>
     <comment>Add a reputation</comment>
   </data>
   <data name="Title_AddSpecialisation" xml:space="preserve">
-    <value>Add a new specialisation</value>
+    <value>Specialisation</value>
     <comment>Add a new specialisation</comment>
   </data>
   <data name="Title_AdministratorManager" xml:space="preserve">

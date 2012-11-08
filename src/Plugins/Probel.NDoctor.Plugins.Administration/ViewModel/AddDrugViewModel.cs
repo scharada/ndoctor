@@ -21,6 +21,9 @@
 
 namespace Probel.NDoctor.Plugins.Administration.ViewModel
 {
+    using System.Collections.ObjectModel;
+
+    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     internal class AddDrugViewModel : BaseBoxViewModel<DrugDto>
@@ -29,12 +32,28 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         public AddDrugViewModel()
         {
+            this.Categories = new ObservableCollection<TagDto>();
             this.BoxItem = new DrugDto();
         }
 
         #endregion Constructors
 
+        #region Properties
+
+        public ObservableCollection<TagDto> Categories
+        {
+            get;
+            private set;
+        }
+
+        #endregion Properties
+
         #region Methods
+
+        public void Refresh()
+        {
+            this.Categories.Refill(this.Component.GetTags(TagCategory.Drug));
+        }
 
         protected override void AddItem()
         {

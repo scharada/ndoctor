@@ -66,7 +66,6 @@
     <Compile Include="AdministrationManager.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Helpers\Notifyer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -99,6 +98,7 @@
     <Compile Include="ViewModel\AddReputationViewModel.cs" />
     <Compile Include="ViewModel\AddSpecialisationViewModel.cs" />
     <Compile Include="ViewModel\BaseBoxViewModel.cs" />
+    <Compile Include="ViewModel\EditTagViewModel.cs" />
     <Compile Include="ViewModel\TagViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
     <Compile Include="View\AddDoctorView.xaml.cs">
@@ -133,6 +133,9 @@
     </Compile>
     <Compile Include="View\AddSpecialisationView.xaml.cs">
       <DependentUpon>AddSpecialisationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditTagView.xaml.cs">
+      <DependentUpon>EditTagView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WorkbenchView.xaml.cs">
       <DependentUpon>WorkbenchView.xaml</DependentUpon>
@@ -237,6 +240,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddSpecialisationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditTagView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -21,6 +21,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using System.Windows.Input;
 
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.UserSession.Properties;
@@ -29,7 +30,6 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox.Navigation;
-    using Probel.Mvvm.Gui;
 
     internal class ConnectionViewModel : BaseViewModel
     {

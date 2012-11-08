@@ -19,14 +19,14 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using System;
     using System.Windows.Input;
 
+    using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
+    using Probel.NDoctor.Plugins.PrescriptionManager.View;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
-    using Probel.NDoctor.Plugins.PrescriptionManager.View;
-    using Probel.Mvvm;
 
     internal class SearchPrescriptionViewModel : BaseViewModel
     {
