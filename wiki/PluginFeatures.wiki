@@ -18,6 +18,7 @@ The plugin host DLL offers a error handler to manage exception. Its role is pret
 
 ===*This feature doesn't exist anymore. It is replaced by the `ViewService` *===
 `[Documentation needs to be updated]`
+
 The `InnerWindow` is an easy to use versatile message box. Here's the way to use it: 
 
 {{{
