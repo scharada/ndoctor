@@ -226,9 +226,9 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 Multiselect = false,
                 Title = Messages.Title_SelectPicture,
             };
-            FileServiceFactory.Win32.SelectFile(e => this.SelectedFile = e, opt);
+            var dr = FileGuiFactory.Win32.SelectFile(e => this.SelectedFile = e, opt);
 
-            if (File.Exists(this.SelectedFile)) { this.PicToAdd.Bitmap = File.ReadAllBytes(this.SelectedFile); }
+            if (dr == true && File.Exists(this.SelectedFile)) { this.PicToAdd.Bitmap = File.ReadAllBytes(this.SelectedFile); }
         }
 
         #endregion Methods
