@@ -72,13 +72,6 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
             set;
         }
 
-        private IHibernateMappingConvention MappingConvention
-        {
-            get
-            {
-                return DefaultCascade.SaveUpdate();
-            }
-        }
 
         #endregion Properties
 
@@ -106,18 +99,21 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                     // this NHibernate tool takes a configuration (with mapping info in)
                     // and exports a database schema from it
                     new SchemaExport(configuration)
-                      .Create(false, true);
+                        .Create(false, true);
 
                     executeScript = true;
                 };
             }
-            else this.setupConfiguration = (configuration) =>
+            else
             {
-                var update = new SchemaUpdate(configuration);
-                update.Execute(false, true);
+                this.setupConfiguration = (configuration) =>
+                    {
+                        Configuration = configuration;
 
-                Configuration = configuration;
-            };
+                        new SchemaUpdate(configuration)
+                            .Execute(false, true);
+                    };
+            }
 
             this.persistenceConfigurer
                 = SQLiteConfiguration
@@ -217,18 +213,20 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
         {
             return AutoMap.AssemblyOf<Entity>(new CustomAutomappingConfiguration())
                     .IgnoreBase<Entity>()
-                    .Override<User>(m => m.IgnoreProperty(x => x.DisplayedName))
-                    .Override<Appointment>(m => m.IgnoreProperty(x => x.DateRange))
-                    .Override<IllnessPeriod>(x => x.IgnoreProperty(p => p.Duration))
-                    .Override<Patient>(patient =>
+                    .Override<User>(map => map.IgnoreProperty(x => x.DisplayedName))
+                    .Override<Appointment>(map => map.IgnoreProperty(x => x.DateRange))
+                    .Override<IllnessPeriod>(map => map.IgnoreProperty(p => p.Duration))
+                    .Override<Patient>(map =>
                     {
-                        patient.HasMany<Bmi>(x => x.BmiHistory).KeyColumn("Patient_Id");
-                        patient.HasMany<MedicalRecord>(x => x.MedicalRecords).KeyColumn("Patient_Id");
-                        patient.HasMany<IllnessPeriod>(x => x.IllnessHistory).KeyColumn("Patient_Id");
-                        patient.HasMany<Appointment>(x => x.Appointments).KeyColumn("Patient_Id");
+                        map.HasMany<Bmi>(x => x.BmiHistory).KeyColumn("Patient_Id");
+                        map.HasMany<MedicalRecord>(x => x.MedicalRecords).KeyColumn("Patient_Id");
+                        map.HasMany<IllnessPeriod>(x => x.IllnessHistory).KeyColumn("Patient_Id");
+                        map.HasMany<Appointment>(x => x.Appointments).KeyColumn("Patient_Id");
                     })
-                    .Override<Role>(role => role.HasManyToMany(x => x.Tasks).Cascade.All())
-                    .Conventions.Add(this.MappingConvention);
+                    .Override<Role>(map => map.HasManyToMany(x => x.Tasks).Cascade.All())
+                    .Conventions.Add(DefaultCascade.SaveUpdate()
+                                    , DynamicUpdate.AlwaysTrue()
+                                    , DynamicInsert.AlwaysTrue());
         }
 
         private ISessionFactory CreateSessionFactory()
@@ -239,9 +237,6 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                 {
                     m.AutoMappings
                      .Add(this.CreateModel());
-
-                    m.FluentMappings
-                     .Conventions.Add(this.MappingConvention);
                 })
             .ExposeConfiguration(setupConfiguration)
             .BuildSessionFactory();

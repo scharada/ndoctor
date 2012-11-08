@@ -53,7 +53,7 @@ namespace Probel.NDoctor.View.Core
             #if DEBUG
             //Hook the console to the application to have logging features
             AllocConsole();
-            //HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
+            HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
             #endif
 
             this.Logger = LogManager.GetLogger(typeof(LogManager));

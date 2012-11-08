@@ -14,7 +14,7 @@
     <Window.Resources>
         <conv:GenderToImageConverter x:Key="genderToImage"/>
     </Window.Resources>
-    
+
     <Window.InputBindings>
         <KeyBinding Key="Escape"
                     Command="cmd:Commands.CloseView" 
@@ -29,13 +29,13 @@
     <toolkit:BusyIndicator BusyContent="{Binding Source={x:Static Member=t:BaseText.PleaseWait}}" IsBusy="{Binding IsBusy}">
         <DockPanel LastChildFill="True">
             <ComboBox DockPanel.Dock="Top" Margin="4"
-                  ItemsSource="{Binding Relations}"
-                  SelectedItem="{Binding SelectedRelation}"
-                  DisplayMemberPath="Item2"
-                  SelectedIndex="0"/>
+                      ItemsSource="{Binding Relations}"
+                      SelectedItem="{Binding SelectedRelation}"
+                      DisplayMemberPath="Item2"
+                      SelectedIndex="0"/>
             <DockPanel DockPanel.Dock="Top">
                 <Button DockPanel.Dock="Right" Background="White" BorderBrush="White" BorderThickness="0"
-                            Command="{Binding SearchCommand}">
+                        Command="{Binding SearchCommand}">
                     <Image DataContext="{Binding}" Source="/Probel.NDoctor.Plugins.FamilyViewer;component/Images/Glyph.png"
                                Height="15"
                                Width="15"/>
@@ -43,11 +43,15 @@
                 <toolkit:WatermarkTextBox x:Name="focused"
                                       Margin="4"
                                       Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}">
+                    <toolkit:WatermarkTextBox.InputBindings>
+                        <KeyBinding Key="Enter"
+                                    Command="{Binding SearchCommand}" />
+                    </toolkit:WatermarkTextBox.InputBindings>
                     <toolkit:WatermarkTextBox.Watermark>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Probel.NDoctor.Plugins.FamilyViewer;Component/Images/Card.png"
-                               Height="15"
-                               Width="15" />
+                                   Height="15"
+                                   Width="15" />
                             <TextBlock Text="{Binding Source={x:Static Member=text:AddRelationText.TitleWatermark}}"/>
                         </StackPanel>
                     </toolkit:WatermarkTextBox.Watermark>
