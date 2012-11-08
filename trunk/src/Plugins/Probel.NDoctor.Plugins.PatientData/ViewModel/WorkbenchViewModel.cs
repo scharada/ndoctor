@@ -225,9 +225,9 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 Multiselect = false,
                 Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF"
             };
-            FileServiceFactory.Win32.SelectFile(e => file = e, option);
+            var dr = FileGuiFactory.Win32.SelectFile(e => file = e, option);
 
-            if (File.Exists(file))
+            if (dr == true && File.Exists(file))
             {
                 var img = Image.FromFile(file);
                 this.Patient.Thumbnail = img.GetThumbnail(); ;
