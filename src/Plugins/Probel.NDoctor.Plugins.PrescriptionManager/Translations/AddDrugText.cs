@@ -32,6 +32,16 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Translations
             get { return Messages.Btn_New; }
         }
 
+        public static string Title
+        {
+            get { return Messages.Btn_AddDrug; }
+        }
+
+        public static string TitleCategory
+        {
+            get { return Messages.Btn_AddDrugType; }
+        }
+
         #endregion Properties
     }
 }

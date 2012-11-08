@@ -30,7 +30,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.View
     /// <summary>
     /// Interaction logic for SearchDrugView.xaml
     /// </summary>
-    public partial class SearchDrugView : UserControl
+    public partial class SearchDrugView : Window
     {
         #region Constructors
 

@@ -21,6 +21,7 @@
 
 namespace Probel.NDoctor.Plugins.PatientSession.View
 {
+    using System.Windows;
     using System.Windows.Controls;
 
     using Probel.NDoctor.Plugins.PatientSession.ViewModel;
@@ -28,7 +29,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.View
     /// <summary>
     /// Interaction logic for SearchPatientExtendedControl.xaml
     /// </summary>
-    public partial class SearchPatientExtendedControl : UserControl
+    public partial class SearchPatientExtendedControl : Window
     {
         #region Constructors
 

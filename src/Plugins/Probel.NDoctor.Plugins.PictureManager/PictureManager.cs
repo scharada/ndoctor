@@ -25,7 +25,6 @@ namespace Probel.NDoctor.Plugins.PictureManager
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
-    using Probel.NDoctor.Plugins.PictureManager.Helpers;
     using Probel.NDoctor.Plugins.PictureManager.Properties;
     using Probel.NDoctor.Plugins.PictureManager.View;
     using Probel.NDoctor.Plugins.PictureManager.ViewModel;
@@ -39,8 +38,6 @@ namespace Probel.NDoctor.Plugins.PictureManager
         #region Fields
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.PictureManager;component/Images\{0}.png";
-
-        private readonly ViewModelService ViewModelService = new ViewModelService();
 
         private ICommand navigateCommand;
 
@@ -118,20 +115,22 @@ namespace Probel.NDoctor.Plugins.PictureManager
                 e.Bind<AddPictureView, AddPictureViewModel>()
                  .OnShow(vm => vm.RefreshCommand.TryExecute())
                  .OnClosing(vm => this.RefreshWorkbenchView(vm.HasAddPicture));
+                e.Bind<AddTagView, AddTagViewModel>()
+                    .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
             });
         }
 
         private ICommand GetAddCategoryCommand()
         {
             ICommand cmd = null;
-            PluginContext.Host.Invoke(() => cmd = this.ViewModelService.GetViewModel(this.View).AddTypeCommand);
+            PluginContext.Host.Invoke(() => cmd = this.View.As<WorkbenchViewModel>().AddTypeCommand);
             return cmd;
         }
 
         private ICommand GetAddPicCommand()
         {
             ICommand cmd = null;
-            PluginContext.Host.Invoke(() => cmd = this.ViewModelService.GetViewModel(this.View).AddPictureCommand);
+            PluginContext.Host.Invoke(() => cmd = this.View.As<WorkbenchViewModel>().AddPictureCommand);
             return cmd;
         }
 
@@ -141,7 +140,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
             {
                 PluginContext.Host.Navigate(this.View);
 
-                this.ViewModelService.GetViewModel(this.View).Refresh();
+                this.View.As<WorkbenchViewModel>().Refresh();
 
                 this.ShowContextMenu();
             }
@@ -155,7 +154,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
         {
             if (doRefresh)
             {
-                this.ViewModelService.GetViewModel(base.View).ForceRefresh();
+                this.View.As<WorkbenchViewModel>().ForceRefresh();
             }
         }
 

@@ -24,9 +24,9 @@ namespace Probel.NDoctor.Plugins.PatientSession
 
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.PatientSession.Helpers;
     using Probel.NDoctor.Plugins.PatientSession.Properties;
     using Probel.NDoctor.Plugins.PatientSession.View;
     using Probel.NDoctor.Plugins.PatientSession.ViewModel;
@@ -48,7 +48,6 @@ namespace Probel.NDoctor.Plugins.PatientSession
         private readonly ICommand ExtendedSearchCommand;
         private readonly ICommand SearchCommand;
         private readonly ICommand ShowTopTenCommand;
-        private readonly ViewService ViewService = new ViewService();
 
         #endregion Fields
 
@@ -78,6 +77,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
         public override void Initialise()
         {
             this.BuildButtons();
+            this.ConfigureViewService();
         }
 
         private void BuildButtons()
@@ -152,27 +152,36 @@ namespace Probel.NDoctor.Plugins.PatientSession
             Mapper.CreateMap<LightPatientViewModel, LightPatientDto>();
         }
 
+        private void ConfigureViewService()
+        {
+            ViewService.Configure(e =>
+            {
+                e.Bind<SearchPatientExtendedControl, SearchPatientExtendedViewModel>()
+                    .OnShow(vm => vm.RefreshCommand.TryExecute());
+                e.Bind<SearchPatientControl, SearchPatientViewModel>();
+                e.Bind<TopTenControl, TopTenViewModel>();
+                e.Bind<AddPatientControl, AddPatientViewModel>();
+            });
+        }
+
         private void NavigateAddPatient()
         {
-            InnerWindow.Show(Messages.Title_AddPatient, new AddPatientControl());
+            ViewService.Manager.ShowDialog<AddPatientViewModel>();
         }
 
         private void NavigateExtendedSearch()
         {
-            var view = new SearchPatientExtendedControl();
-            this.ViewService.GetViewModel(view).RefreshCommand.TryExecute();
-
-            InnerWindow.Show(Messages.Title_ExtendedSearchPatient, view);
+            ViewService.Manager.ShowDialog<SearchPatientExtendedViewModel>();
         }
 
         private void NavigateSearchPatient()
         {
-            InnerWindow.Show(Messages.Title_SearchPatient, new SearchPatientControl());
+            ViewService.Manager.ShowDialog<SearchPatientViewModel>();
         }
 
         private void NavigateTopTen()
         {
-            InnerWindow.Show(Messages.Title_MostUsed, new TopTenControl());
+            ViewService.Manager.ShowDialog<TopTenViewModel>();
         }
 
         #endregion Methods

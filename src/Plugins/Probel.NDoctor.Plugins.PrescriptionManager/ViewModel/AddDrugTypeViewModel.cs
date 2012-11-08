@@ -24,7 +24,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
@@ -85,20 +84,12 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             try
             {
                 this.component.Create(this.SelectedTag);
-
-                Notifyer.OnItemChanged(this);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
                 this.SelectedTag = new TagDto(TagCategory.Drug);
-                InnerWindow.Close();
             }
-            catch (ExistingItemException ex)
-            {
-                this.Handle.Warning(ex, ex.Message);
-            }
-            catch (Exception ex)
-            {
-                this.Handle.Error(ex, Messages.Msg_ErrorOccured);
-            }
+            catch (ExistingItemException ex) { this.Handle.Warning(ex, ex.Message); }
+            catch (Exception ex) { this.Handle.Error(ex, Messages.Msg_ErrorOccured); }
+            finally { this.Close(); }
         }
 
         private bool CanAdd()

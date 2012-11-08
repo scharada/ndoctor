@@ -27,7 +27,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.View
     /// <summary>
     /// Interaction logic for SearchPatientControl.xaml
     /// </summary>
-    public partial class SearchPatientControl : UserControl
+    public partial class SearchPatientControl : Window
     {
         #region Constructors
 

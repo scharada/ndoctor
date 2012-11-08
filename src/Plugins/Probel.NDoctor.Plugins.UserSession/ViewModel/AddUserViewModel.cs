@@ -24,7 +24,6 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.UserSession.Helpers;
     using Probel.NDoctor.Plugins.UserSession.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -131,7 +130,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                 this.component.Create(this.User, this.Password);
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_UserAdded);
-                Notifyer.OnUserAdded(this);
+                this.Close();
             }
             catch (Exception ex)
             {

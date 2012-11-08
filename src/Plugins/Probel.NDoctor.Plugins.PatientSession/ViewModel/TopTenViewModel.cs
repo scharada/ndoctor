@@ -19,18 +19,40 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Plugins.PictureManager.Helpers
+namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 {
-    using Probel.NDoctor.Plugins.PictureManager.View;
-    using Probel.NDoctor.Plugins.PictureManager.ViewModel;
+    using System.Collections.ObjectModel;
 
-    internal class ViewModelService
+    using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.DTO.Objects;
+
+    internal class TopTenViewModel : SearchPatientViewModel
     {
+        #region Constructors
+
+        public TopTenViewModel()
+        {
+            this.Top10Patients = new ObservableCollection<LightPatientDto>();
+        }
+
+        #endregion Constructors
+
+        #region Properties
+
+        public ObservableCollection<LightPatientDto> Top10Patients
+        {
+            get;
+            set;
+        }
+
+        #endregion Properties
+
         #region Methods
 
-        public WorkbenchViewModel GetViewModel(WorkbenchView view)
+        public void Refresh()
         {
-            return (WorkbenchViewModel)view.DataContext;
+            var result = this.component.GetTopXPatient(10);
+            this.Top10Patients.Refill(result);
         }
 
         #endregion Methods

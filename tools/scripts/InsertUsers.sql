@@ -152,29 +152,29 @@ INSERT INTO Drug(Id, Name, Notes, Tag_Id, IsImported) VALUES (3, 'Vitamin D', 'F
 INSERT INTO Drug(Id, Name, Notes, Tag_Id, IsImported) VALUES (4, 'Vitamin E', 'For energy'   , 15, 0);
 INSERT INTO Drug(Id, Name, Notes, Tag_Id, IsImported) VALUES (5, 'Dispril'  , 'For headaches', 14, 0);
 
-INSERT INTO PrescriptionDocument(Id, CreationDate, Title, Tag_Id, Patient_Id, IsImported) VALUES(1, '2012-06-09', 'Default title', 16, 7, 0);
-INSERT INTO PrescriptionDocument(Id, CreationDate, Title, Tag_Id, Patient_Id, IsImported) VALUES(2, '2012-06-09', 'Default title', 16, 7, 0);
-INSERT INTO PrescriptionDocument(Id, CreationDate, Title, Tag_Id, Patient_Id, IsImported) VALUES(3, '2012-06-09', 'Default title', 16, 7, 0);
+INSERT INTO PrescriptionDocument(Id, CreationDate, Title, Tag_Id, Patient_Id, IsImported) VALUES(1, '2012-11-07', 'Default title', 16, 7, 0);
+INSERT INTO PrescriptionDocument(Id, CreationDate, Title, Tag_Id, Patient_Id, IsImported) VALUES(2, '2012-11-07', 'Default title', 16, 7, 0);
+INSERT INTO PrescriptionDocument(Id, CreationDate, Title, Tag_Id, Patient_Id, IsImported) VALUES(3, '2012-11-07', 'Default title', 16, 7, 0);
 
 INSERT INTO Prescription(Id, Notes, Tag_Id, PrescriptionDocument_Id, Drug_Id, IsImported) VALUES (1, 'Twice a day', 15, 1, 1, 0);
 INSERT INTO Prescription(Id, Notes, Tag_Id, PrescriptionDocument_Id, Drug_Id, IsImported) VALUES (2, 'Twice a day', 15, 1, 2, 0);
 INSERT INTO Prescription(Id, Notes, Tag_Id, PrescriptionDocument_Id, Drug_Id, IsImported) VALUES (3, 'Twice a day', 16, 1, 3, 0);
 INSERT INTO Prescription(Id, Notes, Tag_Id, PrescriptionDocument_Id, Drug_Id, IsImported) VALUES (4, 'Twice a day', 16, 2, 4, 0);
 
-INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES ( 1, '2011-10-16 08:00', '2011-10-16 08:30', 'Meeting', 19, 1, 7, 0);
-INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES ( 2, '2011-10-16 08:30', '2011-10-16 09:00', 'Meeting', 19, 1, 7, 0);
-INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES ( 3, '2011-10-16 09:00', '2011-10-16 09:30', 'Meeting', 19, 1, 7, 0);
-INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES ( 4, '2011-10-16 09:30', '2011-10-16 10:00', 'Meeting', 19, 1, 7, 0);
-INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES ( 5, '2011-10-16 10:00', '2011-10-16 10:30', 'Meeting', 19, 1, 7, 0);
-INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES ( 6, '2011-10-16 10:30', '2011-10-16 11:00', 'Meeting', 19, 1, 7, 0);
-INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES (11, '2011-10-16 13:00', '2011-10-16 13:30', 'Meeting', 19, 1, 7, 0);
-INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES (12, '2011-10-16 13:30', '2011-10-16 14:00', 'Meeting', 19, 1, 7, 0);
-INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES (13, '2011-10-16 14:00', '2011-10-16 14:30', 'Meeting', 19, 1, 7, 0);
-INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES (14, '2011-10-16 14:30', '2011-10-16 15:00', 'Meeting', 19, 1, 7, 0);
-INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES (15, '2011-10-16 15:00', '2011-10-16 15:30', 'Meeting', 19, 1, 7, 0);
-INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES (16, '2011-10-16 15:30', '2011-10-16 16:00', 'Meeting', 19, 1, 7, 0);
-INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES (17, '2011-10-16 16:00', '2011-10-16 16:30', 'Meeting', 19, 1, 7, 0);
-INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES (18, '2011-10-16 16:30', '2011-10-16 17:00', 'Meeting', 19, 1, 7, 0);
+INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES ( 1, '2012-11-10 08:00', '2011-10-16 08:30', 'Meeting', 19, 1, 7, 0);
+INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES ( 2, '2012-11-10 08:30', '2011-10-16 09:00', 'Meeting', 19, 1, 7, 0);
+INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES ( 3, '2012-11-10 09:00', '2011-10-16 09:30', 'Meeting', 19, 1, 7, 0);
+INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES ( 4, '2012-11-10 09:30', '2011-10-16 10:00', 'Meeting', 19, 1, 7, 0);
+INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES ( 5, '2012-11-10 10:00', '2011-10-16 10:30', 'Meeting', 19, 1, 7, 0);
+INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES ( 6, '2012-11-10 10:30', '2011-10-16 11:00', 'Meeting', 19, 1, 7, 0);
+INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES (11, '2012-11-10 13:00', '2011-10-16 13:30', 'Meeting', 19, 1, 7, 0);
+INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES (12, '2012-11-10 13:30', '2011-10-16 14:00', 'Meeting', 19, 1, 7, 0);
+INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES (13, '2012-11-10 14:00', '2011-10-16 14:30', 'Meeting', 19, 1, 7, 0);
+INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES (14, '2012-11-10 14:30', '2011-10-16 15:00', 'Meeting', 19, 1, 7, 0);
+INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES (15, '2012-11-10 15:00', '2011-10-16 15:30', 'Meeting', 19, 1, 7, 0);
+INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES (16, '2012-11-10 15:30', '2011-10-16 16:00', 'Meeting', 19, 1, 7, 0);
+INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES (17, '2012-11-10 16:00', '2011-10-16 16:30', 'Meeting', 19, 1, 7, 0);
+INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patient_Id, IsImported) VALUES (18, '2012-11-10 16:30', '2011-10-16 17:00', 'Meeting', 19, 1, 7, 0);
 
 INSERT INTO Macro(Id, Expression, Notes, Title, IsImported) VALUES (1, 'Hello $firstname$ $lastname$.', 'Says hello to connected patient', 'Hello', 0);
 INSERT INTO Macro(Id, Expression, Notes, Title, IsImported) VALUES (2, '$firstname$ $lastname$ is $age$ old.', 'Says the age of the connected patient', 'Age', 0);

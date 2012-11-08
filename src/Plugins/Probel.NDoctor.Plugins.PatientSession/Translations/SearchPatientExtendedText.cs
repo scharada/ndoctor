@@ -42,6 +42,16 @@ namespace Probel.NDoctor.Plugins.PatientSession.Translations
             get { return Messages.Title_SearchWatermark; }
         }
 
+        public static string Title
+        {
+            get { return Messages.Title_SearchPatient; }
+        }
+
+        public static string Top10Title
+        {
+            get { return Messages.Title_MostUsed; }
+        }
+
         #endregion Properties
     }
 }

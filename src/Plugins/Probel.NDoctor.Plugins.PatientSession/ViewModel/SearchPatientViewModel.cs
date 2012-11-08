@@ -41,7 +41,8 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 
         public static readonly Timer Countdown = new Timer(250) { AutoReset = true };
 
-        private IPatientSessionComponent component;
+        protected IPatientSessionComponent component;
+
         private string criteria = string.Empty;
         private LightPatientDto selectedPatient;
 
@@ -56,7 +57,6 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             : base()
         {
             this.FoundPatients = new ObservableCollection<LightPatientDto>();
-            this.Top10Patients = new ObservableCollection<LightPatientDto>();
             this.TodayPatients = new ObservableCollection<LightPatientViewModel>();
             this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());
             this.SelectPatientCommand = new RelayCommand(() => this.SelectPatient(), () => this.CanSelectPatient());
@@ -125,21 +125,9 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             set;
         }
 
-        public ObservableCollection<LightPatientDto> Top10Patients
-        {
-            get;
-            set;
-        }
-
         #endregion Properties
 
         #region Methods
-
-        public void Refresh()
-        {
-            var result = this.component.GetTopXPatient(10);
-            this.Top10Patients.Refill(result);
-        }
 
         private bool CanSearch()
         {

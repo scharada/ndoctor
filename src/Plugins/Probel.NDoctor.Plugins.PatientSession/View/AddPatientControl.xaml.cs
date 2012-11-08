@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Plugins.PatientSession.View
 {
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
 
@@ -24,7 +25,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.View
     /// <summary>
     /// Interaction logic for AddParentView.xaml
     /// </summary>
-    public partial class AddPatientControl : UserControl
+    public partial class AddPatientControl : Window
     {
         #region Constructors
 

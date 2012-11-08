@@ -25,7 +25,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
@@ -34,6 +33,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.View.Toolbox.Controls;
     using Probel.NDoctor.View.Toolbox.Helpers;
     using Probel.NDoctor.View.Toolbox.Navigation;
+    using Probel.Mvvm;
+    using Probel.NDoctor.Plugins.PrescriptionManager.View;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -44,7 +45,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
         private IPrescriptionComponent component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
         private DateTime endCriteria;
-        private SearchService searcher;
         private PrescriptionDto selectedPrescription;
         private PrescriptionDocumentDto selectPrescriptionDocument;
         private DateTime startCriteria;
@@ -60,8 +60,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         public WorkbenchViewModel()
             : base()
         {
-            this.searcher = new SearchService(this.component);
-
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
             PluginContext.Host.NewPatientConnected += (sender, e) => this.FoundPrescriptions.Clear();
 
@@ -69,16 +67,10 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             this.RemovePrescriptionCommand = new RelayCommand(() => this.RemovePrescription(), () => this.SelectedPrescription != null);
             this.EditPrescriptionCommand = new RelayCommand(() => this.EditPrescription(), () => this.SelectedPrescription != null);
 
-            this.StartCriteria = DateTime.Today.AddMonths(-1);
+            this.StartCriteria = DateTime.Today.AddMonths(-6);
             this.EndCriteria = DateTime.Today.AddMonths(1);
 
             this.FoundPrescriptions = new ObservableCollection<PrescriptionDocumentDto>();
-            Notifyer.PrescriptionFound += (sender, e) =>
-            {
-                this.FoundPrescriptions.Refill(e.Data.Prescriptions);
-                this.StartCriteria = e.Data.From;
-                this.EndCriteria = e.Data.To;
-            };
         }
 
         #endregion Constructors
@@ -168,6 +160,21 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
         #region Methods
 
+        public void RefreshPrescriptions(DateTime start, DateTime end)
+        {
+            try
+            {
+                this.StartCriteria = start;
+                this.EndCriteria = end;
+                var found = this.component.GetPrescriptionsByDates(PluginContext.Host.SelectedPatient, start, end);
+                this.FoundPrescriptions.Refill(found);
+
+                if (found.Count > 0) { PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_FoundPrescription); }
+                else { PluginContext.Host.WriteStatus(StatusType.Warning, Messages.Msg_NothingFound); }
+            }
+            catch (Exception ex) { this.Handle.Error(ex); }
+        }
+
         private void EditPrescription()
         {
             try
@@ -197,9 +204,9 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 if (dr == MessageBoxResult.No) return;
 
                 this.component.Remove(this.SelectedPrescription);
+                this.SelectedPrescriptionDocument.Prescriptions.Remove(this.SelectedPrescription);
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PrescriptionDeleted);
-                this.searcher.SearchPrescription(this.StartCriteria, this.EndCriteria);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -212,13 +219,21 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 if (dr == MessageBoxResult.No) return;
 
                 this.component.Remove(this.SelectedPrescriptionDocument);
+                this.FoundPrescriptions.Remove(this.SelectedPrescriptionDocument);
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PrescriptionDeleted);
-                this.searcher.SearchPrescription(this.StartCriteria, this.EndCriteria);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods
+
+        /// <summary>
+        /// Refreshes the prescriptions with the already specified start and end date.
+        /// </summary>
+        public void Refresh()
+        {
+            this.RefreshPrescriptions(this.StartCriteria, this.EndCriteria);
+        }
     }
 }

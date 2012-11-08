@@ -22,11 +22,12 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
+    using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
     using Probel.NDoctor.Plugins.PrescriptionManager.View;
     using Probel.NDoctor.Plugins.PrescriptionManager.ViewModel;
@@ -43,8 +44,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
 
         private const string icoUri = @"\Probel.NDoctor.Plugins.PrescriptionManager;component/Images\{0}.ico";
         private const string imgUri = @"\Probel.NDoctor.Plugins.PrescriptionManager;component/Images\{0}.png";
-
-        private readonly ViewService ViewService = new ViewService();
 
         private bool isSaveCommandActivated = false;
         private bool isSearching = false;
@@ -78,10 +77,14 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
 
         #region Properties
 
-        private AddPrescriptionView View
+        private AddPrescriptionView AddPrescriptionView
         {
-            get;
-            set;
+            get { return LazyLoader.Get<AddPrescriptionView>(); }
+        }
+
+        private WorkbenchView WorkbenchView
+        {
+            get { return LazyLoader.Get<WorkbenchView>(); }
         }
 
         #endregion Properties
@@ -96,6 +99,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         {
             Assert.IsNotNull(PluginContext.Host, "PluginContext.Host");
 
+            this.ConfigureViewService();
             this.BuildButtons();
             this.BuildContextMenu();
         }
@@ -133,24 +137,16 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
 
             var navSearchButton = new RibbonButtonData(Messages.Btn_Search
                 , icoUri.FormatWith("Search")
-                , new RelayCommand(() => this.NavigateSearch(), () => this.CanNavigateSearch()));
+                , new RelayCommand(() => ViewService.Manager.ShowDialog<SearchPrescriptionViewModel>(), () => this.CanNavigateSearch()));
 
             var addDrugButton = new RibbonButtonData(Messages.Btn_AddDrug
                 , imgUri.FormatWith("Drug")
-                , new RelayCommand(() =>
-                {
-                    var view = new AddDrugView();
-                    var model = new AddDrugViewModel();
-                    model.Refresh();
-                    view.DataContext = model;
-
-                    InnerWindow.Show(Messages.Btn_Add, view);
-                }
-                , () => this.lastNavigation == LastNavigation.AddPrescription && PluginContext.DoorKeeper.IsUserGranted(To.Write)));
+                , new RelayCommand(() => ViewService.Manager.ShowDialog<AddDrugViewModel>()
+                    , () => this.lastNavigation == LastNavigation.AddPrescription && PluginContext.DoorKeeper.IsUserGranted(To.Write)));
 
             var addDrugTypeButton = new RibbonButtonData(Messages.Btn_AddDrugType
                 , imgUri.FormatWith("DrugType")
-                , new RelayCommand(() => InnerWindow.Show(Messages.Btn_Add, new AddDrugTypeView())
+                , new RelayCommand(() => ViewService.Manager.ShowDialog<AddDrugTypeViewModel>()
                     , () => this.lastNavigation == LastNavigation.AddPrescription && PluginContext.DoorKeeper.IsUserGranted(To.Write)));
 
             var cgroup = new RibbonGroupData(Messages.Menu_Actions);
@@ -204,7 +200,33 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         private bool CanSave()
         {
             return this.isSaveCommandActivated
-                && this.ViewService.GetViewModel(this.View).SaveCommand.CanExecute(null);
+                && this.AddPrescriptionView.As<AddPrescriptionViewModel>().SaveCommand.CanExecute(null);
+        }
+
+        private void ConfigureViewService()
+        {
+            LazyLoader.Set<AddPrescriptionView>(() => new AddPrescriptionView());
+            LazyLoader.Set<WorkbenchView>(() => new WorkbenchView());
+
+            ViewService.Configure(e =>
+            {
+                e.Bind<AddDrugTypeView, AddDrugTypeViewModel>()
+                    .OnClosing(() => this.AddPrescriptionView.As<AddPrescriptionViewModel>().Refresh());
+                e.Bind<AddDrugView, AddDrugViewModel>()
+                    .OnShow(vm => vm.Refresh());
+                e.Bind<SearchDrugView, SearchDrugViewModel>()
+                    .OnShow(vm =>
+                    {
+                        this.isSearching = true;
+                        vm.Refresh();
+                    })
+                    .OnClosing(() => this.isSearching = false);
+                e.Bind<SearchPrescriptionView, SearchPrescriptionViewModel>()
+                    .OnClosing(vm =>
+                    {
+                        this.WorkbenchView.As<WorkbenchViewModel>().RefreshPrescriptions(vm.StartCriteria, vm.EndCriteria);
+                    });
+            });
         }
 
         private void LoadDefaultPrescriptions()
@@ -214,8 +236,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             var to = DateTime.Today;
 
             var found = component.GetPrescriptionsByDates(PluginContext.Host.SelectedPatient, from, to);
-
-            Notifyer.OnPrescriptionFound(this, new PrescriptionResultDto(found, from, to));
         }
 
         private void NavigateAddPrescription()
@@ -223,10 +243,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             try
             {
                 this.isSaveCommandActivated = true;
-
-                this.View = new AddPrescriptionView();
-                this.ViewService.GetViewModel(this.View).Refresh();
-                PluginContext.Host.Navigate(this.View);
+                this.AddPrescriptionView.As<AddPrescriptionViewModel>().Refresh();
+                PluginContext.Host.Navigate(this.AddPrescriptionView);
 
                 this.ShowContextMenu();
                 this.lastNavigation = LastNavigation.AddPrescription;
@@ -234,19 +252,12 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
             catch (Exception ex) { this.Handle.Error(ex); }
         }
 
-        private void NavigateSearch()
-        {
-            this.isSearching = true;
-            InnerWindow.Closed += (sender, e) => this.isSearching = false;
-            InnerWindow.Show(Messages.Btn_Search, new SearchPrescriptionView());
-        }
-
         private void NavigateWorkbench()
         {
             try
             {
                 this.isSaveCommandActivated = false;
-                PluginContext.Host.Navigate(new WorkbenchView());
+                PluginContext.Host.Navigate(this.WorkbenchView);
 
                 this.ShowContextMenu();
                 this.lastNavigation = LastNavigation.Workbench;
@@ -257,7 +268,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
 
         private void Save()
         {
-            this.ViewService.GetViewModel(this.View).SaveCommand.TryExecute();
+            this.AddPrescriptionView.As<AddPrescriptionViewModel>().SaveCommand.TryExecute();
         }
 
         #endregion Methods

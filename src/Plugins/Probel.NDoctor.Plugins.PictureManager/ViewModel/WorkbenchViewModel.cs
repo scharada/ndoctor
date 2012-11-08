@@ -33,7 +33,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.MemoryComponents;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.PictureManager.Helpers;
     using Probel.NDoctor.Plugins.PictureManager.Properties;
     using Probel.NDoctor.Plugins.PictureManager.View;
     using Probel.NDoctor.View.Core.ViewModel;
@@ -81,10 +80,8 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPictureComponent>();
             PluginContext.Host.NewPatientConnected += (sender, e) => this.isRefreshMuted = false;
 
-            Notifyer.ItemChanged += (sender, e) => this.Refresh();
-
             this.AddPictureCommand = new RelayCommand(() => AddPicture(), () => this.CanAddSomething());
-            this.AddTypeCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_AddPicType, new AddTagView()), () => this.CanAddSomething());
+            this.AddTypeCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddTagViewModel>(), () => this.CanAddSomething());
             this.FilterPictureCommand = new RelayCommand(() => this.Filter(false));
             this.selectPictureCommand = new RelayCommand(() => this.SelectPicture(), () => this.CanSelectPicture());
             this.editCommand = new RelayCommand(() => this.Edit(), () => this.CanEdit());
@@ -266,17 +263,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         {
             try
             {
-                this.SelectedPicture = new PictureDto();
-                var tags = this.component.GetTags(TagCategory.Picture);
-
-                this.isFilterDisabled = true;
-
-                this.Tags.Refill(tags);
-                this.InsertJokerTag(tags);
-                this.FilterTags.Refill(tags);
-                this.SelectFirstTag();
-
-                this.isFilterDisabled = false;
 
                 this.Filter(true);
                 this.isRefreshMuted = true; //We've just refresh, don't need to refresh next time.
@@ -286,13 +272,26 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
         public void Refresh()
         {
+            this.SelectedPicture = new PictureDto();
+            var tags = this.component.GetTags(TagCategory.Picture);
+
+            this.isFilterDisabled = true;
+
+            this.Tags.Refill(tags);
+            this.InsertJokerTag(tags);
+            this.FilterTags.Refill(tags);
+            this.SelectFirstTag();
+
+            this.isFilterDisabled = false;
+
             /* TODO: fix this issue
              * This is an issue that I have to check if the refresh is muted. It means that multiple refresh
              * are triggered. That's not the expected behaviour. Maybe check in the event NewUserConnected
              * and NewPatientConnected*/
-            if (this.isRefreshMuted) { return; } //If there's no change since last time, don't reload the data.
-
-            this.ForceRefresh();
+            if (!this.isRefreshMuted) //If there's no change since last time, don't reload the data.
+            {
+                this.ForceRefresh();
+            }
         }
 
         private void AddPicture()

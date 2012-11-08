@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Plugins.USerSession.ViewModel
+namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 {
     using System;
     using System.Windows;
@@ -146,7 +146,7 @@ namespace Probel.NDoctor.Plugins.USerSession.ViewModel
 
                     this.IsPopupOpened = false;
                     PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PwdChanged);
-                    InnerWindow.Close();
+                    this.Close();
                 }
             }
             catch (Exception ex)
