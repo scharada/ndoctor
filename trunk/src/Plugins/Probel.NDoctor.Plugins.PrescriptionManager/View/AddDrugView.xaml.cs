@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Plugins.PrescriptionManager.View
 {
+    using System.Windows;
     using System.Windows.Controls;
 
     using Probel.NDoctor.Plugins.PrescriptionManager.ViewModel;
@@ -23,7 +24,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.View
     /// <summary>
     /// Interaction logic for AddDrugView.xaml
     /// </summary>
-    public partial class AddDrugView : UserControl
+    public partial class AddDrugView : Window
     {
         #region Constructors
 

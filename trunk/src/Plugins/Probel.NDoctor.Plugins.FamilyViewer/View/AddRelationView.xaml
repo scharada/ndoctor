@@ -1,17 +1,25 @@
 ﻿<Window x:Class="Probel.NDoctor.Plugins.FamilyViewer.View.AddRelationView"
+        x:Name="this"
         
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"      
         xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:text="clr-namespace:Probel.NDoctor.Plugins.FamilyViewer.Translations"
         xmlns:conv="clr-namespace:Probel.NDoctor.View.Toolbox.Converters;assembly=Probel.NDoctor.View.Toolbox" 
-        xmlns:t="clr-namespace:Probel.NDoctor.View.Toolbox.Translations;assembly=Probel.NDoctor.View.Toolbox"      
+        xmlns:t="clr-namespace:Probel.NDoctor.View.Toolbox.Translations;assembly=Probel.NDoctor.View.Toolbox"   
+        xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"   
         
         Title="{Binding Source={x:Static Member=text:AddRelationText.AddRelation}}" Height="329" Width="300" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
     <Window.Resources>
         <conv:GenderToImageConverter x:Key="genderToImage"/>
     </Window.Resources>
+    
+    <Window.InputBindings>
+        <KeyBinding Key="Escape"
+                    Command="cmd:Commands.CloseView" 
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
+    </Window.InputBindings>
 
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Close"

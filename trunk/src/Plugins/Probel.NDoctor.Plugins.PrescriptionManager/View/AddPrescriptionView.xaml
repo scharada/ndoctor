@@ -15,10 +15,9 @@
 
     <DockPanel LastChildFill="True">
         <DockPanel DockPanel.Dock="top">
-            <Border Style="{StaticResource BorderStyle}">
-                <Button Content="{Binding Source={x:Static Member=text:AddPrescriptionText.AddDrug}}"
-                        Command="{Binding SearchCommand}"/>
-            </Border>
+            <Button Content="{Binding Source={x:Static Member=text:AddPrescriptionText.AddDrug}}"
+                    Margin="4"
+                    Command="{Binding SearchCommand}"/>
             <Label DockPanel.Dock="Left"
                    VerticalAlignment="Center"
                    Content="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleCreationDate}}"/>
@@ -27,8 +26,8 @@
                         SelectedDate="{Binding Path=CreationDate}"/>
         </DockPanel>
         <ItemsControl DockPanel.Dock="Bottom"
-                  ItemsSource="{Binding Prescriptions}"
-                  HorizontalContentAlignment="Stretch">
+                      ItemsSource="{Binding Prescriptions}"
+                      HorizontalContentAlignment="Stretch">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <DockPanel LastChildFill="True">
@@ -39,4 +38,4 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
     </DockPanel>
-</Page>
+</Page>    

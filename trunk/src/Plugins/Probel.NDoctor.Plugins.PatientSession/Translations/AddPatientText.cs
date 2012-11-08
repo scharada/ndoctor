@@ -27,6 +27,11 @@ namespace Probel.NDoctor.Plugins.PatientSession.Translations
             get { return Messages.Btn_Add; }
         }
 
+        public static string Title
+        {
+            get { return Messages.Title_AddPatient; }
+        }
+
         public static string TitleAddPatient
         {
             get { return Messages.Title_AddPatient; }

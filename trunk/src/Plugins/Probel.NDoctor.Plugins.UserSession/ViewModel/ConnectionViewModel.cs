@@ -23,13 +23,13 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.UserSession.Helpers;
     using Probel.NDoctor.Plugins.UserSession.Properties;
     using Probel.NDoctor.Plugins.UserSession.View;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox.Navigation;
+    using Probel.Mvvm.Gui;
 
     internal class ConnectionViewModel : BaseViewModel
     {
@@ -52,14 +52,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 
             this.ConnectCommand = new RelayCommand(() => this.Connect());
 
-            this.NavigateAddUserCommand = new RelayCommand(() => this.AddUser());
-
-            Notifyer.UserAdded += (sender, e) =>
-            {
-                InnerWindow.Close();
-                this.Refresh();
-                this.OnPropertyChanged(() => HasUsers);
-            };
+            this.NavigateAddUserCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddUserViewModel>());
             this.Refresh();
         }
 
@@ -133,11 +126,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         {
             var users = this.component.GetAllUsers();
             this.Users.Refill(users);
-        }
-
-        private void AddUser()
-        {
-            InnerWindow.Show(Messages.Btn_Add, new AddUserControl());
+            this.OnPropertyChanged(() => HasUsers);
         }
 
         private void Connect()

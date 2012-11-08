@@ -21,10 +21,12 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
-    using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Toolbox;
+    using Probel.NDoctor.Plugins.PrescriptionManager.View;
+    using Probel.Mvvm;
 
     internal class SearchPrescriptionViewModel : BaseViewModel
     {
@@ -87,12 +89,10 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         {
             try
             {
-                new SearchService(this.component).SearchPrescription(this.StartCriteria, this.EndCriteria);
+                LazyLoader.Get<WorkbenchView>().As<WorkbenchViewModel>().RefreshPrescriptions(this.StartCriteria, this.EndCriteria);
+                this.Close();
             }
-            catch (Exception ex)
-            {
-                this.Handle.Error(ex, Messages.Msg_ErrorSearchingPrescriptions);
-            }
+            catch (Exception ex) { this.Handle.Error(ex, Messages.Msg_ErrorSearchingPrescriptions); }
         }
 
         #endregion Methods

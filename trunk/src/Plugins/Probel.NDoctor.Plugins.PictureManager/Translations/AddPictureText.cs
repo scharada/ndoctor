@@ -52,6 +52,16 @@ namespace Probel.NDoctor.Plugins.PictureManager.Translations
             get { return Messages.Lbl_Notes; }
         }
 
+        public static string Title
+        {
+            get { return Messages.Title_BtnAddPic; }
+        }
+
+        public static string TitleCategory
+        {
+            get { return Messages.Title_AddPicType; }
+        }
+
         #endregion Properties
     }
 }

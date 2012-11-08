@@ -18,13 +18,13 @@ namespace Probel.NDoctor.Plugins.UserSession.View
 {
     using System.Windows.Controls;
     using System.Windows.Input;
-
-    using Probel.NDoctor.Plugins.USerSession.ViewModel;
+    using System.Windows;
+    using Probel.NDoctor.Plugins.UserSession.ViewModel;
 
     /// <summary>
     /// Interaction logic for ChangePasswordView.xaml
     /// </summary>
-    public partial class ChangePasswordView : UserControl
+    public partial class ChangePasswordView : Window
     {
         #region Constructors
 

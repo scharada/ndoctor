@@ -16,6 +16,7 @@
 */
 namespace Probel.NDoctor.Plugins.PictureManager.View
 {
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
 
@@ -24,7 +25,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.View
     /// <summary>
     /// Interaction logic for AddTagView.xaml
     /// </summary>
-    public partial class AddTagView : UserControl
+    public partial class AddTagView : Window
     {
         #region Constructors
 

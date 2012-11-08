@@ -30,11 +30,12 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox.Navigation;
+    using Probel.Mvvm;
+    using Probel.NDoctor.Plugins.PrescriptionManager.View;
 
     internal class SearchDrugViewModel : BaseViewModel
     {
@@ -189,8 +190,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
         private void Select()
         {
-            Notifyer.OnDrugSelected(this, this.SelectedDrug);
-            InnerWindow.Close();
+            LazyLoader.Get<AddPrescriptionView>().As<AddPrescriptionViewModel>().Prescriptions.Add(new PrescriptionDto() { Drug = this.SelectedDrug });
+            this.Close();
         }
 
         #endregion Methods

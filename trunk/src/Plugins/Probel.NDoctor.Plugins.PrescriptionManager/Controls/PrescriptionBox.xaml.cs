@@ -25,8 +25,13 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Controls
     using System.Windows;
     using System.Windows.Controls;
 
+    using log4net;
+
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
+    using Probel.Mvvm;
+    using Probel.NDoctor.Plugins.PrescriptionManager.View;
+    using Probel.NDoctor.Plugins.PrescriptionManager.ViewModel;
+    using Probel.Mvvm.DataBinding;
 
     /// <summary>
     /// Interaction logic for PrescriptionBox.xaml
@@ -43,6 +48,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Controls
             , typeof(IEnumerable<TagDto>)
             , typeof(PrescriptionBox)
             , new PropertyMetadata(null));
+
+        private readonly ILog Logger = LogManager.GetLogger(typeof(PrescriptionBox));
 
         #endregion Fields
 
@@ -95,12 +102,12 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Controls
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Notifyer.OnPrescriptionRemoving(this, this.Prescription);
+            LazyLoader.Get<WorkbenchView>().As<WorkbenchViewModel>().Refresh();
         }
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.Prescription.Tag = (TagDto)e.AddedItems[0];
+            if (e.AddedItems.Count != 0) { this.Prescription.Tag = (TagDto)e.AddedItems[0]; }
         }
 
         #endregion Methods

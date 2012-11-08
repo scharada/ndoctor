@@ -8,15 +8,19 @@
              xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PrescriptionManager.Translations"
              xmlns:conv="clr-namespace:Probel.NDoctor.View.Toolbox.Converters;assembly=Probel.NDoctor.View.Toolbox"
              xmlns:iw="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+             xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
              
              mc:Ignorable="d" 
              d:DesignWidth="300">
+    
     <UserControl.InputBindings>
         <KeyBinding Key="Enter"
                     Command="{Binding AddCommand}"/>
         <KeyBinding Key="Escape"
-                    Command="iw:InnerWindow.CancelCommand" />
+                    Command="cmd:Commands.CloseView" 
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
     </UserControl.InputBindings>
+    
     <UserControl.Resources>
         <conv:IntToVisibilityConverter x:Key="IntToVisibility"/>
     </UserControl.Resources>
@@ -28,8 +32,10 @@
                       Visibility="{Binding ElementName=comboBox, Path=Items.Count, Converter={StaticResource IntToVisibility}, UpdateSourceTrigger=PropertyChanged}"
                       DisplayMemberPath="Name"
                       SelectionChanged="comboBox_SelectionChanged"/>
+            
             <Label DockPanel.Dock="Left"
                    Content="{Binding ElementName=this, Path=Prescription.Drug.Name}"/>
+            
             <Label DockPanel.Dock="Left"
                    HorizontalContentAlignment="Right"
                    Visibility="{Binding ElementName=comboBox, Path=Items.Count, Converter={StaticResource IntToVisibility}, UpdateSourceTrigger=PropertyChanged}"

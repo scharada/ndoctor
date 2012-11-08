@@ -8,17 +8,19 @@
         xmlns:text="clr-namespace:Probel.NDoctor.Plugins.DbConvert.Translations"
         xmlns:iw="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
         xmlns:txt="clr-namespace:Probel.NDoctor.Plugins.DbConvert.Translations"
+        xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
         
         Title="{Binding Source={x:Static Member=txt:WorkbenchText.Title}}" 
              
         mc:Ignorable="d"
         Height="300"
         Width="400"
-        Loaded="this_Loaded" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
-
+        Loaded="this_Loaded" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" WindowStyle="ToolWindow" 
+        Background="{x:Static SystemColors.ActiveCaptionBrush}">
     <Window.InputBindings>
         <KeyBinding Key="Escape"
-                    Command="iw:InnerWindow.CancelCommand" />
+                    Command="cmd:Commands.CloseView" 
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
     </Window.InputBindings>
 
     <DockPanel LastChildFill="True">
@@ -30,6 +32,7 @@
                     Content="{Binding Source={x:Static Member=text:WorkbenchText.ChooseDb}}"/>
 
             <Label Margin="4" Grid.Row="0" 
+                   Background="{x:Static SystemColors.InfoBrush}"
                    Grid.Column="0"
                    Content="{Binding Path=Database}"/>
         </DockPanel>

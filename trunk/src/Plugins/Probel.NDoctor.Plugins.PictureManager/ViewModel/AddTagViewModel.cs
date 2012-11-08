@@ -25,13 +25,10 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.PictureManager.Helpers;
     using Probel.NDoctor.Plugins.PictureManager.Properties;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
-    using Probel.NDoctor.View.Toolbox.Navigation;
 
     internal class AddTagViewModel : BaseViewModel
     {
@@ -108,20 +105,10 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Title_OperationDone);
                 this.SelectedTag = new TagDto(TagCategory.Picture);
                 this.IsPopupOpened = false;
-                Notifyer.OnItemChanged(this);
             }
-            catch (ExistingItemException ex)
-            {
-                this.Handle.Warning(ex, ex.Message);
-            }
-            catch (Exception ex)
-            {
-                this.Handle.Error(ex, Messages.Msg_ErrorOccured);
-            }
-            finally
-            {
-                InnerWindow.Close();
-            }
+            catch (ExistingItemException ex) { this.Handle.Warning(ex, ex.Message); }
+            catch (Exception ex) { this.Handle.Error(ex, Messages.Msg_ErrorOccured); }
+            finally { this.Close(); }
         }
 
         private bool CanAdd()

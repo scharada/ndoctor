@@ -63,5 +63,10 @@ namespace Probel.NDoctor.Plugins.UserSession.Translations
         }
 
         #endregion Properties
+
+        public static string Title
+        {
+            get { return Messages.Title_ButtonAddUser; }
+        }
     }
 }

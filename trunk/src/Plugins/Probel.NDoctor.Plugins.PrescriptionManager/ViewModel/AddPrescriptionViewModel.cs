@@ -27,10 +27,10 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using System.Windows.Input;
 
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.PrescriptionManager.Helpers;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
     using Probel.NDoctor.Plugins.PrescriptionManager.View;
     using Probel.NDoctor.View.Core.Helpers;
@@ -42,8 +42,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     {
         #region Fields
 
-        private readonly ViewService ViewService = new ViewService();
-
         private IPrescriptionComponent component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
         private DateTime creationDate;
 
@@ -54,11 +52,9 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         public AddPrescriptionViewModel()
         {
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
-            Notifyer.DrugSelected += (sender, e) => this.AddDrug(e.Data);
-            Notifyer.PrescriptionRemoving += (sender, e) => this.Remove(e.Data);
 
             this.SaveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
-            this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());
+            this.SearchCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<SearchDrugViewModel>(), () => this.CanSearch());
 
             this.Prescriptions = new ObservableCollection<PrescriptionDto>();
             this.Tags = new ObservableCollection<TagDto>();
@@ -155,7 +151,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             return false;
         }
 
-        private void Remove(PrescriptionDto prescription)
+        public void Remove(PrescriptionDto prescription)
         {
             this.Prescriptions.Remove(prescription);
         }
@@ -178,13 +174,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 this.ResetPage();
             }
             catch (Exception ex) { this.Handle.Error(ex); }
-        }
-
-        private void Search()
-        {
-            var view = new SearchDrugView();
-            this.ViewService.GetViewModel(view).Refresh();
-            InnerWindow.Show(Messages.Btn_AddDrug, view);
         }
 
         #endregion Methods

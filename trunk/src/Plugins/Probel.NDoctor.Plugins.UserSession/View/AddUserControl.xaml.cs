@@ -20,11 +20,12 @@ namespace Probel.NDoctor.Plugins.UserSession.View
     using System.Windows.Input;
 
     using Probel.NDoctor.Plugins.UserSession.ViewModel;
+    using System.Windows;
 
     /// <summary>
     /// Interaction logic for AddUserView.xaml
     /// </summary>
-    public partial class AddUserControl : UserControl
+    public partial class AddUserControl : Window
     {
         #region Constructors
 
@@ -38,7 +39,7 @@ namespace Probel.NDoctor.Plugins.UserSession.View
 
         #region Methods
 
-        private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private void this_Loaded(object sender, RoutedEventArgs e)
         {
             Keyboard.Focus(this.focused);
         }

@@ -25,6 +25,12 @@
     <Window.Resources>
         <converter:NullToBooleanConverter x:Key="NullToBool"/>
     </Window.Resources>
+
+    <Window.InputBindings>
+        <KeyBinding Key="Escape"
+                    Command="cmd:Commands.CloseView" 
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
+    </Window.InputBindings>
     
     <DockPanel LastChildFill="True">
         

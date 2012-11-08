@@ -16,6 +16,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
+        
         <Grid Grid.Row="0">
             <GroupBox Header="{Binding PrescriptionHeader}">
                 <ListView Grid.Row="2" ItemsSource="{Binding Path=FoundPrescriptions}"
@@ -37,6 +38,7 @@
                 </ListView>
             </GroupBox>
         </Grid>
+        
         <GroupBox Grid.Row="1"
                   Header="{Binding Source={x:Static Member=text:WorkbenchText.TitlePrescription}}">
             <StackPanel>

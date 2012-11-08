@@ -32,6 +32,11 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Translations
             get { return Messages.Btn_Search; }
         }
 
+        public static string Title
+        {
+            get { return Messages.Btn_Search; }
+        }
+
         public static string TitleFrom
         {
             get { return Messages.Title_From; }

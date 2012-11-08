@@ -25,14 +25,14 @@ namespace Probel.NDoctor.Plugins.PatientSession.View
     /// <summary>
     /// Interaction logic for TopTenControl.xaml
     /// </summary>
-    public partial class TopTenControl : UserControl
+    public partial class TopTenControl : Window
     {
         #region Constructors
 
         public TopTenControl()
         {
             InitializeComponent();
-            this.DataContext = new SearchPatientViewModel();
+            this.DataContext = new TopTenViewModel();
         }
 
         #endregion Constructors
@@ -44,7 +44,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.View
             Keyboard.Focus(this.focused);
             if (this.DataContext is SearchPatientViewModel)
             {
-                (this.DataContext as SearchPatientViewModel).Refresh();
+                (this.DataContext as TopTenViewModel).Refresh();
             }
         }
 

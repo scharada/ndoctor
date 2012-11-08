@@ -67,7 +67,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\ViewService.cs" />
     <Compile Include="Translations\AddPatientText.cs" />
     <Compile Include="Translations\CriteriaText.cs" />
     <Compile Include="Translations\SearchPatientExtendedText.cs" />
@@ -101,6 +100,7 @@
     <Compile Include="ViewModel\AddPatientViewModel.cs" />
     <Compile Include="ViewModel\SearchPatientExtendedViewModel.cs" />
     <Compile Include="ViewModel\SearchPatientViewModel.cs" />
+    <Compile Include="ViewModel\TopTenViewModel.cs" />
     <Compile Include="View\AddPatientControl.xaml.cs">
       <DependentUpon>AddPatientControl.xaml</DependentUpon>
     </Compile>
@@ -204,6 +204,7 @@
   <ItemGroup>
     <Resource Include="Images\Search.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

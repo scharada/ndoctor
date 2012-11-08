@@ -36,6 +36,8 @@ namespace Probel.NDoctor.Plugins.UserSession
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox.Navigation;
+    using Probel.Mvvm.Gui;
+    using Probel.Mvvm;
 
     /// <summary>
     /// When the application user has logged into the application, it opens a User session that contains the modules the logged user can use. 
@@ -118,6 +120,7 @@ namespace Probel.NDoctor.Plugins.UserSession
         public override void Initialise()
         {
             this.ConfigureAutoMapper();
+            this.ConfigureViewService();
 
             this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
 
@@ -155,15 +158,28 @@ namespace Probel.NDoctor.Plugins.UserSession
 
             this.printCommand = new RelayCommand(() => this.PrintBusinessCard(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
 
-            this.addUserCommand = new RelayCommand(() => this.NavigateAddUser(), () => this.CanNavigateAddUser());
+            this.addUserCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddUserViewModel>(), () => this.CanNavigateAddUser());
 
-            this.changePwdCommand = new RelayCommand(() => InnerWindow.Show(Messages.Title_ChangePwd, new ChangePasswordView())
+            this.changePwdCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<ChangePasswordViewModel>()
                 , () => PluginContext.DoorKeeper.IsUserGranted(To.MetaWrite));
 
-            this.showUpdateUserCommand = new RelayCommand(() => this.NavigateToUpdateUser()
+            this.showUpdateUserCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<UpdateUserViewModel>()
                 , () => PluginContext.DoorKeeper.IsUserGranted(To.MetaWrite));
         }
 
+        private void ConfigureViewService()
+        {
+            LazyLoader.Set<ConnectionView>(() => new ConnectionView());
+
+            ViewService.Configure(e =>
+            {
+                e.Bind<AddUserControl, AddUserViewModel>()
+                    .OnClosing(() => LazyLoader.Get<ConnectionView>().As<ConnectionViewModel>().Refresh());
+                e.Bind<ChangePasswordView, ChangePasswordViewModel>();
+                e.Bind<UpdateUserControl, UpdateUserViewModel>()
+                    .OnShow(vm => vm.Refresh());
+            });
+        }
         private bool CanDisconnect()
         {
             return true;
@@ -210,16 +226,6 @@ namespace Probel.NDoctor.Plugins.UserSession
 
             PluginContext.Host.AddToApplicationMenu(pwd);
             PluginContext.Host.AddToApplicationMenu(menu);
-        }
-
-        private void NavigateAddUser()
-        {
-            InnerWindow.Show(Messages.Title_ButtonAddUser, new AddUserControl());
-        }
-
-        private void NavigateToUpdateUser()
-        {
-            InnerWindow.Show(Messages.Menu_ManagePersonalData, new UpdateUserControl());
         }
 
         private void PrintBusinessCard()
