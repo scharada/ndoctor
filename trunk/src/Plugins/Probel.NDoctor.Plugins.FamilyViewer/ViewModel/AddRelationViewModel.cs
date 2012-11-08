@@ -90,7 +90,8 @@ namespace Probel.NDoctor.Plugins.FamilyViewer.ViewModel
             get { return this.criteria; }
             set
             {
-                Countdown.Start();
+                //This is a bottleneck. It'll be reactivated when I'll add settings to let the user choose
+                //Countdown.Start(); 
                 this.criteria = value;
                 this.OnPropertyChanged(() => Criteria);
             }
