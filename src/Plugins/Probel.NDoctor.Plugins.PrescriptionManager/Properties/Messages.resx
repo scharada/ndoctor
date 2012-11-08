@@ -233,6 +233,10 @@
     <value>Creation date:</value>
     <comment>Creation date:</comment>
   </data>
+  <data name="Title_Edit" xml:space="preserve">
+    <value>Edit</value>
+    <comment>Edit</comment>
+  </data>
   <data name="Title_EditPrescription" xml:space="preserve">
     <value>Edit this prescription</value>
     <comment>Edit this prescription</comment>

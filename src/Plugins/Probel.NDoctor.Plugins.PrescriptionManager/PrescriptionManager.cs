@@ -222,10 +222,9 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
                     })
                     .OnClosing(() => this.isSearching = false);
                 e.Bind<SearchPrescriptionView, SearchPrescriptionViewModel>()
-                    .OnClosing(vm =>
-                    {
-                        this.WorkbenchView.As<WorkbenchViewModel>().RefreshPrescriptions(vm.StartCriteria, vm.EndCriteria);
-                    });
+                    .OnClosing(vm => this.WorkbenchView.As<WorkbenchViewModel>().RefreshPrescriptions(vm.StartCriteria, vm.EndCriteria));
+                e.Bind<EditionView, EditionViewModel>()
+                    .OnClosing(() => this.WorkbenchView.As<WorkbenchViewModel>().Refresh());
             });
         }
 

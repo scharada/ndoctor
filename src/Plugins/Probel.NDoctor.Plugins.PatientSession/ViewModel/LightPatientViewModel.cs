@@ -43,8 +43,6 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             {
                 PluginContext.Host.SelectedPatient = this;
                 this.IncrementCounter();
-
-                InnerWindow.Close();
                 PluginContext.Host.NavigateToStartPage();
             });
             this.component = PluginContext.ComponentFactory.GetInstance<IPatientSessionComponent>();

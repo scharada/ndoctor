@@ -131,9 +131,9 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
                 if (dr != MessageBoxResult.Yes) return;
 
                 this.component.Remove(this.SelectedIllnessPeriod, PluginContext.Host.SelectedPatient);
+                this.Refresh();
             }
             catch (Exception ex) { this.Handle.Error(ex); }
-            finally { InnerWindow.Close(); }
         }
 
         #endregion Methods

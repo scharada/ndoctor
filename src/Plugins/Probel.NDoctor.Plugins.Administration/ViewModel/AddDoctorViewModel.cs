@@ -8,6 +8,12 @@
 
     internal class AddDoctorViewModel : BaseBoxViewModel<DoctorDto>
     {
+        #region Fields
+
+        private TagDto selectedTag;
+
+        #endregion Fields
+
         #region Constructors
 
         public AddDoctorViewModel()
@@ -20,13 +26,6 @@
 
         #region Properties
 
-        public ObservableCollection<TagDto> Specialisations
-        {
-            get;
-            private set;
-        }
-
-        private TagDto selectedTag;
         public TagDto SelectedTag
         {
             get { return this.selectedTag; }
@@ -36,6 +35,13 @@
                 this.OnPropertyChanged(() => SelectedTag);
             }
         }
+
+        public ObservableCollection<TagDto> Specialisations
+        {
+            get;
+            private set;
+        }
+
         #endregion Properties
 
         #region Methods

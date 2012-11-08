@@ -84,7 +84,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         }
 
         /// <summary>
-        /// Displays a InnerWindow to add a new user
+        /// Displays a View to add a new user
         /// </summary>
         public ICommand NavigateAddUserCommand
         {

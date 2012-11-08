@@ -98,6 +98,7 @@
     <Compile Include="ViewModel\AddDrugTypeViewModel.cs" />
     <Compile Include="ViewModel\AddDrugViewModel.cs" />
     <Compile Include="ViewModel\AddPrescriptionViewModel.cs" />
+    <Compile Include="ViewModel\EditionViewModel.cs" />
     <Compile Include="ViewModel\SearchDrugViewModel.cs" />
     <Compile Include="ViewModel\SearchPrescriptionViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
@@ -109,6 +110,9 @@
     </Compile>
     <Compile Include="View\AddPrescriptionView.xaml.cs">
       <DependentUpon>AddPrescriptionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditionView.xaml.cs">
+      <DependentUpon>EditionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SearchDrugView.xaml.cs">
       <DependentUpon>SearchDrugView.xaml</DependentUpon>
@@ -195,6 +199,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddPrescriptionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

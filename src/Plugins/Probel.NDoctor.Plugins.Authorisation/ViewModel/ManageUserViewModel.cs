@@ -156,9 +156,6 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
         private void UpdateUser()
         {
-            //var view = new EditAssignedRoleView(this.SelectedUser);
-            //((EditAssignedRoleViewModel)view.DataContext).Refresh();
-            //InnerWindow.Show(Messages.Msg_UpdateRole, view);
             ViewService.Manager.ShowDialog<EditAssignedRoleViewModel>(vm => vm.SelectedUser = this.SelectedUser);
             this.Refresh();
         }

@@ -28,6 +28,11 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Translations
             get { return BaseText.Add; }
         }
 
+        public static string Edition
+        {
+            get { return Messages.Title_Edit; }
+        }
+
         public static string PrescriptionHeader
         {
             get { return Messages.Title_PrescriptionHeader; }

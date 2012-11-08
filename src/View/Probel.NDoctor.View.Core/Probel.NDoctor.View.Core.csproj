@@ -141,7 +141,6 @@
     <Compile Include="Translations\SettingsText.cs" />
     <Compile Include="ViewModel\AboutBoxViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\ChildWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\DefaultSettingsViewModel.cs" />
     <Compile Include="ViewModel\PluginSettingsViewModel.cs" />

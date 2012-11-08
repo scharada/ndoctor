@@ -77,19 +77,11 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
             App.RibbonData.ApplicationMenuData.LargeImage = new Uri(uriImage.FormatWith("Home"), UriKind.Relative);
             App.RibbonData.ApplicationMenuData.SmallImage = new Uri(uriImage.FormatWith("Home"), UriKind.Relative);
-
-            this.ChildWindow = new ChildWindowViewModel();
         }
 
         #endregion Constructors
 
         #region Properties
-
-        public ChildWindowViewModel ChildWindow
-        {
-            get;
-            private set;
-        }
 
         public string ConnectedPatientText
         {
@@ -219,7 +211,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         private void NavigateToSetting()
         {
-            //InnerWindow.Show(Messages.Title_Settings, new SettingsView());
             ViewService.Manager.ShowDialog<SettingsViewModel>();
         }
 
