@@ -56,8 +56,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         {
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
             this.UpdateCommand = new RelayCommand(() => this.UpdateUser(), () => this.CanUpdateUser());
-            this.CancelCommand = new RelayCommand(() => InnerWindow.Close());
-            InnerWindow.Loaded += (sender, e) => this.Refresh();
+            this.CancelCommand = new RelayCommand(() => this.Close());
         }
 
         /// <summary>
@@ -66,7 +65,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         /// </summary>
         ~UpdateUserViewModel()
         {
-            InnerWindow.Loaded -= (sender, e) => this.Refresh();
+            //InnerWindow.Loaded -= (sender, e) => this.Refresh();
         }
 
         #endregion Constructors
@@ -243,7 +242,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_UserUpdated);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
-            finally { InnerWindow.Close(); }
+            finally { this.Close(); }
         }
 
         #endregion Methods

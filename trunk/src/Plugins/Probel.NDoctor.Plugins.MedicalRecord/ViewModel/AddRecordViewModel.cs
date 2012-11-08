@@ -122,7 +122,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RecordAdded);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
-            finally { InnerWindow.Close(); }
+            finally { this.Close(); }
         }
 
         private bool CanAddRecord()

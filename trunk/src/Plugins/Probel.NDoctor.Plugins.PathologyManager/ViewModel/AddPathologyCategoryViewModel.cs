@@ -63,7 +63,7 @@
 
                 Component.Create(tag);
 
-                InnerWindow.Close();
+                this.Close();
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_CategoryAdded);
                 this.Close();
             }
@@ -71,7 +71,7 @@
             catch (Exception ex)
             {
                 this.Handle.Error(ex);
-                InnerWindow.Close();
+                this.Close();
             }
         }
 

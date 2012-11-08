@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Plugins.PrescriptionManager.Properties
-{
-
-
+namespace Probel.NDoctor.Plugins.PrescriptionManager.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -318,6 +318,15 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Properties
         internal static string Title_CreationDate {
             get {
                 return ResourceManager.GetString("Title_CreationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string Title_Edit {
+            get {
+                return ResourceManager.GetString("Title_Edit", resourceCulture);
             }
         }
         

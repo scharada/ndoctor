@@ -80,7 +80,6 @@
     <Compile Include="Navigation\ErrorHandler.cs" />
     <Compile Include="Navigation\ErrorHandlerFactory.cs" />
     <Compile Include="Navigation\IErrorHandler.cs" />
-    <Compile Include="Navigation\InnerWindow.cs" />
     <Compile Include="Navigation\IStatusWriter.cs" />
     <Compile Include="Navigation\LogMessageRecorder.cs" />
     <Compile Include="Translations\BaseText.cs" />

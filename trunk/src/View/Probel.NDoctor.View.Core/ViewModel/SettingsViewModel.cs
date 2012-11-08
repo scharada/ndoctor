@@ -86,7 +86,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         private void SaveSettings()
         {
             Notifyer.OnSavingSettings(this);
-            InnerWindow.Close();
+            this.Close();
         }
 
         #endregion Methods

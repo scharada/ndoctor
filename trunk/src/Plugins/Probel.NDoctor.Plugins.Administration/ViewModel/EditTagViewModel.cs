@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,12 +16,17 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using Probel.NDoctor.Domain.DTO.Objects;
+
+#endregion Header
 
 namespace Probel.NDoctor.Plugins.Administration.ViewModel
 {
+    using Probel.NDoctor.Domain.DTO.Objects;
+
     internal class EditTagViewModel : BaseBoxViewModel<TagDto>
     {
+        #region Methods
+
         /// <summary>
         /// This view is only used to update a TagDto
         /// </summary>
@@ -27,5 +34,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         {
             this.Component.Update(this.BoxItem);
         }
+
+        #endregion Methods
     }
 }

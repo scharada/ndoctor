@@ -19,23 +19,34 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Plugins.Administration.View
+namespace Probel.NDoctor.Plugins.PrescriptionManager.View
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
     using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Documents;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+    using System.Windows.Shapes;
 
-    using Probel.NDoctor.Plugins.Administration.ViewModel;
+    using Probel.NDoctor.Plugins.PrescriptionManager.ViewModel;
 
     /// <summary>
-    /// Interaction logic for EditTagView.xaml
+    /// Interaction logic for EditionView.xaml
     /// </summary>
-    public partial class EditTagView : Window
+    public partial class EditionView : Window
     {
         #region Constructors
 
-        public EditTagView()
+        public EditionView()
         {
             InitializeComponent();
-            this.DataContext = new EditTagViewModel();
+            this.DataContext = new EditionViewModel();
         }
 
         #endregion Constructors

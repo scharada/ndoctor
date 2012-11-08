@@ -24,6 +24,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.Helpers.Strings;
     using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
@@ -185,23 +186,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
         private void EditPrescription()
         {
-            try
-            {
-                var refObj = new ReferencedObject<string>(this.SelectedPrescription.Notes);
-                InnerWindow.Show(BaseText.Edit, new EditionBox()
-                {
-                    Value = refObj,
-                    ButtonName = BaseText.OK,
-                    OkCommand = new RelayCommand(() =>
-                    {
-                        this.SelectedPrescription.Notes = refObj.Value;
-                        this.component.Update(this.SelectedPrescription);
-
-                        InnerWindow.Close();
-                    }, () => this.SelectedPrescription != null),
-                });
-            }
-            catch (Exception ex) { this.Handle.Error(ex); }
+            ViewService.Manager.ShowDialog<EditionViewModel>(vm => vm.SelectedPrescription = this.SelectedPrescription);
         }
 
         private void RemovePrescription()
