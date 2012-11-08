@@ -24,6 +24,7 @@ namespace Probel.NDoctor.Domain.DAL.Helpers
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Drawing;
     using System.Threading;
 
     using log4net;
@@ -32,6 +33,7 @@ namespace Probel.NDoctor.Domain.DAL.Helpers
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DTO.Exceptions;
+    using Probel.Helpers;
 
     public class ImageHelper
     {
@@ -127,12 +129,8 @@ namespace Probel.NDoctor.Domain.DAL.Helpers
         public void UpdateThumbnail(Picture picture)
         {
             var img = Converter.ByteArrayToImage(picture.Bitmap);
-            var ratio = img.Height / HEIGHT;
-            var width = img.Width / ratio;
-
-            var thumb = img.GetThumbnailImage(width, HEIGHT, () => false, IntPtr.Zero);
-
-            picture.ThumbnailBitmap = Converter.ImageToByteArray(thumb);
+            var thumb = img.GetThumbnail();
+            picture.ThumbnailBitmap = thumb;
         }
 
         /// <summary>
