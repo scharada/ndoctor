@@ -9,6 +9,8 @@
         xmlns:text="clr-namespace:Probel.NDoctor.Plugins.MedicalRecord.Translations"
         xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
         
+        Title="{Binding Source={x:Static Member=text:RecordHistoryText.Title}}"
+        
         mc:Ignorable="d" 
         Width="800"
         Height="600" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">

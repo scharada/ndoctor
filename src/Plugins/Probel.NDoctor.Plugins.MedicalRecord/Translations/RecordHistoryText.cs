@@ -32,6 +32,10 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Translations
             get { return Messages.Btn_Rollback; }
         }
 
+        public static string Title
+        {
+            get { return Messages.Title_Revisions; }
+        }
         #endregion Properties
     }
 }

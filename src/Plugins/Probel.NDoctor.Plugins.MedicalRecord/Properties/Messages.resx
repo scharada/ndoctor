@@ -284,6 +284,10 @@
     <value>{0} | Created {1} | Last update: {2}</value>
     <comment>{0} | Created {1} | Last update: {2}</comment>
   </data>
+  <data name="Title_Revisions" xml:space="preserve">
+    <value>Revisions</value>
+    <comment>Revisions</comment>
+  </data>
   <data name="Title_Rollback" xml:space="preserve">
     <value>Revisions history</value>
     <comment>Revisions history</comment>
