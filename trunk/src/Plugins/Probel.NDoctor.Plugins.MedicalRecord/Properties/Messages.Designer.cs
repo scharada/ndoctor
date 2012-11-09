@@ -457,6 +457,15 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Revisions.
+        /// </summary>
+        internal static string Title_Revisions {
+            get {
+                return ResourceManager.GetString("Title_Revisions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Revisions history.
         /// </summary>
         internal static string Title_Rollback {
