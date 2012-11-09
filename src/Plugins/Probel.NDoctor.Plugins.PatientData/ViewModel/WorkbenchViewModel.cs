@@ -18,6 +18,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 {
     using System;
     using System.Collections.ObjectModel;
+    using System.Drawing;
     using System.IO;
     using System.Linq;
     using System.Windows;
@@ -25,6 +26,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
 
     using Microsoft.Win32;
 
+    using Probel.Helpers;
     using Probel.Helpers.Conversions;
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
@@ -40,8 +42,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Navigation;
-    using System.Drawing;
-    using Probel.Helpers;
 
     internal class WorkbenchViewModel : BaseViewModel
     {
