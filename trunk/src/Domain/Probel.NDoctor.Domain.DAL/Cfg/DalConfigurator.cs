@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
     using System.IO;
 
     using FluentNHibernate.Automapping;
+    using FluentNHibernate.Cfg;
     using FluentNHibernate.Cfg.Db;
     using FluentNHibernate.Conventions;
     using FluentNHibernate.Conventions.Helpers;
@@ -47,10 +48,17 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
         private static ISessionFactory sessionFactory;
 
         private bool executeScript = false;
-        private IPersistenceConfigurer persistenceConfigurer;
-        private Action<NHConfiguration> setupConfiguration;
 
         #endregion Fields
+
+        #region Constructors
+
+        public DalConfigurator()
+        {
+            AutoMapperMapping.Configure();
+        }
+
+        #endregion Constructors
 
         #region Properties
 
@@ -66,64 +74,110 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
             }
         }
 
-        private static NHibernate.Cfg.Configuration Configuration
+        private static NHConfiguration Configuration
         {
             get;
             set;
         }
 
+        private AutoPersistenceModel AutoPersistenceModel
+        {
+            get
+            {
+                return AutoMap.AssemblyOf<Entity>(new CustomAutomappingConfiguration())
+                    .IgnoreBase<Entity>()
+                    .Override<User>(map => map.IgnoreProperty(x => x.DisplayedName))
+                    .Override<Appointment>(map => map.IgnoreProperty(x => x.DateRange))
+                    .Override<IllnessPeriod>(map => map.IgnoreProperty(p => p.Duration))
+                    .Override<Patient>(map =>
+                    {
+                        map.DynamicUpdate();
+                        map.HasMany<Bmi>(x => x.BmiHistory).KeyColumn("Patient_Id");
+                        map.HasMany<MedicalRecord>(x => x.MedicalRecords).KeyColumn("Patient_Id");
+                        map.HasMany<IllnessPeriod>(x => x.IllnessHistory).KeyColumn("Patient_Id");
+                        map.HasMany<Appointment>(x => x.Appointments).KeyColumn("Patient_Id");
+                        map.Map(p => p.FirstName).Index("idx_patient_FirstName");
+                        map.Map(p => p.LastName).Index("idx_patient_LastName");
+                    })
+                    .Override<Role>(map => map.HasManyToMany(x => x.Tasks).Cascade.All())
+                    .Conventions.Add(DefaultCascade.SaveUpdate()
+                                   , DynamicUpdate.AlwaysTrue()
+                                   , DynamicInsert.AlwaysTrue()
+                                   , LazyLoad.Always());
+            }
+        }
+
+        private Action<NHConfiguration> ConfigurationSetup
+        {
+            get;
+            set;
+        }
+
+        private IPersistenceConfigurer MySQLiteConfiguration
+        {
+            get;
+            set;
+        }
 
         #endregion Properties
 
         #region Methods
 
-        public void ConfigureAutoMapper()
-        {
-            AutoMapperMapping.Configure();
-        }
-
-        public DalConfigurator ConfigureUsingFile(string path, bool create)
+        /// <summary>
+        /// Configures the database using the specified file.
+        /// </summary>
+        /// <param name="fileName">Name of the file (path to the SQLite db).</param>
+        /// <param name="createFreshDb">if set to <c>true</c> creates a fresh db. Otherwise uses the already existing database</param>
+        /// <returns>A way to have a small fluent interface</returns>
+        public DalConfigurator ConfigureUsingFile(string fileName, bool createFreshDb)
         {
             if (isConfigured) { throw new ConfigurationException(); }
-            if (!File.Exists(path)) create = true;
+            if (!File.Exists(fileName)) { createFreshDb = true; }
 
-            if (create)
+            if (createFreshDb)
             {
-                this.setupConfiguration = (configuration) =>
+                this.ConfigurationSetup = config =>
                 {
-                    Configuration = configuration;
+                    executeScript = true; //Because this is a fresh db creation, a script should inject default data in it
+
+                    Configuration = config;
 
                     // delete the existing db on each run
-                    if (File.Exists(path)) File.Delete(path);
+                    if (File.Exists(fileName))
+                    {
+                        File.Delete(fileName);
+                        Logger.WarnFormat("Deleting existing database '{0}'", fileName);
+                    }
+                    else { Logger.DebugFormat("The database '{0}' doesn't exist, creating a new file", fileName); }
 
                     // this NHibernate tool takes a configuration (with mapping info in)
                     // and exports a database schema from it
-                    new SchemaExport(configuration)
+                    new SchemaExport(config)
                         .Create(false, true);
-
-                    executeScript = true;
                 };
             }
             else
             {
-                this.setupConfiguration = (configuration) =>
-                    {
-                        Configuration = configuration;
-
-                        new SchemaUpdate(configuration)
-                            .Execute(false, true);
-                    };
+                this.ConfigurationSetup = config =>
+                {
+                    Configuration = config;
+                    new SchemaUpdate(config)
+                        .Execute(false, true);
+                };
             }
 
-            this.persistenceConfigurer
+            this.MySQLiteConfiguration
                 = SQLiteConfiguration
                 .Standard
-                .UsingFile(path);
+                .UsingFile(fileName);
 
-            this.Configure();
+            this.BuildSessionFactory();
             return this;
         }
 
+        /// <summary>
+        /// Injects the default data into the database.
+        /// </summary>
         public void InjectDefaultData()
         {
             using (var session = SessionFactory.OpenSession())
@@ -148,29 +202,35 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
         internal DalConfigurator ConfigureInMemory(out ISession session)
         {
             if (isConfigured) { throw new ConfigurationException(); }
-            this.setupConfiguration = (configuration) =>
+            this.ConfigurationSetup = config =>
             {
                 // this NHibernate tool takes a configuration (with mapping info in)
                 // and exports a database schema from it
-                new SchemaExport(configuration)
+                new SchemaExport(config)
                   .Create(false, true);
 
-                Configuration = configuration;
+                Configuration = config;
             };
-            this.persistenceConfigurer
+            this.MySQLiteConfiguration
                 = SQLiteConfiguration
                     .Standard
-                    .InMemory()
-                    .ShowSql()
-                    .Raw("hibernate.generate_statistics", "true");
+                    .InMemory();
 
-            this.Configure();
+            this.BuildSessionFactory();
             session = DalConfigurator.SessionFactory.OpenSession();
             this.executeScript = true;
-            this.BuildSchema(session);
+
+            new SchemaExport(Configuration)
+               .Execute(true, true, false, session.Connection, null);
+
             return this;
         }
 
+        /// <summary>
+        /// Injects the default data into the database.
+        /// This method should be used only for unit tests
+        /// </summary>
+        /// <param name="session">The session.</param>
         internal void InjectDefaultData(ISession session)
         {
             if (this.executeScript)
@@ -191,55 +251,20 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
             isConfigured = false;
         }
 
-        /// <summary>
-        /// Builds the schema of the database. Should only be used for unit testing
-        /// </summary>
-        /// <param name="session">The session.</param>
-        private void BuildSchema(ISession session)
+        private void BuildSessionFactory()
         {
-            var export = new SchemaExport(Configuration);
-            export.Execute(true, true, false, session.Connection, null);
-        }
-
-        private void Configure()
-        {
-            sessionFactory = this.CreateSessionFactory();
-
-            this.ConfigureAutoMapper();
-            isConfigured = true;
-        }
-
-        private AutoPersistenceModel CreateModel()
-        {
-            return AutoMap.AssemblyOf<Entity>(new CustomAutomappingConfiguration())
-                    .IgnoreBase<Entity>()
-                    .Override<User>(map => map.IgnoreProperty(x => x.DisplayedName))
-                    .Override<Appointment>(map => map.IgnoreProperty(x => x.DateRange))
-                    .Override<IllnessPeriod>(map => map.IgnoreProperty(p => p.Duration))
-                    .Override<Patient>(map =>
-                    {
-                        map.HasMany<Bmi>(x => x.BmiHistory).KeyColumn("Patient_Id");
-                        map.HasMany<MedicalRecord>(x => x.MedicalRecords).KeyColumn("Patient_Id");
-                        map.HasMany<IllnessPeriod>(x => x.IllnessHistory).KeyColumn("Patient_Id");
-                        map.HasMany<Appointment>(x => x.Appointments).KeyColumn("Patient_Id");
-                    })
-                    .Override<Role>(map => map.HasManyToMany(x => x.Tasks).Cascade.All())
-                    .Conventions.Add(DefaultCascade.SaveUpdate()
-                                    , DynamicUpdate.AlwaysTrue()
-                                    , DynamicInsert.AlwaysTrue());
-        }
-
-        private ISessionFactory CreateSessionFactory()
-        {
-            return FluentNHibernate.Cfg.Fluently.Configure()
-                .Database(this.persistenceConfigurer)
+            sessionFactory = Fluently
+                .Configure()
+                .Database(this.MySQLiteConfiguration)
                 .Mappings(m =>
                 {
                     m.AutoMappings
-                     .Add(this.CreateModel());
+                        .Add(this.AutoPersistenceModel);
                 })
-            .ExposeConfiguration(setupConfiguration)
-            .BuildSessionFactory();
+                .ExposeConfiguration(ConfigurationSetup)
+                .BuildSessionFactory();
+
+            isConfigured = true;
         }
 
         #endregion Methods

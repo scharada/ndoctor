@@ -29,11 +29,11 @@ namespace Probel.NDoctor.Domain.DAL.Helpers
 
     using log4net;
 
+    using Probel.Helpers;
     using Probel.Helpers.Conversions;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DTO.Exceptions;
-    using Probel.Helpers;
 
     public class ImageHelper
     {

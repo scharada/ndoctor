@@ -26,6 +26,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
     using Probel.NDoctor.Domain.DAL.AopConfiguration;
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Components;
+    using System.Data;
 
     public class TransactionInterceptor : BaseInterceptor
     {
@@ -54,7 +55,6 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
                 lock (locker)
                 {
                     var component = invocation.InvocationTarget as BaseComponent;
-
                     if (this.IsDecoratedWith<ExcludeFromTransactionAttribute>(invocation))
                     {
                         using (component.Session = DalConfigurator.SessionFactory.OpenSession())
@@ -66,7 +66,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
                     else
                     {
                         using (component.Session = DalConfigurator.SessionFactory.OpenSession())
-                        using (var tx = component.Session.BeginTransaction())
+                        using (var tx = component.Session.BeginTransaction(IsolationLevel.ReadCommitted))
                         {
                             invocation.Proceed();
                             tx.Commit();

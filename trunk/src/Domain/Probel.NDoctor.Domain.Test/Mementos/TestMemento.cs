@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Domain.Test.Mementos
 
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DAL.Mappings;
     using Probel.NDoctor.Domain.DAL.Mementos;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.Test.Helpers;
@@ -40,7 +41,7 @@ namespace Probel.NDoctor.Domain.Test.Mementos
         [TestFixtureSetUp]
         public void Configure()
         {
-            new DalConfigurator().ConfigureAutoMapper();
+            AutoMapperMapping.Configure();
         }
 
         [Test]
