@@ -73,6 +73,7 @@
       <Link>Version.cs</Link>
     </Compile>
     <Compile Include="AopConfiguration\BenchmarkThresholdAttribute.cs" />
+    <Compile Include="AopConfiguration\ExcludeFromTransactionAttribute.cs" />
     <Compile Include="Cfg\NUnitConfigWrapper.cs" />
     <Compile Include="Cfg\Script.cs" />
     <Compile Include="Components\AdministrationComponent.cs" />
@@ -100,7 +101,6 @@
     <Compile Include="EqualityComparers\EntityEqualityComparer.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="AopConfiguration\InspectionIgnoredAttribute.cs" />
-    <Compile Include="AopConfiguration\ExcludeFromTransactionAttribute.cs" />
     <Compile Include="Macro\InvalidMacroException.cs">
       <SubType>Code</SubType>
     </Compile>

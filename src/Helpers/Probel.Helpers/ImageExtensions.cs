@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,18 +16,29 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
-using Probel.Helpers.Conversions;
+
+#endregion Header
 
 namespace Probel.Helpers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+
+    using Probel.Helpers.Conversions;
+
     public static class ImageExtensions
     {
+        #region Fields
+
         private const int HEIGHT = 170;
+
+        #endregion Fields
+
+        #region Methods
+
         public static byte[] GetThumbnail(this Image img)
         {
             var ratio = img.Height / HEIGHT;
@@ -34,5 +47,7 @@ namespace Probel.Helpers
             var thumb = img.GetThumbnailImage(width, HEIGHT, () => false, IntPtr.Zero);
             return Converter.ImageToByteArray(thumb);
         }
+
+        #endregion Methods
     }
 }

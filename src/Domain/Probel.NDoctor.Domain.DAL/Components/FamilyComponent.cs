@@ -72,8 +72,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         {
             if (patient.Id == child.Id) { throw new BusinessLogicException("You try to add a patient as his/her child or parent", Messages.Ex_CirularLinkFamily); }
 
-            //Using load it faster as explained here http://ayende.com/blog/3988/nhibernate-the-difference-between-get-load-and-querying-by-id
-            //TODO: check cascade: http://martin.podval.eu/2010/11/nhibernate-performance-issues-cascade.html
             var ePatient = this.Session.Load<Patient>(patient.Id);
             var eChild = this.Session.Load<Patient>(child.Id);
 
@@ -91,26 +89,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
             }
 
             this.Session.Update(eChild);
-
-            //if (patient.Id == child.Id) { throw new BusinessLogicException("You try to add a patient as his/her child or parent", Messages.Ex_CirularLinkFamily); }
-            //var session = DalConfigurator.SessionFactory.OpenStatelessSession(this.Session.Connection);
-
-            //var ePatient = session.Get<Patient>(patient.Id);
-            //var eChild = session.Get<Patient>(child.Id);
-
-            //switch (ePatient.Gender)
-            //{
-            //    case Gender.Male:
-            //        eChild.Father = ePatient;
-            //        break;
-            //    case Gender.Female:
-            //        eChild.Mother = ePatient;
-            //        break;
-            //    default:
-            //        Assert.FailOnEnumeration(eChild.Gender);
-            //        break;
-            //}
-            //session.Update(eChild);
         }
 
         /// <summary>
@@ -124,8 +102,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         {
             if (patient.Id == parent.Id) { throw new BusinessLogicException("You try to add a patient as his/her child or parent", Messages.Ex_CirularLinkFamily); }
 
-            //Using load it faster as explained here http://ayende.com/blog/3988/nhibernate-the-difference-between-get-load-and-querying-by-id
-            //TODO: check cascade: http://martin.podval.eu/2010/11/nhibernate-performance-issues-cascade.html
             var ePatient = this.Session.Load<Patient>(patient.Id);
             var eParent = this.Session.Load<Patient>(parent.Id);
 

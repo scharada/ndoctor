@@ -91,7 +91,7 @@ namespace Probel.NDoctor.Plugins.FamilyViewer.ViewModel
             set
             {
                 //This is a bottleneck. It'll be reactivated when I'll add settings to let the user choose
-                //Countdown.Start(); 
+                //Countdown.Start();
                 this.criteria = value;
                 this.OnPropertyChanged(() => Criteria);
             }
@@ -190,7 +190,7 @@ namespace Probel.NDoctor.Plugins.FamilyViewer.ViewModel
             var context = TaskScheduler.FromCurrentSynchronizationContext();
             var task = Task.Factory.StartNew
                 (e => this.AddRelationAsync(e as Tuple<LightPatientDto, LightPatientDto, FamilyRelations>)
-                , new Tuple<LightPatientDto, LightPatientDto, FamilyRelations>(PluginContext.Host.SelectedPatient, this.SelectedMember, this.SelectedRelation.Item1));
+                        , new Tuple<LightPatientDto, LightPatientDto, FamilyRelations>(PluginContext.Host.SelectedPatient, this.SelectedMember, this.SelectedRelation.Item1));
 
             task.ContinueWith(e => this.AddRelationCallback(), context);
         }
