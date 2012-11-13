@@ -96,8 +96,11 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                         map.HasMany<MedicalRecord>(x => x.MedicalRecords).KeyColumn("Patient_Id");
                         map.HasMany<IllnessPeriod>(x => x.IllnessHistory).KeyColumn("Patient_Id");
                         map.HasMany<Appointment>(x => x.Appointments).KeyColumn("Patient_Id");
-                        map.Map(p => p.FirstName).Index("idx_patient_FirstName");
-                        map.Map(p => p.LastName).Index("idx_patient_LastName");
+                    })
+                    .Override<Person>(map =>
+                    {
+                        map.Map(p => p.FirstName).Index("idx_person_FirstName");
+                        map.Map(p => p.LastName).Index("idx_person_LastName");
                     })
                     .Override<Role>(map => map.HasManyToMany(x => x.Tasks).Cascade.All())
                     .Conventions.Add(DefaultCascade.SaveUpdate()
