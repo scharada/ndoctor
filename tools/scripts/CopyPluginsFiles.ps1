@@ -55,7 +55,6 @@ CopyPluginFiles("DebugTools");
 CopyPluginFiles("UserSession");
 CopyPluginFiles("PatientSession");
 CopyPluginFiles("PrescriptionManager");
-CopyPluginFiles("MeetingManager");
 CopyPluginFiles("Administration");
 CopyPluginFiles("Authorisation");
 CopyPluginFiles("PictureManager");
@@ -63,15 +62,18 @@ CopyPluginFiles("BmiRecord");
 CopyPluginFiles("PathologyManager");
 CopyPluginFiles("PatientData");
 CopyPluginFiles("DbConvert");
-#CopyPluginFiles("FamilyManager");
 CopyPluginFiles("FamilyViewer");
+
+$currentPlugin = "MeetingManager"
+CopyPluginFiles($currentPlugin)
+$dir = GetDirectory($currentPlugin)                      
+copy "$root\Probel.NDoctor.Plugins.$currentPlugin\bin\$releaseMode\Plugin.config" "$dir"  
 
 $currentPlugin = "MedicalRecord"
 CopyPluginFiles($currentPlugin)
 $dir = GetDirectory($currentPlugin)                       
-copy "$root\Probel.NDoctor.Plugins.MedicalRecord\bin\$releaseMode\ICSharpCode.AvalonEdit.dll" "$dir"                      
-copy "$root\Probel.NDoctor.Plugins.MedicalRecord\bin\$releaseMode\Plugin.config" "$dir" 
-copy "$root\Probel.NDoctor.Plugins.MedicalRecord\bin\$releaseMode\Nini.dll" "$dir"                                        
+copy "$root\Probel.NDoctor.Plugins.$currentPlugin\bin\$releaseMode\ICSharpCode.AvalonEdit.dll" "$dir"                      
+copy "$root\Probel.NDoctor.Plugins.$currentPlugin\bin\$releaseMode\Plugin.config" "$dir"                                         
 
 ""
 "Script executed"
