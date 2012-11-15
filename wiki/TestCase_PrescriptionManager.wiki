@@ -3,7 +3,8 @@
 [Prescriptions See here]
 
 = Manage patient's prescriptions: =
-== Create prescripitons ==
+
+== Create prescriptions ==
 === Steps ===
  # Connect into nDoctor with user that has write privileges
  # Open a session for a user
@@ -17,6 +18,17 @@
   # You can remove the drug from the prescription
   # The prescription is saved.
 
+== Remove a drug when creating a prescription ==
+=== Steps ===
+ # Create a new prescription
+ # Add a drug
+ # Click on "remove"
+ # Do it but with several added drugs
+=== Results ===
+ # ...
+ # ...
+ # The drug is removed from the unsaved prescription
+ # The drug is removed from the unsaved prescription
 == Save prescription with different drugs of the same type ==
 === Steps ===
  # Create a prescription with different drugs of the same time
