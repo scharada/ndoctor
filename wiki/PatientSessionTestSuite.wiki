@@ -7,3 +7,4 @@
  * [TestCase_MedicalRecord Medical record editor]
  * [TestCase_PathologyManager Pathology manager]
  * [TestCase_PrescriptionManager Prescription manager]
+ * [TestCase_BmiManager Bmi manager]
