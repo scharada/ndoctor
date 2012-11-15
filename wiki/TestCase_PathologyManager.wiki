@@ -9,12 +9,14 @@
  # Add a new pathology category.
  # Add a new pathology for the new category
  # Add new illness period
+ # Remove an illness period
 == Expected results ==
  # ...
  # ...
  # The category is created
  # The pathology is created
  # The illness period is created
+ # The illness period is removed
 == Issues ==
 === version 3.0.2: ===
  * n.a.
