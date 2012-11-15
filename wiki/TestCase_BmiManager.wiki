@@ -1,0 +1,14 @@
+[PatientSessionTestSuite Parent]
+= Requirements: =
+[BMI See here]
+
+= Manage patient's medical records: =
+== Steps ==
+ # 
+== Expected results ==
+ # 
+== Issues ==
+=== version 3.0.2: ===
+ * n.a.
+=== version 3.0.3: ===
+ * n.a.
