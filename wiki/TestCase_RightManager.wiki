@@ -13,6 +13,7 @@
   * Import data
   * Authorisation
   * Settings
+  * Add a new user
  # The result should be:
    * All the "Save" features are deactivated
    * All the "Add ..." features are deactivated
