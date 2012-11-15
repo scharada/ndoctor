@@ -2,11 +2,23 @@
 = Requirements: =
 [BMI See here]
 
-= Manage patient's medical records: =
+= Manage Bmi histiry: =
 == Steps ==
- # 
+ # Connect with a user that is granted to write
+ # Create a new Bmi entry (add height and weight for the patient)
+ # Remove the created Bmi entry
+ # Create a new Bmi
+ # Create a new Bmi with a date in the future
+ # Create a new Bmi with today as the date
+ # Create a new Bmi with a date that already exist in the database
 == Expected results ==
- # 
+ # ...
+ # The entry is inserted and the graphs are updated
+ # The entry is removed and the graphs are updated
+ # The entry is inserted and the graphs are updated. And the previously height is already set in the box
+ # If the date is in the future, the "Add" button is greyed out
+ # The entry is inserted and the graphs are updated. And the previously 
+ # The entry is inserted and the graphs are updated.
 == Issues ==
 === version 3.0.2: ===
  * n.a.
