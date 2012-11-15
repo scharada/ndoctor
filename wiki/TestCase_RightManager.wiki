@@ -15,7 +15,7 @@
   * Settings
   * Add a new user
  # The result should be:
-   * All the "Save" features are deactivated
+   * All the "Save" features are deactivated but the patient data
    * All the "Add ..." features are deactivated
    * User can add/remove appointments
    * User can't import data or manage authorisations
@@ -29,3 +29,4 @@
 === version 3.0.3: ===
  * issue 105
  * issue 106
+ * issue 107
