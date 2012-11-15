@@ -23,12 +23,12 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.MeetingManager.Helpers;
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Navigation;
-    using Probel.NDoctor.Plugins.MeetingManager.Helpers;
 
     internal class RemoveMeetingViewModel : MeetingViewModel
     {
