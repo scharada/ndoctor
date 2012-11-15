@@ -27,3 +27,5 @@
 == Issues ==
 === version 3.0.2: ===
  * n.a.
+=== version 3.0.3: ===
+ * n.a.
