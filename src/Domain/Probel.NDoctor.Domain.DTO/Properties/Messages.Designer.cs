@@ -187,6 +187,15 @@ namespace Probel.NDoctor.Domain.DTO.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occured while decrypting the specified text.
+        /// </summary>
+        internal static string Ex_EncryptionException {
+            get {
+                return ResourceManager.GetString("Ex_EncryptionException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This entity already exist in the database.
         /// </summary>
         internal static string Ex_EntityAlreadyExistsException {

@@ -15,6 +15,8 @@
         
         SizeToContent="WidthAndHeight"
         mc:Ignorable="d"
+        MinWidth="600"
+        MinHeight="450"
         Loaded="this_Loaded" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     
     <Window.InputBindings>
@@ -36,9 +38,7 @@
                       DockPanel.Dock="Left"
                       ItemsSource="{Binding SettingCollection}"    
                       DisplayMemberPath="Name"/>
-            <ScrollViewer Height="350"
-                          Width="450"
-                          HorizontalScrollBarVisibility="Auto">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto">
                 <ContentControl DockPanel.Dock="Right"
                             Content="{Binding SelectedItem.Control, ElementName=list}"/>
             </ScrollViewer>

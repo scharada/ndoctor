@@ -22,6 +22,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.MeetingManager.Helpers;
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -98,7 +99,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                     User = PluginContext.Host.ConnectedUser,
                     Tag = this.SelectedAppointmentTag,
                 };
-                this.Component.Create(appointment, this.SelectedPatient);
+                this.Component.Create(appointment, this.SelectedPatient, new PluginSettings().GetGoogleConfiguration());
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_AppointmentAdded);
                 this.Close();

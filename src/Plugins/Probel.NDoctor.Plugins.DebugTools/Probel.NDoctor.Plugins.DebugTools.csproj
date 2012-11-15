@@ -45,6 +45,9 @@
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Nini">
+      <HintPath>..\..\packages\Trove.Nini.1.1.0.0\lib\net20\Nini.dll</HintPath>
+    </Reference>
     <Reference Include="Probel.Mvvm, Version=1.2.0.76, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Probel.Mvvm.1.2.0.76\lib\Probel.Mvvm.dll</HintPath>
@@ -57,6 +60,7 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />

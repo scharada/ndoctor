@@ -173,13 +173,25 @@
     <value>Entre:</value>
     <comment>Between:</comment>
   </data>
+  <data name="Lbl_BindedCalendar" xml:space="preserve">
+    <value>Calendrier lié:</value>
+    <comment>Binded calendar:</comment>
+  </data>
   <data name="Lbl_BusySlots" xml:space="preserve">
     <value>Rendez-vous pris:</value>
     <comment>Meeting list</comment>
   </data>
+  <data name="Lbl_CalendarActivated" xml:space="preserve">
+    <value>Activer le lien avec Google Calendar?</value>
+    <comment>Activate Google Calendar binding?</comment>
+  </data>
   <data name="Lbl_FreeSlots" xml:space="preserve">
     <value>Possibilités:</value>
     <comment>Free slots:</comment>
+  </data>
+  <data name="Lbl_Password" xml:space="preserve">
+    <value>Mot de passe:</value>
+    <comment>Password:</comment>
   </data>
   <data name="Lbl_RemoveMeeting" xml:space="preserve">
     <value>Supprimer un rendez-vous</value>
@@ -188,6 +200,10 @@
   <data name="Lbl_SelectedPatient" xml:space="preserve">
     <value>Patient sélectionné:</value>
     <comment>Selected patient:</comment>
+  </data>
+  <data name="Lbl_UserName" xml:space="preserve">
+    <value>Utilisateur:</value>
+    <comment>User name:</comment>
   </data>
   <data name="Menu_Actions" xml:space="preserve">
     <value>Action</value>

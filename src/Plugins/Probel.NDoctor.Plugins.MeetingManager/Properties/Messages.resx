@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Btn_Add" xml:space="preserve">
-    <value>Ajouter</value>
+    <value>Add</value>
     <comment>Add</comment>
   </data>
   <data name="Btn_Remove" xml:space="preserve">
@@ -169,13 +169,25 @@
     <value>Between:</value>
     <comment>Between:</comment>
   </data>
+  <data name="Lbl_BindedCalendar" xml:space="preserve">
+    <value>Binded calendar:</value>
+    <comment>Binded calendar:</comment>
+  </data>
   <data name="Lbl_BusySlots" xml:space="preserve">
     <value>Appointment list:</value>
     <comment>Appointment list:</comment>
   </data>
+  <data name="Lbl_CalendarActivated" xml:space="preserve">
+    <value>Activate Google Calendar binding?</value>
+    <comment>Activate Google Calendar binding?</comment>
+  </data>
   <data name="Lbl_FreeSlots" xml:space="preserve">
     <value>Free slots:</value>
     <comment>Free slots:</comment>
+  </data>
+  <data name="Lbl_Password" xml:space="preserve">
+    <value>Password:</value>
+    <comment>Password:</comment>
   </data>
   <data name="Lbl_RemoveMeeting" xml:space="preserve">
     <value>Remove a meeting</value>
@@ -184,6 +196,10 @@
   <data name="Lbl_SelectedPatient" xml:space="preserve">
     <value>Selected patient:</value>
     <comment>Selected patient:</comment>
+  </data>
+  <data name="Lbl_UserName" xml:space="preserve">
+    <value>User name:</value>
+    <comment>User name:</comment>
   </data>
   <data name="Menu_Actions" xml:space="preserve">
     <value>Action</value>
@@ -222,7 +238,7 @@
     <comment>An error occured during the loading of the calendar</comment>
   </data>
   <data name="Msg_NothingFound" xml:space="preserve">
-    <value>Aucun résultat</value>
+    <value>No result</value>
     <comment>No result</comment>
   </data>
   <data name="Msg_SearchProcessed" xml:space="preserve">
@@ -250,7 +266,7 @@
     <comment>Question</comment>
   </data>
   <data name="Title_RemoveMeeting" xml:space="preserve">
-    <value>Supprimer un rendez-vous</value>
+    <value>Remove an appointment</value>
     <comment>Remove an appointment</comment>
   </data>
   <data name="Title_SearchWatermark" xml:space="preserve">

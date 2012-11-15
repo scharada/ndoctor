@@ -155,7 +155,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         protected bool CanFindSlots()
         {
             if (this.SelectedPatient == null) return false;
-            else if (this.StartDate < DateTime.Today || this.EndDate < DateTime.Today) return false;
             else if (this.EndDate < this.StartDate) return false;
             else return true;
         }

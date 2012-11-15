@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:Helpers="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
+      xmlns:Helpers="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
       xmlns:Converter="clr-namespace:Probel.NDoctor.View.Toolbox.Converters;assembly=Probel.NDoctor.View.Toolbox"	
       xmlns:Model="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.UserSession.Translations"
@@ -15,7 +15,7 @@
         <Converter:InvertVisibilityConverter x:Key="invertVisibility"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Page.Resources>
-    
+
     <Page.InputBindings>
         <KeyBinding Key="Escape"
                     Command="Model:Commands.Shutdown"/>
@@ -63,13 +63,13 @@
                 <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
 
-            <PasswordBox Helpers:PasswordBoxAssistant.BindPassword="True" 
-						 Helpers:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+            <PasswordBox Helpers:PasswordBoxBehaviour.BindPassword="True" 
+						 Helpers:PasswordBoxBehaviour.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
 						 Height="26" Width="226" HorizontalAlignment="Center" 
                          Visibility="{Binding Path=Users.Count, Converter={StaticResource visibilityConverter}}">
-                <PasswordBox.InputBindings>                    
-                        <KeyBinding Key="Enter"
-                                    Command="{Binding ConnectCommand}"/>                    
+                <PasswordBox.InputBindings>
+                    <KeyBinding Key="Enter"
+                                    Command="{Binding ConnectCommand}"/>
                 </PasswordBox.InputBindings>
             </PasswordBox>
 

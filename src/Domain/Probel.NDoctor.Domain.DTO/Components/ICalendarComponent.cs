@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using System.Collections.Generic;
 
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.GoogleCalendar;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
 
@@ -35,6 +36,15 @@ namespace Probel.NDoctor.Domain.DAL.Components
         void Create(AppointmentDto meeting, LightPatientDto patient);
 
         /// <summary>
+        /// Creates the specified appointment and uses the Google Calendar configuration
+        /// to create (or not) this appointment into the Google Calendar.
+        /// </summary>
+        /// <param name="appointment">The appointment.</param>
+        /// <param name="patient">The patient.</param>
+        /// <param name="config">The config.</param>
+        void Create(AppointmentDto appointment, LightPatientDto patient, GoogleConfiguration config);
+
+        /// <summary>
         /// Create the specified item into the database
         /// </summary>
         /// <param name="item">The item to add in the database</param>
@@ -46,8 +56,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <returns></returns>
-        IList<AppointmentDto> GetAppointments(LightPatientDto patient);
-
         /// <summary>
         /// Gets all the appointments between the specified start and end threshold for the specified patient.
         /// </summary>
@@ -63,6 +71,13 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="day">The day.</param>
         /// <returns>A list of appointments</returns>
         IList<AppointmentDto> GetAppointments(DateTime day);
+
+        /// <summary>
+        /// Gets the appointments for the specified day and add all the appointments from Google Calendar.
+        /// </summary>
+        /// <param name="day">The day.</param>
+        /// <returns>A list of appointments</returns>
+        IList<AppointmentDto> GetAppointments(DateTime day, GoogleConfiguration config);
 
         /// <summary>
         /// Gets the patients that fullfill the specified criterium.
@@ -94,6 +109,20 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="meeting">The meeting.</param>
         /// <param name="patient">The patient.</param>
         void Remove(AppointmentDto meeting, LightPatientDto patient);
+
+        /// <summary>
+        /// Removes the specified meeting.
+        /// </summary>
+        /// <param name="meeting">The meeting.</param>
+        /// <param name="patient">The patient.</param>
+        /// <param name="config">The configuration that will be used to remove the appointment from Google Calendar if exist.</param>        
+        void Remove(AppointmentDto meeting, LightPatientDto patient, GoogleConfiguration config);
+
+        /// <summary>
+        /// Execute a dummy query to Google Calendar to spin it up.
+        /// If an error occured, it is gracefully swallowed and logged.
+        /// </summary>
+        void SpinUpGoogle(GoogleConfiguration config);
 
         #endregion Methods
     }

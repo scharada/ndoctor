@@ -19,24 +19,25 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Plugins.MedicalRecord.Translations
+namespace Probel.NDoctor.Plugins.MeetingManager.View
 {
-    using Probel.NDoctor.Plugins.MedicalRecord.Properties;
+    using System.Windows.Controls;
 
-    public static class RecordHistoryText
+    using Probel.NDoctor.Plugins.MeetingManager.ViewModel;
+
+    /// <summary>
+    /// Interaction logic for SettingsView.xaml
+    /// </summary>
+    public partial class SettingsView : UserControl
     {
-        #region Properties
+        #region Constructors
 
-        public static string Rollback
+        public SettingsView()
         {
-            get { return Messages.Btn_Rollback; }
+            InitializeComponent();
+            this.DataContext = new SettingsViewModel();
         }
 
-        public static string Title
-        {
-            get { return Messages.Title_Revisions; }
-        }
-
-        #endregion Properties
+        #endregion Constructors
     }
 }

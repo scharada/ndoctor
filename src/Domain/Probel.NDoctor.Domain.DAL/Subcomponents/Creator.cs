@@ -13,9 +13,11 @@
 
     using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DAL.GoogleCalendar;
     using Probel.NDoctor.Domain.DAL.Helpers;
     using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DTO.Exceptions;
+    using Probel.NDoctor.Domain.DTO.GoogleCalendar;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     internal class Creator
@@ -348,15 +350,39 @@
         /// <summary>
         /// Creates the specified meeting.
         /// </summary>
-        /// <param name="meeting">The meeting.</param>
+        /// <param name="appointment">The meeting.</param>
         /// <param name="patient">The patient.</param>
-        public void Create(AppointmentDto meeting, LightPatientDto patient)
+        public void Create(AppointmentDto appointment, LightPatientDto patient)
         {
             var patientEntity = this.Session.Get<Patient>(patient.Id);
-            var meetingEntity = Mapper.Map<AppointmentDto, Appointment>(meeting);
+            var meetingEntity = Mapper.Map<AppointmentDto, Appointment>(appointment);
 
             patientEntity.Appointments.Add(meetingEntity);
             this.Session.SaveOrUpdate(patientEntity);
+        }
+
+        /// <summary>
+        /// Creates the specified appointment and use create it in Google Calendar if the binding is active.
+        /// </summary>
+        /// <param name="appointment">The appointment.</param>
+        /// <param name="patient">The patient.</param>
+        /// <param name="config">The config.</param>
+        public void Create(AppointmentDto appointment, LightPatientDto patient, GoogleConfiguration config)
+        {
+            var patientEntity = this.Session.Get<Patient>(patient.Id);
+            var meetingEntity = Mapper.Map<AppointmentDto, Appointment>(appointment);
+
+            meetingEntity.GoogleSynchronisationId = (config.IsActive)
+                ? Guid.NewGuid() //This id allows to find Google appointments
+                : new Guid(); //Empty Guid indicates this appointments is not binded with Google Calendar
+
+            patientEntity.Appointments.Add(meetingEntity);
+            this.Session.SaveOrUpdate(patientEntity);
+
+            if (config.IsActive)
+            {
+                new GoogleService(config).AddAppointment(meetingEntity);
+            }
         }
 
         /// <summary>

@@ -8,17 +8,15 @@
       xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.MeetingManager.View"
       xmlns:cal="clr-namespace:Probel.Helpers.WPF.Calendar.Controls;assembly=Probel.Helpers.WPF"
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.MeetingManager.Translations"
+      xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:baseText="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
       
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-	Title="Workbench">
+      Title="Workbench">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <cal:Calendar Grid.Column="0"
-                      CurrentDate="{Binding Path=DateToDisplay, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                      Appointments="{Binding Path=DayAppointments}"/>
-    </Grid>
+    <toolkit:BusyIndicator IsBusy="{Binding IsBusy}" BusyContent="{Binding Source={x:Static Member=baseText:BaseText.PleaseWait}}">
+        <cal:Calendar CurrentDate="{Binding Path=DateToDisplay, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                      Appointments="{Binding Path=DayAppointments, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+    </toolkit:BusyIndicator>
 </Page>

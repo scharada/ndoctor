@@ -19,22 +19,32 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Plugins.MedicalRecord.Translations
+namespace Probel.NDoctor.Plugins.MeetingManager.Translations
 {
-    using Probel.NDoctor.Plugins.MedicalRecord.Properties;
+    using Probel.NDoctor.Plugins.MeetingManager.Properties;
 
-    public static class RecordHistoryText
+    public static class SettingsText
     {
         #region Properties
 
-        public static string Rollback
+        public static string BindedCalendar
         {
-            get { return Messages.Btn_Rollback; }
+            get { return Messages.Lbl_BindedCalendar; }
         }
 
-        public static string Title
+        public static string CalendarActivated
         {
-            get { return Messages.Title_Revisions; }
+            get { return Messages.Lbl_CalendarActivated; }
+        }
+
+        public static string Password
+        {
+            get { return Messages.Lbl_Password; }
+        }
+
+        public static string UserName
+        {
+            get { return Messages.Lbl_UserName; }
         }
 
         #endregion Properties

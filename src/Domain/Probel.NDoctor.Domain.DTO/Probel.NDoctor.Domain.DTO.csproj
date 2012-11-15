@@ -73,6 +73,7 @@
     <Compile Include="Exceptions\TranslateableException.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Exceptions\WrongIdTypeException.cs" />
+    <Compile Include="GoogleCalendar\GoogleConfiguration.cs" />
     <Compile Include="Helpers\ConvertSlotDurationAndTimeSpan.cs" />
     <Compile Include="Helpers\DtoExtentions.cs" />
     <Compile Include="Helpers\SlotDuration.cs" />

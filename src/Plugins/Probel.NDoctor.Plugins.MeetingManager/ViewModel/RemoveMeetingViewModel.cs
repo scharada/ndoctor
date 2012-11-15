@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Navigation;
+    using Probel.NDoctor.Plugins.MeetingManager.Helpers;
 
     internal class RemoveMeetingViewModel : MeetingViewModel
     {
@@ -111,7 +112,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         {
             try
             {
-                this.Component.Remove(this.SelectedAppointment, this.SelectedPatient);
+                this.Component.Remove(this.SelectedAppointment, this.SelectedPatient, new PluginSettings().GetGoogleConfiguration());
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_AppointmentAdded);
                 this.Close();

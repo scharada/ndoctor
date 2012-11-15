@@ -50,6 +50,12 @@ namespace Probel.NDoctor.Domain.DAL.Entities
             set;
         }
 
+        public virtual Guid GoogleSynchronisationId
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// Gets or sets the notes about the meeting.
         /// </summary>
@@ -111,5 +117,20 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         }
 
         #endregion Properties
+
+        #region Methods
+
+        /// <summary>
+        /// Returns a <see cref="System.String"/> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String"/> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            return string.Format("Appointment: {0}", this.Subject);
+        }
+
+        #endregion Methods
     }
 }

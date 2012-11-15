@@ -32,6 +32,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DAL.Helpers;
     using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
@@ -89,6 +90,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                 //component.Update(superadmin, "superadmin"); //Set a default password
 
                 component.Create(new TagDto(TagCategory.Prescription) { Name = Messages.Tag_Default_Prescription });
+                component.Create(new TagDto(TagCategory.Appointment) { Name = Default.GoogleCalendarTagName });
 
                 Logger.Info("Script is done...");
 

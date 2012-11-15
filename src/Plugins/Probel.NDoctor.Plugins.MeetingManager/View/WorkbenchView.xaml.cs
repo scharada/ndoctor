@@ -34,13 +34,5 @@ namespace Probel.NDoctor.Plugins.MeetingManager.View
         }
 
         #endregion Constructors
-
-        #region Methods
-
-        private void Calendar_AppointmentClicked(object sender, System.Windows.RoutedEventArgs e)
-        {
-        }
-
-        #endregion Methods
     }
 }

@@ -18,13 +18,16 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     using AutoMapper;
 
     using Probel.Helpers.WPF.Calendar.Model;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DTO.GoogleCalendar;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.MeetingManager.Helpers;
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -38,6 +41,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
         private ICalendarComponent component = PluginContext.ComponentFactory.GetInstance<ICalendarComponent>();
         private DateTime dateToDisplay;
+        private bool isBusy;
 
         #endregion Fields
 
@@ -82,6 +86,16 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             private set;
         }
 
+        public bool IsBusy
+        {
+            get { return this.isBusy; }
+            set
+            {
+                this.isBusy = value;
+                this.OnPropertyChanged(() => IsBusy);
+            }
+        }
+
         #endregion Properties
 
         #region Methods
@@ -93,18 +107,61 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
         private void RefreshCalendar()
         {
-            try
+            var context = TaskScheduler.FromCurrentSynchronizationContext();
+            var taskContext = new TaskContext() { DateToDisplay = this.DateToDisplay };
+
+            this.IsBusy = true;
+            Task.Factory.StartNew<TaskContext>(e => RefreshCalendarAsync(e), taskContext)
+            .ContinueWith(e => RefreshCalendarCallback(e), context);
+        }
+
+        private TaskContext RefreshCalendarAsync(object e)
+        {
+            var ctx = e as TaskContext;
+            var result = this.component.GetAppointments(ctx.DateToDisplay, ctx.Configuration);
+            var mappedResult = Mapper.Map<IList<AppointmentDto>, AppointmentCollection>(result);
+            ctx.Result = mappedResult;
+            return e as TaskContext;
+        }
+
+        private void RefreshCalendarCallback(Task<TaskContext> e)
+        {
+            this.IsBusy = false;
+            base.ExecuteIfTaskIsNotFaulted(e, () =>
             {
-                var result = this.component.GetAppointments(this.DateToDisplay);
-                var mappedResult = Mapper.Map<IList<AppointmentDto>, AppointmentCollection>(result);
-                this.DayAppointments.Refill(mappedResult);
-            }
-            catch (Exception ex)
-            {
-                this.Handle.Error(ex, Messages.Error_RefreshingCalendar);
-            }
+                this.DayAppointments.Refill(e.Result.Result);
+            });
         }
 
         #endregion Methods
+
+        #region Nested Types
+
+        private class TaskContext
+        {
+            #region Properties
+
+            public GoogleConfiguration Configuration
+            {
+                get
+                {
+                    return new PluginSettings().GetGoogleConfiguration();
+                }
+            }
+
+            public DateTime DateToDisplay
+            {
+                get; set;
+            }
+
+            public AppointmentCollection Result
+            {
+                get; set;
+            }
+
+            #endregion Properties
+        }
+
+        #endregion Nested Types
     }
 }
