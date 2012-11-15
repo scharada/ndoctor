@@ -129,7 +129,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             this.IsBusy = false;
             base.ExecuteIfTaskIsNotFaulted(e, () =>
             {
-                this.DayAppointments.Refill(e.Result.Result);
+                this.DayAppointments.RefillAndSort(e.Result.Result);
             });
         }
 
@@ -151,12 +151,14 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
             public DateTime DateToDisplay
             {
-                get; set;
+                get;
+                set;
             }
 
             public AppointmentCollection Result
             {
-                get; set;
+                get;
+                set;
             }
 
             #endregion Properties
