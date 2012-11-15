@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Plugins.MeetingManager.Properties
-{
-
-
+namespace Probel.NDoctor.Plugins.MeetingManager.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -61,7 +61,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Properties
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ajouter.
+        ///   Looks up a localized string similar to Add.
         /// </summary>
         internal static string Btn_Add {
             get {
@@ -178,6 +178,15 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Properties
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Binded calendar:.
+        /// </summary>
+        internal static string Lbl_BindedCalendar {
+            get {
+                return ResourceManager.GetString("Lbl_BindedCalendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Appointment list:.
         /// </summary>
         internal static string Lbl_BusySlots {
@@ -187,11 +196,29 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Properties
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activate Google Calendar binding?.
+        /// </summary>
+        internal static string Lbl_CalendarActivated {
+            get {
+                return ResourceManager.GetString("Lbl_CalendarActivated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Free slots:.
         /// </summary>
         internal static string Lbl_FreeSlots {
             get {
                 return ResourceManager.GetString("Lbl_FreeSlots", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password:.
+        /// </summary>
+        internal static string Lbl_Password {
+            get {
+                return ResourceManager.GetString("Lbl_Password", resourceCulture);
             }
         }
         
@@ -210,6 +237,15 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Properties
         internal static string Lbl_SelectedPatient {
             get {
                 return ResourceManager.GetString("Lbl_SelectedPatient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User name:.
+        /// </summary>
+        internal static string Lbl_UserName {
+            get {
+                return ResourceManager.GetString("Lbl_UserName", resourceCulture);
             }
         }
         
@@ -295,7 +331,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Properties
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aucun résultat.
+        ///   Looks up a localized string similar to No result.
         /// </summary>
         internal static string Msg_NothingFound {
             get {
@@ -358,7 +394,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Properties
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Supprimer un rendez-vous.
+        ///   Looks up a localized string similar to Remove an appointment.
         /// </summary>
         internal static string Title_RemoveMeeting {
             get {

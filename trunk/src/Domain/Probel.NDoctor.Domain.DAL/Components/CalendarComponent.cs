@@ -28,9 +28,13 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.Helpers.Data;
     using Probel.NDoctor.Domain.DAL.AopConfiguration;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DAL.GoogleCalendar;
+    using Probel.NDoctor.Domain.DAL.Helpers;
     using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
+    using Probel.NDoctor.Domain.DTO.GoogleCalendar;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
 
@@ -79,6 +83,18 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Creates the specified appointment and uses the Google Calendar configuration
+        /// to create (or not) this appointment into the Google Calendar.
+        /// </summary>
+        /// <param name="appointment">The appointment.</param>
+        /// <param name="patient">The patient.</param>
+        /// <param name="config">The config.</param>
+        public void Create(AppointmentDto appointment, LightPatientDto patient, GoogleConfiguration config)
+        {
+            new Creator(this.Session).Create(appointment, patient, config);
+        }
+
+        /// <summary>
         /// Gets all the appointments of the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -113,10 +129,26 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>A list of appointments</returns>
         public IList<AppointmentDto> GetAppointments(DateTime day)
         {
+            return this.GetAppointments(day, GoogleConfiguration.NotBinded);
+        }
+
+        /// <summary>
+        /// Gets the appointments for the specified day and add all the appointments from Google Calendar.
+        /// </summary>
+        /// <param name="day">The day.</param>
+        /// <returns>A list of appointments</returns>
+        public IList<AppointmentDto> GetAppointments(DateTime day, GoogleConfiguration config)
+        {
             var result = (from a in this.Session.Query<Appointment>()
                           where a.StartTime >= day.Date
                              && a.EndTime <= day.Date.AddDays(1)
                           select a).ToList();
+
+            if (config.IsActive)
+            {
+                result.AddRange(new GoogleService(config).GetAppointments(day, this.GetGoogleTag()));
+            }
+
             return Mapper.Map<IList<Appointment>, IList<AppointmentDto>>(result);
         }
 
@@ -182,6 +214,48 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void Remove(AppointmentDto meeting, LightPatientDto patient)
         {
             new Remover(this.Session).Remove(meeting, patient);
+        }
+
+        /// <summary>
+        /// Removes the specified meeting.
+        /// </summary>
+        /// <param name="meeting">The meeting.</param>
+        /// <param name="patient">The patient.</param>
+        /// <param name="config">The configuration that will be used to remove the appointment from Google Calendar if exist.</param>
+        [Granted(To.EditCalendar)]
+        public void Remove(AppointmentDto meeting, LightPatientDto patient, GoogleConfiguration config)
+        {
+            var entity = this.Session.Get<Appointment>(meeting.Id);
+            if (config.IsActive)
+            {
+                new GoogleService(config).RemoveAppointment(entity);
+            }
+            this.Remove(meeting, patient);
+        }
+
+        /// <summary>
+        /// Execute a dummy query to Google Calendar to spin it up.
+        /// If an error occured, it is gracefully swallowed and logged.
+        /// </summary>
+        public void SpinUpGoogle(GoogleConfiguration config)
+        {
+            new GoogleService(config).SpinUp();
+        }
+
+        /// <summary>
+        /// Gets the google tag.
+        /// </summary>
+        /// <returns></returns>
+        private Tag GetGoogleTag()
+        {
+            try
+            {
+                return (from tag in this.Session.Query<Tag>()
+                        where tag.Category == TagCategory.Appointment
+                           && tag.Name == Default.GoogleCalendarTagName
+                        select tag).First();
+            }
+            catch (Exception ex) { throw new EntityNotFoundException(typeof(TagDto), ex); }
         }
 
         private bool IsNotOverlapping(List<Appointment> appointments, DateRange slot)

@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviours\ControlBehaviour.cs" />
+    <Compile Include="Behaviours\PasswordBoxBehaviour.cs" />
     <Compile Include="Behaviours\SelectorBehaviour.cs" />
     <Compile Include="Behaviours\TreeViewBehaviour.cs" />
     <Compile Include="Behaviours\WebBrowserBehaviour.cs" />

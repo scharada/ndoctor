@@ -18,6 +18,7 @@ namespace Probel.Helpers.WPF.Calendar.Controls
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.Specialized;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
@@ -31,16 +32,19 @@ namespace Probel.Helpers.WPF.Calendar.Controls
         public static readonly RoutedEvent AddAppointmentEvent = 
             CalendarTimeSlotItem.AddAppointmentEvent.AddOwner(typeof(CalendarDay));
         public static readonly DependencyProperty AppointmentsProperty = 
-            DependencyProperty.Register("Appointments", typeof(IEnumerable<Appointment>), typeof(Calendar),
-            new FrameworkPropertyMetadata(null, new PropertyChangedCallback(Calendar.OnAppointmentsChanged)));
+            DependencyProperty.Register("Appointments"
+                , typeof(IEnumerable<Appointment>)
+                , typeof(Calendar)
+                , new FrameworkPropertyMetadata(null, new PropertyChangedCallback(Calendar.OnAppointmentsChanged)));
 
         /// <summary>
         /// CurrentDate Dependency Property
         /// </summary>
         public static readonly DependencyProperty CurrentDateProperty = 
-            DependencyProperty.Register("CurrentDate", typeof(DateTime), typeof(Calendar),
-                new FrameworkPropertyMetadata((DateTime)DateTime.Now,
-                    new PropertyChangedCallback(OnCurrentDateChanged)));
+            DependencyProperty.Register("CurrentDate"
+                , typeof(DateTime)
+                , typeof(Calendar)
+                , new FrameworkPropertyMetadata((DateTime)DateTime.Now, new PropertyChangedCallback(Calendar.OnCurrentDateChanged)));
         public static readonly RoutedCommand NextDay = new RoutedCommand("NextDay", typeof(Calendar));
         public static readonly RoutedCommand PreviousDay = new RoutedCommand("PreviousDay", typeof(Calendar));
 
@@ -90,10 +94,7 @@ namespace Probel.Helpers.WPF.Calendar.Controls
         public IEnumerable<Appointment> Appointments
         {
             get { return (IEnumerable<Appointment>)GetValue(AppointmentsProperty); }
-            set
-            {
-                SetValue(AppointmentsProperty, value);
-            }
+            set { SetValue(AppointmentsProperty, value); }
         }
 
         /// <summary>
@@ -183,7 +184,29 @@ namespace Probel.Helpers.WPF.Calendar.Controls
 
         private static void OnAppointmentsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((Calendar)d).OnAppointmentsChanged(e);
+            /* Hack: The calendar is updated
+             * I marked this change as a hack to let it visible in the Task List of Visual Studio
+             * With this change, now all the changes of the collection are visible in the calendar as soon
+             * as the INotifyCollectionChanged has added/removed items. If the collection doesn't implement
+             * INotifyCollectionChanged, then nothing happens.
+             */
+            if (d is Calendar)
+            {
+                var calendar = d as Calendar;
+                var newCollectionChanged = e.NewValue as INotifyCollectionChanged;
+
+                if (e.OldValue is INotifyCollectionChanged)
+                {
+                    var old = e.OldValue as INotifyCollectionChanged;
+                    old.CollectionChanged -= calendar.OnItemsCollectionChanged;
+                }
+                if (e.NewValue is INotifyCollectionChanged)
+                {
+                    var newCol = e.NewValue as INotifyCollectionChanged;
+                    newCol.CollectionChanged += calendar.OnItemsCollectionChanged;
+                }
+                calendar.OnAppointmentsChanged(e);
+            }
         }
 
         private static void OnCanExecuteNextDay(object sender, CanExecuteRoutedEventArgs e)
@@ -227,6 +250,11 @@ namespace Probel.Helpers.WPF.Calendar.Controls
 
             TextBlock dayHeader = this.GetTemplateChild("dayHeader") as TextBlock;
             if (dayHeader != null) dayHeader.Text = byDate.DayOfWeek.ToString() + " " + byDate.ToShortDateString();
+        }
+
+        private void OnItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            this.FilterAppointments();
         }
 
         #endregion Methods

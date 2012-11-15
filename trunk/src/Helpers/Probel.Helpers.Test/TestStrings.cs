@@ -34,6 +34,28 @@ namespace Probel.Helpers.Test
             "Hello".FormatWith(args);
         }
 
+        [Test]
+        public void ManagePassword_DecryptPassword_PasswordIsDecrypted()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                var password = "password";
+                var encrypted = password.Encrypt();
+                var decrypted = encrypted.Decrypt();
+
+                Assert.AreEqual(password, decrypted);
+            }
+        }
+
+        [Test]
+        public void ManagePassword_EncryptPassword_PasswordIsEncrypted()
+        {
+            var password = "password";
+            var encrypted = password.Encrypt();
+
+            Assert.AreNotEqual(password, encrypted);
+        }
+
         #endregion Methods
     }
 }

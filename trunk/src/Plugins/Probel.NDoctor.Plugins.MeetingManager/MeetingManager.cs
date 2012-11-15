@@ -29,8 +29,10 @@ namespace Probel.NDoctor.Plugins.MeetingManager
     using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
+    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.MeetingManager.Helpers;
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.Plugins.MeetingManager.View;
     using Probel.NDoctor.Plugins.MeetingManager.ViewModel;
@@ -38,7 +40,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.View.Toolbox.Navigation;
 
     [Export(typeof(IPlugin))]
     public class MeetingManager : Plugin
@@ -46,6 +47,8 @@ namespace Probel.NDoctor.Plugins.MeetingManager
         #region Fields
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.MeetingManager;component/Images\{0}.png";
+
+        private readonly ICalendarComponent Component = PluginContext.ComponentFactory.GetInstance<ICalendarComponent>();
 
         private ICommand navigateCommand;
 
@@ -90,9 +93,12 @@ namespace Probel.NDoctor.Plugins.MeetingManager
         public override void Initialise()
         {
             Assert.IsNotNull(PluginContext.Host, "PluginContext.Host");
+
+            new SettingsConfigurator().Add(Messages.Title_MeetingsManager, () => new SettingsView());
             this.ConfigureViewService();
             this.BuildButtons();
             this.BuildContextMenu();
+            this.Component.SpinUpGoogle(new PluginSettings().GetGoogleConfiguration());
         }
 
         /// <summary>
@@ -163,6 +169,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager
             try
             {
                 PluginContext.Host.Navigate(this.View);
+                this.View.As<WorkbenchViewModel>().Refresh();
                 this.ShowContextMenu();
             }
             catch (Exception ex) { this.Handle.Error(ex, Messages.Msg_FailToLoadCalendar); }

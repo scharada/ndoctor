@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.View.Core.Helpers
+namespace Probel.Helpers.WPF.Behaviours
 {
     using System.Windows;
     using System.Windows.Controls;
@@ -23,17 +23,17 @@ namespace Probel.NDoctor.View.Core.Helpers
     /// Allows databinding on password.
     /// </summary>
     /// <remarks>Found here: http://blog.functionalfun.net/2008/06/wpf-passwordbox-and-data-binding.html</remarks>
-    public static class PasswordBoxAssistant
+    public static class PasswordBoxBehaviour
     {
         #region Fields
 
         public static readonly DependencyProperty BindPassword = DependencyProperty.RegisterAttached(
-            "BindPassword", typeof(bool), typeof(PasswordBoxAssistant), new PropertyMetadata(false, OnBindPasswordChanged));
+            "BindPassword", typeof(bool), typeof(PasswordBoxBehaviour), new PropertyMetadata(false, OnBindPasswordChanged));
         public static readonly DependencyProperty BoundPassword = 
-            DependencyProperty.RegisterAttached("BoundPassword", typeof(string), typeof(PasswordBoxAssistant), new PropertyMetadata(string.Empty, OnBoundPasswordChanged));
+            DependencyProperty.RegisterAttached("BoundPassword", typeof(string), typeof(PasswordBoxBehaviour), new PropertyMetadata(string.Empty, OnBoundPasswordChanged));
 
         private static readonly DependencyProperty UpdatingPassword = 
-            DependencyProperty.RegisterAttached("UpdatingPassword", typeof(bool), typeof(PasswordBoxAssistant), new PropertyMetadata(false));
+            DependencyProperty.RegisterAttached("UpdatingPassword", typeof(bool), typeof(PasswordBoxBehaviour), new PropertyMetadata(false));
 
         #endregion Fields
 
@@ -82,23 +82,14 @@ namespace Probel.NDoctor.View.Core.Helpers
 
             PasswordBox box = dp as PasswordBox;
 
-            if (box == null)
-            {
-                return;
-            }
+            if (box == null) { return; }
 
             bool wasBound = (bool)(e.OldValue);
             bool needToBind = (bool)(e.NewValue);
 
-            if (wasBound)
-            {
-                box.PasswordChanged -= HandlePasswordChanged;
-            }
+            if (wasBound) { box.PasswordChanged -= HandlePasswordChanged; }
 
-            if (needToBind)
-            {
-                box.PasswordChanged += HandlePasswordChanged;
-            }
+            if (needToBind) { box.PasswordChanged += HandlePasswordChanged; }
         }
 
         private static void OnBoundPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -107,20 +98,14 @@ namespace Probel.NDoctor.View.Core.Helpers
 
             // only handle this event when the property is attached to a PasswordBox
             // and when the BindPassword attached property has been set to true
-            if (d == null || !GetBindPassword(d))
-            {
-                return;
-            }
+            if (d == null || !GetBindPassword(d)) { return; }
 
             // avoid recursive updating by ignoring the box's changed event
             box.PasswordChanged -= HandlePasswordChanged;
 
             string newPassword = (string)e.NewValue;
 
-            if (!GetUpdatingPassword(box))
-            {
-                box.Password = newPassword;
-            }
+            if (!GetUpdatingPassword(box)) { box.Password = newPassword; }
 
             box.PasswordChanged += HandlePasswordChanged;
         }

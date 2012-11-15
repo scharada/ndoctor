@@ -172,6 +172,10 @@
     <value>Empty password are not accepted</value>
     <comment>Empty password are not accepted</comment>
   </data>
+  <data name="Ex_EncryptionException" xml:space="preserve">
+    <value>An error occured while decrypting the specified text</value>
+    <comment>An error occured while decrypting the specified text</comment>
+  </data>
   <data name="Ex_EntityAlreadyExistsException" xml:space="preserve">
     <value>This entity already exist in the database</value>
     <comment>This entity already exist in the database</comment>

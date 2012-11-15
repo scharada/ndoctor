@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:text="clr-namespace:Probel.NDoctor.Plugins.UserSession.Translations"
-        xmlns:Helpers="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
+        xmlns:Helpers="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
         xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:iw="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
         xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
@@ -53,12 +53,12 @@
                          Text="{Binding Path=User.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
                 <PasswordBox Height="26"
                              Margin="4"
-                             Helpers:PasswordBoxAssistant.BindPassword="True" 
-                             Helpers:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Helpers:PasswordBoxBehaviour.BindPassword="True" 
+                             Helpers:PasswordBoxBehaviour.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <PasswordBox Height="26"
                              Margin="4"
-                             Helpers:PasswordBoxAssistant.BindPassword="True" 
-                             Helpers:PasswordBoxAssistant.BoundPassword="{Binding Path=PasswordCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Helpers:PasswordBoxBehaviour.BindPassword="True" 
+                             Helpers:PasswordBoxBehaviour.BoundPassword="{Binding Path=PasswordCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
 
         </Grid>

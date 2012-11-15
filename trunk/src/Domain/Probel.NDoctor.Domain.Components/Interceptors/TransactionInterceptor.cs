@@ -21,12 +21,13 @@
 
 namespace Probel.NDoctor.Domain.Components.Interceptors
 {
+    using System.Data;
+
     using Castle.DynamicProxy;
 
     using Probel.NDoctor.Domain.DAL.AopConfiguration;
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Components;
-    using System.Data;
 
     public class TransactionInterceptor : BaseInterceptor
     {

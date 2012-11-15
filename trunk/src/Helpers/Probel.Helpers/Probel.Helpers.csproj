@@ -84,6 +84,7 @@
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Strings\PasswordExtension.cs" />
     <Compile Include="Strings\StringHelpers.cs" />
   </ItemGroup>
   <ItemGroup>

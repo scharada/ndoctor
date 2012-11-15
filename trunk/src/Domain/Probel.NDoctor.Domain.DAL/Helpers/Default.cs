@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -16,27 +14,14 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-#endregion Header
-
-namespace Probel.NDoctor.Plugins.MedicalRecord.Translations
+namespace Probel.NDoctor.Domain.DAL.Helpers
 {
-    using Probel.NDoctor.Plugins.MedicalRecord.Properties;
-
-    public static class RecordHistoryText
+    internal class Default
     {
-        #region Properties
+        #region Fields
 
-        public static string Rollback
-        {
-            get { return Messages.Btn_Rollback; }
-        }
+        public const string GoogleCalendarTagName = "Google Calendar";
 
-        public static string Title
-        {
-            get { return Messages.Title_Revisions; }
-        }
-
-        #endregion Properties
+        #endregion Fields
     }
 }

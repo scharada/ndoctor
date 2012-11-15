@@ -42,11 +42,26 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="Google.GData.AccessControl">
+      <HintPath>..\..\packages\Google.GData.AccessControl.2.1.0.0\lib\Google.GData.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.GData.Calendar">
+      <HintPath>..\..\packages\Google.GData.Calendar.2.1.0.0\lib\Google.GData.Calendar.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.GData.Client">
+      <HintPath>..\..\packages\Google.GData.Client.2.1.0.0\lib\Google.GData.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.GData.Extensions">
+      <HintPath>..\..\packages\Google.GData.Extensions.2.1.0.0\lib\Google.GData.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Iesi.Collections.3.3.2.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -74,6 +89,7 @@
     </Compile>
     <Compile Include="AopConfiguration\BenchmarkThresholdAttribute.cs" />
     <Compile Include="AopConfiguration\ExcludeFromTransactionAttribute.cs" />
+    <Compile Include="Helpers\Default.cs" />
     <Compile Include="Cfg\NUnitConfigWrapper.cs" />
     <Compile Include="Cfg\Script.cs" />
     <Compile Include="Components\AdministrationComponent.cs" />
@@ -99,6 +115,7 @@
     <Compile Include="Entities\Prescription.cs" />
     <Compile Include="Entities\PrescriptionDocument.cs" />
     <Compile Include="EqualityComparers\EntityEqualityComparer.cs" />
+    <Compile Include="GoogleCalendar\GoogleService.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="AopConfiguration\InspectionIgnoredAttribute.cs" />
     <Compile Include="Macro\InvalidMacroException.cs">
