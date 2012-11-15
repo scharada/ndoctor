@@ -24,3 +24,5 @@
 === version 3.0.2: ===
  * issue 46
  * issue 47
+
+=== version 3.0.3 ===
