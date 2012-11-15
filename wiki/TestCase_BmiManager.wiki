@@ -2,7 +2,7 @@
 = Requirements: =
 [BMI See here]
 
-= Manage Bmi histiry: =
+= Manage Bmi history: =
 == Steps ==
  # Connect with a user that is granted to write
  # Create a new Bmi entry (add height and weight for the patient)
