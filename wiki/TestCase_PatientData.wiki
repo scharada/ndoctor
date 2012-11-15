@@ -7,12 +7,10 @@
  # Connect into nDoctor with user that has write privileges
  # Open a session for a user
  # Go to Patient data and modify all the data and save.
- # Disconnect and reconnect the user
- # Do the same without saving. Load a new patient
+ # Disconnect and reconnect the user using directly the search box and without saving
 == Expected results ==
  # ...
  # ...
- # The data are updated
  # The data are updated
  # The data are updated
 == Issues ==
