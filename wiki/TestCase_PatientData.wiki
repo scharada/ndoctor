@@ -8,9 +8,11 @@
  # Open a session for a user
  # Go to Patient data and modify all the data and save.
  # Disconnect and reconnect the user
+ # Do the same without saving. Load a new patient
 == Expected results ==
  # ...
  # ...
+ # The data are updated
  # The data are updated
  # The data are updated
 == Issues ==
