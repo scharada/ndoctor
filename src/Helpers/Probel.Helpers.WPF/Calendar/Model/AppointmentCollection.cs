@@ -73,10 +73,12 @@ namespace Probel.Helpers.WPF.Calendar.Model
         /// The value can be null for reference types.</param>
         public new void Add(Appointment item)
         {
-            base.Add(item);
-            this.InternalSort();
+            this.SortByDates();
 
-            var items = (from i in this
+            var buffer = new List<Appointment>(this);
+            buffer.Add(item);
+
+            var items = (from i in buffer
                          where i.DateRange.Equals(item.DateRange)
                             || i.DateRange.Overlaps(item.DateRange)
                          select i).ToList();
@@ -85,13 +87,30 @@ namespace Probel.Helpers.WPF.Calendar.Model
             {
                 items[i].Indentation = (uint)i;
             }
+
+            base.Add(item);
+        }
+
+        /// <summary>
+        /// Adds specified collection into the AppointmentCollection and resort the items.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="oCollection">The o collection.</param>
+        /// <param name="collection">The collection.</param>
+        public void RefillAndSort(AppointmentCollection collection)
+        {
+            this.Clear();
+            foreach (var item in collection)
+            {
+                this.Add(item);
+            }
         }
 
         /// <summary>
         /// Sorts the appointments on their duration to avoir displaying bus that will overlaps
         /// the meetings.
         /// </summary>
-        private void InternalSort()
+        private void SortByDates()
         {
             var sortedItemsList = this.OrderByDescending(e => e.DateRange.TimeSpan).ToList();
 
