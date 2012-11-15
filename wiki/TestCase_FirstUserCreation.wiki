@@ -6,12 +6,14 @@
  # Select the user you've created, enter the password and click on *GO*
  # Go to the "Main menu\Authorisation" and click on "Manage users"
  # Go to the "Main menu\Authorisation" and right-click on the only user and delete it
+ # Go to the "Main menu\Authorisation" and set the super admin as a "Secretary" and disconnect/reconnect this user
 == Expected results ==
  # ...
  # After creation, you're in the connection view
  # You enter in the main window, the session group is greyed out.
  # There's only one user and the "Super admin" check box is checked for this user
  # A warning message appear saying you can't delete this user
+ # Because this user is super admin, he/she has all the authorisation. No matter the specified role
 == Issues ==
 === version 3.0.2: ===
  * issue 41
