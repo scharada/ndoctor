@@ -31,3 +31,4 @@
  * issue 106
  * issue 107
  * issue 108
+ * issue 109
