@@ -1,24 +1,12 @@
 [CalendarTestSuite Parent]
 = Requirements: =
-[Calendar See here]
+[Administration See here]
 
-= Manage Bmi history: =
+= Manage data: =
 == Steps ==
- # Connect with a user that has write privilige
- # Create a meeting
- # Remove an existing meeting
- # Link the calendar with Google Calendar (with ndoctor.development)
- # Create overlapping appointments in the default Google calendar
- # Navigate between different days (These days should have meeting from Google and nDoctor)
- # Set a wrong credentials to connect to Google Calendar
+ # 
 == Expected results ==
- # ...
- # The meeting is created
- # The meeting is removed
- # ...
- # The overlapping appointments display correctly
- # The meetings display correctly
- # A clear error occurs
+ # 
 == Issues ==
 === version 3.0.2: ===
  * n.a.
