@@ -4,9 +4,13 @@
 
 = Manage Bmi history: =
 == Steps ==
- # 
+ # Connect with a user that has write priviliges
+ # Add a new BMI entry
+ # Add another BMI entry
 == Expected results ==
- # 
+ # ...
+ # The graphs are updated and the entry is inserted in the grid
+ # The height of the patient is already set
 == Issues ==
 === version 3.0.2: ===
  * n.a.
