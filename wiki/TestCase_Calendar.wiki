@@ -4,9 +4,19 @@
 
 = Manage data: =
 == Steps ==
- # 
+ # Connect with a user that has write privilege
+ # Add a new appointment (without link with Google Calendar)
+ # Remove an existing appointment (without link with Google Calendar)
+ # Configure the link with Google Calendar and setup some overlapping appointments in the default Google calendar (use ndoctor.development) 
+ # Add a new appointment from nDoctor (with Google Calendar link)
+ # Removed an existing appointment linked to Google Calendar (with Google Calendar link)
 == Expected results ==
- # 
+ # ...
+ # The appointment is added
+ # The appointment is removed
+ # ...
+ # The appointment is added in nDoctor AND Google Calendar
+ # The appointment is removed in nDoctor AND Google Calendar
 == Issues ==
 === version 3.0.2: ===
  * n.a.
