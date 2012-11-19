@@ -2,13 +2,21 @@
 = Requirements: =
 [Administration See here]
 
-= Manage authorisation: =
+= Manage data: =
 == Steps ==
- # 
+ # Create a new item for each type
+ # Update an item of each type
+ # Delete an item of each type
+ # Try to remove an item of each type when it is linked to another entity
+ # Update all entity with a freshly created item (of each type)
 == Expected results ==
- # 
+ # The items are created
+ # The items are updated
+ # The items are deleted
+ # You see a warning message about referential integrity
+ # The freshly added item is linked to the entity and all its value aren't changed
 == Issues ==
 === version 3.0.2: ===
  * n.a.
 === version 3.0.3: ===
- * n.a.
+ * issue 116.
