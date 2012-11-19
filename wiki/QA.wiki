@@ -37,5 +37,5 @@ Follow this pattern to create _test suite_ and _test cases_
 == Tips: ==
  * Create a script to delete the database when you need to start from scratch:
 {{{
-%appdata%\Probel\nDoctor\Database.db
+rm -Force %appdata%\Probel\nDoctor\Database.db
 }}}
