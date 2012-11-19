@@ -59,7 +59,7 @@ To add this tool in Visual Studio follow these steps:
    # Arguments        : `$(SolutionFileName) /b`
    # Initial directory: `$(SolutionDir)`
 
-== [`Not used`] Configure nAnt: ==
+== Configure nAnt: ==
  # Download [http://nant.sourceforge.net/ nAnt] and [http://nantcontrib.sourceforge.net/ nAnt contrib]. 
  # Copy the downoaded files into `%programfiles%\nAnt` (or whatever directory) and copy the nAnt Contrib files from `bin` directory into the *`bin`* nAnt directory you've created.
  # Update the Environment Variables to allow nAnt.exe to be accessible from everywhere
