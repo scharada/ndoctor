@@ -39,6 +39,7 @@
   * [FeatureList Feature list]
   * [UserTestSuite User Session]
   * [PatientSessionTestSuite Patient session]
+  * [CalendarTestSuite Calendar]
  * [Deploy Deploy]
  * Support
   * [UserManual User manual]
