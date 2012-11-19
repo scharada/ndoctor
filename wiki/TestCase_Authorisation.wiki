@@ -4,9 +4,61 @@
 
 = Manage authorisation: =
 == Steps ==
- # 
+ # Create a new Insurance
+ # Create a new Practice
+ # Create a new Drug category
+ # Create a new Pathology
+ # Create a new Profession
+ # Create a new Reputation
+ # Create a new Picture category
+ # Create a new Specialisation
+ # Create a new Doctor
+ # Update a new Insurance
+ # Update a new Practice
+ # Update a new Drug category
+ # Update a new Pathology
+ # Update a new Profession
+ # Update a new Reputation
+ # Update a new Picture category
+ # Update a new Specialisation
+ # Update a new Doctor
+ # Delete an Insurance
+ # Delete a Practice
+ # Delete a Drug category
+ # Delete a Pathology
+ # Delete a Profession
+ # Delete a Reputation
+ # Delete a Picture category
+ # Delete a Specialisation
+ # Delete a Doctor
 == Expected results ==
- # 
+ # The item is created
+ # The item is created
+ # The item is created
+ # The item is created
+ # The item is created
+ # The item is created
+ # The item is created
+ # The item is created
+ # The item is created
+ # The item is updated
+ # The item is updated
+ # The item is updated
+ # The item is updated
+ # The item is updated
+ # The item is updated
+ # The item is updated
+ # The item is updated
+ # The item is updated
+ # The item is deleted
+ # The item is deleted
+ # The item is deleted
+ # The item is deleted
+ # The item is deleted
+ # The item is deleted
+ # The item is deleted
+ # The item is deleted
+ # The item is deleted
 == Issues ==
 === version 3.0.2: ===
  * n.a.
