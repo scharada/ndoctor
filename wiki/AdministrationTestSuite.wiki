@@ -1,0 +1,7 @@
+#summary One-sentence summary of this page.
+
+= Test Suite: Administration =
+== Requirements ==
+[AdministrationSee here]
+== Test cases: ==
+ * [TestCase_Data Manage data]
