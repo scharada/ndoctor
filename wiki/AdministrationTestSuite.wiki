@@ -5,3 +5,4 @@
 [AdministrationSee here]
 == Test cases: ==
  * [TestCase_Data Manage data]
+ * [TestCase_Authorisation Manage authorisation]
