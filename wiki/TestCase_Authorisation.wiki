@@ -4,63 +4,19 @@
 
 = Manage authorisation: =
 == Steps ==
- # Create a new Insurance
- # Create a new Practice
- # Create a new Drug category
- # Create a new Pathology
- # Create a new Profession
- # Create a new Reputation
- # Create a new Picture category
- # Create a new Specialisation
- # Create a new Doctor
- # Update a new Insurance
- # Update a new Practice
- # Update a new Drug category
- # Update a new Pathology
- # Update a new Profession
- # Update a new Reputation
- # Update a new Picture category
- # Update a new Specialisation
- # Update a new Doctor
- # Delete an Insurance
- # Delete a Practice
- # Delete a Drug category
- # Delete a Pathology
- # Delete a Profession
- # Delete a Reputation
- # Delete a Picture category
- # Delete a Specialisation
- # Delete a Doctor
+ # Create a new item for each type
+ # Update an item of each type
+ # Delete an item of each type
+ # Try to remove an item of each type when it is linked to another entity
+ # Update all entity with a freshly created item (of each type)
 == Expected results ==
- # The item is created
- # The item is created
- # The item is created
- # The item is created
- # The item is created
- # The item is created
- # The item is created
- # The item is created
- # The item is created
- # The item is updated
- # The item is updated
- # The item is updated
- # The item is updated
- # The item is updated
- # The item is updated
- # The item is updated
- # The item is updated
- # The item is updated
- # The item is deleted
- # The item is deleted
- # The item is deleted
- # The item is deleted
- # The item is deleted
- # The item is deleted
- # The item is deleted
- # The item is deleted
- # The item is deleted
+ # The items are created
+ # The items are updated
+ # The items are deleted
+ # You see a warning message about referential integrity
+ # The freshly added item is linked to the entity and all its value aren't changed
 == Issues ==
 === version 3.0.2: ===
  * n.a.
 === version 3.0.3: ===
- * n.a.
+ * issue 116.
