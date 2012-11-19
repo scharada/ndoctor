@@ -27,7 +27,6 @@
  * issue 47
 
 === version 3.0.3: ===
- * issue 106
  * issue 107
  * issue 108
  * issue 109
