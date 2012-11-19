@@ -4,4 +4,3 @@
 == Test cases: ==
  * [TestCase_FirstUserCreation First user creation]
  * [TestCase_CreateNewUser Create new user]
- * [TestCase_RightManager Authorisation management]
