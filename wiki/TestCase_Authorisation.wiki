@@ -1,4 +1,4 @@
-[CalendarTestSuite Parent]
+[AdministrationTestSuite Parent]
 = Requirements: =
 [RightManager See here]
 
