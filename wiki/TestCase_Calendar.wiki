@@ -1,0 +1,14 @@
+[CalendarTestSuitee Parent]
+= Requirements: =
+[Calendar See here]
+
+= Manage Bmi history: =
+== Steps ==
+ # 
+== Expected results ==
+ # 
+== Issues ==
+=== version 3.0.2: ===
+ * n.a.
+=== version 3.0.3: ===
+ * issue 115.
