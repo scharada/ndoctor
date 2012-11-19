@@ -4,9 +4,17 @@
 
 = Manage Bmi history: =
 == Steps ==
- # 
+ # Connect with a user that has write privilege
+ # Add a new picture (choose a category, select a picture and write some notes)
+ # Create a new category and add a picture with the new category
+ # Filter the picture to see a category (Try different pictures)
+ # Add a new picture and use the filter
 == Expected results ==
- # 
+ # ...
+ # The picture is added
+ # The filter applies correctly
+ # The picture is added
+ # The filter applies correctly
 == Issues ==
 === version 3.0.2: ===
  * n.a.
