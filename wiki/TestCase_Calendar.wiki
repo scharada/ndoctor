@@ -1,4 +1,4 @@
-[CalendarTestSuitee Parent]
+[CalendarTestSuite Parent]
 = Requirements: =
 [Calendar See here]
 
