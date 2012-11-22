@@ -89,6 +89,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="appointment">The appointment.</param>
         /// <param name="patient">The patient.</param>
         /// <param name="config">The config.</param>
+        [Granted(To.EditCalendar)]
         public void Create(AppointmentDto appointment, LightPatientDto patient, GoogleConfiguration config)
         {
             new Creator(this.Session).Create(appointment, patient, config);
