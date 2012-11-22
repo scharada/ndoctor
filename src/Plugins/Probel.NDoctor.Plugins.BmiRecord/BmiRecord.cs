@@ -30,11 +30,10 @@ namespace Probel.NDoctor.Plugins.BmiRecord
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
     using Probel.NDoctor.Plugins.BmiRecord.View;
     using Probel.NDoctor.Plugins.BmiRecord.ViewModel;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.View.Toolbox.Navigation;
+    using Probel.NDoctor.Domain.DTO.Objects;
 
     [Export(typeof(IPlugin))]
     public class BmiRecord : Plugin
@@ -140,7 +139,8 @@ namespace Probel.NDoctor.Plugins.BmiRecord
             ViewService.Configure(e =>
             {
                 e.Bind<AddBmiView, AddBmiViewModel>()
-                 .OnClosing(() => this.Workbench.As<WorkbenchViewModel>().Refresh());
+                    .OnShow(vm => vm.CurrentBmi = new BmiDto() { Height = PluginContext.Host.SelectedPatient.Height })
+                    .OnClosing(() => this.Workbench.As<WorkbenchViewModel>().Refresh());
             });
         }
 

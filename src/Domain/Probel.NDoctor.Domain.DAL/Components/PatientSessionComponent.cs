@@ -105,6 +105,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
                                 Gender = p.Gender,
                                 BirthDate = p.BirthDate,
                                 Profession = p.Profession,
+                                Height = p.Height,
                             }).ToList();
             }
             else
@@ -118,6 +119,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
                                 Gender = p.Gender,
                                 BirthDate = p.BirthDate,
                                 Profession = p.Profession,
+                                Height = p.Height,
                             }).ToList();
                 searchAll = true;
             }
@@ -188,9 +190,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
             {
                 var msg = "A query that asks all the patients returned zero results after the execution of the specification pattern. Maybe you have some null properties (Checl the SELECT clause)";
                 this.Logger.Warn(msg);
-            #if DEBUG
+#if DEBUG
                 throw new NotImplementedException(msg);
-            #endif
+#endif
             }
         }
 
