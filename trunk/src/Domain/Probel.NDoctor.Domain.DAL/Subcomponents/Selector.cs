@@ -580,6 +580,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
                             Gender = patient.Gender,
                             BirthDate = patient.BirthDate,
                             Profession = patient.Profession,
+                            Height = patient.Height,
                         }).ToList();
             }
             else
@@ -593,6 +594,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
                             Gender = patient.Gender,
                             BirthDate = patient.BirthDate,
                             Profession = patient.Profession,
+                            Height = patient.Height,
                         }).ToList();
             }
         }
@@ -611,6 +613,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
                             Gender = patient.Gender,
                             BirthDate = patient.BirthDate,
                             Profession = patient.Profession,
+                            Height = patient.Height,
                         }).ToList();
             }
             else
@@ -624,6 +627,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
                             Gender = patient.Gender,
                             BirthDate = patient.BirthDate,
                             Profession = patient.Profession,
+                            Height = patient.Height,
                         }).ToList();
             }
         }

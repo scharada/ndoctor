@@ -85,7 +85,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
         private void AddBmi()
         {
             Assert.IsNotNull(PluginContext.Host, "PluginContext.Host");
-            Assert.IsNotNull(PluginContext.Host.SelectedPatient, "PluginContext.Host.SelectedPatient");
+            Assert.IsNotNull(PluginContext.Host.SelectedPatient, "SelectedPatient");
             Assert.IsNotNull(this.CurrentBmi, "CurrentBmi");
 
             try
