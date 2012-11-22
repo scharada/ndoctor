@@ -53,6 +53,7 @@ namespace Probel.NDoctor.Domain.Components
 
         private readonly bool BenchmarkEnabled = false;
         private readonly uint ExecutionTimeThreshold;
+        private readonly bool IsUnderTest = false;
         private readonly ILog Logger = LogManager.GetLogger(typeof(ComponentFactory));
 
         #endregion Fields
@@ -132,12 +133,33 @@ namespace Probel.NDoctor.Domain.Components
         /// </summary>
         /// <param name="benchmarkEnabled">if set to <c>true</c> component loggin is enabled.</param>
         public ComponentFactory(bool benchmarkEnabled, uint executionTimeThreshold)
+            : this(benchmarkEnabled, executionTimeThreshold, false)
+        {
+        }
+
+        private ComponentFactory(bool benchmarkEnabled, uint executionTimeThreshold, bool isUnderTest)
         {
             this.BenchmarkEnabled = benchmarkEnabled;
             this.ExecutionTimeThreshold = executionTimeThreshold;
+            this.IsUnderTest = isUnderTest;
         }
 
         #endregion Constructors
+
+        #region Properties
+
+        /// <summary>
+        /// Gets a factory ready for test. That's only the Authorisation proxy will be hooked to the instance.
+        /// </summary>
+        public static ComponentFactory TestInstance
+        {
+            get
+            {
+                return new ComponentFactory(false, int.MaxValue, true);
+            }
+        }
+
+        #endregion Properties
 
         #region Methods
 
@@ -187,8 +209,11 @@ namespace Probel.NDoctor.Domain.Components
             var interceptors = new List<IInterceptor>();
 
             if (this.BenchmarkEnabled) { interceptors.Add(new BenchmarkInterceptor(this.ExecutionTimeThreshold)); }
-            interceptors.Add(new LogInterceptor());
-            interceptors.Add(new TransactionInterceptor());
+            if (!this.IsUnderTest)
+            {
+                interceptors.Add(new TransactionInterceptor());
+                interceptors.Add(new LogInterceptor());
+            }
             interceptors.Add(AuthorisationInterceptor);
 
             return interceptors.ToArray();

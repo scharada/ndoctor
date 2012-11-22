@@ -85,6 +85,7 @@
     <Compile Include="Components\AuthorisationComponentTest.cs" />
     <Compile Include="Components\BaseComponentTest.cs" />
     <Compile Include="Components\BmiComponentTest.cs" />
+    <Compile Include="Components\CalendarComponentTest.cs" />
     <Compile Include="Components\FamilyComponentTest.cs" />
     <Compile Include="Components\UserSessionComponentTest.cs" />
     <Compile Include="Data\TestMacros.cs" />
