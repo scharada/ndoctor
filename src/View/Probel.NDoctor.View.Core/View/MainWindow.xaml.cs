@@ -79,6 +79,18 @@ namespace Probel.NDoctor.View.Core.View
         /// </summary>
         public event EventHandler NewUserConnected;
 
+        /// <summary>
+        /// Occurs when before new patient is connected.
+        /// </summary>
+        public event EventHandler BeforeNewPatientConnected;
+        private void OnBeforeNewPatientConnected()
+        {
+            if (this.BeforeNewPatientConnected != null)
+            {
+                this.BeforeNewPatientConnected(this, EventArgs.Empty);
+            }
+        }
+
         #endregion Events
 
         #region Properties
@@ -152,6 +164,7 @@ namespace Probel.NDoctor.View.Core.View
             {
                 if (this.DataContext != null && this.DataContext is MainWindowViewModel)
                 {
+                    this.OnBeforeNewPatientConnected();
                     (this.DataContext as MainWindowViewModel).SelectedPatient = value;
                     this.OnNewPatientConnected();
                 }
@@ -473,11 +486,11 @@ namespace Probel.NDoctor.View.Core.View
 
         private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            #if DEBUG
+#if DEBUG
             this.WindowState = System.Windows.WindowState.Normal;
-            #else
+#else
             this.WindowState = System.Windows.WindowState.Maximized;
-            #endif
+#endif
         }
 
         private void WriteStatus(LightPatientDto value)

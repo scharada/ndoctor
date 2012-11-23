@@ -65,6 +65,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             : base()
         {
             PluginContext.Host.NewPatientConnected += (sender, e) => this.SelectedRecord = null;
+            PluginContext.Host.BeforeNewPatientConnected += (sender, e) => this.SaveCommand.TryExecute();
 
             this.MacroMenu = new ObservableCollection<MacroMenuItem>();
 
