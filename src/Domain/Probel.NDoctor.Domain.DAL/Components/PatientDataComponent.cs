@@ -277,9 +277,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
             Assert.IsNotNull(item, "item");
             item.LastUpdate = DateTime.Today;
 
-            var entity = this.Session.Get<Patient>(item.Id);
-
-            Mapper.Map<PatientDto, Patient>(item, entity);
+            var eItem = Mapper.Map<PatientDto, Patient>(item);
+            var entity = this.Session.Merge<Patient>(eItem);
             this.Session.Update(entity);
         }
 

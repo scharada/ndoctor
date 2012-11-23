@@ -116,6 +116,17 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         }
 
         /// <summary>
+        /// Gets all patients stored in the repository.
+        /// </summary>
+        /// <returns></returns>
+        public IList<PatientDto> GetAllPatients()
+        {
+            var result = (from p in this.Session.Query<Patient>()
+                          select p).ToList();
+            return Mapper.Map<IList<Patient>, IList<PatientDto>>(result);
+        }
+
+        /// <summary>
         /// Gets all the patients in light version.
         /// </summary>
         /// <returns></returns>
