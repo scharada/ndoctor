@@ -55,7 +55,8 @@
                 Height="26" 
                 Command="{Binding NavigateAddUserCommand}" 
                 HorizontalAlignment="Center"  
-                Visibility="{Binding ElementName=userCombobox, Path=Visibility, Converter={StaticResource invertVisibility}}"/>
+                Visibility="{Binding ElementName=userCombobox, Path=Visibility, Converter={StaticResource invertVisibility}, UpdateSourceTrigger=PropertyChanged}"
+        />
 
         <Grid  Grid.Row="4" Focusable="False" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>

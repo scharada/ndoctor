@@ -77,10 +77,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         /// </value>
         public bool HasUsers
         {
-            get
-            {
-                return this.Users != null && this.Users.Count > 0;
-            }
+            get { return this.Users != null && this.Users.Count > 0; }
         }
 
         /// <summary>

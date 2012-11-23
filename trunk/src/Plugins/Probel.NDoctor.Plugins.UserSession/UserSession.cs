@@ -101,12 +101,7 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         private ConnectionView ConnectionPage
         {
-            get
-            {
-                ConnectionView connectionView = null;
-                PluginContext.Host.Invoke(() => connectionView = new ConnectionView());
-                return connectionView;
-            }
+            get { return LazyLoader.Get<ConnectionView>(); }
         }
 
         #endregion Properties
@@ -185,7 +180,12 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         private void ConfigureViewService()
         {
-            LazyLoader.Set<ConnectionView>(() => new ConnectionView());
+            LazyLoader.Set<ConnectionView>(() =>
+            {
+                ConnectionView view = null;
+                PluginContext.Host.Invoke(() => view = new ConnectionView());
+                return view;
+            });
 
             ViewService.Configure(e =>
             {

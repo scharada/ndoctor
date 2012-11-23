@@ -69,6 +69,7 @@
     <Compile Include="DebugControl.xaml.cs">
       <DependentUpon>DebugControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PluginSettings.cs" />
     <Compile Include="Properties\Messages.fr.Designer.cs">
       <DependentUpon>Messages.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -107,6 +108,9 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Plugin.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Probel.NDoctor.Plugins.DebugTools.licenseheader" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
