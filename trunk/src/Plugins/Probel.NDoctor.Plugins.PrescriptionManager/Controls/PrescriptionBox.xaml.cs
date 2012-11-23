@@ -102,7 +102,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.Controls
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            LazyLoader.Get<WorkbenchView>().As<WorkbenchViewModel>().Refresh();
+            LazyLoader.Get<AddPrescriptionView>().As<AddPrescriptionViewModel>().Prescriptions.Remove(this.Prescription);
         }
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
