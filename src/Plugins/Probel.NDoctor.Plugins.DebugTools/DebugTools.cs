@@ -35,7 +35,7 @@ namespace Probel.NDoctor.Plugins.DebugTools
         #region Fields
 
         private ISqlComponent component;
-
+        private readonly PluginSettings Settings = new PluginSettings();
         #endregion Fields
 
         #region Constructors
@@ -66,9 +66,21 @@ namespace Probel.NDoctor.Plugins.DebugTools
         /// </summary>
         public override void Initialise()
         {
-            this.FillDefaultDatabase();
-            this.LoadUserForDebug();
-            this.FillDefaultCalendarConfig();
+            if (this.Settings.InjectDefaultData)
+            {
+                this.Logger.Debug("Injecting default data");
+                this.FillDefaultDatabase();
+            }
+            if (this.Settings.LoadDefaultUser)
+            {
+                this.Logger.Debug("Loading default user");
+                this.LoadUserForDebug();
+            }
+            if (this.Settings.BindToGoogleCalendar)
+            {
+                this.Logger.Debug("Bind to Google Calendar");
+                this.FillDefaultCalendarConfig();
+            }
         }
 
         private void FillDefaultCalendarConfig()
