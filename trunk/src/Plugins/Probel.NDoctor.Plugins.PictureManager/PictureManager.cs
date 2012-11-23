@@ -22,6 +22,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
     using System.Windows.Media;
 
     using Probel.Helpers.Strings;
+    using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
@@ -33,7 +34,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
-    public class PictureManager : StaticViewPlugin<WorkbenchView>
+    public class PictureManager : Plugin
     {
         #region Fields
 
@@ -59,6 +60,15 @@ namespace Probel.NDoctor.Plugins.PictureManager
 
         #endregion Constructors
 
+        #region Properties
+
+        public WorkbenchView View
+        {
+            get { return LazyLoader.Get<WorkbenchView>(); }
+        }
+
+        #endregion Properties
+
         #region Methods
 
         /// <summary>
@@ -69,6 +79,8 @@ namespace Probel.NDoctor.Plugins.PictureManager
         {
             PluginContext.Host.Invoke(() =>
             {
+                LazyLoader.Set<WorkbenchView>(() => new WorkbenchView());
+
                 this.BuildButtons();
                 this.BuildContextMenu();
                 this.ConfigureWindowManager();
@@ -116,7 +128,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
                  .OnShow(vm => vm.RefreshCommand.TryExecute())
                  .OnClosing(vm => this.RefreshWorkbenchView(vm.HasAddPicture));
                 e.Bind<AddTagView, AddTagViewModel>()
-                    .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
+                    .OnClosing(() => this.View.As<WorkbenchViewModel>().ForceRefresh());
             });
         }
 

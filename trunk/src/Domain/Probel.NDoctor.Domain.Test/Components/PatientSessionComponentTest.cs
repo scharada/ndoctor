@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,29 +16,29 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Probel.NDoctor.Domain.DAL.Components;
-using Probel.NDoctor.Domain.DTO.Components;
-using NUnit.Framework;
+
+#endregion Header
 
 namespace Probel.NDoctor.Domain.Test.Components
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using NUnit.Framework;
+
+    using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DTO.Components;
+
     public class PatientSessionComponentTest : BaseComponentTest<PatientSessionComponent>
     {
+        #region Methods
+
         [Test]
         public void LoadPatient_CheckHeightOfPatientWithJokerSearchOnFirstLastName_HeightIsSet()
         {
             var patients = this.ComponentUnderTest.GetPatientsByNameLight("*", SearchOn.FirstAndLastName);
-
-            Assert.AreEqual(180, patients[0].Height);
-        }
-        [Test]
-        public void LoadPatient_CheckHeightOfPatientWithoutJokerSearchOnFirstLastName_HeightIsSet()
-        {
-            var patients = this.ComponentUnderTest.GetPatientsByNameLight("Vroumiz", SearchOn.FirstAndLastName);
 
             Assert.AreEqual(180, patients[0].Height);
         }
@@ -48,6 +50,23 @@ namespace Probel.NDoctor.Domain.Test.Components
 
             Assert.AreEqual(180, patients[0].Height);
         }
+
+        [Test]
+        public void LoadPatient_CheckHeightOfPatientWithJokerSearchOnLastName_HeightIsSet()
+        {
+            var patients = this.ComponentUnderTest.GetPatientsByNameLight("*", SearchOn.LastName);
+
+            Assert.AreEqual(180, patients[0].Height);
+        }
+
+        [Test]
+        public void LoadPatient_CheckHeightOfPatientWithoutJokerSearchOnFirstLastName_HeightIsSet()
+        {
+            var patients = this.ComponentUnderTest.GetPatientsByNameLight("Vroumiz", SearchOn.FirstAndLastName);
+
+            Assert.AreEqual(180, patients[0].Height);
+        }
+
         [Test]
         public void LoadPatient_CheckHeightOfPatientWithoutJokerSearchOnFirstName_HeightIsSet()
         {
@@ -57,22 +76,18 @@ namespace Probel.NDoctor.Domain.Test.Components
         }
 
         [Test]
-        public void LoadPatient_CheckHeightOfPatientWithJokerSearchOnLastName_HeightIsSet()
-        {
-            var patients = this.ComponentUnderTest.GetPatientsByNameLight("*", SearchOn.LastName);
-
-            Assert.AreEqual(180, patients[0].Height);
-        }
-        [Test]
         public void LoadPatient_CheckHeightOfPatientWithoutJokerSearchOnLastName_HeightIsSet()
         {
             var patients = this.ComponentUnderTest.GetPatientsByNameLight("Vroumiz", SearchOn.LastName);
 
             Assert.AreEqual(180, patients[0].Height);
         }
+
         protected override void _Setup()
         {
             this.BuildComponent(s => new PatientSessionComponent(s));
         }
+
+        #endregion Methods
     }
 }
