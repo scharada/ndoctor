@@ -76,9 +76,9 @@ namespace Probel.NDoctor.Plugins.DebugTools
                 this.Logger.Debug("Loading default user");
                 this.LoadUserForDebug();
             }
-            if (this.Settings.BindToGoogleCalendar)
+            if (this.Settings.DefaultGoogleCalendarConfig)
             {
-                this.Logger.Debug("Bind to Google Calendar");
+                this.Logger.Debug("Fill default config for Google Calendar");
                 this.FillDefaultCalendarConfig();
             }
         }

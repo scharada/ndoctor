@@ -98,7 +98,11 @@ namespace Probel.NDoctor.Plugins.MeetingManager
             this.ConfigureViewService();
             this.BuildButtons();
             this.BuildContextMenu();
-            this.Component.SpinUpGoogle(new PluginSettings().GetGoogleConfiguration());
+
+            if (new PluginSettings().IsGoogleCalendarActivated)
+            {
+                this.Component.SpinUpGoogle(new PluginSettings().GetGoogleConfiguration());
+            }
         }
 
         /// <summary>

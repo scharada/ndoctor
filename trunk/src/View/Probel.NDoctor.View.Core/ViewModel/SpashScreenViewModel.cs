@@ -146,25 +146,27 @@ namespace Probel.NDoctor.View.Core.ViewModel
                     var version = Assembly.GetExecutingAssembly().GetName().Version;
                     this.Title = string.Format("nDoctor BETA {0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
 
+                    this.Progress = 14;
+
                     this.Status = Messages.Msg_ConfiguringNHibernate;
                     this.ConfigureNHibernate();
-                    this.Progress = 16;
+                    this.Progress = 28;
 
                     this.Status = Messages.Msg_ConfiguringStatusWriter;
                     this.ConfigureStatusWriter();
-                    this.Progress = 32;
+                    this.Progress = 42;
 
                     this.Status = Messages.Msg_ConfiguringStructureMap;
                     this.ConfigureStructureMap();
-                    this.Progress = 48;
+                    this.Progress = 56;
 
                     this.Status = Messages.Msg_ConfiguringViewService;
                     this.ConfigureViewService();
-                    this.Progress = 64;
+                    this.Progress = 70;
 
                     this.Status = Messages.Msg_ConfiguringPlugins;
                     this.ConfigurePlugins();
-                    this.Progress = 80;
+                    this.Progress = 84;
 
                     this.Status = Messages.Msg_ConfiguringThumbnails;
                     this.CreateThumbnails();
