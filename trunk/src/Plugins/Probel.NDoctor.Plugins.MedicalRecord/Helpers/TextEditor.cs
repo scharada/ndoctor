@@ -19,11 +19,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
     using System;
 
     using Xceed.Wpf.Toolkit;
+    using Probel.NDoctor.View.Plugins.Helpers;
 
     public static class TextEditor
     {
         #region Properties
-
         public static RichTextBox Control
         {
             get;
@@ -36,7 +36,9 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
 
         public static void UpdateBinding()
         {
-            Control.GetBindingExpression(RichTextBox.TextProperty).UpdateSource();
+            var binding = Control.GetBindingExpression(RichTextBox.TextProperty);
+            binding.UpdateSource();
+            //binding.UpdateTarget();
         }
 
         #endregion Methods

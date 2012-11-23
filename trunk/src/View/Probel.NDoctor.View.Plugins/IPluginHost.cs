@@ -43,6 +43,10 @@ namespace Probel.NDoctor.View.Plugins
         event EventHandler NewUserConnected;
 
         #endregion Events
+        /// <summary>
+        /// Occurs when before new patient is connected.
+        /// </summary>
+        event EventHandler BeforeNewPatientConnected;
 
         #region Properties
 
