@@ -134,6 +134,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             {
                 PluginContext.Host.ShowMainMenu();
                 PluginContext.Host.ConnectedUser = this.SelectedUser;
+                PluginContext.Host.SelectedPatient = null;
                 PluginContext.Host.NavigateToStartPage();
                 this.Logger.Info("User logged in.");
             }
