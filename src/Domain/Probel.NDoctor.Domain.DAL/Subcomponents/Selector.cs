@@ -213,7 +213,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// Gets all users.
         /// </summary>
         /// <returns></returns>
-        public IList<LightUserDto> GetAllUsers()
+        public IList<LightUserDto> GetAllUsersLight()
         {
             try
             {

@@ -113,7 +113,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         [Granted(To.Everyone)]
         public IList<LightUserDto> GetAllUsers()
         {
-            return new Selector(this.Session).GetAllUsers();
+            return new Selector(this.Session).GetAllUsersLight();
         }
 
         /// <summary>

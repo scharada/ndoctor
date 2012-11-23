@@ -22,6 +22,7 @@
 namespace Probel.NDoctor.Domain.Test.Components
 {
     using System;
+    using System.Linq;
 
     using NUnit.Framework;
 
@@ -86,6 +87,29 @@ namespace Probel.NDoctor.Domain.Test.Components
             fullUser.FirstName = Guid.NewGuid().ToString();
 
             this.ComponentUnderTest.Update(fullUser);
+        }
+
+        /// <summary>
+        /// issue 117
+        /// </summary>
+        [Test]
+        public void UpdateUserData_UpdateDefaultUser_OnlyOneDefaultUserInDb()
+        {
+            var users = (from u in this.HelperComponent.GetAllUsers()
+                         where !u.IsDefault
+                         select u).ToList();
+
+            Assert.Greater(users.Count, 0);
+
+            users[0].IsDefault = true;
+            this.WrapInTransaction(() => this.ComponentUnderTest.Update(users[0]));
+
+
+            var defaultUsersCount = (from u in this.HelperComponent.GetAllUsers()
+                                     where u.IsDefault
+                                     select u).Count();
+
+            Assert.AreEqual(1, defaultUsersCount);
         }
 
         protected override void _Setup()

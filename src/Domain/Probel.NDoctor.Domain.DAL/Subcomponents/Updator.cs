@@ -255,10 +255,22 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// <param name="item">The user.</param>
         public void Update(UserDto item)
         {
-            var entity = this.Session.Get<User>(item.Id);
-            Mapper.Map<UserDto, User>(item, entity);
-
-            this.Session.Update(entity);
+            /* Removes the default user from the database because he/she'll
+             * be replaced with the current one
+             */
+            if (item.IsDefault)
+            {
+                var defaultUsers = (from u in this.Session.Query<User>()
+                                    where u.IsDefault
+                                    select u);
+                foreach (var u in defaultUsers)
+                {
+                    u.IsDefault = false;
+                    this.Session.Update(u);
+                }
+            }
+            var eItem = Mapper.Map<UserDto, User>(item);
+            var entity = this.Session.Merge<User>(eItem);
         }
 
         /// <summary>
