@@ -121,6 +121,18 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the text editor is read only.
+        /// The editor is read only if the connected user doesn't have the write provilege
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if the text editor is read only; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsReadOnly
+        {
+            get { return PluginContext.DoorKeeper.IsUserGranted(To.Write); }
+        }
+
         public bool IsRecordSelected
         {
             get { return this.SelectedRecord != null; }
