@@ -73,7 +73,8 @@
                                   behaviour:ControlBehaviour.LostFocus="{Binding SaveCommand}"
                                   behaviour:ControlBehaviour.GotFocus="{Binding RefreshDefaultFontsCommand}"
                                   FontSize="{Binding DefaultFontSize}"
-                                  FontFamily="{Binding DefaultFontFamily}">
+                                  FontFamily="{Binding DefaultFontFamily}"
+                                  IsReadOnly="{Binding IsReadOnly}">
                     <ctrl:RichTextBoxFormatBarManager.FormatBar>
                         <ctrl:RichTextBoxFormatBar />
                     </ctrl:RichTextBoxFormatBarManager.FormatBar>
