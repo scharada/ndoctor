@@ -307,7 +307,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
         private bool CanEdit()
         {
-            return !this.IsEditing;
+            return !this.IsEditing && PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         private bool CanSelectPicture()
