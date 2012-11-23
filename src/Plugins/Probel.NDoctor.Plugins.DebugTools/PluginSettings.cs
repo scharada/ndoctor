@@ -47,10 +47,10 @@ namespace Probel.NDoctor.Plugins.DebugTools
             get { return this.Source.Configs[CONFIG].GetBoolean("LoadDefaultUser", true); }
             set { this.Source.Configs[CONFIG].Set("LoadDefaultUser", value); }
         }
-        public bool BindToGoogleCalendar
+        public bool DefaultGoogleCalendarConfig
         {
-            get { return this.Source.Configs[CONFIG].GetBoolean("BindToGoogleCalendar", true); }
-            set { this.Source.Configs[CONFIG].Set("BindToGoogleCalendar", value); }
+            get { return this.Source.Configs[CONFIG].GetBoolean("DefaultGoogleCalendarConfig", true); }
+            set { this.Source.Configs[CONFIG].Set("DefaultGoogleCalendarConfig", value); }
         }
         #endregion Properties
 
