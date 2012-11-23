@@ -25,7 +25,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using NHibernate;
     using NHibernate.Linq;
 
-    using Probel.Helpers.Benchmarking;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;

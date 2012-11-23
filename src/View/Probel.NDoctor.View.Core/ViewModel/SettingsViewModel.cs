@@ -22,15 +22,12 @@
 namespace Probel.NDoctor.View.Core.ViewModel
 {
     using System.Collections.ObjectModel;
-    using System.Windows.Controls;
     using System.Windows.Input;
 
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.View.Core.Helpers;
-    using Probel.NDoctor.View.Core.View;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.NDoctor.View.Toolbox.Navigation;
 
     internal class SettingsViewModel : BaseViewModel
     {

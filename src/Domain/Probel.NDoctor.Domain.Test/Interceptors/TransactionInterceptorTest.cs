@@ -32,7 +32,6 @@ namespace Probel.NDoctor.Domain.Test.Interceptors
     using Probel.NDoctor.Domain.Components.Interceptors;
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Components;
-    using Probel.NDoctor.Domain.Test.Helpers;
 
     [TestFixture]
     public class TransactionInterceptorTest

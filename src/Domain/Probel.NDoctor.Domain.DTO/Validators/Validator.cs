@@ -19,7 +19,6 @@ namespace Probel.NDoctor.Domain.DTO.Validators
     using System;
 
     using Probel.Mvvm.Validation;
-    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Properties;
 
     [Serializable]

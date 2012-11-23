@@ -21,7 +21,6 @@
 
 namespace Probel.NDoctor.View.Toolbox.Navigation
 {
-    using log4net;
 
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.View.Toolbox.View;

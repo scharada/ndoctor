@@ -22,7 +22,6 @@
 namespace Probel.NDoctor.Domain.DAL.Mappings
 {
     using System.Linq;
-    using System.Reflection;
 
     using AutoMapper;
 

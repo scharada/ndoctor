@@ -17,7 +17,6 @@
 namespace Probel.NDoctor.View.Toolbox.Navigation
 {
     using System;
-    using System.Text;
     using System.Windows;
 
     using log4net;
@@ -25,11 +24,8 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.Gui;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.View.Toolbox;
-    using Probel.NDoctor.View.Toolbox.Controls;
-    using Probel.NDoctor.View.Toolbox.Helpers;
     using Probel.NDoctor.View.Toolbox.Properties;
     using Probel.NDoctor.View.Toolbox.ViewModel;
 

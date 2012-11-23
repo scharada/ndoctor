@@ -21,22 +21,18 @@ namespace Probel.NDoctor.Plugins.PatientData
     using System.Windows.Input;
     using System.Windows.Media;
 
-    using AutoMapper;
 
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
-    using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PatientData.Properties;
     using Probel.NDoctor.Plugins.PatientData.View;
     using Probel.NDoctor.Plugins.PatientData.ViewModel;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.View.Toolbox.Navigation;
 
     [Export(typeof(IPlugin))]
     public class PatientData : StaticViewPlugin<WorkbenchView>

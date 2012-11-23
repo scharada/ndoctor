@@ -22,9 +22,6 @@
 namespace Probel.NDoctor.Domain.DTO.Exceptions
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     using Probel.NDoctor.Domain.DTO.Properties;
 

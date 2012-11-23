@@ -22,11 +22,9 @@
 namespace Probel.NDoctor.Domain.Test.Components
 {
     using System;
-    using System.Collections.Generic;
 
     using NUnit.Framework;
 
-    using Probel.Helpers.Benchmarking;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;

@@ -21,7 +21,6 @@ namespace Probel.NDoctor.Domain.Test.Data
     using NUnit.Framework;
 
     using Probel.NDoctor.Domain.DTO.Helpers;
-    using Probel.NDoctor.Domain.Test.Helpers;
 
     [TestFixture]
     public class TestTimeSlotCollection

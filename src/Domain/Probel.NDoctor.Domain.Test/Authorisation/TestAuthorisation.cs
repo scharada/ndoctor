@@ -26,7 +26,6 @@ namespace Probel.NDoctor.Domain.Test.Authorisation
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Domain.Test.Helpers;
 
     [TestFixture]
     public class TestAuthorisation

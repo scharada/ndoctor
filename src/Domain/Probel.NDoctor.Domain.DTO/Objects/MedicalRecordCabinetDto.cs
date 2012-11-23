@@ -17,7 +17,6 @@
 namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
 
     [Serializable]

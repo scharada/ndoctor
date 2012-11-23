@@ -17,7 +17,6 @@
 namespace Probel.NDoctor.Plugins.PrescriptionManager.View
 {
     using System.Windows;
-    using System.Windows.Controls;
 
     using Probel.NDoctor.Plugins.PrescriptionManager.ViewModel;
 

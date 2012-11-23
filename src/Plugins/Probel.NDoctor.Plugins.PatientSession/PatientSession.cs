@@ -30,11 +30,9 @@ namespace Probel.NDoctor.Plugins.PatientSession
     using Probel.NDoctor.Plugins.PatientSession.Properties;
     using Probel.NDoctor.Plugins.PatientSession.View;
     using Probel.NDoctor.Plugins.PatientSession.ViewModel;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.View.Toolbox.Navigation;
 
     [Export(typeof(IPlugin))]
     public class PatientSession : Plugin

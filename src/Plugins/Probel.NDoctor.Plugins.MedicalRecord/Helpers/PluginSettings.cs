@@ -26,7 +26,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
 
     using Nini.Config;
 
-    using Probel.NDoctor.View.Core.Helpers;
 
     public class PluginSettings
     {

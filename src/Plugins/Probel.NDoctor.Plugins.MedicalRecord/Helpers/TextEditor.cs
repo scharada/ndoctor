@@ -16,9 +16,7 @@
 */
 namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
 {
-    using System;
 
-    using Probel.NDoctor.View.Plugins.Helpers;
 
     using Xceed.Wpf.Toolkit;
 
