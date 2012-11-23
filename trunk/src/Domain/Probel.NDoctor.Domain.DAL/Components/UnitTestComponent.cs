@@ -62,9 +62,16 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return new Selector(this.Session).GetAllPatientsLight();
         }
 
-        public IList<LightUserDto> GetAllUsers()
+        public IList<UserDto> GetAllUsers()
         {
-            return new Selector(this.Session).GetAllUsers();
+            var result = (from u in this.Session.Query<User>()
+                          select u).ToList();
+            return Mapper.Map<IList<User>, IList<UserDto>>(result);
+        }
+
+        public IList<LightUserDto> GetAllUsersLight()
+        {
+            return new Selector(this.Session).GetAllUsersLight();
         }
 
         public InsuranceDto GetInsurance(long id)
