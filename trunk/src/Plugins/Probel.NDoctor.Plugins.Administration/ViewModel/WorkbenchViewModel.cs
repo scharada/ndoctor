@@ -37,6 +37,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox.Controls;
     using Probel.NDoctor.View.Toolbox.Navigation;
+    using Probel.NDoctor.Domain.DTO;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -85,25 +86,25 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             #endregion
 
             #region Edition commands
-            this.EditInsuranceCommand = new RelayCommand(() => this.EditInsurance(), () => this.SelectedInsurance != null);
-            this.EditProfessionCommand = new RelayCommand(() => EditProfession(), () => this.SelectedProfession != null);
-            this.EditPracticeCommand = new RelayCommand(() => this.EditPractice(), () => this.SelectedPractice != null);
-            this.EditPathologyCommand = new RelayCommand(() => this.EditPathology(), () => this.selectedPathology != null);
-            this.EditDrugCommand = new RelayCommand(() => this.EditDrug(), () => this.SelectedDrug != null);
-            this.EditReputationCommand = new RelayCommand(() => this.EditReputation(), () => this.SelectedReputation != null);
-            this.EditTagCommand = new RelayCommand(() => this.EditTag(), () => this.SelectedTag != null);
-            this.EditDoctorCommand = new RelayCommand(() => this.EditDoctor(), () => this.SelectedDoctor != null);
+            this.EditInsuranceCommand = new RelayCommand(() => this.EditInsurance(), () => this.SelectedInsurance != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.EditProfessionCommand = new RelayCommand(() => EditProfession(), () => this.SelectedProfession != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.EditPracticeCommand = new RelayCommand(() => this.EditPractice(), () => this.SelectedPractice != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.EditPathologyCommand = new RelayCommand(() => this.EditPathology(), () => this.selectedPathology != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.EditDrugCommand = new RelayCommand(() => this.EditDrug(), () => this.SelectedDrug != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.EditReputationCommand = new RelayCommand(() => this.EditReputation(), () => this.SelectedReputation != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.EditTagCommand = new RelayCommand(() => this.EditTag(), () => this.SelectedTag != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.EditDoctorCommand = new RelayCommand(() => this.EditDoctor(), () => this.SelectedDoctor != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
             #endregion
 
             #region Suppression commands
-            this.RemoveInsuranceCommand = new RelayCommand(() => this.RemoveInsurance(), () => this.SelectedInsurance != null);
-            this.RemovePracticeCommand = new RelayCommand(() => this.RemovePractice(), () => this.SelectedPractice != null);
-            this.RemovePathlogyCommand = new RelayCommand(() => this.RemovePathlogy(), () => this.SelectedPathology != null);
-            this.RemoveDrugCommand = new RelayCommand(() => this.RemoveDrug(), () => this.SelectedDrug != null);
-            this.RemoveProfessionCommand = new RelayCommand(() => this.RemoveProfession(), () => this.SelectedProfession != null);
-            this.RemoveReputationCommand = new RelayCommand(() => this.RemoveReputation(), () => this.SelectedReputation != null);
-            this.RemoveTagCommand = new RelayCommand(() => this.RemoveTag(), () => this.SelectedTag != null);
-            this.RemoveDoctorCommand = new RelayCommand(() => this.RemoveDoctor(), () => this.SelectedDoctor != null);
+            this.RemoveInsuranceCommand = new RelayCommand(() => this.RemoveInsurance(), () => this.SelectedInsurance != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.RemovePracticeCommand = new RelayCommand(() => this.RemovePractice(), () => this.SelectedPractice != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.RemovePathlogyCommand = new RelayCommand(() => this.RemovePathlogy(), () => this.SelectedPathology != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.RemoveDrugCommand = new RelayCommand(() => this.RemoveDrug(), () => this.SelectedDrug != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.RemoveProfessionCommand = new RelayCommand(() => this.RemoveProfession(), () => this.SelectedProfession != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.RemoveReputationCommand = new RelayCommand(() => this.RemoveReputation(), () => this.SelectedReputation != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.RemoveTagCommand = new RelayCommand(() => this.RemoveTag(), () => this.SelectedTag != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.RemoveDoctorCommand = new RelayCommand(() => this.RemoveDoctor(), () => this.SelectedDoctor != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
             #endregion
         }
 
