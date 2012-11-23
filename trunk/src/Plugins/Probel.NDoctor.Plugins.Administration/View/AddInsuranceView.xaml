@@ -12,7 +12,7 @@
         Title="{Binding Source={x:Static Member=txt:BoxText.AddInsurance}}"
         
         mc:Ignorable="d"
-        WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+        WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
     <Window.InputBindings>
         <KeyBinding Key="Enter"
                     Command="{Binding AddCommand}"/>

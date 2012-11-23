@@ -12,7 +12,7 @@
         Title="{Binding Source={x:Static Member=txt:ExceptionViewText.WindowTitle}}"
         
         Width="1024" Height="768" 
-        WindowStartupLocation="CenterScreen" ShowInTaskbar="False" ResizeMode="NoResize" Topmost="True">
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False" ResizeMode="NoResize" Topmost="True">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Close"
                         Executed="CloseCommandHandler"/>

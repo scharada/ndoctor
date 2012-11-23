@@ -11,7 +11,7 @@
         Title="{Binding Source={x:Static Member=txt:BoxText.AddInsurance}}"
         
         mc:Ignorable="d"
-        WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight" ShowInTaskbar="False">
+        WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" SizeToContent="WidthAndHeight" ShowInTaskbar="False">
     <Window.InputBindings>
         <KeyBinding Key="Enter"
                     Command="{Binding AddCommand}"/>
@@ -21,5 +21,5 @@
 
     <ctrl:InsuranceBox Insurance="{Binding Insurance}"
                        ButtonName="{Binding Source={x:Static Member=text:WorkbenchText.BtnAdd}}"
-                       OkCommand="{Binding AddCommand}"/>                   
+                       OkCommand="{Binding AddCommand}"/>
 </Window>

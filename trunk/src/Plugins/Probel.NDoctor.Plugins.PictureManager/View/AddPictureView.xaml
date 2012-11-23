@@ -11,7 +11,7 @@
         
         Title="{Binding Source={x:Static Member=txt:AddPictureText.Title}}"         
         Width="600" Height="500" ShowInTaskbar="False"
-        WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Topmost="True">
+        WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Topmost="True">
     
     <Window.InputBindings>
         <KeyBinding Key="Escape"

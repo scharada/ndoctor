@@ -20,7 +20,7 @@
         
         mc:Ignorable="d" 
         Height="456" Width="667" 
-        WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
     
     <Window.Resources>
         <converter:NullToBooleanConverter x:Key="NullToBool"/>

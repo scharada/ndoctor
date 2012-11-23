@@ -12,7 +12,7 @@
         Title="{Binding Source={x:Static Member=txt:EditRoleText.Title}}"
         
         mc:Ignorable="d" 
-        Width="300" SizeToContent="Height" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow" ShowInTaskbar="False">
+        Width="300" SizeToContent="Height" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" WindowStyle="ToolWindow" ShowInTaskbar="False">
 
     <Window.InputBindings>
         <KeyBinding Key="Enter"

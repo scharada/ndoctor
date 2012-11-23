@@ -15,7 +15,7 @@
         mc:Ignorable="d"
         Height="300"
         Width="400"
-        Loaded="this_Loaded" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" WindowStyle="ToolWindow" 
+        Loaded="this_Loaded" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" WindowStyle="ToolWindow" 
         Background="{x:Static SystemColors.ActiveCaptionBrush}">
     <Window.InputBindings>
         <KeyBinding Key="Escape"

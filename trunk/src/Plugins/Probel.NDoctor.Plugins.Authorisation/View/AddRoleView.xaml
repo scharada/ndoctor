@@ -12,7 +12,7 @@
         
         Title="{Binding Source={x:Static Member=txt:AddRoleText.Title}}"        
         mc:Ignorable="d"
-        Width="300" SizeToContent="Height" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" ShowInTaskbar="False">
+        Width="300" SizeToContent="Height" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" ShowInTaskbar="False">
 
     <Window.InputBindings>
         <KeyBinding Key="Enter"

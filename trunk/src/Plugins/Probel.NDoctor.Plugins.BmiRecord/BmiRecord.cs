@@ -27,13 +27,13 @@ namespace Probel.NDoctor.Plugins.BmiRecord
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
     using Probel.NDoctor.Plugins.BmiRecord.View;
     using Probel.NDoctor.Plugins.BmiRecord.ViewModel;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.Domain.DTO.Objects;
 
     [Export(typeof(IPlugin))]
     public class BmiRecord : Plugin

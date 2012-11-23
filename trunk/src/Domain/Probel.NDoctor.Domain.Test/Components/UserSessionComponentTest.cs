@@ -73,23 +73,6 @@ namespace Probel.NDoctor.Domain.Test.Components
         }
 
         /// <summary>
-        /// Issue 90
-        /// </summary>
-        [Test]
-        public void UpdateUserData_UpdateUserWithEmptyPassword_TheUserIsUpdated()
-        {
-            /* The doctor No Pazwordz is, oh surpsise, a doctor with an empty password.
-             * It is set in the 'InsertUsers.sql' script file
-             */
-            var users = this.HelperComponent.GetUserByLastName("Pazwordz");
-
-            var fullUser = this.ComponentUnderTest.LoadUser(users[0]);
-            fullUser.FirstName = Guid.NewGuid().ToString();
-
-            this.ComponentUnderTest.Update(fullUser);
-        }
-
-        /// <summary>
         /// issue 117
         /// </summary>
         [Test]
@@ -104,12 +87,28 @@ namespace Probel.NDoctor.Domain.Test.Components
             users[0].IsDefault = true;
             this.WrapInTransaction(() => this.ComponentUnderTest.Update(users[0]));
 
-
             var defaultUsersCount = (from u in this.HelperComponent.GetAllUsers()
                                      where u.IsDefault
                                      select u).Count();
 
             Assert.AreEqual(1, defaultUsersCount);
+        }
+
+        /// <summary>
+        /// Issue 90
+        /// </summary>
+        [Test]
+        public void UpdateUserData_UpdateUserWithEmptyPassword_TheUserIsUpdated()
+        {
+            /* The doctor No Pazwordz is, oh surpsise, a doctor with an empty password.
+             * It is set in the 'InsertUsers.sql' script file
+             */
+            var users = this.HelperComponent.GetUserByLastName("Pazwordz");
+
+            var fullUser = this.ComponentUnderTest.LoadUser(users[0]);
+            fullUser.FirstName = Guid.NewGuid().ToString();
+
+            this.ComponentUnderTest.Update(fullUser);
         }
 
         protected override void _Setup()

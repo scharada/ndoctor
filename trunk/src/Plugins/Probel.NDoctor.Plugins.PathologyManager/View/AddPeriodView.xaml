@@ -9,7 +9,7 @@
         xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
                 
         Title="{Binding Source={x:Static Member=txt:IllnessPeriodText.Title}}" 
-        Height="300" Width="300" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+        Height="300" Width="300" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
 
     <Window.InputBindings>
         <!--<KeyBinding Key="Enter"

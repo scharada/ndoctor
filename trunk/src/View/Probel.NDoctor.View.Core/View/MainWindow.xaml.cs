@@ -19,6 +19,7 @@ namespace Probel.NDoctor.View.Core.View
     using System;
     using System.Linq;
     using System.Reflection;
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
 
@@ -70,6 +71,11 @@ namespace Probel.NDoctor.View.Core.View
         #region Events
 
         /// <summary>
+        /// Occurs when before new patient is connected.
+        /// </summary>
+        public event EventHandler BeforeNewPatientConnected;
+
+        /// <summary>
         /// Occurs when a patient session is closed.
         /// </summary>
         public event EventHandler NewPatientConnected;
@@ -78,18 +84,6 @@ namespace Probel.NDoctor.View.Core.View
         /// Occurs when a new user has connected.
         /// </summary>
         public event EventHandler NewUserConnected;
-
-        /// <summary>
-        /// Occurs when before new patient is connected.
-        /// </summary>
-        public event EventHandler BeforeNewPatientConnected;
-        private void OnBeforeNewPatientConnected()
-        {
-            if (this.BeforeNewPatientConnected != null)
-            {
-                this.BeforeNewPatientConnected(this, EventArgs.Empty);
-            }
-        }
 
         #endregion Events
 
@@ -148,6 +142,14 @@ namespace Probel.NDoctor.View.Core.View
         public Version HostVersion
         {
             get { return Assembly.GetCallingAssembly().GetName().Version; }
+        }
+
+        /// <summary>
+        /// Gets the owner of all toolboxes. That's the main window of nDoctor
+        /// </summary>
+        public Window Root
+        {
+            get { return this; }
         }
 
         public LightPatientDto SelectedPatient
@@ -455,6 +457,14 @@ namespace Probel.NDoctor.View.Core.View
             return criteria;
         }
 
+        private void OnBeforeNewPatientConnected()
+        {
+            if (this.BeforeNewPatientConnected != null)
+            {
+                this.BeforeNewPatientConnected(this, EventArgs.Empty);
+            }
+        }
+
         private void OnNewPatientConnected()
         {
             if (this.NewPatientConnected != null)
@@ -486,11 +496,11 @@ namespace Probel.NDoctor.View.Core.View
 
         private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-#if DEBUG
+            #if DEBUG
             this.WindowState = System.Windows.WindowState.Normal;
-#else
+            #else
             this.WindowState = System.Windows.WindowState.Maximized;
-#endif
+            #endif
         }
 
         private void WriteStatus(LightPatientDto value)

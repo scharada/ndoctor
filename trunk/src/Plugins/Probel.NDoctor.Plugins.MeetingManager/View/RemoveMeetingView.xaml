@@ -17,7 +17,7 @@
         mc:Ignorable="d" 
         Height="400"
         Width="450"
-        Loaded="this_Loaded" ResizeMode="NoResize" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+        Loaded="this_Loaded" ResizeMode="NoResize" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
     <Window.InputBindings>
         <KeyBinding Key="Enter"
                     Command="{Binding GetFreeSlotsCommand}"/>

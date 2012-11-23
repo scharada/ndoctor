@@ -48,9 +48,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Probel.Mvvm, Version=1.2.0.76, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Probel.Mvvm, Version=1.2.0.78, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Probel.Mvvm.1.2.0.76\lib\Probel.Mvvm.dll</HintPath>
+      <HintPath>..\..\packages\Probel.Mvvm.1.2.0.78\lib\Probel.Mvvm.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />

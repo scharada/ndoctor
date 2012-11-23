@@ -16,7 +16,7 @@
         Title="{Binding Source={x:Static Member=txt:SearchPrescriptionText.Title}}" 
         
         mc:Ignorable="d"
-        Loaded="this_Loaded" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" 
+        Loaded="this_Loaded" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" 
         Width="239" SizeToContent="Height">
     <Window.InputBindings>
         <KeyBinding Key="Enter" 

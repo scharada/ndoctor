@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Collections;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -37,7 +38,6 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox.Controls;
     using Probel.NDoctor.View.Toolbox.Navigation;
-    using Probel.NDoctor.Domain.DTO;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin

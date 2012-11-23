@@ -34,8 +34,10 @@ namespace Probel.NDoctor.Plugins.DebugTools
     {
         #region Fields
 
-        private ISqlComponent component;
         private readonly PluginSettings Settings = new PluginSettings();
+
+        private ISqlComponent component;
+
         #endregion Fields
 
         #region Constructors
