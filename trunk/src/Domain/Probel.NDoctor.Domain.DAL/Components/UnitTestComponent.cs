@@ -22,10 +22,12 @@
 namespace Probel.NDoctor.Domain.DAL.Components
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     using AutoMapper;
 
     using NHibernate;
+    using NHibernate.Linq;
 
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Subcomponents;
@@ -50,6 +52,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return new Creator(this.Session).Create(patient);
         }
 
+        public IList<PatientDto> GetAllPatients()
+        {
+            return new Selector(this.Session).GetAllPatients();
+        }
+
         public IList<LightPatientDto> GetAllPatientsLight()
         {
             return new Selector(this.Session).GetAllPatientsLight();
@@ -58,6 +65,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public IList<LightUserDto> GetAllUsers()
         {
             return new Selector(this.Session).GetAllUsers();
+        }
+
+        public InsuranceDto GetInsurance(long id)
+        {
+            var found = (from i in this.Session.Query<Insurance>()
+                         where i.Id == id
+                         select i).FirstOrDefault();
+            return Mapper.Map<Insurance, InsuranceDto>(found);
         }
 
         public IList<PatientDto> GetPatientsByName(string criteria, SearchOn searchOn)
