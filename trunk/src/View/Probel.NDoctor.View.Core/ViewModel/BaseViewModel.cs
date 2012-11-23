@@ -25,7 +25,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.Helpers.Strings;
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
-    using Probel.Mvvm.Gui;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Plugins.Exceptions;
     using Probel.NDoctor.View.Plugins.Helpers;

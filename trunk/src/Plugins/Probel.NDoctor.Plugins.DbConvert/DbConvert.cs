@@ -28,11 +28,9 @@ namespace Probel.NDoctor.Plugins.DbConvert
     using Probel.NDoctor.Plugins.DbConvert.Properties;
     using Probel.NDoctor.Plugins.DbConvert.View;
     using Probel.NDoctor.Plugins.DbConvert.ViewModel;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.View.Toolbox.Navigation;
 
     [Export(typeof(IPlugin))]
     public class DbConvert : Plugin

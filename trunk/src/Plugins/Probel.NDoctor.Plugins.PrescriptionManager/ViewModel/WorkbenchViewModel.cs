@@ -22,20 +22,14 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using System.Windows.Input;
 
     using Probel.Helpers.Strings;
-    using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
-    using Probel.NDoctor.Plugins.PrescriptionManager.View;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
-    using Probel.NDoctor.View.Toolbox.Controls;
-    using Probel.NDoctor.View.Toolbox.Helpers;
-    using Probel.NDoctor.View.Toolbox.Navigation;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin

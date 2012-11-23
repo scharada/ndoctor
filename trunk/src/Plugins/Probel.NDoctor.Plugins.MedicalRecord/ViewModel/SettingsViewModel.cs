@@ -21,7 +21,6 @@
 
 namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 {
-    using System.Collections.Generic;
     using System.Windows.Media;
 
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;

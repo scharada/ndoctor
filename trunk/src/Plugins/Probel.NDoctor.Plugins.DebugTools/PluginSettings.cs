@@ -17,11 +17,9 @@
 namespace Probel.NDoctor.Plugins.DebugTools
 {
     using System.IO;
-    using System.Windows.Media;
 
     using Nini.Config;
 
-    using Probel.NDoctor.View.Core.Helpers;
 
     public class PluginSettings
     {

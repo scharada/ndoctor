@@ -26,12 +26,10 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using System.Reflection;
     using System.Threading;
     using System.Windows;
-    using System.Windows.Input;
 
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View.Core.Properties;

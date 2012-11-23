@@ -16,7 +16,6 @@
 */
 namespace Probel.NDoctor.Domain.DAL.Mappings
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 

@@ -32,11 +32,9 @@ namespace Probel.NDoctor.Plugins.Authorisation
     using Probel.NDoctor.Plugins.Authorisation.Properties;
     using Probel.NDoctor.Plugins.Authorisation.View;
     using Probel.NDoctor.Plugins.Authorisation.ViewModel;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.View.Toolbox.Navigation;
 
     [Export(typeof(IPlugin))]
     public class PluginManager : Plugin

@@ -17,12 +17,10 @@
 namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 {
     using System;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Input;
 
-    using AutoMapper;
 
     using Probel.Helpers.Data;
     using Probel.Mvvm.DataBinding;
@@ -30,10 +28,8 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.NDoctor.View.Toolbox.Navigation;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin

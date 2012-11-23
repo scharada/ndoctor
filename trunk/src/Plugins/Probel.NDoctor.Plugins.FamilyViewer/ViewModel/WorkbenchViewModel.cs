@@ -17,16 +17,13 @@
 namespace Probel.NDoctor.Plugins.FamilyViewer.ViewModel
 {
     using System;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Threading.Tasks;
     using System.Windows.Data;
     using System.Windows.Input;
 
-    using Probel.Helpers.Assertion;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.Components;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;

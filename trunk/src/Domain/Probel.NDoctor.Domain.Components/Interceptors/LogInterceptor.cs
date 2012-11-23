@@ -24,7 +24,6 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
     using Castle.DynamicProxy;
 
     using Probel.NDoctor.Domain.DAL.AopConfiguration;
-    using Probel.NDoctor.Domain.DAL.Helpers;
 
     internal class LogInterceptor : BaseInterceptor
     {

@@ -17,10 +17,8 @@
 namespace Probel.NDoctor.Domain.DAL.Components
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
-    using AutoMapper;
 
     using log4net;
 
@@ -28,16 +26,10 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using NHibernate.Linq;
 
     using Probel.Helpers.Assertion;
-    using Probel.Helpers.Benchmarking;
     using Probel.NDoctor.Domain.DAL.AopConfiguration;
     using Probel.NDoctor.Domain.DAL.Entities;
-    using Probel.NDoctor.Domain.DAL.Helpers;
-    using Probel.NDoctor.Domain.DAL.Properties;
-    using Probel.NDoctor.Domain.DAL.Subcomponents;
-    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
-    using Probel.NDoctor.Domain.DTO.Objects;
 
     //Just for the refacoring proud: this god object had 1027 lines of code!
     public abstract class BaseComponent : IBaseComponent, IDisposable

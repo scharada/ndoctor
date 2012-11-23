@@ -17,7 +17,6 @@
 namespace Probel.NDoctor.Plugins.PatientData.View
 {
     using System.Windows;
-    using System.Windows.Controls;
 
     using Probel.NDoctor.Plugins.PatientData.ViewModel;
 

@@ -22,9 +22,7 @@
 namespace Probel.NDoctor.Domain.Test.Components
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using System.Reflection;
     using System.Text;
 
@@ -34,9 +32,7 @@ namespace Probel.NDoctor.Domain.Test.Components
 
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Components;
-    using Probel.NDoctor.Domain.DTO.Components;
 
-    using StructureMap;
 
     public abstract class BaseComponentTest<T>
         where T : BaseComponent

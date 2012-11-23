@@ -24,10 +24,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using System.Windows;
     using System.Windows.Input;
 
-    using Microsoft.Win32;
 
     using Probel.Helpers;
-    using Probel.Helpers.Conversions;
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
     using Probel.Mvvm.Gui.FileServices;
@@ -36,12 +34,9 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PatientData.Properties;
-    using Probel.NDoctor.Plugins.PatientData.View;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
-    using Probel.NDoctor.View.Toolbox.Navigation;
 
     internal class WorkbenchViewModel : BaseViewModel
     {

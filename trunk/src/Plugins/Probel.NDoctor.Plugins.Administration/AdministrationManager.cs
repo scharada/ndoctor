@@ -34,11 +34,9 @@ namespace Probel.NDoctor.Plugins.Administration
     using Probel.NDoctor.Plugins.Administration.Properties;
     using Probel.NDoctor.Plugins.Administration.View;
     using Probel.NDoctor.Plugins.Administration.ViewModel;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.View.Toolbox.Navigation;
 
     [Export(typeof(IPlugin))]
     public class AdministrationManager : Plugin

@@ -16,7 +16,6 @@
 */
 namespace Probel.NDoctor.Domain.DTO.Components
 {
-    using System;
     using System.Collections.Generic;
 
     using Probel.NDoctor.Domain.DTO.Objects;

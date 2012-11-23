@@ -22,7 +22,6 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
     using FluentNHibernate.Automapping;
     using FluentNHibernate.Cfg;
     using FluentNHibernate.Cfg.Db;
-    using FluentNHibernate.Conventions;
     using FluentNHibernate.Conventions.Helpers;
 
     using log4net;
@@ -30,7 +29,6 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
     using NHibernate;
     using NHibernate.Tool.hbm2ddl;
 
-    using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Mappings;
     using Probel.NDoctor.Domain.DTO.Exceptions;

@@ -25,9 +25,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.Properties;
-    using Probel.NDoctor.View.Core.View;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox;

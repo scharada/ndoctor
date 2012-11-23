@@ -29,13 +29,10 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
     using NHibernate;
 
-    using Probel.Helpers.Assertion;
-    using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DAL.Helpers;
     using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DTO;
-    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     internal class Script

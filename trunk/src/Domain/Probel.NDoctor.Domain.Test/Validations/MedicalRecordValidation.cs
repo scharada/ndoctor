@@ -26,7 +26,6 @@ namespace Probel.NDoctor.Domain.Test.Validations
     using NUnit.Framework;
 
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Domain.Test.Helpers;
 
     [TestFixture]
     public class MedicalRecordValidation

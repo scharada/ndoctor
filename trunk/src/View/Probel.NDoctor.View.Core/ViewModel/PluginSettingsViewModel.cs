@@ -21,16 +21,10 @@
 
 namespace Probel.NDoctor.View.Core.ViewModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Windows.Input;
 
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.View.Core.Helpers;
-    using Probel.NDoctor.View.Plugins.Helpers;
 
     public abstract class PluginSettingsViewModel : BaseViewModel
     {

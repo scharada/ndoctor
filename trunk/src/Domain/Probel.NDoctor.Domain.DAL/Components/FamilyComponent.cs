@@ -28,7 +28,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.Helpers.Assertion;
     using Probel.Mvvm;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DAL.Subcomponents;

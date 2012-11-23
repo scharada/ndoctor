@@ -26,14 +26,10 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.Authorisation.Helpers;
     using Probel.NDoctor.Plugins.Authorisation.Properties;
-    using Probel.NDoctor.Plugins.Authorisation.View;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
-    using Probel.NDoctor.View.Toolbox.Navigation;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin

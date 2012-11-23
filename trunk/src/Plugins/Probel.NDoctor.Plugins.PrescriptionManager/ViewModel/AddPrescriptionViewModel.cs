@@ -32,11 +32,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
-    using Probel.NDoctor.Plugins.PrescriptionManager.View;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.NDoctor.View.Toolbox.Navigation;
 
     internal class AddPrescriptionViewModel : BaseViewModel
     {

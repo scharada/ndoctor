@@ -20,15 +20,12 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
     using System.Collections.Generic;
     using System.IO;
     using System.Windows;
-    using System.Windows.Controls;
     using System.Xml;
 
     using ICSharpCode.AvalonEdit.CodeCompletion;
     using ICSharpCode.AvalonEdit.Highlighting;
 
-    using log4net;
 
-    using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Plugins.MedicalRecord.Editor;
     using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
 

@@ -1,6 +1,5 @@
 ﻿namespace Probel.NDoctor.Plugins.Administration.ViewModel
 {
-    using System;
     using System.Collections.ObjectModel;
 
     using Probel.Mvvm.DataBinding;

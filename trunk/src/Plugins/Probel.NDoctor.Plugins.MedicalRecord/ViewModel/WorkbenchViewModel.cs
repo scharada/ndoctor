@@ -34,11 +34,9 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.Plugins.MedicalRecord.Editor;
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.Plugins.MedicalRecord.Properties;
-    using Probel.NDoctor.Plugins.MedicalRecord.View;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
-    using Probel.NDoctor.View.Toolbox.Navigation;
 
     internal class WorkbenchViewModel : BaseViewModel
     {

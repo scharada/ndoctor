@@ -21,7 +21,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager
     using System.Windows.Input;
     using System.Windows.Media;
 
-    using AutoMapper;
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
@@ -29,15 +28,12 @@ namespace Probel.NDoctor.Plugins.PathologyManager
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
-    using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
     using Probel.NDoctor.Plugins.PathologyManager.View;
     using Probel.NDoctor.Plugins.PathologyManager.ViewModel;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.View.Toolbox.Navigation;
 
     [Export(typeof(IPlugin))]
     public class PathologyManager : Plugin

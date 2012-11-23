@@ -21,10 +21,6 @@
 
 namespace Probel.NDoctor.Plugins.PictureManager.Translations
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     using Probel.NDoctor.Plugins.PictureManager.Properties;
 

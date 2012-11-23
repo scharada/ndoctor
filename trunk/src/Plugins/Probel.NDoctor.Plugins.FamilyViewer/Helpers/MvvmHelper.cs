@@ -21,10 +21,6 @@
 
 namespace Probel.NDoctor.Plugins.FamilyViewer.Helpers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     using Probel.NDoctor.Plugins.FamilyViewer.View;
     using Probel.NDoctor.Plugins.FamilyViewer.ViewModel;

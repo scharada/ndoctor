@@ -21,10 +21,6 @@
 
 namespace Probel.NDoctor.Domain.DTO.Specification
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     /// <summary>
     /// This is a dummy specification to allow a default contructor to the <see cref="SpecificationExpression"/>

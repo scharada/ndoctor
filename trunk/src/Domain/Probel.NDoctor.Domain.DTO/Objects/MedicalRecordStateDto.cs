@@ -22,11 +22,7 @@
 namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
-    using Probel.NDoctor.Domain.DTO.Objects;
 
     public class MedicalRecordStateDto : BaseDto
     {

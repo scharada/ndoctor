@@ -22,7 +22,6 @@ namespace Probel.NDoctor.Domain.Test.Validations
 
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Domain.Test.Helpers;
 
     [TestFixture]
     public class TaskValidation
