@@ -202,6 +202,7 @@ namespace Probel.NDoctor.Plugins.UserSession
             PluginContext.Host.ConnectedUser = null;
             PluginContext.Host.HideMainMenu();
             PluginContext.Host.Navigate(this.ConnectionPage);
+            this.ConnectionPage.As<ConnectionViewModel>().Refresh();
         }
 
         private void InitialiseConnectionPage()

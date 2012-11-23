@@ -132,10 +132,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RoleUpdatedFor.FormatWith(this.SelectedUser.DisplayedName));
                 this.Close();
             }
-            catch (Exception ex)
-            {
-                this.Handle.Error(ex);
-            }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods
