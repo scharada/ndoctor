@@ -389,6 +389,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 this.memoryComponent = args.MemoryComponent ?? this.memoryComponent;
                 this.Pictures.Refill(args.Pictures);
                 this.SelectedPicture = args.SelectedPicture;
+                this.SelectedTag = this.ALL_PICTURE_TAG;
                 this.Logger.Debug("\tRefreshed GUI after pictures filtering");
                 this.IsBusy = false;
             });
