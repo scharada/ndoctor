@@ -14,7 +14,7 @@
         Title="{Binding Source={x:Static Member=txt:UpdateUserText.Title}}" 
         
         mc:Ignorable="d"
-        Loaded="this_Loaded" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" ResizeMode="NoResize"
+        Loaded="this_Loaded" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" ResizeMode="NoResize"
         SizeToContent="WidthAndHeight">
     <Window.InputBindings>
         <KeyBinding Key="Enter"

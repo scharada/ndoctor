@@ -17,7 +17,7 @@
         mc:Ignorable="d" 
         Height="300" 
         Width="300"        
-        Loaded="this_Loaded" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">    
+        Loaded="this_Loaded" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner">    
     <Window.InputBindings>
         <KeyBinding Key="Enter"
                     Command="{Binding SelectCommand}"/>

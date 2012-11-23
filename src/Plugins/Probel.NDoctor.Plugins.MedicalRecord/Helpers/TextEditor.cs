@@ -18,12 +18,14 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
 {
     using System;
 
-    using Xceed.Wpf.Toolkit;
     using Probel.NDoctor.View.Plugins.Helpers;
+
+    using Xceed.Wpf.Toolkit;
 
     public static class TextEditor
     {
         #region Properties
+
         public static RichTextBox Control
         {
             get;

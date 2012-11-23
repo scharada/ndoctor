@@ -60,9 +60,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Probel.Mvvm, Version=1.2.0.76, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Probel.Mvvm, Version=1.2.0.78, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Probel.Mvvm.1.2.0.76\lib\Probel.Mvvm.dll</HintPath>
+      <HintPath>..\..\packages\Probel.Mvvm.1.2.0.78\lib\Probel.Mvvm.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
       <HintPath>..\..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>

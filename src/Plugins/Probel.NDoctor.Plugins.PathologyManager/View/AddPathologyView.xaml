@@ -16,7 +16,7 @@
         Title="{Binding Source={x:Static Member=tt:AddPathologyText.Title}}" 
         
         mc:Ignorable="d"
-        SizeToContent="WidthAndHeight" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        SizeToContent="WidthAndHeight" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
     <Window.InputBindings>
         <KeyBinding Key="Enter"
                     Command="{Binding AddCommand}"/>

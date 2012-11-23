@@ -8,7 +8,7 @@
         
         Title="SpashScreen" Width="348" Height="320"
         ResizeMode="NoResize" 
-        WindowStartupLocation="CenterScreen" 
+        WindowStartupLocation="CenterOwner" 
         WindowStyle="None" 
         ShowInTaskbar="False" BorderThickness="1" BorderBrush="#8B000000" mc:Ignorable="d">
     <Window.Resources>

@@ -9,7 +9,7 @@
         xmlns:t="clr-namespace:Probel.NDoctor.View.Toolbox.Translations;assembly=Probel.NDoctor.View.Toolbox"   
         xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"   
         
-        Title="{Binding Source={x:Static Member=text:AddRelationText.AddRelation}}" Height="329" Width="300" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="{Binding Source={x:Static Member=text:AddRelationText.AddRelation}}" Height="329" Width="300" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
 
     <Window.Resources>
         <conv:GenderToImageConverter x:Key="genderToImage"/>

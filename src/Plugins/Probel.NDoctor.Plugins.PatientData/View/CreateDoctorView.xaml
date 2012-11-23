@@ -14,7 +14,7 @@
         
         SizeToContent="WidthAndHeight"
         mc:Ignorable="d"
-        WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" ShowInTaskbar="False">
+        WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" ShowInTaskbar="False">
     <Window.InputBindings>
         <KeyBinding Key="Enter"
                     Command="{Binding AddCommand}"/>

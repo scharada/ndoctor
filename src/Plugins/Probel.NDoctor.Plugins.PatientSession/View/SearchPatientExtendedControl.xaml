@@ -20,7 +20,7 @@
         
         mc:Ignorable="d"
         Width="300"
-        Height="450" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
+        Height="450" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner">
     
     <Window.InputBindings>
         <KeyBinding Key="Enter"

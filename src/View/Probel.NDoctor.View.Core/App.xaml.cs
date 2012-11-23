@@ -34,6 +34,7 @@ namespace Probel.NDoctor.View.Core
     using Probel.NDoctor.View.Toolbox.Navigation;
 
     using MySplashScreen = Probel.NDoctor.View.Core.View.SplashScreen;
+    using Probel.Mvvm.Gui;
 
     /// <summary>
     /// Interaction logic for App.xaml
@@ -50,11 +51,11 @@ namespace Probel.NDoctor.View.Core
 
         public App()
         {
-            #if DEBUG
+#if DEBUG
             //Hook the console to the application to have logging features
             AllocConsole();
             //HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
-            #endif
+#endif
 
             this.Logger = LogManager.GetLogger(typeof(LogManager));
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Settings.Default.Language);
@@ -73,8 +74,12 @@ namespace Probel.NDoctor.View.Core
                 throw ex;
             }
 
-            if (!splash.IsOnError) main.Show();
-            else Application.Current.Shutdown();
+            if (!splash.IsOnError)
+            {
+                main.Show();
+                ViewService.Configure(e => e.RootWindow = main);
+            }
+            else { Application.Current.Shutdown(); }
         }
 
         #endregion Constructors

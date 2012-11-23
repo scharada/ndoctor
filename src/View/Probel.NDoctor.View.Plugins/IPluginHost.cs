@@ -17,12 +17,12 @@
 namespace Probel.NDoctor.View.Plugins
 {
     using System;
+    using System.Windows;
     using System.Windows.Controls;
 
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Navigation;
 
     /// <summary>
@@ -31,6 +31,11 @@ namespace Probel.NDoctor.View.Plugins
     public interface IPluginHost : IStatusWriter
     {
         #region Events
+
+        /// <summary>
+        /// Occurs when before new patient is connected.
+        /// </summary>
+        event EventHandler BeforeNewPatientConnected;
 
         /// <summary>
         /// Occurs when a patient session is closed.
@@ -43,10 +48,6 @@ namespace Probel.NDoctor.View.Plugins
         event EventHandler NewUserConnected;
 
         #endregion Events
-        /// <summary>
-        /// Occurs when before new patient is connected.
-        /// </summary>
-        event EventHandler BeforeNewPatientConnected;
 
         #region Properties
 
@@ -91,6 +92,14 @@ namespace Probel.NDoctor.View.Plugins
         /// Gets the version of the host. It is used for the plugin validation.
         /// </summary>
         Version HostVersion
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Gets the owner of all toolboxes. That's the main window of nDoctor
+        /// </summary>
+        Window Root
         {
             get;
         }

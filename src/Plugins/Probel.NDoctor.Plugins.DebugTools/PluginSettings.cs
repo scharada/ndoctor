@@ -37,21 +37,24 @@ namespace Probel.NDoctor.Plugins.DebugTools
 
         #region Properties
 
-        public bool InjectDefaultData
-        {
-            get { return this.Source.Configs[CONFIG].GetBoolean("InjectDefaultData", true); }
-            set { this.Source.Configs[CONFIG].Set("InjectDefaultData", value); }
-        }
-        public bool LoadDefaultUser
-        {
-            get { return this.Source.Configs[CONFIG].GetBoolean("LoadDefaultUser", true); }
-            set { this.Source.Configs[CONFIG].Set("LoadDefaultUser", value); }
-        }
         public bool DefaultGoogleCalendarConfig
         {
             get { return this.Source.Configs[CONFIG].GetBoolean("DefaultGoogleCalendarConfig", true); }
             set { this.Source.Configs[CONFIG].Set("DefaultGoogleCalendarConfig", value); }
         }
+
+        public bool InjectDefaultData
+        {
+            get { return this.Source.Configs[CONFIG].GetBoolean("InjectDefaultData", true); }
+            set { this.Source.Configs[CONFIG].Set("InjectDefaultData", value); }
+        }
+
+        public bool LoadDefaultUser
+        {
+            get { return this.Source.Configs[CONFIG].GetBoolean("LoadDefaultUser", true); }
+            set { this.Source.Configs[CONFIG].Set("LoadDefaultUser", value); }
+        }
+
         #endregion Properties
 
         #region Methods

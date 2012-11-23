@@ -16,7 +16,7 @@
         Title="{Binding Source={x:Static Member=txt:AddPatientText.Title}}" 
         
         mc:Ignorable="d"
-        Loaded="this_Loaded" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen"
+        Loaded="this_Loaded" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner"
         SizeToContent="WidthAndHeight">
     
     <Window.InputBindings>
