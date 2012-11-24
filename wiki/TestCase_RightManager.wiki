@@ -32,3 +32,4 @@
  * issue 108
  * issue 109
  * issue 110
+ * issue 123
