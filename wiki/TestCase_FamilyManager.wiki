@@ -7,10 +7,14 @@
  # Connect with a user that has write privilige
  # Add a new relation
  # Remove a relation
+ # Make a search that can select the connected patient
+ # Make a search that can select a family member already added in the manager
 == Expected results ==
  # ...
  # The relation is added in the left pane and you can see all the medical record of the family member
  # The relation is removed from the left pane and you can't see anymore his/her medical records
+ # The connected patient doesn't appear in the search result
+ # The already set family member doesn't appear in the search result
 == Issues ==
 === version 3.0.2: ===
  * n.a.
