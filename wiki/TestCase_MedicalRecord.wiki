@@ -31,3 +31,4 @@
  * issue 125.
  * issue 126.
  * issue 127.
+ * issue 130.
