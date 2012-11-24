@@ -10,6 +10,8 @@
  # Go to the medical record manager and create a new record for the new directory
  # Edit the text and load a new medical record
  # Edit the text and go directly to the search box to load a new patient
+ # Create a new macro and use it
+ # Reload a previous revision
 == Expected results ==
  # ...
  # ...
@@ -17,6 +19,7 @@
  # The modifications are saved.
  # When you reload the first patient, you see the modified text was saved as expected.
  # When you reload the first patient, you see the modified text was saved as expected.
+ # Te maro is reated and an be inserted into te medial re
 == Issues ==
 === version 3.0.2: ===
  * n.a.
