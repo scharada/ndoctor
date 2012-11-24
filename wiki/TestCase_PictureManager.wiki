@@ -21,3 +21,4 @@
 === version 3.0.3: ===
  * issue 115.
  * issue 131.
+ * issue 132.
