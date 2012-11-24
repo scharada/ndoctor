@@ -6,7 +6,7 @@
 
 == Create prescriptions ==
 === Steps ===
- # Connect into nDoctor with user that has write privileges
+ # Connect into nDoctor with user that has write privilege
  # Open a session for a user
  # Create a prescription.
   # Search a drug and select it for the prescription and cancel this drug
@@ -18,6 +18,15 @@
   # You can remove the drug from the prescription
   # The prescription is saved.
 
+== Create a prescription with (at least) twice the same drug ==
+=== Steps ===
+ # Connect into nDoctor with user that has write privilege
+ # Create a prescription with twice the same drug
+ # Click on "save"
+ === Expected results ===
+ # ...
+ # You can add the drugs into the GUI
+ # A clear error message indicates that you can't add twice the same drug in the same prescription
 == Remove a drug when creating a prescription ==
 === Steps ===
  # Create a new prescription
@@ -41,3 +50,4 @@
  * n.a.
 === version 3.0.3: ===
  * issue 112
+ * issue 129
