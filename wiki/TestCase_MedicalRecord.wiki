@@ -19,7 +19,7 @@
  # The modifications are saved.
  # When you reload the first patient, you see the modified text was saved as expected.
  # When you reload the first patient, you see the modified text was saved as expected.
- # Te maro is reated and an be inserted into te medial re
+ # Te macro is created and an be inserted into the medial record
 == Issues ==
 === version 3.0.2: ===
  * n.a.
