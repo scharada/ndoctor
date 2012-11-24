@@ -2,7 +2,7 @@
 = Requirements: =
 [PathologyRecord  See here]
 
-= Manage patient's medical records: =
+= Manage pathologies: =
 == Steps ==
  # Connect into nDoctor with user that has write privileges
  # Open a session for a user
