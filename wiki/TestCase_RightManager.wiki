@@ -34,3 +34,4 @@
  * issue 110
  * issue 123
  * issue 135
+ * issue 136
