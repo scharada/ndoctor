@@ -132,10 +132,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_UserAdded);
                 this.Close();
             }
-            catch (Exception ex)
-            {
-                this.Handle.Error(ex, Messages.Msg_ErrorAddUser);
-            }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private bool CanAdd()

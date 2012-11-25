@@ -27,6 +27,8 @@ namespace Probel.NDoctor.Domain.Test.Components
     using NUnit.Framework;
 
     using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
 
     [TestFixture]
     public class UserSessionComponentTest : BaseComponentTest<UserSessionComponent>
@@ -109,6 +111,40 @@ namespace Probel.NDoctor.Domain.Test.Components
             fullUser.FirstName = Guid.NewGuid().ToString();
 
             this.ComponentUnderTest.Update(fullUser);
+        }
+
+        /// <summary>
+        /// Issue 135
+        /// </summary>
+        [Test]
+        public void CreateUser_CreateUsersWithSameFirstAndLastName_ExceptionIsExpected()
+        {
+            var firstName = "Robert";
+            var lastName = "Dupont";
+
+            var user1 = new LightUserDto() { FirstName = firstName, LastName = lastName };
+            var user2 = new LightUserDto() { FirstName = firstName, LastName = lastName };
+
+            this.ComponentUnderTest.Create(user1, "a");
+            Assert.Throws<ExistingItemException>(() => this.ComponentUnderTest.Create(user2, "az"));
+
+        }
+
+        /// <summary>
+        /// Issue 135
+        /// </summary>
+        [Test]
+        public void UpdateUserData_UpdateWithExistingFirstAndLastName_ExceptionIsExpected()
+        {
+            var users = this.HelperComponent.GetAllUsers();
+
+            Assert.GreaterOrEqual(users.Count, 2);
+
+            users[0].FirstName = users[1].FirstName;
+            users[0].LastName = users[1].LastName;
+
+            Assert.Throws<ExistingItemException>(() => this.ComponentUnderTest.Update(users[0]));
+
         }
 
         protected override void _Setup()
