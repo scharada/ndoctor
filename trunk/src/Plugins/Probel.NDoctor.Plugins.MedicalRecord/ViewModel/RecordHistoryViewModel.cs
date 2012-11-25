@@ -93,6 +93,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         private bool CanUpdateRecord()
         {
             return this.Record != null
+                && this.SelectedState != null
                 && PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
