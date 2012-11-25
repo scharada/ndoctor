@@ -91,6 +91,27 @@ namespace Probel.NDoctor.Domain.Test.Components
         }
 
         /// <summary>
+        /// issue 136
+        /// </summary>
+        [Test]
+        public void UpdateUserData_ChangeDefaultUser_PasswordIsNotReset()
+        {
+            var user = (from u in this.HelperComponent.GetAllUsers()
+                        where u.IsDefault == false
+                        select u).FirstOrDefault();
+            Assert.NotNull(user);
+
+            user.IsDefault = true;
+            this.WrapInTransaction(() => this.ComponentUnderTest.Update(user));
+
+            var updated = (from u in this.HelperComponent.GetAllUsersLight()
+                           where u.Id == user.Id
+                           select u).First();
+
+            Assert.IsTrue(this.ComponentUnderTest.CanConnect(updated, "aze"));
+        }
+
+        /// <summary>
         /// issue 117
         /// </summary>
         [Test]
