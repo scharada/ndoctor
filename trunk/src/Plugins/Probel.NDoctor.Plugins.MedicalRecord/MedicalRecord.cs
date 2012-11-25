@@ -217,7 +217,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.View.As<WorkbenchViewModel>().SaveCommand);
             var splitButton = this.ConfigureSplitButton();
             var macroButton = new RibbonButtonData(Messages.Title_Macro, imgUri.FormatWith("Edit"), new RelayCommand(
-                () => this.EditMacro(), () => PluginContext.DoorKeeper.IsUserGranted(To.Administer)));
+                () => this.EditMacro(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write)));
 
             var cgroup = new RibbonGroupData(Messages.Menu_Actions, 1);
             cgroup.ButtonDataCollection.Add(saveButton);
