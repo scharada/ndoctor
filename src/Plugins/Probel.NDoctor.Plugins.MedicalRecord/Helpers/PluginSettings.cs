@@ -26,7 +26,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
 
     using Nini.Config;
 
-
     public class PluginSettings
     {
         #region Fields

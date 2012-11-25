@@ -33,7 +33,6 @@ namespace Probel.NDoctor.Domain.Test.Components
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Components;
 
-
     public abstract class BaseComponentTest<T>
         where T : BaseComponent
     {

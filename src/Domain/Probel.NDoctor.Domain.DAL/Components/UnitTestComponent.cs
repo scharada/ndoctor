@@ -82,6 +82,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return Mapper.Map<Insurance, InsuranceDto>(found);
         }
 
+        public PathologyDto GetPathology(long id)
+        {
+            var found = (from i in this.Session.Query<Pathology>()
+                         where i.Id == id
+                         select i).FirstOrDefault();
+            return Mapper.Map<Pathology, PathologyDto>(found);
+        }
+
         public IList<PatientDto> GetPatientsByName(string criteria, SearchOn searchOn)
         {
             return new Selector(this.Session).GetPatientByName(criteria, searchOn);
