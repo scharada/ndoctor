@@ -45,9 +45,9 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
     {
         #region Fields
 
+        private readonly Id Id;
         private readonly ILog Logger = LogManager.GetLogger(typeof(Creator));
         private readonly ISession Session;
-        private readonly Id Id;
 
         #endregion Fields
 

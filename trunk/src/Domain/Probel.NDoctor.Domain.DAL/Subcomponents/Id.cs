@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,20 +16,37 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System.Linq;
-using NHibernate;
-using NHibernate.Linq;
-using Probel.NDoctor.Domain.DAL.Entities;
+
+#endregion Header
 
 namespace Probel.NDoctor.Domain.DAL.Subcomponents
 {
+    using System.Linq;
+
+    using NHibernate;
+    using NHibernate.Linq;
+
+    using Probel.NDoctor.Domain.DAL.Entities;
+
     internal class Id
     {
+        #region Fields
+
         private readonly ISession Session;
+
+        #endregion Fields
+
+        #region Constructors
+
         public Id(ISession session)
         {
             this.Session = session;
         }
+
+        #endregion Constructors
+
+        #region Methods
+
         /// <summary>
         /// Checks if user with specified ID exist into the database
         /// </summary>
@@ -39,5 +58,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
                     where i.Id == id
                     select i).Count() == 1;
         }
+
+        #endregion Methods
     }
 }

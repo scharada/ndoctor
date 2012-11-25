@@ -280,10 +280,14 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// <returns>A list of drugs</returns>
         public IList<DrugDto> GetDrugsByName(string name)
         {
-            var result = (from drug in this.Session.Query<Drug>()
-                          where drug.Name.Contains(name)
-                          select drug).ToList();
-            return Mapper.Map<IList<Drug>, IList<DrugDto>>(result);
+            if (name == "*") { return this.GetAllDrugs(); }
+            else
+            {
+                var result = (from drug in this.Session.Query<Drug>()
+                              where drug.Name.Contains(name)
+                              select drug).ToList();
+                return Mapper.Map<IList<Drug>, IList<DrugDto>>(result);
+            }
         }
 
         /// <summary>

@@ -90,6 +90,7 @@
     <Compile Include="Components\PathologyComponentTest.cs" />
     <Compile Include="Components\PatientDataComponentTest.cs" />
     <Compile Include="Components\PatientSessionComponentTest.cs" />
+    <Compile Include="Components\PrescriptionComponentTest.cs" />
     <Compile Include="Components\UserSessionComponentTest.cs" />
     <Compile Include="Data\TestMacros.cs" />
     <Compile Include="Data\TestTimeSlotCollection.cs" />
