@@ -259,7 +259,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         {
             try
             {
-
                 this.Filter(true);
                 this.isRefreshMuted = true; //We've just refresh, don't need to refresh next time.
             }
@@ -303,7 +302,9 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
         private bool CanEdit()
         {
-            return !this.IsEditing && PluginContext.DoorKeeper.IsUserGranted(To.Write);
+            return !this.IsEditing
+                && this.SelectedPicture != null
+                && PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         private bool CanSelectPicture()
