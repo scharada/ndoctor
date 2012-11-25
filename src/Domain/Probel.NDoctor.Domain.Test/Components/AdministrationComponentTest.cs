@@ -33,7 +33,7 @@ namespace Probel.NDoctor.Domain.Test.Components
     public class AdministrationComponentTest : BaseComponentTest<AdministrationComponent>
     {
         #region Methods
-        
+
         [Test]
         public void RemoveInsurance_WhichIsReferenced_ClearExceptionThrown()
         {
@@ -56,16 +56,6 @@ namespace Probel.NDoctor.Domain.Test.Components
             Assert.Throws<ReferencialIntegrityException>(() => this.ComponentUnderTest.Remove(insuranceToDelete));
         }
 
-        [Test]
-        public void RemovePathology_WhichIsReferenced_ClearExceptionThrown()
-        {
-            /* Look at the SQL script to understand that the pathology with ID 1 is already referenced in
-             * the illness persion with id 1
-             */
-            var pathology = this.HelperComponent.GetPathology(1);
-            Assert.Throws<ReferencialIntegrityException>(() => this.ComponentUnderTest.Remove(pathology));
-        }
-
         /// <summary>
         /// issue 134
         /// </summary>
@@ -77,6 +67,16 @@ namespace Probel.NDoctor.Domain.Test.Components
              */
             var pathology = this.HelperComponent.GetPathology(1);
             Assert.IsFalse(this.ComponentUnderTest.CanRemove(pathology));
+        }
+
+        [Test]
+        public void RemovePathology_WhichIsReferenced_ClearExceptionThrown()
+        {
+            /* Look at the SQL script to understand that the pathology with ID 1 is already referenced in
+             * the illness persion with id 1
+             */
+            var pathology = this.HelperComponent.GetPathology(1);
+            Assert.Throws<ReferencialIntegrityException>(() => this.ComponentUnderTest.Remove(pathology));
         }
 
         protected override void _Setup()

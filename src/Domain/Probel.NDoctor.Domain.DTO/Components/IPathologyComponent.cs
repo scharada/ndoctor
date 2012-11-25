@@ -51,6 +51,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         long Create(TagDto item);
 
         /// <summary>
+        /// Gets all pathologies.
+        /// </summary>
+        /// <returns></returns>
+        IList<PathologyDto> GetAllPathologies();
+
+        /// <summary>
         /// Gets the illness history for the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>

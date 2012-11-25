@@ -354,6 +354,8 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         {
             name = name ?? string.Empty;
 
+            if (name == string.Empty || name == "*") { return this.GetAllPathologies(); }
+
             var pathologies = (from pahology in this.Session.Query<Pathology>()
                                where pahology.Name.Contains(name)
                                select pahology).ToList();

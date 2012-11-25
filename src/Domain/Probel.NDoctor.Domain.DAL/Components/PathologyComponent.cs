@@ -23,6 +23,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using AutoMapper;
 
     using NHibernate;
+    using NHibernate.Linq;
 
     using Probel.Helpers.Data;
     using Probel.Mvvm.DataBinding;
@@ -82,6 +83,17 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public long Create(TagDto item)
         {
             return new Creator(this.Session).Create(item);
+        }
+
+        /// <summary>
+        /// Gets all pathologies.
+        /// </summary>
+        /// <returns></returns>
+        public IList<PathologyDto> GetAllPathologies()
+        {
+            var result = (from p in this.Session.Query<Pathology>()
+                          select p).ToList();
+            return Mapper.Map<IList<Pathology>, IList<PathologyDto>>(result);
         }
 
         /// <summary>

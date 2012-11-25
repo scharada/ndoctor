@@ -18,7 +18,6 @@ namespace Probel.NDoctor.Domain.DTO.Components
 {
     using System;
 
-
     public interface IBaseComponent : IDisposable
     {
         #region Properties
