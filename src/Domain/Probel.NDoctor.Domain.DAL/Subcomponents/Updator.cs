@@ -47,6 +47,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
 
         private readonly ILog Logger = LogManager.GetLogger(typeof(Creator));
         private readonly ISession Session;
+        private readonly Id Id;
 
         #endregion Fields
 
@@ -55,6 +56,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         public Updator(ISession session)
         {
             this.Session = session;
+            this.Id = new Id(session);
         }
 
         #endregion Constructors
@@ -255,28 +257,18 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// <param name="item">The user.</param>
         public void Update(UserDto item)
         {
-            var exists = (from u in this.Session.Query<User>()
-                          where u.FirstName == item.FirstName
-                          && u.LastName == item.LastName
-                          select u).Count() > 0;
+            if (!Id.ExistForUser(item.Id)) { throw new EntityNotFoundException(typeof(User)); }
 
-            if (exists) { throw new ExistingItemException("A user with the same name already exists in the database", Messages.Ex_ExistingItemException_UserWithSameName); }
+            this.CheckUserCanBeUpdated(item);
+            this.RemoveDefaultUsers(item);
 
-            /* Removes the default user from the database because he/she'll
-             * be replaced with the current one
-             */
-            if (item.IsDefault)
-            {
-                var defaultUsers = (from u in this.Session.Query<User>()
-                                    where u.IsDefault
-                                    select u);
-                foreach (var u in defaultUsers)
-                {
-                    u.IsDefault = false;
-                    this.Session.Update(u);
-                }
-            }
+            var pwd = (from u in this.Session.Query<User>()
+                       where u.Id == item.Id
+                       select u).First().Password;
+
             var eItem = Mapper.Map<UserDto, User>(item);
+            eItem.Password = pwd;
+
             var entity = this.Session.Merge<User>(eItem);
         }
 
@@ -342,6 +334,35 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
 
             if (isUpdated) this.Session.Update(entity);
             return isUpdated;
+        }
+
+        private void CheckUserCanBeUpdated(UserDto item)
+        {
+            var exists = (from u in this.Session.Query<User>()
+                          where u.FirstName == item.FirstName
+                          && u.LastName == item.LastName
+                          && u.Id != item.Id
+                          select u).Count() > 0;
+
+            if (exists) { throw new ExistingItemException("A user with the same name already exists in the database", Messages.Ex_ExistingItemException_UserWithSameName); }
+        }
+
+        private void RemoveDefaultUsers(UserDto item)
+        {
+            /* Removes the default user from the database because he/she'll
+             * be replaced with the current one
+             */
+            if (item.IsDefault)
+            {
+                var defaultUsers = (from u in this.Session.Query<User>()
+                                    where u.IsDefault
+                                    select u);
+                foreach (var u in defaultUsers)
+                {
+                    u.IsDefault = false;
+                    this.Session.Update(u);
+                }
+            }
         }
 
         #endregion Methods
