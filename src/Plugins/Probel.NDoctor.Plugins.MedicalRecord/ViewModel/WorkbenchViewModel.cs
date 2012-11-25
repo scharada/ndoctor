@@ -62,7 +62,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         public WorkbenchViewModel()
             : base()
         {
-            PluginContext.Host.NewPatientConnected += (sender, e) => this.SelectedRecord = null;
+            PluginContext.Host.NewPatientConnected += (sender, e) =>
+            {
+                this.SelectedRecord = null;
+                this.IsReadOnly = CheckReadonly();
+            };
             PluginContext.Host.BeforeNewPatientConnected += (sender, e) => this.SaveCommand.TryExecute();
 
             this.MacroMenu = new ObservableCollection<MacroMenuItem>();
@@ -72,6 +76,8 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             this.ShowRevisionsCommand = new RelayCommand(() => this.ShowRevisions(), () => this.CanShowRevisions());
             this.RefreshDefaultFontsCommand = new RelayCommand(() => this.RefreshDefaultFonts());
         }
+
+        private bool CheckReadonly() { return !PluginContext.DoorKeeper.IsUserGranted(To.Write) || (this.SelectedRecord == null); }
 
         #endregion Constructors
 
@@ -120,6 +126,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             }
         }
 
+        private bool isReadOnly;
         /// <summary>
         /// Gets a value indicating whether the text editor is read only.
         /// The editor is read only if the connected user doesn't have the write provilege
@@ -129,9 +136,13 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         /// </value>
         public bool IsReadOnly
         {
-            get { return PluginContext.DoorKeeper.IsUserGranted(To.Write); }
+            get { return this.isReadOnly; }
+            set
+            {
+                this.isReadOnly = value;
+                this.OnPropertyChanged(() => IsReadOnly);
+            }
         }
-
         public bool IsRecordSelected
         {
             get { return this.SelectedRecord != null; }
@@ -167,6 +178,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             set
             {
                 this.selectedRecord = value;
+                this.IsReadOnly = CheckReadonly();
                 this.OnPropertyChanged(() => this.SelectedRecord);
                 this.OnPropertyChanged(() => this.IsRecordSelected);
             }

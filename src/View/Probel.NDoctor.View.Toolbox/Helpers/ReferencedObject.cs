@@ -21,7 +21,6 @@
 
 namespace Probel.NDoctor.View.Toolbox.Helpers
 {
-
     /// <summary>
     /// This object is used with databinding to keep the "by reference" feature when developer pass
     /// a string or a value object

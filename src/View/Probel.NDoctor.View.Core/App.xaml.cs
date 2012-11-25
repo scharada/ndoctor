@@ -23,7 +23,9 @@ namespace Probel.NDoctor.View.Core
     using System.Threading;
     using System.Windows;
     using System.Windows.Threading;
+
     using log4net;
+
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.Components.Statistics;
     using Probel.NDoctor.View.Core.Properties;
@@ -31,6 +33,7 @@ namespace Probel.NDoctor.View.Core
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox.Navigation;
+
     using MySplashScreen = Probel.NDoctor.View.Core.View.SplashScreen;
 
     /// <summary>
@@ -48,11 +51,11 @@ namespace Probel.NDoctor.View.Core
 
         public App()
         {
-#if DEBUG
+            #if DEBUG
             //Hook the console to the application to have logging features
             AllocConsole();
             //HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
-#endif
+            #endif
 
             this.Logger = LogManager.GetLogger(typeof(LogManager));
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Settings.Default.Language);
