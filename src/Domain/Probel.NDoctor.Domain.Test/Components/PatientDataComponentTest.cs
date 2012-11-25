@@ -21,17 +21,33 @@
 
 namespace Probel.NDoctor.Domain.Test.Components
 {
+    using System.Linq;
+
     using NUnit.Framework;
 
     using Probel.NDoctor.Domain.DAL.Components;
-    using Probel.NDoctor.Domain.DTO.Objects;
-    using System.Linq;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Objects;
 
     [TestFixture]
     public class PatientDataComponentTest : BaseComponentTest<PatientDataComponent>
     {
         #region Methods
+
+        /// <summary>
+        /// issue 122
+        /// </summary>
+        [Test]
+        public void SearchDoctor_UserJokerSearch_ReturnsAllDoctors()
+        {
+            //The patient 3 has two doctors binded.
+            var patient = this.HelperComponent.GetLightPatient(3);
+
+            var count1 = this.ComponentUnderTest.GetNotLinkedDoctorsFor(patient, "*", SearchOn.FirstAndLastName).Count;
+            var count2 = this.HelperComponent.GetAllDoctors().Count - 2;
+
+            Assert.AreEqual(count1, count2);
+        }
 
         [Test]
         public void UpdatePatient_WithNewInsurance_NoInsuranceDataLoss()
@@ -58,20 +74,6 @@ namespace Probel.NDoctor.Domain.Test.Components
             Assert.AreEqual(insurance.Name, updated.Name);
             Assert.AreEqual(insurance.Notes, updated.Notes);
             Assert.AreEqual(insurance.Phone, updated.Phone);
-        }
-        /// <summary>
-        /// issue 122
-        /// </summary>
-        [Test]
-        public void SearchDoctor_UserJokerSearch_ReturnsAllDoctors()
-        {
-            //The patient 3 has two doctors binded.
-            var patient = this.HelperComponent.GetLightPatient(3);
-
-            var count1 = this.ComponentUnderTest.GetNotLinkedDoctorsFor(patient, "*", SearchOn.FirstAndLastName).Count;
-            var count2 = this.HelperComponent.GetAllDoctors().Count - 2;
-
-            Assert.AreEqual(count1, count2);
         }
 
         protected override void _Setup()
