@@ -218,12 +218,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return Mapper.Map<IList<Doctor>, IList<LightDoctorDto>>(result);
         }
 
-        private List<Doctor> GetAllDoctors()
-        {
-            return (from d in this.Session.Query<Doctor>()
-                    select d).ToList();
-        }
-
         /// <summary>
         /// Loads all the data of the patient represented by the specified id.
         /// </summary>
@@ -289,6 +283,12 @@ namespace Probel.NDoctor.Domain.DAL.Components
             var eItem = Mapper.Map<PatientDto, Patient>(item);
             var entity = this.Session.Merge<Patient>(eItem);
             this.Session.Update(entity);
+        }
+
+        private List<Doctor> GetAllDoctors()
+        {
+            return (from d in this.Session.Query<Doctor>()
+                    select d).ToList();
         }
 
         private bool NotIn(Patient patient, Doctor toCheck)
