@@ -127,12 +127,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             this.Prescriptions.Clear();
         }
 
-        private void AddDrug(DrugDto drug)
-        {
-            var prescription = new PrescriptionDto() { Drug = drug };
-            this.Prescriptions.Add(prescription);
-        }
-
         private bool CanSave()
         {
             return PluginContext.DoorKeeper.IsUserGranted(To.Write)
@@ -160,7 +154,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
                 if (this.HasEmptyPrescriptions())
                 {
                     var dr = MessageBox.Show(Messages.Msg_EmptyNotesForPrescriptions, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (dr == MessageBoxResult.No) return;
+                    if (dr == MessageBoxResult.No) { return; }
                 }
 
                 var document = new PrescriptionDocumentDto() { CreationDate = this.CreationDate };

@@ -550,10 +550,7 @@
                                         where t.Id == prescripiton.Tag.Id
                                         select t).First();
                 }
-
-                prescripiton.Drug.Tag = (from t in this.Session.Query<Tag>()
-                                         where t.Id == prescripiton.Drug.Tag.Id
-                                         select t).First();
+                prescripiton.Drug = this.Session.Get<Drug>(prescripiton.Drug.Id);
             }
         }
 
