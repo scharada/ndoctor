@@ -21,125 +21,67 @@
 
 namespace Probel.NDoctor.Domain.Test.Components
 {
-    using System;
-    using System.Linq;
-
     using NUnit.Framework;
 
     using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.Test.Helpers;
 
     [TestFixture]
     [Category(Categories.FunctionalTest)]
-    public class AdministrationComponentTest : BaseComponentTest<AuthorisationComponent>
+    public class AdministrationComponentTest : BaseComponentTest<AdministrationComponent>
     {
         #region Methods
-
+        
         [Test]
-        public void CheckDefaultAdministrationData_GetRoleCount_MoreThanARoleInDB()
+        public void RemoveInsurance_WhichIsReferenced_ClearExceptionThrown()
         {
-            var result = this.ComponentUnderTest.GetAllRoles();
-            Assert.Greater(result.Length, 1);
+            var users = this.HelperComponent.GetAllPatients();
+            Assert.GreaterOrEqual(users.Count, 1);
+
+            var insurance = new InsuranceDto() { Address = new AddressDto(), Name = string.Empty, Notes = string.Empty, Phone = string.Empty };
+            long id = 0;
+
+            this.WrapInTransaction(() =>
+            {
+                id = this.ComponentUnderTest.Create(insurance);
+                users[0].Insurance = this.HelperComponent.GetInsurance(id);
+
+                new PatientDataComponent(this.Session).Update(users[0]);
+            });
+
+            var insuranceToDelete = this.HelperComponent.GetInsurance(id);
+
+            Assert.Throws<ReferencialIntegrityException>(() => this.ComponentUnderTest.Remove(insuranceToDelete));
         }
 
         [Test]
-        public void CreateNewRole_CreateWithExistingTasks_RoleIsCreated()
+        public void RemovePathology_WhichIsReferenced_ClearExceptionThrown()
         {
-            var name = Guid.NewGuid().ToString();
-
-            /* First you should create the tasks in the database before using it.
-             * Cascade insertion will be implemented when it'll be needed
+            /* Look at the SQL script to understand that the pathology with ID 1 is already referenced in
+             * the illness persion with id 1
              */
-            var a = new TaskDto("a");
-            var b = new TaskDto("b");
-            var c = new TaskDto("c");
-            this.ComponentUnderTest.Create(a);
-            this.ComponentUnderTest.Create(b);
-            this.ComponentUnderTest.Create(c);
-
-            var role = new RoleDto() { Name = name };
-            role.Tasks.Add(a);
-            role.Tasks.Add(b);
-            role.Tasks.Add(c);
-
-            this.ComponentUnderTest.Create(role);
-
-            Assert.AreEqual(3, this.ComponentUnderTest.GetAllRoles().Where(e => e.Name == name).First().Tasks.Count);
+            var pathology = this.HelperComponent.GetPathology(1);
+            Assert.Throws<ReferencialIntegrityException>(() => this.ComponentUnderTest.Remove(pathology));
         }
 
+        /// <summary>
+        /// issue 134
+        /// </summary>
         [Test]
-        public void CreateNewRole_CreateWithNONExistingTasks_CreatesTheNewTasks()
+        public void RemovePathology_CheckWhetherCanRemove_ReturnsTheExectedValue()
         {
-            var name = Guid.NewGuid().ToString();
-
-            var a = new TaskDto("a");
-            var b = new TaskDto("b");
-            var c = new TaskDto("c");
-
-            var role = new RoleDto() { Name = name };
-            role.Tasks.Add(a);
-            role.Tasks.Add(b);
-            role.Tasks.Add(c);
-
-            this.ComponentUnderTest.Create(role);
-
-            Assert.AreEqual(3, this.ComponentUnderTest.GetAllRoles().Where(e => e.Name == name).First().Tasks.Count);
-        }
-
-        [Test]
-        public void RemoveRole_RemoveRole_RoleRemovedAndNoTasksRemovedFromDb()
-        {
-            int count = 0;
-            var name = Guid.NewGuid().ToString();
-            var tasks = this.ComponentUnderTest.GetAllTasks();
-
-            RoleDto role = new RoleDto() { Name = name };
-            role.Tasks.Add(tasks[1]);
-            role.Tasks.Add(tasks[2]);
-            role.Tasks.Add(tasks[3]);
-
-            RoleDto role2 = new RoleDto() { Name = "azer" };
-            role.Tasks.Add(tasks[1]);
-            role.Tasks.Add(tasks[2]);
-            role.Tasks.Add(tasks[3]);
-
-            this.ComponentUnderTest.Create(role);
-            this.ComponentUnderTest.Create(role2);
-            this.Session.Flush();
-
-            count = this.ComponentUnderTest.GetAllTasks().Length;
-
-            this.ComponentUnderTest.Remove(role);
-            this.Session.Flush();
-            Assert.AreEqual(count, this.ComponentUnderTest.GetAllTasks().Length);
-        }
-
-        [Test]
-        public void UpdateRole_RemoveTasksFromRole_TheTaskIsUnbindedAndStillInDb()
-        {
-            int count = 0;
-            var name = Guid.NewGuid().ToString();
-
-            RoleDto role = new RoleDto() { Name = name };
-            role.Tasks.Add(new TaskDto("a"));
-            role.Tasks.Add(new TaskDto("b"));
-            role.Tasks.Add(new TaskDto("c"));
-
-            this.ComponentUnderTest.Create(role);
-            this.Session.Flush();
-
-            count = this.ComponentUnderTest.GetAllTasks().Length;
-
-            role.Tasks.Clear();
-            this.ComponentUnderTest.Update(role);
-            this.Session.Flush();
-            Assert.AreEqual(count, this.ComponentUnderTest.GetAllTasks().Length);
+            /* Look at the SQL script to understand that the pathology with ID 1 is already referenced in
+             * the illness persion with id 1
+             */
+            var pathology = this.HelperComponent.GetPathology(1);
+            Assert.IsFalse(this.ComponentUnderTest.CanRemove(pathology));
         }
 
         protected override void _Setup()
         {
-            this.BuildComponent(session => new AuthorisationComponent(session));
+            this.BuildComponent(session => new AdministrationComponent(session));
         }
 
         #endregion Methods

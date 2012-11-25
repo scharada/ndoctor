@@ -19,7 +19,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using System;
     using System.Linq;
 
-
     using log4net;
 
     using NHibernate;

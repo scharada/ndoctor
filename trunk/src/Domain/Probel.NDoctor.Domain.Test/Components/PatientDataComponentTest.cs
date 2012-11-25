@@ -21,7 +21,6 @@
 
 namespace Probel.NDoctor.Domain.Test.Components
 {
-
     using NUnit.Framework;
 
     using Probel.NDoctor.Domain.DAL.Components;

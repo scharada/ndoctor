@@ -95,7 +95,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             #region Suppression commands
             this.RemoveInsuranceCommand = new RelayCommand(() => this.RemoveInsurance(), () => this.SelectedInsurance != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
             this.RemovePracticeCommand = new RelayCommand(() => this.RemovePractice(), () => this.SelectedPractice != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
-            this.RemovePathlogyCommand = new RelayCommand(() => this.RemovePathlogy(), () => this.SelectedPathology != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.RemovePathologyCommand = new RelayCommand(() => this.RemovePathology(), () => this.SelectedPathology != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
             this.RemoveDrugCommand = new RelayCommand(() => this.RemoveDrug(), () => this.SelectedDrug != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
             this.RemoveProfessionCommand = new RelayCommand(() => this.RemoveProfession(), () => this.SelectedProfession != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
             this.RemoveReputationCommand = new RelayCommand(() => this.RemoveReputation(), () => this.SelectedReputation != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
@@ -210,7 +210,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             private set;
         }
 
-        public ICommand RemovePathlogyCommand
+        public ICommand RemovePathologyCommand
         {
             get;
             private set;
@@ -566,31 +566,13 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             catch (Exception ex) { this.Handle.Error(ex); }
         }
 
-        private void RemovePathlogy()
-        {
-            try
-            {
-                if (this.AskToDelete())
-                {
-                    if (this.component.CanRemove(this.SelectedPathology))
-                    {
-                        this.component.Remove(this.SelectedPathology);
-                    }
-                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
-
-                    this.Refresh();
-                }
-            }
-            catch (Exception ex) { this.Handle.Error(ex); }
-        }
-
         private void RemovePathology()
         {
             try
             {
                 if (this.AskToDelete())
                 {
-                    if (this.component.CanRemove(this.SelectedPathology) && this.AskToDelete())
+                    if (this.component.CanRemove(this.SelectedPathology))
                     {
                         this.component.Remove(this.SelectedPathology);
                     }

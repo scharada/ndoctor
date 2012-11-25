@@ -16,8 +16,6 @@
 */
 namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
 {
-
-
     using Xceed.Wpf.Toolkit;
 
     public static class TextEditor

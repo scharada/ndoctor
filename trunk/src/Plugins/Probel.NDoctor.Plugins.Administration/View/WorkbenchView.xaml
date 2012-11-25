@@ -144,7 +144,7 @@
                 <DataGrid.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Remove}}"
-                                      Command="{Binding RemovePathlogyCommand}">
+                                      Command="{Binding RemovePathologyCommand}">
                             <MenuItem.Icon>
                                 <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Delete.png"
                                            Height="20"
