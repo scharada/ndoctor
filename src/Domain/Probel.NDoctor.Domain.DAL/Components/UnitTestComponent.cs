@@ -111,5 +111,20 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         #endregion Methods
+
+        public LightPatientDto GetLightPatient(int id)
+        {
+            var result = (from p in this.Session.Query<Patient>()
+                          where p.Id == id
+                          select p).FirstOrDefault();
+            return Mapper.Map<Patient, LightPatientDto>(result);
+        }
+
+        public IList<DoctorDto> GetAllDoctors()
+        {
+            var result = (from d in this.Session.Query<Doctor>()
+                          select d).ToList();
+            return Mapper.Map<IList<Doctor>, IList<DoctorDto>>(result);
+        }
     }
 }
