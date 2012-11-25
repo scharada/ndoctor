@@ -39,6 +39,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
     using Probel.NDoctor.Domain.DAL.Mementos;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.DAL.Properties;
 
     internal class Updator
     {
@@ -254,6 +255,13 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// <param name="item">The user.</param>
         public void Update(UserDto item)
         {
+            var exists = (from u in this.Session.Query<User>()
+                          where u.FirstName == item.FirstName
+                          && u.LastName == item.LastName
+                          select u).Count() > 0;
+
+            if (exists) { throw new ExistingItemException("A user with the same name already exists in the database", Messages.Ex_ExistingItemException_UserWithSameName); }
+
             /* Removes the default user from the database because he/she'll
              * be replaced with the current one
              */

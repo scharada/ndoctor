@@ -291,8 +291,11 @@
             Assert.IsNotNull(item, "item");
             if (string.IsNullOrEmpty(password)) throw new EmptyPasswordException();
 
-            var found = (from p in this.Session.Query<Practice>()
+            var found = (from p in this.Session.Query<User>()
                          where p.Id == item.Id
+                           || (p.FirstName == item.FirstName
+                            && p.LastName == item.LastName)
+
                          select p).ToList().Count() > 0;
             if (found) throw new ExistingItemException();
 

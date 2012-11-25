@@ -249,4 +249,8 @@
     <value>More than one default user was found.</value>
     <comment>More than one default user was found. </comment>
   </data>
+  <data name="Ex_ExistingItemException_UserWithSameName" xml:space="preserve">
+    <value>A user with the same first and last name already exist.</value>
+    <comment>A user with the same first and last name already exist</comment>
+  </data>
 </root>
