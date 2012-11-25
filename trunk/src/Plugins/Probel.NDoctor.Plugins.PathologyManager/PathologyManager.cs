@@ -21,7 +21,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager
     using System.Windows.Input;
     using System.Windows.Media;
 
-
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Mvvm;

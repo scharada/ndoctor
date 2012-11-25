@@ -21,7 +21,6 @@ namespace Probel.NDoctor.Plugins.PatientData
     using System.Windows.Input;
     using System.Windows.Media;
 
-
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;

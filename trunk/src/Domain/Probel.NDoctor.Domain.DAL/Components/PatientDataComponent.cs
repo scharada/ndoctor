@@ -193,25 +193,35 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
             List<Doctor> result = new List<Doctor>();
 
-            switch (searchOn)
+            if (criteria == "*") { result = this.GetAllDoctors(); }
+            else
             {
-                case SearchOn.FirstName:
-                    result = this.SearchDoctorOnFirstName(criteria);
-                    break;
-                case SearchOn.LastName:
-                    result = this.SearchDoctorOnLastName(criteria);
-                    break;
-                case SearchOn.FirstAndLastName:
-                    result = this.SearchDoctorOnFirstNameAndLastName(criteria);
-                    break;
-                default:
-                    Assert.FailOnEnumeration(searchOn);
-                    break;
+                switch (searchOn)
+                {
+                    case SearchOn.FirstName:
+                        result = this.SearchDoctorOnFirstName(criteria);
+                        break;
+                    case SearchOn.LastName:
+                        result = this.SearchDoctorOnLastName(criteria);
+                        break;
+                    case SearchOn.FirstAndLastName:
+                        result = this.SearchDoctorOnFirstNameAndLastName(criteria);
+                        break;
+                    default:
+                        Assert.FailOnEnumeration(searchOn);
+                        break;
+                }
             }
 
             result = this.RemoveDoctorsOfPatient(result, patientEntity);
 
             return Mapper.Map<IList<Doctor>, IList<LightDoctorDto>>(result);
+        }
+
+        private List<Doctor> GetAllDoctors()
+        {
+            return (from d in this.Session.Query<Doctor>()
+                    select d).ToList();
         }
 
         /// <summary>
