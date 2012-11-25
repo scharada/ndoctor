@@ -52,6 +52,13 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return new Creator(this.Session).Create(patient);
         }
 
+        public IList<DoctorDto> GetAllDoctors()
+        {
+            var result = (from d in this.Session.Query<Doctor>()
+                          select d).ToList();
+            return Mapper.Map<IList<Doctor>, IList<DoctorDto>>(result);
+        }
+
         public IList<PatientDto> GetAllPatients()
         {
             return new Selector(this.Session).GetAllPatients();
@@ -80,6 +87,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
                          where i.Id == id
                          select i).FirstOrDefault();
             return Mapper.Map<Insurance, InsuranceDto>(found);
+        }
+
+        public LightPatientDto GetLightPatient(int id)
+        {
+            var result = (from p in this.Session.Query<Patient>()
+                          where p.Id == id
+                          select p).FirstOrDefault();
+            return Mapper.Map<Patient, LightPatientDto>(result);
         }
 
         public PathologyDto GetPathology(long id)
@@ -111,20 +126,5 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         #endregion Methods
-
-        public LightPatientDto GetLightPatient(int id)
-        {
-            var result = (from p in this.Session.Query<Patient>()
-                          where p.Id == id
-                          select p).FirstOrDefault();
-            return Mapper.Map<Patient, LightPatientDto>(result);
-        }
-
-        public IList<DoctorDto> GetAllDoctors()
-        {
-            var result = (from d in this.Session.Query<Doctor>()
-                          select d).ToList();
-            return Mapper.Map<IList<Doctor>, IList<DoctorDto>>(result);
-        }
     }
 }

@@ -48,6 +48,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         private FontFamily defaultFontFamily;
         private int defaultFontSize;
         private bool isGranted = true;
+        private bool isReadOnly;
         private TitledMedicalRecordDto selectedRecord;
         private IList<TagDto> tags = new List<TagDto>();
 
@@ -76,8 +77,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             this.ShowRevisionsCommand = new RelayCommand(() => this.ShowRevisions(), () => this.CanShowRevisions());
             this.RefreshDefaultFontsCommand = new RelayCommand(() => this.RefreshDefaultFonts());
         }
-
-        private bool CheckReadonly() { return !PluginContext.DoorKeeper.IsUserGranted(To.Write) || (this.SelectedRecord == null); }
 
         #endregion Constructors
 
@@ -126,7 +125,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             }
         }
 
-        private bool isReadOnly;
         /// <summary>
         /// Gets a value indicating whether the text editor is read only.
         /// The editor is read only if the connected user doesn't have the write provilege
@@ -143,6 +141,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 this.OnPropertyChanged(() => IsReadOnly);
             }
         }
+
         public bool IsRecordSelected
         {
             get { return this.SelectedRecord != null; }
@@ -248,6 +247,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         {
             return this.SelectedRecord != null
                 && PluginContext.DoorKeeper.IsUserGranted(To.Write);
+        }
+
+        private bool CheckReadonly()
+        {
+            return !PluginContext.DoorKeeper.IsUserGranted(To.Write) || (this.SelectedRecord == null);
         }
 
         private void Refresh()
