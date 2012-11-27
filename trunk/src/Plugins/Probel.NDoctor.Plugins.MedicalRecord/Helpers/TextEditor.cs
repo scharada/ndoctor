@@ -36,7 +36,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
         {
             var binding = Control.GetBindingExpression(RichTextBox.TextProperty);
             binding.UpdateSource();
-            //binding.UpdateTarget();
         }
 
         #endregion Methods
