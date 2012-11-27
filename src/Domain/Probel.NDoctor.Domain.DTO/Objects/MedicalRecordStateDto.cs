@@ -23,7 +23,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
 
-
     public class MedicalRecordStateDto : BaseDto
     {
         #region Fields

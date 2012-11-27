@@ -193,6 +193,14 @@
     <value>L'élément que vous voulez enregistrer dans la base de données existe déjà.</value>
     <comment>The item you want to create already exist in the database.</comment>
   </data>
+  <data name="Ex_GoogleCalendarException" xml:space="preserve">
+    <value>Une erreur est survenue pendant la communication avec Google Calendar</value>
+    <comment>An error occured when communicating with Google Calendar</comment>
+  </data>
+  <data name="Ex_GoogleCalendarExceptionFormat" xml:space="preserve">
+    <value>Google Calendar reporte cette erreur: {0}</value>
+    <comment>Google Calendar reports this error: {0}</comment>
+  </data>
   <data name="Ex_HasThumbnail" xml:space="preserve">
     <value>La photo contient déjà une miniature</value>
     <comment>The picture already has a thumbnail</comment>

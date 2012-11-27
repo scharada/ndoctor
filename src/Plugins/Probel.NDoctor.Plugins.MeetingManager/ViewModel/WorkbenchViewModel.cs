@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.NDoctor.Plugins.MeetingManager.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using System.Threading;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -106,11 +107,22 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         private void RefreshCalendar()
         {
             var context = TaskScheduler.FromCurrentSynchronizationContext();
+            var token = new CancellationTokenSource().Token;
             var taskContext = new TaskContext() { DateToDisplay = this.DateToDisplay };
 
             this.IsBusy = true;
+
             Task.Factory.StartNew<TaskContext>(e => RefreshCalendarAsync(e), taskContext)
-            .ContinueWith(e => RefreshCalendarCallback(e), context);
+                .ContinueWith(e => RefreshCalendarCallback(e.Result)
+                    , token, TaskContinuationOptions.NotOnRanToCompletion, context)
+                .ContinueWith(e => this.Handle.Error(e.Exception.InnerException.InnerException)
+                    , token, TaskContinuationOptions.OnlyOnFaulted, context);
+        }
+
+        private void RefreshCalendarCallback(TaskContext taskContext)
+        {
+            this.IsBusy = false;
+            this.DayAppointments.RefillAndSort(taskContext.Result);
         }
 
         private TaskContext RefreshCalendarAsync(object e)
@@ -120,15 +132,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             var mappedResult = Mapper.Map<IList<AppointmentDto>, AppointmentCollection>(result);
             ctx.Result = mappedResult;
             return e as TaskContext;
-        }
-
-        private void RefreshCalendarCallback(Task<TaskContext> e)
-        {
-            this.IsBusy = false;
-            base.ExecuteIfTaskIsNotFaulted(e, () =>
-            {
-                this.DayAppointments.RefillAndSort(e.Result.Result);
-            });
         }
 
         #endregion Methods

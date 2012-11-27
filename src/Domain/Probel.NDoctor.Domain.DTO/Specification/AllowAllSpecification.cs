@@ -21,7 +21,6 @@
 
 namespace Probel.NDoctor.Domain.DTO.Specification
 {
-
     /// <summary>
     /// This is a dummy specification to allow a default contructor to the <see cref="SpecificationExpression"/>
     /// </summary>
