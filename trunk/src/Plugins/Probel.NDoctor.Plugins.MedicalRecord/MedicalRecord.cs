@@ -252,7 +252,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
                     .OnClosing(() => this.View.As<WorkbenchViewModel>().RefreshCommand.TryExecute());
                 e.Bind<MacroEditorView, MacroEditorViewModel>()
                     .OnShow(vm => vm.RefreshCommand.TryExecute())
-                    .OnClosing(() => this.View.As<WorkbenchViewModel>().RefreshCommand.TryExecute());
+                    .OnClosing(vm =>
+                    {
+                        vm.SaveCommand.TryExecute();
+                        this.View.As<WorkbenchViewModel>().RefreshCommand.TryExecute();
+                    });
                 e.Bind<RecordHistoryView, RecordHistoryViewModel>();
             });
         }

@@ -104,7 +104,8 @@
                                                FontSize="12pt"
                                                SyntaxHighlighting="Macro Highlighting"
                                                Document="{Binding TextDocument, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0"
-                                               IsEnabled="{Binding ElementName=textEditor,Path=Document, Converter={StaticResource NullToBool}}">
+                                               IsEnabled="{Binding ElementName=textEditor,Path=Document, Converter={StaticResource NullToBool}}"
+                                               TextChanged="textEditor_TextChanged">
                         </avalonEdit:TextEditor>
                     </Border>
                 </DockPanel>
