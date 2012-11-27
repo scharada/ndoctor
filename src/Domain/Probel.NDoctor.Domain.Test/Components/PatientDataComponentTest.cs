@@ -145,6 +145,40 @@ namespace Probel.NDoctor.Domain.Test.Components
             Assert.AreNotEqual(insuranceName, patient.Insurance.Name);
         }
 
+        /// <summary>
+        /// Issue 127
+        /// </summary>
+        [Test]
+        public void SearchPatient_GetById_ItReturnsTheLastedData()
+        {
+            var today = DateTime.Today;
+            var patient = this.ComponentUnderTest.GetPatientById(3);
+            patient.Birthdate = today;
+
+            this.ComponentUnderTest.Update(patient);
+            var found = this.ComponentUnderTest.GetLightPatientById(patient.Id);
+
+            Assert.AreEqual(found.Id, patient.Id);
+            Assert.AreEqual(today, found.Birthdate);
+        }
+
+        /// <summary>
+        /// Issue 127
+        /// </summary>
+        [Test]
+        public void SearchPatient_GetByIdWithUnknownId_EntityNotFoundException()
+        {
+            var today = DateTime.Today;
+            var patient = this.ComponentUnderTest.GetPatientById(3);
+            patient.Birthdate = today;
+
+            this.ComponentUnderTest.Update(patient);
+            var found = this.ComponentUnderTest.GetLightPatientById(patient.Id);
+
+            Assert.AreEqual(found.Id, patient.Id);
+            Assert.AreEqual(today, found.Birthdate);
+        }
+
         protected override void _Setup()
         {
             this.BuildComponent(session => new PatientDataComponent(session));
