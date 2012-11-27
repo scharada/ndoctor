@@ -20,7 +20,6 @@ namespace Probel.NDoctor.Plugins.DebugTools
 
     using Nini.Config;
 
-
     public class PluginSettings
     {
         #region Fields
@@ -51,6 +50,12 @@ namespace Probel.NDoctor.Plugins.DebugTools
         {
             get { return this.Source.Configs[CONFIG].GetBoolean("LoadDefaultUser", true); }
             set { this.Source.Configs[CONFIG].Set("LoadDefaultUser", value); }
+        }
+
+        public bool IsGoogleActivated
+        {
+            get { return this.Source.Configs[CONFIG].GetBoolean("IsGoogleActivated", true); }
+            set { this.Source.Configs[CONFIG].Set("IsGoogleActivated", value); }
         }
 
         #endregion Properties

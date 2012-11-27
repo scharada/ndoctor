@@ -64,6 +64,7 @@
     <Compile Include="Exceptions\EmptyPasswordException.cs" />
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
     <Compile Include="Exceptions\ExistingItemException.cs" />
+    <Compile Include="Exceptions\GoogleCalendarException.cs" />
     <Compile Include="Exceptions\NullItemInListException.cs" />
     <Compile Include="Exceptions\NullSessionFactoryException.cs" />
     <Compile Include="Exceptions\QueryException.cs" />

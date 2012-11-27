@@ -21,7 +21,6 @@
 
 namespace Probel.NDoctor.Domain.DTO.Specification
 {
-
     using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DTO.Objects;
 

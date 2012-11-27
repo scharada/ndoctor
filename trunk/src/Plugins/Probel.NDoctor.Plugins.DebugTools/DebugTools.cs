@@ -81,18 +81,18 @@ namespace Probel.NDoctor.Plugins.DebugTools
             if (this.Settings.DefaultGoogleCalendarConfig)
             {
                 this.Logger.Debug("Fill default config for Google Calendar");
-                this.FillDefaultCalendarConfig();
+                this.FillDefaultCalendarConfig(this.Settings.IsGoogleActivated);
             }
         }
 
-        private void FillDefaultCalendarConfig()
+        private void FillDefaultCalendarConfig(bool isActivated)
         {
             try
             {
                 string PLUGIN_PATH = @"Plugins\MeetingManager";
                 string CONFIG = "GoogleCalendar";
                 IConfigSource source = new XmlConfigSource(Path.Combine(PLUGIN_PATH, "Plugin.config"));
-                source.Configs[CONFIG].Set("IsGoogleCalendarEnabled", true);
+                source.Configs[CONFIG].Set("IsGoogleCalendarEnabled", isActivated);
                 source.Configs[CONFIG].Set("Password", "ndoctorndoctor".Encrypt());
                 source.Configs[CONFIG].Set("UserName", "ndoctor.development@gmail.com");
                 source.Save();

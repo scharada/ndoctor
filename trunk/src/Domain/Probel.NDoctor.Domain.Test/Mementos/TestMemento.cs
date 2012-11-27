@@ -21,7 +21,6 @@
 
 namespace Probel.NDoctor.Domain.Test.Mementos
 {
-
     using NUnit.Framework;
 
     using Probel.NDoctor.Domain.DAL.Entities;

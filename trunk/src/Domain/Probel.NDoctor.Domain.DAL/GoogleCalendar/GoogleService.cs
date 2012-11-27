@@ -33,6 +33,7 @@ namespace Probel.NDoctor.Domain.DAL.GoogleCalendar
     using Probel.Helpers.Benchmarking;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DTO.GoogleCalendar;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
 
     public class GoogleService
     {
@@ -111,7 +112,7 @@ namespace Probel.NDoctor.Domain.DAL.GoogleCalendar
                     entry.Update();
                     this.Logger.Info("Appointment correctly added into Google Calendar.");
                 }
-                catch (Exception ex) { this.Logger.Error("An error occured while saving the appointment in Google Calendar.", ex); }
+                catch (Exception ex) { throw new GoogleCalendarException(ex.Message, ex); }
             });
         }
 
@@ -165,7 +166,7 @@ namespace Probel.NDoctor.Domain.DAL.GoogleCalendar
                         else { throw new Exception("This id exist more than once"); }
                     }
                 }
-                catch (Exception ex) { this.Logger.Error("An error occured while saving the appointment in Google Calendar.", ex); }
+                catch (Exception ex) { throw new GoogleCalendarException(ex.Message, ex); }
             });
         }
 
@@ -185,7 +186,7 @@ namespace Probel.NDoctor.Domain.DAL.GoogleCalendar
                         this.GetAppointments(DateTime.Today, new Tag());
                     }
                 }
-                catch (Exception ex) { this.Logger.Warn("Silent Exception: this action is meant to avoid spin-up time to access Google Calendar.", ex); }
+                catch (Exception ex) { this.Logger.Warn("Silent Exception: an error occured when spinning-up access Google Calendar.", ex); }
             });
         }
 
@@ -233,7 +234,7 @@ namespace Probel.NDoctor.Domain.DAL.GoogleCalendar
                             select a).ToList();
                 return temp;
             }
-            catch (Exception ex) { throw new ApplicationException("An error occured while fetching appointments from Google Calendar", ex); }
+            catch (Exception ex) { throw new GoogleCalendarException(ex.Message, ex); }
         }
 
         private Guid GetExtentedPropertyValue(EventEntry entry)

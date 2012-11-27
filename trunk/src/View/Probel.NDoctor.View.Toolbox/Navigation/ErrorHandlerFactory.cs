@@ -21,7 +21,6 @@
 
 namespace Probel.NDoctor.View.Toolbox.Navigation
 {
-
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.View.Toolbox.View;
     using Probel.NDoctor.View.Toolbox.ViewModel;
