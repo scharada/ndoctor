@@ -41,6 +41,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         private readonly ICommand removeCommand;
         private readonly ICommand saveCommand;
 
+        private string resolvedMacro;
         private MacroDto selectedMacro;
         private TextDocument textDocument;
 
@@ -81,6 +82,16 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         public ICommand RemoveCommand
         {
             get { return this.removeCommand; }
+        }
+
+        public string ResolvedMacro
+        {
+            get { return this.resolvedMacro; }
+            set
+            {
+                this.resolvedMacro = value;
+                this.OnPropertyChanged(() => ResolvedMacro);
+            }
         }
 
         public ICommand SaveCommand
@@ -124,6 +135,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         #region Methods
 
+        internal void ResolveMacro()
+        {
+            this.ResolvedMacro = this.Component.Resolve(this.SelectedMacro, PluginContext.Host.SelectedPatient);
+        }
+
         private void Create()
         {
             try
@@ -166,7 +182,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 this.Component.Update(this.Macros);
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_MacrosUpdated);
-                //Notifyer.OnMacroUpdated();
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }

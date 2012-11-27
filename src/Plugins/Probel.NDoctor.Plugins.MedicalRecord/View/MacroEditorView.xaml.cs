@@ -22,9 +22,9 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
     using System.Windows;
     using System.Xml;
 
+    using ICSharpCode.AvalonEdit;
     using ICSharpCode.AvalonEdit.CodeCompletion;
     using ICSharpCode.AvalonEdit.Highlighting;
-
 
     using Probel.NDoctor.Plugins.MedicalRecord.Editor;
     using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
@@ -107,6 +107,15 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
                 }
 
             };
+        }
+
+        private void textEditor_TextChanged(object sender, EventArgs e)
+        {
+            if (this.DataContext is MacroEditorViewModel)
+            {
+                var vm = this.DataContext as MacroEditorViewModel;
+                vm.ResolveMacro();
+            }
         }
 
         #endregion Methods
