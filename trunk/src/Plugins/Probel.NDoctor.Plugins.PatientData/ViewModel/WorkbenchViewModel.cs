@@ -24,7 +24,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using System.Windows;
     using System.Windows.Input;
 
-
     using Probel.Helpers;
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
@@ -309,6 +308,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             {
                 this.component.Update(this.Patient);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
+
+                PluginContext.Host.SelectedPatient = this.component.GetLightPatientById(this.Patient.Id);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }

@@ -101,6 +101,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         IList<LightDoctorDto> GetDoctorOf(LightPatientDto patient);
 
         /// <summary>
+        /// Gets the patient with the specified id.
+        /// </summary>
+        /// <param name="id">The p.</param>
+        /// <returns>The patient</returns>
+        LightPatientDto GetLightPatientById(long id);
+
+        /// <summary>
         /// Gets the doctors that can be linked to the specified doctor.
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -117,7 +124,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="patient">The id of the patient to load.</param>
         /// <returns>A DTO with the whole data</returns>
         /// <exception cref="Probel.NDoctor.Domain.DAL.Exceptions.ItemNotFoundException">If the id is not linked to a patient</exception>
-        PatientDto GetPatient(long id);
+        PatientDto GetPatientById(long id);
 
         /// <summary>
         /// Loads all the data of the patient.
