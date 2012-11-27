@@ -375,7 +375,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// <returns></returns>
         public IList<PatientDto> GetPatientByName(string criterium, SearchOn search)
         {
-            var result = this.GetLightPatientEntities(criterium, search);
+            var result = this.GetPatientEntities(criterium, search);
             return Mapper.Map<IList<Patient>, IList<PatientDto>>(result);
         }
 
@@ -388,7 +388,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         [Granted(To.Everyone)]
         public IList<LightPatientDto> GetPatientByNameLight(string criterium, SearchOn search)
         {
-            var result = this.GetLightPatientEntities(criterium, search);
+            var result = this.GetPatientEntities(criterium, search);
             return Mapper.Map<IList<Patient>, IList<LightPatientDto>>(result);
         }
 
@@ -548,7 +548,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
                     select doctor).ToList();
         }
 
-        private IList<Patient> GetLightPatientEntities(string criterium, SearchOn search)
+        private IList<Patient> GetPatientEntities(string criterium, SearchOn search)
         {
             if (string.IsNullOrEmpty(criterium)) return new List<Patient>().ToList();
 
@@ -588,30 +588,12 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
                 return (from patient in this.Session.Query<Patient>()
                         where patient.FirstName.Contains(criterium)
                            || patient.LastName.Contains(criterium)
-                        select new Patient
-                        {
-                            Id = patient.Id,
-                            FirstName = patient.FirstName,
-                            LastName = patient.LastName,
-                            Gender = patient.Gender,
-                            BirthDate = patient.BirthDate,
-                            Profession = patient.Profession,
-                            Height = patient.Height,
-                        }).ToList();
+                        select patient).ToList();
             }
             else
             {
                 return (from patient in this.Session.Query<Patient>()
-                        select new Patient
-                        {
-                            Id = patient.Id,
-                            FirstName = patient.FirstName,
-                            LastName = patient.LastName,
-                            Gender = patient.Gender,
-                            BirthDate = patient.BirthDate,
-                            Profession = patient.Profession,
-                            Height = patient.Height,
-                        }).ToList();
+                        select patient).ToList();
             }
         }
 
@@ -621,30 +603,12 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             {
                 return (from patient in this.Session.Query<Patient>()
                         where patient.FirstName.Contains(criterium)
-                        select new Patient
-                        {
-                            Id = patient.Id,
-                            FirstName = patient.FirstName,
-                            LastName = patient.LastName,
-                            Gender = patient.Gender,
-                            BirthDate = patient.BirthDate,
-                            Profession = patient.Profession,
-                            Height = patient.Height,
-                        }).ToList();
+                        select patient).ToList();
             }
             else
             {
                 return (from patient in this.Session.Query<Patient>()
-                        select new Patient
-                        {
-                            Id = patient.Id,
-                            FirstName = patient.FirstName,
-                            LastName = patient.LastName,
-                            Gender = patient.Gender,
-                            BirthDate = patient.BirthDate,
-                            Profession = patient.Profession,
-                            Height = patient.Height,
-                        }).ToList();
+                        select patient).ToList();
             }
         }
 

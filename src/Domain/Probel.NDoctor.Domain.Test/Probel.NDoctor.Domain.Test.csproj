@@ -87,6 +87,7 @@
     <Compile Include="Components\BmiComponentTest.cs" />
     <Compile Include="Components\CalendarComponentTest.cs" />
     <Compile Include="Components\FamilyComponentTest.cs" />
+    <Compile Include="Components\MedicalRecordComponentTest.cs" />
     <Compile Include="Components\PathologyComponentTest.cs" />
     <Compile Include="Components\PatientDataComponentTest.cs" />
     <Compile Include="Components\PatientSessionComponentTest.cs" />

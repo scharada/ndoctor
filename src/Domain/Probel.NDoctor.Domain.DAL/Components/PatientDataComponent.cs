@@ -224,7 +224,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="patient">The id of the patient to load.</param>
         /// <returns>A DTO with the whole data</returns>
         /// <exception cref="Probel.NDoctor.Domain.DAL.Exceptions.EntityNotFoundException">If the id is not linked to a patient</exception>
-        public PatientDto GetPatient(long id)
+        public PatientDto GetPatientById(long id)
         {
             var fullPatient = (from p in this.Session.Query<Patient>()
                                where p.Id == id
@@ -247,7 +247,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <exception cref="Probel.NDoctor.Domain.DAL.Exceptions.EntityNotFoundException">If the patient doesn't exist</exception>
         public PatientDto GetPatient(LightPatientDto patient)
         {
-            return this.GetPatient(patient.Id);
+            return this.GetPatientById(patient.Id);
         }
 
         /// <summary>
@@ -280,9 +280,16 @@ namespace Probel.NDoctor.Domain.DAL.Components
             Assert.IsNotNull(item, "item");
             item.LastUpdate = DateTime.Today;
 
-            var eItem = Mapper.Map<PatientDto, Patient>(item);
-            var entity = this.Session.Merge<Patient>(eItem);
-            this.Session.Update(entity);
+            var entity = this.Session.Get<Patient>(item.Id);
+            Mapper.Map<PatientDto, Patient>(item, entity);
+
+            entity.Tag = this.Session.Get<Tag>(item.Tag.Id) ?? entity.Tag;
+            entity.Insurance = this.Session.Get<Insurance>(item.Insurance.Id) ?? entity.Insurance;
+            entity.Practice = this.Session.Get<Practice>(item.Practice.Id) ?? entity.Practice;
+            entity.Profession = this.Session.Get<Profession>(item.Profession.Id) ?? entity.Profession;
+            entity.Reputation = this.Session.Get<Reputation>(item.Reputation.Id) ?? entity.Reputation;
+
+            this.Session.Merge<Patient>(entity);
         }
 
         private List<Doctor> GetAllDoctors()
@@ -328,5 +335,18 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         #endregion Methods
+
+
+        /// <summary>
+        /// Gets the light patient by id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns></returns>
+        public LightPatientDto GetLightPatientById(long id)
+        {
+            var result = this.Session.Get<Patient>(id);
+            if (result != null) { return Mapper.Map<Patient, LightPatientDto>(result); }
+            else { throw new EntityNotFoundException(typeof(Patient)); }
+        }
     }
 }

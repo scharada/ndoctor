@@ -21,12 +21,14 @@
 
 namespace Probel.NDoctor.Domain.Test.Components
 {
+    using System;
     using System.Linq;
 
     using NUnit.Framework;
 
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     [TestFixture]
@@ -49,6 +51,54 @@ namespace Probel.NDoctor.Domain.Test.Components
             Assert.AreEqual(count1, count2);
         }
 
+        /// <summary>
+        /// Issue 127.
+        /// </summary>
+        [Test]
+        public void SearchPatient_WithExistingId_PatientFound()
+        {
+            //Patient with ID 3 exists (Cf. InsertUsers.sql)
+            var patient = this.ComponentUnderTest.GetLightPatientById(3);
+            Assert.NotNull(patient);
+        }
+
+        /// <summary>
+        /// Issue 127.
+        /// </summary>
+        [Test]
+        public void SearchPatient_WithNotExistingId_EntityNotFoundException()
+        {
+            //Patient with ID 999 doesn't exist (Cf. InsertUsers.sql)
+            Assert.Throws<EntityNotFoundException>(() => this.ComponentUnderTest.GetLightPatientById(999));
+        }
+
+        /// <summary>
+        /// Issue 127.
+        /// </summary>
+        [Test]
+        public void UpdataPatient_ChangeData_AllRecordsAreStillHere()
+        {
+            var today = DateTime.Today;
+            //Patient with ID 3 exists (Cf. InsertUsers.sql)
+            var patient = this.ComponentUnderTest.GetLightPatientById(3);
+
+            var cabinet = new MedicalRecordComponent(this.Session).GetMedicalRecordCabinet(patient);
+            Assert.Greater(cabinet.Folders.Count, 0, "Expecting folders in cabinet");
+            Assert.Greater(cabinet.Folders[0].Records.Count, 0, "Expecting records in the first folder");
+
+            this.WrapInTransaction(() =>
+            {
+                var item = this.GetPatient(patient.Id);
+                item.Birthdate = today;
+                this.ComponentUnderTest.Update(item);
+            });
+
+            cabinet = new MedicalRecordComponent(this.Session).GetMedicalRecordCabinet(patient);
+            Assert.Greater(cabinet.Folders.Count, 0, "Expecting folders in cabinet");
+            Assert.Greater(cabinet.Folders[0].Records.Count, 0, "Expecting records in the first folder");
+            Assert.AreEqual(today, this.GetPatient(patient.Id).Birthdate);
+        }
+
         [Test]
         public void UpdatePatient_WithNewInsurance_NoInsuranceDataLoss()
         {
@@ -59,7 +109,7 @@ namespace Probel.NDoctor.Domain.Test.Components
             this.WrapInTransaction(() => this.ComponentUnderTest.Create(insurance));
 
             var patient = this.HelperComponent.GetAllPatients()[0];
-            patient.Insurance.Name = insurance.Name;
+            patient.Insurance = insurance;
 
             this.WrapInTransaction(() => this.ComponentUnderTest.Update(patient));
 
@@ -74,6 +124,25 @@ namespace Probel.NDoctor.Domain.Test.Components
             Assert.AreEqual(insurance.Name, updated.Name);
             Assert.AreEqual(insurance.Notes, updated.Notes);
             Assert.AreEqual(insurance.Phone, updated.Phone);
+
+            patient = this.HelperComponent.GetAllPatients()[0];
+            Assert.AreEqual(insurance.Id, patient.Insurance.Id);
+            Assert.AreEqual(insurance.Name, patient.Insurance.Name);
+        }
+
+        [Test]
+        public void UpdatePatient_TryToUpdateInsurance_NothingIsUpdated()
+        {
+            var name = this.RandomString;
+            var insuranceName = Guid.NewGuid().ToString();
+
+            var patient = this.HelperComponent.GetAllPatients()[0];
+            patient.Insurance.Name = insuranceName;
+
+            this.WrapInTransaction(() => this.ComponentUnderTest.Update(patient));
+
+            patient = this.HelperComponent.GetAllPatients()[0];
+            Assert.AreNotEqual(insuranceName, patient.Insurance.Name);
         }
 
         protected override void _Setup()
@@ -98,6 +167,13 @@ namespace Probel.NDoctor.Domain.Test.Components
                 Phone = this.RandomString,
             };
             return insurance;
+        }
+
+        private PatientDto GetPatient(long id)
+        {
+            return (from p in this.HelperComponent.GetPatientsByName("*", SearchOn.FirstAndLastName)
+                    where p.Id == id
+                    select p).First();
         }
 
         #endregion Methods
