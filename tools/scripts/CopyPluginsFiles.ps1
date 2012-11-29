@@ -51,7 +51,6 @@ $separator
 "mode   : $releaseMode"
 $separator
 
-CopyPluginFiles("DebugTools");
 CopyPluginFiles("UserSession");
 CopyPluginFiles("PatientSession");
 CopyPluginFiles("PrescriptionManager");
@@ -65,6 +64,11 @@ CopyPluginFiles("DbConvert");
 CopyPluginFiles("FamilyViewer");
 
 $currentPlugin = "MeetingManager"
+CopyPluginFiles($currentPlugin)
+$dir = GetDirectory($currentPlugin)                      
+copy "$root\Probel.NDoctor.Plugins.$currentPlugin\bin\$releaseMode\Plugin.config" "$dir"  
+
+$currentPlugin = "DebugTools"
 CopyPluginFiles($currentPlugin)
 $dir = GetDirectory($currentPlugin)                      
 copy "$root\Probel.NDoctor.Plugins.$currentPlugin\bin\$releaseMode\Plugin.config" "$dir"  
