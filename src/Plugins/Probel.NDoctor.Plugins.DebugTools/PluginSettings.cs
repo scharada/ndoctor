@@ -40,22 +40,28 @@ namespace Probel.NDoctor.Plugins.DebugTools
             set { this.Source.Configs[CONFIG].Set("DefaultGoogleCalendarConfig", value); }
         }
 
+        public string DefaultPatient
+        {
+            get { return this.Source.Configs[CONFIG].GetString("DefaultPatient", "Wautier"); }
+            set { this.Source.Configs[CONFIG].Set("DefaultPatient", value); }
+        }
+
         public bool InjectDefaultData
         {
             get { return this.Source.Configs[CONFIG].GetBoolean("InjectDefaultData", true); }
             set { this.Source.Configs[CONFIG].Set("InjectDefaultData", value); }
         }
 
-        public bool LoadDefaultUser
-        {
-            get { return this.Source.Configs[CONFIG].GetBoolean("LoadDefaultUser", true); }
-            set { this.Source.Configs[CONFIG].Set("LoadDefaultUser", value); }
-        }
-
         public bool IsGoogleActivated
         {
             get { return this.Source.Configs[CONFIG].GetBoolean("IsGoogleActivated", true); }
             set { this.Source.Configs[CONFIG].Set("IsGoogleActivated", value); }
+        }
+
+        public bool LoadDefaultUser
+        {
+            get { return this.Source.Configs[CONFIG].GetBoolean("LoadDefaultUser", true); }
+            set { this.Source.Configs[CONFIG].Set("LoadDefaultUser", value); }
         }
 
         #endregion Properties

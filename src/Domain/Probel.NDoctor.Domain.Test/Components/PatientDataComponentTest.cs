@@ -52,6 +52,40 @@ namespace Probel.NDoctor.Domain.Test.Components
         }
 
         /// <summary>
+        /// Issue 127
+        /// </summary>
+        [Test]
+        public void SearchPatient_GetByIdWithUnknownId_EntityNotFoundException()
+        {
+            var today = DateTime.Today;
+            var patient = this.ComponentUnderTest.GetPatientById(3);
+            patient.Birthdate = today;
+
+            this.ComponentUnderTest.Update(patient);
+            var found = this.ComponentUnderTest.GetLightPatientById(patient.Id);
+
+            Assert.AreEqual(found.Id, patient.Id);
+            Assert.AreEqual(today, found.Birthdate);
+        }
+
+        /// <summary>
+        /// Issue 127
+        /// </summary>
+        [Test]
+        public void SearchPatient_GetById_ItReturnsTheLastedData()
+        {
+            var today = DateTime.Today;
+            var patient = this.ComponentUnderTest.GetPatientById(3);
+            patient.Birthdate = today;
+
+            this.ComponentUnderTest.Update(patient);
+            var found = this.ComponentUnderTest.GetLightPatientById(patient.Id);
+
+            Assert.AreEqual(found.Id, patient.Id);
+            Assert.AreEqual(today, found.Birthdate);
+        }
+
+        /// <summary>
         /// Issue 127.
         /// </summary>
         [Test]
@@ -100,6 +134,21 @@ namespace Probel.NDoctor.Domain.Test.Components
         }
 
         [Test]
+        public void UpdatePatient_TryToUpdateInsurance_NothingIsUpdated()
+        {
+            var name = this.RandomString;
+            var insuranceName = Guid.NewGuid().ToString();
+
+            var patient = this.HelperComponent.GetAllPatients()[0];
+            patient.Insurance.Name = insuranceName;
+
+            this.WrapInTransaction(() => this.ComponentUnderTest.Update(patient));
+
+            patient = this.HelperComponent.GetAllPatients()[0];
+            Assert.AreNotEqual(insuranceName, patient.Insurance.Name);
+        }
+
+        [Test]
         public void UpdatePatient_WithNewInsurance_NoInsuranceDataLoss()
         {
             var name = this.RandomString;
@@ -128,55 +177,6 @@ namespace Probel.NDoctor.Domain.Test.Components
             patient = this.HelperComponent.GetAllPatients()[0];
             Assert.AreEqual(insurance.Id, patient.Insurance.Id);
             Assert.AreEqual(insurance.Name, patient.Insurance.Name);
-        }
-
-        [Test]
-        public void UpdatePatient_TryToUpdateInsurance_NothingIsUpdated()
-        {
-            var name = this.RandomString;
-            var insuranceName = Guid.NewGuid().ToString();
-
-            var patient = this.HelperComponent.GetAllPatients()[0];
-            patient.Insurance.Name = insuranceName;
-
-            this.WrapInTransaction(() => this.ComponentUnderTest.Update(patient));
-
-            patient = this.HelperComponent.GetAllPatients()[0];
-            Assert.AreNotEqual(insuranceName, patient.Insurance.Name);
-        }
-
-        /// <summary>
-        /// Issue 127
-        /// </summary>
-        [Test]
-        public void SearchPatient_GetById_ItReturnsTheLastedData()
-        {
-            var today = DateTime.Today;
-            var patient = this.ComponentUnderTest.GetPatientById(3);
-            patient.Birthdate = today;
-
-            this.ComponentUnderTest.Update(patient);
-            var found = this.ComponentUnderTest.GetLightPatientById(patient.Id);
-
-            Assert.AreEqual(found.Id, patient.Id);
-            Assert.AreEqual(today, found.Birthdate);
-        }
-
-        /// <summary>
-        /// Issue 127
-        /// </summary>
-        [Test]
-        public void SearchPatient_GetByIdWithUnknownId_EntityNotFoundException()
-        {
-            var today = DateTime.Today;
-            var patient = this.ComponentUnderTest.GetPatientById(3);
-            patient.Birthdate = today;
-
-            this.ComponentUnderTest.Update(patient);
-            var found = this.ComponentUnderTest.GetLightPatientById(patient.Id);
-
-            Assert.AreEqual(found.Id, patient.Id);
-            Assert.AreEqual(today, found.Birthdate);
         }
 
         protected override void _Setup()

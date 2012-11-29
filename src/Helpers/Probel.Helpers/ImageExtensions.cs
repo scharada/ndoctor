@@ -30,7 +30,7 @@ namespace Probel.Helpers
     {
         #region Fields
 
-        private const int HEIGHT = 170;
+        private const int THUMB_HEIGHT = 170;
 
         #endregion Fields
 
@@ -38,10 +38,17 @@ namespace Probel.Helpers
 
         public static byte[] GetThumbnail(this Image img)
         {
-            var ratio = img.Height / HEIGHT;
-            var width = img.Width / ratio;
+            var height = img.Height;
+            var width = img.Width;
 
-            var thumb = img.GetThumbnailImage(width, HEIGHT, () => false, IntPtr.Zero);
+            if (img.Height > 170)
+            {
+                var ratio = img.Height / THUMB_HEIGHT;
+                width = img.Width / ratio;
+                height = THUMB_HEIGHT;
+            }
+
+            var thumb = img.GetThumbnailImage(width, height, () => false, IntPtr.Zero);
             return Converter.ImageToByteArray(thumb);
         }
 
