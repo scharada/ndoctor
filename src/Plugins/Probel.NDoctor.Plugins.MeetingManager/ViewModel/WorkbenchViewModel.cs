@@ -18,6 +18,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using AutoMapper;
@@ -29,7 +30,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.NDoctor.Plugins.MeetingManager.Helpers;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using System.Threading;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -119,12 +119,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                     , token, TaskContinuationOptions.OnlyOnFaulted, context);
         }
 
-        private void RefreshCalendarCallback(TaskContext taskContext)
-        {
-            this.IsBusy = false;
-            this.DayAppointments.RefillAndSort(taskContext.Result);
-        }
-
         private TaskContext RefreshCalendarAsync(object e)
         {
             var ctx = e as TaskContext;
@@ -132,6 +126,12 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             var mappedResult = Mapper.Map<IList<AppointmentDto>, AppointmentCollection>(result);
             ctx.Result = mappedResult;
             return e as TaskContext;
+        }
+
+        private void RefreshCalendarCallback(TaskContext taskContext)
+        {
+            this.IsBusy = false;
+            this.DayAppointments.RefillAndSort(taskContext.Result);
         }
 
         #endregion Methods

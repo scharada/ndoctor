@@ -36,13 +36,18 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.3.0.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net">
       <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Probel.Mvvm, Version=1.2.0.78, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Probel.Mvvm.1.2.0.78\lib\Probel.Mvvm.dll</HintPath>
+    <Reference Include="Probel.Mvvm">
+      <HintPath>..\..\packages\Probel.Mvvm.1.2.0.80\lib\Probel.Mvvm.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -186,6 +191,7 @@
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="key.3.0.snk" />
     <None Include="packages.config" />
     <AppDesigner Include="Properties\" />
     <None Include="Probel.NDoctor.View.Toolbox.licenseheader" />

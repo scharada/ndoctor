@@ -58,6 +58,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".tools", ".tools", "{B78C3AA9-F3E2-4919-8965-B43DA42EE324}"
 	ProjectSection(SolutionItems) = preProject
 		..\tools\scripts\InsertUsers.sql = ..\tools\scripts\InsertUsers.sql
+		key.3.0.snk = key.3.0.snk
 		..\tools\Makefile\nDoctor.build.xml = ..\tools\Makefile\nDoctor.build.xml
 		Probel.NDoctor.nunit = Probel.NDoctor.nunit
 		Version.template = Version.template

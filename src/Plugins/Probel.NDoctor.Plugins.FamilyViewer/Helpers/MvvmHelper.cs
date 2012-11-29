@@ -21,7 +21,6 @@
 
 namespace Probel.NDoctor.Plugins.FamilyViewer.Helpers
 {
-
     using Probel.NDoctor.Plugins.FamilyViewer.View;
     using Probel.NDoctor.Plugins.FamilyViewer.ViewModel;
 

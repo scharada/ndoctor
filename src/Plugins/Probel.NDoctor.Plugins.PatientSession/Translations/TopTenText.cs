@@ -21,7 +21,6 @@
 
 namespace Probel.NDoctor.Plugins.PatientSession.Translations
 {
-
     using Probel.NDoctor.Plugins.PatientSession.Properties;
 
     public static class TopTenText
