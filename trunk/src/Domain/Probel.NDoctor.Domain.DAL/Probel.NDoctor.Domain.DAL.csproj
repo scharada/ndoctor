@@ -116,6 +116,7 @@
     <Compile Include="Entities\PrescriptionDocument.cs" />
     <Compile Include="EqualityComparers\EntityEqualityComparer.cs" />
     <Compile Include="GoogleCalendar\GoogleService.cs" />
+    <Compile Include="Helpers\EntityRefreshExtension.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="AopConfiguration\InspectionIgnoredAttribute.cs" />
     <Compile Include="Macro\InvalidMacroException.cs">

@@ -218,7 +218,10 @@ namespace Probel.NDoctor.Domain.DAL.Components
             if (entity == null) throw new EntityNotFoundException(typeof(Picture));
 
             Mapper.Map<PictureDto, Picture>(item, entity);
-            this.Session.Update(entity);
+
+            entity.Tag = this.Session.Get<Tag>(item.Tag.Id);
+
+            this.Session.Merge(entity);
         }
 
         private IList<Picture> GetEntityPictures(LightPatientDto patient, TagDto tag)

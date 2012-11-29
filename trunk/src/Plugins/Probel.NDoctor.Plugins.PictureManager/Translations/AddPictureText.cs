@@ -21,7 +21,6 @@
 
 namespace Probel.NDoctor.Plugins.PictureManager.Translations
 {
-
     using Probel.NDoctor.Plugins.PictureManager.Properties;
 
     internal static class AddPictureText

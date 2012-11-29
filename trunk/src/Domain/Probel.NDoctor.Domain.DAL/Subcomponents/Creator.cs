@@ -471,10 +471,10 @@
             if (foundPatient == null) throw new ExistingItemException();
 
             var newItem = Mapper.Map<PictureDto, Picture>(picture);
+            newItem.Refresh(picture, this.Session);
 
             foundPatient.Pictures.Add(newItem);
             new ImageHelper().TryCreateThumbnail(foundPatient.Pictures);
-
             this.Session.Update(foundPatient);
         }
 

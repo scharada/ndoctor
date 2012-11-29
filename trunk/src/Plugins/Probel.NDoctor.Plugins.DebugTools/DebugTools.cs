@@ -76,7 +76,7 @@ namespace Probel.NDoctor.Plugins.DebugTools
             if (this.Settings.LoadDefaultUser)
             {
                 this.Logger.Debug("Loading default user");
-                this.LoadUserForDebug();
+                this.LoadPatientForDebug();
             }
             if (this.Settings.DefaultGoogleCalendarConfig)
             {
@@ -124,11 +124,11 @@ namespace Probel.NDoctor.Plugins.DebugTools
             }
         }
 
-        private void LoadUserForDebug()
+        private void LoadPatientForDebug()
         {
             PluginContext.Host.Invoke(() =>
             {
-                var patients = this.component.GetPatientsByNameLight("Wautier", SearchOn.LastName);
+                var patients = this.component.GetPatientsByNameLight(this.Settings.DefaultPatient, SearchOn.LastName);
                 if (patients.Count == 0) return;
 
                 PluginContext.Host.SelectedPatient = patients[0];

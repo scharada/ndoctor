@@ -11,7 +11,7 @@ INSERT INTO Tag(Id, Category, Name, IsImported) VALUES(8 , 'Patient', 'Patient c
 INSERT INTO Tag(Id, Category, Name, IsImported) VALUES(9 , 'Patient', 'Patient category 2', 0);
 								  
 INSERT INTO Tag(Id, Category, Name, IsImported) VALUES(10, 'Picture', 'Picture category 1', 0);
-INSERT INTO Tag(Id, Category, Name, IsImported) VALUES(11 , 'Picture', 'Picture category 2', 0);
+INSERT INTO Tag(Id, Category, Name, IsImported) VALUES(11, 'Picture', 'Picture category 2', 0);
 INSERT INTO Tag(Id, Category, Name, IsImported) VALUES(12, 'Picture', 'Picture category 3', 0);
 								  
 INSERT INTO Tag(Id, Category, Name, IsImported) VALUES(13, 'Pathology', 'Summer season', 0);

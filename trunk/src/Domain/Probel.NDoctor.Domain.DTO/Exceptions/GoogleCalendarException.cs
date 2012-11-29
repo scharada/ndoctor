@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,32 +16,52 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Runtime.Serialization;
-using Probel.Helpers.Strings;
-using Probel.NDoctor.Domain.DTO.Properties;
+
+#endregion Header
 
 namespace Probel.NDoctor.Domain.DTO.Exceptions
 {
+    using System;
+    using System.Runtime.Serialization;
+
+    using Probel.Helpers.Strings;
+    using Probel.NDoctor.Domain.DTO.Properties;
+
     /// <summary>
     /// This exception is thrown when an error occured during communication with Google Calendar
     /// </summary>
     [Serializable]
     public class GoogleCalendarException : TranslateableException
     {
+        #region Fields
+
         private const string msg = "Google Calendar reports this error: {0}";
         private const string msgFormat = "An error occured when communicating with Google Calendar";
 
+        #endregion Fields
+
+        #region Constructors
+
         public GoogleCalendarException()
-            : base(msg, Messages.Ex_GoogleCalendarException) { }
+            : base(msg, Messages.Ex_GoogleCalendarException)
+        {
+        }
 
         public GoogleCalendarException(string message)
-            : base(message, Messages.Ex_GoogleCalendarExceptionFormat.FormatWith(message)) { }
+            : base(message, Messages.Ex_GoogleCalendarExceptionFormat.FormatWith(message))
+        {
+        }
 
         public GoogleCalendarException(string message, Exception inner)
-            : base(msg.FormatWith(message), Messages.Ex_GoogleCalendarExceptionFormat.FormatWith(message), inner) { }
+            : base(msg.FormatWith(message), Messages.Ex_GoogleCalendarExceptionFormat.FormatWith(message), inner)
+        {
+        }
 
         protected GoogleCalendarException(SerializationInfo info, StreamingContext context)
-            : base(info, context) { }
+            : base(info, context)
+        {
+        }
+
+        #endregion Constructors
     }
 }

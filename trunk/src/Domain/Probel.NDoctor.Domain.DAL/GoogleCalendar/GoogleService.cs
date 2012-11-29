@@ -32,8 +32,8 @@ namespace Probel.NDoctor.Domain.DAL.GoogleCalendar
 
     using Probel.Helpers.Benchmarking;
     using Probel.NDoctor.Domain.DAL.Entities;
-    using Probel.NDoctor.Domain.DTO.GoogleCalendar;
     using Probel.NDoctor.Domain.DTO.Exceptions;
+    using Probel.NDoctor.Domain.DTO.GoogleCalendar;
 
     public class GoogleService
     {
