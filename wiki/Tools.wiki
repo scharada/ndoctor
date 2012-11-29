@@ -24,6 +24,7 @@ Here's the list of tools used to develop nDoctor
  * [http://notepad-plus-plus.org/ Notepad++]
  * [http://www.nunit.org/index.php nUnit]
  * [https://www.virtualbox.org/ Virtual Box]
+ * [http://wix.codeplex.com/releases/view/93929 WiX installer]
 == Scripting ==
  * [http://www.python.org/download/ Python] [`Not used anymore`]
  * [http://powergui.org/index.jspa PowerGui]
