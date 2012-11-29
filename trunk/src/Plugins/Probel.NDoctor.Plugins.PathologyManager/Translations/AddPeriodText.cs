@@ -21,7 +21,6 @@
 
 namespace Probel.NDoctor.Plugins.PathologyManager.Translations
 {
-
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
 
     internal class AddPeriodText

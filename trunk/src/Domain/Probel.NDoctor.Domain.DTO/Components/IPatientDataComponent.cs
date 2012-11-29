@@ -119,20 +119,20 @@ namespace Probel.NDoctor.Domain.DTO.Components
         IList<LightDoctorDto> GetNotLinkedDoctorsFor(LightPatientDto patient, string criteria, SearchOn on);
 
         /// <summary>
-        /// Loads all the data of the patient represented by the specified id.
-        /// </summary>
-        /// <param name="patient">The id of the patient to load.</param>
-        /// <returns>A DTO with the whole data</returns>
-        /// <exception cref="Probel.NDoctor.Domain.DAL.Exceptions.ItemNotFoundException">If the id is not linked to a patient</exception>
-        PatientDto GetPatientById(long id);
-
-        /// <summary>
         /// Loads all the data of the patient.
         /// </summary>
         /// <param name="patient">The patient to load.</param>
         /// <returns>A DTO with the whole data</returns>
         /// <exception cref="Probel.NDoctor.Domain.DAL.Exceptions.ItemNotFoundException">If the patient doesn't exist</exception>
         PatientDto GetPatient(LightPatientDto patient);
+
+        /// <summary>
+        /// Loads all the data of the patient represented by the specified id.
+        /// </summary>
+        /// <param name="patient">The id of the patient to load.</param>
+        /// <returns>A DTO with the whole data</returns>
+        /// <exception cref="Probel.NDoctor.Domain.DAL.Exceptions.ItemNotFoundException">If the id is not linked to a patient</exception>
+        PatientDto GetPatientById(long id);
 
         /// <summary>
         /// Gets all the tags with the specified catagory.

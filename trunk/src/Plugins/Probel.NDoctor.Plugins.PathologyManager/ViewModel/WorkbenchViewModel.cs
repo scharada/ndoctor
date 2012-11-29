@@ -21,7 +21,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using System.Windows;
     using System.Windows.Input;
 
-
     using Probel.Helpers.Data;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO;
