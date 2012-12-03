@@ -95,7 +95,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="key.3.0.snk" />
-    <None Include="nDoctorKey.snk" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

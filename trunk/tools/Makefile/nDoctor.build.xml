@@ -120,15 +120,20 @@
 	</target>
 	
 	<!-- Create a zipped package with the binaries -->
-	<target name="TestRelease" description="Zip the binaries and rename the file" depends="Post-Build">
-		
+	<target name="Release" description="Zip the binaries and installer" depends="Post-Build">
+
+    <echo message="Zip the binaries"/>
 		<zip zipfile="${release-dir}\nDoctor.${version}.zip">
 			<fileset basedir="${nest-dir}\..\">
 				<exclude name="bin\**" />
 				<include name="**.*"/>
 			</fileset>
 		</zip>
-		
+
+    <echo message="Copy the installer"/>
+    <copy file="${code-dir}\src\Setup\bin\${build-mode}\Setup.msi"
+          tofile="${release-dir}\nDoctor.${version}.msi"/>
+    
 		<echo message="Clean temporary files"/>
 		<delete dir="${release-dir}\fr"/>
 		<delete dir="${release-dir}\Plugins"/>
@@ -136,33 +141,7 @@
 		<delete dir="${code-dir}"/>
 		<delete>
 			<fileset basedir="${release-dir}">
-				<exclude name="*.zip"/>
-				<include name="**.*"/>
-			</fileset>
-		</delete>
-	</target>
-	
-	<!-- Create an installation package with the binaries -->
-	<target name="Release" description="Build the installer" depends="Post-Build">
-		
-		<echo Message="Execute script to prepare the WiX solution with version and nDoctor files"/>
-		<exec program="powershell" workingdir="${tool-dir}" verbose="true">
-			<arg value="-noprofile"/>
-			<arg value="-nologo"/>
-			<arg value="-noninteractive"/>
-			<arg value="-command"/>
-			<arg value="${tool-dir}\scripts\BuildComponentsFromFiles.ps1"/>
-		</exec>
-		
-		<echo Message="Build the WiX solution to have the .msi file"/>
-		
-		<echo message="Clean temporary files"/>
-		<delete dir="${release-dir}\fr"/>
-		<delete dir="${release-dir}\Plugins"/>
-		<delete dir="${release-dir}\Nest"/>
-		<delete dir="${code-dir}"/>
-		<delete>
-			<fileset basedir="${release-dir}">
+        <exclude name="*.msi"/>
 				<exclude name="*.zip"/>
 				<include name="**.*"/>
 			</fileset>
