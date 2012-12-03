@@ -32,6 +32,16 @@
 				          Description="Private medical pratcice management system"
 				          Target="[INSTALLLOCATION]Probel.NDoctor.View.Core.exe"
 				          WorkingDirectory="INSTALLLOCATION"/>
+				
+				<Shortcut Id="UninstallProduct"
+				          Name="Uninstall nDoctor"
+				          Target="[SystemFolder]msiexec.exe"
+				          Arguments="/x [ProductCode]"
+				          Description="Uninstalls nDoctor" />
+				
+				<util:InternetShortcut Id="OnlineDocumentationShortcut"
+					Name="nDoctor website"
+					Target="http://www.phoenixsuite.net/"/>
 				<RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
 				<RegistryValue Root="HKCU" Key="Software\Microsoft\nDoctor" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
 			</Component>
