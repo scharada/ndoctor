@@ -154,7 +154,7 @@
 		</exec>
 		
 		<echo message="Build the .msi file"/>
-		<msbuild project="${code-dir}\src\${setup-file}"
+		<msbuild project="${code-dir}\src\${sln-setup}"
 		         verbosity="Minimal">
 			<property name="Configuration" value="${build-mode}"/>
 		</msbuild>
