@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
-	<Product Id="*" Name="nDoctor" Language="1033" Version="1.0.0.0" UpgradeCode="3F3C4F4D-2FA7-409F-9B45-EECB6D840B56" Manufacturer="Probel">
+	<Product Id="*" Name="nDoctor" Language="1033" Version="1.0.1.0" UpgradeCode="3F3C4F4D-2FA7-409F-9B45-EECB6D840B56" Manufacturer="Probel">
 		<Package Description="#Description" Comments="Comments" InstallerVersion="200" Compressed="yes" />
 		<!--
 			Source media for the installation. 
@@ -8,17 +8,8 @@
 		-->
 		<Media Id="1" Cabinet="contents.cab" EmbedCab="yes" CompressionLevel="high" />
 		
-		<!-- Upgrade settings. This will be explained in more detail in a future post -->
-		<!--
-		    This custom action in the InstallExecuteSequence is needed to 
-    		stop silent install (passing /qb to msiexec) from going around it. 
-    	-->
-		<InstallExecuteSequence>
-			<!-- Remove the previous versions of the product -->
-			<RemoveExistingProducts After="InstallInitialize"/>
-			<!-- WixCloseApplications is a built in custom action that uses util:CloseApplication below -->
-			<Custom Action="WixCloseApplications" Before="InstallInitialize" />
-		</InstallExecuteSequence>
+		<MajorUpgrade Schedule="afterInstallInitialize"
+		              DowngradeErrorMessage="A later version of nDoctor is already installed. Setup will now exit"/>
 		
 		<!-- Installation directory and files are defined in Files.wxs -->
 		<!-- the default directory structure -->
@@ -63,7 +54,7 @@
 		<Feature Id="Complete" Title="nDoctor" Description="Private medical pratcice management system" Level="1">
 			<ComponentRef Id="ApplicationShortcut"/>
 			<ComponentRef Id="DesktopShortcut"/>
-			<REPLACEMENT>
+			<!--<REPLACEMENT>-->
 		</Feature>
 		
 		<!--
