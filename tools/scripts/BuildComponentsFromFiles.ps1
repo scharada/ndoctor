@@ -19,6 +19,10 @@ foreach( $m in $matches)
 $destinationContent = Get-Content $root"Setup.wxs.template"
 $newText = $destinationContent -replace $token, $str
 ################################################################################
+# Add license file
+################################################################################
+cp "$root\license.rtf" $env:NEST
+################################################################################
 # Build the new file
 ################################################################################
 Write-Host "Write content into $root$template..." -NoNewline
