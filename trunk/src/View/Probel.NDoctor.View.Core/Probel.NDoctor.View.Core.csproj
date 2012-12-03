@@ -322,7 +322,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>SubWCRev.exe $(SolutionDir) "$(ProjectDir)..\..\Version.template" "$(ProjectDir)..\..\Version.cs"</PreBuildEvent>
+    <PreBuildEvent>if $(ConfigurationName) == Debug SubWCRev.exe $(SolutionDir) "$(ProjectDir)..\..\Version.template" "$(ProjectDir)..\..\Version.cs"</PreBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

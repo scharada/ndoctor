@@ -47,7 +47,7 @@
 		
 		<echo message="Checkout the code..."/>
 		<exec program="svn.exe"
-		      commandline="checkout &quot;${svn-repository}&quot; &quot;${code-dir}&quot; -q"/>
+		      commandline="export &quot;${svn-repository}&quot; &quot;${code-dir}&quot; -q"/>
 		
 		<echo message="Prepare the nest..."/>
 		<unzip zipfile="${tool-dir}\Makefile\Nest.zip"
