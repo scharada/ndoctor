@@ -74,3 +74,12 @@ To add this tool in Visual Studio follow these steps:
    # Command          : `nAnt.exe` (if you haven't configured the environment variables, type the full path)
    # Arguments        : `-buildfile:nDoctor.build.xml -D:build-mode=debug`
    # Initial directory: `$(SolutionDir)\..\tools`
+
+== Configure WiX to work with the nAnt script ==
+ # Create an environment variable
+  # Win+Break
+  # Go to "Advanced System Settings
+  # Click on Environment Variable
+  # In "System Variables", click on "New..."
+  # In "Variable name", put **NEST**
+  # In "Variable value", put the path of the nest ("%RELEASE_DIRECTORY%\Nest\nDoctor")
