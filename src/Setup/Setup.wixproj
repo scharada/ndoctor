@@ -35,6 +35,9 @@
       <Name>WixUtilExtension</Name>
     </WixExtension>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="license.rtf" />
+  </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <PropertyGroup>
     <PreBuildEvent />
