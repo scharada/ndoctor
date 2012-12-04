@@ -9,7 +9,6 @@
  # Go to the medical record manager and create a new directory.
  # Go to the medical record manager and create a new record for the new directory
  # Edit the text and load a new medical record
- # Edit the text and go directly to the search box to load a new patient
  # Create a new macro and use it
  # Reload a previous revision
  # Change the default font and size in the settings and create a new record
@@ -27,8 +26,10 @@
 == Steps ==
  # Create a new record and put some text
  # Don't save and create a new record (with as few clicks as possible)
+ # Edit the text and go directly to the search box to load a new patient
 == Expected results ==
  # ...
+ # The unsaved text is saved
  # The unsaved text is saved
 == Issues ==
 === version 3.0.2: ===
