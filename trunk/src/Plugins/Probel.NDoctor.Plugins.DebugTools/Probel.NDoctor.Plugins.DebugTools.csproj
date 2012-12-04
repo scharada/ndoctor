@@ -51,9 +51,6 @@
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Nini">
-      <HintPath>..\..\packages\Trove.Nini.1.1.0.0\lib\net20\Nini.dll</HintPath>
-    </Reference>
     <Reference Include="Probel.Mvvm">
       <HintPath>..\..\packages\Probel.Mvvm.1.2.0.80\lib\Probel.Mvvm.dll</HintPath>
     </Reference>
@@ -74,6 +71,7 @@
     <Compile Include="DebugControl.xaml.cs">
       <DependentUpon>DebugControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MeetingManagerSettings.cs" />
     <Compile Include="PluginSettings.cs" />
     <Compile Include="Properties\Messages.fr.Designer.cs">
       <DependentUpon>Messages.fr.resx</DependentUpon>
@@ -113,11 +111,12 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="key.3.0.snk" />
+    <EmbeddedResource Include="MeetingManager.config" />
     <None Include="packages.config" />
-    <None Include="Plugin.config">
+    <EmbeddedResource Include="Plugin.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
-    </None>
+    </EmbeddedResource>
     <None Include="Probel.NDoctor.Plugins.DebugTools.licenseheader" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

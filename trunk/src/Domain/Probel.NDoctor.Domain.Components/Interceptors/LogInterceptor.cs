@@ -33,7 +33,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
         {
             if (!this.IsDecoratedWith<InspectionIgnoredAttribute>(invocation))
             {
-                Logger.Debug(string.Format("================> {0}.{1}", invocation.TargetType.Name, invocation.Method.Name));
+                Logger.Debug(string.Format("==============> {0}.{1}", invocation.TargetType.Name, invocation.Method.Name));
             }
             invocation.Proceed();
         }

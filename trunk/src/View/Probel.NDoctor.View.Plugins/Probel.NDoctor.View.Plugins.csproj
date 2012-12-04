@@ -52,6 +52,9 @@
     <Reference Include="log4net">
       <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Nini">
+      <HintPath>..\..\packages\Trove.Nini.1.1.0.0\lib\net20\Nini.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="Probel.Mvvm">
@@ -84,6 +87,7 @@
     <Compile Include="Helpers\Configuration.cs" />
     <Compile Include="Helpers\ITreeNode.cs" />
     <Compile Include="Helpers\PluginContext.cs" />
+    <Compile Include="Helpers\PluginSettingsBase.cs" />
     <Compile Include="IPlugin.cs" />
     <Compile Include="LogObject.cs" />
     <Compile Include="MefPluginLoader.cs" />

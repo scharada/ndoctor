@@ -16,63 +16,74 @@
 */
 namespace Probel.NDoctor.Plugins.DebugTools
 {
+    using Probel.NDoctor.View.Plugins.Helpers;
+    using System;
+    using System.Reflection;
     using System.IO;
+    using System.Text;
 
-    using Nini.Config;
-
-    public class PluginSettings
+    public class PluginSettings : PluginSettingsBase
     {
         #region Fields
-
-        private const string PLUGIN_PATH = @"Plugins\DebugTools";
-
-        private readonly IConfigSource Source = new XmlConfigSource(Path.Combine(PLUGIN_PATH, "Plugin.config"));
 
         private static string CONFIG = "Debug";
 
         #endregion Fields
 
+        #region Constructors
+
+        public PluginSettings()
+            : base("DebugTools")
+        {
+        }
+
+        #endregion Constructors
+
         #region Properties
 
         public bool DefaultGoogleCalendarConfig
         {
-            get { return this.Source.Configs[CONFIG].GetBoolean("DefaultGoogleCalendarConfig", true); }
-            set { this.Source.Configs[CONFIG].Set("DefaultGoogleCalendarConfig", value); }
+            get { return this.GetBoolean(CONFIG, "DefaultGoogleCalendarConfig", true); }
+            set { this.Set(CONFIG, "DefaultGoogleCalendarConfig", value); }
         }
 
         public string DefaultPatient
         {
-            get { return this.Source.Configs[CONFIG].GetString("DefaultPatient", "Wautier"); }
-            set { this.Source.Configs[CONFIG].Set("DefaultPatient", value); }
+            get { return this.GetString(CONFIG, "DefaultPatient", "Wautier"); }
+            set { this.Set(CONFIG, "DefaultPatient", value); }
         }
 
         public bool InjectDefaultData
         {
-            get { return this.Source.Configs[CONFIG].GetBoolean("InjectDefaultData", true); }
-            set { this.Source.Configs[CONFIG].Set("InjectDefaultData", value); }
+            get { return this.GetBoolean(CONFIG, "InjectDefaultData", true); }
+            set { this.Set(CONFIG, "InjectDefaultData", value); }
         }
 
         public bool IsGoogleActivated
         {
-            get { return this.Source.Configs[CONFIG].GetBoolean("IsGoogleActivated", true); }
-            set { this.Source.Configs[CONFIG].Set("IsGoogleActivated", value); }
+            get { return this.GetBoolean(CONFIG, "IsGoogleActivated", true); }
+            set { this.Set(CONFIG, "IsGoogleActivated", value); }
         }
 
         public bool LoadDefaultUser
         {
-            get { return this.Source.Configs[CONFIG].GetBoolean("LoadDefaultUser", true); }
-            set { this.Source.Configs[CONFIG].Set("LoadDefaultUser", value); }
+            get { return this.GetBoolean(CONFIG, "LoadDefaultUser", true); }
+            set { this.Set(CONFIG, "LoadDefaultUser", value); }
         }
 
         #endregion Properties
 
-        #region Methods
-
-        public void Save()
+        /// <summary>
+        /// Builds the default config file at the specified path with the
+        /// specified value.
+        /// </summary>
+        /// <returns></returns>
+        protected override Stream GetDefaultConfiguration()
         {
-            this.Source.Save();
-        }
+            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Probel.NDoctor.Plugins.DebugTools.Plugin.config");
 
-        #endregion Methods
+            if (stream == null) { throw new NullReferenceException("The embedded default configuration can't be loaded or doesn't exist."); }
+            else { return stream; }
+        }
     }
 }

@@ -22,8 +22,6 @@ namespace Probel.NDoctor.Plugins.DebugTools
     using System.Reflection;
     using System.Text;
 
-    using Nini.Config;
-
     using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View.Plugins;
@@ -89,13 +87,11 @@ namespace Probel.NDoctor.Plugins.DebugTools
         {
             try
             {
-                string PLUGIN_PATH = @"Plugins\MeetingManager";
-                string CONFIG = "GoogleCalendar";
-                IConfigSource source = new XmlConfigSource(Path.Combine(PLUGIN_PATH, "Plugin.config"));
-                source.Configs[CONFIG].Set("IsGoogleCalendarEnabled", isActivated);
-                source.Configs[CONFIG].Set("Password", "ndoctorndoctor".Encrypt());
-                source.Configs[CONFIG].Set("UserName", "ndoctor.development@gmail.com");
-                source.Save();
+                var stg = new MeetingManagerSettings();
+                stg.IsGoogleCalendarActivated = isActivated;
+                stg.Password = "ndoctorndoctor".Encrypt();
+                stg.UserName = "ndoctor.development@gmail.com";
+                stg.Save();
 
                 this.Logger.Warn("Setup the debug configuration for the Meeting manager");
             }

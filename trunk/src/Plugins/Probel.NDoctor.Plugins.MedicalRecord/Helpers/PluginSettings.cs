@@ -21,48 +21,59 @@
 
 namespace Probel.NDoctor.Plugins.MedicalRecord.Helpers
 {
-    using System.IO;
     using System.Windows.Media;
 
-    using Nini.Config;
+    using Probel.NDoctor.View.Plugins.Helpers;
+    using System.Reflection;
+    using System;
+    using System.IO;
+    using System.Text;
 
-    public class PluginSettings
+    public class PluginSettings : PluginSettingsBase
     {
         #region Fields
 
         private const string DefaultFont = "Arial";
         private const int DefaultSize = 16;
-        private const string PLUGIN_PATH = @"Plugins\MedicalRecord";
-
-        private readonly IConfigSource Source = new XmlConfigSource(Path.Combine(PLUGIN_PATH, "Plugin.config"));
 
         private static string CONFIG = "TextEditor";
 
         #endregion Fields
 
+        #region Constructors
+
+        public PluginSettings()
+            : base("MedicalRecord")
+        {
+        }
+
+        #endregion Constructors
+
         #region Properties
 
         public FontFamily FontFamily
         {
-            get { return new FontFamily(this.Source.Configs[CONFIG].Get("FontFamily", DefaultFont)); }
-            set { this.Source.Configs[CONFIG].Set("FontFamily", value.Source); }
+            get { return new FontFamily(this.GetString(CONFIG, "FontFamily", DefaultFont)); }
+            set { this.Set(CONFIG, "FontFamily", value.Source); }
         }
 
         public int FontSize
         {
-            get { return this.Source.Configs[CONFIG].GetInt("FontSize", DefaultSize); }
-            set { this.Source.Configs[CONFIG].Set("FontSize", value); }
+            get { return this.GetInt(CONFIG, "FontSize", DefaultSize); }
+            set { this.Set(CONFIG, "FontSize", value); }
         }
 
         #endregion Properties
-
-        #region Methods
-
-        public void Save()
+        /// <summary>
+        /// Builds the default config file at the specified path with the
+        /// specified value.
+        /// </summary>
+        /// <returns></returns>
+        protected override Stream GetDefaultConfiguration()
         {
-            this.Source.Save();
+            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Probel.NDoctor.Plugins.MedicalRecord.Plugin.config");
+            if (stream == null) { throw new NullReferenceException("The embedded default configuration can't be loaded or doesn't exist."); }
+            else { return stream; }
         }
-
-        #endregion Methods
     }
 }

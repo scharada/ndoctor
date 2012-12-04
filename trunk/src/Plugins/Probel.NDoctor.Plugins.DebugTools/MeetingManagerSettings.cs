@@ -19,17 +19,17 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
+namespace Probel.NDoctor.Plugins.DebugTools
 {
     using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DTO.GoogleCalendar;
     using Probel.NDoctor.View.Plugins.Helpers;
     using System.Reflection;
     using System;
-    using System.Text;
     using System.IO;
+    using System.Text;
 
-    public class PluginSettings : PluginSettingsBase
+    internal class MeetingManagerSettings : PluginSettingsBase
     {
         #region Fields
 
@@ -44,7 +44,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
         /// <summary>
         /// Initializes a new instance of the <see cref="PluginSettings"/> class.
         /// </summary>
-        public PluginSettings()
+        public MeetingManagerSettings()
             : base("MeetingManager")
         {
         }
@@ -105,7 +105,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
         /// <returns></returns>
         protected override Stream GetDefaultConfiguration()
         {
-            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Probel.NDoctor.Plugins.MeetingManager.Plugin.config");
+            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Probel.NDoctor.Plugins.DebugTools.MeetingManager.config");
             if (stream == null) { throw new NullReferenceException("The embedded default configuration can't be loaded or doesn't exist."); }
             else { return stream; }
         }

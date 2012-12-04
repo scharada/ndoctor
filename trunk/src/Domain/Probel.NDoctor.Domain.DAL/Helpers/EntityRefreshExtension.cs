@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,14 +16,20 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using NHibernate;
-using Probel.NDoctor.Domain.DAL.Entities;
-using Probel.NDoctor.Domain.DTO.Objects;
+
+#endregion Header
 
 namespace Probel.NDoctor.Domain.DAL.Helpers
 {
+    using NHibernate;
+
+    using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DTO.Objects;
+
     internal static class EntityRefreshExtension
     {
+        #region Methods
+
         public static void Refresh(this Patient patient, PatientDto from, ISession session)
         {
             patient.Tag = session.Get<Tag>(from.Tag.Id) ?? patient.Tag;
@@ -35,5 +43,7 @@ namespace Probel.NDoctor.Domain.DAL.Helpers
         {
             picture.Tag = session.Get<Tag>(from.Tag.Id) ?? picture.Tag;
         }
+
+        #endregion Methods
     }
 }
