@@ -22,3 +22,4 @@
  * n.a.
 === version 3.0.3: ===
  * issue 128.
+ * issue 149.
