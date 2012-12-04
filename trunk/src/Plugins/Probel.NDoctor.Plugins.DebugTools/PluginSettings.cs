@@ -16,11 +16,12 @@
 */
 namespace Probel.NDoctor.Plugins.DebugTools
 {
-    using Probel.NDoctor.View.Plugins.Helpers;
     using System;
-    using System.Reflection;
     using System.IO;
+    using System.Reflection;
     using System.Text;
+
+    using Probel.NDoctor.View.Plugins.Helpers;
 
     public class PluginSettings : PluginSettingsBase
     {
@@ -73,6 +74,8 @@ namespace Probel.NDoctor.Plugins.DebugTools
 
         #endregion Properties
 
+        #region Methods
+
         /// <summary>
         /// Builds the default config file at the specified path with the
         /// specified value.
@@ -85,5 +88,7 @@ namespace Probel.NDoctor.Plugins.DebugTools
             if (stream == null) { throw new NullReferenceException("The embedded default configuration can't be loaded or doesn't exist."); }
             else { return stream; }
         }
+
+        #endregion Methods
     }
 }

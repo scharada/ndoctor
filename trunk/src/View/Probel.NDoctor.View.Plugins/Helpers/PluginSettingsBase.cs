@@ -23,9 +23,9 @@ namespace Probel.NDoctor.View.Plugins.Helpers
 {
     using System;
     using System.IO;
+    using System.Text;
 
     using Nini.Config;
-    using System.Text;
 
     /// <summary>
     /// Represents the base of a plugin configuration. It's meant to hide the underneath mechanism
@@ -39,6 +39,7 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         #endregion Fields
 
         #region Constructors
+
         /// <summary>
         /// Initializes a new instance of the <see cref="PluginSettingsBase"/> class.
         /// </summary>
@@ -52,22 +53,6 @@ namespace Probel.NDoctor.View.Plugins.Helpers
             this.BuildDefaultFileStream(fileName);
 
             Source = new XmlConfigSource(fileName);
-        }
-
-        private void BuildDefaultFileStream(string fileName)
-        {
-            if (!File.Exists(fileName))
-            {
-                var configStream = this.GetDefaultConfiguration();
-
-                using (var reader = new StreamReader(configStream, Encoding.UTF8))
-                using (var stream = File.Create(fileName))
-                {
-                    var writer = new StreamWriter(stream);
-                    writer.Write(reader.ReadToEnd());
-                    writer.Flush();
-                }
-            }
         }
 
         #endregion Constructors
@@ -93,6 +78,14 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         {
             return Source.Configs[section].GetBoolean(key, defaultValue);
         }
+
+        /// <summary>
+        /// Builds the default config file at the specified path with the
+        /// specified value.
+        /// </summary>
+        /// <param name="fullname">The full name of the file to build.</param>
+        /// <param name="value">The content of the configuration.</param>
+        protected abstract Stream GetDefaultConfiguration();
 
         /// <summary>
         /// Gets the integer defined in the specified section and key of the plugin config file.
@@ -129,14 +122,22 @@ namespace Probel.NDoctor.View.Plugins.Helpers
             this.Source.Configs[section].Set(key, value);
         }
 
-        #endregion Methods
+        private void BuildDefaultFileStream(string fileName)
+        {
+            if (!File.Exists(fileName))
+            {
+                var configStream = this.GetDefaultConfiguration();
 
-        /// <summary>
-        /// Builds the default config file at the specified path with the
-        /// specified value.
-        /// </summary>
-        /// <param name="fullname">The full name of the file to build.</param>
-        /// <param name="value">The content of the configuration.</param>
-        protected abstract Stream GetDefaultConfiguration();
+                using (var reader = new StreamReader(configStream, Encoding.UTF8))
+                using (var stream = File.Create(fileName))
+                {
+                    var writer = new StreamWriter(stream);
+                    writer.Write(reader.ReadToEnd());
+                    writer.Flush();
+                }
+            }
+        }
+
+        #endregion Methods
     }
 }
