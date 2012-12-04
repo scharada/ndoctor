@@ -22,19 +22,19 @@
  # The macro is created and an be inserted into the medial record
  # The new default (font and size) are used as default.
 
-== Create new medical records: ==
-=== Steps ===
+= Create new medical records: =
+== Steps ==
  # Create a new record and put some text
  # Don't save and create a new record (with as few clicks as possible)
  # Edit the text and go directly to the search box to load a new patient
-=== Expected results ===
+== Expected results ==
  # ...
  # The unsaved text is saved
  # The unsaved text is saved
-== Issues ==
-=== version 3.0.2: ===
+= Issues =
+== version 3.0.2: ==
  * n.a.
-=== version 3.0.3: ===
+== version 3.0.3: ==
  * issue 111.
  * issue 123.
  * issue 125.
