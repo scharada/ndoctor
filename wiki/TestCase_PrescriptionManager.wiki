@@ -23,7 +23,7 @@
  # Connect into nDoctor with user that has write privilege
  # Create a prescription with twice the same drug
  # Click on "save"
- === Expected results ===
+=== Expected results ===
  # ...
  # You can add the drugs into the GUI
  # A clear error message indicates that you can't add twice the same drug in the same prescription
