@@ -26,7 +26,7 @@
 === Expected results ===
  # ...
  # You can add the drugs into the GUI
- # A clear error message indicates that you can't add twice the same drug in the same prescription
+ # The two drugs are added into the prescription
 == Remove a drug when creating a prescription ==
 === Steps ===
  # Create a new prescription
