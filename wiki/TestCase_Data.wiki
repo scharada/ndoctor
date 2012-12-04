@@ -22,3 +22,4 @@
  * issue 116.
  * issue 134.
  * issue 151.
+ * issue 152.
