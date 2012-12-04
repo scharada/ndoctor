@@ -57,13 +57,15 @@
 
             Assert.AreEqual(tagCount, this.ComponentUnderTest.GetTags(TagCategory.Picture).Count);
         }
-        private PictureDto GetFirstPicture(LightPatientDto patient)
-        {
-            return this.ComponentUnderTest.GetPictures(patient)[0];
-        }
+
         protected override void _Setup()
         {
             this.BuildComponent(session => new PictureComponent(session));
+        }
+
+        private PictureDto GetFirstPicture(LightPatientDto patient)
+        {
+            return this.ComponentUnderTest.GetPictures(patient)[0];
         }
 
         #endregion Methods

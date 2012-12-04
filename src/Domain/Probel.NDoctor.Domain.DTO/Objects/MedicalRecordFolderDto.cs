@@ -28,7 +28,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 
         private string name;
         private string notes;
-        private MedicalRecordDto[] records;
 
         #endregion Fields
 

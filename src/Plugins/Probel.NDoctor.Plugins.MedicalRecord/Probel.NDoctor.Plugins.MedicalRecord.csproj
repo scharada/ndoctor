@@ -150,9 +150,9 @@
     <None Include="app.config" />
     <None Include="key.3.0.snk" />
     <None Include="packages.config" />
-    <None Include="Plugin.config">
+    <EmbeddedResource Include="Plugin.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </EmbeddedResource>
     <None Include="Probel.NDoctor.Plugins.MedicalRecord.licenseheader" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

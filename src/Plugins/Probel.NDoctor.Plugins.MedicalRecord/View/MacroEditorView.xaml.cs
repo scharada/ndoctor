@@ -22,7 +22,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
     using System.Windows;
     using System.Xml;
 
-    using ICSharpCode.AvalonEdit;
     using ICSharpCode.AvalonEdit.CodeCompletion;
     using ICSharpCode.AvalonEdit.Highlighting;
 
