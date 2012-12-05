@@ -179,6 +179,18 @@ namespace Probel.NDoctor.Domain.Test.Components
             Assert.AreEqual(insurance.Name, patient.Insurance.Name);
         }
 
+        [Test]
+        public void UpdatePatient_WithNullProperties_AllIsSaved()
+        {
+            var patient = this.HelperComponent.GetAllPatients()[0];
+            patient.Profession = null;
+            patient.Reputation = null;
+            patient.Insurance = null;
+            patient.Practice = null;
+
+            this.ComponentUnderTest.Update(patient);
+        }
+
         protected override void _Setup()
         {
             this.BuildComponent(session => new PatientDataComponent(session));

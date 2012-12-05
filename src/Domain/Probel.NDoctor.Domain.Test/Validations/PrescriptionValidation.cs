@@ -55,6 +55,7 @@ namespace Probel.NDoctor.Domain.Test.Validations
             {
                 Drug = new DrugDto(),
                 Notes = Guid.NewGuid().ToString(),
+                Tag = new TagDto(TagCategory.Appointment) { Id = 14 },
             };
             Assert.IsTrue(item.IsValid());
         }
