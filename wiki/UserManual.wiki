@@ -6,11 +6,4 @@
 
 === How to configure a calendar to be the one nDoctor uses ===
 
-||*/!\ Modification of the configuration file could be dangerous. /!\* ||
-
-By default the calendar nDoctor uses is the default one. Here's how to change it:
-
- * Make a backup of your database and your configuration file
- * Open the configuration file "Probel.NDoctor.View.Core.exe.config"
- * Modify the key `DefaultCalendar` and replace the value with the url of the calendar you want to use.
- * [`Explanation on how to find the calendar url here`]
+ * [`Work in progress`]
