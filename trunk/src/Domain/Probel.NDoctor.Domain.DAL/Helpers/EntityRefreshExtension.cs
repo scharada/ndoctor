@@ -32,11 +32,11 @@ namespace Probel.NDoctor.Domain.DAL.Helpers
 
         public static void Refresh(this Patient patient, PatientDto from, ISession session)
         {
-            patient.Tag = session.Get<Tag>(from.Tag.Id) ?? patient.Tag;
-            patient.Insurance = session.Get<Insurance>(from.Insurance.Id) ?? patient.Insurance;
-            patient.Practice = session.Get<Practice>(from.Practice.Id) ?? patient.Practice;
-            patient.Profession = session.Get<Profession>(from.Profession.Id) ?? patient.Profession;
-            patient.Reputation = session.Get<Reputation>(from.Reputation.Id) ?? patient.Reputation;
+            if (from.Tag != null) { patient.Tag = session.Get<Tag>(from.Tag.Id) ?? patient.Tag; }
+            if (from.Insurance != null) { patient.Insurance = session.Get<Insurance>(from.Insurance.Id) ?? patient.Insurance; }
+            if (from.Practice != null) { patient.Practice = session.Get<Practice>(from.Practice.Id) ?? patient.Practice; }
+            if (from.Profession != null) { patient.Profession = session.Get<Profession>(from.Profession.Id) ?? patient.Profession; }
+            if (from.Reputation != null) { patient.Reputation = session.Get<Reputation>(from.Reputation.Id) ?? patient.Reputation; }
         }
 
         public static void Refresh(this Picture picture, PictureDto from, ISession session)

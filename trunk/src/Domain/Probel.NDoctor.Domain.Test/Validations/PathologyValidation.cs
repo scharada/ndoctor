@@ -43,6 +43,7 @@ namespace Probel.NDoctor.Domain.Test.Validations
             var item = new PathologyDto()
             {
                 Name = Guid.NewGuid().ToString(),
+                Tag = new TagDto(TagCategory.Appointment) { Id = 14 },
             };
             Assert.IsTrue(item.IsValid());
         }

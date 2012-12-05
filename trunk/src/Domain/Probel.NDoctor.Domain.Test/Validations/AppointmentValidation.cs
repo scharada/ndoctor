@@ -64,6 +64,7 @@ namespace Probel.NDoctor.Domain.Test.Validations
                 EndTime = now.AddHours(4),
                 StartTime = now,
                 Subject = Guid.NewGuid().ToString(),
+                Tag = new TagDto(TagCategory.Appointment) { Id = 14 },
             };
             Assert.IsTrue(item.IsValid());
         }
