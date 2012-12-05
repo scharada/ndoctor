@@ -246,9 +246,14 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             ViewService.Configure(e =>
             {
                 e.Bind<AddRecordView, AddRecordViewModel>()
-                    .OnShow(vm => vm.Refresh())
+                    .OnShow(vm =>
+                    {
+                        vm.Refresh();
+                        this.View.As<WorkbenchViewModel>().SaveCommand.TryExecute();
+                    })
                     .OnClosing(() => this.View.As<WorkbenchViewModel>().RefreshCommand.TryExecute());
                 e.Bind<AddFolderView, AddFolderViewModel>()
+                    .OnShow(() => this.View.As<WorkbenchViewModel>().SaveCommand.TryExecute())
                     .OnClosing(() => this.View.As<WorkbenchViewModel>().RefreshCommand.TryExecute());
                 e.Bind<MacroEditorView, MacroEditorViewModel>()
                     .OnShow(vm =>
