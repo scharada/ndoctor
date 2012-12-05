@@ -29,6 +29,12 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
     internal class AddDrugViewModel : BaseBoxViewModel<DrugDto>
     {
+        #region Fields
+
+        private bool isTypeEnabled;
+
+        #endregion Fields
+
         #region Constructors
 
         public AddDrugViewModel()
@@ -46,6 +52,16 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         {
             get;
             private set;
+        }
+
+        public bool IsTypeEnabled
+        {
+            get { return this.isTypeEnabled; }
+            set
+            {
+                this.isTypeEnabled = value;
+                this.OnPropertyChanged(() => IsTypeEnabled);
+            }
         }
 
         #endregion Properties
@@ -67,15 +83,5 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         }
 
         #endregion Methods
-        private bool isTypeEnabled ;
-        public bool IsTypeEnabled
-        {
-            get { return this.isTypeEnabled; }
-            set
-            {
-                this.isTypeEnabled = value;
-                this.OnPropertyChanged(() => IsTypeEnabled);
-            }
-        }
     }
 }

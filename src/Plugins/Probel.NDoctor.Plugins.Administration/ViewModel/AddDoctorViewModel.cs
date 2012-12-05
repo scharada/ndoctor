@@ -10,6 +10,7 @@
     {
         #region Fields
 
+        private bool isTypeEnabled;
         private TagDto selectedTag;
 
         #endregion Fields
@@ -26,6 +27,16 @@
         #endregion Constructors
 
         #region Properties
+
+        public bool IsTypeEnabled
+        {
+            get { return this.isTypeEnabled; }
+            set
+            {
+                this.isTypeEnabled = value;
+                this.OnPropertyChanged(() => IsTypeEnabled);
+            }
+        }
 
         public TagDto SelectedTag
         {
@@ -62,15 +73,5 @@
         }
 
         #endregion Methods
-        private bool isTypeEnabled ;
-        public bool IsTypeEnabled
-        {
-            get { return this.isTypeEnabled; }
-            set
-            {
-                this.isTypeEnabled = value;
-                this.OnPropertyChanged(() => IsTypeEnabled);
-            }
-        }
     }
 }
