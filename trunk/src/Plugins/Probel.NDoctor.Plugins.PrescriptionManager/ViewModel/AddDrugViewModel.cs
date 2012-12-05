@@ -35,6 +35,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         #region Fields
 
         private IPrescriptionComponent component;
+        private bool isTypeEnabled = true;
         private DrugDto selectedDrug;
 
         #endregion Fields
@@ -64,6 +65,16 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         {
             get;
             private set;
+        }
+
+        public bool IsTypeEnabled
+        {
+            get { return this.isTypeEnabled; }
+            set
+            {
+                this.isTypeEnabled = value;
+                this.OnPropertyChanged(() => IsTypeEnabled);
+            }
         }
 
         public DrugDto SelectedDrug

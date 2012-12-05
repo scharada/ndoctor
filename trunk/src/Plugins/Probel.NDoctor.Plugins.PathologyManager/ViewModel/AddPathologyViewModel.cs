@@ -36,6 +36,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 
         private IPathologyComponent component;
         private bool isPopupOpened;
+        private bool isTypeEnabled = true;
         private PathologyDto pathology;
 
         #endregion Fields
@@ -73,6 +74,16 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
             {
                 this.isPopupOpened = value;
                 this.OnPropertyChanged(() => IsPopupOpened);
+            }
+        }
+
+        public bool IsTypeEnabled
+        {
+            get { return this.isTypeEnabled; }
+            set
+            {
+                this.isTypeEnabled = value;
+                this.OnPropertyChanged(() => IsTypeEnabled);
             }
         }
 
