@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Domain.Test.Components
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.Test.Helpers;
+    using System;
 
     [TestFixture]
     [Category(Categories.FunctionalTest)]
@@ -56,6 +57,26 @@ namespace Probel.NDoctor.Domain.Test.Components
             Assert.Throws<ReferencialIntegrityException>(() => this.ComponentUnderTest.Remove(insuranceToDelete));
         }
 
+        /// <summary>
+        /// Issue 157
+        /// </summary>
+        [Test]
+        public void RemoveInsurance_CheckWhetherCanRemoveNull_PartialEvaluationExceptionExpression()
+        {
+            Assert.Throws<NotSupportedException>(() => this.ComponentUnderTest.CanRemove((InsuranceDto)null));
+        }
+        /// <summary>
+        /// Issue 157
+        /// </summary>
+        [Test]
+        public void RemoveInsurance_CheckWhetherCanRemove_ReturnsTheExectedValue()
+        {
+            /* Look at the SQL script to understand that the pathology with ID 1 is already referenced in
+             * the illness persion with id 1
+             */
+            var insurance = this.HelperComponent.GetInsurance(1);
+            Assert.IsFalse(this.ComponentUnderTest.CanRemove(insurance));
+        }
         /// <summary>
         /// issue 134
         /// </summary>

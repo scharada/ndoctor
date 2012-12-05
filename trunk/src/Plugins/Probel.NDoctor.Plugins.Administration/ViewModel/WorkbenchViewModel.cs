@@ -549,9 +549,9 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         {
             try
             {
-                if (this.component.CanRemove(this.selectedInsurance))
+                if (this.component.CanRemove(this.SelectedInsurance))
                 {
-                    if (this.component.CanRemove(this.SelectedDrug))
+                    if (this.UserAcceptedDeletion())
                     {
                         component.Remove(this.selectedInsurance);
                         this.Refresh();
