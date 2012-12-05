@@ -98,10 +98,24 @@ namespace Probel.NDoctor.Domain.DTO.Components
         IList<LightPatientDto> GetTopXPatient(uint x);
 
         /// <summary>
+        /// Increments the counter of the specified patient. This method is meant to keep
+        /// track of the most selected patients
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        void IncrementCounter(LightPatientDto patient);
+
+        /// <summary>
         /// Increments the patient counter.
         /// </summary>
         /// <param name="patient">The patient.</param>
         void IncrementPatientCounter(LightPatientDto patient);
+
+        /// <summary>
+        /// Gets the count of the specified patient. That's the number of time he/she was selected
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <returns>The number of times the patient was selected</returns>
+        long GetCountOf(LightPatientDto patient);
 
         #endregion Methods
     }

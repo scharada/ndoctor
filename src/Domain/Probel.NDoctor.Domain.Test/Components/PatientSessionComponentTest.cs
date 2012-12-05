@@ -78,6 +78,30 @@ namespace Probel.NDoctor.Domain.Test.Components
             Assert.AreEqual(180, patients[0].Height);
         }
 
+        [Test]
+        public void CheckCounter_CanGetCount_TheCountIs5()
+        {
+            var patient = this.HelperComponent.GetAllPatientsLight()[0];
+            var counter = this.ComponentUnderTest.GetCountOf(patient);
+
+            Assert.AreEqual(5, counter);
+        }
+
+        [Test]
+        public void CheckCounter_IncrementCounter_CounterIs6()
+        {
+
+            var patient = this.HelperComponent.GetAllPatientsLight()[0];
+            var counter = this.ComponentUnderTest.GetCountOf(patient);
+
+            Assert.AreEqual(5, counter);
+
+            this.WrapInTransaction(() => this.ComponentUnderTest.IncrementCounter(patient));
+            this.WrapInTransaction(() => counter = this.ComponentUnderTest.GetCountOf(patient));
+
+            Assert.AreEqual(6, counter);
+        }
+
         protected override void _Setup()
         {
             this.BuildComponent(s => new PatientSessionComponent(s));

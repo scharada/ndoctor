@@ -25,9 +25,12 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using NHibernate;
     using NHibernate.Linq;
 
+    using Probel.NDoctor.Domain.DAL.AopConfiguration;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Subcomponents;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.DTO.Specification;
 
@@ -172,6 +175,18 @@ namespace Probel.NDoctor.Domain.DAL.Components
                          .ToList();
         }
 
+        [Granted(To.Everyone)]
+        public void IncrementCounter(LightPatientDto patient)
+        {
+            var entity = (from p in this.Session.Query<Patient>()
+                          where p.Id == patient.Id
+                          select p).FirstOrDefault();
+            if (entity == null) { throw new EntityNotFoundException(typeof(Patient)); }
+
+            entity.Counter++;
+            this.Session.Update(entity);
+        }
+
         /// <summary>
         /// Increments the patient counter.
         /// </summary>
@@ -189,12 +204,30 @@ namespace Probel.NDoctor.Domain.DAL.Components
             {
                 var msg = "A query that asks all the patients returned zero results after the execution of the specification pattern. Maybe you have some null properties (Checl the SELECT clause)";
                 this.Logger.Warn(msg);
-            #if DEBUG
+#if DEBUG
                 throw new NotImplementedException(msg);
-            #endif
+#endif
             }
         }
 
         #endregion Methods
+
+
+        /// <summary>
+        /// Gets the count of the specified patient. That's the number of time he/she was selected
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <returns>
+        /// The number of times the patient was selected
+        /// </returns>
+        public long GetCountOf(LightPatientDto patient)
+        {
+            var entity = (from p in this.Session.Query<Patient>()
+                          where p.Id == patient.Id
+                          select p).FirstOrDefault();
+            if (entity == null) { throw new EntityNotFoundException(typeof(Patient)); }
+
+            return entity.Counter;
+        }
     }
 }
