@@ -24,12 +24,19 @@ namespace Probel.NDoctor.View.Plugins
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox.Navigation;
+    using Probel.Helpers.Events;
 
     /// <summary>
     /// 
     /// </summary>
     public interface IPluginHost : IStatusWriter
     {
+
+        /// <summary>
+        /// Occurs when use navigate to a new workbench.
+        /// The EventArgs Contains the previous and the current destination
+        /// </summary>
+        event EventHandler<NavigationRouteEventArgs> Navigating;
         #region Events
 
         /// <summary>

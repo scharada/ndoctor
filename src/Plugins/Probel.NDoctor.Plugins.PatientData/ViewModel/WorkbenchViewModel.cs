@@ -175,8 +175,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             try
             {
                 if (PluginContext.Host.SelectedPatient == null) { return; }
-                if (this.Patient != null && PluginContext.DoorKeeper.IsUserGranted(To.Write)) { this.Save(); }
 
+                PluginContext.Host.SelectedPatient = this.component.GetLightPatientById(PluginContext.Host.SelectedPatient.Id);
                 var result = this.component.GetDoctorOf(PluginContext.Host.SelectedPatient);
                 this.Doctors.Refill(result);
 
@@ -308,8 +308,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             {
                 this.component.Update(this.Patient);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
-
-                PluginContext.Host.SelectedPatient = this.component.GetLightPatientById(this.Patient.Id);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }

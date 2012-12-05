@@ -41,6 +41,7 @@ namespace Probel.NDoctor.View.Core.View
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox;
+    using Probel.Helpers.Events;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -64,6 +65,21 @@ namespace Probel.NDoctor.View.Core.View
             PluginContext.Host = this;
             this.DataContext = new MainWindowViewModel();
             this.WriteStatus(StatusType.Info, Messages.Msg_Ready);
+
+            this.workbench.NavigationService.Navigating += (sender, e) => this.OnNavigating(lastDestination, e.Content);
+        }
+
+        /// <summary>
+        /// Occurs when use navigate to a new workbench.
+        /// The EventArgs Contains the previous and the current destination
+        /// </summary>
+        public event EventHandler<NavigationRouteEventArgs> Navigating;
+        private void OnNavigating(object from, object to)
+        {
+            if (this.Navigating != null)
+            {
+                this.Navigating(this, new NavigationRouteEventArgs(from, to));
+            }
         }
 
         #endregion Constructors
@@ -321,7 +337,7 @@ namespace Probel.NDoctor.View.Core.View
         {
             this.Dispatcher.Invoke(action);
         }
-
+        private object lastDestination;
         /// <summary>
         /// Navigates to specified page.
         /// </summary>
@@ -329,7 +345,6 @@ namespace Probel.NDoctor.View.Core.View
         public void Navigate(object page)
         {
             Assert.IsNotNull(page, "page");
-
             // Hide other context menus otherwise, the context menu of this page
             // will be added to the others.
             foreach (var context in App.RibbonData.ContextualTabGroupDataCollection)
@@ -340,6 +355,7 @@ namespace Probel.NDoctor.View.Core.View
                 this.workbench.NavigationService.Navigate(page);
                 this.WriteStatus(StatusType.Info, Messages.Msg_Ready);
             });
+            this.lastDestination = page;
         }
 
         /// <summary>
@@ -496,11 +512,11 @@ namespace Probel.NDoctor.View.Core.View
 
         private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            #if DEBUG
+#if DEBUG
             this.WindowState = System.Windows.WindowState.Normal;
-            #else
+#else
             this.WindowState = System.Windows.WindowState.Maximized;
-            #endif
+#endif
         }
 
         private void WriteStatus(LightPatientDto value)
