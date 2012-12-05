@@ -167,9 +167,14 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 
         private void SelectPatient()
         {
-            PluginContext.Host.SelectedPatient = this.SelectedPatient;
-            this.Close();
-            PluginContext.Host.NavigateToStartPage();
+            try
+            {
+                this.component.IncrementCounter(this.SelectedPatient);
+                PluginContext.Host.SelectedPatient = this.SelectedPatient;
+                this.Close();
+                PluginContext.Host.NavigateToStartPage();
+            }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods
