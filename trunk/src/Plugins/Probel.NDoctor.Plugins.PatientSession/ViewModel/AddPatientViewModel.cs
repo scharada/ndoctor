@@ -102,7 +102,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PatientAdded);
                 this.Close();
             }
-            catch (ExistingItemException ex) { this.Handle.Warning(ex, ex.Message); }
+            catch (ExistingItemException ex) { this.Handle.Warning(ex, ex.TranslatedMessage); }
             catch (Exception ex) { this.Handle.Error(ex, Messages.Error_AddPatient); }
         }
 
