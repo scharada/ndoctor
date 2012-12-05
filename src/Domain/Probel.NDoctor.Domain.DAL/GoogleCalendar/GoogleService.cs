@@ -24,6 +24,8 @@ namespace Probel.NDoctor.Domain.DAL.GoogleCalendar
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     using Google.GData.Calendar;
     using Google.GData.Extensions;
@@ -34,8 +36,6 @@ namespace Probel.NDoctor.Domain.DAL.GoogleCalendar
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.GoogleCalendar;
-    using System.Threading.Tasks;
-    using System.Threading;
 
     internal class GoogleService
     {
