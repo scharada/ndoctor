@@ -33,10 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>key.3.0.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=2.1.267.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
@@ -121,7 +122,6 @@
     <Compile Include="ValidationMode.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="key.3.0.snk" />
     <None Include="MenuData\_Ribbons.cd" />
     <None Include="packages.config" />
     <None Include="_Design\Plugins.cd" />

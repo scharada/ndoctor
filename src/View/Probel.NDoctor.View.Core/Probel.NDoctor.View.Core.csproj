@@ -60,10 +60,11 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>key.3.0.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=2.1.267.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
@@ -224,7 +225,6 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="key.3.0.snk" />
     <None Include="packages.config" />
     <None Include="Probel.NDoctor.View.Core.exe.log4net">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
