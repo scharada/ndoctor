@@ -62,22 +62,14 @@ CopyPluginFiles("PathologyManager");
 CopyPluginFiles("PatientData");
 CopyPluginFiles("DbConvert");
 CopyPluginFiles("FamilyViewer");
-
-$currentPlugin = "MeetingManager"
-CopyPluginFiles($currentPlugin)
-$dir = GetDirectory($currentPlugin)                      
-copy "$root\Probel.NDoctor.Plugins.$currentPlugin\bin\$releaseMode\Plugin.config" "$dir"  
-
-$currentPlugin = "DebugTools"
-CopyPluginFiles($currentPlugin)
-$dir = GetDirectory($currentPlugin)                      
-copy "$root\Probel.NDoctor.Plugins.$currentPlugin\bin\$releaseMode\Plugin.config" "$dir"  
+CopyPluginFiles("MeetingManager")
+CopyPluginFiles("DebugTools")
 
 $currentPlugin = "MedicalRecord"
 CopyPluginFiles($currentPlugin)
 $dir = GetDirectory($currentPlugin)                       
 copy "$root\Probel.NDoctor.Plugins.$currentPlugin\bin\$releaseMode\ICSharpCode.AvalonEdit.dll" "$dir"                      
-copy "$root\Probel.NDoctor.Plugins.$currentPlugin\bin\$releaseMode\Plugin.config" "$dir"                                         
+
 
 ""
 "Script executed"
