@@ -138,6 +138,13 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         private void ConfigureViewService()
         {
+            PluginContext.Host.Navigating += (sender, e) =>
+            {
+                if (e.Current is WorkbenchView)
+                {
+                    this.View.As<WorkbenchViewModel>().SaveCommand.TryExecute();
+                }
+            };
             ViewService.Configure(e =>
             {
                 e.Bind<CreateDoctorView, CreateDoctorViewModel>()

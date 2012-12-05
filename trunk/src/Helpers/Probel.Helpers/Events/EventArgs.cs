@@ -36,7 +36,43 @@ namespace Probel.Helpers.Events
         /// </summary>
         public T Data
         {
-            get; private set;
+            get;
+            private set;
+        }
+
+        #endregion Properties
+    }
+
+    public class EventArgs<T1, T2> : EventArgs
+    {
+        #region Constructors
+
+        public EventArgs(T1 data1, T2 data2)
+        {
+            this.Data1 = data1;
+            this.Data2 = data2;
+        }
+
+        #endregion Constructors
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the first piece of data contained in an event
+        /// </summary>
+        public T1 Data1
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Gets the seconf piece of data contained in an event
+        /// </summary>
+        public T2 Data2
+        {
+            get;
+            private set;
         }
 
         #endregion Properties

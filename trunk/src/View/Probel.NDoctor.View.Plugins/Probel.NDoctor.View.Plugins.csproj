@@ -105,6 +105,7 @@
     <Compile Include="MenuData\RibbonSeparatorData.cs" />
     <Compile Include="MenuData\RibbonTabData.cs" />
     <Compile Include="MenuData\RibbonToggleButtonData.cs" />
+    <Compile Include="NavigationRouteEventArgs.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="IPluginHost.cs" />
     <Compile Include="IPluginLoader.cs" />
