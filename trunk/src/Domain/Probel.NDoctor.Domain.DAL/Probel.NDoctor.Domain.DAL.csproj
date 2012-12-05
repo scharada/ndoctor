@@ -34,10 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>key.3.0.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=2.1.267.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
@@ -179,7 +180,6 @@
     <Compile Include="Subcomponents\Updator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="key.3.0.snk" />
     <None Include="_Design\Domain\MedicalRecords.cd" />
     <None Include="_Design\Domain\Prescriptions.cd" />
     <None Include="_Design\Domain\Family.cd" />
