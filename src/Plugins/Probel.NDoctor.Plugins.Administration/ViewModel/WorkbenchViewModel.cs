@@ -354,7 +354,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                 .ContinueWith(e => this.GetAllListCallback(e), context);
         }
 
-        private bool AskToDelete()
+        private bool UserAcceptedDeletion()
         {
             var result = MessageBox.Show(Messages.Msg_AskDelete, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
 
@@ -519,16 +519,15 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         {
             try
             {
-                if (this.AskToDelete())
+                if (this.component.CanRemove(this.SelectedDoctor))
                 {
-                    if (this.component.CanRemove(this.SelectedDoctor))
+                    if (this.UserAcceptedDeletion())
                     {
                         this.component.Remove(this.SelectedDoctor);
+                        this.Refresh();
                     }
-                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
-
-                    this.Refresh();
                 }
+                else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning); }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -539,11 +538,13 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             {
                 if (this.component.CanRemove(this.SelectedDrug))
                 {
-                    this.component.Remove(this.SelectedDrug);
+                    if (this.UserAcceptedDeletion())
+                    {
+                        this.component.Remove(this.SelectedDrug);
+                        this.Refresh();
+                    }
                 }
-                else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
-
-                this.Refresh();
+                else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning); }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -552,16 +553,15 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         {
             try
             {
-                if (this.AskToDelete())
+                if (this.component.CanRemove(this.selectedInsurance))
                 {
-                    if (this.component.CanRemove(this.selectedInsurance))
+                    if (this.component.CanRemove(this.SelectedDrug))
                     {
                         component.Remove(this.selectedInsurance);
+                        this.Refresh();
                     }
-                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
-
-                    this.Refresh();
                 }
+                else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning); }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -570,16 +570,15 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         {
             try
             {
-                if (this.AskToDelete())
+                if (this.component.CanRemove(this.SelectedPathology))
                 {
-                    if (this.component.CanRemove(this.SelectedPathology))
+                    if (this.UserAcceptedDeletion())
                     {
                         this.component.Remove(this.SelectedPathology);
+                        this.Refresh();
                     }
-                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
-
-                    this.Refresh();
                 }
+                else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning); }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -588,16 +587,15 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         {
             try
             {
-                if (this.AskToDelete())
+                if (this.component.CanRemove(this.SelectedPractice))
                 {
-                    if (this.component.CanRemove(this.SelectedPractice) && this.AskToDelete())
+                    if (this.UserAcceptedDeletion())
                     {
                         this.component.Remove(this.SelectedPractice);
+                        this.Refresh();
                     }
-                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
-
-                    this.Refresh();
                 }
+                else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning); }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -606,16 +604,15 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         {
             try
             {
-                if (this.AskToDelete())
+                if (this.component.CanRemove(this.SelectedProfession))
                 {
-                    if (this.component.CanRemove(this.SelectedProfession) && this.AskToDelete())
+                    if (this.UserAcceptedDeletion())
                     {
                         this.component.Remove(this.SelectedProfession);
+                        this.Refresh();
                     }
-                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
-
-                    this.Refresh();
                 }
+                else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning); }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -624,16 +621,16 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         {
             try
             {
-                if (this.AskToDelete())
+                if (this.component.CanRemove(this.SelectedReputation) && this.UserAcceptedDeletion())
                 {
-                    if (this.component.CanRemove(this.SelectedReputation) && this.AskToDelete())
+                    if (this.UserAcceptedDeletion())
                     {
                         this.component.Remove(this.SelectedReputation);
+                        this.Refresh();
                     }
-                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
-
-                    this.Refresh();
                 }
+                else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning); }
+
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -642,16 +639,15 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         {
             try
             {
-                if (this.AskToDelete())
+                if (this.component.CanRemove(this.SelectedTag))
                 {
-                    if (this.component.CanRemove(this.SelectedTag))
+                    if (this.UserAcceptedDeletion())
                     {
                         this.component.Remove(this.SelectedTag);
+                        this.Refresh();
                     }
-                    else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Hand); }
-
-                    this.Refresh();
                 }
+                else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning); }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }

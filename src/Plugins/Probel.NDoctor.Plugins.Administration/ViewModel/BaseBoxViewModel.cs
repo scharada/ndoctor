@@ -11,6 +11,7 @@
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
 
     internal abstract class BaseBoxViewModel<T> : BaseViewModel
         where T : BaseDto
@@ -77,6 +78,7 @@
                 this.Close();
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_ItemAdded);
             }
+            catch (ExistingItemException ex) { this.Handle.Warning(ex, ex.TranslatedMessage); }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
 
