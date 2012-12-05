@@ -314,10 +314,9 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                 FilterTag = this.FilterTag,
             };
             this.IsBusy = true;
-            Task.Factory
-                .StartNew<TaskArgs>(e => this.FilterAsync(e as TaskArgs), input)
-                .ContinueWith(e => this.FilterCallback(e), token, TaskContinuationOptions.OnlyOnRanToCompletion, context)
-                .ContinueWith(e => this.Handle.Error(e.Exception.InnerException ?? e.Exception), token, TaskContinuationOptions.OnlyOnFaulted, context);
+            var task = Task.Factory.StartNew<TaskArgs>(e => this.FilterAsync(e as TaskArgs), input);
+            task.ContinueWith(e => this.FilterCallback(e), token, TaskContinuationOptions.OnlyOnRanToCompletion, context);
+            task.ContinueWith(e => this.Handle.Error(e.Exception.InnerException ?? e.Exception), token, TaskContinuationOptions.OnlyOnFaulted, context);
         }
 
         private TaskArgs FilterAsync(TaskArgs input)
@@ -424,9 +423,9 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             var token = new CancellationTokenSource().Token;
 
             this.SelectedPicture.Tag = this.SelectedTag;
-            Task.Factory.StartNew(e => UpdateAsync(e), this.SelectedPicture)
-                        .ContinueWith(e => this.Filter(), token, TaskContinuationOptions.OnlyOnRanToCompletion, context)
-                        .ContinueWith(e => this.Handle.Error(e.Exception.InnerException ?? e.Exception), token, TaskContinuationOptions.OnlyOnFaulted, context);
+            var task = Task.Factory.StartNew(e => UpdateAsync(e), this.SelectedPicture);
+            task.ContinueWith(e => this.Filter(), token, TaskContinuationOptions.OnlyOnRanToCompletion, context);
+            task.ContinueWith(e => this.Handle.Error(e.Exception.InnerException ?? e.Exception), token, TaskContinuationOptions.OnlyOnFaulted, context);
         }
 
         private void UpdateAsync(object e)
