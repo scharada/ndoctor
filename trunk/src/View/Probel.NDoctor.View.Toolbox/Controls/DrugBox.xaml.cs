@@ -42,6 +42,9 @@ namespace Probel.NDoctor.View.Toolbox.Controls
         public static DependencyProperty OkCommandProperty = DependencyProperty.RegisterAttached("OkCommand", typeof(ICommand)
             , typeof(DrugBox)
             , new UIPropertyMetadata(null));
+        public static DependencyProperty TypeEnabledProperty = DependencyProperty.RegisterAttached("TypeEnabled", typeof(bool)
+            , typeof(DrugBox)
+            , new UIPropertyMetadata(false));
 
         #endregion Fields
 
@@ -130,5 +133,20 @@ namespace Probel.NDoctor.View.Toolbox.Controls
         }
 
         #endregion Methods
+
+        public static bool GetTypeEnabled(DependencyObject target)
+        {
+            return (bool)target.GetValue(TypeEnabledProperty);
+        }
+
+        public static void SetTypeEnabled(DependencyObject target, bool value)
+        {
+            target.SetValue(TypeEnabledProperty, value);
+        }
+        public bool TypeEnabled
+        {
+            get { return GetTypeEnabled(this); }
+            set { SetTypeEnabled(this, value); }
+        }
     }
 }

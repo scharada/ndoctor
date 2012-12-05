@@ -44,7 +44,7 @@
             <Setter Property="Control.FontFamily" Value="Arial"/>
         </Style>
     </UserControl.Resources>
-    
+
     <StackPanel>
         <Grid Grid.Column="0">
             <Grid.ColumnDefinitions>
@@ -66,10 +66,17 @@
                 <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Doctor.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <ctrl:GenderBox Gender="{Binding ElementName=this, Path=Doctor.Gender, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                <ComboBox Grid.Column="0" Style="{StaticResource controlStyle}"
-                          ItemsSource="{Binding ElementName=this, Path=Specialisations}"
-                          SelectedItem="{Binding ElementName=this, Path=Doctor.Specialisation}"
-                          DisplayMemberPath="Name"/>
+                <DockPanel LastChildFill="True">
+                    <CheckBox x:Name="cb"
+                              Margin="4"
+                              IsChecked="{Binding ElementName=this, Path=TypeEnabled}"
+                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Column="0" Style="{StaticResource controlStyle}"
+                              IsEnabled="{Binding ElementName=cb, Path=IsChecked, UpdateSourceTrigger=PropertyChanged}"
+                              ItemsSource="{Binding ElementName=this, Path=Specialisations}"
+                              SelectedItem="{Binding ElementName=this, Path=Doctor.Specialisation}"
+                              DisplayMemberPath="Name"/>
+                </DockPanel>
 
                 <Label Style="{StaticResource separatorStyle}" Content="{Binding Source={x:Static Member=txt:DoctorBoxText.SeparatorContactData}}"/>
             </StackPanel>

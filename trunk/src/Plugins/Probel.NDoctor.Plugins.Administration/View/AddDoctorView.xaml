@@ -24,5 +24,6 @@
     <ctrl:DoctorBox Doctor="{Binding BoxItem}"
                     Specialisations="{Binding Specialisations}"                    
                     ButtonName="{Binding Source={x:Static Member=t:BaseText.OK}}"
-                    OkCommand="{Binding AddCommand}"/>
+                    OkCommand="{Binding AddCommand}"
+                    TypeEnabled="{Binding IsTypeEnabled}"/>
 </Window>

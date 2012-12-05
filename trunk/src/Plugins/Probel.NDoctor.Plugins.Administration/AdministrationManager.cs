@@ -137,7 +137,7 @@ namespace Probel.NDoctor.Plugins.Administration
             buttons.Add(new RibbonButtonData(Messages.Title_AddPathologyType, imgUri.FormatWith("New")
                 , new RelayCommand(() => ViewService.Manager.ShowDialog<AddPathologyTypeViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
-            buttons.Add(new RibbonButtonData(Messages.Title_AddDrug, imgUri.FormatWith("New")
+            buttons.Add(new RibbonButtonData(Messages.Title_AddPathology, imgUri.FormatWith("New")
                 , new RelayCommand(() => ViewService.Manager.ShowDialog<AddPathologyViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
             buttons.Add(new RibbonButtonData(Messages.Title_AddProfession, imgUri.FormatWith("New")

@@ -10,17 +10,23 @@
              xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Toolbox.Controls"
              
              mc:Ignorable="d"
-             Loaded="this_Loaded">
-    <StackPanel Width="200">
-        <Border Style="{StaticResource BorderStyle}">
+             Loaded="this_Loaded"
+             Width="250">
+    <StackPanel>
+        <DockPanel LastChildFill="True">
+            <CheckBox x:Name="cb"
+                      Margin="4"
+                      IsChecked="{Binding ElementName=this, Path=TypeEnabled}"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center"/>
             <ComboBox Name="focused"
+                      IsEnabled="{Binding ElementName=cb, Path=IsChecked, UpdateSourceTrigger=PropertyChanged}"
+                      Margin="4"
                       ItemsSource="{Binding ElementName=this, Path=Categories}"
                       DisplayMemberPath="Name"
                       SelectedItem="{Binding ElementName=this, Path=Drug.Tag, UpdateSourceTrigger=PropertyChanged}"/>
-        </Border>
-        <Border Style="{StaticResource BorderStyle}">
-            <TextBox Text="{Binding ElementName=this, Path=Drug.Name, UpdateSourceTrigger=PropertyChanged}"/>                     
-        </Border>
+        </DockPanel>
+        <TextBox Margin="4" Text="{Binding ElementName=this, Path=Drug.Name, UpdateSourceTrigger=PropertyChanged}"/>
         <ctrl:OKCancelBox OkCommand="{Binding ElementName=this, Path=OkCommand, UpdateSourceTrigger=PropertyChanged}"
                           ButtonName="{Binding ElementName=this, Path=ButtonName, UpdateSourceTrigger=PropertyChanged}"/>
     </StackPanel>

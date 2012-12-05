@@ -43,6 +43,10 @@ namespace Probel.NDoctor.Domain.DTO.Validators
             item.AddValidationRule(() => item.Subject
                 , () => !string.IsNullOrWhiteSpace(item.Subject)
                 , Messages.Invalid_EmptyValue);
+
+            item.AddValidationRule(() => item.Tag
+                , () => item.Tag != null && item.Tag.Id > 0
+                , Messages.Invalid_EmptyTag);
         }
 
         #endregion Methods

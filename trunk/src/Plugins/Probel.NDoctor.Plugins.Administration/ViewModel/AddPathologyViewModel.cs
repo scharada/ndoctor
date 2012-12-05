@@ -21,6 +21,7 @@
 
 namespace Probel.NDoctor.Plugins.Administration.ViewModel
 {
+    using System;
     using System.Collections.ObjectModel;
 
     using Probel.Mvvm.DataBinding;
@@ -34,6 +35,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         {
             this.Tags = new ObservableCollection<TagDto>();
             this.BoxItem = new PathologyDto();
+            this.IsTypeEnabled = true;
         }
 
         #endregion Constructors
@@ -46,13 +48,28 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             private set;
         }
 
+        private bool isTypeEnabled;
+        public bool IsTypeEnabled
+        {
+            get { return this.isTypeEnabled; }
+            set
+            {
+                this.isTypeEnabled = value;
+                this.OnPropertyChanged(() => IsTypeEnabled);
+            }
+        }
         #endregion Properties
 
         #region Methods
 
         public void Refresh()
         {
-            this.Tags.Refill(this.Component.GetTags(TagCategory.Pathology));
+            try
+            {
+                var tags = this.Component.GetTags(TagCategory.Pathology);
+                this.Tags.Refill(tags);
+            }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         protected override void AddItem()

@@ -264,6 +264,10 @@
     <value>This document doesn't have prescription</value>
     <comment>This document doesn't have prescription</comment>
   </data>
+  <data name="Invalid_EmptyTag" xml:space="preserve">
+    <value>The tag of this item can't be null</value>
+    <comment>The tag of this item can't be null</comment>
+  </data>
   <data name="Invalid_EmptyValue" xml:space="preserve">
     <value>Can't be empty.</value>
     <comment>Can't be empty.</comment>

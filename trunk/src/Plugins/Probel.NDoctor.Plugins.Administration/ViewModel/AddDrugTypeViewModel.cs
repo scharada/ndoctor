@@ -21,6 +21,8 @@
 
 namespace Probel.NDoctor.Plugins.Administration.ViewModel
 {
+    using System;
+
     using Probel.NDoctor.Domain.DTO.Objects;
 
     internal class AddDrugTypeViewModel : BaseBoxViewModel<TagDto>

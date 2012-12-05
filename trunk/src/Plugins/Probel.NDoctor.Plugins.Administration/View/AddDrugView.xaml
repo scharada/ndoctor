@@ -23,5 +23,6 @@
     <ctrl:DrugBox Drug="{Binding BoxItem}"
                   ButtonName="{Binding Source={x:Static Member=t:BaseText.OK}}"
                   Categories="{Binding Categories}"
-                  OkCommand="{Binding AddCommand}"/>
+                  OkCommand="{Binding AddCommand}"
+                  TypeEnabled="{Binding IsTypeEnabled}"/>
 </Window>

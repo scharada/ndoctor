@@ -142,5 +142,22 @@ namespace Probel.NDoctor.View.Toolbox.Controls
         }
 
         #endregion Methods
+        public static DependencyProperty TypeEnabledProperty = DependencyProperty.RegisterAttached("TypeEnabled", typeof(bool)
+            , typeof(DoctorBox)
+            , new UIPropertyMetadata(false));
+        public static bool GetTypeEnabled(DependencyObject target)
+        {
+            return (bool)target.GetValue(TypeEnabledProperty);
+        }
+
+        public static void SetTypeEnabled(DependencyObject target, bool value)
+        {
+            target.SetValue(TypeEnabledProperty, value);
+        }
+        public bool TypeEnabled
+        {
+            get { return GetTypeEnabled(this); }
+            set { SetTypeEnabled(this, value); }
+        }
     }
 }

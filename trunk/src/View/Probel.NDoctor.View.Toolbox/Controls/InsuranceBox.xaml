@@ -9,7 +9,8 @@
              xmlns:text="clr-namespace:Probel.NDoctor.View.Toolbox.Translations"
              
              mc:Ignorable="d"
-             Loaded="this_Loaded">
+             Loaded="this_Loaded"
+             Width="350">
     <UserControl.Resources>
         <!--controlStyle-->
         <Style x:Key="controlStyle">
@@ -39,7 +40,7 @@
             <Setter Property="Control.FontFamily" Value="Arial"/>
         </Style>
     </UserControl.Resources>
-    <StackPanel Width="350">
+    <StackPanel>
         <TabControl>
             <TabItem Header="{Binding Source={x:Static Member=text:InsuranceText.Data}}">
                 <Grid>
