@@ -65,6 +65,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         IList<ProfessionDto> GetAllProfessions();
 
         /// <summary>
+        /// Gets the count of the specified patient. That's the number of time he/she was selected
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <returns>The number of times the patient was selected</returns>
+        long GetCountOf(LightPatientDto patient);
+
+        /// <summary>
         /// Execute a search on the name of the patient and refines the result with the predicates.
         /// If the criteria is an "*" (asterisk), all the patient will be loaded in memory and afterward
         /// the refiner will be executed.
@@ -109,13 +116,6 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="patient">The patient.</param>
         void IncrementPatientCounter(LightPatientDto patient);
-
-        /// <summary>
-        /// Gets the count of the specified patient. That's the number of time he/she was selected
-        /// </summary>
-        /// <param name="patient">The patient.</param>
-        /// <returns>The number of times the patient was selected</returns>
-        long GetCountOf(LightPatientDto patient);
 
         #endregion Methods
     }
