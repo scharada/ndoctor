@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
 
     internal class AddUserViewModel : BaseViewModel
     {
@@ -132,6 +133,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_UserAdded);
                 this.Close();
             }
+            catch (ExistingItemException ex) { this.Handle.Warning(ex, ex.TranslatedMessage); }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
 

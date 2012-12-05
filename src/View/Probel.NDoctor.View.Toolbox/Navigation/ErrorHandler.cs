@@ -160,9 +160,13 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
 
         private void HandleError(bool silent, Exception ex, string format, params object[] args)
         {
+            var message = (format == null)
+                ? ex.Message
+                : format.FormatWith(args);
+
             //Logs only error, not authorisation errors...
             if (!(ex is AuthorisationException)) { this.Logger.Error(format.FormatWith(args), ex); }
-
+            
             if (ex is AssertionException) //Any AssertionException highlight a important issue, it's FATAL
             {
                 ViewService.Manager.ShowDialog<ExceptionViewModel>(vm => vm.Exception = ex);
@@ -177,9 +181,9 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
                 {
                     MessageBox.Show(format.FormatWith(args), Messages.Title_Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     //ViewService.Manager.Show<ExceptionViewModel>();
+                    this.WriteErrorInStatus(message);
                 }
             }
-            this.WriteErrorInStatus();
         }
 
         private void HandleFatal(Exception ex, string format, params object[] args)
@@ -190,7 +194,8 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
 
         private void HandleWarning(bool silent, Exception ex, string format, params object[] args)
         {
-            this.Logger.Warn(format.FormatWith(args), ex);
+            var message = format.FormatWith(args);
+            this.Logger.Warn(ex);
             if (!silent)
             {
                 if (ex.GetType() == typeof(AuthorisationException))
@@ -199,17 +204,21 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
                 }
                 else
                 {
-                    MessageBox.Show(ex.Message, Messages.Title_Warning, MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show(message, Messages.Title_Warning, MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
-            this.WriteWarningInStatus(string.Format(format, args));
+            this.WriteWarningInStatus(message);
         }
 
-        private void WriteErrorInStatus()
+        private void WriteErrorInStatus(string message = null)
         {
             if (this.StatusWriter != null)
             {
-                StatusWriter.WriteStatus(StatusType.Error, Messages.Msg_ErrorOccured);
+                message = (message == null)
+                    ? Messages.Msg_ErrorOccured
+                    : message;
+
+                StatusWriter.WriteStatus(StatusType.Error, message);
             }
             else { this.Logger.Warn("No StatusWriter is configured"); }
         }
