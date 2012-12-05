@@ -80,6 +80,23 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets the count of the specified patient. That's the number of time he/she was selected
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <returns>
+        /// The number of times the patient was selected
+        /// </returns>
+        public long GetCountOf(LightPatientDto patient)
+        {
+            var entity = (from p in this.Session.Query<Patient>()
+                          where p.Id == patient.Id
+                          select p).FirstOrDefault();
+            if (entity == null) { throw new EntityNotFoundException(typeof(Patient)); }
+
+            return entity.Counter;
+        }
+
+        /// <summary>
         /// Execute a search on the name of the patient and refines the result with the predicates.
         /// If the criteria is an "*" (asterisk), all the patient will be loaded in memory and afterward
         /// the refiner will be executed.
@@ -204,30 +221,12 @@ namespace Probel.NDoctor.Domain.DAL.Components
             {
                 var msg = "A query that asks all the patients returned zero results after the execution of the specification pattern. Maybe you have some null properties (Checl the SELECT clause)";
                 this.Logger.Warn(msg);
-#if DEBUG
+            #if DEBUG
                 throw new NotImplementedException(msg);
-#endif
+            #endif
             }
         }
 
         #endregion Methods
-
-
-        /// <summary>
-        /// Gets the count of the specified patient. That's the number of time he/she was selected
-        /// </summary>
-        /// <param name="patient">The patient.</param>
-        /// <returns>
-        /// The number of times the patient was selected
-        /// </returns>
-        public long GetCountOf(LightPatientDto patient)
-        {
-            var entity = (from p in this.Session.Query<Patient>()
-                          where p.Id == patient.Id
-                          select p).FirstOrDefault();
-            if (entity == null) { throw new EntityNotFoundException(typeof(Patient)); }
-
-            return entity.Counter;
-        }
     }
 }

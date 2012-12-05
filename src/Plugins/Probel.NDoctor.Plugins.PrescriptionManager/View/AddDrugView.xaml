@@ -30,6 +30,7 @@
         <h:DrugBox  Drug="{Binding SelectedDrug}"
                     ButtonName="{Binding Source={x:Static Member=txt:WorkbenchText.BtnAdd}}"
                     Categories="{Binding Tags}"
-                    OkCommand="{Binding AddCommand}"/>
+                    OkCommand="{Binding AddCommand}"
+                    TypeEnabled="{Binding IsTypeEnabled}"/>
     </StackPanel>
 </Window>

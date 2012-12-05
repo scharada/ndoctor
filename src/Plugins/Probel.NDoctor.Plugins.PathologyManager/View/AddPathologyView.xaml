@@ -28,6 +28,7 @@
         <h:PathologyBox Pathology="{Binding Pathology,UpdateSourceTrigger=PropertyChanged}"
                         ButtonName="{Binding Source={x:Static txt:BoxText.BtnAdd}}"
                         OkCommand="{Binding AddCommand}"
-                        Tags="{Binding Tags, UpdateSourceTrigger=PropertyChanged}"/>
+                        Tags="{Binding Tags, UpdateSourceTrigger=PropertyChanged}"
+                        TypeEnabled="{Binding IsTypeEnabled}"/>
     </StackPanel>
 </Window>
