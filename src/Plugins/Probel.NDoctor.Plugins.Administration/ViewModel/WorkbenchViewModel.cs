@@ -354,17 +354,11 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                 .ContinueWith(e => this.GetAllListCallback(e), context);
         }
 
-        private bool UserAcceptedDeletion()
-        {
-            var result = MessageBox.Show(Messages.Msg_AskDelete, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            return result == MessageBoxResult.Yes;
-        }
-
         private void EditDoctor()
         {
             ViewService.Manager.ShowDialog<AddDoctorViewModel>(vm =>
             {
+                vm.IsTypeEnabled = false;
                 vm.AddCommand = new RelayCommand(() =>
                 {
                     try
@@ -382,6 +376,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         {
             ViewService.Manager.ShowDialog<AddDrugViewModel>(vm =>
             {
+                vm.IsTypeEnabled = false;
                 vm.AddCommand = new RelayCommand(() =>
                 {
                     try
@@ -416,6 +411,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         {
             ViewService.Manager.ShowDialog<AddPathologyViewModel>(vm =>
             {
+                vm.IsTypeEnabled = false;
                 vm.AddCommand = new RelayCommand(() =>
                 {
                     try
@@ -650,6 +646,13 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                 else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning); }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
+        }
+
+        private bool UserAcceptedDeletion()
+        {
+            var result = MessageBox.Show(Messages.Msg_AskDelete, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            return result == MessageBoxResult.Yes;
         }
 
         #endregion Methods

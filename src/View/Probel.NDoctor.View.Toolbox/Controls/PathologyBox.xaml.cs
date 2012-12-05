@@ -42,6 +42,9 @@ namespace Probel.NDoctor.View.Toolbox.Controls
         public static DependencyProperty TagsProperty = DependencyProperty.RegisterAttached("Tags", typeof(ObservableCollection<TagDto>)
             , typeof(PathologyBox)
             , new UIPropertyMetadata(null));
+        public static DependencyProperty TypeEnabledProperty = DependencyProperty.RegisterAttached("TypeEnabled", typeof(bool)
+            , typeof(PathologyBox)
+            , new UIPropertyMetadata(false));
 
         #endregion Fields
 
@@ -80,6 +83,12 @@ namespace Probel.NDoctor.View.Toolbox.Controls
             set { PathologyBox.SetTags(this, value); }
         }
 
+        public bool TypeEnabled
+        {
+            get { return GetTypeEnabled(this); }
+            set { SetTypeEnabled(this, value); }
+        }
+
         #endregion Properties
 
         #region Methods
@@ -104,6 +113,11 @@ namespace Probel.NDoctor.View.Toolbox.Controls
             return target.GetValue(TagsProperty) as ObservableCollection<TagDto>;
         }
 
+        public static bool GetTypeEnabled(DependencyObject target)
+        {
+            return (bool)target.GetValue(TypeEnabledProperty);
+        }
+
         public static void SetButtonName(DependencyObject target, string value)
         {
             target.SetValue(ButtonNameProperty, value);
@@ -122,6 +136,11 @@ namespace Probel.NDoctor.View.Toolbox.Controls
         public static void SetTags(DependencyObject target, ObservableCollection<TagDto> value)
         {
             target.SetValue(TagsProperty, value);
+        }
+
+        public static void SetTypeEnabled(DependencyObject target, bool value)
+        {
+            target.SetValue(TypeEnabledProperty, value);
         }
 
         private void this_Loaded(object sender, RoutedEventArgs e)

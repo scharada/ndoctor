@@ -10,7 +10,7 @@
              xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Toolbox.Controls"
              
              mc:Ignorable="d"
-             Width="200"
+             Width="250"
              Loaded="this_Loaded">
 
     <StackPanel>

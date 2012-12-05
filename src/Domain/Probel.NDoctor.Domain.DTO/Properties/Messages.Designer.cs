@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Domain.DTO.Properties
-{
-
-
+namespace Probel.NDoctor.Domain.DTO.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -390,6 +390,15 @@ namespace Probel.NDoctor.Domain.DTO.Properties
         internal static string Invalid_EmptyPrescription {
             get {
                 return ResourceManager.GetString("Invalid_EmptyPrescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The tag of this item can&apos;t be null.
+        /// </summary>
+        internal static string Invalid_EmptyTag {
+            get {
+                return ResourceManager.GetString("Invalid_EmptyTag", resourceCulture);
             }
         }
         

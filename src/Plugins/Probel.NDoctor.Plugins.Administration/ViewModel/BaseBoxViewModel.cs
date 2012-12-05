@@ -6,12 +6,12 @@
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.Administration.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
-    using Probel.NDoctor.Domain.DTO.Exceptions;
 
     internal abstract class BaseBoxViewModel<T> : BaseViewModel
         where T : BaseDto
@@ -86,7 +86,8 @@
         {
             return this.BoxItem != null
                 && this.BoxItem.IsValid()
-                && PluginContext.DoorKeeper.IsUserGranted(To.Write);
+                && PluginContext.DoorKeeper.IsUserGranted(To.Write)
+                && this.BoxItem.IsValid();
         }
 
         #endregion Methods

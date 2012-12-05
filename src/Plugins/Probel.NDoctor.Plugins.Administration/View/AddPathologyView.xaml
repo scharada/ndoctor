@@ -21,6 +21,8 @@
     </Window.InputBindings>
 
     <ctrl:PathologyBox Pathology="{Binding BoxItem}"
+                       Tags="{Binding Tags}"
                        ButtonName="{Binding Source={x:Static Member=t:BaseText.OK}}"
-                       OkCommand="{Binding AddCommand}"/>
+                       OkCommand="{Binding AddCommand}"
+                       TypeEnabled="{Binding IsTypeEnabled}"/>
 </Window>

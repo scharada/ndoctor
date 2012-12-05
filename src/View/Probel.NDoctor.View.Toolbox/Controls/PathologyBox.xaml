@@ -15,16 +15,23 @@
              Width="250"
              Loaded="this_Loaded">
     <StackPanel>
-        <Border Style="{StaticResource BorderStyle}">
+        <DockPanel LastChildFill="True">
+            <CheckBox Margin="4"
+                      x:Name="cb"
+                      IsChecked="{Binding ElementName=this, Path=TypeEnabled}"
+                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            
             <ComboBox Name="focused"
+                      IsEnabled="{Binding ElementName=cb, Path=IsChecked,UpdateSourceTrigger=PropertyChanged}"
+                      Margin="4"
                       ItemsSource="{Binding ElementName=this, Path=Tags}"
                       DisplayMemberPath="Name"
                       SelectedItem="{Binding ElementName=this, Path=Pathology.Tag, UpdateSourceTrigger=PropertyChanged}"/>
-        </Border>
-        <Border Style="{StaticResource BorderStyle}">
-            <TextBox Text="{Binding ElementName=this, Path=Pathology.Name, UpdateSourceTrigger=PropertyChanged}"
-                     MinWidth="200"/>
-        </Border>
+        </DockPanel>
+
+        <TextBox Margin="4" Text="{Binding ElementName=this, Path=Pathology.Name, UpdateSourceTrigger=PropertyChanged}"
+                 MinWidth="200"/>
+
         <ctrl:OKCancelBox OkCommand="{Binding ElementName=this, Path=OkCommand, UpdateSourceTrigger=PropertyChanged}"
                           ButtonName="{Binding ElementName=this, Path=ButtonName, UpdateSourceTrigger=PropertyChanged}"/>
     </StackPanel>

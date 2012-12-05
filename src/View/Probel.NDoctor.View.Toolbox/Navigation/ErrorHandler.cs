@@ -166,7 +166,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
 
             //Logs only error, not authorisation errors...
             if (!(ex is AuthorisationException)) { this.Logger.Error(format.FormatWith(args), ex); }
-            
+
             if (ex is AssertionException) //Any AssertionException highlight a important issue, it's FATAL
             {
                 ViewService.Manager.ShowDialog<ExceptionViewModel>(vm => vm.Exception = ex);

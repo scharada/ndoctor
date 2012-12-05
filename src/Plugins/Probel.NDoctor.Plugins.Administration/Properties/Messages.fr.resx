@@ -262,7 +262,7 @@
     <comment>Add a new drug type</comment>
   </data>
   <data name="Title_AddPathologyType" xml:space="preserve">
-    <value>Maladie</value>
+    <value>Catégorie de maladie</value>
     <comment>Add a new pathology type</comment>
   </data>
   <data name="Title_AddPictureType" xml:space="preserve">
