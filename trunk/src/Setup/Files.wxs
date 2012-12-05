@@ -248,9 +248,6 @@
                     <Component Id="ICSharpCode.AvalonEdit.dll" Guid="{E13CE2A0-6CA6-446D-8709-05A00A1C6202}">
                         <File Id="ICSharpCode.AvalonEdit.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\MedicalRecord\ICSharpCode.AvalonEdit.dll" />
                     </Component>
-                    <Component Id="Plugin.config" Guid="{F657D06A-65E4-44F7-BC08-F51A0511599E}">
-                        <File Id="Plugin.config" KeyPath="yes" Source="$(env.NEST)\Plugins\MedicalRecord\Plugin.config" />
-                    </Component>
                     <Component Id="Probel.NDoctor.Plugins.MedicalRecord.dll" Guid="{EBB400CB-DD4A-4A33-9F95-287C22B3CEE6}">
                         <File Id="Probel.NDoctor.Plugins.MedicalRecord.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\MedicalRecord\Probel.NDoctor.Plugins.MedicalRecord.dll" />
                     </Component>
@@ -273,9 +270,6 @@
                     </Directory>
                 </Directory>
                 <Directory Id="MeetingManager" Name="MeetingManager">
-                    <Component Id="Plugin.config_1" Guid="{6FC3D280-A379-4CC0-BCA5-EDE42B9AD9EA}">
-                        <File Id="Plugin.config_1" KeyPath="yes" Source="$(env.NEST)\Plugins\MeetingManager\Plugin.config" />
-                    </Component>
                     <Component Id="Probel.NDoctor.Plugins.MeetingManager.dll" Guid="{D4BA0535-7C46-416E-8345-51591698106B}">
                         <File Id="Probel.NDoctor.Plugins.MeetingManager.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\MeetingManager\Probel.NDoctor.Plugins.MeetingManager.dll" />
                     </Component>
