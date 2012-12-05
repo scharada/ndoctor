@@ -51,3 +51,4 @@
 === version 3.0.3: ===
  * issue 112
  * issue 129
+ * issue 155
