@@ -40,7 +40,7 @@
  # The drug is removed from the unsaved prescription
 == Save prescription with different drugs of the same type ==
 === Steps ===
- # Create a prescription with different drugs of the same time
+ # Create a prescription with different drugs of the same type
  # Save this prescription
 === Results ==
  # ...
