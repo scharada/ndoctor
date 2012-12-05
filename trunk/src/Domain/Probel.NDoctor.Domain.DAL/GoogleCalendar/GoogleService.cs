@@ -34,6 +34,8 @@ namespace Probel.NDoctor.Domain.DAL.GoogleCalendar
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.GoogleCalendar;
+    using System.Threading.Tasks;
+    using System.Threading;
 
     internal class GoogleService
     {
@@ -87,33 +89,36 @@ namespace Probel.NDoctor.Domain.DAL.GoogleCalendar
         /// <param name="appointment">The appointment to insert.</param>
         public void AddAppointment(Appointment appointment)
         {
-            System.Threading.Tasks.Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    var service = this.GetService();
+            var context = TaskScheduler.FromCurrentSynchronizationContext();
+            var token = new CancellationTokenSource().Token;
+            var task = System.Threading.Tasks.Task.Factory.StartNew(() =>
+               {
+                   try
+                   {
+                       var service = this.GetService();
 
-                    var entry = new EventEntry();
-                    entry.Title.Text = appointment.Subject;
-                    entry.Times.Add(new When()
-                    {
-                        StartTime = appointment.StartTime,
-                        EndTime = appointment.EndTime,
-                    });
+                       var entry = new EventEntry();
+                       entry.Title.Text = appointment.Subject;
+                       entry.Times.Add(new When()
+                       {
+                           StartTime = appointment.StartTime,
+                           EndTime = appointment.EndTime,
+                       });
 
-                    var postUri = new Uri(this.CalendarUri);
-                    entry = service.Insert(postUri, entry) as EventEntry;
+                       var postUri = new Uri(this.CalendarUri);
+                       entry = service.Insert(postUri, entry) as EventEntry;
 
-                    entry.ExtensionElements.Add(new ExtendedProperty()
-                    {
-                        Name = SynchronisationProperty,
-                        Value = appointment.GoogleSynchronisationId.ToString(),
-                    });
-                    entry.Update();
-                    this.Logger.Info("Appointment correctly added into Google Calendar.");
-                }
-                catch (Exception ex) { throw new GoogleCalendarException(ex.Message, ex); }
-            });
+                       entry.ExtensionElements.Add(new ExtendedProperty()
+                       {
+                           Name = SynchronisationProperty,
+                           Value = appointment.GoogleSynchronisationId.ToString(),
+                       });
+                       entry.Update();
+                       this.Logger.Info("Appointment correctly added into Google Calendar.");
+                   }
+                   catch (Exception ex) { throw new GoogleCalendarException(ex.Message, ex); }
+               });
+            task.ContinueWith(t => this.Logger.Warn(t.Exception.InnerException.InnerException), token, TaskContinuationOptions.OnlyOnFaulted, context);
         }
 
         /// <summary>
