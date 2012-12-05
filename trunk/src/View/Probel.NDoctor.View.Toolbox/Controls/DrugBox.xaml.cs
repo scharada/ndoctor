@@ -83,6 +83,12 @@ namespace Probel.NDoctor.View.Toolbox.Controls
             set { DrugBox.SetOkCommand(this, value); }
         }
 
+        public bool TypeEnabled
+        {
+            get { return GetTypeEnabled(this); }
+            set { SetTypeEnabled(this, value); }
+        }
+
         #endregion Properties
 
         #region Methods
@@ -107,6 +113,11 @@ namespace Probel.NDoctor.View.Toolbox.Controls
             return target.GetValue(OkCommandProperty) as ICommand;
         }
 
+        public static bool GetTypeEnabled(DependencyObject target)
+        {
+            return (bool)target.GetValue(TypeEnabledProperty);
+        }
+
         public static void SetButtonName(DependencyObject target, string value)
         {
             target.SetValue(ButtonNameProperty, value);
@@ -127,26 +138,16 @@ namespace Probel.NDoctor.View.Toolbox.Controls
             target.SetValue(OkCommandProperty, value);
         }
 
+        public static void SetTypeEnabled(DependencyObject target, bool value)
+        {
+            target.SetValue(TypeEnabledProperty, value);
+        }
+
         private void this_Loaded(object sender, RoutedEventArgs e)
         {
             Keyboard.Focus(this.focused);
         }
 
         #endregion Methods
-
-        public static bool GetTypeEnabled(DependencyObject target)
-        {
-            return (bool)target.GetValue(TypeEnabledProperty);
-        }
-
-        public static void SetTypeEnabled(DependencyObject target, bool value)
-        {
-            target.SetValue(TypeEnabledProperty, value);
-        }
-        public bool TypeEnabled
-        {
-            get { return GetTypeEnabled(this); }
-            set { SetTypeEnabled(this, value); }
-        }
     }
 }

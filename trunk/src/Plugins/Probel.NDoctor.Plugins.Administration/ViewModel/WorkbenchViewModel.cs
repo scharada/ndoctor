@@ -617,7 +617,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         {
             try
             {
-                if (this.component.CanRemove(this.SelectedReputation) && this.UserAcceptedDeletion())
+                if (this.component.CanRemove(this.SelectedReputation))
                 {
                     if (this.UserAcceptedDeletion())
                     {

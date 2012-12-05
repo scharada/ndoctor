@@ -44,6 +44,9 @@ namespace Probel.NDoctor.View.Toolbox.Controls
         public static DependencyProperty SpecialisationsProperty = DependencyProperty.RegisterAttached("Specialisations", typeof(ObservableCollection<TagDto>)
             , typeof(DoctorBox)
             , new UIPropertyMetadata(null));
+        public static DependencyProperty TypeEnabledProperty = DependencyProperty.RegisterAttached("TypeEnabled", typeof(bool)
+            , typeof(DoctorBox)
+            , new UIPropertyMetadata(false));
 
         #endregion Fields
 
@@ -86,6 +89,12 @@ namespace Probel.NDoctor.View.Toolbox.Controls
             set { DoctorBox.SetSpecialisations(this, value); }
         }
 
+        public bool TypeEnabled
+        {
+            get { return GetTypeEnabled(this); }
+            set { SetTypeEnabled(this, value); }
+        }
+
         private ObservableCollection<Tuple<string, Gender>> Genders
         {
             get;
@@ -111,6 +120,11 @@ namespace Probel.NDoctor.View.Toolbox.Controls
             return target.GetValue(OkCommandProperty) as ICommand;
         }
 
+        public static bool GetTypeEnabled(DependencyObject target)
+        {
+            return (bool)target.GetValue(TypeEnabledProperty);
+        }
+
         public static void SetButtonName(DependencyObject target, string value)
         {
             target.SetValue(ButtonNameProperty, value);
@@ -124,6 +138,11 @@ namespace Probel.NDoctor.View.Toolbox.Controls
         public static void SetOkCommand(DependencyObject target, ICommand value)
         {
             target.SetValue(OkCommandProperty, value);
+        }
+
+        public static void SetTypeEnabled(DependencyObject target, bool value)
+        {
+            target.SetValue(TypeEnabledProperty, value);
         }
 
         private static ObservableCollection<TagDto> GetSpecialisations(DependencyObject target)
@@ -142,22 +161,5 @@ namespace Probel.NDoctor.View.Toolbox.Controls
         }
 
         #endregion Methods
-        public static DependencyProperty TypeEnabledProperty = DependencyProperty.RegisterAttached("TypeEnabled", typeof(bool)
-            , typeof(DoctorBox)
-            , new UIPropertyMetadata(false));
-        public static bool GetTypeEnabled(DependencyObject target)
-        {
-            return (bool)target.GetValue(TypeEnabledProperty);
-        }
-
-        public static void SetTypeEnabled(DependencyObject target, bool value)
-        {
-            target.SetValue(TypeEnabledProperty, value);
-        }
-        public bool TypeEnabled
-        {
-            get { return GetTypeEnabled(this); }
-            set { SetTypeEnabled(this, value); }
-        }
     }
 }

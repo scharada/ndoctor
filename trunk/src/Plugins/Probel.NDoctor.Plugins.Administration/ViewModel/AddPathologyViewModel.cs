@@ -29,6 +29,12 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
     internal class AddPathologyViewModel : BaseBoxViewModel<PathologyDto>
     {
+        #region Fields
+
+        private bool isTypeEnabled;
+
+        #endregion Fields
+
         #region Constructors
 
         public AddPathologyViewModel()
@@ -42,13 +48,6 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
 
         #region Properties
 
-        public ObservableCollection<TagDto> Tags
-        {
-            get;
-            private set;
-        }
-
-        private bool isTypeEnabled;
         public bool IsTypeEnabled
         {
             get { return this.isTypeEnabled; }
@@ -58,6 +57,13 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                 this.OnPropertyChanged(() => IsTypeEnabled);
             }
         }
+
+        public ObservableCollection<TagDto> Tags
+        {
+            get;
+            private set;
+        }
+
         #endregion Properties
 
         #region Methods

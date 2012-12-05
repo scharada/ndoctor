@@ -20,29 +20,29 @@ namespace Probel.NDoctor.View.Plugins
     using System.Windows;
     using System.Windows.Controls;
 
+    using Probel.Helpers.Events;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox.Navigation;
-    using Probel.Helpers.Events;
 
     /// <summary>
     /// 
     /// </summary>
     public interface IPluginHost : IStatusWriter
     {
-
-        /// <summary>
-        /// Occurs when use navigate to a new workbench.
-        /// The EventArgs Contains the previous and the current destination
-        /// </summary>
-        event EventHandler<NavigationRouteEventArgs> Navigating;
         #region Events
 
         /// <summary>
         /// Occurs when before new patient is connected.
         /// </summary>
         event EventHandler BeforeNewPatientConnected;
+
+        /// <summary>
+        /// Occurs when use navigate to a new workbench.
+        /// The EventArgs Contains the previous and the current destination
+        /// </summary>
+        event EventHandler<NavigationRouteEventArgs> Navigating;
 
         /// <summary>
         /// Occurs when a patient session is closed.
