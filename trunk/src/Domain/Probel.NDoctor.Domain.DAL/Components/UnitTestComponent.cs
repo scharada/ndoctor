@@ -126,5 +126,13 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         #endregion Methods
+
+        public LightUserDto GetLightUserById(int id)
+        {
+            var user = (from u in this.Session.Query<User>()
+                        where u.Id == id
+                        select u).First();
+            return Mapper.Map<User, LightUserDto>(user);
+        }
     }
 }

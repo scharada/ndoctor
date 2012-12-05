@@ -182,6 +182,20 @@ namespace Probel.NDoctor.Domain.Test.Components
             Assert.AreEqual(count, this.ComponentUnderTest.GetAllTasks().Length);
         }
 
+        [Test]
+        public void UpdateUser_AssignNewRole_PasswordUnchanged()
+        {
+            var user = this.HelperComponent.GetLightUserById(1);
+            var role = this.ComponentUnderTest.GetAllRoles()[1];
+            this.Session.Clear();
+
+            user.AssignedRole = role;
+            this.WrapInTransaction(() => this.ComponentUnderTest.Update(user));
+
+            Assert.AreEqual(role.Id, this.HelperComponent.GetLightUserById(1).AssignedRole.Id);
+            Assert.IsTrue(new UserSessionComponent(this.Session).CanConnect(user, "aze"));
+        }
+
         protected override void _Setup()
         {
             this.BuildComponent(session => new AuthorisationComponent(session));

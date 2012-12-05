@@ -180,7 +180,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             var entity = this.Session.Get<User>(user.Id);
             Mapper.Map<LightUserDto, User>(user, entity);
 
-            this.Session.Update(entity);
+            this.Session.Merge(entity);
         }
 
         /// <summary>
