@@ -112,11 +112,11 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
             this.IsBusy = true;
 
-            Task.Factory.StartNew<TaskContext>(e => RefreshCalendarAsync(e), taskContext)
-                .ContinueWith(e => RefreshCalendarCallback(e.Result)
-                    , token, TaskContinuationOptions.OnlyOnRanToCompletion, context)
-                .ContinueWith(e => this.Handle.Error(e.Exception.InnerException.InnerException)
-                    , token, TaskContinuationOptions.OnlyOnFaulted, context);
+            var task = Task.Factory.StartNew<TaskContext>(e => RefreshCalendarAsync(e), taskContext);
+            task.ContinueWith(e => RefreshCalendarCallback(e.Result)
+                , token, TaskContinuationOptions.OnlyOnRanToCompletion, context);
+            task.ContinueWith(e => this.Handle.Error(e.Exception.InnerException.InnerException)
+                , token, TaskContinuationOptions.OnlyOnFaulted, context);
         }
 
         private TaskContext RefreshCalendarAsync(object e)

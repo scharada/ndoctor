@@ -35,7 +35,7 @@ namespace Probel.NDoctor.Domain.DAL.GoogleCalendar
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.GoogleCalendar;
 
-    public class GoogleService
+    internal class GoogleService
     {
         #region Fields
 
