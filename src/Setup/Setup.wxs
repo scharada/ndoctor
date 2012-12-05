@@ -138,14 +138,12 @@
 <ComponentRef Id="Probel.NDoctor.View.Core.resources.dll_5"/>
 <ComponentRef Id="Probel.NDoctor.View.Plugins.resources.dll_5"/>
 <ComponentRef Id="ICSharpCode.AvalonEdit.dll"/>
-<ComponentRef Id="Plugin.config"/>
 <ComponentRef Id="Probel.NDoctor.Plugins.MedicalRecord.dll"/>
 <ComponentRef Id="Probel.Helpers.resources.dll_6"/>
 <ComponentRef Id="Probel.NDoctor.Domain.DAL.resources.dll_6"/>
 <ComponentRef Id="Probel.NDoctor.Plugins.MedicalRecord.resources.dll"/>
 <ComponentRef Id="Probel.NDoctor.View.Core.resources.dll_6"/>
 <ComponentRef Id="Probel.NDoctor.View.Plugins.resources.dll_6"/>
-<ComponentRef Id="Plugin.config_1"/>
 <ComponentRef Id="Probel.NDoctor.Plugins.MeetingManager.dll"/>
 <ComponentRef Id="Probel.Helpers.resources.dll_7"/>
 <ComponentRef Id="Probel.NDoctor.Domain.DAL.resources.dll_7"/>
