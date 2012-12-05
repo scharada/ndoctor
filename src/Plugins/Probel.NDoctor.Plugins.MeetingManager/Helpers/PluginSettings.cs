@@ -21,13 +21,14 @@
 
 namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
 {
+    using System;
+    using System.IO;
+    using System.Reflection;
+    using System.Text;
+
     using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DTO.GoogleCalendar;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using System.Reflection;
-    using System;
-    using System.Text;
-    using System.IO;
 
     public class PluginSettings : PluginSettingsBase
     {
@@ -96,8 +97,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
             };
         }
 
-        #endregion Methods
-
         /// <summary>
         /// Builds the default config file at the specified path with the
         /// specified value.
@@ -109,5 +108,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
             if (stream == null) { throw new NullReferenceException("The embedded default configuration can't be loaded or doesn't exist."); }
             else { return stream; }
         }
+
+        #endregion Methods
     }
 }
