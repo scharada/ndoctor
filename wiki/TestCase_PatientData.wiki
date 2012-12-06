@@ -29,3 +29,4 @@
  * issue 122.
  * issue 145.
  * issue 147.
+ * issue 158.
