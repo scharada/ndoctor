@@ -33,6 +33,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.DTO.Exceptions;
 
     public class UnitTestComponent : BaseComponent
     {

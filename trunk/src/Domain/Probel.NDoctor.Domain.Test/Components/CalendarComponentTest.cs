@@ -48,14 +48,14 @@ namespace Probel.NDoctor.Domain.Test.Components
             ObjectFactory.Configure(c => c.For<ICalendarComponent>().Use(this.ComponentUnderTest));
 
             var task = new TaskDto(To.EditCalendar);
-            var user = new LightUserDto() { AssignedRole = new RoleDto() };
+            var user = this.HelperComponent.GetLightUserById(1);
             user.AssignedRole.Tasks.Add(new TaskDto(To.EditCalendar));
 
             this.Factory.ConnectUser(user);
             var component = this.Factory.GetInstance<ICalendarComponent>();
 
             // This code should pass
-            component.Create(new AppointmentDto(), this.HelperComponent.GetAllPatientsLight()[0], GoogleConfiguration.NotBinded);
+            component.Create(new AppointmentDto() { User = user }, this.HelperComponent.GetAllPatientsLight()[0], GoogleConfiguration.NotBinded);
         }
 
         [Test]
@@ -64,7 +64,7 @@ namespace Probel.NDoctor.Domain.Test.Components
             ObjectFactory.Configure(c => c.For<ICalendarComponent>().Use(this.ComponentUnderTest));
 
             var task = new TaskDto(To.EditCalendar);
-            var user = new LightUserDto() { AssignedRole = new RoleDto() };
+            var user = this.HelperComponent.GetLightUserById(1);
             user.AssignedRole.Tasks.Add(new TaskDto(To.EditCalendar));
 
             this.Factory.ConnectUser(user);
@@ -72,11 +72,29 @@ namespace Probel.NDoctor.Domain.Test.Components
 
             // This code should pass
             var patient = this.HelperComponent.GetAllPatientsLight()[0];
-            var meeting = new AppointmentDto();
+            var meeting = new AppointmentDto() { User = user };
 
             component.Create(meeting, patient, GoogleConfiguration.NotBinded);
 
             component.Remove(meeting, patient, GoogleConfiguration.NotBinded);
+        }
+
+        /// <summary>
+        /// Issue 159
+        /// </summary>
+        [Test]
+        public void ManageAppointments_AddNewAppointment_PasswordOfUserNotReset()
+        {
+            var user = this.HelperComponent.GetLightUserById(1);
+
+
+            // This code should pass
+            var patient = this.HelperComponent.GetAllPatientsLight()[0];
+            var meeting = new AppointmentDto() { User = user };
+
+            this.WrapInTransaction(() => this.ComponentUnderTest.Create(meeting, patient, GoogleConfiguration.NotBinded));
+
+            Assert.IsTrue(new UserSessionComponent(this.Session).CanConnect(user, "aze"));
         }
 
         protected override void _Setup()
