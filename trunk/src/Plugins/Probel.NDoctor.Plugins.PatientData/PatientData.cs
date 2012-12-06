@@ -77,12 +77,20 @@ namespace Probel.NDoctor.Plugins.PatientData
         public override void Initialise()
         {
             this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
+
+            PluginContext.Host.Disconnecting -= Host_Disconnecting;
+            PluginContext.Host.Disconnecting += Host_Disconnecting;
             PluginContext.Host.Invoke(() =>
             {
                 this.ConfigureViewService();
                 this.BuildButtons();
                 this.BuildContextMenu();
             });
+        }
+
+        private void Host_Disconnecting(object sender, EventArgs e)
+        {
+            this.View.As<WorkbenchViewModel>().SaveCommand.TryExecute();
         }
 
         private void BuildButtons()
@@ -107,8 +115,6 @@ namespace Probel.NDoctor.Plugins.PatientData
         {
             var saveButton = new RibbonButtonData(Messages.Title_Save, imgUri.FormatWith("Save"), this.View.As<WorkbenchViewModel>().SaveCommand);
 
-            var rollbackButton = new RibbonButtonData(Messages.Title_Rollback, imgUri.FormatWith("Save"), this.View.As<WorkbenchViewModel>().RollbackCommand);
-
             var splitter = new RibbonMenuItemData(Messages.Btn_Add, imgUri.FormatWith("Add"), null);
             splitter.ControlDataCollection.Add(new RibbonMenuItemData(Messages.Title_AddDoctor, imgUri.FormatWith("Add"), this.addDoctorCommand));
             splitter.ControlDataCollection.Add(new RibbonMenuItemData(Messages.Title_AddSpecialisation, imgUri.FormatWith("Add"), this.addSpecialisationCommand));
@@ -119,7 +125,6 @@ namespace Probel.NDoctor.Plugins.PatientData
 
             var cgroup = new RibbonGroupData(Messages.Menu_Actions);
             cgroup.ButtonDataCollection.Add(saveButton);
-            cgroup.ButtonDataCollection.Add(rollbackButton);
             cgroup.ButtonDataCollection.Add(splitter);
 
             var tab = new RibbonTabData(Messages.Menu_File) { ContextualTabGroupHeader = Messages.Title_ContextMenu };

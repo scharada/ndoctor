@@ -42,7 +42,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         #region Fields
 
         private IPatientDataComponent component;
-        private PatientDto memento = null;
         private PatientDto patient;
         private LightDoctorDto selectedDoctor;
 
@@ -68,7 +67,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             this.RemoveLinkCommand = new RelayCommand(() => this.RemoveLink());
 
             this.SaveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
-            this.RollbackCommand = new RelayCommand(() => this.Rollback(), () => this.CanRollback());
         }
 
         #endregion Constructors
@@ -111,8 +109,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             set
             {
                 this.patient = value;
-                if (this.memento == null) this.memento = value.Clone() as PatientDto;
-
                 this.OnPropertyChanged(() => this.Patient);
             }
         }
@@ -139,12 +135,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         {
             get;
             set;
-        }
-
-        public ICommand RollbackCommand
-        {
-            get;
-            private set;
         }
 
         public ICommand SaveCommand
@@ -196,12 +186,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         private bool CanChangePicture()
         {
             return this.Patient != null;
-        }
-
-        private bool CanRollback()
-        {
-            return PluginContext.DoorKeeper.IsUserGranted(To.Write)
-                && this.memento != null;
         }
 
         private bool CanSave()
@@ -293,13 +277,6 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             {
                 this.Handle.Error(ex, Messages.Msg_ErrorRemovingDoctor);
             }
-        }
-
-        private void Rollback()
-        {
-            this.patient = this.memento;
-            this.Save();
-            this.Refresh();
         }
 
         private void Save()

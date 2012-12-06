@@ -39,6 +39,11 @@ namespace Probel.NDoctor.View.Plugins
         event EventHandler BeforeNewPatientConnected;
 
         /// <summary>
+        /// Occurs when current user is disconnecting or the main window is closing.
+        /// </summary>
+        event EventHandler Disconnecting;
+
+        /// <summary>
         /// Occurs when use navigate to a new workbench.
         /// The EventArgs Contains the previous and the current destination
         /// </summary>
