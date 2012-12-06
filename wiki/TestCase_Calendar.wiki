@@ -7,7 +7,7 @@
  # Insert an appointment
 == Expected results ==
  # ...
- # A clear error message about misconfiguration should appear and no appointment should be inserted into nDoctor's database
+ # A clear error message about misconfiguration should appear and the appointment should be inserted into nDoctor's database
 = Manage data: =
 == Steps ==
  # Connect with a user that has write privilege
