@@ -30,7 +30,6 @@ namespace Probel.NDoctor.View.Core.View
     using Microsoft.Windows.Controls.Ribbon;
 
     using Probel.Helpers.Assertion;
-    using Probel.Helpers.Events;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Helpers;
@@ -68,6 +67,8 @@ namespace Probel.NDoctor.View.Core.View
             this.WriteStatus(StatusType.Info, Messages.Msg_Ready);
 
             this.workbench.NavigationService.Navigating += (sender, e) => this.OnNavigating(lastDestination, e.Content);
+
+            this.Closing += (sender, e) => this.OnDisconnecting();
         }
 
         #endregion Constructors
@@ -78,6 +79,11 @@ namespace Probel.NDoctor.View.Core.View
         /// Occurs when before new patient is connected.
         /// </summary>
         public event EventHandler BeforeNewPatientConnected;
+
+        /// <summary>
+        /// Occurs when current user is disconnecting or the main window is closing.
+        /// </summary>
+        public event EventHandler Disconnecting;
 
         /// <summary>
         /// Occurs when use navigate to a new workbench.
@@ -141,6 +147,7 @@ namespace Probel.NDoctor.View.Core.View
             get { return this.connectedUser; }
             set
             {
+                this.OnDisconnecting();
                 this.connectedUser = value;
                 this.RefreshDataContext(this.connectedUser);
             }
@@ -430,6 +437,14 @@ namespace Probel.NDoctor.View.Core.View
         public void WriteStatusReady()
         {
             this.WriteStatus(StatusType.Info, Messages.Msg_Ready);
+        }
+
+        protected void OnDisconnecting()
+        {
+            if (this.Disconnecting != null)
+            {
+                this.Disconnecting(this, EventArgs.Empty);
+            }
         }
 
         private void AddButton(RibbonTabData tab, string goupName, RibbonControlData button)
