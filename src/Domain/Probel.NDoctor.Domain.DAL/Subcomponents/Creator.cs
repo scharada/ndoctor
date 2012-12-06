@@ -378,6 +378,8 @@
                 ? Guid.NewGuid() //This id allows to find Google appointments
                 : new Guid(); //Empty Guid indicates this appointments is not binded with Google Calendar
 
+            meetingEntity.User = this.Session.Get<User>(meetingEntity.User.Id);
+
             patientEntity.Appointments.Add(meetingEntity);
             this.Session.SaveOrUpdate(patientEntity);
 

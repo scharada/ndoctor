@@ -97,6 +97,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
                     User = PluginContext.Host.ConnectedUser,
                     Tag = this.SelectedAppointmentTag,
                 };
+
                 this.Component.Create(appointment, this.SelectedPatient, new PluginSettings().GetGoogleConfiguration());
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_AppointmentAdded);
