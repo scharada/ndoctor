@@ -13,6 +13,15 @@
  # ...
  # The data are updated
  # The data are updated
+= Auto save ==
+== Steps ==
+ # Modify data and load a new patient
+ # Modify and disconnect the current user
+ # Modify and close nDoctor
+== Expected results ==
+ # Modification are saved
+ # Modification are saved
+ # Modification are saved
 == Issues ==
 === version 3.0.2: ===
  * n.a.
