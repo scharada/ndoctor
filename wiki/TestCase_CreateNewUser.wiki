@@ -11,8 +11,9 @@
  # ...
  # ...
  # Check the menus:
-  * In the application menu the *only one menu* is active:
+  * In the application menu the *only two menus* is active:
    * Start page
+   * About
   * In the main ribbon *all* menus that are greyed
 
 == Issues ==
