@@ -44,9 +44,21 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Toolbox.Logging;
 
     internal class StartPageViewModel : BaseViewModel
     {
+
+        private LogEvent selectedRow;
+        public LogEvent SelectedRow
+        {
+            get { return this.selectedRow; }
+            set
+            {
+                this.selectedRow = value;
+                this.OnPropertyChanged(() => SelectedRow);
+            }
+        }     
         #region Fields
 
         private readonly IApplicationStatisticsComponent Component = PluginContext.ComponentFactory.GetInstance<IApplicationStatisticsComponent>();
@@ -64,6 +76,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         {
             this.refreshStatisticsCommand = new RelayCommand(() => this.RefreshStatistics(), () => this.CanRefreshStatistics());
             this.Bottlenecks = new ObservableCollection<BottleneckDto>();
+            this.LogEvents = new ObservableCollection<LogEvent>();
         }
 
         #endregion Constructors
@@ -94,6 +107,15 @@ namespace Probel.NDoctor.View.Core.ViewModel
                 this.isBusy = value;
                 this.OnPropertyChanged(() => IsBusy);
             }
+        }
+
+        /// <summary>
+        /// Gets the list of log events recorded in this session.
+        /// </summary>
+        public ObservableCollection<LogEvent> LogEvents
+        {
+            get;
+            set;
         }
 
         public ICommand RefreshStatisticsCommand
@@ -150,6 +172,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             this.TargetUsage = taskContext.TargetUsage;
             this.ExecutionTime = taskContext.ExecutionTime;
             this.Bottlenecks.Refill(taskContext.Bottlenecks);
+            this.LogEvents.Refill(WpfAppender.GetLogs(this.Logger));
             this.IsBusy = false;
         }
 
@@ -163,7 +186,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
             public IEnumerable<BottleneckDto> Bottlenecks
             {
-                get; set;
+                get;
+                set;
             }
 
             public Chart<DateTime, double> ExecutionTime

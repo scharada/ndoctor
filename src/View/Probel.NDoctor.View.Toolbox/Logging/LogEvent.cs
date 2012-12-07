@@ -19,25 +19,47 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Domain.Components.Interceptors
+namespace Probel.NDoctor.View.Toolbox.Logging
 {
-    using Castle.DynamicProxy;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
-    using Probel.NDoctor.Domain.DAL.AopConfiguration;
-
-    internal class LogInterceptor : BaseInterceptor
+    public class LogEvent
     {
-        #region Methods
+        #region Properties
 
-        public override void Intercept(IInvocation invocation)
+        public string LevelName
         {
-            if (!this.IsDecoratedWith<InspectionIgnoredAttribute>(invocation))
-            {
-                Logger.Debug(string.Format("===================> {0}.{1}", invocation.TargetType.Name, invocation.Method.Name));
-            }
-            invocation.Proceed();
+            get;
+            set;
         }
 
-        #endregion Methods
+        public string LoggerName
+        {
+            get;
+            set;
+        }
+
+        public string Message
+        {
+            get;
+            set;
+        }
+
+        public string ThreadName
+        {
+            get;
+            set;
+        }
+
+        public DateTime TimeStamp
+        {
+            get;
+            set;
+        }
+
+        #endregion Properties
     }
 }

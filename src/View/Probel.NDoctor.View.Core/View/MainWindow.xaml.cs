@@ -41,6 +41,7 @@ namespace Probel.NDoctor.View.Core.View
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -391,6 +392,7 @@ namespace Probel.NDoctor.View.Core.View
         /// </summary>
         public void NavigateToStartPage()
         {
+            this.Navigate(Startpage);
             this.Dispatcher.Invoke((Action)delegate
             {
                 if (this.Startpage.DataContext is StartPageViewModel)
@@ -398,7 +400,6 @@ namespace Probel.NDoctor.View.Core.View
                     (this.Startpage.DataContext as StartPageViewModel).RefreshStatisticsCommand.TryExecute();
                 }
             });
-            this.Navigate(Startpage);
         }
 
         /// <summary>
@@ -538,11 +539,11 @@ namespace Probel.NDoctor.View.Core.View
 
         private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            #if DEBUG
+#if DEBUG
             this.WindowState = System.Windows.WindowState.Normal;
-            #else
+#else
             this.WindowState = System.Windows.WindowState.Maximized;
-            #endif
+#endif
         }
 
         private void WriteStatus(LightPatientDto value)

@@ -31,6 +31,7 @@ namespace Probel.NDoctor.View.Toolbox.ViewModel
     using log4net;
 
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.View.Toolbox.Logging;
     using Probel.NDoctor.View.Toolbox.Navigation;
 
     public class ExceptionViewModel : ObservableObject

@@ -404,6 +404,24 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Logs.
+        /// </summary>
+        internal static string Tab_Logs {
+            get {
+                return ResourceManager.GetString("Tab_Logs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usage statistics.
+        /// </summary>
+        internal static string Tab_Statistics {
+            get {
+                return ResourceManager.GetString("Tab_Statistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About nDoctor.
         /// </summary>
         internal static string Title_About {
@@ -629,11 +647,29 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Niveau.
+        /// </summary>
+        internal static string Title_LevelName {
+            get {
+                return ResourceManager.GetString("Title_LevelName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Session.
         /// </summary>
         internal static string Title_Managers {
             get {
                 return ResourceManager.GetString("Title_Managers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        internal static string Title_Message {
+            get {
+                return ResourceManager.GetString("Title_Message", resourceCulture);
             }
         }
         
@@ -832,6 +868,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         internal static string Title_TargetType {
             get {
                 return ResourceManager.GetString("Title_TargetType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horodatage.
+        /// </summary>
+        internal static string Title_TimeStamp {
+            get {
+                return ResourceManager.GetString("Title_TimeStamp", resourceCulture);
             }
         }
         
