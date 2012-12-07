@@ -88,11 +88,6 @@ namespace Probel.NDoctor.Plugins.PatientData
             });
         }
 
-        private void Host_Disconnecting(object sender, EventArgs e)
-        {
-            this.View.As<WorkbenchViewModel>().SaveCommand.TryExecute();
-        }
-
         private void BuildButtons()
         {
             this.navigateCommand = new RelayCommand(() => this.Navigate(), () => this.CanNavigate());
@@ -167,6 +162,11 @@ namespace Probel.NDoctor.Plugins.PatientData
                 e.Bind<BindDoctorView, BindDoctorViewModel>()
                     .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
             });
+        }
+
+        private void Host_Disconnecting(object sender, EventArgs e)
+        {
+            this.View.As<WorkbenchViewModel>().SaveCommand.TryExecute();
         }
 
         private bool IsGrantedToWrite()

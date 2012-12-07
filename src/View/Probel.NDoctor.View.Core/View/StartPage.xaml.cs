@@ -18,6 +18,8 @@ namespace Probel.NDoctor.View.Core.View
 {
     using System.Windows.Controls;
 
+    using Probel.NDoctor.View.Core.ViewModel;
+
     /// <summary>
     /// Interaction logic for StartPage.xaml
     /// </summary>
@@ -28,6 +30,7 @@ namespace Probel.NDoctor.View.Core.View
         public StartPage()
         {
             InitializeComponent();
+            this.DataContext = new StartPageViewModel();
         }
 
         #endregion Constructors

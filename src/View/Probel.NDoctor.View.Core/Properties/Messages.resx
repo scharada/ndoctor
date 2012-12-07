@@ -442,4 +442,40 @@ The application will close. Check the logs for further  information</value>
     <value>Configuring window manager...</value>
     <comment>Configuring window manager...</comment>
   </data>
+  <data name="Msg_RefreshingStat" xml:space="preserve">
+    <value>Rafraîchissement des statistiques...</value>
+    <comment>Refreshing statistics...</comment>
+  </data>
+  <data name="Title_AverageExecutionTime" xml:space="preserve">
+    <value>Average execution time (msec)</value>
+    <comment>Average execution time (msec)</comment>
+  </data>
+  <data name="Title_AverageUse" xml:space="preserve">
+    <value>Average usage of components</value>
+    <comment>Average usage of components</comment>
+  </data>
+  <data name="Title_Bottlenecks" xml:space="preserve">
+    <value>Bottlenecks</value>
+    <comment>Bottlenecks</comment>
+  </data>
+  <data name="Title_Count" xml:space="preserve">
+    <value>Count</value>
+    <comment>Count</comment>
+  </data>
+  <data name="Title_Method" xml:space="preserve">
+    <value>Method</value>
+    <comment>Method</comment>
+  </data>
+  <data name="Title_AvgExecutionTime" xml:space="preserve">
+    <value>Average execution time (sec)</value>
+    <comment>Average execution time</comment>
+  </data>
+  <data name="Title_AvgThreshold" xml:space="preserve">
+    <value>Average threshold (sec)</value>
+    <comment>Average threshold</comment>
+  </data>
+  <data name="Title_TargetType" xml:space="preserve">
+    <value>Component</value>
+    <comment>Component</comment>
+  </data>
 </root>

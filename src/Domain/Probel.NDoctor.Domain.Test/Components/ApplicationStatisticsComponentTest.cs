@@ -103,7 +103,7 @@ namespace Probel.NDoctor.Domain.Test.Components
         {
             this.FillStatisticsWithRandomBottlenecks(50);
 
-            var chart = this.ComponentUnderTest.GetBottlenecksByMethods();
+            var chart = this.ComponentUnderTest.GetBottlenecks();
 
             Assert.Greater(chart.Points.Count(), 0);
             Assert.IsFalse(HasDoublons(chart), "Chart has doublons");
@@ -114,17 +114,40 @@ namespace Probel.NDoctor.Domain.Test.Components
         {
             this.FillStatisticsWithRandomBottlenecks(50);
 
-            var chart = this.ComponentUnderTest.GetBottlenecksByMethods();
+            var chart = this.ComponentUnderTest.GetBottlenecks();
 
             Assert.Greater(chart.Points.Count(), 0);
         }
 
         [Test]
-        public void RetrievedExecutionTime_OfMethods_HasCount()
+        public void RetrievedExecutionTime_GridList_HasCount()
+        {
+            this.FillStatisticsWithRandomBottlenecks(50);
+
+            var list = this.ComponentUnderTest.GetBottlenecksArray();
+
+            Assert.Greater(list.Count(), 0);
+            Assert.IsFalse(this.HasDoublons(list), "Has doublons");
+            Assert.AreEqual(1, this.Count(list, this.Names[0], this.Names[0]));
+        }
+
+        [Test]
+        public void RetrievedExecutionTime_GridList_NoDoublons()
+        {
+            this.FillStatisticsWithRandomBottlenecks(50);
+
+            var list = this.ComponentUnderTest.GetBottlenecksArray();
+
+            Assert.Greater(list.Count(), 0);
+            Assert.IsFalse(this.HasDoublons(list), "Chart has doublons");
+        }
+
+        [Test]
+        public void RetrievedExecutionTime_TimeGraph_HasCount()
         {
             this.FillStatistics(50);
 
-            var chart = this.ComponentUnderTest.GetAvgExecutionTimeByMethods();
+            var chart = this.ComponentUnderTest.GetAvgExecutionTimeGraph();
 
             Assert.AreEqual(1, chart.Points.Count());
             Assert.IsFalse(this.HasDoublons(chart), "Chart has doublons");
@@ -132,11 +155,11 @@ namespace Probel.NDoctor.Domain.Test.Components
         }
 
         [Test]
-        public void RetrievedExecutionTime_OfMethods_NoDoublons()
+        public void RetrievedExecutionTime_TimeGraph_NoDoublons()
         {
             this.FillStatisticsWithRandomBottlenecks(50);
 
-            var chart = this.ComponentUnderTest.GetAvgExecutionTimeByMethods();
+            var chart = this.ComponentUnderTest.GetAvgExecutionTimeGraph();
 
             Assert.Greater(chart.Points.Count(), 0);
             Assert.IsFalse(this.HasDoublons(chart), "Chart has doublons");
@@ -222,6 +245,14 @@ namespace Probel.NDoctor.Domain.Test.Components
                     select c).Count();
         }
 
+        private double Count(IEnumerable<BottleneckDto> list, string target, string method)
+        {
+            return (from item in list
+                    where item.MethodName == method
+                       && item.TargetTypeName == target
+                    select item).Count();
+        }
+
         private void FillStatistics(int counter)
         {
             var stat = new NDoctorStatisticsTester(this.Session);
@@ -291,6 +322,14 @@ namespace Probel.NDoctor.Domain.Test.Components
         {
             return (from x in chart.XCollection
                     group x by x into g
+                    where g.Count() > 1
+                    select g.Key).Count() > 0;
+        }
+
+        private bool HasDoublons(IEnumerable<BottleneckDto> list)
+        {
+            return (from x in list
+                    group x by new { x.TargetTypeName, x.MethodName } into g
                     where g.Count() > 1
                     select g.Key).Count() > 0;
         }

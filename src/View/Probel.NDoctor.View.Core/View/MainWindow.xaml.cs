@@ -51,9 +51,10 @@ namespace Probel.NDoctor.View.Core.View
 
         private static readonly ILog Log = LogManager.GetLogger(typeof(MainWindow));
 
+        private readonly Page Startpage;
+
         private LightUserDto connectedUser;
         private object lastDestination;
-        private Page startpage = new StartPage();
 
         #endregion Fields
 
@@ -63,6 +64,7 @@ namespace Probel.NDoctor.View.Core.View
         {
             InitializeComponent();
             PluginContext.Host = this;
+            this.Startpage = new StartPage();
             this.DataContext = new MainWindowViewModel();
             this.WriteStatus(StatusType.Info, Messages.Msg_Ready);
 
@@ -147,7 +149,7 @@ namespace Probel.NDoctor.View.Core.View
             get { return this.connectedUser; }
             set
             {
-                this.OnDisconnecting();
+                if (this.connectedUser != null) { this.OnDisconnecting(); }
                 this.connectedUser = value;
                 this.RefreshDataContext(this.connectedUser);
             }
@@ -389,7 +391,14 @@ namespace Probel.NDoctor.View.Core.View
         /// </summary>
         public void NavigateToStartPage()
         {
-            this.Navigate(startpage);
+            this.Dispatcher.Invoke((Action)delegate
+            {
+                if (this.Startpage.DataContext is StartPageViewModel)
+                {
+                    (this.Startpage.DataContext as StartPageViewModel).RefreshStatisticsCommand.TryExecute();
+                }
+            });
+            this.Navigate(Startpage);
         }
 
         /// <summary>
