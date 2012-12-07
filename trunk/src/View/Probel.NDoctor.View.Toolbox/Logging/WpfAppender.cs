@@ -77,6 +77,9 @@ namespace Probel.NDoctor.View.Toolbox.Logging
                 ThreadName = loggingEvent.ThreadName,
                 LevelName = loggingEvent.Level.Name,
                 Message = loggingEvent.RenderedMessage,
+                ExeptionMessage = (loggingEvent.ExceptionObject != null)
+                    ? loggingEvent.ExceptionObject.ToString()
+                    : string.Empty
             };
             this.RecordedEvents.Add(@event);
         }
