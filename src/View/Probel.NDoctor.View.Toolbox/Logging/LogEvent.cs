@@ -61,5 +61,7 @@ namespace Probel.NDoctor.View.Toolbox.Logging
         }
 
         #endregion Properties
+
+        public string ExeptionMessage { get; set; }
     }
 }

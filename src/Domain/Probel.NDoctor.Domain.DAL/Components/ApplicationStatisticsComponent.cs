@@ -117,7 +117,7 @@
                             TargetTypeName = g.Key.TargetTypeName,
                         }).ToList();
 
-            return list.OrderBy(e => e.AvgExecutionTime);
+            return list.OrderByDescending(e => e.Count);
         }
 
         /// <summary>
