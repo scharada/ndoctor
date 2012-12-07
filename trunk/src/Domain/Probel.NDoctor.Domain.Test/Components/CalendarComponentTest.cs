@@ -36,7 +36,7 @@ namespace Probel.NDoctor.Domain.Test.Components
     {
         #region Fields
 
-        private readonly ComponentFactory Factory = ComponentFactory.TestInstance;
+        private readonly ComponentFactory Factory = ComponentFactory.TestInstance();
 
         #endregion Fields
 
@@ -86,7 +86,6 @@ namespace Probel.NDoctor.Domain.Test.Components
         public void ManageAppointments_AddNewAppointment_PasswordOfUserNotReset()
         {
             var user = this.HelperComponent.GetLightUserById(1);
-
 
             // This code should pass
             var patient = this.HelperComponent.GetAllPatientsLight()[0];

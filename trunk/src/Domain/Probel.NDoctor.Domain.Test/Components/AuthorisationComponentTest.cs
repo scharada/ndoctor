@@ -133,7 +133,7 @@ namespace Probel.NDoctor.Domain.Test.Components
         }
 
         [Test]
-        public void RemoveRole_RemoveRole_RoleRemovedAndNoTasksRemovedFromDb()
+        public void RemoveRole_Remove_RoleRemovedAndNoTasksRemovedFromDb()
         {
             int count = 0;
             var name = Guid.NewGuid().ToString();

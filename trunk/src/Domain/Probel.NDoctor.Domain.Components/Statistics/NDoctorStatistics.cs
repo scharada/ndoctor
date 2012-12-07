@@ -23,6 +23,8 @@ namespace Probel.NDoctor.Domain.Components.Statistics
 {
     using System.Collections.Generic;
 
+    using NHibernate;
+
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Entities;
 
@@ -35,7 +37,25 @@ namespace Probel.NDoctor.Domain.Components.Statistics
 
         private static readonly List<ApplicationStatistics> Statistics = new List<ApplicationStatistics>();
 
+        private readonly ISession Session;
+
         #endregion Fields
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NDoctorStatistics"/> class.
+        /// </summary>
+        public NDoctorStatistics()
+        {
+        }
+
+        public NDoctorStatistics(ISession session)
+        {
+            this.Session = session;
+        }
+
+        #endregion Constructors
 
         #region Methods
 
@@ -44,13 +64,14 @@ namespace Probel.NDoctor.Domain.Components.Statistics
         /// </summary>
         public void Flush()
         {
-            using (var session = DalConfigurator.SessionFactory.OpenSession())
-            using (var tx = session.BeginTransaction())
+            if (this.Session == null)
             {
-                foreach (var item in Statistics) { session.Save(item); }
-                tx.Commit();
-                Statistics.Clear();
+                using (var session = DalConfigurator.SessionFactory.OpenSession())
+                {
+                    Flush(session);
+                }
             }
+            else { Flush(this.Session); }
         }
 
         /// <summary>
@@ -60,6 +81,16 @@ namespace Probel.NDoctor.Domain.Components.Statistics
         internal void Add(ApplicationStatistics stat)
         {
             Statistics.Add(stat);
+        }
+
+        private static void Flush(ISession session)
+        {
+            using (var tx = session.BeginTransaction())
+            {
+                foreach (var item in Statistics) { session.Save(item); }
+                tx.Commit();
+                Statistics.Clear();
+            }
         }
 
         #endregion Methods

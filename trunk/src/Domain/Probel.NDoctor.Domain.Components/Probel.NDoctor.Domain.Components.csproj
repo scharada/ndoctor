@@ -79,6 +79,7 @@
     <Compile Include="Interceptors\TransactionInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Statistics\NDoctorStatistics.cs" />
+    <Compile Include="Statistics\NDoctorStatisticsTester.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Helpers\Probel.Helpers\Probel.Helpers.csproj">

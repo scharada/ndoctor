@@ -58,6 +58,7 @@
     <Compile Include="Components\IAdministrationComponent.cs" />
     <Compile Include="Components\IAuthorisationComponent.cs" />
     <Compile Include="Components\ICalendarComponent.cs" />
+    <Compile Include="Components\IApplicationStatisticsComponent.cs" />
     <Compile Include="Components\ISqlComponent.cs" />
     <Compile Include="Components\IImportComponent.cs" />
     <Compile Include="Components\IPrescriptionComponent.cs" />

@@ -115,7 +115,7 @@
         public long Create(TagDto item)
         {
             Assert.IsNotNull(item, "item");
-            Assert.IsNotNull(item.Name, "item");
+            Assert.IsNotNull(item.Name, "item.Name");
 
             var exist = (from p in this.Session.Query<Tag>()
                          where (p.Name.ToUpper() == item.Name.ToUpper()
