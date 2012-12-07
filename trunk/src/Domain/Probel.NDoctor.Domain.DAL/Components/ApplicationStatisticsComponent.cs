@@ -1,27 +1,7 @@
-﻿#region Header
-
-/*
-    This file is part of NDoctor.
-
-    NDoctor is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    NDoctor is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
-#endregion Header
-
-namespace Probel.NDoctor.Domain.DAL.Components
+﻿namespace Probel.NDoctor.Domain.DAL.Components
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     using NHibernate;
@@ -32,6 +12,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Objects;
 
     /// <summary>
     /// Provides statistics on the application usage
@@ -73,8 +54,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
         {
             var points = (from a in this.Session.Query<ApplicationStatistics>()
                           group a by a.TimeStamp.Date into g
-                          select new ChartPoint<DateTime, double>(g.Key, g.Average(e => e.ExecutionTime)));
-            return new Chart<DateTime, double>(points);
+                          select new ChartPoint<DateTime, double>(g.Key, g.Average(e => e.ExecutionTime)))
+                            .ToList();
+            return new Chart<DateTime, double>(points.OrderBy(e => e.X));
         }
 
         /// <summary>
@@ -93,27 +75,49 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Gets the average execution time by methods.
         /// </summary>
         /// <returns>A chart to be dicplayed</returns>
-        public Chart<string, double> GetAvgExecutionTimeByMethods()
+        public Chart<string, double> GetAvgExecutionTimeGraph()
         {
             var points = (from a in this.Session.Query<ApplicationStatistics>()
                           group a by a.MethodName into g
                           select new ChartPoint<string, double>(g.Key, g.Average(e => e.ExecutionTime)))
                                 .ToList();
-            return new Chart<string, double>(points);
+
+            return new Chart<string, double>(points.OrderBy(e => e.Y));
         }
 
         /// <summary>
         /// Gets the bottlenecks by methods.
         /// </summary>
         /// <returns>A chart to be dicplayed</returns>
-        public Chart<string, double> GetBottlenecksByMethods()
+        public Chart<string, double> GetBottlenecks()
         {
             var points = (from a in this.Session.Query<ApplicationStatistics>()
                           where a.IsPossibleBottleneck == true
                           group a by a.MethodName into g
                           select new ChartPoint<string, double>(g.Key, g.Count()))
                             .ToList();
-            return new Chart<string, double>(points);
+            return new Chart<string, double>(points.OrderByDescending(e => e.Y));
+        }
+
+        /// <summary>
+        /// Gets the average execution time by method. Provides more information than the <see cref="GetAvgExecutionTimeGraph"/>
+        /// </summary>
+        /// <returns>A list with all the information about execution time by method</returns>
+        public IEnumerable<BottleneckDto> GetBottlenecksArray()
+        {
+            var list = (from a in this.Session.Query<ApplicationStatistics>()
+                        where a.IsPossibleBottleneck == true
+                        group a by new { a.MethodName, a.TargetTypeName } into g
+                        select new BottleneckDto()
+                        {
+                            MethodName = g.Key.MethodName,
+                            Count = g.Count(),
+                            AvgExecutionTime = g.Average(e => e.ExecutionTime) / 1000,
+                            AvgThreshold = g.Average(e => e.Threshold) / 1000,
+                            TargetTypeName = g.Key.TargetTypeName,
+                        }).ToList();
+
+            return list.OrderBy(e => e.AvgExecutionTime);
         }
 
         /// <summary>
@@ -126,7 +130,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
                           group a by a.MethodName into g
                           select new ChartPoint<string, double>(g.Key, g.Count()))
                                 .ToList();
-            return new Chart<string, double>(points);
+            return new Chart<string, double>(points.OrderBy(e => e.Y));
         }
 
         /// <summary>
@@ -139,7 +143,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
                           group a by a.TargetTypeName into g
                           select new ChartPoint<string, double>(g.Key, g.Count()))
                                 .ToList();
-            return new Chart<string, double>(points);
+            return new Chart<string, double>(points.OrderBy(e => e.Y));
         }
 
         #endregion Methods

@@ -22,8 +22,10 @@
 namespace Probel.NDoctor.Domain.DTO.Components
 {
     using System;
+    using System.Collections.Generic;
 
     using Probel.Helpers.Data;
+    using Probel.NDoctor.Domain.DTO.Objects;
 
     /// <summary>
     /// Provides statistics on the application usage
@@ -54,13 +56,19 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// Gets the average execution time by methods.
         /// </summary>
         /// <returns>A chart to be dicplayed</returns>
-        Chart<string, double> GetAvgExecutionTimeByMethods();
+        Chart<string, double> GetAvgExecutionTimeGraph();
 
         /// <summary>
         /// Gets the bottlenecks by methods.
         /// </summary>
         /// <returns>A chart to be dicplayed</returns>
-        Chart<string, double> GetBottlenecksByMethods();
+        Chart<string, double> GetBottlenecks();
+
+        /// <summary>
+        /// Gets the average execution time by method. Provides more information than the <see cref="GetAvgExecutionTimeGraph"/>
+        /// </summary>
+        /// <returns>A list with all the information about execution time by method</returns>
+        IEnumerable<BottleneckDto> GetBottlenecksArray();
 
         /// <summary>
         /// Gets the number of times the methods have been called.

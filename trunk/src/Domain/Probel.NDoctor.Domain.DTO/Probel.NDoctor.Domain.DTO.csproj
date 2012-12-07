@@ -86,6 +86,7 @@
     <Compile Include="Helpers\DtoExtentions.cs" />
     <Compile Include="Helpers\SlotDuration.cs" />
     <Compile Include="Helpers\TimeSlotCollection.cs" />
+    <Compile Include="Objects\AvgStatisticsDto.cs" />
     <Compile Include="Objects\ExecutionStatDto.cs" />
     <Compile Include="Objects\LightPictureDto.cs" />
     <Compile Include="Objects\MedicalRecordStateDto.cs" />

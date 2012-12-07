@@ -150,6 +150,7 @@
     </Compile>
     <Compile Include="Translations\AboutBoxText.cs" />
     <Compile Include="Translations\SettingsText.cs" />
+    <Compile Include="Translations\StartPageText.cs" />
     <Compile Include="ViewModel\AboutBoxViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="ViewModel\PluginSettingsViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\SpashScreenViewModel.cs" />
+    <Compile Include="ViewModel\StartPageViewModel.cs" />
     <Compile Include="View\AboutBoxView.xaml.cs">
       <DependentUpon>AboutBoxView.xaml</DependentUpon>
     </Compile>
