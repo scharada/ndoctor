@@ -61,9 +61,33 @@ namespace Probel.Helpers.Data
         /// <value>
         /// The X axes.
         /// </value>
-        public ChartPoint<Tx, Ty>[] Points
+        public IEnumerable<ChartPoint<Tx, Ty>> Points
         {
-            get { return this.points.ToArray(); }
+            get { return this.points; }
+        }
+
+        /// <summary>
+        /// Gets the collection of the X.
+        /// </summary>
+        public IEnumerable<Tx> XCollection
+        {
+            get
+            {
+                return (from p in this.points
+                        select p.X).ToList();
+            }
+        }
+
+        /// <summary>
+        /// Gets the collection of the Y.
+        /// </summary>
+        public IEnumerable<Ty> YCollection
+        {
+            get
+            {
+                return (from p in this.points
+                        select p.Y).ToList();
+            }
         }
 
         #endregion Properties
