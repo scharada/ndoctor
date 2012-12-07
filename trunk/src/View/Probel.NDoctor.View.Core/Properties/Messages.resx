@@ -478,4 +478,24 @@ The application will close. Check the logs for further  information</value>
     <value>Component</value>
     <comment>Component</comment>
   </data>
+  <data name="Tab_Logs" xml:space="preserve">
+    <value>Logs</value>
+    <comment>Logs</comment>
+  </data>
+  <data name="Tab_Statistics" xml:space="preserve">
+    <value>Usage statistics</value>
+    <comment>Usage statistics</comment>
+  </data>
+  <data name="Title_LevelName" xml:space="preserve">
+    <value>Niveau</value>
+    <comment>Level</comment>
+  </data>
+  <data name="Title_Message" xml:space="preserve">
+    <value>Message</value>
+    <comment>Message</comment>
+  </data>
+  <data name="Title_TimeStamp" xml:space="preserve">
+    <value>Horodatage</value>
+    <comment>Time-stamp</comment>
+  </data>
 </root>

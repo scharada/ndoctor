@@ -57,7 +57,7 @@
       <level value="DEBUG" />
       <foreColor value="Green, HighIntensity" />
     </mapping>
-    
+
     <layout type="log4net.Layout.PatternLayout">
       <conversionPattern value="%date | %-5level | %message%newline" />
     </layout>
@@ -77,8 +77,16 @@
   </appender>
 
   <!--- Keeps the last few log entries and appends them to bug reports when an exception occurs -->
-  <appender name="Recorder" type="Probel.NDoctor.View.Toolbox.Navigation.LogMessageRecorder, Probel.NDoctor.View.Toolbox">
+  <appender name="Recorder" type="Probel.NDoctor.View.Toolbox.Logging.LogMessageRecorder, Probel.NDoctor.View.Toolbox">
     <bufferSize value="25" />
+  </appender>
+
+  <!-- Displays log events into the GUI -->
+  <appender name="WPFAppender" type="Probel.NDoctor.View.Toolbox.Logging.WpfAppender, Probel.NDoctor.View.Toolbox">
+    <filter type="log4net.Filter.LoggerMatchFilter">
+      <loggerToMatch value="Probel.NDoctor.Domain.Components.Interceptors.BenchmarkInterceptor" />
+      <acceptOnMatch value="False"/>
+    </filter>
   </appender>
 
   <root>
@@ -88,6 +96,7 @@
     <appender-ref ref="ColoredConsoleAppender"/>
     <appender-ref ref="DebugAppender"/>
     <appender-ref ref="Recorder"/>
+    <appender-ref ref="WPFAppender"/>
   </root>
 
   <logger name="NHibernate">

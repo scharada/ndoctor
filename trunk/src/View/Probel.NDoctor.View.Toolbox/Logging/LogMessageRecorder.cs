@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.View.Toolbox.Navigation
+namespace Probel.NDoctor.View.Toolbox.Logging
 {
     using System.Collections.Generic;
     using System.Globalization;
@@ -28,7 +28,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
     /// <summary>
     /// Records log4net log messages to a cyclic buffer for the purpose of creating better error reports.
     /// </summary>
-    public sealed class LogMessageRecorder : AppenderSkeleton
+    internal sealed class LogMessageRecorder : AppenderSkeleton
     {
         #region Fields
 
@@ -82,7 +82,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
         /// The returned collection contains the events
         /// in the same order as they have been appended.
         /// </summary>
-        ICollection<LoggingEvent> RecordedEvents
+        private ICollection<LoggingEvent> RecordedEvents
         {
             get
             {

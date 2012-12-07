@@ -86,12 +86,14 @@
       <Link>Version.cs</Link>
     </Compile>
     <Compile Include="Helpers\ReferencedObject.cs" />
+    <Compile Include="Logging\LogEvent.cs" />
+    <Compile Include="Logging\LogMessageRecorder.cs" />
+    <Compile Include="Logging\WpfAppender.cs" />
     <Compile Include="Navigation\Commands.cs" />
     <Compile Include="Navigation\ErrorHandler.cs" />
     <Compile Include="Navigation\ErrorHandlerFactory.cs" />
     <Compile Include="Navigation\IErrorHandler.cs" />
     <Compile Include="Navigation\IStatusWriter.cs" />
-    <Compile Include="Navigation\LogMessageRecorder.cs" />
     <Compile Include="Translations\BaseText.cs" />
     <Compile Include="Controls\DoctorBox.xaml.cs">
       <DependentUpon>DoctorBox.xaml</DependentUpon>

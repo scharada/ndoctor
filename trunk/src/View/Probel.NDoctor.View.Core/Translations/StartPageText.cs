@@ -52,6 +52,21 @@ namespace Probel.NDoctor.View.Core.Translations
             get { return Messages.Title_Count; }
         }
 
+        public static string LevelName
+        {
+            get { return Messages.Title_LevelName; }
+        }
+
+        public static string Logs
+        {
+            get { return Messages.Tab_Logs; }
+        }
+
+        public static string Message
+        {
+            get { return Messages.Title_Message; }
+        }
+
         public static string Method
         {
             get { return Messages.Title_Method; }
@@ -62,9 +77,19 @@ namespace Probel.NDoctor.View.Core.Translations
             get { return Messages.Msg_RefreshingStat; }
         }
 
+        public static string Statistics
+        {
+            get { return Messages.Tab_Statistics; }
+        }
+
         public static string TargetType
         {
             get { return Messages.Title_TargetType; }
+        }
+
+        public static string TimeStamp
+        {
+            get { return Messages.Title_TimeStamp; }
         }
 
         #endregion Properties
