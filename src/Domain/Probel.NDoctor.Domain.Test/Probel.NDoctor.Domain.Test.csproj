@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="Authorisation\TestAuthorisation.cs" />
     <Compile Include="Components\AdministrationComponentTest.cs" />
+    <Compile Include="Components\ApplicationStatisticsComponentTest.cs" />
     <Compile Include="Components\AuthorisationComponentTest.cs" />
     <Compile Include="Components\BaseComponentTest.cs" />
     <Compile Include="Components\BmiComponentTest.cs" />

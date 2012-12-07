@@ -121,6 +121,10 @@ namespace Probel.NDoctor.Domain.Components
                 x.For<IAuthorisationComponent>().Add<AuthorisationComponent>();
                 x.SelectConstructor<AuthorisationComponent>(() => new AuthorisationComponent());
 
+                //Application statistics manager
+                x.For<IApplicationStatisticsComponent>().Add<ApplicationStatisticsComponent>();
+                x.SelectConstructor<ApplicationStatisticsComponent>(() => new ApplicationStatisticsComponent());
+
                 //Authorisation policies
                 x.For<IAuthorisationPolicy>().Add<AuthorisationPolicy>();
             });
@@ -146,22 +150,15 @@ namespace Probel.NDoctor.Domain.Components
 
         #endregion Constructors
 
-        #region Properties
+        #region Methods
 
         /// <summary>
         /// Gets a factory ready for test. That's only the Authorisation proxy will be hooked to the instance.
         /// </summary>
-        public static ComponentFactory TestInstance
+        public static ComponentFactory TestInstance(bool benchmarkEnabled = false)
         {
-            get
-            {
-                return new ComponentFactory(false, int.MaxValue, true);
-            }
+            return new ComponentFactory(benchmarkEnabled, int.MaxValue, true);
         }
-
-        #endregion Properties
-
-        #region Methods
 
         /// <summary>
         /// Connects the specified user into the application.
