@@ -44,7 +44,7 @@
  * [Deploy Deploy]
  * Support
   * [UserManual User manual]
-  * [Install]
+  * Install
    *[BetaInstallation the binaries]
    *[Installer with the installer]
   * [GetGmail Get a Gmail address]
