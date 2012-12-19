@@ -1,3 +1,4 @@
+#labels Featured
 = Install nDoctor with the installer =
 
 https://lh3.googleusercontent.com/-6JHf-3xgiZM/UNHwlMqdyJI/AAAAAAAAAQ0/QgIXvE0CY4g/s240/1.PNG
