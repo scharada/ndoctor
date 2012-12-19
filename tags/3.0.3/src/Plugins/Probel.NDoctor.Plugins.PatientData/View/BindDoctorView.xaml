@@ -1,0 +1,94 @@
+﻿<Window x:Class="Probel.NDoctor.Plugins.PatientData.View.BindDoctorView"
+        x:Name="this"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"             
+        
+        xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PatientData.Translations"
+        xmlns:my="clr-namespace:Probel.NDoctor.Domain.DTO.Objects;assembly=Probel.NDoctor.Domain.DTO"
+        xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"             
+        xmlns:behaviours="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF" 
+        xmlns:txt="clr-namespace:Probel.NDoctor.Plugins.PatientData.Translations"
+        xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        Title="{Binding Source={x:Static Member=txt:BoxText.BindDoctor}}"
+        
+        mc:Ignorable="d"
+        WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" 
+        Width="300" Height="400"         
+        ShowInTaskbar="False">
+
+    <Window.InputBindings>
+        <KeyBinding Key="Enter"
+                    Command="{Binding AddCommand}"/>
+        <KeyBinding Key="Escape"
+                    Command="cmd:Commands.CloseView" 
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
+    </Window.InputBindings>
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+    <DockPanel LastChildFill="True">
+        <DockPanel DockPanel.Dock="Top"
+                   LastChildFill="True">
+            <Border Style="{StaticResource BorderStyle}">
+                <DockPanel>
+                    <Button DockPanel.Dock="Right" Background="White" BorderBrush="White" BorderThickness="0"
+                            Command="{Binding SearchCommand}">
+                        <Image DataContext="{Binding}" Source="/Probel.NDoctor.Plugins.PatientData;component/Images/search.bmp"
+                               Height="15"
+                               Width="15"/>
+                    </Button>
+                    <toolkit:WatermarkTextBox Grid.Column="0" 
+                                              Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}">
+                        <toolkit:WatermarkTextBox.Watermark>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Probel.NDoctor.Plugins.PatientData;Component/Images/Card.png"
+                               Height="15"
+                               Width="15" />
+                                <TextBlock Text="{Binding Source={x:Static Member=text:AddDoctorText.Watermark}}"
+                                   Margin="4,0,0,0"/>
+                            </StackPanel>
+                        </toolkit:WatermarkTextBox.Watermark>
+                    </toolkit:WatermarkTextBox>
+                </DockPanel>
+            </Border>
+
+
+        </DockPanel>
+        <ScrollViewer>
+            <ListView ItemsSource="{Binding Path=FoundDoctors}"
+                      SelectedItem="{Binding SelectedDoctor}"
+                      behaviours:ControlBehaviour.MouseDoubleClick="{Binding SelectDoctorCommand}">
+                <ListView.Resources>
+                    <DataTemplate DataType="{x:Type my:LightDoctorDto}">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"
+                                           Content="{Binding Source={x:Static Member=text:AddDoctorText.TitleFullName}}"/>
+                                <Label Grid.Column="1"
+                                           Content="{Binding Path=DisplayedName}"/>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"
+                                           Content="{Binding Source={x:Static Member=text:AddDoctorText.TitleSpecialisation}}"/>
+                                <Label Grid.Column="1"
+                                           Content="{Binding Path=Specialisation.Name}"/>
+                            </Grid>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.Resources>
+            </ListView>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

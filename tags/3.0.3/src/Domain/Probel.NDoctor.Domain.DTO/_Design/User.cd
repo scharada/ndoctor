@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Probel.NDoctor.Domain.DTO.Objects.UserDto">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <Members>
+      <Field Name="assignedRole" Hidden="true" />
+      <Field Name="fee" Hidden="true" />
+      <Field Name="firstName" Hidden="true" />
+      <Field Name="header" Hidden="true" />
+      <Field Name="isDefaultUser" Hidden="true" />
+      <Field Name="lastName" Hidden="true" />
+      <Field Name="mailPro" Hidden="true" />
+      <Field Name="mobilePro" Hidden="true" />
+      <Field Name="phonePro" Hidden="true" />
+      <Field Name="practice" Hidden="true" />
+      <Field Name="thumbnailImage" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BACgAUQAAABAAAAgkAAAMJAgABAAMCIAABACCAAAAAg=</HashCode>
+      <FileName>Objects\UserDto.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Role" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DTO.Objects.RoleDto">
+    <Position X="3.5" Y="1.25" Width="1.5" />
+    <Members>
+      <Field Name="description" Hidden="true" />
+      <Field Name="name" Hidden="true" />
+      <Field Name="tasks" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAEIAAAAAQAAAAEAAgAAAAIAAAAAAA=</HashCode>
+      <FileName>Objects\RoleDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DTO.Objects.LightUserDto">
+    <Position X="6.25" Y="2.5" Width="1.5" />
+    <Members>
+      <Field Name="firstName" Hidden="true" />
+      <Field Name="isDefaultUser" Hidden="true" />
+      <Field Name="lastName" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AACAAUAAAABAAAAAEAAAABAAAAAAAAAAAAAACAAAAAg=</HashCode>
+      <FileName>Objects\LightUserDto.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Role" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

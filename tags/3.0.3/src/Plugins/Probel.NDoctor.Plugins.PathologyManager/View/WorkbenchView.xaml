@@ -1,0 +1,77 @@
+﻿<Page x:Class="Probel.NDoctor.Plugins.PathologyManager.View.WorkbenchView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:vm="clr-namespace:Probel.NDoctor.Plugins.PathologyManager.ViewModel"
+      xmlns:chart="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+      xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PathologyManager.View"
+      xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PathologyManager.Translations"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="Workbench">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Probel.NDoctor.Plugins.PathologyManager;component/Themes/Generic.xaml" />
+                <ResourceDictionary Source="/Probel.NDoctor.Plugins.PathologyManager;component/Resources/Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <TabControl>
+        <TabItem Header="{Binding Source={x:Static Member=text:AddIllnessPeriodText.TitleChart}}">
+            <chart:Chart>
+                <chart:Chart.Series>
+                    <chart:PieSeries Title="{Binding Source={x:Static Member=text:AddIllnessPeriodText.TitleChartIllnessTime}}"
+                                 ItemsSource="{Binding Path=Chart.Points}"
+                                 IndependentValueBinding="{Binding X}"
+                                 DependentValueBinding="{Binding Y}"/>
+                </chart:Chart.Series>
+            </chart:Chart>
+        </TabItem>
+        <TabItem Header="{Binding Source={x:Static Member=text:AddIllnessPeriodText.TitleData}}">
+            <StackPanel>
+                <DataGrid ItemsSource="{Binding Path=IllnessHistory}"     
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          SelectedItem="{Binding SelectedIllnessPeriod}">                          
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="{Binding Source={x:Static Member=text:AddIllnessPeriodText.BtnRemove}}"
+                                      Command="{Binding RemoveIllessPeriodCommand}">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.PathologyManager;component/Images\Delete.png"
+                                           Height="20"
+                                           Width="20"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=Start, StringFormat={}{0:dd MMMM yyyy}, UpdateSourceTrigger=PropertyChanged}" 
+                                            Header="{Binding Source={x:Static Member=text:IllnessPeriodText.HeaderStart}}"
+                                            IsReadOnly="True"
+                                            Width="*"/>
+
+                            <DataGridTextColumn Binding="{Binding Path=End, StringFormat={}{0:dd MMMM yyyy}, UpdateSourceTrigger=PropertyChanged}" 
+                                            Header="{Binding Source={x:Static Member=text:IllnessPeriodText.HeaderEnd}}"
+                                            IsReadOnly="True"
+                                            Width="*"/>
+
+                        <DataGridTextColumn Binding="{Binding Path=Duration, UpdateSourceTrigger=PropertyChanged}" 
+                                            Header="{Binding Source={x:Static Member=text:IllnessPeriodText.HeaderDuration}}"
+                                            IsReadOnly="True"
+                                            Width="*"/>
+
+                        <DataGridTextColumn Binding="{Binding Path=Pathology.Name, UpdateSourceTrigger=PropertyChanged}" 
+                                            Header="{Binding Source={x:Static Member=text:IllnessPeriodText.HeaderPathology}}"
+                                            IsReadOnly="True"
+                                            Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</Page>

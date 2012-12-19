@@ -1,0 +1,108 @@
+﻿<Page x:Class="Probel.NDoctor.Plugins.Authorisation.View.WorkbenchView"
+      
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:t="clr-namespace:Probel.NDoctor.Plugins.Authorisation.Translations"
+      xmlns:h="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
+      
+      mc:Ignorable="d" 
+      d:DesignHeight="300" 
+      d:DesignWidth="600"
+      Title="{Binding Source={x:Static Member=t:WorkbenchText.PageTitle}}">
+    <Page.Resources>
+        <!-- InnerWindow button's border -->
+        <Style TargetType="{x:Type Border}" x:Key="BorderStyle">
+            <Setter Property="Padding" Value="4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </Page.Resources>
+        <DockPanel>
+        <DockPanel>
+            <ListView DockPanel.Dock="Left"
+                      Width="150"
+                      ItemsSource="{Binding Roles}"
+                      SelectedItem="{Binding SelectedRole}"
+                      DisplayMemberPath="Name"
+                      h:SelectorBehaviour.SelectionChanged="{Binding RefreshRoleCommand}">
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Command="{Binding RemoveRoleCommand}"
+                                  Header="{Binding Source={x:Static t:WorkbenchText.Remove}}">
+                            <MenuItem.Icon>
+                                <Image Source="\Probel.NDoctor.Plugins.Authorisation;component/Images\Delete.png"
+                                       Height="20"
+                                       Width="20"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+
+                        <MenuItem Command="{Binding EditRoleCommand}"
+                                  Header="{Binding Source={x:Static t:WorkbenchText.Edit}}">
+                            <MenuItem.Icon>
+                                <Image Source="\Probel.NDoctor.Plugins.Authorisation;component/Images\Edit.png"
+                                       Height="20"
+                                       Width="20"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+            </ListView>
+
+                <DockPanel LastChildFill="True" DockPanel.Dock="Top">
+
+                    <Button DockPanel.Dock="Right"
+                            Margin="4"
+                            Content="{Binding Source={x:Static t:WorkbenchText.BtnAdd}}"
+                            Command="{Binding AddCommand}"/>
+
+                    <Label Margin="4"
+                           Content="{Binding Source={x:Static t:WorkbenchText.AvailableTasks}}"/>
+
+                    <ComboBox ItemsSource="{Binding AvailableTasks}"
+                              Margin="4"
+                              SelectedItem="{Binding ComboBoxTask}"
+                              DisplayMemberPath="Name"/>
+                </DockPanel>
+
+
+            <GroupBox Header="{Binding Source={x:Static t:WorkbenchText.SelectedRole}}"
+                    DockPanel.Dock="Top">
+                <ScrollViewer Height="40">
+                    <TextBlock Text="{Binding SelectedRole.Description}"
+                               TextWrapping="Wrap"/>
+                </ScrollViewer>
+            </GroupBox>            
+
+            <GroupBox Header="{Binding Source={x:Static t:WorkbenchText.AssignedTasks}}">
+                <DockPanel LastChildFill="True"
+                           Margin="4">
+                    <GroupBox Header="{Binding Source={x:Static t:WorkbenchText.SelectedTask}}"
+                    DockPanel.Dock="Bottom">
+                        <ScrollViewer Height="40">
+                            <TextBlock Text="{Binding SelectedTask.Notes}"
+                                       TextWrapping="Wrap"/>
+                        </ScrollViewer>
+                    </GroupBox>
+                    <ListView DockPanel.Dock="Top"
+                              ItemsSource="{Binding SelectedRole.Tasks}"
+                              DisplayMemberPath="Name"
+                              SelectedItem="{Binding SelectedTask}">
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Command="{Binding RemoveTaskCommand}"
+                                  Header="{Binding Source={x:Static t:WorkbenchText.RemoveTask}}">
+                                    <MenuItem.Icon>
+                                        <Image Source="\Probel.NDoctor.Plugins.Authorisation;component/Images\Delete.png"
+                                       Height="20"
+                                       Width="20"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </ListView.ContextMenu>
+                    </ListView>
+                </DockPanel>
+            </GroupBox>
+        </DockPanel>
+    </DockPanel>
+</Page>

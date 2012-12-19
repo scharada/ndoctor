@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DalSessionException_UnknownId1" xml:space="preserve">
+    <value>The ID type is '{0}' while expecting '{1}'</value>
+    <comment>Le type de l'ID est '{0}' alors qu'il devrait être '{1}'</comment>
+  </data>
+  <data name="Error_BeginBiggerThanEnd" xml:space="preserve">
+    <value>The start time should be smaller than the end time</value>
+    <comment>The start time should be smaller than the end time</comment>
+  </data>
+  <data name="Error_NotSupportedDate_Hour" xml:space="preserve">
+    <value>The value of hours has to be between 0 and 23</value>
+    <comment>The value of hours has to be between 0 and 23</comment>
+  </data>
+  <data name="Error_NotSupportedDate_Minutes" xml:space="preserve">
+    <value>The value of minutes has to be between 0 and 59</value>
+    <comment>The value of minutes has to be between 0 and 59</comment>
+  </data>
+  <data name="Error_TooManyLoops" xml:space="preserve">
+    <value>The program seems to be in an infinite loop</value>
+    <comment>The program seems to be in an infinite loop</comment>
+  </data>
+  <data name="Error_WrongTextForDate" xml:space="preserve">
+    <value>Impossible to convert "{0}" into time</value>
+    <comment>Impossible to convert "{0}" into time</comment>
+  </data>
+  <data name="Ex_AuthorisationException" xml:space="preserve">
+    <value>You are not granted to execute this action</value>
+    <comment>You are not granted to execute this action</comment>
+  </data>
+  <data name="Ex_BusinessLogicException" xml:space="preserve">
+    <value>Impossible to execute this action. This is a unexpected state that wasn't forseen or it will break business logic rules.</value>
+    <comment>Impossible to execute this action. This is a unexpected state that wasn't forseen or it will break business logic rules.</comment>
+  </data>
+  <data name="Ex_ClosedSessionException" xml:space="preserve">
+    <value>The session you're using to query the database is closed.</value>
+    <comment>The session you're using to query the database is closed.</comment>
+  </data>
+  <data name="Ex_ComponentException" xml:space="preserve">
+    <value>An error occured in the DAL components. See inner exception for details.</value>
+    <comment>An error occured in the DAL components. See inner exception for details.</comment>
+  </data>
+  <data name="Ex_ConfigurationException" xml:space="preserve">
+    <value>You already configured the DAL</value>
+    <comment>You already configured the DAL</comment>
+  </data>
+  <data name="Ex_DalConfigurationException" xml:space="preserve">
+    <value>An error occured during the configuration of the database</value>
+  </data>
+  <data name="Ex_DalSessionException_UnknownId" xml:space="preserve">
+    <value>The ID type is '{0}' while expecting '{1}'</value>
+    <comment>Le type de l'ID attendu est '{0}' alors qu'il est '{1}'</comment>
+  </data>
+  <data name="Ex_EmptyPasswordException" xml:space="preserve">
+    <value>Empty password are not accepted</value>
+    <comment>Empty password are not accepted</comment>
+  </data>
+  <data name="Ex_EncryptionException" xml:space="preserve">
+    <value>An error occured while decrypting the specified text</value>
+    <comment>An error occured while decrypting the specified text</comment>
+  </data>
+  <data name="Ex_EntityAlreadyExistsException" xml:space="preserve">
+    <value>This entity already exist in the database</value>
+    <comment>This entity already exist in the database</comment>
+  </data>
+  <data name="Ex_EntityNotFoundException" xml:space="preserve">
+    <value>The searched item of type '{0}' doesn't exist in the database</value>
+    <comment>The searched item of type '{0}' doesn't exist in the database</comment>
+  </data>
+  <data name="Ex_EntityNotFoundException_NoPatient" xml:space="preserve">
+    <value>No patient with id '{0}' was found.</value>
+    <comment>No patient with id '{0}' was found.</comment>
+  </data>
+  <data name="Ex_EntityNotFoundException_NoRelationRightSide" xml:space="preserve">
+    <value>The patient of right side of the relation doesn't exist in the database</value>
+    <comment>The patient of right side of the relation doesn't exist in the database</comment>
+  </data>
+  <data name="Ex_ExistingItemException" xml:space="preserve">
+    <value>The item you want to create already exist in the database.</value>
+    <comment>The item you want to create already exist in the database.</comment>
+  </data>
+  <data name="Ex_GoogleCalendarException" xml:space="preserve">
+    <value>An error occured when communicating with Google Calendar</value>
+    <comment>An error occured when communicating with Google Calendar</comment>
+  </data>
+  <data name="Ex_GoogleCalendarExceptionFormat" xml:space="preserve">
+    <value>Google Calendar reports this error: {0}</value>
+    <comment>Google Calendar reports this error: {0}</comment>
+  </data>
+  <data name="Ex_HasThumbnail" xml:space="preserve">
+    <value>The picture already has a thumbnail</value>
+    <comment>The picture already has a thumbnail</comment>
+  </data>
+  <data name="Ex_NotLoadedEntityException" xml:space="preserve">
+    <value>The entity you are using is detached  from the database.</value>
+    <comment>The entity you are using is detached  from the database.</comment>
+  </data>
+  <data name="Ex_NullItemInListException" xml:space="preserve">
+    <value>A list of the object to save has at least one null element</value>
+    <comment>A list of the object to save has at least one null element</comment>
+  </data>
+  <data name="Ex_NullSessionFactoryException" xml:space="preserve">
+    <value>The nHibernate session factory is not configured.</value>
+    <comment>The nHibernate session factory is not configured.</comment>
+  </data>
+  <data name="Ex_QueryException" xml:space="preserve">
+    <value>An error occured during the execution of a query.</value>
+    <comment>An error occured during the execution of a query.</comment>
+  </data>
+  <data name="Ex_QueryException_SeveralDefaultUsers" xml:space="preserve">
+    <value>More than one default user was found.</value>
+    <comment>More than one default user was found.</comment>
+  </data>
+  <data name="Ex_ReferencialIntegrityException" xml:space="preserve">
+    <value>This action wasn't executed to keep the integrity of the data.</value>
+    <comment>This action wasn't executed to keep the integrity of the data.</comment>
+  </data>
+  <data name="Ex_SessionException" xml:space="preserve">
+    <value>An error occured in the session</value>
+    <comment>An error occured in the session</comment>
+  </data>
+  <data name="Ex_SessionNotOpenedException" xml:space="preserve">
+    <value>The session is not open. Please open it before query the database.</value>
+    <comment>The session is not open. Please open it before query the database.</comment>
+  </data>
+  <data name="Ex_ValidationException" xml:space="preserve">
+    <value>An error occured during the validation of the DTO object.</value>
+    <comment>An error occured during the validation of the DTO object.</comment>
+  </data>
+  <data name="Gender_Female" xml:space="preserve">
+    <value>Female</value>
+    <comment>Female</comment>
+  </data>
+  <data name="Gender_Male" xml:space="preserve">
+    <value>Male</value>
+    <comment>Male</comment>
+  </data>
+  <data name="Invalid_Data" xml:space="preserve">
+    <value>You entered invalid data</value>
+    <comment>You entered invalid data</comment>
+  </data>
+  <data name="Invalid_Date" xml:space="preserve">
+    <value>The date should be after 1/1/1900</value>
+    <comment>The date should be after 1/1/1900</comment>
+  </data>
+  <data name="Invalid_EmptyPrescription" xml:space="preserve">
+    <value>This document doesn't have prescription</value>
+    <comment>This document doesn't have prescription</comment>
+  </data>
+  <data name="Invalid_EmptyTag" xml:space="preserve">
+    <value>The tag of this item can't be null</value>
+    <comment>The tag of this item can't be null</comment>
+  </data>
+  <data name="Invalid_EmptyValue" xml:space="preserve">
+    <value>Can't be empty.</value>
+    <comment>Can't be empty.</comment>
+  </data>
+  <data name="Invalid_Family" xml:space="preserve">
+    <value>Invalid family relation</value>
+    <comment>Invalid family relation</comment>
+  </data>
+  <data name="Invalid_Height" xml:space="preserve">
+    <value>La taille doit être comprise entre 10 et 300 cm</value>
+    <comment>The height should be between 10 and 300 cm</comment>
+  </data>
+  <data name="Invalid_IllnessHistory" xml:space="preserve">
+    <value>This illness history is not related to any patient</value>
+    <comment>This illness history is not related to any patient</comment>
+  </data>
+  <data name="Invalid_Prescription_NoDrug" xml:space="preserve">
+    <value>Cette prescription ne contient aucun médicament</value>
+    <comment>There's no drug in this prescription</comment>
+  </data>
+  <data name="Invalid_Relation" xml:space="preserve">
+    <value>A relation should contain two persons</value>
+    <comment>A relation should contain two persons</comment>
+  </data>
+  <data name="Invalid_TimeSpan" xml:space="preserve">
+    <value>The start date should be before the end date</value>
+    <comment>The start date should be before the end date</comment>
+  </data>
+  <data name="Invalid_Weight" xml:space="preserve">
+    <value>Le poids doit être compris entre 1 et 500 Kg</value>
+    <comment>The weight should be between 1 and 500 Kg</comment>
+  </data>
+  <data name="Msg_Children" xml:space="preserve">
+    <value>Childrens</value>
+    <comment>Childrens</comment>
+  </data>
+  <data name="Msg_Father" xml:space="preserve">
+    <value>Father</value>
+    <comment>Father</comment>
+  </data>
+  <data name="Msg_Mother" xml:space="preserve">
+    <value>Mother</value>
+    <comment>Mother</comment>
+  </data>
+  <data name="Msg_Sibling" xml:space="preserve">
+    <value>Brothers and sisters</value>
+    <comment>Brothers and sisters</comment>
+  </data>
+  <data name="TagType_Appointment" xml:space="preserve">
+    <value>Appointment</value>
+    <comment>Appointment</comment>
+  </data>
+  <data name="TagType_Child" xml:space="preserve">
+    <value>Child</value>
+    <comment>Child</comment>
+  </data>
+  <data name="TagType_Doctor" xml:space="preserve">
+    <value>Doctor</value>
+    <comment>Doctor</comment>
+  </data>
+  <data name="TagType_Drug" xml:space="preserve">
+    <value>Drug</value>
+    <comment>Drug</comment>
+  </data>
+  <data name="TagType_MedicalRecord" xml:space="preserve">
+    <value>Medical record</value>
+    <comment>Medical record</comment>
+  </data>
+  <data name="TagType_Parent" xml:space="preserve">
+    <value>Parent</value>
+    <comment>Parent</comment>
+  </data>
+  <data name="TagType_Pathology" xml:space="preserve">
+    <value>Pathology</value>
+    <comment>Pathology</comment>
+  </data>
+  <data name="TagType_Patient" xml:space="preserve">
+    <value>Patient</value>
+    <comment>Patient</comment>
+  </data>
+  <data name="TagType_Picture" xml:space="preserve">
+    <value>Picture</value>
+    <comment>Picture</comment>
+  </data>
+  <data name="TagType_Prescription" xml:space="preserve">
+    <value>Prescription</value>
+    <comment>Prescription</comment>
+  </data>
+  <data name="TagType_PrescriptionDocument" xml:space="preserve">
+    <value>Prescription document</value>
+    <comment>Prescription document</comment>
+  </data>
+  <data name="Title_FromTo" xml:space="preserve">
+    <value>{0} from {1} to {2} {3}</value>
+    <comment>{0} from {1} to {2} {3}</comment>
+  </data>
+</root>

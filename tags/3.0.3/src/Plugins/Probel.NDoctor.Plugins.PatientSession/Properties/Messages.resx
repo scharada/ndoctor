@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Btn_Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>Add</comment>
+  </data>
+  <data name="Criteria_ByName" xml:space="preserve">
+    <value>First or last name:</value>
+    <comment>First or :ast name:</comment>
+  </data>
+  <data name="Criteria_ByProfession" xml:space="preserve">
+    <value>Profession:</value>
+    <comment>Profession:</comment>
+  </data>
+  <data name="Criteria_ByYear" xml:space="preserve">
+    <value>Birth year:</value>
+    <comment>Birth year:</comment>
+  </data>
+  <data name="Criteria_Create" xml:space="preserve">
+    <value>Create a new search criteria</value>
+    <comment>Create a new search criteria</comment>
+  </data>
+  <data name="Criteria_Specification" xml:space="preserve">
+    <value>Specification:</value>
+    <comment>Specification:</comment>
+  </data>
+  <data name="Criteria_Value" xml:space="preserve">
+    <value>Criteria:</value>
+    <comment>Criteria:</comment>
+  </data>
+  <data name="Error_AddPatient" xml:space="preserve">
+    <value>An error occured while adding a new patient</value>
+    <comment>An error occured while adding a new patient</comment>
+  </data>
+  <data name="Ex_NotNumericValue" xml:space="preserve">
+    <value>The specified value is not numeric</value>
+    <comment>The specified value is not numeric</comment>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+    <comment>Information</comment>
+  </data>
+  <data name="Menu_Select" xml:space="preserve">
+    <value>Select</value>
+    <comment>Select</comment>
+  </data>
+  <data name="Msg_DoubleClick" xml:space="preserve">
+    <value>Double click to select the patient</value>
+    <comment>Double click to select the patient</comment>
+  </data>
+  <data name="Msg_PatientAdded" xml:space="preserve">
+    <value>Patient added.</value>
+    <comment>Patient added.</comment>
+  </data>
+  <data name="Msg_PatientSelected" xml:space="preserve">
+    <value>Patient selected</value>
+    <comment>Patient selected</comment>
+  </data>
+  <data name="Msg_SearchExecuted" xml:space="preserve">
+    <value>{0} patient(s) found.</value>
+    <comment>{0} patient(s) found.</comment>
+  </data>
+  <data name="Msg_SelectPatient" xml:space="preserve">
+    <value>Open a session for {0}</value>
+    <comment>Open a session for {0}</comment>
+  </data>
+  <data name="Title_Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>Add</comment>
+  </data>
+  <data name="Title_AddPatient" xml:space="preserve">
+    <value>Add a patient</value>
+    <comment>Add a patient</comment>
+  </data>
+  <data name="Title_ButtonAddPatient" xml:space="preserve">
+    <value>Add a patient</value>
+    <comment>AddPatient</comment>
+  </data>
+  <data name="Title_ButtonSearch" xml:space="preserve">
+    <value>Search</value>
+    <comment>Search</comment>
+  </data>
+  <data name="Title_ExtendedSearchPatient" xml:space="preserve">
+    <value>Advanced search</value>
+    <comment>Advanced search</comment>
+  </data>
+  <data name="Title_FirstName" xml:space="preserve">
+    <value>First name</value>
+    <comment>First name</comment>
+  </data>
+  <data name="Title_Gender" xml:space="preserve">
+    <value>Gender</value>
+    <comment>Gender</comment>
+  </data>
+  <data name="Title_LastName" xml:space="preserve">
+    <value>Last name</value>
+    <comment>Last name</comment>
+  </data>
+  <data name="Title_MostUsed" xml:space="preserve">
+    <value>Ten most used patients</value>
+    <comment>Ten most used patients</comment>
+  </data>
+  <data name="Title_SearchPatient" xml:space="preserve">
+    <value>Search patient</value>
+    <comment>Search patient</comment>
+  </data>
+  <data name="Title_SearchWatermark" xml:space="preserve">
+    <value>Chercher...</value>
+    <comment>Search...</comment>
+  </data>
+</root>
