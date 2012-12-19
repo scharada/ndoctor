@@ -1,0 +1,46 @@
+﻿<Window x:Class="Probel.NDoctor.Plugins.MedicalRecord.View.RecordHistoryView"
+        x:Name="this"        
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:t="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:text="clr-namespace:Probel.NDoctor.Plugins.MedicalRecord.Translations"
+        xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        
+        Title="{Binding Source={x:Static Member=text:RecordHistoryText.Title}}"
+        
+        mc:Ignorable="d" 
+        Width="800"
+        Height="600" WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+    
+    <Window.InputBindings>
+        <KeyBinding Key="Escape"
+                    Command="cmd:Commands.CloseView" 
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
+    </Window.InputBindings>
+
+    <DockPanel LastChildFill="True">
+        <DockPanel LastChildFill="True"
+                   DockPanel.Dock="Left">
+            <Border DockPanel.Dock="Top"
+                    Style="{StaticResource BorderStyle}">
+                <Button DockPanel.Dock="Top" 
+                        Content="{Binding Source={x:Static Member=text:RecordHistoryText.Rollback}}"
+                        Command="{Binding UpdateRecordCommand}"/>
+            </Border>
+            <ScrollViewer DockPanel.Dock="Left"                          
+                          MinWidth="150" Width="197">
+            <ListView Name="list"
+                      ItemsSource="{Binding History}"
+                      SelectedItem="{Binding SelectedState}"
+                      DisplayMemberPath="LastUpdate"/>
+        </ScrollViewer>
+        </DockPanel>
+        <t:RichTextBox Text="{Binding SelectedItem.Rtf, ElementName=list}"
+                       IsReadOnly="True"
+                       VerticalScrollBarVisibility="Visible"
+                       HorizontalScrollBarVisibility="Auto"/>
+    </DockPanel>
+</Window>

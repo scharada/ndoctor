@@ -1,0 +1,59 @@
+﻿<Window x:Class="Probel.NDoctor.Plugins.DbConvert.View.WorkbenchView"
+        x:Name="this"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:text="clr-namespace:Probel.NDoctor.Plugins.DbConvert.Translations"
+        xmlns:iw="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:txt="clr-namespace:Probel.NDoctor.Plugins.DbConvert.Translations"
+        xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        
+        Title="{Binding Source={x:Static Member=txt:WorkbenchText.Title}}" 
+             
+        mc:Ignorable="d"
+        Height="300"
+        Width="400"
+        Loaded="this_Loaded" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" WindowStyle="ToolWindow" 
+        Background="{x:Static SystemColors.ActiveCaptionBrush}">
+    <Window.InputBindings>
+        <KeyBinding Key="Escape"
+                    Command="cmd:Commands.CloseView" 
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
+    </Window.InputBindings>
+
+    <DockPanel LastChildFill="True">
+
+        <DockPanel DockPanel.Dock="Top" LastChildFill="True">
+            <Button DockPanel.Dock="Right" Margin="4"
+                    x:Name="focused"
+                    Command="{Binding Path=ChooseOldDbCommand}"
+                    Content="{Binding Source={x:Static Member=text:WorkbenchText.ChooseDb}}"/>
+
+            <Label Margin="4" Grid.Row="0" 
+                   Background="{x:Static SystemColors.InfoBrush}"
+                   Grid.Column="0"
+                   Content="{Binding Path=Database}"/>
+        </DockPanel>
+
+        <DockPanel DockPanel.Dock="Bottom" 
+                   LastChildFill="True">
+            <Button DockPanel.Dock="Right"
+                    Margin="4"
+                    Command="{Binding Path=ImportCommand}"
+                    Content="{Binding Source={x:Static Member=text:WorkbenchText.Import}}"/>
+            <ProgressBar DockPanel.Dock="Left"
+                         Margin="4"
+                         Value="{Binding Path=Progress}"/>
+        </DockPanel>
+
+        <ScrollViewer DockPanel.Dock="Top"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <TextBlock Background="{x:Static SystemColors.InfoBrush}"
+                       Text="{Binding Path=Logs}"/>
+        </ScrollViewer>
+
+    </DockPanel>
+</Window>
+

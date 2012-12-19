@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<project default="Post-Build" xmlns="http://nant.sf.net/release/0.92/nant.xsd">
+	
+	<!--
+      Uncomment these few lines if the nAnd Contrib binaries are not in the same directory than the nAnt files.
+      Bear in mind these lines are an example, therefore configure what has to be configured ;)
+    -->
+	<!--
+    <property name="nantcontrib-dir"
+                value="${path::combine(nant::get-base-directory(), '../../NAntContrib')}"
+                overwrite="false" />
+
+    <loadtasks assembly="${path::combine(nantcontrib-dir, 'bin/NAnt.Contrib.Tasks.dll')}"/>
+  -->
+	
+	<!-- Properties -->
+	<property name="release-dir" value="c:\nDoctor-Release" overwrite="false"/>
+	<property name="code-dir" value="${release-dir}\bin"/>
+	<property name="sln-file" value="Probel.NDoctor.sln" overwrite="false"/>
+	<property name="sln-setup" value="Setup.sln" overwrite="false"/>
+	<property name="tool-dir" value="${release-dir}\bin\tools"/>
+	<property name="build-mode" value="release" overwrite="false"/>
+	<property name="svn-repository" value="http://ndoctor.googlecode.com/svn/trunk/"/>
+	<property name="nest-dir" value="${release-dir}\Nest\nDoctor"/>
+	<property name="output-dir" value="${release-dir}\output"/>
+	
+	<!-- Targets -->
+	<!-- Export the code locally -->
+	<target name="Pre-Build" description="Export the code locally">
+		<echo message="========================================================================"/>
+		<echo message="release-dir   : ${release-dir}"/>
+		<echo message="code-dir      : ${code-dir}"/>
+		<echo message="sln-file      : ${sln-file}"/>
+		<echo message="sln-setup     : ${sln-setup}"/>
+		<echo message="tool-dir      : ${tool-dir}"/>
+		<echo message="build-mode    : ${build-mode}"/>
+		<echo message="svn-repository: ${svn-repository}"/>
+		<echo message="========================================================================"/>
+		
+		<echo message="Clean release directory..."/>
+		<delete>
+			<fileset basedir="${release-dir}\">
+				<exclude name="*.zip"/>
+				<include name="**.*"/>
+			</fileset>
+		</delete>
+		<delete dir="${release-dir}\bin"/>
+		<delete dir="${nest-dir}"/>
+		
+		<echo message="Checkout the code..."/>
+		<exec program="svn.exe"
+		      commandline="export &quot;${svn-repository}&quot; &quot;${code-dir}&quot; -q"/>
+		
+		<echo message="Get the revision number"/>
+		<exec program="svn.exe"
+		      commandline='info "${svn-repository}" --xml'
+		      output="svninfo.xml"
+		      failonerror="false"/>
+		
+		<xmlpeek file="svninfo.xml"
+		         xpath="/info/entry/commit/@revision"
+		         property="svn.revision"
+		         failonerror="false"/>
+		<echo message="Building revision number: ${svn.revision}"/>
+		<delete file="svninfo.xml" failonerror="false" />
+		
+		<echo message="Set the version number"/>
+		<delete file="${code-dir}\src\Version.cs" failonerror="false"/>
+		<copy file="${code-dir}\src\Version.template"
+		      tofile="${code-dir}\src\Version.cs">
+			<filterchain>
+				<replacestring from="$WCREV$" to="${svn.revision}" />
+			</filterchain>
+		</copy>
+		
+		<echo message="Prepare the nest..."/>
+		<unzip zipfile="${tool-dir}\Makefile\Nest.zip"
+		       todir="${release-dir}"/>
+	
+	</target>
+	
+	<!-- Build the solution -->
+	<target name="Build" description="Build the solution" depends="Pre-Build">
+		<!-- Build the solution -->
+		<echo message="Building..."/>
+		<echo message="Build mode: ${build-mode}"/>
+		<echo message="Building file: ${code-dir}\src\${sln-file}"/>
+		<msbuild project="${code-dir}\src\${sln-file}"
+		         verbosity="Minimal">
+			<property name="Configuration" value="${build-mode}"/>
+		</msbuild>
+		
+		<echo message="Copying plugins into the repository..."/>
+		<exec program="powershell" workingdir="${tool-dir}" verbose="true">
+			<arg value="-noprofile"/>
+			<arg value="-nologo"/>
+			<arg value="-noninteractive"/>
+			<arg value="-command"/>
+			<arg value="${tool-dir}\scripts\CopyPluginsFiles.ps1"/>
+			<arg value="${build-mode}"/>
+		</exec>
+	</target>
+	
+	<!-- Post build: run unit tests -->
+	<target name="Post-Build" description="Run Unit tests and prepare binaries" depends="Build">
+		
+		<mkdir dir="${output-dir}"/>
+		<echo message="Test file: ${code-dir}\src\Probel.NDoctor.nunit /result=${output-dir}\nunit-output.xml /config=Release"/>
+		<echo message="Run the unit tests..."/>
+		<exec program="nunit-console-x86.exe"
+		      commandline="${code-dir}\src\Probel.NDoctor.nunit /result=${output-dir}\nunit-output.xml /out=${output-dir}\nunit-output.txt /config=Release /nologo"/>
+		
+		
+		<echo message="Copying i18n files..."/>
+		<copy todir="${nest-dir}\fr">
+			<fileset basedir="${code-dir}\src\View\Probel.NDoctor.View.Core\bin\${build-mode}\fr"/>
+		</copy>
+		
+		<echo message="Copying plugins..."/>
+		<copy todir="${nest-dir}\Plugins">
+			<fileset basedir="${code-dir}\src\View\Probel.NDoctor.View.Core\bin\${build-mode}\Plugins"/>
+		</copy>
+		
+		<echo message="Copying main files..."/>
+		<copy todir="${nest-dir}\">
+			<fileset basedir="${code-dir}\src\View\Probel.NDoctor.View.Core\bin\${build-mode}\">
+				<exclude name="*.vshost.exe"/>
+				<exclude name="*.vshost.exe.config"/>
+				<include name="*.dll"/>
+				<include name="*.exe"/>
+				<include name="*.log4net"/>
+				<include name="*.config"/>
+			</fileset>
+		</copy>
+		
+		<echo message="Deactivate debug plugin if exists"/>
+		<delete dir="${nest-dir}\Plugins\DebugTools" failonerror="false"/>
+		
+		<loadfile file="${code-dir}\src\Version.cs" property="version-file"/>
+		<regex pattern="AssemblyVersion\(\&quot;(?'version'3.*.*.*)*\&quot;"
+		       input="${version-file}"/>
+		<echo message="Version number: ${version}"/>
+	</target>
+	
+	<!-- Build the .msi file -->
+	<target name="Installer" description="Build the installer" depends="Post-Build">
+		<echo message="Execute the script to prepare the installer build"/>
+		<exec program="powershell" workingdir="${tool-dir}" verbose="true">
+			<arg value="-noprofile"/>
+			<arg value="-nologo"/>
+			<arg value="-noninteractive"/>
+			<arg value="-command"/>
+			<arg value="${tool-dir}\scripts\BuildComponentsFromFiles.ps1"/>
+		</exec>
+		
+		<echo message="Build the .msi file"/>
+		<msbuild project="${code-dir}\src\${sln-setup}"
+		         verbosity="Minimal">
+			<property name="Configuration" value="${build-mode}"/>
+		</msbuild>
+	</target>
+	
+	<!-- Create a zipped package with the binaries -->
+	<target name="Release" description="Zip the binaries and installer" depends="Installer">
+		
+		<echo message="Zip the binaries"/>
+		<zip zipfile="${release-dir}\nDoctor.${version}.zip">
+			<fileset basedir="${nest-dir}\..\">
+				<exclude name="bin\**" />
+				<include name="**.*"/>
+			</fileset>
+		</zip>
+		
+		<echo message="Copy the installer"/>
+		<copy file="${code-dir}\src\Setup\bin\${build-mode}\Setup.msi"
+		      tofile="${release-dir}\nDoctor.${version}.msi"/>
+		
+		<echo message="Clean temporary files"/>
+		<delete dir="${release-dir}\fr"/>
+		<delete dir="${release-dir}\Plugins"/>
+		<delete dir="${release-dir}\Nest"/>
+		<delete dir="${code-dir}"/>
+		<delete>
+			<fileset basedir="${release-dir}">
+				<exclude name="**/output/**"/>
+				<exclude name="*.msi"/>
+				<exclude name="*.zip"/>
+				<include name="**.*"/>
+			</fileset>
+		</delete>
+	</target>
+</project>

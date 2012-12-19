@@ -1,0 +1,43 @@
+﻿<Window x:Class="Probel.NDoctor.View.Core.View.SplashScreen"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Helpers="clr-namespace:Probel.NDoctor.View.Core.Helpers"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
+        Title="SpashScreen" Width="348" Height="320"
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" 
+        ShowInTaskbar="False" BorderThickness="1" BorderBrush="#8B000000" mc:Ignorable="d">
+    <Window.Resources>
+        <!-- InnerWindow button's border -->
+        <Style TargetType="{x:Type Border}" x:Key="BorderStyle">
+            <Setter Property="Padding" Value="4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <Image Height="200"               
+               Source="/Images/Spash.jpg" 
+               VerticalAlignment="Top" />
+        <Border Grid.Row="1"                 
+                Style="{StaticResource BorderStyle}">
+
+            <TextBlock TextAlignment="Center" 
+                       Text="{Binding Title}" 
+                       FontWeight="Bold" FontSize="24" />
+        </Border>
+        <Border Grid.Row="2"  
+                Height="32"
+                Style="{StaticResource BorderStyle}">
+            <ProgressBar Value="{Binding Progress}" />
+        </Border>
+        <Border Grid.Row="3"  
+                Style="{StaticResource BorderStyle}">
+            <TextBox TextAlignment="Center"  
+                     Text="{Binding Status}"/>
+        </Border>
+    </StackPanel>
+</Window>

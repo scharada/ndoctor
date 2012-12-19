@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.Patient">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <Members>
+      <Method Name="Patient" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AASiAAAARBAACAIlgAAAAAQgAAAIAAAIEAAhAAQAAAA=</HashCode>
+      <FileName>Entities\Patient.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="PrescriptionDocuments" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.PrescriptionDocument">
+    <Position X="4.25" Y="1.75" Width="1.75" />
+    <AssociationLine Name="Prescriptions" Type="Probel.NDoctor.Domain.DAL.Entities.Prescription">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.06" Y="0.202" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QBAAAAAAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\PrescriptionDocument.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Prescriptions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.Prescription">
+    <Position X="4.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Prescription.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Drug" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.Drug">
+    <Position X="6.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Drug.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

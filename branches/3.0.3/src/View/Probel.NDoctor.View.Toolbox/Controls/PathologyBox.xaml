@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Probel.NDoctor.View.Toolbox.Controls.PathologyBox"
+             x:Name="this"
+             
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             
+             xmlns:txt="clr-namespace:Probel.NDoctor.View.Toolbox.Translations"
+             
+             xmlns:t="clr-namespace:Probel.NDoctor.View.Toolbox.Translations"
+             xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Toolbox.Controls"
+             mc:Ignorable="d" 
+             
+             Width="250"
+             Loaded="this_Loaded">
+    <StackPanel>
+        <DockPanel LastChildFill="True">
+            <CheckBox Margin="4"
+                      x:Name="cb"
+                      IsChecked="{Binding ElementName=this, Path=TypeEnabled}"
+                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            
+            <ComboBox Name="focused"
+                      IsEnabled="{Binding ElementName=cb, Path=IsChecked,UpdateSourceTrigger=PropertyChanged}"
+                      Margin="4"
+                      ItemsSource="{Binding ElementName=this, Path=Tags}"
+                      DisplayMemberPath="Name"
+                      SelectedItem="{Binding ElementName=this, Path=Pathology.Tag, UpdateSourceTrigger=PropertyChanged}"/>
+        </DockPanel>
+
+        <TextBox Margin="4" Text="{Binding ElementName=this, Path=Pathology.Name, UpdateSourceTrigger=PropertyChanged}"
+                 MinWidth="200"/>
+
+        <ctrl:OKCancelBox OkCommand="{Binding ElementName=this, Path=OkCommand, UpdateSourceTrigger=PropertyChanged}"
+                          ButtonName="{Binding ElementName=this, Path=ButtonName, UpdateSourceTrigger=PropertyChanged}"/>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Btn_Add" xml:space="preserve">
+    <value>Ajouter</value>
+    <comment>Add</comment>
+  </data>
+  <data name="Btn_AddDrug" xml:space="preserve">
+    <value>Ajouter un médicament</value>
+    <comment>Drug</comment>
+  </data>
+  <data name="Btn_AddDrugType" xml:space="preserve">
+    <value>Ajouter un type de médicament</value>
+    <comment>Drug type</comment>
+  </data>
+  <data name="Btn_New" xml:space="preserve">
+    <value>Nouv.</value>
+    <comment>New</comment>
+  </data>
+  <data name="Btn_Remove" xml:space="preserve">
+    <value>Supprimer cette prescription</value>
+    <comment>Remove this prescription</comment>
+  </data>
+  <data name="Btn_Save" xml:space="preserve">
+    <value>Sauver</value>
+    <comment>Save</comment>
+  </data>
+  <data name="Btn_Search" xml:space="preserve">
+    <value>Chercher</value>
+    <comment>Search</comment>
+  </data>
+  <data name="Btn_Select" xml:space="preserve">
+    <value>Sélectionner</value>
+    <comment>Select</comment>
+  </data>
+  <data name="Col_Drugs" xml:space="preserve">
+    <value>Médicaments</value>
+    <comment>Drugs</comment>
+  </data>
+  <data name="Col_Notes" xml:space="preserve">
+    <value>Notes</value>
+    <comment>Notes</comment>
+  </data>
+  <data name="Menu_Actions" xml:space="preserve">
+    <value>Actions</value>
+    <comment>Actions</comment>
+  </data>
+  <data name="Menu_File" xml:space="preserve">
+    <value>Fichier</value>
+    <comment>File</comment>
+  </data>
+  <data name="Menu_Manage" xml:space="preserve">
+    <value>Gérer</value>
+    <comment>Manage</comment>
+  </data>
+  <data name="Menu_Navigation" xml:space="preserve">
+    <value>Navigation</value>
+    <comment>Navigation</comment>
+  </data>
+  <data name="Msg_DataSaved" xml:space="preserve">
+    <value>Informations sauvées</value>
+    <comment>Data saved</comment>
+  </data>
+  <data name="Msg_EmptyNotesForPrescriptions" xml:space="preserve">
+    <value>Il existe des prescriptions sans notes. Voulez-vous continuer?</value>
+    <comment>There are some prescription without notes. Do you want to continue?</comment>
+  </data>
+  <data name="Msg_ErrorOccured" xml:space="preserve">
+    <value>Une erreur est survenue. Vérifier les logs pour plus d'informations.</value>
+    <comment>An error occured. Check the logs for further information.</comment>
+  </data>
+  <data name="Msg_ErrorSavingPrescription" xml:space="preserve">
+    <value>Une erreur est apparue pendant la sauvegarde de la prescription.</value>
+    <comment>An error occured while saving the prescription.</comment>
+  </data>
+  <data name="Msg_ErrorSearchingPrescriptions" xml:space="preserve">
+    <value>Une erreur est apparue pendant la recherche de prescriptions.</value>
+    <comment>An error occured while searching prescriptions.</comment>
+  </data>
+  <data name="Msg_FoundPrescription" xml:space="preserve">
+    <value>Prescriptions trouvées</value>
+    <comment>Prescriptions were found</comment>
+  </data>
+  <data name="Msg_NothingFound" xml:space="preserve">
+    <value>Aucun résultat trouvé</value>
+    <comment>Nothing was found</comment>
+  </data>
+  <data name="Msg_NothingToSave" xml:space="preserve">
+    <value>La prescription n'a pas été sauvée: veuillez prescrire au moins un médicament.</value>
+    <comment>The prescription wasn't saved. Please enter at least one drug.</comment>
+  </data>
+  <data name="Msg_PrescriptionDeleted" xml:space="preserve">
+    <value>Prescription supprimée.</value>
+    <comment>Prescription deleted.</comment>
+  </data>
+  <data name="Msg_PrescriptionSaved" xml:space="preserve">
+    <value>Prescription sauvée.</value>
+    <comment>Prescription saved.</comment>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Question</value>
+    <comment>Question</comment>
+  </data>
+  <data name="Title_AddNotesHere" xml:space="preserve">
+    <value>Entrez les notes ici:</value>
+    <comment>Enter notes here:</comment>
+  </data>
+  <data name="Title_AddPrescription" xml:space="preserve">
+    <value>Créer une prescription</value>
+    <comment>Create new prescription</comment>
+  </data>
+  <data name="Title_CreatePrescription" xml:space="preserve">
+    <value>Création d'une prescription</value>
+    <comment>Creation of a prescription</comment>
+  </data>
+  <data name="Title_CreationDate" xml:space="preserve">
+    <value>Date de création:</value>
+    <comment>Creation date:</comment>
+  </data>
+  <data name="Title_Edit" xml:space="preserve">
+    <value>Editer</value>
+    <comment>Edit</comment>
+  </data>
+  <data name="Title_EditPrescription" xml:space="preserve">
+    <value>Editer cette prescription</value>
+    <comment>Edit this prescription</comment>
+  </data>
+  <data name="Title_From" xml:space="preserve">
+    <value>Entre le </value>
+    <comment>To</comment>
+  </data>
+  <data name="Title_Name" xml:space="preserve">
+    <value>Nom</value>
+    <comment>Name</comment>
+  </data>
+  <data name="Title_OperationDone" xml:space="preserve">
+    <value>L'opération s'est déroulée avec succès.</value>
+    <comment>The operation succeeded.</comment>
+  </data>
+  <data name="Title_PrescripitonTag" xml:space="preserve">
+    <value>Etiquette:</value>
+    <comment>Tag:</comment>
+  </data>
+  <data name="Title_PrescriptionDocumentCreated" xml:space="preserve">
+    <value>Prescription crée le:</value>
+    <comment>Prescription created on:</comment>
+  </data>
+  <data name="Title_PrescriptionHeader" xml:space="preserve">
+    <value>Liste des prescriptions entre le {0} et le {1}</value>
+    <comment>Prescriptions list between {0} and {1}</comment>
+  </data>
+  <data name="Title_PrescriptionManager" xml:space="preserve">
+    <value>Prescriptions</value>
+    <comment>Prescriptions</comment>
+  </data>
+  <data name="Title_PrescriptionNotes" xml:space="preserve">
+    <value>Notes</value>
+    <comment>Notes</comment>
+  </data>
+  <data name="Title_SearchDrugs" xml:space="preserve">
+    <value>Rechercher des médicaments</value>
+    <comment>Search drugs</comment>
+  </data>
+  <data name="Title_SearchWatermark" xml:space="preserve">
+    <value>Chercher...</value>
+    <comment>Search...</comment>
+  </data>
+  <data name="Title_SelectedDrug" xml:space="preserve">
+    <value>Médicament sélectionné</value>
+    <comment>Selected drug</comment>
+  </data>
+  <data name="Title_Tag" xml:space="preserve">
+    <value>Type</value>
+    <comment>Type</comment>
+  </data>
+  <data name="Title_To" xml:space="preserve">
+    <value>Et le</value>
+    <comment>To</comment>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Attention</value>
+    <comment>Warning</comment>
+  </data>
+</root>

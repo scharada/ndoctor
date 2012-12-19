@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Msg_ErrorDbCreationImpossible" xml:space="preserve">
+    <value>Impossible de créér la base de données.</value>
+    <comment>Impossible to create the database</comment>
+  </data>
+  <data name="Msg_ErrorInvalidHbmPath" xml:space="preserve">
+    <value>Le chemin pour exporter les fichier HBM est invalide.</value>
+    <comment>The path where to export the HBM files is invalid or doesn't exist!</comment>
+  </data>
+  <data name="Msg_ErrorSessionFactoryNull" xml:space="preserve">
+    <value>La factory de session n'est pas configurée. Etes-vous sûr que vous avez configuré nHibernate pour cette instance?</value>
+    <comment>The session factory is not set. Are you sure you have configured nHibernate for this instance?</comment>
+  </data>
+  <data name="Msg_ErrorSQLiteConfigurationNotSet" xml:space="preserve">
+    <value>Le configurateur SQLite n'est pas prêt.</value>
+    <comment>The SQLiteConfiguration is not set!</comment>
+  </data>
+  <data name="Validation_Password" xml:space="preserve">
+    <value>Vous n'avez pas entré deux fois le même mot de passe.</value>
+    <comment>You didn't entered twice the same password.</comment>
+  </data>
+  <data name="Validation_PasswordCantBeEmpty" xml:space="preserve">
+    <value>Le mot de passe ne peut pas être une chaîne vide.</value>
+    <comment>The password can't be empty</comment>
+  </data>
+  <data name="Msg_ErrorSessionAlreadyOpenException" xml:space="preserve">
+    <value>Une session a déjà été ouverte. Veuillez fermer celle-ci avant d'en ouvrir une nouvelle.</value>
+    <comment>A session is already opened. Please, close the opened session before opening a new one.</comment>
+  </data>
+  <data name="Msg_ErrorDbInvalidPath" xml:space="preserve">
+    <value>Le chemin vers la base de données est incorrecte ou le fichier n'existe pas.</value>
+    <comment>The path to the database is invalid or the file doesn't exist</comment>
+  </data>
+  <data name="Explanation_Administer" xml:space="preserve">
+    <value>Un utilisateur qui a ce droit peut écrire, lire et modifier les informations contenue dans la base de données et qui sont liées à l'administration (par exemple la gestion des droits)</value>
+    <comment>A user with this right can modify data about administration </comment>
+  </data>
+  <data name="Explanation_Everyone" xml:space="preserve">
+    <value>Tout le monde peut exécuter cette fonctionnalité</value>
+    <comment>Everyone can execute this feature</comment>
+  </data>
+  <data name="Explanation_Metawrite" xml:space="preserve">
+    <value>Un utilisateur qui a ce droit peut modifier les informations à son sujet comme son mot de passe ou son nom</value>
+    <comment>A user with this right can modify data about himself/herself such as his/her password</comment>
+  </data>
+  <data name="Explanation_Read" xml:space="preserve">
+    <value>Un utilisateur qui a ce droit peut lire les informations contenues dans la base de données</value>
+    <comment>A user with this right can read data</comment>
+  </data>
+  <data name="Explanation_Write" xml:space="preserve">
+    <value>Un utilisataur qui a ce droit peur écrire et modifier les informations contenues dans la base de données.</value>
+    <comment>A user with this right can write and edit data (but not about himself/herself or administration)</comment>
+  </data>
+  <data name="Task_Administer" xml:space="preserve">
+    <value>Administrer</value>
+    <comment>Administer</comment>
+  </data>
+  <data name="Task_Everyone" xml:space="preserve">
+    <value>Tout le monde</value>
+    <comment>Everyone</comment>
+  </data>
+  <data name="Task_Metawrite" xml:space="preserve">
+    <value>Méta-écriture</value>
+    <comment>Metawrite</comment>
+  </data>
+  <data name="Task_Read" xml:space="preserve">
+    <value>Lecture</value>
+    <comment>Read</comment>
+  </data>
+  <data name="Task_Write" xml:space="preserve">
+    <value>Ecriture</value>
+    <comment>Write</comment>
+  </data>
+  <data name="Explanation_Administrator" xml:space="preserve">
+    <value>Un administrateur à tous les droits sur l'application.</value>
+    <comment>The administrator has all the rights in the application</comment>
+  </data>
+  <data name="Explanation_Doctor" xml:space="preserve">
+    <value>Un médecin peut modifier ou lire toutes les information sauf celles relatives à l'administration</value>
+    <comment>The doctor can read and mofify all the data but he/she cant read or modify  adlinistration data</comment>
+  </data>
+  <data name="Explanation_Secretary" xml:space="preserve">
+    <value>Un secrétaire peut lire toutes les information mais ne peut modifier que l'agenda</value>
+    <comment>The secretary can read all the data but only modify the calendar</comment>
+  </data>
+  <data name="Role_Administrator" xml:space="preserve">
+    <value>Administrateur</value>
+    <comment>Administrator</comment>
+  </data>
+  <data name="Role_Doctor" xml:space="preserve">
+    <value>Docteur</value>
+    <comment>Doctor</comment>
+  </data>
+  <data name="Role_Secretary" xml:space="preserve">
+    <value>Secrétaire</value>
+    <comment>Secretary</comment>
+  </data>
+  <data name="Explanation_EditCalendar" xml:space="preserve">
+    <value>Un utilisateur qui a ce droit peut ajouter, modifier ou supprimer des rendez-vous dans l'agenda.</value>
+    <comment>A user with this right can add, update or delete apointments in the calendar.</comment>
+  </data>
+  <data name="Task_EditCalendar" xml:space="preserve">
+    <value>Editer les agendas</value>
+    <comment>Edit calendars</comment>
+  </data>
+  <data name="Ex_ReferencialIntegrityException_Deletion" xml:space="preserve">
+    <value>Supprimer cet élément est impossible: il est toujours référencé</value>
+    <comment>Couldn't remove this item because it is referenced somewhere else.</comment>
+  </data>
+  <data name="Ex_NoSuperAdmin" xml:space="preserve">
+    <value>La base est dans un état invalide: il n'existe pas de super admin.</value>
+    <comment>The database is in a wrong state: there is no super admin.</comment>
+  </data>
+  <data name="Invalid_Data" xml:space="preserve">
+    <value>Vous avez entré des données invalides</value>
+    <comment>You typed invalid data</comment>
+  </data>
+  <data name="Tag_Default_Prescription" xml:space="preserve">
+    <value>Prescription</value>
+    <comment>Prescription</comment>
+  </data>
+  <data name="Ex_InvalidMacroException" xml:space="preserve">
+    <value>La macro n'est pas valide ou est mal formée</value>
+    <comment>The macro is not valid or is malformed</comment>
+  </data>
+  <data name="Ex_ArgumentException_NotBaseComponent" xml:space="preserve">
+    <value>Le composant n'est pas de type 'BaseComponent' mais de type '{0}'!</value>
+    <comment>The component is not of type 'BaseComponent' but of type '{0}'!</comment>
+  </data>
+  <data name="Ex_CirularLinkFamily" xml:space="preserve">
+    <value>Vous tentez d'ajouter un patient comme son propre enfant ou parent</value>
+    <comment>You try to add a patient as his/her child or parent</comment>
+  </data>
+  <data name="Ex_QueryException_SeveralDefaultUsers" xml:space="preserve">
+    <value>Plus d'un utilisateur par défaut a été trouvé.</value>
+    <comment>More than one default user was found. </comment>
+  </data>
+  <data name="Ex_ExistingItemException_UserWithSameName" xml:space="preserve">
+    <value>Un utilisateur avec le même nom et prénom existe déjà.</value>
+    <comment>A user with the same first and last name already exist</comment>
+  </data>
+</root>

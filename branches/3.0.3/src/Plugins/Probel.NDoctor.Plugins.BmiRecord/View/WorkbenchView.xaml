@@ -1,0 +1,171 @@
+﻿<Page x:Class="Probel.NDoctor.Plugins.BmiRecord.View.WorkbenchView"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 	  
+	  xmlns:chart="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+      xmlns:text="clr-namespace:Probel.NDoctor.Plugins.BmiRecord.Translations"
+      xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.BmiRecord.View"
+	  mc:Ignorable="d" 
+	  d:DesignHeight="600" d:DesignWidth="800"
+	  Title="Workbench">
+
+    <Page.Resources>
+        <ResourceDictionary x:Key="dic">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Probel.NDoctor.Plugins.BmiRecord;component/Themes/Generic.xaml" />
+                <ResourceDictionary Source="/Probel.NDoctor.Plugins.BmiRecord;component/Resources/BmiTemplate.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <TabControl>
+        <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderChart}}">
+            <TabControl TabStripPlacement="Left">
+                <!-- Bmi chart-->
+                <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderBmi}}">
+                    <chart:Chart>
+                        <!-- Current -->
+                        <chart:LineSeries Title="{Binding Path=TitleBmiChart}"
+				                      ItemsSource="{Binding Patient.BmiHistory}"
+				                      IndependentValueBinding="{Binding Date}"
+				                      DependentValueBinding="{Binding Index}"/>
+
+                        <!-- Obesity -->
+                        <chart:LineSeries Title="{Binding Path=TitleObesity}"
+				                      ItemsSource="{Binding Patient.Obesity}"
+				                      IndependentValueBinding="{Binding Date}"
+				                      DependentValueBinding="{Binding Index}">
+                            <chart:LineSeries.DataPointStyle>
+                                <Style TargetType="chart:LineDataPoint">
+                                    <Setter Property="Background" Value="Red"/>
+                                </Style>
+                            </chart:LineSeries.DataPointStyle>
+                        </chart:LineSeries>
+
+                        <!-- Overweight -->
+                        <chart:LineSeries Title="{Binding Path=TitleBmiOverweight}"
+				                      ItemsSource="{Binding Patient.Overweight}"
+				                      IndependentValueBinding="{Binding Date}"
+				                      DependentValueBinding="{Binding Index}">
+                            <chart:LineSeries.DataPointStyle>
+                                <Style TargetType="chart:LineDataPoint">
+                                    <Setter Property="Background" Value="Orange"/>
+                                </Style>
+                            </chart:LineSeries.DataPointStyle>
+                        </chart:LineSeries>
+
+                        <!-- Underweight -->
+                        <chart:LineSeries Title="{Binding Path=TitleBmiUnderweight}"
+				                      ItemsSource="{Binding Patient.Underweight}"
+				                      IndependentValueBinding="{Binding Date}"
+				                      DependentValueBinding="{Binding Index}">
+                            <chart:LineSeries.DataPointStyle>
+                                <Style TargetType="chart:LineDataPoint">
+                                    <Setter Property="Background" Value="Yellow"/>
+                                </Style>
+                            </chart:LineSeries.DataPointStyle>
+                        </chart:LineSeries>
+
+                        <chart:Chart.Axes>
+                            <chart:DateTimeAxis Orientation="X"
+					                        Minimum="{Binding StartDate}"
+					                        MaxHeight="{Binding EndDate}"
+					                        Title="{Binding Path=TitleBmiXAxes}"
+					                        ShowGridLines="True"/>
+                            <chart:LinearAxis Orientation="Y"
+					                      Title="{Binding Path=TitleBmiYAxes}"
+					                      ShowGridLines="True"/>
+                        </chart:Chart.Axes>
+                    </chart:Chart>
+                </TabItem>
+
+                <!--Height chart-->
+                <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderHeight}}">
+                    <chart:Chart>
+                        <!-- Current Height chart -->
+                        <chart:LineSeries Title="{Binding Path=TitleHeightChart}"
+									  ItemsSource="{Binding Patient.BmiHistory}"
+									  IndependentValueBinding="{Binding Date}"
+									  DependentValueBinding="{Binding Height}"/>
+                        <chart:Chart.Axes>
+                            <chart:DateTimeAxis Orientation="X"
+											Minimum="{Binding StartDate}"
+											MaxHeight="{Binding EndDate}"
+											Title="{Binding Path=TitleBmiXAxes}"
+											ShowGridLines="True"/>
+                            <chart:LinearAxis Orientation="Y"
+										  Title="{Binding Path=TitleBmiYAxes}"
+										  ShowGridLines="True"/>
+                        </chart:Chart.Axes>
+                    </chart:Chart>
+                </TabItem>
+
+                <!--Weight chart-->
+                <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderWeight}}">
+                    <chart:Chart>
+                        <!-- Current Height chart -->
+                        <chart:LineSeries Title="{Binding Path=TitleWeightChart}"
+									  ItemsSource="{Binding Patient.BmiHistory}"
+									  IndependentValueBinding="{Binding Date}"
+									  DependentValueBinding="{Binding Weight}"/>
+                        <chart:Chart.Axes>
+                            <chart:DateTimeAxis Orientation="X"
+											Minimum="{Binding StartDate}"
+											MaxHeight="{Binding EndDate}"
+											Title="{Binding Path=TitleBmiXAxes}"
+											ShowGridLines="True"/>
+                            <chart:LinearAxis Orientation="Y"
+										  Title="{Binding Path=TitleBmiYAxes}"
+										  ShowGridLines="True"/>
+                        </chart:Chart.Axes>
+                    </chart:Chart>
+                </TabItem>
+            </TabControl>
+        </TabItem>
+        <TabItem Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderRawData}}">
+            <StackPanel>
+                <DataGrid ItemsSource="{Binding Path=BmiHistory}"      
+                          AutoGenerateColumns="False"
+                          SelectedItem="{Binding Path=SelectedBmi, UpdateSourceTrigger=PropertyChanged}"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          SelectionMode="Single">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="{Binding Source={x:Static Member=text:WorkbenchText.BtnDelete}}"
+                                      Command="{Binding Path=RemoveBmiCommand}">
+                                <MenuItem.Icon>
+                                    <Image Source="\Probel.NDoctor.Plugins.BmiRecord;component/Images\Delete.png"
+                                           Height="20"
+                                           Width="20"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=DateString, UpdateSourceTrigger=PropertyChanged}" 
+                                            Header="{Binding Source={x:Static Member=text:WorkbenchText.HeaderDate}}"
+                                            IsReadOnly="True"
+                                            Width="*"/>
+
+                        <DataGridTextColumn Binding="{Binding Path=Height, UpdateSourceTrigger=PropertyChanged}" 
+                                            Header="{Binding  Source={x:Static Member=text:WorkbenchText.Height}}"
+                                            IsReadOnly="True" 
+                                            Width="*"/>
+
+                        <DataGridTextColumn Binding="{Binding Path=Weight, UpdateSourceTrigger=PropertyChanged}" 
+                                            Header="{Binding Source={x:Static Member=text:WorkbenchText.Weight}}"
+                                            IsReadOnly="True"
+                                            Width="*"/>
+
+                        <DataGridTextColumn Binding="{Binding Path=Index, UpdateSourceTrigger=PropertyChanged}" 
+                                            Header="{Binding  Source={x:Static Member=text:WorkbenchText.Bmi}}"
+                                            IsReadOnly="True"
+                                            Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</Page>

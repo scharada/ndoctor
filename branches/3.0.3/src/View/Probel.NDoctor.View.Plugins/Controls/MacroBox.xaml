@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Probel.NDoctor.View.Plugins.Controls.MacroBox"
+             x:Name="this"
+             
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             
+             xmlns:txt="clr-namespace:Probel.NDoctor.View.Core.Translations"
+             xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
+             xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
+             xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Core.Controls"
+             
+             mc:Ignorable="d" Loaded="this_Loaded"
+             Width="200">
+    <StackPanel>
+        <Border Style="{StaticResource BorderStyle}">
+            <TextBox Name="focused"
+                     Text="{Binding ElementName=this, Path=Macro.Title, UpdateSourceTrigger=PropertyChanged}"/>
+        </Border>
+        <ctrl:OKCancelBox OkCommand="{Binding ElementName=this, Path=OkCommand, UpdateSourceTrigger=PropertyChanged}"
+                          ButtonName="{Binding ElementName=this, Path=ButtonName, UpdateSourceTrigger=PropertyChanged}"/>
+    </StackPanel>
+</UserControl>

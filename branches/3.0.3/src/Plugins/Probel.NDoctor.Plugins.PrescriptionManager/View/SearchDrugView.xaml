@@ -1,0 +1,88 @@
+﻿<Window x:Class="Probel.NDoctor.Plugins.PrescriptionManager.View.SearchDrugView"
+        x:Name="this"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:h="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
+        xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PrescriptionManager.Translations"
+        xmlns:iw="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:txt="clr-namespace:Probel.NDoctor.Plugins.PrescriptionManager.Translations"
+        
+        Title="{Binding Source={x:Static Member=txt:AddDrugText.TitleCategory}}" 
+                
+        mc:Ignorable="d" 
+        Height="300" 
+        Width="300"        
+        Loaded="this_Loaded" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner">    
+    <Window.InputBindings>
+        <KeyBinding Key="Enter"
+                    Command="{Binding SelectCommand}"/>
+        <KeyBinding Key="Escape"
+                    Command="cmd:Commands.CloseView" 
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
+    </Window.InputBindings>
+    <DockPanel LastChildFill="True">
+        <Button DockPanel.Dock="Bottom"
+                Margin="4" Content="{Binding Source={x:Static Member=text:AddPrescriptionText.BtnSelect}}"
+                Command="{Binding SelectCommand}"/>
+
+        <DockPanel DockPanel.Dock="Top">
+                <RadioButton DockPanel.Dock="Left" x:Name="rb_OnName"
+                             Grid.Row="0" 
+                             Grid.Column="0"
+                             GroupName="Search"
+                             Content="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleName}}"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"/>
+                <DockPanel Margin="4">
+                    <Button DockPanel.Dock="Right" Background="White" BorderBrush="White" BorderThickness="0"
+                            Command="{Binding SearchOnNameCommand}">
+                        <Image DataContext="{Binding}" Source="/Probel.NDoctor.Plugins.PrescriptionManager;component/Images/search.bmp"
+                               Height="15"
+                               Width="15"/>
+                    </Button>
+                    <toolkit:WatermarkTextBox x:Name="focused"
+                                          Grid.Column="0" 
+                                          Text="{Binding Path=CriteriaName, UpdateSourceTrigger=PropertyChanged}"                                                
+                                          IsEnabled="{Binding ElementName=rb_OnName, Path=IsChecked}">
+                        <toolkit:WatermarkTextBox.Watermark>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
+                                   Height="15"
+                                   Width="15" />
+                                <TextBlock Text="{Binding Source={x:Static Member=text:AddPrescriptionText.Watermark}}"
+                                       Margin="4,0,0,0"/>
+                            </StackPanel>
+                        </toolkit:WatermarkTextBox.Watermark>
+                    </toolkit:WatermarkTextBox>
+                </DockPanel>
+        </DockPanel>
+        
+        <DockPanel DockPanel.Dock="Top">
+            <RadioButton Margin="4" DockPanel.Dock="Left"
+                         x:Name="radioButtonTag"
+                         IsChecked="{Binding SearchOnTags}"                                                            
+                         GroupName="Search"
+                         Content="{Binding Source={x:Static Member=text:AddPrescriptionText.TitleTag}}"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"/>
+            <ComboBox Margin="4"
+                      IsEnabled="{Binding ElementName=radioButtonTag, Path=IsChecked}"
+                      ItemsSource="{Binding Path=Tags}"
+                      DisplayMemberPath="Name"
+                      SelectedIndex="0"
+                      SelectedItem="{Binding Path=CriteriaTag}"
+                      h:SelectorBehaviour.SelectionChanged="{Binding SearchOnTagCommand}"/>
+        </DockPanel>
+
+        <ListView ItemsSource="{Binding Path=FoundDrugs}"
+                  SelectedItem="{Binding Path=SelectedDrug}"
+                  DisplayMemberPath="Name">
+        </ListView>
+        
+    </DockPanel>
+</Window>

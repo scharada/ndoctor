@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonTabData" Collapsed="true">
+    <Position X="8.5" Y="3" Width="1.75" />
+    <Members>
+      <Field Name="contextualTabGroupHeader" Hidden="true" />
+      <Field Name="header" Hidden="true" />
+      <Field Name="isSelected" Hidden="true" />
+      <Field Name="ribbonGroupData" Hidden="true" />
+    </Members>
+    <AssociationLine Name="RibbonGroupDataCollection" Type="Probel.NDoctor.View.Plugins.MenuData.RibbonGroupData">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.079" Y="-0.346" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BAAAgASQAAAAEAAAAAAAAAACAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>MenuData\RibbonTabData.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="RibbonGroupDataCollection" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonMenuItemData" Collapsed="true">
+    <Position X="1" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAACAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAA=</HashCode>
+      <FileName>MenuData\RibbonMenuItemData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonMenuButtonData" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="2.25" />
+    <AssociationLine Name="ControlDataCollection" Type="Probel.NDoctor.View.Plugins.MenuData.RibbonControlData" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="0.938" Y="4.75" />
+        <Point X="0.938" Y="3.312" />
+        <Point X="2.75" Y="3.312" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.256" Y="0.206" Height="0.182" Width="1.732" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAQgAAAMAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MenuData\RibbonMenuButtonData.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ControlDataCollection" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonGroupData" Collapsed="true">
+    <Position X="5" Y="3" Width="1.5" />
+    <AssociationLine Name="RibbonButtonDataCollection" Type="Probel.NDoctor.View.Plugins.MenuData.RibbonButtonData">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-2.096" Y="0.245" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BAAAAAQAAAAAAAAEIAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>MenuData\RibbonGroupData.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="RibbonButtonDataCollection" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonData" Collapsed="true">
+    <Position X="10.75" Y="3" Width="2.25" />
+    <AssociationLine Name="RibbonContextualTabGroupDataCollection" Type="Probel.NDoctor.View.Plugins.MenuData.RibbonContextualTabGroupData" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.25" Y="3.691" />
+        <Point X="12.25" Y="4.066" />
+        <Point X="13.938" Y="4.066" />
+        <Point X="13.938" Y="3.691" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.492" Y="0.495" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="RibbonTabDataCollection" Type="Probel.NDoctor.View.Plugins.MenuData.RibbonTabData" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.75" Y="3.375" />
+        <Point X="10.5" Y="3.375" />
+        <Point X="10.5" Y="3.941" />
+        <Point X="9.625" Y="3.941" />
+        <Point X="9.625" Y="3.691" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.638" Y="0.485" Height="0.182" Width="1.826" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ApplicationMenuData" Type="Probel.NDoctor.View.Plugins.MenuData.RibbonMenuButtonData" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.312" Y="3.691" />
+        <Point X="11.312" Y="6.146" />
+        <Point X="8.896" Y="6.146" Type="JumpStart" />
+        <Point X="8.729" Y="6.146" Type="JumpEnd" />
+        <Point X="2.938" Y="6.146" />
+        <Point X="2.938" Y="5.441" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-2.586" Y="0.985" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ACAIAABAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>MenuData\RibbonData.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ApplicationMenuData" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="RibbonContextualTabGroupDataCollection" />
+      <Property Name="RibbonTabDataCollection" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonControlData" Collapsed="true">
+    <Position X="2.75" Y="3" Width="1.75" />
+    <Members>
+      <Field Name="command" Hidden="true" />
+      <Field Name="keyTip" Hidden="true" />
+      <Field Name="label" Hidden="true" />
+      <Field Name="largeImage" Hidden="true" />
+      <Field Name="smallImage" Hidden="true" />
+      <Field Name="toolTipDescription" Hidden="true" />
+      <Field Name="toolTipFooterDescription" Hidden="true" />
+      <Field Name="toolTipFooterImage" Hidden="true" />
+      <Field Name="toolTipFooterTitle" Hidden="true" />
+      <Field Name="toolTipImage" Hidden="true" />
+      <Field Name="toolTipTitle" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAEKAAkBAAAJACQAAgBkAAIAQAAAACAAAAARAAABk=</HashCode>
+      <FileName>MenuData\RibbonControlData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonContextualTabGroupData" Collapsed="true">
+    <Position X="13.5" Y="3" Width="2.5" />
+    <AssociationLine Name="RibbonTabDataCollection" Type="Probel.NDoctor.View.Plugins.MenuData.RibbonTabData" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.75" Y="3.691" />
+        <Point X="14.75" Y="6.837" />
+        <Point X="8.812" Y="6.837" />
+        <Point X="8.812" Y="3.691" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-4.15" Y="2.768" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BEAAAARAAAAAEAAAABAAAAAAAAAAAAAAAABgAAAAIAA=</HashCode>
+      <FileName>MenuData\RibbonContextualTabGroupData.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="RibbonTabDataCollection" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonButtonData" Collapsed="true">
+    <Position X="3.75" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MenuData\RibbonButtonData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.RibbonApplicationMenuItemData" Collapsed="true">
+    <Position X="0.5" Y="7.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MenuData\RibbonApplicationMenuItemData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.View.Plugins.MenuData.BaseData" Collapsed="true">
+    <Position X="7.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAIAAAAQAAgAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>MenuData\BaseData.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

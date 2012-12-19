@@ -1,0 +1,99 @@
+﻿<Window x:Class="Probel.NDoctor.Plugins.FamilyViewer.View.AddRelationView"
+        x:Name="this"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"      
+        xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:text="clr-namespace:Probel.NDoctor.Plugins.FamilyViewer.Translations"
+        xmlns:conv="clr-namespace:Probel.NDoctor.View.Toolbox.Converters;assembly=Probel.NDoctor.View.Toolbox" 
+        xmlns:t="clr-namespace:Probel.NDoctor.View.Toolbox.Translations;assembly=Probel.NDoctor.View.Toolbox"   
+        xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"   
+        
+        Title="{Binding Source={x:Static Member=text:AddRelationText.AddRelation}}" Height="329" Width="300" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <conv:GenderToImageConverter x:Key="genderToImage"/>
+    </Window.Resources>
+
+    <Window.InputBindings>
+        <KeyBinding Key="Escape"
+                    Command="cmd:Commands.CloseView" 
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
+    </Window.InputBindings>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Close"
+                        Executed="CloseCommandHandler"/>
+    </Window.CommandBindings>
+
+    <toolkit:BusyIndicator BusyContent="{Binding Source={x:Static Member=t:BaseText.PleaseWait}}" IsBusy="{Binding IsBusy}">
+        <DockPanel LastChildFill="True">
+            <ComboBox DockPanel.Dock="Top" Margin="4"
+                      ItemsSource="{Binding Relations}"
+                      SelectedItem="{Binding SelectedRelation}"
+                      DisplayMemberPath="Item2"
+                      SelectedIndex="0"/>
+            <DockPanel DockPanel.Dock="Top">
+                <Button DockPanel.Dock="Right" Background="White" BorderBrush="White" BorderThickness="0"
+                        Command="{Binding SearchCommand}">
+                    <Image DataContext="{Binding}" Source="/Probel.NDoctor.Plugins.FamilyViewer;component/Images/Glyph.png"
+                               Height="15"
+                               Width="15"/>
+                </Button>
+                <toolkit:WatermarkTextBox x:Name="focused"
+                                      Margin="4"
+                                      Text="{Binding Path=Criteria, UpdateSourceTrigger=PropertyChanged}">
+                    <toolkit:WatermarkTextBox.InputBindings>
+                        <KeyBinding Key="Enter"
+                                    Command="{Binding SearchCommand}" />
+                    </toolkit:WatermarkTextBox.InputBindings>
+                    <toolkit:WatermarkTextBox.Watermark>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Probel.NDoctor.Plugins.FamilyViewer;Component/Images/Card.png"
+                                   Height="15"
+                                   Width="15" />
+                            <TextBlock Text="{Binding Source={x:Static Member=text:AddRelationText.TitleWatermark}}"/>
+                        </StackPanel>
+                    </toolkit:WatermarkTextBox.Watermark>
+                </toolkit:WatermarkTextBox>
+
+            </DockPanel>
+            <Grid DockPanel.Dock="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Margin="4" Grid.Column="0" 
+                    Content="{Binding Source={x:Static Member=t:BaseText.Add}}"
+                    Command="{Binding AddRelationCommand}"/>
+
+                <Button Margin="4" Grid.Column="1" 
+                    Content="{Binding Source={x:Static Member=t:BaseText.Cancel}}"
+                    Command="ApplicationCommands.Close"/>
+            </Grid>
+            <DataGrid DockPanel.Dock="Bottom"
+                  ItemsSource="{Binding FoundMembers}"
+                  SelectedItem="{Binding SelectedMember}"
+                  HeadersVisibility="None"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  GridLinesVisibility="None">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Sex">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Width="40" Height="40" Source="{Binding Gender, Converter={StaticResource genderToImage}}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Binding="{Binding Path=DisplayedName, UpdateSourceTrigger=PropertyChanged}" 
+                                    Header="Name"
+                                    Width="*"
+                                    IsReadOnly="True" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </toolkit:BusyIndicator>
+</Window>    
