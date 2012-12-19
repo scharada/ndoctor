@@ -1,4 +1,3 @@
-#labels Featured
 = Install the beta =
  * Go [http://code.google.com/p/ndoctor/downloads/list Here] and download the files.
 https://lh3.googleusercontent.com/-JA-ufnk-X-g/T_RM19MXd_I/AAAAAAAAAKM/Vkymuwe7nfQ/s823/01.png
