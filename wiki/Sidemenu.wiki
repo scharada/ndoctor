@@ -45,8 +45,8 @@
  * Support
   * [UserManual User manual]
   * Install
-   *[BetaInstallation the binaries]
-   *[Installer with the installer]
+   * [BetaInstallation the binaries]
+   * [Installer with the installer]
   * [GetGmail Get a Gmail address]
   * [AskFeature Ask a feature]
   * [ReportIssue Report an issue]
