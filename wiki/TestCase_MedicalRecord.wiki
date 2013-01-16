@@ -34,7 +34,7 @@
 = Use and manage macros =
 == Steps ==
  # Open the macro editor
- # write an invalid macro (For instance write *$age*)
+ # Create a macro with an unknown markup (For instance write *$unknown$*)
  # Click on close
 == Expected results ==
  # ...
