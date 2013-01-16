@@ -156,6 +156,10 @@
   <data name="Edition_Underline" xml:space="preserve">
     <value>Souligné</value>
   </data>
+  <data name="Err_InvalidMacros" xml:space="preserve">
+    <value>Au moins une macro est invalide. Veuillez corriger le problème pour continuer.</value>
+    <comment>At least a macro is invalid. Please, fix the problem before going further.</comment>
+  </data>
   <data name="Err_InvalidMacro" xml:space="preserve">
     <value>La macro est invalide</value>
     <comment>The macro is invalid</comment>

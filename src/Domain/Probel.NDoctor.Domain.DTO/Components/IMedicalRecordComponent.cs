@@ -132,5 +132,14 @@ namespace Probel.NDoctor.Domain.DTO.Components
         void Update(IEnumerable<MacroDto> macros);
 
         #endregion Methods
+
+        /// <summary>
+        /// Determines whether the specified macros are valid.
+        /// </summary>
+        /// <param name="macros">The macros.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified macros are valid; otherwise, <c>false</c>.
+        /// </returns>
+        bool IsValid(IEnumerable<MacroDto> macros);
     }
 }

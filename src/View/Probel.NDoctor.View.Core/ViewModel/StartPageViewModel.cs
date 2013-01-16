@@ -48,17 +48,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
     internal class StartPageViewModel : BaseViewModel
     {
-
-        private LogEvent selectedRow;
-        public LogEvent SelectedRow
-        {
-            get { return this.selectedRow; }
-            set
-            {
-                this.selectedRow = value;
-                this.OnPropertyChanged(() => SelectedRow);
-            }
-        }     
         #region Fields
 
         private readonly IApplicationStatisticsComponent Component = PluginContext.ComponentFactory.GetInstance<IApplicationStatisticsComponent>();
@@ -66,6 +55,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         private Chart<DateTime, double> executionTime;
         private bool isBusy;
+        private LogEvent selectedRow;
         private Chart<string, double> targetUsage;
 
         #endregion Fields
@@ -121,6 +111,16 @@ namespace Probel.NDoctor.View.Core.ViewModel
         public ICommand RefreshStatisticsCommand
         {
             get { return this.refreshStatisticsCommand; }
+        }
+
+        public LogEvent SelectedRow
+        {
+            get { return this.selectedRow; }
+            set
+            {
+                this.selectedRow = value;
+                this.OnPropertyChanged(() => SelectedRow);
+            }
         }
 
         public Chart<string, double> TargetUsage

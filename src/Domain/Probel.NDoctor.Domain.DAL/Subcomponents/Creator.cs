@@ -15,6 +15,7 @@
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.GoogleCalendar;
     using Probel.NDoctor.Domain.DAL.Helpers;
+    using Probel.NDoctor.Domain.DAL.Macro;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.GoogleCalendar;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -42,6 +43,8 @@
         public long Create(MacroDto item)
         {
             Assert.IsNotNull(item, "item");
+
+            if (!MacroBuilder.IsValidExpression(item.Expression)) { throw new InvalidMacroException(); }
 
             var exist = (from i in this.Session.Query<MacroDto>()
                          where i.Id == item.Id

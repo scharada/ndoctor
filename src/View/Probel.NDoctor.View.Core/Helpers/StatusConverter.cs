@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,12 +16,15 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Windows.Data;
-using System.Windows.Media;
+
+#endregion Header
 
 namespace Probel.NDoctor.View.Core.Helpers
 {
+    using System;
+    using System.Windows.Data;
+    using System.Windows.Media;
+
     [ValueConversion(typeof(string), typeof(Brush))]
     internal class StatusConverter : IValueConverter
     {

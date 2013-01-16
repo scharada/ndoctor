@@ -30,6 +30,11 @@ namespace Probel.NDoctor.View.Toolbox.Logging
     {
         #region Properties
 
+        public string ExeptionMessage
+        {
+            get; set;
+        }
+
         public string LevelName
         {
             get;
@@ -61,7 +66,5 @@ namespace Probel.NDoctor.View.Toolbox.Logging
         }
 
         #endregion Properties
-
-        public string ExeptionMessage { get; set; }
     }
 }
