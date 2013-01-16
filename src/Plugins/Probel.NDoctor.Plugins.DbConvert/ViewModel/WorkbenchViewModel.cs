@@ -33,6 +33,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.ViewModel
     using Probel.NDoctor.Plugins.DbConvert.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.Mvvm.Gui;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -174,13 +175,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.ViewModel
             var worker = new BackgroundWorker();
             worker.RunWorkerCompleted += (sender, e) =>
             {
-                if ((bool)e.Result)
-                {
-                    MessageBox.Show(Messages.Error_ImportFailed
-                        , Messages.Error
-                        , MessageBoxButton.OK
-                        , MessageBoxImage.Error);
-                }
+                if ((bool)e.Result) { ViewService.MessageBox.Error(Messages.Error_ImportFailed); }
             };
             worker.DoWork += (sender, e) => e.Result = func();
             worker.RunWorkerAsync();

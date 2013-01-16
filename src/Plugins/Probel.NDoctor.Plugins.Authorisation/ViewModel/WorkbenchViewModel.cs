@@ -216,8 +216,8 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
         {
             if (CanRemoveRole(this.SelectedRole))
             {
-                var result = MessageBox.Show(Messages.Question_DeleteRole, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (result != MessageBoxResult.Yes) return;
+                var result = ViewService.MessageBox.Question(Messages.Question_DeleteRole);
+                if (!result) return;
 
                 component.Remove(this.SelectedRole);
 
@@ -225,7 +225,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             }
             else
             {
-                MessageBox.Show(Messages.Msg_CantRemoveRole, BaseText.Question, MessageBoxButton.OK, MessageBoxImage.Hand);
+                ViewService.MessageBox.Information(Messages.Msg_CantRemoveRole);
             }
         }
 

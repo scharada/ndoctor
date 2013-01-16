@@ -131,14 +131,14 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
         private void RemoveUser()
         {
-            var dr = MessageBox.Show(Messages.Msg_AskRemoveUser, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (dr == MessageBoxResult.No) return;
+            var dr = ViewService.MessageBox.Question(Messages.Msg_AskRemoveUser);
+            if (!dr) return;
 
             try
             {
                 if (this.component.IsSuperAdmin(this.SelectedUser))
                 {
-                    MessageBox.Show(Messages.Msg_CantRemoveSuperadmin, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning);
+                    ViewService.MessageBox.Warning(Messages.Msg_CantRemoveSuperadmin);
                 }
                 else
                 {

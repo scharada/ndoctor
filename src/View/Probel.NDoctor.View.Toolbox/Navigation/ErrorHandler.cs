@@ -175,11 +175,11 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
             {
                 if (ex.GetType() == typeof(AuthorisationException))
                 {
-                    MessageBox.Show(Messages.Msg_ErrorAuthorisation, Messages.Title_Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    ViewService.MessageBox.Error(Messages.Msg_ErrorAuthorisation);
                 }
                 else
                 {
-                    MessageBox.Show(format.FormatWith(args), Messages.Title_Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    ViewService.MessageBox.Error(format.FormatWith(args));
                     //ViewService.Manager.Show<ExceptionViewModel>();
                     this.WriteErrorInStatus(message);
                 }
@@ -200,11 +200,11 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
             {
                 if (ex.GetType() == typeof(AuthorisationException))
                 {
-                    MessageBox.Show(Messages.Msg_ErrorAuthorisation, Messages.Title_Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    ViewService.MessageBox.Error(Messages.Msg_ErrorAuthorisation);
                 }
                 else
                 {
-                    MessageBox.Show(message, Messages.Title_Warning, MessageBoxButton.OK, MessageBoxImage.Warning);
+                    ViewService.MessageBox.Warning(message);
                 }
             }
             this.WriteWarningInStatus(message);

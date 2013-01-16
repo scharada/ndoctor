@@ -32,6 +32,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
+    using Probel.Mvvm.Gui;
 
     internal class WorkbenchViewModel : BaseViewModel
     {
@@ -250,8 +251,8 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
         {
             try
             {
-                var dr = MessageBox.Show(Messages.Msg_AskDeleteBmi, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (dr != MessageBoxResult.Yes) return;
+                var dr = ViewService.MessageBox.Question(Messages.Msg_AskDeleteBmi);
+                if (!dr) return;
 
                 this.component.Remove(this.SelectedBmi, this.Patient);
 

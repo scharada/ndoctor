@@ -31,6 +31,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
+    using Probel.Mvvm.Gui;
 
     internal class UpdateUserViewModel : BaseViewModel
     {
@@ -90,11 +91,8 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 
                 if (value == true)
                 {
-                    var dr = MessageBox.Show(Messages.Msg_WarnDefaultUser
-                        , Messages.Title_Warning
-                        , MessageBoxButton.YesNo
-                        , MessageBoxImage.Asterisk);
-                    if (dr == MessageBoxResult.No) return;
+                    var dr = ViewService.MessageBox.Question(Messages.Msg_WarnDefaultUser);
+                    if (!dr) return;
                 }
                 this.User.IsDefault = value;
                 this.OnPropertyChanged(() => IsDefaultUser);

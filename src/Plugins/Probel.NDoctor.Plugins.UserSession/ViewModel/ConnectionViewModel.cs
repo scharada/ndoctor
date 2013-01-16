@@ -135,13 +135,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                 PluginContext.Host.NavigateToStartPage();
                 this.Logger.Info("User logged in.");
             }
-            else
-            {
-                MessageBox.Show(Messages.Msg_ErrorWrongPassword
-                    , Messages.Title_Warning
-                    , MessageBoxButton.OK
-                    , MessageBoxImage.Asterisk);
-            }
+            else { ViewService.MessageBox.Warning(Messages.Msg_ErrorWrongPassword); }
         }
 
         #endregion Methods

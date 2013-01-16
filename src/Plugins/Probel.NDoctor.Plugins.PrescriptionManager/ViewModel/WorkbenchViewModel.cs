@@ -187,8 +187,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         {
             try
             {
-                var dr = MessageBox.Show(BaseText.Question_Delete, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (dr == MessageBoxResult.No) return;
+                var dr = ViewService.MessageBox.Question(BaseText.Question_Delete);
+                if (!dr) return;
 
                 this.component.Remove(this.SelectedPrescription);
                 this.SelectedPrescriptionDocument.Prescriptions.Remove(this.SelectedPrescription);
@@ -202,8 +202,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
         {
             try
             {
-                var dr = MessageBox.Show(BaseText.Question_Delete, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (dr == MessageBoxResult.No) return;
+                var dr = ViewService.MessageBox.Question(BaseText.Question_Delete);
+                if (!dr) return;
 
                 this.component.Remove(this.SelectedPrescriptionDocument);
                 this.FoundPrescriptions.Remove(this.SelectedPrescriptionDocument);

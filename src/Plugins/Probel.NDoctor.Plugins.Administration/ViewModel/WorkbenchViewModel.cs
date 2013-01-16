@@ -523,7 +523,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         this.Refresh();
                     }
                 }
-                else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning); }
+                else { ViewService.MessageBox.Warning(Messages.Msg_CantDelete); }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -540,7 +540,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         this.Refresh();
                     }
                 }
-                else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning); }
+                else { ViewService.MessageBox.Warning(Messages.Msg_CantDelete); }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -557,7 +557,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         this.Refresh();
                     }
                 }
-                else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning); }
+                else { ViewService.MessageBox.Warning(Messages.Msg_CantDelete); }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -574,7 +574,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         this.Refresh();
                     }
                 }
-                else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning); }
+                else { ViewService.MessageBox.Warning(Messages.Msg_CantDelete); }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -591,7 +591,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         this.Refresh();
                     }
                 }
-                else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning); }
+                else { ViewService.MessageBox.Warning(Messages.Msg_CantDelete); }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -608,7 +608,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         this.Refresh();
                     }
                 }
-                else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning); }
+                else { ViewService.MessageBox.Warning(Messages.Msg_CantDelete); }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -625,7 +625,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         this.Refresh();
                     }
                 }
-                else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning); }
+                else { ViewService.MessageBox.Warning(Messages.Msg_CantDelete); }
 
             }
             catch (Exception ex) { this.Handle.Error(ex); }
@@ -643,16 +643,14 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                         this.Refresh();
                     }
                 }
-                else { MessageBox.Show(Messages.Msg_CantDelete, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning); }
+                else { ViewService.MessageBox.Warning(Messages.Msg_CantDelete); }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private bool UserAcceptedDeletion()
         {
-            var result = MessageBox.Show(Messages.Msg_AskDelete, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            return result == MessageBoxResult.Yes;
+            return ViewService.MessageBox.Question(Messages.Msg_AskDelete);
         }
 
         #endregion Methods
