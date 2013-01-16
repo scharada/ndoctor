@@ -31,6 +31,15 @@
  # ...
  # The unsaved text is saved
  # The unsaved text is saved
+= Use and manage macros =
+== Steps ==
+ # Open the macro editor
+ # write an invalid macro (For instance write *$age*)
+ # Click on close
+== Expected results ==
+ # ...
+ # ...
+ # A warning message indicates the macro is not created because it is invalid
 = Issues =
 == version 3.0.2: ==
  * n.a.
@@ -42,3 +51,5 @@
  * issue 127.
  * issue 130.
  * issue 148.
+== Version 3.0.4 ==
+ * issue 162.
