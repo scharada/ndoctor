@@ -149,7 +149,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         {
             Assert.IsNotNull(selectedPatient, "selectedPatient");
             PluginContext.Host.SetWaitCursor();
-            var result = this.component.GetNotLinkedDoctorsFor(selectedPatient, this.Criteria, SearchOn.FirstAndLastName);
+            var result = this.component.GetNotLinkedDoctorsFor(selectedPatient, this.Criteria, PluginContext.Host.SearchType);
             PluginContext.Host.SetArrowCursor();
             return result;
         }

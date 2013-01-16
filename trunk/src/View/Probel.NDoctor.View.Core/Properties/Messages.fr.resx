@@ -498,4 +498,8 @@ L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
     <value>Horodatage</value>
     <comment>Time-stamp</comment>
   </data>
+  <data name="Title_SearchType" xml:space="preserve">
+    <value>Recherche par défaut:</value>
+    <comment>Default search:</comment>
+  </data>
 </root>

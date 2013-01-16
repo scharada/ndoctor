@@ -28,12 +28,12 @@ namespace Probel.NDoctor.Plugins.DbConvert.ViewModel
 
     using Probel.Helpers.Assertion;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Plugins.DbConvert.Domain;
     using Probel.NDoctor.Plugins.DbConvert.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.Mvvm.Gui;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin

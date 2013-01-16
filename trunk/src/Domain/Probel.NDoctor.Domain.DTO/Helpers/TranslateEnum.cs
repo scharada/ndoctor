@@ -17,6 +17,7 @@
 namespace Probel.NDoctor.Domain.DTO.Helpers
 {
     using Probel.Helpers.Assertion;
+    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.DTO.Properties;
 
@@ -80,6 +81,27 @@ namespace Probel.NDoctor.Domain.DTO.Helpers
                     break;
                 default:
                     Assert.FailOnEnumeration(gender);
+                    break;
+            }
+            return result;
+        }
+
+        public static string Translate(this SearchOn searchType)
+        {
+            var result = string.Empty;
+            switch (searchType)
+            {
+                case SearchOn.FirstName:
+                    result = Messages.SearchOn_FirstName;
+                    break;
+                case SearchOn.LastName:
+                    result = Messages.SearchOn_LastName;
+                    break;
+                case SearchOn.FirstAndLastName:
+                    result = Messages.SearchOn_Both;
+                    break;
+                default:
+                    Assert.FailOnEnumeration(searchType);
                     break;
             }
             return result;

@@ -511,6 +511,33 @@ namespace Probel.NDoctor.Domain.DTO.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search on first name AND last name.
+        /// </summary>
+        internal static string SearchOn_Both {
+            get {
+                return ResourceManager.GetString("SearchOn_Both", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search on first name.
+        /// </summary>
+        internal static string SearchOn_FirstName {
+            get {
+                return ResourceManager.GetString("SearchOn_FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search on last name.
+        /// </summary>
+        internal static string SearchOn_LastName {
+            get {
+                return ResourceManager.GetString("SearchOn_LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Appointment.
         /// </summary>
         internal static string TagType_Appointment {

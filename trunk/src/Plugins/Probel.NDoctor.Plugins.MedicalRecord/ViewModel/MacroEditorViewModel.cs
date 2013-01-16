@@ -23,6 +23,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using ICSharpCode.AvalonEdit.Document;
 
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -30,7 +31,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
-    using Probel.Mvvm.Gui;
 
     internal class MacroEditorViewModel : BaseViewModel
     {
@@ -58,19 +58,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             this.createCommand = new RelayCommand(() => this.Create(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             this.removeCommand = new RelayCommand(() => this.Remove(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             this.saveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
-        }
-
-        private bool CanSave()
-        {
-            var areValidMacros = this.Component.IsValid(this.Macros);
-
-            if (!areValidMacros)
-            {
-                ViewService.MessageBox.Warning(Messages.Err_InvalidMacros);
-            }
-
-            return PluginContext.DoorKeeper.IsUserGranted(To.Write)
-                && areValidMacros;
         }
 
         #endregion Constructors
@@ -159,6 +146,19 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             {
                 this.ResolvedMacro = string.Format(Messages.Err_InvalidMacro);
             }
+        }
+
+        private bool CanSave()
+        {
+            var areValidMacros = this.Component.IsValid(this.Macros);
+
+            if (!areValidMacros)
+            {
+                ViewService.MessageBox.Warning(Messages.Err_InvalidMacros);
+            }
+
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write)
+                && areValidMacros;
         }
 
         private void Create()

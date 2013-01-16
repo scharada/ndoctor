@@ -170,7 +170,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         {
             try
             {
-                var patients = this.component.GetPatientsByNameLight(this.Criteria, SearchOn.FirstAndLastName);
+                var patients = this.component.GetPatientsByNameLight(this.Criteria, PluginContext.Host.SearchType);
                 var tags = this.component.GetTags(TagCategory.Appointment);
 
                 this.FoundPatients.Refill(patients);

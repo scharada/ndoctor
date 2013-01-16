@@ -167,6 +167,22 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Determines whether the specified macros are valid.
+        /// </summary>
+        /// <param name="macros">The macros.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified macros are valid; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsValid(IEnumerable<MacroDto> macros)
+        {
+            foreach (var macro in macros)
+            {
+                if (!MacroBuilder.IsValidExpression(macro.Expression)) { return false; }
+            }
+            return true;
+        }
+
+        /// <summary>
         /// Removes the specified item.
         /// </summary>
         /// <param name="item">The item.</param>
@@ -242,22 +258,5 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         #endregion Methods
-
-
-        /// <summary>
-        /// Determines whether the specified macros are valid.
-        /// </summary>
-        /// <param name="macros">The macros.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified macros are valid; otherwise, <c>false</c>.
-        /// </returns>
-        public bool IsValid(IEnumerable<MacroDto> macros)
-        {
-            foreach (var macro in macros)
-            {
-                if (!MacroBuilder.IsValidExpression(macro.Expression)) { return false; }
-            }
-            return true;
-        }
     }
 }

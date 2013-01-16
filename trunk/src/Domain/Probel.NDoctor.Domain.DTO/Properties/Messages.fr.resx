@@ -309,6 +309,18 @@
     <value>Frères/soeurs</value>
     <comment>Sibling</comment>
   </data>
+  <data name="SearchOn_Both" xml:space="preserve">
+    <value>Recherche sur le nom ET le prénom</value>
+    <comment>Search on first name AND last name</comment>
+  </data>
+  <data name="SearchOn_FirstName" xml:space="preserve">
+    <value>Recherche sur le prénom</value>
+    <comment>Search on first name</comment>
+  </data>
+  <data name="SearchOn_LastName" xml:space="preserve">
+    <value>Recherche sur le nom </value>
+    <comment>Search on last name</comment>
+  </data>
   <data name="TagType_Appointment" xml:space="preserve">
     <value>Rendez-vous</value>
     <comment>Appointment</comment>

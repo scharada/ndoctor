@@ -22,8 +22,8 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
     using log4net;
 
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.View.Toolbox.Properties;
     using Probel.Mvvm.Gui;
+    using Probel.NDoctor.View.Toolbox.Properties;
 
     /// <summary>
     /// Set of generic command reusable thoughout the application.
