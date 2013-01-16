@@ -683,7 +683,7 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Divers.
+        ///   Looks up a localized string similar to Miscellaneous.
         /// </summary>
         internal static string Title_Miscellaneous {
             get {
@@ -778,6 +778,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         internal static string Title_ProPhone {
             get {
                 return ResourceManager.GetString("Title_ProPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default search:.
+        /// </summary>
+        internal static string Title_SearchType {
+            get {
+                return ResourceManager.GetString("Title_SearchType", resourceCulture);
             }
         }
         

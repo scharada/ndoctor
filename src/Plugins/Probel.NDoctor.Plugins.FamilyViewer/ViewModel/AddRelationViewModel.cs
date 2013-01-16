@@ -237,7 +237,7 @@ namespace Probel.NDoctor.Plugins.FamilyViewer.ViewModel
         {
             try
             {
-                var found = this.Component.GetPatientNotFamilyMembers(PluginContext.Host.SelectedPatient, this.Criteria, SearchOn.FirstAndLastName);
+                var found = this.Component.GetPatientNotFamilyMembers(PluginContext.Host.SelectedPatient, this.Criteria, PluginContext.Host.SearchType);
                 this.FoundMembers.Refill(found);
             }
             catch (Exception ex) { this.Handle.Error(ex); }

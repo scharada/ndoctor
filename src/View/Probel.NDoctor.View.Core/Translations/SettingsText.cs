@@ -57,6 +57,11 @@ namespace Probel.NDoctor.View.Core.Translations
             get { return Messages.Title_Miscellaneous; }
         }
 
+        public static string TitleSearchType
+        {
+            get { return Messages.Title_SearchType; }
+        }
+
         public static string TitleSettings
         {
             get { return Messages.Title_Settings; }

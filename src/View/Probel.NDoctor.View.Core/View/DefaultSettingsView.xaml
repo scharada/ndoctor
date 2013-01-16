@@ -25,7 +25,7 @@
             <Label DockPanel.Dock="Bottom" 
                    Content="{Binding Source={x:Static Member=text:SettingsText.NeedRestart}}"
                    Visibility="{Binding ShowRestart, Converter={StaticResource boolToVisibility}}" Foreground="#FFEF0000" FontWeight="Bold" HorizontalContentAlignment="Center" />
-            
+
             <Label Style="{StaticResource LabelStyle}"
                    Content="{Binding Source={x:Static Member=text:SettingsText.TitleLanguage}}"/>
             <Border Style="{StaticResource BorderStyle}">
@@ -71,10 +71,16 @@
             </StackPanel>
         </GroupBox>
         <GroupBox DockPanel.Dock="Top"  Header="{Binding Source={x:Static Member=text:SettingsText.TitleMisc}}">
-            <Border Style="{StaticResource BorderStyle}">
+            <StackPanel>
                 <CheckBox Content="{Binding Source={x:Static Member=text:SettingsText.AutomaticContextMenu}}"
+                          Margin="4"
+                          VerticalContentAlignment="Center"
                           IsChecked="{Binding AutomaticContextMenu}"/>
-            </Border>
+                <DockPanel LastChildFill="True">
+                    <Label DockPanel.Dock="Left" VerticalContentAlignment="Center" Content="{x:Static Member=text:SettingsText.TitleSearchType}"/>
+                    <ComboBox Margin="4" ItemsSource="{Binding SearchTypes}" DisplayMemberPath="Item1" SelectedItem="{Binding SelectedSearchType}"/>
+                </DockPanel>
+            </StackPanel>
         </GroupBox>
     </DockPanel>
 </UserControl>

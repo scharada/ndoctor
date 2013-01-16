@@ -93,6 +93,15 @@ namespace Probel.NDoctor.Domain.DTO.Components
         bool IsValid(MacroDto macro);
 
         /// <summary>
+        /// Determines whether the specified macros are valid.
+        /// </summary>
+        /// <param name="macros">The macros.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified macros are valid; otherwise, <c>false</c>.
+        /// </returns>
+        bool IsValid(IEnumerable<MacroDto> macros);
+
+        /// <summary>
         /// Removes the specified item.
         /// </summary>
         /// <param name="item">The item.</param>
@@ -132,14 +141,5 @@ namespace Probel.NDoctor.Domain.DTO.Components
         void Update(IEnumerable<MacroDto> macros);
 
         #endregion Methods
-
-        /// <summary>
-        /// Determines whether the specified macros are valid.
-        /// </summary>
-        /// <param name="macros">The macros.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified macros are valid; otherwise, <c>false</c>.
-        /// </returns>
-        bool IsValid(IEnumerable<MacroDto> macros);
     }
 }

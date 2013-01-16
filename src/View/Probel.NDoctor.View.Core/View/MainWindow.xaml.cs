@@ -33,6 +33,7 @@ namespace Probel.NDoctor.View.Core.View
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.Properties;
@@ -170,6 +171,20 @@ namespace Probel.NDoctor.View.Core.View
         public Window Root
         {
             get { return this; }
+        }
+
+        /// <summary>
+        /// Gets the search algorithm to apply on a search.
+        /// </summary>
+        /// <value>
+        /// The type of the search.
+        /// </value>
+        public SearchOn SearchType
+        {
+            get
+            {
+                return Settings.Default.SearchType;
+            }
         }
 
         public LightPatientDto SelectedPatient

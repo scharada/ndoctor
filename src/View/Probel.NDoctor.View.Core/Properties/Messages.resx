@@ -387,7 +387,7 @@ The application will close. Check the logs for further  information</value>
     <comment>Nobody</comment>
   </data>
   <data name="Title_Miscellaneous" xml:space="preserve">
-    <value>Divers</value>
+    <value>Miscellaneous</value>
     <comment>Miscellaneous</comment>
   </data>
   <data name="Title_AutomaticShowContext" xml:space="preserve">
@@ -497,5 +497,9 @@ The application will close. Check the logs for further  information</value>
   <data name="Title_TimeStamp" xml:space="preserve">
     <value>Horodatage</value>
     <comment>Time-stamp</comment>
+  </data>
+  <data name="Title_SearchType" xml:space="preserve">
+    <value>Default search:</value>
+    <comment>Default search:</comment>
   </data>
 </root>

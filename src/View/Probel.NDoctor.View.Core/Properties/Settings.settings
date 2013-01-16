@@ -17,5 +17,8 @@
     <Setting Name="AutomaticContextMenu" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="SearchType" Type="Probel.NDoctor.Domain.DTO.Components.SearchOn" Scope="User">
+      <Value Profile="(Default)">FirstAndLastName</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

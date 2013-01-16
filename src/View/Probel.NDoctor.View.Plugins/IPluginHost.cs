@@ -21,6 +21,7 @@ namespace Probel.NDoctor.View.Plugins
     using System.Windows.Controls;
 
     using Probel.Helpers.Events;
+    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Plugins.MenuData;
@@ -112,6 +113,17 @@ namespace Probel.NDoctor.View.Plugins
         /// Gets the owner of all toolboxes. That's the main window of nDoctor
         /// </summary>
         Window Root
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Gets the search algorithm to apply on a search.
+        /// </summary>
+        /// <value>
+        /// The type of the search.
+        /// </value>
+        SearchOn SearchType
         {
             get;
         }

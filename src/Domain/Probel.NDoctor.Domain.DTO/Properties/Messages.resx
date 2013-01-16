@@ -316,6 +316,18 @@
     <value>Brothers and sisters</value>
     <comment>Brothers and sisters</comment>
   </data>
+  <data name="SearchOn_Both" xml:space="preserve">
+    <value>Search on first name AND last name</value>
+    <comment>Search on first name AND last name</comment>
+  </data>
+  <data name="SearchOn_FirstName" xml:space="preserve">
+    <value>Search on first name</value>
+    <comment>Search on first name</comment>
+  </data>
+  <data name="SearchOn_LastName" xml:space="preserve">
+    <value>Search on last name</value>
+    <comment>Search on last name</comment>
+  </data>
   <data name="TagType_Appointment" xml:space="preserve">
     <value>Appointment</value>
     <comment>Appointment</comment>

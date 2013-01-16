@@ -18,10 +18,13 @@ namespace Probel.NDoctor.View.Core.ViewModel
 {
     using System;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using System.Windows.Input;
 
     using Probel.Helpers.Assertion;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.Properties;
@@ -34,6 +37,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         public readonly string configuredLanguage = Settings.Default.Language;
 
         private DateTime end;
+        private Tuple<string, SearchOn> selectedSearchType;
         private bool showRestart;
         private DateTime start;
 
@@ -55,6 +59,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
             this.End = this.BuildFromString(Settings.Default.WorkDayEnd);
 
             this.ChangeLanguageCommand = new RelayCommand(() => this.ShowRestart = (this.SelectedLanguage != configuredLanguage));
+
+            this.FeedSearchTypes();
         }
 
         #endregion Constructors
@@ -89,6 +95,12 @@ namespace Probel.NDoctor.View.Core.ViewModel
             }
         }
 
+        public ObservableCollection<Tuple<string, SearchOn>> SearchTypes
+        {
+            get;
+            private set;
+        }
+
         public string SelectedLanguage
         {
             get
@@ -99,6 +111,16 @@ namespace Probel.NDoctor.View.Core.ViewModel
             {
                 Settings.Default.Language = value;
                 this.OnPropertyChanged(() => SelectedLanguage);
+            }
+        }
+
+        public Tuple<string, SearchOn> SelectedSearchType
+        {
+            get { return this.selectedSearchType; }
+            set
+            {
+                this.selectedSearchType = value;
+                this.OnPropertyChanged(() => SelectedSearchType);
             }
         }
 
@@ -163,6 +185,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             Settings.Default.WorkDayEnd = this.End.ToString("HH:mm");
             Settings.Default.Language = this.SelectedLanguage;
             Settings.Default.AutomaticContextMenu = this.AutomaticContextMenu;
+            Settings.Default.SearchType = this.SelectedSearchType.Item2;
 
             Settings.Default.Save();
         }
@@ -173,6 +196,19 @@ namespace Probel.NDoctor.View.Core.ViewModel
             var s = DateTime.MinValue.AddHours(Int32.Parse(items[0]));
             s.AddMinutes(Int32.Parse(items[1]));
             return s;
+        }
+
+        private void FeedSearchTypes()
+        {
+            this.SearchTypes = new ObservableCollection<Tuple<string, SearchOn>>();
+            foreach (SearchOn item in Enum.GetValues(typeof(SearchOn)))
+            {
+                SearchTypes.Add(new Tuple<string, SearchOn>(item.Translate(), item));
+            }
+
+            this.SelectedSearchType = (from s in this.SearchTypes
+                                       where s.Item2 == Settings.Default.SearchType
+                                       select s).Single();
         }
 
         private string Translate(SlotDuration slotDuration)
