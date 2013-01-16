@@ -261,11 +261,8 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         {
             try
             {
-                var dr = MessageBox.Show(Messages.Msg_AskRemoveLink
-                    , Messages.Question
-                    , MessageBoxButton.YesNo
-                    , MessageBoxImage.Question);
-                if (dr == MessageBoxResult.No) return;
+                var dr = ViewService.MessageBox.Question(Messages.Msg_AskRemoveLink);
+                if (!dr) return;
 
                 this.component.RemoveDoctorFor(PluginContext.Host.SelectedPatient, this.SelectedDoctor);
 

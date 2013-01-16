@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
+    using Probel.Mvvm.Gui;
 
     internal class ChangePasswordViewModel : BaseViewModel
     {
@@ -136,7 +137,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             {
                 if (!this.IsValidPassword())
                 {
-                    MessageBox.Show(Messages.Msg_ErrorWrongPassword, BaseText.Warning, MessageBoxButton.OK, MessageBoxImage.Warning);
+                    ViewService.MessageBox.Warning(Messages.Msg_ErrorWrongPassword);
                 }
                 else
                 {

@@ -27,6 +27,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
+    using Probel.Mvvm.Gui;
 
     internal class RemoveMeetingViewModel : MeetingViewModel
     {
@@ -103,7 +104,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
             this.BusyAppointments.Refill(slots);
 
-            if (slots.Count == 0) { MessageBox.Show(Messages.Msg_NothingFound, BaseText.Information, MessageBoxButton.OK, MessageBoxImage.Information); }
+            if (slots.Count == 0) { ViewService.MessageBox.Information(Messages.Msg_NothingFound); }
         }
 
         private void RemoveAppointment()

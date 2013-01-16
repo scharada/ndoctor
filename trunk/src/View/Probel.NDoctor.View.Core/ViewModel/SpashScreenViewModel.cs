@@ -178,11 +178,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
                 catch (Exception ex)
                 {
                     this.Logger.Error("An error occured in the spashscreen", ex);
+                    ViewService.MessageBox.Error(Messages.Msg_FatalErrorOccured.FormatWith(ex.Message));
 
-                    MessageBox.Show(Messages.Msg_FatalErrorOccured.FormatWith(ex.Message)
-                        , Messages.Title_Error
-                        , MessageBoxButton.OK
-                        , MessageBoxImage.Error);
                     this.OnFailed();
                 }
             };
@@ -192,8 +189,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         private void BuildHomeMenu()
         {
-            var cmd = new RelayCommand(() => MessageBox.Show("Hello World!"));
-
             var groups = new ObservableCollection<RibbonGroupData>();
             groups.Add(new RibbonGroupData(Messages.Title_Tools));
             groups.Add(new RibbonGroupData(Messages.Title_Managers));

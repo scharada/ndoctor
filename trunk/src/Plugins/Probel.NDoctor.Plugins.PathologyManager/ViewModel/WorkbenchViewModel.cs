@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.Mvvm.Gui;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -122,8 +123,8 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
         {
             try
             {
-                var dr = MessageBox.Show(Messages.Msg_DeleteIllnessPeriod, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (dr != MessageBoxResult.Yes) return;
+                var dr = ViewService.MessageBox.Question(Messages.Msg_DeleteIllnessPeriod);
+                if (!dr) return;
 
                 this.component.Remove(this.SelectedIllnessPeriod, PluginContext.Host.SelectedPatient);
                 this.Refresh();

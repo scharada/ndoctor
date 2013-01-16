@@ -23,6 +23,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
 
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.View.Toolbox.Properties;
+    using Probel.Mvvm.Gui;
 
     /// <summary>
     /// Set of generic command reusable thoughout the application.
@@ -97,12 +98,9 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
 
         private static void ShutDownWithConfirmationCommand()
         {
-            var result = MessageBox.Show(Messages.Msg_AskForShutdown
-                , Messages.Question
-                , MessageBoxButton.YesNo
-                , MessageBoxImage.Question);
+            var result = ViewService.MessageBox.Question(Messages.Msg_AskForShutdown);
 
-            if (result == MessageBoxResult.Yes) Application.Current.Shutdown();
+            if (result) Application.Current.Shutdown();
         }
 
         #endregion Methods

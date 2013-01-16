@@ -153,8 +153,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             {
                 if (this.HasEmptyPrescriptions())
                 {
-                    var dr = MessageBox.Show(Messages.Msg_EmptyNotesForPrescriptions, BaseText.Question, MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (dr == MessageBoxResult.No) { return; }
+                    var dr = ViewService.MessageBox.Question(Messages.Msg_EmptyNotesForPrescriptions);
+                    if (!dr) { return; }
                 }
 
                 var document = new PrescriptionDocumentDto() { CreationDate = this.CreationDate };
