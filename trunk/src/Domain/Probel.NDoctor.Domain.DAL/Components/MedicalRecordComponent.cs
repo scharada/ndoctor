@@ -214,7 +214,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="macro">The macro.</param>
         public void Update(MacroDto macro)
         {
-            new Creator(this.Session).Create(macro);
+            new Updator(this.Session).Update(macro);
         }
 
         /// <summary>
@@ -242,5 +242,22 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         #endregion Methods
+
+
+        /// <summary>
+        /// Determines whether the specified macros are valid.
+        /// </summary>
+        /// <param name="macros">The macros.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified macros are valid; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsValid(IEnumerable<MacroDto> macros)
+        {
+            foreach (var macro in macros)
+            {
+                if (!MacroBuilder.IsValidExpression(macro.Expression)) { return false; }
+            }
+            return true;
+        }
     }
 }

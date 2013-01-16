@@ -21,17 +21,26 @@
 
 namespace Probel.NDoctor.Domain.Test.Components
 {
+    using System;
     using System.Linq;
 
     using NUnit.Framework;
 
     using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DAL.Macro;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     [TestFixture]
     public class MedicalRecordComponentTest : BaseComponentTest<MedicalRecordComponent>
     {
         #region Methods
+
+        [Test]
+        public void CreateMacro_WithInvalidExpression_ExceptionThrown()
+        {
+            var macro = new MacroDto() { Expression = "$unknownMarkup$" }; //Macro with an unknown markup
+            Assert.Throws<InvalidMacroException>(() => this.ComponentUnderTest.Create(macro));
+        }
 
         [Test]
         public void ManageRecord_CreateNewRecord_RecordCreated()
@@ -50,6 +59,40 @@ namespace Probel.NDoctor.Domain.Test.Components
             cabinet = this.ComponentUnderTest.GetMedicalRecordCabinet(patient);
             Assert.Greater(cabinet.Folders.Count, 0, "Expecting folders in cabinet");
             Assert.AreEqual(cabinet.Folders[0].Records.Count, folderCount + 1, "Expecting records in the first folder");
+        }
+
+        [Test]
+        public void ResolveMacro_WhenMacroIsInvalid_ExceptionThrown()
+        {
+            var macro = new MacroDto() { Expression = "$unknownMarkup$" }; //Macro with an unknown markup
+            var patient = this.HelperComponent.GetAllPatientsLight()[0];
+
+            Assert.Throws<InvalidMacroException>(() => this.ComponentUnderTest.Resolve(macro, patient));
+        }
+
+        [Test]
+        public void UpdateMacro_WithInvalidExpression_ExceptionThrown()
+        {
+            var macro = this.ComponentUnderTest.GetAllMacros()[0];
+            macro.Expression = "$unknwonMarkup$"; //Macro with an unknown markup
+            Assert.Throws<InvalidMacroException>(() => this.ComponentUnderTest.Update(macro));
+        }
+
+        [Test]
+        public void ValidateMacros_AllMacroAreValid_ValidationSucceeds()
+        {
+            var macros = this.ComponentUnderTest.GetAllMacros();
+
+            Assert.IsTrue(this.ComponentUnderTest.IsValid(macros));
+        }
+
+        [Test]
+        public void ValidateMacros_WithAnInvalidMacro_ValidationFails()
+        {
+            var macros = this.ComponentUnderTest.GetAllMacros().ToList();
+            macros.Add(new MacroDto() { Expression = "$unknownExpression$" });
+
+            Assert.IsFalse(this.ComponentUnderTest.IsValid(macros));
         }
 
         protected override void _Setup()

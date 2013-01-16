@@ -26,14 +26,17 @@ namespace Probel.Helpers.WPF.Behaviours
     using System.Windows.Input;
 
     using Probel.Mvvm.DataBinding;
+    using System.ComponentModel;
 
     public class WindowBehaviour
     {
         #region Fields
 
-        public static readonly DependencyProperty ClosedProperty = 
+        public static readonly DependencyProperty ClosedProperty =
             DependencyProperty.RegisterAttached("Closed", typeof(ICommand), typeof(WindowBehaviour), new UIPropertyMetadata(null, CallbackAction));
-        public static readonly DependencyProperty LoadedProperty = 
+        public static readonly DependencyProperty ClosingProperty =
+            DependencyProperty.RegisterAttached("Closing", typeof(ICommand), typeof(WindowBehaviour), new UIPropertyMetadata(null, CallbackAction));
+        public static readonly DependencyProperty LoadedProperty =
             DependencyProperty.RegisterAttached("Loaded", typeof(ICommand), typeof(WindowBehaviour), new UIPropertyMetadata(null, CallbackAction));
 
         private static Dictionary<DependencyObject, Behaviour> behaviours = new Dictionary<DependencyObject, Behaviour>();
@@ -41,7 +44,11 @@ namespace Probel.Helpers.WPF.Behaviours
         #endregion Fields
 
         #region Methods
-
+        [AttachedPropertyBrowsableForChildren]
+        public static void SetClosing(DependencyObject target, ICommand command)
+        {
+            target.SetValue(WindowBehaviour.ClosingProperty, command);
+        }
         [AttachedPropertyBrowsableForChildren]
         public static void SetClosed(DependencyObject target, ICommand command)
         {
@@ -84,12 +91,24 @@ namespace Probel.Helpers.WPF.Behaviours
                 this.view = view;
                 this.view.Loaded += (sender, e) => LoadedExecuteCommand(sender);
                 this.view.Closed += (sender, e) => ClosedExecuteCommand(sender);
+                this.view.Closing += (sender, e) => ClosingExecuteCommand(sender, e);
+            }
+
+            private static void ClosingExecuteCommand(object sender, CancelEventArgs e)
+            {
+                var element = (Window)sender;
+                var command = (ICommand)element.GetValue(WindowBehaviour.ClosingProperty);
+
+                if (command != null)
+                {
+                    if (command.CanExecute(null)) { command.Execute(null); }
+                    else { e.Cancel = true; }
+                }
             }
 
             #endregion Constructors
 
             #region Methods
-
             private static void ClosedExecuteCommand(object sender)
             {
                 var element = (Window)sender;

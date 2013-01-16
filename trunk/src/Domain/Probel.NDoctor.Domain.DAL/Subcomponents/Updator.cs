@@ -36,6 +36,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Helpers;
+    using Probel.NDoctor.Domain.DAL.Macro;
     using Probel.NDoctor.Domain.DAL.Mementos;
     using Probel.NDoctor.Domain.DAL.Properties;
     using Probel.NDoctor.Domain.DTO.Exceptions;
@@ -278,6 +279,8 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// <param name="item">The item.</param>
         public void Update(MacroDto item)
         {
+            if (!MacroBuilder.IsValidExpression(item.Expression)) { throw new InvalidMacroException(); }
+
             var entity = this.Session.Get<Macro>(item.Id);
             Mapper.Map<MacroDto, Macro>(item, entity);
 

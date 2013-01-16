@@ -252,9 +252,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
                         this.View.As<WorkbenchViewModel>().SaveCommand.TryExecute();
                     })
                     .OnClosing(() => this.View.As<WorkbenchViewModel>().RefreshCommand.TryExecute());
+
                 e.Bind<AddFolderView, AddFolderViewModel>()
                     .OnShow(() => this.View.As<WorkbenchViewModel>().SaveCommand.TryExecute())
                     .OnClosing(() => this.View.As<WorkbenchViewModel>().RefreshCommand.TryExecute());
+
                 e.Bind<MacroEditorView, MacroEditorViewModel>()
                     .OnShow(vm =>
                     {
@@ -263,9 +265,10 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
                     })
                     .OnClosing(vm =>
                     {
-                        vm.SaveCommand.TryExecute();
+                        //vm.SaveCommand.TryExecute();
                         this.View.As<WorkbenchViewModel>().RefreshCommand.TryExecute();
                     });
+
                 e.Bind<RecordHistoryView, RecordHistoryViewModel>();
             });
         }

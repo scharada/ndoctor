@@ -16,7 +16,7 @@
         xmlns:txt="clr-namespace:Probel.NDoctor.Plugins.MedicalRecord.Translations"
         
         Title="{Binding Source={x:Static Member=txt:MacroEditorText.Title}}"
-        behaviours:WindowBehaviour.Closed="{Binding SaveCommand}"
+        behaviours:WindowBehaviour.Closing="{Binding SaveCommand}"
         
         mc:Ignorable="d" 
         Height="456" Width="667" 
@@ -38,9 +38,9 @@
             <Border Style="{StaticResource BorderStyle}"
                     DockPanel.Dock="Right" >
                 <Button Width="100"
-                    Command="cmd:Commands.CloseView"
-                    CommandParameter="{Binding ElementName=this, Path=DataContext}"             
-                    Content="{Binding Source={x:Static Member=t:BaseText.Close}}"/>
+                        Command="cmd:Commands.CloseView"
+                        CommandParameter="{Binding ElementName=this, Path=DataContext}"             
+                        Content="{Binding Source={x:Static Member=t:BaseText.Close}}"/>
             </Border>
         </DockPanel>
         

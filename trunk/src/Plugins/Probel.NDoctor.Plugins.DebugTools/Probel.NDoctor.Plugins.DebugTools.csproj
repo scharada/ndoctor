@@ -52,8 +52,9 @@
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Probel.Mvvm">
-      <HintPath>..\..\packages\Probel.Mvvm.1.2.0.80\lib\Probel.Mvvm.dll</HintPath>
+    <Reference Include="Probel.Mvvm, Version=1.2.1.86, Culture=neutral, PublicKeyToken=d511bfe47d53d783, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Probel.Mvvm.1.2.1.86\lib\net40\Probel.Mvvm.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />

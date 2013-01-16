@@ -30,6 +30,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
+    using Probel.Mvvm.Gui;
 
     internal class MacroEditorViewModel : BaseViewModel
     {
@@ -56,7 +57,20 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
             this.refreshCommand = new RelayCommand(() => this.Refresh());
             this.createCommand = new RelayCommand(() => this.Create(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             this.removeCommand = new RelayCommand(() => this.Remove(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
-            this.saveCommand = new RelayCommand(() => this.Save(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.saveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
+        }
+
+        private bool CanSave()
+        {
+            var areValidMacros = this.Component.IsValid(this.Macros);
+
+            if (!areValidMacros)
+            {
+                ViewService.MessageBox.Warning(Messages.Err_InvalidMacros);
+            }
+
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write)
+                && areValidMacros;
         }
 
         #endregion Constructors
@@ -137,7 +151,14 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         internal void ResolveMacro()
         {
-            this.ResolvedMacro = this.Component.Resolve(this.SelectedMacro, PluginContext.Host.SelectedPatient);
+            try
+            {
+                this.ResolvedMacro = this.Component.Resolve(this.SelectedMacro, PluginContext.Host.SelectedPatient);
+            }
+            catch (Exception)
+            {
+                this.ResolvedMacro = string.Format(Messages.Err_InvalidMacro);
+            }
         }
 
         private void Create()
