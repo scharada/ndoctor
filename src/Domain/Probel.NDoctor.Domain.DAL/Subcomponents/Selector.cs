@@ -37,6 +37,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.DAL.Helpers;
 
     internal class Selector
     {
@@ -438,11 +439,19 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// <returns></returns>
         public IList<TagDto> GetTags(TagCategory category)
         {
+
             var tags = (from tag in this.Session.Query<Tag>()
                         where tag.Category == category
                         select tag).ToList();
 
-            return Mapper.Map<IList<Tag>, IList<TagDto>>(tags);
+            if (category == TagCategory.Appointment)
+            {
+                tags = (from tag in tags
+                        where tag.Name != Default.GoogleCalendarTagName
+                        select tag).ToList();
+            }
+
+            return Mapper.Map<IEnumerable<Tag>, IList<TagDto>>(tags);
         }
 
         /// <summary>

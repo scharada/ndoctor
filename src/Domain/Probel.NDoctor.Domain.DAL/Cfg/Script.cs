@@ -22,6 +22,7 @@
 namespace Probel.NDoctor.Domain.DAL.Cfg
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using System.Diagnostics;
 
@@ -45,6 +46,11 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
         #region Methods
 
+
+        /// <summary>
+        /// Executes the script (Use this only for debugging or testing)
+        /// </summary>
+        /// <param name="session">The session.</param>
         public void Execute(ISession session)
         {
             try
@@ -98,10 +104,36 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                 throw;
             }
         }
+        /// <summary>
+        /// Injects forgotten data into the database. (Use this only for debugging or testing)
+        /// </summary>
+        public void InjectForgottenData(ISession session)
+        {
+            var component = (session == null)
+                ? new CalendarComponent()         //Used in production
+                : new CalendarComponent(session); //Used in unit test sessions
 
+            if (!component.HasGoogleCalendarTag())
+            {
+                component.Create(new TagDto(TagCategory.Appointment) { Name = Default.GoogleCalendarTagName, Notes = "Default data" });
+                Logger.Info("Inserted the GoogleCalendar tag into the database");
+            }
+        }
+
+        /// <summary>
+        /// Executes the script.
+        /// </summary>
         internal void Execute()
         {
             this.Execute(null);
+        }
+        /// <summary>
+        /// Injects forgotten data into the database. This method is meant to add default value if it is not yet in the database.
+        /// This methods is used to keep consistent data throught the release stream
+        /// </summary>
+        internal void InjectForgottenData()
+        {
+            this.InjectForgottenData(null);
         }
 
         private static RoleDto BuildRole(string name, string description, params TaskDto[] tasks)
