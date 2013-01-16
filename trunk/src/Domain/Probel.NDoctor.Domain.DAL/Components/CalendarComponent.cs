@@ -207,6 +207,20 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Determines whether the google calendar tag is in the database.
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if the google calendar tag is in the database; otherwise, <c>false</c>.
+        /// </returns>
+        internal bool HasGoogleCalendarTag()
+        {
+            return (from t in this.Session.Query<Tag>()
+                    where t.Category == TagCategory.Appointment
+                    && t.Name == Default.GoogleCalendarTagName
+                    select t).Count() > 0;
+        }
+
+        /// <summary>
         /// Removes the specified meeting.
         /// </summary>
         /// <param name="meeting">The meeting.</param>

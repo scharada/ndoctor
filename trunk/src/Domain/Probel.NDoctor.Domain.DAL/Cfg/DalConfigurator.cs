@@ -241,6 +241,9 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                 else { new Script().Execute(); }
             }
             else { Logger.Info("Data injection script aborded. Data already in the database."); }
+
+            if (session != null) { new Script().InjectForgottenData(session); }
+            else { new Script().InjectForgottenData(); }
         }
 
         /// <summary>
