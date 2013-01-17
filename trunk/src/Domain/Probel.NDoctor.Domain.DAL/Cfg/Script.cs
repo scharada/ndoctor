@@ -22,9 +22,9 @@
 namespace Probel.NDoctor.Domain.DAL.Cfg
 {
     using System;
-    using System.Linq;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Linq;
 
     using log4net;
 
@@ -45,7 +45,6 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
         #endregion Fields
 
         #region Methods
-
 
         /// <summary>
         /// Executes the script (Use this only for debugging or testing)
@@ -104,6 +103,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                 throw;
             }
         }
+
         /// <summary>
         /// Injects forgotten data into the database. (Use this only for debugging or testing)
         /// </summary>
@@ -127,6 +127,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
         {
             this.Execute(null);
         }
+
         /// <summary>
         /// Injects forgotten data into the database. This method is meant to add default value if it is not yet in the database.
         /// This methods is used to keep consistent data throught the release stream

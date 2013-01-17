@@ -86,7 +86,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Check the database state and creates the thumbnails if needed
         /// </summary>
         /// <param name="pictures">The pictures.</param>
-        [BenchmarkThreshold(60000, "Create 169 pictures takes about 1 minute!")]
+        [NotBenchmarked]
         [ExcludeFromTransaction]
         [Granted(To.Everyone)]
         public void CreateAllThumbnails()

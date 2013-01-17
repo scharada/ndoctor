@@ -74,10 +74,14 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
                 message = attribute[0].Explanation;
             }
 
-            using (new Benchmark(e => this.CheckAndLog(e, threshold, invocation.TargetType.Name, invocation.Method.Name, message)))
+            if (this.GetAttribute<NotBenchmarkedAttribute>(invocation).Length == 0)
             {
-                invocation.Proceed();
+                using (new Benchmark(e => this.CheckAndLog(e, threshold, invocation.TargetType.Name, invocation.Method.Name, message)))
+                {
+                    invocation.Proceed();
+                }
             }
+            else { invocation.Proceed(); }
         }
 
         private void CheckAndLog(TimeSpan e, double threshold, string targetTypeName, string methodName, string message)

@@ -18,6 +18,7 @@
     /// Provides statistics on the application usage
     /// </summary>
     [Granted(To.Everyone)]
+    [NotBenchmarked]
     public class ApplicationStatisticsComponent : BaseComponent, IApplicationStatisticsComponent
     {
         #region Constructors

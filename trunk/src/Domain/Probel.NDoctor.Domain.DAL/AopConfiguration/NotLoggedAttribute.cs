@@ -25,34 +25,7 @@ namespace Probel.NDoctor.Domain.DAL.AopConfiguration
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property,
         AllowMultiple = false,
         Inherited = true)]
-    public class InspectionIgnoredAttribute : Attribute
+    public class NotLoggedAttribute : Attribute
     {
-        #region Constructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InspectionIgnoredAttribute"/> class.
-        /// </summary>
-        public InspectionIgnoredAttribute()
-        {
-            this.Ignore = true;
-        }
-
-        #endregion Constructors
-
-        #region Properties
-
-        /// <summary>
-        /// Returns always true.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if ignore; otherwise, <c>false</c>.
-        /// </value>
-        public bool Ignore
-        {
-            get;
-            private set;
-        }
-
-        #endregion Properties
     }
 }

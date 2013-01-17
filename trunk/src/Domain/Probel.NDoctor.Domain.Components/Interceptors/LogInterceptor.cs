@@ -31,7 +31,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
 
         public override void Intercept(IInvocation invocation)
         {
-            if (!this.IsDecoratedWith<InspectionIgnoredAttribute>(invocation))
+            if (!this.IsDecoratedWith<NotLoggedAttribute>(invocation))
             {
                 Logger.Debug(string.Format("===================> {0}.{1}", invocation.TargetType.Name, invocation.Method.Name));
             }

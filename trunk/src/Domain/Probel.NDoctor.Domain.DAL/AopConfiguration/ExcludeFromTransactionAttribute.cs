@@ -31,32 +31,5 @@ namespace Probel.NDoctor.Domain.DAL.AopConfiguration
         Inherited = true)]
     public class ExcludeFromTransactionAttribute : Attribute
     {
-        #region Constructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ExcludeFromTransactionAttribute"/> class.
-        /// </summary>
-        public ExcludeFromTransactionAttribute()
-        {
-            this.IsTransaction = true;
-        }
-
-        #endregion Constructors
-
-        #region Properties
-
-        /// <summary>
-        /// Returns always true.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> this method will be encapsulated into a transaction; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsTransaction
-        {
-            get;
-            private set;
-        }
-
-        #endregion Properties
     }
 }

@@ -1,4 +1,4 @@
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,15 +14,20 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-using System.Reflection;
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
-[assembly:AssemblyVersion("3.0.4.1098")]
+namespace Probel.NDoctor.Domain.DAL.AopConfiguration
+{
+    /// <summary>
+    /// Any decorated methods or class with this attribute won't be logged into the execution history
+    /// </summary>   
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Class,
+            AllowMultiple = false,
+            Inherited = true)]
+    public class NotBenchmarkedAttribute : Attribute
+    {
+    }
+}

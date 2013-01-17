@@ -67,7 +67,12 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
         protected T[] GetAttribute<T>(IInvocation invocation)
             where T : Attribute
         {
-            return invocation.MethodInvocationTarget.GetCustomAttributes(typeof(T), true) as T[];
+            var memberAttributes = invocation.MethodInvocationTarget.GetCustomAttributes(typeof(T), true) as T[];
+            var objectAttributes = invocation.TargetType.GetCustomAttributes(typeof(T), true) as T[];
+
+            return (objectAttributes != null && objectAttributes.Length > 0)
+                ? objectAttributes
+                : memberAttributes;
         }
 
         /// <summary>
