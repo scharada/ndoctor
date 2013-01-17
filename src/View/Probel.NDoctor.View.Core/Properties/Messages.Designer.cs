@@ -386,24 +386,6 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1 hour.
-        /// </summary>
-        internal static string SlotDuration_OneHour {
-            get {
-                return ResourceManager.GetString("SlotDuration_OneHour", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 30 minutes.
-        /// </summary>
-        internal static string SlotDuration_ThirtyMinutes {
-            get {
-                return ResourceManager.GetString("SlotDuration_ThirtyMinutes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Logs.
         /// </summary>
         internal static string Tab_Logs {
@@ -904,15 +886,6 @@ namespace Probel.NDoctor.View.Core.Properties {
         internal static string Title_Warning {
             get {
                 return ResourceManager.GetString("Title_Warning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Workday.
-        /// </summary>
-        internal static string Title_Workday {
-            get {
-                return ResourceManager.GetString("Title_Workday", resourceCulture);
             }
         }
         

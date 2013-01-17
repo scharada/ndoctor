@@ -47,7 +47,7 @@ namespace Probel.NDoctor.View.Core.Helpers
         static SettingsConfigurator()
         {
             settingControls = new ObservableCollection<SettingUi>();
-            settingControls.Add(new SettingUi(Messages.Title_DefaultSettings,()=> new DefaultSettingsView()));
+            settingControls.Add(new SettingUi(Messages.Title_DefaultSettings, () => new DefaultSettingsView()));
         }
 
         #endregion Constructors
@@ -104,6 +104,7 @@ namespace Probel.NDoctor.View.Core.Helpers
         #region Fields
 
         private Func<UserControl> ctor;
+        private object datacontext = null;
 
         #endregion Fields
 
@@ -121,7 +122,13 @@ namespace Probel.NDoctor.View.Core.Helpers
 
         public UserControl Control
         {
-            get { return this.ctor(); }
+            get
+            {
+                var control = this.ctor();
+                if (datacontext == null) { datacontext = control.DataContext; }
+                else { control.DataContext = datacontext; }
+                return control;
+            }
         }
 
         public string Name

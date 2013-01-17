@@ -42,11 +42,6 @@ namespace Probel.NDoctor.View.Core.Translations
             get { return Messages.Title_Settings; }
         }
 
-        public static string TitleEnd
-        {
-            get { return Messages.Title_End; }
-        }
-
         public static string TitleLanguage
         {
             get { return Messages.Title_Languages; }
@@ -65,21 +60,6 @@ namespace Probel.NDoctor.View.Core.Translations
         public static string TitleSettings
         {
             get { return Messages.Title_Settings; }
-        }
-
-        public static string TitleSlotDuration
-        {
-            get { return Messages.Title_SlotDuration; }
-        }
-
-        public static string TitleStart
-        {
-            get { return Messages.Title_Start; }
-        }
-
-        public static string TitleWorkday
-        {
-            get { return Messages.Title_Workday; }
         }
 
         #endregion Properties

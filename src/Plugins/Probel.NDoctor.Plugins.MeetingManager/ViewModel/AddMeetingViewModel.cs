@@ -29,6 +29,12 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
     internal class AddMeetingViewModel : MeetingViewModel
     {
+        #region Fields
+
+        private readonly PluginSettings Settings = new PluginSettings();
+
+        #endregion Fields
+
         #region Constructors
 
         public AddMeetingViewModel()
@@ -116,7 +122,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         {
             try
             {
-                var freeSlots = this.Component.GetSlots(this.StartDate, this.EndDate, PluginContext.Host.Workday);
+                var freeSlots = this.Component.GetSlots(this.StartDate, this.EndDate, this.Settings.Workday);
 
                 this.FreeSlots.Refill(freeSlots);
             }

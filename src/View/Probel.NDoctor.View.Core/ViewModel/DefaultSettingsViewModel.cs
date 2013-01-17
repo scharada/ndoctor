@@ -25,7 +25,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
-    using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -47,16 +46,9 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         public DefaultSettingsViewModel()
         {
-            this.SlotDurations = new ObservableCollection<Tuple<string, SlotDuration>>();
-            this.SlotDurations.Add(new Tuple<string, SlotDuration>(Messages.SlotDuration_OneHour, SlotDuration.OneHour));
-            this.SlotDurations.Add(new Tuple<string, SlotDuration>(Messages.SlotDuration_ThirtyMinutes, SlotDuration.ThirtyMinutes));
-
             this.SupportedLanguages = new ObservableCollection<string>();
             this.SupportedLanguages.Add(Languages.French);
             this.SupportedLanguages.Add(Languages.English);
-
-            this.Start = this.BuildFromString(Settings.Default.WorkDayStart);
-            this.End = this.BuildFromString(Settings.Default.WorkDayEnd);
 
             this.ChangeLanguageCommand = new RelayCommand(() => this.ShowRestart = (this.SelectedLanguage != configuredLanguage));
 
@@ -83,16 +75,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
         {
             get;
             private set;
-        }
-
-        public DateTime End
-        {
-            get { return this.end; }
-            set
-            {
-                this.end = value;
-                this.OnPropertyChanged(() => End);
-            }
         }
 
         public ObservableCollection<Tuple<string, SearchOn>> SearchTypes
@@ -124,20 +106,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
             }
         }
 
-        public Tuple<string, SlotDuration> SelectedSlot
-        {
-            get
-            {
-                var slot = Settings.Default.SlotDuration;
-                return new Tuple<string, SlotDuration>(Translate(slot), slot);
-            }
-            set
-            {
-                Settings.Default.SlotDuration = value.Item2;
-                this.OnPropertyChanged(() => SelectedSlot);
-            }
-        }
-
         public bool ShowRestart
         {
             get { return this.showRestart; }
@@ -145,22 +113,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
             {
                 this.showRestart = value;
                 this.OnPropertyChanged(() => ShowRestart);
-            }
-        }
-
-        public ObservableCollection<Tuple<string, SlotDuration>> SlotDurations
-        {
-            get;
-            private set;
-        }
-
-        public DateTime Start
-        {
-            get { return this.start; }
-            set
-            {
-                this.start = value;
-                this.OnPropertyChanged(() => Start);
             }
         }
 
@@ -176,26 +128,16 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         protected override bool CanSave()
         {
-            return this.Start < this.End;
+            return true;
         }
 
         protected override void Save()
         {
-            Settings.Default.WorkDayStart = this.Start.ToString("HH:mm");
-            Settings.Default.WorkDayEnd = this.End.ToString("HH:mm");
             Settings.Default.Language = this.SelectedLanguage;
             Settings.Default.AutomaticContextMenu = this.AutomaticContextMenu;
             Settings.Default.SearchType = this.SelectedSearchType.Item2;
 
             Settings.Default.Save();
-        }
-
-        private DateTime BuildFromString(string time)
-        {
-            var items = time.Split(':');
-            var s = DateTime.MinValue.AddHours(Int32.Parse(items[0]));
-            s.AddMinutes(Int32.Parse(items[1]));
-            return s;
         }
 
         private void FeedSearchTypes()
@@ -209,25 +151,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
             this.SelectedSearchType = (from s in this.SearchTypes
                                        where s.Item2 == Settings.Default.SearchType
                                        select s).Single();
-        }
-
-        private string Translate(SlotDuration slotDuration)
-        {
-            var value = string.Empty;
-
-            switch (slotDuration)
-            {
-                case SlotDuration.ThirtyMinutes:
-                    value = Messages.SlotDuration_ThirtyMinutes;
-                    break;
-                case SlotDuration.OneHour:
-                    value = Messages.SlotDuration_OneHour;
-                    break;
-                default:
-                    Assert.FailOnEnumeration(slotDuration);
-                    break;
-            }
-            return value;
         }
 
         #endregion Methods

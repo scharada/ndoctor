@@ -135,7 +135,6 @@
     <Compile Include="..\..\Version.cs">
       <Link>Version.cs</Link>
     </Compile>
-    <Compile Include="Helpers\Notifyer.cs" />
     <Compile Include="Helpers\Languages.cs" />
     <Compile Include="Helpers\SettingsConfigurator.cs" />
     <Compile Include="Helpers\StatusConverter.cs" />

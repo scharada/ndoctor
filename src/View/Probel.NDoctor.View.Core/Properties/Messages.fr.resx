@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Btn_Add" xml:space="preserve">
-    <value>Ajouter</value>
-    <comment>Add</comment>
-  </data>
   <data name="Btn_Save" xml:space="preserve">
     <value>Sauver</value>
     <comment>Save</comment>
@@ -222,14 +218,6 @@ L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
     <value>Le menu principal de l'application n'existe pas.</value>
     <comment>The main menu of the application does't exist.</comment>
   </data>
-  <data name="SlotDuration_OneHour" xml:space="preserve">
-    <value>1 heure</value>
-    <comment>1 hour</comment>
-  </data>
-  <data name="SlotDuration_ThirtyMinutes" xml:space="preserve">
-    <value>30 minutes</value>
-    <comment>30 minutes</comment>
-  </data>
   <data name="Title_Address" xml:space="preserve">
     <value>Adresse</value>
     <comment>Addresse</comment>
@@ -245,10 +233,6 @@ L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
   <data name="Title_Data" xml:space="preserve">
     <value>Informations</value>
     <comment>Data</comment>
-  </data>
-  <data name="Title_End" xml:space="preserve">
-    <value>Fin</value>
-    <comment>End</comment>
   </data>
   <data name="Title_Error" xml:space="preserve">
     <value>Erreur</value>
@@ -314,14 +298,6 @@ L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
     <value>Préférences</value>
     <comment>Customise</comment>
   </data>
-  <data name="Title_SlotDuration" xml:space="preserve">
-    <value>Durée de rendez-vous</value>
-    <comment>Slot duration</comment>
-  </data>
-  <data name="Title_Start" xml:space="preserve">
-    <value>Début</value>
-    <comment>Start</comment>
-  </data>
   <data name="Title_Street" xml:space="preserve">
     <value>Rue:</value>
     <comment>Street:</comment>
@@ -337,10 +313,6 @@ L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
   <data name="Title_Warning" xml:space="preserve">
     <value>Attention</value>
     <comment>Warning</comment>
-  </data>
-  <data name="Title_Workday" xml:space="preserve">
-    <value>Journée de travail</value>
-    <comment>Workday</comment>
   </data>
   <data name="Title_Contact" xml:space="preserve">
     <value>Contact</value>

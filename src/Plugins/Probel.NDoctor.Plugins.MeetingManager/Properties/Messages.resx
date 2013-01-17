@@ -245,6 +245,14 @@
     <value>Search processed.</value>
     <comment>Search processed.</comment>
   </data>
+  <data name="SlotDuration_OneHour" xml:space="preserve">
+    <value>1 hour</value>
+    <comment>1 hour</comment>
+  </data>
+  <data name="SlotDuration_ThirtyMinutes" xml:space="preserve">
+    <value>30 minutes</value>
+    <comment>30 minutes</comment>
+  </data>
   <data name="Title_AddMeeting" xml:space="preserve">
     <value>Add a appointment</value>
     <comment>Add a appointment</comment>
@@ -252,6 +260,10 @@
   <data name="Title_Calendar" xml:space="preserve">
     <value>Calendar</value>
     <comment>Calendar</comment>
+  </data>
+  <data name="Title_End" xml:space="preserve">
+    <value>End</value>
+    <comment>End</comment>
   </data>
   <data name="Title_FromTo" xml:space="preserve">
     <value>{0} from {1} to {2} {3}</value>
@@ -273,6 +285,14 @@
     <value>First or last name</value>
     <comment>First or last name</comment>
   </data>
+  <data name="Title_SlotDuration" xml:space="preserve">
+    <value>Slot duration</value>
+    <comment>Slot duration</comment>
+  </data>
+  <data name="Title_Start" xml:space="preserve">
+    <value>Start</value>
+    <comment>Start</comment>
+  </data>
   <data name="Title_Subject" xml:space="preserve">
     <value>Subject</value>
     <comment>Subject</comment>
@@ -280,5 +300,13 @@
   <data name="Title_Tag" xml:space="preserve">
     <value>Tag</value>
     <comment>Tag</comment>
+  </data>
+  <data name="Title_Workday" xml:space="preserve">
+    <value>Workday</value>
+    <comment>Workday</comment>
+  </data>
+  <data name="Warn_CalendarSettingsNotSaved" xml:space="preserve">
+    <value>L'heure de début de la journée de travail doit être plus petite que l'heure de fin</value>
+    <comment>The start time of a workday should be before the end time.</comment>
   </data>
 </root>

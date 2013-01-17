@@ -37,42 +37,6 @@ namespace Probel.NDoctor.View.Core.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("08:00")]
-        public string WorkDayStart {
-            get {
-                return ((string)(this["WorkDayStart"]));
-            }
-            set {
-                this["WorkDayStart"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("17:00")]
-        public string WorkDayEnd {
-            get {
-                return ((string)(this["WorkDayEnd"]));
-            }
-            set {
-                this["WorkDayEnd"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ThirtyMinutes")]
-        public global::Probel.NDoctor.Domain.DTO.Helpers.SlotDuration SlotDuration {
-            get {
-                return ((global::Probel.NDoctor.Domain.DTO.Helpers.SlotDuration)(this["SlotDuration"]));
-            }
-            set {
-                this["SlotDuration"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool AutomaticContextMenu {
             get {
