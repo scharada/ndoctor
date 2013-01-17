@@ -70,6 +70,7 @@
     <Compile Include="Benchmarking\Benchmark.cs" />
     <Compile Include="Conversions\ConversionExtension.cs" />
     <Compile Include="Conversions\Converter.cs" />
+    <Compile Include="Data\AppKey.cs" />
     <Compile Include="Data\Chart.cs" />
     <Compile Include="Data\ChartPoint.cs" />
     <Compile Include="Data\Cloner.cs" />
