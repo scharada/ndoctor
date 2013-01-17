@@ -64,7 +64,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
             var hasRight = true;
             var authAttribute = GetAuthAttribute(invocation);
 
-            if (!this.IsDecoratedWith<InspectionIgnoredAttribute>(invocation))
+            if (!this.IsDecoratedWith<NotLoggedAttribute>(invocation))
             {
                 var name = invocation.MethodInvocationTarget.Name.ToLower();
                 if (this.User == null && authAttribute.ToLower() == To.Everyone.ToLower())

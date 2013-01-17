@@ -58,7 +58,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </value>
         public bool IsSessionOpen
         {
-            [InspectionIgnored]
+            [NotLogged]
             get
             {
                 if (this.Session == null) return false;
@@ -91,7 +91,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
-        [InspectionIgnored]
+        [NotLogged]
         public void Dispose()
         {
             this.Logger.DebugFormat("\t[{0}] Closing session", this.GetType().Name);

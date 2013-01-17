@@ -25,8 +25,10 @@ namespace Probel.NDoctor.Domain.Components.Statistics
 
     using NHibernate;
 
+    using Probel.Helpers.Data;
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DAL.Statistics;
 
     /// <summary>
     /// Contains in its internal state all the statistics about the application
@@ -83,8 +85,18 @@ namespace Probel.NDoctor.Domain.Components.Statistics
             Statistics.Add(stat);
         }
 
+        private static void Export()
+        {
+#if !DEBUG
+            new StatExporter("Probel", "NDoctor")
+                .Export(Statistics);
+#endif
+        }
+
         private static void Flush(ISession session)
         {
+            Export();
+
             using (var tx = session.BeginTransaction())
             {
                 foreach (var item in Statistics) { session.Save(item); }

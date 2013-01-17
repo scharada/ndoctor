@@ -39,6 +39,10 @@ namespace Probel.Helpers.Data
             this.KeyPath = keyPath;
         }
 
+        #endregion Constructors
+
+        #region Methods
+
         public static AppKey GetFromAppData(string vendor, string applicationName)
         {
             var fileName = string.Format("{0}\\{1}\\{2}\\Application.Key"
@@ -47,9 +51,6 @@ namespace Probel.Helpers.Data
                      , applicationName);
             return new AppKey(fileName);
         }
-        #endregion Constructors
-
-        #region Methods
 
         public Guid GetKey()
         {

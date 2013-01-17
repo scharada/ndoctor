@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
     using AutoMapper;
 
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DAL.Statistics;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     public static class AutoMapperMapping
@@ -192,6 +193,9 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
 
             Mapper.CreateMap<DatabaseState, DatabaseState>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
+
+            Mapper.CreateMap<ApplicationStatistics, FeatureExecution>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
         }
 
