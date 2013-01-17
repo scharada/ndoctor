@@ -33,7 +33,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
         public PluginSettingsViewModel()
         {
             this.SaveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
-            Notifyer.SavingSettings += (sender, e) => this.SaveCommand.TryExecute();
         }
 
         #endregion Constructors

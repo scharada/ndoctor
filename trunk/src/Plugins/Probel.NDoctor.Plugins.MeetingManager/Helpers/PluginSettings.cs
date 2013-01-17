@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
 
     using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DTO.GoogleCalendar;
+    using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.View.Plugins.Helpers;
 
     public class PluginSettings : PluginSettingsBase
@@ -36,6 +37,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
 
         private const string DEFAULT_CAL = "https://www.google.com/calendar/feeds/default/private/full";
 
+        private static string CALENDAR = "Calendar";
         private static string CONFIG = "GoogleCalendar";
 
         #endregion Fields
@@ -72,10 +74,43 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
             set { this.Set(CONFIG, "Password", value.Encrypt()); }
         }
 
+        public SlotDuration SlotDuration
+        {
+            get
+            {
+                var value = this.GetString(CALENDAR, "SlotDuration", "ThirtyMinutes");
+                return (SlotDuration)Enum.Parse(typeof(SlotDuration), value);
+            }
+            set
+            {
+                this.Set(CALENDAR, "SlotDuration", value.ToString());
+            }
+        }
+
         public string UserName
         {
             get { return this.GetString(CONFIG, "UserName", string.Empty); }
             set { this.Set(CONFIG, "UserName", value); }
+        }
+
+        public Workday Workday
+        {
+            get
+            {
+                return new Workday(this.WorkdayStart, this.WorkdayEnd, this.SlotDuration);
+            }
+        }
+
+        public string WorkdayEnd
+        {
+            get { return this.GetString(CALENDAR, "WorkdayEnd", "17:00"); }
+            set { this.Set(CALENDAR, "WorkdayEnd", value); }
+        }
+
+        public string WorkdayStart
+        {
+            get { return this.GetString(CALENDAR, "WorkdayStart", "08:00"); }
+            set { this.Set(CALENDAR, "WorkdayStart", value); }
         }
 
         #endregion Properties

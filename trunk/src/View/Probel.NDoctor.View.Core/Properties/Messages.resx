@@ -222,14 +222,6 @@ The application will close. Check the logs for further  information</value>
     <value>The main menu of the application does't exist.</value>
     <comment>The main menu of the application does't exist.</comment>
   </data>
-  <data name="SlotDuration_OneHour" xml:space="preserve">
-    <value>1 hour</value>
-    <comment>1 hour</comment>
-  </data>
-  <data name="SlotDuration_ThirtyMinutes" xml:space="preserve">
-    <value>30 minutes</value>
-    <comment>30 minutes</comment>
-  </data>
   <data name="Title_Address" xml:space="preserve">
     <value>Adresse</value>
     <comment>Addresse</comment>
@@ -337,10 +329,6 @@ The application will close. Check the logs for further  information</value>
   <data name="Title_Warning" xml:space="preserve">
     <value>Warning</value>
     <comment>Warning</comment>
-  </data>
-  <data name="Title_Workday" xml:space="preserve">
-    <value>Workday</value>
-    <comment>Workday</comment>
   </data>
   <data name="Title_Contact" xml:space="preserve">
     <value>Contact</value>

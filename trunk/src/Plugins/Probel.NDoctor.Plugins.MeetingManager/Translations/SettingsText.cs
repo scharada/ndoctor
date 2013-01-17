@@ -42,6 +42,26 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Translations
             get { return Messages.Lbl_Password; }
         }
 
+        public static string TitleEnd
+        {
+            get { return Messages.Title_End; }
+        }
+
+        public static string TitleSlotDuration
+        {
+            get { return Messages.Title_SlotDuration; }
+        }
+
+        public static string TitleStart
+        {
+            get { return Messages.Title_Start; }
+        }
+
+        public static string TitleWorkday
+        {
+            get { return Messages.Title_Workday; }
+        }
+
         public static string UserName
         {
             get { return Messages.Lbl_UserName; }

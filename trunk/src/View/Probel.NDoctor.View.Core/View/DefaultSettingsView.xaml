@@ -35,41 +35,6 @@
                           behaviour:SelectorBehaviour.SelectionChanged="{Binding ChangeLanguageCommand}"/>
             </Border>
         </DockPanel>
-        <GroupBox DockPanel.Dock="Top"  Header="{Binding Source={x:Static Member=text:SettingsText.TitleWorkday}}">
-            <StackPanel>
-                <DockPanel LastChildFill="True">
-                    <Label Style="{StaticResource LabelStyle}"
-                           DockPanel.Dock="Left"
-                           Content="{Binding Source={x:Static Member=text:SettingsText.TitleStart}}"/>
-                    <Border DockPanel.Dock="Right"
-                        Style="{StaticResource BorderStyle}">
-                        <toolkit:TimePicker Value="{Binding Start, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    </Border>
-                </DockPanel>
-
-                <DockPanel LastChildFill="True">
-                    <Label Style="{StaticResource LabelStyle}"
-                           DockPanel.Dock="Left"
-                           Content="{Binding Source={x:Static Member=text:SettingsText.TitleEnd}}"/>
-                    <Border DockPanel.Dock="Right"
-                            Style="{StaticResource BorderStyle}">
-                        <toolkit:TimePicker Value="{Binding End, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    </Border>
-                </DockPanel>
-
-                <DockPanel LastChildFill="True">
-                    <Label Style="{StaticResource LabelStyle}"
-                           DockPanel.Dock="Left"
-                           Content="{Binding Source={x:Static Member=text:SettingsText.TitleSlotDuration}}"/>
-                    <Border DockPanel.Dock="Right"
-                            Style="{StaticResource BorderStyle}">
-                        <ComboBox ItemsSource="{Binding Path=SlotDurations}"
-                              SelectedItem="{Binding Path=SelectedSlot}"
-                              DisplayMemberPath="Item1"/>
-                    </Border>
-                </DockPanel>
-            </StackPanel>
-        </GroupBox>
         <GroupBox DockPanel.Dock="Top"  Header="{Binding Source={x:Static Member=text:SettingsText.TitleMisc}}">
             <StackPanel>
                 <CheckBox Content="{Binding Source={x:Static Member=text:SettingsText.AutomaticContextMenu}}"

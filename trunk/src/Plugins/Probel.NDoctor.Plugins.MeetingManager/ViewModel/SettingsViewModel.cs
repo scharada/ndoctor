@@ -21,7 +21,14 @@
 
 namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 {
+    using System;
+    using System.Collections.ObjectModel;
+
+    using Probel.Helpers.Assertion;
+    using Probel.Mvvm.Gui;
+    using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Plugins.MeetingManager.Helpers;
+    using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
 
     internal class SettingsViewModel : PluginSettingsViewModel
@@ -32,6 +39,17 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
         #endregion Fields
 
+        #region Constructors
+
+        public SettingsViewModel()
+        {
+            this.SlotDurations = new ObservableCollection<Tuple<string, SlotDuration>>();
+            this.SlotDurations.Add(new Tuple<string, SlotDuration>(Messages.SlotDuration_OneHour, SlotDuration.OneHour));
+            this.SlotDurations.Add(new Tuple<string, SlotDuration>(Messages.SlotDuration_ThirtyMinutes, SlotDuration.ThirtyMinutes));
+        }
+
+        #endregion Constructors
+
         #region Properties
 
         public string BindedCalendar
@@ -41,6 +59,16 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             {
                 this.Settings.BindedCalendar = value;
                 this.OnPropertyChanged(() => BindedCalendar);
+            }
+        }
+
+        public DateTime End
+        {
+            get { return this.BuildFromString(this.Settings.WorkdayEnd); }
+            set
+            {
+                this.Settings.WorkdayEnd = string.Format("{0}:{1}", value.Hour, value.Minute);
+                this.OnPropertyChanged(() => End);
             }
         }
 
@@ -64,6 +92,36 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
             }
         }
 
+        public Tuple<string, SlotDuration> SelectedSlot
+        {
+            get
+            {
+                var slot = this.Settings.SlotDuration;
+                return new Tuple<string, SlotDuration>(Translate(slot), slot);
+            }
+            set
+            {
+                this.Settings.SlotDuration = value.Item2;
+                this.OnPropertyChanged(() => SelectedSlot);
+            }
+        }
+
+        public ObservableCollection<Tuple<string, SlotDuration>> SlotDurations
+        {
+            get;
+            private set;
+        }
+
+        public DateTime Start
+        {
+            get { return this.BuildFromString(this.Settings.WorkdayStart); }
+            set
+            {
+                this.Settings.WorkdayStart = string.Format("{0}:{1}", value.Hour, value.Minute);
+                this.OnPropertyChanged(() => Start);
+            }
+        }
+
         public string UserName
         {
             get { return this.Settings.UserName; }
@@ -80,12 +138,39 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
 
         protected override bool CanSave()
         {
-            return true;
+            return this.Start < this.End;
         }
 
         protected override void Save()
         {
             this.Settings.Save();
+        }
+
+        private DateTime BuildFromString(string time)
+        {
+            var items = time.Split(':');
+            var s = DateTime.MinValue.AddHours(Int32.Parse(items[0]));
+            s.AddMinutes(Int32.Parse(items[1]));
+            return s;
+        }
+
+        private string Translate(SlotDuration slotDuration)
+        {
+            var value = string.Empty;
+
+            switch (slotDuration)
+            {
+                case SlotDuration.ThirtyMinutes:
+                    value = Messages.SlotDuration_ThirtyMinutes;
+                    break;
+                case SlotDuration.OneHour:
+                    value = Messages.SlotDuration_OneHour;
+                    break;
+                default:
+                    Assert.FailOnEnumeration(slotDuration);
+                    break;
+            }
+            return value;
         }
 
         #endregion Methods

@@ -82,8 +82,18 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         private void SaveSettings()
         {
-            Notifyer.OnSavingSettings(this);
-            this.Close();
+            var hasError = false;
+            foreach (var ui in this.SettingCollection)
+            {
+                if (ui.Control.DataContext is PluginSettingsViewModel)
+                {
+                    var vm = ui.Control.DataContext as PluginSettingsViewModel;
+                    if (!vm.SaveCommand.CanExecute(null)) { hasError = true; }
+
+                    vm.SaveCommand.TryExecute();
+                }
+            }
+            if (!hasError) { this.Close(); }
         }
 
         #endregion Methods

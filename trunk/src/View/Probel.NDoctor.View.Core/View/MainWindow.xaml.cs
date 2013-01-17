@@ -209,20 +209,6 @@ namespace Probel.NDoctor.View.Core.View
             }
         }
 
-        /// <summary>
-        /// Gets the workday.
-        /// </summary>
-        public Workday Workday
-        {
-            get
-            {
-                var start = Settings.Default.WorkDayStart;
-                var end = Settings.Default.WorkDayEnd;
-                var duration = Settings.Default.SlotDuration;
-                return new Workday(start, end, duration);
-            }
-        }
-
         #endregion Properties
 
         #region Methods

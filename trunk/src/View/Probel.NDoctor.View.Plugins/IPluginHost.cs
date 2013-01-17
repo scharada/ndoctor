@@ -140,14 +140,6 @@ namespace Probel.NDoctor.View.Plugins
             set;
         }
 
-        /// <summary>
-        /// Gets the workday.
-        /// </summary>
-        Workday Workday
-        {
-            get;
-        }
-
         #endregion Properties
 
         #region Methods
