@@ -50,7 +50,7 @@ namespace Probel.NDoctor.View.Plugins.Helpers
                    , Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
                    , pluginName);
 
-            this.BuildDefaultFileStream(fileName);
+            if (!File.Exists(fileName)) { this.BuildDefaultFileStream(fileName); }
 
             Source = new XmlConfigSource(fileName);
         }
@@ -76,6 +76,7 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         /// <returns></returns>
         protected bool GetBoolean(string section, string key, bool defaultValue)
         {
+            this.CheckSection(section);
             return Source.Configs[section].GetBoolean(key, defaultValue);
         }
 
@@ -96,6 +97,7 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         /// <returns></returns>
         protected int GetInt(string section, string key, int defaultValue)
         {
+            this.CheckSection(section);
             return Source.Configs[section].GetInt(key, defaultValue);
         }
 
@@ -108,7 +110,17 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         /// <returns></returns>
         protected string GetString(string section, string key, string defaultValue)
         {
+            this.CheckSection(section);
             return Source.Configs[section].Get(key, defaultValue);
+        }
+
+        private void CheckSection(string section)
+        {
+            if (Source.Configs[section] == null)
+            {
+                Source.Configs.Add(section);
+                Source.Save();
+            }
         }
 
         /// <summary>
@@ -124,17 +136,14 @@ namespace Probel.NDoctor.View.Plugins.Helpers
 
         private void BuildDefaultFileStream(string fileName)
         {
-            if (!File.Exists(fileName))
-            {
-                var configStream = this.GetDefaultConfiguration();
+            var configStream = this.GetDefaultConfiguration();
 
-                using (var reader = new StreamReader(configStream, Encoding.UTF8))
-                using (var stream = File.Create(fileName))
-                {
-                    var writer = new StreamWriter(stream);
-                    writer.Write(reader.ReadToEnd());
-                    writer.Flush();
-                }
+            using (var reader = new StreamReader(configStream, Encoding.UTF8))
+            using (var stream = File.Create(fileName))
+            {
+                var writer = new StreamWriter(stream);
+                writer.Write(reader.ReadToEnd());
+                writer.Flush();
             }
         }
 

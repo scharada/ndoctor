@@ -37,8 +37,8 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
 
         private const string DEFAULT_CAL = "https://www.google.com/calendar/feeds/default/private/full";
 
-        private static string CALENDAR = "Calendar";
-        private static string CONFIG = "GoogleCalendar";
+        private static string DEFAULT = "Calendar";
+        private static string GOOGLE = "GoogleCalendar";
 
         #endregion Fields
 
@@ -58,39 +58,39 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
 
         public string BindedCalendar
         {
-            get { return this.GetString(CONFIG, "BindedCalendar", DEFAULT_CAL); }
-            set { this.Set(CONFIG, "BindedCalendar", value); }
+            get { return this.GetString(GOOGLE, "BindedCalendar", DEFAULT_CAL); }
+            set { this.Set(GOOGLE, "BindedCalendar", value); }
         }
 
         public bool IsGoogleCalendarActivated
         {
-            get { return this.GetBoolean(CONFIG, "IsGoogleCalendarEnabled", false); }
-            set { this.Set(CONFIG, "IsGoogleCalendarEnabled", value); }
+            get { return this.GetBoolean(GOOGLE, "IsGoogleCalendarEnabled", false); }
+            set { this.Set(GOOGLE, "IsGoogleCalendarEnabled", value); }
         }
 
         public string Password
         {
-            get { return this.GetString(CONFIG, "Password", string.Empty).Decrypt(); }
-            set { this.Set(CONFIG, "Password", value.Encrypt()); }
+            get { return this.GetString(GOOGLE, "Password", string.Empty).Decrypt(); }
+            set { this.Set(GOOGLE, "Password", value.Encrypt()); }
         }
 
         public SlotDuration SlotDuration
         {
             get
             {
-                var value = this.GetString(CALENDAR, "SlotDuration", "ThirtyMinutes");
+                var value = this.GetString(DEFAULT, "SlotDuration", "ThirtyMinutes");
                 return (SlotDuration)Enum.Parse(typeof(SlotDuration), value);
             }
             set
             {
-                this.Set(CALENDAR, "SlotDuration", value.ToString());
+                this.Set(DEFAULT, "SlotDuration", value.ToString());
             }
         }
 
         public string UserName
         {
-            get { return this.GetString(CONFIG, "UserName", string.Empty); }
-            set { this.Set(CONFIG, "UserName", value); }
+            get { return this.GetString(GOOGLE, "UserName", string.Empty); }
+            set { this.Set(GOOGLE, "UserName", value); }
         }
 
         public Workday Workday
@@ -103,14 +103,14 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
 
         public string WorkdayEnd
         {
-            get { return this.GetString(CALENDAR, "WorkdayEnd", "17:00"); }
-            set { this.Set(CALENDAR, "WorkdayEnd", value); }
+            get { return this.GetString(DEFAULT, "WorkdayEnd", "17:00"); }
+            set { this.Set(DEFAULT, "WorkdayEnd", value); }
         }
 
         public string WorkdayStart
         {
-            get { return this.GetString(CALENDAR, "WorkdayStart", "08:00"); }
-            set { this.Set(CALENDAR, "WorkdayStart", value); }
+            get { return this.GetString(DEFAULT, "WorkdayStart", "08:00"); }
+            set { this.Set(DEFAULT, "WorkdayStart", value); }
         }
 
         #endregion Properties
