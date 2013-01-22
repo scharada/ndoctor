@@ -180,6 +180,29 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets the doctors (with full data) linked to the specified patient.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <returns>A list of doctors</returns>
+        public IList<DoctorDto> GetFullDoctorOf(LightPatientDto patient)
+        {
+            var entity = this.Session.Get<Patient>(patient.Id);
+            return Mapper.Map<IList<Doctor>, IList<DoctorDto>>(entity.Doctors);
+        }
+
+        /// <summary>
+        /// Gets the insurance by id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// The insurance
+        /// </returns>
+        public InsuranceDto GetInsuranceById(long id)
+        {
+            return new Selector(this.Session).GetById<Insurance, InsuranceDto>(id);
+        }
+
+        /// <summary>
         /// Gets the light patient by id.
         /// </summary>
         /// <param name="id">The id.</param>
@@ -261,6 +284,16 @@ namespace Probel.NDoctor.Domain.DAL.Components
             if (fullPatient.Address == null) { fullPatient.Address = new Address(); }
 
             return Mapper.Map<Patient, PatientDto>(fullPatient);
+        }
+
+        /// <summary>
+        /// Gets the practice by id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns></returns>
+        public PracticeDto GetPracticeById(long id)
+        {
+            return new Selector(this.Session).GetById<Practice, PracticeDto>(id);
         }
 
         /// <summary>

@@ -114,15 +114,6 @@ namespace Probel.NDoctor.View.Plugins.Helpers
             return Source.Configs[section].Get(key, defaultValue);
         }
 
-        private void CheckSection(string section)
-        {
-            if (Source.Configs[section] == null)
-            {
-                Source.Configs.Add(section);
-                Source.Save();
-            }
-        }
-
         /// <summary>
         /// Sets the specified string in the specified section and key of the plugin config file.
         /// </summary>
@@ -144,6 +135,15 @@ namespace Probel.NDoctor.View.Plugins.Helpers
                 var writer = new StreamWriter(stream);
                 writer.Write(reader.ReadToEnd());
                 writer.Flush();
+            }
+        }
+
+        private void CheckSection(string section)
+        {
+            if (Source.Configs[section] == null)
+            {
+                Source.Configs.Add(section);
+                Source.Save();
             }
         }
 

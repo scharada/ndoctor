@@ -86,6 +86,7 @@
     <Compile Include="..\..\Version.cs">
       <Link>Version.cs</Link>
     </Compile>
+    <Compile Include="Converters\InvertBooleanToVisibilityConverter.cs" />
     <Compile Include="Helpers\ReferencedObject.cs" />
     <Compile Include="Logging\LogEvent.cs" />
     <Compile Include="Logging\LogMessageRecorder.cs" />
