@@ -228,6 +228,20 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         }
 
         /// <summary>
+        /// Gets the specified TDto with the specified id and returns the specified TDto.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <typeparam name="TDto">The type of the dto.</typeparam>
+        /// <param name="id">The id.</param>
+        /// <returns>A DTO with the specified Id</returns>
+        public TDto GetById<TEntity, TDto>(long id)
+            where TEntity : Entity
+            where TDto : BaseDto
+        {
+            return Mapper.Map<TEntity, TDto>(this.Session.Get<TEntity>(id));
+        }
+
+        /// <summary>
         /// Gets the doctors by name.
         /// </summary>
         /// <param name="name">The name.</param>

@@ -101,6 +101,20 @@ namespace Probel.NDoctor.Domain.DTO.Components
         IList<LightDoctorDto> GetDoctorOf(LightPatientDto patient);
 
         /// <summary>
+        /// Gets the doctors linked to the specified patient.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <returns>A list of doctors</returns>
+        IList<DoctorDto> GetFullDoctorOf(LightPatientDto patient);
+
+        /// <summary>
+        /// Gets the insurance by id.
+        /// </summary>
+        /// <param name="p">The id.</param>
+        /// <returns>The insurance</returns>
+        InsuranceDto GetInsuranceById(long id);
+
+        /// <summary>
         /// Gets the patient with the specified id.
         /// </summary>
         /// <param name="id">The p.</param>
@@ -133,6 +147,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <returns>A DTO with the whole data</returns>
         /// <exception cref="Probel.NDoctor.Domain.DAL.Exceptions.ItemNotFoundException">If the id is not linked to a patient</exception>
         PatientDto GetPatientById(long id);
+
+        /// <summary>
+        /// Gets the practice by id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns></returns>
+        PracticeDto GetPracticeById(long id);
 
         /// <summary>
         /// Gets all the tags with the specified catagory.

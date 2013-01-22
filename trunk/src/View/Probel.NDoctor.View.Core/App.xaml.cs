@@ -22,6 +22,7 @@ namespace Probel.NDoctor.View.Core
     using System.Runtime.InteropServices;
     using System.Threading;
     using System.Windows;
+    using System.Windows.Markup;
     using System.Windows.Threading;
 
     using log4net;
@@ -121,6 +122,21 @@ namespace Probel.NDoctor.View.Core
         #endregion Properties
 
         #region Methods
+
+        /// <summary>
+        /// The fix to the wrong string.Format in the Xaml code
+        /// http://stackoverflow.com/questions/2764615/wpf-stringformat-0c-showing-as-dollars
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            FrameworkElement.LanguageProperty.OverrideMetadata(
+                typeof(FrameworkElement),
+                new FrameworkPropertyMetadata(
+                    XmlLanguage.GetLanguage(
+                    CultureInfo.CurrentCulture.IetfLanguageTag)));
+            base.OnStartup(e);
+        }
 
         [DllImport("kernel32.dll")]
         private static extern bool AllocConsole();

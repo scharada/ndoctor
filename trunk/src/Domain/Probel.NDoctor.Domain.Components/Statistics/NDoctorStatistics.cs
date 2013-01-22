@@ -87,10 +87,10 @@ namespace Probel.NDoctor.Domain.Components.Statistics
 
         private static void Export()
         {
-#if !DEBUG
+            #if !DEBUG
             new StatExporter("Probel", "NDoctor")
                 .Export(Statistics);
-#endif
+            #endif
         }
 
         private static void Flush(ISession session)
