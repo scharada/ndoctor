@@ -65,30 +65,6 @@ namespace Probel.NDoctor.View.Plugins
         #region Properties
 
         /// <summary>
-        /// Gets a value that indicates whether there is at least one entry in back navigation
-        ///  history.
-        /// </summary>
-        /// <value>
-        ///  <c>true</c> if there is at least one entry in back navigation history; otherwise, <c>false</c>.
-        /// </value>
-        bool CanNavigateBack
-        {
-            get;
-        }
-
-        /// <summary>
-        /// Gets a value that indicates whether there is at least one entry in forward
-        /// navigation history.
-        /// </summary>
-        /// <value>
-        /// <c>true</c> if there is at least one entry in forward navigation history; otherwise,<c>false</c>.
-        /// </value>
-        bool CanNavigateForward
-        {
-            get;
-        }
-
-        /// <summary>
         /// Gets or sets the connected user.
         /// If set to null, it means no user are connected into nDoctor
         /// </summary>
@@ -201,18 +177,6 @@ namespace Probel.NDoctor.View.Plugins
         /// </summary>
         /// <param name="page">The page.</param>
         void Navigate(object page);
-
-        /// <summary>
-        /// Navigates to last page if there's one.
-        /// </summary>
-        /// <param name="page">The page.</param>
-        void NavigateBack();
-
-        /// <summary>
-        /// Navigates to previous page if there's one.
-        /// </summary>
-        /// <param name="page">The page.</param>
-        void NavigateForward();
 
         /// <summary>
         /// Navigates to start page.

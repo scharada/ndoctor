@@ -19,10 +19,18 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
     using System;
     using System.Collections.ObjectModel;
     using System.Diagnostics;
+    using System.Drawing;
+    using System.IO;
     using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
     using System.Windows.Input;
 
+    using Probel.Helpers;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
+    using Probel.Mvvm.Gui.FileServices;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PatientOverview.Properties;
@@ -36,6 +44,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
     {
         #region Fields
 
+        private readonly ICommand changeImageCommand;
         private readonly ICommand saveCommand;
         private readonly ICommand sendPrivateMailCommand;
         private readonly ICommand sendProMailCommand;
@@ -46,6 +55,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         private InsuranceDto selectedInsurance;
         private PatientDto selectedPatient;
         private PracticeDto selectedPractice;
+        private byte[] thumbnail;
 
         #endregion Fields
 
@@ -74,11 +84,17 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             this.sendPrivateMailCommand = new RelayCommand(() => this.SendMail(this.SelectedPatient.PrivateMail), () => this.CanSendMail());
             this.sendProMailCommand = new RelayCommand(() => SendMail(this.SelectedPatient.ProMail), () => this.CanSendMail());
             this.saveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
+            this.changeImageCommand = new RelayCommand(() => this.ChangeImage(), () => this.CanChangeImage());
         }
 
         #endregion Constructors
 
         #region Properties
+
+        public ICommand ChangeImageCommand
+        {
+            get { return this.changeImageCommand; }
+        }
 
         public ObservableCollection<DoctorDto> Doctors
         {
@@ -203,9 +219,42 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             get { return this.sendProMailCommand; }
         }
 
+        public byte[] Thumbnail
+        {
+            get { return this.thumbnail; }
+            set
+            {
+                this.thumbnail = value;
+                this.OnPropertyChanged(() => Thumbnail);
+            }
+        }
+
+        private byte[] UpdatedThumbnail
+        {
+            get;
+            set;
+        }
+
         #endregion Properties
 
         #region Methods
+
+        public bool AskToLeave()
+        {
+            var cancelSaving = ViewService.MessageBox.Question(Messages.Question_LeaveWithoutSaving);
+
+            if (cancelSaving)
+            {
+                this.IsEditModeActivated = false;
+            }
+
+            return cancelSaving;
+        }
+
+        public bool CanLeave()
+        {
+            return this.IsEditModeActivated == false;
+        }
 
         /// <summary>
         /// Refreshes the whole data of this instance.
@@ -231,18 +280,48 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
                 this.SelectedGender = (from gender in this.Genders
                                        where gender.Item2 == this.selectedPatient.Gender
                                        select gender).Single();
+
+                try
+                {
+                    this.Thumbnail = this.component.GetThumbnail(this.SelectedPatient);
+                }
+                catch (Exception ex) { this.Handle.Warning(ex, Messages.Warn_ImpossibleToDisplayThumb); }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
 
+        private bool CanChangeImage()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write);
+        }
+
         private bool CanSave()
         {
-            return true;
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         private bool CanSendMail()
         {
             return this.SelectedPatient != null;
+        }
+
+        private void ChangeImage()
+        {
+            var file = string.Empty;
+            var option = new Options()
+            {
+                Multiselect = false,
+                Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF"
+            };
+            var dr = FileGuiFactory.Win32.SelectFile(e => file = e, option);
+
+            if (dr == true && File.Exists(file))
+            {
+                var img = Image.FromFile(file);
+                this.UpdatedThumbnail
+                    = this.Thumbnail
+                    = img.GetThumbnail();
+            }
         }
 
         private void RefreshComboBoxes()
@@ -283,12 +362,21 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
 
         private void Save()
         {
-            try
+            var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
+            var token = new CancellationTokenSource().Token;
+
+            var task = Task.Factory.StartNew(e => this.SaveAsync(e), new { Patient = this.SelectedPatient, Thumbnail = this.UpdatedThumbnail });
+            task.ContinueWith(e => this.Refresh(), token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
+            task.ContinueWith(e => this.Handle.Error(e.Exception.InnerException), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
+        }
+
+        private void SaveAsync(dynamic context)
+        {
+            this.component.Update(context.Patient);
+            if (context.Thumbnail != null && context.Thumbnail.Length > 0)
             {
-                this.component.Update(this.SelectedPatient);
-                this.Refresh();
+                this.component.UpdateThumbnail(context.Patient, context.Thumbnail);
             }
-            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void SendMail(string mail)

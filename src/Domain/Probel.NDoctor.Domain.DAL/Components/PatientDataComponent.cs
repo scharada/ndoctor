@@ -307,6 +307,18 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets the thumbnail of the specified patient.
+        /// </summary>
+        /// <param name="patientDto">The patient dto.</param>
+        /// <returns></returns>
+        public byte[] GetThumbnail(PatientDto patientDto)
+        {
+            return (from p in this.Session.Query<Patient>()
+                    where p.Id == patientDto.Id
+                    select p.Thumbnail).Single();
+        }
+
+        /// <summary>
         /// Removes the link that existed between the specified patient and the specified doctor.
         /// </summary>
         /// <exception cref="EntityNotFoundException">If there's no link between the doctor and the patient</exception>
@@ -332,6 +344,21 @@ namespace Probel.NDoctor.Domain.DAL.Components
             entity.Refresh(item, this.Session);
 
             this.Session.Merge<Patient>(entity);
+        }
+
+        /// <summary>
+        /// Updates the thumbnail of the specified patient.
+        /// </summary>
+        /// <param name="patientDto">The patient dto.</param>
+        /// <param name="thumbnail">The byte array representing the thumbnail of the patient.</param>
+        public void UpdateThumbnail(PatientDto patientDto, byte[] thumbnail)
+        {
+            var entity = (from p in this.Session.Query<Patient>()
+                          where p.Id == patientDto.Id
+                          select p).Single();
+            entity.Thumbnail = thumbnail;
+
+            this.Session.Update(entity);
         }
 
         private List<Doctor> GetAllDoctors()

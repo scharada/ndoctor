@@ -376,6 +376,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Voulez-vous quitter sans sauver?.
+        /// </summary>
+        internal static string Question_LeaveWithoutSaving {
+            get {
+                return ResourceManager.GetString("Question_LeaveWithoutSaving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Patient overview.
         /// </summary>
         internal static string Title_Page {
@@ -390,6 +399,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         internal static string Title_PluginName {
             get {
                 return ResourceManager.GetString("Title_PluginName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to cancel the modification done on the patient?.
+        /// </summary>
+        internal static string Warn_ImpossibleToDisplayThumb {
+            get {
+                return ResourceManager.GetString("Warn_ImpossibleToDisplayThumb", resourceCulture);
             }
         }
     }

@@ -39,6 +39,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview
         private const string imgUri = @"\Probel.NDoctor.Plugins.PatientOverview;component/Images\{0}.png";
 
         private readonly ICommand editCommand;
+        private readonly ICommand revertCommand;
         private readonly ICommand saveCommand;
 
         private ICommand navigateCommand;
@@ -68,6 +69,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview
         public ICommand EditCommand
         {
             get { return this.editCommand; }
+        }
+
+        public ICommand RevertCommand
+        {
+            get { return this.revertCommand; }
         }
 
         public ICommand SaveCommand
@@ -112,25 +118,6 @@ namespace Probel.NDoctor.Plugins.PatientOverview
             PluginContext.Host.AddInHome(navigateButton, Groups.Managers);
         }
 
-        private readonly ICommand revertCommand;
-        public ICommand RevertCommand
-        {
-            get { return this.revertCommand; }
-        }
-        private void Revert()
-        {
-            var viewModel = this.View.As<WorkbenchViewModel>();
-
-            viewModel.Refresh();
-            viewModel.IsEditModeActivated
-                = this.IsEditionActivated
-                = false;
-        }
-        private bool CanRevert()
-        {
-            return this.IsEditionActivated == true;
-        }
-
         /// <summary>
         /// Builds the context menu the ribbon for this plugin.
         /// </summary>
@@ -163,6 +150,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview
             return PluginContext.Host.SelectedPatient != null;
         }
 
+        private bool CanRevert()
+        {
+            return this.IsEditionActivated == true;
+        }
+
         private bool CanSave()
         {
             return this.IsEditionActivated == true;
@@ -185,9 +177,22 @@ namespace Probel.NDoctor.Plugins.PatientOverview
 
         private void Navigate()
         {
-            this.View.As<WorkbenchViewModel>().Refresh();
+            var vm = this.View.As<WorkbenchViewModel>();
+            vm.Refresh();
+            this.IsEditionActivated = vm.IsEditModeActivated;
+
             PluginContext.Host.Navigate(this.View);
             this.ShowContextMenu();
+        }
+
+        private void Revert()
+        {
+            var viewModel = this.View.As<WorkbenchViewModel>();
+
+            viewModel.Refresh();
+            viewModel.IsEditModeActivated
+                = this.IsEditionActivated
+                = false;
         }
 
         private void Save()

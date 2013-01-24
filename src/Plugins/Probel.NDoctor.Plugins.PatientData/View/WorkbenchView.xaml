@@ -58,7 +58,7 @@
                             <!-- Image Template -->
                             <Border Padding="4" Background="White" BorderBrush="#22000000" BorderThickness="1">
                                 <StackPanel Orientation="Vertical">
-                                    <Image Source="{Binding Patient.Thumbnail, Converter={StaticResource bytesToImage}}"/>
+                                    <Image Source="{Binding Thumbnail, Converter={StaticResource bytesToImage}}"/>
                                 </StackPanel>
                             </Border>
                         </Grid>

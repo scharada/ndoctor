@@ -114,7 +114,7 @@
   </logger>
 
   <logger name="NHibernate.SQL">
-    <level value="ALL"/>
-    <appender-ref ref="SqlAppender"/>
+    <level value="WARN"/>
+    <!--<appender-ref ref="SqlAppender"/>-->
   </logger>
 </log4net>
