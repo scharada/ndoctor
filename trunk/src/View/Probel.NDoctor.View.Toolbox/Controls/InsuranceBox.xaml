@@ -12,95 +12,54 @@
              Loaded="this_Loaded"
              Width="350">
     <UserControl.Resources>
-        <!--controlStyle-->
-        <Style x:Key="controlStyle">
-            <Setter Property="Control.Height" Value="26"/>
-            <Setter Property="Control.VerticalContentAlignment" Value="Center"/>
-        </Style>
-
-        <!--labelStyle-->
-        <Style x:Key="labelStyle" BasedOn="{StaticResource controlStyle}">
-            <Setter Property="Label.HorizontalContentAlignment" Value="Right"/>
-            <Setter Property="Label.Foreground" Value="DarkGray"/>
-            <Setter Property="Label.FontWeight" Value="Bold"/>
-            <Setter Property="Label.HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="Label.VerticalContentAlignment" Value="Center"/>
-        </Style>
-
-        <!--separatorStyle-->
-        <Style x:Key="separatorStyle" BasedOn="{StaticResource labelStyle}">
-            <Setter Property="Label.HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="Label.Background" Value="DarkGray"/>
-            <Setter Property="Label.Foreground" Value="Black"/>
-        </Style>
-
-        <!--textBoxStyle-->
-        <Style x:Key="textBoxStyle" BasedOn="{StaticResource controlStyle}">
-            <Setter Property="Control.Foreground" Value="Black"/>
-            <Setter Property="Control.FontFamily" Value="Arial"/>
+        <Style TargetType="Label" x:Key="PresentationLbl">
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
         </Style>
     </UserControl.Resources>
     <StackPanel>
-        <TabControl>
-            <TabItem Header="{Binding Source={x:Static Member=text:InsuranceText.Data}}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="90"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <StackPanel Grid.Column="0" Grid.Row="1">
-                        <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:InsuranceText.Name}}"/>
-                        <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:InsuranceText.Phone}}"/>
-                        <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:InsuranceText.Notes}}"/>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1" Grid.Row="1">
-                        <TextBox Name="focused"
-                                 Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Insurance.Name, UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Insurance.Phone, UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Insurance.Notes, UpdateSourceTrigger=PropertyChanged}"
-                                 TextWrapping="Wrap"
-                                 VerticalScrollBarVisibility="Visible"
-                                 HorizontalContentAlignment="Left"
-                                 VerticalContentAlignment="Top"
-                                 Height="60"/>
-                    </StackPanel>
-                </Grid>
-            </TabItem>
-            <TabItem Header="{Binding Source={x:Static Member=text:InsuranceText.Address}}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="90"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <StackPanel Grid.Column="0" Grid.Row="1">
-                        <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:InsuranceText.Street}}"/>
-                        <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:InsuranceText.StreetNr}}"/>
-                        <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:InsuranceText.PoBox}}"/>
-                        <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:InsuranceText.PostalCode}}"/>
-                        <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:InsuranceText.City}}"/>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1" Grid.Row="1">
-                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Insurance.Address.Street, UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Insurance.Address.StreetNumber, UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Insurance.Address.BoxNumber, UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Insurance.Address.PostalCode, UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Insurance.Address.City, UpdateSourceTrigger=PropertyChanged}"/>
-                    </StackPanel>
-                </Grid>
-            </TabItem>
-        </TabControl>
+        <DockPanel DockPanel.Dock="Top"
+                   LastChildFill="True">
+            <Label Content="{Binding Source={x:Static Member=text:InsuranceText.Name}}"
+                   Style="{StaticResource PresentationLbl}"/>
+            <TextBox x:Name="focused" Margin="4" Text="{Binding ElementName=this, Path=Insurance.Name}"
+                     KeyboardNavigation.TabIndex="1"/>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top"
+                   LastChildFill="True">
+            <Label Content="{Binding Source={x:Static Member=text:InsuranceText.Phone}}"
+                   Style="{StaticResource PresentationLbl}"/>
+            <TextBox Margin="4" Text="{Binding this, Path=Insurance.Phone}"
+                     KeyboardNavigation.TabIndex="2"/>
+        </DockPanel>
+        <GroupBox Header="{Binding Source={x:Static Member=text:InsuranceText.Address}}">
+            <StackPanel>
+                <DockPanel>
+                    <Label DockPanel.Dock="Left"
+                           Content="{Binding Source={x:Static Member=text:InsuranceText.Street}}" Style="{StaticResource PresentationLbl}"/>
+                    <TextBox DockPanel.Dock="Right" Margin="4" Text="{Binding ElementName=this, Path=Insurance.Address.StreetNumber}" Width="70"
+                             KeyboardNavigation.TabIndex="4"/>
+                    <Label DockPanel.Dock="Right" Content=","/>
+                    <TextBox DockPanel.Dock="Left" Margin="4" Text="{Binding ElementName=this,Path=Insurance.Address.Street}"
+                             KeyboardNavigation.TabIndex="3"/>
+                </DockPanel>
+                <DockPanel>
+                    <Label DockPanel.Dock="Left"
+                           Content="{Binding Source={x:Static Member=text:InsuranceText.City}}" Style="{StaticResource PresentationLbl}"/>
+                    <TextBox DockPanel.Dock="Right" Margin="4" Width="70" Text="{Binding ElementName=this,Path=Insurance.Address.City}"
+                             KeyboardNavigation.TabIndex="6"/>
+                    <Label DockPanel.Dock="Right"
+                           Content="{Binding Source={x:Static Member=text:InsuranceText.PostalCode}}"/>
+                    <TextBox DockPanel.Dock="Right" Margin="4"  Text="{Binding ElementName=this, Path=Insurance.Address.PostalCode}"
+                             KeyboardNavigation.TabIndex="5"/>
+                </DockPanel>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Notes">
+            <TextBox VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto" Height="90" AcceptsReturn="True" 
+                     Text="{Binding ElementName=this, Path=Insurance.Notes}"
+                     KeyboardNavigation.TabIndex="7"/>
+        </GroupBox>
         <ctrl:OKCancelBox OkCommand="{Binding ElementName=this, Path=OkCommand, UpdateSourceTrigger=PropertyChanged}"
                           ButtonName="{Binding ElementName=this, Path=ButtonName, UpdateSourceTrigger=PropertyChanged}"/>
     </StackPanel>

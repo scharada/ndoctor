@@ -61,11 +61,56 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Doctor.
+        /// </summary>
+        internal static string Btn_Doctor {
+            get {
+                return ResourceManager.GetString("Btn_Doctor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         internal static string Btn_Edit {
             get {
                 return ResourceManager.GetString("Btn_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insurance.
+        /// </summary>
+        internal static string Btn_Insurance {
+            get {
+                return ResourceManager.GetString("Btn_Insurance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profession.
+        /// </summary>
+        internal static string Btn_Job {
+            get {
+                return ResourceManager.GetString("Btn_Job", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medical practice.
+        /// </summary>
+        internal static string Btn_Practice {
+            get {
+                return ResourceManager.GetString("Btn_Practice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reputation.
+        /// </summary>
+        internal static string Btn_Reputation {
+            get {
+                return ResourceManager.GetString("Btn_Reputation", resourceCulture);
             }
         }
         
@@ -79,7 +124,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sauver.
+        ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string Btn_Save {
             get {
@@ -88,7 +133,16 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Une erreur est intervenue durant l&apos;envoie du courriel..
+        ///   Looks up a localized string similar to Specialisation.
+        /// </summary>
+        internal static string Btn_Specialisation {
+            get {
+                return ResourceManager.GetString("Btn_Specialisation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occured when sending the mail..
         /// </summary>
         internal static string Err_CantSendMail {
             get {
@@ -102,6 +156,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         internal static string Female {
             get {
                 return ResourceManager.GetString("Female", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        internal static string Group_Add {
+            get {
+                return ResourceManager.GetString("Group_Add", resourceCulture);
             }
         }
         
@@ -376,11 +439,65 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Voulez-vous quitter sans sauver?.
+        ///   Looks up a localized string similar to Do you want to leave without saving?.
         /// </summary>
         internal static string Question_LeaveWithoutSaving {
             get {
                 return ResourceManager.GetString("Question_LeaveWithoutSaving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a doctor....
+        /// </summary>
+        internal static string Title_AddDoctor {
+            get {
+                return ResourceManager.GetString("Title_AddDoctor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add an insurance....
+        /// </summary>
+        internal static string Title_AddInsurance {
+            get {
+                return ResourceManager.GetString("Title_AddInsurance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a medical practice....
+        /// </summary>
+        internal static string Title_AddPractice {
+            get {
+                return ResourceManager.GetString("Title_AddPractice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a profession....
+        /// </summary>
+        internal static string Title_AddProfession {
+            get {
+                return ResourceManager.GetString("Title_AddProfession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add reputation....
+        /// </summary>
+        internal static string Title_AddReputation {
+            get {
+                return ResourceManager.GetString("Title_AddReputation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a specialisation....
+        /// </summary>
+        internal static string Title_AddSpecialisation {
+            get {
+                return ResourceManager.GetString("Title_AddSpecialisation", resourceCulture);
             }
         }
         

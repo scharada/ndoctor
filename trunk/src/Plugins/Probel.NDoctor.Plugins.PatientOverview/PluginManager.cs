@@ -24,6 +24,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Plugins.PatientOverview.Properties;
     using Probel.NDoctor.Plugins.PatientOverview.View;
     using Probel.NDoctor.Plugins.PatientOverview.ViewModel;
@@ -102,6 +103,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview
             PluginContext.Host.Invoke(() => workbench = new WorkbenchView());
             this.BuildButtons();
             this.BuildContextMenu();
+            this.BuildViewService();
         }
 
         /// <summary>
@@ -123,21 +125,58 @@ namespace Probel.NDoctor.Plugins.PatientOverview
         /// </summary>
         private void BuildContextMenu()
         {
-            var editBtn = new RibbonButtonData(Messages.Btn_Edit, imgUri.FormatWith("Edit"), this.EditCommand);
-            var saveBtn = new RibbonButtonData(Messages.Btn_Save, imgUri.FormatWith("Save"), this.SaveCommand);
-            var revertBtn = new RibbonButtonData(Messages.Btn_Revert, imgUri.FormatWith("Revert"), this.RevertCommand);
+            var cgroup1 = new RibbonGroupData(BaseText.Group_Action);
+            cgroup1.ButtonDataCollection.Add(new RibbonButtonData(Messages.Btn_Edit, imgUri.FormatWith("Edit"), this.EditCommand));
+            cgroup1.ButtonDataCollection.Add(new RibbonButtonData(Messages.Btn_Save, imgUri.FormatWith("Save"), this.SaveCommand));
+            cgroup1.ButtonDataCollection.Add(new RibbonButtonData(Messages.Btn_Revert, imgUri.FormatWith("Revert"), this.RevertCommand));
 
-            var cgroup = new RibbonGroupData(BaseText.Group_Action);
-            cgroup.ButtonDataCollection.Add(editBtn);
-            cgroup.ButtonDataCollection.Add(saveBtn);
-            cgroup.ButtonDataCollection.Add(revertBtn);
+            var cgroup2 = new RibbonGroupData(Messages.Group_Add);
+            cgroup2.ButtonDataCollection.Add(new RibbonButtonData(Messages.Btn_Reputation, imgUri.FormatWith("Reputation")
+                , new RelayCommand(() => ViewService.Manager.Show<AddReputationViewModel>())));
+            cgroup2.ButtonDataCollection.Add(new RibbonButtonData(Messages.Btn_Insurance, imgUri.FormatWith("Insurance")
+                , new RelayCommand(() => ViewService.Manager.Show<AddInsuranceViewModel>())));
+            cgroup2.ButtonDataCollection.Add(new RibbonButtonData(Messages.Btn_Job, imgUri.FormatWith("Job")
+                , new RelayCommand(() => ViewService.Manager.Show<AddProfessionViewModel>())));
+            cgroup2.ButtonDataCollection.Add(new RibbonButtonData(Messages.Btn_Practice, imgUri.FormatWith("Practice")
+                , new RelayCommand(() => ViewService.Manager.Show<AddPracticeViewModel>())));
+            cgroup2.ButtonDataCollection.Add(new RibbonButtonData(Messages.Btn_Specialisation, imgUri.FormatWith("Specialisation")
+                , new RelayCommand(() => ViewService.Manager.Show<AddSpecialisationViewModel>())));
+            cgroup2.ButtonDataCollection.Add(new RibbonButtonData(Messages.Btn_Doctor, imgUri.FormatWith("Doctor")
+                , new RelayCommand(() => ViewService.Manager.Show<AddDoctorViewModel>())));
 
             var tab = new RibbonTabData(BaseText.Menu_File) { ContextualTabGroupHeader = Messages.Title_PluginName };
-            tab.GroupDataCollection.Add(cgroup);
+            tab.GroupDataCollection.Add(cgroup1);
+            tab.GroupDataCollection.Add(cgroup2);
             PluginContext.Host.AddTab(tab);
 
             this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_PluginName, tab) { Background = Brushes.OrangeRed, IsVisible = false };
             PluginContext.Host.AddContextualMenu(this.contextualMenu);
+        }
+
+        private void BuildViewService()
+        {
+            ViewService.Configure(e =>
+            {
+                e.Bind<AddReputationView, AddReputationViewModel>()
+                    .OnClosing(vm => this.Refresh(vm));
+                e.Bind<AddInsuranceView, AddInsuranceViewModel>()
+                    .OnClosing(vm => this.Refresh(vm));
+                e.Bind<AddPracticeView, AddPracticeViewModel>()
+                    .OnClosing(vm => this.Refresh(vm));
+                e.Bind<AddProfessionView, AddProfessionViewModel>()
+                    .OnClosing(vm => this.Refresh(vm));
+                e.Bind<AddSpecialisationView, AddSpecialisationViewModel>()
+                    .OnClosing(vm => this.Refresh(vm));
+                e.Bind<AddDoctorView, AddDoctorViewModel>();
+            });
+        }
+
+        private void Refresh(InsertionViewModel vm)
+        {
+            if (vm.HasInsertedItem)
+            {
+                this.View.As<WorkbenchViewModel>().Refresh();
+            }
         }
 
         private bool CanEdit()

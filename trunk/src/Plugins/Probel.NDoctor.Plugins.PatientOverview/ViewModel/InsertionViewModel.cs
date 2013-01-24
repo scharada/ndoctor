@@ -1,4 +1,7 @@
-﻿/*
+﻿namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
+{
+    using System;
+    /*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -13,37 +16,30 @@
 
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
-*/
-namespace Probel.NDoctor.Plugins.PatientData.ViewModel
-{
-    using System;
+    */
     using System.Windows.Input;
 
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
-    using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Plugins.PatientData.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Toolbox;
 
-    internal class AddProfessionViewModel : BaseViewModel
+    internal abstract class InsertionViewModel : BaseViewModel
     {
         #region Fields
 
-        private IPatientDataComponent component;
-        private ProfessionDto profession;
+        protected IPatientDataComponent component;
 
         #endregion Fields
 
         #region Constructors
 
-        public AddProfessionViewModel()
+        public InsertionViewModel()
         {
-            this.Profession = new ProfessionDto();
-
+            this.HasInsertedItem = false;
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
 
             if (!Designer.IsDesignMode)
@@ -63,35 +59,30 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             private set;
         }
 
-        public ProfessionDto Profession
+        public bool HasInsertedItem
         {
-            get { return this.profession; }
-            set
-            {
-                this.profession = value;
-                this.OnPropertyChanged(() => Profession);
-            }
+            get; private set;
         }
 
         #endregion Properties
 
         #region Methods
 
+        protected abstract bool CanAdd();
+
+        protected abstract void Insert();
+
         private void Add()
         {
             try
             {
-                this.component.Create(this.Profession);
+                this.Insert();
                 PluginContext.Host.WriteStatus(StatusType.Info, BaseText.InsertDone);
+                this.HasInsertedItem = true;
             }
             catch (ExistingItemException ex) { this.Handle.Warning(ex, ex.Message); }
-            catch (Exception ex) { this.Handle.Error(ex, BaseText.ErrorOccured); }
+            catch (Exception ex) { this.Handle.Error(ex); }
             finally { this.Close(); }
-        }
-
-        private bool CanAdd()
-        {
-            return !string.IsNullOrWhiteSpace(this.Profession.Name);
         }
 
         #endregion Methods

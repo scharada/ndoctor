@@ -326,8 +326,8 @@
     <comment>Installed plugins:</comment>
   </data>
   <data name="Title_PostalCode" xml:space="preserve">
-    <value>Postal code:</value>
-    <comment>Postal code:</comment>
+    <value>Zip:</value>
+    <comment>Zip:</comment>
   </data>
   <data name="Title_ProMail" xml:space="preserve">
     <value>Mail:</value>
