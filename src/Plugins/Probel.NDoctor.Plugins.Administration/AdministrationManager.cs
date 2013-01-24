@@ -113,7 +113,7 @@ namespace Probel.NDoctor.Plugins.Administration
         {
             var tab = new RibbonTabData() { Header = BaseText.Menu_File, ContextualTabGroupHeader = Messages.Title_AdministratorManager };
             this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_AdministratorManager, tab) { Background = Brushes.OrangeRed, IsVisible = false, };
-            var cgroup = new RibbonGroupData(BaseText.Group_Action, 1);
+            var cgroup = new RibbonGroupData(Messages.Group_Add, 1);
 
             tab.GroupDataCollection.Add(cgroup);
             PluginContext.Host.AddContextualMenu(this.contextualMenu);
@@ -122,37 +122,37 @@ namespace Probel.NDoctor.Plugins.Administration
             int i = 0;
             var buttons = new List<RibbonButtonData>();
 
-            buttons.Add(new RibbonButtonData(Messages.Title_AddInsurance, imgUri.FormatWith("New")
+            buttons.Add(new RibbonButtonData(Messages.Title_AddInsurance, imgUri.FormatWith("Insurance")
                 , new RelayCommand(() => ViewService.Manager.ShowDialog<AddInsuranceViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
-            buttons.Add(new RibbonButtonData(Messages.Title_AddPractice, imgUri.FormatWith("New")
+            buttons.Add(new RibbonButtonData(Messages.Title_AddPractice, imgUri.FormatWith("Practice")
                 , new RelayCommand(() => ViewService.Manager.ShowDialog<AddPracticeViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
-            buttons.Add(new RibbonButtonData(Messages.Title_AddDrug, imgUri.FormatWith("New")
-                , new RelayCommand(() => ViewService.Manager.ShowDialog<AddDrugViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
-
-            buttons.Add(new RibbonButtonData(Messages.Title_AddDrugType, imgUri.FormatWith("New")
+            buttons.Add(new RibbonButtonData(Messages.Title_AddDrugType, imgUri.FormatWith("DrugType")
                 , new RelayCommand(() => ViewService.Manager.ShowDialog<AddDrugTypeViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
-            buttons.Add(new RibbonButtonData(Messages.Title_AddPathologyType, imgUri.FormatWith("New")
+            buttons.Add(new RibbonButtonData(Messages.Title_AddDrug, imgUri.FormatWith("Drug")
+                , new RelayCommand(() => ViewService.Manager.ShowDialog<AddDrugViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
+
+            buttons.Add(new RibbonButtonData(Messages.Title_AddPathologyType, imgUri.FormatWith("PathologyType")
                 , new RelayCommand(() => ViewService.Manager.ShowDialog<AddPathologyTypeViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
-            buttons.Add(new RibbonButtonData(Messages.Title_AddPathology, imgUri.FormatWith("New")
+            buttons.Add(new RibbonButtonData(Messages.Title_AddPathology, imgUri.FormatWith("Pathology")
                 , new RelayCommand(() => ViewService.Manager.ShowDialog<AddPathologyViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
-            buttons.Add(new RibbonButtonData(Messages.Title_AddProfession, imgUri.FormatWith("New")
+            buttons.Add(new RibbonButtonData(Messages.Title_AddProfession, imgUri.FormatWith("Job")
                 , new RelayCommand(() => ViewService.Manager.ShowDialog<AddProfessionViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
-            buttons.Add(new RibbonButtonData(Messages.Title_AddReputation, imgUri.FormatWith("New")
+            buttons.Add(new RibbonButtonData(Messages.Title_AddReputation, imgUri.FormatWith("Reputation")
                 , new RelayCommand(() => ViewService.Manager.ShowDialog<AddReputationViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
-            buttons.Add(new RibbonButtonData(Messages.Title_AddPictureType, imgUri.FormatWith("New")
+            buttons.Add(new RibbonButtonData(Messages.Title_AddPictureType, imgUri.FormatWith("PictureType")
                 , new RelayCommand(() => ViewService.Manager.ShowDialog<AddPictureTypeViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
-            buttons.Add(new RibbonButtonData(Messages.Title_AddSpecialisation, imgUri.FormatWith("New")
+            buttons.Add(new RibbonButtonData(Messages.Title_AddSpecialisation, imgUri.FormatWith("Specialisation")
                 , new RelayCommand(() => ViewService.Manager.ShowDialog<AddSpecialisationViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
-            buttons.Add(new RibbonButtonData(Messages.Title_AddDoctor, imgUri.FormatWith("New")
+            buttons.Add(new RibbonButtonData(Messages.Title_AddDoctor, imgUri.FormatWith("Doctor")
                 , new RelayCommand(() => ViewService.Manager.ShowDialog<AddDoctorViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
             foreach (var button in buttons) { cgroup.ButtonDataCollection.Add(button); }

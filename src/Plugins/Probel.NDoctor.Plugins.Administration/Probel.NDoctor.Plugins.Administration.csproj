@@ -271,6 +271,19 @@
   <ItemGroup>
     <Resource Include="Images\New.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Doctor.png" />
+    <Resource Include="Images\Drug.png" />
+    <Resource Include="Images\DrugType.png" />
+    <Resource Include="Images\Insurance.png" />
+    <Resource Include="Images\Job.png" />
+    <Resource Include="Images\Pathology.png" />
+    <Resource Include="Images\PathologyType.png" />
+    <Resource Include="Images\PictureType.png" />
+    <Resource Include="Images\Practice.png" />
+    <Resource Include="Images\Reputation.png" />
+    <Resource Include="Images\Specialisation.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

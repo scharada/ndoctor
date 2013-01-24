@@ -231,6 +231,12 @@
   <ItemGroup>
     <Folder Include="Helpers\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Pathology.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PathologyType.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

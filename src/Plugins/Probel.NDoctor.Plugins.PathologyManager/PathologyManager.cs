@@ -104,6 +104,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager
         /// </summary>
         private void BuildContextMenu()
         {
+            var counter = 0;
             var cgroup = new RibbonGroupData(Messages.Menu_Actions, 1);
             var tab = new RibbonTabData() { Header = Messages.Menu_File, ContextualTabGroupHeader = Messages.Title_PathologyManager };
 
@@ -114,15 +115,16 @@ namespace Probel.NDoctor.Plugins.PathologyManager
 
             ICommand addPeriodCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddPeriodViewModel>()
                 , () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
-            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPeriods, imgUri.FormatWith("Add"), addPeriodCommand) { Order = 1, });
-
-            ICommand addPathologyCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddPathologyViewModel>()
-                , () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
-            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPathology, imgUri.FormatWith("Add"), addPathologyCommand) { Order = 2 });
+            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPeriods, imgUri.FormatWith("Add"), addPeriodCommand) { Order = counter++ });
 
             ICommand addPathologyCategory = new RelayCommand(() => ViewService.Manager.ShowDialog<AddPathologyCategoryViewModel>()
                 , () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
-            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPathologyCategory, imgUri.FormatWith("Add"), addPathologyCategory) { Order = 3 });
+            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPathologyCategory, imgUri.FormatWith("PathologyType"), addPathologyCategory) { Order = counter++ });
+
+            ICommand addPathologyCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddPathologyViewModel>()
+                , () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPathology, imgUri.FormatWith("Pathology"), addPathologyCommand) { Order = counter++ });
+
         }
 
         private bool CanNavigate()
