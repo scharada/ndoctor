@@ -36,10 +36,12 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
     {
         #region Fields
 
+        private readonly ICommand saveCommand;
         private readonly ICommand sendPrivateMailCommand;
         private readonly ICommand sendProMailCommand;
 
         private IPatientDataComponent component;
+        private bool isEditModeActivated;
         private DoctorDto selectedDoctor;
         private InsuranceDto selectedInsurance;
         private PatientDto selectedPatient;
@@ -71,6 +73,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
 
             this.sendPrivateMailCommand = new RelayCommand(() => this.SendMail(this.SelectedPatient.PrivateMail), () => this.CanSendMail());
             this.sendProMailCommand = new RelayCommand(() => SendMail(this.SelectedPatient.ProMail), () => this.CanSendMail());
+            this.saveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
         }
 
         #endregion Constructors
@@ -95,6 +98,16 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             private set;
         }
 
+        public bool IsEditModeActivated
+        {
+            get { return this.isEditModeActivated; }
+            set
+            {
+                this.isEditModeActivated = value;
+                this.OnPropertyChanged(() => IsEditModeActivated);
+            }
+        }
+
         public ObservableCollection<LightPracticeDto> Practices
         {
             get;
@@ -111,6 +124,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         {
             get;
             private set;
+        }
+
+        public ICommand SaveCommand
+        {
+            get { return this.saveCommand; }
         }
 
         public DoctorDto SelectedDoctor
@@ -196,11 +214,12 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         {
             try
             {
-                this.SelectedPatient = this.component.GetPatient(PluginContext.Host.SelectedPatient);
                 this.Reputations.Refill(this.component.GetAllReputations());
                 this.Insurances.Refill(this.component.GetAllInsurancesLight());
                 this.Practices.Refill(this.component.GetAllPracticesLight());
                 this.Professions.Refill(this.component.GetAllProfessions());
+
+                this.SelectedPatient = this.component.GetPatient(PluginContext.Host.SelectedPatient);
                 this.Doctors.Refill(this.component.GetFullDoctorOf(PluginContext.Host.SelectedPatient));
 
                 if (this.SelectedPatient.Insurance != null) { this.SelectedInsurance = this.component.GetInsuranceById(this.SelectedPatient.Insurance.Id); }
@@ -214,6 +233,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
                                        select gender).Single();
             }
             catch (Exception ex) { this.Handle.Error(ex); }
+        }
+
+        private bool CanSave()
+        {
+            return true;
         }
 
         private bool CanSendMail()
@@ -255,6 +279,16 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
                 this.Logger.Warn("Trying to refresh the comboboxes while no patient is selected!");
                 return;
             }
+        }
+
+        private void Save()
+        {
+            try
+            {
+                this.component.Update(this.SelectedPatient);
+                this.Refresh();
+            }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         private void SendMail(string mail)

@@ -27,6 +27,7 @@ namespace Probel.NDoctor.View.Plugins.MenuData
         #region Fields
 
         private ICommand command;
+        private bool isEnabled;
         private string keyTip;
         private string label;
         private Uri largeImage;
@@ -103,6 +104,16 @@ namespace Probel.NDoctor.View.Plugins.MenuData
                     this.command = value;
                     this.OnPropertyChanged(() => Command);
                 }
+            }
+        }
+
+        public bool IsEnabled
+        {
+            get { return this.isEnabled; }
+            set
+            {
+                this.isEnabled = value;
+                this.OnPropertyChanged(() => IsEnabled);
             }
         }
 
