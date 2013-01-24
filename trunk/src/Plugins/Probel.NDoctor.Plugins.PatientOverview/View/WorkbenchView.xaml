@@ -67,8 +67,9 @@
 
                             <!-- Image -->
                             <Grid DockPanel.Dock="Top"
-                          VerticalAlignment="Center"
-                          HorizontalAlignment="Center">
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center">
+                                
                                 <!-- Drop Shadow -->
                                 <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="4" Background="#44000000">
                                     <Border.RenderTransform>
@@ -81,7 +82,7 @@
                                 <!-- Image Template -->
                                 <Border Padding="4" Background="White" BorderBrush="#22000000" BorderThickness="1">
                                     <StackPanel Orientation="Vertical">
-                                        <Image Source="{Binding SelectedPatient.Thumbnail, Converter={StaticResource BytesToImage}}"/>
+                                        <Image Source="{Binding Thumbnail, Converter={StaticResource BytesToImage}}"/>
                                     </StackPanel>
                                 </Border>
                             </Grid>

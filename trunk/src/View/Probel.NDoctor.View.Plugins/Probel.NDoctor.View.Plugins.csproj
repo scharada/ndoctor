@@ -91,6 +91,7 @@
     <Compile Include="Helpers\PluginContext.cs" />
     <Compile Include="Helpers\PluginSettingsBase.cs" />
     <Compile Include="IPlugin.cs" />
+    <Compile Include="IWorkbench.cs" />
     <Compile Include="LogObject.cs" />
     <Compile Include="MefPluginLoader.cs" />
     <Compile Include="MenuData\RibbonComboBoxData.cs" />

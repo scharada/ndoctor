@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,50 +16,31 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Plugins.PatientOverview.View
+
+#endregion Header
+
+namespace Probel.NDoctor.View.Plugins
 {
-    using System.Windows.Controls;
-
-    using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Plugins.PatientOverview.ViewModel;
-    using Probel.NDoctor.View.Plugins;
-
     /// <summary>
-    /// Interaction logic for Workbench.xaml
+    /// Any Page that implements this interface has features to check whether the user can quit this page toward another
     /// </summary>
-    public partial class WorkbenchView : Page, IWorkbench
+    public interface IWorkbench
     {
-        #region Constructors
-
-        public WorkbenchView()
-        {
-            InitializeComponent();
-            this.DataContext = new WorkbenchViewModel();
-        }
-
-        #endregion Constructors
-
         #region Methods
 
         /// <summary>
-        /// Ask to the user to confirm he/she want to navigate out of the current page.
+        /// Ask to the user to confirm he/she want to leave the current page.
         /// </summary>
         /// <returns></returns>
-        public bool AskToLeave()
-        {
-            return this.As<WorkbenchViewModel>().AskToLeave();
-        }
+        bool AskToLeave();
 
         /// <summary>
-        /// Determines whether navigate out of this page is possible without data loss
+        /// Determines whether the user can leave the current page without data loss
         /// </summary>
         /// <returns>
         ///   <c>true</c> if this instance can navigate; otherwise, <c>false</c>.
         /// </returns>
-        public bool CanLeave()
-        {
-            return this.As<WorkbenchViewModel>().CanLeave();
-        }
+        bool CanLeave();
 
         #endregion Methods
     }

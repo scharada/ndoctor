@@ -446,20 +446,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             }
         }
 
-        /// <summary>
-        /// Gets or sets the thumbnail.
-        /// </summary>
-        /// <value>The thumbnail.</value>
-        public byte[] Thumbnail
-        {
-            get { return this.thumbnail; }
-            set
-            {
-                this.thumbnail = value;
-                this.OnPropertyChanged(() => Thumbnail);
-            }
-        }
-
         #endregion Properties
     }
 }

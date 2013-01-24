@@ -357,35 +357,17 @@ namespace Probel.NDoctor.View.Core.View
 
             this.Dispatcher.Invoke((Action)delegate
             {
-                this.workbench.NavigationService.Navigate(page);
-                this.WriteStatus(StatusType.Info, Messages.Msg_Ready);
+                if (this.lastDestination is IWorkbench)
+                {
+                    var wb = lastDestination as IWorkbench;
+                    if (wb.CanLeave() || (!wb.CanLeave() && wb.AskToLeave()))
+                    {
+                        this.Goto(page);
+                    }
+                }
+                else { this.Goto(page); }
             });
             this.lastDestination = page;
-        }
-
-        /// <summary>
-        /// Navigates to last page if there's one.
-        /// </summary>
-        /// <param name="page">The page.</param>
-        public void NavigateBack()
-        {
-            this.Dispatcher.Invoke((Action)delegate
-            {
-                this.workbench.NavigationService.GoBack(); ;
-            });
-        }
-
-        /// <summary>
-        /// Navigates to previous page if there's one.
-        /// </summary>
-        /// <param name="page">The page.</param>
-        public void NavigateForward()
-        {
-            this.Dispatcher.Invoke((Action)delegate
-            {
-                this.workbench.NavigationService.GoForward(); ;
-                this.WriteStatus(StatusType.Info, Messages.Msg_Ready);
-            });
         }
 
         /// <summary>
@@ -491,6 +473,12 @@ namespace Probel.NDoctor.View.Core.View
                     break;
             }
             return criteria;
+        }
+
+        private void Goto(object page)
+        {
+            this.workbench.NavigationService.Navigate(page);
+            this.WriteStatus(StatusType.Info, Messages.Msg_Ready);
         }
 
         private void OnBeforeNewPatientConnected()

@@ -425,4 +425,8 @@
     <value>Vous n'avez pas les droits pour modifier un patient</value>
     <comment>You are not granted to modify patient's data</comment>
   </data>
+  <data name="Warn_ImpossibleToDisplayThumb" xml:space="preserve">
+    <value>Impossible d'afficher la photo du patient</value>
+    <comment>Impossible to display the thumbnail</comment>
+  </data>
 </root>

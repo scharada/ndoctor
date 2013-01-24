@@ -257,6 +257,10 @@
     <value>Male</value>
     <comment>Male</comment>
   </data>
+  <data name="Question_LeaveWithoutSaving" xml:space="preserve">
+    <value>Voulez-vous quitter sans sauver?</value>
+    <comment>Do you want to leave without saving?</comment>
+  </data>
   <data name="Title_Page" xml:space="preserve">
     <value>Patient overview</value>
     <comment>Patient overview</comment>
@@ -264,5 +268,9 @@
   <data name="Title_PluginName" xml:space="preserve">
     <value>Patient overview</value>
     <comment>Patient overview</comment>
+  </data>
+  <data name="Warn_ImpossibleToDisplayThumb" xml:space="preserve">
+    <value>Do you want to cancel the modification done on the patient?</value>
+    <comment>Do you want to cancel the modification done on the patient?</comment>
   </data>
 </root>

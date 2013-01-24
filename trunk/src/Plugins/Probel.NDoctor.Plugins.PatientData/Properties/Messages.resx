@@ -425,4 +425,8 @@
     <value>You are not granted to modify patient's data</value>
     <comment>You are not granted to modify patient's data</comment>
   </data>
+  <data name="Warn_ImpossibleToDisplayThumb" xml:space="preserve">
+    <value>Impossible to display the thumbnail</value>
+    <comment>Impossible to display the thumbnail</comment>
+  </data>
 </root>

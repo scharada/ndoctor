@@ -21,6 +21,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
     using System.Drawing;
     using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Input;
 
@@ -44,6 +45,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         private IPatientDataComponent component;
         private PatientDto patient;
         private LightDoctorDto selectedDoctor;
+        private byte[] thumbnail;
 
         #endregion Fields
 
@@ -153,6 +155,16 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             }
         }
 
+        public byte[] Thumbnail
+        {
+            get { return this.thumbnail; }
+            set
+            {
+                this.thumbnail = value;
+                this.OnPropertyChanged(() => Thumbnail);
+            }
+        }
+
         #endregion Properties
 
         #region Methods
@@ -208,7 +220,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
             if (dr == true && File.Exists(file))
             {
                 var img = Image.FromFile(file);
-                this.Patient.Thumbnail = img.GetThumbnail(); ;
+                Task.Factory.StartNew(e => this.UpdateThumbnail(e), new { Patient = this.Patient, Thumbnail = img.GetThumbnail() });
             }
         }
 
@@ -255,6 +267,12 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                                            where p.Id == this.Patient.Profession.Id
                                            select p).FirstOrDefault();
             }
+
+            try
+            {
+                this.Thumbnail = this.component.GetThumbnail(this.Patient);
+            }
+            catch (Exception ex) { this.Handle.Warning(ex, Messages.Warn_ImpossibleToDisplayThumb); }
         }
 
         private void RemoveLink()
@@ -284,6 +302,11 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DataSaved);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
+        }
+
+        private void UpdateThumbnail(dynamic context)
+        {
+            this.component.UpdateThumbnail(context.Patient, context.Thumbnail);
         }
 
         #endregion Methods

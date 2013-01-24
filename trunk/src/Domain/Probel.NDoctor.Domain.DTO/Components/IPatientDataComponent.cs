@@ -162,6 +162,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         IList<TagDto> GetTags(TagCategory category);
 
         /// <summary>
+        /// Gets the thumbnail of the specified patient.
+        /// </summary>
+        /// <param name="patientDto">The patient dto.</param>
+        /// <returns></returns>
+        byte[] GetThumbnail(PatientDto patientDto);
+
+        /// <summary>
         /// Removes the link that existed between the specified patient and the specified doctor.
         /// </summary>
         /// <exception cref="EntityNotFoundException">If there's no link between the doctor and the patient</exception>
@@ -174,6 +181,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="item">The patient.</param>
         void Update(PatientDto item);
+
+        /// <summary>
+        /// Updates the thumbnail of the specified patient.
+        /// </summary>
+        /// <param name="patientDto">The patient dto.</param>
+        /// <param name="thumbnail">The byte array representing the thumbnail of the patient.</param>
+        void UpdateThumbnail(PatientDto patientDto, byte[] thumbnail);
 
         #endregion Methods
     }
