@@ -198,6 +198,10 @@ Path: {1}</value>
     <value>Managers</value>
     <comment>Managers</comment>
   </data>
+  <data name="Msg_InsertDone" xml:space="preserve">
+    <value>Item added</value>
+    <comment>Item added</comment>
+  </data>
   <data name="Msg_MissingParameterInConfiguration" xml:space="preserve">
     <value>The parameter '{0}' is not set in the configuration file. Please set it up.</value>
     <comment>The parameter '{0}' is not set in the configuration file. Please set it up.</comment>

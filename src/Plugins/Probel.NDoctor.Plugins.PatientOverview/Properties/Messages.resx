@@ -117,25 +117,53 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Btn_Doctor" xml:space="preserve">
+    <value>Doctor</value>
+    <comment>Doctor</comment>
+  </data>
   <data name="Btn_Edit" xml:space="preserve">
     <value>Edit</value>
     <comment>Edit</comment>
+  </data>
+  <data name="Btn_Insurance" xml:space="preserve">
+    <value>Insurance</value>
+    <comment>Insurance</comment>
+  </data>
+  <data name="Btn_Job" xml:space="preserve">
+    <value>Profession</value>
+    <comment>Profession</comment>
+  </data>
+  <data name="Btn_Practice" xml:space="preserve">
+    <value>Medical practice</value>
+    <comment>Medical practice</comment>
+  </data>
+  <data name="Btn_Reputation" xml:space="preserve">
+    <value>Reputation</value>
+    <comment>Reputation</comment>
   </data>
   <data name="Btn_Revert" xml:space="preserve">
     <value>Revert</value>
     <comment>Revert</comment>
   </data>
   <data name="Btn_Save" xml:space="preserve">
-    <value>Sauver</value>
+    <value>Save</value>
     <comment>Save</comment>
   </data>
+  <data name="Btn_Specialisation" xml:space="preserve">
+    <value>Specialisation</value>
+    <comment>Specialisation</comment>
+  </data>
   <data name="Err_CantSendMail" xml:space="preserve">
-    <value>Une erreur est intervenue durant l'envoie du courriel.</value>
+    <value>An error occured when sending the mail.</value>
     <comment>An error occured when sending the mail.</comment>
   </data>
   <data name="Female" xml:space="preserve">
     <value>Female</value>
     <comment>Female</comment>
+  </data>
+  <data name="Group_Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>Add</comment>
   </data>
   <data name="GrpProfContact" xml:space="preserve">
     <value>Professional contact</value>
@@ -258,8 +286,32 @@
     <comment>Male</comment>
   </data>
   <data name="Question_LeaveWithoutSaving" xml:space="preserve">
-    <value>Voulez-vous quitter sans sauver?</value>
+    <value>Do you want to leave without saving?</value>
     <comment>Do you want to leave without saving?</comment>
+  </data>
+  <data name="Title_AddDoctor" xml:space="preserve">
+    <value>Add a doctor...</value>
+    <comment>Add a doctor...</comment>
+  </data>
+  <data name="Title_AddInsurance" xml:space="preserve">
+    <value>Add an insurance...</value>
+    <comment>Add an insurance...</comment>
+  </data>
+  <data name="Title_AddPractice" xml:space="preserve">
+    <value>Add a medical practice...</value>
+    <comment>Add a medical practice...</comment>
+  </data>
+  <data name="Title_AddProfession" xml:space="preserve">
+    <value>Add a profession...</value>
+    <comment>Add a profession...</comment>
+  </data>
+  <data name="Title_AddReputation" xml:space="preserve">
+    <value>Add reputation...</value>
+    <comment>Add reputation...</comment>
+  </data>
+  <data name="Title_AddSpecialisation" xml:space="preserve">
+    <value>Add a specialisation...</value>
+    <comment>Add a specialisation...</comment>
   </data>
   <data name="Title_Page" xml:space="preserve">
     <value>Patient overview</value>

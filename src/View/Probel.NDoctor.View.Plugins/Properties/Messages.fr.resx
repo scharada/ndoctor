@@ -198,6 +198,10 @@ Chemin: {1}</value>
     <value>Gestionnaires</value>
     <comment>Managers</comment>
   </data>
+  <data name="Msg_InsertDone" xml:space="preserve">
+    <value>Ajout effectué</value>
+    <comment>Item added</comment>
+  </data>
   <data name="Msg_MissingParameterInConfiguration" xml:space="preserve">
     <value>Le paramètre '{0}' n'a pas été configuré. Veuillez l'ajouter dans le fichier de configuration.</value>
     <comment>The parameter '{0}' is not set in the configuration file. Please set it up.</comment>
