@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview
     using System;
     using System.ComponentModel.Composition;
     using System.Windows.Input;
+    using System.Windows.Media;
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
@@ -31,11 +32,14 @@ namespace Probel.NDoctor.Plugins.PatientOverview
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
-    public class PluginManager : Plugin
+    public class PluginManager : StaticViewPlugin<WorkbenchView>
     {
         #region Fields
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.PatientOverview;component/Images\{0}.png";
+
+        private readonly ICommand editCommand;
+        private readonly ICommand saveCommand;
 
         private ICommand navigateCommand;
         private WorkbenchView workbench;
@@ -50,10 +54,34 @@ namespace Probel.NDoctor.Plugins.PatientOverview
         {
             this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
 
+            this.saveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
+            this.editCommand = new RelayCommand(() => this.Edit(), () => this.CanEdit());
+            this.revertCommand = new RelayCommand(() => this.Revert(), () => this.CanRevert());
+
             this.ConfigureAutoMapper();
         }
 
         #endregion Constructors
+
+        #region Properties
+
+        public ICommand EditCommand
+        {
+            get { return this.editCommand; }
+        }
+
+        public ICommand SaveCommand
+        {
+            get { return this.saveCommand; }
+        }
+
+        private bool IsEditionActivated
+        {
+            get;
+            set;
+        }
+
+        #endregion Properties
 
         #region Methods
 
@@ -84,17 +112,60 @@ namespace Probel.NDoctor.Plugins.PatientOverview
             PluginContext.Host.AddInHome(navigateButton, Groups.Managers);
         }
 
+        private readonly ICommand revertCommand;
+        public ICommand RevertCommand
+        {
+            get { return this.revertCommand; }
+        }
+        private void Revert()
+        {
+            var viewModel = this.View.As<WorkbenchViewModel>();
+
+            viewModel.Refresh();
+            viewModel.IsEditModeActivated
+                = this.IsEditionActivated
+                = false;
+        }
+        private bool CanRevert()
+        {
+            return this.IsEditionActivated == true;
+        }
+
         /// <summary>
         /// Builds the context menu the ribbon for this plugin.
         /// </summary>
         private void BuildContextMenu()
         {
-            //Add the code to configure and set the menus of the plugin
+            var editBtn = new RibbonButtonData(Messages.Btn_Edit, imgUri.FormatWith("Edit"), this.EditCommand);
+            var saveBtn = new RibbonButtonData(Messages.Btn_Save, imgUri.FormatWith("Save"), this.SaveCommand);
+            var revertBtn = new RibbonButtonData(Messages.Btn_Revert, imgUri.FormatWith("Revert"), this.RevertCommand);
+
+            var cgroup = new RibbonGroupData(BaseText.Group_Action);
+            cgroup.ButtonDataCollection.Add(editBtn);
+            cgroup.ButtonDataCollection.Add(saveBtn);
+            cgroup.ButtonDataCollection.Add(revertBtn);
+
+            var tab = new RibbonTabData(BaseText.Menu_File) { ContextualTabGroupHeader = Messages.Title_PluginName };
+            tab.GroupDataCollection.Add(cgroup);
+            PluginContext.Host.AddTab(tab);
+
+            this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_PluginName, tab) { Background = Brushes.OrangeRed, IsVisible = false };
+            PluginContext.Host.AddContextualMenu(this.contextualMenu);
+        }
+
+        private bool CanEdit()
+        {
+            return this.IsEditionActivated == false;
         }
 
         private bool CanNavigate()
         {
             return PluginContext.Host.SelectedPatient != null;
+        }
+
+        private bool CanSave()
+        {
+            return this.IsEditionActivated == true;
         }
 
         /// <summary>
@@ -105,12 +176,28 @@ namespace Probel.NDoctor.Plugins.PatientOverview
             //Add the mapping here...
         }
 
+        private void Edit()
+        {
+            this.View.As<WorkbenchViewModel>().IsEditModeActivated
+                = this.IsEditionActivated
+                = true;
+        }
+
         private void Navigate()
         {
-            PluginContext.Host.Navigate(this.workbench);
-            var viewModel = new WorkbenchViewModel();
-            this.workbench.DataContext = viewModel;
-            viewModel.Refresh();
+            this.View.As<WorkbenchViewModel>().Refresh();
+            PluginContext.Host.Navigate(this.View);
+            this.ShowContextMenu();
+        }
+
+        private void Save()
+        {
+            var viewModel = this.View.As<WorkbenchViewModel>();
+            viewModel.SaveCommand.TryExecute();
+
+            viewModel.IsEditModeActivated
+                = this.IsEditionActivated
+                = false;
         }
 
         #endregion Methods
