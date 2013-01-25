@@ -144,9 +144,16 @@ namespace Probel.NDoctor.Plugins.PatientOverview
             cgroup2.ButtonDataCollection.Add(new RibbonButtonData(Messages.Btn_Doctor, imgUri.FormatWith("Doctor")
                 , new RelayCommand(() => ViewService.Manager.Show<AddDoctorViewModel>())));
 
+            var cgroup3 = new RibbonGroupData(Messages.Group_LinkedDoctor);
+            cgroup3.ButtonDataCollection.Add(new RibbonButtonData(BaseText.Add, imgUri.FormatWith("DoctorAdd")
+                , new RelayCommand(() => ViewService.Manager.Show<BindDoctorViewModel>(), () => this.CanManageDoctor())));
+            cgroup3.ButtonDataCollection.Add(new RibbonButtonData(BaseText.Cancel, imgUri.FormatWith("DoctorRemove")
+                , new RelayCommand(() => ViewService.Manager.Show<UnbindDoctorViewModel>(), () => this.CanManageDoctor())));
+
             var tab = new RibbonTabData(BaseText.Menu_File) { ContextualTabGroupHeader = Messages.Title_PluginName };
             tab.GroupDataCollection.Add(cgroup1);
             tab.GroupDataCollection.Add(cgroup2);
+            tab.GroupDataCollection.Add(cgroup3);
             PluginContext.Host.AddTab(tab);
 
             this.ContextualMenu = new RibbonContextualTabGroupData(Messages.Title_PluginName, tab) { Background = Brushes.OrangeRed, IsVisible = false };
@@ -168,20 +175,20 @@ namespace Probel.NDoctor.Plugins.PatientOverview
                 e.Bind<AddSpecialisationView, AddSpecialisationViewModel>()
                     .OnClosing(vm => this.Refresh(vm));
                 e.Bind<AddDoctorView, AddDoctorViewModel>();
+                e.Bind<BindDoctorView, BindDoctorViewModel>();
+                e.Bind<UnbindDoctorView, UnbindDoctorViewModel>()
+                    .OnShow(vm => vm.Refresh());
             });
-        }
-
-        private void Refresh(InsertionViewModel vm)
-        {
-            if (vm.HasInsertedItem)
-            {
-                this.View.As<WorkbenchViewModel>().Refresh();
-            }
         }
 
         private bool CanEdit()
         {
             return this.IsEditionActivated == false;
+        }
+
+        private bool CanManageDoctor()
+        {
+            return this.IsEditionActivated == true;
         }
 
         private bool CanNavigate()
@@ -222,6 +229,14 @@ namespace Probel.NDoctor.Plugins.PatientOverview
 
             PluginContext.Host.Navigate(this.View);
             this.ShowContextMenu();
+        }
+
+        private void Refresh(InsertionViewModel vm)
+        {
+            if (vm.HasInsertedItem)
+            {
+                this.View.As<WorkbenchViewModel>().Refresh();
+            }
         }
 
         private void Revert()

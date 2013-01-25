@@ -169,6 +169,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Linked doctors.
+        /// </summary>
+        internal static string Group_LinkedDoctor {
+            get {
+                return ResourceManager.GetString("Group_LinkedDoctor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         internal static string Grp_Address {
@@ -484,6 +493,24 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Double click to select the doctor.
+        /// </summary>
+        internal static string Msg_DoubleClick {
+            get {
+                return ResourceManager.GetString("Msg_DoubleClick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Double click to unbind the doctor..
+        /// </summary>
+        internal static string Msg_DoubleClickToUnbind {
+            get {
+                return ResourceManager.GetString("Msg_DoubleClickToUnbind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to leave without saving?.
         /// </summary>
         internal static string Question_LeaveWithoutSaving {
@@ -547,6 +574,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bind a doctor....
+        /// </summary>
+        internal static string Title_BindDoctor {
+            get {
+                return ResourceManager.GetString("Title_BindDoctor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Patient overview.
         /// </summary>
         internal static string Title_Page {
@@ -561,6 +597,24 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         internal static string Title_PluginName {
             get {
                 return ResourceManager.GetString("Title_PluginName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search a doctor....
+        /// </summary>
+        internal static string Title_TitleWatermark {
+            get {
+                return ResourceManager.GetString("Title_TitleWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unbind a doctor....
+        /// </summary>
+        internal static string Title_UnbindDoctor {
+            get {
+                return ResourceManager.GetString("Title_UnbindDoctor", resourceCulture);
             }
         }
         

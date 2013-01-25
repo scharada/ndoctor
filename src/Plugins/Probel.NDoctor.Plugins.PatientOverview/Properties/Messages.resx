@@ -165,6 +165,10 @@
     <value>Add</value>
     <comment>Add</comment>
   </data>
+  <data name="Group_LinkedDoctor" xml:space="preserve">
+    <value>Linked doctors</value>
+    <comment>Linked doctors</comment>
+  </data>
   <data name="GrpProfContact" xml:space="preserve">
     <value>Professional contact</value>
     <comment>Professional contact</comment>
@@ -305,6 +309,14 @@
     <value>Male</value>
     <comment>Male</comment>
   </data>
+  <data name="Msg_DoubleClick" xml:space="preserve">
+    <value>Double click to select the doctor</value>
+    <comment>Double click to select the doctor</comment>
+  </data>
+  <data name="Msg_DoubleClickToUnbind" xml:space="preserve">
+    <value>Double click to unbind the doctor.</value>
+    <comment>Double click to unbind the doctor.</comment>
+  </data>
   <data name="Question_LeaveWithoutSaving" xml:space="preserve">
     <value>Do you want to leave without saving?</value>
     <comment>Do you want to leave without saving?</comment>
@@ -333,6 +345,10 @@
     <value>Add a specialisation...</value>
     <comment>Add a specialisation...</comment>
   </data>
+  <data name="Title_BindDoctor" xml:space="preserve">
+    <value>Bind a doctor...</value>
+    <comment>Bind a doctor...</comment>
+  </data>
   <data name="Title_Page" xml:space="preserve">
     <value>Patient overview</value>
     <comment>Patient overview</comment>
@@ -340,6 +356,14 @@
   <data name="Title_PluginName" xml:space="preserve">
     <value>Patient overview</value>
     <comment>Patient overview</comment>
+  </data>
+  <data name="Title_TitleWatermark" xml:space="preserve">
+    <value>Search a doctor...</value>
+    <comment>Search a doctor...</comment>
+  </data>
+  <data name="Title_UnbindDoctor" xml:space="preserve">
+    <value>Unbind a doctor...</value>
+    <comment>Unbind a doctor...</comment>
   </data>
   <data name="Warn_ImpossibleToDisplayThumb" xml:space="preserve">
     <value>Do you want to cancel the modification done on the patient?</value>

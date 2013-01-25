@@ -187,8 +187,18 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="patientDto">The patient dto.</param>
         /// <param name="thumbnail">The byte array representing the thumbnail of the patient.</param>
-        void UpdateThumbnail(PatientDto patientDto, byte[] thumbnail);
+        void UpdateThumbnail(LightPatientDto patientDto, byte[] thumbnail);
 
         #endregion Methods
+
+        /// <summary>
+        /// Determines whether the specified patient has the specified doctor.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <param name="doctor">The doctor.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified patient has the doctor; otherwise, <c>false</c>.
+        /// </returns>
+        bool HasDoctor(LightPatientDto patient, LightDoctorDto doctor);
     }
 }

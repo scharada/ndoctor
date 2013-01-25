@@ -351,7 +351,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="patientDto">The patient dto.</param>
         /// <param name="thumbnail">The byte array representing the thumbnail of the patient.</param>
-        public void UpdateThumbnail(PatientDto patientDto, byte[] thumbnail)
+        public void UpdateThumbnail(LightPatientDto patientDto, byte[] thumbnail)
         {
             var entity = (from p in this.Session.Query<Patient>()
                           where p.Id == patientDto.Id
@@ -404,5 +404,25 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         #endregion Methods
+
+
+        /// <summary>
+        /// Determines whether the specified patient has the specified doctor.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <param name="doctor">The doctor.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified patient has the doctor; otherwise, <c>false</c>.
+        /// </returns>
+        public bool HasDoctor(LightPatientDto patient, LightDoctorDto doctor)
+        {
+            var entity = (from p in this.Session.Query<Patient>()
+                          where p.Id == patient.Id
+                          select p).Single();
+
+            return (from d in entity.Doctors
+                    where d.Id == doctor.Id
+                    select d).Count() > 0;
+        }
     }
 }

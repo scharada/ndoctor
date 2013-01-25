@@ -67,6 +67,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\Base\Action.cs" />
+    <Compile Include="Actions\Base\DoctorAction.cs" />
+    <Compile Include="Actions\ActionInvoker.cs" />
+    <Compile Include="Actions\AddDoctorAction.cs" />
+    <Compile Include="Actions\AddThumbnailAction.cs" />
+    <Compile Include="Actions\Base\IAction.cs" />
+    <Compile Include="Actions\RemoveDoctorAction.cs" />
+    <Compile Include="PluginDataContext.cs" />
     <Compile Include="PluginManager.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -92,7 +100,9 @@
     <Compile Include="ViewModel\AddProfessionViewModel.cs" />
     <Compile Include="ViewModel\AddReputationViewModel.cs" />
     <Compile Include="ViewModel\AddSpecialisationViewModel.cs" />
+    <Compile Include="ViewModel\BindDoctorViewModel.cs" />
     <Compile Include="ViewModel\InsertionViewModel.cs" />
+    <Compile Include="ViewModel\UnbindDoctorViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
     <Compile Include="View\AddDoctorView.xaml.cs">
       <DependentUpon>AddDoctorView.xaml</DependentUpon>
@@ -111,6 +121,12 @@
     </Compile>
     <Compile Include="View\AddSpecialisationView.xaml.cs">
       <DependentUpon>AddSpecialisationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BindDoctorView.xaml.cs">
+      <DependentUpon>BindDoctorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UnbindDoctorView.xaml.cs">
+      <DependentUpon>UnbindDoctorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WorkbenchView.xaml.cs">
       <DependentUpon>WorkbenchView.xaml</DependentUpon>
@@ -175,6 +191,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\BindDoctorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UnbindDoctorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\WorkbenchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -219,6 +243,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Specialisation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DoctorRemove.png" />
+    <Resource Include="Images\DoctorAdd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SearchSmall.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

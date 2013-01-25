@@ -22,7 +22,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     /// Represent a DTO of a patient
     /// </summary>
     [Serializable]
-    public class PatientDto : PersonDto
+    public class PatientDto : LightPatientDto
     {
         #region Fields
 
@@ -98,22 +98,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         }
 
         /// <summary>
-        /// Gets or sets the birthdate.
-        /// </summary>
-        /// <value>
-        /// The birthdate.
-        /// </value>
-        public DateTime Birthdate
-        {
-            get { return this.birthdate; }
-            set
-            {
-                this.birthdate = value;
-                this.OnPropertyChanged(() => Birthdate);
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the counter. This counter increments each time this patient is loaded
         /// </summary>
         /// <value>
@@ -130,18 +114,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         }
 
         /// <summary>
-        /// Gets or sets a string representing how the name of the user should
-        /// be displayed.
-        /// </summary>
-        /// <value>
-        /// The name of the displayed.
-        /// </value>
-        public string DisplayedName
-        {
-            get { return string.Format("{0} {1}", this.FirstName, this.LastName); }
-        }
-
-        /// <summary>
         /// Gets or sets the fee.
         /// </summary>
         /// <value>
@@ -154,36 +126,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.fee = value;
                 this.OnPropertyChanged(() => Fee);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the sex.
-        /// </summary>
-        /// <value>The sex.</value>
-        public Gender Gender
-        {
-            get { return this.gender; }
-            set
-            {
-                this.gender = value;
-                this.OnPropertyChanged(() => Gender);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the height.
-        /// </summary>
-        /// <value>
-        /// The height.
-        /// </value>
-        public long Height
-        {
-            get { return this.height; }
-            set
-            {
-                this.height = value;
-                this.OnPropertyChanged(() => Height);
             }
         }
 
@@ -331,22 +273,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.privatePhone = value;
                 this.OnPropertyChanged(() => PrivatePhone);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the profession.
-        /// </summary>
-        /// <value>
-        /// The profession.
-        /// </value>
-        public ProfessionDto Profession
-        {
-            get { return this.profession; }
-            set
-            {
-                this.profession = value;
-                this.OnPropertyChanged(() => Profession);
             }
         }
 

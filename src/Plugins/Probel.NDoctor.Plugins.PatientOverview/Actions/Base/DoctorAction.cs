@@ -1,3 +1,5 @@
+﻿#region Header
+
 /*
     This file is part of NDoctor.
 
@@ -15,14 +17,29 @@
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System.Reflection;
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
-[assembly:AssemblyVersion("3.0.4.1108")]
+#endregion Header
+
+namespace Probel.NDoctor.Plugins.PatientOverview.Actions.Base
+{
+    using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Objects;
+
+    internal abstract class DoctorAction : Action
+    {
+        #region Fields
+
+        protected readonly LightDoctorDto Doctor;
+
+        #endregion Fields
+
+        #region Constructors
+
+        protected DoctorAction(IPatientDataComponent component, LightPatientDto patient, LightDoctorDto doctor)
+            : base(component, patient)
+        {
+            this.Doctor = doctor;
+        }
+
+        #endregion Constructors
+    }
+}

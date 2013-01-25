@@ -62,6 +62,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Translations
             get { return Messages.Title_AddSpecialisation; }
         }
 
+        public static string BindDoctor
+        {
+            get { return Messages.Title_BindDoctor; }
+        }
+
         public static string BoxNumber
         {
             get { return Messages.Lbl_Box; }
@@ -72,9 +77,44 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Translations
             get { return Messages.Lbl_City; }
         }
 
+        public static string Doctor
+        {
+            get { return Messages.Grp_Doctor; }
+        }
+
+        public static string DoubleClick
+        {
+            get { return Messages.Msg_DoubleClick; }
+        }
+
+        public static string DoubleClickToUnbind
+        {
+            get { return Messages.Msg_DoubleClickToUnbind; }
+        }
+
+        public static string FirstName
+        {
+            get { return Messages.Lbl_FirstName; }
+        }
+
+        public static string Gender
+        {
+            get { return Messages.Lbl_Gender; }
+        }
+
+        public static string LastName
+        {
+            get { return Messages.Lbl_LastName; }
+        }
+
         public static string Phone
         {
             get { return Messages.Lbl_Phone; }
+        }
+
+        public static string Specialisation
+        {
+            get { return Messages.Lbl_Specialisation; }
         }
 
         public static string StreeNr
@@ -87,29 +127,16 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Translations
             get { return Messages.Lbl_Street; }
         }
 
+        public static string TitleWatermark
+        {
+            get { return Messages.Title_TitleWatermark; }
+        }
+
+        public static string UnbindDoctor
+        {
+            get { return Messages.Title_UnbindDoctor; }
+        }
+
         #endregion Properties
-
-        public static string Doctor
-        {
-            get { return Messages.Grp_Doctor; }
-        }
-
-        public static string LastName
-        {
-            get { return Messages.Lbl_LastName; }
-        }
-        public static string FirstName
-        {
-            get { return Messages.Lbl_FirstName; }
-        }
-
-        public static string Specialisation
-        {
-            get { return Messages.Lbl_Specialisation; }
-        }
-        public static string Gender
-        {
-            get { return Messages.Lbl_Gender; }
-        }
     }
 }
