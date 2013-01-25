@@ -173,6 +173,10 @@
     <value>Address</value>
     <comment>Address</comment>
   </data>
+  <data name="Grp_Doctor" xml:space="preserve">
+    <value>Doctor</value>
+    <comment>Doctor</comment>
+  </data>
   <data name="Grp_Doctors" xml:space="preserve">
     <value>Doctors</value>
     <comment>Doctors</comment>
@@ -229,9 +233,21 @@
     <value>Fee:</value>
     <comment>Fee:</comment>
   </data>
+  <data name="Lbl_FirstName" xml:space="preserve">
+    <value>Name</value>
+    <comment>Name</comment>
+  </data>
+  <data name="Lbl_Gender" xml:space="preserve">
+    <value>Gender:</value>
+    <comment>Gender:</comment>
+  </data>
   <data name="Lbl_Inscription" xml:space="preserve">
     <value>Inscription:</value>
     <comment>Inscription:</comment>
+  </data>
+  <data name="Lbl_LastName" xml:space="preserve">
+    <value>Nom</value>
+    <comment>Surname</comment>
   </data>
   <data name="Lbl_LastUpdate" xml:space="preserve">
     <value>Last update:</value>
@@ -272,6 +288,10 @@
   <data name="Lbl_Reputation" xml:space="preserve">
     <value>Reputation:</value>
     <comment>Reputation:</comment>
+  </data>
+  <data name="Lbl_Specialisation" xml:space="preserve">
+    <value>Specialisation:</value>
+    <comment>Specialisation:</comment>
   </data>
   <data name="Lbl_Street" xml:space="preserve">
     <value>Street:</value>

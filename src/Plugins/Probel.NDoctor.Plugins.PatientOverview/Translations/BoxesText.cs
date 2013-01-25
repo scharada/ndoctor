@@ -88,5 +88,28 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Translations
         }
 
         #endregion Properties
+
+        public static string Doctor
+        {
+            get { return Messages.Grp_Doctor; }
+        }
+
+        public static string LastName
+        {
+            get { return Messages.Lbl_LastName; }
+        }
+        public static string FirstName
+        {
+            get { return Messages.Lbl_FirstName; }
+        }
+
+        public static string Specialisation
+        {
+            get { return Messages.Lbl_Specialisation; }
+        }
+        public static string Gender
+        {
+            get { return Messages.Lbl_Gender; }
+        }
     }
 }
