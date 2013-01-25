@@ -119,8 +119,8 @@ namespace Probel.NDoctor.Plugins.Authorisation
             tab.GroupDataCollection.Add(cgroup);
             tab.GroupDataCollection.Add(ngroup);
 
-            this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_AuthorisationManager, tab) { Background = Brushes.OrangeRed, IsVisible = false, };
-            PluginContext.Host.AddContextualMenu(this.contextualMenu);
+            this.ContextualMenu = new RibbonContextualTabGroupData(Messages.Title_AuthorisationManager, tab) { Background = Brushes.OrangeRed, IsVisible = false, };
+            PluginContext.Host.AddContextualMenu(this.ContextualMenu);
             PluginContext.Host.AddTab(tab);
 
             ICommand roleCommand = new RelayCommand(() => this.NavigateRole(), () => this.CanNavigateRole());
@@ -188,8 +188,8 @@ namespace Probel.NDoctor.Plugins.Authorisation
             this.WorkbenView.As<WorkbenchViewModel>().Refresh();
             this.displayed = PageEventArgs.DisplayedPage.RoleManager;
 
-            this.contextualMenu.IsVisible = true;
-            this.contextualMenu.TabDataCollection[0].IsSelected = true;
+            this.ContextualMenu.IsVisible = true;
+            this.ContextualMenu.TabDataCollection[0].IsSelected = true;
         }
 
         private void NavigateUser()
@@ -199,8 +199,8 @@ namespace Probel.NDoctor.Plugins.Authorisation
             this.displayed = PageEventArgs.DisplayedPage.UserManager;
             Notifyer.OnShowing(this, PageEventArgs.DisplayedPage.UserManager);
 
-            this.contextualMenu.IsVisible = true;
-            this.contextualMenu.TabDataCollection[0].IsSelected = true;
+            this.ContextualMenu.IsVisible = true;
+            this.ContextualMenu.TabDataCollection[0].IsSelected = true;
         }
 
         #endregion Methods

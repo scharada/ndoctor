@@ -128,8 +128,8 @@ namespace Probel.NDoctor.Plugins.MeetingManager
             var tab = new RibbonTabData() { Header = Messages.Menu_File, ContextualTabGroupHeader = Messages.Title_MeetingsManager };
 
             tab.GroupDataCollection.Add(cgroup);
-            this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_MeetingsManager, tab) { Background = Brushes.OrangeRed, IsVisible = false, };
-            PluginContext.Host.AddContextualMenu(this.contextualMenu);
+            this.ContextualMenu = new RibbonContextualTabGroupData(Messages.Title_MeetingsManager, tab) { Background = Brushes.OrangeRed, IsVisible = false, };
+            PluginContext.Host.AddContextualMenu(this.ContextualMenu);
             PluginContext.Host.AddTab(tab);
 
             ICommand addCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddMeetingViewModel>(), () => IsCalendatEditor);

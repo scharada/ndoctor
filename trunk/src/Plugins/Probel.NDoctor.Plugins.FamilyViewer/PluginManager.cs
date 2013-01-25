@@ -102,8 +102,8 @@ namespace Probel.NDoctor.Plugins.FamilyViewer
             var tab = new RibbonTabData(Messages.Menu_File, cgroup) { ContextualTabGroupHeader = Messages.Title_FamilyManager };
             PluginContext.Host.AddTab(tab);
 
-            this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_FamilyManager, tab) { Background = Brushes.OrangeRed, IsVisible = false, };
-            PluginContext.Host.AddContextualMenu(this.contextualMenu);
+            this.ContextualMenu = new RibbonContextualTabGroupData(Messages.Title_FamilyManager, tab) { Background = Brushes.OrangeRed, IsVisible = false, };
+            PluginContext.Host.AddContextualMenu(this.ContextualMenu);
         }
 
         private bool CanNavigate()
