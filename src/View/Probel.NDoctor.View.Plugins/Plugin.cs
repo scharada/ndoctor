@@ -109,7 +109,7 @@ namespace Probel.NDoctor.View.Plugins
             protected set;
         }
 
-        protected RibbonContextualTabGroupData contextualMenu
+        protected RibbonContextualTabGroupData ContextualMenu
         {
             get;
             set;
@@ -255,10 +255,10 @@ namespace Probel.NDoctor.View.Plugins
         /// </summary>
         protected void ShowContextMenu()
         {
-            if (this.contextualMenu != null)
+            if (this.ContextualMenu != null)
             {
-                this.contextualMenu.IsVisible = true;
-                this.contextualMenu.TabDataCollection[0].IsSelected = PluginContext.Configuration.AutomaticContextMenu;
+                this.ContextualMenu.IsVisible = true;
+                this.ContextualMenu.TabDataCollection[0].IsSelected = PluginContext.Configuration.AutomaticContextMenu;
             }
             else { this.Logger.WarnFormat("The contextual menu of '{0}' is not set. [Null Reference]", this.GetType()); }
         }

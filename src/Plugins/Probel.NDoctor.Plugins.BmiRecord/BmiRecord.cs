@@ -114,8 +114,8 @@ namespace Probel.NDoctor.Plugins.BmiRecord
             var tab = new RibbonTabData() { Header = Messages.Menu_File, ContextualTabGroupHeader = Messages.Title_Bmi };
 
             tab.GroupDataCollection.Add(cgroup);
-            this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_Bmi, tab) { Background = Brushes.OrangeRed, IsVisible = false, };
-            PluginContext.Host.AddContextualMenu(this.contextualMenu);
+            this.ContextualMenu = new RibbonContextualTabGroupData(Messages.Title_Bmi, tab) { Background = Brushes.OrangeRed, IsVisible = false, };
+            PluginContext.Host.AddContextualMenu(this.ContextualMenu);
             PluginContext.Host.AddTab(tab);
 
             ICommand addPeriodCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddBmiViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write));

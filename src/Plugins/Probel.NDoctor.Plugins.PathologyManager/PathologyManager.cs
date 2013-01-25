@@ -109,8 +109,8 @@ namespace Probel.NDoctor.Plugins.PathologyManager
             var tab = new RibbonTabData() { Header = Messages.Menu_File, ContextualTabGroupHeader = Messages.Title_PathologyManager };
 
             tab.GroupDataCollection.Add(cgroup);
-            this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_PathologyManager, tab) { Background = Brushes.OrangeRed, IsVisible = false, };
-            PluginContext.Host.AddContextualMenu(this.contextualMenu);
+            this.ContextualMenu = new RibbonContextualTabGroupData(Messages.Title_PathologyManager, tab) { Background = Brushes.OrangeRed, IsVisible = false, };
+            PluginContext.Host.AddContextualMenu(this.ContextualMenu);
             PluginContext.Host.AddTab(tab);
 
             ICommand addPeriodCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddPeriodViewModel>()
@@ -124,7 +124,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager
             ICommand addPathologyCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddPathologyViewModel>()
                 , () => PluginContext.DoorKeeper.IsUserGranted(To.Write));
             cgroup.ButtonDataCollection.Add(new RibbonButtonData(Messages.Title_AddPathology, imgUri.FormatWith("Pathology"), addPathologyCommand) { Order = counter++ });
-
         }
 
         private bool CanNavigate()

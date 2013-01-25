@@ -157,13 +157,13 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
             this.ConfigureParagraphGroup(tab);
             PluginContext.Host.AddTab(tab);
 
-            this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_MedicalRecord, tab)
+            this.ContextualMenu = new RibbonContextualTabGroupData(Messages.Title_MedicalRecord, tab)
             {
                 Background = Brushes.OrangeRed,
                 IsVisible = false,
             };
 
-            PluginContext.Host.AddContextualMenu(this.contextualMenu);
+            PluginContext.Host.AddContextualMenu(this.ContextualMenu);
         }
 
         private bool CanNavigateWorkbench()

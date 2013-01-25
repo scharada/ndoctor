@@ -126,8 +126,8 @@ namespace Probel.NDoctor.Plugins.PatientData
             tab.GroupDataCollection.Add(cgroup);
             PluginContext.Host.AddTab(tab);
 
-            this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_ContextMenu, tab) { Background = Brushes.OrangeRed, IsVisible = false };
-            PluginContext.Host.AddContextualMenu(this.contextualMenu);
+            this.ContextualMenu = new RibbonContextualTabGroupData(Messages.Title_ContextMenu, tab) { Background = Brushes.OrangeRed, IsVisible = false };
+            PluginContext.Host.AddContextualMenu(this.ContextualMenu);
         }
 
         private bool CanNavigate()

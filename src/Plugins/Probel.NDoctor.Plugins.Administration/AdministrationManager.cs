@@ -112,11 +112,11 @@ namespace Probel.NDoctor.Plugins.Administration
         private void BuildContextMenu()
         {
             var tab = new RibbonTabData() { Header = BaseText.Menu_File, ContextualTabGroupHeader = Messages.Title_AdministratorManager };
-            this.contextualMenu = new RibbonContextualTabGroupData(Messages.Title_AdministratorManager, tab) { Background = Brushes.OrangeRed, IsVisible = false, };
+            this.ContextualMenu = new RibbonContextualTabGroupData(Messages.Title_AdministratorManager, tab) { Background = Brushes.OrangeRed, IsVisible = false, };
             var cgroup = new RibbonGroupData(Messages.Group_Add, 1);
 
             tab.GroupDataCollection.Add(cgroup);
-            PluginContext.Host.AddContextualMenu(this.contextualMenu);
+            PluginContext.Host.AddContextualMenu(this.ContextualMenu);
             PluginContext.Host.AddTab(tab);
 
             int i = 0;
@@ -207,8 +207,8 @@ namespace Probel.NDoctor.Plugins.Administration
             PluginContext.Host.Navigate(this.WorkbenchView);
             this.WorkbenchView.As<WorkbenchViewModel>().Refresh();
 
-            this.contextualMenu.IsVisible = true;
-            this.contextualMenu.TabDataCollection[0].IsSelected = PluginContext.Configuration.AutomaticContextMenu;
+            this.ContextualMenu.IsVisible = true;
+            this.ContextualMenu.TabDataCollection[0].IsSelected = PluginContext.Configuration.AutomaticContextMenu;
         }
 
         private void Refresh()
