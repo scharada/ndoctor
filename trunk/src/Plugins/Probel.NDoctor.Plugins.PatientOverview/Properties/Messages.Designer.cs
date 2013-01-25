@@ -178,6 +178,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Doctor.
+        /// </summary>
+        internal static string Grp_Doctor {
+            get {
+                return ResourceManager.GetString("Grp_Doctor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Doctors.
         /// </summary>
         internal static string Grp_Doctors {
@@ -313,11 +322,38 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string Lbl_FirstName {
+            get {
+                return ResourceManager.GetString("Lbl_FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gender:.
+        /// </summary>
+        internal static string Lbl_Gender {
+            get {
+                return ResourceManager.GetString("Lbl_Gender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Inscription:.
         /// </summary>
         internal static string Lbl_Inscription {
             get {
                 return ResourceManager.GetString("Lbl_Inscription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nom.
+        /// </summary>
+        internal static string Lbl_LastName {
+            get {
+                return ResourceManager.GetString("Lbl_LastName", resourceCulture);
             }
         }
         
@@ -408,6 +444,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         internal static string Lbl_Reputation {
             get {
                 return ResourceManager.GetString("Lbl_Reputation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specialisation:.
+        /// </summary>
+        internal static string Lbl_Specialisation {
+            get {
+                return ResourceManager.GetString("Lbl_Specialisation", resourceCulture);
             }
         }
         
