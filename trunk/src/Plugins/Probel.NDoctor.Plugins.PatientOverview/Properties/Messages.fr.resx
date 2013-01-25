@@ -165,6 +165,10 @@
     <value>Ajouter</value>
     <comment>Add</comment>
   </data>
+  <data name="Group_LinkedDoctor" xml:space="preserve">
+    <value>Médecins liés</value>
+    <comment>Linked doctors</comment>
+  </data>
   <data name="GrpProfContact" xml:space="preserve">
     <value>Contact professionnel</value>
     <comment>Professional contact</comment>
@@ -305,6 +309,14 @@
     <value>Homme</value>
     <comment>Male</comment>
   </data>
+  <data name="Msg_DoubleClick" xml:space="preserve">
+    <value>Double clique pour sélectionner le médecin</value>
+    <comment>Double click to select the doctor</comment>
+  </data>
+  <data name="Msg_DoubleClickToUnbind" xml:space="preserve">
+    <value>Double clique pour délier le médecin.</value>
+    <comment>Double click to unbind the doctor.</comment>
+  </data>
   <data name="Question_LeaveWithoutSaving" xml:space="preserve">
     <value>Voulez-vous quitter sans sauver?</value>
     <comment>Do you want to leave without saving?</comment>
@@ -333,6 +345,10 @@
     <value>Ajouter une spécialisation...</value>
     <comment>Add a specialisation...</comment>
   </data>
+  <data name="Title_BindDoctor" xml:space="preserve">
+    <value>Lier un médecin...</value>
+    <comment>Bind a doctor...</comment>
+  </data>
   <data name="Title_Page" xml:space="preserve">
     <value>Informations du patient</value>
     <comment>Informations du patient</comment>
@@ -340,6 +356,14 @@
   <data name="Title_PluginName" xml:space="preserve">
     <value>Informations du patient</value>
     <comment>Patient overview</comment>
+  </data>
+  <data name="Title_TitleWatermark" xml:space="preserve">
+    <value>Chercher un médecin...</value>
+    <comment>Search a doctor...</comment>
+  </data>
+  <data name="Title_UnbindDoctor" xml:space="preserve">
+    <value>Délier un médecin...</value>
+    <comment>Unbind a doctor...</comment>
   </data>
   <data name="Warn_ImpossibleToDisplayThumb" xml:space="preserve">
     <value>Voulez-vous annuler les modifications du patient?</value>

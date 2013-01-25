@@ -33,6 +33,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.PatientOverview.Actions;
     using Probel.NDoctor.Plugins.PatientOverview.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
@@ -229,12 +230,6 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             }
         }
 
-        private byte[] UpdatedThumbnail
-        {
-            get;
-            set;
-        }
-
         #endregion Properties
 
         #region Methods
@@ -318,9 +313,8 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             if (dr == true && File.Exists(file))
             {
                 var img = Image.FromFile(file);
-                this.UpdatedThumbnail
-                    = this.Thumbnail
-                    = img.GetThumbnail();
+                this.Thumbnail = img.GetThumbnail();
+                PluginDataContext.Instance.Invoker.AddThumbnail(this.component, this.SelectedPatient, this.Thumbnail);
             }
         }
 
@@ -365,7 +359,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
             var token = new CancellationTokenSource().Token;
 
-            var task = Task.Factory.StartNew(e => this.SaveAsync(e), new { Patient = this.SelectedPatient, Thumbnail = this.UpdatedThumbnail });
+            var task = Task.Factory.StartNew(e => this.SaveAsync(e), new { Patient = this.SelectedPatient, Invoker = PluginDataContext.Instance.Invoker });
             task.ContinueWith(e => this.Refresh(), token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
             task.ContinueWith(e => this.Handle.Error(e.Exception.InnerException), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
         }
@@ -373,10 +367,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         private void SaveAsync(dynamic context)
         {
             this.component.Update(context.Patient);
-            if (context.Thumbnail != null && context.Thumbnail.Length > 0)
-            {
-                this.component.UpdateThumbnail(context.Patient, context.Thumbnail);
-            }
+            context.Invoker.Execute();
         }
 
         private void SendMail(string mail)
