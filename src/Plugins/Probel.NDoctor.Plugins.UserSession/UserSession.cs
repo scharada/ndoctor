@@ -198,25 +198,25 @@ namespace Probel.NDoctor.Plugins.UserSession
 
         private void Disconnect()
         {
-            PluginContext.Host.ConnectedUser = null;
-            PluginContext.Host.HideMainMenu();
-            PluginContext.Host.Navigate(this.ConnectionPage);
-            this.ConnectionPage.As<ConnectionViewModel>().Refresh();
+            if (PluginContext.Host.Navigate(this.ConnectionPage))
+            {
+                PluginContext.Host.ConnectedUser = null;
+                PluginContext.Host.HideMainMenu();
+                this.ConnectionPage.As<ConnectionViewModel>().Refresh();
+            }
         }
 
         private void InitialiseConnectionPage()
         {
             var defaultUser = this.component.GetDefaultUser();
 
-            if (defaultUser == null)
+            if (defaultUser == null && PluginContext.Host.Navigate(this.ConnectionPage))
             {
                 PluginContext.Host.HideMainMenu();
-                PluginContext.Host.Navigate(this.ConnectionPage);
             }
-            else
+            else if (PluginContext.Host.NavigateToStartPage())
             {
                 PluginContext.Host.ConnectedUser = defaultUser;
-                PluginContext.Host.NavigateToStartPage();
             }
         }
 

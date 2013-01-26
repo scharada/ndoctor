@@ -172,9 +172,11 @@ namespace Probel.NDoctor.Plugins.MeetingManager
         {
             try
             {
-                PluginContext.Host.Navigate(this.View);
-                this.View.As<WorkbenchViewModel>().Refresh();
-                this.ShowContextMenu();
+                if (PluginContext.Host.Navigate(this.View))
+                {
+                    this.View.As<WorkbenchViewModel>().Refresh();
+                    this.ShowContextMenu();
+                }
             }
             catch (Exception ex) { this.Handle.Error(ex, Messages.Msg_FailToLoadCalendar); }
         }

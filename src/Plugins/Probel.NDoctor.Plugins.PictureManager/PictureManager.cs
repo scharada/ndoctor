@@ -150,11 +150,11 @@ namespace Probel.NDoctor.Plugins.PictureManager
         {
             try
             {
-                PluginContext.Host.Navigate(this.View);
-
-                this.View.As<WorkbenchViewModel>().RefreshForNavigation();
-
-                this.ShowContextMenu();
+                if (PluginContext.Host.Navigate(this.View))
+                {
+                    this.View.As<WorkbenchViewModel>().RefreshForNavigation();
+                    this.ShowContextMenu();
+                }
             }
             catch (Exception ex)
             {

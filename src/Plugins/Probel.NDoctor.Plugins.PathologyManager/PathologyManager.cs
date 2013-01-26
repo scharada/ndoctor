@@ -157,16 +157,14 @@ namespace Probel.NDoctor.Plugins.PathologyManager
         {
             try
             {
-                this.View.As<WorkbenchViewModel>().Refresh();
-                PluginContext.Host.WriteStatusReady();
-                PluginContext.Host.Navigate(this.View);
-
-                this.ShowContextMenu();
+                if (PluginContext.Host.Navigate(this.View))
+                {
+                    this.View.As<WorkbenchViewModel>().Refresh();
+                    PluginContext.Host.WriteStatusReady();
+                    this.ShowContextMenu();
+                }
             }
-            catch (Exception ex)
-            {
-                this.Handle.Error(ex, Messages.Msg_FailToLoadPathologyManager);
-            }
+            catch (Exception ex) { this.Handle.Error(ex, Messages.Msg_FailToLoadPathologyManager); }
         }
 
         #endregion Methods

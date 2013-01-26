@@ -47,15 +47,15 @@
                           Visibility="Collapsed"/>
                 <!-- Id of the patient -->
                 <GroupBox DockPanel.Dock="Top" 
-                  Margin="4"
-                  Header="{x:Static Member=t:WorkbenchText.GrpPatient}">
+                          Margin="4"
+                          Header="{x:Static Member=t:WorkbenchText.GrpPatient}">
                     <DockPanel Margin="4">
                         <!-- Thumbnail -->
                         <DockPanel DockPanel.Dock="Left" 
-                      MaxHeight="150"
-                      Width="150"
-                      Margin="4"
-                      HorizontalAlignment="Left">
+                                   MaxHeight="150"
+                                   Width="150"
+                                   Margin="4"
+                                   HorizontalAlignment="Left">
                             <TextBlock DockPanel.Dock="Bottom" 
                                        HorizontalAlignment="Center"
                                        Margin="4"
@@ -90,7 +90,7 @@
                         <!-- First, last name and fee -->
                         <DockPanel DockPanel.Dock="Top" LastChildFill="True">
                             <Image Margin="4"
-                           DockPanel.Dock="Left" Height="20" Width="20" Source="{Binding SelectedPatient.Gender, Converter={StaticResource GenderToImage}}"/>
+                                   DockPanel.Dock="Left" Height="20" Width="20" Source="{Binding SelectedPatient.Gender, Converter={StaticResource GenderToImage}}"/>
                             <Label Content="{x:Static Member=t:WorkbenchText.Patient}"/>
                             <DockPanel LastChildFill="True">
                                 <Grid>
@@ -103,11 +103,11 @@
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
-                                        <TextBox Grid.Row="0" Grid.Column="0" Margin="4" Text="{Binding SelectedPatient.FirstName}"/>
-                                        <TextBox Grid.Row="0" Grid.Column="1" Margin="4" Text="{Binding SelectedPatient.LastName}"/>
+                                        <TextBox Grid.Row="0" Grid.Column="0" Margin="4" Text="{Binding SelectedPatient.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <TextBox Grid.Row="0" Grid.Column="1" Margin="4" Text="{Binding SelectedPatient.LastName, UpdateSourceTrigger=PropertyChanged}"/>
                                         <DockPanel Grid.Row="1" Grid.Column="0">
                                             <Label Content="{x:Static Member=t:WorkbenchText.Fee}"/>
-                                            <ctrl:DoubleUpDown Value="{Binding SelectedPatient.Fee}" FormatString="C2"/>
+                                            <ctrl:DoubleUpDown Value="{Binding SelectedPatient.Fee, UpdateSourceTrigger=PropertyChanged}" FormatString="C2"/>
                                         </DockPanel>
                                     </Grid>
                                     <StackPanel Orientation="Horizontal">
@@ -126,35 +126,36 @@
                                                FontWeight="Bold" />
 
                                         <Label Content=")"
-                                       Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}" />
+                                               Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}" />
                                     </StackPanel>
                                 </Grid>
                             </DockPanel>
                         </DockPanel>
                         <!-- Gender -->
-                        <DockPanel DockPanel.Dock="Top" Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}"
-                           LastChildFill="True">
+                        <DockPanel DockPanel.Dock="Top" 
+                                   Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}"
+                                   LastChildFill="True">
                             <Label Content="Gender"/>
                             <ComboBox Margin="4"
-                              ItemsSource="{Binding Genders}"
-                              DisplayMemberPath="Item1"
-                              SelectedItem="{Binding SelectedGender}"/>
+                                      ItemsSource="{Binding Genders, UpdateSourceTrigger=PropertyChanged}"
+                                      DisplayMemberPath="Item1"
+                                      SelectedItem="{Binding SelectedGender}"/>
                         </DockPanel>
                         <!-- Date of birth-->
                         <Grid x:Name="BirthPanel" 
-                      DockPanel.Dock="Top"
-                      Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+                              DockPanel.Dock="Top"
+                              Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <DockPanel LastChildFill="True" Grid.Column="0">
                                 <Label Content="{x:Static Member=t:WorkbenchText.PlaceOfBirth}"/>
-                                <TextBox Margin="4" Text="{Binding SelectedPatient.PlaceOfBirth}"/>
+                                <TextBox Margin="4" Text="{Binding SelectedPatient.PlaceOfBirth, UpdateSourceTrigger=PropertyChanged}"/>
                             </DockPanel>
                             <DockPanel LastChildFill="True" Grid.Column="1">
                                 <Label Content="{x:Static Member=t:WorkbenchText.Birthdate}"/>
-                                <DatePicker Margin="4" SelectedDate="{Binding SelectedPatient.Birthdate}"/>
+                                <DatePicker Margin="4" SelectedDate="{Binding SelectedPatient.Birthdate, UpdateSourceTrigger=PropertyChanged}"/>
                             </DockPanel>
                         </Grid>
                         <StackPanel DockPanel.Dock="Top" 
@@ -177,7 +178,7 @@
                                    Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}"/>
                             <ComboBox ItemsSource="{Binding Professions}"
                                       x:Name="CbProfession"
-                                      SelectedItem="{Binding SelectedPatient.Profession}"
+                                      SelectedItem="{Binding SelectedPatient.Profession, UpdateSourceTrigger=PropertyChanged}"
                                       DisplayMemberPath="Name"
                                       Margin="4"
                                       Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}"/>
@@ -216,17 +217,17 @@
                                 <DockPanel LastChildFill="True">
                                     <Label Content="{x:Static Member=t:WorkbenchText.Street}"/>
                                     <TextBox Margin="4"
-                                         Text="{Binding SelectedPatient.Address.Street}"/>
+                                             Text="{Binding SelectedPatient.Address.Street, UpdateSourceTrigger=PropertyChanged}"/>
                                 </DockPanel>
                                 <DockPanel Grid.Column="1">
                                     <Label Content="{x:Static Member=t:WorkbenchText.Number}"/>
                                     <TextBox Margin="4"
-                                         Text="{Binding SelectedPatient.Address.StreetNumber}"/>
+                                             Text="{Binding SelectedPatient.Address.StreetNumber, UpdateSourceTrigger=PropertyChanged}"/>
                                 </DockPanel>
                                 <DockPanel Grid.Column="2">
                                     <Label Content="{x:Static Member=t:WorkbenchText.Box}"/>
                                     <TextBox Margin="4"
-                                         Text="{Binding SelectedPatient.Address.BoxNumber}"/>
+                                             Text="{Binding SelectedPatient.Address.BoxNumber, UpdateSourceTrigger=PropertyChanged}"/>
                                 </DockPanel>
                             </Grid>
                             <Grid>
@@ -237,12 +238,12 @@
                                 <DockPanel LastChildFill="True">
                                     <Label Content="{x:Static Member=t:WorkbenchText.PostalCode}"/>
                                     <TextBox Margin="4"
-                                         Text="{Binding SelectedPatient.Address.PostalCode}"/>
+                                             Text="{Binding SelectedPatient.Address.PostalCode, UpdateSourceTrigger=PropertyChanged}"/>
                                 </DockPanel>
                                 <DockPanel Grid.Column="1">
                                     <Label Content="{x:Static Member=t:WorkbenchText.City}"/>
                                     <TextBox Margin="4"
-                                         Text="{Binding SelectedPatient.Address.City}"/>
+                                             Text="{Binding SelectedPatient.Address.City, UpdateSourceTrigger=PropertyChanged}"/>
                                 </DockPanel>
                             </Grid>
                         </StackPanel>
@@ -276,15 +277,15 @@
                         <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
                             <DockPanel>
                                 <Label Width="90" Content="{x:Static Member=t:WorkbenchText.Mobile}"/>
-                                <TextBox Margin="4" Text="{Binding SelectedPatient.PrivateMobile}"/>
+                                <TextBox Margin="4" Text="{Binding SelectedPatient.PrivateMobile, UpdateSourceTrigger=PropertyChanged}"/>
                             </DockPanel>
                             <DockPanel>
                                 <Label Width="90" Content="{x:Static Member=t:WorkbenchText.Phone}"/>
-                                <TextBox Margin="4" Text="{Binding SelectedPatient.PrivatePhone}"/>
+                                <TextBox Margin="4" Text="{Binding SelectedPatient.PrivatePhone, UpdateSourceTrigger=PropertyChanged}"/>
                             </DockPanel>
                             <DockPanel Visibility="{Binding HasPrivateMail, Converter={StaticResource BoolToVisibility}}">
                                 <Label Width="90" Content="{x:Static Member=t:WorkbenchText.Mail}"/>
-                                <TextBox Margin="4" Text="{Binding SelectedPatient.PrivateMail}"/>
+                                <TextBox Margin="4" Text="{Binding SelectedPatient.PrivateMail, UpdateSourceTrigger=PropertyChanged}"/>
                             </DockPanel>
                         </StackPanel>
                     </StackPanel>
@@ -317,15 +318,15 @@
                         <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
                             <DockPanel>
                                 <Label Width="90" Content="{x:Static Member=t:WorkbenchText.Mobile}"/>
-                                <TextBox Margin="4" Text="{Binding SelectedPatient.ProMobile}"/>
+                                <TextBox Margin="4" Text="{Binding SelectedPatient.ProMobile, UpdateSourceTrigger=PropertyChanged}"/>
                             </DockPanel>
                             <DockPanel>
                                 <Label Width="90" Content="{x:Static Member=t:WorkbenchText.Phone}"/>
-                                <TextBox Margin="4" Text="{Binding SelectedPatient.ProPhone}"/>
+                                <TextBox Margin="4" Text="{Binding SelectedPatient.ProPhone, UpdateSourceTrigger=PropertyChanged}"/>
                             </DockPanel>
                             <DockPanel Visibility="{Binding HasPrivateMail, Converter={StaticResource BoolToVisibility}}">
                                 <Label Width="90" Content="{x:Static Member=t:WorkbenchText.Mail}"/>
-                                <TextBox Margin="4" Text="{Binding SelectedPatient.ProMail}"/>
+                                <TextBox Margin="4" Text="{Binding SelectedPatient.ProMail, UpdateSourceTrigger=PropertyChanged}"/>
                             </DockPanel>
                         </StackPanel>
                     </StackPanel>
@@ -334,7 +335,7 @@
                 <GroupBox DockPanel.Dock="Top" 
                           Margin="4"
                           Header="{x:Static Member=t:WorkbenchText.Notes}">
-                    <TextBox Text="{Binding SelectedPatient.Reason}"
+                    <TextBox Text="{Binding SelectedPatient.Reason, UpdateSourceTrigger=PropertyChanged}"
                              Margin="4"
                              VerticalScrollBarVisibility="Visible"
                              HorizontalScrollBarVisibility="Auto"
@@ -386,13 +387,13 @@
                     </StackPanel>
                 </GroupBox>
                 <GroupBox DockPanel.Dock="Top" 
-                  Margin="4"
-                  Header="{x:Static Member=t:WorkbenchText.Practice}">
+                          Margin="4"
+                          Header="{x:Static Member=t:WorkbenchText.Practice}">
                     <StackPanel>
                         <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}">
                             <DockPanel LastChildFill="True">
                                 <Label Content="{Binding SelectedPatient.Practice.Name}"
-                                   Style="{StaticResource ValueLabel}" FontWeight="Bold" />
+                                       Style="{StaticResource ValueLabel}" FontWeight="Bold" />
                                 <Label/>
                             </DockPanel>
                             <StackPanel Orientation="Horizontal"

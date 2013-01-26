@@ -176,12 +176,14 @@ namespace Probel.NDoctor.View.Plugins
         /// Navigates to specified page.
         /// </summary>
         /// <param name="page">The page.</param>
-        void Navigate(object page);
+        /// <returns><c>True</c> if the navigation was allowed; otherwise <c>False</c></returns>
+        bool Navigate(object page);
 
         /// <summary>
         /// Navigates to start page.
         /// </summary>
-        void NavigateToStartPage();
+        /// <returns><c>True</c> if the navigation was allowed; otherwise <c>False</c></returns>
+        bool NavigateToStartPage();
 
         /// <summary>
         /// Sets the arrow cursor.

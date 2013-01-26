@@ -184,23 +184,27 @@ namespace Probel.NDoctor.Plugins.Authorisation
 
         private void NavigateRole()
         {
-            PluginContext.Host.Navigate(this.WorkbenView);
-            this.WorkbenView.As<WorkbenchViewModel>().Refresh();
-            this.displayed = PageEventArgs.DisplayedPage.RoleManager;
+            if (PluginContext.Host.Navigate(this.WorkbenView))
+            {
+                this.WorkbenView.As<WorkbenchViewModel>().Refresh();
+                this.displayed = PageEventArgs.DisplayedPage.RoleManager;
 
-            this.ContextualMenu.IsVisible = true;
-            this.ContextualMenu.TabDataCollection[0].IsSelected = true;
+                this.ContextualMenu.IsVisible = true;
+                this.ContextualMenu.TabDataCollection[0].IsSelected = true;
+            }
         }
 
         private void NavigateUser()
         {
-            PluginContext.Host.Navigate(this.ManageUserView);
-            this.ManageUserView.As<ManageUserViewModel>().Refresh();
-            this.displayed = PageEventArgs.DisplayedPage.UserManager;
-            Notifyer.OnShowing(this, PageEventArgs.DisplayedPage.UserManager);
+            if (PluginContext.Host.Navigate(this.ManageUserView))
+            {
+                this.ManageUserView.As<ManageUserViewModel>().Refresh();
+                this.displayed = PageEventArgs.DisplayedPage.UserManager;
+                Notifyer.OnShowing(this, PageEventArgs.DisplayedPage.UserManager);
 
-            this.ContextualMenu.IsVisible = true;
-            this.ContextualMenu.TabDataCollection[0].IsSelected = true;
+                this.ContextualMenu.IsVisible = true;
+                this.ContextualMenu.TabDataCollection[0].IsSelected = true;
+            }
         }
 
         #endregion Methods

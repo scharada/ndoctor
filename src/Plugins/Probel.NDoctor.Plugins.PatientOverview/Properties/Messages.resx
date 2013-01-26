@@ -310,16 +310,16 @@
     <comment>Male</comment>
   </data>
   <data name="Msg_DoubleClick" xml:space="preserve">
-    <value>Double click to select the doctor</value>
-    <comment>Double click to select the doctor</comment>
+    <value>Double click to select the doctor.</value>
+    <comment>Double click to select the doctor.</comment>
   </data>
   <data name="Msg_DoubleClickToUnbind" xml:space="preserve">
     <value>Double click to unbind the doctor.</value>
     <comment>Double click to unbind the doctor.</comment>
   </data>
   <data name="Question_LeaveWithoutSaving" xml:space="preserve">
-    <value>Do you want to leave without saving?</value>
-    <comment>Do you want to leave without saving?</comment>
+    <value>Do you want to cancel the modification done on the patient?</value>
+    <comment>Do you want to cancel the modification done on the patient?</comment>
   </data>
   <data name="Title_AddDoctor" xml:space="preserve">
     <value>Add a doctor...</value>
@@ -366,7 +366,7 @@
     <comment>Unbind a doctor...</comment>
   </data>
   <data name="Warn_ImpossibleToDisplayThumb" xml:space="preserve">
-    <value>Do you want to cancel the modification done on the patient?</value>
-    <comment>Do you want to cancel the modification done on the patient?</comment>
+    <value>An error occured when displaying the thumbnail of the patient.</value>
+    <comment>An error occured when displaying the thumbnail of the patient.</comment>
   </data>
 </root>

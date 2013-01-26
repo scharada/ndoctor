@@ -223,12 +223,14 @@ namespace Probel.NDoctor.Plugins.PatientOverview
 
         private void Navigate()
         {
-            var vm = this.View.As<WorkbenchViewModel>();
-            vm.Refresh();
-            this.IsEditionActivated = vm.IsEditModeActivated;
+            if (PluginContext.Host.Navigate(this.View))
+            {
+                var vm = this.View.As<WorkbenchViewModel>();
+                vm.Refresh();
+                this.IsEditionActivated = vm.IsEditModeActivated;
 
-            PluginContext.Host.Navigate(this.View);
-            this.ShowContextMenu();
+                this.ShowContextMenu();
+            }
         }
 
         private void Refresh(InsertionViewModel vm)
