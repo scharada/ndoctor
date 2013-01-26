@@ -33,7 +33,8 @@ namespace Probel.NDoctor.Plugins.PatientOverview
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
-    [PartMetadata(Constraint.Name, ">3.0.0.0")]
+    [PartMetadata(Keys.Constraint, ">3.0.0.0")]
+    [PartMetadata(Keys.PluginName, "Patient Overview")]
     public class PluginManager : StaticViewPlugin<WorkbenchView>
     {
         #region Fields
