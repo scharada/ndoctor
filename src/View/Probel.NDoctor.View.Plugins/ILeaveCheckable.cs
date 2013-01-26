@@ -24,7 +24,7 @@ namespace Probel.NDoctor.View.Plugins
     /// <summary>
     /// Any Page that implements this interface has features to check whether the user can quit this page toward another
     /// </summary>
-    public interface IWorkbench
+    public interface ILeaveCheckable
     {
         #region Methods
 

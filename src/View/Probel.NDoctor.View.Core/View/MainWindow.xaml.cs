@@ -357,9 +357,9 @@ namespace Probel.NDoctor.View.Core.View
 
             this.Dispatcher.Invoke((Action)delegate
             {
-                if (this.LastDestination is IWorkbench)
+                if (this.LastDestination is ILeaveCheckable)
                 {
-                    var wb = LastDestination as IWorkbench;
+                    var wb = LastDestination as ILeaveCheckable;
                     if (wb.CanLeave() || (!wb.CanLeave() && wb.AskToLeave()))
                     {
                         this.Goto(page);
@@ -560,9 +560,9 @@ namespace Probel.NDoctor.View.Core.View
 
         private void this_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (this.LastDestination is IWorkbench)
+            if (this.LastDestination is ILeaveCheckable)
             {
-                var wb = LastDestination as IWorkbench;
+                var wb = LastDestination as ILeaveCheckable;
                 if (!(wb.CanLeave() || (!wb.CanLeave() && wb.AskToLeave())))
                 {
                     e.Cancel = true;
