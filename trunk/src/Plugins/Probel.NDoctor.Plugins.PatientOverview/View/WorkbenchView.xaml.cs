@@ -25,7 +25,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.View
     /// <summary>
     /// Interaction logic for Workbench.xaml
     /// </summary>
-    public partial class WorkbenchView : Page, IWorkbench
+    public partial class WorkbenchView : Page, ILeaveCheckable
     {
         #region Constructors
 
