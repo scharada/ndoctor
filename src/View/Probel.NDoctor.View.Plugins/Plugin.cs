@@ -29,7 +29,7 @@ namespace Probel.NDoctor.View.Plugins
     using Probel.NDoctor.View.Plugins.Properties;
     using Probel.NDoctor.View.Toolbox.Navigation;
 
-    public abstract class Plugin : IErrorHandler, IPlugin
+    public abstract class Plugin : IPlugin
     {
         #region Fields
 
@@ -156,57 +156,6 @@ namespace Probel.NDoctor.View.Plugins
         }
 
         /// <summary>
-        /// Handles the error, log it and shows a message box with the error.
-        /// </summary>
-        /// <param name="ex">The exception to log.</param>
-        public void Error(Exception ex)
-        {
-            this.Handle.Error(ex);
-        }
-
-        /// <summary>
-        /// Handles the error, log it and shows a message box with the error.
-        /// </summary>
-        /// <param name="ex">The exception to log..</param>
-        /// <param name="format">The format.</param>
-        /// <param name="args">The args.</param>
-        public void Error(Exception ex, string format, params object[] args)
-        {
-            this.Handle.Error(ex, format, args);
-        }
-
-        /// <summary>
-        /// Handles the error, log it and DOESN'T show a message box with the error.
-        /// </summary>
-        /// <param name="ex">The exception to log..</param>
-        /// <param name="format">The format.</param>
-        /// <param name="args">The args.</param>
-        public void ErrorSilently(Exception ex, string format, params object[] args)
-        {
-            this.Handle.ErrorSilently(ex, format, args);
-        }
-
-        /// <summary>
-        /// Handles the fatal error, log it and shows a message box with the error.
-        /// </summary>
-        /// <param name="ex">The exception to log.</param>
-        public void Fatal(Exception ex)
-        {
-            this.Handle.Fatal(ex);
-        }
-
-        /// <summary>
-        /// Handles the fatal error, log it and shows a message box with the error.
-        /// </summary>
-        /// <param name="ex">The exception to log..</param>
-        /// <param name="format">The format.</param>
-        /// <param name="args">The args.</param>
-        public void Fatal(Exception ex, string format, params object[] args)
-        {
-            this.Handle.Fatal(ex, format, args);
-        }
-
-        /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
         /// Every task that could throw exception should be in this method and not in the ctor.
         /// </summary>
@@ -224,30 +173,6 @@ namespace Probel.NDoctor.View.Plugins
             if (this.Validator == null) throw new PluginException(Messages.Ex_PluginException_NoValidator);
 
             return this.Validator.IsValid(host);
-        }
-
-        /// <summary>
-        /// Handles the error, log it and shows a message box with the error.
-        /// This error is showed as a warning
-        /// </summary>
-        /// <param name="ex">The exception to log..</param>
-        /// <param name="format">The format.</param>
-        /// <param name="args">The args.</param>
-        public void Warning(Exception ex, string format, params object[] args)
-        {
-            this.Handle.Warning(ex, format, args);
-        }
-
-        /// <summary>
-        /// Handles the error, log it and DOESN'T show a message box with the error.
-        /// This error is showed as a warning
-        /// </summary>
-        /// <param name="ex">The exception to log..</param>
-        /// <param name="format">The format.</param>
-        /// <param name="args">The args.</param>
-        public void WarningSilently(Exception ex, string format, params object[] args)
-        {
-            this.Handle.WarningSilently(ex, format, args);
         }
 
         /// <summary>
