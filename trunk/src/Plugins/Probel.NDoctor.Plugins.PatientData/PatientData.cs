@@ -34,6 +34,7 @@ namespace Probel.NDoctor.Plugins.PatientData
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
+    [PartMetadata(Constraint.Name, ">3.0.0.0")]
     public class PatientData : StaticViewPlugin<WorkbenchView>
     {
         #region Fields
@@ -54,10 +55,9 @@ namespace Probel.NDoctor.Plugins.PatientData
         #region Constructors
 
         [ImportingConstructor]
-        public PatientData([Import("version")] Version version)
-            : base(version)
+        public PatientData()
+            : base()
         {
-            this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
         }
 
         #endregion Constructors

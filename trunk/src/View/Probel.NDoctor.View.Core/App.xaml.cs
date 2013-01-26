@@ -49,12 +49,13 @@ namespace Probel.NDoctor.View.Core
         #endregion Fields
 
         #region Constructors
+
         public App()
         {
-#if DEBUG
+            #if DEBUG
             //Hook the console to the application to have logging features
             AllocConsole();
-#endif
+            #endif
             this.MainWindow = new MainWindow();
             this.Logger = LogManager.GetLogger(typeof(LogManager));
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Settings.Default.Language);

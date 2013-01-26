@@ -35,6 +35,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
+    [PartMetadata(Constraint.Name, ">3.0.0.0")]
     public class PatientSession : Plugin
     {
         #region Fields
@@ -52,15 +53,13 @@ namespace Probel.NDoctor.Plugins.PatientSession
         #region Constructors
 
         [ImportingConstructor]
-        public PatientSession([Import("version")] Version version)
-            : base(version)
+        public PatientSession()
+            : base()
         {
             this.SearchCommand = new RelayCommand(() => this.NavigateSearchPatient(), () => this.CanSearchPatient());
             this.AddCommand = new RelayCommand(() => this.NavigateAddPatient(), () => this.CanNavigateAddPatient());
             this.ShowTopTenCommand = new RelayCommand(() => this.NavigateTopTen(), () => this.CanSearchPatient());
             this.ExtendedSearchCommand = new RelayCommand(() => this.NavigateExtendedSearch(), () => this.CanSearchPatient());
-
-            this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
             this.ConfigureAutoMapper();
         }
 

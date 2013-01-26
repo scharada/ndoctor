@@ -34,6 +34,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
+    [PartMetadata(Constraint.Name, ">3.0.0.0")]
     public class PictureManager : Plugin
     {
         #region Fields
@@ -52,10 +53,9 @@ namespace Probel.NDoctor.Plugins.PictureManager
         /// <param name="version">The version.</param>
         /// <param name="host">The host.</param>
         [ImportingConstructor]
-        public PictureManager([Import("version")] Version version)
-            : base(version)
+        public PictureManager()
+            : base()
         {
-            this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
         }
 
         #endregion Constructors

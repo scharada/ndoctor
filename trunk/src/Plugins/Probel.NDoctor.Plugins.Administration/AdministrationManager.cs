@@ -39,14 +39,13 @@ namespace Probel.NDoctor.Plugins.Administration
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
+    [PartMetadata(Constraint.Name, ">3.0.0.0")]
     public class AdministrationManager : Plugin
     {
         #region Fields
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.Administration;component/Images\{0}.png";
 
-        //DOTO: replace with the window manager
-        //private static WorkbenchView __workbenchview; //Dont use the variable, use the property instead
         private ICommand navigateCommand;
 
         #endregion Fields
@@ -54,11 +53,9 @@ namespace Probel.NDoctor.Plugins.Administration
         #region Constructors
 
         [ImportingConstructor]
-        public AdministrationManager([Import("version")] Version version)
-            : base(version)
+        public AdministrationManager()
+            : base()
         {
-            this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
-
             LazyLoader.Set<WorkbenchView>(() => new WorkbenchView());
 
             this.ConfigureAutoMapper();

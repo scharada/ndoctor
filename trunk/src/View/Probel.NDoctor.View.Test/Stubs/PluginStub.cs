@@ -24,10 +24,9 @@ namespace Probel.NDoctor.View.Test.Stubs
     {
         #region Constructors
 
-        public PluginStub(string version, IPluginHost host, PluginValidator validator)
-            : base(version)
+        public PluginStub(IPluginHost host)
+            : base()
         {
-            this.Validator = validator;
         }
 
         #endregion Constructors

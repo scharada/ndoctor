@@ -72,21 +72,11 @@ namespace Probel.NDoctor.View.Plugins
             this.loader.RetrievePlugins(this, PluginContext.Host);
             if (this.Plugins == null) throw new PluginsNotLoadedException();
 
-            this.Logger.DebugFormat("Loader retrieved {0} plugin(s).", this.Plugins.Count);
             foreach (var plugin in this.Plugins)
             {
                 plugin.Initialise();
-                if (plugin.IsValid(PluginContext.Host))
-                {
-                    this.Logger.DebugFormat("\tThe plugin '{0}' is valid.", plugin.GetType().Name);
-                    plugin.Activate();
-                }
-                else
-                {
-                    this.Logger.WarnFormat("\tThe plugin '{0}' is not valid.", plugin.GetType().Name);
-                    plugin.Deactivate();
-                }
             }
+            this.Logger.InfoFormat("Loaded {0} valid plugin(s) for the version of the host [v{1}].", this.Plugins.Count, PluginContext.Host.HostVersion);
         }
 
         #endregion Methods

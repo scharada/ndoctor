@@ -33,6 +33,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
+    [PartMetadata(Constraint.Name, ">3.0.0.0")]
     public class PluginManager : StaticViewPlugin<WorkbenchView>
     {
         #region Fields
@@ -51,11 +52,9 @@ namespace Probel.NDoctor.Plugins.PatientOverview
         #region Constructors
 
         [ImportingConstructor]
-        public PluginManager([Import("version")] Version version)
-            : base(version)
+        public PluginManager()
+            : base()
         {
-            this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
-
             this.saveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
             this.editCommand = new RelayCommand(() => this.Edit(), () => this.CanEdit());
             this.revertCommand = new RelayCommand(() => this.Revert(), () => this.CanRevert());

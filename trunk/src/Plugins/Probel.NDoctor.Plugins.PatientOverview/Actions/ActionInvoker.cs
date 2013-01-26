@@ -37,6 +37,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Actions
 
         #region Methods
 
+        public void AddThumbnail(IPatientDataComponent component, LightPatientDto patient, byte[] thumbnail)
+        {
+            this.Add(new AddThumbnailAction(component, patient, thumbnail));
+        }
+
         public void Bind(IPatientDataComponent component, LightPatientDto patient, LightDoctorDto doctor)
         {
             this.Add(new AddDoctorAction(component, patient, doctor));
@@ -54,11 +59,6 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Actions
         public void Unbind(IPatientDataComponent component, LightPatientDto patient, LightDoctorDto doctor)
         {
             this.Add(new RemoveDoctorAction(component, patient, doctor));
-        }
-
-        public void AddThumbnail(IPatientDataComponent component, LightPatientDto patient, byte[] thumbnail)
-        {
-            this.Add(new AddThumbnailAction(component, patient, thumbnail));
         }
 
         private void Add(IAction action)

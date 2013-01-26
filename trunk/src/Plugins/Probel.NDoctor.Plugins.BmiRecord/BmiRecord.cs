@@ -36,6 +36,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
+    [PartMetadata(Constraint.Name, ">3.0.0.0")]
     public class BmiRecord : Plugin
     {
         #region Fields
@@ -55,13 +56,11 @@ namespace Probel.NDoctor.Plugins.BmiRecord
         /// <param name="version">The version.</param>
         /// <param name="host">The host.</param>
         [ImportingConstructor]
-        public BmiRecord([Import("version")] Version version)
-            : base(version)
+        public BmiRecord()
+            : base()
         {
             this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
-
-            this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
 
             this.ConfigureAutoMapper();
         }

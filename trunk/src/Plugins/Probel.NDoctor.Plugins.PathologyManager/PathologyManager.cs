@@ -35,6 +35,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
+    [PartMetadata(Constraint.Name, ">3.0.0.0")]
     public class PathologyManager : Plugin
     {
         #region Fields
@@ -48,11 +49,9 @@ namespace Probel.NDoctor.Plugins.PathologyManager
         #region Constructors
 
         [ImportingConstructor]
-        public PathologyManager([Import("version")] Version version)
-            : base(version)
+        public PathologyManager()
+            : base()
         {
-            this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
-
             this.ConfigureAutoMapper();
         }
 

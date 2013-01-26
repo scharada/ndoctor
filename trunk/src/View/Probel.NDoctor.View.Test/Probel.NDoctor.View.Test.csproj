@@ -61,8 +61,6 @@
     </Compile>
     <Compile Include="Stubs\PluginStub.cs" />
     <Compile Include="TestConverter.cs" />
-    <Compile Include="TestPluginLoading.cs" />
-    <Compile Include="TestPluginValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
