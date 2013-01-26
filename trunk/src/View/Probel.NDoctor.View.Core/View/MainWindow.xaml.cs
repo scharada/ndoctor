@@ -56,7 +56,6 @@ namespace Probel.NDoctor.View.Core.View
         private readonly Page Startpage;
 
         private LightUserDto connectedUser;
-        public object LastDestination { get; private set; }
 
         #endregion Fields
 
@@ -163,6 +162,11 @@ namespace Probel.NDoctor.View.Core.View
         public Version HostVersion
         {
             get { return Assembly.GetCallingAssembly().GetName().Version; }
+        }
+
+        public object LastDestination
+        {
+            get; private set;
         }
 
         /// <summary>
@@ -541,23 +545,6 @@ namespace Probel.NDoctor.View.Core.View
             this.OnNewUserConnected();
         }
 
-        private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-#if DEBUG
-            this.WindowState = System.Windows.WindowState.Normal;
-#else
-            this.WindowState = System.Windows.WindowState.Maximized;
-#endif
-        }
-
-        private void WriteStatus(LightPatientDto value)
-        {
-            var name = string.Format("{0} {1}", value.FirstName, value.LastName);
-            this.WriteStatus(StatusType.Info, Messages.Msg_SelectPatient.FormatWith(name));
-        }
-
-        #endregion Methods
-
         private void this_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (this.LastDestination is ILeaveCheckable)
@@ -569,5 +556,22 @@ namespace Probel.NDoctor.View.Core.View
                 }
             }
         }
+
+        private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            #if DEBUG
+            this.WindowState = System.Windows.WindowState.Normal;
+            #else
+            this.WindowState = System.Windows.WindowState.Maximized;
+            #endif
+        }
+
+        private void WriteStatus(LightPatientDto value)
+        {
+            var name = string.Format("{0} {1}", value.FirstName, value.LastName);
+            this.WriteStatus(StatusType.Info, Messages.Msg_SelectPatient.FormatWith(name));
+        }
+
+        #endregion Methods
     }
 }

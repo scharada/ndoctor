@@ -169,6 +169,16 @@ namespace Probel.NDoctor.Domain.DTO.Components
         byte[] GetThumbnail(PatientDto patientDto);
 
         /// <summary>
+        /// Determines whether the specified patient has the specified doctor.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <param name="doctor">The doctor.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified patient has the doctor; otherwise, <c>false</c>.
+        /// </returns>
+        bool HasDoctor(LightPatientDto patient, LightDoctorDto doctor);
+
+        /// <summary>
         /// Removes the link that existed between the specified patient and the specified doctor.
         /// </summary>
         /// <exception cref="EntityNotFoundException">If there's no link between the doctor and the patient</exception>
@@ -190,15 +200,5 @@ namespace Probel.NDoctor.Domain.DTO.Components
         void UpdateThumbnail(LightPatientDto patientDto, byte[] thumbnail);
 
         #endregion Methods
-
-        /// <summary>
-        /// Determines whether the specified patient has the specified doctor.
-        /// </summary>
-        /// <param name="patient">The patient.</param>
-        /// <param name="doctor">The doctor.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified patient has the doctor; otherwise, <c>false</c>.
-        /// </returns>
-        bool HasDoctor(LightPatientDto patient, LightDoctorDto doctor);
     }
 }
