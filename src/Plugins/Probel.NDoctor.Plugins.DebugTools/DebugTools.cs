@@ -28,7 +28,8 @@ namespace Probel.NDoctor.Plugins.DebugTools
     using Probel.NDoctor.View.Plugins.Helpers;
 
     [Export(typeof(IPlugin))]
-    [PartMetadata(Constraint.Name, ">3.0.0.0")]
+    [PartMetadata(Keys.Constraint, ">3.0.0.0")]
+    [PartMetadata(Keys.PluginName, "Debug tools")]
     public class DebugTools : Plugin
     {
         #region Fields

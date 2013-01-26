@@ -32,11 +32,6 @@ namespace Probel.NDoctor.View.Plugins
     {
         #region Fields
 
-        /// <summary>
-        /// The name of the <see cref="PartMetadata"/> first argument. This is a convenience property
-        /// </summary>
-        public const string Name = "Constraint";
-
         #endregion Fields
 
         #region Constructors

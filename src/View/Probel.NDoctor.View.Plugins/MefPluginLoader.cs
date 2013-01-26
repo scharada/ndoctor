@@ -27,6 +27,8 @@ namespace Probel.NDoctor.View.Plugins
     using System.Threading;
 
     using Probel.NDoctor.View.Plugins.Helpers;
+    using System.Windows.Input;
+    using System.Diagnostics;
 
     public class MefPluginLoader : LogObject, IPluginLoader
     {
@@ -72,17 +74,30 @@ namespace Probel.NDoctor.View.Plugins
 
             container.Compose(composition);
         }
-
         private bool IsPluginValid(ComposablePartDefinition def)
         {
-            if (def.Metadata.ContainsKey(Constraint.Name))
+            this.CheckName(def);
+            if (def.Metadata.ContainsKey(Keys.Constraint))
             {
-                return new Constraint(def.Metadata[Constraint.Name].ToString()).IsValid(PluginContext.Host);
+                return new Constraint(def.Metadata[Keys.Constraint].ToString()).IsValid(PluginContext.Host);
             }
             else
             {
                 Logger.Warn("A plugin without validation contract was found. It is ignored. Check that you decorated the plugin with a 'PartMetadata' attribute.");
                 return false;
+            }
+        }
+
+        private void CheckName(ComposablePartDefinition def)
+        {
+            if (!def.Metadata.ContainsKey(Keys.PluginName))
+            {
+                var msg = "You forgot to give a name to a plugin. Check you've set the attribute Metadata to the plugin with the key 'PluginName'";
+#if DEBUG
+                throw new NotImplementedException(msg);
+#else
+                Logger.Warn(msg);
+#endif
             }
         }
 

@@ -33,7 +33,8 @@ namespace Probel.NDoctor.Plugins.DbConvert
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
-    [PartMetadata(Constraint.Name, ">3.0.0.0")]
+    [PartMetadata(Keys.Constraint, ">3.0.0.0")]
+    [PartMetadata(Keys.PluginName, "Db importer")]
     public class DbConvert : Plugin
     {
         #region Fields

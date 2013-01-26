@@ -34,7 +34,8 @@ namespace Probel.NDoctor.Plugins.PictureManager
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
-    [PartMetadata(Constraint.Name, ">3.0.0.0")]
+    [PartMetadata(Keys.Constraint, ">3.0.0.0")]
+    [PartMetadata(Keys.PluginName, "Picture manager")]
     public class PictureManager : Plugin
     {
         #region Fields

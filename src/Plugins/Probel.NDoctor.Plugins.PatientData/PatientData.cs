@@ -34,7 +34,8 @@ namespace Probel.NDoctor.Plugins.PatientData
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
-    [PartMetadata(Constraint.Name, ">3.0.0.0")]
+    [PartMetadata(Keys.Constraint, ">3.0.0.0")]
+    [PartMetadata(Keys.PluginName, "Patient data manager")]
     public class PatientData : StaticViewPlugin<WorkbenchView>
     {
         #region Fields

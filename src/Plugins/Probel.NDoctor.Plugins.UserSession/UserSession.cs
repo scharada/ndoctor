@@ -58,7 +58,8 @@ namespace Probel.NDoctor.Plugins.UserSession
     /// a list of modules. 
     /// </remarks>
     [Export(typeof(IPlugin))]
-    [PartMetadata(Constraint.Name, ">3.0.0.0")]
+    [PartMetadata(Keys.Constraint, ">3.0.0.0")]
+    [PartMetadata(Keys.PluginName, "User session manager")]
     public class UserSession : Plugin
     {
         #region Fields
