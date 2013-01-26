@@ -17,16 +17,16 @@
 namespace Probel.NDoctor.View.Plugins
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.Composition;
     using System.ComponentModel.Composition.Hosting;
+    using System.ComponentModel.Composition.Primitives;
     using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Threading;
 
     using Probel.NDoctor.View.Plugins.Helpers;
-    using System.Collections.Generic;
-    using System.ComponentModel.Composition.Primitives;
 
     public class MefPluginLoader : LogObject, IPluginLoader
     {
@@ -79,7 +79,11 @@ namespace Probel.NDoctor.View.Plugins
             {
                 return new Constraint(def.Metadata[Constraint.Name].ToString()).IsValid(PluginContext.Host);
             }
-            else { return false; }
+            else
+            {
+                Logger.Warn("A plugin without validation contract was found. It is ignored. Check that you decorated the plugin with a 'PartMetadata' attribute.");
+                return false;
+            }
         }
 
         #endregion Methods
