@@ -38,8 +38,8 @@ namespace Probel.NDoctor.View.Plugins
 
         #region Constructors
 
-        public StaticViewPlugin(Version version)
-            : base(version)
+        public StaticViewPlugin()
+            : base()
         {
         }
 

@@ -43,6 +43,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
+    [PartMetadata(Constraint.Name, ">3.0.0.0")]
     public class MedicalRecord : Plugin
     {
         #region Fields
@@ -70,11 +71,9 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         #region Constructors
 
         [ImportingConstructor]
-        public MedicalRecord([Import("version")] Version version)
-            : base(version)
+        public MedicalRecord()
+            : base()
         {
-            this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
-
             this.InitialiseFontButtons();
             this.InitialiseParagraphButtons();
             this.ConfigureAutoMapper();

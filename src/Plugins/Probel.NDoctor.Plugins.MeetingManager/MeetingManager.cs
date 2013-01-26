@@ -42,6 +42,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
+    [PartMetadata(Constraint.Name, ">3.0.0.0")]
     public class MeetingManager : Plugin
     {
         #region Fields
@@ -57,11 +58,9 @@ namespace Probel.NDoctor.Plugins.MeetingManager
         #region Constructors
 
         [ImportingConstructor]
-        public MeetingManager([Import("version")] Version version)
-            : base(version)
+        public MeetingManager()
+            : base()
         {
-            this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
-
             this.ConfigureAutoMapper();
         }
 

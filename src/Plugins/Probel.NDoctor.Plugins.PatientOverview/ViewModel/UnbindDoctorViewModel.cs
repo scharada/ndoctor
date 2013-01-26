@@ -24,23 +24,27 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
     using System;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
+
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins.Helpers;
-    using Probel.NDoctor.Domain.DTO;
 
     internal class UnbindDoctorViewModel : BaseViewModel
     {
         #region Fields
 
+        private readonly IPatientDataComponent Component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
         private readonly ICommand selectDoctorCommand;
+
+        private LightDoctorDto selectedDoctor;
 
         #endregion Fields
 
         #region Constructors
-        private readonly IPatientDataComponent Component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
+
         public UnbindDoctorViewModel()
         {
             this.FoundDoctors = new ObservableCollection<LightDoctorDto>();
@@ -62,8 +66,6 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             get { return this.selectDoctorCommand; }
         }
 
-
-        private LightDoctorDto selectedDoctor;
         public LightDoctorDto SelectedDoctor
         {
             get { return this.selectedDoctor; }
@@ -78,6 +80,16 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
 
         #region Methods
 
+        public void Refresh()
+        {
+            try
+            {
+                var result = this.Component.GetDoctorOf(PluginContext.Host.SelectedPatient);
+                this.FoundDoctors.Refill(result);
+            }
+            catch (Exception ex) { this.Handle.Error(ex); }
+        }
+
         private bool CanSelectDoctor()
         {
             return PluginContext.DoorKeeper.IsUserGranted(To.Write);
@@ -87,16 +99,6 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         {
             PluginDataContext.Instance.Invoker.Unbind(this.Component, PluginContext.Host.SelectedPatient, this.SelectedDoctor);
             this.Close();
-        }
-
-        public void Refresh()
-        {
-            try
-            {
-                var result = this.Component.GetDoctorOf(PluginContext.Host.SelectedPatient);
-                this.FoundDoctors.Refill(result);
-            }
-            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods

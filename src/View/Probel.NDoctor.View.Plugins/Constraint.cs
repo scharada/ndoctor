@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,6 +16,9 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#endregion Header
+
 namespace Probel.NDoctor.View.Plugins
 {
     using System;
@@ -21,36 +26,25 @@ namespace Probel.NDoctor.View.Plugins
     using Probel.Helpers.Assertion;
 
     /// <summary>
-    /// This validator checks the version of the plugin with the version constraint specified.
+    /// The plugin is valid when this constraint is respected
     /// </summary>
-    public class PluginValidator
+    public class Constraint
     {
+        #region Fields
+
+        /// <summary>
+        /// The name of the <see cref="PartMetadata"/> first argument. This is a convenience property
+        /// </summary>
+        public const string Name = "Constraint";
+
+        #endregion Fields
+
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PluginValidator"/> class.
-        /// </summary>
-        /// <param name="version">The version.</param>
-        /// <param name="mode">The validation mode.</param>
-        public PluginValidator(Version version, ValidationMode mode)
+        public Constraint(string value)
         {
-            this.Version = version;
-            this.Mode = mode;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PluginValidator"/> class.
-        /// </summary>
-        /// <param name="version">The version represented as a string.</param>
-        /// <param name="mode">The validation mode.</param>
-        /// <exception cref="System.ArgumentException">version has fewer than two components or more than four components.</exception>
-        /// <exception cref="System.ArgumentNullException">version is null.</exception>
-        /// <exception cref="System.ArgumentOutOfRangeException">A major, minor, build, or revision component is less than zero.</exception>
-        /// <exception cref="System.FormatException">At least one component of version does not parse to an integer.</exception>
-        /// <exception cref="System.OverflowException">At least one component of version represents a number greater than System.Int32.MaxValue.</exception>   
-        public PluginValidator(string version, ValidationMode mode)
-            : this(new Version(version), mode)
-        {
+            this.Mode = this.GetMode(value[0].ToString());
+            this.Version = new Version(value.Substring(1));
         }
 
         #endregion Constructors
@@ -58,7 +52,7 @@ namespace Probel.NDoctor.View.Plugins
         #region Properties
 
         /// <summary>
-        /// Gets the mode the constraint should be tested.
+        /// Gets the type of validation that will be applyed on the plugin version
         /// </summary>
         public ValidationMode Mode
         {
@@ -67,7 +61,7 @@ namespace Probel.NDoctor.View.Plugins
         }
 
         /// <summary>
-        /// Gets the version the plugin should have.
+        /// Gets version this plugin should have.
         /// </summary>
         public Version Version
         {
@@ -89,6 +83,24 @@ namespace Probel.NDoctor.View.Plugins
         public bool IsValid(IPluginHost host)
         {
             return this.IsValid(host.HostVersion);
+        }
+
+        private ValidationMode GetMode(string mode)
+        {
+            ValidationMode vmode = ValidationMode.Strict;
+            switch (mode)
+            {
+                case ">":
+                    vmode = ValidationMode.Minimum;
+                    break;
+                case "=":
+                    vmode = ValidationMode.Strict;
+                    break;
+                default:
+                    Assert.FailOnEnumeration(mode);
+                    break;
+            }
+            return vmode;
         }
 
         /// <summary>

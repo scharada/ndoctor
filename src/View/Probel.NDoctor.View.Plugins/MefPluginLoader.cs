@@ -21,7 +21,12 @@ namespace Probel.NDoctor.View.Plugins
     using System.ComponentModel.Composition.Hosting;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
     using System.Threading;
+
+    using Probel.NDoctor.View.Plugins.Helpers;
+    using System.Collections.Generic;
+    using System.ComponentModel.Composition.Primitives;
 
     public class MefPluginLoader : LogObject, IPluginLoader
     {
@@ -57,15 +62,24 @@ namespace Probel.NDoctor.View.Plugins
                 catalog.Catalogs.Add(new DirectoryCatalog(directory));
                 count++;
             }
-            Logger.InfoFormat("{0} plugin(s) found and loaded", count);
-            var container = new CompositionContainer(catalog);
-            container.ComposeExportedValue<Version>("version", host.HostVersion);
-            container.ComposeExportedValue<CultureInfo>("cultureInfo", Thread.CurrentThread.CurrentUICulture);
+            Logger.InfoFormat("Found {0} plugin(s) in the repository. (Validation not done)", count);
 
+            var filteredCatatog = new FilteredCatalog(catalog, def => this.IsPluginValid(def));
+
+            var container = new CompositionContainer(filteredCatatog);
             var composition = new CompositionBatch();
             composition.AddPart(pluginContainer);
 
             container.Compose(composition);
+        }
+
+        private bool IsPluginValid(ComposablePartDefinition def)
+        {
+            if (def.Metadata.ContainsKey(Constraint.Name))
+            {
+                return new Constraint(def.Metadata[Constraint.Name].ToString()).IsValid(PluginContext.Host);
+            }
+            else { return false; }
         }
 
         #endregion Methods

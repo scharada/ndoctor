@@ -84,6 +84,7 @@
     <Compile Include="Exceptions\PluginException.cs" />
     <Compile Include="Exceptions\PluginsNotLoadedException.cs" />
     <Compile Include="Exceptions\WrongDataContextException.cs" />
+    <Compile Include="FilteredCatalog.cs" />
     <Compile Include="Groups.cs" />
     <Compile Include="Helpers\BaseText.cs" />
     <Compile Include="Helpers\Configuration.cs" />
@@ -113,7 +114,6 @@
     <Compile Include="IPluginHost.cs" />
     <Compile Include="IPluginLoader.cs" />
     <Compile Include="PluginContainer.cs" />
-    <Compile Include="PluginValidator.cs" />
     <Compile Include="Properties\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -121,6 +121,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticViewPlugin.cs" />
+    <Compile Include="Constraint.cs" />
     <Compile Include="ValidationMode.cs" />
   </ItemGroup>
   <ItemGroup>

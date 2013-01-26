@@ -22,6 +22,7 @@
 namespace Probel.NDoctor.Plugins.PatientOverview.View
 {
     using System.Windows;
+
     using Probel.NDoctor.Plugins.PatientOverview.ViewModel;
 
     /// <summary>

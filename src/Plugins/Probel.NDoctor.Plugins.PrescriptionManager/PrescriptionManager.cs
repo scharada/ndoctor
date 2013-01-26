@@ -35,6 +35,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
+    [PartMetadata(Constraint.Name, ">3.0.0.0")]
     public class PrescriptionManager : Plugin
     {
         #region Fields
@@ -51,12 +52,10 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         #region Constructors
 
         [ImportingConstructor]
-        public PrescriptionManager([Import("version")] Version version)
-            : base(version)
+        public PrescriptionManager()
+            : base()
         {
             this.lastNavigation = LastNavigation.None;
-
-            this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
         }
 
         #endregion Constructors

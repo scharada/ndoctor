@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Plugins.DebugTools
     using Probel.NDoctor.View.Plugins.Helpers;
 
     [Export(typeof(IPlugin))]
+    [PartMetadata(Constraint.Name, ">3.0.0.0")]
     public class DebugTools : Plugin
     {
         #region Fields
@@ -46,13 +47,11 @@ namespace Probel.NDoctor.Plugins.DebugTools
         /// <param name="version">The version.</param>
         /// <param name="host">The host.</param>
         [ImportingConstructor]
-        public DebugTools([Import("version")] Version version)
-            : base(version)
+        public DebugTools()
+            : base()
         {
             this.component = PluginContext.ComponentFactory.GetInstance<ISqlComponent>();
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<ISqlComponent>();
-
-            this.Validator = new PluginValidator("1.0.0.0", ValidationMode.Minimum);
             this.Logger.Warn("Debug plugin is loaded. It shouldn't be used in production!");
         }
 

@@ -46,38 +46,14 @@ namespace Probel.NDoctor.View.Plugins
         /// <param name="host">The host.</param>
         /// <param name="cultureInfo">The culture info.</param>
         [ImportingConstructor]
-        public Plugin(Version version)
+        public Plugin()
         {
             this.Handle = new ErrorHandlerFactory().New(this);
-            this.Version = version;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Plugin"/> class.
-        /// </summary>
-        /// <param name="version">The version of the plugin</param>
-        /// <param name="host">The host.</param>
-        /// <param name="cultureInfo">The culture info.</param>
-        protected Plugin(string version)
-            : this(new Version(version))
-        {
         }
 
         #endregion Constructors
 
         #region Properties
-
-        /// <summary>
-        /// Gets a value indicating whether this plugin is active.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this plugin is active; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsActive
-        {
-            get;
-            private set;
-        }
 
         /// <summary>
         /// Gets the logger.
@@ -99,16 +75,6 @@ namespace Probel.NDoctor.View.Plugins
             protected set;
         }
 
-        /// <summary>
-        /// Gets the version of this plugin. This will be used with the <see cref="PluginValidator.cs"/>
-        /// to check if this plugin can be validated or not.
-        /// </summary>
-        public Version Version
-        {
-            get;
-            protected set;
-        }
-
         protected RibbonContextualTabGroupData ContextualMenu
         {
             get;
@@ -121,59 +87,15 @@ namespace Probel.NDoctor.View.Plugins
             private set;
         }
 
-        /// <summary>
-        /// Gets or sets the validator.
-        /// </summary>
-        /// <value>
-        /// The validator.
-        /// </value>
-        protected PluginValidator Validator
-        {
-            get;
-            set;
-        }
-
         #endregion Properties
 
         #region Methods
-
-        /// <summary>
-        /// Activates this plugin. That's the PluginHost can display and the user can use this plugin.
-        /// It means that all validations have succeeded on this plugin.
-        /// </summary>
-        public virtual void Activate()
-        {
-            this.IsActive = true;
-        }
-
-        /// <summary>
-        /// Deactivates this plugin. That's the PluginHost CAN'T display and the user CAN'T use this plugin.
-        /// It means that at least one validation have FAILED on this plugin.
-        /// </summary>
-        public virtual void Deactivate()
-        {
-            this.IsActive = false;
-        }
 
         /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
         /// Every task that could throw exception should be in this method and not in the ctor.
         /// </summary>
         public abstract void Initialise();
-
-        /// <summary>
-        /// Determines whether this plugin is valid refering to the host version.
-        /// </summary>
-        /// <param name="host"></param>
-        /// <returns>
-        ///   <c>true</c> if this plugin is valid; otherwise, <c>false</c>.
-        /// </returns>
-        public bool IsValid(IPluginHost host)
-        {
-            if (this.Validator == null) throw new PluginException(Messages.Ex_PluginException_NoValidator);
-
-            return this.Validator.IsValid(host);
-        }
 
         /// <summary>
         /// Shows the contextual menu of the current plugin.

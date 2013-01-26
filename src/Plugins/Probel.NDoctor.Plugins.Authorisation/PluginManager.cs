@@ -37,6 +37,7 @@ namespace Probel.NDoctor.Plugins.Authorisation
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
+    [PartMetadata(Constraint.Name, ">3.0.0.0")]
     public class PluginManager : Plugin
     {
         #region Fields
@@ -52,13 +53,11 @@ namespace Probel.NDoctor.Plugins.Authorisation
         #region Constructors
 
         [ImportingConstructor]
-        public PluginManager([Import("version")] Version version)
-            : base(version)
+        public PluginManager()
+            : base()
         {
             this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
             PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
-
-            this.Validator = new PluginValidator("3.0.0.0", ValidationMode.Minimum);
 
             this.ConfigureAutoMapper();
         }

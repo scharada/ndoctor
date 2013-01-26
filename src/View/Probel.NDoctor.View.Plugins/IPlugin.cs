@@ -27,17 +27,6 @@ namespace Probel.NDoctor.View.Plugins
         #region Properties
 
         /// <summary>
-        /// Gets a value indicating whether this plugin is active.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this plugin is active; otherwise, <c>false</c>.
-        /// </value>
-        bool IsActive
-        {
-            get;
-        }
-
-        /// <summary>
         /// Gets the page that represents the workbench of the plugin.
         /// </summary>
         /// <value>
@@ -48,44 +37,14 @@ namespace Probel.NDoctor.View.Plugins
             get;
         }
 
-        /// <summary>
-        /// Gets the version of this plugin. This will be used with the <see cref="PluginValidator.cs"/>
-        /// to check if this plugin can be validated or not.
-        /// </summary>
-        Version Version
-        {
-            get;
-        }
-
         #endregion Properties
 
         #region Methods
 
         /// <summary>
-        /// Activates this plugin. That's the PluginHost can display and the user can use this plugin.
-        /// It means that all validations have succeeded on this plugin.
-        /// </summary>
-        void Activate();
-
-        /// <summary>
-        /// Deactivates this plugin. That's the PluginHost CAN'T display and the user CAN'T use this plugin.
-        /// It means that at least one validation have FAILED on this plugin.
-        /// </summary>
-        void Deactivate();
-
-        /// <summary>
         /// Initialises this plugin. Basicaly it should configure the menus into the PluginHost
         /// </summary>
         void Initialise();
-
-        /// <summary>
-        /// Determines whether this plugin is valid refering to the host version.
-        /// </summary>
-        /// <param name="hostVersion">The host version.</param>
-        /// <returns>
-        ///   <c>true</c> if this plugin is valid; otherwise, <c>false</c>.
-        /// </returns>
-        bool IsValid(IPluginHost host);
 
         #endregion Methods
     }
