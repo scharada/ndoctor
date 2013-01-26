@@ -56,7 +56,7 @@ namespace Probel.NDoctor.View.Core.View
         private readonly Page Startpage;
 
         private LightUserDto connectedUser;
-        private object lastDestination;
+        public object LastDestination { get; private set; }
 
         #endregion Fields
 
@@ -70,7 +70,7 @@ namespace Probel.NDoctor.View.Core.View
             this.DataContext = new MainWindowViewModel();
             this.WriteStatus(StatusType.Info, Messages.Msg_Ready);
 
-            this.workbench.NavigationService.Navigating += (sender, e) => this.OnNavigating(lastDestination, e.Content);
+            this.workbench.NavigationService.Navigating += (sender, e) => this.OnNavigating(LastDestination, e.Content);
 
             this.Closing += (sender, e) => this.OnDisconnecting();
         }
@@ -347,35 +347,43 @@ namespace Probel.NDoctor.View.Core.View
         /// Navigates to specified page.
         /// </summary>
         /// <param name="page">The page.</param>
-        public void Navigate(object page)
+        /// <returns>
+        ///   <c>True</c> if the navigation was allowed; otherwise <c>False</c>
+        /// </returns>
+        public bool Navigate(object page)
         {
             Assert.IsNotNull(page, "page");
-            // Hide other context menus otherwise, the context menu of this page
-            // will be added to the others.
-            foreach (var context in App.RibbonData.ContextualTabGroupDataCollection)
-            { context.IsVisible = false; }
+            var result = false;
 
             this.Dispatcher.Invoke((Action)delegate
             {
-                if (this.lastDestination is IWorkbench)
+                if (this.LastDestination is IWorkbench)
                 {
-                    var wb = lastDestination as IWorkbench;
+                    var wb = LastDestination as IWorkbench;
                     if (wb.CanLeave() || (!wb.CanLeave() && wb.AskToLeave()))
                     {
                         this.Goto(page);
+                        result = true;
                     }
                 }
-                else { this.Goto(page); }
+                else
+                {
+                    this.Goto(page);
+                    result = true;
+                }
             });
-            this.lastDestination = page;
+            return result;
         }
 
         /// <summary>
         /// Navigates to start page.
         /// </summary>
-        public void NavigateToStartPage()
+        /// <returns>
+        ///   <c>True</c> if the navigation was allowed; otherwise <c>False</c>
+        /// </returns>
+        public bool NavigateToStartPage()
         {
-            this.Navigate(Startpage);
+            var result = this.Navigate(Startpage);
             this.Dispatcher.Invoke((Action)delegate
             {
                 if (this.Startpage.DataContext is StartPageViewModel)
@@ -383,6 +391,7 @@ namespace Probel.NDoctor.View.Core.View
                     (this.Startpage.DataContext as StartPageViewModel).RefreshStatisticsCommand.TryExecute();
                 }
             });
+            return result;
         }
 
         /// <summary>
@@ -477,8 +486,14 @@ namespace Probel.NDoctor.View.Core.View
 
         private void Goto(object page)
         {
+            // Hide other context menus otherwise, the context menu of this page
+            // will be added to the others.
+            foreach (var context in App.RibbonData.ContextualTabGroupDataCollection)
+            { context.IsVisible = false; }
+
             this.workbench.NavigationService.Navigate(page);
             this.WriteStatus(StatusType.Info, Messages.Msg_Ready);
+            this.LastDestination = page;
         }
 
         private void OnBeforeNewPatientConnected()
@@ -528,11 +543,11 @@ namespace Probel.NDoctor.View.Core.View
 
         private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            #if DEBUG
+#if DEBUG
             this.WindowState = System.Windows.WindowState.Normal;
-            #else
+#else
             this.WindowState = System.Windows.WindowState.Maximized;
-            #endif
+#endif
         }
 
         private void WriteStatus(LightPatientDto value)
@@ -542,5 +557,17 @@ namespace Probel.NDoctor.View.Core.View
         }
 
         #endregion Methods
+
+        private void this_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (this.LastDestination is IWorkbench)
+            {
+                var wb = LastDestination as IWorkbench;
+                if (!(wb.CanLeave() || (!wb.CanLeave() && wb.AskToLeave())))
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
     }
 }

@@ -140,9 +140,11 @@ namespace Probel.NDoctor.Plugins.FamilyViewer
         {
             try
             {
-                PluginContext.Host.Navigate(this.workbench);
-                (this.workbench.DataContext as WorkbenchViewModel).Refresh();
-                this.ShowContextMenu();
+                if (PluginContext.Host.Navigate(this.workbench))
+                {
+                    (this.workbench.DataContext as WorkbenchViewModel).Refresh();
+                    this.ShowContextMenu();
+                }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }

@@ -368,10 +368,11 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
         {
             try
             {
-                this.View.As<WorkbenchViewModel>().RefreshCommand.TryExecute();
-                PluginContext.Host.Navigate(this.View);
-
-                this.ShowContextMenu();
+                if (PluginContext.Host.Navigate(this.View))
+                {
+                    this.View.As<WorkbenchViewModel>().RefreshCommand.TryExecute();
+                    this.ShowContextMenu();
+                }
             }
             catch (Exception ex)
             {

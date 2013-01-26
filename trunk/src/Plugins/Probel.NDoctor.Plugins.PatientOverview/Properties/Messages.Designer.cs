@@ -493,7 +493,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Double click to select the doctor.
+        ///   Looks up a localized string similar to Double click to select the doctor..
         /// </summary>
         internal static string Msg_DoubleClick {
             get {
@@ -511,7 +511,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to leave without saving?.
+        ///   Looks up a localized string similar to Do you want to cancel the modification done on the patient?.
         /// </summary>
         internal static string Question_LeaveWithoutSaving {
             get {
@@ -619,7 +619,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to cancel the modification done on the patient?.
+        ///   Looks up a localized string similar to An error occured when displaying the thumbnail of the patient..
         /// </summary>
         internal static string Warn_ImpossibleToDisplayThumb {
             get {

@@ -49,15 +49,13 @@ namespace Probel.NDoctor.View.Core
         #endregion Fields
 
         #region Constructors
-
         public App()
         {
-            #if DEBUG
+#if DEBUG
             //Hook the console to the application to have logging features
             AllocConsole();
-            //HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
-            #endif
-
+#endif
+            this.MainWindow = new MainWindow();
             this.Logger = LogManager.GetLogger(typeof(LogManager));
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Settings.Default.Language);
 
@@ -65,7 +63,6 @@ namespace Probel.NDoctor.View.Core
             PluginContext.Configuration.AutomaticContextMenu = Settings.Default.AutomaticContextMenu;
             PluginContext.Configuration.ExecutionTimeThreshold = uint.Parse(ConfigurationManager.AppSettings["ExecutionTimeThreshold"]);
 
-            var main = new MainWindow();
             var splash = new MySplashScreen();
 
             try { splash.ShowDialog(); }
@@ -77,8 +74,8 @@ namespace Probel.NDoctor.View.Core
 
             if (!splash.IsOnError)
             {
-                main.Show();
-                ViewService.Configure(e => e.RootWindow = main);
+                this.MainWindow.Show();
+                ViewService.Configure(e => e.RootWindow = this.MainWindow);
             }
             else { Application.Current.Shutdown(); }
         }
@@ -127,7 +124,6 @@ namespace Probel.NDoctor.View.Core
         /// The fix to the wrong string.Format in the Xaml code
         /// http://stackoverflow.com/questions/2764615/wpf-stringformat-0c-showing-as-dollars
         /// </summary>
-        /// <param name="e"></param>
         protected override void OnStartup(StartupEventArgs e)
         {
             FrameworkElement.LanguageProperty.OverrideMetadata(

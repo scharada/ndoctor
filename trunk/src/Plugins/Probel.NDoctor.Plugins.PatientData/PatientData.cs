@@ -176,9 +176,11 @@ namespace Probel.NDoctor.Plugins.PatientData
 
         private void Navigate()
         {
-            this.View.As<WorkbenchViewModel>().Refresh();
-            PluginContext.Host.Navigate(this.View);
-            this.ShowContextMenu();
+            if (PluginContext.Host.Navigate(this.View))
+            {
+                this.View.As<WorkbenchViewModel>().Refresh();
+                this.ShowContextMenu();
+            }
         }
 
         #endregion Methods

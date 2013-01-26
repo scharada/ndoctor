@@ -14,7 +14,8 @@
 					 Width="1024" Height="768" 
 					 WindowStartupLocation="CenterScreen" 
 					 Icon="/Probel.NDoctor.View.Core;component/Images/Icon.ico"
-                     Loaded="this_Loaded">
+                     Loaded="this_Loaded"
+                     Closing="this_Closing">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>

@@ -146,10 +146,11 @@ namespace Probel.NDoctor.Plugins.BmiRecord
 
         private void Navigate()
         {
-            PluginContext.Host.Navigate(this.Workbench);
-            this.Workbench.As<WorkbenchViewModel>().Refresh();
-
-            this.ShowContextMenu();
+            if (PluginContext.Host.Navigate(this.Workbench))
+            {
+                this.Workbench.As<WorkbenchViewModel>().Refresh();
+                this.ShowContextMenu();
+            }
         }
 
         #endregion Methods

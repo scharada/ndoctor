@@ -318,8 +318,8 @@
     <comment>Double click to unbind the doctor.</comment>
   </data>
   <data name="Question_LeaveWithoutSaving" xml:space="preserve">
-    <value>Voulez-vous quitter sans sauver?</value>
-    <comment>Do you want to leave without saving?</comment>
+    <value>Voulez-vous annuler les modifications du patient?</value>
+    <comment>Do you want to cancel the modification done on the patient?</comment>
   </data>
   <data name="Title_AddDoctor" xml:space="preserve">
     <value>Ajouter un médecin...</value>
@@ -366,7 +366,7 @@
     <comment>Unbind a doctor...</comment>
   </data>
   <data name="Warn_ImpossibleToDisplayThumb" xml:space="preserve">
-    <value>Voulez-vous annuler les modifications du patient?</value>
-    <comment>Do you want to cancel the modification done on the patient?</comment>
+    <value>Une erreur est survenue pendant l'affichage de la miniature du patient.</value>
+    <comment>An error occured when displaying the thumbnail of the patient.</comment>
   </data>
 </root>

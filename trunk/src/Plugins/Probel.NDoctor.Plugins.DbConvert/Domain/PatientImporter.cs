@@ -148,7 +148,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.Domain
             current.Fee = 0;
             current.FirstName = reader[Columns.FirstName] as string;
             current.Gender = ((reader[Columns.Gender] as string) == "M") ? Gender.Male : Gender.Female;
-            current.Height = reader[Columns.Height] as long? ?? default(long);
+            current.Height = reader[Columns.Height] as int? ?? default(int);
             current.InscriptionDate = reader[Columns.InscriptionDate] as DateTime? ?? DateTime.MinValue;
             current.IsComplete = reader[Columns.IsComplete] as bool? ?? default(bool);
             current.LastName = reader[Columns.LastName] as string;

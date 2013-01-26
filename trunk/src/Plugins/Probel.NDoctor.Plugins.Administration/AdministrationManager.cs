@@ -204,11 +204,12 @@ namespace Probel.NDoctor.Plugins.Administration
 
         private void Navigate()
         {
-            PluginContext.Host.Navigate(this.WorkbenchView);
-            this.WorkbenchView.As<WorkbenchViewModel>().Refresh();
-
-            this.ContextualMenu.IsVisible = true;
-            this.ContextualMenu.TabDataCollection[0].IsSelected = PluginContext.Configuration.AutomaticContextMenu;
+            if (PluginContext.Host.Navigate(this.WorkbenchView))
+            {
+                this.WorkbenchView.As<WorkbenchViewModel>().Refresh();
+                this.ContextualMenu.IsVisible = true;
+                this.ContextualMenu.TabDataCollection[0].IsSelected = PluginContext.Configuration.AutomaticContextMenu;
+            }
         }
 
         private void Refresh()

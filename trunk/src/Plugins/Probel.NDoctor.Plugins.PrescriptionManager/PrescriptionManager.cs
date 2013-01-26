@@ -238,12 +238,13 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         {
             try
             {
-                this.isSaveCommandActivated = true;
-                this.AddPrescriptionView.As<AddPrescriptionViewModel>().Refresh();
-                PluginContext.Host.Navigate(this.AddPrescriptionView);
-
-                this.ShowContextMenu();
-                this.lastNavigation = LastNavigation.AddPrescription;
+                if (PluginContext.Host.Navigate(this.AddPrescriptionView))
+                {
+                    this.isSaveCommandActivated = true;
+                    this.AddPrescriptionView.As<AddPrescriptionViewModel>().Refresh();
+                    this.ShowContextMenu();
+                    this.lastNavigation = LastNavigation.AddPrescription;
+                }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -252,12 +253,13 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
         {
             try
             {
-                this.isSaveCommandActivated = false;
-                PluginContext.Host.Navigate(this.WorkbenchView);
-
-                this.ShowContextMenu();
-                this.lastNavigation = LastNavigation.Workbench;
-                this.LoadDefaultPrescriptions();
+                if (PluginContext.Host.Navigate(this.WorkbenchView))
+                {
+                    this.isSaveCommandActivated = false;
+                    this.ShowContextMenu();
+                    this.lastNavigation = LastNavigation.Workbench;
+                    this.LoadDefaultPrescriptions();
+                }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
