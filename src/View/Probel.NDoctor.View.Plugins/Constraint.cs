@@ -30,10 +30,6 @@ namespace Probel.NDoctor.View.Plugins
     /// </summary>
     public class Constraint
     {
-        #region Fields
-
-        #endregion Fields
-
         #region Constructors
 
         public Constraint(string value)
