@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,16 +16,23 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
+#endregion Header
 
 namespace Probel.NDoctor.View.Plugins
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     public static class Keys
     {
+        #region Fields
+
         public const string Constraint = "Constraint";
         public const string PluginName = "PluginName";
+
+        #endregion Fields
     }
 }
