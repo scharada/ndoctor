@@ -88,18 +88,7 @@ namespace Probel.NDoctor.View.Plugins
         /// <summary>
         /// Gets the owner of all toolboxes. That's the main window of nDoctor
         /// </summary>
-        Window MainWindow
-        {
-            get;
-        }
-
-        /// <summary>
-        /// Gets the search algorithm to apply on a search.
-        /// </summary>
-        /// <value>
-        /// The type of the search.
-        /// </value>
-        SearchOn SearchType
+        Window RootWindow
         {
             get;
         }

@@ -126,7 +126,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         {
             try
             {
-                var result = this.Component.GetNotLinkedDoctorsFor(PluginContext.Host.SelectedPatient, this.Criteria, PluginContext.Host.SearchType);
+                var result = this.Component.GetNotLinkedDoctorsFor(PluginContext.Host.SelectedPatient, this.Criteria, PluginContext.Configuration.SearchType);
                 this.FoundDoctors.Refill(result);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
