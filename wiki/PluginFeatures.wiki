@@ -14,7 +14,16 @@ The plugin host DLL offers a error handler to manage exception. Its role is pret
  * displays an error message in a message box
  * logs the exception in a file or in whatever way you've configured log4net
 
-== View Service ==
+== Plugin context ==
+This plugin context provides an small API to execute some generic tasks:
+ * Logging into the GUI
+ * Create left pane dynamically
+ * Checking authorisation
+ * Build plugin's ribbon menu using `DataBinding`
+
+=== View Service ===
+
+==== Window manager ====
 
 This service offers a simple mechanism to manage windows into the application.
 
@@ -42,14 +51,7 @@ ViewService.Manager.Show<SomeViewModel>(vm => vm.ActionFromViewModel());
 
 You can close the opened window from the `ViewModel` if it implements the interface `IRequestCloseViewModel`. The framework provides a basic implementation of this interface with the class `RequestCloseViewModel`
 
-== Plugin context ==
-This plugin context provides an small API to execute some generic tasks:
- * Logging into the GUI
- * Create left pane dynamically
- * Checking authorisation
- * Build plugin's ribbon menu using `DataBinding`
-
-== Message boxes ==
+==== Message boxes ====
 
 The `ViewService` has a property `MessageBox` that provides a easy way to use predefined message boxes. 
 
@@ -65,6 +67,13 @@ void None(string message, string title);
 bool Question(string message);
 void Stop(string message);
 void Warning(string message);
+}}}
+
+=== Door Keeper ===
+The door keeper is a module that checks the authorisation on demand. It keep tracks on who's connected and says whether this connected user can execute or not the specified task. For instance this code checks whether the connected user can execute a _write_ action:
+
+{{{
+bool isGranted = PluginContext.Host.DoorKeeper.IsGranted("write")
 }}}
 
 === Avalon Dock ===
@@ -85,13 +94,6 @@ PluginContext.Host.WriteStatus(statusType.Warning, "Mind the step!");
  * Error
  * Warning
  * Info
-
-=== Door Keeper ===
-The door keeper is a module that checks the authorisation on demand. It keep tracks on who's connected and says whether this connected user can execute or not the specified task. For instance this code checks whether the connected user can execute a _write_ action:
-
-{{{
-bool isGranted = PluginContext.Host.DoorKeeper.IsGranted("write")
-}}}
 
 === Build ribbon menu with data binding ===
 [`Check the interface IPluginContext, the method's names are explicit`]
