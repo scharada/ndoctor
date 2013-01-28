@@ -44,7 +44,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
         public AddPatientViewModel()
             : base()
         {
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPatientSessionComponent>();
+            PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPatientSessionComponent>();
 
             this.Patient = new LightPatientDto();
             this.Genders = new ObservableCollection<Tuple<string, Gender>>();

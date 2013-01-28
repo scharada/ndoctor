@@ -35,16 +35,6 @@ namespace Probel.NDoctor.View.Plugins
         #region Events
 
         /// <summary>
-        /// Occurs when before new patient is connected.
-        /// </summary>
-        event EventHandler BeforeNewPatientConnected;
-
-        /// <summary>
-        /// Occurs when current user is disconnecting or the main window is closing.
-        /// </summary>
-        event EventHandler Disconnecting;
-
-        /// <summary>
         /// Occurs when use navigate to a new workbench.
         /// The EventArgs Contains the previous and the current destination
         /// </summary>
@@ -53,12 +43,22 @@ namespace Probel.NDoctor.View.Plugins
         /// <summary>
         /// Occurs when a patient session is closed.
         /// </summary>
-        event EventHandler NewPatientConnected;
+        event EventHandler PatientConnected;
+
+        /// <summary>
+        /// Occurs when before new patient is connected.
+        /// </summary>
+        event EventHandler PatientConnecting;
 
         /// <summary>
         /// Occurs when a new user has connected.
         /// </summary>
-        event EventHandler NewUserConnected;
+        event EventHandler UserConnected;
+
+        /// <summary>
+        /// Occurs when current user is disconnecting or the main window is closing.
+        /// </summary>
+        event EventHandler UserDisconnecting;
 
         #endregion Events
 

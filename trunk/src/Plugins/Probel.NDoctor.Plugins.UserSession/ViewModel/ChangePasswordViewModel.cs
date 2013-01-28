@@ -50,7 +50,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             if (!Designer.IsDesignMode)
             {
                 this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
-                PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
+                PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
             }
 
             this.SaveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());

@@ -52,7 +52,7 @@ namespace Probel.NDoctor.Plugins.DebugTools
             : base()
         {
             this.component = PluginContext.ComponentFactory.GetInstance<ISqlComponent>();
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<ISqlComponent>();
+            PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<ISqlComponent>();
             this.Logger.Warn("Debug plugin is loaded. It shouldn't be used in production!");
         }
 

@@ -53,7 +53,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.ViewModel
         public WorkbenchViewModel()
             : base()
         {
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<ICalendarComponent>();
+            PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<ICalendarComponent>();
 
             this.DateToDisplay = DateTime.Today;
             this.DayAppointments = new AppointmentCollection();

@@ -60,7 +60,7 @@ namespace Probel.NDoctor.Plugins.FamilyViewer.ViewModel
         /// <param name="host">The host.</param>
         public WorkbenchViewModel()
         {
-            PluginContext.Host.NewPatientConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
+            PluginContext.Host.PatientConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IFamilyComponent>();
 
             this.FamilyMembers = new ObservableCollection<LightPatientDto>();
 

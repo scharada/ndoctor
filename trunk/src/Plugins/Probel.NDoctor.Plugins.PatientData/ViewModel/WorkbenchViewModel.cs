@@ -60,7 +60,7 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         {
             this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
 
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
+            PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
 
             this.InitialiseCollections();
 

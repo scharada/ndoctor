@@ -85,7 +85,7 @@ namespace Probel.NDoctor.Plugins.UserSession
         public UserSession()
             : base()
         {
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
+            PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
             this.BuildCommands();
         }
 

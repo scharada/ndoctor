@@ -71,22 +71,12 @@ namespace Probel.NDoctor.View.Core.View
 
             this.workbench.NavigationService.Navigating += (sender, e) => this.OnNavigating(LastDestination, e.Content);
 
-            this.Closing += (sender, e) => this.OnDisconnecting();
+            this.Closing += (sender, e) => this.OnUserDisconnecting();
         }
 
         #endregion Constructors
 
         #region Events
-
-        /// <summary>
-        /// Occurs when before new patient is connected.
-        /// </summary>
-        public event EventHandler BeforeNewPatientConnected;
-
-        /// <summary>
-        /// Occurs when current user is disconnecting or the main window is closing.
-        /// </summary>
-        public event EventHandler Disconnecting;
 
         /// <summary>
         /// Occurs when use navigate to a new workbench.
@@ -97,12 +87,22 @@ namespace Probel.NDoctor.View.Core.View
         /// <summary>
         /// Occurs when a patient session is closed.
         /// </summary>
-        public event EventHandler NewPatientConnected;
+        public event EventHandler PatientConnected;
+
+        /// <summary>
+        /// Occurs when before new patient is connected.
+        /// </summary>
+        public event EventHandler PatientConnecting;
 
         /// <summary>
         /// Occurs when a new user has connected.
         /// </summary>
-        public event EventHandler NewUserConnected;
+        public event EventHandler UserConnected;
+
+        /// <summary>
+        /// Occurs when current user is disconnecting or the main window is closing.
+        /// </summary>
+        public event EventHandler UserDisconnecting;
 
         #endregion Events
 
@@ -150,7 +150,7 @@ namespace Probel.NDoctor.View.Core.View
             get { return this.connectedUser; }
             set
             {
-                if (this.connectedUser != null) { this.OnDisconnecting(); }
+                if (this.connectedUser != null) { this.OnUserDisconnecting(); }
                 this.connectedUser = value;
                 this.RefreshDataContext(this.connectedUser);
             }
@@ -205,9 +205,9 @@ namespace Probel.NDoctor.View.Core.View
             {
                 if (this.DataContext != null && this.DataContext is MainWindowViewModel)
                 {
-                    this.OnBeforeNewPatientConnected();
+                    this.OnPatientConnecting();
                     (this.DataContext as MainWindowViewModel).SelectedPatient = value;
-                    this.OnNewPatientConnected();
+                    this.OnPatientConnected();
                 }
                 else { throw new WrongDataContextException(); }
             }
@@ -445,11 +445,11 @@ namespace Probel.NDoctor.View.Core.View
             this.WriteStatus(StatusType.Info, Messages.Msg_Ready);
         }
 
-        protected void OnDisconnecting()
+        protected void OnUserDisconnecting()
         {
-            if (this.Disconnecting != null)
+            if (this.UserDisconnecting != null)
             {
-                this.Disconnecting(this, EventArgs.Empty);
+                this.UserDisconnecting(this, EventArgs.Empty);
             }
         }
 
@@ -500,14 +500,6 @@ namespace Probel.NDoctor.View.Core.View
             this.LastDestination = page;
         }
 
-        private void OnBeforeNewPatientConnected()
-        {
-            if (this.BeforeNewPatientConnected != null)
-            {
-                this.BeforeNewPatientConnected(this, EventArgs.Empty);
-            }
-        }
-
         private void OnNavigating(object from, object to)
         {
             if (this.Navigating != null)
@@ -516,19 +508,27 @@ namespace Probel.NDoctor.View.Core.View
             }
         }
 
-        private void OnNewPatientConnected()
+        private void OnNewUserConnected()
         {
-            if (this.NewPatientConnected != null)
+            if (this.UserConnected != null)
             {
-                this.NewPatientConnected(this, EventArgs.Empty);
+                this.UserConnected(this, EventArgs.Empty);
             }
         }
 
-        private void OnNewUserConnected()
+        private void OnPatientConnected()
         {
-            if (this.NewUserConnected != null)
+            if (this.PatientConnected != null)
             {
-                this.NewUserConnected(this, EventArgs.Empty);
+                this.PatientConnected(this, EventArgs.Empty);
+            }
+        }
+
+        private void OnPatientConnecting()
+        {
+            if (this.PatientConnecting != null)
+            {
+                this.PatientConnecting(this, EventArgs.Empty);
             }
         }
 

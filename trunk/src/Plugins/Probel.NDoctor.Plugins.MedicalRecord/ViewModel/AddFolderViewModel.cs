@@ -42,7 +42,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         public AddFolderViewModel()
             : base()
         {
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
+            PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
 
             this.tagToAdd = new TagDto(TagCategory.MedicalRecord);
             this.AddFolderCommand = new RelayCommand(() => this.AddFolder(), () => this.CanAddFolder());

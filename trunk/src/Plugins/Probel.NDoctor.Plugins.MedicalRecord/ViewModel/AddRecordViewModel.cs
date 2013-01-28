@@ -44,7 +44,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
 
         public AddRecordViewModel()
         {
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
+            PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IMedicalRecordComponent>();
             this.recordToAdd = new MedicalRecordDto();
             this.addRecordCommand = new RelayCommand(() => this.AddRecord(), () => this.CanAddRecord());
         }
