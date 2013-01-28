@@ -14,35 +14,33 @@ The plugin host DLL offers a error handler to manage exception. Its role is pret
  * displays an error message in a message box
  * logs the exception in a file or in whatever way you've configured log4net
 
-== Inner Window ==
+== View Service ==
 
-===*This feature doesn't exist anymore. It is replaced by the `ViewService` *===
-`[Documentation needs to be updated]`
+This service offers a simple mechanism to manage windows into the application.
 
-The `InnerWindow` is an easy to use versatile message box. Here's the way to use it: 
-
-{{{
-InnerWindow.Show("Title of the window", new CustomUserControl());
-}}}
-
-The ctor receives a string for the title of the window and a WPF `UserControl` for the main part of the window.
-
-To close the `InnerWindow` write this code: 
+The first thing to to is to let the manager knows about the link between the VIew and the ViewModel and configure (if necessary) the action to execute before showing and/or when closing the window
 
 {{{
-InnerWindow.Close()
+ViewService.Configure( e =>
+{
+   e.Bind<SomeView, SomeViewModel>()
+      .OnShow(vm => vm.ActionFromViewModel())     //Action to execute before showing the window
+      .OnClosing(vm => vm.ActionFromViewModel()); //Action to execute before closing the window
+});
 }}}
 
-You can use a built-in Cancel command writing this into the xaml code:
-
+The next step is to show the Window:
 {{{
-Command="iw:InnerWindow.CancelCommand"
+//Show a modal window
+ViewService.Manager.ShowDialog<SomeViewModel>()
+ViewService.Manager.ShowDialog<SomeViewModel>(vm => vm.ActionFromViewModel());
+
+//Show a non modal window
+ViewService.Manager.Show<SomeViewModel>()
+ViewService.Manager.Show<SomeViewModel>(vm => vm.ActionFromViewModel());
 }}}
 
-`iw` refers to a xml namespace defined as follow on top of the xaml file:
-{{{
-xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
-}}}
+You can close the opened window from the `ViewModel` if it implements the interface `IRequestCloseViewModel`. The framework provides a basic implementation of this interface with the class `RequestCloseViewModel`
 
 == Plugin context ==
 This plugin context provides an small API to execute some generic tasks:
@@ -50,6 +48,24 @@ This plugin context provides an small API to execute some generic tasks:
  * Create left pane dynamically
  * Checking authorisation
  * Build plugin's ribbon menu using `DataBinding`
+
+== Message boxes ==
+
+The `ViewService` has a property `MessageBox` that provides a easy way to use predefined message boxes. 
+
+Here's the different message boxes:
+{{{
+void Asterisk(string message);
+bool? CancelableQuestion(string message);
+void Error(string message);
+void Exclamation(string message);
+void Hand(string message);
+void Information(string message);
+void None(string message, string title);
+bool Question(string message);
+void Stop(string message);
+void Warning(string message);
+}}}
 
 === Avalon Dock ===
 nDoctor is build with the ability to show a hideable left panel. To add a new left panel use this code:
