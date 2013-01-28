@@ -47,7 +47,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         public AddUserViewModel()
             : base()
         {
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
+            PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
             this.AddCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
         }
 

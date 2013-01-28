@@ -61,7 +61,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
             : base()
         {
             this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
+            PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
 
             this.ConfigureAutoMapper();
         }

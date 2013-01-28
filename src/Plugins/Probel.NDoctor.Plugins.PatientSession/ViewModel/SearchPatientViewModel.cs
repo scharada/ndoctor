@@ -60,7 +60,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             this.SelectPatientCommand = new RelayCommand(() => this.SelectPatient(), () => this.CanSelectPatient());
 
             this.component = PluginContext.ComponentFactory.GetInstance<IPatientSessionComponent>();
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPatientSessionComponent>();
+            PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPatientSessionComponent>();
 
             Countdown.Elapsed += (sender, e) => PluginContext.Host.Invoke(() =>
             {

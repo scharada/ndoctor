@@ -53,7 +53,7 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
         public WorkbenchViewModel()
             : base()
         {
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
+            PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPathologyComponent>();
 
             this.IllnessHistory = new ObservableCollection<IllnessPeriodDto>();
 

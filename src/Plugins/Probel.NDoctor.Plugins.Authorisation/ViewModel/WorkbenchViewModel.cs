@@ -56,7 +56,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             if (!Designer.IsDesignMode)
             {
                 this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
-                PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
+                PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
             }
             this.Roles = new ObservableCollection<RoleDto>();
             this.AvailableTasks = new ObservableCollection<TaskDto>();

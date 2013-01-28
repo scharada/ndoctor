@@ -45,7 +45,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
             if (!Designer.IsDesignMode)
             {
                 this.component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
-                PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
+                PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
             }
 
             this.SelectedTag = new TagDto(TagCategory.Drug);

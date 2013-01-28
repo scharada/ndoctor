@@ -46,7 +46,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
         public AddRoleViewModel()
         {
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
+            PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
 
             this.AddCommand = new RelayCommand(() => this.AddRole(), () => this.CanAddRole());
         }

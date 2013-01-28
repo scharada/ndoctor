@@ -52,7 +52,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
         public SearchDrugViewModel()
         {
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
+            PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
 
             this.FoundDrugs = new ObservableCollection<DrugDto>();
             this.Tags = new ObservableCollection<TagDto>();

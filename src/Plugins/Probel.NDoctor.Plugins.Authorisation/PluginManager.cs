@@ -58,7 +58,7 @@ namespace Probel.NDoctor.Plugins.Authorisation
             : base()
         {
             this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
+            PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
 
             this.ConfigureAutoMapper();
         }

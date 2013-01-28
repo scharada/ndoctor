@@ -53,7 +53,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         public UpdateUserViewModel()
             : base()
         {
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
+            PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
             this.UpdateCommand = new RelayCommand(() => this.UpdateUser(), () => this.CanUpdateUser());
             this.CancelCommand = new RelayCommand(() => this.Close());
         }

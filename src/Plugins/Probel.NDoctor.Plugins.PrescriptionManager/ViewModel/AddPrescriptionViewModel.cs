@@ -48,7 +48,7 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 
         public AddPrescriptionViewModel()
         {
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
+            PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPrescriptionComponent>();
 
             this.SaveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
             this.SearchCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<SearchDrugViewModel>(), () => this.CanSearch());

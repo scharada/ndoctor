@@ -52,7 +52,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             if (!Designer.IsDesignMode)
             {
                 this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
-                PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
+                PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
             }
             this.Users = new ObservableCollection<LightUserDto>();
             this.Roles = new ObservableCollection<RoleDto>();

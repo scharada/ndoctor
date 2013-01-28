@@ -79,8 +79,8 @@ namespace Probel.NDoctor.Plugins.PatientData
         {
             this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
 
-            PluginContext.Host.Disconnecting -= Host_Disconnecting;
-            PluginContext.Host.Disconnecting += Host_Disconnecting;
+            PluginContext.Host.UserDisconnecting -= Host_Disconnecting;
+            PluginContext.Host.UserDisconnecting += Host_Disconnecting;
             PluginContext.Host.Invoke(() =>
             {
                 this.ConfigureViewService();

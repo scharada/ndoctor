@@ -49,7 +49,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             if (!Designer.IsDesignMode)
             {
                 this.component = PluginContext.ComponentFactory.GetInstance<IPictureComponent>();
-                PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPictureComponent>();
+                PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPictureComponent>();
             }
 
             this.ShowPopupCommand = new RelayCommand(() => this.IsPopupOpened = true);

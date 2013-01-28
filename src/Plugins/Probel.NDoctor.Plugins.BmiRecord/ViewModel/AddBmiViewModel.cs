@@ -45,7 +45,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
             if (!Designer.IsDesignMode)
             {
                 this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
-                PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
+                PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
             }
 
             this.AddCommand = new RelayCommand(() => this.AddBmi(), () => this.CanAddBmi());

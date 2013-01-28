@@ -43,7 +43,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         public ConnectionViewModel()
             : base()
         {
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
+            PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
 
             this.Users = new ObservableCollection<LightUserDto>();
 

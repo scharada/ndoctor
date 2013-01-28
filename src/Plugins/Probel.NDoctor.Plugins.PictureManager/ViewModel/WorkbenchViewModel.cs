@@ -69,7 +69,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             this.SelectedPicture = new PictureDto();
             this.component = PluginContext.ComponentFactory.GetInstance<IPictureComponent>();
 
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPictureComponent>();
+            PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPictureComponent>();
 
             this.AddPictureCommand = new RelayCommand(() => AddPicture(), () => this.CanAddSomething());
             this.AddTypeCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddTagViewModel>(), () => this.CanAddSomething());

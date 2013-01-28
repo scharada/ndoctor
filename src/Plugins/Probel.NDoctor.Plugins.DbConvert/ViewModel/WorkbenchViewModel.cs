@@ -59,7 +59,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.ViewModel
         public WorkbenchViewModel()
         {
             this.component = PluginContext.ComponentFactory.GetInstance<IImportComponent>();
-            PluginContext.Host.NewUserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IImportComponent>();
+            PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IImportComponent>();
 
             this.ChooseOldDbCommand = new RelayCommand(() => this.ChooseOldDb());
             this.ImportCommand = new RelayCommand(() => this.Import(), () => this.CanImport());
