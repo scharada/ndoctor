@@ -20,7 +20,7 @@
 #endregion Header
 
 using Probel.NDoctor.Domain.DTO.Components;
-namespace Probel.NDoctor.View.Plugins.Helpers
+namespace Probel.NDoctor.View.Plugins
 {
     /// <summary>
     /// Configuration of the application

@@ -34,7 +34,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.ViewModel;
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins;
 
     internal class BindDoctorViewModel : BaseViewModel
     {

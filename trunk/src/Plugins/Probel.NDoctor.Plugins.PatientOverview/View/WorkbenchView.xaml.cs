@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.View
 
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Plugins.PatientOverview.ViewModel;
+    using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
 
     /// <summary>

@@ -24,11 +24,11 @@ namespace Probel.NDoctor.Plugins.DebugTools
     using System;
     using System.IO;
     using System.Reflection;
-    using System.Text;
 
     using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DTO.GoogleCalendar;
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View;
+    using Probel.NDoctor.View.Plugins;
 
     internal class MeetingManagerSettings : PluginSettingsBase
     {

@@ -18,7 +18,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 {
     using System;
     using System.Windows.Input;
-
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
@@ -26,8 +25,9 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View;
     using Probel.NDoctor.View.Toolbox;
+    using Probel.NDoctor.View.Plugins;
 
     internal class AddDrugTypeViewModel : BaseViewModel
     {

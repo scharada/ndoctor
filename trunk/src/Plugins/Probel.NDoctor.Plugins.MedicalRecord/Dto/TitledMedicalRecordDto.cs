@@ -23,6 +23,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.Dto
     using Probel.Helpers.Strings;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.MedicalRecord.Properties;
+    using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
 
     public class TitledMedicalRecordDto : MedicalRecordDto, ITreeNode

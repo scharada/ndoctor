@@ -34,12 +34,13 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Core.View;
+    using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox.Navigation;
 
     using StructureMap;
+    using Probel.NDoctor.View.Plugins;
 
     internal class SpashScreenViewModel : BaseViewModel
     {

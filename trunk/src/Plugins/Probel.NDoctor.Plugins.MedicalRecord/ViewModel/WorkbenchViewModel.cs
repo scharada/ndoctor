@@ -35,8 +35,9 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
     using Probel.NDoctor.Plugins.MedicalRecord.Helpers;
     using Probel.NDoctor.Plugins.MedicalRecord.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Toolbox;
+    using Probel.NDoctor.View.Toolbox.Translations;
 
     internal class WorkbenchViewModel : BaseViewModel
     {

@@ -19,7 +19,7 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.View.Plugins.Helpers
+namespace Probel.NDoctor.View.Plugins
 {
     using System;
     using System.IO;

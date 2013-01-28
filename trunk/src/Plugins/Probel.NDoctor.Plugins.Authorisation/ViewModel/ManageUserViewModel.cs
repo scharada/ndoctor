@@ -34,7 +34,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.Authorisation.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins;
 
     internal class ManageUserViewModel : BaseViewModel
     {

@@ -34,9 +34,11 @@ namespace Probel.NDoctor.Plugins.Administration
     using Probel.NDoctor.Plugins.Administration.Properties;
     using Probel.NDoctor.Plugins.Administration.View;
     using Probel.NDoctor.Plugins.Administration.ViewModel;
+    using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Toolbox.Translations;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]

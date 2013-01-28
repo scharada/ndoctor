@@ -33,7 +33,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.Administration.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin

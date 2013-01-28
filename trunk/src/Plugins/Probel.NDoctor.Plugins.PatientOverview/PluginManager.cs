@@ -28,9 +28,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview
     using Probel.NDoctor.Plugins.PatientOverview.Properties;
     using Probel.NDoctor.Plugins.PatientOverview.View;
     using Probel.NDoctor.Plugins.PatientOverview.ViewModel;
+    using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Toolbox.Translations;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]

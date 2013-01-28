@@ -23,6 +23,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Actions.Base
 {
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
 
     internal abstract class Action : LogObject, IAction

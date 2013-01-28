@@ -31,9 +31,10 @@ namespace Probel.NDoctor.Plugins.BmiRecord
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
     using Probel.NDoctor.Plugins.BmiRecord.View;
     using Probel.NDoctor.Plugins.BmiRecord.ViewModel;
+    using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.View.Plugins;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]

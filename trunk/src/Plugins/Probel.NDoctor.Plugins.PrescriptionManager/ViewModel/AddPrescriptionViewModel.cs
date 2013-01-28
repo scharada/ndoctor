@@ -23,7 +23,6 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.Windows;
     using System.Windows.Input;
 
     using Probel.Mvvm.DataBinding;
@@ -33,7 +32,8 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View;
+    using Probel.NDoctor.View.Plugins;
 
     internal class AddPrescriptionViewModel : BaseViewModel
     {

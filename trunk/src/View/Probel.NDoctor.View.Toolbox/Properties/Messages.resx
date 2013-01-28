@@ -189,6 +189,10 @@
     <value>An error occured.</value>
     <comment>An error occured.</comment>
   </data>
+  <data name="Msg_InsertDone" xml:space="preserve">
+    <value>Item added</value>
+    <comment>Item added</comment>
+  </data>
   <data name="Msg_NeedRestart" xml:space="preserve">
     <value>Restart nDoctor to apply changes!</value>
     <comment>Restart nDoctor to apply changes!</comment>

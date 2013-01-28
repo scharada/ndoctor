@@ -22,7 +22,8 @@
 namespace Probel.NDoctor.Plugins.PrescriptionManager.Translations
 {
     using Probel.NDoctor.Plugins.PrescriptionManager.Properties;
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Toolbox.Translations;
 
     internal static class PrescriptionBoxText
     {

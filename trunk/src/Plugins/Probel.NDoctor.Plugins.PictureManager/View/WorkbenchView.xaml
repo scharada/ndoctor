@@ -8,7 +8,7 @@
       xmlns:dto="clr-namespace:Probel.NDoctor.Domain.DTO.Objects;assembly=Probel.NDoctor.Domain.DTO"
       xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PictureManager.Translations"
       xmlns:ctrl="clr-namespace:Probel.NDoctor.Plugins.PictureManager.View"
-      xmlns:baseText="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
+      xmlns:baseText="clr-namespace:Probel.NDoctor.View.Toolbox.Translations;assembly=Probel.NDoctor.View.Toolbox"
       xmlns:h="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"   
       xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
       xmlns:behaviours="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
