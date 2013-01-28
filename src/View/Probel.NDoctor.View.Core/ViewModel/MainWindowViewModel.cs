@@ -19,17 +19,17 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using System;
     using System.Collections.Generic;
     using System.Windows.Input;
-
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.Properties;
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Navigation;
+    using Probel.NDoctor.View.Plugins;
 
     /// <summary>
     /// This ViewModel should contain all the information about the

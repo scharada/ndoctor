@@ -19,9 +19,9 @@ namespace Probel.NDoctor.Plugins.DebugTools
     using System;
     using System.IO;
     using System.Reflection;
-    using System.Text;
 
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View;
+    using Probel.NDoctor.View.Plugins;
 
     public class PluginSettings : PluginSettingsBase
     {

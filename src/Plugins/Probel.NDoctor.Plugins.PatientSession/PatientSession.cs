@@ -30,9 +30,10 @@ namespace Probel.NDoctor.Plugins.PatientSession
     using Probel.NDoctor.Plugins.PatientSession.Properties;
     using Probel.NDoctor.Plugins.PatientSession.View;
     using Probel.NDoctor.Plugins.PatientSession.ViewModel;
+    using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.View.Plugins;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]
@@ -82,7 +83,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
         {
             #region Add
             var splitterExist = true;
-            var splitter = PluginContext.Host.GetInHome("add", Groups.Tools);
+            var splitter = PluginContext.Host.GetMenuInHome("add", Groups.Tools);
             if (splitter == null || splitter.GetType() != typeof(RibbonMenuButtonData))
             {
                 splitterExist = false;

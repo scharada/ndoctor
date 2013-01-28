@@ -14,11 +14,11 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.View.Plugins.Helpers
+namespace Probel.NDoctor.View.Plugins
 {
     using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.Components;
-    using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View;
 
     /// <summary>
     /// Context of the plugin

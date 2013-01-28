@@ -20,7 +20,7 @@ namespace Probel.NDoctor.View.Plugins
     using System.ComponentModel.Composition;
 
     using Probel.NDoctor.View.Plugins.Exceptions;
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins;
 
     public class PluginContainer : LogObject
     {

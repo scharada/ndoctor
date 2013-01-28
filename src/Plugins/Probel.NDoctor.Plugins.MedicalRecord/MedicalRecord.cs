@@ -38,9 +38,10 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
     using Probel.NDoctor.Plugins.MedicalRecord.View;
     using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
     using Probel.NDoctor.View.Core.Helpers;
+    using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.View.Plugins;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]

@@ -223,6 +223,15 @@ namespace Probel.NDoctor.View.Toolbox.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Item added.
+        /// </summary>
+        internal static string Msg_InsertDone {
+            get {
+                return ResourceManager.GetString("Msg_InsertDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restart nDoctor to apply changes!.
         /// </summary>
         internal static string Msg_NeedRestart {

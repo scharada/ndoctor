@@ -61,51 +61,6 @@ namespace Probel.NDoctor.View.Plugins.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add.
-        /// </summary>
-        internal static string Btn_Add {
-            get {
-                return ResourceManager.GetString("Btn_Add", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cancel.
-        /// </summary>
-        internal static string Btn_Cancel {
-            get {
-                return ResourceManager.GetString("Btn_Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New....
-        /// </summary>
-        internal static string Btn_New {
-            get {
-                return ResourceManager.GetString("Btn_New", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OK.
-        /// </summary>
-        internal static string Btn_OK {
-            get {
-                return ResourceManager.GetString("Btn_OK", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Close.
-        /// </summary>
-        internal static string Close {
-            get {
-                return ResourceManager.GetString("Close", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The plugin you try to show is deactivated..
         /// </summary>
         internal static string Ex_DeactivatedPluginException {
@@ -197,38 +152,11 @@ namespace Probel.NDoctor.View.Plugins.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Actions.
-        /// </summary>
-        internal static string Group_Action {
-            get {
-                return ResourceManager.GetString("Group_Action", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to File.
-        /// </summary>
-        internal static string Menu_File {
-            get {
-                return ResourceManager.GetString("Menu_File", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to You are not granted to execute this feature.
         /// </summary>
         internal static string Msg_ErrorAuthorisation {
             get {
                 return ResourceManager.GetString("Msg_ErrorAuthorisation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Une erreur est survenue..
-        /// </summary>
-        internal static string Msg_ErrorOccured {
-            get {
-                return ResourceManager.GetString("Msg_ErrorOccured", resourceCulture);
             }
         }
         
@@ -242,110 +170,11 @@ namespace Probel.NDoctor.View.Plugins.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Item added.
-        /// </summary>
-        internal static string Msg_InsertDone {
-            get {
-                return ResourceManager.GetString("Msg_InsertDone", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The parameter &apos;{0}&apos; is not set in the configuration file. Please set it up..
         /// </summary>
         internal static string Msg_MissingParameterInConfiguration {
             get {
                 return ResourceManager.GetString("Msg_MissingParameterInConfiguration", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please wait....
-        /// </summary>
-        internal static string Msg_PleaseWait {
-            get {
-                return ResourceManager.GetString("Msg_PleaseWait", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Question.
-        /// </summary>
-        internal static string Question {
-            get {
-                return ResourceManager.GetString("Question", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Voulez-vous supprimer cet élément?.
-        /// </summary>
-        internal static string Question_Delete {
-            get {
-                return ResourceManager.GetString("Question_Delete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Data refreshed.
-        /// </summary>
-        internal static string Refreshed {
-            get {
-                return ResourceManager.GetString("Refreshed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove.
-        /// </summary>
-        internal static string Remove {
-            get {
-                return ResourceManager.GetString("Remove", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Save.
-        /// </summary>
-        internal static string Save {
-            get {
-                return ResourceManager.GetString("Save", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Editer.
-        /// </summary>
-        internal static string Title_Edit {
-            get {
-                return ResourceManager.GetString("Title_Edit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error.
-        /// </summary>
-        internal static string Title_Error {
-            get {
-                return ResourceManager.GetString("Title_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Information.
-        /// </summary>
-        internal static string Title_Information {
-            get {
-                return ResourceManager.GetString("Title_Information", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Warning.
-        /// </summary>
-        internal static string Title_Warning {
-            get {
-                return ResourceManager.GetString("Title_Warning", resourceCulture);
             }
         }
     }

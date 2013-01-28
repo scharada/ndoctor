@@ -33,7 +33,7 @@ namespace Probel.NDoctor.Plugins.DbConvert.ViewModel
     using Probel.NDoctor.Plugins.DbConvert.Domain;
     using Probel.NDoctor.Plugins.DbConvert.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin

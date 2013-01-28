@@ -18,6 +18,7 @@ namespace Probel.NDoctor.View.Test.Stubs
 {
     using System;
 
+    using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
 
     public class PluginStub : Plugin

@@ -36,7 +36,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
     using Probel.NDoctor.Plugins.PatientOverview.Actions;
     using Probel.NDoctor.Plugins.PatientOverview.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin

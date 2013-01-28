@@ -86,11 +86,10 @@
     <Compile Include="Exceptions\WrongDataContextException.cs" />
     <Compile Include="FilteredCatalog.cs" />
     <Compile Include="Groups.cs" />
-    <Compile Include="Helpers\BaseText.cs" />
-    <Compile Include="Helpers\Configuration.cs" />
+    <Compile Include="Configuration.cs" />
     <Compile Include="Helpers\ITreeNode.cs" />
-    <Compile Include="Helpers\PluginContext.cs" />
-    <Compile Include="Helpers\PluginSettingsBase.cs" />
+    <Compile Include="PluginContext.cs" />
+    <Compile Include="PluginSettingsBase.cs" />
     <Compile Include="IPlugin.cs" />
     <Compile Include="ILeaveCheckable.cs" />
     <Compile Include="LogObject.cs" />

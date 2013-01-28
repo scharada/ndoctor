@@ -18,7 +18,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
 {
     using System;
     using System.Windows.Input;
-
     using Probel.Helpers.Assertion;
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
@@ -26,8 +25,9 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.BmiRecord.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View;
     using Probel.NDoctor.View.Toolbox;
+    using Probel.NDoctor.View.Plugins;
 
     internal class AddBmiViewModel : BaseViewModel
     {

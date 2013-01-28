@@ -38,11 +38,12 @@ namespace Probel.NDoctor.View.Core.View
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
-    using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins.Exceptions;
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox;
+    using Probel.NDoctor.View.Plugins;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -297,7 +298,7 @@ namespace Probel.NDoctor.View.Core.View
         /// <returns>
         /// The searched control or null is not found
         /// </returns>
-        public RibbonBase GetInHome(string name, Groups group)
+        public RibbonBase GetMenuInHome(string name, Groups group)
         {
             string criteria = this.GetGroupName(group);
 

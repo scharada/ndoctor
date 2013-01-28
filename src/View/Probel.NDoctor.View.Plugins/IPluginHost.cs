@@ -147,7 +147,7 @@ namespace Probel.NDoctor.View.Plugins
         /// <param name="name">The name.</param>
         /// <param name="group">The group.</param>
         /// <returns>The searched control or null is not found</returns>
-        RibbonBase GetInHome(string name, Groups group);
+        RibbonBase GetMenuInHome(string name, Groups group);
 
         /// <summary>
         /// Deactivates the menu.

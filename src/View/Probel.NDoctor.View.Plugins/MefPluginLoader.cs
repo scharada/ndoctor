@@ -28,7 +28,7 @@ namespace Probel.NDoctor.View.Plugins
     using System.Threading;
     using System.Windows.Input;
 
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View.Plugins;
 
     public class MefPluginLoader : LogObject, IPluginLoader
     {

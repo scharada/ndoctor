@@ -25,15 +25,15 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using System.Collections.ObjectModel;
     using System.Timers;
     using System.Windows.Input;
-
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View;
     using Probel.NDoctor.View.Toolbox;
+    using Probel.NDoctor.View.Plugins;
 
     internal class AddPeriodViewModel : BaseViewModel
     {

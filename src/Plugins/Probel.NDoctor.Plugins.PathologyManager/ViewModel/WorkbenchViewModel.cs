@@ -18,7 +18,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.Windows;
     using System.Windows.Input;
 
     using Probel.Helpers.Data;
@@ -29,7 +28,8 @@ namespace Probel.NDoctor.Plugins.PathologyManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PathologyManager.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View;
+    using Probel.NDoctor.View.Plugins;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin

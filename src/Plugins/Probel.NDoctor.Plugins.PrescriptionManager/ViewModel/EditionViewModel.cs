@@ -23,14 +23,14 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager.ViewModel
 {
     using System;
     using System.Windows.Input;
-
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.ViewModel;
-    using Probel.NDoctor.View.Plugins.Helpers;
+    using Probel.NDoctor.View;
     using Probel.NDoctor.View.Toolbox.Helpers;
+    using Probel.NDoctor.View.Plugins;
 
     internal class EditionViewModel : BaseViewModel
     {

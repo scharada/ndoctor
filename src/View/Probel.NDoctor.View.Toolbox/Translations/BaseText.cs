@@ -115,6 +115,17 @@ namespace Probel.NDoctor.View.Toolbox.Translations
             get { return Messages.Title_Warning; }
         }
 
+
+
+        public static string InsertDone
+        {
+            get { return Messages.Msg_InsertDone; }
+        }
+
+        public static string ErrorOccured
+        {
+            get { return Messages.Msg_ErrorOccured; }
+        }
         #endregion Properties
     }
 }
