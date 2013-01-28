@@ -18,4 +18,4 @@ https://lh5.googleusercontent.com/-JCz7TurlDzg/Tl_5F6r-UUI/AAAAAAAAAE8/9C3TlkbMn
 == Sequence diagrams ==
 https://lh6.googleusercontent.com/-cENM_6zWfxM/Tl_3-8InfHI/AAAAAAAAAEE/EcGh0d_nfsA/Load%252520Plugins.jpg
 == Visual studio diagram ==
-https://lh4.googleusercontent.com/-FHNEtmG-p_k/UQZXArwbTjI/AAAAAAAAASo/w0rUMKGW_8o/s800/VSPlugin.JPG
+https://lh5.googleusercontent.com/-gNGl__23rNs/UQZkCS1hoPI/AAAAAAAAATM/nXIyFQ11DcE/s800/VSPlugin.JPG
