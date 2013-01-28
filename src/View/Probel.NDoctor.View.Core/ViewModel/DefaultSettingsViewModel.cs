@@ -138,6 +138,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
             Settings.Default.SearchType = this.SelectedSearchType.Item2;
 
             Settings.Default.Save();
+
+            PluginContext.Configuration.SearchType = Settings.Default.SearchType;
         }
 
         private void FeedSearchTypes()

@@ -19,6 +19,7 @@
 
 #endregion Header
 
+using Probel.NDoctor.Domain.DTO.Components;
 namespace Probel.NDoctor.View.Plugins.Helpers
 {
     /// <summary>
@@ -62,9 +63,21 @@ namespace Probel.NDoctor.View.Plugins.Helpers
         /// </value>
         public uint ExecutionTimeThreshold
         {
-            get; set;
+            get;
+            set;
         }
 
         #endregion Properties
+        /// <summary>
+        /// Gets the search algorithm to apply on a search.
+        /// </summary>
+        /// <value>
+        /// The type of the search.
+        /// </value>
+        public SearchOn SearchType
+        {
+            get;
+            set;
+        }
     }
 }

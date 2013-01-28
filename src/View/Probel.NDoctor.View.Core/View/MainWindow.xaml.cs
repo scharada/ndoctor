@@ -166,30 +166,18 @@ namespace Probel.NDoctor.View.Core.View
 
         public object LastDestination
         {
-            get; private set;
+            get;
+            private set;
         }
 
         /// <summary>
         /// Gets the owner of all toolboxes. That's the main window of nDoctor
         /// </summary>
-        public Window MainWindow
+        public Window RootWindow
         {
             get { return this; }
         }
 
-        /// <summary>
-        /// Gets the search algorithm to apply on a search.
-        /// </summary>
-        /// <value>
-        /// The type of the search.
-        /// </value>
-        public SearchOn SearchType
-        {
-            get
-            {
-                return Settings.Default.SearchType;
-            }
-        }
 
         public LightPatientDto SelectedPatient
         {
@@ -559,11 +547,11 @@ namespace Probel.NDoctor.View.Core.View
 
         private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            #if DEBUG
+#if DEBUG
             this.WindowState = System.Windows.WindowState.Normal;
-            #else
+#else
             this.WindowState = System.Windows.WindowState.Maximized;
-            #endif
+#endif
         }
 
         private void WriteStatus(LightPatientDto value)
