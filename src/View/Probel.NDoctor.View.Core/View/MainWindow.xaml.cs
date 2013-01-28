@@ -172,7 +172,7 @@ namespace Probel.NDoctor.View.Core.View
         /// <summary>
         /// Gets the owner of all toolboxes. That's the main window of nDoctor
         /// </summary>
-        public Window Root
+        public Window MainWindow
         {
             get { return this; }
         }

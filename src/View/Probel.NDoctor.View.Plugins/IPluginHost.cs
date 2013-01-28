@@ -88,7 +88,7 @@ namespace Probel.NDoctor.View.Plugins
         /// <summary>
         /// Gets the owner of all toolboxes. That's the main window of nDoctor
         /// </summary>
-        Window Root
+        Window MainWindow
         {
             get;
         }
