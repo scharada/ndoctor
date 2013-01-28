@@ -14,7 +14,7 @@ The plugin repository is a directory named _Plugins_ in the application root. At
 These explanations are only about the plugin loading and validation. The interface `IPluginHost` exposes an API the plugins can use. This API is explained [PluginFeatures here].
 
 == Class diagrams ==
-https://lh5.googleusercontent.com/-JCz7TurlDzg/Tl_5F6r-UUI/AAAAAAAAAE8/9C3TlkbMniU/Plugins%252520design.jpg
+https://lh3.googleusercontent.com/-C9NappHLIHs/UQZztFYwPVI/AAAAAAAAAUM/XgePfhKDF68/s661/Plugins%2520design.jpg
 == Sequence diagrams ==
 https://lh6.googleusercontent.com/-cENM_6zWfxM/Tl_3-8InfHI/AAAAAAAAAEE/EcGh0d_nfsA/Load%252520Plugins.jpg
 == Visual studio diagram ==
