@@ -69,6 +69,7 @@
             <Setter Property="Header" Value="{Binding Header}" />
             <Setter Property="ItemsSource" Value="{Binding ButtonDataCollection}" />
             <Setter Property="Width" Value="{Binding Width}" />
+            <Setter Property="Visibility" Value="{Binding Visibility}"/>
         </Style>
 
         <!-- RibbonButton -->
@@ -183,10 +184,9 @@
             <RowDefinition Height="26"/>
         </Grid.RowDefinitions>
         <ribbon:Ribbon Grid.Row="0" 
-						   x:Name="ribbon"
-						   ItemsSource="{Binding Source={x:Static data:App.RibbonData},Path=TabDataCollection}"
-						   ContextualTabGroupsSource="{Binding Source={x:Static data:App.RibbonData},Path=ContextualTabGroupDataCollection}">
-
+                       x:Name="ribbon"
+                       ItemsSource="{Binding Source={x:Static data:App.RibbonData},Path=TabDataCollection}"
+                       ContextualTabGroupsSource="{Binding Source={x:Static data:App.RibbonData},Path=ContextualTabGroupDataCollection}">            
             <ribbon:Ribbon.ApplicationMenu>
                 <ribbon:RibbonApplicationMenu 
 						DataContext="{Binding Source={x:Static data:App.RibbonData},Path=ApplicationMenuData}" 

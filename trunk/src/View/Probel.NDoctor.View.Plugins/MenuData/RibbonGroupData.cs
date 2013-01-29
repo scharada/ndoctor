@@ -17,6 +17,7 @@
 namespace Probel.NDoctor.View.Plugins.MenuData
 {
     using System.Collections.ObjectModel;
+    using System.Windows;
 
     public class RibbonGroupData : RibbonBase
     {
@@ -27,6 +28,16 @@ namespace Probel.NDoctor.View.Plugins.MenuData
 
         #endregion Fields
 
+        private Visibility visibility;
+        public Visibility Visibility
+        {
+            get { return this.visibility; }
+            set
+            {
+                this.visibility = value;
+                this.OnPropertyChanged(() => Visibility);
+            }
+        }
         #region Constructors
 
         public RibbonGroupData(string name, ObservableCollection<RibbonButtonData> buttonDataCollection)

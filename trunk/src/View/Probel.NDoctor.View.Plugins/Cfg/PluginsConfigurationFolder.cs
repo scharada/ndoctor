@@ -312,7 +312,7 @@ namespace Probel.NDoctor.View.Plugins.Cfg
         /// <param name="path">The temp file.</param>
         public void Save(string path)
         {
-            using (var stream = File.OpenWrite(path))
+            using (var stream = File.Open(path, FileMode.Create))
             using (var writer = new StreamWriter(stream))
             {
                 this.Save(writer);

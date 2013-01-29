@@ -30,11 +30,6 @@ namespace Probel.NDoctor.View.Core.Translations
 
     public static class PluginCfgText
     {
-
-        public static string Plugins
-        {
-            get { return Messages.Gb_Plugins; }
-        }
         #region Properties
 
         public static string Explanations
@@ -47,15 +42,21 @@ namespace Probel.NDoctor.View.Core.Translations
             get { return Messages.Lbl_IsActive; }
         }
 
+        public static string IsMandatory
+        {
+            get { return Messages.Lbl_IsMandatory; }
+        }
+
         public static string IsRecommended
         {
             get { return Messages.Lbl_IsRecommended; }
         }
 
-        public static string IsMandatory
+        public static string Plugins
         {
-            get { return Messages.Lbl_IsMandatory; }
+            get { return Messages.Gb_Plugins; }
         }
+
         #endregion Properties
     }
 }

@@ -29,7 +29,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
     using AutoMapper;
 
-
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.View.Plugins.Cfg;
 
