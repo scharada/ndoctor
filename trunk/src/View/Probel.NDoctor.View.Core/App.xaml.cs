@@ -52,10 +52,10 @@ namespace Probel.NDoctor.View.Core
 
         public App()
         {
-#if DEBUG
+            #if DEBUG
             //Hook the console to the application to have logging features
             AllocConsole();
-#endif
+            #endif
             this.MainWindow = new MainWindow();
             this.Logger = LogManager.GetLogger(typeof(LogManager));
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Settings.Default.Language);
@@ -80,20 +80,6 @@ namespace Probel.NDoctor.View.Core
                 ViewService.Configure(e => e.RootWindow = this.MainWindow);
             }
             else { Application.Current.Shutdown(); }
-        }
-
-        private void CleanGui()
-        {
-            foreach (var item in App.RibbonData.TabDataCollection)
-            {
-                foreach (var subitem in item.GroupDataCollection)
-                {
-                    if (subitem.ButtonDataCollection.Count == 0)
-                    {
-                        subitem.Visibility = Visibility.Collapsed;
-                    }
-                }
-            }
         }
 
         #endregion Constructors
@@ -169,6 +155,20 @@ namespace Probel.NDoctor.View.Core
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             new NDoctorStatistics().Flush();
+        }
+
+        private void CleanGui()
+        {
+            foreach (var item in App.RibbonData.TabDataCollection)
+            {
+                foreach (var subitem in item.GroupDataCollection)
+                {
+                    if (subitem.ButtonDataCollection.Count == 0)
+                    {
+                        subitem.Visibility = Visibility.Collapsed;
+                    }
+                }
+            }
         }
 
         #endregion Methods
