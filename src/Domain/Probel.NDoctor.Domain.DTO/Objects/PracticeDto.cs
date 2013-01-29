@@ -54,7 +54,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             get { return this.address; }
             set
             {
-                this.address = value;
+                this.address = value ?? new AddressDto(); ;
                 this.OnPropertyChanged(() => Address);
             }
         }
