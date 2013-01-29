@@ -126,9 +126,14 @@ namespace Probel.NDoctor.View.Plugins
             if (def.Metadata.ContainsKey(Keys.PluginId))
             {
                 var id = def.Metadata[Keys.PluginId].ToString();
+            #if DEBUG
+                //The debug plugin should be activated if in debug mode
+                if (this.PluginConfiguration.Exist(Guid.Parse("{1A5224ED-3E37-4AD8-AB2B-FBC0115434FA}"))) { return true; }
+            #endif
                 return (this.PluginConfiguration[id].IsMandatory)
                     ? true
                     : this.PluginConfiguration[id].IsActivated;
+
             }
             else { return false; }
         }

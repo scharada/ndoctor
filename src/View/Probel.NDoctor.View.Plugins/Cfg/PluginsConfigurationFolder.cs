@@ -287,6 +287,19 @@ namespace Probel.NDoctor.View.Plugins.Cfg
         }
 
         /// <summary>
+        /// Verify whether a plugin configuration with the spevified id exists in 
+        /// the folder
+        /// </summary>
+        /// <param name="guid">The GUID.</param>
+        /// <returns><c>True</c> if a plugin with the specified id exists; otherwise <c>False</c></returns>
+        public bool Exist(Guid guid)
+        {
+            return (from value in this.values
+                    where value.Id == guid
+                    select value).Count() > 0;
+        }
+
+        /// <summary>
         /// Removes the specified configuration from the folder.  If the configuration
         /// is not in the folder, nothing is done and the method returns <c>False</c>. Otherwise,
         /// the specified configuration is removed and <c>True</c> is returned.

@@ -17,9 +17,10 @@
 namespace Probel.NDoctor.View.Core.View
 {
     using System;
+    using System.Globalization;
     using System.Linq;
     using System.Reflection;
-    using System.Threading.Tasks;
+    using System.Threading;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
@@ -33,13 +34,9 @@ namespace Probel.NDoctor.View.Core.View
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.DTO.Components;
-    using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.View;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
-    using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Exceptions;
     using Probel.NDoctor.View.Plugins.MenuData;
@@ -64,6 +61,10 @@ namespace Probel.NDoctor.View.Core.View
 
         public MainWindow()
         {
+            Thread.CurrentThread.CurrentUICulture
+                = Thread.CurrentThread.CurrentCulture
+                = new CultureInfo(Settings.Default.Language);
+
             InitializeComponent();
             PluginContext.Host = this;
             this.Startpage = new StartPage();
