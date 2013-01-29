@@ -78,11 +78,11 @@ namespace Probel.NDoctor.View.Plugins
             if (!def.Metadata.ContainsKey(Keys.PluginId))
             {
                 var msg = string.Format("There's a plugin without id. Check you've set the attribute Metadata to the plugin with the key '{0}'", Keys.PluginId);
-#if DEBUG
+            #if DEBUG
                 throw new NotImplementedException(msg);
-#else
+            #else
                 Logger.Warn(msg);
-#endif
+            #endif
             }
             else
             {
@@ -143,12 +143,12 @@ namespace Probel.NDoctor.View.Plugins
             }
             else
             {
-#if DEBUG
+            #if DEBUG
                 throw new NotImplementedException("A plugin without validation contract was found. It is ignored. Check that you decorated the plugin with a 'PartMetadata' attribute.");
-#else
+            #else
                 Logger.Warn("A plugin without validation contract was found. It is ignored. Check that you decorated the plugin with a 'PartMetadata' attribute.");
                 return false;
-#endif
+            #endif
             }
         }
 
