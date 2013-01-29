@@ -22,14 +22,14 @@
                    LastChildFill="True">
             <Label Content="{Binding Source={x:Static Member=text:InsuranceText.Name}}"
                    Style="{StaticResource PresentationLbl}"/>
-            <TextBox x:Name="focused" Margin="4" Text="{Binding ElementName=this, Path=Insurance.Name}"
+            <TextBox x:Name="focused" Margin="4" Text="{Binding ElementName=this, Path=Insurance.Name, UpdateSourceTrigger=PropertyChanged}"
                      KeyboardNavigation.TabIndex="1"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Top"
                    LastChildFill="True">
             <Label Content="{Binding Source={x:Static Member=text:InsuranceText.Phone}}"
                    Style="{StaticResource PresentationLbl}"/>
-            <TextBox Margin="4" Text="{Binding this, Path=Insurance.Phone}"
+            <TextBox Margin="4" Text="{Binding ElementName=this, Path=Insurance.Phone, UpdateSourceTrigger=PropertyChanged}"
                      KeyboardNavigation.TabIndex="2"/>
         </DockPanel>
         <GroupBox Header="{Binding Source={x:Static Member=text:InsuranceText.Address}}">
@@ -37,27 +37,30 @@
                 <DockPanel>
                     <Label DockPanel.Dock="Left"
                            Content="{Binding Source={x:Static Member=text:InsuranceText.Street}}" Style="{StaticResource PresentationLbl}"/>
-                    <TextBox DockPanel.Dock="Right" Margin="4" Text="{Binding ElementName=this, Path=Insurance.Address.StreetNumber}" Width="70"
+                    <TextBox DockPanel.Dock="Right" Margin="4" Text="{Binding ElementName=this, Path=Insurance.Address.StreetNumber, UpdateSourceTrigger=PropertyChanged}" 
+                             Width="70"
                              KeyboardNavigation.TabIndex="4"/>
                     <Label DockPanel.Dock="Right" Content=","/>
-                    <TextBox DockPanel.Dock="Left" Margin="4" Text="{Binding ElementName=this,Path=Insurance.Address.Street}"
+                    <TextBox DockPanel.Dock="Left" Margin="4" Text="{Binding ElementName=this,Path=Insurance.Address.Street, UpdateSourceTrigger=PropertyChanged}"
                              KeyboardNavigation.TabIndex="3"/>
                 </DockPanel>
                 <DockPanel>
                     <Label DockPanel.Dock="Left"
                            Content="{Binding Source={x:Static Member=text:InsuranceText.City}}" Style="{StaticResource PresentationLbl}"/>
-                    <TextBox DockPanel.Dock="Right" Margin="4" Width="70" Text="{Binding ElementName=this,Path=Insurance.Address.City}"
+                    <TextBox DockPanel.Dock="Right" Margin="4" Width="70" 
+                             Text="{Binding ElementName=this,Path=Insurance.Address.City, UpdateSourceTrigger=PropertyChanged}"
                              KeyboardNavigation.TabIndex="6"/>
                     <Label DockPanel.Dock="Right"
                            Content="{Binding Source={x:Static Member=text:InsuranceText.PostalCode}}"/>
-                    <TextBox DockPanel.Dock="Right" Margin="4"  Text="{Binding ElementName=this, Path=Insurance.Address.PostalCode}"
+                    <TextBox DockPanel.Dock="Right" Margin="4"  
+                             Text="{Binding ElementName=this, Path=Insurance.Address.PostalCode, UpdateSourceTrigger=PropertyChanged}"
                              KeyboardNavigation.TabIndex="5"/>
                 </DockPanel>
             </StackPanel>
         </GroupBox>
         <GroupBox Header="Notes">
             <TextBox VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto" Height="90" AcceptsReturn="True" 
-                     Text="{Binding ElementName=this, Path=Insurance.Notes}"
+                     Text="{Binding ElementName=this, Path=Insurance.Notes, UpdateSourceTrigger=PropertyChanged}"
                      KeyboardNavigation.TabIndex="7"/>
         </GroupBox>
         <ctrl:OKCancelBox OkCommand="{Binding ElementName=this, Path=OkCommand, UpdateSourceTrigger=PropertyChanged}"
