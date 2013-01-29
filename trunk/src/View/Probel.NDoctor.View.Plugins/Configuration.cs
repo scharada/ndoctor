@@ -19,9 +19,10 @@
 
 #endregion Header
 
-using Probel.NDoctor.Domain.DTO.Components;
 namespace Probel.NDoctor.View.Plugins
 {
+    using Probel.NDoctor.Domain.DTO.Components;
+
     /// <summary>
     /// Configuration of the application
     /// </summary>
@@ -67,7 +68,6 @@ namespace Probel.NDoctor.View.Plugins
             set;
         }
 
-        #endregion Properties
         /// <summary>
         /// Gets the search algorithm to apply on a search.
         /// </summary>
@@ -79,5 +79,7 @@ namespace Probel.NDoctor.View.Plugins
             get;
             set;
         }
+
+        #endregion Properties
     }
 }

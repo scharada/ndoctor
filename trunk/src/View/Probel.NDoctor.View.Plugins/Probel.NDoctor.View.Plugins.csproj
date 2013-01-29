@@ -77,6 +77,9 @@
     <Compile Include="..\..\Version.cs">
       <Link>Version.cs</Link>
     </Compile>
+    <Compile Include="Cfg\PluginsConfigurationFolder.cs" />
+    <Compile Include="Cfg\PluginConfiguration.cs" />
+    <Compile Include="Cfg\PluginConfigurationDto.cs" />
     <Compile Include="Exceptions\DeactivatedPluginException.cs" />
     <Compile Include="Exceptions\NDoctorConfigurationException.cs" />
     <Compile Include="Exceptions\NullPluginValidatorException.cs" />
@@ -163,10 +166,6 @@
     <Resource Include="Images\Male.png" />
     <Resource Include="Images\DoctorMale.png" />
     <Resource Include="Images\DoctorFemale.png" />
-    <Content Include="Plugins\plugins.config.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Themes\Generic.xaml">
@@ -180,6 +179,7 @@
       <SubType>Designer</SubType>
     </Resource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

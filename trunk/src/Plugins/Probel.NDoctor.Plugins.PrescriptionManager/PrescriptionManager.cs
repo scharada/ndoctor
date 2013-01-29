@@ -32,12 +32,12 @@ namespace Probel.NDoctor.Plugins.PrescriptionManager
     using Probel.NDoctor.Plugins.PrescriptionManager.ViewModel;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]
-    [PartMetadata(Keys.PluginName, "Prescription manager")]
+    [PartMetadata(Keys.PluginId, "{283FDC8B-FA71-44D1-9750-3C0413B36008}")]
     public class PrescriptionManager : Plugin
     {
         #region Fields

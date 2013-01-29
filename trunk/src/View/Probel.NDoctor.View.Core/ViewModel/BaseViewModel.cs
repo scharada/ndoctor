@@ -19,16 +19,18 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using System;
     using System.Threading.Tasks;
     using System.Windows.Threading;
+
     using log4net;
+
     using Probel.Helpers.Strings;
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View;
+    using Probel.NDoctor.View.Core.Properties;
+    using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Exceptions;
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Navigation;
-    using Probel.NDoctor.View.Plugins;
 
     public abstract class BaseViewModel : RequestCloseViewModel
     {

@@ -9,14 +9,12 @@
         xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Toolbox.Controls;assembly=Probel.NDoctor.View.Toolbox"
         xmlns:txt="clr-namespace:Probel.NDoctor.View.Core.Translations"
         xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
-        Title="{Binding Source={x:Static Member=txt:SettingsText.Title}}"
-        
         xmlns:settings="clr-namespace:Probel.NDoctor.View.Core.View"
-        
-        SizeToContent="WidthAndHeight"
+                
         mc:Ignorable="d"
-        MinWidth="600"
-        MinHeight="450"
+        Width="600"
+        Height="450"
+        Title="{Binding Source={x:Static Member=txt:SettingsText.Title}}"
         Loaded="this_Loaded" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
     
     <Window.InputBindings>

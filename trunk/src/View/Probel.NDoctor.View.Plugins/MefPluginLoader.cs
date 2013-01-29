@@ -29,23 +29,42 @@ namespace Probel.NDoctor.View.Plugins
     using System.Windows.Input;
 
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Plugins.Cfg;
 
     public class MefPluginLoader : LogObject, IPluginLoader
     {
         #region Fields
 
+        private readonly List<Guid> IdCollection = new List<Guid>();
         private readonly string Repository = @".\Plugins";
 
         #endregion Fields
 
         #region Constructors
 
-        public MefPluginLoader(string repository)
+        public MefPluginLoader(string repository, PluginsConfigurationFolder folder)
         {
             this.Repository = repository;
+            this.PluginConfiguration = folder;
         }
 
         #endregion Constructors
+
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets the plugin configuration.
+        /// </summary>
+        /// <value>
+        /// The plugin configuration.
+        /// </value>
+        public PluginsConfigurationFolder PluginConfiguration
+        {
+            get;
+            private set;
+        }
+
+        #endregion Properties
 
         #region Methods
 
@@ -56,14 +75,28 @@ namespace Probel.NDoctor.View.Plugins
 
         private void CheckName(ComposablePartDefinition def)
         {
-            if (!def.Metadata.ContainsKey(Keys.PluginName))
+            if (!def.Metadata.ContainsKey(Keys.PluginId))
             {
-                var msg = "You forgot to give a name to a plugin. Check you've set the attribute Metadata to the plugin with the key 'PluginName'";
-            #if DEBUG
+                var msg = string.Format("There's a plugin without id. Check you've set the attribute Metadata to the plugin with the key '{0}'", Keys.PluginId);
+#if DEBUG
                 throw new NotImplementedException(msg);
-            #else
+#else
                 Logger.Warn(msg);
-            #endif
+#endif
+            }
+            else
+            {
+                Guid id;
+                if (!(Guid.TryParse(def.Metadata[Keys.PluginId].ToString(), out id)))
+                {
+                    throw new Exception(string.Format(
+                        "The plugin doen't have a valid id. Check you've set the attribute Metadata to the plugin with the key '{0}'", Keys.PluginId));
+                }
+                if (this.IdCollection.Contains(id))
+                {
+                    throw new Exception(string.Format(
+                        "A plugin with the same id already exist in the repository [id: {0}]", id.ToString()));
+                }
             }
         }
 
@@ -79,7 +112,7 @@ namespace Probel.NDoctor.View.Plugins
             }
             Logger.InfoFormat("Found {0} plugin(s) in the repository. (Validation not done)", count);
 
-            var filteredCatatog = new FilteredCatalog(catalog, def => this.IsPluginValid(def));
+            var filteredCatatog = new FilteredCatalog(catalog, def => this.IsPluginValid(def) && this.IsActivated(def));
 
             var container = new CompositionContainer(filteredCatatog);
             var composition = new CompositionBatch();
@@ -88,21 +121,34 @@ namespace Probel.NDoctor.View.Plugins
             container.Compose(composition);
         }
 
+        private bool IsActivated(ComposablePartDefinition def)
+        {
+            if (def.Metadata.ContainsKey(Keys.PluginId))
+            {
+                var id = def.Metadata[Keys.PluginId].ToString();
+                return (this.PluginConfiguration[id].IsMandatory)
+                    ? true
+                    : this.PluginConfiguration[id].IsActivated;
+            }
+            else { return false; }
+        }
+
         private bool IsPluginValid(ComposablePartDefinition def)
         {
             this.CheckName(def);
+
             if (def.Metadata.ContainsKey(Keys.Constraint))
             {
                 return new Constraint(def.Metadata[Keys.Constraint].ToString()).IsValid(PluginContext.Host);
             }
             else
             {
-            #if DEBUG
+#if DEBUG
                 throw new NotImplementedException("A plugin without validation contract was found. It is ignored. Check that you decorated the plugin with a 'PartMetadata' attribute.");
-            #else
+#else
                 Logger.Warn("A plugin without validation contract was found. It is ignored. Check that you decorated the plugin with a 'PartMetadata' attribute.");
                 return false;
-            #endif
+#endif
             }
         }
 

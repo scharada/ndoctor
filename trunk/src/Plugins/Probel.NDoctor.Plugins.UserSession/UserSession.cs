@@ -33,11 +33,11 @@ namespace Probel.NDoctor.Plugins.UserSession
     using Probel.NDoctor.Plugins.UserSession.Properties;
     using Probel.NDoctor.Plugins.UserSession.View;
     using Probel.NDoctor.Plugins.UserSession.ViewModel;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View;
+    using Probel.NDoctor.View.Core.Helpers;
+    using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.View.Plugins;
 
     /// <summary>
     /// When the application user has logged into the application, it opens a User session that contains the modules the logged user can use. 
@@ -60,7 +60,7 @@ namespace Probel.NDoctor.Plugins.UserSession
     /// </remarks>
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]
-    [PartMetadata(Keys.PluginName, "User session manager")]
+    [PartMetadata(Keys.PluginId, "{AAC4444F-40C0-4D53-9CAA-F615751D87C3}")]
     public class UserSession : Plugin
     {
         #region Fields

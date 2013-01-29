@@ -31,12 +31,12 @@ namespace Probel.NDoctor.Plugins.PatientData
     using Probel.NDoctor.Plugins.PatientData.ViewModel;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]
-    [PartMetadata(Keys.PluginName, "Patient data manager")]
+    [PartMetadata(Keys.PluginId, "{13DADC37-7A9B-4126-971D-AB73DAE601C0}")]
     public class PatientData : StaticViewPlugin<WorkbenchView>
     {
         #region Fields

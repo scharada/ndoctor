@@ -33,12 +33,12 @@ namespace Probel.NDoctor.Plugins.BmiRecord
     using Probel.NDoctor.Plugins.BmiRecord.ViewModel;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]
-    [PartMetadata(Keys.PluginName, "Bmi Manager")]
+    [PartMetadata(Keys.PluginId, "{AF500BD6-A57A-476A-B42E-8D667E5270C3}")]
     public class BmiRecord : Plugin
     {
         #region Fields

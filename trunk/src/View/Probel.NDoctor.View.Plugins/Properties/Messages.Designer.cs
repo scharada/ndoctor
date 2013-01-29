@@ -177,5 +177,248 @@ namespace Probel.NDoctor.View.Plugins.Properties {
                 return ResourceManager.GetString("Msg_MissingParameterInConfiguration", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Administration manager.
+        /// </summary>
+        internal static string Plugin_Administration {
+            get {
+                return ResourceManager.GetString("Plugin_Administration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Used to manage all the data not directly related to the patient.
+        /// </summary>
+        internal static string Plugin_Administration_Explanations {
+            get {
+                return ResourceManager.GetString("Plugin_Administration_Explanations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authorisation manager.
+        /// </summary>
+        internal static string Plugin_Authorisation {
+            get {
+                return ResourceManager.GetString("Plugin_Authorisation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow to manage authorisations of the modules of nDoctor.
+        /// </summary>
+        internal static string Plugin_Authorisation_Explanations {
+            get {
+                return ResourceManager.GetString("Plugin_Authorisation_Explanations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BMI history manager.
+        /// </summary>
+        internal static string Plugin_Bmi {
+            get {
+                return ResourceManager.GetString("Plugin_Bmi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Used to manage the BMI history of a patient.
+        /// </summary>
+        internal static string Plugin_Bmi_Explanations {
+            get {
+                return ResourceManager.GetString("Plugin_Bmi_Explanations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data importer.
+        /// </summary>
+        internal static string Plugin_DbImport {
+            get {
+                return ResourceManager.GetString("Plugin_DbImport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Used to import data from a Sharpenda database.
+        /// </summary>
+        internal static string Plugin_DbImport_Explanations {
+            get {
+                return ResourceManager.GetString("Plugin_DbImport_Explanations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Family manager.
+        /// </summary>
+        internal static string Plugin_FamilyManager {
+            get {
+                return ResourceManager.GetString("Plugin_FamilyManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Used to manage the family of a patient.
+        /// </summary>
+        internal static string Plugin_FamilyManager_Explanations {
+            get {
+                return ResourceManager.GetString("Plugin_FamilyManager_Explanations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medical record manager.
+        /// </summary>
+        internal static string Plugin_MedicalRecordManager {
+            get {
+                return ResourceManager.GetString("Plugin_MedicalRecordManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Used to manage the medical records of a patient.
+        /// </summary>
+        internal static string Plugin_MedicalRecordManager_Explanations {
+            get {
+                return ResourceManager.GetString("Plugin_MedicalRecordManager_Explanations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calendar.
+        /// </summary>
+        internal static string Plugin_MeetingManager {
+            get {
+                return ResourceManager.GetString("Plugin_MeetingManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Used to manage the appointments with patients.
+        /// </summary>
+        internal static string Plugin_MeetingManager_Explanations {
+            get {
+                return ResourceManager.GetString("Plugin_MeetingManager_Explanations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pathology manager.
+        /// </summary>
+        internal static string Plugin_PathologyManager {
+            get {
+                return ResourceManager.GetString("Plugin_PathologyManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Used to manage the pathology history of a patient.
+        /// </summary>
+        internal static string Plugin_PathologyManager_Explanations {
+            get {
+                return ResourceManager.GetString("Plugin_PathologyManager_Explanations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patient data manager (Old version).
+        /// </summary>
+        internal static string Plugin_PatientDataManager {
+            get {
+                return ResourceManager.GetString("Plugin_PatientDataManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Used to manage the data of a patient.
+        /// </summary>
+        internal static string Plugin_PatientDataManager_Explanations {
+            get {
+                return ResourceManager.GetString("Plugin_PatientDataManager_Explanations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gestionnaire de données patient.
+        /// </summary>
+        internal static string Plugin_PatientDataManager2 {
+            get {
+                return ResourceManager.GetString("Plugin_PatientDataManager2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patient session manager.
+        /// </summary>
+        internal static string Plugin_PatientSessionManager {
+            get {
+                return ResourceManager.GetString("Plugin_PatientSessionManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Used to manage a patient sessions. Has tools to search and to load a patient.
+        /// </summary>
+        internal static string Plugin_PatientSessionManager_Explanations {
+            get {
+                return ResourceManager.GetString("Plugin_PatientSessionManager_Explanations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medical pictures manager.
+        /// </summary>
+        internal static string Plugin_PictureManager {
+            get {
+                return ResourceManager.GetString("Plugin_PictureManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Used to manage medical pictures of a patient.
+        /// </summary>
+        internal static string Plugin_PictureManager_Explanations {
+            get {
+                return ResourceManager.GetString("Plugin_PictureManager_Explanations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prescriptions manager.
+        /// </summary>
+        internal static string Plugin_PrescriptionManager {
+            get {
+                return ResourceManager.GetString("Plugin_PrescriptionManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Used to manage the prescriptions of a patient.
+        /// </summary>
+        internal static string Plugin_PrescriptionManager_Explanations {
+            get {
+                return ResourceManager.GetString("Plugin_PrescriptionManager_Explanations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User session manager.
+        /// </summary>
+        internal static string Plugin_UserSessionManager {
+            get {
+                return ResourceManager.GetString("Plugin_UserSessionManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Used to manage the user sessions.
+        /// </summary>
+        internal static string Plugin_UserSessionManager_Explanations {
+            get {
+                return ResourceManager.GetString("Plugin_UserSessionManager_Explanations", resourceCulture);
+            }
+        }
     }
 }

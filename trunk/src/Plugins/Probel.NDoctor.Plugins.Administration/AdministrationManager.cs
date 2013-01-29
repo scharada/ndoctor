@@ -36,13 +36,13 @@ namespace Probel.NDoctor.Plugins.Administration
     using Probel.NDoctor.Plugins.Administration.ViewModel;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox.Translations;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]
-    [PartMetadata(Keys.PluginName, "Administration Manager")]
+    [PartMetadata(Keys.PluginId, "{C4706773-CF41-49E9-8F47-6FCEA7A86456}")]
     public class AdministrationManager : Plugin
     {
         #region Fields

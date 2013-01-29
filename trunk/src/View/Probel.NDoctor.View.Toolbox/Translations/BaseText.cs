@@ -52,6 +52,11 @@ namespace Probel.NDoctor.View.Toolbox.Translations
             get { return Messages.Title_Error; }
         }
 
+        public static string ErrorOccured
+        {
+            get { return Messages.Msg_ErrorOccured; }
+        }
+
         public static string Group_Action
         {
             get { return Messages.Group_Action; }
@@ -60,6 +65,11 @@ namespace Probel.NDoctor.View.Toolbox.Translations
         public static string Information
         {
             get { return Messages.Title_Information; }
+        }
+
+        public static string InsertDone
+        {
+            get { return Messages.Msg_InsertDone; }
         }
 
         public static string Menu_File
@@ -115,17 +125,6 @@ namespace Probel.NDoctor.View.Toolbox.Translations
             get { return Messages.Title_Warning; }
         }
 
-
-
-        public static string InsertDone
-        {
-            get { return Messages.Msg_InsertDone; }
-        }
-
-        public static string ErrorOccured
-        {
-            get { return Messages.Msg_ErrorOccured; }
-        }
         #endregion Properties
     }
 }

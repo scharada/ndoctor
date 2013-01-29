@@ -490,4 +490,28 @@ The application will close. Check the logs for further  information</value>
     <value>Default search:</value>
     <comment>Default search:</comment>
   </data>
+  <data name="Title_PluginConfiguration" xml:space="preserve">
+    <value>Plugins </value>
+    <comment>Plugins</comment>
+  </data>
+  <data name="Gb_Explanations" xml:space="preserve">
+    <value>Explanations</value>
+    <comment>Explanations</comment>
+  </data>
+  <data name="Lbl_IsActive" xml:space="preserve">
+    <value>Activated plugin</value>
+    <comment>Activated plugin</comment>
+  </data>
+  <data name="Lbl_IsRecommended" xml:space="preserve">
+    <value>Recommended</value>
+    <comment>Recommended</comment>
+  </data>
+  <data name="Gb_Plugins" xml:space="preserve">
+    <value>Plugins lists</value>
+    <comment>Plugins lists</comment>
+  </data>
+  <data name="Lbl_IsMandatory" xml:space="preserve">
+    <value>Could not be deactivated</value>
+    <comment>Could not be deactivated</comment>
+  </data>
 </root>

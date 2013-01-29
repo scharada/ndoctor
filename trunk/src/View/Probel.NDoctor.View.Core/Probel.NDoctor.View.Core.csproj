@@ -150,12 +150,14 @@
       <DependentUpon>Messages.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="Translations\AboutBoxText.cs" />
+    <Compile Include="Translations\PluginCfgText.cs" />
     <Compile Include="Translations\SettingsText.cs" />
     <Compile Include="Translations\StartPageText.cs" />
     <Compile Include="ViewModel\AboutBoxViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\DefaultSettingsViewModel.cs" />
+    <Compile Include="ViewModel\PluginCfgViewModel.cs" />
     <Compile Include="ViewModel\PluginSettingsViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\SpashScreenViewModel.cs" />
@@ -165,6 +167,9 @@
     </Compile>
     <Compile Include="View\DefaultSettingsView.xaml.cs">
       <DependentUpon>DefaultSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PluginCfgView.xaml.cs">
+      <DependentUpon>PluginCfgView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
@@ -195,6 +200,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\PluginCfgView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

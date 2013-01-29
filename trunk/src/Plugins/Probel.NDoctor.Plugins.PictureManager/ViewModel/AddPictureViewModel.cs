@@ -26,16 +26,17 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using System.IO;
     using System.Threading.Tasks;
     using System.Windows.Input;
+
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui.FileServices;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PictureManager.Properties;
-    using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View;
-    using Probel.NDoctor.View.Toolbox;
+    using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Toolbox;
 
     public class AddPictureViewModel : BaseViewModel
     {

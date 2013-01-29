@@ -31,12 +31,12 @@ namespace Probel.NDoctor.Plugins.PictureManager
     using Probel.NDoctor.Plugins.PictureManager.ViewModel;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]
-    [PartMetadata(Keys.PluginName, "Picture manager")]
+    [PartMetadata(Keys.PluginId, "{8A4CF3E8-DA69-4568-8387-6F175457DD02}")]
     public class PictureManager : Plugin
     {
         #region Fields

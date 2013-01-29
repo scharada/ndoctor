@@ -170,7 +170,7 @@
     <comment>Configuring nHibernate...</comment>
   </data>
   <data name="Msg_ConfiguringPlugins" xml:space="preserve">
-    <value>Configuration des plugins...</value>
+    <value>Configuration des greffons...</value>
     <comment>Configuring plugins...</comment>
   </data>
   <data name="Msg_ConfiguringStructureMap" xml:space="preserve">
@@ -399,8 +399,8 @@ L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
     <comment>Go to nDoctor web site...</comment>
   </data>
   <data name="Title_Plugins" xml:space="preserve">
-    <value>Plugins installés:</value>
-    <comment>Installed plugins:</comment>
+    <value>Greffons:</value>
+    <comment>Plugins:</comment>
   </data>
   <data name="Msg_ConfiguringStatusWriter" xml:space="preserve">
     <value>Configuration de gestionnaire de statu...</value>
@@ -473,5 +473,29 @@ L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
   <data name="Title_SearchType" xml:space="preserve">
     <value>Recherche par défaut:</value>
     <comment>Default search:</comment>
+  </data>
+  <data name="Title_PluginConfiguration" xml:space="preserve">
+    <value>Greffons</value>
+    <comment>Plugins </comment>
+  </data>
+  <data name="Gb_Explanations" xml:space="preserve">
+    <value>Explications</value>
+    <comment>Explanations</comment>
+  </data>
+  <data name="Lbl_IsActive" xml:space="preserve">
+    <value>Greffon activé</value>
+    <comment>Activated plugin</comment>
+  </data>
+  <data name="Lbl_IsRecommended" xml:space="preserve">
+    <value>Recommandé</value>
+    <comment>Recommended</comment>
+  </data>
+  <data name="Gb_Plugins" xml:space="preserve">
+    <value>Liste des greffons</value>
+    <comment>Plugins lists</comment>
+  </data>
+  <data name="Lbl_IsMandatory" xml:space="preserve">
+    <value>Ne peut être désactivé</value>
+    <comment>Could not be deactivated</comment>
   </data>
 </root>

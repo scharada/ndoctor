@@ -48,6 +48,7 @@ namespace Probel.NDoctor.View.Core.Helpers
         {
             settingControls = new ObservableCollection<SettingUi>();
             settingControls.Add(new SettingUi(Messages.Title_DefaultSettings, () => new DefaultSettingsView()));
+            settingControls.Add(new SettingUi(Messages.Title_PluginConfiguration, () => new PluginCfgView()));
         }
 
         #endregion Constructors
@@ -71,13 +72,14 @@ namespace Probel.NDoctor.View.Core.Helpers
         /// </summary>
         /// <param name="name">The name of the control. It will be used in the tabs to choose the settings control.</param>
         /// <param name="ctor">The control that contains all the settings logic.</param>
-        public void Add(string name, Func<UserControl> ctor)
+        public SettingsConfigurator Add(string name, Func<UserControl> ctor)
         {
             if (this.Contains(name)) { throw new ArgumentException("A setting UI has already been configured with the name '{0}'".FormatWith(name)); }
             else
             {
                 settingControls.Add(new SettingUi(name, ctor));
             }
+            return this;
         }
 
         /// <summary>

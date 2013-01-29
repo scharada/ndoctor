@@ -22,13 +22,14 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows.Input;
+
     using Probel.Helpers.Data;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View;
-    using Probel.NDoctor.View.Toolbox.Logging;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Toolbox.Logging;
 
     internal class StartPageViewModel : BaseViewModel
     {

@@ -19,8 +19,8 @@ namespace Probel.NDoctor.View.Plugins
     using System.Collections.Generic;
     using System.ComponentModel.Composition;
 
-    using Probel.NDoctor.View.Plugins.Exceptions;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Plugins.Exceptions;
 
     public class PluginContainer : LogObject
     {

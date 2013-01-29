@@ -27,20 +27,23 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using System.Threading;
     using System.Windows;
 
+    using AutoMapper;
+
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.View;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Core.View;
-    using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Plugins.Cfg;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox.Navigation;
 
     using StructureMap;
-    using Probel.NDoctor.View.Plugins;
 
     internal class SpashScreenViewModel : BaseViewModel
     {
@@ -157,6 +160,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
                     this.Status = Messages.Msg_ConfiguringStructureMap;
                     this.ConfigureStructureMap();
+                    this.ConfigureAutomapper();
                     this.Progress = 56;
 
                     this.Status = Messages.Msg_ConfiguringViewService;
@@ -198,6 +202,12 @@ namespace Probel.NDoctor.View.Core.ViewModel
             PluginContext.Host.AddTab(new RibbonTabData(Messages.Title_Home, groups));
         }
 
+        private void ConfigureAutomapper()
+        {
+            Mapper.CreateMap<PluginConfiguration, PluginConfigurationDto>();
+            Mapper.CreateMap<PluginConfigurationDto, PluginConfiguration>();
+        }
+
         private void ConfigureNHibernate()
         {
             this.Logger.Info("Configuring nHibernate...");
@@ -233,7 +243,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
             ObjectFactory.Configure(x =>
              {
                  x.For<IPluginLoader>().Add<MefPluginLoader>()
-                     .Ctor<string>("repository").Is(repository);
+                     .Ctor<string>("repository").Is(repository)
+                     .Ctor<PluginsConfigurationFolder>("folder").Is(this.GetPluginsConfigurationFolder());
              });
         }
 
@@ -252,6 +263,18 @@ namespace Probel.NDoctor.View.Core.ViewModel
             PluginContext.ComponentFactory
                 .GetInstance<IPictureComponent>()
                 .CreateAllThumbnails();
+        }
+
+        private PluginsConfigurationFolder GetPluginsConfigurationFolder()
+        {
+            var appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var fileName = (string.IsNullOrWhiteSpace(ConfigurationManager.AppSettings["pluginSettings"]))
+                ? Path.Combine(appdata, @"Probel\nDoctor\Plugins.config")
+                : ConfigurationManager.AppSettings["appSettings"];
+
+            return (File.Exists(fileName))
+                ? PluginsConfigurationFolder.Load(fileName)
+                : PluginsConfigurationFolder.LoadDefault();
         }
 
         private void LogDatabaseCreation()
