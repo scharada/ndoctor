@@ -14,6 +14,9 @@ The plugin host DLL offers a error handler to manage exception. Its role is pret
  * displays an error message in a message box
  * logs the exception in a file or in whatever way you've configured log4net
 
+== Plugin configuration ==
+[Work in progress]
+
 == Plugin context ==
 This plugin context provides an small API to execute some generic tasks:
  * Logging into the GUI
@@ -22,7 +25,16 @@ This plugin context provides an small API to execute some generic tasks:
  * Build plugin's ribbon menu using `DataBinding`
 
 === View Service ===
+There's a generic mechanism to add configuration and settings for the plugins.
 
+To create a configuration page, follow these steps:
+
+ # Create a `Page` that contains all the configuration of the plugin
+ # Create a ViewModel that derives from `PluginSettingsViewModel` and bind it to the `Page`
+ # Bind the configuration to the application with: `new SettingsConfigurator().Add("Title of the page", () => new SettingsView());`
+  # The first argument is the title of the page
+  # The second argument is a lambda that will return a new instance of the view to display in the setting manager
+ 
 ==== Window manager ====
 
 This service offers a simple mechanism to manage windows into the application.
