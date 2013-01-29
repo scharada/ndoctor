@@ -58,7 +58,6 @@ namespace Probel.NDoctor.View.Core
             #endif
             this.MainWindow = new MainWindow();
             this.Logger = LogManager.GetLogger(typeof(LogManager));
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(Settings.Default.Language);
 
             PluginContext.Configuration.BenchmarkEnabled = bool.Parse(ConfigurationManager.AppSettings["BenchmarkEnabled"]);
             PluginContext.Configuration.AutomaticContextMenu = Settings.Default.AutomaticContextMenu;

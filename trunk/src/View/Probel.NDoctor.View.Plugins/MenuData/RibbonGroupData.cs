@@ -25,19 +25,10 @@ namespace Probel.NDoctor.View.Plugins.MenuData
 
         private ObservableCollection<RibbonControlData> buttons = new ObservableCollection<RibbonControlData>();
         private string header;
+        private Visibility visibility;
 
         #endregion Fields
 
-        private Visibility visibility;
-        public Visibility Visibility
-        {
-            get { return this.visibility; }
-            set
-            {
-                this.visibility = value;
-                this.OnPropertyChanged(() => Visibility);
-            }
-        }
         #region Constructors
 
         public RibbonGroupData(string name, ObservableCollection<RibbonButtonData> buttonDataCollection)
@@ -84,6 +75,16 @@ namespace Probel.NDoctor.View.Plugins.MenuData
             {
                 this.header = value;
                 this.OnPropertyChanged(() => Header);
+            }
+        }
+
+        public Visibility Visibility
+        {
+            get { return this.visibility; }
+            set
+            {
+                this.visibility = value;
+                this.OnPropertyChanged(() => Visibility);
             }
         }
 
