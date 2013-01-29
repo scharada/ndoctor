@@ -19,7 +19,10 @@ The plugin host DLL offers a error handler to manage exception. Its role is pret
 There's a simple mechanism to add the configuration of a plugin into a general GUI. To add configuration, follow these steps
  # Create a `Page` that contains the configuration
  # Create a `ViewModel` and bind it to the `Page`
- # Bind the configuration to the application with the `SettingsConfigurator`: {{{new SettingsConfigurator().Add("Title", () => new SettingsView());}}}
+ # Bind the configuration to the application with the `SettingsConfigurator`: 
+{{{
+new SettingsConfigurator().Add("Title", () => new SettingsView());
+}}}
   # The first argument is the title of the `Page` as it will be displayed in the GUI
   # The second argument is a lambda that will return an instance of the setting GUI item
 
