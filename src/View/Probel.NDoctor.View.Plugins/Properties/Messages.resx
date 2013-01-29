@@ -170,4 +170,112 @@ Path: {1}</value>
     <value>The parameter '{0}' is not set in the configuration file. Please set it up.</value>
     <comment>The parameter '{0}' is not set in the configuration file. Please set it up.</comment>
   </data>
+  <data name="Plugin_Administration" xml:space="preserve">
+    <value>Administration manager</value>
+    <comment>Administration manager</comment>
+  </data>
+  <data name="Plugin_Administration_Explanations" xml:space="preserve">
+    <value>Used to manage all the data not directly related to the patient</value>
+    <comment>Used to manage all the data not directly related to the patient</comment>
+  </data>
+  <data name="Plugin_Authorisation" xml:space="preserve">
+    <value>Authorisation manager</value>
+    <comment>Authorisation manager</comment>
+  </data>
+  <data name="Plugin_Authorisation_Explanations" xml:space="preserve">
+    <value>Allow to manage authorisations of the modules of nDoctor</value>
+    <comment>Allow to manage authorisations of the modules of nDoctor</comment>
+  </data>
+  <data name="Plugin_Bmi" xml:space="preserve">
+    <value>BMI history manager</value>
+    <comment>BMI history manager</comment>
+  </data>
+  <data name="Plugin_Bmi_Explanations" xml:space="preserve">
+    <value>Used to manage the BMI history of a patient</value>
+    <comment>Used to manage the BMI history of a patient</comment>
+  </data>
+  <data name="Plugin_DbImport" xml:space="preserve">
+    <value>Data importer</value>
+    <comment>Data importer</comment>
+  </data>
+  <data name="Plugin_DbImport_Explanations" xml:space="preserve">
+    <value>Used to import data from a Sharpenda database</value>
+    <comment>Used to import data from a Sharpenda database</comment>
+  </data>
+  <data name="Plugin_FamilyManager" xml:space="preserve">
+    <value>Family manager</value>
+    <comment>Family manager</comment>
+  </data>
+  <data name="Plugin_FamilyManager_Explanations" xml:space="preserve">
+    <value>Used to manage the family of a patient</value>
+    <comment>Used to manage the family of a patient</comment>
+  </data>
+  <data name="Plugin_MedicalRecordManager" xml:space="preserve">
+    <value>Medical record manager</value>
+    <comment>Medical record manager</comment>
+  </data>
+  <data name="Plugin_MedicalRecordManager_Explanations" xml:space="preserve">
+    <value>Used to manage the medical records of a patient</value>
+    <comment>Used to manage the medical records of a patient</comment>
+  </data>
+  <data name="Plugin_MeetingManager" xml:space="preserve">
+    <value>Calendar</value>
+    <comment>Calendar</comment>
+  </data>
+  <data name="Plugin_MeetingManager_Explanations" xml:space="preserve">
+    <value>Used to manage the appointments with patients</value>
+    <comment>Used to manage the appointments with patients</comment>
+  </data>
+  <data name="Plugin_PathologyManager" xml:space="preserve">
+    <value>Pathology manager</value>
+    <comment>Pathology manager</comment>
+  </data>
+  <data name="Plugin_PathologyManager_Explanations" xml:space="preserve">
+    <value>Used to manage the pathology history of a patient</value>
+    <comment>Used to manage the pathology history of a patient</comment>
+  </data>
+  <data name="Plugin_PatientDataManager" xml:space="preserve">
+    <value>Patient data manager (Old version)</value>
+    <comment>Patient data manager (Old version)</comment>
+  </data>
+  <data name="Plugin_PatientDataManager2" xml:space="preserve">
+    <value>Gestionnaire de données patient</value>
+    <comment>Patient data manager</comment>
+  </data>
+  <data name="Plugin_PatientDataManager_Explanations" xml:space="preserve">
+    <value>Used to manage the data of a patient</value>
+    <comment>Used to manage the data of a patient</comment>
+  </data>
+  <data name="Plugin_PatientSessionManager" xml:space="preserve">
+    <value>Patient session manager</value>
+    <comment>Patient session manager</comment>
+  </data>
+  <data name="Plugin_PatientSessionManager_Explanations" xml:space="preserve">
+    <value>Used to manage a patient sessions. Has tools to search and to load a patient</value>
+    <comment>Used to manage a patient sessions. Has tools to search and to load a patient</comment>
+  </data>
+  <data name="Plugin_PictureManager" xml:space="preserve">
+    <value>Medical pictures manager</value>
+    <comment>Medical pictures manager</comment>
+  </data>
+  <data name="Plugin_PictureManager_Explanations" xml:space="preserve">
+    <value>Used to manage medical pictures of a patient</value>
+    <comment>Used to manage medical pictures of a patient</comment>
+  </data>
+  <data name="Plugin_PrescriptionManager" xml:space="preserve">
+    <value>Prescriptions manager</value>
+    <comment>Prescriptions manager</comment>
+  </data>
+  <data name="Plugin_PrescriptionManager_Explanations" xml:space="preserve">
+    <value>Used to manage the prescriptions of a patient</value>
+    <comment>Used to manage the prescriptions of a patient</comment>
+  </data>
+  <data name="Plugin_UserSessionManager" xml:space="preserve">
+    <value>User session manager</value>
+    <comment>User session manager</comment>
+  </data>
+  <data name="Plugin_UserSessionManager_Explanations" xml:space="preserve">
+    <value>Used to manage the user sessions</value>
+    <comment>Used to manage the user sessions</comment>
+  </data>
 </root>

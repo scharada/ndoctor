@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,10 +16,30 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#endregion Header
+
 namespace Probel.NDoctor.View.Plugins
 {
+    using Probel.NDoctor.View.Plugins.Cfg;
+
     public interface IPluginLoader
     {
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets the plugin configuration.
+        /// </summary>
+        /// <value>
+        /// The plugin configuration.
+        /// </value>
+        PluginsConfigurationFolder PluginConfiguration
+        {
+            get;
+        }
+
+        #endregion Properties
+
         #region Methods
 
         /// <summary>

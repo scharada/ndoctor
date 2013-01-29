@@ -23,8 +23,8 @@ namespace Probel.NDoctor.View.Plugins
 
     using log4net;
 
-    using Probel.NDoctor.View.Plugins.Exceptions;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Plugins.Exceptions;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Plugins.Properties;
     using Probel.NDoctor.View.Toolbox.Navigation;

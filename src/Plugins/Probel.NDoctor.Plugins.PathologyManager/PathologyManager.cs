@@ -32,12 +32,12 @@ namespace Probel.NDoctor.Plugins.PathologyManager
     using Probel.NDoctor.Plugins.PathologyManager.ViewModel;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]
-    [PartMetadata(Keys.PluginName, "Pathology manager")]
+    [PartMetadata(Keys.PluginId, "{7E999CF5-886D-4BEC-A7B8-903AE2047A6C}")]
     public class PathologyManager : Plugin
     {
         #region Fields

@@ -19,20 +19,43 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.View.Plugins
+namespace Probel.NDoctor.View.Core.Translations
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
 
-    public static class Keys
+    using Probel.NDoctor.View.Core.Properties;
+
+    public static class PluginCfgText
     {
-        #region Fields
 
-        public const string Constraint = "Constraint";
-        public const string PluginId = "PluginName";
+        public static string Plugins
+        {
+            get { return Messages.Gb_Plugins; }
+        }
+        #region Properties
 
-        #endregion Fields
+        public static string Explanations
+        {
+            get { return Messages.Gb_Explanations; }
+        }
+
+        public static string IsActive
+        {
+            get { return Messages.Lbl_IsActive; }
+        }
+
+        public static string IsRecommended
+        {
+            get { return Messages.Lbl_IsRecommended; }
+        }
+
+        public static string IsMandatory
+        {
+            get { return Messages.Lbl_IsMandatory; }
+        }
+        #endregion Properties
     }
 }

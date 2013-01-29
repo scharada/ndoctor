@@ -30,7 +30,7 @@ namespace Probel.NDoctor.Plugins.DebugTools
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]
-    [PartMetadata(Keys.PluginName, "Debug tools")]
+    [PartMetadata(Keys.PluginId, "{1A5224ED-3E37-4AD8-AB2B-FBC0115434FA}")]
     public class DebugTools : Plugin
     {
         #region Fields

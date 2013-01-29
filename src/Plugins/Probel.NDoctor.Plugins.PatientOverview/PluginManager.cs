@@ -30,13 +30,13 @@ namespace Probel.NDoctor.Plugins.PatientOverview
     using Probel.NDoctor.Plugins.PatientOverview.ViewModel;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox.Translations;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]
-    [PartMetadata(Keys.PluginName, "Patient Overview")]
+    [PartMetadata(Keys.PluginId, "{7D16F7FE-87D8-4435-AF23-7593379E4986}")]
     public class PluginManager : StaticViewPlugin<WorkbenchView>
     {
         #region Fields

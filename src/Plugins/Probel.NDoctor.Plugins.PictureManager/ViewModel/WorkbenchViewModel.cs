@@ -32,8 +32,8 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PictureManager.Properties;
-    using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View;
+    using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins;
 
     internal class WorkbenchViewModel : BaseViewModel

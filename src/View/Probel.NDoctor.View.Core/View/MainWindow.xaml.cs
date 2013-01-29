@@ -36,14 +36,14 @@ namespace Probel.NDoctor.View.Core.View
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.View;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
-    using Probel.NDoctor.View;
-    using Probel.NDoctor.View.Plugins.Exceptions;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Plugins.Exceptions;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox;
-    using Probel.NDoctor.View.Plugins;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -178,7 +178,6 @@ namespace Probel.NDoctor.View.Core.View
         {
             get { return this; }
         }
-
 
         public LightPatientDto SelectedPatient
         {
@@ -548,11 +547,11 @@ namespace Probel.NDoctor.View.Core.View
 
         private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-#if DEBUG
+            #if DEBUG
             this.WindowState = System.Windows.WindowState.Normal;
-#else
+            #else
             this.WindowState = System.Windows.WindowState.Maximized;
-#endif
+            #endif
         }
 
         private void WriteStatus(LightPatientDto value)

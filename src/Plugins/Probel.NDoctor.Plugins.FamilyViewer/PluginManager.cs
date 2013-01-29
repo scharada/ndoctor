@@ -32,12 +32,12 @@ namespace Probel.NDoctor.Plugins.FamilyViewer
     using Probel.NDoctor.Plugins.FamilyViewer.ViewModel;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]
-    [PartMetadata(Keys.PluginName, "Family manager")]
+    [PartMetadata(Keys.PluginId, "{6185C382-52D0-4E44-B854-BC2B619DE849}")]
     public class PluginManager : Plugin
     {
         #region Fields

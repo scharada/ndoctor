@@ -26,8 +26,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
 
     internal class SettingsViewModel : BaseViewModel

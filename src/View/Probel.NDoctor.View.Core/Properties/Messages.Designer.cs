@@ -133,6 +133,24 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Explanations.
+        /// </summary>
+        internal static string Gb_Explanations {
+            get {
+                return ResourceManager.GetString("Gb_Explanations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plugins lists.
+        /// </summary>
+        internal static string Gb_Plugins {
+            get {
+                return ResourceManager.GetString("Gb_Plugins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Female.
         /// </summary>
         internal static string Gender_Female {
@@ -165,6 +183,33 @@ namespace Probel.NDoctor.View.Core.Properties {
         internal static string Language_French {
             get {
                 return ResourceManager.GetString("Language_French", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activated plugin.
+        /// </summary>
+        internal static string Lbl_IsActive {
+            get {
+                return ResourceManager.GetString("Lbl_IsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not be deactivated.
+        /// </summary>
+        internal static string Lbl_IsMandatory {
+            get {
+                return ResourceManager.GetString("Lbl_IsMandatory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recommended.
+        /// </summary>
+        internal static string Lbl_IsRecommended {
+            get {
+                return ResourceManager.GetString("Lbl_IsRecommended", resourceCulture);
             }
         }
         
@@ -715,6 +760,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         internal static string Title_Phone {
             get {
                 return ResourceManager.GetString("Title_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plugins .
+        /// </summary>
+        internal static string Title_PluginConfiguration {
+            get {
+                return ResourceManager.GetString("Title_PluginConfiguration", resourceCulture);
             }
         }
         

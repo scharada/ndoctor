@@ -18,6 +18,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 {
     using System;
     using System.Windows.Input;
+
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO;
@@ -25,10 +26,10 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PictureManager.Properties;
-    using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View;
-    using Probel.NDoctor.View.Toolbox;
+    using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Toolbox;
 
     internal class AddTagViewModel : BaseViewModel
     {

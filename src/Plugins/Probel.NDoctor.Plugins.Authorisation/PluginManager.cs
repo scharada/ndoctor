@@ -34,12 +34,12 @@ namespace Probel.NDoctor.Plugins.Authorisation
     using Probel.NDoctor.Plugins.Authorisation.ViewModel;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]
-    [PartMetadata(Keys.PluginName, "Authorisation Manager")]
+    [PartMetadata(Keys.PluginId, "{584D7616-248E-4985-AC3F-66C07958E646}")]
     public class PluginManager : Plugin
     {
         #region Fields

@@ -36,15 +36,15 @@ namespace Probel.NDoctor.Plugins.MeetingManager
     using Probel.NDoctor.Plugins.MeetingManager.Properties;
     using Probel.NDoctor.Plugins.MeetingManager.View;
     using Probel.NDoctor.Plugins.MeetingManager.ViewModel;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View;
+    using Probel.NDoctor.View.Core.Helpers;
+    using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.View.Plugins;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]
-    [PartMetadata(Keys.PluginName, "Meeting manager")]
+    [PartMetadata(Keys.PluginId, "{B2C14EF3-8B01-4D0F-B74F-8B26D87E274C}")]
     public class MeetingManager : Plugin
     {
         #region Fields

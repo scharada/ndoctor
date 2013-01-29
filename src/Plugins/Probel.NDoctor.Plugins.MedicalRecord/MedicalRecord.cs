@@ -37,15 +37,15 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
     using Probel.NDoctor.Plugins.MedicalRecord.Properties;
     using Probel.NDoctor.Plugins.MedicalRecord.View;
     using Probel.NDoctor.Plugins.MedicalRecord.ViewModel;
-    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View;
+    using Probel.NDoctor.View.Core.Helpers;
+    using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.View.Plugins;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]
-    [PartMetadata(Keys.PluginName, "Medical record manager")]
+    [PartMetadata(Keys.PluginId, "{1B564972-40E6-45EA-B7BE-C1FF1B84D016}")]
     public class MedicalRecord : Plugin
     {
         #region Fields

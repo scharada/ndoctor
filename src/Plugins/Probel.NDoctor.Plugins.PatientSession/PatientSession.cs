@@ -32,12 +32,12 @@ namespace Probel.NDoctor.Plugins.PatientSession
     using Probel.NDoctor.Plugins.PatientSession.ViewModel;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]
-    [PartMetadata(Keys.PluginName, "Patient session manager")]
+    [PartMetadata(Keys.PluginId, "{FD1502BB-8A85-4705-A7B1-49B5CCE1E7FD}")]
     public class PatientSession : Plugin
     {
         #region Fields
