@@ -131,9 +131,6 @@
                 </Component>
             </Directory>
             <Directory Id="Plugins" Name="Plugins">
-                <Component Id="plugins.config.xml" Guid="{B9C04EDB-0590-4FD7-BB59-E47E42C71310}">
-                    <File Id="plugins.config.xml" KeyPath="yes" Source="$(env.NEST)\Plugins\plugins.config.xml" />
-                </Component>
                 <Directory Id="Administration" Name="Administration">
                     <Component Id="Probel.NDoctor.Plugins.Administration.dll" Guid="{8678D579-8D18-4B7C-A5CA-E8E92208BB60}">
                         <File Id="Probel.NDoctor.Plugins.Administration.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\Administration\Probel.NDoctor.Plugins.Administration.dll" />
