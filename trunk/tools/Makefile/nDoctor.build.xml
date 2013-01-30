@@ -15,7 +15,7 @@
 	
 	<!-- Properties -->
 	<property name="release-dir" value="c:\nDoctor-Release" overwrite="false"/>
-	<property name="code-dir" value="${release-dir}\bin"/>
+	<property name="code-dir" value="${release-dir}\bin" overwrite="false"/>
 	<property name="sln-file" value="Probel.NDoctor.sln" overwrite="false"/>
 	<property name="sln-setup" value="Setup.sln" overwrite="false"/>
 	<property name="tool-dir" value="${release-dir}\bin\tools"/>
@@ -25,9 +25,10 @@
 	<property name="output-dir" value="${release-dir}\output"/>
 	
 	<!-- Targets -->
-	<!-- Export the code locally -->
-	<target name="Pre-Build" description="Export the code locally">
-		<echo message="========================================================================"/>
+	
+	<!-- Displays debug information -->
+	<target name="Intro" description="Displays information before starting the build">
+	    <echo message="========================================================================"/>
 		<echo message="release-dir   : ${release-dir}"/>
 		<echo message="code-dir      : ${code-dir}"/>
 		<echo message="sln-file      : ${sln-file}"/>
@@ -36,7 +37,10 @@
 		<echo message="build-mode    : ${build-mode}"/>
 		<echo message="svn-repository: ${svn-repository}"/>
 		<echo message="========================================================================"/>
-		
+	</target>
+	
+	<!-- Export the code locally -->
+	<target name="Pre-Build" description="Export the code locally" if="${build-mode == 'release'}" depends="Intro">
 		<echo message="Clean release directory..."/>
 		<delete>
 			<fileset basedir="${release-dir}\">
@@ -174,7 +178,9 @@
 		<echo message="Copy the installer"/>
 		<copy file="${code-dir}\src\Setup\bin\${build-mode}\Setup.msi"
 		      tofile="${release-dir}\nDoctor.${version}.msi"/>
-		
+	</target>
+	<!-- Cleans up the resources -->
+	<target name="Clean-Up" description="Cleans up the build environment" if="${release-mode == 'release'}" depends="Release">
 		<echo message="Clean temporary files"/>
 		<delete dir="${release-dir}\fr"/>
 		<delete dir="${release-dir}\Plugins"/>
