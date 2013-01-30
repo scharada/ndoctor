@@ -28,8 +28,8 @@ $newText = $destinationContent -replace $token, $str
 ################################################################################
 echo "Add license file"
 ################################################################################
-echo "Copy file: $root\license.rtf"
-echo "       to: $env:NEST
+Write-Host "Copy file: $root\license.rtf"
+Write-Host "       to: $env:NEST"
 cp "$root\license.rtf" $env:NEST
 ################################################################################
 echo "Build the new file"
