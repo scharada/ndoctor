@@ -228,28 +228,6 @@
                         </Component>
                     </Directory>
                 </Directory>
-                <Directory Id="dirA8D398CF33AC8FB54517A7C7886C526F" Name="DebugTools">
-                    <Component Id="cmpACA274D634C67A99972BD04994E1984E" Guid="*">
-                        <File Id="filFFCA27439296A7390CDB5194189F56F2" KeyPath="yes" Source="$(env.NEST)\Plugins\DebugTools\Probel.NDoctor.Plugins.DebugTools.dll" />
-                    </Component>
-                    <Directory Id="dir3CCB982A11D7B45BEE9AC578C93B829A" Name="fr">
-                        <Component Id="cmp6E0C59392CEB06067E865CB4DEACA4EF" Guid="*">
-                            <File Id="filC1C7E223EC7978064C7852E437C5ECE6" KeyPath="yes" Source="$(env.NEST)\Plugins\DebugTools\fr\Probel.Helpers.resources.dll" />
-                        </Component>
-                        <Component Id="cmp9AC1D933A37B28C8750AD7DABFBDA773" Guid="*">
-                            <File Id="filEA4B480996DD5F36BF6363C38320D5E9" KeyPath="yes" Source="$(env.NEST)\Plugins\DebugTools\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
-                        </Component>
-                        <Component Id="cmp465BD801FCF5290353725A2C3FE397D0" Guid="*">
-                            <File Id="fil2EFB67DD469392F540DBF893DD481414" KeyPath="yes" Source="$(env.NEST)\Plugins\DebugTools\fr\Probel.NDoctor.Plugins.DebugTools.resources.dll" />
-                        </Component>
-                        <Component Id="cmp78004B86B99F694328FED04F5EBCD94A" Guid="*">
-                            <File Id="fil0DE5A09D6AA92CE1317018FEC98BD98F" KeyPath="yes" Source="$(env.NEST)\Plugins\DebugTools\fr\Probel.NDoctor.View.Core.resources.dll" />
-                        </Component>
-                        <Component Id="cmp3A01E807AB67FCF43DE7B9B9E3204DDC" Guid="*">
-                            <File Id="filA326C6F573CCA270A02A8FE5B94FAF74" KeyPath="yes" Source="$(env.NEST)\Plugins\DebugTools\fr\Probel.NDoctor.View.Plugins.resources.dll" />
-                        </Component>
-                    </Directory>
-                </Directory>
                 <Directory Id="dirB3E00304E321AA8429FF31B0805D49A7" Name="FamilyViewer">
                     <Component Id="cmp55A033CC194D20E2BFF71BDFB19BC9E1" Guid="*">
                         <File Id="fil06CE27228AF17E5B6A76C7EF57AEDD25" KeyPath="yes" Source="$(env.NEST)\Plugins\FamilyViewer\Probel.NDoctor.Plugins.FamilyViewer.dll" />
