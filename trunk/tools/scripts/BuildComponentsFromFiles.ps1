@@ -6,10 +6,13 @@ $cmdPath = Split-Path($MyInvocation.MyCommand.Path)
 $root = "$cmdPath\..\..\src\Setup\"
 $token = '<!--<REPLACEMENT>-->'
 $text = Get-Content $root'Files.wxs'
-
+echo "."
+echo "========================================================================"
 echo "cmd path: $cmdpath"
 echo "Root: $root"
 echo "Token: $token"
+echo "========================================================================"
+echo "."
 ################################################################################
 echo "Apply regex and build the file content"
 ################################################################################

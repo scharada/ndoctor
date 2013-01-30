@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project default="Post-Build" xmlns="http://nant.sf.net/release/0.92/nant.xsd">
+<project default="Unit-Tests" xmlns="http://nant.sf.net/release/0.92/nant.xsd">
 	
 	<!--
       Uncomment these few lines if the nAnd Contrib binaries are not in the same directory than the nAnt files.
@@ -14,11 +14,12 @@
   -->
 	
 	<!-- Properties -->
+	<property name="only-installer" value="false" overwrite="false"/>
 	<property name="release-dir" value="c:\nDoctor-Release" overwrite="false"/>
 	<property name="code-dir" value="${release-dir}\bin" overwrite="false"/>
 	<property name="sln-file" value="Probel.NDoctor.sln" overwrite="false"/>
 	<property name="sln-setup" value="Setup.sln" overwrite="false"/>
-	<property name="tool-dir" value="${release-dir}\bin\tools"/>
+	<property name="tool-dir" value="${release-dir}\bin\tools" overwrite="false"/>
 	<property name="build-mode" value="release" overwrite="false"/>
 	<property name="svn-repository" value="http://ndoctor.googlecode.com/svn/trunk/"/>
 	<property name="nest-dir" value="${release-dir}\Nest\nDoctor"/>
@@ -36,6 +37,7 @@
 		<echo message="tool-dir      : ${tool-dir}"/>
 		<echo message="build-mode    : ${build-mode}"/>
 		<echo message="svn-repository: ${svn-repository}"/>
+		<echo message="Only create the installer: ${only-installer}"/>
 		<echo message="========================================================================"/>
 	</target>
 	
@@ -84,7 +86,7 @@
 	</target>
 	
 	<!-- Build the solution -->
-	<target name="Build" description="Build the solution" depends="Pre-Build">
+	<target name="Build" description="Build the solution" depends="Pre-Build" if="${only-installer == 'false'}">
 		<!-- Build the solution -->
 		<echo message="Building..."/>
 		<echo message="Build mode: ${build-mode}"/>
@@ -106,15 +108,17 @@
 	</target>
 	
 	<!-- Post build: run unit tests -->
-	<target name="Post-Build" description="Run Unit tests and prepare binaries" depends="Build">
+	<target name="Unit-Tests" description="Run Unit tests and prepare binaries" depends="Build" if="${only-installer == 'false'}">
 		
 		<mkdir dir="${output-dir}"/>
-		<echo message="Test file: ${code-dir}\src\Probel.NDoctor.nunit /result=${output-dir}\nunit-output.xml /config=Release"/>
+		<echo message="Test file: ${code-dir}\src\Probel.NDoctor.nunit /result=${output-dir}\nunit-output.xml /config=${build-mode}"/>
 		<echo message="Run the unit tests..."/>
 		<exec program="nunit-console-x86.exe"
-		      commandline="${code-dir}\src\Probel.NDoctor.nunit /result=${output-dir}\nunit-output.xml /out=${output-dir}\nunit-output.txt /config=Release /nologo"/>
-		
-		
+		      commandline="${code-dir}\src\Probel.NDoctor.nunit /result=${output-dir}\nunit-output.xml /out=${output-dir}\nunit-output.txt /config=${build-mode} /nologo"/>
+	</target>
+	
+	<!-- Prepare version and copy files-->
+	<target name="Bin-Configuration" description="Configure the files before creating the release packages" depends="Unit-Tests">
 		<echo message="Copying i18n files..."/>
 		<copy todir="${nest-dir}\fr">
 			<fileset basedir="${code-dir}\src\View\Probel.NDoctor.View.Core\bin\${build-mode}\fr"/>
@@ -147,7 +151,7 @@
 	</target>
 	
 	<!-- Build the .msi file -->
-	<target name="Installer" description="Build the installer" depends="Post-Build">
+	<target name="Installer" description="Build the installer" depends="Bin-Configuration">
 		<echo message="Execute the script to prepare the installer build"/>
 		<exec program="powershell" workingdir="${tool-dir}" verbose="true">
 			<arg value="-noprofile"/>
@@ -165,7 +169,7 @@
 	</target>
 	
 	<!-- Create a zipped package with the binaries -->
-	<target name="Release" description="Zip the binaries and installer" depends="Installer">
+	<target name="Zipped-Binaries" description="Zip the binaries and installer" depends="Installer">
 		
 		<echo message="Zip the binaries"/>
 		<zip zipfile="${release-dir}\nDoctor.${version}.zip">
@@ -179,8 +183,9 @@
 		<copy file="${code-dir}\src\Setup\bin\${build-mode}\Setup.msi"
 		      tofile="${release-dir}\nDoctor.${version}.msi"/>
 	</target>
+	
 	<!-- Cleans up the resources -->
-	<target name="Clean-Up" description="Cleans up the build environment" if="${release-mode == 'release'}" depends="Release">
+	<target name="Clean-Up" description="Cleans up the build environment" if="${build-mode == 'release'}" depends="Zipped-Binaries">
 		<echo message="Clean temporary files"/>
 		<delete dir="${release-dir}\fr"/>
 		<delete dir="${release-dir}\Plugins"/>
