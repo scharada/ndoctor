@@ -514,4 +514,8 @@ The application will close. Check the logs for further  information</value>
     <value>Could not be deactivated</value>
     <comment>Could not be deactivated</comment>
   </data>
+  <data name="Title_RemoteStat" xml:space="preserve">
+    <value>Export anonymous usage statistics</value>
+    <comment>Export anonymous usage statistics</comment>
+  </data>
 </root>

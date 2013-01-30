@@ -52,12 +52,16 @@ namespace Probel.NDoctor.View.Core
 
         public App()
         {
-            #if DEBUG
+#if DEBUG
             //Hook the console to the application to have logging features
             AllocConsole();
-            #endif
+#endif
             this.MainWindow = new MainWindow();
             this.Logger = LogManager.GetLogger(typeof(LogManager));
+
+            this.Logger.Info((Settings.Default.IsRemoteStatisticsEnabled) 
+                ? "Remote statistics are enabled" 
+                : "Remote statistics are disabled");
 
             PluginContext.Configuration.BenchmarkEnabled = bool.Parse(ConfigurationManager.AppSettings["BenchmarkEnabled"]);
             PluginContext.Configuration.AutomaticContextMenu = Settings.Default.AutomaticContextMenu;
@@ -153,7 +157,8 @@ namespace Probel.NDoctor.View.Core
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            new NDoctorStatistics().Flush();
+            new NDoctorStatistics(Settings.Default.IsRemoteStatisticsEnabled)
+                .Flush();
         }
 
         private void CleanGui()

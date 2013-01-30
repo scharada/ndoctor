@@ -818,6 +818,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export anonymous usage statistics.
+        /// </summary>
+        internal static string Title_RemoteStat {
+            get {
+                return ResourceManager.GetString("Title_RemoteStat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default search:.
         /// </summary>
         internal static string Title_SearchType {

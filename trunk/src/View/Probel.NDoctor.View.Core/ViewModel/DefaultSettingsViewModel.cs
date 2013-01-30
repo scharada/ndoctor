@@ -124,6 +124,16 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         #endregion Properties
 
+
+        public bool RemoteStatisticsActivated
+        {
+            get { return Settings.Default.IsRemoteStatisticsEnabled; }
+            set
+            {
+                Settings.Default.IsRemoteStatisticsEnabled = value;
+                this.OnPropertyChanged(() => RemoteStatisticsActivated);
+            }
+        }
         #region Methods
 
         protected override bool CanSave()

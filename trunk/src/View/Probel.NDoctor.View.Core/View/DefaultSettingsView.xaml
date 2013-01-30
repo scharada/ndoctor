@@ -41,6 +41,10 @@
                           Margin="4"
                           VerticalContentAlignment="Center"
                           IsChecked="{Binding AutomaticContextMenu}"/>
+                <CheckBox Content="{Binding Source={x:Static Member=text:SettingsText.RemoteStatistics}}"
+                          Margin="4"
+                          VerticalContentAlignment="Center"
+                          IsChecked="{Binding RemoteStatisticsActivated}"/>
                 <DockPanel LastChildFill="True">
                     <Label DockPanel.Dock="Left" VerticalContentAlignment="Center" Content="{x:Static Member=text:SettingsText.TitleSearchType}"/>
                     <ComboBox Margin="4" ItemsSource="{Binding SearchTypes}" DisplayMemberPath="Item1" SelectedItem="{Binding SelectedSearchType}"/>

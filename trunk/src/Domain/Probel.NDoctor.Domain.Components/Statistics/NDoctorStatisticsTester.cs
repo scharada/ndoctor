@@ -40,7 +40,7 @@ namespace Probel.NDoctor.Domain.Components.Statistics
 
         public NDoctorStatisticsTester(ISession session)
         {
-            this.Statistics = new NDoctorStatistics(session);
+            this.Statistics = NDoctorStatistics.GetTestInstance(session);
         }
 
         #endregion Constructors

@@ -11,5 +11,8 @@
     <Setting Name="SearchType" Type="Probel.NDoctor.Domain.DTO.Components.SearchOn" Scope="User">
       <Value Profile="(Default)">FirstAndLastName</Value>
     </Setting>
+    <Setting Name="IsRemoteStatisticsEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

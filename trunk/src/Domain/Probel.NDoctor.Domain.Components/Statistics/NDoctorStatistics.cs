@@ -39,6 +39,7 @@ namespace Probel.NDoctor.Domain.Components.Statistics
 
         private static readonly List<ApplicationStatistics> Statistics = new List<ApplicationStatistics>();
 
+        private readonly bool RemoteStatisticsEnabled;
         private readonly ISession Session;
 
         #endregion Fields
@@ -48,11 +49,13 @@ namespace Probel.NDoctor.Domain.Components.Statistics
         /// <summary>
         /// Initializes a new instance of the <see cref="NDoctorStatistics"/> class.
         /// </summary>
-        public NDoctorStatistics()
+        /// <param name="remoteStatisticsEnabled">if set to <c>true</c> the remote statistics are enabled.</param>
+        public NDoctorStatistics(bool remoteStatisticsEnabled = false)
         {
+            this.RemoteStatisticsEnabled = remoteStatisticsEnabled;
         }
 
-        public NDoctorStatistics(ISession session)
+        private NDoctorStatistics(ISession session)
         {
             this.Session = session;
         }
@@ -60,6 +63,17 @@ namespace Probel.NDoctor.Domain.Components.Statistics
         #endregion Constructors
 
         #region Methods
+
+        /// <summary>
+        /// Gets an instance used for testing. It's meant to allow user to test this instance
+        /// with a custon <see cref="ISession"/>
+        /// </summary>
+        /// <param name="session">The session.</param>
+        /// <returns>A fresh instance set up with the specified <see cref="ISession"/></returns>
+        public static NDoctorStatistics GetTestInstance(ISession session)
+        {
+            return new NDoctorStatistics(session);
+        }
 
         /// <summary>
         /// Flushes the internal history into the database.
@@ -85,17 +99,17 @@ namespace Probel.NDoctor.Domain.Components.Statistics
             Statistics.Add(stat);
         }
 
-        private static void Export()
+        private void ExportToRemoteServer()
         {
-            #if !DEBUG
+#if !DEBUG
             new StatExporter("Probel", "NDoctor")
                 .Export(Statistics);
-            #endif
+#endif
         }
 
-        private static void Flush(ISession session)
+        private void Flush(ISession session)
         {
-            Export();
+            if (this.RemoteStatisticsEnabled) { ExportToRemoteServer(); }
 
             using (var tx = session.BeginTransaction())
             {

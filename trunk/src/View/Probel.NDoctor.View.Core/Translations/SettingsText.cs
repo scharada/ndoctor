@@ -62,6 +62,12 @@ namespace Probel.NDoctor.View.Core.Translations
             get { return Messages.Title_Settings; }
         }
 
+
+        public static string RemoteStatistics
+        {
+            get { return Messages.Title_RemoteStat; }
+        }
+
         #endregion Properties
     }
 }
