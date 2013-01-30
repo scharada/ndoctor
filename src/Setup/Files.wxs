@@ -9,9 +9,6 @@
         	<Component Id="MongoDB.Driver.dll" Guid="{67AFF789-A1D4-4BD3-BBEE-0F85457A6CC3}">
                 <File Id="MongoDB.Driver.dll" KeyPath="yes" Source="$(env.NEST)\MongoDB.Driver.dll" />
             </Component>
-        	<Component Id="Newtonsoft.Json.dll" Guid="{FF47027E-405D-403E-95C1-01098D8F57CD}">
-                <File Id="Newtonsoft.Json.dll" KeyPath="yes" Source="$(env.NEST)\Newtonsoft.Json.dll" />
-            </Component>
         	                
             <Component Id="AutoMapper.dll" Guid="{4540BF27-E491-4ACC-A7CA-799080F40BF8}">
                 <File Id="AutoMapper.dll" KeyPath="yes" Source="$(env.NEST)\AutoMapper.dll" />

@@ -147,23 +147,7 @@ namespace Probel.NDoctor.Domain.Test.Components
             patient = this.HelperComponent.GetAllPatients()[0];
             Assert.AreNotEqual(insuranceName, patient.Insurance.Name);
         }
-        [Test]
-        public void UpdatePatient_WithNullAddress_PatientUpdated()
-        {
-            var patient = this.HelperComponent.GetAllPatients()[0];
-            patient.Address = null;
 
-            this.Session.Clear();
-            this.ComponentUnderTest.Update(patient);
-            patient = this.HelperComponent.GetAllPatients()[0];
-
-            Assert.IsNotNull(patient.Address);
-            Assert.IsTrue(string.IsNullOrEmpty(patient.Address.BoxNumber));
-            Assert.IsTrue(string.IsNullOrEmpty(patient.Address.City));
-            Assert.IsTrue(string.IsNullOrEmpty(patient.Address.PostalCode));
-            Assert.IsTrue(string.IsNullOrEmpty(patient.Address.Street));
-            Assert.IsTrue(string.IsNullOrEmpty(patient.Address.StreetNumber));
-        }
         [Test]
         public void UpdatePatient_WithNewInsurance_NoInsuranceDataLoss()
         {
@@ -193,6 +177,24 @@ namespace Probel.NDoctor.Domain.Test.Components
             patient = this.HelperComponent.GetAllPatients()[0];
             Assert.AreEqual(insurance.Id, patient.Insurance.Id);
             Assert.AreEqual(insurance.Name, patient.Insurance.Name);
+        }
+
+        [Test]
+        public void UpdatePatient_WithNullAddress_PatientUpdated()
+        {
+            var patient = this.HelperComponent.GetAllPatients()[0];
+            patient.Address = null;
+
+            this.Session.Clear();
+            this.ComponentUnderTest.Update(patient);
+            patient = this.HelperComponent.GetAllPatients()[0];
+
+            Assert.IsNotNull(patient.Address);
+            Assert.IsTrue(string.IsNullOrEmpty(patient.Address.BoxNumber));
+            Assert.IsTrue(string.IsNullOrEmpty(patient.Address.City));
+            Assert.IsTrue(string.IsNullOrEmpty(patient.Address.PostalCode));
+            Assert.IsTrue(string.IsNullOrEmpty(patient.Address.Street));
+            Assert.IsTrue(string.IsNullOrEmpty(patient.Address.StreetNumber));
         }
 
         [Test]
