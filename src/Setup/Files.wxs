@@ -80,9 +80,6 @@
             <Component Id="cmpE3E6DCDC33A060A9D07CBA3853DE9827" Guid="*">
                 <File Id="filEAFBC89978510B847BE10E400F94F00E" KeyPath="yes" Source="$(env.NEST)\Probel.NDoctor.View.Core.exe.log4net" />
             </Component>
-            <Component Id="cmp8283157907C9C263EF085DC0DBC5AE7F" Guid="*">
-                <File Id="filDC6141B4C1A2580061537F830D8C08D3" KeyPath="yes" Source="$(env.NEST)\Probel.NDoctor.View.Core.vshost.exe" />
-            </Component>
             <Component Id="cmpC9E80DA5005470651652A3C3DF7A0E01" Guid="*">
                 <File Id="fil9B7D091E488F141C61F7A15CDF1F247C" KeyPath="yes" Source="$(env.NEST)\Probel.NDoctor.View.Plugins.dll" />
             </Component>
