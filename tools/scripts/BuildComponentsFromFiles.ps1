@@ -1,13 +1,17 @@
 ﻿################################################################################
-# Fill Setup.wxs with all the components that contain the nDoctor files
+echo "Fill Setup.wxs with all the components that contain the nDoctor files"
 ################################################################################
 clear
 $cmdPath = Split-Path($MyInvocation.MyCommand.Path)
 $root = "$cmdPath\..\..\src\Setup\"
 $token = '<!--<REPLACEMENT>-->'
 $text = Get-Content $root'Files.wxs'
+
+echo "cmd path: $cmdpath"
+echo "Root: $root"
+echo "Token: $token"
 ################################################################################
-# Apply regex and build the file content
+echo "Apply regex and build the file content"
 ################################################################################
 $matches = $text -match '.*Component.Id="(?<component>.*).Guid.*'
 foreach( $m in $matches)
@@ -19,17 +23,17 @@ foreach( $m in $matches)
 $destinationContent = Get-Content $root"Setup.wxs.template"
 $newText = $destinationContent -replace $token, $str
 ################################################################################
-# Add license file
+echo "Add license file"
 ################################################################################
 cp "$root\license.rtf" $env:NEST
 ################################################################################
-# Build the new file
+echo "Build the new file"
 ################################################################################
 Write-Host "Write content into $root$template..." -NoNewline
 Set-Content -Path $root"Setup.wxs" -Value $newText
 Write-Host " Done"
 ################################################################################
-# Get application version
+echo "Get application version"
 ################################################################################
 Write-Host "Update the version for the installer... " -NoNewline
 
