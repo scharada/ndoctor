@@ -35,6 +35,8 @@ namespace Probel.NDoctor.View.Plugins
     {
         #region Fields
 
+        private const string DEBUG_PLUGIN = "{1A5224ED-3E37-4AD8-AB2B-FBC0115434FA}";
+
         private readonly List<Guid> IdCollection = new List<Guid>();
         private readonly string Repository = @".\Plugins";
 
@@ -78,11 +80,11 @@ namespace Probel.NDoctor.View.Plugins
             if (!def.Metadata.ContainsKey(Keys.PluginId))
             {
                 var msg = string.Format("There's a plugin without id. Check you've set the attribute Metadata to the plugin with the key '{0}'", Keys.PluginId);
-#if DEBUG
+            #if DEBUG
                 throw new NotImplementedException(msg);
-#else
+            #else
                 Logger.Warn(msg);
-#endif
+            #endif
             }
             else
             {
@@ -120,16 +122,16 @@ namespace Probel.NDoctor.View.Plugins
 
             container.Compose(composition);
         }
-        private const string DEBUG_PLUGIN = "{1A5224ED-3E37-4AD8-AB2B-FBC0115434FA}";
+
         private bool IsActivated(ComposablePartDefinition def)
         {
             if (def.Metadata.ContainsKey(Keys.PluginId))
             {
                 var id = def.Metadata[Keys.PluginId].ToString();
-#if DEBUG
+            #if DEBUG
                 //The debug plugin should be activated if in debug mode
                 if (this.PluginConfiguration.Exist(Guid.Parse(DEBUG_PLUGIN)) && id == DEBUG_PLUGIN) { return true; }
-#endif
+            #endif
                 return (this.PluginConfiguration[id].IsMandatory)
                     ? true
                     : this.PluginConfiguration[id].IsActivated;
@@ -148,12 +150,12 @@ namespace Probel.NDoctor.View.Plugins
             }
             else
             {
-#if DEBUG
+            #if DEBUG
                 throw new NotImplementedException("A plugin without validation contract was found. It is ignored. Check that you decorated the plugin with a 'PartMetadata' attribute.");
-#else
+            #else
                 Logger.Warn("A plugin without validation contract was found. It is ignored. Check that you decorated the plugin with a 'PartMetadata' attribute.");
                 return false;
-#endif
+            #endif
             }
         }
 
