@@ -46,19 +46,22 @@ namespace Probel.NDoctor.View.Core
 
         private static RibbonData ribbonData = new RibbonData();
         private static DateTime StartTime;
+
         #endregion Fields
 
         #region Constructors
+
         static App()
         {
             StartTime = DateTime.Now.ToUniversalTime();
         }
+
         public App()
         {
-#if DEBUG
+            #if DEBUG
             //Hook the console to the application to have logging features
             AllocConsole();
-#endif
+            #endif
             this.MainWindow = new MainWindow();
             this.Logger = LogManager.GetLogger(typeof(LogManager));
 

@@ -94,6 +94,28 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
         }
 
         /// <summary>
+        /// Gets or sets the session durations.
+        /// </summary>
+        /// <value>
+        /// The session durations.
+        /// </value>
+        public List<TimeSpan> SessionDurations
+        {
+            get; set;
+        }
+
+        /// <summary>
+        /// Gets or sets the date and time when the user has updated nDoctor.
+        /// </summary>
+        /// <value>
+        /// The update version.
+        /// </value>
+        public DateTime UpdateVersion
+        {
+            get; set;
+        }
+
+        /// <summary>
         /// Gets or sets the version of nDoctor the user is using.
         /// </summary>
         /// <value>
@@ -106,21 +128,5 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
         }
 
         #endregion Properties
-
-        /// <summary>
-        /// Gets or sets the date and time when the user has updated nDoctor.
-        /// </summary>
-        /// <value>
-        /// The update version.
-        /// </value>
-        public DateTime UpdateVersion { get; set; }
-
-        /// <summary>
-        /// Gets or sets the session durations.
-        /// </summary>
-        /// <value>
-        /// The session durations.
-        /// </value>
-        public List<TimeSpan> SessionDurations { get; set; }
     }
 }

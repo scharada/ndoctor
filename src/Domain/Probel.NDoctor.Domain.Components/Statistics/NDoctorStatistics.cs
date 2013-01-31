@@ -21,19 +21,20 @@
 
 namespace Probel.NDoctor.Domain.Components.Statistics
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Reflection;
+
+    using log4net;
 
     using NHibernate;
     using NHibernate.Linq;
-    using System.Linq;
 
     using Probel.Helpers.Data;
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Statistics;
-    using log4net;
-    using System;
 
     /// <summary>
     /// Contains in its internal state all the statistics about the application
@@ -42,12 +43,13 @@ namespace Probel.NDoctor.Domain.Components.Statistics
     {
         #region Fields
 
-        private static readonly List<ApplicationStatistics> Statistics = new List<ApplicationStatistics>();
         private static readonly ILog Logger = LogManager.GetLogger(typeof(NDoctorStatistics));
+        private static readonly List<ApplicationStatistics> Statistics = new List<ApplicationStatistics>();
 
         private readonly bool RemoteStatisticsEnabled;
         private readonly ISession Session;
         private readonly TimeSpan SessionDuration;
+
         #endregion Fields
 
         #region Constructors
@@ -109,12 +111,12 @@ namespace Probel.NDoctor.Domain.Components.Statistics
 
         private void ExportToRemoteServer(IEnumerable<ApplicationStatistics> toImport)
         {
-#if !DEBUG
+            #if !DEBUG
             Logger.InfoFormat("Exporting {0} entrie(s) into the remote server", toImport.Count());
             var version = Assembly.GetEntryAssembly().GetName().Version;
             new StatisticsExporter("Probel", "NDoctor", version, this.SessionDuration)
                 .Export(toImport);
-#endif
+            #endif
         }
 
         private void Flush(ISession session)
