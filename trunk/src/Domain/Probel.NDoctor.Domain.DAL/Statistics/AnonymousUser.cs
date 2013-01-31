@@ -38,7 +38,7 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
         /// </summary>
         public AnonymousUser()
         {
-            this.History = new List<FeatureExecution>();
+            this.SessionDurations = new List<TimeSpan>();
         }
 
         #endregion Constructors
@@ -52,12 +52,6 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
         /// The application key.
         /// </value>
         public Guid ApplicationKey
-        {
-            get;
-            set;
-        }
-
-        public List<FeatureExecution> History
         {
             get;
             set;
@@ -99,6 +93,34 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
             set;
         }
 
+        /// <summary>
+        /// Gets or sets the version of nDoctor the user is using.
+        /// </summary>
+        /// <value>
+        /// The version.
+        /// </value>
+        public string Version
+        {
+            get;
+            set;
+        }
+
         #endregion Properties
+
+        /// <summary>
+        /// Gets or sets the date and time when the user has updated nDoctor.
+        /// </summary>
+        /// <value>
+        /// The update version.
+        /// </value>
+        public DateTime UpdateVersion { get; set; }
+
+        /// <summary>
+        /// Gets or sets the session durations.
+        /// </summary>
+        /// <value>
+        /// The session durations.
+        /// </value>
+        public List<TimeSpan> SessionDurations { get; set; }
     }
 }

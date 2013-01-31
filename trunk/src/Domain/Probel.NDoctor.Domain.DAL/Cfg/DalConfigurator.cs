@@ -87,6 +87,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                     .Override<User>(map => map.IgnoreProperty(x => x.DisplayedName))
                     .Override<Appointment>(map => map.IgnoreProperty(x => x.DateRange))
                     .Override<IllnessPeriod>(map => map.IgnoreProperty(p => p.Duration))
+                    .Override<Role>(map => map.HasManyToMany(x => x.Tasks).Cascade.All())
                     .Override<Patient>(map =>
                     {
                         map.DynamicUpdate();
@@ -100,7 +101,11 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                         map.Map(p => p.FirstName).Index("idx_person_FirstName");
                         map.Map(p => p.LastName).Index("idx_person_LastName");
                     })
-                    .Override<Role>(map => map.HasManyToMany(x => x.Tasks).Cascade.All())
+                    .Override<ApplicationStatistics>(map =>
+                    {
+                        map.Map(e => e.IsExported).Default("0").Not.Nullable();
+                        map.Map(e => e.Version).Default("\"3.0.3\"").Not.Nullable();
+                    })
                     .Conventions.Add(DefaultCascade.SaveUpdate()
                                    , DynamicUpdate.AlwaysTrue()
                                    , DynamicInsert.AlwaysTrue()

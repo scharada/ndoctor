@@ -22,13 +22,18 @@
 namespace Probel.NDoctor.Domain.Components.Statistics
 {
     using System.Collections.Generic;
+    using System.Reflection;
 
     using NHibernate;
+    using NHibernate.Linq;
+    using System.Linq;
 
     using Probel.Helpers.Data;
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Statistics;
+    using log4net;
+    using System;
 
     /// <summary>
     /// Contains in its internal state all the statistics about the application
@@ -38,10 +43,11 @@ namespace Probel.NDoctor.Domain.Components.Statistics
         #region Fields
 
         private static readonly List<ApplicationStatistics> Statistics = new List<ApplicationStatistics>();
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(NDoctorStatistics));
 
         private readonly bool RemoteStatisticsEnabled;
         private readonly ISession Session;
-
+        private readonly TimeSpan SessionDuration;
         #endregion Fields
 
         #region Constructors
@@ -50,9 +56,11 @@ namespace Probel.NDoctor.Domain.Components.Statistics
         /// Initializes a new instance of the <see cref="NDoctorStatistics"/> class.
         /// </summary>
         /// <param name="remoteStatisticsEnabled">if set to <c>true</c> the remote statistics are enabled.</param>
-        public NDoctorStatistics(bool remoteStatisticsEnabled = false)
+        /// <param name="SessionDuration">Duration of the session.</param>
+        public NDoctorStatistics(bool remoteStatisticsEnabled = false, TimeSpan sessionDuration = new TimeSpan())
         {
             this.RemoteStatisticsEnabled = remoteStatisticsEnabled;
+            this.SessionDuration = sessionDuration;
         }
 
         private NDoctorStatistics(ISession session)
@@ -99,24 +107,52 @@ namespace Probel.NDoctor.Domain.Components.Statistics
             Statistics.Add(stat);
         }
 
-        private void ExportToRemoteServer()
+        private void ExportToRemoteServer(IEnumerable<ApplicationStatistics> toImport)
         {
 #if !DEBUG
-            new StatExporter("Probel", "NDoctor")
-                .Export(Statistics);
+            Logger.InfoFormat("Exporting {0} entrie(s) into the remote server", toImport.Count());
+            var version = Assembly.GetEntryAssembly().GetName().Version;
+            new StatisticsExporter("Probel", "NDoctor", version, this.SessionDuration)
+                .Export(toImport);
 #endif
         }
 
         private void Flush(ISession session)
         {
-            if (this.RemoteStatisticsEnabled) { ExportToRemoteServer(); }
+            using (var tx = session.BeginTransaction())
+            {
+                foreach (var item in Statistics)
+                {
+                    item.Version = Assembly.GetEntryAssembly().GetName().Version.ToString();
+                    session.Save(item);
+                }
+                tx.Commit();
+            }
+            if (this.RemoteStatisticsEnabled)
+            {
+                var toImport = this.GetNotImportedStatistics(session);
+                ExportToRemoteServer(toImport);
+            }
+
+            Statistics.Clear();
+        }
+
+        private IEnumerable<ApplicationStatistics> GetNotImportedStatistics(ISession session)
+        {
+            var items = (from stat in session.Query<ApplicationStatistics>()
+                         where stat.IsExported == false
+                         select stat).ToList();
 
             using (var tx = session.BeginTransaction())
             {
-                foreach (var item in Statistics) { session.Save(item); }
+                foreach (var item in items)
+                {
+                    item.IsExported = true;
+                    session.Save(item);
+                }
                 tx.Commit();
-                Statistics.Clear();
             }
+            return items;
         }
 
         #endregion Methods

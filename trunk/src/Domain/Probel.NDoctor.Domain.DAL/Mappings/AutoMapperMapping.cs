@@ -195,7 +195,7 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<DatabaseState, DatabaseState>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
 
-            Mapper.CreateMap<ApplicationStatistics, FeatureExecution>()
+            Mapper.CreateMap<ApplicationStatistics, StatisticEntry>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
         }
 

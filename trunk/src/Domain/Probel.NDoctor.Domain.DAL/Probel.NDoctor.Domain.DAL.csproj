@@ -183,8 +183,8 @@
       <DependentUpon>Messages.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="Statistics\AnonymousUser.cs" />
-    <Compile Include="Statistics\StatExporter.cs" />
-    <Compile Include="Statistics\FeatureExecution.cs" />
+    <Compile Include="Statistics\StatisticsExporter.cs" />
+    <Compile Include="Statistics\StatisticEntry.cs" />
     <Compile Include="Subcomponents\Creator.cs" />
     <Compile Include="Subcomponents\Id.cs" />
     <Compile Include="Subcomponents\Remover.cs" />

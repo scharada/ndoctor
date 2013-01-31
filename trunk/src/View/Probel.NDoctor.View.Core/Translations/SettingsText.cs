@@ -37,6 +37,11 @@ namespace Probel.NDoctor.View.Core.Translations
             get { return Messages.Msg_NeedRestart; }
         }
 
+        public static string RemoteStatistics
+        {
+            get { return Messages.Title_RemoteStat; }
+        }
+
         public static string Title
         {
             get { return Messages.Title_Settings; }
@@ -60,12 +65,6 @@ namespace Probel.NDoctor.View.Core.Translations
         public static string TitleSettings
         {
             get { return Messages.Title_Settings; }
-        }
-
-
-        public static string RemoteStatistics
-        {
-            get { return Messages.Title_RemoteStat; }
         }
 
         #endregion Properties

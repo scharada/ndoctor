@@ -45,11 +45,14 @@ namespace Probel.NDoctor.View.Core
         #region Fields
 
         private static RibbonData ribbonData = new RibbonData();
-
+        private static DateTime StartTime;
         #endregion Fields
 
         #region Constructors
-
+        static App()
+        {
+            StartTime = DateTime.Now.ToUniversalTime();
+        }
         public App()
         {
 #if DEBUG
@@ -59,8 +62,8 @@ namespace Probel.NDoctor.View.Core
             this.MainWindow = new MainWindow();
             this.Logger = LogManager.GetLogger(typeof(LogManager));
 
-            this.Logger.Info((Settings.Default.IsRemoteStatisticsEnabled) 
-                ? "Remote statistics are enabled" 
+            this.Logger.Info((Settings.Default.IsRemoteStatisticsEnabled)
+                ? "Remote statistics are enabled"
                 : "Remote statistics are disabled");
 
             PluginContext.Configuration.BenchmarkEnabled = bool.Parse(ConfigurationManager.AppSettings["BenchmarkEnabled"]);
@@ -157,7 +160,7 @@ namespace Probel.NDoctor.View.Core
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            new NDoctorStatistics(Settings.Default.IsRemoteStatisticsEnabled)
+            new NDoctorStatistics(Settings.Default.IsRemoteStatisticsEnabled, (DateTime.Now.ToUniversalTime() - StartTime))
                 .Flush();
         }
 

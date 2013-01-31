@@ -19,11 +19,19 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Domain.DAL.Entities
+namespace Probel.NDoctor.Domain.DAL.Statistics
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
-    public class ApplicationStatistics : Entity
+    using MongoDB.Bson;
+
+    /// <summary>
+    /// Represents information about the execution of a feature
+    /// </summary>
+    internal class StatisticEntry
     {
         #region Properties
 
@@ -33,19 +41,19 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         /// <value>
         /// The execution time.
         /// </value>
-        public virtual double ExecutionTime
+        public double ExecutionTime
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this statistics entry is exported.
+        /// Gets or sets the id.
         /// </summary>
         /// <value>
-        /// 	<c>true</c> if this statistic entry is exported; otherwise, <c>false</c>.
+        /// The id.
         /// </value>
-        public virtual bool IsExported
+        public ObjectId Id
         {
             get;
             set;
@@ -57,7 +65,7 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         /// <value>
         /// 	<c>true</c> if this instance is possible bottleneck; otherwise, <c>false</c>.
         /// </value>
-        public virtual bool IsPossibleBottleneck
+        public bool IsPossibleBottleneck
         {
             get;
             set;
@@ -70,7 +78,7 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         /// <value>
         /// The message.
         /// </value>
-        public virtual string Message
+        public string Message
         {
             get;
             set;
@@ -82,7 +90,7 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         /// <value>
         /// The name of the method.
         /// </value>
-        public virtual string MethodName
+        public string MethodName
         {
             get;
             set;
@@ -94,7 +102,7 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         /// <value>
         /// The name of the target type.
         /// </value>
-        public virtual string TargetTypeName
+        public string TargetTypeName
         {
             get;
             set;
@@ -108,7 +116,7 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         /// <value>
         /// The threshold.
         /// </value>
-        public virtual double Threshold
+        public double Threshold
         {
             get;
             set;
@@ -120,22 +128,31 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         /// <value>
         /// The time stamp.
         /// </value>
-        public virtual DateTime TimeStamp
+        public DateTime TimeStamp
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Gets or sets the current version of nDoctor.
+        /// Gets or sets the owner of this statistic entry.
+        /// </summary>
+        /// <value>
+        /// The user.
+        /// </value>
+        public ObjectId UserId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the version of nDoctor for this statistics entry.
         /// </summary>
         /// <value>
         /// The version.
         /// </value>
-        public virtual string Version
-        {
-            get; set;
-        }
+        public string Version { get; set; }
 
         #endregion Properties
     }
