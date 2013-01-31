@@ -49,6 +49,7 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
 
         private readonly AppKey AppKey;
         private readonly MongoDatabase Database;
+        private readonly TimeSpan SessionDuration;
         private readonly string Version;
 
         #endregion Fields
@@ -69,7 +70,7 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
                 .GetServer()
                 .GetDatabase("ndoctor-statistics");
         }
-        private readonly TimeSpan SessionDuration;
+
         #endregion Constructors
 
         #region Methods

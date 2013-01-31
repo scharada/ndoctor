@@ -152,7 +152,10 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
         /// <value>
         /// The version.
         /// </value>
-        public string Version { get; set; }
+        public string Version
+        {
+            get; set;
+        }
 
         #endregion Properties
     }
