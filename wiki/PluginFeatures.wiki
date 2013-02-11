@@ -36,13 +36,7 @@ This plugin context provides an small API to execute some generic tasks:
 === View Service ===
 There's a generic mechanism to add configuration and settings for the plugins.
 
-To create a configuration page, follow these steps:
-
- # Create a `Page` that contains all the configuration of the plugin
- # Create a ViewModel that derives from `PluginSettingsViewModel` and bind it to the `Page`
- # Bind the configuration to the application with: `new SettingsConfigurator().Add("Title of the page", () => new SettingsView());`
-  # The first argument is the title of the page
-  # The second argument is a lambda that will return a new instance of the view to display in the setting manager
+[`To be written`]
  
 ==== Window manager ====
 
