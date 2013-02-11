@@ -49,7 +49,7 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
 
         private readonly AppKey AppKey;
         private readonly MongoDatabase Database;
-        private readonly TimeSpan SessionDuration;
+        private readonly TimeSpan Duration;
         private readonly string Version;
 
         #endregion Fields
@@ -64,7 +64,7 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
         {
             this.AppKey = AppKey.GetFromAppData(vendor, applicationName);
             this.Version = version.ToString();
-            this.SessionDuration = sessionDuration;
+            this.Duration = sessionDuration;
 
             this.Database = new MongoClient(ConnectionString)
                 .GetServer()
@@ -132,13 +132,19 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
         private void Update(IEnumerable<StatisticEntry> history, AnonymousUser user)
         {
             var statistics = this.Database.GetCollection<StatisticEntry>("statistics");
+            var durations = this.Database.GetCollection<SessionDuration>("durations");
             var users = this.Database.GetCollection<AnonymousUser>("users");
 
-            if (this.SessionDuration.TotalSeconds > 0) { user.SessionDurations.Add(this.SessionDuration); }
             user.LastUpdate = DateTime.Now.ToUniversalTime();
             user.Version = this.Version;
             users.Save(user);
 
+            durations.Insert(new SessionDuration()
+            {
+                Duration = this.Duration,
+                TimeStamp = DateTime.Today.ToUniversalTime(),
+                Version = this.Version,
+            });
             statistics.InsertBatch(history);
         }
 
