@@ -23,23 +23,25 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
     using MongoDB.Bson;
 
     /// <summary>
-    /// Represents an anonymous user used to manage statistics about nDoctor usage
+    /// Contains information about session duration
     /// </summary>
-    internal class AnonymousUser
+    internal class SessionDuration
     {
         #region Properties
 
         /// <summary>
-        /// Gets or sets the application key.
+        /// Gets or sets the duration of the session.
         /// </summary>
         /// <value>
-        /// The application key.
+        /// The duration.
         /// </value>
-        public Guid ApplicationKey
+        public TimeSpan Duration
         {
             get;
             set;
@@ -53,56 +55,30 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
         /// </value>
         public ObjectId Id
         {
-            get;
-            set;
+            get; set;
         }
 
         /// <summary>
-        /// Gets or sets the installation date.
+        /// Gets or sets the date of the session.
         /// </summary>
         /// <value>
-        /// The installation date.
+        /// The time stamp.
         /// </value>
-        public DateTime InstallationDate
+        public DateTime TimeStamp
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Gets or sets the last update.
-        /// </summary>
-        /// <value>
-        /// The last update.
-        /// </value>
-        public DateTime LastUpdate
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Gets or sets the date and time when the user has updated nDoctor.
-        /// </summary>
-        /// <value>
-        /// The update version.
-        /// </value>
-        public DateTime UpdateVersion
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Gets or sets the version of nDoctor the user is using.
+        /// Gets or sets the version of nDoctor for this session.
         /// </summary>
         /// <value>
         /// The version.
         /// </value>
         public string Version
         {
-            get;
-            set;
+            get; set;
         }
 
         #endregion Properties
