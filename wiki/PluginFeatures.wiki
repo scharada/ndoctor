@@ -34,9 +34,6 @@ This plugin context provides an small API to execute some generic tasks:
  * Build plugin's ribbon menu using `DataBinding`
 
 === View Service ===
-There's a generic mechanism to add configuration and settings for the plugins.
-
-[`To be written`]
  
 ==== Window manager ====
 
