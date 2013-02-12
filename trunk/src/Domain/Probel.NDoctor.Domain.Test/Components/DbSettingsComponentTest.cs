@@ -97,7 +97,7 @@ namespace Probel.NDoctor.Domain.Test.Components
         public void Retrieve_AllSettings_AllAreReturned()
         {
             var settings = this.ComponentUnderTest.Settings;
-            Assert.AreEqual(3, settings.Count());
+            Assert.AreEqual(5, settings.Count());
         }
 
         [Test]
@@ -105,7 +105,7 @@ namespace Probel.NDoctor.Domain.Test.Components
         {
             var value = this.ComponentUnderTest["ISDEBUG"];
 
-            Assert.AreEqual(true, bool.Parse(value));
+            Assert.IsFalse(bool.Parse(value));
         }
 
         [Test]
@@ -113,7 +113,7 @@ namespace Probel.NDoctor.Domain.Test.Components
         {
             var value = this.ComponentUnderTest["IsDebug"];
 
-            Assert.AreEqual(true, bool.Parse(value));
+            Assert.IsFalse(bool.Parse(value));
         }
 
         [Test]

@@ -186,6 +186,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
             settings["IsRemoteStatisticsEnabled"] = true.ToString();
             settings["IsDebug"] = false.ToString();
             settings["AreThumbnailsCreated"] = true.ToString();
+            settings["AppKey"] = Guid.NewGuid().ToString();
         }
 
         #endregion Methods

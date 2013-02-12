@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,20 +16,26 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Plugins.DebugTools
+
+#endregion Header
+
+namespace Probel.NDoctor.View.Core.View
 {
-    using System.Windows.Controls;
+    using System.Windows;
+
+    using Probel.NDoctor.View.Core.ViewModel;
 
     /// <summary>
-    /// Interaction logic for DebugControl.xaml
+    /// Interaction logic for DebugView.xaml
     /// </summary>
-    public partial class DebugControl : UserControl
+    public partial class DebugView : Window
     {
         #region Constructors
 
-        public DebugControl()
+        public DebugView()
         {
             InitializeComponent();
+            this.DataContext = new DebugViewModel();
         }
 
         #endregion Constructors
