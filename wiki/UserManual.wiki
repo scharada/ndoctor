@@ -7,3 +7,10 @@
 === How to configure a calendar to be the one nDoctor uses ===
 
  * [`Work in progress`]
+
+== Debugging tools ==
+
+=== Command line arguments ===
+You can start nDoctor with command line argument to help production debugging. Only use these tools of you know what you are doing!
+ * -hookconsole: Hook a console to the application to display the logging
+ * -debugtools: Add a debug menu to modify some internal settings
