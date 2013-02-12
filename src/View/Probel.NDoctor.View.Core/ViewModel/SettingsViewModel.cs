@@ -24,12 +24,12 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using System.Collections.ObjectModel;
     using System.Windows.Input;
 
+    using Probel.Helpers.Assertion;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
-    using Probel.Helpers.Assertion;
 
     internal class SettingsViewModel : BaseViewModel
     {
@@ -68,18 +68,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
             }
         }
 
-        private void RefreshSelectedControl(SettingUi value)
-        {
-            Assert.IsNotNull(value, "value");
-            Assert.IsNotNull(value.Control, "value.Control");
-
-            if (value.Control.DataContext is IRefreshable)
-            {
-                var vm = value.Control.DataContext as IRefreshable;
-                vm.Refresh();
-            }
-        }
-
         public ObservableCollection<SettingUi> SettingCollection
         {
             get;
@@ -93,6 +81,18 @@ namespace Probel.NDoctor.View.Core.ViewModel
         private bool CanSaveSettings()
         {
             return PluginContext.DoorKeeper.IsUserGranted(To.Write);
+        }
+
+        private void RefreshSelectedControl(SettingUi value)
+        {
+            Assert.IsNotNull(value, "value");
+            Assert.IsNotNull(value.Control, "value.Control");
+
+            if (value.Control.DataContext is IRefreshable)
+            {
+                var vm = value.Control.DataContext as IRefreshable;
+                vm.Refresh();
+            }
         }
 
         private void SaveSettings()

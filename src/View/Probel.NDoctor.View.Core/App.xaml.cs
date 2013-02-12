@@ -19,19 +19,21 @@ namespace Probel.NDoctor.View.Core
     using System;
     using System.Configuration;
     using System.Globalization;
+    using System.Linq;
     using System.Runtime.InteropServices;
-    using System.Threading;
     using System.Windows;
     using System.Windows.Markup;
     using System.Windows.Threading;
 
     using log4net;
+    using log4net.Config;
 
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.Components.Statistics;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Core.View;
+    using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox.Navigation;
@@ -48,6 +50,8 @@ namespace Probel.NDoctor.View.Core
         private static RibbonData ribbonData = new RibbonData();
         private static DateTime StartTime;
 
+        private Arguments arguments;
+
         #endregion Fields
 
         #region Constructors
@@ -59,18 +63,15 @@ namespace Probel.NDoctor.View.Core
 
         public App()
         {
-            #if DEBUG
-            //Hook the console to the application to have logging features
-            AllocConsole();
-            #endif
             this.MainWindow = new MainWindow();
-            this.Logger = LogManager.GetLogger(typeof(LogManager));
 
             PluginContext.Configuration.BenchmarkEnabled = bool.Parse(ConfigurationManager.AppSettings["BenchmarkEnabled"]);
             PluginContext.Configuration.AutomaticContextMenu = Settings.Default.AutomaticContextMenu;
             PluginContext.Configuration.ExecutionTimeThreshold = uint.Parse(ConfigurationManager.AppSettings["ExecutionTimeThreshold"]);
 
             var splash = new MySplashScreen();
+
+            if (this.arguments.DebugTools) { this.Logger.Warn("Debug tools are activated!"); }
 
             try { splash.ShowDialog(); }
             catch (Exception ex)
@@ -86,6 +87,7 @@ namespace Probel.NDoctor.View.Core
                     : "Remote statistics are disabled");
 
                 this.MainWindow.Show();
+                this.CheckDebugTools();
                 this.CleanGui();
                 ViewService.Configure(e => e.RootWindow = this.MainWindow);
             }
@@ -147,11 +149,22 @@ namespace Probel.NDoctor.View.Core
         /// </summary>
         protected override void OnStartup(StartupEventArgs e)
         {
+            this.Logger = LogManager.GetLogger(typeof(LogManager));
             FrameworkElement.LanguageProperty.OverrideMetadata(
                 typeof(FrameworkElement),
                 new FrameworkPropertyMetadata(
                     XmlLanguage.GetLanguage(
                     CultureInfo.CurrentCulture.IetfLanguageTag)));
+
+            this.ManageArgs(e.Args);
+
+            if (arguments.HookConsole)
+            {
+                //Hook the console to the application to have logging features
+                AllocConsole();
+            }
+            XmlConfigurator.Configure();
+
             base.OnStartup(e);
         }
 
@@ -177,6 +190,15 @@ namespace Probel.NDoctor.View.Core
                 .Flush();
         }
 
+        private void CheckDebugTools()
+        {
+            if (this.arguments.DebugTools && this.MainWindow.DataContext is MainWindowViewModel)
+            {
+                var vm = this.MainWindow.DataContext as MainWindowViewModel;
+                vm.ShowDebugMenu();
+            }
+        }
+
         private void CleanGui()
         {
             foreach (var item in App.RibbonData.TabDataCollection)
@@ -191,6 +213,30 @@ namespace Probel.NDoctor.View.Core
             }
         }
 
+        private void ManageArgs(string[] args)
+        {
+            this.arguments.DebugTools = (from arg in args
+                                         where arg.ToLower() == "-debugtools"
+                                         select arg).Count() > 0;
+            this.arguments.HookConsole = (from arg in args
+                                          where arg.ToLower() == "-hookconsole"
+                                          select arg).Count() > 0;
+        }
+
         #endregion Methods
+
+        #region Nested Types
+
+        private struct Arguments
+        {
+            #region Fields
+
+            public bool DebugTools;
+            public bool HookConsole;
+
+            #endregion Fields
+        }
+
+        #endregion Nested Types
     }
 }

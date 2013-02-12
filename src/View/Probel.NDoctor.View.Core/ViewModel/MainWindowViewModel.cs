@@ -46,6 +46,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         private readonly ICommand settingCommand;
 
         private LightUserDto connectedUser;
+        private bool isDebugMenuVisible = false;
         private string message;
         private LightPatientDto selectedPatient;
         private StatusType type;
@@ -197,6 +198,22 @@ namespace Probel.NDoctor.View.Core.ViewModel
         #endregion Properties
 
         #region Methods
+
+        /// <summary>
+        /// Shows the debug menu.
+        /// </summary>
+        public void ShowDebugMenu()
+        {
+            if (!this.isDebugMenuVisible)
+            {
+                var navigateButton = new RibbonButtonData("Debug tools"
+                    , "/Images/Debug.png"
+                    , new RelayCommand(() => ViewService.Manager.Show<DebugViewModel>()));
+
+                PluginContext.Host.AddInHome(navigateButton, Groups.GlobalTools);
+                this.isDebugMenuVisible = true;
+            }
+        }
 
         private void About()
         {

@@ -243,7 +243,11 @@ namespace Probel.NDoctor.View.Core.ViewModel
             {
                 e.Bind<AboutBoxView, AboutBoxViewModel>()
                     .OnShow(vm => vm.RefreshCommand.TryExecute());
+
                 e.Bind<SettingsView, SettingsViewModel>();
+
+                e.Bind<DebugView, DebugViewModel>()
+                    .OnShow(vm => vm.Refresh());
             });
         }
 
@@ -289,8 +293,9 @@ namespace Probel.NDoctor.View.Core.ViewModel
             }
             else
             {
-                settings["AppKey"] = Guid.NewGuid().ToString();
-                this.Logger.InfoFormat("New AppKey created: {0}", settings["AppKey"]);
+                var msg = "No AppKey installed into the database!";
+                Logger.Fatal(msg);
+                throw new NotSupportedException(msg);
             }
         }
 
