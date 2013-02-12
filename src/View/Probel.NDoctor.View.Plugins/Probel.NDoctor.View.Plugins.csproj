@@ -91,6 +91,7 @@
     <Compile Include="Groups.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Helpers\ITreeNode.cs" />
+    <Compile Include="IRefreshable.cs" />
     <Compile Include="PluginContext.cs" />
     <Compile Include="PluginSettingsBase.cs" />
     <Compile Include="IPlugin.cs" />

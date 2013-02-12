@@ -108,23 +108,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
             if (!Session.IsOpen) throw new SessionNotOpenedException();
         }
 
-        /// <summary>
-        /// Finds the state of the database. If there's no state, a fresh one is created and returned
-        /// </summary>
-        /// <returns>The state of the database</returns>
-        internal DatabaseState GetDatabaseState()
-        {
-            var state = (from i in this.Session.Query<DatabaseState>()
-                         select i).FirstOrDefault();
-            if (state == null)
-            {
-                state = new DatabaseState();
-                this.Session.Save(state);
-            }
-
-            return state;
-        }
-
         private void CloseSession()
         {
             if (this.Session != null && Session.IsOpen)

@@ -29,6 +29,14 @@ namespace Probel.NDoctor.View.Plugins.Cfg
 
     using Probel.NDoctor.View.Plugins.Properties;
 
+    /// <summary>
+    /// Contains the configuration of all plugins. That's informations to know:  
+    ///  * whether the plugin is meant to be loaded or not 
+    ///  * whether the plugin is recommended or not
+    ///  * whether the plugin is mandatory or not
+    ///  * the title of the plugin
+    ///  * explanation about the plugin    
+    /// </summary>
     [Serializable]
     public class PluginsConfigurationFolder
     {

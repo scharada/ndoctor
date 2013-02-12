@@ -29,6 +29,7 @@ namespace Probel.NDoctor.View.Core
 
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.Components.Statistics;
+    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Core.View;
     using Probel.NDoctor.View.Plugins;
@@ -65,10 +66,6 @@ namespace Probel.NDoctor.View.Core
             this.MainWindow = new MainWindow();
             this.Logger = LogManager.GetLogger(typeof(LogManager));
 
-            this.Logger.Info((Settings.Default.IsRemoteStatisticsEnabled)
-                ? "Remote statistics are enabled"
-                : "Remote statistics are disabled");
-
             PluginContext.Configuration.BenchmarkEnabled = bool.Parse(ConfigurationManager.AppSettings["BenchmarkEnabled"]);
             PluginContext.Configuration.AutomaticContextMenu = Settings.Default.AutomaticContextMenu;
             PluginContext.Configuration.ExecutionTimeThreshold = uint.Parse(ConfigurationManager.AppSettings["ExecutionTimeThreshold"]);
@@ -84,6 +81,10 @@ namespace Probel.NDoctor.View.Core
 
             if (!splash.IsOnError)
             {
+                this.Logger.Info(this.IsRemoteStatisticsEnabled
+                    ? "Remote statistics are enabled"
+                    : "Remote statistics are disabled");
+
                 this.MainWindow.Show();
                 this.CleanGui();
                 ViewService.Configure(e => e.RootWindow = this.MainWindow);
@@ -118,6 +119,15 @@ namespace Probel.NDoctor.View.Core
 
                 if (bool.TryParse(value, out result)) return result;
                 else return false;
+            }
+        }
+
+        private bool IsRemoteStatisticsEnabled
+        {
+            get
+            {
+                var settings = PluginContext.ComponentFactory.GetInstance<IDbSettingsComponent>();
+                return bool.Parse(settings["IsRemoteStatisticsEnabled"]);
             }
         }
 
@@ -163,7 +173,7 @@ namespace Probel.NDoctor.View.Core
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            new NDoctorStatistics(Settings.Default.IsRemoteStatisticsEnabled, (DateTime.Now.ToUniversalTime() - StartTime))
+            new NDoctorStatistics(this.IsRemoteStatisticsEnabled, (DateTime.Now.ToUniversalTime() - StartTime))
                 .Flush();
         }
 

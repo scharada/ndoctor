@@ -65,18 +65,6 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         #region Methods
 
         /// <summary>
-        /// Updates the state of the database.
-        /// </summary>
-        /// <param name="item">The item.</param>
-        public void Update(DatabaseState item)
-        {
-            var state = (from i in this.Session.Query<DatabaseState>()
-                         select i).First();
-            Mapper.Map<DatabaseState, DatabaseState>(item, state);
-            this.Session.Update(state);
-        }
-
-        /// <summary>
         /// Updates the specified tag.
         /// </summary>
         /// <param name="tag">The tag.</param>

@@ -29,13 +29,18 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Plugins;
 
-    internal class DefaultSettingsViewModel : PluginSettingsViewModel
+    internal class DefaultSettingsViewModel : PluginSettingsViewModel, IRefreshable
     {
         #region Fields
 
         public readonly string configuredLanguage = Settings.Default.Language;
 
+        private const string IsRemoteStatisticsEnabled = "IsRemoteStatisticsEnabled";
+
+        private readonly IDbSettingsComponent DbSettings = PluginContext.ComponentFactory.GetInstance<IDbSettingsComponent>();
+
         private DateTime end;
+        private bool remoteStatisticsActivated;
         private Tuple<string, SearchOn> selectedSearchType;
         private bool showRestart;
         private DateTime start;
@@ -79,10 +84,10 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         public bool RemoteStatisticsActivated
         {
-            get { return Settings.Default.IsRemoteStatisticsEnabled; }
+            get { return this.remoteStatisticsActivated; }
             set
             {
-                Settings.Default.IsRemoteStatisticsEnabled = value;
+                this.remoteStatisticsActivated = value;
                 this.OnPropertyChanged(() => RemoteStatisticsActivated);
             }
         }
@@ -136,6 +141,11 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         #region Methods
 
+        public void Refresh()
+        {
+            this.RemoteStatisticsActivated = bool.Parse(this.DbSettings[IsRemoteStatisticsEnabled]);
+        }
+
         protected override bool CanSave()
         {
             return true;
@@ -148,6 +158,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
             Settings.Default.SearchType = this.SelectedSearchType.Item2;
 
             Settings.Default.Save();
+
+            this.DbSettings[IsRemoteStatisticsEnabled] = this.RemoteStatisticsActivated.ToString();
 
             PluginContext.Configuration.SearchType = Settings.Default.SearchType;
         }

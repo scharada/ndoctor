@@ -32,16 +32,21 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.Components;
+    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View.Core.Properties;
+    using Probel.NDoctor.View.Plugins;
 
     internal class AboutBoxViewModel : BaseViewModel
     {
         #region Fields
 
+        private string appKey;
         private string application;
         private string author;
         private string copyright;
         private string license;
+        private IDbSettingsComponent Settings = PluginContext.ComponentFactory.GetInstance<IDbSettingsComponent>();
 
         #endregion Fields
 
@@ -57,6 +62,16 @@ namespace Probel.NDoctor.View.Core.ViewModel
         #endregion Constructors
 
         #region Properties
+
+        public string AppKey
+        {
+            get { return this.appKey; }
+            set
+            {
+                this.appKey = value;
+                this.OnPropertyChanged(() => AppKey);
+            }
+        }
 
         public string Author
         {
@@ -159,6 +174,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             this.Copyright = "Copyright Probel 2006-{0}".FormatWith(DateTime.Today.Year);
             this.License = this.GetLicense().FormatWith(DateTime.Today.Year);
             this.Plugins.Refill(this.GetPlugins());
+            this.AppKey = "AppKey= {0}".FormatWith(Settings["AppKey"]);
         }
 
         #endregion Methods

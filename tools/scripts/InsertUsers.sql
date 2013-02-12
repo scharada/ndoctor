@@ -179,4 +179,7 @@ INSERT INTO Appointment(Id, StartTime, EndTime, Subject, Tag_Id, User_Id, Patien
 INSERT INTO Macro(Id, Expression, Notes, Title, IsImported) VALUES (1, 'Hello $firstname$ $lastname$.', 'Says hello to connected patient', 'Hello', 0);
 INSERT INTO Macro(Id, Expression, Notes, Title, IsImported) VALUES (2, '$firstname$ $lastname$ is $age$ old.', 'Says the age of the connected patient', 'Age', 0);
 
+INSERT INTO DbSetting(Id, Key, Value) VALUES (1, "AppKey", "14BA76C0-313D-4476-B418-F65013FD38B6");
+INSERT INTO DbSetting(Id, Key, Value) VALUES (2, "IsDebug", "true");
+INSERT INTO DbSetting(Id, Key, Value) VALUES (3, "SomeDate", "10/12/2013");
 --commit;

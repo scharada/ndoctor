@@ -29,6 +29,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
+    using Probel.Helpers.Assertion;
 
     internal class SettingsViewModel : BaseViewModel
     {
@@ -61,8 +62,21 @@ namespace Probel.NDoctor.View.Core.ViewModel
             get { return this.selectedControl; }
             set
             {
+                this.RefreshSelectedControl(value);
                 this.selectedControl = value;
                 this.OnPropertyChanged(() => SelectedControl);
+            }
+        }
+
+        private void RefreshSelectedControl(SettingUi value)
+        {
+            Assert.IsNotNull(value, "value");
+            Assert.IsNotNull(value.Control, "value.Control");
+
+            if (value.Control.DataContext is IRefreshable)
+            {
+                var vm = value.Control.DataContext as IRefreshable;
+                vm.Refresh();
             }
         }
 

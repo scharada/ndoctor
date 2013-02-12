@@ -76,6 +76,8 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                     ? new AuthorisationComponent()         //Used in production
                     : new AuthorisationComponent(session); //Used in unit test sessions
 
+                this.CreateDefaultDbSettings(session);
+
                 component.Create(administer);
                 component.Create(metawrite);
                 component.Create(read);
@@ -174,6 +176,16 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                 result.Add(task);
             }
             return result;
+        }
+
+        private void CreateDefaultDbSettings(ISession session)
+        {
+            var settings = (session == null)
+                ? new DbSettingsComponent()         //Used in production
+                : new DbSettingsComponent(session); //Used in unit test sessions
+            settings["IsRemoteStatisticsEnabled"] = true.ToString();
+            settings["IsDebug"] = false.ToString();
+            settings["AreThumbnailsCreated"] = true.ToString();
         }
 
         #endregion Methods

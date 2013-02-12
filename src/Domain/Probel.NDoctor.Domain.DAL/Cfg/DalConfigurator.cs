@@ -88,6 +88,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                     .Override<Appointment>(map => map.IgnoreProperty(x => x.DateRange))
                     .Override<IllnessPeriod>(map => map.IgnoreProperty(p => p.Duration))
                     .Override<Role>(map => map.HasManyToMany(x => x.Tasks).Cascade.All())
+                    .Override<DbSetting>(map => map.Map(p => p.Key).Unique())
                     .Override<Patient>(map =>
                     {
                         map.DynamicUpdate();

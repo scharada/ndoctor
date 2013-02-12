@@ -125,6 +125,7 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<Role, RoleDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Macro, MacroDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Patient, PatientDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<DbSetting, DbSettingDto>().AfterMap((entity, dto) => Clean(dto));
 
             Mapper.CreateMap<MedicalRecord, MedicalRecordDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Tag, MedicalRecordFolderDto>().AfterMap((entity, dto) => Clean(dto));
@@ -190,9 +191,6 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
 
             Mapper.CreateMap<MedicalRecordState, MedicalRecord>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore());
-
-            Mapper.CreateMap<DatabaseState, DatabaseState>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
 
             Mapper.CreateMap<ApplicationStatistics, StatisticEntry>()

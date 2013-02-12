@@ -257,4 +257,8 @@
     <value>Un utilisateur avec le même nom et prénom existe déjà.</value>
     <comment>A user with the same first and last name already exist</comment>
   </data>
+  <data name="Ex_KeyExistInSettings" xml:space="preserve">
+    <value>La clef '{0}' existe déjà dans les préférences.</value>
+    <comment>The key '{0}' already exist in the settings.</comment>
+  </data>
 </root>
