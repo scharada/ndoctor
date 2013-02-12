@@ -104,6 +104,8 @@
     <Compile Include="AopConfiguration\ExcludeFromTransactionAttribute.cs" />
     <Compile Include="AopConfiguration\NotBenchmarkedAttribute.cs" />
     <Compile Include="Components\ApplicationStatisticsComponent.cs" />
+    <Compile Include="Components\DbSettingsComponent.cs" />
+    <Compile Include="Entities\DbSetting.cs" />
     <Compile Include="Helpers\Default.cs" />
     <Compile Include="Cfg\NUnitConfigWrapper.cs" />
     <Compile Include="Cfg\Script.cs" />
@@ -116,7 +118,6 @@
     <Compile Include="Components\PrescriptionComponent.cs" />
     <Compile Include="Components\SqlComponent.cs" />
     <Compile Include="Components\UnitTestComponent.cs" />
-    <Compile Include="Entities\DatabaseState.cs" />
     <Compile Include="Entities\ApplicationStatistics.cs" />
     <Compile Include="Entities\Macro.cs" />
     <Compile Include="Entities\MedicalRecordState.cs" />

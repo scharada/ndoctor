@@ -31,18 +31,19 @@
                 <TextBlock Text="{Binding Source={x:Static Member=txt:AboutBoxText.WebSite}}" TextAlignment="Center" />
             </Hyperlink>
             </TextBlock>
-            <Label DockPanel.Dock="Top" Margin="4" Content="{Binding Source={x:Static Member=txt:AboutBoxText.TitlePlugins}}" />
-            <ScrollViewer Margin="4" DockPanel.Dock="Bottom">
-                <ItemsControl ItemsSource="{Binding Plugins}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <DockPanel LastChildFill="True">
-                                <TextBlock Text="{Binding}"/>
-                            </DockPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
+            <GroupBox DockPanel.Dock="Top" Margin="4" Header="{Binding Source={x:Static Member=txt:AboutBoxText.TitlePlugins}}">
+                <ScrollViewer Margin="4" DockPanel.Dock="Bottom">
+                    <ItemsControl ItemsSource="{Binding Plugins}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel LastChildFill="True">
+                                    <TextBlock Text="{Binding}"/>
+                                </DockPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </GroupBox>
         </DockPanel>
 
 
@@ -50,6 +51,7 @@
             <Label DockPanel.Dock="Top" Content="{Binding Title}"  Margin="4" FontSize="32" FontStretch="Expanded" FontWeight="Bold" HorizontalContentAlignment="Center"/>
             <Label DockPanel.Dock="Top" Content="{Binding Author}"  Margin="4" />
             <Label DockPanel.Dock="Top" Content="{Binding Copyright}"  Margin="4"/>
+            <Label DockPanel.Dock="Top" Margin="4" Content="{Binding AppKey}" />
             <Button DockPanel.Dock="Bottom" Content="{Binding Source={x:Static Member=t:BaseText.Close}}" 
                     Margin="4"
                     Command="cmd:Commands.CloseView" 

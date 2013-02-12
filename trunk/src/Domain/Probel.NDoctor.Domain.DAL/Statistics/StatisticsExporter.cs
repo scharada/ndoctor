@@ -35,7 +35,9 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
     using MongoDB.Driver.Linq;
 
     using Probel.Helpers.Data;
+    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DTO.Components;
 
     /// <summary>
     /// Export the statistics about the usage of the current session of nDoctor
@@ -44,12 +46,14 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
     {
         #region Fields
 
+        private const string APPKEY = "AppKey";
+
         private static readonly string ConnectionString = "mongodb://statistics:ndoctor@ds049157.mongolab.com:49157/ndoctor-statistics";
         private static readonly ILog Logger = LogManager.GetLogger(typeof(StatisticsExporter));
 
-        private readonly AppKey AppKey;
         private readonly MongoDatabase Database;
         private readonly TimeSpan Duration;
+        private readonly IDbSettingsComponent Settings = new DbSettingsComponent();
         private readonly string Version;
 
         #endregion Fields
@@ -59,10 +63,10 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
         /// <summary>
         /// Initializes a new instance of the <see cref="StatisticsExporter"/> class.
         /// </summary>
-        /// <param name="executions">The executions.</param>
-        public StatisticsExporter(string vendor, string applicationName, Version version, TimeSpan sessionDuration)
+        /// <param name="version">The version.</param>
+        /// <param name="sessionDuration">Duration of the session.</param>
+        public StatisticsExporter(Version version, TimeSpan sessionDuration)
         {
-            this.AppKey = AppKey.GetFromAppData(vendor, applicationName);
             this.Version = version.ToString();
             this.Duration = sessionDuration;
 
@@ -81,11 +85,11 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
         /// exception is swallowed and logged.
         /// </summary>
         /// <param name="executions">The executions.</param>
-        public void Export(IEnumerable<ApplicationStatistics> executions)
+        public void Export(IEnumerable<ApplicationStatistics> executions, Guid appKey)
         {
             try
             {
-                var user = this.GetUser(this.AppKey.GetKey());
+                var user = this.GetUser(appKey);
 
                 var history = Mapper.Map<IEnumerable<ApplicationStatistics>, IEnumerable<StatisticEntry>>(executions);
 
@@ -101,19 +105,19 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
             }
         }
 
-        private AnonymousUser GetUser(Guid guid)
+        private AnonymousUser GetUser(Guid appKey)
         {
             var users = this.Database.GetCollection<AnonymousUser>("users");
 
             var user = (from u in users.AsQueryable()
-                        where u.ApplicationKey == guid
+                        where u.ApplicationKey == appKey
                         select u).FirstOrDefault();
 
             if (user == null)
             {
                 user = new AnonymousUser()
                 {
-                    ApplicationKey = this.AppKey.GetKey(),
+                    ApplicationKey = appKey,
                     InstallationDate = DateTime.Now.ToUniversalTime(),
                     Version = this.Version.ToString(),
                     UpdateVersion = DateTime.Now.ToUniversalTime(),

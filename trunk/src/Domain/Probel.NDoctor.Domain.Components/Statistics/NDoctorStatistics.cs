@@ -33,6 +33,7 @@ namespace Probel.NDoctor.Domain.Components.Statistics
 
     using Probel.Helpers.Data;
     using Probel.NDoctor.Domain.DAL.Cfg;
+    using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Statistics;
 
@@ -71,6 +72,16 @@ namespace Probel.NDoctor.Domain.Components.Statistics
         }
 
         #endregion Constructors
+
+        #region Properties
+
+        private bool IsDebug
+        {
+            get;
+            set;
+        }
+
+        #endregion Properties
 
         #region Methods
 
@@ -116,18 +127,26 @@ namespace Probel.NDoctor.Domain.Components.Statistics
                 : "999.999.999.999"; //GetEntryAssembly returns null when executing unit tests
         }
 
-        private void ExportToRemoteServer(IEnumerable<ApplicationStatistics> toImport)
+        private void ExportToRemoteServer(IEnumerable<ApplicationStatistics> toImport, Guid appKey)
         {
-            #if !DEBUG
-            Logger.InfoFormat("Exporting {0} entrie(s) into the remote server", toImport.Count());
-            var version = Assembly.GetEntryAssembly().GetName().Version;
-            new StatisticsExporter("Probel", "NDoctor", version, this.SessionDuration)
-                .Export(toImport);
-            #endif
+            if (!IsDebug)
+            {
+                Logger.InfoFormat("Exporting {0} entrie(s) into the remote server", toImport.Count());
+                var version = Assembly.GetEntryAssembly().GetName().Version;
+
+                new StatisticsExporter(version, this.SessionDuration)
+                    .Export(toImport, appKey);
+            }
+            else { Logger.Warn("The application is in debug mode, the statistics are not exported. The setting 'IsRemoteStatisticsEnabled' is overriden!"); }
         }
 
         private void Flush(ISession session)
         {
+            var settings = new DbSettingsComponent(session);
+            this.IsDebug = bool.Parse(settings["IsDebug"]);
+            var isExportEnabled = bool.Parse(settings["IsRemoteStatisticsEnabled"]);
+            Guid appKey = new Guid(settings["AppKey"]);
+
             using (var tx = session.BeginTransaction())
             {
                 foreach (var item in Statistics)
@@ -140,7 +159,12 @@ namespace Probel.NDoctor.Domain.Components.Statistics
             if (this.RemoteStatisticsEnabled)
             {
                 var toImport = this.GetNotImportedStatistics(session);
-                ExportToRemoteServer(toImport);
+                ExportToRemoteServer(toImport, appKey);
+
+                if (!this.IsDebug && !isExportEnabled)
+                {
+                    this.MarkAsExported(session, toImport);
+                }
             }
 
             Statistics.Clear();
@@ -152,6 +176,11 @@ namespace Probel.NDoctor.Domain.Components.Statistics
                          where stat.IsExported == false
                          select stat).ToList();
 
+            return items;
+        }
+
+        private void MarkAsExported(ISession session, IEnumerable<ApplicationStatistics> items)
+        {
             using (var tx = session.BeginTransaction())
             {
                 foreach (var item in items)
@@ -161,7 +190,6 @@ namespace Probel.NDoctor.Domain.Components.Statistics
                 }
                 tx.Commit();
             }
-            return items;
         }
 
         #endregion Methods

@@ -91,8 +91,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
         [Granted(To.Everyone)]
         public void CreateAllThumbnails()
         {
-            var db = this.GetDatabaseState();
-            if (!db.AreThumbnailsCreated)
+            //var db = this.GetDatabaseState();
+            var settings = new DbSettingsComponent(this.Session);
+            var areThumbnailsCreated = bool.Parse(settings["AreThumbnailsCreated"]);
+
+            if (!areThumbnailsCreated)
             {
                 this.Logger.Info("Creation of the thumbnails");
                 using (var bench = new Benchmark(e => this.Logger.InfoFormat("Thumbnails created in {0,3}.{1:###} sec", e.Seconds, e.Milliseconds)))
@@ -104,8 +107,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
                     {
                         new Updator(this.Session).Update(pictures);
                         bench.CheckNow(e => this.Logger.DebugFormat("Thumbnails created in memory in {0,3}.{1:###} sec", e.Seconds, e.Milliseconds));
-                        db.AreThumbnailsCreated = true;
-                        new Updator(this.Session).Update(db);
+                        areThumbnailsCreated = true;
+                        settings["AreThumbnailsCreated"] = areThumbnailsCreated.ToString();
                         tx.Commit();
                         bench.CheckNow(e => this.Logger.DebugFormat("Transaction commited {0,3}.{1:###} sec", e.Seconds, e.Milliseconds));
                     }

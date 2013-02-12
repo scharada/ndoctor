@@ -34,11 +34,12 @@
             <ListView x:Name="list" 
                       MinWidth="120"
                       DockPanel.Dock="Left"
-                      ItemsSource="{Binding SettingCollection}"    
+                      ItemsSource="{Binding SettingCollection}"  
+                      SelectedItem="{Binding SelectedControl}"
                       DisplayMemberPath="Name"/>
             <ScrollViewer HorizontalScrollBarVisibility="Auto">
                 <ContentControl DockPanel.Dock="Right"
-                            Content="{Binding SelectedItem.Control, ElementName=list}"/>
+                                Content="{Binding SelectedControl.Control}"/>
             </ScrollViewer>
         </DockPanel>
     </DockPanel>

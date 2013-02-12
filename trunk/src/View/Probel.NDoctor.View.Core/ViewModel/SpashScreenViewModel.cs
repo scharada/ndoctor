@@ -38,7 +38,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Core.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Cfg;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox.Navigation;
@@ -114,17 +113,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
             }
         }
 
-        private bool CreateDatabase
-        {
-            get
-            {
-                var result = ConfigurationManager.AppSettings["CreateDatabase"];
-                var createDatabase = false;
-                if (bool.TryParse(result, out createDatabase)) return createDatabase;
-                else return false;
-            }
-        }
-
         #endregion Properties
 
         #region Methods
@@ -177,6 +165,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
                     this.Logger.Info("Configuration done.");
 
                     stopwatch.Stop();
+                    this.ManageAppKey();
                     this.Logger.InfoFormat("Loading time {0},{1} sec", stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
 
                 }
@@ -213,12 +202,12 @@ namespace Probel.NDoctor.View.Core.ViewModel
             this.Logger.Info("Configuring nHibernate...");
             var path = Environment.ExpandEnvironmentVariables(ConfigurationManager.AppSettings["Database"]);
 
-            if (!File.Exists(path) && !this.CreateDatabase) { this.Logger.Warn("It seems to be the first start of the application. An empty database is created."); }
+            if (!File.Exists(path) && !this.CreateDatabase()) { this.Logger.Warn("It seems to be the first start of the application. An empty database is created."); }
 
             this.Logger.DebugFormat("Database path: {0}", path);
             this.LogDatabaseCreation();
             new DalConfigurator()
-                .ConfigureUsingFile(path, this.CreateDatabase)
+                .ConfigureUsingFile(path, this.CreateDatabase())
                 .InjectDefaultData();
         }
 
@@ -258,6 +247,14 @@ namespace Probel.NDoctor.View.Core.ViewModel
             });
         }
 
+        private bool CreateDatabase()
+        {
+            var result = ConfigurationManager.AppSettings["CreateDatabase"];
+            var createDatabase = false;
+            if (bool.TryParse(result, out createDatabase)) return createDatabase;
+            else return false;
+        }
+
         private void CreateThumbnails()
         {
             PluginContext.ComponentFactory
@@ -279,7 +276,22 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         private void LogDatabaseCreation()
         {
-            if (this.CreateDatabase) { this.Logger.Warn("Creation of a new database. Old data is deleted"); }
+            if (this.CreateDatabase()) { this.Logger.Warn("Creation of a new database. Old data is deleted"); }
+        }
+
+        private void ManageAppKey()
+        {
+            var settings = PluginContext.ComponentFactory.GetInstance<IDbSettingsComponent>();
+
+            if (settings.Exists("AppKey"))
+            {
+                this.Logger.InfoFormat("AppKey: {0}", settings["AppKey"]);
+            }
+            else
+            {
+                settings["AppKey"] = Guid.NewGuid().ToString();
+                this.Logger.InfoFormat("New AppKey created: {0}", settings["AppKey"]);
+            }
         }
 
         private void OnFailed()

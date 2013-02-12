@@ -58,17 +58,5 @@ namespace Probel.NDoctor.View.Core.Properties {
                 this["SearchType"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool IsRemoteStatisticsEnabled {
-            get {
-                return ((bool)(this["IsRemoteStatisticsEnabled"]));
-            }
-            set {
-                this["IsRemoteStatisticsEnabled"] = value;
-            }
-        }
     }
 }

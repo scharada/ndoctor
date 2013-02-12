@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Probel.NDoctor.Domain.DAL.Properties
-{
-
-
+namespace Probel.NDoctor.Domain.DAL.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -93,6 +93,15 @@ namespace Probel.NDoctor.Domain.DAL.Properties
         internal static string Ex_InvalidMacroException {
             get {
                 return ResourceManager.GetString("Ex_InvalidMacroException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The key &apos;{0}&apos; already exist in the settings..
+        /// </summary>
+        internal static string Ex_KeyExistInSettings {
+            get {
+                return ResourceManager.GetString("Ex_KeyExistInSettings", resourceCulture);
             }
         }
         

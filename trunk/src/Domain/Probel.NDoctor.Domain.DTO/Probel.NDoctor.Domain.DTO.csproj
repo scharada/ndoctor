@@ -56,6 +56,7 @@
       <Link>Version.cs</Link>
     </Compile>
     <Compile Include="Collections\TagCategoryCollection.cs" />
+    <Compile Include="Components\IDbSettingsComponent.cs" />
     <Compile Include="Components\IAdministrationComponent.cs" />
     <Compile Include="Components\IAuthorisationComponent.cs" />
     <Compile Include="Components\ICalendarComponent.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Objects\PrescriptionDto.cs" />
     <Compile Include="Helpers\Workday.cs" />
     <Compile Include="Objects\PrescriptionResultDto.cs" />
+    <Compile Include="Objects\DbSettingDto.cs" />
     <Compile Include="Objects\TaskDto.cs" />
     <Compile Include="Properties\Messages.Designer.cs">
       <DependentUpon>Messages.resx</DependentUpon>
