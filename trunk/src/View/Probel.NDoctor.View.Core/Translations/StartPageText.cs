@@ -59,7 +59,7 @@ namespace Probel.NDoctor.View.Core.Translations
 
         public static string Logs
         {
-            get { return Messages.Tab_Logs; }
+            get { return Messages.Btn_Logs; }
         }
 
         public static string Message

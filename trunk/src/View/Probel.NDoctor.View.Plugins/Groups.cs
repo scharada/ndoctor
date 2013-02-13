@@ -35,6 +35,11 @@ namespace Probel.NDoctor.View.Plugins
         /// The of the home menu which contains all the global tools such as the calendar
         /// </summary>
         GlobalTools,
+
+        /// <summary>
+        /// Special menu only visible with command line args
+        /// </summary>
+        DebugTools,
     }
 
     #endregion Enumerations

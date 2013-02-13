@@ -23,6 +23,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Core.Properties;
 
     public class DebugViewModel : RequestCloseViewModel
     {
@@ -133,7 +134,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         private void NewAppKey()
         {
-            var dr = ViewService.MessageBox.Question("Do you want to reset the AppKey of the application?");
+            var dr = ViewService.MessageBox.Question(Messages.Msg_AskResetAppKey);
             if (dr)
             {
                 this.AppKey = Guid.NewGuid().ToString();

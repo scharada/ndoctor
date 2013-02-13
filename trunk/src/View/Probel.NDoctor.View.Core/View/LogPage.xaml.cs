@@ -14,22 +14,20 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.View.Core.ViewModel
+using System.Windows.Controls;
+using Probel.NDoctor.View.Core.ViewModel;
+
+namespace Probel.NDoctor.View.Core.View
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using System.Windows.Input;
-
-    using Probel.Helpers.Data;
-    using Probel.Mvvm.DataBinding;
-    using Probel.NDoctor.Domain.DTO.Components;
-    using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.View;
-    using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Toolbox.Logging;
-
-    internal class StartPageViewModel : BaseViewModel { }
+    /// <summary>
+    /// Interaction logic for LogPage.xaml
+    /// </summary>
+    public partial class LogPage : Page
+    {
+        public LogPage()
+        {
+            InitializeComponent();
+            this.DataContext = new LogViewModel();
+        }
+    }
 }

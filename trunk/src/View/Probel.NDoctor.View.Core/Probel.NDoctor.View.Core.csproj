@@ -151,12 +151,14 @@
       <DependentUpon>Messages.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="Translations\AboutBoxText.cs" />
+    <Compile Include="Translations\DebugText.cs" />
     <Compile Include="Translations\PluginCfgText.cs" />
     <Compile Include="Translations\SettingsText.cs" />
     <Compile Include="Translations\StartPageText.cs" />
     <Compile Include="ViewModel\AboutBoxViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\DebugViewModel.cs" />
+    <Compile Include="ViewModel\LogViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\DefaultSettingsViewModel.cs" />
     <Compile Include="ViewModel\PluginCfgViewModel.cs" />
@@ -164,6 +166,7 @@
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\SpashScreenViewModel.cs" />
     <Compile Include="ViewModel\StartPageViewModel.cs" />
+    <Compile Include="ViewModel\StatisticsViewModel.cs" />
     <Compile Include="View\AboutBoxView.xaml.cs">
       <DependentUpon>AboutBoxView.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,9 @@
     </Compile>
     <Compile Include="View\DefaultSettingsView.xaml.cs">
       <DependentUpon>DefaultSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LogPage.xaml.cs">
+      <DependentUpon>LogPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PluginCfgView.xaml.cs">
       <DependentUpon>PluginCfgView.xaml</DependentUpon>
@@ -185,6 +191,9 @@
     <Compile Include="View\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\StatisticsPage.xaml.cs">
+      <DependentUpon>StatisticsPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="View\AboutBoxView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -194,6 +203,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DefaultSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LogPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -222,6 +235,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\StartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StatisticsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -343,6 +360,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Debug.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ActivityReports.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DebugStat.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
