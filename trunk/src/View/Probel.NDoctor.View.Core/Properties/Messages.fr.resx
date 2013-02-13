@@ -538,4 +538,8 @@ L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
     <value>Voulez-vous recréer l'AppKey? Si vous clickez sur oui, nDoctor recevra une nouvelle référence ce qui pourrait modifier son comportement.</value>
     <comment>Do you want to reset the AppKey? If you click on "Yes",nDoctor will have a new reference. It could change the behaviour of the application.</comment>
   </data>
+  <data name="Title_Accuracy" xml:space="preserve">
+    <value>Précision</value>
+    <comment>Accuracy</comment>
+  </data>
 </root>

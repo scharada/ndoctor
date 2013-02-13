@@ -22,8 +22,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO.Components;
-    using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Core.Properties;
+    using Probel.NDoctor.View.Plugins;
 
     public class DebugViewModel : RequestCloseViewModel
     {

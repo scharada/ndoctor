@@ -35,13 +35,22 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 
         private double avgExecutionTime;
         private double avgThreshold;
-        private int count;
+        private double bottleneckCount;
+        private double callCount;
         private string methodName;
         private string targetTypeName;
 
         #endregion Fields
 
         #region Properties
+
+        public double Accuracy
+        {
+            get
+            {
+                return (this.BottleneckCount / this.CallCount) * 100;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the average execution time.
@@ -81,13 +90,29 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// <value>
         /// The count.
         /// </value>
-        public int Count
+        public double BottleneckCount
         {
-            get { return this.count; }
+            get { return this.bottleneckCount; }
             set
             {
-                this.count = value;
-                this.OnPropertyChanged(() => Count);
+                this.bottleneckCount = value;
+                this.OnPropertyChanged(() => BottleneckCount);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the number of time this method has been called.
+        /// </summary>
+        /// <value>
+        /// The call count.
+        /// </value>
+        public double CallCount
+        {
+            get { return this.callCount; }
+            set
+            {
+                this.callCount = value;
+                this.OnPropertyChanged(() => CallCount);
             }
         }
 

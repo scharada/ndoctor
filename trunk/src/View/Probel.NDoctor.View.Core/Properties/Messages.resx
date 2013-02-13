@@ -554,4 +554,8 @@ The application will close. Check the logs for further  information</value>
     <value>Do you want to reset the AppKey? If you click on "Yes",nDoctor will have a new reference. It could change the behaviour of the application.</value>
     <comment>Do you want to reset the AppKey? If you click on "Yes",nDoctor will have a new reference. It could change the behaviour of the application.</comment>
   </data>
+  <data name="Title_Accuracy" xml:space="preserve">
+    <value>Accuracy</value>
+    <comment>Accuracy</comment>
+  </data>
 </root>

@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,38 +16,48 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Probel.NDoctor.View.Core.Properties;
-using Probel.NDoctor.View.Toolbox.Translations;
+
+#endregion Header
 
 namespace Probel.NDoctor.View.Core.Translations
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using Probel.NDoctor.View.Core.Properties;
+    using Probel.NDoctor.View.Toolbox.Translations;
+
     public static class DebugText
     {
+        #region Properties
+
+        public static string Cancel
+        {
+            get { return BaseText.Cancel; }
+        }
+
+        public static string IsDebug
+        {
+            get { return Messages.Debug_IsDebug; }
+        }
+
+        public static string ResetAppKey
+        {
+            get { return Messages.Debug_ResetAppKey; }
+        }
+
+        public static string ThumbnailCreated
+        {
+            get { return Messages.Debug_ThumbnailCreated; }
+        }
 
         public static string Warning
         {
             get { return Messages.Debug_Warning; }
         }
-        public static string ResetAppKey
-        {
-            get { return Messages.Debug_ResetAppKey; }
-        }
-        public static string ThumbnailCreated
-        {
-            get { return Messages.Debug_ThumbnailCreated; }
-        }
-        public static string IsDebug
-        {
-            get { return Messages.Debug_IsDebug; }
-        }
-        
-        public static string Cancel
-        {
-            get { return BaseText.Cancel; }
-        }
+
+        #endregion Properties
     }
 }

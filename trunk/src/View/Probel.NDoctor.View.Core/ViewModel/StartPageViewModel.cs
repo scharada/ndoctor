@@ -31,5 +31,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Toolbox.Logging;
 
-    internal class StartPageViewModel : BaseViewModel { }
+    internal class StartPageViewModel : BaseViewModel
+    {
+    }
 }

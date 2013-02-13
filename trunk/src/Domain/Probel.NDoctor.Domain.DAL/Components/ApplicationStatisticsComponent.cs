@@ -106,19 +106,30 @@
         /// <returns>A list with all the information about execution time by method</returns>
         public IEnumerable<BottleneckDto> GetBottlenecksArray()
         {
-            var list = (from a in this.Session.Query<ApplicationStatistics>()
-                        where a.IsPossibleBottleneck == true
-                        group a by new { a.MethodName, a.TargetTypeName } into g
+            var statistics = this.Session.Query<ApplicationStatistics>();
+
+            var list = (from s in statistics
+                        where s.IsPossibleBottleneck == true
+                        group s by new { s.MethodName, s.TargetTypeName } into g
                         select new BottleneckDto()
                         {
                             MethodName = g.Key.MethodName,
-                            Count = g.Count(),
                             AvgExecutionTime = g.Average(e => e.ExecutionTime) / 1000,
                             AvgThreshold = g.Average(e => e.Threshold) / 1000,
                             TargetTypeName = g.Key.TargetTypeName,
+                            BottleneckCount = g.Count(),
                         }).ToList();
 
-            return list.OrderByDescending(e => e.Count);
+            //If I put that code in the select, the results are wrong
+            foreach (var item in list)
+            {
+                item.CallCount = (from c in statistics
+                                  where c.MethodName == item.MethodName
+                                     && c.TargetTypeName == item.TargetTypeName
+                                  select c).Count();
+            }
+
+            return list.OrderByDescending(e => e.BottleneckCount);
         }
 
         /// <summary>

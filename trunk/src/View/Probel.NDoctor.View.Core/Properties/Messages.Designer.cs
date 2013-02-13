@@ -530,6 +530,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accuracy.
+        /// </summary>
+        internal static string Title_Accuracy {
+            get {
+                return ResourceManager.GetString("Title_Accuracy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adresse.
         /// </summary>
         internal static string Title_Address {

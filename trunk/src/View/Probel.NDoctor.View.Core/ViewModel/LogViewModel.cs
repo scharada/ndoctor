@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,23 +16,48 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections.ObjectModel;
-using Probel.NDoctor.View.Toolbox.Logging;
-using Probel.Mvvm.DataBinding;
+
+#endregion Header
 
 namespace Probel.NDoctor.View.Core.ViewModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Text;
+
+    using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.View.Toolbox.Logging;
+
     internal class LogViewModel : BaseViewModel
     {
+        #region Fields
+
+        private LogEvent selectedRow;
+
+        #endregion Fields
+
+        #region Constructors
+
         public LogViewModel()
         {
             this.LogEvents = new ObservableCollection<LogEvent>();
         }
-        private LogEvent selectedRow;
+
+        #endregion Constructors
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the list of log events recorded in this session.
+        /// </summary>
+        public ObservableCollection<LogEvent> LogEvents
+        {
+            get;
+            set;
+        }
+
         public LogEvent SelectedRow
         {
             get { return this.selectedRow; }
@@ -40,17 +67,16 @@ namespace Probel.NDoctor.View.Core.ViewModel
                 this.OnPropertyChanged(() => SelectedRow);
             }
         }
-        /// <summary>
-        /// Gets the list of log events recorded in this session.
-        /// </summary>
-        public ObservableCollection<LogEvent> LogEvents
-        {
-            get;
-            set;
-        }
+
+        #endregion Properties
+
+        #region Methods
+
         public void Refresh()
         {
             this.LogEvents.Refill(WpfAppender.GetLogs(this.Logger));
         }
+
+        #endregion Methods
     }
 }
