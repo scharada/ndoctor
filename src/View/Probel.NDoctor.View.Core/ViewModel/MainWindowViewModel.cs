@@ -27,11 +27,11 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Core.Properties;
+    using Probel.NDoctor.View.Core.View;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Navigation;
-    using Probel.NDoctor.View.Core.View;
 
     /// <summary>
     /// This ViewModel should contain all the information about the

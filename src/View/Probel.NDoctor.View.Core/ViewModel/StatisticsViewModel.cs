@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,17 +16,18 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
+#endregion Header
 
 namespace Probel.NDoctor.View.Core.ViewModel
 {
-
+    using System;
     using System;
     using System.Collections.Generic;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows.Input;

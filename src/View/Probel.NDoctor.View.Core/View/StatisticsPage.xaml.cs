@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,20 +16,28 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System.Windows.Controls;
-using Probel.NDoctor.View.Core.ViewModel;
+
+#endregion Header
 
 namespace Probel.NDoctor.View.Core.View
 {
+    using System.Windows.Controls;
+
+    using Probel.NDoctor.View.Core.ViewModel;
+
     /// <summary>
     /// Interaction logic for StatisticsPage.xaml
     /// </summary>
     public partial class StatisticsPage : Page
     {
+        #region Constructors
+
         public StatisticsPage()
         {
             InitializeComponent();
             this.DataContext = new StatisticsViewModel();
         }
+
+        #endregion Constructors
     }
 }

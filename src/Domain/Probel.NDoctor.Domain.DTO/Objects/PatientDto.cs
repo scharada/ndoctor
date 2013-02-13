@@ -30,7 +30,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private DateTime birthdate = DateTime.Today;
         private int counter;
         private decimal fee;
-
         private DateTime inscriptionDate = DateTime.Today;
         private LightInsuranceDto insurance = new LightInsuranceDto();
         private bool isComplete;

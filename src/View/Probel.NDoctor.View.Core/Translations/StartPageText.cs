@@ -22,6 +22,11 @@ namespace Probel.NDoctor.View.Core.Translations
     {
         #region Properties
 
+        public static string Accuracy
+        {
+            get { return Messages.Title_Accuracy; }
+        }
+
         public static string AverageExecutionTime
         {
             get { return Messages.Title_AverageExecutionTime; }

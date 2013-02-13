@@ -13,7 +13,7 @@
       d:DesignHeight="800" d:DesignWidth="600"
 	Title="StartPage">
     <Page.Resources>
-        <c:StatusConverter x:Key="statusConverter" />
+        <c:BottlenecksConverter x:Key="bottlenecksConverter" />
     </Page.Resources>
     <Grid>
         <tk:BusyIndicator IsBusy="{Binding IsBusy}" BusyContent="{Binding Source={x:Static Member=t:StartPageText.RefreshingStatistics}}">
@@ -53,11 +53,25 @@
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center" FontSize="16" />
                 <ListView Margin="4"
-                      Grid.Column="1" Grid.Row="2"
-                      ItemsSource="{Binding Bottlenecks}">
+                          Grid.Column="1" Grid.Row="2"
+                          ItemsSource="{Binding Bottlenecks}">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                            <Setter Property="Background" Value="{Binding Accuracy, Converter={StaticResource bottlenecksConverter}}"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="{Binding Source={x:Static Member=t:StartPageText.Count}}"  DisplayMemberBinding="{Binding Count}"/>
+                            <GridViewColumn Header="{Binding Source={x:Static Member=t:StartPageText.Accuracy}}">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Right"
+                                               Text="{Binding Path=Accuracy, StringFormat='{}{0:#,0.#}%'}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="{Binding Source={x:Static Member=t:StartPageText.Count}}"  DisplayMemberBinding="{Binding CallCount}"/>
+                            <GridViewColumn Header="{Binding Source={x:Static Member=t:StartPageText.Bottlenecks}}"  DisplayMemberBinding="{Binding BottleneckCount}"/>
                             <GridViewColumn Header="{Binding Source={x:Static Member=t:StartPageText.TargetType}}"  DisplayMemberBinding="{Binding TargetTypeName}"/>
                             <GridViewColumn Header="{Binding Source={x:Static Member=t:StartPageText.Method}}"  DisplayMemberBinding="{Binding MethodName}"/>
                             <GridViewColumn Header="{Binding Source={x:Static Member=t:StartPageText.AvgExecutionTime}}">
