@@ -39,11 +39,9 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         private readonly IDbSettingsComponent DbSettings = PluginContext.ComponentFactory.GetInstance<IDbSettingsComponent>();
 
-        private DateTime end;
         private bool remoteStatisticsActivated;
         private Tuple<string, SearchOn> selectedSearchType;
         private bool showRestart;
-        private DateTime start;
 
         #endregion Fields
 

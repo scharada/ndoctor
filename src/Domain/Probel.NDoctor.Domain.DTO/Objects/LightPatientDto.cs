@@ -27,10 +27,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #region Fields
 
         private DateTime birthdate;
-        private string firstName;
         private Gender gender;
         private int height;
-        private string lastName;
         private ProfessionDto profession;
 
         #endregion Fields
