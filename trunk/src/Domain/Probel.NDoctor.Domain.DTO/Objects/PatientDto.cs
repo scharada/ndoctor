@@ -30,8 +30,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private DateTime birthdate = DateTime.Today;
         private int counter;
         private decimal fee;
-        private Gender gender;
-        private long height;
+
         private DateTime inscriptionDate = DateTime.Today;
         private LightInsuranceDto insurance = new LightInsuranceDto();
         private bool isComplete;
@@ -48,7 +47,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private string reason;
         private ReputationDto reputation = new ReputationDto();
         private TagDto tag = new TagDto(TagCategory.Patient);
-        private byte[] thumbnail;
 
         #endregion Fields
 
