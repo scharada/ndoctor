@@ -46,6 +46,22 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         #region Properties
 
         /// <summary>
+        /// Gets the age of the patient.
+        /// This is a calculated property based on the Birthdate
+        /// This is ignored by nHibernate mapping
+        /// </summary>
+        public virtual int Age
+        {
+            get
+            {
+                DateTime today = DateTime.Today;
+                int age = today.Year - this.BirthDate.Year;
+                if (BirthDate > today.AddYears(-age)) age--;
+                return age;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the meetings of the patients.
         /// </summary>
         /// <value>

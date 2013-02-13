@@ -29,6 +29,8 @@ namespace Probel.Helpers.WPF.Behaviours
 
         public static readonly DependencyProperty GotFocusProperty = 
             DependencyProperty.RegisterAttached("GotFocus", typeof(ICommand), typeof(ControlBehaviour), new UIPropertyMetadata(null, CallbackAction));
+        public static readonly DependencyProperty LoadedProperty = 
+            DependencyProperty.RegisterAttached("Loaded", typeof(ICommand), typeof(ControlBehaviour), new UIPropertyMetadata(null, CallbackAction));
         public static readonly DependencyProperty LostFocusProperty = 
             DependencyProperty.RegisterAttached("LostFocus", typeof(ICommand), typeof(ControlBehaviour), new UIPropertyMetadata(null, CallbackAction));
         public static readonly DependencyProperty MouseDoubleClickProperty = 
@@ -44,6 +46,12 @@ namespace Probel.Helpers.WPF.Behaviours
         public static void SetGotFocus(DependencyObject target, ICommand command)
         {
             target.SetValue(ControlBehaviour.GotFocusProperty, command);
+        }
+
+        [AttachedPropertyBrowsableForChildren]
+        public static void SetLoaded(DependencyObject target, ICommand command)
+        {
+            target.SetValue(ControlBehaviour.LoadedProperty, command);
         }
 
         [AttachedPropertyBrowsableForChildren]
@@ -86,6 +94,7 @@ namespace Probel.Helpers.WPF.Behaviours
                 this.view = view;
                 this.view.LostFocus += (sender, e) => LostFocusExecuteCommand(sender);
                 this.view.GotFocus += (sender, e) => GotFocusExecuteCommand(sender);
+                this.view.Loaded += (sender, e) => LoadedExecuteCommand(sender);
                 this.view.MouseDoubleClick += (sender, e) => MouseDoubleClickCommand(sender);
             }
 
@@ -97,6 +106,14 @@ namespace Probel.Helpers.WPF.Behaviours
             {
                 var element = (Control)sender;
                 var command = (ICommand)element.GetValue(ControlBehaviour.GotFocusProperty);
+
+                if (command != null) { command.TryExecute(); }
+            }
+
+            private static void LoadedExecuteCommand(object sender)
+            {
+                var element = (Control)sender;
+                var command = (ICommand)element.GetValue(ControlBehaviour.LoadedProperty);
 
                 if (command != null) { command.TryExecute(); }
             }

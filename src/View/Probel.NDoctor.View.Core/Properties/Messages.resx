@@ -558,4 +558,16 @@ The application will close. Check the logs for further  information</value>
     <value>Accuracy</value>
     <comment>Accuracy</comment>
   </data>
+  <data name="Title_PatientGrowth" xml:space="preserve">
+    <value>Patient growth through time</value>
+    <comment>Patient growth throught time</comment>
+  </data>
+  <data name="Title_AgeRepartition" xml:space="preserve">
+    <value>Age repartition</value>
+    <comment>Age repartition</comment>
+  </data>
+  <data name="Title_GenderRepartition" xml:space="preserve">
+    <value>Gender repartition</value>
+    <comment>Gender repartition</comment>
+  </data>
 </root>

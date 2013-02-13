@@ -39,7 +39,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]

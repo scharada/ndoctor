@@ -31,7 +31,6 @@ namespace Probel.NDoctor.Plugins.PictureManager
     using Probel.NDoctor.Plugins.PictureManager.ViewModel;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]

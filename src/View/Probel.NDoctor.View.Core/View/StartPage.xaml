@@ -8,11 +8,59 @@
       xmlns:dvc="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
       xmlns:t="clr-namespace:Probel.NDoctor.View.Core.Translations"
       xmlns:c="clr-namespace:Probel.NDoctor.View.Core.Helpers"
+      xmlns:b="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
       
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="600"
       Title="StartPage">
+
     <Grid>
-        <Label Content="Start page"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!-- Patient growth -->
+            <tk:BusyIndicator Grid.Column="0" Grid.Row="0" IsBusy="{Binding IsPatientGrowthBusy}" BusyContent="{Binding Source={x:Static Member=t:StartPageText.RefreshingStatistics}}">
+                <dvc:Chart Margin="4" Title="{Binding Source={x:Static Member=t:StartPageText.PatientGrowth}}">
+                    <dvc:Chart.LegendStyle>
+                        <Style TargetType="dv:Legend">
+                            <Setter Property="Width" Value="0"/>
+                        </Style>
+                    </dvc:Chart.LegendStyle>
+                    <dvc:ColumnSeries ItemsSource="{Binding PatientGrowth.Points}"
+                                      IndependentValueBinding="{Binding Path=X}"
+                                      DependentValueBinding="{Binding Path=Y}"/>
+                </dvc:Chart>
+            </tk:BusyIndicator>
+           
+            <!-- Gender repartition -->
+            <tk:BusyIndicator Grid.Column="0" Grid.Row="1" IsBusy="{Binding IsGenderRepartitionBusy}" BusyContent="{Binding Source={x:Static Member=t:StartPageText.RefreshingStatistics}}">
+                <dvc:Chart Margin="4" Title="{Binding Source={x:Static Member=t:StartPageText.GenderRepartition}}">
+                    <dvc:PieSeries ItemsSource="{Binding GenderRepartition.Points}"
+                                   IndependentValueBinding="{Binding Path=X}"
+                                   DependentValueBinding="{Binding Path=Y}">                        
+                    </dvc:PieSeries>
+                </dvc:Chart>
+            </tk:BusyIndicator>
+
+            <!-- Age repartition -->
+            <tk:BusyIndicator Grid.Column="1" Grid.Row="0" IsBusy="{Binding IsAgeRepartitionBusy}" BusyContent="{Binding Source={x:Static Member=t:StartPageText.RefreshingStatistics}}">
+                <dvc:Chart Margin="4" Title="{Binding Source={x:Static Member=t:StartPageText.AgeRepartition}}">
+                    <dvc:Chart.LegendStyle>
+                        <Style TargetType="dv:Legend">
+                            <Setter Property="Width" Value="0"/>
+                        </Style>
+                    </dvc:Chart.LegendStyle>
+                    <dvc:LineSeries ItemsSource="{Binding AgeRepartition.Points}"
+                                    IndependentValueBinding="{Binding Path=X}"
+                                    DependentValueBinding="{Binding Path=Y}"/>
+                </dvc:Chart>
+            </tk:BusyIndicator>
+        </Grid>
     </Grid>
 </Page>

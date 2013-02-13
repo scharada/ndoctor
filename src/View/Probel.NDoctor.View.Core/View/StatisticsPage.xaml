@@ -48,10 +48,10 @@
                                     DependentValueBinding="{Binding Path=Y}"/>
                 </dvc:Chart>
                 <Label Content="{Binding Source={x:Static Member=t:StartPageText.Bottlenecks}}" 
-                   Margin="4"
-                   Grid.Column="1" Grid.Row="1"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center" FontSize="16" />
+                       Margin="4"
+                       Grid.Column="1" Grid.Row="1"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center" FontSize="16" />
                 <ListView Margin="4"
                           Grid.Column="1" Grid.Row="2"
                           ItemsSource="{Binding Bottlenecks}">

@@ -14,7 +14,6 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 namespace Probel.NDoctor.View.Core.Helpers
 {
     using System;
@@ -28,7 +27,6 @@ namespace Probel.NDoctor.View.Core.Helpers
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-
             if (value is double)
             {
                 var text = (double)value;

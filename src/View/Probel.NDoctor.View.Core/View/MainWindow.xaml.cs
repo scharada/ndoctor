@@ -382,9 +382,7 @@ namespace Probel.NDoctor.View.Core.View
             var result = this.Navigate(Startpage);
             this.Dispatcher.Invoke((Action)delegate
             {
-                if (this.Startpage.DataContext is StartPageViewModel)
-                {
-                }
+                this.Startpage.As<StartPageViewModel>().RefreshCommand.TryExecute();
             });
             return result;
         }
@@ -553,11 +551,11 @@ namespace Probel.NDoctor.View.Core.View
 
         private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            #if DEBUG
+#if DEBUG
             this.WindowState = System.Windows.WindowState.Normal;
-            #else
+#else
             this.WindowState = System.Windows.WindowState.Maximized;
-            #endif
+#endif
         }
 
         private void WriteStatus(LightPatientDto value)

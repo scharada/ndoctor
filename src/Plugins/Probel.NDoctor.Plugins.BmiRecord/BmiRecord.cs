@@ -33,7 +33,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord
     using Probel.NDoctor.Plugins.BmiRecord.ViewModel;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]

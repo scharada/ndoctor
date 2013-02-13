@@ -31,7 +31,6 @@ namespace Probel.NDoctor.Plugins.PatientData
     using Probel.NDoctor.Plugins.PatientData.ViewModel;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]
