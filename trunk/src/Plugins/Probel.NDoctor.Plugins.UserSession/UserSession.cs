@@ -36,7 +36,6 @@ namespace Probel.NDoctor.Plugins.UserSession
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.MenuData;
 
     /// <summary>

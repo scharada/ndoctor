@@ -104,6 +104,7 @@
     <Compile Include="AopConfiguration\ExcludeFromTransactionAttribute.cs" />
     <Compile Include="AopConfiguration\NotBenchmarkedAttribute.cs" />
     <Compile Include="Components\ApplicationStatisticsComponent.cs" />
+    <Compile Include="Components\DataStatisticsComponent.cs" />
     <Compile Include="Components\DbSettingsComponent.cs" />
     <Compile Include="Entities\DbSetting.cs" />
     <Compile Include="Helpers\Default.cs" />

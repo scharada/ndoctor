@@ -30,7 +30,6 @@ namespace Probel.NDoctor.Plugins.DbConvert
     using Probel.NDoctor.Plugins.DbConvert.ViewModel;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]

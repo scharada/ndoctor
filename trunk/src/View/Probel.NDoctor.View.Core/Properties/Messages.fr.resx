@@ -542,4 +542,16 @@ L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
     <value>Précision</value>
     <comment>Accuracy</comment>
   </data>
+  <data name="Title_PatientGrowth" xml:space="preserve">
+    <value>Croissance des patients sur le temps</value>
+    <comment>Patient growth throught time</comment>
+  </data>
+  <data name="Title_AgeRepartition" xml:space="preserve">
+    <value>Répartition des ages</value>
+    <comment>Age repartition</comment>
+  </data>
+  <data name="Title_GenderRepartition" xml:space="preserve">
+    <value>Répartition des sexes</value>
+    <comment>Gender repartition</comment>
+  </data>
 </root>

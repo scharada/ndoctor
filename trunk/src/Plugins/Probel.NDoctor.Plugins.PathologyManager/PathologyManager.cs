@@ -32,7 +32,6 @@ namespace Probel.NDoctor.Plugins.PathologyManager
     using Probel.NDoctor.Plugins.PathologyManager.ViewModel;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.MenuData;
 
     [Export(typeof(IPlugin))]

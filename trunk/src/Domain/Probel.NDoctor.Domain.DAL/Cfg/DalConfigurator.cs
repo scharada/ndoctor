@@ -92,6 +92,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                     .Override<Patient>(map =>
                     {
                         map.DynamicUpdate();
+                        map.IgnoreProperty(x => x.Age);
                         map.HasMany<Bmi>(x => x.BmiHistory).KeyColumn("Patient_Id");
                         map.HasMany<MedicalRecord>(x => x.MedicalRecords).KeyColumn("Patient_Id");
                         map.HasMany<IllnessPeriod>(x => x.IllnessHistory).KeyColumn("Patient_Id");

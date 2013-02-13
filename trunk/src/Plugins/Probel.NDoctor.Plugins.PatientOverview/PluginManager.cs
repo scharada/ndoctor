@@ -30,7 +30,6 @@ namespace Probel.NDoctor.Plugins.PatientOverview
     using Probel.NDoctor.Plugins.PatientOverview.ViewModel;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox.Translations;
 

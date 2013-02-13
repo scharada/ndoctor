@@ -30,7 +30,6 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Helpers
     using Probel.NDoctor.Domain.DTO.GoogleCalendar;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins;
 
     public class PluginSettings : PluginSettingsBase
     {

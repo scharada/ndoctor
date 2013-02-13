@@ -125,6 +125,10 @@ namespace Probel.NDoctor.Domain.Components
                 x.For<IApplicationStatisticsComponent>().Add<ApplicationStatisticsComponent>();
                 x.SelectConstructor<ApplicationStatisticsComponent>(() => new ApplicationStatisticsComponent());
 
+                //Data statistics manager
+                x.For<IDataStatisticsComponent>().Add<DataStatisticsComponent>();
+                x.SelectConstructor<DataStatisticsComponent>(() => new DataStatisticsComponent());
+
                 //Database settings
                 x.For<IDbSettingsComponent>().Add<DbSettingsComponent>();
                 x.SelectConstructor<DbSettingsComponent>(() => new DbSettingsComponent());

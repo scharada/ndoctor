@@ -26,7 +26,6 @@ namespace Probel.NDoctor.Plugins.DebugTools
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.View.Plugins;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]

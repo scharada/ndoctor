@@ -548,6 +548,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Age repartition.
+        /// </summary>
+        internal static string Title_AgeRepartition {
+            get {
+                return ResourceManager.GetString("Title_AgeRepartition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Automatically display contextual menus.
         /// </summary>
         internal static string Title_AutomaticShowContext {
@@ -719,6 +728,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gender repartition.
+        /// </summary>
+        internal static string Title_GenderRepartition {
+            get {
+                return ResourceManager.GetString("Title_GenderRepartition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Management.
         /// </summary>
         internal static string Title_GlobalTools {
@@ -832,6 +850,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         internal static string Title_NoUserConnected {
             get {
                 return ResourceManager.GetString("Title_NoUserConnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patient growth through time.
+        /// </summary>
+        internal static string Title_PatientGrowth {
+            get {
+                return ResourceManager.GetString("Title_PatientGrowth", resourceCulture);
             }
         }
         

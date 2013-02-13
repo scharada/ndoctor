@@ -56,6 +56,7 @@
       <Link>Version.cs</Link>
     </Compile>
     <Compile Include="Collections\TagCategoryCollection.cs" />
+    <Compile Include="Components\IDataStatisticsComponent.cs" />
     <Compile Include="Components\IDbSettingsComponent.cs" />
     <Compile Include="Components\IAdministrationComponent.cs" />
     <Compile Include="Components\IAuthorisationComponent.cs" />

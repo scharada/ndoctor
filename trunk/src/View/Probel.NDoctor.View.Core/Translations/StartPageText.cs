@@ -77,6 +77,21 @@ namespace Probel.NDoctor.View.Core.Translations
             get { return Messages.Title_Method; }
         }
 
+        public static string PatientGrowth
+        {
+            get { return Messages.Title_PatientGrowth; }
+        }
+
+
+        public static string GenderRepartition
+        {
+            get { return Messages.Title_GenderRepartition; }
+        }
+        public static string AgeRepartition
+        {
+            get { return Messages.Title_AgeRepartition; }
+        }
+
         public static string RefreshingStatistics
         {
             get { return Messages.Msg_RefreshingStat; }
