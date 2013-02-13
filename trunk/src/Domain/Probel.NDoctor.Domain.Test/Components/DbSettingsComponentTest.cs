@@ -97,7 +97,7 @@ namespace Probel.NDoctor.Domain.Test.Components
         public void Retrieve_AllSettings_AllAreReturned()
         {
             var settings = this.ComponentUnderTest.Settings;
-            Assert.AreEqual(5, settings.Count());
+            Assert.AreEqual(4, settings.Count());
         }
 
         [Test]
