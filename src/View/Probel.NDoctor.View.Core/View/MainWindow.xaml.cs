@@ -260,6 +260,9 @@ namespace Probel.NDoctor.View.Core.View
                     case Groups.GlobalTools:
                         this.AddButton(tab, Messages.Title_GlobalTools, button);
                         break;
+                    case Groups.DebugTools:
+                        this.AddButton(tab, Messages.Title_DebugTools, button);
+                        break;
                     default:
                         Assert.FailOnEnumeration(group);
                         break;
@@ -381,7 +384,6 @@ namespace Probel.NDoctor.View.Core.View
             {
                 if (this.Startpage.DataContext is StartPageViewModel)
                 {
-                    (this.Startpage.DataContext as StartPageViewModel).RefreshStatisticsCommand.TryExecute();
                 }
             });
             return result;
@@ -470,6 +472,9 @@ namespace Probel.NDoctor.View.Core.View
                 case Groups.GlobalTools:
                     criteria = Messages.Title_GlobalTools;
                     break;
+                case Groups.DebugTools:
+                    criteria = Messages.Title_DebugTools;
+                    break;
                 default:
                     Assert.FailOnEnumeration(group);
                     break;
@@ -548,11 +553,11 @@ namespace Probel.NDoctor.View.Core.View
 
         private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            #if DEBUG
+#if DEBUG
             this.WindowState = System.Windows.WindowState.Normal;
-            #else
+#else
             this.WindowState = System.Windows.WindowState.Maximized;
-            #endif
+#endif
         }
 
         private void WriteStatus(LightPatientDto value)

@@ -70,6 +70,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Session logs.
+        /// </summary>
+        internal static string Btn_Logs {
+            get {
+                return ResourceManager.GetString("Btn_Logs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open log directory.
         /// </summary>
         internal static string Btn_OpenLogs {
@@ -93,6 +102,69 @@ namespace Probel.NDoctor.View.Core.Properties {
         internal static string Btn_Save {
             get {
                 return ResourceManager.GetString("Btn_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tools.
+        /// </summary>
+        internal static string Btn_Tools {
+            get {
+                return ResourceManager.GetString("Btn_Tools", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statistics.
+        /// </summary>
+        internal static string Btn_UsageStat {
+            get {
+                return ResourceManager.GetString("Btn_UsageStat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debug mode.
+        /// </summary>
+        internal static string Debug_IsDebug {
+            get {
+                return ResourceManager.GetString("Debug_IsDebug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset AppKey.
+        /// </summary>
+        internal static string Debug_ResetAppKey {
+            get {
+                return ResourceManager.GetString("Debug_ResetAppKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thumbnails created.
+        /// </summary>
+        internal static string Debug_ThumbnailCreated {
+            get {
+                return ResourceManager.GetString("Debug_ThumbnailCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debug tools.
+        /// </summary>
+        internal static string Debug_Title {
+            get {
+                return ResourceManager.GetString("Debug_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Be aware: this menu can modify the behaviour of nDoctor. Use this menu only if you know what you do!.
+        /// </summary>
+        internal static string Debug_Warning {
+            get {
+                return ResourceManager.GetString("Debug_Warning", resourceCulture);
             }
         }
         
@@ -246,6 +318,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         internal static string Msg_AskForShutdown {
             get {
                 return ResourceManager.GetString("Msg_AskForShutdown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to reset the AppKey? If you click on &quot;Yes&quot;,nDoctor will have a new reference. It could change the behaviour of the application..
+        /// </summary>
+        internal static string Msg_AskResetAppKey {
+            get {
+                return ResourceManager.GetString("Msg_AskResetAppKey", resourceCulture);
             }
         }
         
@@ -431,15 +512,6 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logs.
-        /// </summary>
-        internal static string Tab_Logs {
-            get {
-                return ResourceManager.GetString("Tab_Logs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Usage statistics.
         /// </summary>
         internal static string Tab_Statistics {
@@ -571,6 +643,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         internal static string Title_Data {
             get {
                 return ResourceManager.GetString("Title_Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debug tools.
+        /// </summary>
+        internal static string Title_DebugTools {
+            get {
+                return ResourceManager.GetString("Title_DebugTools", resourceCulture);
             }
         }
         

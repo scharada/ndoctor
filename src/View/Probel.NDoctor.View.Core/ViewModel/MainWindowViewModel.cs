@@ -31,6 +31,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Navigation;
+    using Probel.NDoctor.View.Core.View;
 
     /// <summary>
     /// This ViewModel should contain all the information about the
@@ -206,11 +207,35 @@ namespace Probel.NDoctor.View.Core.ViewModel
         {
             if (!this.isDebugMenuVisible)
             {
-                var navigateButton = new RibbonButtonData("Debug tools"
+                var debugButton = new RibbonButtonData(Messages.Btn_Tools
                     , "/Images/Debug.png"
                     , new RelayCommand(() => ViewService.Manager.Show<DebugViewModel>()));
 
-                PluginContext.Host.AddInHome(navigateButton, Groups.GlobalTools);
+                PluginContext.Host.AddInHome(debugButton, Groups.DebugTools);
+
+                var statisticsButton = new RibbonButtonData(Messages.Btn_UsageStat
+                    , "/Images/DebugStat.png"
+                    , new RelayCommand(() =>
+                    {
+                        var view = new StatisticsPage();
+                        view.As<StatisticsViewModel>().RefreshStatisticsCommand.TryExecute();
+                        PluginContext.Host.Navigate(view);
+                    }));
+
+                PluginContext.Host.AddInHome(statisticsButton, Groups.DebugTools);
+
+                var logButton = new RibbonButtonData(Messages.Btn_Logs
+                    , "/Images/ActivityReports.png"
+                    , new RelayCommand(() =>
+                    {
+                        var view = new LogPage();
+                        view.As<LogViewModel>().Refresh();
+
+                        PluginContext.Host.Navigate(view);
+                    }));
+
+                PluginContext.Host.AddInHome(logButton, Groups.DebugTools);
+
                 this.isDebugMenuVisible = true;
             }
         }

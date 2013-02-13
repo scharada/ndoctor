@@ -466,9 +466,9 @@ The application will close. Check the logs for further  information</value>
     <value>Component</value>
     <comment>Component</comment>
   </data>
-  <data name="Tab_Logs" xml:space="preserve">
-    <value>Logs</value>
-    <comment>Logs</comment>
+  <data name="Btn_Logs" xml:space="preserve">
+    <value>Session logs</value>
+    <comment>Session logs</comment>
   </data>
   <data name="Tab_Statistics" xml:space="preserve">
     <value>Usage statistics</value>
@@ -517,5 +517,41 @@ The application will close. Check the logs for further  information</value>
   <data name="Title_RemoteStat" xml:space="preserve">
     <value>Export anonymous usage statistics</value>
     <comment>Export anonymous usage statistics</comment>
+  </data>
+  <data name="Title_DebugTools" xml:space="preserve">
+    <value>Debug tools</value>
+    <comment>Debug tools</comment>
+  </data>
+  <data name="Btn_Tools" xml:space="preserve">
+    <value>Tools</value>
+    <comment>Tools</comment>
+  </data>
+  <data name="Btn_UsageStat" xml:space="preserve">
+    <value>Statistics</value>
+    <comment>Statistics</comment>
+  </data>
+  <data name="Debug_IsDebug" xml:space="preserve">
+    <value>Debug mode</value>
+    <comment>Debug mode</comment>
+  </data>
+  <data name="Debug_ResetAppKey" xml:space="preserve">
+    <value>Reset AppKey</value>
+    <comment>Reset AppKey</comment>
+  </data>
+  <data name="Debug_ThumbnailCreated" xml:space="preserve">
+    <value>Thumbnails created</value>
+    <comment>Thumbnails created</comment>
+  </data>
+  <data name="Debug_Title" xml:space="preserve">
+    <value>Debug tools</value>
+    <comment>Debug tools</comment>
+  </data>
+  <data name="Debug_Warning" xml:space="preserve">
+    <value>Be aware: this menu can modify the behaviour of nDoctor. Use this menu only if you know what you do!</value>
+    <comment>Be aware this menu can modify the behaviour of nDoctor. Use this menu only if you know what you do!</comment>
+  </data>
+  <data name="Msg_AskResetAppKey" xml:space="preserve">
+    <value>Do you want to reset the AppKey? If you click on "Yes",nDoctor will have a new reference. It could change the behaviour of the application.</value>
+    <comment>Do you want to reset the AppKey? If you click on "Yes",nDoctor will have a new reference. It could change the behaviour of the application.</comment>
   </data>
 </root>

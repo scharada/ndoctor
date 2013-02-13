@@ -187,6 +187,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             groups.Add(new RibbonGroupData(Messages.Title_Tools));
             groups.Add(new RibbonGroupData(Messages.Title_Managers));
             groups.Add(new RibbonGroupData(Messages.Title_GlobalTools));
+            groups.Add(new RibbonGroupData(Messages.Title_DebugTools));
 
             PluginContext.Host.AddTab(new RibbonTabData(Messages.Title_Home, groups));
         }
