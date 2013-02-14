@@ -80,21 +80,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         }
 
         /// <summary>
-        /// Calculate the age of the patient from his/her birthdate.
-        /// </summary>
-        public int Age
-        {
-            get
-            {
-                DateTime today = DateTime.Today;
-                int age = today.Year - birthdate.Year;
-                if (birthdate > today.AddYears(-age)) age--;
-
-                return age;
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the counter. This counter increments each time this patient is loaded
         /// </summary>
         /// <value>
