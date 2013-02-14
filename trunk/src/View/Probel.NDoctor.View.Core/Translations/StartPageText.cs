@@ -27,6 +27,11 @@ namespace Probel.NDoctor.View.Core.Translations
             get { return Messages.Title_Accuracy; }
         }
 
+        public static string AgeRepartition
+        {
+            get { return Messages.Title_AgeRepartition; }
+        }
+
         public static string AverageExecutionTime
         {
             get { return Messages.Title_AverageExecutionTime; }
@@ -57,6 +62,11 @@ namespace Probel.NDoctor.View.Core.Translations
             get { return Messages.Title_Count; }
         }
 
+        public static string GenderRepartition
+        {
+            get { return Messages.Title_GenderRepartition; }
+        }
+
         public static string LevelName
         {
             get { return Messages.Title_LevelName; }
@@ -80,16 +90,6 @@ namespace Probel.NDoctor.View.Core.Translations
         public static string PatientGrowth
         {
             get { return Messages.Title_PatientGrowth; }
-        }
-
-
-        public static string GenderRepartition
-        {
-            get { return Messages.Title_GenderRepartition; }
-        }
-        public static string AgeRepartition
-        {
-            get { return Messages.Title_AgeRepartition; }
         }
 
         public static string RefreshingStatistics

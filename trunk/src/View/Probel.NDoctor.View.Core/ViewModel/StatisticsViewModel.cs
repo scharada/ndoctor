@@ -122,20 +122,25 @@ namespace Probel.NDoctor.View.Core.ViewModel
         {
             return true;
         }
-
+        private static bool hasLoaded = false;
         private void RefreshStatistics()
         {
-            var context = TaskScheduler.FromCurrentSynchronizationContext();
-            var token = new CancellationTokenSource().Token;
-            var taskContext = new TaskContext();
+            if (!hasLoaded)
+            {
+                var context = TaskScheduler.FromCurrentSynchronizationContext();
+                var token = new CancellationTokenSource().Token;
+                var taskContext = new TaskContext();
 
-            var task = Task.Factory.StartNew<TaskContext>(e => this.RefreshStatisticsAsync(), taskContext, token, TaskCreationOptions.None, context);
+                var task = Task.Factory.StartNew<TaskContext>(e => this.RefreshStatisticsAsync(), taskContext, token, TaskCreationOptions.None, context);
 
-            this.IsBusy = true;
-            task.ContinueWith(e => RefreshStatisticsCallback(e.Result)
-                , token, TaskContinuationOptions.OnlyOnRanToCompletion, context);
-            task.ContinueWith(e => this.Handle.Error(e.Exception.InnerException.InnerException)
-                , token, TaskContinuationOptions.OnlyOnFaulted, context);
+                this.IsBusy = true;
+                task.ContinueWith(e => RefreshStatisticsCallback(e.Result)
+                    , token, TaskContinuationOptions.OnlyOnRanToCompletion, context);
+                task.ContinueWith(e => this.Handle.Error(e.Exception.InnerException.InnerException)
+                    , token, TaskContinuationOptions.OnlyOnFaulted, context);
+
+                hasLoaded = true;
+            }
         }
 
         private TaskContext RefreshStatisticsAsync()

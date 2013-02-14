@@ -195,7 +195,7 @@ namespace Probel.NDoctor.View.Core
             if (this.arguments.DebugTools && this.MainWindow.DataContext is MainWindowViewModel)
             {
                 var vm = this.MainWindow.DataContext as MainWindowViewModel;
-                vm.ShowDebugMenu();
+                vm.ShowDebugMenu(this.arguments.AdminTool);
             }
         }
 
@@ -221,6 +221,9 @@ namespace Probel.NDoctor.View.Core
             this.arguments.HookConsole = (from arg in args
                                           where arg.ToLower() == "-hookconsole"
                                           select arg).Count() > 0;
+            this.arguments.AdminTool = (from arg in args
+                                        where arg.ToLower() == "-admintool"
+                                        select arg).Count() > 0;
         }
 
         #endregion Methods
@@ -233,6 +236,7 @@ namespace Probel.NDoctor.View.Core
 
             public bool DebugTools;
             public bool HookConsole;
+            public bool AdminTool;
 
             #endregion Fields
         }

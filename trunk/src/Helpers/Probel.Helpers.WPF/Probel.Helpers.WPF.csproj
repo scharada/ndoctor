@@ -67,6 +67,7 @@
     <Compile Include="Behaviours\PasswordBoxBehaviour.cs" />
     <Compile Include="Behaviours\SelectorBehaviour.cs" />
     <Compile Include="Behaviours\TreeViewBehaviour.cs" />
+    <Compile Include="Behaviours\UIElementBehaviour.cs" />
     <Compile Include="Behaviours\WebBrowserBehaviour.cs" />
     <Compile Include="Behaviours\WindowBehaviour.cs" />
     <Compile Include="Calendar\Controls\Calendar.cs" />

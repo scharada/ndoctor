@@ -32,35 +32,27 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         private readonly ICommand refreshCommand;
 
+        private Chart<int, int> ageRepartition;
         private IDataStatisticsComponent Component = PluginContext.ComponentFactory.GetInstance<IDataStatisticsComponent>();
+        private Chart<string, int> genderRepartition;
         private bool isAgeRepartitionBusy;
+        private bool isGenderRepartitionBusy;
+        private bool isPatientGrowthBusy;
+        private Chart<DateTime, int> patientGrowth;
 
         #endregion Fields
 
         #region Constructors
 
-        private Chart<string, int> genderRepartition;
-        public Chart<string, int> GenderRepartition
+        public StartPageViewModel()
         {
-            get { return this.genderRepartition; }
-            set
-            {
-                this.genderRepartition = value;
-                this.OnPropertyChanged(() => GenderRepartition);
-            }
-        }
-        private Chart<DateTime, int> patientGrowth;
-        public Chart<DateTime, int> PatientGrowth
-        {
-            get { return this.patientGrowth; }
-            set
-            {
-                this.patientGrowth = value;
-                this.OnPropertyChanged(() => PatientGrowth);
-            }
+            this.refreshCommand = new RelayCommand(() => this.Refresh());
         }
 
-        private Chart<int, int> ageRepartition;
+        #endregion Constructors
+
+        #region Properties
+
         public Chart<int, int> AgeRepartition
         {
             get { return this.ageRepartition; }
@@ -70,15 +62,16 @@ namespace Probel.NDoctor.View.Core.ViewModel
                 this.OnPropertyChanged(() => AgeRepartition);
             }
         }
-        public StartPageViewModel()
+
+        public Chart<string, int> GenderRepartition
         {
-
-            this.refreshCommand = new RelayCommand(() => this.Refresh());
+            get { return this.genderRepartition; }
+            set
+            {
+                this.genderRepartition = value;
+                this.OnPropertyChanged(() => GenderRepartition);
+            }
         }
-
-        #endregion Constructors
-
-        #region Properties
 
         public bool IsAgeRepartitionBusy
         {
@@ -90,7 +83,16 @@ namespace Probel.NDoctor.View.Core.ViewModel
             }
         }
 
-        private bool isPatientGrowthBusy;
+        public bool IsGenderRepartitionBusy
+        {
+            get { return this.isGenderRepartitionBusy; }
+            set
+            {
+                this.isGenderRepartitionBusy = value;
+                this.OnPropertyChanged(() => IsGenderRepartitionBusy);
+            }
+        }
+
         public bool IsPatientGrowthBusy
         {
             get { return this.isPatientGrowthBusy; }
@@ -100,14 +102,14 @@ namespace Probel.NDoctor.View.Core.ViewModel
                 this.OnPropertyChanged(() => IsPatientGrowthBusy);
             }
         }
-        private bool isGenderRepartitionBusy;
-        public bool IsGenderRepartitionBusy
+
+        public Chart<DateTime, int> PatientGrowth
         {
-            get { return this.isGenderRepartitionBusy; }
+            get { return this.patientGrowth; }
             set
             {
-                this.isGenderRepartitionBusy = value;
-                this.OnPropertyChanged(() => IsGenderRepartitionBusy);
+                this.patientGrowth = value;
+                this.OnPropertyChanged(() => PatientGrowth);
             }
         }
 
@@ -119,37 +121,42 @@ namespace Probel.NDoctor.View.Core.ViewModel
         #endregion Properties
 
         #region Methods
+
+        private static bool hasLoaded = false;
         private void Refresh()
         {
-            this.IsAgeRepartitionBusy
-                = this.IsGenderRepartitionBusy
-                = this.IsPatientGrowthBusy
-                = true;
-
-            var task1 = Task.Factory.StartNew<Chart<int, int>>(() => this.Component.GetAgeRepartion());
-            task1.ContinueWith(p1 =>
+            if (!hasLoaded)
             {
-                PluginContext.Host.Invoke(() => this.AgeRepartition = p1.Result);
-                this.IsAgeRepartitionBusy = false;
-            });
+                this.IsAgeRepartitionBusy
+            = this.IsGenderRepartitionBusy
+            = this.IsPatientGrowthBusy
+            = true;
 
-            var task2 = Task.Factory.StartNew<Chart<string, int>>(() => this.Component.GetGenderRepartition());
-            task2.ContinueWith(p2 =>
+                var task1 = Task.Factory.StartNew<Chart<int, int>>(() => this.Component.GetAgeRepartion());
+                task1.ContinueWith(p1 =>
                 {
-                    PluginContext.Host.Invoke(() => this.GenderRepartition = p2.Result);
+                    this.AgeRepartition = p1.Result;
+                    this.IsAgeRepartitionBusy = false;
+                });
+
+                var task2 = Task.Factory.StartNew<Chart<string, int>>(() => this.Component.GetGenderRepartition());
+                task2.ContinueWith(p2 =>
+                {
+                    this.GenderRepartition = p2.Result;
                     this.IsGenderRepartitionBusy = false;
                 });
 
-            var task3 = Task.Factory.StartNew<Chart<DateTime, int>>(() => this.Component.GetPatientGrowth());
-            task3.ContinueWith(p3 =>
-            {
-                PluginContext.Host.Invoke(() => this.PatientGrowth = p3.Result);
-                this.IsPatientGrowthBusy = false;
-            });
+                var task3 = Task.Factory.StartNew<Chart<DateTime, int>>(() => this.Component.GetPatientGrowth());
+                task3.ContinueWith(p3 =>
+                {
+                    this.PatientGrowth = p3.Result;
+                    this.IsPatientGrowthBusy = false;
+                });
 
-
-
+                hasLoaded = true;
+            }
         }
+
         #endregion Methods
     }
 }
