@@ -17,6 +17,7 @@
 namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Diagnostics;
     using System.Drawing;
@@ -51,6 +52,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         private readonly ICommand sendProMailCommand;
 
         private IPatientDataComponent component;
+        private bool isBusy;
         private bool isEditModeActivated;
         private DoctorDto selectedDoctor;
         private InsuranceDto selectedInsurance;
@@ -113,6 +115,16 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         {
             get;
             private set;
+        }
+
+        public bool IsBusy
+        {
+            get { return this.isBusy; }
+            set
+            {
+                this.isBusy = value;
+                this.OnPropertyChanged(() => IsBusy);
+            }
         }
 
         public bool IsEditModeActivated
@@ -258,29 +270,49 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         {
             try
             {
-                this.Reputations.Refill(this.component.GetAllReputations());
-                this.Insurances.Refill(this.component.GetAllInsurancesLight());
-                this.Practices.Refill(this.component.GetAllPracticesLight());
-                this.Professions.Refill(this.component.GetAllProfessions());
+                this.IsBusy = true;
+                var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
+                var token = new CancellationTokenSource().Token;
+                Task.Factory
+                    .StartNew<ThreadContext>(state =>
+                     {
+                         var selectedPatient = state as LightPatientDto;
+                         var ctx = new ThreadContext();
 
-                this.SelectedPatient = this.component.GetPatient(PluginContext.Host.SelectedPatient);
-                this.Doctors.Refill(this.component.GetFullDoctorOf(PluginContext.Host.SelectedPatient));
+                         ctx.Reputations = this.component.GetAllReputations();
+                         ctx.Insurances = this.component.GetAllInsurancesLight();
+                         ctx.Practices = this.component.GetAllPracticesLight();
+                         ctx.Professions = this.component.GetAllProfessions();
+                         ctx.SelectedPatient = this.component.GetPatient(selectedPatient);
+                         ctx.SelectedDoctor = this.component.GetFullDoctorOf(selectedPatient);
+                         ctx.Doctors = this.component.GetFullDoctorOf(selectedPatient);
+                         ctx.SelectedInsurance = this.component.GetInsuranceById(ctx.SelectedPatient.Insurance.Id);
+                         ctx.SelectedPractice = this.component.GetPracticeById(ctx.SelectedPatient.Practice.Id);
+                         ctx.Thumbnail = this.component.GetThumbnail(ctx.SelectedPatient);
 
-                if (this.SelectedPatient.Insurance != null) { this.SelectedInsurance = this.component.GetInsuranceById(this.SelectedPatient.Insurance.Id); }
-                if (this.SelectedPatient.Practice != null) { this.SelectedPractice = this.component.GetPracticeById(this.SelectedPatient.Practice.Id); }
-                if (this.Doctors.Count > 0) { this.SelectedDoctor = this.Doctors[0]; }
+                         return ctx;
+                     }, PluginContext.Host.SelectedPatient, token)
+                    .ContinueWith(t =>
+                    {
+                        var ctx = t.Result as ThreadContext;
+                        this.Reputations.Refill(ctx.Reputations);
+                        this.Insurances.Refill(ctx.Insurances);
+                        this.Practices.Refill(ctx.Practices);
+                        this.Professions.Refill(ctx.Professions);
+                        this.Doctors.Refill(ctx.Doctors);
+                        this.SelectedPatient = ctx.SelectedPatient;
+                        this.Thumbnail = ctx.Thumbnail;
 
-                this.RefreshComboBoxes();
+                        this.SelectedGender = (from gender in this.Genders
+                                               where gender.Item2 == this.selectedPatient.Gender
+                                               select gender).Single();
+                        this.SelectedPatient.Insurance = ctx.SelectedInsurance;
+                        this.SelectedPatient.Practice = ctx.SelectedPractice;
+                        this.RefreshComboBoxes();
 
-                this.SelectedGender = (from gender in this.Genders
-                                       where gender.Item2 == this.selectedPatient.Gender
-                                       select gender).Single();
-
-                try
-                {
-                    this.Thumbnail = this.component.GetThumbnail(this.SelectedPatient);
-                }
-                catch (Exception ex) { this.Handle.Warning(ex, Messages.Warn_ImpossibleToDisplayThumb); }
+                        this.IsBusy = false;
+                    }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler)
+                    .ContinueWith(t => this.Handle.Error(t.Exception.InnerException), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -384,5 +416,66 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         }
 
         #endregion Methods
+
+        #region Nested Types
+
+        private class ThreadContext
+        {
+            #region Properties
+
+            public IEnumerable<DoctorDto> Doctors
+            {
+                get; set;
+            }
+
+            public IEnumerable<LightInsuranceDto> Insurances
+            {
+                get; set;
+            }
+
+            public IEnumerable<LightPracticeDto> Practices
+            {
+                get; set;
+            }
+
+            public IEnumerable<ProfessionDto> Professions
+            {
+                get; set;
+            }
+
+            public IEnumerable<ReputationDto> Reputations
+            {
+                get; set;
+            }
+
+            public IList<DoctorDto> SelectedDoctor
+            {
+                get; set;
+            }
+
+            public InsuranceDto SelectedInsurance
+            {
+                get; set;
+            }
+
+            public PatientDto SelectedPatient
+            {
+                get; set;
+            }
+
+            public PracticeDto SelectedPractice
+            {
+                get; set;
+            }
+
+            public byte[] Thumbnail
+            {
+                get; set;
+            }
+
+            #endregion Properties
+        }
+
+        #endregion Nested Types
     }
 }

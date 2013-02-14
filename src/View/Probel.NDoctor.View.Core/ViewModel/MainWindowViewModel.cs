@@ -45,6 +45,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         private readonly ICommand aboutCommand;
         private readonly ICommand homeCommand;
         private readonly ICommand settingCommand;
+        private readonly StatisticsPage StatisticsPage = new StatisticsPage();
 
         private LightUserDto connectedUser;
         private bool isDebugMenuVisible = false;
@@ -175,7 +176,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         #endregion Properties
 
         #region Methods
-        private readonly StatisticsPage StatisticsPage = new StatisticsPage();
+
         /// <summary>
         /// Shows the debug menu.
         /// </summary>

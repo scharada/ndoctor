@@ -15,6 +15,7 @@
       
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
+      behaviours:UIElementBehaviour.IsVisible="{Binding RefreshCommand}"
     Title="Workbench">
     <Page.Resources>
         <conv:ByteArrayToImageConverter x:Key="bytesToImage"/>

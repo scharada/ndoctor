@@ -72,6 +72,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
             PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IPictureComponent>();
 
+            this.refreshCommand = new RelayCommand(() => this.Refresh());
             this.AddPictureCommand = new RelayCommand(() => AddPicture(), () => this.CanAddSomething());
             this.AddTypeCommand = new RelayCommand(() => ViewService.Manager.ShowDialog<AddTagViewModel>(), () => this.CanAddSomething());
             this.FilterPictureCommand = new RelayCommand(() => this.Filter());
@@ -122,7 +123,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
                     this.filterTag = value;
                     this.OnPropertyChanged(() => FilterTag);
                 }
-                else { this.Logger.Warn("Null filter tag"); }
             }
         }
 
@@ -256,14 +256,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         #region Methods
 
         /// <summary>
-        /// Refreshes the data and execute a filter based on the selected filter.
-        /// </summary>
-        public void Refresh()
-        {
-            this.Refresh(true);
-        }
-
-        /// <summary>
         /// Refreshes that data, but it doesn't trigger a filter
         /// </summary>
         public void RefreshForNavigation()
@@ -317,7 +309,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             this.IsBusy = true;
             var task = Task.Factory.StartNew<TaskArgs>(e => this.FilterAsync(e as TaskArgs), input);
             task.ContinueWith(e => this.FilterCallback(e), token, TaskContinuationOptions.OnlyOnRanToCompletion, context);
-            task.ContinueWith(e => this.Handle.Error(e.Exception.InnerException ?? e.Exception), token, TaskContinuationOptions.OnlyOnFaulted, context);
+            task.ContinueWith(e => this.Handle.Error(e.Exception.InnerExceptions), token, TaskContinuationOptions.OnlyOnFaulted, context);
         }
 
         private TaskArgs FilterAsync(TaskArgs input)
@@ -371,7 +363,11 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             }
         }
 
-        private void Refresh(bool doFilter)
+        /// <summary>
+        /// Refreshes the data and execute a filter based on the selected filter.
+        /// </summary>
+        /// <param name="doFilter">if set to <c>true</c> execute a  filter on the picture based on the selected tag.</param>
+        private void Refresh(bool doFilter = true)
         {
             try
             {
@@ -387,6 +383,14 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
+
+
+        private readonly ICommand refreshCommand;
+        public ICommand RefreshCommand
+        {
+            get { return this.refreshCommand; }
+        }
+
 
         private void SelectFirstTag()
         {

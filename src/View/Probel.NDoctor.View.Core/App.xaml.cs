@@ -234,9 +234,9 @@ namespace Probel.NDoctor.View.Core
         {
             #region Fields
 
+            public bool AdminTool;
             public bool DebugTools;
             public bool HookConsole;
-            public bool AdminTool;
 
             #endregion Fields
         }
