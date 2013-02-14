@@ -68,6 +68,7 @@ namespace Probel.NDoctor.View.Core
             PluginContext.Configuration.BenchmarkEnabled = bool.Parse(ConfigurationManager.AppSettings["BenchmarkEnabled"]);
             PluginContext.Configuration.AutomaticContextMenu = Settings.Default.AutomaticContextMenu;
             PluginContext.Configuration.ExecutionTimeThreshold = uint.Parse(ConfigurationManager.AppSettings["ExecutionTimeThreshold"]);
+            PluginContext.Configuration.SearchType = Settings.Default.SearchType;
 
             var splash = new MySplashScreen();
 
