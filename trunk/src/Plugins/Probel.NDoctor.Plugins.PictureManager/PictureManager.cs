@@ -129,7 +129,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
                  .OnShow(vm => vm.RefreshCommand.TryExecute())
                  .OnClosing(vm => this.RefreshWorkbenchView(vm.HasAddPicture));
                 e.Bind<AddTagView, AddTagViewModel>()
-                    .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
+                    .OnClosing(() => this.View.As<WorkbenchViewModel>().RefreshCommand.TryExecute());
             });
         }
 
@@ -167,7 +167,7 @@ namespace Probel.NDoctor.Plugins.PictureManager
         {
             if (doRefresh)
             {
-                this.View.As<WorkbenchViewModel>().Refresh();
+                this.View.As<WorkbenchViewModel>().RefreshCommand.TryExecute();
             }
         }
 

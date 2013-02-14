@@ -32,6 +32,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         private readonly ICommand refreshCommand;
 
+        private static bool hasLoaded = false;
+
         private Chart<int, int> ageRepartition;
         private IDataStatisticsComponent Component = PluginContext.ComponentFactory.GetInstance<IDataStatisticsComponent>();
         private Chart<string, int> genderRepartition;
@@ -122,15 +124,14 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         #region Methods
 
-        private static bool hasLoaded = false;
         private void Refresh()
         {
             if (!hasLoaded)
             {
                 this.IsAgeRepartitionBusy
-            = this.IsGenderRepartitionBusy
-            = this.IsPatientGrowthBusy
-            = true;
+                    = this.IsGenderRepartitionBusy
+                    = this.IsPatientGrowthBusy
+                    = true;
 
                 var task1 = Task.Factory.StartNew<Chart<int, int>>(() => this.Component.GetAgeRepartion());
                 task1.ContinueWith(p1 =>

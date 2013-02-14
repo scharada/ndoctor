@@ -45,6 +45,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
         private readonly IApplicationStatisticsComponent Component = PluginContext.ComponentFactory.GetInstance<IApplicationStatisticsComponent>();
         private readonly ICommand refreshStatisticsCommand;
 
+        private static bool hasLoaded = false;
+
         private Chart<DateTime, double> executionTime;
         private bool isBusy;
         private Chart<string, double> targetUsage;
@@ -122,7 +124,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         {
             return true;
         }
-        private static bool hasLoaded = false;
+
         private void RefreshStatistics()
         {
             if (!hasLoaded)

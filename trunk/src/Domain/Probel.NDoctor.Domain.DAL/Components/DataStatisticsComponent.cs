@@ -30,9 +30,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.Helpers.Data;
     using Probel.NDoctor.Domain.DAL.AopConfiguration;
     using Probel.NDoctor.Domain.DAL.Entities;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
-    using Probel.NDoctor.Domain.DTO;
 
     /// <summary>
     /// Provides statistics on the application usage
@@ -108,7 +108,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
             }
 
             return chart;
-
         }
 
         #endregion Methods

@@ -19,6 +19,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
     using System;
 
     using log4net;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Provides contract to handle error. This provides warning and error MessagesBoxes and Logging
@@ -44,6 +45,12 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
         /// </summary>
         /// <param name="ex">The exception to log.</param>
         void Error(Exception ex);
+
+        /// <summary>
+        /// Handles a list of errors, log it and shows a message box with the error.
+        /// </summary>
+        /// <param name="ex">The exception to log.</param>
+        void Error(IEnumerable<Exception> ex);
 
         /// <summary>
         /// Handles the error, log it and shows a message box with the error.

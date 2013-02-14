@@ -28,6 +28,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Properties;
     using Probel.NDoctor.View.Toolbox.ViewModel;
+    using System.Collections.Generic;
 
     /// <summary>
     /// This class provides error handling methods
@@ -233,5 +234,25 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
         }
 
         #endregion Methods
+
+
+        /// <summary>
+        /// Handles a list of errors, log it and shows a message box with the error.
+        /// </summary>
+        /// <param name="ex">The exception to log.</param>
+        public void Error(IEnumerable<Exception> ex)
+        {
+            var msg = string.Empty;
+            foreach (var error in ex)
+            {
+
+                if (error is TranslateableException)
+                {
+                    msg += (error as TranslateableException).TranslatedMessage + Environment.NewLine;
+                }
+                this.HandleError(true, error, msg);
+            }
+            ViewService.MessageBox.Error(msg);
+        }
     }
 }
