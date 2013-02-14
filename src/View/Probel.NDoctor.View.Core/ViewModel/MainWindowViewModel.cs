@@ -146,30 +146,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
             }
         }
 
-        public ICommand TriggerNewCommand
-        {
-            get;
-            private set;
-        }
-
-        public ICommand TriggerRefreshCommand
-        {
-            get;
-            private set;
-        }
-
-        public ICommand TriggerSaveCommand
-        {
-            get;
-            private set;
-        }
-
-        public ICommand TriggerSearchCommand
-        {
-            get;
-            private set;
-        }
-
         /// <summary>
         /// Gets or sets the type of the icon in the status bar.
         /// </summary>
@@ -199,28 +175,26 @@ namespace Probel.NDoctor.View.Core.ViewModel
         #endregion Properties
 
         #region Methods
-
+        private readonly StatisticsPage StatisticsPage = new StatisticsPage();
         /// <summary>
         /// Shows the debug menu.
         /// </summary>
-        public void ShowDebugMenu()
+        public void ShowDebugMenu(bool showAdminTool)
         {
             if (!this.isDebugMenuVisible)
             {
-                var debugButton = new RibbonButtonData(Messages.Btn_Tools
-                    , "/Images/Debug.png"
-                    , new RelayCommand(() => ViewService.Manager.Show<DebugViewModel>()));
+                if (showAdminTool)
+                {
+                    var debugButton = new RibbonButtonData(Messages.Btn_Tools
+                        , "/Images/Debug.png"
+                        , new RelayCommand(() => ViewService.Manager.Show<DebugViewModel>()));
 
-                PluginContext.Host.AddInHome(debugButton, Groups.DebugTools);
+                    PluginContext.Host.AddInHome(debugButton, Groups.DebugTools);
+                }
 
                 var statisticsButton = new RibbonButtonData(Messages.Btn_UsageStat
                     , "/Images/DebugStat.png"
-                    , new RelayCommand(() =>
-                    {
-                        var view = new StatisticsPage();
-                        view.As<StatisticsViewModel>().RefreshStatisticsCommand.TryExecute();
-                        PluginContext.Host.Navigate(view);
-                    }));
+                    , new RelayCommand(() => PluginContext.Host.Navigate(this.StatisticsPage)));
 
                 PluginContext.Host.AddInHome(statisticsButton, Groups.DebugTools);
 
