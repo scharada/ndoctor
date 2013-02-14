@@ -72,7 +72,8 @@ namespace Probel.NDoctor.View.Core
 
             var splash = new MySplashScreen();
 
-            if (this.arguments.DebugTools) { this.Logger.Warn("Debug tools are activated!"); }
+            if (this.arguments.DebugTools) { this.Logger.Warn("Debug statistics are activated!"); }
+            if (this.arguments.AdminTool) { this.Logger.Warn("Debug tools are activated!"); }
 
             try { splash.ShowDialog(); }
             catch (Exception ex)
@@ -223,7 +224,7 @@ namespace Probel.NDoctor.View.Core
                                           where arg.ToLower() == "-hookconsole"
                                           select arg).Count() > 0;
             this.arguments.AdminTool = (from arg in args
-                                        where arg.ToLower() == "-admintool"
+                                        where arg.ToLower() == "-admin"
                                         select arg).Count() > 0;
         }
 
