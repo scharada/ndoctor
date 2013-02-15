@@ -138,6 +138,7 @@
     </Compile>
     <Compile Include="Helpers\BottlenecksConverter.cs" />
     <Compile Include="Helpers\Languages.cs" />
+    <Compile Include="Helpers\UserInteraction.cs" />
     <Compile Include="Helpers\SettingsConfigurator.cs" />
     <Compile Include="Helpers\StatusConverter.cs" />
     <Compile Include="Helpers\TranslateExtension.cs" />
@@ -367,6 +368,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\DebugStat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CheckVersion.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

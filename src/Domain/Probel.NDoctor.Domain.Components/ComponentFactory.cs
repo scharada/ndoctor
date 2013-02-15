@@ -31,9 +31,11 @@ namespace Probel.NDoctor.Domain.Components
     using Probel.NDoctor.Domain.Components.AuthorisationPolicies;
     using Probel.NDoctor.Domain.Components.Interceptors;
     using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DAL.Remote;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.DTO.Remote;
 
     using StructureMap;
 
@@ -135,6 +137,10 @@ namespace Probel.NDoctor.Domain.Components
 
                 //Authorisation policies
                 x.For<IAuthorisationPolicy>().Add<AuthorisationPolicy>();
+
+                //Check remotly for new versions
+                x.For<IVersionNotifyer>().Add<VersionNotifyer>();
+                x.SelectConstructor<VersionNotifyer>(() => new RemoteFactory().NewVersionNotifyer());
             });
 
             AuthorisationInterceptor = new AuthorisationInterceptor();

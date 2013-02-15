@@ -70,6 +70,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check version.
+        /// </summary>
+        internal static string Btn_CheckNewVersion {
+            get {
+                return ResourceManager.GetString("Btn_CheckNewVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Session logs.
         /// </summary>
         internal static string Btn_Logs {
@@ -445,6 +454,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         internal static string Msg_NeedRestart {
             get {
                 return ResourceManager.GetString("Msg_NeedRestart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The version {0} is available. Do you want to visit the official site?.
+        /// </summary>
+        internal static string Msg_NewVersion {
+            get {
+                return ResourceManager.GetString("Msg_NewVersion", resourceCulture);
             }
         }
         

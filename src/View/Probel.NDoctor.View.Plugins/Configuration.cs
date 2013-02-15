@@ -22,6 +22,8 @@
 namespace Probel.NDoctor.View.Plugins
 {
     using Probel.NDoctor.Domain.DTO.Components;
+    using System;
+    using System.Reflection;
 
     /// <summary>
     /// Configuration of the application
@@ -79,7 +81,30 @@ namespace Probel.NDoctor.View.Plugins
             get;
             set;
         }
-
+        /// <summary>
+        /// Gets or sets the url where to download nDoctor.
+        /// </summary>
+        /// <value>
+        /// The download site.
+        /// </value>
+        public string DownloadSite { get; set; }
         #endregion Properties
+
+        /// <summary>
+        /// Gets the version of nDoctor.
+        /// </summary>
+        /// <value>
+        /// The version.
+        /// </value>
+        public Version Version
+        {
+            get
+            {
+                return Assembly
+                    .GetExecutingAssembly()
+                    .GetName()
+                    .Version;
+            }
+        }
     }
 }

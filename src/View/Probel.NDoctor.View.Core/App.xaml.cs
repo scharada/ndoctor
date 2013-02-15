@@ -39,6 +39,8 @@ namespace Probel.NDoctor.View.Core
     using Probel.NDoctor.View.Toolbox.Navigation;
 
     using MySplashScreen = Probel.NDoctor.View.Core.View.SplashScreen;
+    using Probel.NDoctor.Domain.DAL.Remote;
+    using Probel.NDoctor.View.Core.Helpers;
 
     /// <summary>
     /// Interaction logic for App.xaml
@@ -69,6 +71,8 @@ namespace Probel.NDoctor.View.Core
             PluginContext.Configuration.AutomaticContextMenu = Settings.Default.AutomaticContextMenu;
             PluginContext.Configuration.ExecutionTimeThreshold = uint.Parse(ConfigurationManager.AppSettings["ExecutionTimeThreshold"]);
             PluginContext.Configuration.SearchType = Settings.Default.SearchType;
+            PluginContext.Configuration.DownloadSite = ConfigurationManager.AppSettings["DownloadSite"];
+
 
             var splash = new MySplashScreen();
 
@@ -95,7 +99,6 @@ namespace Probel.NDoctor.View.Core
             }
             else { Application.Current.Shutdown(); }
         }
-
         #endregion Constructors
 
         #region Properties
