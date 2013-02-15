@@ -562,4 +562,8 @@ L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
     <value>Vérifier version</value>
     <comment>Check version</comment>
   </data>
+  <data name="Msg_NotifyOnNewVersion" xml:space="preserve">
+    <value>Prévenir d'une nouvelle version</value>
+    <comment>Notify on new version</comment>
+  </data>
 </root>

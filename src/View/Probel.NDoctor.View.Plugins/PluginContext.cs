@@ -32,6 +32,8 @@ namespace Probel.NDoctor.View.Plugins
         /// </summary>
         public static readonly Configuration Configuration = new Configuration();
 
+        private static DbConfiguration dbSettings = null;
+
         #endregion Fields
 
         #region Properties
@@ -46,6 +48,15 @@ namespace Probel.NDoctor.View.Plugins
                 Assert.IsNotNull(Host, "Host");
 
                 return new ComponentFactory(Configuration.BenchmarkEnabled, Configuration.ExecutionTimeThreshold);
+            }
+        }
+
+        public static DbConfiguration DbConfiguration
+        {
+            get
+            {
+                if (dbSettings == null) { dbSettings = new DbConfiguration(); }
+                return dbSettings;
             }
         }
 

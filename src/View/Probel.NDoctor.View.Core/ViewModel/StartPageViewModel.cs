@@ -24,8 +24,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DAL.Remote;
     using Probel.NDoctor.Domain.DTO.Components;
-    using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Core.Helpers;
+    using Probel.NDoctor.View.Plugins;
 
     internal class StartPageViewModel : BaseViewModel
     {

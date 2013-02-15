@@ -35,10 +35,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         public readonly string configuredLanguage = Settings.Default.Language;
 
-        private const string IsRemoteStatisticsEnabled = "IsRemoteStatisticsEnabled";
-
-        private readonly IDbSettingsComponent DbSettings = PluginContext.ComponentFactory.GetInstance<IDbSettingsComponent>();
-
+        private bool notifyOnNewVersion;
         private bool remoteStatisticsActivated;
         private Tuple<string, SearchOn> selectedSearchType;
         private bool showRestart;
@@ -78,6 +75,16 @@ namespace Probel.NDoctor.View.Core.ViewModel
         {
             get;
             private set;
+        }
+
+        public bool NotifyOnNewVersion
+        {
+            get { return this.notifyOnNewVersion; }
+            set
+            {
+                this.notifyOnNewVersion = value;
+                this.OnPropertyChanged(() => NotifyOnNewVersion);
+            }
         }
 
         public bool RemoteStatisticsActivated
@@ -141,7 +148,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         public void Refresh()
         {
-            this.RemoteStatisticsActivated = bool.Parse(this.DbSettings[IsRemoteStatisticsEnabled]);
+            this.RemoteStatisticsActivated = PluginContext.DbConfiguration.IsRemoteStatisticsEnabled;
+            this.NotifyOnNewVersion = PluginContext.DbConfiguration.NotifyOnNewVersion;
         }
 
         protected override bool CanSave()
@@ -157,7 +165,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
             Settings.Default.Save();
 
-            this.DbSettings[IsRemoteStatisticsEnabled] = this.RemoteStatisticsActivated.ToString();
+            PluginContext.DbConfiguration.IsRemoteStatisticsEnabled = this.RemoteStatisticsActivated;
+            PluginContext.DbConfiguration.NotifyOnNewVersion = this.NotifyOnNewVersion;
 
             PluginContext.Configuration.SearchType = Settings.Default.SearchType;
         }

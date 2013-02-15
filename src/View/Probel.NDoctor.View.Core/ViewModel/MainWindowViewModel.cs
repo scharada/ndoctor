@@ -18,24 +18,26 @@ namespace Probel.NDoctor.View.Core.ViewModel
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using System.Windows.Input;
+
+    using log4net;
 
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
+    using Probel.NDoctor.Domain.DAL.Remote;
     using Probel.NDoctor.Domain.DTO;
+    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Core.View;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Navigation;
-    using Probel.NDoctor.Domain.DAL.Remote;
-    using Probel.NDoctor.View.Core.Helpers;
-    using log4net;
-    using System.Threading;
 
     /// <summary>
     /// This ViewModel should contain all the information about the
@@ -83,15 +85,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
             App.RibbonData.ApplicationMenuData.LargeImage = new Uri(uriImage.FormatWith("Home"), UriKind.Relative);
             App.RibbonData.ApplicationMenuData.SmallImage = new Uri(uriImage.FormatWith("Home"), UriKind.Relative);
-
-            var culture = Thread.CurrentThread.CurrentUICulture;
-            var versionNotifyer = new RemoteFactory().NewVersionNotifyer();
-            versionNotifyer.Checked += (sender, e) =>
-            {
-                new UserInteraction(culture)
-                    .NotifyNewVersion(e.RemoteVersion);
-            };
-            versionNotifyer.Check(PluginContext.Configuration.Version);
         }
 
         #endregion Constructors
@@ -190,6 +183,21 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         #region Methods
 
+        public void CheckNewVersion()
+        {
+            var culture = Thread.CurrentThread.CurrentUICulture;
+            var versionNotifyer = new RemoteFactory().NewVersionNotifyer();
+            versionNotifyer.Checked += (sender, e) =>
+            {
+                if (PluginContext.DbConfiguration.NotifyOnNewVersion)
+                {
+                    new UserInteraction(culture)
+                        .NotifyNewVersion(e.RemoteVersion);
+                }
+            };
+            versionNotifyer.Check(PluginContext.Configuration.Version);
+        }
+
         /// <summary>
         /// Shows the debug menu.
         /// </summary>
@@ -205,7 +213,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
                     var checkVersionButton = new RibbonButtonData(Messages.Btn_CheckNewVersion
                         , "/Images/CheckVersion.png"
-                        , new RelayCommand(() => CheckNewVersion()));
+                        , new RelayCommand(() => DebugCheckNewVersion()));
 
                     PluginContext.Host.AddInHome(debugButton, Groups.DebugTools);
                     PluginContext.Host.AddInHome(checkVersionButton, Groups.DebugTools);
@@ -233,7 +241,17 @@ namespace Probel.NDoctor.View.Core.ViewModel
             }
         }
 
-        private void CheckNewVersion()
+        private void About()
+        {
+            ViewService.Manager.ShowDialog<AboutBoxViewModel>();
+        }
+
+        private bool CanNavigateToSetting()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Administer);
+        }
+
+        private void DebugCheckNewVersion()
         {
             var culture = Thread.CurrentThread.CurrentUICulture;
             var notifyer = new RemoteFactory().NewVersionNotifyer();
@@ -244,16 +262,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
             };
             this.Logger.DebugFormat("Check if there's a newer version. Current is {0}", PluginContext.Configuration.Version);
             notifyer.Check(PluginContext.Configuration.Version);
-        }
-
-        private void About()
-        {
-            ViewService.Manager.ShowDialog<AboutBoxViewModel>();
-        }
-
-        private bool CanNavigateToSetting()
-        {
-            return PluginContext.DoorKeeper.IsUserGranted(To.Administer);
         }
 
         private void NavigateToSetting()

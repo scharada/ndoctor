@@ -42,6 +42,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
         private readonly TagDto ALL_PICTURE_TAG = new TagDto(TagCategory.Picture) { Name = Messages.Msg_AllTags };
         private readonly ICommand editCommand;
+        private readonly ICommand refreshCommand;
         private readonly ICommand selectPictureCommand;
         private readonly ICommand updateCommand;
 
@@ -166,6 +167,11 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
         {
             get;
             private set;
+        }
+
+        public ICommand RefreshCommand
+        {
+            get { return this.refreshCommand; }
         }
 
         public PictureDto SelectedPicture
@@ -383,14 +389,6 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
-
-
-        private readonly ICommand refreshCommand;
-        public ICommand RefreshCommand
-        {
-            get { return this.refreshCommand; }
-        }
-
 
         private void SelectFirstTag()
         {

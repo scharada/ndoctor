@@ -93,10 +93,13 @@ namespace Probel.NDoctor.Domain.DAL.Components
         {
             //var db = this.GetDatabaseState();
             var settings = new DbSettingsComponent(this.Session);
-            var areThumbnailsCreated = bool.Parse(settings["AreThumbnailsCreated"]);
+            var areThumbnailsCreated = (settings.Exists("AreThumbnailsCreated"))
+                ? bool.Parse(settings["AreThumbnailsCreated"])
+                : false;
 
             if (!areThumbnailsCreated)
             {
+                settings["AreThumbnailsCreated"] = false.ToString();
                 this.Logger.Info("Creation of the thumbnails");
                 using (var bench = new Benchmark(e => this.Logger.InfoFormat("Thumbnails created in {0,3}.{1:###} sec", e.Seconds, e.Milliseconds)))
                 {

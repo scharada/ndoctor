@@ -476,6 +476,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notify on new version.
+        /// </summary>
+        internal static string Msg_NotifyOnNewVersion {
+            get {
+                return ResourceManager.GetString("Msg_NotifyOnNewVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Progress: {0,3}%.
         /// </summary>
         internal static string Msg_Progess {

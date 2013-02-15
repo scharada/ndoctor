@@ -80,6 +80,7 @@
     <Compile Include="Cfg\PluginsConfigurationFolder.cs" />
     <Compile Include="Cfg\PluginConfiguration.cs" />
     <Compile Include="Cfg\PluginConfigurationDto.cs" />
+    <Compile Include="DbConfiguration.cs" />
     <Compile Include="Exceptions\DeactivatedPluginException.cs" />
     <Compile Include="Exceptions\NDoctorConfigurationException.cs" />
     <Compile Include="Exceptions\NullPluginValidatorException.cs" />
