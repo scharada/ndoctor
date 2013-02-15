@@ -158,6 +158,7 @@
     <Compile Include="Objects\TagCategory.cs" />
     <Compile Include="Objects\TagDto.cs" />
     <Compile Include="Objects\UserDto.cs" />
+    <Compile Include="Remote\IVersionNotifyer.cs" />
     <Compile Include="Specification\AllowAllSpecification.cs" />
     <Compile Include="Specification\AndSpecification.cs" />
     <Compile Include="Specification\SpecificationExpression.cs" />

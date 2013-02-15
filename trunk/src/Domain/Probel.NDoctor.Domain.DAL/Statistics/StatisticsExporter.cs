@@ -42,15 +42,15 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
     /// <summary>
     /// Export the statistics about the usage of the current session of nDoctor
     /// </summary>
-    public class StatisticsExporter
+    internal class StatisticsExporter : Probel.NDoctor.Domain.DAL.Statistics.IStatisticsExporter
     {
         #region Fields
 
         private const string APPKEY = "AppKey";
 
-        private static readonly string ConnectionString = "mongodb://statistics:ndoctor@ds049157.mongolab.com:49157/ndoctor-statistics";
         private static readonly ILog Logger = LogManager.GetLogger(typeof(StatisticsExporter));
 
+        private readonly string ConnectionString; // = "mongodb://statistics:ndoctor@ds049157.mongolab.com:49157/ndoctor-statistics";
         private readonly MongoDatabase Database;
         private readonly TimeSpan Duration;
         private readonly IDbSettingsComponent Settings = new DbSettingsComponent();
@@ -65,14 +65,16 @@ namespace Probel.NDoctor.Domain.DAL.Statistics
         /// </summary>
         /// <param name="version">The version.</param>
         /// <param name="sessionDuration">Duration of the session.</param>
-        public StatisticsExporter(Version version, TimeSpan sessionDuration)
+        internal StatisticsExporter(string connectionString, string databaseName, Version version, TimeSpan sessionDuration)
         {
+            this.ConnectionString = connectionString;
+
             this.Version = version.ToString();
             this.Duration = sessionDuration;
 
             this.Database = new MongoClient(ConnectionString)
                 .GetServer()
-                .GetDatabase("ndoctor-statistics");
+                .GetDatabase(databaseName);
         }
 
         #endregion Constructors

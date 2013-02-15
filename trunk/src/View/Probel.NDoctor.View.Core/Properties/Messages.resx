@@ -570,4 +570,12 @@ The application will close. Check the logs for further  information</value>
     <value>Gender repartition</value>
     <comment>Gender repartition</comment>
   </data>
+  <data name="Msg_NewVersion" xml:space="preserve">
+    <value>The version {0} is available. Do you want to visit the official site?</value>
+    <comment>The version {0} is available. Do you want to visit the official site?</comment>
+  </data>
+  <data name="Btn_CheckNewVersion" xml:space="preserve">
+    <value>Check version</value>
+    <comment>Check version</comment>
+  </data>
 </root>

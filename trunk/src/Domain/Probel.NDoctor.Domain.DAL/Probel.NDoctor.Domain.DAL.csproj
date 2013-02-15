@@ -184,7 +184,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.fr.resx</DependentUpon>
     </Compile>
+    <Compile Include="Remote\RemoteFactory.cs" />
+    <Compile Include="Remote\RemoteVersion.cs" />
+    <Compile Include="Remote\VersionNotifyer.cs" />
     <Compile Include="Statistics\AnonymousUser.cs" />
+    <Compile Include="Statistics\IStatisticsExporter.cs" />
     <Compile Include="Statistics\SessionDuration.cs" />
     <Compile Include="Statistics\StatisticsExporter.cs" />
     <Compile Include="Statistics\StatisticEntry.cs" />

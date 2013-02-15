@@ -554,4 +554,12 @@ L'application va fermer. Vérifiez les logs pour plus d'informations.</value>
     <value>Répartition des sexes</value>
     <comment>Gender repartition</comment>
   </data>
+  <data name="Msg_NewVersion" xml:space="preserve">
+    <value>La version {0} est disponible. Voulez-vous visiter le site officiel?</value>
+    <comment>The version {0} is available. Do you want to visit the official site?</comment>
+  </data>
+  <data name="Btn_CheckNewVersion" xml:space="preserve">
+    <value>Vérifier version</value>
+    <comment>Check version</comment>
+  </data>
 </root>

@@ -32,6 +32,10 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Navigation;
+    using Probel.NDoctor.Domain.DAL.Remote;
+    using Probel.NDoctor.View.Core.Helpers;
+    using log4net;
+    using System.Threading;
 
     /// <summary>
     /// This ViewModel should contain all the information about the
@@ -79,6 +83,15 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
             App.RibbonData.ApplicationMenuData.LargeImage = new Uri(uriImage.FormatWith("Home"), UriKind.Relative);
             App.RibbonData.ApplicationMenuData.SmallImage = new Uri(uriImage.FormatWith("Home"), UriKind.Relative);
+
+            var culture = Thread.CurrentThread.CurrentUICulture;
+            var versionNotifyer = new RemoteFactory().NewVersionNotifyer();
+            versionNotifyer.Checked += (sender, e) =>
+            {
+                new UserInteraction(culture)
+                    .NotifyNewVersion(e.RemoteVersion);
+            };
+            versionNotifyer.Check(PluginContext.Configuration.Version);
         }
 
         #endregion Constructors
@@ -190,7 +203,12 @@ namespace Probel.NDoctor.View.Core.ViewModel
                         , "/Images/Debug.png"
                         , new RelayCommand(() => ViewService.Manager.Show<DebugViewModel>()));
 
+                    var checkVersionButton = new RibbonButtonData(Messages.Btn_CheckNewVersion
+                        , "/Images/CheckVersion.png"
+                        , new RelayCommand(() => CheckNewVersion()));
+
                     PluginContext.Host.AddInHome(debugButton, Groups.DebugTools);
+                    PluginContext.Host.AddInHome(checkVersionButton, Groups.DebugTools);
                 }
 
                 var statisticsButton = new RibbonButtonData(Messages.Btn_UsageStat
@@ -213,6 +231,19 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
                 this.isDebugMenuVisible = true;
             }
+        }
+
+        private void CheckNewVersion()
+        {
+            var culture = Thread.CurrentThread.CurrentUICulture;
+            var notifyer = new RemoteFactory().NewVersionNotifyer();
+            notifyer.Checked += (sender, e) =>
+            {
+                this.Logger.DebugFormat("Found new version. Current version: {0} - Remote version {1}", e.RemoteVersion, PluginContext.Configuration.Version);
+                new UserInteraction(culture).NotifyNewVersion(e.RemoteVersion);
+            };
+            this.Logger.DebugFormat("Check if there's a newer version. Current is {0}", PluginContext.Configuration.Version);
+            notifyer.Check(PluginContext.Configuration.Version);
         }
 
         private void About()

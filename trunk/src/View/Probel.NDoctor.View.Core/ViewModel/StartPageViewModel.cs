@@ -17,14 +17,15 @@
 namespace Probel.NDoctor.View.Core.ViewModel
 {
     using System;
-    using System.Collections.ObjectModel;
     using System.Threading.Tasks;
     using System.Windows.Input;
 
     using Probel.Helpers.Data;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.DAL.Remote;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Core.Helpers;
 
     internal class StartPageViewModel : BaseViewModel
     {
@@ -46,6 +47,9 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StartPageViewModel"/> class.
+        /// </summary>
         public StartPageViewModel()
         {
             this.refreshCommand = new RelayCommand(() => this.Refresh());
