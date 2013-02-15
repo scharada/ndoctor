@@ -165,7 +165,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
                     this.Logger.Info("Configuration done.");
 
                     stopwatch.Stop();
-                    this.ManageAppKey();
+                    Logger.DebugFormat("AppKey: {0}", PluginContext.DbConfiguration.AppKey);
                     this.Logger.InfoFormat("Loading time {0},{1} sec", stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
 
                 }
@@ -282,22 +282,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
         private void LogDatabaseCreation()
         {
             if (this.CreateDatabase()) { this.Logger.Warn("Creation of a new database. Old data is deleted"); }
-        }
-
-        private void ManageAppKey()
-        {
-            var settings = PluginContext.ComponentFactory.GetInstance<IDbSettingsComponent>();
-
-            if (settings.Exists("AppKey"))
-            {
-                this.Logger.InfoFormat("AppKey: {0}", settings["AppKey"]);
-            }
-            else
-            {
-                var msg = "No AppKey installed into the database!";
-                Logger.Fatal(msg);
-                throw new NotSupportedException(msg);
-            }
         }
 
         private void OnFailed()

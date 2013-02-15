@@ -17,9 +17,9 @@
 namespace Probel.NDoctor.View.Toolbox.Navigation
 {
     using System;
+    using System.Collections.Generic;
 
     using log4net;
-    using System.Collections.Generic;
 
     /// <summary>
     /// Provides contract to handle error. This provides warning and error MessagesBoxes and Logging

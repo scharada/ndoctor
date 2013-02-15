@@ -45,6 +45,9 @@
                           Margin="4"
                           VerticalContentAlignment="Center"
                           IsChecked="{Binding RemoteStatisticsActivated}"/>
+                <CheckBox Content="{Binding Source={x:Static Member=text:SettingsText.NotifyOnNewVersion}}"
+                          Margin="4"
+                          IsChecked="{Binding NotifyOnNewVersion}"/>
                 <DockPanel LastChildFill="True">
                     <Label DockPanel.Dock="Left" VerticalContentAlignment="Center" Content="{x:Static Member=text:SettingsText.TitleSearchType}"/>
                     <ComboBox Margin="4" ItemsSource="{Binding SearchTypes}" DisplayMemberPath="Item1" SelectedItem="{Binding SelectedSearchType}"/>

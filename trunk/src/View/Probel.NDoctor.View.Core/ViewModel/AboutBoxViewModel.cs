@@ -46,7 +46,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
         private string author;
         private string copyright;
         private string license;
-        private IDbSettingsComponent Settings = PluginContext.ComponentFactory.GetInstance<IDbSettingsComponent>();
 
         #endregion Fields
 
@@ -174,7 +173,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             this.Copyright = "Copyright Probel 2006-{0}".FormatWith(DateTime.Today.Year);
             this.License = this.GetLicense().FormatWith(DateTime.Today.Year);
             this.Plugins.Refill(this.GetPlugins());
-            this.AppKey = "AppKey= {0}".FormatWith(Settings["AppKey"]);
+            this.AppKey = "AppKey= {0}".FormatWith(PluginContext.DbConfiguration.AppKey);
         }
 
         #endregion Methods

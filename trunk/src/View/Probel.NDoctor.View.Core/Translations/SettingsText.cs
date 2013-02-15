@@ -37,6 +37,11 @@ namespace Probel.NDoctor.View.Core.Translations
             get { return Messages.Msg_NeedRestart; }
         }
 
+        public static string NotifyOnNewVersion
+        {
+            get { return Messages.Msg_NotifyOnNewVersion; }
+        }
+
         public static string RemoteStatistics
         {
             get { return Messages.Title_RemoteStat; }

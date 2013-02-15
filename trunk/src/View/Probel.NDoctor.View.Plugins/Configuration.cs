@@ -21,9 +21,10 @@
 
 namespace Probel.NDoctor.View.Plugins
 {
-    using Probel.NDoctor.Domain.DTO.Components;
     using System;
     using System.Reflection;
+
+    using Probel.NDoctor.Domain.DTO.Components;
 
     /// <summary>
     /// Configuration of the application
@@ -58,6 +59,17 @@ namespace Probel.NDoctor.View.Plugins
         }
 
         /// <summary>
+        /// Gets or sets the url where to download nDoctor.
+        /// </summary>
+        /// <value>
+        /// The download site.
+        /// </value>
+        public string DownloadSite
+        {
+            get; set;
+        }
+
+        /// <summary>
         /// Gets or sets the execution time threshold. That's after how many milliseconds the execution time
         /// if concidered a high
         /// </summary>
@@ -81,14 +93,6 @@ namespace Probel.NDoctor.View.Plugins
             get;
             set;
         }
-        /// <summary>
-        /// Gets or sets the url where to download nDoctor.
-        /// </summary>
-        /// <value>
-        /// The download site.
-        /// </value>
-        public string DownloadSite { get; set; }
-        #endregion Properties
 
         /// <summary>
         /// Gets the version of nDoctor.
@@ -106,5 +110,7 @@ namespace Probel.NDoctor.View.Plugins
                     .Version;
             }
         }
+
+        #endregion Properties
     }
 }

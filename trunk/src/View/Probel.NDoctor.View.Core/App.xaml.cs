@@ -21,6 +21,7 @@ namespace Probel.NDoctor.View.Core
     using System.Globalization;
     using System.Linq;
     using System.Runtime.InteropServices;
+    using System.Threading;
     using System.Windows;
     using System.Windows.Markup;
     using System.Windows.Threading;
@@ -28,9 +29,12 @@ namespace Probel.NDoctor.View.Core
     using log4net;
     using log4net.Config;
 
+    using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.Components.Statistics;
+    using Probel.NDoctor.Domain.DAL.Remote;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Core.View;
     using Probel.NDoctor.View.Core.ViewModel;
@@ -39,8 +43,6 @@ namespace Probel.NDoctor.View.Core
     using Probel.NDoctor.View.Toolbox.Navigation;
 
     using MySplashScreen = Probel.NDoctor.View.Core.View.SplashScreen;
-    using Probel.NDoctor.Domain.DAL.Remote;
-    using Probel.NDoctor.View.Core.Helpers;
 
     /// <summary>
     /// Interaction logic for App.xaml
@@ -66,6 +68,7 @@ namespace Probel.NDoctor.View.Core
         public App()
         {
             this.MainWindow = new MainWindow();
+            ViewService.Configure(e => e.RootWindow = this.MainWindow);
 
             PluginContext.Configuration.BenchmarkEnabled = bool.Parse(ConfigurationManager.AppSettings["BenchmarkEnabled"]);
             PluginContext.Configuration.AutomaticContextMenu = Settings.Default.AutomaticContextMenu;
@@ -73,12 +76,10 @@ namespace Probel.NDoctor.View.Core
             PluginContext.Configuration.SearchType = Settings.Default.SearchType;
             PluginContext.Configuration.DownloadSite = ConfigurationManager.AppSettings["DownloadSite"];
 
-
-            var splash = new MySplashScreen();
-
             if (this.arguments.DebugTools) { this.Logger.Warn("Debug statistics are activated!"); }
             if (this.arguments.AdminTool) { this.Logger.Warn("Debug tools are activated!"); }
 
+            var splash = new MySplashScreen();
             try { splash.ShowDialog(); }
             catch (Exception ex)
             {
@@ -88,17 +89,22 @@ namespace Probel.NDoctor.View.Core
 
             if (!splash.IsOnError)
             {
-                this.Logger.Info(this.IsRemoteStatisticsEnabled
+                this.Logger.Info(PluginContext.DbConfiguration.IsRemoteStatisticsEnabled
                     ? "Remote statistics are enabled"
                     : "Remote statistics are disabled");
+
+                this.Logger.Info(PluginContext.DbConfiguration.NotifyOnNewVersion
+                    ? "Notify on new version"
+                    : "Do NOT notify on new version");
 
                 this.MainWindow.Show();
                 this.CheckDebugTools();
                 this.CleanGui();
-                ViewService.Configure(e => e.RootWindow = this.MainWindow);
+                this.MainWindow.As<MainWindowViewModel>().CheckNewVersion();
             }
             else { Application.Current.Shutdown(); }
         }
+
         #endregion Constructors
 
         #region Properties
@@ -126,15 +132,6 @@ namespace Probel.NDoctor.View.Core
 
                 if (bool.TryParse(value, out result)) return result;
                 else return false;
-            }
-        }
-
-        private bool IsRemoteStatisticsEnabled
-        {
-            get
-            {
-                var settings = PluginContext.ComponentFactory.GetInstance<IDbSettingsComponent>();
-                return bool.Parse(settings["IsRemoteStatisticsEnabled"]);
             }
         }
 
@@ -191,7 +188,7 @@ namespace Probel.NDoctor.View.Core
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            new NDoctorStatistics(this.IsRemoteStatisticsEnabled, (DateTime.Now.ToUniversalTime() - StartTime))
+            new NDoctorStatistics(PluginContext.DbConfiguration.IsRemoteStatisticsEnabled, (DateTime.Now.ToUniversalTime() - StartTime))
                 .Flush();
         }
 

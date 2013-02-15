@@ -578,4 +578,8 @@ The application will close. Check the logs for further  information</value>
     <value>Check version</value>
     <comment>Check version</comment>
   </data>
+  <data name="Msg_NotifyOnNewVersion" xml:space="preserve">
+    <value>Notify on new version</value>
+    <comment>Notify on new version</comment>
+  </data>
 </root>

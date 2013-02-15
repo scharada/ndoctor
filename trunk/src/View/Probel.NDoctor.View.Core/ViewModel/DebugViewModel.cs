@@ -29,10 +29,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
     {
         #region Fields
 
-        private const string APPKEY = "AppKey";
-        private const string ISDEBUG = "IsDebug";
-        private const string THUMBNAIL = "AreThumbnailsCreated";
-
         private readonly ICommand cancelCommand;
         private readonly ICommand newAppKeyCommand;
         private readonly ICommand saveCommand;
@@ -40,7 +36,6 @@ namespace Probel.NDoctor.View.Core.ViewModel
         private string appKey;
         private bool areThumbnailCreated;
         private bool isDebugModeActivated;
-        private IDbSettingsComponent Settings = PluginContext.ComponentFactory.GetInstance<IDbSettingsComponent>();
 
         #endregion Fields
 
@@ -111,9 +106,9 @@ namespace Probel.NDoctor.View.Core.ViewModel
         /// </summary>
         public void Refresh()
         {
-            this.IsDebugModeActivated = bool.Parse(this.Settings[ISDEBUG]);
-            this.AreThumbnailCreated = bool.Parse(this.Settings[THUMBNAIL]);
-            this.AppKey = this.Settings[APPKEY];
+            this.IsDebugModeActivated = PluginContext.DbConfiguration.IsDebug;
+            this.AreThumbnailCreated = PluginContext.DbConfiguration.AreThumbnailCreated;
+            this.AppKey = PluginContext.DbConfiguration.AppKey.ToString();
         }
 
         /// <summary>
@@ -121,9 +116,9 @@ namespace Probel.NDoctor.View.Core.ViewModel
         /// </summary>
         protected void Save()
         {
-            this.Settings[ISDEBUG] = this.IsDebugModeActivated.ToString();
-            this.Settings[THUMBNAIL] = this.AreThumbnailCreated.ToString();
-            this.Settings[APPKEY] = this.AppKey;
+            PluginContext.DbConfiguration.IsDebug = this.IsDebugModeActivated;
+            PluginContext.DbConfiguration.AreThumbnailCreated = this.AreThumbnailCreated;
+            PluginContext.DbConfiguration.AppKey = new Guid(this.AppKey);
             this.Close();
         }
 
