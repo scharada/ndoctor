@@ -165,9 +165,13 @@
     <Compile Include="Remote\IVersionNotifyer.cs" />
     <Compile Include="Specification\AllowAllSpecification.cs" />
     <Compile Include="Specification\AndSpecification.cs" />
+    <Compile Include="Specification\FindPatientByInscriptionSpecification.cs" />
+    <Compile Include="Specification\FindPatientByLastUpdateSpecification.cs" />
+    <Compile Include="Specification\GetPatientByCitySpecification.cs" />
+    <Compile Include="Specification\GetPatientByReasonSpecification.cs" />
     <Compile Include="Specification\SpecificationExpression.cs" />
     <Compile Include="Specification\CompositeSpecification.cs" />
-    <Compile Include="Specification\FindPatientByBirthYearSpecification.cs" />
+    <Compile Include="Specification\FindPatientByBirthDateSpecification.cs" />
     <Compile Include="Specification\FindPatientByNameSpecification.cs" />
     <Compile Include="Specification\FindPatientByProfessionSpecification.cs" />
     <Compile Include="Specification\NotSpecification.cs" />

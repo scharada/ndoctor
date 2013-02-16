@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -16,29 +14,32 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-#endregion Header
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Probel.NDoctor.Domain.DTO.Objects;
 
 namespace Probel.NDoctor.Domain.DTO.Specification
 {
-    using Probel.NDoctor.Domain.DTO.Objects;
-
     /// <summary>
-    /// Select all the patient with the birth year specified in the ctor
+    /// Verifies that the specified <see cref="LightPatientDto"/> has got an last update date between the specified dates
     /// </summary>
-    public class GetPatientByBirthYearSpecification : Specification<LightPatientDto>
+    public class FindPatientByLastUpdateSpecification : Specification<LightPatientDto>
     {
         #region Fields
 
-        private int birthYear;
+        private readonly DateTime After;
+        private readonly DateTime Before;
 
         #endregion Fields
 
         #region Constructors
 
-        public GetPatientByBirthYearSpecification(int birthYear)
+        public FindPatientByLastUpdateSpecification(DateTime after, DateTime before)
         {
-            this.birthYear = birthYear;
+            this.After = after;
+            this.Before = before;
         }
 
         #endregion Constructors
@@ -47,7 +48,8 @@ namespace Probel.NDoctor.Domain.DTO.Specification
 
         public override bool IsSatisfiedBy(LightPatientDto obj)
         {
-            return obj.Birthdate.Year == this.birthYear;
+            return obj.Birthdate >= this.After
+                && obj.Birthdate <= this.Before;
         }
 
         #endregion Methods

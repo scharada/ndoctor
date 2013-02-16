@@ -26,6 +26,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     {
         #region Fields
 
+        private AddressDto address;
         private DateTime birthdate;
         private Gender gender;
         private int height;
@@ -35,6 +36,22 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #endregion Fields
 
         #region Properties
+
+        /// <summary>
+        /// Gets or sets the address.
+        /// </summary>
+        /// <value>
+        /// The address.
+        /// </value>
+        public AddressDto Address
+        {
+            get { return this.address; }
+            set
+            {
+                this.address = value;
+                this.OnPropertyChanged(() => Address);
+            }
+        }
 
         /// <summary>
         /// Calculate the age of the patient from his/her birthdate.
@@ -160,5 +177,22 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         }
 
         #endregion Methods
+
+        private string reason;
+        /// <summary>
+        /// Gets or sets the reason why the patient came the first time.
+        /// </summary>
+        /// <value>
+        /// The reason.
+        /// </value>
+        public string Reason
+        {
+            get { return this.reason; }
+            set
+            {
+                this.reason = value;
+                this.OnPropertyChanged(() => Reason);
+            }
+        }
     }
 }
