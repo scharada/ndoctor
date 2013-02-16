@@ -24,6 +24,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.View.Toolbox.View;
     using Probel.NDoctor.View.Toolbox.ViewModel;
+    using System;
 
     public class ErrorHandlerFactory
     {
@@ -51,14 +52,31 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
 
         #region Methods
 
+        /// <summary>
+        /// Configures the status writer.
+        /// </summary>
+        /// <param name="statusWriter">The status writer.</param>
         public static void ConfigureStatusWriter(IStatusWriter statusWriter)
         {
             StatusWriter = statusWriter;
         }
-
+        /// <summary>
+        /// Sets handler called after error was logged.
+        /// </summary>
+        /// <param name="afterLogHandler">The after log handler.</param>
+        public static void ConfigureAfterLogHandler(Action afterLogHandler)
+        {
+            AfterLogHandler = afterLogHandler;
+        }
+        private static Action AfterLogHandler;
+        /// <summary>
+        /// Builds a new <see cref="IErrorHandler"/>.
+        /// </summary>
+        /// <param name="caller">The caller is used to configure the handler.</param>
+        /// <returns></returns>
         public IErrorHandler New(object caller)
         {
-            return new ErrorHandler(caller, StatusWriter);
+            return new ErrorHandler(caller, StatusWriter, AfterLogHandler);
         }
 
         #endregion Methods

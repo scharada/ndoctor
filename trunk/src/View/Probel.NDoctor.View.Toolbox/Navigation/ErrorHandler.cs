@@ -46,13 +46,16 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
         /// <summary>
         /// Initializes a new instance of the <see cref="ErrorHandler"/> class.
         /// </summary>
-        /// <param name="callerType">Type of the caller.</param>
-        internal ErrorHandler(object caller, IStatusWriter statusWriter)
+        /// <param name="caller">The caller.</param>
+        /// <param name="statusWriter">The status writer.</param>
+        /// <param name="afterLogHandler">The handler executed after loggin.</param>
+        internal ErrorHandler(object caller, IStatusWriter statusWriter, Action afterLogHandler)
         {
             this.Logger = LogManager.GetLogger(caller.GetType());
             this.StatusWriter = statusWriter;
+            this.AfterLogHandler = afterLogHandler;
         }
-
+        private readonly Action AfterLogHandler;
         #endregion Constructors
 
         #region Properties
@@ -101,10 +104,10 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
         /// Handles a list of errors, log it and shows a message box with the error.
         /// </summary>
         /// <param name="ex">The exception to log.</param>
-        public void Error(IEnumerable<Exception> ex)
+        public void Error(AggregateException ex)
         {
-            var msg = string.Empty;
-            foreach (var error in ex)
+            var msg = ex.Message + Environment.NewLine + "===========" + Environment.NewLine;
+            foreach (var error in ex.InnerExceptions)
             {
 
                 if (error is TranslateableException)
@@ -200,16 +203,17 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
                 else
                 {
                     ViewService.MessageBox.Error(format.FormatWith(args));
-                    //ViewService.Manager.Show<ExceptionViewModel>();
                     this.WriteErrorInStatus(message);
                 }
             }
+            if (this.AfterLogHandler != null) { this.AfterLogHandler(); }
         }
 
         private void HandleFatal(Exception ex, string format, params object[] args)
         {
             this.Logger.Fatal(format.FormatWith(args), ex);
             ViewService.Manager.ShowDialog<ExceptionViewModel>(vm => vm.Exception = ex);
+            if (this.AfterLogHandler != null) { this.AfterLogHandler(); }
         }
 
         private void HandleWarning(bool silent, Exception ex, string format, params object[] args)
@@ -228,6 +232,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
                 }
             }
             this.WriteWarningInStatus(message);
+            if (this.AfterLogHandler != null) { this.AfterLogHandler(); }
         }
 
         private void WriteErrorInStatus(string message = null)

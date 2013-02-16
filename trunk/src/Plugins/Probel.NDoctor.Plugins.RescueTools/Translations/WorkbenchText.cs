@@ -133,5 +133,23 @@ namespace Probel.NDoctor.Plugins.RescueTools.Translations
         }
 
         #endregion Properties
+
+        public static string FindDeactivatedPatients
+        {
+            get { return Messages.Btn_FindDeactivatedPatients; }
+        }
+        public static string DeactivatedPatients
+        {
+            get { return Messages.Tab_DeactivatedPatients; }
+        }
+        public static string ReactivateAll
+        {
+            get { return Messages.Btn_ReactivateAll; }
+        }
+
+        public static string Actions
+        {
+            get { return Messages.Gb_Actions; }
+        }
     }
 }

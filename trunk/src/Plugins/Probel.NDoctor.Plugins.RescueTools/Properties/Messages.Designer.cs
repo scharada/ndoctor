@@ -70,6 +70,24 @@ namespace Probel.NDoctor.Plugins.RescueTools.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Find deactivated patients.
+        /// </summary>
+        internal static string Btn_FindDeactivatedPatients {
+            get {
+                return ResourceManager.GetString("Btn_FindDeactivatedPatients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reactivate all.
+        /// </summary>
+        internal static string Btn_ReactivateAll {
+            get {
+                return ResourceManager.GetString("Btn_ReactivateAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Find doubloons....
         /// </summary>
         internal static string Btn_Refresh {
@@ -147,6 +165,15 @@ namespace Probel.NDoctor.Plugins.RescueTools.Properties {
         internal static string Dgv_LastName {
             get {
                 return ResourceManager.GetString("Dgv_LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actions.
+        /// </summary>
+        internal static string Gb_Actions {
+            get {
+                return ResourceManager.GetString("Gb_Actions", resourceCulture);
             }
         }
         
@@ -268,7 +295,25 @@ namespace Probel.NDoctor.Plugins.RescueTools.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Patient updated.
+        ///   Looks up a localized string similar to Found {0} deactivated patient(s)..
+        /// </summary>
+        internal static string Msg_FoundDeactivatedPatients {
+            get {
+                return ResourceManager.GetString("Msg_FoundDeactivatedPatients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Found {0} patient(s).
+        /// </summary>
+        internal static string Msg_FoundPatients {
+            get {
+                return ResourceManager.GetString("Msg_FoundPatients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patients updated.
         /// </summary>
         internal static string Msg_PatientUpdated {
             get {
@@ -291,6 +336,15 @@ namespace Probel.NDoctor.Plugins.RescueTools.Properties {
         internal static string Tab_Age {
             get {
                 return ResourceManager.GetString("Tab_Age", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deactivated patients.
+        /// </summary>
+        internal static string Tab_DeactivatedPatients {
+            get {
+                return ResourceManager.GetString("Tab_DeactivatedPatients", resourceCulture);
             }
         }
         
