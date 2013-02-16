@@ -25,18 +25,40 @@ namespace Probel.NDoctor.Domain.DTO.Specification
     {
         #region Methods
 
+        /// <summary>
+        /// Operates a logical <c>And</c> with this specification and the specified one.
+        /// </summary>
+        /// <param name="specification">The specification.</param>
+        /// <returns>A <c>And</c> specification</returns>
         public AndSpecification<T> And(Specification<T> specification)
         {
             return new AndSpecification<T>(this, specification);
         }
 
+        /// <summary>
+        /// Determines whether the specified obj is satisfied by this criteria.
+        /// </summary>
+        /// <param name="obj">The obj.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified obj is satisfied by this specification; otherwise, <c>false</c>.
+        /// </returns>
         public abstract bool IsSatisfiedBy(T obj);
 
+        /// <summary>
+        /// Operates a logical <c>Not</c> with this specification and the specified one.
+        /// </summary>
+        /// <param name="specification">The specification.</param>
+        /// <returns>A <c>Not</c> specification</returns>
         public NotSpecification<T> Not(Specification<T> specification)
         {
             return new NotSpecification<T>(this, specification);
         }
 
+        /// <summary>
+        /// Operates a logical <c>Ot</c> with this specification and the specified one.
+        /// </summary>
+        /// <param name="specification">The specification.</param>
+        /// <returns>A <c>Or</c> specification</returns>
         public OrSpecification<T> Or(Specification<T> specification)
         {
             return new OrSpecification<T>(this, specification);
