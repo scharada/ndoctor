@@ -258,7 +258,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
                             select doc).AsEnumerable();
             return Mapper.Map<IEnumerable<Doctor>, IEnumerable<LightDoctorDto>>(entities);
         }
-        
+
         private void Replace(IEnumerable<LightDoctorDto> doubloons, LightDoctorDto withDoctor, IEnumerable<Patient> preloadedPatients)
         {
             var updator = new Updator(this.Session);

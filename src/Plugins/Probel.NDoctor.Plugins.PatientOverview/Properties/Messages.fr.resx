@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Btn_Deactivate" xml:space="preserve">
+    <value>Désactiver</value>
+    <comment>Deactivate</comment>
+  </data>
   <data name="Btn_Doctor" xml:space="preserve">
     <value>Médecin</value>
     <comment>Doctor</comment>
@@ -233,6 +237,10 @@
     <value>Ville:</value>
     <comment>City:</comment>
   </data>
+  <data name="Lbl_Deactivated" xml:space="preserve">
+    <value>Desactivé!</value>
+    <comment>Deactivated!</comment>
+  </data>
   <data name="Lbl_Fee" xml:space="preserve">
     <value>Honoraires:</value>
     <comment>Fee:</comment>
@@ -309,6 +317,14 @@
     <value>Homme</value>
     <comment>Male</comment>
   </data>
+  <data name="Msg_ConfirmDeactivation" xml:space="preserve">
+    <value> Si vous désactivez ce patient, il sera toujours dans la base de données mais nDoctor se comportera comme s'il était supprimé. Pour le réactiver, allez dans le correcteur d'incohérences (peut-être devez-vous l'activer via les options).
+
+Voulez-vous désactiver ce patient?</value>
+    <comment>Si you deactivate this patient, he/she will remain in the database but nDoctor will behave like if he/she is deleted. To reactivate this patient, go to the database manager (maybe you have to activate this plugin via the settings).
+
+ Do you want to deactivate this patient?</comment>
+  </data>
   <data name="Msg_DoubleClick" xml:space="preserve">
     <value>Double clique pour sélectionner le médecin</value>
     <comment>Double click to select the doctor</comment>
@@ -316,6 +332,10 @@
   <data name="Msg_DoubleClickToUnbind" xml:space="preserve">
     <value>Double clique pour délier le médecin.</value>
     <comment>Double click to unbind the doctor.</comment>
+  </data>
+  <data name="Msg_PatientDeactivated" xml:space="preserve">
+    <value>Le patient a bien été desactivé.</value>
+    <comment>Patient deactivated</comment>
   </data>
   <data name="Question_LeaveWithoutSaving" xml:space="preserve">
     <value>Voulez-vous annuler les modifications du patient?</value>

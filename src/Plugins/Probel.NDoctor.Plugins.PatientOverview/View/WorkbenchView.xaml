@@ -20,6 +20,7 @@
         <conv:GenderToImageConverter x:Key="GenderToImage"/>
         <conv:ByteArrayToImageConverter x:Key="BytesToImage"/>
         <conv:InvertBooleanToVisibilityConverter x:Key="InvertBoolToVisibility"/>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
         <conv:InverseBooleanConverter x:Key="InvertBool"/>
         <conv:StringToVisibilityConverter x:Key="StringToVisibility"/>
         <conv:IntToVisibilityConverter x:Key="IntToVisibility"/>
@@ -44,22 +45,22 @@
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <DockPanel LastChildFill="True">
                         <CheckBox DockPanel.Dock="Top" 
-                          Margin="4"
-                          Content="Edition mode activated"
-                          x:Name="CbEdition"
-                          IsChecked="{Binding IsEditModeActivated}"
-                          Visibility="Collapsed"/>
+                                  Margin="4"
+                                  Content="Edition mode activated"
+                                  x:Name="CbEdition"
+                                  IsChecked="{Binding IsEditModeActivated}"
+                                  Visibility="Collapsed"/>
                         <!-- Id of the patient -->
                         <GroupBox DockPanel.Dock="Top" 
-                          Margin="4"
-                          Header="{x:Static Member=t:WorkbenchText.GrpPatient}">
+                                  Margin="4"
+                                  Header="{x:Static Member=t:WorkbenchText.GrpPatient}">
                             <DockPanel Margin="4">
                                 <!-- Thumbnail -->
                                 <DockPanel DockPanel.Dock="Left" 
-                                   MaxHeight="150"
-                                   Width="150"
-                                   Margin="4"
-                                   HorizontalAlignment="Left">
+                                           MaxHeight="150"
+                                           Width="150"
+                                           Margin="4"
+                                           HorizontalAlignment="Left">
                                     <TextBlock DockPanel.Dock="Bottom" 
                                        HorizontalAlignment="Center"
                                        Margin="4"
@@ -68,12 +69,10 @@
 							    <TextBlock Text="{Binding Source={x:Static Member=t:WorkbenchText.ChangePicture}}"/>
 						    </Hyperlink>
                             </TextBlock>
-
                                     <!-- Image -->
                                     <Grid DockPanel.Dock="Top"
-                                  VerticalAlignment="Center"
-                                  HorizontalAlignment="Center">
-
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Center">
                                         <!-- Drop Shadow -->
                                         <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="4" Background="#44000000">
                                             <Border.RenderTransform>
@@ -91,6 +90,13 @@
                                         </Border>
                                     </Grid>
                                 </DockPanel>
+                                
+                                <!-- Deactivation indicator -->
+                                <Label DockPanel.Dock="Top"
+                                       HorizontalContentAlignment="Center"
+                                       Visibility="{Binding SelectedPatient.IsDeactivated, Converter={StaticResource BooleanToVisibility}}"
+                                       Content="{Binding Source={x:Static Member=t:WorkbenchText.Deactivated}}" Background="#FFEF2B2B" FontWeight="Bold" />
+                                
                                 <!-- First, last name and fee -->
                                 <DockPanel DockPanel.Dock="Top" LastChildFill="True">
                                     <Image Margin="4"
