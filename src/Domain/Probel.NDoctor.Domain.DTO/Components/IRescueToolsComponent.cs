@@ -33,6 +33,24 @@ namespace Probel.NDoctor.Domain.DTO.Components
         #region Methods
 
         /// <summary>
+        /// Activates the specified deactivated patients.
+        /// </summary>
+        /// <param name="patients">The patients.</param>
+        void Activate(IEnumerable<LightPatientDto> patients);
+
+        /// <summary>
+        /// Deactivates the specified patients.
+        /// </summary>
+        /// <param name="patients">The patients.</param>
+        void Deactivate(IEnumerable<LightPatientDto> patients);
+
+        /// <summary>
+        /// Finds the deactivated patients.
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<LightPatientDto> GetDeactivated();
+
+        /// <summary>
         /// Gets a list of the doctor doubloons.
         /// </summary>
         /// <returns>A list of doubloons</returns>
@@ -57,6 +75,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         IEnumerable<LightDoctorDto> GetDoubloonsOf(string firstName, string lastName, TagDto specialisation);
 
         /// <summary>
+        /// Finds the patients older than the specified age.
+        /// </summary>
+        /// <param name="age">The age of the patient in years.</param>
+        /// <returns></returns>
+        IEnumerable<LightPatientDto> GetOlderThan(int age);
+
+        /// <summary>
         /// Replaces the specified doubloons with the specified doctor.
         /// </summary>
         /// <param name="doubloons">The doubloons.</param>
@@ -68,6 +93,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="observableCollection">The observable collection.</param>
         void ReplaceWithFirstDoubloon(IEnumerable<LightDoctorDto> observableCollection);
+
+        /// <summary>
+        /// Updates the deactivation value for the specified patients.
+        /// </summary>
+        /// <param name="patients">The patients.</param>
+        void UpdateDeactivation(IEnumerable<LightPatientDto> patients);
 
         #endregion Methods
     }

@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private DateTime birthdate;
         private Gender gender;
         private int height;
+        private bool isDeactivated;
         private ProfessionDto profession;
 
         #endregion Fields
@@ -108,6 +109,22 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.height = value;
                 this.OnPropertyChanged(() => Height);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this patient is deactivated.
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if this instance is deactivated; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsDeactivated
+        {
+            get { return this.isDeactivated; }
+            set
+            {
+                this.isDeactivated = value;
+                this.OnPropertyChanged(() => IsDeactivated);
             }
         }
 

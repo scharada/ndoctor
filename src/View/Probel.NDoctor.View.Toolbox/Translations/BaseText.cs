@@ -125,6 +125,11 @@ namespace Probel.NDoctor.View.Toolbox.Translations
             get { return Messages.Msg_Search; }
         }
 
+        public static string Update
+        {
+            get { return Messages.Btn_Update; }
+        }
+
         public static string Warning
         {
             get { return Messages.Title_Warning; }

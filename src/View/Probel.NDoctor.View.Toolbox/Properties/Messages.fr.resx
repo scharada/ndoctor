@@ -149,6 +149,10 @@
     <value>Sauver</value>
     <comment>Save</comment>
   </data>
+  <data name="Btn_Update" xml:space="preserve">
+    <value>Mettre à jour</value>
+    <comment>Update</comment>
+  </data>
   <data name="Close" xml:space="preserve">
     <value>Fermer</value>
     <comment>Close</comment>

@@ -22,6 +22,26 @@ namespace Probel.NDoctor.Plugins.RescueTools.Translations
     {
         #region Properties
 
+        public static string Age
+        {
+            get { return Messages.Dgv_Age; }
+        }
+
+        public static string Birthdate
+        {
+            get { return Messages.Dgv_Birthdate; }
+        }
+
+        public static string DeactivateAll
+        {
+            get { return Messages.Btn_DeactivateAll; }
+        }
+
+        public static string Deactivated
+        {
+            get { return Messages.Dgv_Deactivated; }
+        }
+
         public static string Details
         {
             get { return Messages.Gb_Details; }
@@ -37,6 +57,11 @@ namespace Probel.NDoctor.Plugins.RescueTools.Translations
             get { return Messages.Gb_Doubloons; }
         }
 
+        public static string FirstName
+        {
+            get { return Messages.Dgv_FirstName; }
+        }
+
         public static string GrpAddress
         {
             get { return Messages.Gb_Address; }
@@ -50,6 +75,11 @@ namespace Probel.NDoctor.Plugins.RescueTools.Translations
         public static string KeptDoctor
         {
             get { return Messages.Gb_KeptDoctor; }
+        }
+
+        public static string LastName
+        {
+            get { return Messages.Dgv_LastName; }
         }
 
         public static string Mail
@@ -85,6 +115,11 @@ namespace Probel.NDoctor.Plugins.RescueTools.Translations
         public static string ReplaceWithFirst
         {
             get { return Messages.Btn_ReplaceWithFirst; }
+        }
+
+        public static string SearchOnAge
+        {
+            get { return Messages.Db_SearchOnAge; }
         }
 
         public static string TabDoctorDoubloons

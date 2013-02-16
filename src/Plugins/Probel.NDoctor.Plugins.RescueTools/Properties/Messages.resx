@@ -126,8 +126,8 @@
     <comment>Replace</comment>
   </data>
   <data name="Btn_ReplaceWithFirst" xml:space="preserve">
-    <value>Remplacer avec le premier doublon trouvé</value>
-    <comment>Replace with the first doublon found</comment>
+    <value>Replace with first doublon</value>
+    <comment>Replace with first doublon</comment>
   </data>
   <data name="Gb_Address" xml:space="preserve">
     <value>Address</value>
@@ -200,5 +200,37 @@
   <data name="Title_Page" xml:space="preserve">
     <value>Database management</value>
     <comment>Database management</comment>
+  </data>
+  <data name="Db_SearchOnAge" xml:space="preserve">
+    <value>Search on age</value>
+    <comment>Search on age</comment>
+  </data>
+  <data name="Dgv_Age" xml:space="preserve">
+    <value>Age</value>
+    <comment>Age</comment>
+  </data>
+  <data name="Dgv_Birthdate" xml:space="preserve">
+    <value>Birthdate</value>
+    <comment>Birthdate</comment>
+  </data>
+  <data name="Dgv_FirstName" xml:space="preserve">
+    <value>First name</value>
+    <comment>First name</comment>
+  </data>
+  <data name="Dgv_LastName" xml:space="preserve">
+    <value>Last name</value>
+    <comment>Last name</comment>
+  </data>
+  <data name="Dgv_Deactivated" xml:space="preserve">
+    <value>Deactivated?</value>
+    <comment>Deactivated?</comment>
+  </data>
+  <data name="Btn_DeactivateAll" xml:space="preserve">
+    <value>Deactivate all</value>
+    <comment>Deactivate all</comment>
+  </data>
+  <data name="Msg_PatientUpdated" xml:space="preserve">
+    <value>Patient updated</value>
+    <comment>Patient updated</comment>
   </data>
 </root>

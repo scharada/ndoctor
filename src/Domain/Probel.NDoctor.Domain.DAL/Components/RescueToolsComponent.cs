@@ -66,6 +66,46 @@ namespace Probel.NDoctor.Domain.DAL.Components
         #region Methods
 
         /// <summary>
+        /// Activates the specified deactivated patients.
+        /// </summary>
+        /// <param name="patients">The patients.</param>
+        public void Activate(IEnumerable<LightPatientDto> patients)
+        {
+            foreach (var patient in patients)
+            {
+                var entity = this.Session.Get<Patient>(patient.Id);
+                entity.IsDeactivated = false;
+                this.Session.Update(entity);
+            }
+        }
+
+        /// <summary>
+        /// Deactivates the specified patients.
+        /// </summary>
+        /// <param name="patients">The patients.</param>
+        public void Deactivate(IEnumerable<LightPatientDto> patients)
+        {
+            foreach (var patient in patients)
+            {
+                var entity = this.Session.Get<Patient>(patient.Id);
+                entity.IsDeactivated = true;
+                this.Session.Update(entity);
+            }
+        }
+
+        /// <summary>
+        /// Finds the deactivated patients.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<LightPatientDto> GetDeactivated()
+        {
+            var results = (from p in this.Session.Query<Patient>()
+                           where p.IsDeactivated == true
+                           select p);
+            return Mapper.Map<IEnumerable<Patient>, IEnumerable<LightPatientDto>>(results);
+        }
+
+        /// <summary>
         /// Gets a list of the doctor doubloons.
         /// </summary>
         /// <returns>
@@ -129,6 +169,25 @@ namespace Probel.NDoctor.Domain.DAL.Components
                                && doc.Specialisation.Id == specialisation.Id
                             select doc).AsEnumerable();
             return Mapper.Map<IEnumerable<Doctor>, IEnumerable<LightDoctorDto>>(entities);
+        }
+
+        /// <summary>
+        /// Finds the patients older than the specified age.
+        /// </summary>
+        /// <param name="age">The age of the patient in years.</param>
+        /// <returns></returns>
+        public IEnumerable<LightPatientDto> GetOlderThan(int age)
+        {
+            var date = DateTime.Today.AddYears(0 - age);
+
+            var results = (from p in this.Session.Query<Patient>()
+                           where p.BirthDate <= date
+                              && p.IsDeactivated == false
+                           select p);
+            var dto = Mapper
+                .Map<IEnumerable<Patient>, IEnumerable<LightPatientDto>>(results)
+                .OrderByDescending(e => e.Age);
+            return dto;
         }
 
         /// <summary>
@@ -198,6 +257,20 @@ namespace Probel.NDoctor.Domain.DAL.Components
                 }
             }
             else { Logger.Debug("The list of doubloons was empty"); }
+        }
+
+        /// <summary>
+        /// Updates the deactivation value for the specified patients.
+        /// </summary>
+        /// <param name="patients">The patients.</param>
+        public void UpdateDeactivation(IEnumerable<LightPatientDto> patients)
+        {
+            foreach (var patient in patients)
+            {
+                var entity = this.Session.Get<Patient>(patient.Id);
+                entity.IsDeactivated = patient.IsDeactivated;
+                this.Session.Update(entity);
+            }
         }
 
         #endregion Methods

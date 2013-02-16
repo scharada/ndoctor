@@ -133,6 +133,15 @@ namespace Probel.NDoctor.View.Toolbox.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        internal static string Btn_Update {
+            get {
+                return ResourceManager.GetString("Btn_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         internal static string Close {
