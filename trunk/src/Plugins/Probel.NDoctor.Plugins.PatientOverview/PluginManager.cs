@@ -18,6 +18,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview
 {
     using System;
     using System.ComponentModel.Composition;
+    using System.Threading.Tasks;
     using System.Windows.Input;
     using System.Windows.Media;
 
@@ -25,6 +26,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
+    using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Plugins.PatientOverview.Properties;
     using Probel.NDoctor.Plugins.PatientOverview.View;
     using Probel.NDoctor.Plugins.PatientOverview.ViewModel;
@@ -42,6 +44,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview
 
         private const string imgUri = @"\Probel.NDoctor.Plugins.PatientOverview;component/Images\{0}.png";
 
+        private readonly ICommand deactivateCommand;
         private readonly ICommand editCommand;
         private readonly ICommand revertCommand;
         private readonly ICommand saveCommand;
@@ -60,6 +63,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview
             this.saveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
             this.editCommand = new RelayCommand(() => this.Edit(), () => this.CanEdit());
             this.revertCommand = new RelayCommand(() => this.Revert(), () => this.CanRevert());
+            this.deactivateCommand = new RelayCommand(() => this.Deactivate(), () => this.CanDeactivate());
 
             this.ConfigureAutoMapper();
         }
@@ -67,6 +71,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview
         #endregion Constructors
 
         #region Properties
+
+        public ICommand DeactivateCommand
+        {
+            get { return this.deactivateCommand; }
+        }
 
         public ICommand EditCommand
         {
@@ -130,6 +139,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview
             cgroup1.ButtonDataCollection.Add(new RibbonButtonData(Messages.Btn_Edit, imgUri.FormatWith("Edit"), this.EditCommand));
             cgroup1.ButtonDataCollection.Add(new RibbonButtonData(Messages.Btn_Save, imgUri.FormatWith("Save"), this.SaveCommand));
             cgroup1.ButtonDataCollection.Add(new RibbonButtonData(Messages.Btn_Revert, imgUri.FormatWith("Revert"), this.RevertCommand));
+            cgroup1.ButtonDataCollection.Add(new RibbonButtonData(Messages.Btn_Deactivate, imgUri.FormatWith("Deactivate"), this.DeactivateCommand));
 
             var cgroup2 = new RibbonGroupData(Messages.Group_Add);
             cgroup2.ButtonDataCollection.Add(new RibbonButtonData(Messages.Btn_Reputation, imgUri.FormatWith("Reputation")
@@ -182,14 +192,22 @@ namespace Probel.NDoctor.Plugins.PatientOverview
             });
         }
 
+        private bool CanDeactivate()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write)
+                && this.IsEditionActivated;
+        }
+
         private bool CanEdit()
         {
-            return this.IsEditionActivated == false;
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write)
+                && this.IsEditionActivated == false;
         }
 
         private bool CanManageDoctor()
         {
-            return this.IsEditionActivated == true;
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write)
+                && this.IsEditionActivated == true;
         }
 
         private bool CanNavigate()
@@ -199,12 +217,14 @@ namespace Probel.NDoctor.Plugins.PatientOverview
 
         private bool CanRevert()
         {
-            return this.IsEditionActivated == true;
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write)
+                && this.IsEditionActivated == true;
         }
 
         private bool CanSave()
         {
-            return this.IsEditionActivated == true;
+            return PluginContext.DoorKeeper.IsUserGranted(To.Write)
+                && this.IsEditionActivated == true;
         }
 
         /// <summary>
@@ -213,6 +233,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview
         private void ConfigureAutoMapper()
         {
             //Add the mapping here...
+        }
+
+        private void Deactivate()
+        {
+            this.View.As<WorkbenchViewModel>().DeactivateCommand.TryExecute();
         }
 
         private void Edit()

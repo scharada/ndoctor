@@ -38,6 +38,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
     using Probel.NDoctor.Plugins.PatientOverview.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Toolbox;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -47,6 +48,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         #region Fields
 
         private readonly ICommand changeImageCommand;
+        private readonly ICommand deactivateCommand;
         private readonly ICommand saveCommand;
         private readonly ICommand sendPrivateMailCommand;
         private readonly ICommand sendProMailCommand;
@@ -67,7 +69,6 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         /// <summary>
         /// Initializes a new instance of the <see cref="WorkbenchViewModel"/> class.
         /// </summary>
-        /// <param name="host">The host.</param>
         public WorkbenchViewModel()
         {
             this.component = PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>();
@@ -88,6 +89,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             this.sendProMailCommand = new RelayCommand(() => SendMail(this.SelectedPatient.ProMail), () => this.CanSendMail());
             this.saveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
             this.changeImageCommand = new RelayCommand(() => this.ChangeImage(), () => this.CanChangeImage());
+            this.deactivateCommand = new RelayCommand(() => this.Deactivate(), () => this.CanDeactivate());
         }
 
         #endregion Constructors
@@ -97,6 +99,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         public ICommand ChangeImageCommand
         {
             get { return this.changeImageCommand; }
+        }
+
+        public ICommand DeactivateCommand
+        {
+            get { return this.deactivateCommand; }
         }
 
         public ObservableCollection<DoctorDto> Doctors
@@ -322,6 +329,12 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             return PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
+        private bool CanDeactivate()
+        {
+            return this.SelectedPatient != null
+                && PluginContext.DoorKeeper.IsUserGranted(To.Administer);
+        }
+
         private bool CanSave()
         {
             return PluginContext.DoorKeeper.IsUserGranted(To.Write);
@@ -347,6 +360,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
                 var img = Image.FromFile(file);
                 this.Thumbnail = img.GetThumbnail();
                 PluginDataContext.Instance.Invoker.AddThumbnail(this.component, this.SelectedPatient, this.Thumbnail);
+            }
+        }
+
+        private void Deactivate()
+        {
+            var yes = ViewService.MessageBox.Question(Messages.Msg_ConfirmDeactivation);
+            if (yes)
+            {
+                this.SelectedPatient.IsDeactivated = true;
             }
         }
 
@@ -425,52 +447,62 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
 
             public IEnumerable<DoctorDto> Doctors
             {
-                get; set;
+                get;
+                set;
             }
 
             public IEnumerable<LightInsuranceDto> Insurances
             {
-                get; set;
+                get;
+                set;
             }
 
             public IEnumerable<LightPracticeDto> Practices
             {
-                get; set;
+                get;
+                set;
             }
 
             public IEnumerable<ProfessionDto> Professions
             {
-                get; set;
+                get;
+                set;
             }
 
             public IEnumerable<ReputationDto> Reputations
             {
-                get; set;
+                get;
+                set;
             }
 
             public IList<DoctorDto> SelectedDoctor
             {
-                get; set;
+                get;
+                set;
             }
 
             public InsuranceDto SelectedInsurance
             {
-                get; set;
+                get;
+                set;
             }
 
             public PatientDto SelectedPatient
             {
-                get; set;
+                get;
+                set;
             }
 
             public PracticeDto SelectedPractice
             {
-                get; set;
+                get;
+                set;
             }
 
             public byte[] Thumbnail
             {
-                get; set;
+                get;
+                set;
             }
 
             #endregion Properties

@@ -57,6 +57,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Translations
             get { return Messages.Lbl_City; }
         }
 
+        public static string Deactivated
+        {
+            get { return Messages.Lbl_Deactivated; }
+        }
+
         public static string Doctors
         {
             get { return Messages.Grp_Doctors; }

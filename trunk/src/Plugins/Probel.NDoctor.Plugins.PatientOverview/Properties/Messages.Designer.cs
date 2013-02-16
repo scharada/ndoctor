@@ -61,6 +61,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deactivate.
+        /// </summary>
+        internal static string Btn_Deactivate {
+            get {
+                return ResourceManager.GetString("Btn_Deactivate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Doctor.
         /// </summary>
         internal static string Btn_Doctor {
@@ -322,6 +331,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deactivated!.
+        /// </summary>
+        internal static string Lbl_Deactivated {
+            get {
+                return ResourceManager.GetString("Lbl_Deactivated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fee:.
         /// </summary>
         internal static string Lbl_Fee {
@@ -493,6 +511,17 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Si you deactivate this patient, he/she will remain in the database but nDoctor will behave like if he/she is deleted. To reactivate this patient, go to the database manager (maybe you have to activate this plugin via the settings).
+        ///
+        /// Do you want to deactivate this patient?.
+        /// </summary>
+        internal static string Msg_ConfirmDeactivation {
+            get {
+                return ResourceManager.GetString("Msg_ConfirmDeactivation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Double click to select the doctor..
         /// </summary>
         internal static string Msg_DoubleClick {
@@ -507,6 +536,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         internal static string Msg_DoubleClickToUnbind {
             get {
                 return ResourceManager.GetString("Msg_DoubleClickToUnbind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patient deactivated.
+        /// </summary>
+        internal static string Msg_PatientDeactivated {
+            get {
+                return ResourceManager.GetString("Msg_PatientDeactivated", resourceCulture);
             }
         }
         
