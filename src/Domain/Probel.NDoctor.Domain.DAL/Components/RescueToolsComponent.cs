@@ -138,18 +138,13 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Gets the doubloons of the specified doctor.
         /// </summary>
         /// <param name="doctor">The doctor that will be useds to find doubloons.</param>
+        /// <param name="query">preloaded query to help optimisation.</param>
         /// <returns>
         /// An enumeration of doctor that are doubloons with the specified doctor
         /// </returns>
         public IEnumerable<LightDoctorDto> GetDoubloonsOf(LightDoctorDto doctor)
         {
-            var entities = (from doc in this.Session.Query<Doctor>()
-                            where doc.FirstName == doctor.FirstName
-                               && doc.LastName == doctor.LastName
-                               && doc.Specialisation.Id == doctor.Specialisation.Id
-                               && doc.Id != doctor.Id
-                            select doc).AsEnumerable();
-            return Mapper.Map<IEnumerable<Doctor>, IEnumerable<LightDoctorDto>>(entities);
+            return this.GetDoubloonsOf(doctor, null);
         }
 
         /// <summary>
@@ -158,17 +153,13 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="firstName">The first name of the doctor.</param>
         /// <param name="lastName">The last name of the doctor.</param>
         /// <param name="specialisation">The specialisation of the doctor.</param>
+        /// <param name="query">preloaded query to help optimisation.</param>
         /// <returns>
         /// An enumeration of doctor that are doubloons with the specified doctor
         /// </returns>
         public IEnumerable<LightDoctorDto> GetDoubloonsOf(string firstName, string lastName, TagDto specialisation)
         {
-            var entities = (from doc in this.Session.Query<Doctor>()
-                            where doc.FirstName == firstName
-                               && doc.LastName == lastName
-                               && doc.Specialisation.Id == specialisation.Id
-                            select doc).AsEnumerable();
-            return Mapper.Map<IEnumerable<Doctor>, IEnumerable<LightDoctorDto>>(entities);
+            return this.GetDoubloonsOf(firstName, lastName, specialisation, null);
         }
 
         /// <summary>
@@ -191,11 +182,84 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
-        /// Replaces the specified doubloons with the specified doctor.
+        /// Finds the patients older than the specified age.
+        /// </summary>
+        /// <param name="age">The age of the patient in years.</param>
+        /// <returns></returns>
+        public void Replace(IEnumerable<LightDoctorDto> doubloons, LightDoctorDto withDoctor)
+        {
+            this.Replace(doubloons, withDoctor, null);
+        }
+
+        /// <summary>
+        /// Replaces the with first doubloon.
         /// </summary>
         /// <param name="doubloons">The doubloons.</param>
-        /// <param name="withDoctor">The doctor that will replace the doubloons.</param>
-        public void Replace(IEnumerable<LightDoctorDto> doubloons, LightDoctorDto withDoctor)
+        public void ReplaceWithFirstDoubloon(IEnumerable<LightDoctorDto> doubloons)
+        {
+            var doctors = this.Session.Query<Doctor>()
+                .ToList()
+                .AsQueryable();
+
+            var preloadedPatients = this.Session.Query<Patient>()
+                .ToList();
+
+            if (doubloons.Count() > 0)
+            {
+                foreach (var d in doubloons)
+                {
+                    var currentDoubloons = this.GetDoubloonsOf(d.FirstName, d.LastName, d.Specialisation, doctors);
+                    if (currentDoubloons.Count() > 0)
+                    {
+                        this.Replace(currentDoubloons, currentDoubloons.First(), preloadedPatients);
+                    }
+                    else { throw new NotSupportedException("There is no doubloons for the specified doctor"); }
+
+                }
+            }
+            else { Logger.Debug("The list of doubloons was empty"); }
+        }
+
+        /// <summary>
+        /// Updates the deactivation value for the specified patients.
+        /// </summary>
+        /// <param name="patients">The patients.</param>
+        public void UpdateDeactivation(IEnumerable<LightPatientDto> patients)
+        {
+            foreach (var patient in patients)
+            {
+                var entity = this.Session.Get<Patient>(patient.Id);
+                entity.IsDeactivated = patient.IsDeactivated;
+                this.Session.Update(entity);
+            }
+        }
+
+        private IEnumerable<LightDoctorDto> GetDoubloonsOf(LightDoctorDto doctor, IQueryable<Doctor> query)
+        {
+            if (query == null) { query = this.Session.Query<Doctor>(); }
+
+            var entities = (from doc in query
+                            where doc.FirstName == doctor.FirstName
+                               && doc.LastName == doctor.LastName
+                               && doc.Specialisation.Id == doctor.Specialisation.Id
+                               && doc.Id != doctor.Id
+                            select doc).AsEnumerable();
+            return Mapper.Map<IEnumerable<Doctor>, IEnumerable<LightDoctorDto>>(entities);
+        }
+
+        private IEnumerable<LightDoctorDto> GetDoubloonsOf(string firstName, string lastName, TagDto specialisation, IQueryable<Doctor> query)
+        {
+            if (query == null) { query = this.Session.Query<Doctor>(); }
+
+            var entities = (from doc in query
+                            where doc.FirstName == firstName
+                               && doc.LastName == lastName
+                               && doc.Specialisation.Id == specialisation.Id
+                            select doc).AsEnumerable();
+            return Mapper.Map<IEnumerable<Doctor>, IEnumerable<LightDoctorDto>>(entities);
+        }
+        
+        private void Replace(IEnumerable<LightDoctorDto> doubloons, LightDoctorDto withDoctor, IEnumerable<Patient> preloadedPatients)
         {
             var updator = new Updator(this.Session);
 
@@ -205,12 +269,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
                        select d.Id).ToList();
 
             // Find the replacement doctor
-            var newDoctor = (from doc in this.Session.Query<Doctor>()
-                             where doc.Id == withDoctor.Id
-                             select doc).Single();
+            var newDoctor = this.Session.Get<Doctor>(withDoctor.Id);
 
             //Find the patients that has on of the doubloons
-            var patients = (from pat in this.Session.Query<Patient>().ToList()
+            if (preloadedPatients == null) { preloadedPatients = this.Session.Query<Patient>().ToList(); }
+            var patients = (from pat in preloadedPatients
                             where pat.Doctors.Where(e => ids.Contains(e.Id)).Count() > 0
                             select pat);
             // Replace the doubloons with the replacement patient
@@ -234,42 +297,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
             {
                 var doctor = this.Session.Get<Doctor>(id);
                 if (doctor != null) { this.Session.Delete(doctor); }
-            }
-        }
-
-        /// <summary>
-        /// Replaces the with first doubloon.
-        /// </summary>
-        /// <param name="doubloons">The doubloons.</param>
-        public void ReplaceWithFirstDoubloon(IEnumerable<LightDoctorDto> doubloons)
-        {
-            if (doubloons.Count() > 0)
-            {
-                foreach (var d in doubloons)
-                {
-                    var currentDoubloons = this.GetDoubloonsOf(d.FirstName, d.LastName, d.Specialisation);
-                    if (currentDoubloons.Count() > 0)
-                    {
-                        this.Replace(currentDoubloons, currentDoubloons.First());
-                    }
-                    else { throw new NotSupportedException("There is no doubloons for the specified doctor"); }
-
-                }
-            }
-            else { Logger.Debug("The list of doubloons was empty"); }
-        }
-
-        /// <summary>
-        /// Updates the deactivation value for the specified patients.
-        /// </summary>
-        /// <param name="patients">The patients.</param>
-        public void UpdateDeactivation(IEnumerable<LightPatientDto> patients)
-        {
-            foreach (var patient in patients)
-            {
-                var entity = this.Session.Get<Patient>(patient.Id);
-                entity.IsDeactivated = patient.IsDeactivated;
-                this.Session.Update(entity);
             }
         }
 
