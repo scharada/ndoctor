@@ -215,8 +215,29 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             set
             {
                 this.selectedPatient = value;
+                this.UpdateData();
                 this.OnPropertyChanged(() => SelectedPatient);
             }
+        }
+
+        private void UpdateData()
+        {
+            var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
+            var token = new CancellationTokenSource().Token;
+
+            Task.Factory
+                .StartNew<Tuple<InsuranceDto, PracticeDto>>(() =>
+                {
+                    var insurance = this.component.GetInsuranceById(this.SelectedPatient.Insurance.Id);
+                    var practice = this.component.GetPracticeById(this.SelectedPatient.Practice.Id);
+                    return new Tuple<InsuranceDto, PracticeDto>(insurance, practice);
+                })
+                .ContinueWith(t =>
+                {
+                    this.SelectedInsurance = t.Result.Item1;
+                    this.SelectedPractice = t.Result.Item2;
+                }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler)
+                .ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
         }
 
         public PracticeDto SelectedPractice

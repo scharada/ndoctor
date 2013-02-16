@@ -93,6 +93,7 @@
                                 
                                 <!-- Deactivation indicator -->
                                 <Label DockPanel.Dock="Top"
+                                       Margin="4"
                                        HorizontalContentAlignment="Center"
                                        Visibility="{Binding SelectedPatient.IsDeactivated, Converter={StaticResource BooleanToVisibility}}"
                                        Content="{Binding Source={x:Static Member=t:WorkbenchText.Deactivated}}" Background="#FFEF2B2B" FontWeight="Bold" />
