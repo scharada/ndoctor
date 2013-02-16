@@ -31,6 +31,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     {
         #region Fields
 
+        private readonly IDbSettingsComponent DbSettings = PluginContext.ComponentFactory.GetInstance<IDbSettingsComponent>();
         private readonly ICommand refreshCommand;
 
         private static bool hasLoaded = false;
@@ -130,6 +131,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         private void Refresh()
         {
+            if (bool.Parse(this.DbSettings["IsDebug"])) { return; }
             if (!hasLoaded)
             {
                 this.IsAgeRepartitionBusy

@@ -22,16 +22,14 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     /// Doctor
     /// </summary>
     [Serializable]
-    public class DoctorDto : PersonDto
+    public class DoctorDto : LightDoctorDto
     {
         #region Fields
 
         private AddressDto address;
-        private Gender gender;
         private string proMail;
         private string proMobile;
         private string proPhone;
-        private TagDto specialisation;
 
         #endregion Fields
 
@@ -59,32 +57,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.address = value ?? new AddressDto(); ;
                 this.OnPropertyChanged(() => this.Address);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a string representing how the name of the user should
-        /// be displayed.
-        /// </summary>
-        /// <value>
-        /// The name of the displayed.
-        /// </value>
-        public string DisplayedName
-        {
-            get { return string.Format("{0} {1}", this.FirstName, this.LastName); }
-        }
-
-        /// <summary>
-        /// Gets or sets the sex.
-        /// </summary>
-        /// <value>The sex.</value>
-        public Gender Gender
-        {
-            get { return this.gender; }
-            set
-            {
-                this.gender = value;
-                this.OnPropertyChanged(() => this.Gender);
             }
         }
 
@@ -133,16 +105,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.proPhone = value;
                 this.OnPropertyChanged(() => this.ProPhone);
-            }
-        }
-
-        public TagDto Specialisation
-        {
-            get { return this.specialisation; }
-            set
-            {
-                this.specialisation = value;
-                this.OnPropertyChanged(() => this.Specialisation);
             }
         }
 

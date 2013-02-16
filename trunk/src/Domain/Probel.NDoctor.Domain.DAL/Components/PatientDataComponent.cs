@@ -62,14 +62,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             var patientEntity = this.Session.Get<Patient>(patient.Id);
             var doctorEntity = this.Session.Get<Doctor>(doctor.Id);
 
-            if (patientEntity == null) throw new EntityNotFoundException(typeof(Patient));
-            if (doctorEntity == null) throw new EntityNotFoundException(typeof(Doctor));
-
-            patientEntity.Doctors.Add(doctorEntity);
-            doctorEntity.Patients.Add(patientEntity);
-
-            this.Session.Update(patientEntity);
-            this.Session.Update(doctorEntity);
+            new Updator(this.Session).AddDoctorTo(patientEntity, doctorEntity);
         }
 
         /// <summary>

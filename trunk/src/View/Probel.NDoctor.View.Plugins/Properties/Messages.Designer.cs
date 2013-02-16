@@ -404,6 +404,24 @@ namespace Probel.NDoctor.View.Plugins.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rescue tools for the database.
+        /// </summary>
+        internal static string Plugin_RescueTools {
+            get {
+                return ResourceManager.GetString("Plugin_RescueTools", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provides rescue tools to manage inconsistencies in the database.
+        /// </summary>
+        internal static string Plugin_RescueTools_Explanations {
+            get {
+                return ResourceManager.GetString("Plugin_RescueTools_Explanations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User session manager.
         /// </summary>
         internal static string Plugin_UserSessionManager {

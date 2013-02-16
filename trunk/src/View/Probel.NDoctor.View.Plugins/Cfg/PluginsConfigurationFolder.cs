@@ -42,6 +42,8 @@ namespace Probel.NDoctor.View.Plugins.Cfg
     {
         #region Fields
 
+        private const string DEBUG_PLUGIN_ID = "{A8240EDE-82DA-4807-9D58-86DD8C87238B}";
+
         private readonly List<PluginConfiguration> values;
 
         #endregion Fields
@@ -72,12 +74,13 @@ namespace Probel.NDoctor.View.Plugins.Cfg
             {
                 try
                 {
+                    if (key.ToUpper() == DEBUG_PLUGIN_ID) { return DummyConfiguration(); }
                     var id = Guid.Parse(key);
                     return (from value in this.values
                             where value.Id == id
-                            select value).Single();
+                            select value).SingleOrDefault();
                 }
-                catch (NotSupportedException ex)
+                catch (Exception ex)
                 {
                     throw new NotSupportedException(string.Format(
                         "The element with id '{0}' is not or is more than once in the plugin configuration folder", key)
@@ -262,6 +265,16 @@ namespace Probel.NDoctor.View.Plugins.Cfg
                 IsMandatory = true,
             });
 
+            folder.values.Add(new PluginConfiguration()
+            {
+                Id = Guid.Parse("{D70C84A1-AF3C-4FFF-AEAE-7331BE0BC4ED}"),
+                IsActivated = false,
+                Name = Messages.Plugin_RescueTools,
+                Explanations = Messages.Plugin_RescueTools_Explanations,
+                IsRecommended = false,
+                IsMandatory = false,
+            });
+
             return folder;
         }
 
@@ -347,6 +360,18 @@ namespace Probel.NDoctor.View.Plugins.Cfg
         public void Save(TextWriter stream)
         {
             new XmlSerializer(typeof(List<PluginConfiguration>)).Serialize(stream, this.values);
+        }
+
+        private static PluginConfiguration DummyConfiguration()
+        {
+            return new PluginConfiguration()
+            {
+                IsActivated = true,
+                IsMandatory = true,
+                IsRecommended = true,
+                Name = "Debugging plugin",
+                Explanations = "This is used only in development. It shouldn't be visible in production",
+            };
         }
 
         #endregion Methods

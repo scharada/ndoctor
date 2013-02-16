@@ -270,6 +270,14 @@ Path: {1}</value>
     <value>Used to manage the prescriptions of a patient</value>
     <comment>Used to manage the prescriptions of a patient</comment>
   </data>
+  <data name="Plugin_RescueTools" xml:space="preserve">
+    <value>Rescue tools for the database</value>
+    <comment>Rescue tools for the database</comment>
+  </data>
+  <data name="Plugin_RescueTools_Explanations" xml:space="preserve">
+    <value>Provides rescue tools to manage inconsistencies in the database</value>
+    <comment>Provides rescue tools to manage inconsistencies in the database</comment>
+  </data>
   <data name="Plugin_UserSessionManager" xml:space="preserve">
     <value>User session manager</value>
     <comment>User session manager</comment>

@@ -183,6 +183,19 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether this patient is deactivated.
+        /// Deactivated means that this patient is logically deleted but still in
+        /// the database
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if this patient is deactivated; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool IsDeactivated
+        {
+            get; set;
+        }
+
+        /// <summary>
         /// Gets or sets the medical records of the patient.
         /// </summary>
         /// <value>

@@ -130,6 +130,7 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<MedicalRecord, MedicalRecordDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Tag, MedicalRecordFolderDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Tag, TagDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Doctor, DoubloonDoctorDto>();
         }
 
         /// <summary>

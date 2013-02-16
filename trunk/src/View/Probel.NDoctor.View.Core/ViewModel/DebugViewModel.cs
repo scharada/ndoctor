@@ -22,6 +22,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Plugins;
 
@@ -82,6 +83,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
             get { return this.isDebugModeActivated; }
             set
             {
+                DebugMode.Value = value;
                 this.isDebugModeActivated = value;
                 this.OnPropertyChanged(() => IsDebugModeActivated);
             }

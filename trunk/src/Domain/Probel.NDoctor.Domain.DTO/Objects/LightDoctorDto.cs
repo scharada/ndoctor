@@ -45,9 +45,19 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         {
             get
             {
-                return string.Format("{0} {1}"
-                , this.FirstName
-                , this.LastName);
+                if (DebugMode)
+                {
+                    return string.Format("[{0}] {1} {2}"
+                        , this.Id
+                        , this.FirstName
+                        , this.LastName);
+                }
+                else
+                {
+                    return string.Format("{0} {1}"
+                    , this.FirstName
+                    , this.LastName);
+                }
             }
         }
 

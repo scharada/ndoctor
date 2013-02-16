@@ -25,6 +25,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.Helpers.Strings;
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.View;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Plugins;
@@ -38,6 +39,8 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         protected readonly IErrorHandler Handle;
         protected readonly ILog Logger;
+
+        protected static DebugMode InDebugMode;
 
         #endregion Fields
 

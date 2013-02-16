@@ -1,0 +1,117 @@
+﻿<Page x:Class="Probel.NDoctor.Plugins.RescueTools.View.Workbench"
+      
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:t="clr-namespace:Probel.NDoctor.Plugins.RescueTools.Translations"
+      xmlns:bt="clr-namespace:Probel.NDoctor.View.Toolbox.Translations;assembly=Probel.NDoctor.View.Toolbox"
+      xmlns:conv="clr-namespace:Probel.NDoctor.View.Toolbox.Converters;assembly=Probel.NDoctor.View.Toolbox"
+      xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+            
+      Title="{Binding Source={x:Static Member=t:WorkbenchText.PageTitle}}">
+    <Page.Resources>
+        <conv:NullToVisibilityConverter x:Key="NullToVisibility"/>
+        <Style TargetType="Label" x:Key="PresentationLbl">
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+        </Style>
+        <Style TargetType="Label" x:Key="ValueLabel">
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="ListView">
+            <Setter Property="Width" Value="300"/>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <TabControl TabStripPlacement="Left"
+                    Margin="4">
+            <TabItem Header="{Binding Source={x:Static Member=t:WorkbenchText.TabDoctorDoubloons}}">
+                <DockPanel>
+                    <GroupBox Header="{Binding Source={x:Static Member=t:WorkbenchText.Doubloons}}"
+                              Margin="4">
+                        <DockPanel>
+                            <toolkit:WatermarkTextBox DockPanel.Dock="Top" 
+                                                      Margin="4"
+                                                      Watermark="{Binding Source={x:Static bt:BaseText.Search}}"
+                                                      Text="{Binding SearchCriteria, UpdateSourceTrigger=PropertyChanged}">
+
+                            </toolkit:WatermarkTextBox>
+                            <Label DockPanel.Dock="Bottom" 
+                                   Content="{Binding DoctorDoubloonsCount}"/>
+                            <ListView ItemsSource="{Binding DoctorDoubloons}"
+                                  SelectedItem="{Binding SelectedDoctorDoubloon}"
+                                  DisplayMemberPath="DisplayText"/>
+                        </DockPanel>
+                    </GroupBox>
+                    <GroupBox Header="{Binding Source={x:Static Member=t:WorkbenchText.KeptDoctor}}"
+                              Margin="4">
+                        <ListView ItemsSource="{Binding DoubloonsOfSelectedDoctor}"
+                                  SelectedItem="{Binding ReplacementDoctor}"                                                                    
+                                  DisplayMemberPath="DisplayedName"/>
+                    </GroupBox>
+                    <GroupBox Header="{Binding Source={x:Static t:WorkbenchText.Details}}">
+                        <StackPanel>
+                            <Button Content="{Binding Source={x:Static t:WorkbenchText.Refresh}}"
+                                    Margin="4"
+                                    Command="{Binding RefreshCommand}"/>
+                            <StackPanel DockPanel.Dock="Right"
+                                    Visibility="{Binding ReplacementDoctor, Converter={StaticResource NullToVisibility}}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource ValueLabel}" Content="{Binding ReplacementDoctor.Specialisation.Name}"/>
+                                    <Label Style="{StaticResource ValueLabel}" Content="{Binding ReplacementDoctor.DisplayedName}"/>
+                                </StackPanel>
+                                <GroupBox DockPanel.Dock="Top"
+                                      Margin="4"
+                                      Header="{x:Static Member=t:WorkbenchText.GrpAddress}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="{Binding ReplacementDoctor.Address.Street}" Style="{StaticResource ValueLabel}" />
+                                        <Label Content="," Visibility="{Binding ReplacementDoctor.Address.StreetNumber, Mode=OneWay}"/>
+                                        <Label Content="{Binding ReplacementDoctor.Address.StreetNumber}" Style="{StaticResource ValueLabel}" />
+                                        <Label Content="/"  Visibility="{Binding ReplacementDoctor.Address.BoxNumber}"/>
+                                        <Label Content="{Binding ReplacementDoctor.Address.BoxNumber}" 
+                                           Visibility="{Binding ReplacementDoctor.Address.BoxNumber}"
+                                           Style="{StaticResource ValueLabel}" />
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox DockPanel.Dock="Top"
+                                      Margin="4"
+                                      Header="{x:Static Member=t:WorkbenchText.GrpProfContact}">
+                                    <StackPanel>
+                                        <DockPanel Visibility="{Binding ReplacementDoctor.ProMobile, Mode=OneWay}">
+                                            <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Mobile}"/>
+                                            <Label Content="{Binding ReplacementDoctor.ProMobile}" Style="{StaticResource ValueLabel}" />
+                                        </DockPanel>
+                                        <DockPanel Visibility="{Binding ReplacementDoctor.ProPhone, Mode=OneWay}">
+                                            <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Phone}"/>
+                                            <Label Content="{Binding ReplacementDoctor.ProPhone}" Style="{StaticResource ValueLabel}" />
+                                        </DockPanel>
+                                        <DockPanel Visibility="{Binding ReplacementDoctor.ProMail, Mode=OneWay}">
+                                            <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Mail}"/>
+                                            <TextBlock DockPanel.Dock="Bottom" 
+                                                   HorizontalAlignment="Left"
+                                                   Margin="4">
+                                            <Hyperlink Command="{Binding SendProMailCommand}">
+                                                <TextBlock Text="{Binding ReplacementDoctor.ProMail}"/>
+                                            </Hyperlink>
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </StackPanel>
+                                </GroupBox>
+                            </StackPanel>
+                            <TextBlock Text="{Binding Source={x:Static t:WorkbenchText.DoctorDoubloonsExplanations}}"
+                                       Margin="4" TextWrapping="Wrap" HorizontalAlignment="Stretch" TextAlignment="Center" Foreground="#FFF60000" FontWeight="Bold" />
+                            <Button Content="{Binding Source={x:Static t:WorkbenchText.Replace}}"
+                                    Margin="4"
+                                    Command="{Binding ReplaceCommand}"/>
+                            <Button Content="{Binding Source={x:Static t:WorkbenchText.ReplaceWithFirst}}"
+                                    Margin="4"
+                                    Command="{Binding ReplaceWithFirstCommand}"/>
+                        </StackPanel>
+                    </GroupBox>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="{Binding Source={x:Static Member=t:WorkbenchText.TabTooOldPatients}}"/>
+        </TabControl>
+    </Grid>
+</Page>

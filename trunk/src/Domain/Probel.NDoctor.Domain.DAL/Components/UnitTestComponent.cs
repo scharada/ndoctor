@@ -82,6 +82,19 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return new Selector(this.Session).GetAllUsersLight();
         }
 
+        /// <summary>
+        /// Gets the doctor by id.
+        /// </summary>
+        /// <param name="id">The id of the doctor.</param>
+        /// <returns></returns>
+        public DoctorDto GetDoctorById(long id)
+        {
+            var entity = (from doc in this.Session.Query<Doctor>()
+                          where doc.Id == id
+                          select doc).Single();
+            return Mapper.Map<Doctor, DoctorDto>(entity);
+        }
+
         public InsuranceDto GetInsurance(long id)
         {
             var found = (from i in this.Session.Query<Insurance>()
