@@ -230,7 +230,31 @@
     <comment>Deactivate all</comment>
   </data>
   <data name="Msg_PatientUpdated" xml:space="preserve">
-    <value>Patient updated</value>
-    <comment>Patient updated</comment>
+    <value>Patients updated</value>
+    <comment>Patients updated</comment>
+  </data>
+  <data name="Tab_DeactivatedPatients" xml:space="preserve">
+    <value>Deactivated patients</value>
+    <comment>Deactivated patients</comment>
+  </data>
+  <data name="Btn_FindDeactivatedPatients" xml:space="preserve">
+    <value>Find deactivated patients</value>
+    <comment>Find deactivated patients</comment>
+  </data>
+  <data name="Msg_FoundDeactivatedPatients" xml:space="preserve">
+    <value>Found {0} deactivated patient(s).</value>
+    <comment>Found {0} deactivated patient(s).</comment>
+  </data>
+  <data name="Msg_FoundPatients" xml:space="preserve">
+    <value>Found {0} patient(s)</value>
+    <comment>Found {0} patient(s)</comment>
+  </data>
+  <data name="Btn_ReactivateAll" xml:space="preserve">
+    <value>Reactivate all</value>
+    <comment>Reactivate all</comment>
+  </data>
+  <data name="Gb_Actions" xml:space="preserve">
+    <value>Actions</value>
+    <comment>Actions</comment>
   </data>
 </root>

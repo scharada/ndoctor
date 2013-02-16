@@ -50,7 +50,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
         /// Handles a list of errors, log it and shows a message box with the error.
         /// </summary>
         /// <param name="ex">The exception to log.</param>
-        void Error(IEnumerable<Exception> ex);
+        void Error(AggregateException ex);
 
         /// <summary>
         /// Handles the error, log it and shows a message box with the error.

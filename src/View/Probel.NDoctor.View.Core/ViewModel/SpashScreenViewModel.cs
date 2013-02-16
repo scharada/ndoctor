@@ -223,6 +223,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         private void ConfigureStatusWriter()
         {
             ErrorHandlerFactory.ConfigureStatusWriter(PluginContext.Host);
+            ErrorHandlerFactory.ConfigureAfterLogHandler(() => PluginContext.Host.SetArrowCursor());
         }
 
         private void ConfigureStructureMap()
