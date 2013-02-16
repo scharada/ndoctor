@@ -106,7 +106,9 @@
     <Compile Include="Components\ApplicationStatisticsComponent.cs" />
     <Compile Include="Components\DataStatisticsComponent.cs" />
     <Compile Include="Components\DbSettingsComponent.cs" />
+    <Compile Include="Components\RescueToolsComponent.cs" />
     <Compile Include="Entities\DbSetting.cs" />
+    <Compile Include="Helpers\DebugMode.cs" />
     <Compile Include="Helpers\Default.cs" />
     <Compile Include="Cfg\NUnitConfigWrapper.cs" />
     <Compile Include="Cfg\Script.cs" />

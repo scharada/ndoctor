@@ -34,6 +34,7 @@ namespace Probel.NDoctor.View.Core
     using Probel.NDoctor.Domain.Components.Statistics;
     using Probel.NDoctor.Domain.DAL.Remote;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Core.View;
@@ -65,6 +66,10 @@ namespace Probel.NDoctor.View.Core
             StartTime = DateTime.Now.ToUniversalTime();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="App"/> class.
+        /// </summary>
+        /// <exception cref="T:System.InvalidOperationException">More than one instance of the <see cref="T:System.Windows.Application"/> class is created per <see cref="T:System.AppDomain"/>.</exception>
         public App()
         {
             this.MainWindow = new MainWindow();
@@ -96,6 +101,8 @@ namespace Probel.NDoctor.View.Core
                 this.Logger.Info(PluginContext.DbConfiguration.NotifyOnNewVersion
                     ? "Notify on new version"
                     : "Do NOT notify on new version");
+
+                this.SetConfiguration();
 
                 this.MainWindow.Show();
                 this.CheckDebugTools();
@@ -226,6 +233,11 @@ namespace Probel.NDoctor.View.Core
             this.arguments.AdminTool = (from arg in args
                                         where arg.ToLower() == "-admin"
                                         select arg).Count() > 0;
+        }
+
+        private void SetConfiguration()
+        {
+            DebugMode.Value = PluginContext.DbConfiguration.IsDebug;
         }
 
         #endregion Methods

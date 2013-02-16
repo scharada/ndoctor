@@ -259,6 +259,15 @@ namespace Probel.NDoctor.View.Toolbox.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search....
+        /// </summary>
+        internal static string Msg_Search {
+            get {
+                return ResourceManager.GetString("Msg_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Question.
         /// </summary>
         internal static string Question {

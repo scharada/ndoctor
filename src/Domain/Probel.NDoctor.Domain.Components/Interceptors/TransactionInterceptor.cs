@@ -21,6 +21,7 @@
 
 namespace Probel.NDoctor.Domain.Components.Interceptors
 {
+    using System;
     using System.Data;
 
     using Castle.DynamicProxy;
@@ -69,8 +70,17 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
                         using (component.Session = DalConfigurator.SessionFactory.OpenSession())
                         using (var tx = component.Session.BeginTransaction(IsolationLevel.ReadCommitted))
                         {
-                            invocation.Proceed();
-                            tx.Commit();
+                            try
+                            {
+                                invocation.Proceed();
+                                tx.Commit();
+                            }
+                            catch (Exception)
+                            {
+                                tx.Rollback();
+                                Logger.Warn("The transaction was rolled back!");
+                                throw;
+                            }
                         }
                         this.WasTransactional = true;
                     }

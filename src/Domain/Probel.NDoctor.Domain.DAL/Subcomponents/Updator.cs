@@ -65,6 +65,23 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         #region Methods
 
         /// <summary>
+        /// Adds the specified doctor to the specified patient.
+        /// </summary>
+        /// <param name="patient">The patient entity.</param>
+        /// <param name="doctor">The doctor entity.</param>
+        public void AddDoctorTo(Patient patient, Doctor doctor)
+        {
+            if (patient == null) throw new EntityNotFoundException(typeof(Patient));
+            if (doctor == null) throw new EntityNotFoundException(typeof(Doctor));
+
+            patient.Doctors.Add(doctor);
+            doctor.Patients.Add(patient);
+
+            this.Session.Update(patient);
+            this.Session.Update(doctor);
+        }
+
+        /// <summary>
         /// Updates the specified tag.
         /// </summary>
         /// <param name="tag">The tag.</param>

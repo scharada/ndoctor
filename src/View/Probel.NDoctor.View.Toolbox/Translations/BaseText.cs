@@ -120,6 +120,11 @@ namespace Probel.NDoctor.View.Toolbox.Translations
             get { return Messages.Save; }
         }
 
+        public static string Search
+        {
+            get { return Messages.Msg_Search; }
+        }
+
         public static string Warning
         {
             get { return Messages.Title_Warning; }

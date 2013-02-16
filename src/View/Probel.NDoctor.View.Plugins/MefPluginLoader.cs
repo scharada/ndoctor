@@ -35,7 +35,7 @@ namespace Probel.NDoctor.View.Plugins
     {
         #region Fields
 
-        private const string DEBUG_PLUGIN = "{1A5224ED-3E37-4AD8-AB2B-FBC0115434FA}";
+        private const string DEBUG_PLUGIN = "{A8240EDE-82DA-4807-9D58-86DD8C87238B}";
 
         private readonly List<Guid> IdCollection = new List<Guid>();
         private readonly string Repository = @".\Plugins";
@@ -114,13 +114,18 @@ namespace Probel.NDoctor.View.Plugins
             }
             Logger.InfoFormat("Found {0} plugin(s) in the repository. (Validation not done)", count);
 
-            var filteredCatatog = new FilteredCatalog(catalog, def => this.IsPluginValid(def) && this.IsActivated(def));
+            var filteredCatatog = new FilteredCatalog(catalog, def => this.FilterPlugin(def));
 
             var container = new CompositionContainer(filteredCatatog);
             var composition = new CompositionBatch();
             composition.AddPart(pluginContainer);
 
             container.Compose(composition);
+        }
+
+        private bool FilterPlugin(ComposablePartDefinition def)
+        {
+            return this.IsPluginValid(def) && this.IsActivated(def);
         }
 
         private bool IsActivated(ComposablePartDefinition def)
@@ -130,11 +135,21 @@ namespace Probel.NDoctor.View.Plugins
                 var id = def.Metadata[Keys.PluginId].ToString();
             #if DEBUG
                 //The debug plugin should be activated if in debug mode
-                if (this.PluginConfiguration.Exist(Guid.Parse(DEBUG_PLUGIN)) && id == DEBUG_PLUGIN) { return true; }
+                if (this.PluginConfiguration.Exist(Guid.Parse(DEBUG_PLUGIN)) && id == DEBUG_PLUGIN)
+                {
+                    Logger.WarnFormat("Activate by default the debub plugin (id: {0})", DEBUG_PLUGIN);
+                    return true;
+                }
             #endif
-                return (this.PluginConfiguration[id].IsMandatory)
+                var isActivated = (this.PluginConfiguration[id].IsMandatory)
                     ? true
                     : this.PluginConfiguration[id].IsActivated;
+
+                //Logger.DebugFormat((isActivated)
+                //    ? "The plugin '{0}' is activated"
+                //    : "The plugin '{0}' is NOT activated", id);
+
+                return isActivated;
 
             }
             else { return false; }
@@ -146,7 +161,12 @@ namespace Probel.NDoctor.View.Plugins
 
             if (def.Metadata.ContainsKey(Keys.Constraint))
             {
-                return new Constraint(def.Metadata[Keys.Constraint].ToString()).IsValid(PluginContext.Host);
+                var isValid = new Constraint(def.Metadata[Keys.Constraint].ToString()).IsValid(PluginContext.Host);
+
+                //Logger.DebugFormat((!isValid)
+                //    ? "The plugin '{0}' is not valid!"
+                //    : "The plugin '{0}' is valid.", def.Metadata[Keys.PluginId]);
+                return isValid;
             }
             else
             {

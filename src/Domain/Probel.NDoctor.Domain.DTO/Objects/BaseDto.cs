@@ -21,11 +21,14 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using Probel.Helpers.Data;
     using Probel.Mvvm;
     using Probel.Mvvm.Validation;
+    using Probel.NDoctor.Domain.DTO.Helpers;
 
     [Serializable]
     public abstract class BaseDto : BaseDto<long>, ICloneable
     {
         #region Fields
+
+        protected static DebugMode DebugMode = new DebugMode();
 
         private bool isImported;
         private string segretator;

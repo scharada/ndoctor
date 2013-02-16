@@ -270,6 +270,14 @@ Chemin: {1}</value>
     <value>Permet de gérer les prescriptions d'un patient</value>
     <comment>Used to manage the prescriptions of a patient</comment>
   </data>
+  <data name="Plugin_RescueTools" xml:space="preserve">
+    <value>Outils de secour pour la base de données</value>
+    <comment>Rescue tools for the database</comment>
+  </data>
+  <data name="Plugin_RescueTools_Explanations" xml:space="preserve">
+    <value>Contient des outils de secour pour gérer d'éventuelles inconsistances dans la base de données</value>
+    <comment>Provides rescue tools to manage inconsistencies in the database</comment>
+  </data>
   <data name="Plugin_UserSessionManager" xml:space="preserve">
     <value>Gestionnaire de session utilisateur</value>
     <comment>User session manager</comment>

@@ -205,6 +205,10 @@
     <value>Report the issue</value>
     <comment>Report the issue</comment>
   </data>
+  <data name="Msg_Search" xml:space="preserve">
+    <value>Search...</value>
+    <comment>Search...</comment>
+  </data>
   <data name="Question" xml:space="preserve">
     <value>Question</value>
     <comment>Question</comment>

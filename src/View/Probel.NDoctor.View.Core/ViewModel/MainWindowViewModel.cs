@@ -20,6 +20,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using System.Collections.Generic;
     using System.Threading;
     using System.Windows.Input;
+    using System.Windows.Threading;
 
     using log4net;
 
@@ -183,19 +184,30 @@ namespace Probel.NDoctor.View.Core.ViewModel
 
         #region Methods
 
+        /// <summary>
+        /// Checks the new version. This action is delayed of 5 seconds.
+        /// </summary>
         public void CheckNewVersion()
         {
-            var culture = Thread.CurrentThread.CurrentUICulture;
-            var versionNotifyer = new RemoteFactory().NewVersionNotifyer();
-            versionNotifyer.Checked += (sender, e) =>
+            var timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(5);
+            timer.Tick += (sender, e) =>
             {
-                if (PluginContext.DbConfiguration.NotifyOnNewVersion)
+                Logger.Debug("Checking new versions...");
+                timer.Stop();
+                var culture = Thread.CurrentThread.CurrentUICulture;
+                var versionNotifyer = new RemoteFactory().NewVersionNotifyer();
+                versionNotifyer.Checked += (sender1, e1) =>
                 {
-                    new UserInteraction(culture)
-                        .NotifyNewVersion(e.RemoteVersion);
-                }
+                    if (PluginContext.DbConfiguration.NotifyOnNewVersion)
+                    {
+                        new UserInteraction(culture)
+                            .NotifyNewVersion(e1.RemoteVersion);
+                    }
+                };
+                versionNotifyer.Check(PluginContext.Configuration.Version);
             };
-            versionNotifyer.Check(PluginContext.Configuration.Version);
+            timer.Start();
         }
 
         /// <summary>

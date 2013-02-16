@@ -35,7 +35,7 @@ namespace Probel.NDoctor.View.Test
         #region Fields
 
         private const string ID_ADMINISTRATION = "{C4706773-CF41-49E9-8F47-6FCEA7A86456}";
-        private const int PLUGINCOUNT = 14;
+        private const int PLUGINCOUNT = 15;
 
         PluginsConfigurationFolder Configuration;
 
