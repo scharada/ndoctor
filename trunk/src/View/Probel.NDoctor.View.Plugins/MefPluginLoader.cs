@@ -137,13 +137,17 @@ namespace Probel.NDoctor.View.Plugins
                 //The debug plugin should be activated if in debug mode
                 if (this.PluginConfiguration.Exist(Guid.Parse(DEBUG_PLUGIN)) && id == DEBUG_PLUGIN)
                 {
-                    Logger.WarnFormat("Activate by default the debub plugin (id: {0})", DEBUG_PLUGIN);
+                    Logger.WarnFormat("Activate by default the debug plugin (id: {0})", DEBUG_PLUGIN);
                     return true;
                 }
             #endif
-                var isActivated = (this.PluginConfiguration[id].IsMandatory)
-                    ? true
-                    : this.PluginConfiguration[id].IsActivated;
+                bool isActivated = true;
+                if (this.PluginConfiguration.Exist(id))
+                {
+                    isActivated = (this.PluginConfiguration[id].IsMandatory)
+                        ? true
+                        : this.PluginConfiguration[id].IsActivated;
+                }
 
                 //Logger.DebugFormat((isActivated)
                 //    ? "The plugin '{0}' is activated"
