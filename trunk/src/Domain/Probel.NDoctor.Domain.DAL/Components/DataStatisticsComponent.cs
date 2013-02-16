@@ -70,6 +70,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public Chart<int, int> GetAgeRepartion()
         {
             var result = (from p in this.Session.Query<Patient>().ToList()
+                          where p.IsDeactivated == false
                           group p by p.Age into g
                           where g.Key < 120
                           select new ChartPoint<int, int>(g.Key, g.Count()));
@@ -84,6 +85,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public Chart<string, int> GetGenderRepartition()
         {
             var result = (from pat in this.Session.Query<Patient>()
+                          where pat.IsDeactivated == false
                           group pat by pat.Gender into g
                           select new ChartPoint<string, int> { X = g.Key.Translate(), Y = g.Count() });
             return new Chart<string, int>(result);
@@ -103,6 +105,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             {
                 var count = (from p in this.Session.Query<Patient>()
                              where p.InscriptionDate.Year <= i
+                                && p.IsDeactivated == false
                              select p).Count();
                 chart.AddPoint(new DateTime(i, 1, 1), count);
             }

@@ -8,7 +8,10 @@
       xmlns:bt="clr-namespace:Probel.NDoctor.View.Toolbox.Translations;assembly=Probel.NDoctor.View.Toolbox"
       xmlns:conv="clr-namespace:Probel.NDoctor.View.Toolbox.Converters;assembly=Probel.NDoctor.View.Toolbox"
       xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
-            
+      
+      mc:Ignorable="d" 
+      d:DesignWidth="1024"
+      d:DesignHeight="768" 
       Title="{Binding Source={x:Static Member=t:WorkbenchText.PageTitle}}">
     <Page.Resources>
         <conv:NullToVisibilityConverter x:Key="NullToVisibility"/>
@@ -111,7 +114,63 @@
                     </GroupBox>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="{Binding Source={x:Static Member=t:WorkbenchText.TabTooOldPatients}}"/>
+            <TabItem Header="{Binding Source={x:Static Member=t:WorkbenchText.TabTooOldPatients}}">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Left"
+                                Width="150">
+                        <GroupBox Header="{Binding Source={x:Static Member=t:WorkbenchText.SearchOnAge}}">
+                            <StackPanel>
+                                <toolkit:IntegerUpDown Margin="4"
+                                                       Minimum="0"
+                                                       Value="{Binding AgeCriteria}"/>
+                                <Button Margin="4" 
+                                        Content="{Binding Source={x:Static Member=bt:BaseText.Search}}"
+                                        Command="{Binding SearchOnAgeCommand}"/>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <Button Margin="4" 
+                                Content="{Binding Source={x:Static Member=t:WorkbenchText.DeactivateAll}}"
+                                Command="{Binding DeactivateAllCommand}"/>
+                        <Button Margin="4" 
+                                Content="{Binding Source={x:Static Member=bt:BaseText.Update}}"
+                                Command="{Binding UpdateOldPatientsCommand}"/>
+                    </StackPanel>
+                    <DataGrid DockPanel.Dock="Right" Margin="4"
+                              ItemsSource="{Binding OldPatients}" 
+                              VerticalGridLinesBrush="#00000000" 
+                              HorizontalGridLinesBrush="#00000000" 
+                              AutoGenerateColumns="False" 
+                              CanUserReorderColumns="False" 
+                              CanUserSortColumns="False" CanUserAddRows="False" CanUserDeleteRows="False">
+
+                        <DataGrid.Columns>
+                            <DataGridCheckBoxColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.Deactivated}}"
+                                                    Binding="{Binding Path=IsDeactivated,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                    Width="*"/>
+                            <DataGridTextColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.Deactivated}}"
+                                                Binding="{Binding Path=IsDeactivated,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                Width="*"/>
+                            <DataGridTextColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.Age}}"
+                                                Binding="{Binding Path=Age,UpdateSourceTrigger=PropertyChanged}"                                                
+                                                Width="*" 
+                                                IsReadOnly="True"/>
+                            <DataGridTextColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.Birthdate}}"
+                                                Binding="{Binding Path=Birthdate, StringFormat={}{0:d}, UpdateSourceTrigger=PropertyChanged}"                                                
+                                                Width="*"
+                                                IsReadOnly="True"/>
+                            <DataGridTextColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.FirstName}}"
+                                                Binding="{Binding Path=FirstName,UpdateSourceTrigger=PropertyChanged}"
+                                                Width="*"
+                                                IsReadOnly="True"/>
+                            <DataGridTextColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.LastName}}"
+                                                Binding="{Binding Path=LastName,UpdateSourceTrigger=PropertyChanged}"
+                                                Width="*"
+                                                IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </TabItem>
         </TabControl>
     </Grid>
 </Page>

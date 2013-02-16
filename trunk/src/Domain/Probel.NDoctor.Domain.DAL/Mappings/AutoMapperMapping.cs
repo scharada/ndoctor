@@ -179,6 +179,7 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
                     Id = src.Id,
                     IsImported = src.IsImported,
                     LastName = src.LastName,
+                    IsDeactivated = src.IsDeactivated,
                     Profession = Mapper.Map<ProfessionDto>(src.Profession),
                 };
                 Clean(dto);

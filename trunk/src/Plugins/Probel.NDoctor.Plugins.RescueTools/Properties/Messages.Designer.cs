@@ -61,6 +61,15 @@ namespace Probel.NDoctor.Plugins.RescueTools.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deactivate all.
+        /// </summary>
+        internal static string Btn_DeactivateAll {
+            get {
+                return ResourceManager.GetString("Btn_DeactivateAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Find doubloons....
         /// </summary>
         internal static string Btn_Refresh {
@@ -79,11 +88,65 @@ namespace Probel.NDoctor.Plugins.RescueTools.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remplacer avec le premier doublon trouvé.
+        ///   Looks up a localized string similar to Replace with first doublon.
         /// </summary>
         internal static string Btn_ReplaceWithFirst {
             get {
                 return ResourceManager.GetString("Btn_ReplaceWithFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search on age.
+        /// </summary>
+        internal static string Db_SearchOnAge {
+            get {
+                return ResourceManager.GetString("Db_SearchOnAge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Age.
+        /// </summary>
+        internal static string Dgv_Age {
+            get {
+                return ResourceManager.GetString("Dgv_Age", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Birthdate.
+        /// </summary>
+        internal static string Dgv_Birthdate {
+            get {
+                return ResourceManager.GetString("Dgv_Birthdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deactivated?.
+        /// </summary>
+        internal static string Dgv_Deactivated {
+            get {
+                return ResourceManager.GetString("Dgv_Deactivated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First name.
+        /// </summary>
+        internal static string Dgv_FirstName {
+            get {
+                return ResourceManager.GetString("Dgv_FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last name.
+        /// </summary>
+        internal static string Dgv_LastName {
+            get {
+                return ResourceManager.GetString("Dgv_LastName", resourceCulture);
             }
         }
         
@@ -201,6 +264,15 @@ namespace Probel.NDoctor.Plugins.RescueTools.Properties {
         internal static string Msg_DoubloonsFound {
             get {
                 return ResourceManager.GetString("Msg_DoubloonsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patient updated.
+        /// </summary>
+        internal static string Msg_PatientUpdated {
+            get {
+                return ResourceManager.GetString("Msg_PatientUpdated", resourceCulture);
             }
         }
         

@@ -46,11 +46,15 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
         public static readonly System.Timers.Timer Countdown = new System.Timers.Timer(250) { AutoReset = true };
 
         private readonly IRescueToolsComponent Component = PluginContext.ComponentFactory.GetInstance<IRescueToolsComponent>();
+        private readonly ICommand deactivateAllCommand;
         private readonly ICommand refreshCommand;
         private readonly ICommand replaceCommand;
         private readonly ICommand replaceWithFirstCommand;
         private readonly ICommand searchCommand;
+        private readonly ICommand searchOnAgeCommand;
+        private readonly ICommand updateOldPatientsCommand;
 
+        private int ageCriteria = 100;
         private string doctorDoubloonsCount;
         private LightDoctorDto replacementDoctor;
         private string searchCriteria = string.Empty;
@@ -68,6 +72,7 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
         {
             this.DoubloonDoctorSearcher = new DoubloonDoctorSearcher();
 
+            this.OldPatients = new ObservableCollection<LightPatientDto>();
             this.DoctorDoubloons = new ObservableCollection<DoubloonDoctorDto>();
             this.DoubloonsOfSelectedDoctor = new ObservableCollection<LightDoctorDto>();
 
@@ -75,6 +80,9 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             this.replaceCommand = new RelayCommand(() => this.Replace(), () => this.CanReplace());
             this.replaceWithFirstCommand = new RelayCommand(() => this.ReplaceWithFirst(), () => this.CanReplaceWithFirst());
             this.searchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());
+            this.searchOnAgeCommand = new RelayCommand(() => this.SearchOnAge(), () => this.CanSearchOnAge());
+            this.deactivateAllCommand = new RelayCommand(() => this.DeactivateAll(), () => this.CanDeactivateAll());
+            this.updateOldPatientsCommand = new RelayCommand(() => this.UpdateOldPatients(), () => this.CanUpdateOldPatients());
 
             Countdown.Elapsed += (sender, e) => PluginContext.Host.Invoke(() =>
             {
@@ -86,6 +94,21 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
         #endregion Constructors
 
         #region Properties
+
+        public int AgeCriteria
+        {
+            get { return this.ageCriteria; }
+            set
+            {
+                this.ageCriteria = value;
+                this.OnPropertyChanged(() => AgeCriteria);
+            }
+        }
+
+        public ICommand DeactivateAllCommand
+        {
+            get { return this.deactivateAllCommand; }
+        }
 
         public ObservableCollection<DoubloonDoctorDto> DoctorDoubloons
         {
@@ -104,6 +127,12 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
         }
 
         public ObservableCollection<LightDoctorDto> DoubloonsOfSelectedDoctor
+        {
+            get;
+            private set;
+        }
+
+        public ObservableCollection<LightPatientDto> OldPatients
         {
             get;
             private set;
@@ -150,6 +179,11 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             }
         }
 
+        public ICommand SearchOnAgeCommand
+        {
+            get { return this.searchOnAgeCommand; }
+        }
+
         public DoubloonDoctorDto SelectedDoctorDoubloon
         {
             get { return this.selectedDoctorDoubloon; }
@@ -161,6 +195,11 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             }
         }
 
+        public ICommand UpdateOldPatientsCommand
+        {
+            get { return this.updateOldPatientsCommand; }
+        }
+
         private DoubloonDoctorSearcher DoubloonDoctorSearcher
         {
             get;
@@ -170,6 +209,11 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
         #endregion Properties
 
         #region Methods
+
+        private bool CanDeactivateAll()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Administer); ;
+        }
 
         private bool CanRefresh()
         {
@@ -190,6 +234,24 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
         private bool CanSearch()
         {
             return this.DoctorDoubloons != null;
+        }
+
+        private bool CanSearchOnAge()
+        {
+            return true;
+        }
+
+        private bool CanUpdateOldPatients()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Administer);
+        }
+
+        private void DeactivateAll()
+        {
+            foreach (var patient in this.OldPatients)
+            {
+                patient.IsDeactivated = true;
+            }
         }
 
         private void Refresh(bool silently = false)
@@ -293,6 +355,26 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
                 var result = this.DoubloonDoctorSearcher
                     .FindByFirstOrLastName(this.SearchCriteria);
                 this.DoctorDoubloons.Refill(result);
+            }
+            catch (Exception ex) { this.Handle.Error(ex); }
+        }
+
+        private void SearchOnAge()
+        {
+            try
+            {
+                this.OldPatients.Refill(this.Component.GetOlderThan(this.AgeCriteria));
+            }
+            catch (Exception ex) { this.Handle.Error(ex); }
+        }
+
+        private void UpdateOldPatients()
+        {
+            try
+            {
+                this.Component.UpdateDeactivation(this.OldPatients);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PatientUpdated);
+                this.OldPatients.Refill(this.Component.GetOlderThan(this.AgeCriteria));
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }

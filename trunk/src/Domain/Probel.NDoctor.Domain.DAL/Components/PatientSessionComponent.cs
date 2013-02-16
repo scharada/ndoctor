@@ -114,8 +114,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
             if (criteria != "*" && !string.IsNullOrEmpty(criteria))
             {
                 patients = (from p in this.Session.Query<Patient>()
-                            where p.FirstName.ToLower().Contains(criteria.ToLower())
+                            where (p.FirstName.ToLower().Contains(criteria.ToLower())
                             || p.LastName.ToLower().Contains(criteria.ToLower())
+                            && p.IsDeactivated == false)
                             select new Patient
                             {
                                 Id = p.Id,
@@ -130,6 +131,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             else
             {
                 patients = (from p in this.Session.Query<Patient>()
+                            where p.IsDeactivated == false
                             select new Patient
                             {
                                 Id = p.Id,
@@ -183,6 +185,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public IList<LightPatientDto> GetTopXPatient(uint x)
         {
             var result = (from patient in this.Session.Query<Patient>()
+                          where patient.IsDeactivated == false
                           orderby patient.Counter descending
                           select patient)
                             .Take((int)x)

@@ -122,6 +122,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         public IList<PatientDto> GetAllPatients()
         {
             var result = (from p in this.Session.Query<Patient>()
+                          where p.IsDeactivated == false
                           select p).ToList();
             return Mapper.Map<IList<Patient>, IList<PatientDto>>(result);
         }
@@ -530,6 +531,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         private List<Patient> GetAllEntitiesPatient()
         {
             var result = (from patient in this.Session.Query<Patient>()
+                          where patient.IsDeactivated == false
                           select patient).ToList();
             return result;
         }
@@ -608,8 +610,9 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             if (criterium != "*")
             {
                 return (from patient in this.Session.Query<Patient>()
-                        where patient.FirstName.Contains(criterium)
-                           || patient.LastName.Contains(criterium)
+                        where (patient.FirstName.Contains(criterium)
+                           || patient.LastName.Contains(criterium))
+                           && patient.IsDeactivated == false
                         select patient).ToList();
             }
             else
@@ -625,11 +628,13 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             {
                 return (from patient in this.Session.Query<Patient>()
                         where patient.FirstName.Contains(criterium)
+                           && patient.IsDeactivated == false
                         select patient).ToList();
             }
             else
             {
                 return (from patient in this.Session.Query<Patient>()
+                        where patient.IsDeactivated == false
                         select patient).ToList();
             }
         }
@@ -640,11 +645,13 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             {
                 return (from patient in this.Session.Query<Patient>()
                         where patient.LastName.Contains(criterium)
+                           && patient.IsDeactivated == false
                         select patient).ToList();
             }
             else
             {
                 return (from patient in this.Session.Query<Patient>()
+                        where patient.IsDeactivated == false
                         select patient).ToList();
             }
         }
