@@ -22,6 +22,11 @@ namespace Probel.NDoctor.Plugins.RescueTools.Translations
     {
         #region Properties
 
+        public static string Actions
+        {
+            get { return Messages.Gb_Actions; }
+        }
+
         public static string Age
         {
             get { return Messages.Dgv_Age; }
@@ -42,6 +47,11 @@ namespace Probel.NDoctor.Plugins.RescueTools.Translations
             get { return Messages.Dgv_Deactivated; }
         }
 
+        public static string DeactivatedPatients
+        {
+            get { return Messages.Tab_DeactivatedPatients; }
+        }
+
         public static string Details
         {
             get { return Messages.Gb_Details; }
@@ -55,6 +65,11 @@ namespace Probel.NDoctor.Plugins.RescueTools.Translations
         public static string Doubloons
         {
             get { return Messages.Gb_Doubloons; }
+        }
+
+        public static string FindDeactivatedPatients
+        {
+            get { return Messages.Btn_FindDeactivatedPatients; }
         }
 
         public static string FirstName
@@ -102,6 +117,11 @@ namespace Probel.NDoctor.Plugins.RescueTools.Translations
             get { return Messages.Lbl_Phone; }
         }
 
+        public static string ReactivateAll
+        {
+            get { return Messages.Btn_ReactivateAll; }
+        }
+
         public static string Refresh
         {
             get { return Messages.Btn_Refresh; }
@@ -133,23 +153,5 @@ namespace Probel.NDoctor.Plugins.RescueTools.Translations
         }
 
         #endregion Properties
-
-        public static string FindDeactivatedPatients
-        {
-            get { return Messages.Btn_FindDeactivatedPatients; }
-        }
-        public static string DeactivatedPatients
-        {
-            get { return Messages.Tab_DeactivatedPatients; }
-        }
-        public static string ReactivateAll
-        {
-            get { return Messages.Btn_ReactivateAll; }
-        }
-
-        public static string Actions
-        {
-            get { return Messages.Gb_Actions; }
-        }
     }
 }

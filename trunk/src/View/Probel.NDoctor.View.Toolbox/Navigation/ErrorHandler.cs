@@ -37,6 +37,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
     {
         #region Fields
 
+        private readonly Action AfterLogHandler;
         private readonly IStatusWriter StatusWriter;
 
         #endregion Fields
@@ -55,7 +56,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
             this.StatusWriter = statusWriter;
             this.AfterLogHandler = afterLogHandler;
         }
-        private readonly Action AfterLogHandler;
+
         #endregion Constructors
 
         #region Properties

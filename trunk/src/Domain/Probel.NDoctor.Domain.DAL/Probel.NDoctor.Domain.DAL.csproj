@@ -103,6 +103,7 @@
     <Compile Include="AopConfiguration\BenchmarkThresholdAttribute.cs" />
     <Compile Include="AopConfiguration\ExcludeFromTransactionAttribute.cs" />
     <Compile Include="AopConfiguration\NotBenchmarkedAttribute.cs" />
+    <Compile Include="Cfg\MyAutoPersistenceModel.cs" />
     <Compile Include="Components\ApplicationStatisticsComponent.cs" />
     <Compile Include="Components\DataStatisticsComponent.cs" />
     <Compile Include="Components\DbSettingsComponent.cs" />

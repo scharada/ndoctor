@@ -188,11 +188,10 @@ namespace Probel.NDoctor.Plugins.FamilyViewer.ViewModel
         {
             this.IsBusy = true;
             var context = TaskScheduler.FromCurrentSynchronizationContext();
-            var task = Task.Factory.StartNew
-                (e => this.AddRelationAsync(e as Tuple<LightPatientDto, LightPatientDto, FamilyRelations>)
-                        , new Tuple<LightPatientDto, LightPatientDto, FamilyRelations>(PluginContext.Host.SelectedPatient, this.SelectedMember, this.SelectedRelation.Item1));
-
-            task.ContinueWith(e => this.AddRelationCallback(), context);
+            var task = Task.Factory
+                .StartNew(e => this.AddRelationAsync(e as Tuple<LightPatientDto, LightPatientDto, FamilyRelations>)
+                    , new Tuple<LightPatientDto, LightPatientDto, FamilyRelations>(PluginContext.Host.SelectedPatient, this.SelectedMember, this.SelectedRelation.Item1))
+                .ContinueWith(e => this.AddRelationCallback(), context);
         }
 
         private void AddRelationAsync(Tuple<LightPatientDto, LightPatientDto, FamilyRelations> e)
@@ -204,13 +203,13 @@ namespace Probel.NDoctor.Plugins.FamilyViewer.ViewModel
             switch (selectedRelation)
             {
                 case FamilyRelations.Parent:
-                    this.AddParent(selectedPatient, selectedMember); // Manage error and let AssertionException be handled as fatal error
+                    this.AddParent(selectedPatient, selectedMember);
                     break;
                 case FamilyRelations.Child:
-                    this.AddChild(selectedPatient, selectedMember);// Manage error and let AssertionException be handled as fatal error
+                    this.AddChild(selectedPatient, selectedMember);
                     break;
                 default:
-                    Assert.FailOnEnumeration(this.SelectedRelation.Item1);
+                    Assert.FailOnEnumeration(selectedRelation);
                     break;
             }
         }

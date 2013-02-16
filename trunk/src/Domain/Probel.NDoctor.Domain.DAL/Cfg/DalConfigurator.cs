@@ -80,40 +80,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
 
         private AutoPersistenceModel AutoPersistenceModel
         {
-            get
-            {
-                return AutoMap.AssemblyOf<Entity>(new CustomAutomappingConfiguration())
-                    .IgnoreBase<Entity>()
-                    .Override<User>(map => map.IgnoreProperty(x => x.DisplayedName))
-                    .Override<Appointment>(map => map.IgnoreProperty(x => x.DateRange))
-                    .Override<IllnessPeriod>(map => map.IgnoreProperty(p => p.Duration))
-                    .Override<Role>(map => map.HasManyToMany(x => x.Tasks).Cascade.All())
-                    .Override<DbSetting>(map => map.Map(p => p.Key).Unique())
-                    .Override<Patient>(map =>
-                    {
-                        map.DynamicUpdate();
-                        map.IgnoreProperty(x => x.Age);
-                        map.Map(x => x.IsDeactivated).Default("0").Not.Nullable();
-                        map.HasMany<Bmi>(x => x.BmiHistory).KeyColumn("Patient_Id");
-                        map.HasMany<MedicalRecord>(x => x.MedicalRecords).KeyColumn("Patient_Id");
-                        map.HasMany<IllnessPeriod>(x => x.IllnessHistory).KeyColumn("Patient_Id");
-                        map.HasMany<Appointment>(x => x.Appointments).KeyColumn("Patient_Id");
-                    })
-                    .Override<Person>(map =>
-                    {
-                        map.Map(p => p.FirstName).Index("idx_person_FirstName");
-                        map.Map(p => p.LastName).Index("idx_person_LastName");
-                    })
-                    .Override<ApplicationStatistics>(map =>
-                    {
-                        map.Map(e => e.IsExported).Default("0").Not.Nullable();
-                        map.Map(e => e.Version).Default("\"3.0.3\"").Not.Nullable();
-                    })
-                    .Conventions.Add(DefaultCascade.SaveUpdate()
-                                   , DynamicUpdate.AlwaysTrue()
-                                   , DynamicInsert.AlwaysTrue()
-                                   , LazyLoad.Always());
-            }
+            get { return new MyAutoPersistenceModel(); }
         }
 
         private Action<NHConfiguration> ConfigurationSetup
