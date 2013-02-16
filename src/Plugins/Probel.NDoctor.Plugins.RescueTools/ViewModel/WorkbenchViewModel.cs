@@ -19,6 +19,7 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows.Input;
@@ -35,7 +36,6 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Toolbox;
-    using System.Linq;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -48,11 +48,14 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
 
         private readonly IRescueToolsComponent Component = PluginContext.ComponentFactory.GetInstance<IRescueToolsComponent>();
         private readonly ICommand deactivateAllCommand;
+        private readonly ICommand findDeactivatedPatientsCommand;
+        private readonly ICommand reactivateAllCommand;
         private readonly ICommand refreshCommand;
         private readonly ICommand replaceCommand;
         private readonly ICommand replaceWithFirstCommand;
         private readonly ICommand searchCommand;
         private readonly ICommand searchOnAgeCommand;
+        private readonly ICommand updateDeactivatedPatientsCommand;
         private readonly ICommand updateOldPatientsCommand;
 
         private int ageCriteria = 100;
@@ -115,6 +118,12 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             get { return this.deactivateAllCommand; }
         }
 
+        public ObservableCollection<LightPatientDto> DeactivatedPatients
+        {
+            get;
+            private set;
+        }
+
         public ObservableCollection<DoubloonDoctorDto> DoctorDoubloons
         {
             get;
@@ -137,10 +146,20 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             private set;
         }
 
+        public ICommand FindDeactivatedPatientsCommand
+        {
+            get { return this.findDeactivatedPatientsCommand; }
+        }
+
         public ObservableCollection<LightPatientDto> OldPatients
         {
             get;
             private set;
+        }
+
+        public ICommand ReactivateAllCommand
+        {
+            get { return this.reactivateAllCommand; }
         }
 
         public ICommand RefreshCommand
@@ -200,6 +219,11 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             }
         }
 
+        public ICommand UpdateDeactivatedPatientsCommand
+        {
+            get { return this.updateDeactivatedPatientsCommand; }
+        }
+
         public ICommand UpdateOldPatientsCommand
         {
             get { return this.updateOldPatientsCommand; }
@@ -218,6 +242,16 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
         private bool CanDeactivateAll()
         {
             return PluginContext.DoorKeeper.IsUserGranted(To.Administer); ;
+        }
+
+        private bool CanFindDeactivatedPatients()
+        {
+            return true;
+        }
+
+        private bool CanReactivateAll()
+        {
+            return true;
         }
 
         private bool CanRefresh()
@@ -246,6 +280,11 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             return true;
         }
 
+        private bool CanUpdateDeactivatedPatients()
+        {
+            return PluginContext.DoorKeeper.IsUserGranted(To.Administer);
+        }
+
         private bool CanUpdateOldPatients()
         {
             return PluginContext.DoorKeeper.IsUserGranted(To.Administer);
@@ -256,6 +295,32 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             foreach (var patient in this.OldPatients)
             {
                 patient.IsDeactivated = true;
+            }
+        }
+
+        private void FindDeactivatedPatients()
+        {
+            var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
+            var token = new CancellationTokenSource().Token;
+            PluginContext.Host.SetWaitCursor();
+
+            Task.Factory
+                .StartNew<IEnumerable<LightPatientDto>>(() => this.Component.GetDeactivated())
+                .ContinueWith(t =>
+                {
+                    this.DeactivatedPatients.Refill(t.Result);
+                    var msg = Messages.Msg_FoundDeactivatedPatients.FormatWith(t.Result.Count());
+                    PluginContext.Host.WriteStatus(StatusType.Info, msg);
+                    PluginContext.Host.SetArrowCursor();
+                }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler)
+                .ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
+        }
+
+        private void ReactivateAll()
+        {
+            foreach (var item in this.DeactivatedPatients)
+            {
+                item.IsDeactivated = false;
             }
         }
 
@@ -389,55 +454,6 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             catch (Exception ex) { this.Handle.Error(ex); }
         }
 
-        private void UpdateOldPatients()
-        {
-            try
-            {
-                this.Component.UpdateDeactivation(this.OldPatients);
-                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PatientUpdated);
-                this.OldPatients.Refill(this.Component.GetOlderThan(this.AgeCriteria));
-            }
-            catch (Exception ex) { this.Handle.Error(ex); }
-        }
-
-        #endregion Methods
-
-
-        private readonly ICommand findDeactivatedPatientsCommand;
-        public ICommand FindDeactivatedPatientsCommand
-        {
-            get { return this.findDeactivatedPatientsCommand; }
-        }
-        private void FindDeactivatedPatients()
-        {
-            var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
-            var token = new CancellationTokenSource().Token;
-            PluginContext.Host.SetWaitCursor();
-
-            Task.Factory
-                .StartNew<IEnumerable<LightPatientDto>>(() => this.Component.GetDeactivated())
-                .ContinueWith(t =>
-                {
-                    this.DeactivatedPatients.Refill(t.Result);
-                    var msg = Messages.Msg_FoundDeactivatedPatients.FormatWith(t.Result.Count());
-                    PluginContext.Host.WriteStatus(StatusType.Info, msg);
-                    PluginContext.Host.SetArrowCursor();
-                }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler)
-                .ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
-        }
-
-        public ObservableCollection<LightPatientDto> DeactivatedPatients
-        {
-            get;
-            private set;
-        }
-        private bool CanFindDeactivatedPatients() { return true; }
-
-        private readonly ICommand updateDeactivatedPatientsCommand;
-        public ICommand UpdateDeactivatedPatientsCommand
-        {
-            get { return this.updateDeactivatedPatientsCommand; }
-        }
         private void UpdateDeactivatedPatients()
         {
             var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
@@ -457,23 +473,18 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
                 }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler)
                 .ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
         }
-        private bool CanUpdateDeactivatedPatients() { return PluginContext.DoorKeeper.IsUserGranted(To.Administer); }
 
-
-        private readonly ICommand reactivateAllCommand;
-        public ICommand ReactivateAllCommand
+        private void UpdateOldPatients()
         {
-            get { return this.reactivateAllCommand; }
-        }
-        private void ReactivateAll()
-        {
-            foreach (var item in this.DeactivatedPatients)
+            try
             {
-                item.IsDeactivated = false;
+                this.Component.UpdateDeactivation(this.OldPatients);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PatientUpdated);
+                this.OldPatients.Refill(this.Component.GetOlderThan(this.AgeCriteria));
             }
+            catch (Exception ex) { this.Handle.Error(ex); }
         }
-        private bool CanReactivateAll() { return true; }
 
-
+        #endregion Methods
     }
 }

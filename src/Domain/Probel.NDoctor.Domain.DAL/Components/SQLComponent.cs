@@ -113,6 +113,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return (empty <= 5);
         }
 
+        /// <summary>
+        /// Vacuums the database.
+        /// </summary>
+        [ExcludeFromTransaction]
+        public void VacuumDatabase()
+        {
+            this.ExecuteSql("VACUUM");
+        }
         #endregion Methods
     }
 }
