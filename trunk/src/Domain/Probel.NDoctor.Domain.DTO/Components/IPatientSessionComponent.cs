@@ -19,7 +19,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
     using System.Collections.Generic;
 
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Domain.DTO.Specification;
+    using Probel.NDoctor.Domain.DTO.Specifications;
 
     #region Enumerations
 
@@ -77,9 +77,8 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// the refiner will be executed.
         /// </summary>
         /// <param name="criteria">The criteria.</param>
-        /// <param name="refiner">The specification expression that will refine the result.</param>
         /// <returns>All the patient that fullfill the criteria</returns>
-        IList<LightPatientDto> GetPatientsByNameLight(string criteria, Specification<LightPatientDto> specification);
+        IList<LightPatientDto> GetPatientsByNameLight(Specification<LightPatientDto> specification);
 
         /// <summary>
         /// Gets the patients that fullfill the specified criterium.

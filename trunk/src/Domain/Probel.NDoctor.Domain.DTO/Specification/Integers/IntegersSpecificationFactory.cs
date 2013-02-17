@@ -19,14 +19,14 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Domain.DTO.Specification.Integers
+namespace Probel.NDoctor.Domain.DTO.Specifications.Integers
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
 
-    using Probel.NDoctor.Domain.DTO.Specification.Integers;
+    using Probel.NDoctor.Domain.DTO.Specifications.Integers;
 
     public class IntegersSpecificationFactory
     {

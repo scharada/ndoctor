@@ -14,24 +14,25 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Probel.NDoctor.Domain.DTO.Specifications;
+
 namespace Probel.NDoctor.Domain.DTO.Specifications
 {
-    internal class AndSpecification<T> : CompositeSpecification<T>
+    /// <summary>
+    /// This is a dummy specification returns always <c>False</c>
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    internal class GetNothingSpecification<T> : Specification<T>
     {
-        #region Constructors
-
-        public AndSpecification(Specification<T> leftSide, Specification<T> rightSide)
-            : base(leftSide, rightSide)
-        {
-        }
-
-        #endregion Constructors
-
         #region Methods
 
         public override bool IsSatisfiedBy(T obj)
         {
-            return leftSide.IsSatisfiedBy(obj) && rightSide.IsSatisfiedBy(obj);
+            return false;
         }
 
         #endregion Methods

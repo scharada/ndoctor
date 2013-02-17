@@ -19,7 +19,7 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Domain.DTO.Specification.Patients
+namespace Probel.NDoctor.Domain.DTO.Specifications.Patients
 {
     using System;
     using System.Collections.Generic;
@@ -27,7 +27,7 @@ namespace Probel.NDoctor.Domain.DTO.Specification.Patients
     using System.Text;
 
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Domain.DTO.Specification.Patients;
+    using Probel.NDoctor.Domain.DTO.Specifications.Patients;
 
     public class PatientSpecificationFactory
     {
@@ -49,11 +49,6 @@ namespace Probel.NDoctor.Domain.DTO.Specification.Patients
             return new FindPatientByBirthDateSpecification(after, before);
         }
 
-        public Specification<LightPatientDto> ByName(string criteria)
-        {
-            return new FindPatientByNameSpecification(criteria);
-        }
-
         public Specification<LightPatientDto> CityContains(string criteria)
         {
             return new FindPatientByCitySpecification(criteria);
@@ -69,6 +64,11 @@ namespace Probel.NDoctor.Domain.DTO.Specification.Patients
             return new FindPatientByLastUpdateSpecification(after, before);
         }
 
+        public Specification<LightPatientDto> LastNameContains(string criteria)
+        {
+            return new FindPatientByLastNameSpecification(criteria);
+        }
+
         public Specification<LightPatientDto> ProfessionIs(ProfessionDto profession)
         {
             return new FindPatientByProfessionSpecification(profession);
@@ -77,6 +77,16 @@ namespace Probel.NDoctor.Domain.DTO.Specification.Patients
         public Specification<LightPatientDto> ReasonContains(string criteria)
         {
             return new FindPatientByReasonSpecification(criteria);
+        }
+
+        public Specification<LightPatientDto> IsAnything()
+        {
+            return new EmptySpecification<LightPatientDto>();
+        }
+
+        public Specification<LightPatientDto> None()
+        {
+            return new GetNothingSpecification<LightPatientDto>();
         }
 
         #endregion Methods

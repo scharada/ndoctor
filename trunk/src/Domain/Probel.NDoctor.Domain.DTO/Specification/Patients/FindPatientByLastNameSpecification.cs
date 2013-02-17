@@ -19,7 +19,7 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Domain.DTO.Specification.Patients
+namespace Probel.NDoctor.Domain.DTO.Specifications.Patients
 {
     using Probel.NDoctor.Domain.DTO.Objects;
 
@@ -27,9 +27,10 @@ namespace Probel.NDoctor.Domain.DTO.Specification.Patients
     /// Select all the patient with the first and/or last name that contains
     /// the text specified in the contructor.
     /// This specification uses the lower case version of the Profession.Name to 
-    /// make the selection
+    /// make the selection.
+    /// If the specified text is empty or null, all the row will be returned
     /// </summary>
-    internal class FindPatientByNameSpecification : Specification<LightPatientDto>
+    internal class FindPatientByLastNameSpecification : Specification<LightPatientDto>
     {
         #region Fields
 
@@ -39,7 +40,7 @@ namespace Probel.NDoctor.Domain.DTO.Specification.Patients
 
         #region Constructors
 
-        public FindPatientByNameSpecification(string text)
+        public FindPatientByLastNameSpecification(string text)
         {
             this.text = text.ToLower();
         }
@@ -47,11 +48,9 @@ namespace Probel.NDoctor.Domain.DTO.Specification.Patients
         #endregion Constructors
 
         #region Methods
-
         public override bool IsSatisfiedBy(LightPatientDto obj)
         {
-            return obj.FirstName.ToLower().Contains(this.text)
-                || obj.LastName.ToLower().Contains(this.text);
+            return obj.LastName.ToLower().Contains(this.text);
         }
 
         #endregion Methods

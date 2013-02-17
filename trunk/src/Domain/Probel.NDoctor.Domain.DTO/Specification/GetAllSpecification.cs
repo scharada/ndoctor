@@ -19,10 +19,10 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Domain.DTO.Specification
+namespace Probel.NDoctor.Domain.DTO.Specifications
 {
     /// <summary>
-    /// This is a dummy specification to allow a default contructor to the <see cref="SpecificationExpression"/>
+    /// This is a dummy specification returns always <c>True</c>
     /// </summary>
     /// <typeparam name="T"></typeparam>
     internal class EmptySpecification<T> : Specification<T>

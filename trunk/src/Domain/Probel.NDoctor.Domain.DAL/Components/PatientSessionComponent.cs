@@ -32,7 +32,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Domain.DTO.Specification;
+    using Probel.NDoctor.Domain.DTO.Specifications;
 
     /// <summary>
     /// Get the features of the patient session
@@ -106,48 +106,27 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         /// All the patient that fullfill the criteria
         /// </returns>
-        public IList<LightPatientDto> GetPatientsByNameLight(string criteria, Specification<LightPatientDto> specification)
+        public IList<LightPatientDto> GetPatientsByNameLight(Specification<LightPatientDto> specification)
         {
             List<Patient> patients = new List<Patient>();
             var searchAll = false;
 
-            if (criteria != "*" && !string.IsNullOrEmpty(criteria))
-            {
-                patients = (from p in this.Session.Query<Patient>()
-                            where (p.FirstName.ToLower().Contains(criteria.ToLower())
-                            || p.LastName.ToLower().Contains(criteria.ToLower())
-                            && p.IsDeactivated == false)
-                            select new Patient
-                            {
-                                Id = p.Id,
-                                FirstName = p.FirstName,
-                                LastName = p.LastName,
-                                Gender = p.Gender,
-                                BirthDate = p.BirthDate,
-                                Profession = p.Profession,
-                                Height = p.Height,
-                            }).ToList();
-            }
-            else
-            {
-                patients = (from p in this.Session.Query<Patient>()
-                            where p.IsDeactivated == false
-                            select new Patient
-                            {
-                                Id = p.Id,
-                                FirstName = p.FirstName,
-                                LastName = p.LastName,
-                                Gender = p.Gender,
-                                BirthDate = p.BirthDate,
-                                Profession = p.Profession,
-                                Height = p.Height,
-                                InscriptionDate = p.InscriptionDate,
-                                LastUpdate = p.LastUpdate,
-                                Address = p.Address,
-                                Reason = p.Reason,
-                            }).ToList();
-                searchAll = true;
-            }
+            patients = (from p in this.Session.Query<Patient>()
+                        where p.IsDeactivated == false
+                        select new Patient
+                        {
+                            Id = p.Id,
+                            FirstName = p.FirstName,
+                            LastName = p.LastName,
+                            Gender = p.Gender,
+                            BirthDate = p.BirthDate,
+                            Profession = p.Profession,
+                            Height = p.Height,
+                            InscriptionDate = p.InscriptionDate,
+                            LastUpdate = p.LastUpdate,
+                            Address = p.Address,
+                            Reason = p.Reason,
+                        }).ToList();
 
             var preSearchResult = Mapper.Map<List<Patient>, List<LightPatientDto>>(patients);
             this.CheckIfSearchAllReturnsZeroResult(preSearchResult, searchAll);

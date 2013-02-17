@@ -31,7 +31,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.Domain.DTO.Specification;
+    using Probel.NDoctor.Domain.DTO.Specifications;
     using Probel.NDoctor.Plugins.PatientSession.Helpers;
     using Probel.NDoctor.Plugins.PatientSession.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
@@ -54,9 +54,10 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
         private bool isByCity;
         private bool isByInscription;
         private bool isByLastUpdate;
+        private bool isByName;
         private bool isByProfession;
         private bool isByReason;
-        private string name = string.Empty;
+        private string nameCriteria = string.Empty;
         private string reasonCriteria = string.Empty;
         private Tuple<Operator, string> selectedOperator;
         private LightPatientDto selectedPatient;
@@ -196,6 +197,16 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             }
         }
 
+        public bool IsByName
+        {
+            get { return this.isByName; }
+            set
+            {
+                this.isByName = value;
+                this.OnPropertyChanged(() => IsByName);
+            }
+        }
+
         public bool IsByProfession
         {
             get { return this.isByProfession; }
@@ -222,13 +233,13 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             private set;
         }
 
-        public string Name
+        public string NameCriteria
         {
-            get { return this.name; }
+            get { return this.nameCriteria; }
             set
             {
-                this.name = value;
-                this.OnPropertyChanged(() => Name);
+                this.nameCriteria = value;
+                this.OnPropertyChanged(() => NameCriteria);
             }
         }
 
@@ -382,26 +393,32 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 
         private Specification<LightPatientDto> BuidOrExpression()
         {
-            var expression = Specification<LightPatientDto>.Empty;
-            if (this.IsByProfession) { expression |= When.Patient.ProfessionIs(this.SelectedProfession); }
-            if (this.IsByBirthdate) { expression |= When.Patient.BirthdateIsBetween(this.BirthdateAfterDate, this.BirthdateBeforeDate); }
-            if (this.IsByLastUpdate) { expression |= When.Patient.LastUpdateIsBetween(this.UpdateAfterDate, this.UpdateBeforeDate); }
-            if (this.IsByInscription) { expression |= When.Patient.InscriptionIsBetween(this.InscriptionAfterDate, this.InscriptionBeforeDate); }
-            if (this.IsByCity) { expression |= When.Patient.CityContains(this.CityCriteria); }
-            if (this.IsByReason) { expression |= When.Patient.ReasonContains(this.ReasonCriteria); }
-            return expression;
+            var builder = new ExpressionBuilder<LightPatientDto>();
+            if (this.IsByName) { builder.Add(When.Patient.LastNameContains(this.NameCriteria)); }
+            if (this.IsByProfession) { builder.Add(When.Patient.ProfessionIs(this.SelectedProfession)); }
+            if (this.IsByBirthdate) { builder.Add(When.Patient.BirthdateIsBetween(this.BirthdateAfterDate, this.BirthdateBeforeDate)); }
+            if (this.IsByLastUpdate) { builder.Add(When.Patient.LastUpdateIsBetween(this.UpdateAfterDate, this.UpdateBeforeDate)); }
+            if (this.IsByInscription) { builder.Add(When.Patient.InscriptionIsBetween(this.InscriptionAfterDate, this.InscriptionBeforeDate)); }
+            if (this.IsByCity) { builder.Add(When.Patient.CityContains(this.CityCriteria)); }
+            if (this.IsByReason) { builder.Add(When.Patient.ReasonContains(this.ReasonCriteria)); }
+            return (builder.CanBuild)
+                ? builder.BuildOrExpression()
+                : When.Patient.None();
         }
 
         private Specification<LightPatientDto> BuildAndExpression()
         {
-            var expression = Specification<LightPatientDto>.Empty;
-            if (this.IsByProfession) { expression &= When.Patient.ProfessionIs(this.SelectedProfession); }
-            if (this.IsByBirthdate) { expression &= When.Patient.BirthdateIsBetween(this.BirthdateAfterDate, this.BirthdateBeforeDate); }
-            if (this.IsByLastUpdate) { expression &= When.Patient.LastUpdateIsBetween(this.UpdateAfterDate, this.UpdateBeforeDate); }
-            if (this.IsByInscription) { expression &= When.Patient.InscriptionIsBetween(this.InscriptionAfterDate, this.InscriptionBeforeDate); }
-            if (this.IsByCity) { expression &= When.Patient.CityContains(this.CityCriteria); }
-            if (this.IsByReason) { expression &= When.Patient.ReasonContains(this.ReasonCriteria); }
-            return expression;
+            var builder = new ExpressionBuilder<LightPatientDto>();
+            if (this.IsByName) { builder.Add(When.Patient.LastNameContains(this.NameCriteria)); }
+            if (this.IsByProfession) { builder.Add(When.Patient.ProfessionIs(this.SelectedProfession)); }
+            if (this.IsByBirthdate) { builder.Add(When.Patient.BirthdateIsBetween(this.BirthdateAfterDate, this.BirthdateBeforeDate)); }
+            if (this.IsByLastUpdate) { builder.Add(When.Patient.LastUpdateIsBetween(this.UpdateAfterDate, this.UpdateBeforeDate)); }
+            if (this.IsByInscription) { builder.Add(When.Patient.InscriptionIsBetween(this.InscriptionAfterDate, this.InscriptionBeforeDate)); }
+            if (this.IsByCity) { builder.Add(When.Patient.CityContains(this.CityCriteria)); }
+            if (this.IsByReason) { builder.Add(When.Patient.ReasonContains(this.ReasonCriteria)); }
+            return (builder.CanBuild)
+                ? builder.BuildAndExpression()
+                : When.Patient.None();
         }
 
         private bool CanSearch()
@@ -443,7 +460,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
         private IList<LightPatientDto> SearchAsync(Specification<LightPatientDto> expression)
         {
             this.IsBusy = true;
-            return this.Component.GetPatientsByNameLight(this.Name, expression);
+            return this.Component.GetPatientsByNameLight(expression);
         }
 
         private void SearchCallback(Task<IList<LightPatientDto>> e)

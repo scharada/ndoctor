@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Domain.DTO.Specification
+namespace Probel.NDoctor.Domain.DTO.Specifications
 {
     internal class OrSpecification<T> : CompositeSpecification<T>
     {

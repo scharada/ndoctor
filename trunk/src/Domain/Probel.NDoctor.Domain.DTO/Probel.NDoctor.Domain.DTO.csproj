@@ -163,8 +163,10 @@
     <Compile Include="Objects\TagDto.cs" />
     <Compile Include="Objects\UserDto.cs" />
     <Compile Include="Remote\IVersionNotifyer.cs" />
-    <Compile Include="Specification\EmptySpecification.cs" />
+    <Compile Include="Specification\GetAllSpecification.cs" />
     <Compile Include="Specification\AndSpecification.cs" />
+    <Compile Include="Specification\ExpressionBuilder.cs" />
+    <Compile Include="Specification\GetNothingSpecification.cs" />
     <Compile Include="Specification\Integers\IntegersSpecificationFactory.cs" />
     <Compile Include="Specification\ISpecification.cs" />
     <Compile Include="Specification\Patients\FindPatientByInscriptionSpecification.cs" />
@@ -176,7 +178,7 @@
     <Compile Include="Specification\Integers\IntegerLessThanSpecification.cs" />
     <Compile Include="Specification\CompositeSpecification.cs" />
     <Compile Include="Specification\Patients\FindPatientByBirthDateSpecification.cs" />
-    <Compile Include="Specification\Patients\FindPatientByNameSpecification.cs" />
+    <Compile Include="Specification\Patients\FindPatientByLastNameSpecification.cs" />
     <Compile Include="Specification\Patients\FindPatientByProfessionSpecification.cs" />
     <Compile Include="Specification\NotSpecification.cs" />
     <Compile Include="Specification\OrSpecification.cs" />

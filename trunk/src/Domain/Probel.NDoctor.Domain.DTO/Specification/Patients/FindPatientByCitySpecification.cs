@@ -19,7 +19,7 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Domain.DTO.Specification.Patients
+namespace Probel.NDoctor.Domain.DTO.Specifications.Patients
 {
     using Probel.NDoctor.Domain.DTO.Objects;
 

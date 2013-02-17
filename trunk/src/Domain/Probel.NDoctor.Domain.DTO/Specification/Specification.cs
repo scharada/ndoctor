@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Domain.DTO.Specification
+namespace Probel.NDoctor.Domain.DTO.Specifications
 {
     /// <summary>
     /// Specification is used to make an expression to refine search after a query from the database.
@@ -33,21 +33,6 @@ namespace Probel.NDoctor.Domain.DTO.Specification
         }
 
         #endregion Constructors
-
-        #region Properties
-
-        /// <summary>
-        /// Gets an empty specification.
-        /// </summary>
-        public static Specification<T> Empty
-        {
-            get
-            {
-                return new EmptySpecification<T>();
-            }
-        }
-
-        #endregion Properties
 
         #region Methods
 
