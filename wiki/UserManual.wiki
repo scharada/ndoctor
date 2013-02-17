@@ -1,5 +1,9 @@
 [`Work in progress`]
 
+== Configure the advanced search ==
+
+ * [`Work in progress`]
+
 == Configure Google Calendar ==
 
 === How to configure a calendar to be the one nDoctor uses ===
