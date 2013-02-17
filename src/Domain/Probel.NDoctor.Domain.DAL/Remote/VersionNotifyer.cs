@@ -73,15 +73,15 @@ namespace Probel.NDoctor.Domain.DAL.Remote
         public void Check(Version version)
         {
             version = new Version(version.Major, version.Minor, version.Build, 0);
-            Task.Factory
-                .StartNew<Version>(ctx => this.CheckAsync(ctx as Version), version)
-                .ContinueWith(c =>
+            var task = Task.Factory
+                .StartNew<Version>(ctx => this.CheckAsync(ctx as Version), version);
+            task.ContinueWith(c =>
+            {
+                if (c.Result as Version > version)
                 {
-                    if (c.Result as Version > version)
-                    {
-                        this.OnChecked(c.Result as Version);
-                    }
-                }, new CancellationTokenSource().Token);
+                    this.OnChecked(c.Result as Version);
+                }
+            }, new CancellationTokenSource().Token);
         }
 
         protected void OnChecked(Version remoteVersion)

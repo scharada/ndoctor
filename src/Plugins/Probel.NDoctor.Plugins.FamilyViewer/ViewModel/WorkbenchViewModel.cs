@@ -205,8 +205,8 @@ namespace Probel.NDoctor.Plugins.FamilyViewer.ViewModel
         {
             this.IsBusy = true;
             var context = TaskScheduler.FromCurrentSynchronizationContext();
-            Task.Factory.StartNew(e => RemoveRelationAsync(e as LightPatientDto), PluginContext.Host.SelectedPatient)
-                        .ContinueWith(e => RemoveRelationCallback(e), context);
+            var task = Task.Factory.StartNew(e => RemoveRelationAsync(e as LightPatientDto), PluginContext.Host.SelectedPatient);
+            task.ContinueWith(e => RemoveRelationCallback(e), context);
         }
 
         private void RemoveRelationAsync(LightPatientDto selectedPatient)

@@ -112,15 +112,15 @@ namespace Probel.NDoctor.Plugins.RescueTools
             var token = new CancellationTokenSource().Token;
             var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
 
-            var thread = Task.Factory
+            var task = Task.Factory
                 .StartNew(() =>
                 {
                     PluginContext.ComponentFactory
                        .GetInstance<ISqlComponent>()
                        .VacuumDatabase();
                 });
-            thread.ContinueWith(t => PluginContext.Host.SetArrowCursor(), token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler); ;
-            thread.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
+            task.ContinueWith(t => PluginContext.Host.SetArrowCursor(), token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler); ;
+            task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
         }
 
         /// <summary>

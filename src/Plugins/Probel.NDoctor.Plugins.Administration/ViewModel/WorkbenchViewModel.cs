@@ -350,8 +350,8 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         {
             var context = TaskScheduler.FromCurrentSynchronizationContext();
             var task = Task.Factory
-                .StartNew<TaskArgs>(() => this.GetAllListAsync())
-                .ContinueWith(e => this.GetAllListCallback(e), context);
+                .StartNew<TaskArgs>(() => this.GetAllListAsync());
+            task.ContinueWith(e => this.GetAllListCallback(e), context);
         }
 
         private void EditDoctor()
