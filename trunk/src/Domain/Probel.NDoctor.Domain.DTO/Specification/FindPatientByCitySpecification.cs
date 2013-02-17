@@ -24,34 +24,41 @@ namespace Probel.NDoctor.Domain.DTO.Specification
     using Probel.NDoctor.Domain.DTO.Objects;
 
     /// <summary>
-    /// Select all the patient with the first and/or last name that contains
-    /// the text specified in the contructor.
-    /// This specification uses the lower case version of the Profession.Name to 
-    /// make the selection
+    /// Verifies if the specified <see cref="LightPatientDto"/> has a city that contains the specified text
     /// </summary>
-    public class FindPatientByNameSpecification : Specification<LightPatientDto>
+    public class FindPatientByCitySpecification : Specification<LightPatientDto>
     {
         #region Fields
 
-        private string text;
+        private readonly string Criteria;
 
         #endregion Fields
 
         #region Constructors
 
-        public FindPatientByNameSpecification(string text)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FindPatientByCitySpecification"/> class.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        public FindPatientByCitySpecification(string criteria)
         {
-            this.text = text.ToLower();
+            this.Criteria = criteria.ToUpper();
         }
 
         #endregion Constructors
 
         #region Methods
 
+        /// <summary>
+        /// Determines whether [is satisfied by] [the specified obj].
+        /// </summary>
+        /// <param name="obj">The obj.</param>
+        /// <returns>
+        ///   <c>true</c> if [is satisfied by] [the specified obj]; otherwise, <c>false</c>.
+        /// </returns>
         public override bool IsSatisfiedBy(LightPatientDto obj)
         {
-            return obj.FirstName.ToLower().Contains(this.text)
-                || obj.LastName.ToLower().Contains(this.text);
+            return obj.Address.City.ToUpper().Contains(this.Criteria);
         }
 
         #endregion Methods

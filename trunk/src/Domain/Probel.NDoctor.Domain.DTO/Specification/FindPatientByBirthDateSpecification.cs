@@ -28,7 +28,7 @@ namespace Probel.NDoctor.Domain.DTO.Specification
     /// <summary>
     /// Select all the patient with the birth year specified in the ctor
     /// </summary>
-    public class GetPatientByBirthDateSpecification : Specification<LightPatientDto>
+    public class FindPatientByBirthDateSpecification : Specification<LightPatientDto>
     {
         #region Fields
 
@@ -39,7 +39,7 @@ namespace Probel.NDoctor.Domain.DTO.Specification
 
         #region Constructors
 
-        public GetPatientByBirthDateSpecification(DateTime after, DateTime before)
+        public FindPatientByBirthDateSpecification(DateTime after, DateTime before)
         {
             this.After = after;
             this.Before = before;
