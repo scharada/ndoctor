@@ -275,7 +275,7 @@ Chemin: {1}</value>
     <comment>Rescue tools for the database</comment>
   </data>
   <data name="Plugin_RescueTools_Explanations" xml:space="preserve">
-    <value>Contient des outils de secour pour gérer d'éventuelles inconsistances dans la base de données</value>
+    <value>Contient des outils de secours pour gérer d'éventuelles inconsistances dans la base de données</value>
     <comment>Provides rescue tools to manage inconsistencies in the database</comment>
   </data>
   <data name="Plugin_UserSessionManager" xml:space="preserve">
