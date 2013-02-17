@@ -18,21 +18,21 @@ namespace Probel.NDoctor.Plugins.RescueTools
 {
     using System;
     using System.ComponentModel.Composition;
+    using System.Threading;
+    using System.Threading.Tasks;
     using System.Windows.Input;
+    using System.Windows.Media;
 
     using Probel.Helpers.Assertion;
     using Probel.Helpers.Strings;
     using Probel.Mvvm.DataBinding;
+    using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Plugins.RescueTools.Properties;
     using Probel.NDoctor.Plugins.RescueTools.View;
     using Probel.NDoctor.Plugins.RescueTools.ViewModel;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
-    using Probel.NDoctor.Domain.DTO.Components;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using System.Windows.Media;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]
@@ -106,6 +106,20 @@ namespace Probel.NDoctor.Plugins.RescueTools
             PluginContext.Host.AddContextualMenu(this.ContextualMenu);
         }
 
+        /// <summary>
+        /// Configures the mapping for AutoMapper.
+        /// </summary>
+        private void ConfigureAutoMapper()
+        {
+            //Add the mapping here...
+        }
+
+        private void Navigate()
+        {
+            PluginContext.Host.Navigate(this.View);
+            this.ShowContextMenu();
+        }
+
         private void VacuumDatabase()
         {
             PluginContext.Host.SetWaitCursor();
@@ -121,20 +135,6 @@ namespace Probel.NDoctor.Plugins.RescueTools
                 });
             task.ContinueWith(t => PluginContext.Host.SetArrowCursor(), token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler); ;
             task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
-        }
-
-        /// <summary>
-        /// Configures the mapping for AutoMapper.
-        /// </summary>
-        private void ConfigureAutoMapper()
-        {
-            //Add the mapping here...
-        }
-
-        private void Navigate()
-        {
-            PluginContext.Host.Navigate(this.View);
-            this.ShowContextMenu();
         }
 
         #endregion Methods
