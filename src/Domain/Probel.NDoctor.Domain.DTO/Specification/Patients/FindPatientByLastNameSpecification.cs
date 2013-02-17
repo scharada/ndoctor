@@ -48,6 +48,7 @@ namespace Probel.NDoctor.Domain.DTO.Specifications.Patients
         #endregion Constructors
 
         #region Methods
+
         public override bool IsSatisfiedBy(LightPatientDto obj)
         {
             return obj.LastName.ToLower().Contains(this.text);

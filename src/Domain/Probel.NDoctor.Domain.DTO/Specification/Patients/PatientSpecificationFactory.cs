@@ -59,14 +59,24 @@ namespace Probel.NDoctor.Domain.DTO.Specifications.Patients
             return new FindPatientByInscriptionSpecification(after, before);
         }
 
-        public Specification<LightPatientDto> LastUpdateIsBetween(DateTime after, DateTime before)
+        public Specification<LightPatientDto> IsAnything()
         {
-            return new FindPatientByLastUpdateSpecification(after, before);
+            return new EmptySpecification<LightPatientDto>();
         }
 
         public Specification<LightPatientDto> LastNameContains(string criteria)
         {
             return new FindPatientByLastNameSpecification(criteria);
+        }
+
+        public Specification<LightPatientDto> LastUpdateIsBetween(DateTime after, DateTime before)
+        {
+            return new FindPatientByLastUpdateSpecification(after, before);
+        }
+
+        public Specification<LightPatientDto> None()
+        {
+            return new GetNothingSpecification<LightPatientDto>();
         }
 
         public Specification<LightPatientDto> ProfessionIs(ProfessionDto profession)
@@ -77,16 +87,6 @@ namespace Probel.NDoctor.Domain.DTO.Specifications.Patients
         public Specification<LightPatientDto> ReasonContains(string criteria)
         {
             return new FindPatientByReasonSpecification(criteria);
-        }
-
-        public Specification<LightPatientDto> IsAnything()
-        {
-            return new EmptySpecification<LightPatientDto>();
-        }
-
-        public Specification<LightPatientDto> None()
-        {
-            return new GetNothingSpecification<LightPatientDto>();
         }
 
         #endregion Methods
