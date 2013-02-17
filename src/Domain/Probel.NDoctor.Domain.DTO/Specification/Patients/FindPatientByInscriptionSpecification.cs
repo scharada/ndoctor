@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,18 +16,22 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Probel.NDoctor.Domain.DTO.Objects;
 
-namespace Probel.NDoctor.Domain.DTO.Specification
+#endregion Header
+
+namespace Probel.NDoctor.Domain.DTO.Specification.Patients
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using Probel.NDoctor.Domain.DTO.Objects;
+
     /// <summary>
-    /// Verifies that the specified <see cref="LightPatientDto"/> has got an last update date between the specified dates
+    /// Verifies that the specified <see cref="LightPatientDto"/> has got an inscription data between the specified dates
     /// </summary>
-    public class FindPatientByLastUpdateSpecification : Specification<LightPatientDto>
+    internal class FindPatientByInscriptionSpecification : Specification<LightPatientDto>
     {
         #region Fields
 
@@ -36,7 +42,7 @@ namespace Probel.NDoctor.Domain.DTO.Specification
 
         #region Constructors
 
-        public FindPatientByLastUpdateSpecification(DateTime after, DateTime before)
+        public FindPatientByInscriptionSpecification(DateTime after, DateTime before)
         {
             this.After = after;
             this.Before = before;
@@ -48,8 +54,8 @@ namespace Probel.NDoctor.Domain.DTO.Specification
 
         public override bool IsSatisfiedBy(LightPatientDto obj)
         {
-            return obj.Birthdate >= this.After
-                && obj.Birthdate <= this.Before;
+            return obj.InscriptionDate >= this.After
+                && obj.InscriptionDate <= this.Before;
         }
 
         #endregion Methods

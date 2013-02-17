@@ -27,10 +27,13 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using System.Threading.Tasks;
     using System.Windows.Input;
 
+    using Probel.Helpers.Assertion;
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Domain.DTO.Specification;
+    using Probel.NDoctor.Plugins.PatientSession.Helpers;
+    using Probel.NDoctor.Plugins.PatientSession.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins;
 
@@ -39,12 +42,27 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
         #region Fields
 
         private readonly IPatientSessionComponent Component;
+        private readonly PluginSettings Settings = new PluginSettings();
 
+        private DateTime birthdateAfterDate = DateTime.Today.AddMonths(-1);
+        private DateTime birthdayBeforeDate = DateTime.Today;
+        private string cityCriteria = string.Empty;
+        private DateTime inscriptionAfterDate = DateTime.Today.AddMonths(-1);
+        private DateTime inscriptionBeforeDate = DateTime.Today;
         private bool isBusy;
+        private bool isByBirthdate;
+        private bool isByCity;
+        private bool isByInscription;
+        private bool isByLastUpdate;
         private bool isByProfession;
-        private string name;
+        private bool isByReason;
+        private string name = string.Empty;
+        private string reasonCriteria = string.Empty;
+        private Tuple<Operator, string> selectedOperator;
         private LightPatientDto selectedPatient;
         private ProfessionDto selectedProfession;
+        private DateTime updateAfterDate = DateTime.Today.AddMonths(-1);
+        private DateTime updateBeforeDate = DateTime.Today;
 
         #endregion Fields
 
@@ -56,6 +74,10 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 
             this.FoundPatients = new ObservableCollection<LightPatientDto>();
             this.Professions = new ObservableCollection<ProfessionDto>();
+            this.LogicalOperators = new ObservableCollection<Tuple<Operator, string>>();
+            this.LogicalOperators.Add(new Tuple<Operator, string>(Operator.And, Messages.Search_And));
+            this.LogicalOperators.Add(new Tuple<Operator, string>(Operator.Or, Messages.Search_Or));
+            this.SelectedOperator = this.LogicalOperators[0];
 
             this.SearchCommand = new RelayCommand(() => this.Search(), () => this.CanSearch());
             this.RefreshCommand = new RelayCommand(() => this.Refresh());
@@ -68,10 +90,60 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 
         #region Properties
 
+        public DateTime BirthdateAfterDate
+        {
+            get { return this.birthdateAfterDate; }
+            set
+            {
+                this.birthdateAfterDate = value;
+                this.OnPropertyChanged(() => BirthdateAfterDate);
+            }
+        }
+
+        public DateTime BirthdateBeforeDate
+        {
+            get { return this.birthdayBeforeDate; }
+            set
+            {
+                this.birthdayBeforeDate = value;
+                this.OnPropertyChanged(() => BirthdateBeforeDate);
+            }
+        }
+
+        public string CityCriteria
+        {
+            get { return this.cityCriteria; }
+            set
+            {
+                this.cityCriteria = value;
+                this.OnPropertyChanged(() => CityCriteria);
+            }
+        }
+
         public ObservableCollection<LightPatientDto> FoundPatients
         {
             get;
             private set;
+        }
+
+        public DateTime InscriptionAfterDate
+        {
+            get { return this.inscriptionAfterDate; }
+            set
+            {
+                this.inscriptionAfterDate = value;
+                this.OnPropertyChanged(() => InscriptionAfterDate);
+            }
+        }
+
+        public DateTime InscriptionBeforeDate
+        {
+            get { return this.inscriptionBeforeDate; }
+            set
+            {
+                this.inscriptionBeforeDate = value;
+                this.OnPropertyChanged(() => InscriptionBeforeDate);
+            }
         }
 
         public bool IsBusy
@@ -84,6 +156,46 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             }
         }
 
+        public bool IsByBirthdate
+        {
+            get { return this.isByBirthdate; }
+            set
+            {
+                this.isByBirthdate = value;
+                this.OnPropertyChanged(() => IsByBirthdate);
+            }
+        }
+
+        public bool IsByCity
+        {
+            get { return this.isByCity; }
+            set
+            {
+                this.isByCity = value;
+                this.OnPropertyChanged(() => IsByCity);
+            }
+        }
+
+        public bool IsByInscription
+        {
+            get { return this.isByInscription; }
+            set
+            {
+                this.isByInscription = value;
+                this.OnPropertyChanged(() => IsByInscription);
+            }
+        }
+
+        public bool IsByLastUpdate
+        {
+            get { return this.isByLastUpdate; }
+            set
+            {
+                this.isByLastUpdate = value;
+                this.OnPropertyChanged(() => IsByLastUpdate);
+            }
+        }
+
         public bool IsByProfession
         {
             get { return this.isByProfession; }
@@ -92,6 +204,22 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
                 this.isByProfession = value;
                 this.OnPropertyChanged(() => IsByProfession);
             }
+        }
+
+        public bool IsByReason
+        {
+            get { return this.isByReason; }
+            set
+            {
+                this.isByReason = value;
+                this.OnPropertyChanged(() => IsByReason);
+            }
+        }
+
+        public ObservableCollection<Tuple<Operator, string>> LogicalOperators
+        {
+            get;
+            private set;
         }
 
         public string Name
@@ -110,6 +238,16 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             private set;
         }
 
+        public string ReasonCriteria
+        {
+            get { return this.reasonCriteria; }
+            set
+            {
+                this.reasonCriteria = value;
+                this.OnPropertyChanged(() => ReasonCriteria);
+            }
+        }
+
         public ICommand RefreshCommand
         {
             get;
@@ -120,6 +258,16 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
         {
             get;
             private set;
+        }
+
+        public Tuple<Operator, string> SelectedOperator
+        {
+            get { return this.selectedOperator; }
+            set
+            {
+                this.selectedOperator = value;
+                this.OnPropertyChanged(() => SelectedOperator);
+            }
         }
 
         public LightPatientDto SelectedPatient
@@ -148,14 +296,118 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             private set;
         }
 
+        public bool ShowBirthdate
+        {
+            get { return this.Settings.ShowBirthdate; }
+            set
+            {
+                this.Settings.ShowBirthdate = value;
+                this.OnPropertyChanged(() => ShowBirthdate);
+            }
+        }
+
+        public bool ShowCity
+        {
+            get { return this.Settings.ShowCity; }
+            set
+            {
+                this.Settings.ShowCity = value;
+                this.OnPropertyChanged(() => ShowCity);
+            }
+        }
+
+        public bool ShowInscriptionDate
+        {
+            get { return this.Settings.ShowInscription; }
+            set
+            {
+                this.Settings.ShowInscription = value;
+                this.OnPropertyChanged(() => ShowInscriptionDate);
+            }
+        }
+
+        public bool ShowLastUpdate
+        {
+            get { return this.Settings.ShowLastUpdate; }
+            set
+            {
+                this.Settings.ShowLastUpdate = value;
+                this.OnPropertyChanged(() => ShowLastUpdate);
+            }
+        }
+
+        public bool ShowProfession
+        {
+            get { return this.Settings.ShowProfession; }
+            set
+            {
+                this.Settings.ShowProfession = value;
+                this.OnPropertyChanged(() => ShowProfession);
+            }
+        }
+
+        public bool ShowReason
+        {
+            get { return this.Settings.SHowReason; }
+            set
+            {
+                this.Settings.SHowReason = value;
+                this.OnPropertyChanged(() => ShowReason);
+            }
+        }
+
+        public DateTime UpdateAfterDate
+        {
+            get { return this.updateAfterDate; }
+            set
+            {
+                this.updateAfterDate = value;
+                this.OnPropertyChanged(() => UpdateAfterDate);
+            }
+        }
+
+        public DateTime UpdateBeforeDate
+        {
+            get { return this.updateBeforeDate; }
+            set
+            {
+                this.updateBeforeDate = value;
+                this.OnPropertyChanged(() => UpdateBeforeDate);
+            }
+        }
+
         #endregion Properties
 
         #region Methods
 
+        private Specification<LightPatientDto> BuidOrExpression()
+        {
+            var expression = Specification<LightPatientDto>.Empty;
+            if (this.IsByProfession) { expression |= When.Patient.ProfessionIs(this.SelectedProfession); }
+            if (this.IsByBirthdate) { expression |= When.Patient.BirthdateIsBetween(this.BirthdateAfterDate, this.BirthdateBeforeDate); }
+            if (this.IsByLastUpdate) { expression |= When.Patient.LastUpdateIsBetween(this.UpdateAfterDate, this.UpdateBeforeDate); }
+            if (this.IsByInscription) { expression |= When.Patient.InscriptionIsBetween(this.InscriptionAfterDate, this.InscriptionBeforeDate); }
+            if (this.IsByCity) { expression |= When.Patient.CityContains(this.CityCriteria); }
+            if (this.IsByReason) { expression |= When.Patient.ReasonContains(this.ReasonCriteria); }
+            return expression;
+        }
+
+        private Specification<LightPatientDto> BuildAndExpression()
+        {
+            var expression = Specification<LightPatientDto>.Empty;
+            if (this.IsByProfession) { expression &= When.Patient.ProfessionIs(this.SelectedProfession); }
+            if (this.IsByBirthdate) { expression &= When.Patient.BirthdateIsBetween(this.BirthdateAfterDate, this.BirthdateBeforeDate); }
+            if (this.IsByLastUpdate) { expression &= When.Patient.LastUpdateIsBetween(this.UpdateAfterDate, this.UpdateBeforeDate); }
+            if (this.IsByInscription) { expression &= When.Patient.InscriptionIsBetween(this.InscriptionAfterDate, this.InscriptionBeforeDate); }
+            if (this.IsByCity) { expression &= When.Patient.CityContains(this.CityCriteria); }
+            if (this.IsByReason) { expression &= When.Patient.ReasonContains(this.ReasonCriteria); }
+            return expression;
+        }
+
         private bool CanSearch()
         {
             //" " (white space) or String.Empty will disable the search on the name
-            return this.SelectedProfession != null;
+            return true;
         }
 
         private bool CanSelectPatient()
@@ -176,9 +428,9 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
         {
             try
             {
-                var expression = new SpecificationExpression<LightPatientDto>();
-
-                if (this.IsByProfession) { expression.And(new GetPatientByProfessionSpecification(this.SelectedProfession)); }
+                var expression = (this.SelectedOperator.Item1 == Operator.And)
+                    ? this.BuildAndExpression()
+                    : this.BuidOrExpression();
 
                 var context = TaskScheduler.FromCurrentSynchronizationContext();
                 var task = Task.Factory
@@ -188,7 +440,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             catch (Exception ex) { this.Handle.Error(ex); }
         }
 
-        private IList<LightPatientDto> SearchAsync(SpecificationExpression<LightPatientDto> expression)
+        private IList<LightPatientDto> SearchAsync(Specification<LightPatientDto> expression)
         {
             this.IsBusy = true;
             return this.Component.GetPatientsByNameLight(this.Name, expression);

@@ -1,4 +1,7 @@
-﻿/*
+﻿namespace Probel.NDoctor.Domain.DTO.Specification
+{
+    using Probel.NDoctor.Domain.DTO.Specification.Integers;
+    /*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -13,31 +16,30 @@
 
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
-*/
-namespace Probel.NDoctor.Domain.DTO.Specification
-{
-    public abstract class CompositeSpecification<T> : Specification<T>
+    */
+    using Probel.NDoctor.Domain.DTO.Specification.Patients;
+
+    public static class When
     {
         #region Fields
 
-        protected readonly Specification<T> leftSide;
-        protected readonly Specification<T> rightSide;
+        private static readonly IntegersSpecificationFactory integer = new IntegersSpecificationFactory();
+        private static readonly PatientSpecificationFactory patient = new PatientSpecificationFactory();
 
         #endregion Fields
 
-        #region Constructors
+        #region Properties
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CompositeSpecification&lt;T&gt;"/> class.
-        /// </summary>
-        /// <param name="leftSide">The left side.</param>
-        /// <param name="rightSide">The right side.</param>
-        internal CompositeSpecification(Specification<T> leftSide, Specification<T> rightSide)
+        public static IntegersSpecificationFactory Integer
         {
-            this.leftSide = leftSide;
-            this.rightSide = rightSide;
+            get { return integer; }
         }
 
-        #endregion Constructors
+        public static PatientSpecificationFactory Patient
+        {
+            get { return patient; }
+        }
+
+        #endregion Properties
     }
 }

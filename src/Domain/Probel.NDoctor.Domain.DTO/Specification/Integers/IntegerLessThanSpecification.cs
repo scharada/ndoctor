@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -16,42 +14,41 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-#endregion Header
-
-namespace Probel.NDoctor.Domain.DTO.Specification
+namespace Probel.NDoctor.Domain.DTO.Specification.Integers
 {
-    using Probel.NDoctor.Domain.DTO.Objects;
-
-    /// <summary>
-    /// Select all the patient with the first and/or last name that contains
-    /// the text specified in the contructor.
-    /// This specification uses the lower case version of the Profession.Name to 
-    /// make the selection
-    /// </summary>
-    public class FindPatientByNameSpecification : Specification<LightPatientDto>
+    internal class IntegerLessThanSpecification : Specification<int>
     {
         #region Fields
 
-        private string text;
+        private readonly int Value;
 
         #endregion Fields
 
         #region Constructors
 
-        public FindPatientByNameSpecification(string text)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntegerLessThanSpecification"/> class.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        public IntegerLessThanSpecification(int value)
         {
-            this.text = text.ToLower();
+            this.Value = value;
         }
 
         #endregion Constructors
 
         #region Methods
 
-        public override bool IsSatisfiedBy(LightPatientDto obj)
+        /// <summary>
+        /// Determines whether [is satisfied by] [the specified obj].
+        /// </summary>
+        /// <param name="obj">The obj.</param>
+        /// <returns>
+        ///   <c>true</c> if [is satisfied by] [the specified obj]; otherwise, <c>false</c>.
+        /// </returns>
+        public override bool IsSatisfiedBy(int obj)
         {
-            return obj.FirstName.ToLower().Contains(this.text)
-                || obj.LastName.ToLower().Contains(this.text);
+            return obj < this.Value;
         }
 
         #endregion Methods

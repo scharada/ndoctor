@@ -78,9 +78,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\PluginSettings.cs" />
     <Compile Include="Translations\AddPatientText.cs" />
-    <Compile Include="Translations\CriteriaText.cs" />
     <Compile Include="Translations\SearchPatientExtendedText.cs" />
+    <Compile Include="Translations\SettingsText.cs" />
     <Compile Include="Translations\TopTenText.cs" />
     <Compile Include="ViewModel\LightPatientViewModel.cs" />
     <Compile Include="Properties\Messages.fr.Designer.cs">
@@ -97,32 +98,23 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
     <Compile Include="Translations\WorkbenchText.cs" />
     <Compile Include="ViewModel\AddPatientViewModel.cs" />
     <Compile Include="ViewModel\SearchPatientExtendedViewModel.cs" />
     <Compile Include="ViewModel\SearchPatientViewModel.cs" />
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\TopTenViewModel.cs" />
     <Compile Include="View\AddPatientControl.xaml.cs">
       <DependentUpon>AddPatientControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\CriteriaControl.xaml.cs">
-      <DependentUpon>CriteriaControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SearchPatientControl.xaml.cs">
       <DependentUpon>SearchPatientControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SearchPatientExtendedControl.xaml.cs">
       <DependentUpon>SearchPatientExtendedControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TopTenControl.xaml.cs">
       <DependentUpon>TopTenControl.xaml</DependentUpon>
@@ -135,18 +127,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Probel.NDoctor.Plugins.PatientSession.licenseheader" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <AppDesigner Include="Properties\" />
+    <EmbeddedResource Include="Plugin.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Domain\Probel.NDoctor.Domain.Components\Probel.NDoctor.Domain.Components.csproj">
@@ -183,15 +168,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\CriteriaControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\SearchPatientControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SearchPatientExtendedControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

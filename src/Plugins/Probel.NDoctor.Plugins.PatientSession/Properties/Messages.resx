@@ -118,8 +118,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Btn_Add" xml:space="preserve">
-    <value>Add</value>
+    <value>Add:</value>
     <comment>Add</comment>
+  </data>
+  <data name="Criteria_ByBirthdata" xml:space="preserve">
+    <value>Birthdate:</value>
+    <comment>Birthdate</comment>
+  </data>
+  <data name="Criteria_ByCity" xml:space="preserve">
+    <value>City:</value>
+    <comment>City</comment>
+  </data>
+  <data name="Criteria_ByInscription" xml:space="preserve">
+    <value>Inscription:</value>
+    <comment>Inscription</comment>
+  </data>
+  <data name="Criteria_ByLastUpdate" xml:space="preserve">
+    <value>Last update:</value>
+    <comment>Last update</comment>
   </data>
   <data name="Criteria_ByName" xml:space="preserve">
     <value>First or last name:</value>
@@ -129,21 +145,21 @@
     <value>Profession:</value>
     <comment>Profession:</comment>
   </data>
+  <data name="Criteria_ByReason" xml:space="preserve">
+    <value>Reason</value>
+    <comment>Reason</comment>
+  </data>
   <data name="Criteria_ByYear" xml:space="preserve">
     <value>Birth year:</value>
     <comment>Birth year:</comment>
   </data>
-  <data name="Criteria_Create" xml:space="preserve">
-    <value>Create a new search criteria</value>
-    <comment>Create a new search criteria</comment>
+  <data name="Date_And" xml:space="preserve">
+    <value>and</value>
+    <comment>and</comment>
   </data>
-  <data name="Criteria_Specification" xml:space="preserve">
-    <value>Specification:</value>
-    <comment>Specification:</comment>
-  </data>
-  <data name="Criteria_Value" xml:space="preserve">
-    <value>Criteria:</value>
-    <comment>Criteria:</comment>
+  <data name="Date_Between" xml:space="preserve">
+    <value>Between</value>
+    <comment>Between</comment>
   </data>
   <data name="Error_AddPatient" xml:space="preserve">
     <value>An error occured while adding a new patient</value>
@@ -153,9 +169,41 @@
     <value>The specified value is not numeric</value>
     <comment>The specified value is not numeric</comment>
   </data>
+  <data name="Gb_Specifications" xml:space="preserve">
+    <value>Search on...</value>
+    <comment>Search on...</comment>
+  </data>
   <data name="Information" xml:space="preserve">
     <value>Information</value>
     <comment>Information</comment>
+  </data>
+  <data name="Lbl_Birthdate" xml:space="preserve">
+    <value>birthdate</value>
+    <comment>birthdate</comment>
+  </data>
+  <data name="Lbl_City" xml:space="preserve">
+    <value>the city</value>
+    <comment>the city</comment>
+  </data>
+  <data name="Lbl_Inscription" xml:space="preserve">
+    <value>the inscription date</value>
+    <comment>the inscription date</comment>
+  </data>
+  <data name="Lbl_LastUpdate" xml:space="preserve">
+    <value>the last update</value>
+    <comment>the last update</comment>
+  </data>
+  <data name="Lbl_Profession" xml:space="preserve">
+    <value>the profession</value>
+    <comment>the profession</comment>
+  </data>
+  <data name="Lbl_Reason" xml:space="preserve">
+    <value>the reason</value>
+    <comment>the reason</comment>
+  </data>
+  <data name="Lbl_SearchBehaviour" xml:space="preserve">
+    <value>Comportement:</value>
+    <comment>Behaviour:</comment>
   </data>
   <data name="Menu_Select" xml:space="preserve">
     <value>Select</value>
@@ -164,6 +212,10 @@
   <data name="Msg_DoubleClick" xml:space="preserve">
     <value>Double click to select the patient</value>
     <comment>Double click to select the patient</comment>
+  </data>
+  <data name="Msg_Explanations" xml:space="preserve">
+    <value>Select the search criterion you want to see in the advanced search box.</value>
+    <comment>Select the search criterion you want to see in the advanced search box.</comment>
   </data>
   <data name="Msg_PatientAdded" xml:space="preserve">
     <value>Patient added.</value>
@@ -180,6 +232,14 @@
   <data name="Msg_SelectPatient" xml:space="preserve">
     <value>Open a session for {0}</value>
     <comment>Open a session for {0}</comment>
+  </data>
+  <data name="Search_And" xml:space="preserve">
+    <value>Select if ALL criterion are satisfied</value>
+    <comment>Select if ALL criterion are satisfied</comment>
+  </data>
+  <data name="Search_Or" xml:space="preserve">
+    <value>Select if AT LEAST one criteria is satisfied</value>
+    <comment>Select if AT LEAST one criteria is satisfied</comment>
   </data>
   <data name="Title_Add" xml:space="preserve">
     <value>Add</value>
@@ -217,12 +277,16 @@
     <value>Ten most used patients</value>
     <comment>Ten most used patients</comment>
   </data>
+  <data name="Title_PatientSession" xml:space="preserve">
+    <value>Patient session</value>
+    <comment>Patient session</comment>
+  </data>
   <data name="Title_SearchPatient" xml:space="preserve">
     <value>Search patient</value>
     <comment>Search patient</comment>
   </data>
   <data name="Title_SearchWatermark" xml:space="preserve">
-    <value>Chercher...</value>
+    <value>Search...</value>
     <comment>Search...</comment>
   </data>
 </root>

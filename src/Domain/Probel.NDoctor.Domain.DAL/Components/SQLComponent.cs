@@ -121,6 +121,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         {
             this.ExecuteSql("VACUUM");
         }
+
         #endregion Methods
     }
 }

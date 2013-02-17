@@ -181,6 +181,10 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
                     LastName = src.LastName,
                     IsDeactivated = src.IsDeactivated,
                     Profession = Mapper.Map<ProfessionDto>(src.Profession),
+                    InscriptionDate = src.InscriptionDate,
+                    LastUpdate = src.LastUpdate,
+                    Address = Mapper.Map<Address, AddressDto>(src.Address),
+                    Reason = src.Reason,
                 };
                 Clean(dto);
                 return dto;

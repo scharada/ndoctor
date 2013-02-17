@@ -27,6 +27,41 @@ namespace Probel.NDoctor.Plugins.PatientSession.Translations
     {
         #region Properties
 
+        public static string And
+        {
+            get { return Messages.Date_And; }
+        }
+
+        public static string Behaviour
+        {
+            get { return Messages.Lbl_SearchBehaviour; }
+        }
+
+        public static string Between
+        {
+            get { return Messages.Date_Between; }
+        }
+
+        public static string CriteriaByBirthdate
+        {
+            get { return Messages.Criteria_ByBirthdata; }
+        }
+
+        public static string CriteriaByCity
+        {
+            get { return Messages.Criteria_ByCity; }
+        }
+
+        public static string CriteriaByInscription
+        {
+            get { return Messages.Criteria_ByInscription; }
+        }
+
+        public static string CriteriaByLastUpdate
+        {
+            get { return Messages.Criteria_ByLastUpdate; }
+        }
+
         public static string CriteriaByName
         {
             get { return Messages.Criteria_ByName; }
@@ -35,6 +70,11 @@ namespace Probel.NDoctor.Plugins.PatientSession.Translations
         public static string CriteriaByProfession
         {
             get { return Messages.Criteria_ByProfession; }
+        }
+
+        public static string CriteriaByReason
+        {
+            get { return Messages.Criteria_ByReason; }
         }
 
         public static string Search

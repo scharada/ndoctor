@@ -21,19 +21,20 @@
 
 namespace Probel.NDoctor.Domain.DTO.Specification
 {
-    /// <summary>
-    /// This is a dummy specification to allow a default contructor to the <see cref="SpecificationExpression"/>
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    internal class AllowAllSpecification<T> : Specification<T>
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using Probel.Helpers.Assertion;
+
+    #region Enumerations
+
+    public enum Operator
     {
-        #region Methods
-
-        public override bool IsSatisfiedBy(T obj)
-        {
-            return true;
-        }
-
-        #endregion Methods
+        And,
+        Or,
     }
+
+    #endregion Enumerations
 }

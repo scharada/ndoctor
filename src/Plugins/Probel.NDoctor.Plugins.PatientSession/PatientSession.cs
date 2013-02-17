@@ -31,6 +31,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
     using Probel.NDoctor.Plugins.PatientSession.View;
     using Probel.NDoctor.Plugins.PatientSession.ViewModel;
     using Probel.NDoctor.View;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.MenuData;
 
@@ -74,6 +75,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
         /// </summary>
         public override void Initialise()
         {
+            new SettingsConfigurator().Add(Messages.Title_PatientSession, () => new SettingsView());
             this.BuildButtons();
             this.ConfigureViewService();
         }

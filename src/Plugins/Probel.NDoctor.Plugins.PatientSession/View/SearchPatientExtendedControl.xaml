@@ -19,9 +19,12 @@
         Title="{Binding Source={x:Static Member=txt:SearchPatientExtendedText.Title}}" 
         
         mc:Ignorable="d"
-        Width="300"
-        Height="450" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner">
-    
+        Width="550"
+        Height="850" 
+        ShowInTaskbar="False" 
+        WindowStyle="ToolWindow" 
+        WindowStartupLocation="CenterOwner">
+
     <Window.InputBindings>
         <KeyBinding Key="Enter"
                     Command="{Binding SearchCommand}"/>
@@ -29,12 +32,19 @@
                     Command="cmd:Commands.CloseView" 
                     CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
     </Window.InputBindings>
-    
+
     <Window.Resources>
         <conv:GenderToImageConverter x:Key="genderToImage"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+        <Style TargetType="Label">
+            <Setter Property="Width" Value="160"/>
+        </Style>
+        <Style TargetType="CheckBox">
+            <Setter Property="Width" Value="160"/>
+        </Style>
     </Window.Resources>
-    
+
     <Grid>
         <toolkit:BusyIndicator IsBusy="{Binding IsBusy,UpdateSourceTrigger=PropertyChanged}"
                                BusyContent="{Binding Source={x:Static Member=t:BaseText.PleaseWait}}">
@@ -44,65 +54,184 @@
                        HorizontalAlignment="Center" />
                 <DockPanel DockPanel.Dock="Top"
                            LastChildFill="True">
-                    <DockPanel DockPanel.Dock="Top" LastChildFill="True">
+                    <DockPanel DockPanel.Dock="Top" 
+                               LastChildFill="True">
                         <DockPanel Margin="4">
                             <toolkit:WatermarkTextBox x:Name="focused"
-                                              Grid.Column="0" 
-                                              Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}">
+                                                      Grid.Column="0" 
+                                                      Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}">
                                 <toolkit:WatermarkTextBox.Watermark>
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
-                                       Height="15"
-                                       Width="15" />
+                                               Height="15"
+                                               Width="15" />
                                         <TextBlock Text="{Binding Source={x:Static Member=text:WorkbenchText.TitleWatermark}}"
-                                           Margin="4,0,0,0"/>
+                                                   Margin="4,0,0,0"/>
                                     </StackPanel>
                                 </toolkit:WatermarkTextBox.Watermark>
                             </toolkit:WatermarkTextBox>
                         </DockPanel>
                     </DockPanel>
-                    <DockPanel DockPanel.Dock="Top" LastChildFill="True">
-                        <CheckBox x:Name="isByProfession"
-                          IsChecked="{Binding IsByProfession}" 
-                          Content="{Binding Source={x:Static Member=text:SearchPatientExtendedText.CriteriaByProfession}}"
-                          Margin="4"
-                          HorizontalContentAlignment="Left"
-                          VerticalContentAlignment="Center"
-                          VerticalAlignment="Center"/>
-                        <ComboBox Margin="4" 
-                          ItemsSource="{Binding Professions}"
-                          IsEnabled="{Binding IsChecked, ElementName=isByProfession}"
-                          DisplayMemberPath="Name"
-                          SelectedItem="{Binding SelectedProfession}"/>
+                    <DockPanel DockPanel.Dock="Top">
+                        <Label Margin="4"
+                               Content="{Binding Source={x:Static Member=txt:SearchPatientExtendedText.Behaviour}}"/>
+                        <ComboBox Margin="4"
+                                  ItemsSource="{Binding LogicalOperators}"
+                                  DisplayMemberPath="Item2"
+                                  SelectedItem="{Binding SelectedOperator}"/>
                     </DockPanel>
-                    <Border Style="{StaticResource BorderStyle}">
-                        <Button DockPanel.Dock="Bottom" Content="{Binding Source={x:Static text:SearchPatientExtendedText.Search}}"
-                                Command="{Binding SearchCommand}"/>
-                    </Border>
+                    <DockPanel DockPanel.Dock="Top" 
+                               LastChildFill="True"
+                               Visibility="{Binding ShowProfession, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <CheckBox x:Name="isByProfession"
+                                  IsChecked="{Binding IsByProfession}" 
+                                  Content="{Binding Source={x:Static Member=text:SearchPatientExtendedText.CriteriaByProfession}}"
+                                  Margin="4"
+                                  HorizontalContentAlignment="Left"
+                                  VerticalContentAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                        <ComboBox Margin="4" 
+                                  ItemsSource="{Binding Professions}"
+                                  IsEnabled="{Binding IsChecked, ElementName=isByProfession}"
+                                  DisplayMemberPath="Name"
+                                  SelectedItem="{Binding SelectedProfession}"/>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Top" 
+                               LastChildFill="True"
+                               Visibility="{Binding ShowBirthdate, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <CheckBox x:Name="isByBirthdate"
+                                  IsChecked="{Binding IsByBirthdate}" 
+                                  Content="{Binding Source={x:Static Member=text:SearchPatientExtendedText.CriteriaByBirthdate}}"
+                                  Margin="4"
+                                  HorizontalContentAlignment="Left"
+                                  VerticalContentAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                        <Grid IsEnabled="{Binding IsChecked, ElementName=isByBirthdate}"
+                              VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0"
+                                   Content="{Binding Source={x:Static Member=txt:SearchPatientExtendedText.Between}}"
+                                   VerticalAlignment="Center"/>
+                            <DatePicker Grid.Column="1"
+                                        Margin="4"
+                                        SelectedDate="{Binding BirthdateAfterDate}"/>
+                            <Label Grid.Column="2" 
+                                   Content="{Binding Source={x:Static Member=txt:SearchPatientExtendedText.And}}"
+                                   VerticalAlignment="Center"/>
+                            <DatePicker Grid.Column="3" Margin="4"                                
+                                        SelectedDate="{Binding BirthdateBeforeDate}"/>
+                        </Grid>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Top" 
+                               LastChildFill="True"
+                               Visibility="{Binding ShowLastUpdate, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <CheckBox x:Name="isByLastUpdate"
+                                  IsChecked="{Binding IsByLastUpdate}" 
+                                  Content="{Binding Source={x:Static Member=text:SearchPatientExtendedText.CriteriaByLastUpdate}}"
+                                  Margin="4"
+                                  HorizontalContentAlignment="Left"
+                                  VerticalContentAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                        <Grid IsEnabled="{Binding IsChecked, ElementName=isByLastUpdate}"
+                              VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Content="{Binding Source={x:Static Member=txt:SearchPatientExtendedText.Between}}"
+                                   VerticalAlignment="Center"/>
+                            <DatePicker Grid.Column="1" Margin="4"                                  
+                                        SelectedDate="{Binding UpdateAfterDate}"/>
+                            <Label Grid.Column="2"
+                                   Content="{Binding Source={x:Static Member=txt:SearchPatientExtendedText.And}}"
+                                   VerticalAlignment="Center"/>
+                            <DatePicker Grid.Column="3"
+                                        Margin="4"                                 
+                                        SelectedDate="{Binding UpdateBeforeDate}"/>
+                        </Grid>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Top" 
+                               LastChildFill="True"
+                               Visibility="{Binding ShowInscriptionDate, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <CheckBox x:Name="isByInscription"
+                                  IsChecked="{Binding IsByInscription}" 
+                                  Content="{Binding Source={x:Static Member=text:SearchPatientExtendedText.CriteriaByInscription}}"
+                                  Margin="4"
+                                  HorizontalContentAlignment="Left"
+                                  VerticalContentAlignment="Center"
+                                  VerticalAlignment="Center"/>
+
+                        <Grid IsEnabled="{Binding IsChecked, ElementName=isByInscription}"
+                              VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Content="{Binding Source={x:Static Member=txt:SearchPatientExtendedText.Between}}"
+                                   VerticalAlignment="Center"/>
+                            <DatePicker Grid.Column="1" Margin="4"                               
+                                        SelectedDate="{Binding InscriptionAfterDate}"/>
+                            <Label Grid.Column="2" 
+                                Content="{Binding Source={x:Static Member=txt:SearchPatientExtendedText.And}}"
+                                   VerticalAlignment="Center"/>
+                            <DatePicker Grid.Column="3"
+                                        Margin="4"                              
+                                        SelectedDate="{Binding InscriptionBeforeDate}"/>
+                        </Grid>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Top" 
+                               LastChildFill="True"
+                               Visibility="{Binding ShowCity, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <CheckBox x:Name="isByCity"
+                                  IsChecked="{Binding IsByCity}" 
+                                  Content="{Binding Source={x:Static Member=text:SearchPatientExtendedText.CriteriaByCity}}"
+                                  Margin="4"
+                                  HorizontalContentAlignment="Left"
+                                  VerticalContentAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                        <TextBox Margin="4" 
+                                  Text="{Binding CityCriteria}"
+                                  IsEnabled="{Binding IsChecked, ElementName=isByCity}"/>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Top" 
+                               LastChildFill="True"
+                               Visibility="{Binding ShowReason, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <CheckBox x:Name="isByReason"
+                                  IsChecked="{Binding isByReason}" 
+                                  Content="{Binding Source={x:Static Member=text:SearchPatientExtendedText.CriteriaByReason}}"
+                                  Margin="4"
+                                  HorizontalContentAlignment="Left"
+                                  VerticalContentAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                        <TextBox Margin="4" 
+                                 Text="{Binding ReasonCriteria}"
+                                 IsEnabled="{Binding IsChecked, ElementName=isByReason}"/>
+                    </DockPanel>
+                    <Button Margin="4"
+                            DockPanel.Dock="Bottom" Content="{Binding Source={x:Static text:SearchPatientExtendedText.Search}}"
+                            Command="{Binding SearchCommand}"/>
                 </DockPanel>
-                <!--<ScrollViewer>
-                    <ListView DockPanel.Dock="Bottom"
-                              ItemsSource="{Binding FoundPatients}"
-                              IsSynchronizedWithCurrentItem="True"
-                              VerticalAlignment="Stretch"
-                              SelectedItem="{Binding SelectedPatient}"
-                              behaviours:ControlBehaviour.MouseDoubleClick="{Binding SelectPatientCommand}">
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
-                            </Style>
-                        </ListView.ItemContainerStyle>
-                    </ListView>
-                </ScrollViewer>-->
                 <DataGrid DockPanel.Dock="Bottom"
-                  ItemsSource="{Binding FoundPatients}"
-                  SelectedItem="{Binding SelectedPatient}"
-                  behaviours:ControlBehaviour.MouseDoubleClick="{Binding SelectPatientCommand}" 
-                  HeadersVisibility="None"
-                  AutoGenerateColumns="False"
-                  CanUserAddRows="False"
-                  CanUserDeleteRows="False"
-                  GridLinesVisibility="None">
+                          ItemsSource="{Binding FoundPatients}"
+                          SelectedItem="{Binding SelectedPatient}"
+                          behaviours:ControlBehaviour.MouseDoubleClick="{Binding SelectPatientCommand}" 
+                          HeadersVisibility="None"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          GridLinesVisibility="None">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn Header="Sex">
                             <DataGridTemplateColumn.CellTemplate>

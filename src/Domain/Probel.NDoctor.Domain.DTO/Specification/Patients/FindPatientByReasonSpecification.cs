@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,17 +16,22 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Probel.NDoctor.Domain.DTO.Objects;
 
-namespace Probel.NDoctor.Domain.DTO.Specification
-{    /// <summary>
+#endregion Header
+
+namespace Probel.NDoctor.Domain.DTO.Specification.Patients
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using Probel.NDoctor.Domain.DTO.Objects;
+
+    /// <summary>
     /// Verifies if the specified <see cref="LightPatientDto"/> has a reason that contains the specified text
     /// </summary>
-    public class FindPatientByReasonSpecification : Specification<LightPatientDto>
+    internal class FindPatientByReasonSpecification : Specification<LightPatientDto>
     {
         #region Fields
 
