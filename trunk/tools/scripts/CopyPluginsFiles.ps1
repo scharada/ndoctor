@@ -65,6 +65,7 @@ CopyPluginFiles("FamilyViewer");
 CopyPluginFiles("MeetingManager")
 CopyPluginFiles("DebugTools")
 CopyPluginFiles("PatientOverview")
+CopyPluginFiles("RescueTools")
 
 $currentPlugin = "MedicalRecord"
 CopyPluginFiles($currentPlugin)
