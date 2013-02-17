@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
+	<!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,314 +59,317 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="Error_BeginBiggerThanEnd" xml:space="preserve">
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="Error_BeginBiggerThanEnd" xml:space="preserve">
     <value>L'heure de départ doit être plus petite que l'heure de fin</value>
     <comment>The start time should be smaller than the end time</comment>
   </data>
-  <data name="Error_NotSupportedDate_Hour" xml:space="preserve">
+	<data name="Error_NotSupportedDate_Hour" xml:space="preserve">
     <value>La valeur des heures doit être comprise entre 0 et 23</value>
     <comment>The value of hours has to be between 0 and 23</comment>
   </data>
-  <data name="Error_NotSupportedDate_Minutes" xml:space="preserve">
+	<data name="Error_NotSupportedDate_Minutes" xml:space="preserve">
     <value>La valeur des minutes doit être comprise entre 0 et 59</value>
     <comment>The value of minutes has to be between 0 and 59</comment>
   </data>
-  <data name="Error_TooManyLoops" xml:space="preserve">
+	<data name="Error_TooManyLoops" xml:space="preserve">
     <value>Le programme semble être dans une boucle infinie</value>
     <comment>The program seems to be in an infinite loop</comment>
   </data>
-  <data name="Error_WrongTextForDate" xml:space="preserve">
+	<data name="Error_WrongTextForDate" xml:space="preserve">
     <value>Impossible de convertir "{0}" en heure</value>
     <comment>Impossible to convert "{0}" into time</comment>
   </data>
-  <data name="Ex_AuthorisationException" xml:space="preserve">
+	<data name="Ex_AuthorisationException" xml:space="preserve">
     <value>Vous n'êtes pas autorisé à exécuter cette action</value>
     <comment>You are not granted to execute this action</comment>
   </data>
-  <data name="Ex_BusinessLogicException" xml:space="preserve">
+	<data name="Ex_BusinessLogicException" xml:space="preserve">
     <value>Impossible d'exécuter cette action. Ceci est un cas de figure qui va  l'encontre de la logique métier ou n'est pas un cas prévus.</value>
     <comment>Impossible to execute this action. This is a unexpected state that wasn't forseen or it will break business logic rules.</comment>
   </data>
-  <data name="Ex_ClosedSessionException" xml:space="preserve">
+	<data name="Ex_ClosedSessionException" xml:space="preserve">
     <value>La session que vous utilisez pour interroger la base de données est fermée.</value>
     <comment>The session you're using to query the database is closed.</comment>
   </data>
-  <data name="Ex_ComponentException" xml:space="preserve">
+	<data name="Ex_ComponentException" xml:space="preserve">
     <value>Une erreur est intervenue au niveau des composants du DAL. Vérifier dans la sous exception pour plus de détails.</value>
     <comment>An error occured in the DAL components. See inner exception for details.</comment>
   </data>
-  <data name="Ex_ConfigurationException" xml:space="preserve">
+	<data name="Ex_ConfigurationException" xml:space="preserve">
     <value>La couche d'accès aux données à déjà été configurée</value>
     <comment>You already configured the DAL</comment>
   </data>
-  <data name="Ex_DalConfigurationException" xml:space="preserve">
+	<data name="Ex_DalConfigurationException" xml:space="preserve">
     <value>Une erreur est apparue lors de la création de la base de données</value>
     <comment>An error occured during the configuration of the database</comment>
   </data>
-  <data name="Ex_DalSessionException_UnknownId" xml:space="preserve">
+	<data name="Ex_DalSessionException_UnknownId" xml:space="preserve">
     <value>The ID type is '{0}' while expecting '{1}'</value>
     <comment>Le type de l'ID est '{0}' alors qu'il devrait être '{1}'</comment>
   </data>
-  <data name="Ex_EmptyPasswordException" xml:space="preserve">
+	<data name="Ex_EmptyPasswordException" xml:space="preserve">
     <value>Les mots de passe vide ne sont pas accepté</value>
     <comment>Empty password are not accepted</comment>
   </data>
-  <data name="Ex_EncryptionException" xml:space="preserve">
+	<data name="Ex_EncryptionException" xml:space="preserve">
     <value>Une erreur est survenue pendant le déchiffrage du texte spécifié</value>
     <comment>An error occured while decrypting the specified text</comment>
   </data>
-  <data name="Ex_EntityAlreadyExistsException" xml:space="preserve">
+	<data name="Ex_EntityAlreadyExistsException" xml:space="preserve">
     <value>Cette entité existe déjà dans la base de données</value>
     <comment>This entity already exist in the database</comment>
   </data>
-  <data name="Ex_EntityNotFoundException" xml:space="preserve">
+	<data name="Ex_EntityNotFoundException" xml:space="preserve">
     <value>L'élément de type '{0}' que vous cherchez n'existe pas dans la base de données.</value>
     <comment>The searched item of type '{0}' doesn't exist in the database</comment>
   </data>
-  <data name="Ex_EntityNotFoundException_NoPatient" xml:space="preserve">
+	<data name="Ex_EntityNotFoundException_NoPatient" xml:space="preserve">
     <value>Aucun patient avec l'identifiant '{0}' n'a été trouvé.</value>
     <comment>No patient with id '{0}' was found.</comment>
   </data>
-  <data name="Ex_EntityNotFoundException_NoRelationRightSide" xml:space="preserve">
+	<data name="Ex_EntityNotFoundException_NoRelationRightSide" xml:space="preserve">
     <value>Le patient qui représente la partie droite de la relation n'existe pas dans la base de données.</value>
     <comment>The patient of right side of the relation doesn't exist in the database</comment>
   </data>
-  <data name="Ex_ExistingItemException" xml:space="preserve">
+	<data name="Ex_ExistingItemException" xml:space="preserve">
     <value>L'élément que vous voulez enregistrer dans la base de données existe déjà.</value>
     <comment>The item you want to create already exist in the database.</comment>
   </data>
-  <data name="Ex_GoogleCalendarException" xml:space="preserve">
+	<data name="Ex_GoogleCalendarException" xml:space="preserve">
     <value>Une erreur est survenue pendant la communication avec Google Calendar</value>
     <comment>An error occured when communicating with Google Calendar</comment>
   </data>
-  <data name="Ex_GoogleCalendarExceptionFormat" xml:space="preserve">
+	<data name="Ex_GoogleCalendarExceptionFormat" xml:space="preserve">
     <value>Google Calendar reporte cette erreur: {0}</value>
     <comment>Google Calendar reports this error: {0}</comment>
   </data>
-  <data name="Ex_HasThumbnail" xml:space="preserve">
+	<data name="Ex_HasThumbnail" xml:space="preserve">
     <value>La photo contient déjà une miniature</value>
     <comment>The picture already has a thumbnail</comment>
   </data>
-  <data name="Ex_NotLoadedEntityException" xml:space="preserve">
+	<data name="Ex_NotLoadedEntityException" xml:space="preserve">
     <value>L'entité que vous êtes en train d'utiliser est détachée de la base de données.</value>
     <comment>The entity you are using detached  from the database.</comment>
   </data>
-  <data name="Ex_NullItemInListException" xml:space="preserve">
+	<data name="Ex_NullItemInListException" xml:space="preserve">
     <value>Un élément d'une des liste de l'objet à sauver contient au moins un élément null</value>
     <comment>A list of the object to save has at least one null element</comment>
   </data>
-  <data name="Ex_NullSessionFactoryException" xml:space="preserve">
+	<data name="Ex_NullSessionFactoryException" xml:space="preserve">
     <value>La factory de session nHibernate n'est pas configurée.</value>
     <comment>The nHibernate session factory is not configured.</comment>
   </data>
-  <data name="Ex_QueryException" xml:space="preserve">
+	<data name="Ex_QueryException" xml:space="preserve">
     <value>Une erreur est apparue pendant l'exécution d'une requête. {0}</value>
     <comment>An error occured during the execution of a query. {0}</comment>
   </data>
-  <data name="Ex_ReferencialIntegrityException" xml:space="preserve">
+	<data name="Ex_ReferencialIntegrityException" xml:space="preserve">
     <value>Cette action ne peut être exécutée pour garder l'intégrité des donnéess</value>
     <comment>This action wasn't executed to keep the integrity of the data.</comment>
   </data>
-  <data name="Ex_SessionException" xml:space="preserve">
+	<data name="Ex_SessionException" xml:space="preserve">
     <value>An error occured in the session</value>
     <comment>An error occured in the session</comment>
   </data>
-  <data name="Ex_SessionNotOpenedException" xml:space="preserve">
+	<data name="Ex_SessionNotOpenedException" xml:space="preserve">
     <value>La session n'est pas ouverte. Veuillez ouvrir une session avant d'interroger la base de données.</value>
     <comment>The session is not open. Please open it before query the database.</comment>
   </data>
-  <data name="Ex_ValidationException" xml:space="preserve">
+	<data name="Ex_ValidationException" xml:space="preserve">
     <value>Une erreur est survenue pendant la validation d'un object DTO</value>
     <comment>An error occured during the validation of the DTO object.</comment>
   </data>
-  <data name="Gender_Female" xml:space="preserve">
+	<data name="Gender_Female" xml:space="preserve">
     <value>Femme</value>
     <comment>Female</comment>
   </data>
-  <data name="Gender_Male" xml:space="preserve">
+	<data name="Gender_Male" xml:space="preserve">
     <value>Homme</value>
     <comment>Male</comment>
   </data>
-  <data name="Invalid_Data" xml:space="preserve">
+	<data name="Invalid_Data" xml:space="preserve">
     <value>Vous avez entré des données invalides</value>
     <comment>You entered invalid data</comment>
   </data>
-  <data name="Invalid_Date" xml:space="preserve">
+	<data name="Invalid_Date" xml:space="preserve">
     <value>La date doit être après le 1/1/1900</value>
     <comment>The date should be after 1/1/1900</comment>
   </data>
-  <data name="Invalid_EmptyPrescription" xml:space="preserve">
+	<data name="Invalid_EmptyPrescription" xml:space="preserve">
     <value>Ce document ne contient aucune prescription</value>
     <comment>This document doesn't have prescription</comment>
   </data>
-  <data name="Invalid_EmptyTag" xml:space="preserve">
+	<data name="Invalid_EmptyTag" xml:space="preserve">
     <value>Le tag de cet élément ne peut pas être null</value>
     <comment>The tag of this item can't be null</comment>
   </data>
-  <data name="Invalid_EmptyValue" xml:space="preserve">
+	<data name="Invalid_EmptyValue" xml:space="preserve">
     <value>Ne peut pas être vide.</value>
     <comment>Can't be empty.</comment>
   </data>
-  <data name="Invalid_Family" xml:space="preserve">
+	<data name="Invalid_Family" xml:space="preserve">
     <value>Relation familiale invalide</value>
     <comment>Invalid family relation</comment>
   </data>
-  <data name="Invalid_Height" xml:space="preserve">
+	<data name="Invalid_Height" xml:space="preserve">
     <value>La taille doit être comprise entre 10 et 300 cm</value>
     <comment>The height should be between 10 and 300 cm</comment>
   </data>
-  <data name="Invalid_IllnessHistory" xml:space="preserve">
+	<data name="Invalid_IllnessHistory" xml:space="preserve">
     <value>Cet historique de maladie ne contient pas de patient.</value>
     <comment>This illness history is not related to any patient</comment>
   </data>
-  <data name="Invalid_Prescription_NoDrug" xml:space="preserve">
+	<data name="Invalid_Prescription_NoDrug" xml:space="preserve">
     <value>Cette prescription ne contient aucun médicament</value>
     <comment>There's no drug in this prescription</comment>
   </data>
-  <data name="Invalid_Relation" xml:space="preserve">
+	<data name="Invalid_Relation" xml:space="preserve">
     <value>Une relation doit contenir deux personnes</value>
     <comment>A relation should contain two persons</comment>
   </data>
-  <data name="Invalid_TimeSpan" xml:space="preserve">
+	<data name="Invalid_TimeSpan" xml:space="preserve">
     <value>La date de début doit être antérieure à la date de fin</value>
     <comment>The start date should be before the end date</comment>
   </data>
-  <data name="Invalid_Weight" xml:space="preserve">
+	<data name="Invalid_Weight" xml:space="preserve">
     <value>Le poids doit être compris entre 1 et 500 Kg</value>
     <comment>The weight should be between 1 and 500 Kg</comment>
   </data>
-  <data name="Msg_Children" xml:space="preserve">
+	<data name="Msg_Children" xml:space="preserve">
     <value>Enfants</value>
     <comment>Children</comment>
   </data>
-  <data name="Msg_Father" xml:space="preserve">
+	<data name="Msg_Father" xml:space="preserve">
     <value>Père</value>
     <comment>Father</comment>
   </data>
-  <data name="Msg_Mother" xml:space="preserve">
+	<data name="Msg_Mother" xml:space="preserve">
     <value>Mère</value>
     <comment>Mother</comment>
   </data>
-  <data name="Msg_Sibling" xml:space="preserve">
+	<data name="Msg_Sibling" xml:space="preserve">
     <value>Frères/soeurs</value>
     <comment>Sibling</comment>
   </data>
-  <data name="SearchOn_Both" xml:space="preserve">
+	<data name="SearchOn_Both" xml:space="preserve">
     <value>Recherche sur le nom ET le prénom</value>
     <comment>Search on first name AND last name</comment>
   </data>
-  <data name="SearchOn_FirstName" xml:space="preserve">
+	<data name="SearchOn_FirstName" xml:space="preserve">
     <value>Recherche sur le prénom</value>
     <comment>Search on first name</comment>
   </data>
-  <data name="SearchOn_LastName" xml:space="preserve">
+	<data name="SearchOn_LastName" xml:space="preserve">
     <value>Recherche sur le nom </value>
     <comment>Search on last name</comment>
   </data>
-  <data name="TagType_Appointment" xml:space="preserve">
+	<data name="TagType_Appointment" xml:space="preserve">
     <value>Rendez-vous</value>
     <comment>Appointment</comment>
   </data>
-  <data name="TagType_Child" xml:space="preserve">
+	<data name="TagType_Child" xml:space="preserve">
     <value>Enfant</value>
     <comment>Child</comment>
   </data>
-  <data name="TagType_Doctor" xml:space="preserve">
+	<data name="TagType_Doctor" xml:space="preserve">
     <value>Médecin</value>
     <comment>Doctor</comment>
   </data>
-  <data name="TagType_Drug" xml:space="preserve">
+	<data name="TagType_Drug" xml:space="preserve">
     <value>Médicament</value>
     <comment>Drug</comment>
   </data>
-  <data name="TagType_MedicalRecord" xml:space="preserve">
+	<data name="TagType_MedicalRecord" xml:space="preserve">
     <value>Dossier médical</value>
     <comment>Medical record</comment>
   </data>
-  <data name="TagType_Parent" xml:space="preserve">
+	<data name="TagType_Parent" xml:space="preserve">
     <value>Parent</value>
     <comment>Parent</comment>
   </data>
-  <data name="TagType_Pathology" xml:space="preserve">
+	<data name="TagType_Pathology" xml:space="preserve">
     <value>Pathologie</value>
     <comment>Pathology</comment>
   </data>
-  <data name="TagType_Patient" xml:space="preserve">
+	<data name="TagType_Patient" xml:space="preserve">
     <value>Patient</value>
     <comment>Patient</comment>
   </data>
-  <data name="TagType_Picture" xml:space="preserve">
+	<data name="TagType_Picture" xml:space="preserve">
     <value>Photo</value>
     <comment>Picture</comment>
   </data>
-  <data name="TagType_Prescription" xml:space="preserve">
+	<data name="TagType_Prescription" xml:space="preserve">
     <value>Prescription</value>
     <comment>Prescription</comment>
   </data>
-  <data name="TagType_PrescriptionDocument" xml:space="preserve">
+	<data name="TagType_PrescriptionDocument" xml:space="preserve">
     <value>Document de prescriptions</value>
     <comment>Prescription document</comment>
   </data>
-  <data name="Title_FromTo" xml:space="preserve">
+	<data name="Title_FromTo" xml:space="preserve">
     <value>{0} de {1} à {2} {3}</value>
     <comment>{0} from {1} to {2} {3}</comment>
   </data>
+	<data name="Ex_QueryException_SeveralDefaultUsers" xml:space="preserve">
+		<value>Plus d'un seul utilisateur par défaut trouvé.</value>
+	</data>
 </root>

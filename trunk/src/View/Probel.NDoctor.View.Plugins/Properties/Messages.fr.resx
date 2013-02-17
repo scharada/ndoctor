@@ -119,171 +119,129 @@
   </resheader>
   <data name="Ex_DeactivatedPluginException" xml:space="preserve">
     <value>Le plugin que vous essayer d'afficher est désactivé</value>
-    <comment>The plugin you try to show is deactivated.</comment>
   </data>
   <data name="Ex_NDoctorConfigurationException" xml:space="preserve">
     <value>La configuration ou le contexte d'exécution de nDoctor est invalide</value>
-    <comment>The configuration of the runtime context of nDoctor is invalid</comment>
   </data>
   <data name="Ex_NullPluginValidatorException" xml:space="preserve">
     <value>Les règles de validations ne sont pas configurées pour tous les plugins. Veuillez configurer les règles de validations.</value>
-    <comment>The plugin validator is not set. Please configure a validator for all the plugins</comment>
   </data>
   <data name="Ex_PluginConfigurationException" xml:space="preserve">
     <value>La configuration des plugins est incorrecte. Peut-être les fichier de configuration ont été mal écrit.</value>
-    <comment>The configuration of the plugins is incorrect. Maybe the configuration files are badly written.</comment>
   </data>
   <data name="Ex_PluginException" xml:space="preserve">
     <value>Une erreur est survenue dans un plugin</value>
-    <comment>An error occured during a plugins</comment>
   </data>
   <data name="Ex_PluginException_NoValidator" xml:space="preserve">
     <value>Ce plugin n'a pas de règles de validation.</value>
-    <comment>This plugin doesn't have validation rules.</comment>
   </data>
   <data name="Ex_PluginException_SeveralStartPages" xml:space="preserve">
     <value>Plusieurs plugins qui remplace la page de démarrage sont chargé en même temps. Il ne peut y avoir qu'un seul plugin de ce type chargé.</value>
-    <comment>More than one plugin that override the default start page are loaded. Only one can be activated.</comment>
   </data>
   <data name="Ex_PluginNotFoundException" xml:space="preserve">
     <value>Le répertoire du plugin '{0}' n'existe pas.
 Chemin: {1}</value>
-    <comment>The directory of the plugin '{0}' doesn't exist. Path: {1}</comment>
   </data>
   <data name="Ex_PluginNotLoadedException" xml:space="preserve">
     <value>Les plugins ne sont pas chargés en mémoire. Veuillez executer le chargeur de plugins.</value>
-    <comment>The plugins aren't loaded in memory. Please execute the 'Plugin Loader' before.</comment>
   </data>
   <data name="Ex_WrongDataContextException" xml:space="preserve">
     <value>Le type du contexte de données n'est pas celui attendu.</value>
-    <comment>The data context of the item is not at the expected type.</comment>
   </data>
   <data name="Msg_ErrorAuthorisation" xml:space="preserve">
     <value>Vous n'avez pas les droits pour exécuter cette fonctionnalité</value>
-    <comment>You are not granted to execute this feature</comment>
   </data>
   <data name="Msg_GroupManager" xml:space="preserve">
     <value>Gestionnaires</value>
-    <comment>Managers</comment>
   </data>
   <data name="Msg_MissingParameterInConfiguration" xml:space="preserve">
     <value>Le paramètre '{0}' n'a pas été configuré. Veuillez l'ajouter dans le fichier de configuration.</value>
-    <comment>The parameter '{0}' is not set in the configuration file. Please set it up.</comment>
   </data>
   <data name="Plugin_Administration" xml:space="preserve">
     <value>Gestionnaire d'administration</value>
-    <comment>Administration manager</comment>
   </data>
   <data name="Plugin_Administration_Explanations" xml:space="preserve">
     <value>Permet de gérer toutes les données satelites de nDoctor</value>
-    <comment>Used to manage all the data not directly related to the patient</comment>
   </data>
   <data name="Plugin_Authorisation" xml:space="preserve">
     <value>Gestionnaire d'autorisations</value>
-    <comment>Authorisation manager</comment>
   </data>
   <data name="Plugin_Authorisation_Explanations" xml:space="preserve">
     <value>Permet de gérer les autorisations des modules de nDoctor</value>
-    <comment>Allow to manage authorisations of the modules of nDoctor</comment>
   </data>
   <data name="Plugin_Bmi" xml:space="preserve">
     <value>Gestionnaire de l'historique BMI d'un patient</value>
-    <comment>BMI history manager</comment>
   </data>
   <data name="Plugin_Bmi_Explanations" xml:space="preserve">
     <value>Permet de gérer l'historique BMI d'un patient</value>
-    <comment>Used to manage the BMI history of a patient</comment>
   </data>
   <data name="Plugin_DbImport" xml:space="preserve">
     <value>Importeur de donnés</value>
-    <comment>Data importer</comment>
   </data>
   <data name="Plugin_DbImport_Explanations" xml:space="preserve">
     <value>Permet d'importer des données d'une base de données Sharpenda</value>
-    <comment>Used to import data from a Sharpenda database</comment>
   </data>
   <data name="Plugin_FamilyManager" xml:space="preserve">
     <value>Gestionnaire de famille</value>
-    <comment>Family manager</comment>
   </data>
   <data name="Plugin_FamilyManager_Explanations" xml:space="preserve">
     <value>Permet de gérer la famille du patient</value>
-    <comment>Used to manage the family of a patient</comment>
   </data>
   <data name="Plugin_MedicalRecordManager" xml:space="preserve">
     <value>Gestionnaire de fiches médicales</value>
-    <comment>Medical record manager</comment>
   </data>
   <data name="Plugin_MedicalRecordManager_Explanations" xml:space="preserve">
     <value>Permet de gérer les fiches médicales d'un patient</value>
-    <comment>Used to manage the medical records of a patient</comment>
   </data>
   <data name="Plugin_MeetingManager" xml:space="preserve">
     <value>Agenda</value>
-    <comment>Calendar</comment>
   </data>
   <data name="Plugin_MeetingManager_Explanations" xml:space="preserve">
     <value>Permet de gérer les rendez-vous avec les patients</value>
-    <comment>Used to manage the appointments with patients</comment>
   </data>
   <data name="Plugin_PathologyManager" xml:space="preserve">
     <value>Gestionnaire de maladies</value>
-    <comment>Pathology manager</comment>
   </data>
   <data name="Plugin_PathologyManager_Explanations" xml:space="preserve">
     <value>Permet de gérer l'historique de maladie d'un patient</value>
-    <comment>Used to manage the pathology history of a patient</comment>
   </data>
   <data name="Plugin_PatientDataManager" xml:space="preserve">
     <value>Gestionnaire de données patient (Ancienne version)</value>
-    <comment>Patient data manager (Old version)</comment>
   </data>
   <data name="Plugin_PatientDataManager2" xml:space="preserve">
     <value>Gestionnaire de données patient</value>
-    <comment>Patient data manager</comment>
   </data>
   <data name="Plugin_PatientDataManager_Explanations" xml:space="preserve">
     <value>Permet de gérer les données d'un patient</value>
-    <comment>Used to manage the data of a patient</comment>
   </data>
   <data name="Plugin_PatientSessionManager" xml:space="preserve">
     <value>Gestionnaire de session patient</value>
-    <comment>Patient session manager</comment>
   </data>
   <data name="Plugin_PatientSessionManager_Explanations" xml:space="preserve">
     <value>Permet de gérer les sessions des patients. Propose des outils de recherche et de chargement d'un patient</value>
-    <comment>Used to manage a patient sessions. Has tools to search and to load a patient</comment>
   </data>
   <data name="Plugin_PictureManager" xml:space="preserve">
     <value>Gestionnaire de photos médicales</value>
-    <comment>Medical pictures manager</comment>
   </data>
   <data name="Plugin_PictureManager_Explanations" xml:space="preserve">
     <value>Permet de gérer les photos médicale d'un patient</value>
-    <comment>Used to manage medical pictures of a patient</comment>
   </data>
   <data name="Plugin_PrescriptionManager" xml:space="preserve">
     <value>Gestionnaire de prescriptions</value>
-    <comment>Prescriptions manager</comment>
   </data>
   <data name="Plugin_PrescriptionManager_Explanations" xml:space="preserve">
     <value>Permet de gérer les prescriptions d'un patient</value>
-    <comment>Used to manage the prescriptions of a patient</comment>
   </data>
   <data name="Plugin_RescueTools" xml:space="preserve">
-    <value>Outils de secour pour la base de données</value>
-    <comment>Rescue tools for the database</comment>
+    <value>Outils de secours pour la base de données</value>
   </data>
   <data name="Plugin_RescueTools_Explanations" xml:space="preserve">
     <value>Contient des outils de secours pour gérer d'éventuelles inconsistances dans la base de données</value>
-    <comment>Provides rescue tools to manage inconsistencies in the database</comment>
   </data>
   <data name="Plugin_UserSessionManager" xml:space="preserve">
     <value>Gestionnaire de session utilisateur</value>
-    <comment>User session manager</comment>
   </data>
   <data name="Plugin_UserSessionManager_Explanations" xml:space="preserve">
     <value>Permet de gérer les sessions utilisateur</value>
-    <comment>Used to manage the user sessions</comment>
   </data>
 </root>
