@@ -119,7 +119,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         [ExcludeFromTransaction]
         public void VacuumDatabase()
         {
-            this.ExecuteSql("VACUUM");
+            this.ExecuteNonQuery("VACUUM");
         }
 
         #endregion Methods

@@ -29,6 +29,10 @@ namespace Probel.NDoctor.Plugins.RescueTools
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Plugins.Helpers;
     using Probel.NDoctor.View.Plugins.MenuData;
+    using Probel.NDoctor.Domain.DTO.Components;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Windows.Media;
 
     [Export(typeof(IPlugin))]
     [PartMetadata(Keys.Constraint, ">3.0.0.0")]
@@ -87,7 +91,36 @@ namespace Probel.NDoctor.Plugins.RescueTools
         /// </summary>
         private void BuildContextMenu()
         {
-            //Add the code to configure and set the menus of the plugin
+            var vacuumButton = new RibbonButtonData(Messages.Btn_Vacuum
+                , imgUri.FormatWith("Vacuum")
+                , new RelayCommand(() => VacuumDatabase()));
+            var cgroup = new RibbonGroupData(Messages.Menu_Actions);
+            cgroup.ButtonDataCollection.Add(vacuumButton);
+
+            var tab = new RibbonTabData(Messages.Menu_File) { ContextualTabGroupHeader = Messages.Title_FirstAidManager };
+            tab.GroupDataCollection.Add(cgroup);
+
+            PluginContext.Host.AddTab(tab);
+
+            this.ContextualMenu = new RibbonContextualTabGroupData(Messages.Title_FirstAidManager, tab) { Background = Brushes.OrangeRed, IsVisible = false };
+            PluginContext.Host.AddContextualMenu(this.ContextualMenu);
+        }
+
+        private void VacuumDatabase()
+        {
+            PluginContext.Host.SetWaitCursor();
+            var token = new CancellationTokenSource().Token;
+            var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
+
+            var thread = Task.Factory
+                .StartNew(() =>
+                {
+                    PluginContext.ComponentFactory
+                       .GetInstance<ISqlComponent>()
+                       .VacuumDatabase();
+                });
+            thread.ContinueWith(t => PluginContext.Host.SetArrowCursor(), token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler); ;
+            thread.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
         }
 
         /// <summary>
@@ -101,6 +134,7 @@ namespace Probel.NDoctor.Plugins.RescueTools
         private void Navigate()
         {
             PluginContext.Host.Navigate(this.View);
+            this.ShowContextMenu();
         }
 
         #endregion Methods
