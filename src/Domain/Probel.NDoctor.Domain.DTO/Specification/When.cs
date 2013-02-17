@@ -1,6 +1,6 @@
-﻿namespace Probel.NDoctor.Domain.DTO.Specification
+﻿namespace Probel.NDoctor.Domain.DTO.Specifications
 {
-    using Probel.NDoctor.Domain.DTO.Specification.Integers;
+    using Probel.NDoctor.Domain.DTO.Specifications.Integers;
     /*
     This file is part of NDoctor.
 
@@ -17,7 +17,7 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
     */
-    using Probel.NDoctor.Domain.DTO.Specification.Patients;
+    using Probel.NDoctor.Domain.DTO.Specifications.Patients;
 
     public static class When
     {

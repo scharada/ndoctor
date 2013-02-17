@@ -138,8 +138,8 @@
     <comment>Last update</comment>
   </data>
   <data name="Criteria_ByName" xml:space="preserve">
-    <value>Nom ou prénom:</value>
-    <comment>First or :ast name:</comment>
+    <value>Nom:</value>
+    <comment>Last name:</comment>
   </data>
   <data name="Criteria_ByProfession" xml:space="preserve">
     <value>Profession:</value>
@@ -234,7 +234,7 @@
     <comment>Open a session for {0}</comment>
   </data>
   <data name="Search_And" xml:space="preserve">
-    <value>Sélectionne si TOUS les critère sont respecté</value>
+    <value>Sélectionne si TOUS les critère sont respectés</value>
     <comment>Select if ALL criterion are satisfied</comment>
   </data>
   <data name="Search_Or" xml:space="preserve">

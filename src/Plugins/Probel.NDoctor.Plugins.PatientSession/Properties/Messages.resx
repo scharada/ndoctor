@@ -138,8 +138,8 @@
     <comment>Last update</comment>
   </data>
   <data name="Criteria_ByName" xml:space="preserve">
-    <value>First or last name:</value>
-    <comment>First or :ast name:</comment>
+    <value>Last name:</value>
+    <comment>Last name:</comment>
   </data>
   <data name="Criteria_ByProfession" xml:space="preserve">
     <value>Profession:</value>
@@ -202,7 +202,7 @@
     <comment>the reason</comment>
   </data>
   <data name="Lbl_SearchBehaviour" xml:space="preserve">
-    <value>Comportement:</value>
+    <value>Behaviour:</value>
     <comment>Behaviour:</comment>
   </data>
   <data name="Menu_Select" xml:space="preserve">

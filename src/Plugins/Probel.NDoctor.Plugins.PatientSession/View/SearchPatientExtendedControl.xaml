@@ -48,37 +48,37 @@
     <Grid>
         <toolkit:BusyIndicator IsBusy="{Binding IsBusy,UpdateSourceTrigger=PropertyChanged}"
                                BusyContent="{Binding Source={x:Static Member=t:BaseText.PleaseWait}}">
-            <DockPanel LastChildFill="True">
+            <DockPanel LastChildFill="True"
+                       x:Name="mainDock">
                 <Label DockPanel.Dock="Top"
                        Content="{Binding Source={x:Static Member=text:TopTenText.DoubleClick}}" 
-                       HorizontalAlignment="Center" />
+                       HorizontalAlignment="Center" 
+                       Width="{Binding ElementName=mainDock, Path=Width}"/>
+                <DockPanel DockPanel.Dock="Top">
+                    <Label Margin="4"
+                               Content="{Binding Source={x:Static Member=txt:SearchPatientExtendedText.Behaviour}}"/>
+                    <ComboBox Margin="4"
+                                  ItemsSource="{Binding LogicalOperators}"
+                                  DisplayMemberPath="Item2"
+                                  SelectedItem="{Binding SelectedOperator}"/>
+                </DockPanel>
                 <DockPanel DockPanel.Dock="Top"
                            LastChildFill="True">
                     <DockPanel DockPanel.Dock="Top" 
                                LastChildFill="True">
-                        <DockPanel Margin="4">
-                            <toolkit:WatermarkTextBox x:Name="focused"
-                                                      Grid.Column="0" 
-                                                      Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}">
-                                <toolkit:WatermarkTextBox.Watermark>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="/Probel.NDoctor.Plugins.PatientSession;Component/Images/Card.png"
-                                               Height="15"
-                                               Width="15" />
-                                        <TextBlock Text="{Binding Source={x:Static Member=text:WorkbenchText.TitleWatermark}}"
-                                                   Margin="4,0,0,0"/>
-                                    </StackPanel>
-                                </toolkit:WatermarkTextBox.Watermark>
-                            </toolkit:WatermarkTextBox>
+                        <DockPanel>
+                            <CheckBox x:Name="isByName"
+                                      Margin="4"
+                                      Content="{Binding Source={x:Static Member=text:SearchPatientExtendedText.CriteriaByName}}"
+                                      IsChecked="{Binding IsByName}"            
+                                      HorizontalContentAlignment="Left"
+                                      VerticalContentAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                            <TextBox x:Name="focused"
+                                     Margin="4"
+                                     Text="{Binding Path=NameCriteria, UpdateSourceTrigger=PropertyChanged}"
+                                     IsEnabled="{Binding ElementName=isByName, Path=IsChecked}"/>
                         </DockPanel>
-                    </DockPanel>
-                    <DockPanel DockPanel.Dock="Top">
-                        <Label Margin="4"
-                               Content="{Binding Source={x:Static Member=txt:SearchPatientExtendedText.Behaviour}}"/>
-                        <ComboBox Margin="4"
-                                  ItemsSource="{Binding LogicalOperators}"
-                                  DisplayMemberPath="Item2"
-                                  SelectedItem="{Binding SelectedOperator}"/>
                     </DockPanel>
                     <DockPanel DockPanel.Dock="Top" 
                                LastChildFill="True"

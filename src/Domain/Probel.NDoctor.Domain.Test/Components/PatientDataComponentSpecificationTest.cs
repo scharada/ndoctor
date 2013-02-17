@@ -28,7 +28,7 @@ namespace Probel.NDoctor.Domain.Test.Components
 
     using NUnit.Framework;
 
-    using Probel.NDoctor.Domain.DTO.Specification;
+    using Probel.NDoctor.Domain.DTO.Specifications;
 
     [TestFixture]
     class PatientDataComponentSpecificationTest
