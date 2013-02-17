@@ -220,26 +220,6 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             }
         }
 
-        private void UpdateData()
-        {
-            var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
-            var token = new CancellationTokenSource().Token;
-
-            var task = Task.Factory
-                .StartNew<Tuple<InsuranceDto, PracticeDto>>(() =>
-                {
-                    var insurance = this.component.GetInsuranceById(this.SelectedPatient.Insurance.Id);
-                    var practice = this.component.GetPracticeById(this.SelectedPatient.Practice.Id);
-                    return new Tuple<InsuranceDto, PracticeDto>(insurance, practice);
-                });
-            task.ContinueWith(t =>
-            {
-                this.SelectedInsurance = t.Result.Item1;
-                this.SelectedPractice = t.Result.Item2;
-            }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
-            task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
-        }
-
         public PracticeDto SelectedPractice
         {
             get { return this.selectedPractice; }
@@ -456,6 +436,26 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
                 Process.Start(string.Format("mailto:{0}", mail));
             }
             catch (Exception ex) { this.Handle.Error(ex, Messages.Err_CantSendMail); }
+        }
+
+        private void UpdateData()
+        {
+            var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
+            var token = new CancellationTokenSource().Token;
+
+            var task = Task.Factory
+                .StartNew<Tuple<InsuranceDto, PracticeDto>>(() =>
+                {
+                    var insurance = this.component.GetInsuranceById(this.SelectedPatient.Insurance.Id);
+                    var practice = this.component.GetPracticeById(this.SelectedPatient.Practice.Id);
+                    return new Tuple<InsuranceDto, PracticeDto>(insurance, practice);
+                });
+            task.ContinueWith(t =>
+            {
+                this.SelectedInsurance = t.Result.Item1;
+                this.SelectedPractice = t.Result.Item2;
+            }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
+            task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
         }
 
         #endregion Methods
