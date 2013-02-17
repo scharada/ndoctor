@@ -22,13 +22,9 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     /// Light version of a doctor
     /// </summary>
     [Serializable]
-    public class LightDoctorDto : BaseDto
+    public class LightDoctorDto : PersonDto
     {
         #region Fields
-
-        private string firstName;
-        private Gender gender;
-        private string lastName;
         private TagDto specialisation;
 
         #endregion Fields
@@ -58,48 +54,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
                     , this.FirstName
                     , this.LastName);
                 }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the first name.
-        /// </summary>
-        /// <value>
-        /// The first name.
-        /// </value>
-        public string FirstName
-        {
-            get { return this.firstName; }
-            set
-            {
-                this.firstName = value;
-                this.OnPropertyChanged(() => FirstName);
-            }
-        }
-
-        public Gender Gender
-        {
-            get { return this.gender; }
-            set
-            {
-                this.gender = value;
-                this.OnPropertyChanged(() => Gender);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the last name.
-        /// </summary>
-        /// <value>
-        /// The last name.
-        /// </value>
-        public string LastName
-        {
-            get { return this.lastName; }
-            set
-            {
-                this.lastName = value;
-                this.OnPropertyChanged(() => LastName);
             }
         }
 

@@ -28,7 +28,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 
         private AddressDto address;
         private DateTime birthdate;
-        private Gender gender;
         private int height;
         private DateTime inscriptionDate;
         private bool isDeactivated;
@@ -97,22 +96,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             get
             {
                 return string.Format("{0} {1}", this.FirstName, this.LastName);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the gender of the patient.
-        /// </summary>
-        /// <value>
-        /// The gender.
-        /// </value>
-        public Gender Gender
-        {
-            get { return this.gender; }
-            set
-            {
-                this.gender = value;
-                this.OnPropertyChanged(() => Gender);
             }
         }
 

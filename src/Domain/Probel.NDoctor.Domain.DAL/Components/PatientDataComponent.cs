@@ -351,7 +351,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
             item.LastUpdate = DateTime.Today;
 
             var entity = this.Session.Get<Patient>(item.Id);
+
             Mapper.Map<PatientDto, Patient>(item, entity);
+            if (entity.Address == null) { entity.Address = new Address(); }
 
             entity.Refresh(item, this.Session);
 
