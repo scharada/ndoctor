@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,14 +16,18 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Probel.NDoctor.Domain.DTO.Specifications;
+
+#endregion Header
 
 namespace Probel.NDoctor.Domain.DTO.Specifications
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using Probel.NDoctor.Domain.DTO.Specifications;
+
     /// <summary>
     /// This is a dummy specification returns always <c>False</c>
     /// </summary>

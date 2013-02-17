@@ -30,15 +30,22 @@ namespace Probel.NDoctor.Domain.DTO.Specifications
     /// <typeparam name="T"></typeparam>
     public class ExpressionBuilder<T>
     {
-        #region Properties
-
+        #region Fields
 
         private readonly List<Specification<T>> Expressions = new List<Specification<T>>();
+
+        #endregion Fields
+
+        #region Properties
+
+        public bool CanBuild
+        {
+            get { return this.Expressions.Count > 0; }
+        }
 
         #endregion Properties
 
         #region Methods
-
 
         /// <summary>
         /// Adds the specified spec into the internal specification collection.
@@ -49,25 +56,11 @@ namespace Probel.NDoctor.Domain.DTO.Specifications
             this.Expressions.Add(spec);
         }
 
-        public Specification<T> BuildOrExpression()
-        {
-            if (this.Expressions.Count == 0) { throw new NotSupportedException("The builder should contain al least 1 elements"); }
-            else if (this.Expressions.Count == 1) { return this.Expressions[0]; }
-            else 
-            {
-                Specification<T> expression = this.Expressions[0];
-                for (int i = 1; i < Expressions.Count; i++)
-                {
-                    expression |= this.Expressions[i];
-                }
-                return expression;
-            }
-        }
         public Specification<T> BuildAndExpression()
         {
             if (this.Expressions.Count == 0) { throw new NotSupportedException("The builder should contain al least 1 elements"); }
             else if (this.Expressions.Count == 1) { return this.Expressions[0]; }
-            else 
+            else
             {
                 Specification<T> expression = this.Expressions[0];
                 for (int i = 1; i < Expressions.Count; i++)
@@ -77,10 +70,22 @@ namespace Probel.NDoctor.Domain.DTO.Specifications
                 return expression;
             }
         }
-        public bool CanBuild
+
+        public Specification<T> BuildOrExpression()
         {
-            get { return this.Expressions.Count > 0; }
+            if (this.Expressions.Count == 0) { throw new NotSupportedException("The builder should contain al least 1 elements"); }
+            else if (this.Expressions.Count == 1) { return this.Expressions[0]; }
+            else
+            {
+                Specification<T> expression = this.Expressions[0];
+                for (int i = 1; i < Expressions.Count; i++)
+                {
+                    expression |= this.Expressions[i];
+                }
+                return expression;
+            }
         }
+
         #endregion Methods
     }
 }
