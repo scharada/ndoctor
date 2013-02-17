@@ -1,6 +1,4 @@
-﻿#region Header
-
-/*
+﻿/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -16,43 +14,41 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-#endregion Header
-
-namespace Probel.NDoctor.Domain.DTO.Specification
+namespace Probel.NDoctor.Domain.DTO.Specification.Integers
 {
-    using System;
-
-    using Probel.NDoctor.Domain.DTO.Objects;
-
-    /// <summary>
-    /// Select all the patient with the birth year specified in the ctor
-    /// </summary>
-    public class FindPatientByBirthDateSpecification : Specification<LightPatientDto>
+    internal class IntegerEqualsToSpecification : Specification<int>
     {
         #region Fields
 
-        private readonly DateTime After;
-        private readonly DateTime Before;
+        private readonly int Value;
 
         #endregion Fields
 
         #region Constructors
 
-        public FindPatientByBirthDateSpecification(DateTime after, DateTime before)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntegerEqualsToSpecification"/> class.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        public IntegerEqualsToSpecification(int value)
         {
-            this.After = after;
-            this.Before = before;
+            this.Value = value;
         }
 
         #endregion Constructors
 
         #region Methods
 
-        public override bool IsSatisfiedBy(LightPatientDto obj)
+        /// <summary>
+        /// Determines whether [is satisfied by] [the specified obj].
+        /// </summary>
+        /// <param name="obj">The obj.</param>
+        /// <returns>
+        ///   <c>true</c> if [is satisfied by] [the specified obj]; otherwise, <c>false</c>.
+        /// </returns>
+        public override bool IsSatisfiedBy(int obj)
         {
-            return obj.Birthdate >= this.After
-                && obj.Birthdate <= this.Before;
+            return this.Value == obj;
         }
 
         #endregion Methods

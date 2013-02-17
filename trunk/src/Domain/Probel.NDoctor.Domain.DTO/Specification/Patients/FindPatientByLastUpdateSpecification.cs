@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,37 +16,46 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Domain.DTO.Specification
+
+#endregion Header
+
+namespace Probel.NDoctor.Domain.DTO.Specification.Patients
 {
-    internal class NotSpecification<T> : Specification<T>
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using Probel.NDoctor.Domain.DTO.Objects;
+
+    /// <summary>
+    /// Verifies that the specified <see cref="LightPatientDto"/> has got an last update date between the specified dates
+    /// </summary>
+    internal class FindPatientByLastUpdateSpecification : Specification<LightPatientDto>
     {
         #region Fields
 
-        private readonly Specification<T> Specification;
+        private readonly DateTime After;
+        private readonly DateTime Before;
 
         #endregion Fields
 
         #region Constructors
 
-        public NotSpecification(Specification<T> specification)
+        public FindPatientByLastUpdateSpecification(DateTime after, DateTime before)
         {
-            this.Specification = specification;
+            this.After = after;
+            this.Before = before;
         }
 
         #endregion Constructors
 
         #region Methods
 
-        /// <summary>
-        /// Determines whether [is satisfied by] [the specified obj].
-        /// </summary>
-        /// <param name="obj">The obj.</param>
-        /// <returns>
-        ///   <c>true</c> if [is satisfied by] [the specified obj]; otherwise, <c>false</c>.
-        /// </returns>
-        public override bool IsSatisfiedBy(T obj)
+        public override bool IsSatisfiedBy(LightPatientDto obj)
         {
-            return !this.Specification.IsSatisfiedBy(obj);
+            return obj.LastUpdate >= this.After
+                && obj.LastUpdate <= this.Before;
         }
 
         #endregion Methods

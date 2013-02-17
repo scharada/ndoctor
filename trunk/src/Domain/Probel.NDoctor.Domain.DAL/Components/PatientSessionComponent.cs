@@ -106,7 +106,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         /// All the patient that fullfill the criteria
         /// </returns>
-        public IList<LightPatientDto> GetPatientsByNameLight(string criteria, SpecificationExpression<LightPatientDto> specification)
+        public IList<LightPatientDto> GetPatientsByNameLight(string criteria, Specification<LightPatientDto> specification)
         {
             List<Patient> patients = new List<Patient>();
             var searchAll = false;
@@ -141,6 +141,10 @@ namespace Probel.NDoctor.Domain.DAL.Components
                                 BirthDate = p.BirthDate,
                                 Profession = p.Profession,
                                 Height = p.Height,
+                                InscriptionDate = p.InscriptionDate,
+                                LastUpdate = p.LastUpdate,
+                                Address = p.Address,
+                                Reason = p.Reason,
                             }).ToList();
                 searchAll = true;
             }
@@ -222,7 +226,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         {
             if (patients.Count == 0 && searchAll)
             {
-                var msg = "A query that asks all the patients returned zero results after the execution of the specification pattern. Maybe you have some null properties (Checl the SELECT clause)";
+                var msg = "A query that asks all the patients returned zero results after the execution of the specification pattern. Maybe you have some null properties (Check the SELECT clause)";
                 this.Logger.Warn(msg);
             #if DEBUG
                 throw new NotImplementedException(msg);

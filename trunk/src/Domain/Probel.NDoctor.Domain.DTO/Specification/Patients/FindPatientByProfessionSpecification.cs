@@ -19,7 +19,7 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Domain.DTO.Specification
+namespace Probel.NDoctor.Domain.DTO.Specification.Patients
 {
     using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DTO.Objects;
@@ -29,7 +29,7 @@ namespace Probel.NDoctor.Domain.DTO.Specification
     /// This specification uses the lower case version of the Profession.Name to 
     /// make the selection
     /// </summary>
-    public class FindPatientByProfessionSpecification : Specification<LightPatientDto>
+    internal class FindPatientByProfessionSpecification : Specification<LightPatientDto>
     {
         #region Fields
 

@@ -121,6 +121,22 @@
     <value>Ajouter</value>
     <comment>Add</comment>
   </data>
+  <data name="Criteria_ByBirthdata" xml:space="preserve">
+    <value>Date de naissance</value>
+    <comment>Birthdate</comment>
+  </data>
+  <data name="Criteria_ByCity" xml:space="preserve">
+    <value>Ville:</value>
+    <comment>City</comment>
+  </data>
+  <data name="Criteria_ByInscription" xml:space="preserve">
+    <value>Inscription:</value>
+    <comment>Inscription</comment>
+  </data>
+  <data name="Criteria_ByLastUpdate" xml:space="preserve">
+    <value>Dernière mise à jour:</value>
+    <comment>Last update</comment>
+  </data>
   <data name="Criteria_ByName" xml:space="preserve">
     <value>Nom ou prénom:</value>
     <comment>First or :ast name:</comment>
@@ -129,21 +145,21 @@
     <value>Profession:</value>
     <comment>Profession:</comment>
   </data>
+  <data name="Criteria_ByReason" xml:space="preserve">
+    <value>Raison:</value>
+    <comment>Reason</comment>
+  </data>
   <data name="Criteria_ByYear" xml:space="preserve">
     <value>Année de naissance:</value>
     <comment>Birth year:</comment>
   </data>
-  <data name="Criteria_Create" xml:space="preserve">
-    <value>Créer un nouveau critère de recherche</value>
-    <comment>Create a new search criteria</comment>
+  <data name="Date_And" xml:space="preserve">
+    <value>et</value>
+    <comment>and</comment>
   </data>
-  <data name="Criteria_Specification" xml:space="preserve">
-    <value>Spécification:</value>
-    <comment>Specification:</comment>
-  </data>
-  <data name="Criteria_Value" xml:space="preserve">
-    <value>Critère:</value>
-    <comment>Criteria:</comment>
+  <data name="Date_Between" xml:space="preserve">
+    <value>Entre</value>
+    <comment>Between</comment>
   </data>
   <data name="Error_AddPatient" xml:space="preserve">
     <value>Une erreur est apparue pendant la création d'un patient</value>
@@ -153,9 +169,41 @@
     <value>La valeur spécifiée n'est pas numérique.</value>
     <comment>The specified value is not numeric</comment>
   </data>
+  <data name="Gb_Specifications" xml:space="preserve">
+    <value>Critères de recherche</value>
+    <comment>Search criterion</comment>
+  </data>
   <data name="Information" xml:space="preserve">
     <value>Information</value>
     <comment>Information</comment>
+  </data>
+  <data name="Lbl_Birthdate" xml:space="preserve">
+    <value>la dates de naissance</value>
+    <comment>birthdate</comment>
+  </data>
+  <data name="Lbl_City" xml:space="preserve">
+    <value>la ville</value>
+    <comment>the city</comment>
+  </data>
+  <data name="Lbl_Inscription" xml:space="preserve">
+    <value>la date d'inscription</value>
+    <comment>the inscription date</comment>
+  </data>
+  <data name="Lbl_LastUpdate" xml:space="preserve">
+    <value>la dernière mise à jour</value>
+    <comment>the last update</comment>
+  </data>
+  <data name="Lbl_Profession" xml:space="preserve">
+    <value>la profession</value>
+    <comment>the profession</comment>
+  </data>
+  <data name="Lbl_Reason" xml:space="preserve">
+    <value>la raison</value>
+    <comment>the reason</comment>
+  </data>
+  <data name="Lbl_SearchBehaviour" xml:space="preserve">
+    <value>Comportement:</value>
+    <comment>Behaviour:</comment>
   </data>
   <data name="Menu_Select" xml:space="preserve">
     <value>Sélectionner</value>
@@ -164,6 +212,10 @@
   <data name="Msg_DoubleClick" xml:space="preserve">
     <value>Double cliquez pour sélectionner le patient</value>
     <comment>Double click to select the patient</comment>
+  </data>
+  <data name="Msg_Explanations" xml:space="preserve">
+    <value>Sélectionnez les critères de recherche que vous voulez voir dans la fenêtre de recherche avancée.</value>
+    <comment>Select the search criterion you want to see in the advanced search box.</comment>
   </data>
   <data name="Msg_PatientAdded" xml:space="preserve">
     <value>Patient ajouté.</value>
@@ -180,6 +232,14 @@
   <data name="Msg_SelectPatient" xml:space="preserve">
     <value>Ouverture d'une session pour {0} </value>
     <comment>Open a session for {0}</comment>
+  </data>
+  <data name="Search_And" xml:space="preserve">
+    <value>Sélectionne si TOUS les critère sont respecté</value>
+    <comment>Select if ALL criterion are satisfied</comment>
+  </data>
+  <data name="Search_Or" xml:space="preserve">
+    <value>Sélectionne si AU MOINS un critère est respecté</value>
+    <comment>Select if AT LEAST one criteria is satisfied</comment>
   </data>
   <data name="Title_Add" xml:space="preserve">
     <value>Ajouter</value>
@@ -216,6 +276,10 @@
   <data name="Title_MostUsed" xml:space="preserve">
     <value>10 patients les plus utilisés</value>
     <comment>Ten most used patients</comment>
+  </data>
+  <data name="Title_PatientSession" xml:space="preserve">
+    <value>Session du patient</value>
+    <comment>Patient session</comment>
   </data>
   <data name="Title_SearchPatient" xml:space="preserve">
     <value>Chercher un patient</value>

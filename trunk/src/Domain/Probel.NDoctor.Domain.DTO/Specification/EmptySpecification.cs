@@ -19,22 +19,21 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Plugins.PatientSession.View
+namespace Probel.NDoctor.Domain.DTO.Specification
 {
-    using System.Windows.Controls;
-
     /// <summary>
-    /// Interaction logic for CriteriaControl.xaml
+    /// This is a dummy specification to allow a default contructor to the <see cref="SpecificationExpression"/>
     /// </summary>
-    public partial class CriteriaControl : UserControl
+    /// <typeparam name="T"></typeparam>
+    internal class EmptySpecification<T> : Specification<T>
     {
-        #region Constructors
+        #region Methods
 
-        public CriteriaControl()
+        public override bool IsSatisfiedBy(T obj)
         {
-            InitializeComponent();
+            return true;
         }
 
-        #endregion Constructors
+        #endregion Methods
     }
 }

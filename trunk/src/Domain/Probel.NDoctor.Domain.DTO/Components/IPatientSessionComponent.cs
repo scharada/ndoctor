@@ -79,7 +79,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="criteria">The criteria.</param>
         /// <param name="refiner">The specification expression that will refine the result.</param>
         /// <returns>All the patient that fullfill the criteria</returns>
-        IList<LightPatientDto> GetPatientsByNameLight(string criteria, SpecificationExpression<LightPatientDto> specification);
+        IList<LightPatientDto> GetPatientsByNameLight(string criteria, Specification<LightPatientDto> specification);
 
         /// <summary>
         /// Gets the patients that fullfill the specified criterium.

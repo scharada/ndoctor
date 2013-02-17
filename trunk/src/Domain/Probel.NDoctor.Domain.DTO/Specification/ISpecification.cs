@@ -19,29 +19,22 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Plugins.PatientSession.Translations
+namespace Probel.NDoctor.Domain.DTO.Specification
 {
-    using Probel.NDoctor.Plugins.PatientSession.Properties;
+    using System;
 
-    public static class CriteriaText
+    public interface ISpecification<T>
     {
-        #region Properties
+        #region Methods
 
-        public static string CreateCriteria
-        {
-            get { return Messages.Criteria_Create; }
-        }
+        ISpecification<T> And(Specification<T> specification);
 
-        public static string Criteria
-        {
-            get { return Messages.Criteria_Value; }
-        }
+        bool IsSatisfiedBy(T obj);
 
-        public static string Specification
-        {
-            get { return Messages.Criteria_Specification; }
-        }
+        ISpecification<T> Not();
 
-        #endregion Properties
+        ISpecification<T> Or(Specification<T> specification);
+
+        #endregion Methods
     }
 }

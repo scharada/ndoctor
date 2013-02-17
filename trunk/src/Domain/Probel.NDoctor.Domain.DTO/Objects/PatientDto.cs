@@ -30,10 +30,8 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private DateTime birthdate = DateTime.Today;
         private int counter;
         private decimal fee;
-        private DateTime inscriptionDate = DateTime.Today;
         private LightInsuranceDto insurance = new LightInsuranceDto();
         private bool isComplete;
-        private DateTime lastUpdate = DateTime.Today;
         private string placeOfBirth;
         private LightPracticeDto practice = new LightPracticeDto();
         private string privateMail;
@@ -43,7 +41,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private string proMail;
         private string proMobile;
         private string proPhone;
-        private string reason;
         private ReputationDto reputation = new ReputationDto();
         private TagDto tag = new TagDto(TagCategory.Patient);
 
@@ -62,22 +59,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #endregion Constructors
 
         #region Properties
-
-        /// <summary>
-        /// Gets or sets the address.
-        /// </summary>
-        /// <value>
-        /// The address.
-        /// </value>
-        public AddressDto Address
-        {
-            get { return this.address; }
-            set
-            {
-                this.address = value ?? new AddressDto(); ;
-                this.OnPropertyChanged(() => Address);
-            }
-        }
 
         /// <summary>
         /// Gets or sets the counter. This counter increments each time this patient is loaded
@@ -112,25 +93,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         }
 
         /// <summary>
-        /// Gets or sets the inscription date.
-        /// </summary>
-        /// <value>
-        /// The inscription date.
-        /// </value>
-        public DateTime InscriptionDate
-        {
-            get
-            {
-                return this.inscriptionDate;
-            }
-            set
-            {
-                this.inscriptionDate = value;
-                this.OnPropertyChanged(() => InscriptionDate);
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the insurance.
         /// </summary>
         /// <value>
@@ -161,20 +123,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.isComplete = value;
                 this.OnPropertyChanged(() => IsComplete);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the last update.
-        /// </summary>
-        /// <value>The last update.</value>
-        public DateTime LastUpdate
-        {
-            get { return this.lastUpdate; }
-            set
-            {
-                this.lastUpdate = value;
-                this.OnPropertyChanged(() => LastUpdate);
             }
         }
 
@@ -303,22 +251,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.proPhone = value;
                 this.OnPropertyChanged(() => ProPhone);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the reason.
-        /// </summary>
-        /// <value>
-        /// The reason.
-        /// </value>
-        public string Reason
-        {
-            get { return this.reason; }
-            set
-            {
-                this.reason = value;
-                this.OnPropertyChanged(() => Reason);
             }
         }
 

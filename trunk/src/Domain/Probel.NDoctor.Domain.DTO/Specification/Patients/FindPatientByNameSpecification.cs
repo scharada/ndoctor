@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,32 +16,32 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Probel.NDoctor.Domain.DTO.Objects;
 
-namespace Probel.NDoctor.Domain.DTO.Specification
+#endregion Header
+
+namespace Probel.NDoctor.Domain.DTO.Specification.Patients
 {
+    using Probel.NDoctor.Domain.DTO.Objects;
+
     /// <summary>
-    /// Verifies that the specified <see cref="LightPatientDto"/> has got an inscription data between the specified dates
+    /// Select all the patient with the first and/or last name that contains
+    /// the text specified in the contructor.
+    /// This specification uses the lower case version of the Profession.Name to 
+    /// make the selection
     /// </summary>
-    public class FindPatientByInscriptionSpecification : Specification<LightPatientDto>
+    internal class FindPatientByNameSpecification : Specification<LightPatientDto>
     {
         #region Fields
 
-        private readonly DateTime After;
-        private readonly DateTime Before;
+        private string text;
 
         #endregion Fields
 
         #region Constructors
 
-        public FindPatientByInscriptionSpecification(DateTime after, DateTime before)
+        public FindPatientByNameSpecification(string text)
         {
-            this.After = after;
-            this.Before = before;
+            this.text = text.ToLower();
         }
 
         #endregion Constructors
@@ -48,8 +50,8 @@ namespace Probel.NDoctor.Domain.DTO.Specification
 
         public override bool IsSatisfiedBy(LightPatientDto obj)
         {
-            return obj.Birthdate >= this.After
-                && obj.Birthdate <= this.Before;
+            return obj.FirstName.ToLower().Contains(this.text)
+                || obj.LastName.ToLower().Contains(this.text);
         }
 
         #endregion Methods

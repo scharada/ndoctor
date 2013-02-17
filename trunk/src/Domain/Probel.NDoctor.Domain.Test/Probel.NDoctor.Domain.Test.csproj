@@ -94,6 +94,7 @@
     <Compile Include="Components\BaseComponentTest.cs" />
     <Compile Include="Components\BmiComponentTest.cs" />
     <Compile Include="Components\CalendarComponentTest.cs" />
+    <Compile Include="Components\PatientDataComponentSpecificationTest.cs" />
     <Compile Include="Components\DataStatisticsComponentTest.cs" />
     <Compile Include="Components\DbSettingsComponentTest.cs" />
     <Compile Include="Components\FamilyComponentTest.cs" />

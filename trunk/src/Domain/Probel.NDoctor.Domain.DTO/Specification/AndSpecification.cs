@@ -16,7 +16,7 @@
 */
 namespace Probel.NDoctor.Domain.DTO.Specification
 {
-    public class AndSpecification<T> : CompositeSpecification<T>
+    internal class AndSpecification<T> : CompositeSpecification<T>
     {
         #region Constructors
 

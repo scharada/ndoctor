@@ -19,46 +19,40 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Domain.DTO.Specification
+namespace Probel.NDoctor.Domain.DTO.Specification.Patients
 {
+    using System;
+
     using Probel.NDoctor.Domain.DTO.Objects;
 
     /// <summary>
-    /// Verifies if the specified <see cref="LightPatientDto"/> has a city that contains the specified text
+    /// Select all the patient with the birth year specified in the ctor
     /// </summary>
-    public class FindPatientByCitySpecification : Specification<LightPatientDto>
+    public class FindPatientByBirthDateSpecification : Specification<LightPatientDto>
     {
         #region Fields
 
-        private readonly string Criteria;
+        private readonly DateTime After;
+        private readonly DateTime Before;
 
         #endregion Fields
 
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FindPatientByCitySpecification"/> class.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        public FindPatientByCitySpecification(string criteria)
+        public FindPatientByBirthDateSpecification(DateTime after, DateTime before)
         {
-            this.Criteria = criteria.ToUpper();
+            this.After = after;
+            this.Before = before;
         }
 
         #endregion Constructors
 
         #region Methods
 
-        /// <summary>
-        /// Determines whether [is satisfied by] [the specified obj].
-        /// </summary>
-        /// <param name="obj">The obj.</param>
-        /// <returns>
-        ///   <c>true</c> if [is satisfied by] [the specified obj]; otherwise, <c>false</c>.
-        /// </returns>
         public override bool IsSatisfiedBy(LightPatientDto obj)
         {
-            return obj.Address.City.ToUpper().Contains(this.Criteria);
+            return obj.Birthdate >= this.After
+                && obj.Birthdate <= this.Before;
         }
 
         #endregion Methods

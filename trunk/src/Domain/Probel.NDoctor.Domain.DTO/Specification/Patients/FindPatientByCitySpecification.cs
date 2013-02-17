@@ -19,14 +19,14 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Domain.DTO.Specification
+namespace Probel.NDoctor.Domain.DTO.Specification.Patients
 {
     using Probel.NDoctor.Domain.DTO.Objects;
 
     /// <summary>
     /// Verifies if the specified <see cref="LightPatientDto"/> has a city that contains the specified text
     /// </summary>
-    public class GetPatientByCitySpecification : Specification<LightPatientDto>
+    internal class FindPatientByCitySpecification : Specification<LightPatientDto>
     {
         #region Fields
 
@@ -37,10 +37,10 @@ namespace Probel.NDoctor.Domain.DTO.Specification
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetPatientByCitySpecification"/> class.
+        /// Initializes a new instance of the <see cref="FindPatientByCitySpecification"/> class.
         /// </summary>
         /// <param name="criteria">The criteria.</param>
-        public GetPatientByCitySpecification(string criteria)
+        public FindPatientByCitySpecification(string criteria)
         {
             this.Criteria = criteria.ToUpper();
         }
@@ -58,7 +58,11 @@ namespace Probel.NDoctor.Domain.DTO.Specification
         /// </returns>
         public override bool IsSatisfiedBy(LightPatientDto obj)
         {
-            return obj.Address.City.ToUpper().Contains(this.Criteria);
+            if (obj.Address != null)
+            {
+                return obj.Address.City.ToUpper().Contains(this.Criteria);
+            }
+            else { return false; }
         }
 
         #endregion Methods

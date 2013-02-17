@@ -14,33 +14,25 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Probel.NDoctor.Domain.DTO.Objects;
-
-namespace Probel.NDoctor.Domain.DTO.Specification
-{    /// <summary>
-    /// Verifies if the specified <see cref="LightPatientDto"/> has a reason that contains the specified text
-    /// </summary>
-    public class GetPatientByReasonSpecification : Specification<LightPatientDto>
+namespace Probel.NDoctor.Domain.DTO.Specification.Integers
+{
+    internal class IntegerGreaterThanSpecification : Specification<int>
     {
         #region Fields
 
-        private readonly string Criteria;
+        private readonly int Value;
 
         #endregion Fields
 
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetPatientByCitySpecification"/> class.
+        /// Initializes a new instance of the <see cref="IntegerGreaterThanSpecification"/> class.
         /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        public GetPatientByReasonSpecification(string criteria)
+        /// <param name="value">The value.</param>
+        public IntegerGreaterThanSpecification(int value)
         {
-            this.Criteria = criteria.ToUpper();
+            this.Value = value;
         }
 
         #endregion Constructors
@@ -54,9 +46,9 @@ namespace Probel.NDoctor.Domain.DTO.Specification
         /// <returns>
         ///   <c>true</c> if [is satisfied by] [the specified obj]; otherwise, <c>false</c>.
         /// </returns>
-        public override bool IsSatisfiedBy(LightPatientDto obj)
+        public override bool IsSatisfiedBy(int obj)
         {
-            return obj.Reason.ToUpper().Contains(this.Criteria);
+            return obj > this.Value;
         }
 
         #endregion Methods

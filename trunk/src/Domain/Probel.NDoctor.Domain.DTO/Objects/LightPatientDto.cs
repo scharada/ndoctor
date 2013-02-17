@@ -30,8 +30,11 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private DateTime birthdate;
         private Gender gender;
         private int height;
+        private DateTime inscriptionDate;
         private bool isDeactivated;
+        private DateTime lastUpdate = DateTime.Today;
         private ProfessionDto profession;
+        private string reason;
 
         #endregion Fields
 
@@ -130,6 +133,25 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         }
 
         /// <summary>
+        /// Gets or sets the inscription date.
+        /// </summary>
+        /// <value>
+        /// The inscription date.
+        /// </value>
+        public DateTime InscriptionDate
+        {
+            get
+            {
+                return this.inscriptionDate;
+            }
+            set
+            {
+                this.inscriptionDate = value;
+                this.OnPropertyChanged(() => InscriptionDate);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether this patient is deactivated.
         /// </summary>
         /// <value>
@@ -142,6 +164,22 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.isDeactivated = value;
                 this.OnPropertyChanged(() => IsDeactivated);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the last update.
+        /// </summary>
+        /// <value>
+        /// The last update.
+        /// </value>
+        public DateTime LastUpdate
+        {
+            get { return this.lastUpdate; }
+            set
+            {
+                this.lastUpdate = value;
+                this.OnPropertyChanged(() => LastUpdate);
             }
         }
 
@@ -161,6 +199,22 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             }
         }
 
+        /// <summary>
+        /// Gets or sets the reason why the patient came the first time.
+        /// </summary>
+        /// <value>
+        /// The reason.
+        /// </value>
+        public string Reason
+        {
+            get { return this.reason; }
+            set
+            {
+                this.reason = value;
+                this.OnPropertyChanged(() => Reason);
+            }
+        }
+
         #endregion Properties
 
         #region Methods
@@ -177,22 +231,5 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         }
 
         #endregion Methods
-
-        private string reason;
-        /// <summary>
-        /// Gets or sets the reason why the patient came the first time.
-        /// </summary>
-        /// <value>
-        /// The reason.
-        /// </value>
-        public string Reason
-        {
-            get { return this.reason; }
-            set
-            {
-                this.reason = value;
-                this.OnPropertyChanged(() => Reason);
-            }
-        }
     }
 }

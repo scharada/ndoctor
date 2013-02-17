@@ -16,7 +16,7 @@
 */
 namespace Probel.NDoctor.Domain.DTO.Specification
 {
-    public class OrSpecification<T> : CompositeSpecification<T>
+    internal class OrSpecification<T> : CompositeSpecification<T>
     {
         #region Constructors
 
