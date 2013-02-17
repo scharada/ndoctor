@@ -257,4 +257,20 @@
     <value>Actions</value>
     <comment>Actions</comment>
   </data>
+  <data name="Btn_Vacuum" xml:space="preserve">
+    <value>Nettoyer la base de données</value>
+    <comment>Vacuum the database</comment>
+  </data>
+  <data name="Msg_DatabaseCleaned" xml:space="preserve">
+    <value>Base de données nettoyée</value>
+    <comment>Database cleaned</comment>
+  </data>
+  <data name="Menu_Actions" xml:space="preserve">
+    <value>Actions</value>
+    <comment>Actions</comment>
+  </data>
+  <data name="Menu_File" xml:space="preserve">
+    <value>Fichier</value>
+    <comment>File</comment>
+  </data>
 </root>

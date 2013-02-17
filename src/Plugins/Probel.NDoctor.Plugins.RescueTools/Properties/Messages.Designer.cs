@@ -115,6 +115,15 @@ namespace Probel.NDoctor.Plugins.RescueTools.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vacuum the database.
+        /// </summary>
+        internal static string Btn_Vacuum {
+            get {
+                return ResourceManager.GetString("Btn_Vacuum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search on age.
         /// </summary>
         internal static string Db_SearchOnAge {
@@ -250,6 +259,24 @@ namespace Probel.NDoctor.Plugins.RescueTools.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actions.
+        /// </summary>
+        internal static string Menu_Actions {
+            get {
+                return ResourceManager.GetString("Menu_Actions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        internal static string Menu_File {
+            get {
+                return ResourceManager.GetString("Menu_File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to replace doubloons with this doctor? If you click on &quot;Yes&quot;, you&apos;ll replace all the other doubloons with this doctor and delete all the doubloons from the database. This action can&apos;t be undone..
         /// </summary>
         internal static string Msg_ConfirmReplacement {
@@ -264,6 +291,15 @@ namespace Probel.NDoctor.Plugins.RescueTools.Properties {
         internal static string Msg_ConfirmReplaceWithFirst {
             get {
                 return ResourceManager.GetString("Msg_ConfirmReplaceWithFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Base de données nettoyée.
+        /// </summary>
+        internal static string Msg_DatabaseCleaned {
+            get {
+                return ResourceManager.GetString("Msg_DatabaseCleaned", resourceCulture);
             }
         }
         

@@ -115,6 +115,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
                 {
                     msg += (error as TranslateableException).TranslatedMessage + Environment.NewLine;
                 }
+                else { msg += error.Message + Environment.NewLine; }
                 this.HandleError(true, error, msg);
             }
             ViewService.MessageBox.Error(msg);

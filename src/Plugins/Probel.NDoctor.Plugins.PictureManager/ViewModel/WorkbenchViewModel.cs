@@ -315,7 +315,7 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
             this.IsBusy = true;
             var task = Task.Factory.StartNew<TaskArgs>(e => this.FilterAsync(e as TaskArgs), input);
             task.ContinueWith(e => this.FilterCallback(e), token, TaskContinuationOptions.OnlyOnRanToCompletion, context);
-            task.ContinueWith(e => this.Handle.Error(e.Exception.InnerExceptions), token, TaskContinuationOptions.OnlyOnFaulted, context);
+            task.ContinueWith(e => this.Handle.Error(e.Exception), token, TaskContinuationOptions.OnlyOnFaulted, context);
         }
 
         private TaskArgs FilterAsync(TaskArgs input)
