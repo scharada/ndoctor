@@ -56,6 +56,22 @@ namespace Probel.NDoctor.Domain.DTO.Objects
                 this.OnPropertyChanged(() => FirstName);
             }
         }
+        private Gender gender;
+        /// <summary>
+        /// Gets or sets the gender.
+        /// </summary>
+        /// <value>
+        /// The gender.
+        /// </value>
+        public Gender Gender
+        {
+            get { return this.gender; }
+            set
+            {
+                this.gender = value;
+                this.OnPropertyChanged(() => Gender);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the last name.

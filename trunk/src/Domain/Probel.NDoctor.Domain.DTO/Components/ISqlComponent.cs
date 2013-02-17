@@ -58,10 +58,11 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </returns>
         bool IsDatabaseEmpty();
 
-        #endregion Methods
         /// <summary>
         /// Vacuums the database.
         /// </summary>
         void VacuumDatabase();
+
+        #endregion Methods
     }
 }
