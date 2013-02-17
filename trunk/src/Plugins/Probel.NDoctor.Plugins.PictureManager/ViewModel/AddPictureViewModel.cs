@@ -185,8 +185,8 @@ namespace Probel.NDoctor.Plugins.PictureManager.ViewModel
 
                 var context = TaskScheduler.FromCurrentSynchronizationContext();
                 var args = new Tuple<PictureDto, LightPatientDto>(this.PicToAdd, PluginContext.Host.SelectedPatient);
-                Task.Factory.StartNew(e => this.SavePictureAsync(e as Tuple<PictureDto, LightPatientDto>), args)
-                            .ContinueWith(e => this.SavePictureCallback(), context);
+                var task = Task.Factory.StartNew(e => this.SavePictureAsync(e as Tuple<PictureDto, LightPatientDto>), args);
+                task.ContinueWith(e => this.SavePictureCallback(), context);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }

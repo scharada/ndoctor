@@ -304,16 +304,16 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             var token = new CancellationTokenSource().Token;
             PluginContext.Host.SetWaitCursor();
 
-            Task.Factory
-                .StartNew<IEnumerable<LightPatientDto>>(() => this.Component.GetDeactivated())
-                .ContinueWith(t =>
-                {
-                    this.DeactivatedPatients.Refill(t.Result);
-                    var msg = Messages.Msg_FoundDeactivatedPatients.FormatWith(t.Result.Count());
-                    PluginContext.Host.WriteStatus(StatusType.Info, msg);
-                    PluginContext.Host.SetArrowCursor();
-                }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler)
-                .ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
+            var task = Task.Factory
+                   .StartNew<IEnumerable<LightPatientDto>>(() => this.Component.GetDeactivated());
+            task.ContinueWith(t =>
+            {
+                this.DeactivatedPatients.Refill(t.Result);
+                var msg = Messages.Msg_FoundDeactivatedPatients.FormatWith(t.Result.Count());
+                PluginContext.Host.WriteStatus(StatusType.Info, msg);
+                PluginContext.Host.SetArrowCursor();
+            }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
+            task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
         }
 
         private void ReactivateAll()
@@ -329,10 +329,10 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
             var token = new CancellationTokenSource().Token;
 
-            Task.Factory
-                .StartNew<IEnumerable<DoubloonDoctorDto>>(() => this.Component.GetDoctorDoubloons())
-                .ContinueWith(t => this.RefreshCallback(silently, t), token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler)
-                .ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
+            var task = Task.Factory
+                  .StartNew<IEnumerable<DoubloonDoctorDto>>(() => this.Component.GetDoctorDoubloons());
+            task.ContinueWith(t => this.RefreshCallback(silently, t), token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
+            task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
         }
 
         private void RefreshCallback(bool silently, Task<IEnumerable<DoubloonDoctorDto>> t)
@@ -353,14 +353,14 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             {
                 var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
                 var token = new CancellationTokenSource().Token;
-                Task.Factory
-                    .StartNew<IEnumerable<LightDoctorDto>>(ctx =>
-                    {
-                        var doc = ctx as LightDoctorDto;
-                        return this.Component.GetDoubloonsOf(doc.FirstName, doc.LastName, doc.Specialisation);
-                    }, this.SelectedDoctorDoubloon)
-                    .ContinueWith(t => this.DoubloonsOfSelectedDoctor.Refill(t.Result), token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler)
-                    .ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
+                var task = Task.Factory
+                      .StartNew<IEnumerable<LightDoctorDto>>(ctx =>
+                      {
+                          var doc = ctx as LightDoctorDto;
+                          return this.Component.GetDoubloonsOf(doc.FirstName, doc.LastName, doc.Specialisation);
+                      }, this.SelectedDoctorDoubloon);
+                task.ContinueWith(t => this.DoubloonsOfSelectedDoctor.Refill(t.Result), token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
+                task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
             }
         }
 
@@ -376,20 +376,20 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
 
             if (yes)
             {
-                Task.Factory
-                    .StartNew<IEnumerable<DoubloonDoctorDto>>(() =>
-                    {
-                        this.Component.Replace(this.DoubloonsOfSelectedDoctor, this.ReplacementDoctor);
-                        return this.Component.GetDoctorDoubloons();
-                    })
-                    .ContinueWith(t =>
-                    {
-                        this.RefreshCallback(true, t);
-                        if (!InDebugMode) { ViewService.MessageBox.Information(Messages.Msg_DoubloonsDeleted); }
-                        PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DoubloonsDeleted);
-                        PluginContext.Host.SetArrowCursor();
-                    }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler)
-                    .ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
+                var task = Task.Factory
+                       .StartNew<IEnumerable<DoubloonDoctorDto>>(() =>
+                       {
+                           this.Component.Replace(this.DoubloonsOfSelectedDoctor, this.ReplacementDoctor);
+                           return this.Component.GetDoctorDoubloons();
+                       });
+                task.ContinueWith(t =>
+                {
+                    this.RefreshCallback(true, t);
+                    if (!InDebugMode) { ViewService.MessageBox.Information(Messages.Msg_DoubloonsDeleted); }
+                    PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DoubloonsDeleted);
+                    PluginContext.Host.SetArrowCursor();
+                }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
+                task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
             }
         }
 
@@ -405,20 +405,20 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
 
             if (yes)
             {
-                Task.Factory
-                    .StartNew<IEnumerable<DoubloonDoctorDto>>(() =>
-                    {
-                        this.Component.ReplaceWithFirstDoubloon(this.DoctorDoubloons);
-                        return this.Component.GetDoctorDoubloons();
-                    })
-                    .ContinueWith(t =>
-                    {
-                        this.RefreshCallback(true, t);
-                        if (!InDebugMode) { ViewService.MessageBox.Information(Messages.Msg_DoubloonsDeleted); }
-                        PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DoubloonsDeleted);
-                        PluginContext.Host.SetArrowCursor();
-                    }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler)
-                    .ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
+                var task = Task.Factory
+                      .StartNew<IEnumerable<DoubloonDoctorDto>>(() =>
+                      {
+                          this.Component.ReplaceWithFirstDoubloon(this.DoctorDoubloons);
+                          return this.Component.GetDoctorDoubloons();
+                      });
+                task.ContinueWith(t =>
+                {
+                    this.RefreshCallback(true, t);
+                    if (!InDebugMode) { ViewService.MessageBox.Information(Messages.Msg_DoubloonsDeleted); }
+                    PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DoubloonsDeleted);
+                    PluginContext.Host.SetArrowCursor();
+                }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
+                task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
             }
         }
 
@@ -441,15 +441,15 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
                 var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
                 var token = new CancellationTokenSource().Token;
 
-                Task.Factory
-                    .StartNew<IEnumerable<LightPatientDto>>(() => this.Component.GetOlderThan(this.AgeCriteria))
-                .ContinueWith(t =>
+                var task = Task.Factory
+                      .StartNew<IEnumerable<LightPatientDto>>(() => this.Component.GetOlderThan(this.AgeCriteria));
+                task.ContinueWith(t =>
                 {
                     this.OldPatients.Refill(t.Result);
                     PluginContext.Host.SetArrowCursor();
                     PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_FoundPatients.FormatWith(t.Result.Count()));
-                }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler)
-                .ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
+                }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
+                task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
@@ -459,19 +459,19 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
             var token = new CancellationTokenSource().Token;
 
-            Task.Factory
+            var task = Task.Factory
                 .StartNew<IEnumerable<LightPatientDto>>(() =>
                 {
                     this.Component.UpdateDeactivation(this.DeactivatedPatients);
                     return this.Component.GetDeactivated();
-                })
-                .ContinueWith(t =>
-                {
-                    this.DeactivatedPatients.Refill(t.Result);
-                    ViewService.MessageBox.Information(Messages.Msg_PatientUpdated);
-                    PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PatientUpdated);
-                }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler)
-                .ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
+                });
+            task.ContinueWith(t =>
+            {
+                this.DeactivatedPatients.Refill(t.Result);
+                ViewService.MessageBox.Information(Messages.Msg_PatientUpdated);
+                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PatientUpdated);
+            }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
+            task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
         }
 
         private void UpdateOldPatients()

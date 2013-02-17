@@ -225,19 +225,19 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
             var token = new CancellationTokenSource().Token;
 
-            Task.Factory
+            var task = Task.Factory
                 .StartNew<Tuple<InsuranceDto, PracticeDto>>(() =>
                 {
                     var insurance = this.component.GetInsuranceById(this.SelectedPatient.Insurance.Id);
                     var practice = this.component.GetPracticeById(this.SelectedPatient.Practice.Id);
                     return new Tuple<InsuranceDto, PracticeDto>(insurance, practice);
-                })
-                .ContinueWith(t =>
-                {
-                    this.SelectedInsurance = t.Result.Item1;
-                    this.SelectedPractice = t.Result.Item2;
-                }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler)
-                .ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
+                });
+            task.ContinueWith(t =>
+            {
+                this.SelectedInsurance = t.Result.Item1;
+                this.SelectedPractice = t.Result.Item2;
+            }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
+            task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
         }
 
         public PracticeDto SelectedPractice
@@ -301,7 +301,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
                 this.IsBusy = true;
                 var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
                 var token = new CancellationTokenSource().Token;
-                Task.Factory
+                var task = Task.Factory
                     .StartNew<ThreadContext>(state =>
                      {
                          var selectedPatient = state as LightPatientDto;
@@ -319,28 +319,28 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
                          ctx.Thumbnail = this.component.GetThumbnail(ctx.SelectedPatient);
 
                          return ctx;
-                     }, PluginContext.Host.SelectedPatient, token)
-                    .ContinueWith(t =>
-                    {
-                        var ctx = t.Result as ThreadContext;
-                        this.Reputations.Refill(ctx.Reputations);
-                        this.Insurances.Refill(ctx.Insurances);
-                        this.Practices.Refill(ctx.Practices);
-                        this.Professions.Refill(ctx.Professions);
-                        this.Doctors.Refill(ctx.Doctors);
-                        this.SelectedPatient = ctx.SelectedPatient;
-                        this.Thumbnail = ctx.Thumbnail;
+                     }, PluginContext.Host.SelectedPatient, token);
+                task.ContinueWith(t =>
+                {
+                    var ctx = t.Result as ThreadContext;
+                    this.Reputations.Refill(ctx.Reputations);
+                    this.Insurances.Refill(ctx.Insurances);
+                    this.Practices.Refill(ctx.Practices);
+                    this.Professions.Refill(ctx.Professions);
+                    this.Doctors.Refill(ctx.Doctors);
+                    this.SelectedPatient = ctx.SelectedPatient;
+                    this.Thumbnail = ctx.Thumbnail;
 
-                        this.SelectedGender = (from gender in this.Genders
-                                               where gender.Item2 == this.selectedPatient.Gender
-                                               select gender).Single();
-                        this.SelectedPatient.Insurance = ctx.SelectedInsurance;
-                        this.SelectedPatient.Practice = ctx.SelectedPractice;
-                        this.RefreshComboBoxes();
+                    this.SelectedGender = (from gender in this.Genders
+                                           where gender.Item2 == this.selectedPatient.Gender
+                                           select gender).Single();
+                    this.SelectedPatient.Insurance = ctx.SelectedInsurance;
+                    this.SelectedPatient.Practice = ctx.SelectedPractice;
+                    this.RefreshComboBoxes();
 
-                        this.IsBusy = false;
-                    }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler)
-                    .ContinueWith(t => this.Handle.Error(t.Exception.InnerException), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
+                    this.IsBusy = false;
+                }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
+                task.ContinueWith(t => this.Handle.Error(t.Exception.InnerException), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }

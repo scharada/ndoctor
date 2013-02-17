@@ -190,8 +190,8 @@ namespace Probel.NDoctor.Plugins.FamilyViewer.ViewModel
             var context = TaskScheduler.FromCurrentSynchronizationContext();
             var task = Task.Factory
                 .StartNew(e => this.AddRelationAsync(e as Tuple<LightPatientDto, LightPatientDto, FamilyRelations>)
-                    , new Tuple<LightPatientDto, LightPatientDto, FamilyRelations>(PluginContext.Host.SelectedPatient, this.SelectedMember, this.SelectedRelation.Item1))
-                .ContinueWith(e => this.AddRelationCallback(), context);
+                    , new Tuple<LightPatientDto, LightPatientDto, FamilyRelations>(PluginContext.Host.SelectedPatient, this.SelectedMember, this.SelectedRelation.Item1));
+            task.ContinueWith(e => this.AddRelationCallback(), context);
         }
 
         private void AddRelationAsync(Tuple<LightPatientDto, LightPatientDto, FamilyRelations> e)

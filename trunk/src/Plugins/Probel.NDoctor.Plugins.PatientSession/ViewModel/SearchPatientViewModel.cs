@@ -142,8 +142,8 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             try
             {
                 var context = TaskScheduler.FromCurrentSynchronizationContext();
-                Task.Factory.StartNew<IList<LightPatientDto>>(() => this.SearchAsync())
-                    .ContinueWith(e => this.SearchCallback(e), context);
+                var task = Task.Factory.StartNew<IList<LightPatientDto>>(() => this.SearchAsync());
+                task.ContinueWith(e => this.SearchCallback(e), context);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }
