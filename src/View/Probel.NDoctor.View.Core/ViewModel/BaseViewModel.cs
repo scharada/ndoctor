@@ -17,6 +17,8 @@
 namespace Probel.NDoctor.View.Core.ViewModel
 {
     using System;
+    using System.Globalization;
+    using System.Threading;
     using System.Threading.Tasks;
     using System.Windows.Threading;
 
@@ -32,12 +34,12 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Plugins.Exceptions;
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Navigation;
-    using System.Globalization;
-    using System.Threading;
 
     public abstract class BaseViewModel : RequestCloseViewModel
     {
         #region Fields
+
+        public readonly CultureInfo Culture = new CultureInfo(Settings.Default.Language);
 
         protected readonly IErrorHandler Handle;
         protected readonly ILog Logger;
@@ -47,7 +49,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         #endregion Fields
 
         #region Constructors
-        public readonly CultureInfo Culture = new CultureInfo(Settings.Default.Language);
+
         protected BaseViewModel()
         {
             this.Culture = Thread.CurrentThread.CurrentUICulture;
