@@ -163,6 +163,19 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets the full doctor from the specified light dto.
+        /// </summary>
+        /// <param name="light">The light doctor dto.</param>
+        /// <returns></returns>
+        public DoctorDto GetFullDoctor(LightDoctorDto light)
+        {
+            var entity = (from p in this.Session.Query<Doctor>()
+                          where p.Id == light.Id
+                          select p).Single();
+            return Mapper.Map<Doctor, DoctorDto>(entity);
+        }
+
+        /// <summary>
         /// Finds the patients older than the specified age.
         /// </summary>
         /// <param name="age">The age of the patient in years.</param>

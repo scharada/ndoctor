@@ -75,6 +75,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         IEnumerable<LightDoctorDto> GetDoubloonsOf(string firstName, string lastName, TagDto specialisation);
 
         /// <summary>
+        /// Gets the full doctor from the specified light dto.
+        /// </summary>
+        /// <param name="lightDoctorDto">The light doctor dto.</param>
+        /// <returns></returns>
+        DoctorDto GetFullDoctor(LightDoctorDto lightDoctorDto);
+
+        /// <summary>
         /// Finds the patients older than the specified age.
         /// </summary>
         /// <param name="age">The age of the patient in years.</param>
