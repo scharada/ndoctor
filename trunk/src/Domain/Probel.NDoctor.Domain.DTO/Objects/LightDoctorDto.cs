@@ -25,6 +25,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     public class LightDoctorDto : PersonDto
     {
         #region Fields
+
         private TagDto specialisation;
 
         #endregion Fields

@@ -37,6 +37,11 @@ namespace Probel.NDoctor.Plugins.Administration.Translations
             get { return Messages.Title_Remove; }
         }
 
+        public static string SearchDoctor
+        {
+            get { return Messages.Tb_SearchDoctor; }
+        }
+
         public static string TitleBoxNr
         {
             get { return Messages.Title_BoxNr; }

@@ -26,6 +26,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #region Fields
 
         private string firstName;
+        private Gender gender;
         private string lastName;
 
         #endregion Fields
@@ -56,7 +57,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
                 this.OnPropertyChanged(() => FirstName);
             }
         }
-        private Gender gender;
+
         /// <summary>
         /// Gets or sets the gender.
         /// </summary>

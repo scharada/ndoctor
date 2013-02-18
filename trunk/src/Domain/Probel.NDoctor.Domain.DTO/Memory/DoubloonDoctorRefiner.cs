@@ -19,28 +19,24 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Domain.DTO.MemorySearches
+namespace Probel.NDoctor.Domain.DTO.Memory
 {
     using System.Collections.Generic;
     using System.Linq;
 
     using Probel.NDoctor.Domain.DTO.Objects;
 
-    public class DoubloonDoctorSearcher
+    public class DoubloonDoctorRefiner : MemoryRefiner<DoubloonDoctorDto>
     {
-        #region Fields
-
-        public readonly IEnumerable<DoubloonDoctorDto> List;
-
-        #endregion Fields
-
         #region Constructors
 
-        public DoubloonDoctorSearcher(IEnumerable<DoubloonDoctorDto> list = null)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DoubloonDoctorRefiner"/> class.
+        /// </summary>
+        /// <param name="list">The list.</param>
+        public DoubloonDoctorRefiner(IEnumerable<DoubloonDoctorDto> list)
+            : base(list)
         {
-            this.List = (list == null)
-                ? new List<DoubloonDoctorDto>()
-                : list;
         }
 
         #endregion Constructors
@@ -49,18 +45,11 @@ namespace Probel.NDoctor.Domain.DTO.MemorySearches
 
         public IEnumerable<DoubloonDoctorDto> FindByFirstOrLastName(string criteria)
         {
-            IEnumerable<DoubloonDoctorDto> result;
-
-            if (string.IsNullOrWhiteSpace(criteria)) { result = this.List; }
-            else
-            {
-                var uCriteria = criteria.ToUpper();
-                result = (from doc in this.List
-                          where doc.FirstName.ToUpper().Contains(uCriteria)
-                             || doc.LastName.ToUpper().Contains(uCriteria)
-                          select doc).AsEnumerable();
-            }
-            return result;
+            criteria = criteria.ToUpper();
+            return (from doc in this.Items
+                    where doc.FirstName.ToUpper().Contains(criteria)
+                       || doc.LastName.ToUpper().Contains(criteria)
+                    select doc).AsEnumerable();
         }
 
         #endregion Methods

@@ -18,6 +18,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
 {
     using System.Collections.Generic;
 
+    using Probel.NDoctor.Domain.DTO.Memory;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     public interface IAdministrationComponent : IBaseComponent
@@ -193,6 +194,54 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <returns></returns>
         IList<TagDto> GetAllTags();
+
+        /// <summary>
+        /// Gets a memory searcher filled with all the doctors.
+        /// </summary>
+        /// <returns>A memory searcher</returns>
+        DoctorRefiner GetDoctorSearcher();
+
+        /// <summary>
+        /// Gets a memory searcher filled with all the drugs.
+        /// </summary>
+        /// <returns>A memory searcher</returns>
+        DrugRefiner GetDrugRefiner();
+
+        /// <summary>
+        /// Gets a memory searcher filled with all the insurances.
+        /// </summary>
+        /// <returns>A memory searcher</returns>
+        InsuranceRefiner GetInsurancesSearcher();
+
+        /// <summary>
+        /// Gets a memory searcher filled with all the pathologies.
+        /// </summary>
+        /// <returns>A memory searcher</returns>
+        PathologyRefiner GetPathologyRefiner();
+
+        /// <summary>
+        /// Gets a memory searcher filled with all the practices.
+        /// </summary>
+        /// <returns>A memory searcher</returns>
+        PracticeRefiner GetPracticeRefiner();
+
+        /// <summary>
+        /// Gets a memory searcher filled with all the professions.
+        /// </summary>
+        /// <returns>A memory searcher</returns>
+        ProfessionRefiner GetProfessionRefiner();
+
+        /// <summary>
+        /// Gets a memory searcher filled with all the reputations.
+        /// </summary>
+        /// <returns>A memory searcher</returns>
+        ReputationRefiner GetReputationRefiner();
+
+        /// <summary>
+        /// Gets a memory searcher filled with all the tags.
+        /// </summary>
+        /// <returns>A memory searcher</returns>
+        TagRefiner GetTagRefiner();
 
         /// <summary>
         /// Gets all the tags with the specified catagory.

@@ -145,6 +145,14 @@
     <value>Item added.</value>
     <comment>Item added.</comment>
   </data>
+  <data name="Msg_SearchModuleNotLoaded" xml:space="preserve">
+    <value>At least one search module is not loaded</value>
+    <comment>At least one search module is not loaded</comment>
+  </data>
+  <data name="Tb_SearchDoctor" xml:space="preserve">
+    <value>Chercher un médecin sur le nom</value>
+    <comment>Search doctors based on the last name</comment>
+  </data>
   <data name="Title_AddDoctor" xml:space="preserve">
     <value>Doctor</value>
     <comment>Add a doctor</comment>
