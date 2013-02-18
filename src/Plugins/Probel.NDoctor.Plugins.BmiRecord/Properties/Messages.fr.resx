@@ -185,10 +185,6 @@
     <value>Une erreur est survenue. Vérifiez les logs pour plus d'informations</value>
     <comment>An error occured. Check the logs for furher information</comment>
   </data>
-	<data name="Question" xml:space="preserve">
-    <value>Question</value>
-    <comment>Question</comment>
-  </data>
 	<data name="Title_AddBmi" xml:space="preserve">
     <value>Ajouter une entrée BMI</value>
     <comment>Add a BMI entry</comment>
@@ -230,7 +226,7 @@
     <comment>Dates</comment>
   </data>
 	<data name="Title_BmiYAxes" xml:space="preserve">
-    <value>Index BMI</value>
+    <value>Indice BMI</value>
     <comment>BMI index</comment>
   </data>
 	<data name="Title_BtnAdd" xml:space="preserve">
@@ -252,10 +248,6 @@
 	<data name="Title_From" xml:space="preserve">
     <value>De</value>
     <comment>From</comment>
-  </data>
-	<data name="Title_RollbackBmi" xml:space="preserve">
-    <value>Annuler le dernier effacement</value>
-    <comment>Rollback the last deletion</comment>
   </data>
 	<data name="Title_To" xml:space="preserve">
     <value>A</value>

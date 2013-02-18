@@ -34,7 +34,7 @@ namespace Probel.NDoctor.Plugins.Administration.Translations
 
         public static string AddDrug
         {
-            get { return Messages.Title_AddDrug; }
+            get { return Messages.Title_Drug; }
         }
 
         public static string AddDrugType
@@ -79,7 +79,7 @@ namespace Probel.NDoctor.Plugins.Administration.Translations
 
         public static string AddSpecialisation
         {
-            get { return Messages.Title_AddSpecialisation; }
+            get { return Messages.Title_Specialisation; }
         }
 
         public static string AddTag

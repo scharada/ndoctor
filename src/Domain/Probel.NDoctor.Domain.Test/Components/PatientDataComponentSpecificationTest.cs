@@ -42,7 +42,7 @@ namespace Probel.NDoctor.Domain.Test.Components
             var falseValues = new int[] { 16, 17, 18, 19, 20, 1, 0, -1, -2, -3, -4, -5, -6 };
 
             var expression = (When.Integer.GreaterThan(2) & When.Integer.LessThan(15))
-                            | When.Integer.EqualTo(27);
+                            | When.Integer.EqualsTo(27);
 
             foreach (var item in trueValues)
             {
@@ -62,7 +62,7 @@ namespace Probel.NDoctor.Domain.Test.Components
 
             var expression = When.Integer.GreaterThan(2)
                 .And(When.Integer.LessThan(15))
-                .Or(When.Integer.EqualTo(27));
+                .Or(When.Integer.EqualsTo(27));
 
             foreach (var item in trueValues)
             {
@@ -81,7 +81,7 @@ namespace Probel.NDoctor.Domain.Test.Components
             var falseValues = new int[] { 1, 2, 3, 5 };
 
             var expression = When.Integer.GreaterThan(4)
-                .And(When.Integer.EqualTo(5).Not());
+                .And(When.Integer.EqualsTo(5).Not());
 
             foreach (var item in trueValues)
             {
@@ -100,7 +100,7 @@ namespace Probel.NDoctor.Domain.Test.Components
             var falseValues = new int[] { 1, 2, 3, 5 };
 
             var expression = When.Integer.GreaterThan(4)
-                         & (!When.Integer.EqualTo(5));
+                         & (!When.Integer.EqualsTo(5));
 
             foreach (var item in trueValues)
             {
