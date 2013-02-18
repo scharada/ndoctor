@@ -43,7 +43,7 @@ namespace Probel.NDoctor.Domain.DTO.Specifications.Integers
 
         #region Methods
 
-        public Specification<int> EqualTo(int i)
+        public Specification<int> EqualsTo(int i)
         {
             return new IntegerEqualsToSpecification(i);
         }

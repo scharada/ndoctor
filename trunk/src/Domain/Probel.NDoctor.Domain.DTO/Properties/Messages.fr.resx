@@ -118,7 +118,7 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="Error_BeginBiggerThanEnd" xml:space="preserve">
-    <value>L'heure de départ doit être plus petite que l'heure de fin</value>
+    <value>L'heure de départ avant l'heure de fin</value>
     <comment>The start time should be smaller than the end time</comment>
   </data>
 	<data name="Error_NotSupportedDate_Hour" xml:space="preserve">
@@ -130,7 +130,7 @@
     <comment>The value of minutes has to be between 0 and 59</comment>
   </data>
 	<data name="Error_TooManyLoops" xml:space="preserve">
-    <value>Le programme semble être dans une boucle infinie</value>
+    <value>Le programme semble être dans une boucle infinie. Vérifier les logs pour plus d'information.</value>
     <comment>The program seems to be in an infinite loop</comment>
   </data>
 	<data name="Error_WrongTextForDate" xml:space="preserve">
@@ -142,7 +142,7 @@
     <comment>You are not granted to execute this action</comment>
   </data>
 	<data name="Ex_BusinessLogicException" xml:space="preserve">
-    <value>Impossible d'exécuter cette action. Ceci est un cas de figure qui va  l'encontre de la logique métier ou n'est pas un cas prévus.</value>
+    <value>Ceci n'est pas un cas prévu. Afin de préserver l'intégrité des données, cette action n'a pas été executée.</value>
     <comment>Impossible to execute this action. This is a unexpected state that wasn't forseen or it will break business logic rules.</comment>
   </data>
 	<data name="Ex_ClosedSessionException" xml:space="preserve">
@@ -160,10 +160,6 @@
 	<data name="Ex_DalConfigurationException" xml:space="preserve">
     <value>Une erreur est apparue lors de la création de la base de données</value>
     <comment>An error occured during the configuration of the database</comment>
-  </data>
-	<data name="Ex_DalSessionException_UnknownId" xml:space="preserve">
-    <value>The ID type is '{0}' while expecting '{1}'</value>
-    <comment>Le type de l'ID est '{0}' alors qu'il devrait être '{1}'</comment>
   </data>
 	<data name="Ex_EmptyPasswordException" xml:space="preserve">
     <value>Les mots de passe vide ne sont pas accepté</value>
@@ -185,10 +181,6 @@
     <value>Aucun patient avec l'identifiant '{0}' n'a été trouvé.</value>
     <comment>No patient with id '{0}' was found.</comment>
   </data>
-	<data name="Ex_EntityNotFoundException_NoRelationRightSide" xml:space="preserve">
-    <value>Le patient qui représente la partie droite de la relation n'existe pas dans la base de données.</value>
-    <comment>The patient of right side of the relation doesn't exist in the database</comment>
-  </data>
 	<data name="Ex_ExistingItemException" xml:space="preserve">
     <value>L'élément que vous voulez enregistrer dans la base de données existe déjà.</value>
     <comment>The item you want to create already exist in the database.</comment>
@@ -198,7 +190,7 @@
     <comment>An error occured when communicating with Google Calendar</comment>
   </data>
 	<data name="Ex_GoogleCalendarExceptionFormat" xml:space="preserve">
-    <value>Google Calendar reporte cette erreur: {0}</value>
+    <value>Google Calendar rapporte cette erreur: {0}</value>
     <comment>Google Calendar reports this error: {0}</comment>
   </data>
 	<data name="Ex_HasThumbnail" xml:space="preserve">
@@ -210,7 +202,7 @@
     <comment>The entity you are using detached  from the database.</comment>
   </data>
 	<data name="Ex_NullItemInListException" xml:space="preserve">
-    <value>Un élément d'une des liste de l'objet à sauver contient au moins un élément null</value>
+    <value>La liste d'éléments à sauver contient au moin un object avec une propriété NULL</value>
     <comment>A list of the object to save has at least one null element</comment>
   </data>
 	<data name="Ex_NullSessionFactoryException" xml:space="preserve">
@@ -222,11 +214,11 @@
     <comment>An error occured during the execution of a query. {0}</comment>
   </data>
 	<data name="Ex_ReferencialIntegrityException" xml:space="preserve">
-    <value>Cette action ne peut être exécutée pour garder l'intégrité des donnéess</value>
+    <value>Impossible de supprimer cet élément. D'autres éléments référencient celui-ci.</value>
     <comment>This action wasn't executed to keep the integrity of the data.</comment>
   </data>
 	<data name="Ex_SessionException" xml:space="preserve">
-    <value>An error occured in the session</value>
+    <value>Une erreur est survenue dans une session nHibernate.</value>
     <comment>An error occured in the session</comment>
   </data>
 	<data name="Ex_SessionNotOpenedException" xml:space="preserve">
@@ -265,10 +257,6 @@
     <value>Ne peut pas être vide.</value>
     <comment>Can't be empty.</comment>
   </data>
-	<data name="Invalid_Family" xml:space="preserve">
-    <value>Relation familiale invalide</value>
-    <comment>Invalid family relation</comment>
-  </data>
 	<data name="Invalid_Height" xml:space="preserve">
     <value>La taille doit être comprise entre 10 et 300 cm</value>
     <comment>The height should be between 10 and 300 cm</comment>
@@ -280,10 +268,6 @@
 	<data name="Invalid_Prescription_NoDrug" xml:space="preserve">
     <value>Cette prescription ne contient aucun médicament</value>
     <comment>There's no drug in this prescription</comment>
-  </data>
-	<data name="Invalid_Relation" xml:space="preserve">
-    <value>Une relation doit contenir deux personnes</value>
-    <comment>A relation should contain two persons</comment>
   </data>
 	<data name="Invalid_TimeSpan" xml:space="preserve">
     <value>La date de début doit être antérieure à la date de fin</value>

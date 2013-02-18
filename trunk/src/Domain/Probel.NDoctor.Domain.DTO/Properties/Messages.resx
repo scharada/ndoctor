@@ -118,19 +118,19 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="Error_BeginBiggerThanEnd" xml:space="preserve">
-    <value>The start time should be smaller than the end time</value>
+    <value>The start time should before the end time</value>
     <comment>The start time should be smaller than the end time</comment>
   </data>
 	<data name="Error_NotSupportedDate_Hour" xml:space="preserve">
-    <value>The value of hours has to be between 0 and 23</value>
+    <value>The value of 'hours' has to be between 0 and 23</value>
     <comment>The value of hours has to be between 0 and 23</comment>
   </data>
 	<data name="Error_NotSupportedDate_Minutes" xml:space="preserve">
-    <value>The value of minutes has to be between 0 and 59</value>
+    <value>The value of 'minutes' has to be between 0 and 59</value>
     <comment>The value of minutes has to be between 0 and 59</comment>
   </data>
 	<data name="Error_TooManyLoops" xml:space="preserve">
-    <value>The program seems to be in an infinite loop</value>
+    <value>The program seems to be in an infinite loop. Check logs for further information.</value>
     <comment>The program seems to be in an infinite loop</comment>
   </data>
 	<data name="Error_WrongTextForDate" xml:space="preserve">
@@ -142,7 +142,7 @@
     <comment>You are not granted to execute this action</comment>
   </data>
 	<data name="Ex_BusinessLogicException" xml:space="preserve">
-    <value>Impossible to execute this action. This is a unexpected state that wasn't forseen or it will break business logic rules.</value>
+    <value>This is an unforseen use case. To keep data integrity, this action wasn't executed.</value>
     <comment>Impossible to execute this action. This is a unexpected state that wasn't forseen or it will break business logic rules.</comment>
   </data>
 	<data name="Ex_ClosedSessionException" xml:space="preserve">
@@ -159,10 +159,6 @@
   </data>
 	<data name="Ex_DalConfigurationException" xml:space="preserve">
     <value>An error occured during the configuration of the database</value>
-  </data>
-	<data name="Ex_DalSessionException_UnknownId" xml:space="preserve">
-    <value>The ID type is '{0}' while expecting '{1}'</value>
-    <comment>Le type de l'ID attendu est '{0}' alors qu'il est '{1}'</comment>
   </data>
 	<data name="Ex_EmptyPasswordException" xml:space="preserve">
     <value>Empty password are not accepted</value>
@@ -183,10 +179,6 @@
 	<data name="Ex_EntityNotFoundException_NoPatient" xml:space="preserve">
     <value>No patient with id '{0}' was found.</value>
     <comment>No patient with id '{0}' was found.</comment>
-  </data>
-	<data name="Ex_EntityNotFoundException_NoRelationRightSide" xml:space="preserve">
-    <value>The patient of right side of the relation doesn't exist in the database</value>
-    <comment>The patient of right side of the relation doesn't exist in the database</comment>
   </data>
 	<data name="Ex_ExistingItemException" xml:space="preserve">
     <value>The item you want to create already exist in the database.</value>
@@ -209,7 +201,7 @@
     <comment>The entity you are using is detached  from the database.</comment>
   </data>
 	<data name="Ex_NullItemInListException" xml:space="preserve">
-    <value>A list of the object to save has at least one null element</value>
+    <value>The list of items to save has an element with at least one NULL property</value>
     <comment>A list of the object to save has at least one null element</comment>
   </data>
 	<data name="Ex_NullSessionFactoryException" xml:space="preserve">
@@ -225,15 +217,15 @@
     <comment>More than one default user was found.</comment>
   </data>
 	<data name="Ex_ReferencialIntegrityException" xml:space="preserve">
-    <value>This action wasn't executed to keep the integrity of the data.</value>
+    <value>Impossible to remove this element. Other elements have a reference on this one.</value>
     <comment>This action wasn't executed to keep the integrity of the data.</comment>
   </data>
 	<data name="Ex_SessionException" xml:space="preserve">
-    <value>An error occured in the session</value>
+    <value>An error occured in the nHibernate session.</value>
     <comment>An error occured in the session</comment>
   </data>
 	<data name="Ex_SessionNotOpenedException" xml:space="preserve">
-    <value>The session is not open. Please open it before query the database.</value>
+    <value>The session is not open. Please open it before querying the database.</value>
     <comment>The session is not open. Please open it before query the database.</comment>
   </data>
 	<data name="Ex_ValidationException" xml:space="preserve">
@@ -268,10 +260,6 @@
     <value>Can't be empty.</value>
     <comment>Can't be empty.</comment>
   </data>
-	<data name="Invalid_Family" xml:space="preserve">
-    <value>Invalid family relation</value>
-    <comment>Invalid family relation</comment>
-  </data>
 	<data name="Invalid_Height" xml:space="preserve">
     <value>The height should be bewteen 10 et 300 cm</value>
     <comment>The height should be between 10 and 300 cm</comment>
@@ -281,19 +269,15 @@
     <comment>This illness history is not related to any patient</comment>
   </data>
 	<data name="Invalid_Prescription_NoDrug" xml:space="preserve">
-    <value>Cette prescription ne contient aucun médicament</value>
+    <value>This prescription doesn't have any drugs</value>
     <comment>There's no drug in this prescription</comment>
-  </data>
-	<data name="Invalid_Relation" xml:space="preserve">
-    <value>A relation should contain two persons</value>
-    <comment>A relation should contain two persons</comment>
   </data>
 	<data name="Invalid_TimeSpan" xml:space="preserve">
     <value>The start date should be before the end date</value>
     <comment>The start date should be before the end date</comment>
   </data>
 	<data name="Invalid_Weight" xml:space="preserve">
-    <value>The waight should be between 1 et 500 Kg</value>
+    <value>The weight should be between 1 et 500 Kg</value>
     <comment>The weight should be between 1 and 500 Kg</comment>
   </data>
 	<data name="Msg_Children" xml:space="preserve">

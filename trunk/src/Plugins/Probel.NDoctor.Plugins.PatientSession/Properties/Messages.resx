@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
+	<!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,233 +59,233 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="Btn_Add" xml:space="preserve">
-    <value>Add:</value>
-    <comment>Add</comment>
-  </data>
-  <data name="Criteria_ByBirthdata" xml:space="preserve">
-    <value>Birthdate:</value>
-    <comment>Birthdate</comment>
-  </data>
-  <data name="Criteria_ByCity" xml:space="preserve">
-    <value>City:</value>
-    <comment>City</comment>
-  </data>
-  <data name="Criteria_ByInscription" xml:space="preserve">
-    <value>Inscription:</value>
-    <comment>Inscription</comment>
-  </data>
-  <data name="Criteria_ByLastUpdate" xml:space="preserve">
-    <value>Last update:</value>
-    <comment>Last update</comment>
-  </data>
-  <data name="Criteria_ByName" xml:space="preserve">
-    <value>Last name:</value>
-    <comment>Last name:</comment>
-  </data>
-  <data name="Criteria_ByProfession" xml:space="preserve">
-    <value>Profession:</value>
-    <comment>Profession:</comment>
-  </data>
-  <data name="Criteria_ByReason" xml:space="preserve">
-    <value>Reason</value>
-    <comment>Reason</comment>
-  </data>
-  <data name="Criteria_ByYear" xml:space="preserve">
-    <value>Birth year:</value>
-    <comment>Birth year:</comment>
-  </data>
-  <data name="Date_And" xml:space="preserve">
-    <value>and</value>
-    <comment>and</comment>
-  </data>
-  <data name="Date_Between" xml:space="preserve">
-    <value>Between</value>
-    <comment>Between</comment>
-  </data>
-  <data name="Error_AddPatient" xml:space="preserve">
-    <value>An error occured while adding a new patient</value>
-    <comment>An error occured while adding a new patient</comment>
-  </data>
-  <data name="Ex_NotNumericValue" xml:space="preserve">
-    <value>The specified value is not numeric</value>
-    <comment>The specified value is not numeric</comment>
-  </data>
-  <data name="Gb_Specifications" xml:space="preserve">
-    <value>Search on...</value>
-    <comment>Search on...</comment>
-  </data>
-  <data name="Information" xml:space="preserve">
-    <value>Information</value>
-    <comment>Information</comment>
-  </data>
-  <data name="Lbl_Birthdate" xml:space="preserve">
-    <value>birthdate</value>
-    <comment>birthdate</comment>
-  </data>
-  <data name="Lbl_City" xml:space="preserve">
-    <value>the city</value>
-    <comment>the city</comment>
-  </data>
-  <data name="Lbl_Inscription" xml:space="preserve">
-    <value>the inscription date</value>
-    <comment>the inscription date</comment>
-  </data>
-  <data name="Lbl_LastUpdate" xml:space="preserve">
-    <value>the last update</value>
-    <comment>the last update</comment>
-  </data>
-  <data name="Lbl_Profession" xml:space="preserve">
-    <value>the profession</value>
-    <comment>the profession</comment>
-  </data>
-  <data name="Lbl_Reason" xml:space="preserve">
-    <value>the reason</value>
-    <comment>the reason</comment>
-  </data>
-  <data name="Lbl_SearchBehaviour" xml:space="preserve">
-    <value>Behaviour:</value>
-    <comment>Behaviour:</comment>
-  </data>
-  <data name="Menu_Select" xml:space="preserve">
-    <value>Select</value>
-    <comment>Select</comment>
-  </data>
-  <data name="Msg_DoubleClick" xml:space="preserve">
-    <value>Double click to select the patient</value>
-    <comment>Double click to select the patient</comment>
-  </data>
-  <data name="Msg_Explanations" xml:space="preserve">
-    <value>Select the search criterion you want to see in the advanced search box.</value>
-    <comment>Select the search criterion you want to see in the advanced search box.</comment>
-  </data>
-  <data name="Msg_PatientAdded" xml:space="preserve">
-    <value>Patient added.</value>
-    <comment>Patient added.</comment>
-  </data>
-  <data name="Msg_PatientSelected" xml:space="preserve">
-    <value>Patient selected</value>
-    <comment>Patient selected</comment>
-  </data>
-  <data name="Msg_SearchExecuted" xml:space="preserve">
-    <value>{0} patient(s) found.</value>
-    <comment>{0} patient(s) found.</comment>
-  </data>
-  <data name="Msg_SelectPatient" xml:space="preserve">
-    <value>Open a session for {0}</value>
-    <comment>Open a session for {0}</comment>
-  </data>
-  <data name="Search_And" xml:space="preserve">
-    <value>Select if ALL criterion are satisfied</value>
-    <comment>Select if ALL criterion are satisfied</comment>
-  </data>
-  <data name="Search_Or" xml:space="preserve">
-    <value>Select if AT LEAST one criteria is satisfied</value>
-    <comment>Select if AT LEAST one criteria is satisfied</comment>
-  </data>
-  <data name="Title_Add" xml:space="preserve">
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="Btn_Add" xml:space="preserve">
     <value>Add</value>
     <comment>Add</comment>
   </data>
-  <data name="Title_AddPatient" xml:space="preserve">
+	<data name="Criteria_ByBirthdata" xml:space="preserve">
+    <value>Birthdate:</value>
+    <comment>Birthdate</comment>
+  </data>
+	<data name="Criteria_ByCity" xml:space="preserve">
+    <value>City:</value>
+    <comment>City</comment>
+  </data>
+	<data name="Criteria_ByInscription" xml:space="preserve">
+    <value>Inscription:</value>
+    <comment>Inscription</comment>
+  </data>
+	<data name="Criteria_ByLastUpdate" xml:space="preserve">
+    <value>Last update:</value>
+    <comment>Last update</comment>
+  </data>
+	<data name="Criteria_ByName" xml:space="preserve">
+    <value>Last name:</value>
+    <comment>Last name:</comment>
+  </data>
+	<data name="Criteria_ByProfession" xml:space="preserve">
+    <value>Profession:</value>
+    <comment>Profession:</comment>
+  </data>
+	<data name="Criteria_ByReason" xml:space="preserve">
+    <value>Reason:</value>
+    <comment>Reason</comment>
+  </data>
+	<data name="Criteria_ByYear" xml:space="preserve">
+    <value>Birth year:</value>
+    <comment>Birth year:</comment>
+  </data>
+	<data name="Date_And" xml:space="preserve">
+    <value>and</value>
+    <comment>and</comment>
+  </data>
+	<data name="Date_Between" xml:space="preserve">
+    <value>Between</value>
+    <comment>Between</comment>
+  </data>
+	<data name="Error_AddPatient" xml:space="preserve">
+    <value>An error occured while adding a new patient</value>
+    <comment>An error occured while adding a new patient</comment>
+  </data>
+	<data name="Ex_NotNumericValue" xml:space="preserve">
+    <value>The specified value is not numeric</value>
+    <comment>The specified value is not numeric</comment>
+  </data>
+	<data name="Gb_Specifications" xml:space="preserve">
+    <value>Search on...</value>
+    <comment>Search on...</comment>
+  </data>
+	<data name="Information" xml:space="preserve">
+    <value>Information</value>
+    <comment>Information</comment>
+  </data>
+	<data name="Lbl_Birthdate" xml:space="preserve">
+    <value>the birthdate</value>
+    <comment>birthdate</comment>
+  </data>
+	<data name="Lbl_City" xml:space="preserve">
+    <value>the city</value>
+    <comment>the city</comment>
+  </data>
+	<data name="Lbl_Inscription" xml:space="preserve">
+    <value>the inscription date</value>
+    <comment>the inscription date</comment>
+  </data>
+	<data name="Lbl_LastUpdate" xml:space="preserve">
+    <value>the last update</value>
+    <comment>the last update</comment>
+  </data>
+	<data name="Lbl_Profession" xml:space="preserve">
+    <value>the profession</value>
+    <comment>the profession</comment>
+  </data>
+	<data name="Lbl_Reason" xml:space="preserve">
+    <value>the reason</value>
+    <comment>the reason</comment>
+  </data>
+	<data name="Lbl_SearchBehaviour" xml:space="preserve">
+    <value>Behaviour:</value>
+    <comment>Behaviour:</comment>
+  </data>
+	<data name="Menu_Select" xml:space="preserve">
+    <value>Select</value>
+    <comment>Select</comment>
+  </data>
+	<data name="Msg_DoubleClick" xml:space="preserve">
+    <value>Double click to select the patient</value>
+    <comment>Double click to select the patient</comment>
+  </data>
+	<data name="Msg_Explanations" xml:space="preserve">
+    <value>Select the search criterion you want to see in the advanced search box.</value>
+    <comment>Select the search criterion you want to see in the advanced search box.</comment>
+  </data>
+	<data name="Msg_PatientAdded" xml:space="preserve">
+    <value>Patient added.</value>
+    <comment>Patient added.</comment>
+  </data>
+	<data name="Msg_PatientSelected" xml:space="preserve">
+    <value>Patient selected</value>
+    <comment>Patient selected</comment>
+  </data>
+	<data name="Msg_SearchExecuted" xml:space="preserve">
+    <value>{0} patient(s) found.</value>
+    <comment>{0} patient(s) found.</comment>
+  </data>
+	<data name="Msg_SelectPatient" xml:space="preserve">
+    <value>Open a session for {0}</value>
+    <comment>Open a session for {0}</comment>
+  </data>
+	<data name="Search_And" xml:space="preserve">
+    <value>Select if ALL criterion are satisfied</value>
+    <comment>Select if ALL criterion are satisfied</comment>
+  </data>
+	<data name="Search_Or" xml:space="preserve">
+    <value>Select if AT LEAST one criteria is satisfied</value>
+    <comment>Select if AT LEAST one criteria is satisfied</comment>
+  </data>
+	<data name="Title_Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>Add</comment>
+  </data>
+	<data name="Title_AddPatient" xml:space="preserve">
     <value>Add a patient</value>
     <comment>Add a patient</comment>
   </data>
-  <data name="Title_ButtonAddPatient" xml:space="preserve">
+	<data name="Title_ButtonAddPatient" xml:space="preserve">
     <value>Add a patient</value>
     <comment>AddPatient</comment>
   </data>
-  <data name="Title_ButtonSearch" xml:space="preserve">
+	<data name="Title_ButtonSearch" xml:space="preserve">
     <value>Search</value>
     <comment>Search</comment>
   </data>
-  <data name="Title_ExtendedSearchPatient" xml:space="preserve">
+	<data name="Title_ExtendedSearchPatient" xml:space="preserve">
     <value>Advanced search</value>
     <comment>Advanced search</comment>
   </data>
-  <data name="Title_FirstName" xml:space="preserve">
+	<data name="Title_FirstName" xml:space="preserve">
     <value>First name</value>
     <comment>First name</comment>
   </data>
-  <data name="Title_Gender" xml:space="preserve">
+	<data name="Title_Gender" xml:space="preserve">
     <value>Gender</value>
     <comment>Gender</comment>
   </data>
-  <data name="Title_LastName" xml:space="preserve">
-    <value>Last name</value>
+	<data name="Title_LastName" xml:space="preserve">
+    <value>Name</value>
     <comment>Last name</comment>
   </data>
-  <data name="Title_MostUsed" xml:space="preserve">
+	<data name="Title_MostUsed" xml:space="preserve">
     <value>Ten most used patients</value>
     <comment>Ten most used patients</comment>
   </data>
-  <data name="Title_PatientSession" xml:space="preserve">
+	<data name="Title_PatientSession" xml:space="preserve">
     <value>Patient session</value>
     <comment>Patient session</comment>
   </data>
-  <data name="Title_SearchPatient" xml:space="preserve">
+	<data name="Title_SearchPatient" xml:space="preserve">
     <value>Search patient</value>
     <comment>Search patient</comment>
   </data>
-  <data name="Title_SearchWatermark" xml:space="preserve">
+	<data name="Title_SearchWatermark" xml:space="preserve">
     <value>Search...</value>
     <comment>Search...</comment>
   </data>
