@@ -227,7 +227,7 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             get { return this.updateOldPatientsCommand; }
         }
 
-        private DoubloonDoctorSearcher DoubloonDoctorSearcher
+        private DoubloonDoctorRefiner DoubloonDoctorSearcher
         {
             get;
             set;
@@ -340,7 +340,7 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             this.SearchCriteria = string.Empty;
 
             this.DoctorDoubloons.Refill(t.Result);
-            this.DoubloonDoctorSearcher = new DoubloonDoctorSearcher(t.Result);
+            this.DoubloonDoctorSearcher = new DoubloonDoctorRefiner (t.Result);
             if (!InDebugMode && !silently) { ViewService.MessageBox.Information(Messages.Msg_DoubloonsFound.FormatWith(this.DoctorDoubloons.Count)); }
             this.DoctorDoubloonsCount = string.Format(Messages.Msg_DoubloonsCount, this.DoctorDoubloons.Count);
         }

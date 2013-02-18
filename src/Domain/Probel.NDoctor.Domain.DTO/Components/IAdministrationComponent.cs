@@ -199,7 +199,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// Gets a memory searcher filled with all the doctors.
         /// </summary>
         /// <returns>A memory searcher</returns>
-        DoctorRefiner GetDoctorSearcher();
+        DoctorRefiner GetDoctorRefiner();
 
         /// <summary>
         /// Gets a memory searcher filled with all the drugs.
@@ -211,7 +211,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// Gets a memory searcher filled with all the insurances.
         /// </summary>
         /// <returns>A memory searcher</returns>
-        InsuranceRefiner GetInsurancesSearcher();
+        InsuranceRefiner GetInsurancesRefiner();
 
         /// <summary>
         /// Gets a memory searcher filled with all the pathologies.

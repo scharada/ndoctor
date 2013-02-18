@@ -243,6 +243,10 @@ namespace Probel.NDoctor.View.Core.ViewModel
         {
             ViewService.Configure(e =>
             {
+                e.Culture
+                    = e.UICulture
+                    = this.cultureInfo;
+
                 e.Bind<AboutBoxView, AboutBoxViewModel>()
                     .OnShow(vm => vm.RefreshCommand.TryExecute());
 

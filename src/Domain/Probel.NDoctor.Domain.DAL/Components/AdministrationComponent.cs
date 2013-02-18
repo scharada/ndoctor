@@ -305,7 +305,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         /// A memory searcher
         /// </returns>
-        public DoctorRefiner GetDoctorSearcher()
+        public DoctorRefiner GetDoctorRefiner()
         {
             var entities = this.Session.Query<Doctor>().AsEnumerable();
             var dto = Mapper.Map<IEnumerable<Doctor>, IEnumerable<DoctorDto>>(entities);
@@ -331,7 +331,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         /// A memory searcher
         /// </returns>
-        public InsuranceRefiner GetInsurancesSearcher()
+        public InsuranceRefiner GetInsurancesRefiner()
         {
             var entities = this.Session.Query<Insurance>().AsEnumerable();
             var dto = Mapper.Map<IEnumerable<Insurance>, IEnumerable<InsuranceDto>>(entities);
