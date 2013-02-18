@@ -183,7 +183,7 @@ namespace Probel.NDoctor.Plugins.Administration
                     this.ViewModel.IsDrugBusy = false;
                 }, token, TaskContinuationOptions.OnlyOnRanToCompletion, this.Scheduler);
                 task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, this.Scheduler);
-            }            
+            }
         }
 
         public void RefreshInsurancesInMemory(string name)
