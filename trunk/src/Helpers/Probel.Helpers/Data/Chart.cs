@@ -112,6 +112,44 @@ namespace Probel.Helpers.Data
             this.AddPoint(new ChartPoint<Tx, Ty>(x, y));
         }
 
+        /// <summary>
+        /// Build a linear graph based on this one with the specified X value.
+        /// </summary>
+        /// <param name="xValue">The x value.</param>
+        /// <returns>
+        /// A linear graph based on this chart
+        /// </returns>
+        public Chart<Tx, Ty> GetLinearX(Tx xValue)
+        {
+            var yValues = this.YCollection.ToList();
+            var result = new Chart<Tx, Ty>();
+
+            foreach (var y in yValues)
+            {
+                result.AddPoint(xValue, y);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Build a linear graph based on this one with the specified Y value.
+        /// </summary>
+        /// <param name="yValue">The x value.</param>
+        /// <returns>
+        /// A linear graph based on this chart
+        /// </returns>
+        public Chart<Tx, Ty> GetLinearY(Ty yValue)
+        {
+            var yValues = this.XCollection.ToList();
+            var result = new Chart<Tx, Ty>();
+
+            foreach (var x in yValues)
+            {
+                result.AddPoint(x, yValue);
+            }
+            return result;
+        }
+
         #endregion Methods
     }
 }

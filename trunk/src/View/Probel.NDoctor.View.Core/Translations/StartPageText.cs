@@ -52,6 +52,21 @@ namespace Probel.NDoctor.View.Core.Translations
             get { return Messages.Title_AvgThreshold; }
         }
 
+        public static string AxisDate
+        {
+            get { return Messages.Axis_Time; }
+        }
+
+        public static string AxisPatients
+        {
+            get { return Messages.Axis_Patients; }
+        }
+
+        public static string BmiAverage
+        {
+            get { return Messages.Title_BmiThroughTime; }
+        }
+
         public static string Bottlenecks
         {
             get { return Messages.Title_Bottlenecks; }
@@ -113,5 +128,32 @@ namespace Probel.NDoctor.View.Core.Translations
         }
 
         #endregion Properties
+
+
+        public static string Underweight
+        {
+            get { return Messages.Chart_Underweight; }
+        }
+        public static string Overweight
+        {
+            get { return Messages.Chart_Overweight; }
+        }
+        public static string Obesity
+        {
+            get { return Messages.Chart_Obesity; }
+        }
+        public static string Current
+        {
+            get { return Messages.Chart_Bmi; }
+        }
+
+        public static string AxisAge
+        {
+            get { return Messages.Axis_Age; }
+        }
+        public static string AxisAvgBmiIndex
+        {
+            get { return Messages.Axis_AverageBMI; }
+        }
     }
 }

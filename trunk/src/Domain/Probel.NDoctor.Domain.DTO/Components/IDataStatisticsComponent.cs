@@ -42,6 +42,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         Chart<int, int> GetAgeRepartion();
 
         /// <summary>
+        /// Gets the bmi repartition though time.
+        /// </summary>
+        /// <returns></returns>
+        Chart<DateTime, double> GetBmiRepartition();
+
+        /// <summary>
         /// Gets the gender repartition.
         /// </summary>
         /// <returns></returns>

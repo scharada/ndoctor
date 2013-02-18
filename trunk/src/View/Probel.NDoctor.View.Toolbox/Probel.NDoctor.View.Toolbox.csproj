@@ -96,6 +96,7 @@
     <Compile Include="Navigation\ErrorHandlerFactory.cs" />
     <Compile Include="Navigation\IErrorHandler.cs" />
     <Compile Include="Navigation\IStatusWriter.cs" />
+    <Compile Include="Threads\AsyncAction.cs" />
     <Compile Include="Translations\BaseText.cs" />
     <Compile Include="Controls\DoctorBox.xaml.cs">
       <DependentUpon>DoctorBox.xaml</DependentUpon>

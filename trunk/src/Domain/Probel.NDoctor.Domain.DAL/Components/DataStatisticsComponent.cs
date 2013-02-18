@@ -79,6 +79,26 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets the bmi repartition though time.
+        /// </summary>
+        /// <returns>Graph of the average bmi index through time</returns>
+        public Chart<DateTime, double> GetBmiRepartition()
+        {
+            var points = (from bmi in this.Session.Query<Bmi>().ToList()
+                          group bmi by new { bmi.Date.Month, bmi.Date.Year } into g
+                          select new ChartPoint<DateTime, double>
+                          {
+                              X = new DateTime(g.Key.Year, g.Key.Month, 1),
+                              Y = (from item in g
+                                   select (float)item.Weight / Math.Pow((double)item.Height / 100, 2d)).Average()
+                          })
+                     .OrderBy(e => e.X.Year)
+                     .OrderBy(e => e.X.Month);
+
+            return new Chart<DateTime, double>(points);
+        }
+
+        /// <summary>
         /// Gets the gender repartition.
         /// </summary>
         /// <returns></returns>
@@ -95,7 +115,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Gets the patient growth.
         /// </summary>
         /// <returns></returns>
-        [BenchmarkThreshold(3000, "This query is very heavy and takes untill 4 seconds to be executed")]
         public Chart<DateTime, int> GetPatientGrowth()
         {
             var firstInscription = this.Session.Query<Patient>().Min(e => e.InscriptionDate).Year;
