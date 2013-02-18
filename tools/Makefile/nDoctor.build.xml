@@ -144,7 +144,7 @@
 		<echo message="Deactivate debug plugin if exists"/>
 		<delete dir="${nest-dir}\Plugins\DebugTools" failonerror="false"/>
 		
-		<loadfile file="${code-dir}\src\Version.template" property="version-file"/>
+		<loadfile file="${code-dir}\src\Version.cs" property="version-file"/>
 		<regex pattern="AssemblyVersion\(\&quot;(?'version'.*).*\&quot;"
 		       input="${version-file}"/>
 		<echo message="Version number: ${version}"/>
