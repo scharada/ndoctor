@@ -62,21 +62,21 @@
                                     Margin="4"
                                     Command="{Binding RefreshCommand}"/>
                             <StackPanel DockPanel.Dock="Right"
-                                    Visibility="{Binding ReplacementDoctor, Converter={StaticResource NullToVisibility}}">
+                                    Visibility="{Binding FullReplacementDoctor, Converter={StaticResource NullToVisibility}}">
                                 <StackPanel Orientation="Horizontal">
-                                    <Label Style="{StaticResource ValueLabel}" Content="{Binding ReplacementDoctor.Specialisation.Name}"/>
-                                    <Label Style="{StaticResource ValueLabel}" Content="{Binding ReplacementDoctor.DisplayedName}"/>
+                                    <Label Style="{StaticResource ValueLabel}" Content="{Binding FullReplacementDoctor.Specialisation.Name}"/>
+                                    <Label Style="{StaticResource ValueLabel}" Content="{Binding FullReplacementDoctor.DisplayedName}"/>
                                 </StackPanel>
                                 <GroupBox DockPanel.Dock="Top"
                                       Margin="4"
                                       Header="{x:Static Member=t:WorkbenchText.GrpAddress}">
                                     <StackPanel Orientation="Horizontal">
-                                        <Label Content="{Binding ReplacementDoctor.Address.Street}" Style="{StaticResource ValueLabel}" />
-                                        <Label Content="," Visibility="{Binding ReplacementDoctor.Address.StreetNumber, Mode=OneWay}"/>
-                                        <Label Content="{Binding ReplacementDoctor.Address.StreetNumber}" Style="{StaticResource ValueLabel}" />
-                                        <Label Content="/"  Visibility="{Binding ReplacementDoctor.Address.BoxNumber}"/>
-                                        <Label Content="{Binding ReplacementDoctor.Address.BoxNumber}" 
-                                           Visibility="{Binding ReplacementDoctor.Address.BoxNumber}"
+                                        <Label Content="{Binding FullReplacementDoctor.Address.Street}" Style="{StaticResource ValueLabel}" />
+                                        <Label Content="," Visibility="{Binding FullReplacementDoctor.Address.StreetNumber, Mode=OneWay}"/>
+                                        <Label Content="{Binding FullReplacementDoctor.Address.StreetNumber}" Style="{StaticResource ValueLabel}" />
+                                        <Label Content="/"  Visibility="{Binding FullReplacementDoctor.Address.BoxNumber}"/>
+                                        <Label Content="{Binding FullReplacementDoctor.Address.BoxNumber}" 
+                                           Visibility="{Binding FullReplacementDoctor.Address.BoxNumber}"
                                            Style="{StaticResource ValueLabel}" />
                                     </StackPanel>
                                 </GroupBox>
@@ -84,21 +84,21 @@
                                       Margin="4"
                                       Header="{x:Static Member=t:WorkbenchText.GrpProfContact}">
                                     <StackPanel>
-                                        <DockPanel Visibility="{Binding ReplacementDoctor.ProMobile, Mode=OneWay}">
+                                        <DockPanel Visibility="{Binding FullReplacementDoctor.ProMobile, Mode=OneWay}">
                                             <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Mobile}"/>
-                                            <Label Content="{Binding ReplacementDoctor.ProMobile}" Style="{StaticResource ValueLabel}" />
+                                            <Label Content="{Binding FullReplacementDoctor.ProMobile}" Style="{StaticResource ValueLabel}" />
                                         </DockPanel>
-                                        <DockPanel Visibility="{Binding ReplacementDoctor.ProPhone, Mode=OneWay}">
+                                        <DockPanel Visibility="{Binding FullReplacementDoctor.ProPhone, Mode=OneWay}">
                                             <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Phone}"/>
-                                            <Label Content="{Binding ReplacementDoctor.ProPhone}" Style="{StaticResource ValueLabel}" />
+                                            <Label Content="{Binding FullReplacementDoctor.ProPhone}" Style="{StaticResource ValueLabel}" />
                                         </DockPanel>
-                                        <DockPanel Visibility="{Binding ReplacementDoctor.ProMail, Mode=OneWay}">
+                                        <DockPanel Visibility="{Binding FullReplacementDoctor.ProMail, Mode=OneWay}">
                                             <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Mail}"/>
                                             <TextBlock DockPanel.Dock="Bottom" 
                                                    HorizontalAlignment="Left"
                                                    Margin="4">
                                             <Hyperlink Command="{Binding SendProMailCommand}">
-                                                <TextBlock Text="{Binding ReplacementDoctor.ProMail}"/>
+                                                <TextBlock Text="{Binding FullReplacementDoctor.ProMail}"/>
                                             </Hyperlink>
                                             </TextBlock>
                                         </DockPanel>

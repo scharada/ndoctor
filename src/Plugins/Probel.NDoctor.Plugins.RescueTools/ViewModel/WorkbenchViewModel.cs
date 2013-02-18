@@ -60,6 +60,7 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
 
         private int ageCriteria = 100;
         private string doctorDoubloonsCount;
+        private DoctorDto fullReplacementDoctor;
         private LightDoctorDto replacementDoctor;
         private string searchCriteria = string.Empty;
         private DoubloonDoctorDto selectedDoctorDoubloon;
@@ -149,6 +150,16 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             get { return this.findDeactivatedPatientsCommand; }
         }
 
+        public DoctorDto FullReplacementDoctor
+        {
+            get { return this.fullReplacementDoctor; }
+            set
+            {
+                this.fullReplacementDoctor = value;
+                this.OnPropertyChanged(() => FullReplacementDoctor);
+            }
+        }
+
         public ObservableCollection<LightPatientDto> OldPatients
         {
             get;
@@ -177,6 +188,7 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             {
                 this.replacementDoctor = value;
                 this.OnPropertyChanged(() => ReplacementDoctor);
+                this.ShowFullDoctor();
             }
         }
 
@@ -340,7 +352,7 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             this.SearchCriteria = string.Empty;
 
             this.DoctorDoubloons.Refill(t.Result);
-            this.DoubloonDoctorSearcher = new DoubloonDoctorRefiner (t.Result);
+            this.DoubloonDoctorSearcher = new DoubloonDoctorRefiner(t.Result);
             if (!InDebugMode && !silently) { ViewService.MessageBox.Information(Messages.Msg_DoubloonsFound.FormatWith(this.DoctorDoubloons.Count)); }
             this.DoctorDoubloonsCount = string.Format(Messages.Msg_DoubloonsCount, this.DoctorDoubloons.Count);
         }
@@ -450,6 +462,23 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
                 task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
+        }
+
+        private void ShowFullDoctor()
+        {
+            var token = new CancellationTokenSource().Token;
+            var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
+
+            var task = Task.Factory.StartNew<DoctorDto>(() =>
+            {
+                if (this.ReplacementDoctor != null) { return this.Component.GetFullDoctor(this.ReplacementDoctor); }
+                else { return null; }
+            });
+            task.ContinueWith(t =>
+            {
+                if (t.Result != null) { this.FullReplacementDoctor = t.Result; }
+            }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
+            task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
         }
 
         private void UpdateDeactivatedPatients()
