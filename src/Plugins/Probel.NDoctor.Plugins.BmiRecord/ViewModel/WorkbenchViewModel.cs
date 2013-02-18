@@ -17,8 +17,11 @@
 namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
 {
     using System;
+    using System.Collections;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
     using System.Windows.Input;
 
     using Probel.Helpers.Assertion;
@@ -33,6 +36,8 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Toolbox;
+    using Probel.NDoctor.View.Toolbox.Threads;
+    using Probel.Helpers.Data;
 
     internal class WorkbenchViewModel : BaseViewModel
     {
@@ -59,9 +64,12 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
 
                 PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
             }
+
             this.SelectedBmi = new BmiDto();
             this.component = PluginContext.ComponentFactory.GetInstance<IBmiComponent>();
             this.BmiHistory = new ObservableCollection<BmiDto>();
+
+            this.refreshCommand = new RelayCommand(() => this.Refresh());
 
             this.RemoveBmiCommand = new RelayCommand(() => this.RemoveBmi(), () => this.CanRemoveBmi());
         }
@@ -224,23 +232,22 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
         #endregion Properties
 
         #region Methods
-
-        public void Refresh()
+        private void Refresh()
         {
             Assert.IsNotNull(PluginContext.Host);
             Assert.IsNotNull(PluginContext.Host.SelectedPatient);
 
-            try
-            {
-                var patient = this.component.GetPatientWithBmiHistory(PluginContext.Host.SelectedPatient);
-
-                this.Patient = patient;
-                this.BmiHistory.Refill(this.Patient.BmiHistory);
-                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiHistoryLoaded);
-            }
-            catch (Exception ex) { this.Handle.Error(ex); }
+            new AsyncAction(this.Handle).ExecuteAsync<PatientBmiDto, LightPatientDto>(
+                p => this.component.GetPatientWithBmiHistory(p)
+                , PluginContext.Host.SelectedPatient
+                , t =>
+                {
+                    this.Patient = t;
+                    this.BmiHistory.Refill(this.Patient.BmiHistory);
+                });
         }
-
+        private readonly ICommand refreshCommand;
+        public ICommand RefreshCommand { get { return this.refreshCommand; } }
         private bool CanRemoveBmi()
         {
             return this.SelectedBmi != null
@@ -249,17 +256,16 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
 
         private void RemoveBmi()
         {
-            try
+            var yes = ViewService.MessageBox.Question(Messages.Msg_AskDeleteBmi);
+
+            if (yes)
             {
-                var dr = ViewService.MessageBox.Question(Messages.Msg_AskDeleteBmi);
-                if (!dr) return;
-
-                this.component.Remove(this.SelectedBmi, this.Patient);
-
-                PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiDeleted);
-                this.Refresh();
+                new AsyncAction(this.Handle).ExecuteAsync(() => this.component.Remove(this.SelectedBmi, this.Patient), () =>
+                {
+                    PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_BmiDeleted);
+                    this.Refresh();
+                });
             }
-            catch (Exception ex) { this.Handle.Error(ex); }
         }
 
         #endregion Methods

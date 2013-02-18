@@ -17,6 +17,7 @@
 namespace Probel.NDoctor.View.Core.ViewModel
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
     using System.Windows.Input;
 
@@ -37,9 +38,11 @@ namespace Probel.NDoctor.View.Core.ViewModel
         private static bool hasLoaded = false;
 
         private Chart<int, int> ageRepartition;
+        private Chart<DateTime, double> bmiAverage;
         private IDataStatisticsComponent Component = PluginContext.ComponentFactory.GetInstance<IDataStatisticsComponent>();
         private Chart<string, int> genderRepartition;
         private bool isAgeRepartitionBusy;
+        private bool isBmiAverageBusy;
         private bool isGenderRepartitionBusy;
         private bool isPatientGrowthBusy;
         private Chart<DateTime, int> patientGrowth;
@@ -70,6 +73,16 @@ namespace Probel.NDoctor.View.Core.ViewModel
             }
         }
 
+        public Chart<DateTime, double> BmiAverage
+        {
+            get { return this.bmiAverage; }
+            set
+            {
+                this.bmiAverage = value;
+                this.OnPropertyChanged(() => BmiAverage);
+            }
+        }
+
         public Chart<string, int> GenderRepartition
         {
             get { return this.genderRepartition; }
@@ -87,6 +100,16 @@ namespace Probel.NDoctor.View.Core.ViewModel
             {
                 this.isAgeRepartitionBusy = value;
                 this.OnPropertyChanged(() => IsAgeRepartitionBusy);
+            }
+        }
+
+        public bool IsBmiAverageBusy
+        {
+            get { return this.isBmiAverageBusy; }
+            set
+            {
+                this.isBmiAverageBusy = value;
+                this.OnPropertyChanged(() => IsBmiAverageBusy);
             }
         }
 
@@ -134,36 +157,94 @@ namespace Probel.NDoctor.View.Core.ViewModel
             if (bool.Parse(this.DbSettings["IsDebug"])) { return; }
             if (!hasLoaded)
             {
+                var token = new CancellationTokenSource().Token;
+                var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
+
                 this.IsAgeRepartitionBusy
                     = this.IsGenderRepartitionBusy
                     = this.IsPatientGrowthBusy
+                    = this.IsBmiAverageBusy
                     = true;
 
+                #region Age Repartition
                 var task1 = Task.Factory.StartNew<Chart<int, int>>(() => this.Component.GetAgeRepartion());
-                task1.ContinueWith(p1 =>
+                task1.ContinueWith(t =>
                 {
-                    this.AgeRepartition = p1.Result;
+                    this.AgeRepartition = t.Result;
                     this.IsAgeRepartitionBusy = false;
-                });
+                }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
+                task1.ContinueWith(p1 => this.Handle.Error(p1.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
+                #endregion
 
+                #region Gender repartition
                 var task2 = Task.Factory.StartNew<Chart<string, int>>(() => this.Component.GetGenderRepartition());
-                task2.ContinueWith(p2 =>
+                task2.ContinueWith(t =>
                 {
-                    this.GenderRepartition = p2.Result;
+                    this.GenderRepartition = t.Result;
                     this.IsGenderRepartitionBusy = false;
-                });
+                }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
+                task2.ContinueWith(p1 => this.Handle.Error(p1.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
+                #endregion
 
+                #region Patient growth
                 var task3 = Task.Factory.StartNew<Chart<DateTime, int>>(() => this.Component.GetPatientGrowth());
-                task3.ContinueWith(p3 =>
+                task3.ContinueWith(t =>
                 {
-                    this.PatientGrowth = p3.Result;
+                    this.PatientGrowth = t.Result;
                     this.IsPatientGrowthBusy = false;
-                });
+                }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
+                task3.ContinueWith(p1 => this.Handle.Error(p1.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
+                #endregion
+
+                #region Bmi repartition
+                var task4 = Task.Factory.StartNew<Chart<DateTime, double>>(() => this.Component.GetBmiRepartition());
+                task4.ContinueWith(t =>
+                {
+                    this.BmiAverage = t.Result;
+                    this.Obesity = t.Result.GetLinearY(30);
+                    this.Overweight = t.Result.GetLinearY(25);
+                    this.Underweight = t.Result.GetLinearY(18.5);
+                    this.IsBmiAverageBusy = false;
+                }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
+                task4.ContinueWith(p1 => this.Handle.Error(p1.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
+                #endregion
 
                 hasLoaded = true;
             }
         }
 
         #endregion Methods
+
+
+        private Chart<DateTime, double> underweight;
+        public Chart<DateTime, double> Underweight
+        {
+            get { return this.underweight; }
+            set
+            {
+                this.underweight = value;
+                this.OnPropertyChanged(() => Underweight);
+            }
+        }
+        private Chart<DateTime, double> overweight;
+        public Chart<DateTime, double> Overweight
+        {
+            get { return this.overweight; }
+            set
+            {
+                this.overweight = value;
+                this.OnPropertyChanged(() => Overweight);
+            }
+        }
+        private Chart<DateTime, double> obesity;
+        public Chart<DateTime, double> Obesity
+        {
+            get { return this.obesity; }
+            set
+            {
+                this.obesity = value;
+                this.OnPropertyChanged(() => Obesity);
+            }
+        }
     }
 }

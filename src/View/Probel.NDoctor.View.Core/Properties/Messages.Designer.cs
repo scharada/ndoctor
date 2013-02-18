@@ -61,6 +61,42 @@ namespace Probel.NDoctor.View.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Age.
+        /// </summary>
+        internal static string Axis_Age {
+            get {
+                return ResourceManager.GetString("Axis_Age", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Average BMI index.
+        /// </summary>
+        internal static string Axis_AverageBMI {
+            get {
+                return ResourceManager.GetString("Axis_AverageBMI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patient count.
+        /// </summary>
+        internal static string Axis_Patients {
+            get {
+                return ResourceManager.GetString("Axis_Patients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dates.
+        /// </summary>
+        internal static string Axis_Time {
+            get {
+                return ResourceManager.GetString("Axis_Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         internal static string Btn_Add {
@@ -129,6 +165,42 @@ namespace Probel.NDoctor.View.Core.Properties {
         internal static string Btn_UsageStat {
             get {
                 return ResourceManager.GetString("Btn_UsageStat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Average BMI index.
+        /// </summary>
+        internal static string Chart_Bmi {
+            get {
+                return ResourceManager.GetString("Chart_Bmi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obesity.
+        /// </summary>
+        internal static string Chart_Obesity {
+            get {
+                return ResourceManager.GetString("Chart_Obesity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overweight.
+        /// </summary>
+        internal static string Chart_Overweight {
+            get {
+                return ResourceManager.GetString("Chart_Overweight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Underweight.
+        /// </summary>
+        internal static string Chart_Underweight {
+            get {
+                return ResourceManager.GetString("Chart_Underweight", resourceCulture);
             }
         }
         
@@ -625,6 +697,15 @@ namespace Probel.NDoctor.View.Core.Properties {
         internal static string Title_AvgThreshold {
             get {
                 return ResourceManager.GetString("Title_AvgThreshold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Average BMI index throught time.
+        /// </summary>
+        internal static string Title_BmiThroughTime {
+            get {
+                return ResourceManager.GetString("Title_BmiThroughTime", resourceCulture);
             }
         }
         

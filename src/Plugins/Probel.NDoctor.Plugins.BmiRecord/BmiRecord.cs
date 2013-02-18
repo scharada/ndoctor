@@ -140,7 +140,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord
             {
                 e.Bind<AddBmiView, AddBmiViewModel>()
                     .OnShow(vm => vm.CurrentBmi = new BmiDto() { Height = PluginContext.Host.SelectedPatient.Height })
-                    .OnClosing(() => this.Workbench.As<WorkbenchViewModel>().Refresh());
+                    .OnClosing(() => this.Workbench.As<WorkbenchViewModel>().RefreshCommand.TryExecute());
             });
         }
 
@@ -148,7 +148,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord
         {
             if (PluginContext.Host.Navigate(this.Workbench))
             {
-                this.Workbench.As<WorkbenchViewModel>().Refresh();
                 this.ShowContextMenu();
             }
         }
