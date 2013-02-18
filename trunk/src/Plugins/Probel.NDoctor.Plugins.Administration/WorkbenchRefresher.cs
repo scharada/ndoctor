@@ -168,7 +168,6 @@ namespace Probel.NDoctor.Plugins.Administration
                 }, token, TaskContinuationOptions.OnlyOnRanToCompletion, this.Scheduler);
                 task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, this.Scheduler);
             }
-            else { this.WarnSearchModuleNotLoaded("RefreshDoctorInMemory"); }
         }
 
         public void RefreshDrugInMemory(string name)
@@ -184,8 +183,7 @@ namespace Probel.NDoctor.Plugins.Administration
                     this.ViewModel.IsDrugBusy = false;
                 }, token, TaskContinuationOptions.OnlyOnRanToCompletion, this.Scheduler);
                 task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, this.Scheduler);
-            }
-            else { this.WarnSearchModuleNotLoaded("RefreshDrugInMemory"); }
+            }            
         }
 
         public void RefreshInsurancesInMemory(string name)
@@ -202,7 +200,6 @@ namespace Probel.NDoctor.Plugins.Administration
                 }, token, TaskContinuationOptions.OnlyOnRanToCompletion, this.Scheduler);
                 task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, this.Scheduler);
             }
-            else { this.WarnSearchModuleNotLoaded("RefreshInsurancesInMemory"); }
         }
 
         public void RefreshPathologyInMemory(string name)
@@ -219,7 +216,6 @@ namespace Probel.NDoctor.Plugins.Administration
                 }, token, TaskContinuationOptions.OnlyOnRanToCompletion, this.Scheduler);
                 task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, this.Scheduler);
             }
-            else { this.WarnSearchModuleNotLoaded("RefreshPathologyInMemory"); }
         }
 
         public void RefreshPracticeInMemory(string name)
@@ -236,7 +232,6 @@ namespace Probel.NDoctor.Plugins.Administration
                 }, token, TaskContinuationOptions.OnlyOnRanToCompletion, this.Scheduler);
                 task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, this.Scheduler);
             }
-            else { this.WarnSearchModuleNotLoaded("RefreshPracticeInMemory"); }
         }
 
         public void RefreshProfessionInMemory(string name)
@@ -253,7 +248,6 @@ namespace Probel.NDoctor.Plugins.Administration
                 }, token, TaskContinuationOptions.OnlyOnRanToCompletion, this.Scheduler);
                 task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, this.Scheduler);
             }
-            else { this.WarnSearchModuleNotLoaded("RefreshProfessionInMemory"); }
         }
 
         public void RefreshReputationInMemory(string name)
@@ -270,7 +264,6 @@ namespace Probel.NDoctor.Plugins.Administration
                 }, token, TaskContinuationOptions.OnlyOnRanToCompletion, this.Scheduler);
                 task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, this.Scheduler);
             }
-            else { this.WarnSearchModuleNotLoaded("RefreshReputationInMemory"); }
         }
 
         public void RefreshTagInMemory(string name)
@@ -287,12 +280,11 @@ namespace Probel.NDoctor.Plugins.Administration
                 }, token, TaskContinuationOptions.OnlyOnRanToCompletion, this.Scheduler);
                 task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, this.Scheduler);
             }
-            else { this.WarnSearchModuleNotLoaded("RefreshTagInMemory"); }
         }
 
         private void RefreshDoctors(CancellationToken token)
         {
-            var task = Task.Factory.StartNew<DoctorRefiner>(() => this.Component.GetDoctorSearcher());
+            var task = Task.Factory.StartNew<DoctorRefiner>(() => this.Component.GetDoctorRefiner());
             task.ContinueWith(t =>
             {
                 this.DoctorRefiner = t.Result;
@@ -316,7 +308,7 @@ namespace Probel.NDoctor.Plugins.Administration
 
         private void RefreshInsurances(CancellationToken token)
         {
-            var task = Task.Factory.StartNew<InsuranceRefiner>(() => this.Component.GetInsurancesSearcher());
+            var task = Task.Factory.StartNew<InsuranceRefiner>(() => this.Component.GetInsurancesRefiner());
             task.ContinueWith(t =>
             {
                 this.InsuranceRefiner = t.Result;
@@ -385,16 +377,6 @@ namespace Probel.NDoctor.Plugins.Administration
                 this.ViewModel.IsTagBusy = false;
             }, token, TaskContinuationOptions.OnlyOnRanToCompletion, this.Scheduler);
             task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, this.Scheduler);
-        }
-
-        private void WarnSearchModuleNotLoaded(string module)
-        {
-            Logger.WarnFormat("The search module '{0}' is not loaded!", module);
-            if (!this.swallowEmptyModuleWarning)
-            {
-                ViewService.MessageBox.Warning(Messages.Msg_SearchModuleNotLoaded);
-                this.swallowEmptyModuleWarning = true;
-            }
         }
 
         #endregion Methods
