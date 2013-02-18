@@ -124,6 +124,24 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to At least one search module is not loaded.
+        /// </summary>
+        internal static string Msg_SearchModuleNotLoaded {
+            get {
+                return ResourceManager.GetString("Msg_SearchModuleNotLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chercher un médecin sur le nom.
+        /// </summary>
+        internal static string Tb_SearchDoctor {
+            get {
+                return ResourceManager.GetString("Tb_SearchDoctor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Doctor.
         /// </summary>
         internal static string Title_AddDoctor {

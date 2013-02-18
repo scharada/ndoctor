@@ -47,6 +47,11 @@ namespace Probel.NDoctor.View.Toolbox.Translations
             get { return Messages.Title_Edit; }
         }
 
+        public static string ElementCount
+        {
+            get { return Messages.ElementCount; }
+        }
+
         public static string Error
         {
             get { return Messages.Title_Error; }

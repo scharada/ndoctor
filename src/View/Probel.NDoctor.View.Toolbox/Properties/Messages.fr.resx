@@ -157,6 +157,10 @@
     <value>Fermer</value>
     <comment>Close</comment>
   </data>
+  <data name="ElementCount" xml:space="preserve">
+    <value>{0} élément(s)</value>
+    <comment>{0} item</comment>
+  </data>
   <data name="Gender_Female" xml:space="preserve">
     <value>Femme</value>
     <comment>Female</comment>

@@ -30,7 +30,7 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Helpers;
-    using Probel.NDoctor.Domain.DTO.MemorySearches;
+    using Probel.NDoctor.Domain.DTO.Memory;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.RescueTools.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
@@ -74,8 +74,6 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
         /// <param name="host">The host.</param>
         public WorkbenchViewModel()
         {
-            this.DoubloonDoctorSearcher = new DoubloonDoctorSearcher();
-
             this.OldPatients = new ObservableCollection<LightPatientDto>();
             this.DoctorDoubloons = new ObservableCollection<DoubloonDoctorDto>();
             this.DoubloonsOfSelectedDoctor = new ObservableCollection<LightDoctorDto>();

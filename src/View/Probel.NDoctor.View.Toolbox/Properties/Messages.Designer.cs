@@ -151,6 +151,15 @@ namespace Probel.NDoctor.View.Toolbox.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} item(s).
+        /// </summary>
+        internal static string ElementCount {
+            get {
+                return ResourceManager.GetString("ElementCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Female.
         /// </summary>
         internal static string Gender_Female {

@@ -29,10 +29,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using Probel.NDoctor.Domain.DAL.Subcomponents;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
+    using Probel.NDoctor.Domain.DTO.Memory;
     using Probel.NDoctor.Domain.DTO.Objects;
 
     /// <summary>
-    /// 
+    /// Provides management for administration
     /// </summary>
     public class AdministrationComponent : BaseComponent, IAdministrationComponent
     {
@@ -296,6 +297,110 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public IList<TagDto> GetAllTags()
         {
             return new Selector(this.Session).GetAllTags();
+        }
+
+        /// <summary>
+        /// Gets a doctor searcher filled with all the doctors.
+        /// </summary>
+        /// <returns>
+        /// A memory searcher
+        /// </returns>
+        public DoctorRefiner GetDoctorSearcher()
+        {
+            var entities = this.Session.Query<Doctor>().AsEnumerable();
+            var dto = Mapper.Map<IEnumerable<Doctor>, IEnumerable<DoctorDto>>(entities);
+            return new DoctorRefiner(dto);
+        }
+
+        /// <summary>
+        /// Gets a memory searcher filled with all the drugs.
+        /// </summary>
+        /// <returns>
+        /// A memory searcher
+        /// </returns>
+        public DrugRefiner GetDrugRefiner()
+        {
+            var entities = this.Session.Query<Drug>().AsEnumerable();
+            var dto = Mapper.Map<IEnumerable<Drug>, IEnumerable<DrugDto>>(entities);
+            return new DrugRefiner(dto);
+        }
+
+        /// <summary>
+        /// Gets a memory searcher filled with all the insurances.
+        /// </summary>
+        /// <returns>
+        /// A memory searcher
+        /// </returns>
+        public InsuranceRefiner GetInsurancesSearcher()
+        {
+            var entities = this.Session.Query<Insurance>().AsEnumerable();
+            var dto = Mapper.Map<IEnumerable<Insurance>, IEnumerable<InsuranceDto>>(entities);
+            return new InsuranceRefiner(dto);
+        }
+
+        /// <summary>
+        /// Gets a memory searcher filled with all the pathologies.
+        /// </summary>
+        /// <returns>
+        /// A memory searcher
+        /// </returns>
+        public PathologyRefiner GetPathologyRefiner()
+        {
+            var entities = this.Session.Query<Pathology>().AsEnumerable();
+            var dto = Mapper.Map<IEnumerable<Pathology>, IEnumerable<PathologyDto>>(entities);
+            return new PathologyRefiner(dto);
+        }
+
+        /// <summary>
+        /// Gets a memory searcher filled with all the practices.
+        /// </summary>
+        /// <returns>
+        /// A memory searcher
+        /// </returns>
+        public PracticeRefiner GetPracticeRefiner()
+        {
+            var entities = this.Session.Query<Practice>().AsEnumerable();
+            var dto = Mapper.Map<IEnumerable<Practice>, IEnumerable<PracticeDto>>(entities);
+            return new PracticeRefiner(dto);
+        }
+
+        /// <summary>
+        /// Gets a memory searcher filled with all the professions.
+        /// </summary>
+        /// <returns>
+        /// A memory searcher
+        /// </returns>
+        public ProfessionRefiner GetProfessionRefiner()
+        {
+            var entities = this.Session.Query<Profession>().AsEnumerable();
+            var dto = Mapper.Map<IEnumerable<Profession>, IEnumerable<ProfessionDto>>(entities);
+            return new ProfessionRefiner(dto);
+        }
+
+        /// <summary>
+        /// Gets a memory searcher filled with all the reputations.
+        /// </summary>
+        /// <returns>
+        /// A memory searcher
+        /// </returns>
+        public ReputationRefiner GetReputationRefiner()
+        {
+            var entities = this.Session.Query<Reputation>().AsEnumerable();
+            var dto = Mapper.Map<IEnumerable<Reputation>, IEnumerable<ReputationDto>>(entities);
+            return new ReputationRefiner(dto);
+        }
+
+        /// <summary>
+        /// Gets a memory searcher filled with all the tags.
+        /// </summary>
+        /// <returns>
+        /// A memory searcher
+        /// </returns>
+        public TagRefiner GetTagRefiner()
+        {
+            var entities = this.Session.Query<Tag>().AsEnumerable();
+            var dto = Mapper.Map<IEnumerable<Tag>, IEnumerable<TagDto>>(entities);
+            return new TagRefiner(dto);
         }
 
         /// <summary>
