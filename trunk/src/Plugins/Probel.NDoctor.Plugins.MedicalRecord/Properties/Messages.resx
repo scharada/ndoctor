@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
+	<!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,252 +59,252 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="Btn_Revisions" xml:space="preserve">
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="Btn_Revisions" xml:space="preserve">
     <value>Show revisions</value>
     <comment>Show revisions</comment>
   </data>
-  <data name="Btn_Rollback" xml:space="preserve">
-    <value>Charger cette révision</value>
+	<data name="Btn_Rollback" xml:space="preserve">
+    <value>Load this revision</value>
     <comment>Load this revision</comment>
   </data>
-  <data name="Btn_SearchFor" xml:space="preserve">
+	<data name="Btn_SearchFor" xml:space="preserve">
     <value>Search</value>
     <comment>Search</comment>
   </data>
-  <data name="Edition_Bold" xml:space="preserve">
+	<data name="Edition_Bold" xml:space="preserve">
     <value>Bold</value>
   </data>
-  <data name="Edition_Bullets" xml:space="preserve">
+	<data name="Edition_Bullets" xml:space="preserve">
     <value>Bullets</value>
   </data>
-  <data name="Edition_CenterAlign" xml:space="preserve">
+	<data name="Edition_CenterAlign" xml:space="preserve">
     <value>Center align</value>
   </data>
-  <data name="Edition_Italic" xml:space="preserve">
+	<data name="Edition_Italic" xml:space="preserve">
     <value>Italic</value>
   </data>
-  <data name="Edition_JustifyAlign" xml:space="preserve">
+	<data name="Edition_JustifyAlign" xml:space="preserve">
     <value>Justify align</value>
   </data>
-  <data name="Edition_LeftAlign" xml:space="preserve">
+	<data name="Edition_LeftAlign" xml:space="preserve">
     <value>Left align</value>
   </data>
-  <data name="Edition_Numbering" xml:space="preserve">
+	<data name="Edition_Numbering" xml:space="preserve">
     <value>Numbering</value>
   </data>
-  <data name="Edition_RightAlign" xml:space="preserve">
+	<data name="Edition_RightAlign" xml:space="preserve">
     <value>Right align</value>
   </data>
-  <data name="Edition_Underline" xml:space="preserve">
+	<data name="Edition_Underline" xml:space="preserve">
     <value>Underline</value>
   </data>
-  <data name="Err_InvalidMacros" xml:space="preserve">
+	<data name="Err_InvalidMacros" xml:space="preserve">
     <value>At least a macro is invalid. Please, fix the problem before going further.</value>
     <comment>At least a macro is invalid. Please, fix the problem before going further.</comment>
   </data>
-  <data name="Err_InvalidMacro" xml:space="preserve">
+	<data name="Err_InvalidMacro" xml:space="preserve">
     <value>The macro is invalid</value>
     <comment>The macro is invalid</comment>
   </data>
-  <data name="Header_MedicalRecords" xml:space="preserve">
+	<data name="Header_MedicalRecords" xml:space="preserve">
     <value>Medical records</value>
     <comment>Medical records</comment>
   </data>
-  <data name="Lbl_Macros" xml:space="preserve">
+	<data name="Lbl_Macros" xml:space="preserve">
     <value>Macros</value>
     <comment>Macros</comment>
   </data>
-  <data name="Macro_New" xml:space="preserve">
+	<data name="Macro_New" xml:space="preserve">
     <value>New macro</value>
     <comment>New macro</comment>
   </data>
-  <data name="Menu_Actions" xml:space="preserve">
+	<data name="Menu_Actions" xml:space="preserve">
     <value>Actions</value>
     <comment>Actions</comment>
   </data>
-  <data name="Menu_Edition" xml:space="preserve">
+	<data name="Menu_Edition" xml:space="preserve">
     <value>Edition</value>
     <comment>Edition</comment>
   </data>
-  <data name="Menu_File" xml:space="preserve">
+	<data name="Menu_File" xml:space="preserve">
     <value>File</value>
     <comment>File</comment>
   </data>
-  <data name="Menu_Font" xml:space="preserve">
+	<data name="Menu_Font" xml:space="preserve">
     <value>Font</value>
     <comment>Font</comment>
   </data>
-  <data name="Menu_Paragraph" xml:space="preserve">
+	<data name="Menu_Paragraph" xml:space="preserve">
     <value>Paragraph</value>
     <comment>Paragraph</comment>
   </data>
-  <data name="Msg_FailToLoadMedicalRecords" xml:space="preserve">
+	<data name="Msg_FailToLoadMedicalRecords" xml:space="preserve">
     <value>An error occured while loading medical records. {0}</value>
     <comment>An error occured while loading medical records. {0}</comment>
   </data>
-  <data name="Msg_MacroRemoved" xml:space="preserve">
+	<data name="Msg_MacroRemoved" xml:space="preserve">
     <value>Macro '{0}' removed.</value>
     <comment>Macro '{0}' removed.</comment>
   </data>
-  <data name="Msg_MacrosUpdated" xml:space="preserve">
+	<data name="Msg_MacrosUpdated" xml:space="preserve">
     <value>Macros have been updated.</value>
     <comment>Macros have been updated.</comment>
   </data>
-  <data name="Msg_RecordAdded" xml:space="preserve">
+	<data name="Msg_RecordAdded" xml:space="preserve">
     <value>New card added to the record</value>
     <comment>New card added to the record</comment>
   </data>
-  <data name="Msg_RecordsSaved" xml:space="preserve">
+	<data name="Msg_RecordsSaved" xml:space="preserve">
     <value>Medical record saved.</value>
     <comment>Medical record saved.</comment>
   </data>
-  <data name="Msg_SaveMedicalRecord" xml:space="preserve">
+	<data name="Msg_SaveMedicalRecord" xml:space="preserve">
     <value>Do you want to save this medical record?</value>
     <comment>Do you want to save this medical record?</comment>
   </data>
-  <data name="Msg_TagAdded" xml:space="preserve">
+	<data name="Msg_TagAdded" xml:space="preserve">
     <value>The folder '{0}' was created</value>
     <comment>The folder '{0}' was created</comment>
   </data>
-  <data name="NoName" xml:space="preserve">
+	<data name="NoName" xml:space="preserve">
     <value>Empty</value>
     <comment>Empty</comment>
   </data>
-  <data name="Question" xml:space="preserve">
+	<data name="Question" xml:space="preserve">
     <value>Question</value>
     <comment>Question</comment>
   </data>
-  <data name="Question_CreateMacro" xml:space="preserve">
+	<data name="Question_CreateMacro" xml:space="preserve">
     <value>Do you want to create a new macro? If you don't save modification of the current macro, all the modification will be lost.</value>
     <comment>Do you want to create a new macro? If you don't save modification of the current macro, all the modification will be lost.</comment>
   </data>
-  <data name="Question_RemoveMacro" xml:space="preserve">
-    <value>Voulez-vous supprimer la macro '{0}'?</value>
+	<data name="Question_RemoveMacro" xml:space="preserve">
+    <value>Do you want to delete the macro '{0}'?</value>
     <comment>Do you want to remove the macro'{0}'?</comment>
   </data>
-  <data name="Settings_DefaultFont" xml:space="preserve">
+	<data name="Settings_DefaultFont" xml:space="preserve">
     <value>Default's editor font</value>
     <comment>Default's editor font</comment>
   </data>
-  <data name="Settings_FontFamily" xml:space="preserve">
+	<data name="Settings_FontFamily" xml:space="preserve">
     <value>Font Family</value>
     <comment>Font Family</comment>
   </data>
-  <data name="Settings_Sample" xml:space="preserve">
+	<data name="Settings_Sample" xml:space="preserve">
     <value>Sample text</value>
     <comment>Sample text</comment>
   </data>
-  <data name="Settings_Style" xml:space="preserve">
-    <value>Style Weight Stretch</value>
+	<data name="Settings_Style" xml:space="preserve">
+    <value>Style weight stretch</value>
     <comment>Style Weight Stretch</comment>
   </data>
-  <data name="Title_AddFolder" xml:space="preserve">
+	<data name="Title_AddFolder" xml:space="preserve">
     <value>Create new directory</value>
     <comment>Create new directory</comment>
   </data>
-  <data name="Title_AddRecord" xml:space="preserve">
+	<data name="Title_AddRecord" xml:space="preserve">
     <value>Create new card</value>
     <comment>Create new card</comment>
   </data>
-  <data name="Title_BtnAdd" xml:space="preserve">
+	<data name="Title_BtnAdd" xml:space="preserve">
     <value>Add</value>
     <comment>Add</comment>
   </data>
-  <data name="Title_DefaultMacroTitle" xml:space="preserve">
+	<data name="Title_DefaultMacroTitle" xml:space="preserve">
     <value>New macro</value>
     <comment>New macro</comment>
   </data>
-  <data name="Title_Macro" xml:space="preserve">
+	<data name="Title_Macro" xml:space="preserve">
     <value>Edit macros</value>
     <comment>Edit macros</comment>
   </data>
-  <data name="Title_MacroName" xml:space="preserve">
+	<data name="Title_MacroName" xml:space="preserve">
     <value>Title of the macro:</value>
     <comment>Title of the macro:</comment>
   </data>
-  <data name="Title_MedicalRecord" xml:space="preserve">
+	<data name="Title_MedicalRecord" xml:space="preserve">
     <value>Medical record</value>
     <comment>Medical record</comment>
   </data>
-  <data name="Title_MedicalRecordTitle" xml:space="preserve">
+	<data name="Title_MedicalRecordTitle" xml:space="preserve">
     <value>{0} | Created {1} | Last update: {2}</value>
     <comment>{0} | Created {1} | Last update: {2}</comment>
   </data>
-  <data name="Title_Revisions" xml:space="preserve">
+	<data name="Title_Revisions" xml:space="preserve">
     <value>Revisions</value>
     <comment>Revisions</comment>
   </data>
-  <data name="Title_Rollback" xml:space="preserve">
+	<data name="Title_Rollback" xml:space="preserve">
     <value>Revisions history</value>
     <comment>Revisions history</comment>
   </data>
-  <data name="Title_Save" xml:space="preserve">
+	<data name="Title_Save" xml:space="preserve">
     <value>Save</value>
     <comment>Save</comment>
   </data>
-  <data name="Title_SearchFor" xml:space="preserve">
+	<data name="Title_SearchFor" xml:space="preserve">
     <value>Search for:</value>
     <comment>Search for:</comment>
   </data>
-  <data name="Title_Tools" xml:space="preserve">
+	<data name="Title_Tools" xml:space="preserve">
     <value>Tools</value>
     <comment>Tools</comment>
   </data>

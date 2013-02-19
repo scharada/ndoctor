@@ -150,7 +150,7 @@
     <comment>&lt;All the pictures&gt;</comment>
   </data>
 	<data name="Msg_ErOnSavePicture" xml:space="preserve">
-    <value>Une erreur s'est produite pendant la sauvegarde de la photo</value>
+    <value>Une erreur esu survenue pendant la sauvegarde de la photo</value>
     <comment>An error occued while saving the picture</comment>
   </data>
 	<data name="Msg_ErrorFailToRefreshPicture" xml:space="preserve">

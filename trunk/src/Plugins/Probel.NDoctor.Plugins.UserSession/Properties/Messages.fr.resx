@@ -166,19 +166,19 @@
     <comment>Create the administrator</comment>
   </data>
 	<data name="Msg_ErrorAddUser" xml:space="preserve">
-    <value>Une erreur est survenue pendant l'ajout d'un utilisateur</value>
+    <value>Une erreur est survenue pendant l'ajout d'un utilisateur.</value>
     <comment>An error occured while adding a new user</comment>
   </data>
 	<data name="Msg_ErrorChangingPwd" xml:space="preserve">
-    <value>Une erreur est survenue pendant le changement du mot de passe</value>
+    <value>Une erreur est survenue pendant le changement du mot de passe.</value>
     <comment>An error occured while changing the password</comment>
   </data>
 	<data name="Msg_ErrorUpdateUser" xml:space="preserve">
-    <value>Une erreur est apparue pendant la mise à jour de l'utilisateur</value>
+    <value>Une erreur est survenue pendant la mise à jour de l'utilisateur.</value>
     <comment>An error occured while updating the user</comment>
   </data>
 	<data name="Msg_ErrorWhileLoadingUser" xml:space="preserve">
-    <value>Une erreur est apparue pendant le chargement d'un utilisateur.</value>
+    <value>Une erreur est survenue pendant le chargement d'un utilisateur.</value>
     <comment>An error occured while loading the data of a user.</comment>
   </data>
 	<data name="Msg_ErrorWrongPassword" xml:space="preserve">
@@ -186,7 +186,7 @@
     <comment>Wrong password</comment>
   </data>
 	<data name="Msg_NotYetImplemented" xml:space="preserve">
-    <value>Fonctionnalité à venir</value>
+    <value>Fonctionnalité à venir.</value>
     <comment>Not yet implemented</comment>
   </data>
 	<data name="Msg_PwdChanged" xml:space="preserve">
@@ -254,11 +254,11 @@
     <comment>Last Name</comment>
   </data>
 	<data name="Title_MailPro" xml:space="preserve">
-    <value>Mail pro:</value>
+    <value>Courriel pro:</value>
     <comment>Professionnal mail</comment>
   </data>
 	<data name="Title_MobilePro" xml:space="preserve">
-    <value>Tél. mobile pro:</value>
+    <value>GSM pro:</value>
     <comment>Professional mobile</comment>
   </data>
 	<data name="Title_OldPwd" xml:space="preserve">

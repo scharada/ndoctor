@@ -77,7 +77,7 @@ namespace Probel.NDoctor.View.Toolbox.Threads
         /// <param name="businessLogic">The business logic.</param>
         /// <param name="context">The context.</param>
         /// <param name="refreshUI">The refresh UI.</param>
-        public void ExecuteAsync<T,TContext>(Func<TContext, T> businessLogic, object context, Action<T> refreshUI)
+        public void ExecuteAsync<T, TContext>(Func<TContext, T> businessLogic, object context, Action<T> refreshUI)
         {
             var task = Task.Factory.StartNew<T>(ctx => { return businessLogic((TContext)ctx); }, context);
             task.ContinueWith(t => refreshUI(t.Result), this.Token, TaskContinuationOptions.OnlyOnRanToCompletion, this.Scheduler);
@@ -95,6 +95,7 @@ namespace Probel.NDoctor.View.Toolbox.Threads
             task.ContinueWith(t => refreshUI(), this.Token, TaskContinuationOptions.OnlyOnRanToCompletion, this.Scheduler);
             task.ContinueWith(t => this.Handle.Error(t.Exception), this.Token, TaskContinuationOptions.OnlyOnFaulted, this.Scheduler);
         }
+
         #endregion Methods
     }
 }
