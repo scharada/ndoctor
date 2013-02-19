@@ -134,7 +134,7 @@
     <comment>The configuration of the plugins is incorrect. Maybe the configuration files are badly written.</comment>
   </data>
 	<data name="Ex_PluginException" xml:space="preserve">
-    <value>An error occured in a plugins.</value>
+    <value>An error occured in a plugin.</value>
     <comment>An error occured in a plugins.</comment>
   </data>
 	<data name="Ex_PluginException_NoValidator" xml:space="preserve">
@@ -195,7 +195,7 @@ Path: {1}</value>
     <comment>Used to manage the BMI history of a patient</comment>
   </data>
 	<data name="Plugin_DbImport" xml:space="preserve">
-    <value>Data importer</value>
+    <value>Sharpenda database importer</value>
     <comment>Data importer</comment>
   </data>
 	<data name="Plugin_DbImport_Explanations" xml:space="preserve">
@@ -239,11 +239,11 @@ Path: {1}</value>
     <comment>Patient data manager (Old version)</comment>
   </data>
 	<data name="Plugin_PatientDataManager2" xml:space="preserve">
-    <value>Gestionnaire de données patient</value>
+    <value>Patient data manager</value>
     <comment>Patient data manager</comment>
   </data>
 	<data name="Plugin_PatientDataManager_Explanations" xml:space="preserve">
-    <value>Used to manage the data of a patient</value>
+    <value>Used to manage the data of a patient. </value>
     <comment>Used to manage the data of a patient</comment>
   </data>
 	<data name="Plugin_PatientSessionManager" xml:space="preserve">
@@ -251,7 +251,7 @@ Path: {1}</value>
     <comment>Patient session manager</comment>
   </data>
 	<data name="Plugin_PatientSessionManager_Explanations" xml:space="preserve">
-    <value>Used to manage a patient sessions. Has tools to search and to load a patient</value>
+    <value>Used to manage a patient session. Has tools to search and to load a patient</value>
     <comment>Used to manage a patient sessions. Has tools to search and to load a patient</comment>
   </data>
 	<data name="Plugin_PictureManager" xml:space="preserve">

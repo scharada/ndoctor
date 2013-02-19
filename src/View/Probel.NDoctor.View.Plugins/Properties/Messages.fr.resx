@@ -133,7 +133,7 @@
     <value>Une erreur est survenue dans un plugin</value>
   </data>
 	<data name="Ex_PluginException_NoValidator" xml:space="preserve">
-    <value>Ce plugin n'a pas de règles de validation.</value>
+    <value>Ce plugin n'a pas de règle de validation.</value>
   </data>
 	<data name="Ex_PluginException_SeveralStartPages" xml:space="preserve">
     <value>Plusieurs plugins qui remplace la page de démarrage sont chargé en même temps. Il ne peut y avoir qu'un seul plugin de ce type chargé.</value>
@@ -161,7 +161,7 @@ Chemin: {1}</value>
     <value>Gestionnaire d'administration</value>
   </data>
 	<data name="Plugin_Administration_Explanations" xml:space="preserve">
-    <value>Permet de gérer toutes les données satelites de nDoctor</value>
+    <value>Permet de gérer toutes les données satellites de nDoctor</value>
   </data>
 	<data name="Plugin_Authorisation" xml:space="preserve">
     <value>Gestionnaire d'autorisations</value>
@@ -176,7 +176,7 @@ Chemin: {1}</value>
     <value>Permet de gérer l'historique BMI d'un patient</value>
   </data>
 	<data name="Plugin_DbImport" xml:space="preserve">
-    <value>Importeur de donnés</value>
+    <value>Importeur de base de données Sharpenda</value>
   </data>
 	<data name="Plugin_DbImport_Explanations" xml:space="preserve">
     <value>Permet d'importer des données d'une base de données Sharpenda</value>
@@ -212,7 +212,7 @@ Chemin: {1}</value>
     <value>Gestionnaire de données patient</value>
   </data>
 	<data name="Plugin_PatientDataManager_Explanations" xml:space="preserve">
-    <value>Permet de gérer les données d'un patient</value>
+    <value>Permet de gérer les données d'un patient.</value>
   </data>
 	<data name="Plugin_PatientSessionManager" xml:space="preserve">
     <value>Gestionnaire de session patient</value>
