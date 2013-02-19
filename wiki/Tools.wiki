@@ -39,6 +39,7 @@ Here's the list of tools used to develop nDoctor
  * [http://wpftoolkit.codeplex.com/ WPF Toolkit extended]
  * [http://stw.castleproject.org/Default.aspx?Page=DynamicProxy&NS=Tools&AspxAutoDetectCookieSupport=1 Castle Dynamic Proxy]
  * [http://code.google.com/p/mvvm-core mvvm-core]
+ * [http://code.google.com/p/ndoctor-statistics/ ndoctor-statistics]
 
 = Visual studio plugins =
  * [http://ankhsvn.open.collab.net/ AnkhSVN] 
