@@ -54,23 +54,10 @@ namespace Probel.NDoctor.Domain.Test.Components
 
             Assert.AreEqual(0, result.Points.Count());
         }
-        [Test]
-        public void GetChart_OfBmiAverage_WithEmptyTable_CheckLinearY()
-        {
 
-            this.HelperComponent.ClearTable<Bmi>();
-
-            var result = this.ComponentUnderTest.GetBmiRepartition();
-
-            Assert.AreEqual(0, result.Points.Count(), "The table should be empty");
-            Assert.AreEqual(0
-                , result.GetLinearY(10).Points.Count()
-                , "The linear X collection shoudl be empty");
-        }
         [Test]
         public void GetChart_OfBmiAverage_WithEmptyTable_CheckLinearX()
         {
-
             this.HelperComponent.ClearTable<Bmi>();
 
             var result = this.ComponentUnderTest.GetBmiRepartition();
@@ -79,6 +66,19 @@ namespace Probel.NDoctor.Domain.Test.Components
             Assert.AreEqual(0
                 , result.GetLinearX(DateTime.Today).Points.Count()
                 , "The linear Y collection shoudl be empty");
+        }
+
+        [Test]
+        public void GetChart_OfBmiAverage_WithEmptyTable_CheckLinearY()
+        {
+            this.HelperComponent.ClearTable<Bmi>();
+
+            var result = this.ComponentUnderTest.GetBmiRepartition();
+
+            Assert.AreEqual(0, result.Points.Count(), "The table should be empty");
+            Assert.AreEqual(0
+                , result.GetLinearY(10).Points.Count()
+                , "The linear X collection shoudl be empty");
         }
 
         [Test]
