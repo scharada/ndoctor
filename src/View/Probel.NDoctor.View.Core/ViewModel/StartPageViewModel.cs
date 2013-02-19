@@ -27,6 +27,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Plugins;
+    using System.Linq;
 
     internal class StartPageViewModel : BaseViewModel
     {
@@ -45,7 +46,10 @@ namespace Probel.NDoctor.View.Core.ViewModel
         private bool isBmiAverageBusy;
         private bool isGenderRepartitionBusy;
         private bool isPatientGrowthBusy;
+        private Chart<DateTime, double> obesity;
+        private Chart<DateTime, double> overweight;
         private Chart<DateTime, int> patientGrowth;
+        private Chart<DateTime, double> underweight;
 
         #endregion Fields
 
@@ -133,6 +137,26 @@ namespace Probel.NDoctor.View.Core.ViewModel
             }
         }
 
+        public Chart<DateTime, double> Obesity
+        {
+            get { return this.obesity; }
+            set
+            {
+                this.obesity = value;
+                this.OnPropertyChanged(() => Obesity);
+            }
+        }
+
+        public Chart<DateTime, double> Overweight
+        {
+            get { return this.overweight; }
+            set
+            {
+                this.overweight = value;
+                this.OnPropertyChanged(() => Overweight);
+            }
+        }
+
         public Chart<DateTime, int> PatientGrowth
         {
             get { return this.patientGrowth; }
@@ -146,6 +170,16 @@ namespace Probel.NDoctor.View.Core.ViewModel
         public ICommand RefreshCommand
         {
             get { return this.refreshCommand; }
+        }
+
+        public Chart<DateTime, double> Underweight
+        {
+            get { return this.underweight; }
+            set
+            {
+                this.underweight = value;
+                this.OnPropertyChanged(() => Underweight);
+            }
         }
 
         #endregion Properties
@@ -200,10 +234,13 @@ namespace Probel.NDoctor.View.Core.ViewModel
                 var task4 = Task.Factory.StartNew<Chart<DateTime, double>>(() => this.Component.GetBmiRepartition());
                 task4.ContinueWith(t =>
                 {
-                    this.BmiAverage = t.Result;
-                    this.Obesity = t.Result.GetLinearY(30);
-                    this.Overweight = t.Result.GetLinearY(25);
-                    this.Underweight = t.Result.GetLinearY(18.5);
+                    if (t.Result.Points.Count() > 1)
+                    {
+                        this.BmiAverage = t.Result;
+                        this.Obesity = t.Result.GetLinearY(30);
+                        this.Overweight = t.Result.GetLinearY(25);
+                        this.Underweight = t.Result.GetLinearY(18.5);
+                    }
                     this.IsBmiAverageBusy = false;
                 }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
                 task4.ContinueWith(p1 => this.Handle.Error(p1.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
@@ -214,37 +251,5 @@ namespace Probel.NDoctor.View.Core.ViewModel
         }
 
         #endregion Methods
-
-
-        private Chart<DateTime, double> underweight;
-        public Chart<DateTime, double> Underweight
-        {
-            get { return this.underweight; }
-            set
-            {
-                this.underweight = value;
-                this.OnPropertyChanged(() => Underweight);
-            }
-        }
-        private Chart<DateTime, double> overweight;
-        public Chart<DateTime, double> Overweight
-        {
-            get { return this.overweight; }
-            set
-            {
-                this.overweight = value;
-                this.OnPropertyChanged(() => Overweight);
-            }
-        }
-        private Chart<DateTime, double> obesity;
-        public Chart<DateTime, double> Obesity
-        {
-            get { return this.obesity; }
-            set
-            {
-                this.obesity = value;
-                this.OnPropertyChanged(() => Obesity);
-            }
-        }
     }
 }

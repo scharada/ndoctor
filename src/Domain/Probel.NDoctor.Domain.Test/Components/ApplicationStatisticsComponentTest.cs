@@ -36,6 +36,7 @@ namespace Probel.NDoctor.Domain.Test.Components
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.Test.TestHelpers;
 
     using StructureMap;
 
@@ -66,9 +67,9 @@ namespace Probel.NDoctor.Domain.Test.Components
         public void CheckHelpers_WithoutDoublons_ReturnsFalse()
         {
             var chart = new Chart<string, double>();
-            chart.AddPoint(this.RandomString, 0);
-            chart.AddPoint(this.RandomString, 0);
-            chart.AddPoint(this.RandomString, 0);
+            chart.AddPoint(GetRandom.String, 0);
+            chart.AddPoint(GetRandom.String, 0);
+            chart.AddPoint(GetRandom.String, 0);
 
             Assert.IsFalse(this.HasDoublons(chart));
         }

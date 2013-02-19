@@ -36,22 +36,36 @@ namespace Probel.NDoctor.Domain.Test.Components
     public abstract class BaseComponentTest<T>
         where T : BaseComponent
     {
+        #region Fields
+
+        private static readonly string SQL;
+
+        #endregion Fields
+
+        #region Constructors
+
+        static BaseComponentTest()
+        {
+            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Probel.NDoctor.Domain.Test.InsertUsers.sql");
+            if (stream == null) throw new NullReferenceException("The embedded script to create the database can't be loaded or doesn't exist.");
+
+            using (var reader = new StreamReader(stream, Encoding.UTF8)) { SQL = reader.ReadToEnd(); }
+        }
+
+        #endregion Constructors
+
         #region Properties
 
         public UnitTestComponent HelperComponent
         {
-            get; private set;
+            get;
+            private set;
         }
 
         protected T ComponentUnderTest
         {
             get;
             private set;
-        }
-
-        protected string RandomString
-        {
-            get { return Guid.NewGuid().ToString(); }
         }
 
         protected ISession Session
@@ -100,13 +114,8 @@ namespace Probel.NDoctor.Domain.Test.Components
 
         private void InjectTestData()
         {
-            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Probel.NDoctor.Domain.Test.InsertUsers.sql");
-            if (stream == null) throw new NullReferenceException("The embedded script to create the database can't be loaded or doesn't exist.");
-
-            string sql;
-
-            using (var reader = new StreamReader(stream, Encoding.UTF8)) { sql = reader.ReadToEnd(); }
-            new SqlComponent(this.Session).ExecuteSql(sql);
+            new SqlComponent(this.Session)
+                .ExecuteSql(SQL);
         }
 
         #endregion Methods

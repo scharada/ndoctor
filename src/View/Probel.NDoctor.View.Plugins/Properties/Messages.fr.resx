@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
+	<!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,189 +59,189 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="Ex_DeactivatedPluginException" xml:space="preserve">
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="Ex_DeactivatedPluginException" xml:space="preserve">
     <value>Le plugin que vous essayer d'afficher est désactivé</value>
   </data>
-  <data name="Ex_NDoctorConfigurationException" xml:space="preserve">
+	<data name="Ex_NDoctorConfigurationException" xml:space="preserve">
     <value>La configuration ou le contexte d'exécution de nDoctor est invalide</value>
   </data>
-  <data name="Ex_NullPluginValidatorException" xml:space="preserve">
+	<data name="Ex_NullPluginValidatorException" xml:space="preserve">
     <value>Les règles de validations ne sont pas configurées pour tous les plugins. Veuillez configurer les règles de validations.</value>
   </data>
-  <data name="Ex_PluginConfigurationException" xml:space="preserve">
-    <value>La configuration des plugins est incorrecte. Peut-être les fichier de configuration ont été mal écrit.</value>
+	<data name="Ex_PluginConfigurationException" xml:space="preserve">
+    <value>La configuration des plugins est incorrecte. Peut-être les fichiers de configuration ont été mal écrit.</value>
   </data>
-  <data name="Ex_PluginException" xml:space="preserve">
+	<data name="Ex_PluginException" xml:space="preserve">
     <value>Une erreur est survenue dans un plugin</value>
   </data>
-  <data name="Ex_PluginException_NoValidator" xml:space="preserve">
+	<data name="Ex_PluginException_NoValidator" xml:space="preserve">
     <value>Ce plugin n'a pas de règles de validation.</value>
   </data>
-  <data name="Ex_PluginException_SeveralStartPages" xml:space="preserve">
+	<data name="Ex_PluginException_SeveralStartPages" xml:space="preserve">
     <value>Plusieurs plugins qui remplace la page de démarrage sont chargé en même temps. Il ne peut y avoir qu'un seul plugin de ce type chargé.</value>
   </data>
-  <data name="Ex_PluginNotFoundException" xml:space="preserve">
+	<data name="Ex_PluginNotFoundException" xml:space="preserve">
     <value>Le répertoire du plugin '{0}' n'existe pas.
 Chemin: {1}</value>
   </data>
-  <data name="Ex_PluginNotLoadedException" xml:space="preserve">
+	<data name="Ex_PluginNotLoadedException" xml:space="preserve">
     <value>Les plugins ne sont pas chargés en mémoire. Veuillez executer le chargeur de plugins.</value>
   </data>
-  <data name="Ex_WrongDataContextException" xml:space="preserve">
+	<data name="Ex_WrongDataContextException" xml:space="preserve">
     <value>Le type du contexte de données n'est pas celui attendu.</value>
   </data>
-  <data name="Msg_ErrorAuthorisation" xml:space="preserve">
+	<data name="Msg_ErrorAuthorisation" xml:space="preserve">
     <value>Vous n'avez pas les droits pour exécuter cette fonctionnalité</value>
   </data>
-  <data name="Msg_GroupManager" xml:space="preserve">
+	<data name="Msg_GroupManager" xml:space="preserve">
     <value>Gestionnaires</value>
   </data>
-  <data name="Msg_MissingParameterInConfiguration" xml:space="preserve">
+	<data name="Msg_MissingParameterInConfiguration" xml:space="preserve">
     <value>Le paramètre '{0}' n'a pas été configuré. Veuillez l'ajouter dans le fichier de configuration.</value>
   </data>
-  <data name="Plugin_Administration" xml:space="preserve">
+	<data name="Plugin_Administration" xml:space="preserve">
     <value>Gestionnaire d'administration</value>
   </data>
-  <data name="Plugin_Administration_Explanations" xml:space="preserve">
+	<data name="Plugin_Administration_Explanations" xml:space="preserve">
     <value>Permet de gérer toutes les données satelites de nDoctor</value>
   </data>
-  <data name="Plugin_Authorisation" xml:space="preserve">
+	<data name="Plugin_Authorisation" xml:space="preserve">
     <value>Gestionnaire d'autorisations</value>
   </data>
-  <data name="Plugin_Authorisation_Explanations" xml:space="preserve">
+	<data name="Plugin_Authorisation_Explanations" xml:space="preserve">
     <value>Permet de gérer les autorisations des modules de nDoctor</value>
   </data>
-  <data name="Plugin_Bmi" xml:space="preserve">
+	<data name="Plugin_Bmi" xml:space="preserve">
     <value>Gestionnaire de l'historique BMI d'un patient</value>
   </data>
-  <data name="Plugin_Bmi_Explanations" xml:space="preserve">
+	<data name="Plugin_Bmi_Explanations" xml:space="preserve">
     <value>Permet de gérer l'historique BMI d'un patient</value>
   </data>
-  <data name="Plugin_DbImport" xml:space="preserve">
+	<data name="Plugin_DbImport" xml:space="preserve">
     <value>Importeur de donnés</value>
   </data>
-  <data name="Plugin_DbImport_Explanations" xml:space="preserve">
+	<data name="Plugin_DbImport_Explanations" xml:space="preserve">
     <value>Permet d'importer des données d'une base de données Sharpenda</value>
   </data>
-  <data name="Plugin_FamilyManager" xml:space="preserve">
+	<data name="Plugin_FamilyManager" xml:space="preserve">
     <value>Gestionnaire de famille</value>
   </data>
-  <data name="Plugin_FamilyManager_Explanations" xml:space="preserve">
+	<data name="Plugin_FamilyManager_Explanations" xml:space="preserve">
     <value>Permet de gérer la famille du patient</value>
   </data>
-  <data name="Plugin_MedicalRecordManager" xml:space="preserve">
+	<data name="Plugin_MedicalRecordManager" xml:space="preserve">
     <value>Gestionnaire de fiches médicales</value>
   </data>
-  <data name="Plugin_MedicalRecordManager_Explanations" xml:space="preserve">
+	<data name="Plugin_MedicalRecordManager_Explanations" xml:space="preserve">
     <value>Permet de gérer les fiches médicales d'un patient</value>
   </data>
-  <data name="Plugin_MeetingManager" xml:space="preserve">
+	<data name="Plugin_MeetingManager" xml:space="preserve">
     <value>Agenda</value>
   </data>
-  <data name="Plugin_MeetingManager_Explanations" xml:space="preserve">
+	<data name="Plugin_MeetingManager_Explanations" xml:space="preserve">
     <value>Permet de gérer les rendez-vous avec les patients</value>
   </data>
-  <data name="Plugin_PathologyManager" xml:space="preserve">
+	<data name="Plugin_PathologyManager" xml:space="preserve">
     <value>Gestionnaire de maladies</value>
   </data>
-  <data name="Plugin_PathologyManager_Explanations" xml:space="preserve">
+	<data name="Plugin_PathologyManager_Explanations" xml:space="preserve">
     <value>Permet de gérer l'historique de maladie d'un patient</value>
   </data>
-  <data name="Plugin_PatientDataManager" xml:space="preserve">
+	<data name="Plugin_PatientDataManager" xml:space="preserve">
     <value>Gestionnaire de données patient (Ancienne version)</value>
   </data>
-  <data name="Plugin_PatientDataManager2" xml:space="preserve">
+	<data name="Plugin_PatientDataManager2" xml:space="preserve">
     <value>Gestionnaire de données patient</value>
   </data>
-  <data name="Plugin_PatientDataManager_Explanations" xml:space="preserve">
+	<data name="Plugin_PatientDataManager_Explanations" xml:space="preserve">
     <value>Permet de gérer les données d'un patient</value>
   </data>
-  <data name="Plugin_PatientSessionManager" xml:space="preserve">
+	<data name="Plugin_PatientSessionManager" xml:space="preserve">
     <value>Gestionnaire de session patient</value>
   </data>
-  <data name="Plugin_PatientSessionManager_Explanations" xml:space="preserve">
+	<data name="Plugin_PatientSessionManager_Explanations" xml:space="preserve">
     <value>Permet de gérer les sessions des patients. Propose des outils de recherche et de chargement d'un patient</value>
   </data>
-  <data name="Plugin_PictureManager" xml:space="preserve">
+	<data name="Plugin_PictureManager" xml:space="preserve">
     <value>Gestionnaire de photos médicales</value>
   </data>
-  <data name="Plugin_PictureManager_Explanations" xml:space="preserve">
+	<data name="Plugin_PictureManager_Explanations" xml:space="preserve">
     <value>Permet de gérer les photos médicale d'un patient</value>
   </data>
-  <data name="Plugin_PrescriptionManager" xml:space="preserve">
+	<data name="Plugin_PrescriptionManager" xml:space="preserve">
     <value>Gestionnaire de prescriptions</value>
   </data>
-  <data name="Plugin_PrescriptionManager_Explanations" xml:space="preserve">
+	<data name="Plugin_PrescriptionManager_Explanations" xml:space="preserve">
     <value>Permet de gérer les prescriptions d'un patient</value>
   </data>
-  <data name="Plugin_RescueTools" xml:space="preserve">
+	<data name="Plugin_RescueTools" xml:space="preserve">
     <value>Outils de secours pour la base de données</value>
   </data>
-  <data name="Plugin_RescueTools_Explanations" xml:space="preserve">
+	<data name="Plugin_RescueTools_Explanations" xml:space="preserve">
     <value>Contient des outils de secours pour gérer d'éventuelles inconsistances dans la base de données</value>
   </data>
-  <data name="Plugin_UserSessionManager" xml:space="preserve">
+	<data name="Plugin_UserSessionManager" xml:space="preserve">
     <value>Gestionnaire de session utilisateur</value>
   </data>
-  <data name="Plugin_UserSessionManager_Explanations" xml:space="preserve">
+	<data name="Plugin_UserSessionManager_Explanations" xml:space="preserve">
     <value>Permet de gérer les sessions utilisateur</value>
   </data>
 </root>
