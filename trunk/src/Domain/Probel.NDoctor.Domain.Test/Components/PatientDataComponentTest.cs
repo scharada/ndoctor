@@ -30,6 +30,7 @@ namespace Probel.NDoctor.Domain.Test.Components
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.Test.TestHelpers;
 
     [TestFixture]
     public class PatientDataComponentTest : BaseComponentTest<PatientDataComponent>
@@ -136,7 +137,7 @@ namespace Probel.NDoctor.Domain.Test.Components
         [Test]
         public void UpdatePatient_TryToUpdateInsurance_NothingIsUpdated()
         {
-            var name = this.RandomString;
+            var name = GetRandom.String;
             var insuranceName = Guid.NewGuid().ToString();
 
             var patient = this.HelperComponent.GetAllPatients()[0];
@@ -151,7 +152,7 @@ namespace Probel.NDoctor.Domain.Test.Components
         [Test]
         public void UpdatePatient_WithNewInsurance_NoInsuranceDataLoss()
         {
-            var name = this.RandomString;
+            var name = GetRandom.String;
 
             var insurance = this.CreateInsurance();
 
@@ -218,17 +219,17 @@ namespace Probel.NDoctor.Domain.Test.Components
         {
             var insurance = new InsuranceDto()
             {
-                Name = this.RandomString,
+                Name = GetRandom.String,
                 Address = new AddressDto()
                 {
-                    BoxNumber = this.RandomString,
-                    City = this.RandomString,
-                    PostalCode = this.RandomString,
-                    Street = this.RandomString,
-                    StreetNumber = this.RandomString,
+                    BoxNumber = GetRandom.String,
+                    City = GetRandom.String,
+                    PostalCode = GetRandom.String,
+                    Street = GetRandom.String,
+                    StreetNumber = GetRandom.String,
                 },
-                Notes = this.RandomString,
-                Phone = this.RandomString,
+                Notes = GetRandom.String,
+                Phone = GetRandom.String,
             };
             return insurance;
         }

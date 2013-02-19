@@ -31,6 +31,7 @@ namespace Probel.NDoctor.Domain.Test.Mapping
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Mappings;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.Test.TestHelpers;
 
     [TestFixture]
     public class MappingTest
@@ -44,8 +45,8 @@ namespace Probel.NDoctor.Domain.Test.Mapping
                 return new Tag()
                 {
                     Category = TagCategory.Appointment,
-                    Name = this.RandomString,
-                    Notes = this.RandomString,
+                    Name = GetRandom.String,
+                    Notes = GetRandom.String,
                 };
             }
         }
@@ -58,8 +59,8 @@ namespace Probel.NDoctor.Domain.Test.Mapping
                 {
                     CreationDate = DateTime.Now.AddDays(-10),
                     LastUpdate = DateTime.Now,
-                    Name = this.RandomString,
-                    Rtf = this.RandomString,
+                    Name = GetRandom.String,
+                    Rtf = GetRandom.String,
                     Tag = this.RandomTag,
                 };
             }
@@ -85,8 +86,8 @@ namespace Probel.NDoctor.Domain.Test.Mapping
             {
                 temp.Add(new Drug()
                 {
-                    Name = this.RandomString,
-                    Notes = this.RandomString,
+                    Name = GetRandom.String,
+                    Notes = GetRandom.String,
                     Tag = tag,
                 });
             }
@@ -118,8 +119,8 @@ namespace Probel.NDoctor.Domain.Test.Mapping
                 {
                     CreationDate = DateTime.Now.AddDays(-10),
                     LastUpdate = DateTime.Now,
-                    Name = this.RandomString,
-                    Rtf = this.RandomString,
+                    Name = GetRandom.String,
+                    Rtf = GetRandom.String,
                     Tag = tag1,
                 });
             }
@@ -186,8 +187,8 @@ namespace Probel.NDoctor.Domain.Test.Mapping
             {
                 CreationDate = DateTime.Now.AddDays(-10),
                 LastUpdate = DateTime.Now,
-                Name = this.RandomString,
-                Rtf = this.RandomString,
+                Name = GetRandom.String,
+                Rtf = GetRandom.String,
                 Tag = this.RandomTag,
             };
 
@@ -228,8 +229,8 @@ namespace Probel.NDoctor.Domain.Test.Mapping
         {
             var tag = new Tag()
             {
-                Name = this.RandomString,
-                Notes = this.RandomString,
+                Name = GetRandom.String,
+                Notes = GetRandom.String,
                 Category = TagCategory.Appointment,
             };
 

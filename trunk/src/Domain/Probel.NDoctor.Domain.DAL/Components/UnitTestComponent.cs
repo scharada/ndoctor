@@ -48,6 +48,23 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
         #region Methods
 
+        /// <summary>
+        /// Clears the table with entities of <typeparamref name="T"/>.
+        /// This only works if this table is not referenced!
+        /// </summary>
+        /// <typeparam name="T">The entity type</typeparam>
+        public void ClearTable<T>()
+        {
+            using (var tx = this.Session.BeginTransaction())
+            {
+                var query = string.Format("DELETE FROM {0}", typeof(T).Name);
+                this.Session
+                    .CreateQuery(query)
+                    .ExecuteUpdate();
+                tx.Commit();
+            }
+        }
+
         public long Create(LightPatientDto patient)
         {
             return new Creator(this.Session).Create(patient);

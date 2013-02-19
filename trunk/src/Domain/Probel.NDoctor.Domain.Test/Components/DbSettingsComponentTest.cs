@@ -28,6 +28,7 @@ namespace Probel.NDoctor.Domain.Test.Components
 
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
+    using Probel.NDoctor.Domain.Test.TestHelpers;
 
     [TestFixture]
     public class DbSettingsComponentTest : BaseComponentTest<DbSettingsComponent>
@@ -37,7 +38,7 @@ namespace Probel.NDoctor.Domain.Test.Components
         [Test]
         public void CheckKey_KeyDoesntExists_ReturnsFalse()
         {
-            var key = this.RandomString;
+            var key = GetRandom.String;
 
             bool exist = this.ComponentUnderTest.Exists(key);
             Assert.IsFalse(exist);
@@ -46,8 +47,8 @@ namespace Probel.NDoctor.Domain.Test.Components
         [Test]
         public void CheckKey_KeyExists_ReturnsTrue()
         {
-            var key = this.RandomString;
-            var value = this.RandomString;
+            var key = GetRandom.String;
+            var value = GetRandom.String;
 
             using (var tx = this.Session.BeginTransaction())
             {
@@ -62,8 +63,8 @@ namespace Probel.NDoctor.Domain.Test.Components
         [Test]
         public void Insert_NewKey_ValueInserted()
         {
-            var key = this.RandomString;
-            var value = this.RandomString;
+            var key = GetRandom.String;
+            var value = GetRandom.String;
 
             using (var tx = this.Session.BeginTransaction())
             {
@@ -78,8 +79,8 @@ namespace Probel.NDoctor.Domain.Test.Components
         [Test]
         public void Insert_SameKeyTwice_ValueInserted()
         {
-            var key = this.RandomString;
-            var value = this.RandomString;
+            var key = GetRandom.String;
+            var value = GetRandom.String;
 
             using (var tx = this.Session.BeginTransaction())
             {
@@ -121,7 +122,7 @@ namespace Probel.NDoctor.Domain.Test.Components
         {
             Assert.Throws<EntityNotFoundException>(() =>
             {
-                var value = this.ComponentUnderTest[this.RandomString];
+                var value = this.ComponentUnderTest[GetRandom.String];
             });
         }
 

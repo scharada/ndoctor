@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Domain.Test.Components
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Domain.Test.TestHelpers;
 
     [TestFixture]
     public class AuthorisationComponentTest : BaseComponentTest<AuthorisationComponent>
@@ -92,12 +93,12 @@ namespace Probel.NDoctor.Domain.Test.Components
         [Test]
         public void ManageAuthorisation_CreateNewRole_RoleCreated()
         {
-            var name = this.RandomString;
+            var name = GetRandom.String;
             this.WrapInTransaction(() =>
             {
                 var role = new RoleDto()
                 {
-                    Description = this.RandomString,
+                    Description = GetRandom.String,
                     Name = name,
                 };
                 this.ComponentUnderTest.Create(role);
@@ -119,14 +120,14 @@ namespace Probel.NDoctor.Domain.Test.Components
         {
             var role = new RoleDto()
             {
-                Description = this.RandomString,
-                Name = this.RandomString,
+                Description = GetRandom.String,
+                Name = GetRandom.String,
             };
             this.ComponentUnderTest.Create(role);
             this.Session.Flush();
 
-            role.Tasks.Add(new TaskDto(this.RandomString));
-            role.Tasks.Add(new TaskDto(this.RandomString));
+            role.Tasks.Add(new TaskDto(GetRandom.String));
+            role.Tasks.Add(new TaskDto(GetRandom.String));
             role.Tasks.Add(null);
 
             this.ComponentUnderTest.Update(role);

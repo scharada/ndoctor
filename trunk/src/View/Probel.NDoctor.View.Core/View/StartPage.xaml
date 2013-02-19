@@ -106,7 +106,7 @@
         </tk:BusyIndicator>
 
         <!-- Bmi average -->
-        <tk:BusyIndicator Grid.Column="1" Grid.Row="1" IsBusy="{Binding IBmiAverageBusy}" BusyContent="{Binding Source={x:Static Member=t:StartPageText.RefreshingStatistics}}">
+        <tk:BusyIndicator Grid.Column="1" Grid.Row="1" IsBusy="{Binding IsBmiAverageBusy}" BusyContent="{Binding Source={x:Static Member=t:StartPageText.RefreshingStatistics}}">
             <dvc:Chart Margin="4" 
                        Title="{Binding Source={x:Static Member=t:StartPageText.BmiAverage}}">
                 <dvc:Chart.Resources>

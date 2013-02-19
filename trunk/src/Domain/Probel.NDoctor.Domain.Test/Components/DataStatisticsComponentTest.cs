@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Domain.Test.Components
     using NUnit.Framework;
 
     using Probel.NDoctor.Domain.DAL.Components;
+    using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
 
@@ -42,6 +43,42 @@ namespace Probel.NDoctor.Domain.Test.Components
         {
             var chart = this.ComponentUnderTest.GetAgeRepartion();
             Assert.AreEqual(chart.Points.Count(), 1);
+        }
+
+        [Test]
+        public void GetChart_OfBmiAverage_WithEmptyBmiTable()
+        {
+            this.HelperComponent.ClearTable<Bmi>();
+
+            var result = this.ComponentUnderTest.GetBmiRepartition();
+
+            Assert.AreEqual(0, result.Points.Count());
+        }
+        [Test]
+        public void GetChart_OfBmiAverage_WithEmptyTable_CheckLinearY()
+        {
+
+            this.HelperComponent.ClearTable<Bmi>();
+
+            var result = this.ComponentUnderTest.GetBmiRepartition();
+
+            Assert.AreEqual(0, result.Points.Count(), "The table should be empty");
+            Assert.AreEqual(0
+                , result.GetLinearY(10).Points.Count()
+                , "The linear X collection shoudl be empty");
+        }
+        [Test]
+        public void GetChart_OfBmiAverage_WithEmptyTable_CheckLinearX()
+        {
+
+            this.HelperComponent.ClearTable<Bmi>();
+
+            var result = this.ComponentUnderTest.GetBmiRepartition();
+
+            Assert.AreEqual(0, result.Points.Count(), "The table should be empty");
+            Assert.AreEqual(0
+                , result.GetLinearX(DateTime.Today).Points.Count()
+                , "The linear Y collection shoudl be empty");
         }
 
         [Test]
