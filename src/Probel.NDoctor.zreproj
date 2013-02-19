@@ -1,0 +1,324 @@
+<?xml version='1.0' encoding='utf-8'?>
+<project>
+  <configuration createBackupFiles="False" hideEmptyRows="False" hideTranslatedRows="False" useSpellChecker="True" neutralLanguageCode="en" languagesToDisplay="">
+    <globalSetting name="Filter-ResourceEditorGrid">&lt;XtraSerializer version="1.0" application="View"&gt;
+  &lt;property name="#LayoutVersion" /&gt;
+  &lt;property name="ActiveFilterString" /&gt;
+&lt;/XtraSerializer&gt;</globalSetting>
+    <globalSetting name="Sort-ResourceEditorGrid">&lt;XtraSerializer version="1.0" application="View"&gt;
+  &lt;property name="#LayoutVersion" /&gt;
+  &lt;property name="SortInfo"&gt;~Xtra#Base64AAEAAAD/////AQAAAAAAAAAMAgAAAF1EZXZFeHByZXNzLlh0cmFHcmlkLnYxMS4xLCBWZXJzaW9uPTExLjEuOC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI4OGQxNzU0ZDcwMGU0OWEFAQAAADhEZXZFeHByZXNzLlh0cmFHcmlkLkNvbHVtbnMuR3JpZENvbHVtblNvcnRJbmZvQ29sbGVjdGlvbgQAAAAKZ3JvdXBDb3VudAVjbG9uZQ9jbG9uZUdyb3VwQ291bnQTQ29sbGVjdGlvbkJhc2UrbGlzdAADAAMIsgFTeXN0ZW0uQ29sbGVjdGlvbnMuR2VuZXJpYy5MaXN0YDFbW0RldkV4cHJlc3MuWHRyYUdyaWQuQ29sdW1ucy5HcmlkQ29sdW1uU29ydEluZm8sIERldkV4cHJlc3MuWHRyYUdyaWQudjExLjEsIFZlcnNpb249MTEuMS44LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YV1dCBxTeXN0ZW0uQ29sbGVjdGlvbnMuQXJyYXlMaXN0AgAAAAAAAAAJAwAAAAAAAAAJBAAAAAQDAAAAsgFTeXN0ZW0uQ29sbGVjdGlvbnMuR2VuZXJpYy5MaXN0YDFbW0RldkV4cHJlc3MuWHRyYUdyaWQuQ29sdW1ucy5HcmlkQ29sdW1uU29ydEluZm8sIERldkV4cHJlc3MuWHRyYUdyaWQudjExLjEsIFZlcnNpb249MTEuMS44LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YV1dAwAAAAZfaXRlbXMFX3NpemUIX3ZlcnNpb24EAAAwRGV2RXhwcmVzcy5YdHJhR3JpZC5Db2x1bW5zLkdyaWRDb2x1bW5Tb3J0SW5mb1tdAgAAAAgICQUAAAAAAAAAAAAAAAQEAAAAHFN5c3RlbS5Db2xsZWN0aW9ucy5BcnJheUxpc3QDAAAABl9pdGVtcwVfc2l6ZQhfdmVyc2lvbgUAAAgICQYAAAABAAAABAAAAAcFAAAAAAEAAAAAAAAABC5EZXZFeHByZXNzLlh0cmFHcmlkLkNvbHVtbnMuR3JpZENvbHVtblNvcnRJbmZvAgAAABAGAAAABAAAAAkHAAAADQMMCAAAABlEZXZFeHByZXNzLlh0cmFHcmlkLnYxMS4xBQcAAAAuRGV2RXhwcmVzcy5YdHJhR3JpZC5Db2x1bW5zLkdyaWRDb2x1bW5Tb3J0SW5mbwIAAAAJU29ydE9yZGVyCkNvbHVtbk5hbWUAAQgIAAAAAQAAAAYJAAAAB2NvbE5hbWUL&lt;/property&gt;
+&lt;/XtraSerializer&gt;</globalSetting>
+    <globalSetting name="sendProjectWizardForm.exportProjectFileCheckEdit.Checked">True</globalSetting>
+    <globalSetting name="sendProjectWizardForm.exportResourceFilesCheckEdit.Checked">True</globalSetting>
+    <globalSetting name="sendProjectWizardForm.exportLocalSettingsCheckEdit.Checked">True</globalSetting>
+    <globalSetting name="sendProjectWizardForm.zulReceiversTextEdit.Text">Zeta Resource Editor support</globalSetting>
+    <globalSetting name="sendProjectWizardForm.zulSubjectTextEdit.Text">[ZRE] Exported project "{ProjectName}"</globalSetting>
+    <globalSetting name="sendProjectWizardForm.zulBodyTextEdit.Text">Please download the project files in the link for project "{ProjectName}".
+
+To send me the files back, simply use https://www.zeta-uploader.com
+
+Kind regards</globalSetting>
+    <globalSetting name="ReadOnlyFileOverwriteBehaviour">0</globalSetting>
+    <globalSetting name="OmitEmptyItems">True</globalSetting>
+    <globalSetting name="ShowCommentsColumnInGrid">False</globalSetting>
+    <globalSetting name="IgnoreWindowsFormsResourcesWithDesignerFiles">True</globalSetting>
+    <globalSetting name="HideInternalDesignerRows">True</globalSetting>
+    <globalSetting name="UseShallowGridDataCumulation">True</globalSetting>
+    <globalSetting name="HideFileGroupFilesInTree">True</globalSetting>
+    <globalSetting name="NeutralLanguageFileNamePattern">[basename][optionaldefaulttypes].[extension]</globalSetting>
+    <globalSetting name="NonNeutralLanguageFileNamePattern">[basename][optionaldefaulttypes].[languagecode].[extension]</globalSetting>
+    <globalSetting name="BaseNameDotCount">0</globalSetting>
+    <globalSetting name="DefaultFileTypesToIgnore">.aspx;.ascx;.asmx;.master;.sitemap</globalSetting>
+    <globalSetting name="Project-PersistGridSettings">True</globalSetting>
+    <globalSetting name="ColorifyNullCells">True</globalSetting>
+    <globalSetting name="EnableExcelExportSnapshots">True</globalSetting>
+    <globalSetting name="projectMruItems">&lt;?xml version='1.0' encoding='utf-8'?&gt;&lt;items&gt;&lt;item type="2" checksum="3519549421" /&gt;&lt;item type="2" checksum="2341882531" /&gt;&lt;/items&gt;</globalSetting>
+    <globalSetting name="autoTranslateForm.prefixTextBox.Text">####</globalSetting>
+    <globalSetting name="autoTranslateForm.prefixCheckBox.Checked">False</globalSetting>
+    <globalSetting name="autoTranslateForm.referenceLanguageComboBoxEdit.SelectedIndex">-1</globalSetting>
+    <globalSetting name="autoTranslateForm.languagesToTranslateCheckListBox">
+    </globalSetting>
+    <userSetting name="jibedoubleve@Zeus.FindText">
+    </userSetting>
+    <userSetting name="jibedoubleve@Zeus.RecentFiles">C:\Projects\ndoctor\src\View\Probel.NDoctor.View.Toolbox\Properties\Messages.resx;C:\Projects\ndoctor\src\View\Probel.NDoctor.View.Toolbox\Properties\Messages.fr.resx###***###C:\Projects\ndoctor\src\View\Probel.NDoctor.View.Plugins\Properties\Messages.resx;C:\Projects\ndoctor\src\View\Probel.NDoctor.View.Plugins\Properties\Messages.fr.resx</userSetting>
+    <description>
+    </description>
+  </configuration>
+  <fileGroups>
+    <fileGroup name="" projectFolderUniqueID="747862f4-a5af-4646-ad81-1e40dab191b4" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="523185b0-2dad-4eba-9c9d-5ccfcaaa033c">
+      <file filePath="Helpers\Probel.Helpers.WPF\Properties\Resources.resx" absoluteFilePath="C:\Projects\ndoctor\src\Helpers\Probel.Helpers.WPF\Properties\Resources.resx" uniqueID="502a3b81-766d-49ac-b1a5-4c66b8545deb" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="dbe77282-cdc8-4c48-aa68-32d73b166346" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="a0794baf-76f8-46d3-b842-a94c40affaee">
+      <file filePath="Helpers\Probel.Helpers\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\Helpers\Probel.Helpers\Properties\Messages.resx" uniqueID="7739bb32-0535-47ad-bd73-d007e625083d" />
+      <file filePath="Helpers\Probel.Helpers\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\Helpers\Probel.Helpers\Properties\Messages.fr.resx" uniqueID="923d2cd8-584e-4e21-be96-42b4f323e742" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="686a825d-a380-44a2-ab88-15b5e3b4d028" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="72338e4f-0601-4d01-ad2d-a39d12349670">
+      <file filePath="Domain\Probel.NDoctor.Domain.DAL\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\Domain\Probel.NDoctor.Domain.DAL\Properties\Messages.resx" uniqueID="7d15da03-d770-4b33-83d3-63b2656b27d0" />
+      <file filePath="Domain\Probel.NDoctor.Domain.DAL\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\Domain\Probel.NDoctor.Domain.DAL\Properties\Messages.fr.resx" uniqueID="50761c4e-653d-4df8-9b82-266f431ee10c" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="584e48da-02c8-4fca-87bb-1e938cdcd933" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="a21472f6-cffa-40eb-b353-ca812cd6c43c">
+      <file filePath="Domain\Probel.NDoctor.Domain.DTO\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\Domain\Probel.NDoctor.Domain.DTO\Properties\Messages.resx" uniqueID="31e14729-de70-47b2-9e28-30265ab7b081" />
+      <file filePath="Domain\Probel.NDoctor.Domain.DTO\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\Domain\Probel.NDoctor.Domain.DTO\Properties\Messages.fr.resx" uniqueID="043ca7d0-1f75-4621-ab58-843e0920343e" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="2ff238f7-ce41-4bb8-8e59-c072bfc2c024" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="8a08498d-27cd-4612-9054-0451286208e2">
+      <file filePath="Plugins\Probel.NDoctor.Plugins.Administration\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.Administration\Properties\Messages.resx" uniqueID="ce6ad1bc-bc39-4f01-b7ff-d6fd2d88af5f" />
+      <file filePath="Plugins\Probel.NDoctor.Plugins.Administration\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.Administration\Properties\Messages.fr.resx" uniqueID="5001ed7b-77f1-4930-b98f-9f271574e665" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="f89e11d3-9a91-4554-9f54-ba13467760ea" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="4103b5dc-6a1c-4134-bf73-2c0fe1329cdc">
+      <file filePath="Plugins\Probel.NDoctor.Plugins.Authorisation\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.Authorisation\Properties\Messages.resx" uniqueID="3f21dab8-de5e-41f3-ba66-f1998bb29884" />
+      <file filePath="Plugins\Probel.NDoctor.Plugins.Authorisation\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.Authorisation\Properties\Messages.fr.resx" uniqueID="a5532c28-8b4d-4ba5-bc04-e7ab29957b9f" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="bae6e40c-26b4-4ffe-9da5-89d4e47597bf" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="9abb988d-1db1-4daf-af6f-83af9838b4aa">
+      <file filePath="Plugins\Probel.NDoctor.Plugins.BmiRecord\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.BmiRecord\Properties\Messages.resx" uniqueID="f21fcc20-87b1-46fb-bd53-ceb22066bc86" />
+      <file filePath="Plugins\Probel.NDoctor.Plugins.BmiRecord\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.BmiRecord\Properties\Messages.fr.resx" uniqueID="eb7bff88-c6aa-433a-922d-8bc7bbb56573" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="d9972ad2-308e-4dec-94f2-aeeaef0cefdb" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="198437d9-d1ce-40d8-be40-d4dbb54e5f07">
+      <file filePath="Plugins\Probel.NDoctor.Plugins.DbConvert\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.DbConvert\Properties\Messages.resx" uniqueID="c2942891-c19c-434c-a25c-0f2482e1bed6" />
+      <file filePath="Plugins\Probel.NDoctor.Plugins.DbConvert\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.DbConvert\Properties\Messages.fr.resx" uniqueID="d7574c3a-10dc-4831-960f-9326537674bf" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="122697f6-1399-46a9-9d08-e29402549c45" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="2484e0a3-76fd-4b0b-b77e-8e9ca8638a83">
+      <file filePath="Plugins\Probel.NDoctor.Plugins.DebugTools\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.DebugTools\Properties\Messages.resx" uniqueID="ac58c320-d116-4b67-b520-df27d03fbed4" />
+      <file filePath="Plugins\Probel.NDoctor.Plugins.DebugTools\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.DebugTools\Properties\Messages.fr.resx" uniqueID="1498e24d-6d7d-4064-8966-6e31ca468f0f" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="46d28669-7bf2-4e1e-90d6-da8e6012e523" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="d1c1eeb8-5413-43a6-9f1e-e86fbfac019b">
+      <file filePath="Plugins\Probel.NDoctor.Plugins.FamilyViewer\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.FamilyViewer\Properties\Messages.resx" uniqueID="a6a9f7cb-0268-4c38-99c7-f6896b53b203" />
+      <file filePath="Plugins\Probel.NDoctor.Plugins.FamilyViewer\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.FamilyViewer\Properties\Messages.fr.resx" uniqueID="f3b900ff-30ec-4edc-a2ba-dc2f5412a18f" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="be97f3d5-3389-442a-ab8c-7674afc3df56" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="56f310ba-600e-4849-9160-6184cc49dd6b">
+      <file filePath="Plugins\Probel.NDoctor.Plugins.MedicalRecord\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.MedicalRecord\Properties\Messages.resx" uniqueID="bc852111-4b9e-4e27-bb14-829bbbc2caac" />
+      <file filePath="Plugins\Probel.NDoctor.Plugins.MedicalRecord\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.MedicalRecord\Properties\Messages.fr.resx" uniqueID="a0fbd0bf-5a22-46f3-a825-eb8afd4fbf03" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="e7a45525-b280-494a-937e-1358d6e3ac60" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="0295b556-1ec0-434c-967a-0ef2a5dbe3a0">
+      <file filePath="Plugins\Probel.NDoctor.Plugins.MeetingManager\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.MeetingManager\Properties\Messages.resx" uniqueID="46a992d9-e3ec-4b91-9920-171a69bbeb8a" />
+      <file filePath="Plugins\Probel.NDoctor.Plugins.MeetingManager\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.MeetingManager\Properties\Messages.fr.resx" uniqueID="e7c15e8f-7d52-4eb9-8220-875b04cab6c7" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="14fd5fe0-8141-4a16-be6a-cf1eda495d04" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="80a867f0-95fc-4ac3-9b69-3b41c30d4a04">
+      <file filePath="Plugins\Probel.NDoctor.Plugins.PathologyManager\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.PathologyManager\Properties\Messages.resx" uniqueID="29176038-8106-4692-952e-b2cea96457c8" />
+      <file filePath="Plugins\Probel.NDoctor.Plugins.PathologyManager\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.PathologyManager\Properties\Messages.fr.resx" uniqueID="a5c1a3ff-bc16-4a12-8e14-72e820d88a1f" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="6cf6e93a-870c-413c-8f90-0bfd326c36be" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="a748f42f-34e1-4fea-ae4f-83c838fc77f4">
+      <file filePath="Plugins\Probel.NDoctor.Plugins.PatientData\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.PatientData\Properties\Messages.resx" uniqueID="3d6d9733-4c0c-423e-9f5c-35ca866d22d9" />
+      <file filePath="Plugins\Probel.NDoctor.Plugins.PatientData\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.PatientData\Properties\Messages.fr.resx" uniqueID="d5fb7e67-2141-4d77-bd8b-1575bb2a4a84" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="4f7d756d-34a8-450c-83f0-f8460303e517" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="a5f5e377-4440-43cd-97e7-33fedb5ae3c4">
+      <file filePath="Plugins\Probel.NDoctor.Plugins.PatientOverview\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.PatientOverview\Properties\Messages.resx" uniqueID="72b8fb30-1f8e-4cc3-baf3-93662fc91488" />
+      <file filePath="Plugins\Probel.NDoctor.Plugins.PatientOverview\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.PatientOverview\Properties\Messages.fr.resx" uniqueID="9854e5a4-1f21-48e9-824d-b283e118efd7" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="1068281d-562b-46b6-8030-abdfc92be180" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="43719d72-5a4e-458d-8582-15d2ca090588">
+      <file filePath="Plugins\Probel.NDoctor.Plugins.PatientSession\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.PatientSession\Properties\Messages.resx" uniqueID="9ecbfc1b-56b3-4d1f-b96d-1de17fd37f3c" />
+      <file filePath="Plugins\Probel.NDoctor.Plugins.PatientSession\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.PatientSession\Properties\Messages.fr.resx" uniqueID="1f5dbbf4-d2ca-4533-bc48-b5aeeafa10cc" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="0e3b09b0-db9e-460d-9d82-eb0d5d69eaae" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="4e5da012-93e5-4ff6-a951-6520ee6c336e">
+      <file filePath="Plugins\Probel.NDoctor.Plugins.PictureManager\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.PictureManager\Properties\Messages.resx" uniqueID="dac49fc3-6ec1-4c6a-b49a-996dde91572b" />
+      <file filePath="Plugins\Probel.NDoctor.Plugins.PictureManager\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.PictureManager\Properties\Messages.fr.resx" uniqueID="ffc1642b-ac15-499b-8508-88c0bd5af805" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="cd27e1ed-4e0b-4eb4-b218-a610201a106a" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="4ef21f3f-5c71-409c-8147-6be63c32fbb9">
+      <file filePath="Plugins\Probel.NDoctor.Plugins.PrescriptionManager\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.PrescriptionManager\Properties\Messages.resx" uniqueID="87d9550d-967c-43cd-8526-7d67cf89b662" />
+      <file filePath="Plugins\Probel.NDoctor.Plugins.PrescriptionManager\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.PrescriptionManager\Properties\Messages.fr.resx" uniqueID="a2cda382-3971-4408-add8-94ff34e744ca" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="cd081ab7-08ad-4989-ac75-b48aef1c7b90" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="70852ab6-58a1-4601-ac28-8453bcc2e077">
+      <file filePath="Plugins\Probel.NDoctor.Plugins.RescueTools\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.RescueTools\Properties\Messages.resx" uniqueID="b7d1b53c-b08f-40fd-8f9f-85d636703dda" />
+      <file filePath="Plugins\Probel.NDoctor.Plugins.RescueTools\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.RescueTools\Properties\Messages.fr.resx" uniqueID="0fa8203a-8849-4885-a878-2cf47d1c96c5" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="0252df75-9d39-4c95-881e-15bcd030be50" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="fd94a73b-7c2a-4969-b7e7-0a8425e56e90">
+      <file filePath="Plugins\Probel.NDoctor.Plugins.UserSession\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.UserSession\Properties\Messages.resx" uniqueID="929c1691-0d30-4334-87d8-c0ed56e14ef5" />
+      <file filePath="Plugins\Probel.NDoctor.Plugins.UserSession\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\Plugins\Probel.NDoctor.Plugins.UserSession\Properties\Messages.fr.resx" uniqueID="ffe0ccf5-40c9-4e4b-8d2c-036efe4e4411" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="e6eb6dee-f324-48f7-86e9-868c98c6375a" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="7a14cfa4-a714-4d5b-aa46-01f02946f0fc">
+      <file filePath="View\Probel.NDoctor.View.Core\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\View\Probel.NDoctor.View.Core\Properties\Messages.resx" uniqueID="129901d9-7787-48ba-a18b-df67d58d7348" />
+      <file filePath="View\Probel.NDoctor.View.Core\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\View\Probel.NDoctor.View.Core\Properties\Messages.fr.resx" uniqueID="da77ccc9-d1f4-4dda-a61f-bc9f01418e36" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="40b61a6a-463a-4c33-b8ac-425f8c4e4cd8" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="41913f61-4e09-4810-8952-53cc7364d541">
+      <file filePath="View\Probel.NDoctor.View.Plugins\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\View\Probel.NDoctor.View.Plugins\Properties\Messages.resx" uniqueID="4bef5081-bc0a-4c7a-89ae-37cbe9e9f3af" />
+      <file filePath="View\Probel.NDoctor.View.Plugins\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\View\Probel.NDoctor.View.Plugins\Properties\Messages.fr.resx" uniqueID="2cf37653-1667-46bf-8892-1d76ed0dc26b" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="8de2dd28-b409-4a25-a11c-ad3e36fcb504" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="22642d7b-dbf9-4f3d-b597-08da85fb47ce">
+      <file filePath="View\Probel.NDoctor.View.Toolbox\Properties\Messages.resx" absoluteFilePath="C:\Projects\ndoctor\src\View\Probel.NDoctor.View.Toolbox\Properties\Messages.resx" uniqueID="0f431682-f4ec-47a9-ad61-2560f83839c2" />
+      <file filePath="View\Probel.NDoctor.View.Toolbox\Properties\Messages.fr.resx" absoluteFilePath="C:\Projects\ndoctor\src\View\Probel.NDoctor.View.Toolbox\Properties\Messages.fr.resx" uniqueID="1522f66b-b0a0-4775-9fd0-65a18fdb3ee4" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+  </fileGroups>
+  <projectFolders>
+    <projectFolder uniqueID="dbe77282-cdc8-4c48-aa68-32d73b166346" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.Helpers" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="bce0cba6-5786-4654-9a11-bbba1d3b69d1" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.Helpers.Test" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="747862f4-a5af-4646-ad81-1e40dab191b4" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.Helpers.WPF" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="32bec62a-d619-4577-a226-b3f2f8f25a87" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Domain.Components" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="686a825d-a380-44a2-ab88-15b5e3b4d028" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Domain.DAL" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="584e48da-02c8-4fca-87bb-1e938cdcd933" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Domain.DTO" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="f3ce08c4-3625-4ddd-a09e-bb2cffdbe255" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Domain.Test" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="2ff238f7-ce41-4bb8-8e59-c072bfc2c024" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Plugins.Administration" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="f89e11d3-9a91-4554-9f54-ba13467760ea" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Plugins.Authorisation" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="bae6e40c-26b4-4ffe-9da5-89d4e47597bf" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Plugins.BmiRecord" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="d9972ad2-308e-4dec-94f2-aeeaef0cefdb" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Plugins.DbConvert" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="122697f6-1399-46a9-9d08-e29402549c45" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Plugins.DebugTools" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="46d28669-7bf2-4e1e-90d6-da8e6012e523" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Plugins.FamilyViewer" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="be97f3d5-3389-442a-ab8c-7674afc3df56" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Plugins.MedicalRecord" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="e7a45525-b280-494a-937e-1358d6e3ac60" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Plugins.MeetingManager" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="14fd5fe0-8141-4a16-be6a-cf1eda495d04" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Plugins.PathologyManager" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="6cf6e93a-870c-413c-8f90-0bfd326c36be" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Plugins.PatientData" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="4f7d756d-34a8-450c-83f0-f8460303e517" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Plugins.PatientOverview" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="1068281d-562b-46b6-8030-abdfc92be180" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Plugins.PatientSession" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="0e3b09b0-db9e-460d-9d82-eb0d5d69eaae" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Plugins.PictureManager" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="cd27e1ed-4e0b-4eb4-b218-a610201a106a" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Plugins.PrescriptionManager" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="cd081ab7-08ad-4989-ac75-b48aef1c7b90" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Plugins.RescueTools" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="0252df75-9d39-4c95-881e-15bcd030be50" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.Plugins.UserSession" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="e6eb6dee-f324-48f7-86e9-868c98c6375a" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.View.Core" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="40b61a6a-463a-4c33-b8ac-425f8c4e4cd8" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.View.Plugins" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="04cc75dc-6861-4bb3-807d-cadc6f1efd43" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.View.Test" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="8de2dd28-b409-4a25-a11c-ad3e36fcb504" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Probel.NDoctor.View.Toolbox" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+  </projectFolders>
+</project>

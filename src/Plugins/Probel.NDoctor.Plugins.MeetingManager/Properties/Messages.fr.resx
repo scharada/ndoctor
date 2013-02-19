@@ -126,7 +126,7 @@
     <comment>Search</comment>
   </data>
 	<data name="Error_CantFindTags" xml:space="preserve">
-    <value>Une erreur est apparue pendant la recherche de tags</value>
+    <value>Une erreur est survenue pendant la recherche de tags</value>
     <comment>An error occured while searching tags</comment>
   </data>
 	<data name="Error_DuringAppointmentAdd" xml:space="preserve">
@@ -138,7 +138,7 @@
     <comment>An error occured when removing a appointment</comment>
   </data>
 	<data name="Error_ErrorSearching" xml:space="preserve">
-    <value>Une erreur est survenue pendant le recherche</value>
+    <value>Une erreur est survenue pendant la recherche</value>
     <comment>An error occured while searching</comment>
   </data>
 	<data name="Error_FailToLoadCalendar" xml:space="preserve">
@@ -278,7 +278,7 @@
     <comment>Remove an appointment</comment>
   </data>
 	<data name="Title_SearchWatermark" xml:space="preserve">
-    <value>Nom et/ou prénom</value>
+    <value>Cherchre...</value>
     <comment>First or last name</comment>
   </data>
 	<data name="Title_SlotDuration" xml:space="preserve">
@@ -302,7 +302,7 @@
     <comment>Workday</comment>
   </data>
 	<data name="Warn_CalendarSettingsNotSaved" xml:space="preserve">
-    <value>L'heure de début de la journée de travail doit être plus petite que l'heure de fin</value>
+    <value>Le début de la journée de travail doit être avant le fin.</value>
     <comment>The start time of a workday should be before the end time.</comment>
   </data>
 </root>

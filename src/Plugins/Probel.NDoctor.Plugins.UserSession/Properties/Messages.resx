@@ -166,15 +166,15 @@
     <comment>Create the administrator</comment>
   </data>
 	<data name="Msg_ErrorAddUser" xml:space="preserve">
-    <value>An error occured while adding a new user</value>
+    <value>An error occured while adding a new user.</value>
     <comment>An error occured while adding a new user</comment>
   </data>
 	<data name="Msg_ErrorChangingPwd" xml:space="preserve">
-    <value>An error occured while changing the password</value>
+    <value>An error occured while changing the password.</value>
     <comment>An error occured while changing the password</comment>
   </data>
 	<data name="Msg_ErrorUpdateUser" xml:space="preserve">
-    <value>An error occured while updating the user</value>
+    <value>An error occured while updating the user.</value>
     <comment>An error occured while updating the user</comment>
   </data>
 	<data name="Msg_ErrorWhileLoadingUser" xml:space="preserve">
@@ -182,11 +182,11 @@
     <comment>An error occured while loading the data of a user.</comment>
   </data>
 	<data name="Msg_ErrorWrongPassword" xml:space="preserve">
-    <value>Wrong password</value>
+    <value>Wrong password.</value>
     <comment>Wrong password</comment>
   </data>
 	<data name="Msg_NotYetImplemented" xml:space="preserve">
-    <value>Not yet implemented</value>
+    <value>Not yet implemented.</value>
     <comment>Not yet implemented</comment>
   </data>
 	<data name="Msg_PwdChanged" xml:space="preserve">
@@ -202,7 +202,7 @@
     <comment>A user has been added.</comment>
   </data>
 	<data name="Msg_UserUpdated" xml:space="preserve">
-    <value>User updated</value>
+    <value>User updated.</value>
     <comment>User updated</comment>
   </data>
 	<data name="Msg_WarnDefaultUser" xml:space="preserve">

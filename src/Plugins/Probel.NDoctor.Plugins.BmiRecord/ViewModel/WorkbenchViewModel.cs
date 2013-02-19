@@ -25,6 +25,7 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using System.Windows.Input;
 
     using Probel.Helpers.Assertion;
+    using Probel.Helpers.Data;
     using Probel.Helpers.WPF;
     using Probel.Mvvm.DataBinding;
     using Probel.Mvvm.Gui;
@@ -37,11 +38,12 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Toolbox;
     using Probel.NDoctor.View.Toolbox.Threads;
-    using Probel.Helpers.Data;
 
     internal class WorkbenchViewModel : BaseViewModel
     {
         #region Fields
+
+        private readonly ICommand refreshCommand;
 
         private IBmiComponent component;
         private PatientBmiDto patient;
@@ -110,6 +112,11 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
                 this.OnPropertyChanged(() => this.EndDate);
                 this.OnPropertyChanged(() => this.SelectedBmi);
             }
+        }
+
+        public ICommand RefreshCommand
+        {
+            get { return this.refreshCommand; }
         }
 
         /// <summary>
@@ -232,6 +239,13 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
         #endregion Properties
 
         #region Methods
+
+        private bool CanRemoveBmi()
+        {
+            return this.SelectedBmi != null
+                && PluginContext.DoorKeeper.IsUserGranted(To.Write);
+        }
+
         private void Refresh()
         {
             Assert.IsNotNull(PluginContext.Host);
@@ -245,13 +259,6 @@ namespace Probel.NDoctor.Plugins.BmiRecord.ViewModel
                     this.Patient = t;
                     this.BmiHistory.Refill(this.Patient.BmiHistory);
                 });
-        }
-        private readonly ICommand refreshCommand;
-        public ICommand RefreshCommand { get { return this.refreshCommand; } }
-        private bool CanRemoveBmi()
-        {
-            return this.SelectedBmi != null
-                && PluginContext.DoorKeeper.IsUserGranted(To.Write);
         }
 
         private void RemoveBmi()

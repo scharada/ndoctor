@@ -130,11 +130,11 @@
     <comment>An error occured while searching tags</comment>
   </data>
 	<data name="Error_DuringAppointmentAdd" xml:space="preserve">
-    <value>An error occured when creating a appointment</value>
+    <value>An error occured while creating an appointment</value>
     <comment>An error occured when creating a appointment</comment>
   </data>
 	<data name="Error_DuringAppointmentRemove" xml:space="preserve">
-    <value>An error occured when removing a appointment</value>
+    <value>An error occured while removing an appointment</value>
     <comment>An error occured when removing a appointment</comment>
   </data>
 	<data name="Error_ErrorSearching" xml:space="preserve">
@@ -210,7 +210,7 @@
     <comment>Add a category</comment>
   </data>
 	<data name="Msg_AppointmentAdded" xml:space="preserve">
-    <value>An appointment has just been added</value>
+    <value>An appointment has been added.</value>
     <comment>An appointment has just been added</comment>
   </data>
 	<data name="Msg_AppointmentAskAdd" xml:space="preserve">
@@ -274,7 +274,7 @@
     <comment>Remove an appointment</comment>
   </data>
 	<data name="Title_SearchWatermark" xml:space="preserve">
-    <value>First or last name</value>
+    <value>Chercher...</value>
     <comment>First or last name</comment>
   </data>
 	<data name="Title_SlotDuration" xml:space="preserve">
@@ -298,7 +298,7 @@
     <comment>Workday</comment>
   </data>
 	<data name="Warn_CalendarSettingsNotSaved" xml:space="preserve">
-    <value>L'heure de début de la journée de travail doit être plus petite que l'heure de fin</value>
+    <value>The working days start should be before the end.</value>
     <comment>The start time of a workday should be before the end time.</comment>
   </data>
 	<data name="Error_FailToLoadCalendar" xml:space="preserve">

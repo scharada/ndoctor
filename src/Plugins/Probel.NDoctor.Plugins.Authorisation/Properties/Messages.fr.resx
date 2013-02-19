@@ -210,20 +210,16 @@
     <comment>Delete</comment>
   </data>
 	<data name="Msg_AskRemoveUser" xml:space="preserve">
-    <value>Voulez-vous supprimer cet utilisateur ainsi que tous ses rendez-vous?</value>
+    <value>Voulez-vous supprimer cet utilisateur ainsi que tous ses rendez-vous? Cette action est irreversible.</value>
     <comment>Do you want to remove this user and all his/her appointments?</comment>
   </data>
 	<data name="Msg_CantRemoveRole" xml:space="preserve">
-    <value>Il existe un ou plusieurs utilisateurs qui ont ce rôle assignés. Supprimer ces liens avant de pouvoir supprimer ce rôle</value>
+    <value>Il existe un ou plusieurs utilisateurs qui ont été assignés à ce rôle. Supprimer ces liens avant de pouvoir supprimer ce rôle</value>
     <comment>This role is assigned to, at least, one user. Unassigned this role from all these user before removing this one.</comment>
   </data>
 	<data name="Msg_CantRemoveSuperadmin" xml:space="preserve">
     <value>Le super admin ne peut pas être supprimé!</value>
     <comment>The super admin user can't be removed!</comment>
-  </data>
-	<data name="Msg_HelloWorld" xml:space="preserve">
-    <value>Bonjour le monde!</value>
-    <comment>Hello world!</comment>
   </data>
 	<data name="Msg_RoleCreated" xml:space="preserve">
     <value>Rôle créé.</value>

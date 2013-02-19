@@ -122,7 +122,7 @@
     <comment>Add</comment>
   </data>
 	<data name="Btn_Edit" xml:space="preserve">
-    <value>Editer</value>
+    <value>Edit</value>
     <comment>Edit</comment>
   </data>
 	<data name="Btn_RemoveTask" xml:space="preserve">
@@ -214,7 +214,7 @@
     <comment>Delete</comment>
   </data>
 	<data name="Msg_AskRemoveUser" xml:space="preserve">
-    <value>Do you want to remove this user and all his/her appointments?</value>
+    <value>Do you want to remove this user and all his/her data? This action can't be undone</value>
     <comment>Do you want to remove this user and all his/her appointments?</comment>
   </data>
 	<data name="Msg_CantRemoveRole" xml:space="preserve">
@@ -224,10 +224,6 @@
 	<data name="Msg_CantRemoveSuperadmin" xml:space="preserve">
     <value>The super admin user can't be removed!</value>
     <comment>The super admin user can't be removed!</comment>
-  </data>
-	<data name="Msg_HelloWorld" xml:space="preserve">
-    <value>Hello world!</value>
-    <comment>Hello world!</comment>
   </data>
 	<data name="Msg_RoleCreated" xml:space="preserve">
     <value>Role created</value>
@@ -250,7 +246,7 @@
     <comment>Update the role</comment>
   </data>
 	<data name="Question_DeleteRole" xml:space="preserve">
-    <value>Voulez-vous supprimer ce rôle?</value>
+    <value>Do you want to delete this role?</value>
     <comment>Do you want to remove this role?</comment>
   </data>
 	<data name="Title_AddRole" xml:space="preserve">
