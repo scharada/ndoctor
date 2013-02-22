@@ -141,11 +141,11 @@ namespace Probel.NDoctor.Plugins.PatientData.ViewModel
         {
             var context = TaskScheduler.FromCurrentSynchronizationContext();
             var task = Task.Factory
-                 .StartNew<IList<LightDoctorDto>>(state => this.SearchAsync(state as LightPatientDto), PluginContext.Host.SelectedPatient);
+                 .StartNew<IEnumerable<LightDoctorDto>>(state => this.SearchAsync(state as LightPatientDto), PluginContext.Host.SelectedPatient);
             task.ContinueWith(e => this.FoundDoctors.Refill(e.Result), context);
         }
 
-        private IList<LightDoctorDto> SearchAsync(LightPatientDto selectedPatient)
+        private IEnumerable<LightDoctorDto> SearchAsync(LightPatientDto selectedPatient)
         {
             Assert.IsNotNull(selectedPatient, "selectedPatient");
             PluginContext.Host.SetWaitCursor();

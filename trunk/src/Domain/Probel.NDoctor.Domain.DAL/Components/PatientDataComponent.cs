@@ -129,7 +129,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         /// A list of light weight insurance
         /// </returns>
-        public IList<LightInsuranceDto> GetAllInsurancesLight()
+        public IEnumerable<LightInsuranceDto> GetAllInsurancesLight()
         {
             return new Selector(this.Session).GetAllInsurancesLight();
         }
@@ -138,7 +138,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Gets all practices stored in the database.
         /// </summary>
         /// <returns></returns>
-        public IList<LightPracticeDto> GetAllPracticesLight()
+        public IEnumerable<LightPracticeDto> GetAllPracticesLight()
         {
             return new Selector(this.Session).GetAllPracticesLight();
         }
@@ -147,7 +147,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Gets all professions stored in the database.
         /// </summary>
         /// <returns></returns>
-        public IList<ProfessionDto> GetAllProfessions()
+        public IEnumerable<ProfessionDto> GetAllProfessions()
         {
             return new Selector(this.Session).GetAllProfessions();
         }
@@ -156,7 +156,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Gets all reputations stored in the database.
         /// </summary>
         /// <returns></returns>
-        public IList<ReputationDto> GetAllReputations()
+        public IEnumerable<ReputationDto> GetAllReputations()
         {
             return new Selector(this.Session).GetAllReputations();
         }
@@ -166,10 +166,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <returns>A list of doctors</returns>
-        public IList<LightDoctorDto> GetDoctorOf(LightPatientDto patient)
+        public IEnumerable<LightDoctorDto> GetDoctorOf(LightPatientDto patient)
         {
             var entity = this.Session.Get<Patient>(patient.Id);
-            return Mapper.Map<IList<Doctor>, IList<LightDoctorDto>>(entity.Doctors);
+            if (entity.Doctors == null)
+            {
+                return Mapper.Map<IList<Doctor>, IList<LightDoctorDto>>(entity.Doctors);
+            }
+            else { return new List<LightDoctorDto>(); }
         }
 
         /// <summary>
@@ -177,10 +181,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <returns>A list of doctors</returns>
-        public IList<DoctorDto> GetFullDoctorOf(LightPatientDto patient)
+        public IEnumerable<DoctorDto> GetFullDoctorOf(LightPatientDto patient)
         {
             var entity = this.Session.Get<Patient>(patient.Id);
-            return Mapper.Map<IList<Doctor>, IList<DoctorDto>>(entity.Doctors);
+            if (entity.Doctors == null)
+            {
+                return Mapper.Map<IList<Doctor>, IList<DoctorDto>>(entity.Doctors);
+            }
+            else { return new List<DoctorDto>(); }
         }
 
         /// <summary>
@@ -192,7 +200,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </returns>
         public InsuranceDto GetInsuranceById(long id)
         {
-            return new Selector(this.Session).GetById<Insurance, InsuranceDto>(id);
+            if (id == 0) { return new InsuranceDto(); }
+            else { return new Selector(this.Session).GetById<Insurance, InsuranceDto>(id); }
         }
 
         /// <summary>
@@ -202,6 +211,8 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public LightPatientDto GetLightPatientById(long id)
         {
+            if (id == 0) { return new LightPatientDto(); }
+
             var result = this.Session.Get<Patient>(id);
             if (result != null) { return Mapper.Map<Patient, LightPatientDto>(result); }
             else { throw new EntityNotFoundException(typeof(Patient)); }
@@ -216,7 +227,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         /// A list of doctor
         /// </returns>
-        public IList<LightDoctorDto> GetNotLinkedDoctorsFor(LightPatientDto patient, string criteria, SearchOn searchOn)
+        public IEnumerable<LightDoctorDto> GetNotLinkedDoctorsFor(LightPatientDto patient, string criteria, SearchOn searchOn)
         {
             var patientEntity = this.Session.Get<Patient>(patient.Id);
 
@@ -294,7 +305,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="category"></param>
         /// <returns></returns>
-        public IList<TagDto> GetTags(TagCategory category)
+        public IEnumerable<TagDto> GetTags(TagCategory category)
         {
             return new Selector(this.Session).GetTags(category);
         }

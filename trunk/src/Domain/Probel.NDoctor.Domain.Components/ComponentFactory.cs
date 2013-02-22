@@ -140,7 +140,7 @@ namespace Probel.NDoctor.Domain.Components
 
                 //Check remotly for new versions
                 x.For<IVersionNotifyer>().Add<VersionNotifyer>();
-                x.SelectConstructor<VersionNotifyer>(() => new RemoteFactory().NewVersionNotifyer());
+                x.SelectConstructor<VersionNotifyer>(() => new RemoteService().NewVersionNotifyer());
 
                 //Data manager
                 x.For<IRescueToolsComponent>().Add<RescueToolsComponent>();

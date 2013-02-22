@@ -46,7 +46,7 @@ namespace Probel.NDoctor.Domain.Test.Components
             //The patient 3 has two doctors binded.
             var patient = this.HelperComponent.GetLightPatient(3);
 
-            var count1 = this.ComponentUnderTest.GetNotLinkedDoctorsFor(patient, "*", SearchOn.FirstAndLastName).Count;
+            var count1 = this.ComponentUnderTest.GetNotLinkedDoctorsFor(patient, "*", SearchOn.FirstAndLastName).Count();
             var count2 = this.HelperComponent.GetAllDoctors().Count - 2;
 
             Assert.AreEqual(count1, count2);

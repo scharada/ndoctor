@@ -78,11 +78,6 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
             set;
         }
 
-        private AutoPersistenceModel AutoPersistenceModel
-        {
-            get { return new MyAutoPersistenceModel(); }
-        }
-
         private Action<NHConfiguration> ConfigurationSetup
         {
             get;
@@ -121,7 +116,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                     // delete the existing db on each run
                     if (File.Exists(fileName))
                     {
-                        File.Delete(fileName);
+                        File.Delete(fileName); //TODO make a backup instead of delete
                         Logger.WarnFormat("Deleting existing database '{0}'", fileName);
                     }
                     else { Logger.DebugFormat("The database '{0}' doesn't exist, creating a new file", fileName); }
@@ -238,7 +233,7 @@ namespace Probel.NDoctor.Domain.DAL.Cfg
                 .Mappings(m =>
                 {
                     m.AutoMappings
-                        .Add(this.AutoPersistenceModel);
+                        .Add(new MyAutoPersistenceModel());
                 })
                 .ExposeConfiguration(ConfigurationSetup)
                 .BuildSessionFactory();

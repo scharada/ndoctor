@@ -69,13 +69,17 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public Chart<int, int> GetAgeRepartion()
         {
-            var result = (from p in this.Session.Query<Patient>().ToList()
-                          where p.IsDeactivated == false
-                          group p by p.Age into g
-                          where g.Key < 120
-                          select new ChartPoint<int, int>(g.Key, g.Count()));
+            if (this.Session.Query<Patient>().Count() > 0)
+            {
+                var result = (from p in this.Session.Query<Patient>().ToList()
+                              where p.IsDeactivated == false
+                              group p by p.Age into g
+                              where g.Key < 120
+                              select new ChartPoint<int, int>(g.Key, g.Count()));
 
-            return new Chart<int, int>(result);
+                return new Chart<int, int>(result);
+            }
+            else { return new Chart<int, int>(); }
         }
 
         /// <summary>
@@ -84,18 +88,22 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>Graph of the average bmi index through time</returns>
         public Chart<DateTime, double> GetBmiRepartition()
         {
-            var points = (from bmi in this.Session.Query<Bmi>().ToList()
-                          group bmi by new { bmi.Date.Month, bmi.Date.Year } into g
-                          select new ChartPoint<DateTime, double>
-                          {
-                              X = new DateTime(g.Key.Year, g.Key.Month, 1),
-                              Y = (from item in g
-                                   select (float)item.Weight / Math.Pow((double)item.Height / 100, 2d)).Average()
-                          })
-                     .OrderBy(e => e.X.Year)
-                     .OrderBy(e => e.X.Month);
+            if (this.Session.Query<Bmi>().Count() > 0)
+            {
+                var points = (from bmi in this.Session.Query<Bmi>().ToList()
+                              group bmi by new { bmi.Date.Month, bmi.Date.Year } into g
+                              select new ChartPoint<DateTime, double>
+                              {
+                                  X = new DateTime(g.Key.Year, g.Key.Month, 1),
+                                  Y = (from item in g
+                                       select (float)item.Weight / Math.Pow((double)item.Height / 100, 2d)).Average()
+                              })
+                         .OrderBy(e => e.X.Year)
+                         .OrderBy(e => e.X.Month);
 
-            return new Chart<DateTime, double>(points);
+                return new Chart<DateTime, double>(points);
+            }
+            else { return new Chart<DateTime, double>(); }
         }
 
         /// <summary>
@@ -104,11 +112,15 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public Chart<string, int> GetGenderRepartition()
         {
-            var result = (from pat in this.Session.Query<Patient>()
-                          where pat.IsDeactivated == false
-                          group pat by pat.Gender into g
-                          select new ChartPoint<string, int> { X = g.Key.Translate(), Y = g.Count() });
-            return new Chart<string, int>(result);
+            if (this.Session.Query<Patient>().Count() > 0)
+            {
+                var result = (from pat in this.Session.Query<Patient>()
+                              where pat.IsDeactivated == false
+                              group pat by pat.Gender into g
+                              select new ChartPoint<string, int> { X = g.Key.Translate(), Y = g.Count() });
+                return new Chart<string, int>(result);
+            }
+            else { return new Chart<string, int>(); }
         }
 
         /// <summary>
@@ -117,19 +129,23 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns></returns>
         public Chart<DateTime, int> GetPatientGrowth()
         {
-            var firstInscription = this.Session.Query<Patient>().Min(e => e.InscriptionDate).Year;
-            var chart = new Chart<DateTime, int>();
-
-            for (int i = firstInscription; i < DateTime.Today.Year; i++)
+            if (this.Session.Query<Patient>().Count() > 0)
             {
-                var count = (from p in this.Session.Query<Patient>()
-                             where p.InscriptionDate.Year <= i
-                                && p.IsDeactivated == false
-                             select p).Count();
-                chart.AddPoint(new DateTime(i, 1, 1), count);
-            }
+                var firstInscription = this.Session.Query<Patient>().Min(e => e.InscriptionDate).Year;
+                var chart = new Chart<DateTime, int>();
 
-            return chart;
+                for (int i = firstInscription; i < DateTime.Today.Year; i++)
+                {
+                    var count = (from p in this.Session.Query<Patient>()
+                                 where p.InscriptionDate.Year <= i
+                                    && p.IsDeactivated == false
+                                 select p).Count();
+                    chart.AddPoint(new DateTime(i, 1, 1), count);
+                }
+
+                return chart;
+            }
+            else { return new Chart<DateTime, int>(); }
         }
 
         #endregion Methods
