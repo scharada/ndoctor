@@ -294,8 +294,8 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
                          ctx.SelectedPatient = this.component.GetPatient(selectedPatient);
                          ctx.SelectedDoctor = this.component.GetFullDoctorOf(selectedPatient);
                          ctx.Doctors = this.component.GetFullDoctorOf(selectedPatient);
-                         ctx.SelectedInsurance = this.component.GetInsuranceById(ctx.SelectedPatient.Insurance.Id);
-                         ctx.SelectedPractice = this.component.GetPracticeById(ctx.SelectedPatient.Practice.Id);
+                         if (ctx.SelectedPatient.Insurance != null) { ctx.SelectedInsurance = this.component.GetInsuranceById(ctx.SelectedPatient.Insurance.Id); }
+                         if (ctx.SelectedPatient.Practice != null) { ctx.SelectedPractice = this.component.GetPracticeById(ctx.SelectedPatient.Practice.Id); }
                          ctx.Thumbnail = this.component.GetThumbnail(ctx.SelectedPatient);
 
                          return ctx;
@@ -446,8 +446,8 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             var task = Task.Factory
                 .StartNew<Tuple<InsuranceDto, PracticeDto>>(() =>
                 {
-                    var insurance = this.component.GetInsuranceById(this.SelectedPatient.Insurance.Id);
-                    var practice = this.component.GetPracticeById(this.SelectedPatient.Practice.Id);
+                    var insurance = this.component.GetInsuranceById(this.SelectedPatient.Insurance == null ? 0 : this.SelectedPatient.Insurance.Id);
+                    var practice = this.component.GetPracticeById(this.SelectedPatient.Practice == null ? 0 : this.SelectedPatient.Practice.Id);
                     return new Tuple<InsuranceDto, PracticeDto>(insurance, practice);
                 });
             task.ContinueWith(t =>
@@ -496,7 +496,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
                 set;
             }
 
-            public IList<DoctorDto> SelectedDoctor
+            public IEnumerable<DoctorDto> SelectedDoctor
             {
                 get;
                 set;

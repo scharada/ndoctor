@@ -36,7 +36,6 @@ namespace Probel.NDoctor.Domain.Components.Statistics
     using Probel.NDoctor.Domain.DAL.Components;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Remote;
-    using Probel.NDoctor.Domain.DAL.Statistics;
 
     /// <summary>
     /// Contains in its internal state all the statistics about the application
@@ -135,9 +134,7 @@ namespace Probel.NDoctor.Domain.Components.Statistics
                 Logger.InfoFormat("Exporting {0} entrie(s) into the remote server", toImport.Count());
                 var version = Assembly.GetEntryAssembly().GetName().Version;
 
-                new RemoteFactory()
-                    .NewStatisticsExporter(version, this.SessionDuration)
-                    .Export(toImport, appKey);
+                new RemoteService().Export(toImport, version, this.SessionDuration, appKey);
             }
             else { Logger.Warn("The application is in debug mode, the statistics are not exported. The setting 'IsRemoteStatisticsEnabled' is overriden!"); }
         }

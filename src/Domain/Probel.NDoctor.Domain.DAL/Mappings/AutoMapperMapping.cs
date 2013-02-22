@@ -19,8 +19,8 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
     using AutoMapper;
 
     using Probel.NDoctor.Domain.DAL.Entities;
-    using Probel.NDoctor.Domain.DAL.Statistics;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Statistics.Domain;
 
     public static class AutoMapperMapping
     {
@@ -50,6 +50,8 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<PracticeDto, LightPracticeDto>();
             Mapper.CreateMap<PatientDto, LightPatientDto>();
             Mapper.CreateMap<LightPatientDto, PatientDto>();
+
+            Mapper.CreateMap<ApplicationStatistics, StatisticEntry>();
         }
 
         private static void MapDtoToEntity()

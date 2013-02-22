@@ -196,7 +196,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
                 Logger.Debug("Checking new versions...");
                 timer.Stop();
                 var culture = Thread.CurrentThread.CurrentUICulture;
-                var versionNotifyer = new RemoteFactory().NewVersionNotifyer();
+                var versionNotifyer = new RemoteService().NewVersionNotifyer();
                 versionNotifyer.Checked += (sender1, e1) =>
                 {
                     if (PluginContext.DbConfiguration.NotifyOnNewVersion)
@@ -266,7 +266,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         private void DebugCheckNewVersion()
         {
             var culture = Thread.CurrentThread.CurrentUICulture;
-            var notifyer = new RemoteFactory().NewVersionNotifyer();
+            var notifyer = new RemoteService().NewVersionNotifyer();
             notifyer.Checked += (sender, e) =>
             {
                 this.Logger.DebugFormat("Found new version. Current version: {0} - Remote version {1}", e.RemoteVersion, PluginContext.Configuration.Version);

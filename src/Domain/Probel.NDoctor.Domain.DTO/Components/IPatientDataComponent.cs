@@ -73,39 +73,39 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// Gets all insurances stored in the database. Return a light version of the insurance
         /// </summary>
         /// <returns>A list of light weight insurance</returns>
-        IList<LightInsuranceDto> GetAllInsurancesLight();
+        IEnumerable<LightInsuranceDto> GetAllInsurancesLight();
 
         /// <summary>
         /// Gets all practices stored in the database.
         /// </summary>
         /// <returns></returns>
-        IList<LightPracticeDto> GetAllPracticesLight();
+        IEnumerable<LightPracticeDto> GetAllPracticesLight();
 
         /// <summary>
         /// Gets all professions stored in the database.
         /// </summary>
         /// <returns></returns>
-        IList<ProfessionDto> GetAllProfessions();
+        IEnumerable<ProfessionDto> GetAllProfessions();
 
         /// <summary>
         /// Gets all reputations stored in the database.
         /// </summary>
         /// <returns></returns>
-        IList<ReputationDto> GetAllReputations();
+        IEnumerable<ReputationDto> GetAllReputations();
 
         /// <summary>
         /// Gets the doctors linked to the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <returns>A list of doctors</returns>
-        IList<LightDoctorDto> GetDoctorOf(LightPatientDto patient);
+        IEnumerable<LightDoctorDto> GetDoctorOf(LightPatientDto patient);
 
         /// <summary>
         /// Gets the doctors linked to the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>
         /// <returns>A list of doctors</returns>
-        IList<DoctorDto> GetFullDoctorOf(LightPatientDto patient);
+        IEnumerable<DoctorDto> GetFullDoctorOf(LightPatientDto patient);
 
         /// <summary>
         /// Gets the insurance by id.
@@ -130,7 +130,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <returns>
         /// A list of doctor
         /// </returns>
-        IList<LightDoctorDto> GetNotLinkedDoctorsFor(LightPatientDto patient, string criteria, SearchOn on);
+        IEnumerable<LightDoctorDto> GetNotLinkedDoctorsFor(LightPatientDto patient, string criteria, SearchOn on);
 
         /// <summary>
         /// Loads all the data of the patient.
@@ -159,7 +159,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// Gets all the tags with the specified catagory.
         /// </summary>
         /// <returns></returns>
-        IList<TagDto> GetTags(TagCategory category);
+        IEnumerable<TagDto> GetTags(TagCategory category);
 
         /// <summary>
         /// Gets the thumbnail of the specified patient.

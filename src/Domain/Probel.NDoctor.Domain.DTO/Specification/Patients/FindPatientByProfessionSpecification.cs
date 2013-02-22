@@ -41,7 +41,9 @@ namespace Probel.NDoctor.Domain.DTO.Specifications.Patients
 
         public FindPatientByProfessionSpecification(ProfessionDto profession)
         {
-            this.profession = profession.Name.ToLower();
+            this.profession = (profession != null)
+                ? profession.Name.ToLower()
+                : null;
         }
 
         #endregion Constructors
@@ -51,11 +53,9 @@ namespace Probel.NDoctor.Domain.DTO.Specifications.Patients
         public override bool IsSatisfiedBy(LightPatientDto obj)
         {
             Assert.IsNotNull(obj, "obj");
-            if (obj.Profession == null || string.IsNullOrWhiteSpace(obj.Profession.Name)) return false;
-            else
-            {
-                return obj.Profession.Name.ToLower().Contains(profession);
-            }
+            if (this.profession == null) { return false; }
+            else if (obj.Profession == null || string.IsNullOrWhiteSpace(obj.Profession.Name)) { return false; }
+            else { return obj.Profession.Name.ToLower().Contains(profession); }
         }
 
         #endregion Methods
