@@ -124,37 +124,35 @@
                                             <StackPanel Orientation="Horizontal">
 
                                                 <Label Style="{StaticResource ValueLabel}" 
-                                               Content="{Binding SelectedPatient.DisplayedName}" 
-                                               Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}"/>
+                                                       Content="{Binding SelectedPatient.DisplayedName}" 
+                                                       Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}"/>
 
                                                 <Label Content="("
-                                               Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}" />
+                                                       Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}" />
 
                                                 <Label Content="{Binding SelectedPatient.Fee}" 
-                                               Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}"  
-                                               Foreground="#FFF30000"                                        
-                                               ContentStringFormat="C2"                                       
-                                               FontWeight="Bold" />
-
+                                                       Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}"  
+                                                       Foreground="#FFF30000"                                        
+                                                       ContentStringFormat="C2"                                       
+                                                       FontWeight="Bold" />                                                
                                                 <Label Content=")"
-                                               Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}" />
+                                                       Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}" />
                                             </StackPanel>
                                         </Grid>
                                     </DockPanel>
                                 </DockPanel>
                                 <!-- Gender -->
                                 <DockPanel DockPanel.Dock="Top" 
-                                   Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}"
-                                   LastChildFill="True">
+                                           Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}"
+                                           LastChildFill="True">
                                     <Label Content="Gender"/>
                                     <ComboBox Margin="4"
-                                      ItemsSource="{Binding Genders, UpdateSourceTrigger=PropertyChanged}"
-                                      DisplayMemberPath="Item1"
-                                      SelectedItem="{Binding SelectedGender}"/>
+                                              ItemsSource="{Binding Genders, UpdateSourceTrigger=PropertyChanged}"
+                                              DisplayMemberPath="Item1"
+                                              SelectedItem="{Binding SelectedGender}"/>
                                 </DockPanel>
                                 <!-- Date of birth-->
-                                <Grid x:Name="BirthPanel" 
-                              DockPanel.Dock="Top"
+                                <Grid x:Name="BirthPanel" DockPanel.Dock="Top"
                               Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
@@ -181,25 +179,24 @@
                                     <Label Content=")" />
                                 </StackPanel>
                                 <!-- Profession -->
-                                <DockPanel LastChildFill="True"
-                           DockPanel.Dock="Top">
+                                <DockPanel LastChildFill="True" DockPanel.Dock="Top">
                                     <Label Content="{x:Static Member=t:WorkbenchText.Profession}"/>
                                     <Label Content="{Binding SelectedPatient.Profession.Name}"   
-                                   Style="{StaticResource ValueLabel}" 
-                                   Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}"/>
+                                           Style="{StaticResource ValueLabel}" 
+                                           Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}"/>
                                     <ComboBox ItemsSource="{Binding Professions}"
-                                      x:Name="CbProfession"
-                                      SelectedItem="{Binding SelectedPatient.Profession, UpdateSourceTrigger=PropertyChanged}"
-                                      DisplayMemberPath="Name"
-                                      Margin="4"
-                                      Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}"/>
+                                              x:Name="CbProfession"
+                                              SelectedItem="{Binding SelectedPatient.Profession, UpdateSourceTrigger=PropertyChanged}"
+                                              DisplayMemberPath="Name"
+                                              Margin="4"
+                                              Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}"/>
                                 </DockPanel>
                             </DockPanel>
                         </GroupBox>
                         <!-- Address of the patient -->
                         <GroupBox DockPanel.Dock="Top"
-                      Margin="4"
-                      Header="{x:Static Member=t:WorkbenchText.GrpAddress}">
+                                  Margin="4"
+                                  Header="{x:Static Member=t:WorkbenchText.GrpAddress}">
                             <StackPanel>
                                 <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}">
                                     <StackPanel Orientation="Horizontal">

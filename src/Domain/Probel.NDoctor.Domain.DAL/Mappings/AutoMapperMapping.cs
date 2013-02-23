@@ -44,11 +44,11 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
 
         private static void MapDtoToDto()
         {
-            Mapper.CreateMap<LightPatientDto, PatientBmiDto>();
+            Mapper.CreateMap<PatientDto, LightPatientDto>();
             Mapper.CreateMap<PatientBmiDto, LightPatientDto>();
+            Mapper.CreateMap<LightPatientDto, PatientBmiDto>();
             Mapper.CreateMap<LightPracticeDto, PracticeDto>();
             Mapper.CreateMap<PracticeDto, LightPracticeDto>();
-            Mapper.CreateMap<PatientDto, LightPatientDto>();
             Mapper.CreateMap<LightPatientDto, PatientDto>();
 
             Mapper.CreateMap<ApplicationStatistics, StatisticEntry>();
