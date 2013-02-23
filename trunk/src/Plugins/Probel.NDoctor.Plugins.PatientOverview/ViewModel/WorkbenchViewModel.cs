@@ -287,6 +287,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
                          var selectedPatient = state as LightPatientDto;
                          var ctx = new ThreadContext();
 
+                         ctx.SelectedPatient = this.component.GetPatientById(selectedPatient.Id);
                          ctx.Reputations = this.component.GetAllReputations();
                          ctx.Insurances = this.component.GetAllInsurancesLight();
                          ctx.Practices = this.component.GetAllPracticesLight();
@@ -303,6 +304,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
                 task.ContinueWith(t =>
                 {
                     var ctx = t.Result as ThreadContext;
+                    this.SelectedPatient = ctx.SelectedPatient;
                     this.Reputations.Refill(ctx.Reputations);
                     this.Insurances.Refill(ctx.Insurances);
                     this.Practices.Refill(ctx.Practices);
@@ -414,15 +416,14 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
             var token = new CancellationTokenSource().Token;
 
-            var task = Task.Factory.StartNew(e => this.SaveAsync(e), new { Patient = this.SelectedPatient, Invoker = PluginDataContext.Instance.Invoker });
+            var task = Task.Factory.StartNew(e => this.SaveAsync(e as PatientDto), this.SelectedPatient);
             task.ContinueWith(e => this.Refresh(), token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
             task.ContinueWith(e => this.Handle.Error(e.Exception.InnerException), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
         }
 
-        private void SaveAsync(dynamic context)
+        private void SaveAsync(PatientDto context)
         {
-            this.component.Update(context.Patient);
-            context.Invoker.Execute();
+            this.component.Update(context);
         }
 
         private void SendMail(string mail)
