@@ -162,6 +162,26 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets the doctor with the specified id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns>The doctor with the specified id</returns>
+        public DoctorDto GetDoctorById(long id)
+        {
+            var fullDoctor = (from p in this.Session.Query<Doctor>()
+                              where p.Id == id
+                              select p).FirstOrDefault();
+
+            if (fullDoctor == null) { throw new EntityNotFoundException(typeof(Doctor)); }
+
+            // Fix for patient created before issue 76: if address is null
+            // It's impossible to update the address with the databinding.
+            if (fullDoctor.Address == null) { fullDoctor.Address = new Address(); }
+
+            return Mapper.Map<Doctor, DoctorDto>(fullDoctor);
+        }
+
+        /// <summary>
         /// Gets the doctors linked to the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -169,7 +189,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public IEnumerable<LightDoctorDto> GetDoctorOf(LightPatientDto patient)
         {
             var entity = this.Session.Get<Patient>(patient.Id);
-            if (entity.Doctors == null)
+            if (entity.Doctors != null)
             {
                 return Mapper.Map<IList<Doctor>, IList<LightDoctorDto>>(entity.Doctors);
             }
@@ -184,7 +204,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public IEnumerable<DoctorDto> GetFullDoctorOf(LightPatientDto patient)
         {
             var entity = this.Session.Get<Patient>(patient.Id);
-            if (entity.Doctors == null)
+            if (entity.Doctors != null)
             {
                 return Mapper.Map<IList<Doctor>, IList<DoctorDto>>(entity.Doctors);
             }

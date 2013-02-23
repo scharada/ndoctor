@@ -23,6 +23,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
 {
     using System;
     using System.Data;
+    using System.Diagnostics;
 
     using Castle.DynamicProxy;
 
@@ -30,6 +31,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DAL.Components;
 
+    [DebuggerStepThrough]
     public class TransactionInterceptor : BaseInterceptor
     {
         #region Fields

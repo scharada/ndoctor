@@ -41,9 +41,9 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=2.1.267.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+    <Reference Include="AutoMapper, Version=2.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\AutoMapper.2.1.267\lib\net40\AutoMapper.dll</HintPath>
+      <HintPath>..\..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\..\packages\Castle.Core.3.2.0\lib\net40-client\Castle.Core.dll</HintPath>
@@ -89,9 +89,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Probel.Mvvm.1.2.2.95\lib\net40\Probel.Mvvm.dll</HintPath>
     </Reference>
-    <Reference Include="Probel.NDoctor.Statistics, Version=1.0.3.57, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Probel.NDoctor.Statistics, Version=1.0.3.155, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Probel.NDoctor.Statistics.1.0.3.57\lib\net40\Probel.NDoctor.Statistics.dll</HintPath>
+      <HintPath>..\..\packages\Probel.NDoctor.Statistics.1.0.3.155\lib\net40\Probel.NDoctor.Statistics.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

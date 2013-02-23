@@ -39,6 +39,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Toolbox;
+    using Probel.NDoctor.View.Toolbox.Threads;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -52,11 +53,13 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         private readonly ICommand saveCommand;
         private readonly ICommand sendPrivateMailCommand;
         private readonly ICommand sendProMailCommand;
+        private readonly ICommand setSelectedDoctorCommand;
 
         private IPatientDataComponent component;
+        private DoctorDto displayedDoctor;
         private bool isBusy;
         private bool isEditModeActivated;
-        private DoctorDto selectedDoctor;
+        private LightDoctorDto selectedDoctor;
         private InsuranceDto selectedInsurance;
         private PatientDto selectedPatient;
         private PracticeDto selectedPractice;
@@ -79,7 +82,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             this.Professions = new ObservableCollection<ProfessionDto>();
             this.Insurances = new ObservableCollection<LightInsuranceDto>();
             this.Practices = new ObservableCollection<LightPracticeDto>();
-            this.Doctors = new ObservableCollection<DoctorDto>();
+            this.Doctors = new ObservableCollection<LightDoctorDto>();
 
             this.Genders = new ObservableCollection<Tuple<string, Gender>>();
             Genders.Add(new Tuple<string, Gender>(Messages.Male, Gender.Male));
@@ -90,6 +93,17 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             this.saveCommand = new RelayCommand(() => this.Save(), () => this.CanSave());
             this.changeImageCommand = new RelayCommand(() => this.ChangeImage(), () => this.CanChangeImage());
             this.deactivateCommand = new RelayCommand(() => this.Deactivate(), () => this.CanDeactivate());
+            this.setSelectedDoctorCommand = new RelayCommand(() => this.SetSelectedDoctor(), () => this.CanSetSelectedDoctor());
+
+            PluginDataContext.Instance.DoctorBinded += (sender, e) => this.Doctors.Add(e.Data);
+            PluginDataContext.Instance.DoctorUnbinded += (sender, e) =>
+            {
+                var thisDoctor = (from d in this.Doctors
+                                  where d.Id == e.Data.Id
+                                  select d).FirstOrDefault();
+                if (thisDoctor == null) { return; }
+                this.Doctors.Remove(thisDoctor);
+            };
         }
 
         #endregion Constructors
@@ -106,7 +120,17 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             get { return this.deactivateCommand; }
         }
 
-        public ObservableCollection<DoctorDto> Doctors
+        public DoctorDto DisplayedDoctor
+        {
+            get { return this.displayedDoctor; }
+            set
+            {
+                this.displayedDoctor = value;
+                this.OnPropertyChanged(() => DisplayedDoctor);
+            }
+        }
+
+        public ObservableCollection<LightDoctorDto> Doctors
         {
             get;
             private set;
@@ -167,7 +191,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             get { return this.saveCommand; }
         }
 
-        public DoctorDto SelectedDoctor
+        public LightDoctorDto SelectedDoctor
         {
             get { return this.selectedDoctor; }
             set
@@ -238,6 +262,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         public ICommand SendProMailCommand
         {
             get { return this.sendProMailCommand; }
+        }
+
+        public ICommand SetSelectedDoctorCommand
+        {
+            get { return this.setSelectedDoctorCommand; }
         }
 
         public byte[] Thumbnail
@@ -348,6 +377,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             return this.SelectedPatient != null;
         }
 
+        private bool CanSetSelectedDoctor()
+        {
+            return true;
+        }
+
         private void ChangeImage()
         {
             var file = string.Empty;
@@ -362,7 +396,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             {
                 var img = Image.FromFile(file);
                 this.Thumbnail = img.GetThumbnail();
-                PluginDataContext.Instance.Invoker.AddThumbnail(this.component, this.SelectedPatient, this.Thumbnail);
+                PluginDataContext.Instance.Actions.Add(new AddThumbnailAction(this.component, this.SelectedPatient, this.Thumbnail));
             }
         }
 
@@ -424,6 +458,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         private void SaveAsync(PatientDto context)
         {
             this.component.Update(context);
+            PluginDataContext.Instance.Actions.Execute();
         }
 
         private void SendMail(string mail)
@@ -437,6 +472,20 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
                 Process.Start(string.Format("mailto:{0}", mail));
             }
             catch (Exception ex) { this.Handle.Error(ex, Messages.Err_CantSendMail); }
+        }
+
+        private void SetSelectedDoctor()
+        {
+            new AsyncAction(this.Handle).ExecuteAsync<DoctorDto>(
+                () =>
+                {
+                    if (this.SelectedDoctor != null)
+                    {
+                        return this.component.GetDoctorById(this.SelectedDoctor.Id);
+                    }
+                    else { return new DoctorDto(); }
+                },
+                doctor => this.DisplayedDoctor = doctor);
         }
 
         private void UpdateData()

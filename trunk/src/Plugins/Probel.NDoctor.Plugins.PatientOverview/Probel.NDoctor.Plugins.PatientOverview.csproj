@@ -37,8 +37,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\..\packages\AutoMapper.2.1.267\lib\net40\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=2.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
@@ -71,10 +72,10 @@
     <Compile Include="Actions\Base\Action.cs" />
     <Compile Include="Actions\Base\DoctorAction.cs" />
     <Compile Include="Actions\ActionInvoker.cs" />
-    <Compile Include="Actions\AddDoctorAction.cs" />
+    <Compile Include="Actions\BindDoctorAction.cs" />
     <Compile Include="Actions\AddThumbnailAction.cs" />
     <Compile Include="Actions\Base\IAction.cs" />
-    <Compile Include="Actions\RemoveDoctorAction.cs" />
+    <Compile Include="Actions\UnbindDoctorAction.cs" />
     <Compile Include="PluginDataContext.cs" />
     <Compile Include="PluginManager.cs">
       <SubType>Code</SubType>

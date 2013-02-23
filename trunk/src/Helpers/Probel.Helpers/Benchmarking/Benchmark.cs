@@ -27,6 +27,7 @@ namespace Probel.Helpers.Benchmarking
     /// <summary>
     /// Calculates the time span of its life time. This object is meant to calculate execution time of processing
     /// </summary>
+    [DebuggerStepThrough]
     public class Benchmark : IDisposable
     {
         #region Fields

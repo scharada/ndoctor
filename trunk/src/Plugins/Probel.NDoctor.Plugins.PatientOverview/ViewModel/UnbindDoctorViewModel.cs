@@ -31,6 +31,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.Plugins.PatientOverview.Actions;
 
     internal class UnbindDoctorViewModel : BaseViewModel
     {
@@ -97,7 +98,8 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
 
         private void SelectDoctor()
         {
-            PluginDataContext.Instance.Invoker.Unbind(this.Component, PluginContext.Host.SelectedPatient, this.SelectedDoctor);
+            PluginDataContext.Instance.Actions.Add(new UnbindDoctorAction(this.Component, PluginContext.Host.SelectedPatient, this.SelectedDoctor));
+            PluginDataContext.Instance.OnDoctorUnbinded(this.SelectedDoctor);
             this.Close();
         }
 

@@ -35,6 +35,8 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins;
+    using Probel.NDoctor.View.Toolbox.Threads;
+    using Probel.NDoctor.Plugins.PatientOverview.Actions;
 
     internal class BindDoctorViewModel : BaseViewModel
     {
@@ -136,9 +138,8 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         {
             try
             {
-                PluginDataContext.Instance.Invoker.Bind(PluginContext.ComponentFactory.GetInstance<IPatientDataComponent>()
-                    , PluginContext.Host.SelectedPatient
-                    , this.SelectedDoctor);
+                PluginDataContext.Instance.Actions.Add(new BindDoctorAction(this.Component, PluginContext.Host.SelectedPatient, this.SelectedDoctor));
+                PluginDataContext.Instance.OnDoctorBinded(this.SelectedDoctor);
                 this.Close();
             }
             catch (Exception ex) { this.Handle.Error(ex); }

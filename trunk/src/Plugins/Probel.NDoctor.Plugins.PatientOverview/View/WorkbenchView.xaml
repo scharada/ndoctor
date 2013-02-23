@@ -90,14 +90,14 @@
                                         </Border>
                                     </Grid>
                                 </DockPanel>
-                                
+
                                 <!-- Deactivation indicator -->
                                 <Label DockPanel.Dock="Top"
                                        Margin="4"
                                        HorizontalContentAlignment="Center"
                                        Visibility="{Binding SelectedPatient.IsDeactivated, Converter={StaticResource BooleanToVisibility}}"
                                        Content="{Binding Source={x:Static Member=t:WorkbenchText.Deactivated}}" Background="#FFEF2B2B" FontWeight="Bold" />
-                                
+
                                 <!-- First, last name and fee -->
                                 <DockPanel DockPanel.Dock="Top" LastChildFill="True">
                                     <Image Margin="4"
@@ -134,7 +134,7 @@
                                                        Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}"  
                                                        Foreground="#FFF30000"                                        
                                                        ContentStringFormat="C2"                                       
-                                                       FontWeight="Bold" />                                                
+                                                       FontWeight="Bold" />
                                                 <Label Content=")"
                                                        Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}" />
                                             </StackPanel>
@@ -478,11 +478,12 @@
                                Visibility="{Binding ElementName=Doctors, Path=Count, Converter={StaticResource IntToVisibility}}">
                                 <ScrollViewer>
                                     <ListView DockPanel.Dock="Left"
-                                      Margin="4"
-                                      Width="200"
-                                      ItemsSource="{Binding Doctors}"
-                                      DisplayMemberPath="DisplayedName"
-                                      SelectedItem="{Binding SelectedDoctor, UpdateSourceTrigger=PropertyChanged}"/>
+                                              Margin="4"
+                                              Width="200"
+                                              ItemsSource="{Binding Doctors}"
+                                              DisplayMemberPath="DisplayedName"
+                                              SelectedItem="{Binding SelectedDoctor}"
+                                              behaviours:SelectorBehaviour.SelectionChanged="{Binding SetSelectedDoctorCommand}"/>
                                 </ScrollViewer>
                                 <StackPanel DockPanel.Dock="Right"
                                     Visibility="{Binding SelectedDoctor, Converter={StaticResource NullToVisibility}}">
@@ -504,24 +505,24 @@
                                         </StackPanel>
                                     </GroupBox>
                                     <GroupBox DockPanel.Dock="Top"
-                                      Margin="4"
-                                      Header="{x:Static Member=t:WorkbenchText.GrpProfContact}">
+                                              Margin="4"
+                                              Header="{x:Static Member=t:WorkbenchText.GrpProfContact}">
                                         <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}">
-                                            <DockPanel Visibility="{Binding SelectedDoctor.ProMobile, Mode=OneWay, Converter={StaticResource StringToVisibility}}">
+                                            <DockPanel Visibility="{Binding DisplayedDoctor.ProMobile, Mode=OneWay, Converter={StaticResource StringToVisibility}}">
                                                 <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Mobile}"/>
-                                                <Label Content="{Binding SelectedDoctor.ProMobile}" Style="{StaticResource ValueLabel}" />
+                                                <Label Content="{Binding DisplayedDoctor.ProMobile}" Style="{StaticResource ValueLabel}" />
                                             </DockPanel>
-                                            <DockPanel Visibility="{Binding SelectedDoctor.ProPhone, Mode=OneWay, Converter={StaticResource StringToVisibility}}">
+                                            <DockPanel Visibility="{Binding DisplayedDoctor.ProPhone, Mode=OneWay, Converter={StaticResource StringToVisibility}}">
                                                 <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Phone}"/>
-                                                <Label Content="{Binding SelectedDoctor.ProPhone}" Style="{StaticResource ValueLabel}" />
+                                                <Label Content="{Binding DisplayedDoctor.ProPhone}" Style="{StaticResource ValueLabel}" />
                                             </DockPanel>
-                                            <DockPanel Visibility="{Binding SelectedDoctor.ProMail, Mode=OneWay, Converter={StaticResource StringToVisibility}}">
+                                            <DockPanel Visibility="{Binding DisplayedDoctor.ProMail, Mode=OneWay, Converter={StaticResource StringToVisibility}}">
                                                 <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Mail}"/>
                                                 <TextBlock DockPanel.Dock="Bottom" 
                                                    HorizontalAlignment="Left"
                                                    Margin="4">
                                             <Hyperlink Command="{Binding SendProMailCommand}">
-                                                <TextBlock Text="{Binding SelectedDoctor.ProMail}"/>
+                                                <TextBlock Text="{Binding DisplayedDoctor.ProMail}"/>
                                             </Hyperlink>
                                             </TextBlock>
                                             </DockPanel>

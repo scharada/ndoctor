@@ -25,11 +25,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Actions
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PatientOverview.Actions.Base;
 
-    class RemoveDoctorAction : DoctorAction
+    internal class BindDoctorAction : DoctorAction
     {
         #region Constructors
 
-        public RemoveDoctorAction(IPatientDataComponent component, LightPatientDto patient, LightDoctorDto doctor)
+        public BindDoctorAction(IPatientDataComponent component, LightPatientDto patient, LightDoctorDto doctor)
             : base(component, patient, doctor)
         {
         }
@@ -40,11 +40,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Actions
 
         public override void Execute()
         {
-            if (this.Component.HasDoctor(this.Patient, this.Doctor))
-            {
-                this.Component.RemoveDoctorFor(this.Patient, this.Doctor);
-            }
-            else { this.Logger.Warn("Trying to unbind a doctor that is not binded the the specified patient."); }
+            this.Component.AddDoctorTo(this.Patient, this.Doctor);
         }
 
         #endregion Methods
