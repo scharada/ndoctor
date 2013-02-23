@@ -21,10 +21,13 @@
 
 namespace Probel.NDoctor.Domain.Components.Interceptors
 {
+    using System.Diagnostics;
+
     using Castle.DynamicProxy;
 
     using Probel.NDoctor.Domain.DAL.AopConfiguration;
 
+    [DebuggerStepThrough]
     internal class LogInterceptor : BaseInterceptor
     {
         #region Methods

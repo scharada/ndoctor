@@ -22,6 +22,7 @@
 namespace Probel.NDoctor.Domain.Components.Interceptors
 {
     using System;
+    using System.Diagnostics;
 
     using Castle.DynamicProxy;
 
@@ -33,6 +34,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
     /// <summary>
     /// Benchmarks the call of a method and logs if time if higher that a threshold
     /// </summary>
+    [DebuggerStepThrough]
     internal class BenchmarkInterceptor : BaseInterceptor
     {
         #region Fields

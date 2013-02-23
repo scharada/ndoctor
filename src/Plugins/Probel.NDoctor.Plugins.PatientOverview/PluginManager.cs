@@ -131,7 +131,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview
         }
 
         /// <summary>
-        /// Builds the context menu the ribbon for this plugin.
+        /// Builds the context menu for this plugin's ribbon.
         /// </summary>
         private void BuildContextMenu()
         {

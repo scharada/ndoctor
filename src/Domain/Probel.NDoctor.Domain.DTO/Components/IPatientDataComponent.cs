@@ -94,6 +94,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         IEnumerable<ReputationDto> GetAllReputations();
 
         /// <summary>
+        /// Gets the doctor with the specified id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns>The doctor with the specified id</returns>
+        DoctorDto GetDoctorById(long id);
+
+        /// <summary>
         /// Gets the doctors linked to the specified patient.
         /// </summary>
         /// <param name="patient">The patient.</param>

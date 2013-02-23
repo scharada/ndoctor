@@ -56,16 +56,22 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
 
         private static void MapDtoToEntity()
         {
+            Mapper.CreateMap<PatientDto, Patient>();
+            Mapper.CreateMap<LightPatientDto, Patient>();
+            Mapper.CreateMap<PatientFullDto, Patient>();
+
+            Mapper.CreateMap<DoctorDto, Doctor>();
+            Mapper.CreateMap<DoctorFullDto, Doctor>();
+            Mapper.CreateMap<LightDoctorDto, Doctor>();
+
             Mapper.CreateMap<UserDto, User>();
             Mapper.CreateMap<AddressDto, Address>();
             Mapper.CreateMap<PracticeDto, Practice>();
-            Mapper.CreateMap<LightPatientDto, Patient>();
             Mapper.CreateMap<InsuranceDto, Insurance>();
             Mapper.CreateMap<LightInsuranceDto, Insurance>();
             Mapper.CreateMap<ProfessionDto, Profession>();
             Mapper.CreateMap<ReputationDto, Reputation>();
             Mapper.CreateMap<TagDto, Tag>();
-            Mapper.CreateMap<PatientDto, Patient>();
             Mapper.CreateMap<LightUserDto, User>();
             Mapper.CreateMap<LightPracticeDto, Practice>();
             Mapper.CreateMap<BmiDto, Bmi>();
@@ -77,9 +83,6 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<PrescriptionDto, Prescription>();
             Mapper.CreateMap<PrescriptionDocumentDto, PrescriptionDocument>();
             Mapper.CreateMap<AppointmentDto, Appointment>();
-            Mapper.CreateMap<DoctorDto, Doctor>();
-            Mapper.CreateMap<PatientFullDto, Patient>();
-            Mapper.CreateMap<DoctorFullDto, Doctor>();
             Mapper.CreateMap<RoleDto, Role>();
             Mapper.CreateMap<TaskDto, Task>();
             Mapper.CreateMap<MacroDto, Macro>();
@@ -122,12 +125,13 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<PrescriptionDocument, PrescriptionDocumentDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Appointment, AppointmentDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Doctor, DoctorDto>().AfterMap((entity, dto) => Clean(dto));
-            Mapper.CreateMap<Patient, PatientFullDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Doctor, DoctorFullDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Role, RoleDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Macro, MacroDto>().AfterMap((entity, dto) => Clean(dto));
-            Mapper.CreateMap<Patient, PatientDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<DbSetting, DbSettingDto>().AfterMap((entity, dto) => Clean(dto));
+
+            Mapper.CreateMap<Patient, PatientDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<Patient, PatientFullDto>().AfterMap((entity, dto) => Clean(dto));
 
             Mapper.CreateMap<MedicalRecord, MedicalRecordDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Tag, MedicalRecordFolderDto>().AfterMap((entity, dto) => Clean(dto));

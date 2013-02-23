@@ -17,6 +17,7 @@
 namespace Probel.NDoctor.Domain.DTO.Objects
 {
     using System;
+    using System.Collections.ObjectModel;
 
     /// <summary>
     /// Represent a DTO of a patient
@@ -74,6 +75,15 @@ namespace Probel.NDoctor.Domain.DTO.Objects
                 this.counter = value;
                 this.OnPropertyChanged(() => Counter);
             }
+        }
+
+        /// <summary>
+        /// Gets the doctors linked to this patient.
+        /// </summary>
+        public ObservableCollection<LightDoctorDto> Doctors
+        {
+            get;
+            private set;
         }
 
         /// <summary>

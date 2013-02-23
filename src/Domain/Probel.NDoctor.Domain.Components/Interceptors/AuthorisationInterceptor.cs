@@ -21,6 +21,8 @@
 
 namespace Probel.NDoctor.Domain.Components.Interceptors
 {
+    using System.Diagnostics;
+
     using Castle.DynamicProxy;
 
     using Probel.NDoctor.Domain.Components.AuthorisationPolicies;
@@ -37,6 +39,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
     /// * Read : every method that contains "Get" or "GetAll"
     /// * Write: every method that contains "Create", "Remove" or "Update"
     /// </summary>
+    [DebuggerStepThrough]
     internal class AuthorisationInterceptor : BaseInterceptor
     {
         #region Fields

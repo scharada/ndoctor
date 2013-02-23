@@ -23,6 +23,8 @@ namespace Probel.NDoctor.Plugins.PatientOverview
 {
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PatientOverview.Actions;
+    using System;
+    using Probel.Helpers.Events;
 
     internal class PluginDataContext
     {
@@ -39,7 +41,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview
         /// </summary>
         private PluginDataContext()
         {
-            this.Invoker = new ActionInvoker();
+            this.Actions = new ActionInvoker();
         }
 
         #endregion Constructors
@@ -52,12 +54,43 @@ namespace Probel.NDoctor.Plugins.PatientOverview
         /// <value>
         /// The selected patient.
         /// </value>
-        public ActionInvoker Invoker
+        public ActionInvoker Actions
         {
             get;
             set;
         }
 
         #endregion Properties
+        /// <summary>
+        /// Occurs when a new doctor is binded to the connected patient.
+        /// </summary>
+        public event EventHandler<EventArgs<LightDoctorDto>> DoctorUnbinded;
+        /// <summary>
+        /// Called when a new doctor is binded to the connected patient.
+        /// </summary>
+        /// <param name="doctor">The doctor.</param>
+        public void OnDoctorUnbinded(LightDoctorDto doctor)
+        {
+            if (this.DoctorUnbinded != null)
+            {
+                this.DoctorUnbinded(this, new EventArgs<LightDoctorDto>(doctor));
+            }
+        }
+
+        /// <summary>
+        /// Occurs when a new doctor is binded to the connected patient.
+        /// </summary>
+        public event EventHandler<EventArgs<LightDoctorDto>> DoctorBinded;
+        /// <summary>
+        /// Called when a new doctor is binded to the connected patient.
+        /// </summary>
+        /// <param name="doctor">The doctor.</param>
+        public void OnDoctorBinded(LightDoctorDto doctor)
+        {
+            if (this.DoctorBinded != null)
+            {
+                this.DoctorBinded(this, new EventArgs<LightDoctorDto>(doctor));
+            }
+        }
     }
 }

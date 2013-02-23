@@ -22,11 +22,13 @@
 namespace Probel.NDoctor.Domain.Components.Interceptors
 {
     using System;
+    using System.Diagnostics;
 
     using Castle.DynamicProxy;
 
     using log4net;
 
+    [DebuggerStepThrough]
     public abstract class BaseInterceptor : IInterceptor
     {
         #region Fields
