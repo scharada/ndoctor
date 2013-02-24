@@ -240,24 +240,14 @@ namespace Probel.NDoctor.Domain.DAL.Components
             {
                 pictures = (from p in this.Session.Query<Picture>()
                             where p.Patient.Id == patient.Id
-                            select new Picture
-                            {
-                                Id = p.Id,
-                                Tag = p.Tag,
-                                ThumbnailBitmap = p.ThumbnailBitmap,
-                            }).ToList();
+                            select p).ToList();
             }
             else
             {
                 pictures = (from p in this.Session.Query<Picture>()
                             where p.Patient.Id == patient.Id
                             && p.Tag.Id == tag.Id
-                            select new Picture
-                            {
-                                Id = p.Id,
-                                Tag = p.Tag,
-                                ThumbnailBitmap = p.ThumbnailBitmap,
-                            }).ToList();
+                            select p).ToList();
             }
 
             return pictures;

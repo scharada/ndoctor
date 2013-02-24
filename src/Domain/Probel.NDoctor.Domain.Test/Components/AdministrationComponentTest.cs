@@ -64,7 +64,13 @@ namespace Probel.NDoctor.Domain.Test.Components
             var users = this.HelperComponent.GetAllPatients();
             Assert.GreaterOrEqual(users.Count, 1);
 
-            var insurance = new InsuranceDto() { Address = new AddressDto(), Name = string.Empty, Notes = string.Empty, Phone = string.Empty };
+            var insurance = new InsuranceDto()
+            {
+                Address = new AddressDto(),
+                Name = string.Empty,
+                Notes = string.Empty,
+                Phone = string.Empty
+            };
             long id = 0;
 
             this.WrapInTransaction(() =>

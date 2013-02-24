@@ -65,6 +65,12 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<LightDoctorDto, Doctor>();
 
             Mapper.CreateMap<UserDto, User>();
+            Mapper.CreateMap<LightUserDto, User>()
+                .ForMember(dest => dest.Header, opt => opt.Ignore())
+                .ForMember(dest => dest.Login, opt => opt.Ignore())
+                .ForMember(dest => dest.Password, opt => opt.Ignore())
+                .ForMember(dest => dest.Practice, opt => opt.Ignore());
+
             Mapper.CreateMap<AddressDto, Address>();
             Mapper.CreateMap<PracticeDto, Practice>();
             Mapper.CreateMap<InsuranceDto, Insurance>();
@@ -72,7 +78,6 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<ProfessionDto, Profession>();
             Mapper.CreateMap<ReputationDto, Reputation>();
             Mapper.CreateMap<TagDto, Tag>();
-            Mapper.CreateMap<LightUserDto, User>();
             Mapper.CreateMap<LightPracticeDto, Practice>();
             Mapper.CreateMap<BmiDto, Bmi>();
             Mapper.CreateMap<MedicalRecordDto, MedicalRecord>();

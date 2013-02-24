@@ -41,7 +41,7 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         public virtual long Id
         {
             get;
-            set;
+            private set;
         }
 
         /// <summary>

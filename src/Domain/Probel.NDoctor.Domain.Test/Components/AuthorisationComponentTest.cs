@@ -188,9 +188,10 @@ namespace Probel.NDoctor.Domain.Test.Components
         {
             var user = this.HelperComponent.GetLightUserById(1);
             var role = this.ComponentUnderTest.GetAllRoles()[1];
+            user.AssignedRole = role;
+
             this.Session.Clear();
 
-            user.AssignedRole = role;
             this.WrapInTransaction(() => this.ComponentUnderTest.Update(user));
 
             Assert.AreEqual(role.Id, this.HelperComponent.GetLightUserById(1).AssignedRole.Id);

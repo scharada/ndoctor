@@ -113,20 +113,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
             patients = (from p in this.Session.Query<Patient>()
                         where p.IsDeactivated == false
-                        select new Patient
-                        {
-                            Id = p.Id,
-                            FirstName = p.FirstName,
-                            LastName = p.LastName,
-                            Gender = p.Gender,
-                            BirthDate = p.BirthDate,
-                            Profession = p.Profession,
-                            Height = p.Height,
-                            InscriptionDate = p.InscriptionDate,
-                            LastUpdate = p.LastUpdate,
-                            Address = p.Address,
-                            Reason = p.Reason,
-                        }).ToList();
+                        select p).ToList();
 
             var preSearchResult = Mapper.Map<List<Patient>, List<LightPatientDto>>(patients);
             this.CheckIfSearchAllReturnsZeroResult(preSearchResult, searchAll);
