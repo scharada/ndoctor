@@ -19,7 +19,6 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
     using System;
     using System.Collections.ObjectModel;
     using System.Linq;
-    using System.Windows;
     using System.Windows.Input;
 
     using Probel.Helpers.Conversions;
@@ -147,22 +146,6 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             }
         }
 
-        public RoleDto SelectedRole
-        {
-            get
-            {
-                return (this.User == null)
-                    ? null
-                    : this.User.AssignedRole;
-            }
-            set
-            {
-                if (this.User == null) return;
-                this.User.AssignedRole = value;
-                this.OnPropertyChanged(() => SelectedRole);
-            }
-        }
-
         public ICommand UpdateCommand
         {
             get;
@@ -207,13 +190,6 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
                     this.SelectedPractice = (from p in this.Practices
                                              where p.Id == this.User.Practice.Id
                                              select p).FirstOrDefault();
-                }
-
-                if (this.User.AssignedRole != null)
-                {
-                    this.SelectedRole = (from r in this.Roles
-                                         where r.Id == this.User.AssignedRole.Id
-                                         select r).FirstOrDefault();
                 }
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_Ready);
