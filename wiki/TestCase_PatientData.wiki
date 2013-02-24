@@ -6,13 +6,17 @@
 == Steps ==
  # Connect into nDoctor with user that has write privileges
  # Open a session for a user
- # Go to Patient data and modify all the data and save.
- # Disconnect and reconnect the user using directly the search box and without saving
+ # Begin edit mode for th patient
+ # Try to quit
+  # With the red cross
+  # By using the "Quit" menu
+  # By deconnecting the user session
+  # By using the taskbar red cross
 == Expected results ==
  # ...
  # ...
- # The data are updated
- # The data are updated
+ # ...
+ # You have a message box that ask to confirm cancellation
 = Auto save ==
 == Steps ==
  # Modify data and load a new patient
