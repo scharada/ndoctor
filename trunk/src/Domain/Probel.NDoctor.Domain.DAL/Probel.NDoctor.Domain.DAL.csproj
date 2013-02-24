@@ -78,6 +78,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\mongocsharpdriver.1.7.1\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\packages\MySql.Data.6.6.4\lib\net40\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -89,9 +92,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Probel.Mvvm.1.2.2.95\lib\net40\Probel.Mvvm.dll</HintPath>
     </Reference>
-    <Reference Include="Probel.NDoctor.Statistics, Version=1.0.3.155, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Probel.NDoctor.Statistics, Version=1.0.3.192, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Probel.NDoctor.Statistics.1.0.3.155\lib\net40\Probel.NDoctor.Statistics.dll</HintPath>
+      <HintPath>..\..\packages\Probel.NDoctor.Statistics.1.0.3.192\lib\net40\Probel.NDoctor.Statistics.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
