@@ -182,7 +182,7 @@ namespace Probel.NDoctor.Domain.Components
         /// Connects the specified user into the application.
         /// </summary>
         /// <param name="user">The user.</param>
-        public void ConnectUser(LightUserDto user)
+        public void ConnectUser(SecurityUserDto user)
         {
             AuthorisationInterceptor.User = user;
         }

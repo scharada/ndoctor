@@ -29,9 +29,9 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.PatientOverview.Actions;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins;
-    using Probel.NDoctor.Plugins.PatientOverview.Actions;
 
     internal class UnbindDoctorViewModel : BaseViewModel
     {

@@ -182,12 +182,12 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// Updates the specified user.
         /// </summary>
         /// <param name="user">The user.</param>
-        public void Update(LightUserDto user)
+        public void Update(SecurityUserDto user)
         {
             Assert.IsNotNull(user, "user");
 
             var entity = this.Session.Get<User>(user.Id);
-            Mapper.Map<LightUserDto, User>(user, entity);
+            Mapper.Map<SecurityUserDto, User>(user, entity);
 
             this.Session.Merge(entity);
         }
@@ -312,7 +312,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// </summary>
         /// <param name="user">The user.</param>
         /// <param name="password">The password.</param>
-        public void Update(LightUserDto user, string password)
+        public void Update(SecurityUserDto user, string password)
         {
             if (string.IsNullOrWhiteSpace(password)) throw new EmptyPasswordException();
 

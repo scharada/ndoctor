@@ -214,13 +214,13 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// Gets all users.
         /// </summary>
         /// <returns></returns>
-        public IList<LightUserDto> GetAllUsersLight()
+        public IList<SecurityUserDto> GetAllUsersLight()
         {
             try
             {
                 var result = (from user in Session.Query<User>()
                               select user).ToList();
-                return Mapper.Map<IList<User>, IList<LightUserDto>>(result);
+                return Mapper.Map<IList<User>, IList<SecurityUserDto>>(result);
             }
             catch (Exception ex)
             {
@@ -494,13 +494,13 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             return Mapper.Map<User, UserDto>(user);
         }
 
-        public IList<LightUserDto> GetUserByLastName(string criteria)
+        public IList<SecurityUserDto> GetUserByLastName(string criteria)
         {
             criteria = criteria.ToLower();
             var entities = (from u in this.Session.Query<User>()
                             where u.LastName.ToLower() == criteria
                             select u).ToList();
-            return Mapper.Map<IList<User>, IList<LightUserDto>>(entities);
+            return Mapper.Map<IList<User>, IList<SecurityUserDto>>(entities);
         }
 
         internal IList<RoleDto> GetRoleByName(string name)

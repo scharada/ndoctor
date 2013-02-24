@@ -135,7 +135,7 @@ namespace Probel.NDoctor.Domain.Test.Components
         }
 
         [Test]
-        public void UpdatePatient_TryToUpdateInsurance_NothingIsUpdated()
+        public void UpdatePatient_UpdateInsurance_Updated()
         {
             var name = GetRandom.String;
             var insuranceName = Guid.NewGuid().ToString();
@@ -146,7 +146,7 @@ namespace Probel.NDoctor.Domain.Test.Components
             this.WrapInTransaction(() => this.ComponentUnderTest.Update(patient));
 
             patient = this.HelperComponent.GetAllPatients()[0];
-            Assert.AreNotEqual(insuranceName, patient.Insurance.Name);
+            Assert.AreEqual(insuranceName, patient.Insurance.Name);
         }
 
         [Test]

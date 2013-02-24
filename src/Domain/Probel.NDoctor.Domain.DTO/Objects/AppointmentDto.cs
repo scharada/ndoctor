@@ -31,7 +31,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private DateTime startTime;
         private string subject;
         private TagDto tag;
-        private LightUserDto user;
+        private SecurityUserDto user;
 
         #endregion Fields
 
@@ -148,7 +148,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// <value>
         /// The user.
         /// </value>
-        public LightUserDto User
+        public SecurityUserDto User
         {
             get { return this.user; }
             set

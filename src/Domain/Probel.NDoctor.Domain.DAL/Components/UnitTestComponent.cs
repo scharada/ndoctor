@@ -94,7 +94,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return Mapper.Map<IList<User>, IList<UserDto>>(result);
         }
 
-        public IList<LightUserDto> GetAllUsersLight()
+        public IList<SecurityUserDto> GetAllUsersLight()
         {
             return new Selector(this.Session).GetAllUsersLight();
         }
@@ -128,12 +128,12 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return Mapper.Map<Patient, LightPatientDto>(result);
         }
 
-        public LightUserDto GetLightUserById(int id)
+        public SecurityUserDto GetLightUserById(int id)
         {
             var user = (from u in this.Session.Query<User>()
                         where u.Id == id
                         select u).First();
-            return Mapper.Map<User, LightUserDto>(user);
+            return Mapper.Map<User, SecurityUserDto>(user);
         }
 
         public PathologyDto GetPathology(long id)
@@ -159,7 +159,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return new Selector(this.Session).GetRoleByName(description);
         }
 
-        public IList<LightUserDto> GetUserByLastName(string criteria)
+        public IList<SecurityUserDto> GetUserByLastName(string criteria)
         {
             return new Selector(this.Session).GetUserByLastName(criteria);
         }

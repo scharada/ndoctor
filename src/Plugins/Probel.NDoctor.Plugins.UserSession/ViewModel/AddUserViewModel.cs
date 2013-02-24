@@ -38,7 +38,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         private IUserSessionComponent component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
         private string password;
         private string passwordCheck;
-        private LightUserDto user = new LightUserDto();
+        private SecurityUserDto user = new SecurityUserDto();
 
         #endregion Fields
 
@@ -102,7 +102,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             }
         }
 
-        public LightUserDto User
+        public SecurityUserDto User
         {
             get { return this.user; }
             set

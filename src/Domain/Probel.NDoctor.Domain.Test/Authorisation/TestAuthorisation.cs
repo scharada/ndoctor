@@ -66,7 +66,7 @@ namespace Probel.NDoctor.Domain.Test.Authorisation
         [Test]
         public void AuditMethods_UserSessionComponentCanConnect_MethodGrantedToEveryone()
         {
-            var methodInfo = typeof(UserSessionComponent).GetMethod("CanConnect", new Type[] { typeof(LightUserDto), typeof(string) });
+            var methodInfo = typeof(UserSessionComponent).GetMethod("CanConnect", new Type[] { typeof(SecurityUserDto), typeof(string) });
             var attribute = Attribute.GetCustomAttribute(methodInfo, typeof(GrantedAttribute), true);
 
             Assert.NotNull(attribute, "attribute");
@@ -75,7 +75,7 @@ namespace Probel.NDoctor.Domain.Test.Authorisation
         [Test]
         public void AuditMethods_UserSessionComponentCreate_MethodGrantedToEveryone()
         {
-            var methodInfo = typeof(UserSessionComponent).GetMethod("Create", new Type[] { typeof(LightUserDto), typeof(string) });
+            var methodInfo = typeof(UserSessionComponent).GetMethod("Create", new Type[] { typeof(SecurityUserDto), typeof(string) });
             var attribute = Attribute.GetCustomAttribute(methodInfo, typeof(GrantedAttribute), true);
 
             Assert.NotNull(attribute, "attribute");

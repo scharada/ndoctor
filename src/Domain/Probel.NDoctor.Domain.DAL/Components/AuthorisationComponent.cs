@@ -121,11 +121,11 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Gets all users stored in the database.
         /// </summary>
         /// <returns></returns>
-        public LightUserDto[] GetAllLightUsers()
+        public SecurityUserDto[] GetAllLightUsers()
         {
             var entities = (from u in this.Session.Query<User>()
                             select u);
-            return Mapper.Map<IEnumerable<User>, LightUserDto[]>(entities);
+            return Mapper.Map<IEnumerable<User>, SecurityUserDto[]>(entities);
         }
 
         /// <summary>
@@ -197,7 +197,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <returns>
         ///   <c>true</c> if the specified useris super admin; otherwise, <c>false</c>.
         /// </returns>
-        public bool IsSuperAdmin(LightUserDto user)
+        public bool IsSuperAdmin(SecurityUserDto user)
         {
             var superadmin = (from u in this.Session.Query<User>()
                               where u.Id == user.Id
@@ -220,7 +220,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Removes the specified user from the repository.
         /// </summary>
         /// <param name="user">The user.</param>
-        public void Remove(LightUserDto user)
+        public void Remove(SecurityUserDto user)
         {
             var aptEntities = (from a in this.Session.Query<Appointment>()
                                where a.User.Id == user.Id
@@ -254,11 +254,44 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// Updates the specified user.
         /// </summary>
         /// <param name="user">The user.</param>
-        public void Update(LightUserDto user)
+        public void Update(SecurityUserDto user)
         {
             new Updator(this.Session).Update(user);
         }
 
         #endregion Methods
+
+
+        /// <summary>
+        /// Updates the role for the specified user.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <param name="role">The role.</param>
+        public void UpdateRole(SecurityUserDto user, RoleDto role)
+        {
+            var userEntity = this.Session.Get<User>(user.Id);
+            var roleEntity = this.Session.Get<Role>(role.Id);
+            userEntity.AssignedRole = roleEntity;
+            this.Session.Update(userEntity);
+        }
+
+
+        public void UpdateRole(LightUserDto user, RoleDto role)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets the user from the specified security user.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
+        public UserDto GetUser(SecurityUserDto user)
+        {
+            var entity = (from u in this.Session.Query<User>()
+                          where u.Id == user.Id
+                          select u).Single();
+            return Mapper.Map<User, UserDto>(entity);
+        }
     }
 }

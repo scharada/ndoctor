@@ -41,7 +41,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
         #region Fields
 
         private IAuthorisationComponent component;
-        private LightUserDto selectedUser;
+        private SecurityUserDto selectedUser;
 
         #endregion Fields
 
@@ -54,7 +54,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
                 this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
                 PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IAuthorisationComponent>();
             }
-            this.Users = new ObservableCollection<LightUserDto>();
+            this.Users = new ObservableCollection<SecurityUserDto>();
             this.Roles = new ObservableCollection<RoleDto>();
 
             this.UpdateUserCommand = new RelayCommand(() => this.UpdateUser(), () => this.CanUpdateUser());
@@ -78,7 +78,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             private set;
         }
 
-        public LightUserDto SelectedUser
+        public SecurityUserDto SelectedUser
         {
             get { return this.selectedUser; }
             set
@@ -94,7 +94,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             private set;
         }
 
-        public ObservableCollection<LightUserDto> Users
+        public ObservableCollection<SecurityUserDto> Users
         {
             get;
             private set;

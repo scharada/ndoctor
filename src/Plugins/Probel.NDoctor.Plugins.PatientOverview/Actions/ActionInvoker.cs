@@ -37,6 +37,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Actions
 
         #region Methods
 
+        public void Add(IAction action)
+        {
+            this.Actions.Add(action);
+        }
+
         public void Execute()
         {
             foreach (var action in this.Actions)
@@ -44,11 +49,6 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Actions
                 action.Execute();
             }
             this.Actions.Clear();
-        }
-
-        public void Add(IAction action)
-        {
-            this.Actions.Add(action);
         }
 
         #endregion Methods

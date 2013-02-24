@@ -43,7 +43,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
 
         private IAuthorisationComponent component;
         private RoleDto selectedRole;
-        private LightUserDto selectedUser;
+        private SecurityUserDto selectedUser;
 
         #endregion Fields
 
@@ -80,7 +80,7 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             }
         }
 
-        public LightUserDto SelectedUser
+        public SecurityUserDto SelectedUser
         {
             get { return this.selectedUser; }
             set
@@ -125,7 +125,8 @@ namespace Probel.NDoctor.Plugins.Authorisation.ViewModel
             {
                 this.SelectedUser.AssignedRole = this.SelectedRole;
 
-                component.Update(this.SelectedUser);
+                var user = component.GetUser(this.SelectedUser);
+                component.UpdateRole(user, this.SelectedRole);
 
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_RoleUpdatedFor.FormatWith(this.SelectedUser.DisplayedName));
                 this.Close();

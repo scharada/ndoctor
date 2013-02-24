@@ -83,8 +83,8 @@ namespace Probel.NDoctor.Domain.Test.Components
             var firstName = "Robert";
             var lastName = "Dupont";
 
-            var user1 = new LightUserDto() { FirstName = firstName, LastName = lastName };
-            var user2 = new LightUserDto() { FirstName = firstName, LastName = lastName };
+            var user1 = new SecurityUserDto() { FirstName = firstName, LastName = lastName };
+            var user2 = new SecurityUserDto() { FirstName = firstName, LastName = lastName };
 
             this.ComponentUnderTest.Create(user1, "a");
             Assert.Throws<ExistingItemException>(() => this.ComponentUnderTest.Create(user2, "az"));

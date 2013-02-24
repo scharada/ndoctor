@@ -14,32 +14,29 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Probel.NDoctor.Domain.DTO.Validators;
-
 namespace Probel.NDoctor.Domain.DTO.Objects
 {
+    using System;
+
     [Serializable]
-    public class LightUserDto : PersonDto
+    public class SecurityUserDto : BaseDto
     {
         #region Fields
 
-        private string assignedRoleName;
+        private RoleDto assignedRole;
+        private string firstName;
         private bool isDefaultUser;
+        private string lastName;
 
         #endregion Fields
 
         #region Constructors
-        public LightUserDto()
-            : this(false)
-        {
 
+        public SecurityUserDto()
+        {
         }
-        public LightUserDto(bool isSuperAdmin)
-            :base()
+
+        public SecurityUserDto(bool isSuperAdmin)
         {
             this.IsSuperAdmin = isSuperAdmin;
         }
@@ -48,13 +45,13 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 
         #region Properties
 
-        public string AssignedRoleName
+        public RoleDto AssignedRole
         {
-            get { return this.assignedRoleName; }
+            get { return this.assignedRole; }
             set
             {
-                this.assignedRoleName = value;
-                this.OnPropertyChanged(() => AssignedRoleName);
+                this.assignedRole = value;
+                this.OnPropertyChanged(() => AssignedRole);
             }
         }
 
@@ -63,6 +60,16 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             get
             {
                 return string.Format("{0} {1}", this.FirstName, this.LastName);
+            }
+        }
+
+        public string FirstName
+        {
+            get { return this.firstName; }
+            set
+            {
+                this.firstName = value;
+                this.OnPropertyChanged(() => FirstName);
             }
         }
 
@@ -78,8 +85,17 @@ namespace Probel.NDoctor.Domain.DTO.Objects
 
         public bool IsSuperAdmin
         {
-            get;
-            protected set;
+            get; private set;
+        }
+
+        public string LastName
+        {
+            get { return this.lastName; }
+            set
+            {
+                this.lastName = value;
+                this.OnPropertyChanged(() => LastName);
+            }
         }
 
         #endregion Properties

@@ -192,7 +192,7 @@ namespace Probel.NDoctor.Domain.Test.Components
 
             this.Session.Clear();
 
-            this.WrapInTransaction(() => this.ComponentUnderTest.Update(user));
+            this.WrapInTransaction(() => this.ComponentUnderTest.UpdateRole(user, role));
 
             Assert.AreEqual(role.Id, this.HelperComponent.GetLightUserById(1).AssignedRole.Id);
             Assert.IsTrue(new UserSessionComponent(this.Session).CanConnect(user, "aze"));

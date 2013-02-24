@@ -62,7 +62,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         ///   <c>true</c> if this instance can connect the specified user; otherwise, <c>false</c>.
         /// </returns>
         [Granted(To.Everyone)]
-        public bool CanConnect(LightUserDto user, string password)
+        public bool CanConnect(SecurityUserDto user, string password)
         {
             if (user == null || password == null) return false;
 
@@ -81,7 +81,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="user">The user.</param>
         /// <param name="password">The password.</param>
         [Granted(To.Everyone)]
-        public long Create(LightUserDto item, string password)
+        public long Create(SecurityUserDto item, string password)
         {
             return new Creator(this.Session).Create(item, password);
         }
@@ -111,7 +111,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <returns></returns>
         [Granted(To.Everyone)]
-        public IList<LightUserDto> GetAllUsers()
+        public IList<SecurityUserDto> GetAllUsers()
         {
             return new Selector(this.Session).GetAllUsersLight();
         }
@@ -121,7 +121,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <returns></returns>
         [Granted(To.Everyone)]
-        public LightUserDto GetDefaultUser()
+        public SecurityUserDto GetDefaultUser()
         {
             var result = (from user in this.Session.Query<User>()
                           where user.IsDefault == true
@@ -129,7 +129,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
             if (result.Count == 0) return null;
             else if (result.Count > 1) throw new DalQueryException("More than one default user was found.", Messages.Ex_QueryException_SeveralDefaultUsers);
-            else return Mapper.Map<User, LightUserDto>(result[0]);
+            else return Mapper.Map<User, SecurityUserDto>(result[0]);
         }
 
         public UserDto GetUserById(long id)
@@ -143,7 +143,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="id">The id.</param>
         /// <returns></returns>
         [Granted(To.Read)]
-        public UserDto LoadUser(LightUserDto user)
+        public UserDto LoadUser(SecurityUserDto user)
         {
             var fullUser = this.Session.Get<User>(user.Id);
 
@@ -168,7 +168,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// <param name="user">The user.</param>
         /// <param name="password">The password.</param>
         [Granted(To.MetaWrite)]
-        public void UpdatePassword(LightUserDto user, string password)
+        public void UpdatePassword(SecurityUserDto user, string password)
         {
             new Updator(this.Session).Update(user, password);
         }
