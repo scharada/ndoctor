@@ -64,8 +64,9 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<DoctorFullDto, Doctor>();
             Mapper.CreateMap<LightDoctorDto, Doctor>();
 
-            Mapper.CreateMap<UserDto, User>();
-            Mapper.CreateMap<LightUserDto, User>()
+            Mapper.CreateMap<UserDto, User>()
+                .ForMember(dest => dest.Password, opt => opt.Ignore());
+            Mapper.CreateMap<SecurityUserDto, User>()
                 .ForMember(dest => dest.Header, opt => opt.Ignore())
                 .ForMember(dest => dest.Login, opt => opt.Ignore())
                 .ForMember(dest => dest.Password, opt => opt.Ignore())
@@ -101,9 +102,9 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
                 .ForMember(dest => dest.DisplayedName, opt => opt.Ignore())
                 .AfterMap((entity, dto) => Clean(dto));
 
-            Mapper.CreateMap<User, LightUserDto>()
+            Mapper.CreateMap<User, SecurityUserDto>()
                 .AfterMap((entity, dto) => Clean(dto))
-                .ConstructUsing(e => new LightUserDto(e.IsSuperAdmin));
+                .ConstructUsing(e => new SecurityUserDto(e.IsSuperAdmin));
 
             Mapper.CreateMap<User, UserDto>()
                 .AfterMap((entity, dto) => Clean(dto))
@@ -119,7 +120,7 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<Insurance, LightInsuranceDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Reputation, ReputationDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Profession, ProfessionDto>().AfterMap((entity, dto) => Clean(dto));
-            Mapper.CreateMap<User, LightUserDto>().AfterMap((entity, dto) => Clean(dto));
+            Mapper.CreateMap<User, SecurityUserDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Practice, LightPracticeDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Bmi, BmiDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<MedicalRecord, MedicalRecordDto>().AfterMap((entity, dto) => Clean(dto));

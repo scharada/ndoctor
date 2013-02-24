@@ -41,7 +41,7 @@ namespace Probel.NDoctor.Domain.Components.AuthorisationPolicies
         /// <returns>
         ///   <c>true</c> if the specified assigned role is granted; otherwise, <c>false</c>.
         /// </returns>
-        public bool IsGranted(string to, LightUserDto user)
+        public bool IsGranted(string to, SecurityUserDto user)
         {
             if (to == To.Everyone) return true;
             else if (user == null) return false;

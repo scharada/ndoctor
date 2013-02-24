@@ -35,13 +35,13 @@ namespace Probel.NDoctor.Domain.Components
 
         private static readonly IAuthorisationPolicy policy = ObjectFactory.GetInstance<IAuthorisationPolicy>();
 
-        private LightUserDto user;
+        private SecurityUserDto user;
 
         #endregion Fields
 
         #region Constructors
 
-        public DoorKeeper(LightUserDto user)
+        public DoorKeeper(SecurityUserDto user)
         {
             this.user = user;
         }

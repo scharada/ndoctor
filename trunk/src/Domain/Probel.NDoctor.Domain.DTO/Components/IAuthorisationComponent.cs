@@ -56,7 +56,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// Gets all users stored in the database.
         /// </summary>
         /// <returns></returns>
-        LightUserDto[] GetAllLightUsers();
+        SecurityUserDto[] GetAllLightUsers();
 
         /// Gets all roles the repository contains.
         /// </summary>
@@ -86,7 +86,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <returns>
         ///   <c>true</c> if the specified useris super admin; otherwise, <c>false</c>.
         /// </returns>
-        bool IsSuperAdmin(LightUserDto user);
+        bool IsSuperAdmin(SecurityUserDto user);
 
         /// <summary>
         /// Removes the role with the specified id.
@@ -98,20 +98,27 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// Removes the specified user from the repository.
         /// </summary>
         /// <param name="user">The user.</param>
-        void Remove(LightUserDto user);
+        void Remove(SecurityUserDto user);
 
         /// <summary>
         /// Updates the specified role.
         /// </summary>
         /// <param name="role">The role.</param>
         void Update(RoleDto role);
+        #endregion Methods
 
         /// <summary>
-        /// Updates the specified user.
+        /// Updates the role for the specified user.
         /// </summary>
         /// <param name="user">The user.</param>
-        void Update(LightUserDto user);
+        /// <param name="role">The role dto.</param>
+        void UpdateRole(LightUserDto user, RoleDto role);
 
-        #endregion Methods
+        /// <summary>
+        /// Gets the light user from the security user.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
+        UserDto GetUser(SecurityUserDto user);
     }
 }

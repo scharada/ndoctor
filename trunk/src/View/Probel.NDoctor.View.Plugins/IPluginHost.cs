@@ -71,7 +71,7 @@ namespace Probel.NDoctor.View.Plugins
         /// <value>
         /// The user.
         /// </value>
-        LightUserDto ConnectedUser
+        SecurityUserDto ConnectedUser
         {
             get;
             set;

@@ -54,7 +54,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         private readonly ICommand settingCommand;
         private readonly StatisticsPage StatisticsPage = new StatisticsPage();
 
-        private LightUserDto connectedUser;
+        private SecurityUserDto connectedUser;
         private bool isDebugMenuVisible = false;
         private string message;
         private LightPatientDto selectedPatient;
@@ -108,7 +108,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
         /// <value>
         /// The selected user.
         /// </value>
-        public LightUserDto ConnectedUser
+        public SecurityUserDto ConnectedUser
         {
             get { return this.connectedUser; }
             set

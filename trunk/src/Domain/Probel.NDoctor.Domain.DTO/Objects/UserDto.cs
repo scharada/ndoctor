@@ -20,14 +20,12 @@ namespace Probel.NDoctor.Domain.DTO.Objects
     using System.Drawing;
 
     [Serializable]
-    public class UserDto : PersonDto
+    public class UserDto : LightUserDto
     {
         #region Fields
 
-        private RoleDto assignedRole;
         private decimal fee;
         private string header;
-        private bool isDefaultUser;
         private PracticeDto practice;
         private string proMail;
         private string proMobile;
@@ -43,7 +41,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         /// </summary>
         /// <param name="isSuperAdmin">if set to <c>true</c> [is super admin].</param>
         public UserDto(bool isSuperAdmin)
-            : base()
+            : base(isSuperAdmin)
         {
             this.IsSuperAdmin = isSuperAdmin;
         }
@@ -58,34 +56,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         #endregion Constructors
 
         #region Properties
-
-        /// <summary>
-        /// Gets or sets the role the current user is assigned to.
-        /// </summary>
-        /// <value>
-        /// The assigned role.
-        /// </value>
-        public RoleDto AssignedRole
-        {
-            get { return this.assignedRole; }
-            set
-            {
-                this.assignedRole = value;
-                this.OnPropertyChanged(() => AssignedRole);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a string representing how the name of the user should
-        /// be displayed.
-        /// </summary>
-        /// <value>
-        /// The name of the displayed.
-        /// </value>
-        public string DisplayedName
-        {
-            get { return string.Format("{0} {1}", this.FirstName, this.LastName); }
-        }
 
         /// <summary>
         /// Gets or sets the fee the user ask.
@@ -118,29 +88,6 @@ namespace Probel.NDoctor.Domain.DTO.Objects
                 this.header = value;
                 this.OnPropertyChanged(() => Header);
             }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether this user is the default user
-        /// on connection.
-        /// </summary>
-        /// <value>
-        /// 	<c>true</c> if this instance is default connected; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsDefault
-        {
-            get { return this.isDefaultUser; }
-            set
-            {
-                this.isDefaultUser = value;
-                this.OnPropertyChanged(() => IsDefault);
-            }
-        }
-
-        public bool IsSuperAdmin
-        {
-            get;
-            private set;
         }
 
         /// <summary>

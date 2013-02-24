@@ -34,14 +34,14 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <returns>
         ///   <c>true</c> if this instance can connect the specified user; otherwise, <c>false</c>.
         /// </returns>
-        bool CanConnect(LightUserDto user, string password);
+        bool CanConnect(SecurityUserDto user, string password);
 
         /// <summary>
         /// Creates the specified user.
         /// </summary>
         /// <param name="user">The user.</param>
         /// <param name="password">The password.</param>
-        long Create(LightUserDto item, string password);
+        long Create(SecurityUserDto item, string password);
 
         /// <summary>
         /// Gets all practices stored in the database.
@@ -59,13 +59,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// Gets all users.
         /// </summary>
         /// <returns></returns>
-        IList<LightUserDto> GetAllUsers();
+        IList<SecurityUserDto> GetAllUsers();
 
         /// <summary>
         /// Gets user used for default connection or null if none is selected.
         /// </summary>
         /// <returns></returns>
-        LightUserDto GetDefaultUser();
+        SecurityUserDto GetDefaultUser();
 
         /// <summary>
         /// Gets the user by id.
@@ -79,7 +79,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="id">The id.</param>
         /// <returns></returns>
-        UserDto LoadUser(LightUserDto user);
+        UserDto LoadUser(SecurityUserDto user);
 
         /// <summary>
         /// Updates the specified user.
@@ -92,7 +92,7 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="user">The user.</param>
         /// <param name="password">The password.</param>
-        void UpdatePassword(LightUserDto user, string password);
+        void UpdatePassword(SecurityUserDto user, string password);
 
         #endregion Methods
     }

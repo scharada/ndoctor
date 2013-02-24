@@ -21,10 +21,11 @@
 
 namespace Probel.NDoctor.Plugins.PatientOverview
 {
+    using System;
+
+    using Probel.Helpers.Events;
     using Probel.NDoctor.Domain.DTO.Objects;
     using Probel.NDoctor.Plugins.PatientOverview.Actions;
-    using System;
-    using Probel.Helpers.Events;
 
     internal class PluginDataContext
     {
@@ -46,6 +47,20 @@ namespace Probel.NDoctor.Plugins.PatientOverview
 
         #endregion Constructors
 
+        #region Events
+
+        /// <summary>
+        /// Occurs when a new doctor is binded to the connected patient.
+        /// </summary>
+        public event EventHandler<EventArgs<LightDoctorDto>> DoctorBinded;
+
+        /// <summary>
+        /// Occurs when a new doctor is binded to the connected patient.
+        /// </summary>
+        public event EventHandler<EventArgs<LightDoctorDto>> DoctorUnbinded;
+
+        #endregion Events
+
         #region Properties
 
         /// <summary>
@@ -61,10 +76,21 @@ namespace Probel.NDoctor.Plugins.PatientOverview
         }
 
         #endregion Properties
+
+        #region Methods
+
         /// <summary>
-        /// Occurs when a new doctor is binded to the connected patient.
+        /// Called when a new doctor is binded to the connected patient.
         /// </summary>
-        public event EventHandler<EventArgs<LightDoctorDto>> DoctorUnbinded;
+        /// <param name="doctor">The doctor.</param>
+        public void OnDoctorBinded(LightDoctorDto doctor)
+        {
+            if (this.DoctorBinded != null)
+            {
+                this.DoctorBinded(this, new EventArgs<LightDoctorDto>(doctor));
+            }
+        }
+
         /// <summary>
         /// Called when a new doctor is binded to the connected patient.
         /// </summary>
@@ -77,20 +103,6 @@ namespace Probel.NDoctor.Plugins.PatientOverview
             }
         }
 
-        /// <summary>
-        /// Occurs when a new doctor is binded to the connected patient.
-        /// </summary>
-        public event EventHandler<EventArgs<LightDoctorDto>> DoctorBinded;
-        /// <summary>
-        /// Called when a new doctor is binded to the connected patient.
-        /// </summary>
-        /// <param name="doctor">The doctor.</param>
-        public void OnDoctorBinded(LightDoctorDto doctor)
-        {
-            if (this.DoctorBinded != null)
-            {
-                this.DoctorBinded(this, new EventArgs<LightDoctorDto>(doctor));
-            }
-        }
+        #endregion Methods
     }
 }

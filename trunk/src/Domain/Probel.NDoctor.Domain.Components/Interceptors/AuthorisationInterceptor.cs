@@ -52,7 +52,7 @@ namespace Probel.NDoctor.Domain.Components.Interceptors
 
         #region Properties
 
-        public LightUserDto User
+        public SecurityUserDto User
         {
             get;
             set;

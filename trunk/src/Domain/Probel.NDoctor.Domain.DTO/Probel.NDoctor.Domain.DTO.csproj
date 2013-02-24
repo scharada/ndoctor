@@ -105,6 +105,7 @@
     <Compile Include="Objects\DoubloonDoctorDto.cs" />
     <Compile Include="Objects\ExecutionStatDto.cs" />
     <Compile Include="Objects\LightPictureDto.cs" />
+    <Compile Include="Objects\LightUserDto.cs" />
     <Compile Include="Objects\MedicalRecordStateDto.cs" />
     <Compile Include="Objects\AddressDto.cs" />
     <Compile Include="Objects\BaseDto.cs" />
@@ -129,7 +130,7 @@
     <Compile Include="Objects\IllnessPeriodDto.cs" />
     <Compile Include="Objects\LightPracticeDto.cs" />
     <Compile Include="Objects\LightInsuranceDto.cs" />
-    <Compile Include="Objects\LightUserDto.cs" />
+    <Compile Include="Objects\SecurityUserDto.cs" />
     <Compile Include="Objects\InsuranceDto.cs" />
     <Compile Include="Objects\LightDoctorDto.cs" />
     <Compile Include="Objects\LightPatientDto.cs" />

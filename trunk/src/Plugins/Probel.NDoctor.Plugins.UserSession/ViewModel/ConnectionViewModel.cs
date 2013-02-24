@@ -34,7 +34,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
 
         private IUserSessionComponent component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
         private string password = string.Empty;
-        private LightUserDto selectedUser;
+        private SecurityUserDto selectedUser;
 
         #endregion Fields
 
@@ -45,7 +45,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
         {
             PluginContext.Host.UserConnected += (sender, e) => this.component = PluginContext.ComponentFactory.GetInstance<IUserSessionComponent>();
 
-            this.Users = new ObservableCollection<LightUserDto>();
+            this.Users = new ObservableCollection<SecurityUserDto>();
 
             this.ConnectCommand = new RelayCommand(() => this.Connect());
 
@@ -96,7 +96,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             }
         }
 
-        public LightUserDto SelectedUser
+        public SecurityUserDto SelectedUser
         {
             get { return this.selectedUser; }
             set
@@ -106,7 +106,7 @@ namespace Probel.NDoctor.Plugins.UserSession.ViewModel
             }
         }
 
-        public ObservableCollection<LightUserDto> Users
+        public ObservableCollection<SecurityUserDto> Users
         {
             get;
             set;

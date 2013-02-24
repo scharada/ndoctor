@@ -53,7 +53,7 @@ namespace Probel.NDoctor.View.Core.View
 
         private readonly Page Startpage;
 
-        private LightUserDto connectedUser;
+        private SecurityUserDto connectedUser;
 
         #endregion Fields
 
@@ -147,7 +147,7 @@ namespace Probel.NDoctor.View.Core.View
         /// <value>
         /// The user.
         /// </value>        
-        public LightUserDto ConnectedUser
+        public SecurityUserDto ConnectedUser
         {
             get { return this.connectedUser; }
             set
@@ -521,13 +521,13 @@ namespace Probel.NDoctor.View.Core.View
             }
         }
 
-        private void RefreshDataContext(LightUserDto lightUserDto)
+        private void RefreshDataContext(SecurityUserDto user)
         {
             this.Dispatcher.Invoke((Action)delegate
             {
                 if (this.DataContext != null && this.DataContext is MainWindowViewModel)
                 {
-                    (this.DataContext as MainWindowViewModel).ConnectedUser = lightUserDto;
+                    (this.DataContext as MainWindowViewModel).ConnectedUser = user;
                 }
                 else { throw new WrongDataContextException(); }
             });

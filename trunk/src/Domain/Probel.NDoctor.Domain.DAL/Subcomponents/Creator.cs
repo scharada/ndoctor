@@ -287,7 +287,7 @@
         /// </summary>
         /// <param name="user">The user.</param>
         /// <param name="password">The password.</param>
-        public long Create(LightUserDto item, string password)
+        public long Create(SecurityUserDto item, string password)
         {
             Assert.IsNotNull(item, "item");
             if (string.IsNullOrEmpty(password)) throw new EmptyPasswordException();
@@ -300,7 +300,7 @@
                          select p).ToList().Count() > 0;
             if (found) throw new ExistingItemException();
 
-            var entity = Mapper.Map<LightUserDto, User>(item);
+            var entity = Mapper.Map<SecurityUserDto, User>(item);
             entity.Password = password;
 
             if (entity.IsDefault) this.RemoveDefaultUser();
