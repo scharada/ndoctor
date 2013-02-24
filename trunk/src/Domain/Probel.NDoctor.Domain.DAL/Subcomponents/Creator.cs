@@ -199,7 +199,6 @@
             if (found) throw new ExistingItemException();
 
             var entity = Mapper.Map<ProfessionDto, Profession>(item);
-            entity.Id = 0;
 
             item.Id = (long)this.Session.Save(entity);
             return item.Id;
@@ -238,7 +237,6 @@
             if (found) throw new ExistingItemException();
 
             var entity = Mapper.Map<PathologyDto, Pathology>(item);
-            entity.Id = 0;
 
             item.Id = (long)this.Session.Save(entity);
             return item.Id;
@@ -432,7 +430,6 @@
         {
             var entity = this.Session.Get<Patient>(patient.Id);
             var illnessPeriod = Mapper.Map<IllnessPeriodDto, IllnessPeriod>(period);
-            illnessPeriod.Id = 0;
 
             entity.IllnessHistory.Add(illnessPeriod);
             this.Session.SaveOrUpdate(entity);
@@ -455,7 +452,6 @@
             if (found) throw new ExistingItemException();
 
             var entity = Mapper.Map<DoctorDto, Doctor>(item);
-            entity.Id = 0;
 
             item.Id = (long)this.Session.Save(entity);
             return item.Id;

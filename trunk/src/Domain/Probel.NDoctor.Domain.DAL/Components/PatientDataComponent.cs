@@ -388,7 +388,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
 
             entity.Refresh(item, this.Session);
 
-            this.Session.Merge<Patient>(entity);
+            this.Session.Merge(entity);
         }
 
         /// <summary>

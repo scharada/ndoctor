@@ -31,6 +31,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
 
     using NHibernate;
     using NHibernate.Linq;
+    using NHibernate.Transform;
 
     using Probel.Helpers.Assertion;
     using Probel.Mvvm.DataBinding;
@@ -183,6 +184,8 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// <param name="user">The user.</param>
         public void Update(LightUserDto user)
         {
+            Assert.IsNotNull(user, "user");
+
             var entity = this.Session.Get<User>(user.Id);
             Mapper.Map<LightUserDto, User>(user, entity);
 

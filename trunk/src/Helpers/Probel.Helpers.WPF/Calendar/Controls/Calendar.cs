@@ -184,7 +184,7 @@ namespace Probel.Helpers.WPF.Calendar.Controls
 
         private static void OnAppointmentsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            /* Hack: The calendar is updated
+            /* HACK: The calendar is updated
              * I marked this change as a hack to let it visible in the Task List of Visual Studio
              * With this change, now all the changes of the collection are visible in the calendar as soon
              * as the INotifyCollectionChanged has added/removed items. If the collection doesn't implement
