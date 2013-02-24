@@ -3,7 +3,7 @@
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-	  xmlns:tk="clr-namespace:Xceed.Wpf.Toolkit;assembly=WPFToolkit.Extended"
+	  xmlns:tk="http://schemas.xceed.com/wpf/xaml/toolkit"
 	  xmlns:dv="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
 	  xmlns:dvc="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
 	  xmlns:t="clr-namespace:Probel.NDoctor.View.Core.Translations"
