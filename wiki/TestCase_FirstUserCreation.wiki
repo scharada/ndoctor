@@ -19,7 +19,7 @@
  * issue 41
  * issue 42
 
-=== version 3.0.3 ===
+=== version 3.0.3: ===
  * issue 104
 
-=== version 3.0.4 ===
+=== version 3.0.4: ===
