@@ -2,474 +2,496 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
     <Fragment>
         <DirectoryRef Id="INSTALLLOCATION">
-            <Component Id="AutoMapper.dll" Guid="{60AF4B2C-27B7-4BE1-9FD8-781C7504F0EB}">
+            <Component Id="AutoMapper.dll" Guid="{398C2951-7849-4EC8-B194-105112553E48}">
                 <File Id="AutoMapper.dll" KeyPath="yes" Source="$(env.NEST)\AutoMapper.dll" />
             </Component>
-            <Component Id="AvalonDock.dll" Guid="{DECF01C8-E873-49F6-AF14-2659C5409F22}">
+            <Component Id="AvalonDock.dll" Guid="{819C6AEE-EB8D-4726-9871-E29C3DFC5D80}">
                 <File Id="AvalonDock.dll" KeyPath="yes" Source="$(env.NEST)\AvalonDock.dll" />
             </Component>
-            <Component Id="Castle.Core.dll" Guid="{17952C63-7B1F-4540-8C3C-EB0D3B7C5FAB}">
+            <Component Id="Castle.Core.dll" Guid="{B7FDC2C3-1457-43C6-B515-0C2A6B1F69B0}">
                 <File Id="Castle.Core.dll" KeyPath="yes" Source="$(env.NEST)\Castle.Core.dll" />
             </Component>
-            <Component Id="FluentNHibernate.dll" Guid="{D6DBE5EA-9786-44F4-AB83-7E6269AB18F6}">
+            <Component Id="FluentNHibernate.dll" Guid="{985B46C1-94A3-48E9-83E3-6E905877808E}">
                 <File Id="FluentNHibernate.dll" KeyPath="yes" Source="$(env.NEST)\FluentNHibernate.dll" />
             </Component>
-            <Component Id="Google.GData.AccessControl.dll" Guid="{04D52936-9A25-4427-AAC3-63965B660CA9}">
+            <Component Id="Google.GData.AccessControl.dll" Guid="{6BBBB508-076A-4DA7-B0C7-48ED869F0F04}">
                 <File Id="Google.GData.AccessControl.dll" KeyPath="yes" Source="$(env.NEST)\Google.GData.AccessControl.dll" />
             </Component>
-            <Component Id="Google.GData.Calendar.dll" Guid="{62D03514-3B6D-408E-BF5A-429D8EEFEBD3}">
+            <Component Id="Google.GData.Calendar.dll" Guid="{359BB29B-D921-409B-906C-D7B3A6F895B9}">
                 <File Id="Google.GData.Calendar.dll" KeyPath="yes" Source="$(env.NEST)\Google.GData.Calendar.dll" />
             </Component>
-            <Component Id="Google.GData.Client.dll" Guid="{09C67B6F-C1A6-40D4-B5B3-AE1EAAE26314}">
+            <Component Id="Google.GData.Client.dll" Guid="{EA3009D3-C897-4DDE-87DA-8562BE68174F}">
                 <File Id="Google.GData.Client.dll" KeyPath="yes" Source="$(env.NEST)\Google.GData.Client.dll" />
             </Component>
-            <Component Id="Google.GData.Extensions.dll" Guid="{AE612C80-9305-4944-B345-7EE7C43B6FE8}">
+            <Component Id="Google.GData.Extensions.dll" Guid="{6DC6C20A-F611-45E1-A496-79B9B0E894F9}">
                 <File Id="Google.GData.Extensions.dll" KeyPath="yes" Source="$(env.NEST)\Google.GData.Extensions.dll" />
             </Component>
-            <Component Id="HibernatingRhinos.Profiler.Appender.v4.0.dll" Guid="{AAA7AA11-763E-49DB-99AF-B3C8B7C16833}">
-                <File Id="HibernatingRhinos.Profiler.Appender.v4.0.dll" KeyPath="yes" Source="$(env.NEST)\HibernatingRhinos.Profiler.Appender.v4.0.dll" />
-            </Component>
-            <Component Id="Iesi.Collections.dll" Guid="{C8EACC81-9121-4204-84A3-7264E257A78E}">
+            <Component Id="Iesi.Collections.dll" Guid="{48B28145-CD72-4107-9C1F-02C93030EDEC}">
                 <File Id="Iesi.Collections.dll" KeyPath="yes" Source="$(env.NEST)\Iesi.Collections.dll" />
             </Component>
-            <Component Id="log4net.dll" Guid="{BB677A8D-1954-4C03-95D2-98902EDDF2F2}">
+            <Component Id="log4net.dll" Guid="{162D9FEE-165E-407F-85A5-F1BE5C2511DF}">
                 <File Id="log4net.dll" KeyPath="yes" Source="$(env.NEST)\log4net.dll" />
             </Component>
-            <Component Id="Microsoft.Windows.Shell.dll" Guid="{CF754610-3638-4FB0-9E3C-6292E5EEFFBE}">
+            <Component Id="Microsoft.Windows.Shell.dll" Guid="{2496D5D4-302C-4CBF-8BBD-2940C2443395}">
                 <File Id="Microsoft.Windows.Shell.dll" KeyPath="yes" Source="$(env.NEST)\Microsoft.Windows.Shell.dll" />
             </Component>
-            <Component Id="MongoDB.Bson.dll" Guid="{85C69309-2F13-41C4-96F6-D40047BB7D33}">
+            <Component Id="MongoDB.Bson.dll" Guid="{1E317452-F6FB-470A-AAB9-BF398BDFD005}">
                 <File Id="MongoDB.Bson.dll" KeyPath="yes" Source="$(env.NEST)\MongoDB.Bson.dll" />
             </Component>
-            <Component Id="MongoDB.Driver.dll" Guid="{13892425-DFF6-48F2-A609-7ECE8FA4004D}">
+            <Component Id="MongoDB.Driver.dll" Guid="{F2215389-D6E9-44F3-BFFE-532A058D8768}">
                 <File Id="MongoDB.Driver.dll" KeyPath="yes" Source="$(env.NEST)\MongoDB.Driver.dll" />
             </Component>
-            <Component Id="Newtonsoft.Json.dll" Guid="{EDA9F4D8-87E2-470A-BFD0-79154444F9B7}">
+            <Component Id="MySql.Data.dll" Guid="{123A9D3A-BED3-4D75-99BA-1ED468C730E1}">
+                <File Id="MySql.Data.dll" KeyPath="yes" Source="$(env.NEST)\MySql.Data.dll" />
+            </Component>
+            <Component Id="Newtonsoft.Json.dll" Guid="{240284FE-A92B-473F-980B-2836B9DE93A1}">
                 <File Id="Newtonsoft.Json.dll" KeyPath="yes" Source="$(env.NEST)\Newtonsoft.Json.dll" />
             </Component>
-            <Component Id="NHibernate.dll" Guid="{8E49FFE7-2F1B-4853-B6BB-C723B072A060}">
+            <Component Id="NHibernate.dll" Guid="{ACDA6248-4FDB-4EF2-94A2-FB28B202600B}">
                 <File Id="NHibernate.dll" KeyPath="yes" Source="$(env.NEST)\NHibernate.dll" />
             </Component>
-            <Component Id="Nini.dll" Guid="{E34FEA59-DF65-41BE-9D63-3D33CB53E2FA}">
+            <Component Id="Nini.dll" Guid="{D3648BB1-D087-43C9-9FCB-B70EB3539E31}">
                 <File Id="Nini.dll" KeyPath="yes" Source="$(env.NEST)\Nini.dll" />
             </Component>
-            <Component Id="Probel.Helpers.dll" Guid="{689028A4-5034-4D53-989F-0036EB3E9ECA}">
+            <Component Id="Probel.Helpers.dll" Guid="{FB66868E-5BA4-4AC4-BB98-CD3D92132584}">
                 <File Id="Probel.Helpers.dll" KeyPath="yes" Source="$(env.NEST)\Probel.Helpers.dll" />
             </Component>
-            <Component Id="Probel.Helpers.WPF.dll" Guid="{D71A359F-CB89-4FEB-B165-38FD698C0E2A}">
+            <Component Id="Probel.Helpers.WPF.dll" Guid="{7404C800-657E-4F57-8B7B-9B8006C202C8}">
                 <File Id="Probel.Helpers.WPF.dll" KeyPath="yes" Source="$(env.NEST)\Probel.Helpers.WPF.dll" />
             </Component>
-            <Component Id="Probel.Mvvm.dll" Guid="{262C1C7B-EF31-4678-9724-2637F7E8CD9D}">
+            <Component Id="Probel.Mvvm.dll" Guid="{4001E717-8975-47FD-B831-1D31F9AAD427}">
                 <File Id="Probel.Mvvm.dll" KeyPath="yes" Source="$(env.NEST)\Probel.Mvvm.dll" />
             </Component>
-            <Component Id="Probel.NDoctor.Domain.Components.dll" Guid="{B20CA849-920C-46FF-A37C-1F3ABEA93CC9}">
+            <Component Id="Probel.NDoctor.Domain.Components.dll" Guid="{DB58D672-43B8-4F1F-B775-E0A8C9C49056}">
                 <File Id="Probel.NDoctor.Domain.Components.dll" KeyPath="yes" Source="$(env.NEST)\Probel.NDoctor.Domain.Components.dll" />
             </Component>
-            <Component Id="Probel.NDoctor.Domain.DAL.dll" Guid="{3D096C50-70C1-4EE0-8F82-BAC12E649119}">
+            <Component Id="Probel.NDoctor.Domain.DAL.dll" Guid="{5A467039-E97D-456B-9F34-3B65A2EA82D9}">
                 <File Id="Probel.NDoctor.Domain.DAL.dll" KeyPath="yes" Source="$(env.NEST)\Probel.NDoctor.Domain.DAL.dll" />
             </Component>
-            <Component Id="Probel.NDoctor.Domain.DTO.dll" Guid="{7D81407F-A180-4BBF-9C21-8214E67859C8}">
+            <Component Id="Probel.NDoctor.Domain.DTO.dll" Guid="{C094F3BB-741F-4942-8576-4E59B2439AB9}">
                 <File Id="Probel.NDoctor.Domain.DTO.dll" KeyPath="yes" Source="$(env.NEST)\Probel.NDoctor.Domain.DTO.dll" />
             </Component>
-            <Component Id="Probel.NDoctor.Statistics.dll" Guid="{76FB8051-5B7B-407C-B301-97155B814EA1}">
+            <Component Id="Probel.NDoctor.Statistics.dll" Guid="{9DE7BF0A-3325-4037-8780-EED5C9275989}">
                 <File Id="Probel.NDoctor.Statistics.dll" KeyPath="yes" Source="$(env.NEST)\Probel.NDoctor.Statistics.dll" />
             </Component>
-            <Component Id="Probel.NDoctor.View.Core.exe" Guid="{1F02C4A9-BE2F-4D2D-B77A-1F2CAB686A82}">
+            <Component Id="Probel.NDoctor.View.Core.exe" Guid="{DDFCF74F-F656-4DB1-81CB-9BB3C2D5D0D3}">
                 <File Id="Probel.NDoctor.View.Core.exe" KeyPath="yes" Source="$(env.NEST)\Probel.NDoctor.View.Core.exe" />
             </Component>
-            <Component Id="Probel.NDoctor.View.Core.exe.config" Guid="{B23C9114-343D-4A21-BBC2-A29301671988}">
+            <Component Id="Probel.NDoctor.View.Core.exe.config" Guid="{F82D52C3-C0AB-4F15-9B0C-9004858DAE61}">
                 <File Id="Probel.NDoctor.View.Core.exe.config" KeyPath="yes" Source="$(env.NEST)\Probel.NDoctor.View.Core.exe.config" />
             </Component>
-            <Component Id="Probel.NDoctor.View.Core.exe.log4net" Guid="{D73923AA-3179-4980-9BB4-9971427202BC}">
+            <Component Id="Probel.NDoctor.View.Core.exe.log4net" Guid="{DAB0FE04-4F9E-4415-B24C-2E4C8C6B76BE}">
                 <File Id="Probel.NDoctor.View.Core.exe.log4net" KeyPath="yes" Source="$(env.NEST)\Probel.NDoctor.View.Core.exe.log4net" />
             </Component>
-            <Component Id="Probel.NDoctor.View.Plugins.dll" Guid="{85228D4D-1D62-44FD-9B9D-219F3593F721}">
+            <Component Id="Probel.NDoctor.View.Plugins.dll" Guid="{F730E12E-38CA-43AB-847C-C721107E8BBC}">
                 <File Id="Probel.NDoctor.View.Plugins.dll" KeyPath="yes" Source="$(env.NEST)\Probel.NDoctor.View.Plugins.dll" />
             </Component>
-            <Component Id="Probel.NDoctor.View.Toolbox.dll" Guid="{048FC2F2-C648-472B-B8CF-08728C35083A}">
+            <Component Id="Probel.NDoctor.View.Toolbox.dll" Guid="{1A3B58DF-69F7-46C9-82AF-8364ACEA3DB8}">
                 <File Id="Probel.NDoctor.View.Toolbox.dll" KeyPath="yes" Source="$(env.NEST)\Probel.NDoctor.View.Toolbox.dll" />
             </Component>
-            <Component Id="RibbonControlsLibrary.dll" Guid="{8DE44614-AFC4-4D68-9610-570FBC661D09}">
+            <Component Id="RibbonControlsLibrary.dll" Guid="{808F9E75-410A-44FE-97D7-E53E25784DDC}">
                 <File Id="RibbonControlsLibrary.dll" KeyPath="yes" Source="$(env.NEST)\RibbonControlsLibrary.dll" />
             </Component>
-            <Component Id="StructureMap.dll" Guid="{6003398E-92A0-42D7-983E-FD2ED5210CBD}">
+            <Component Id="StructureMap.dll" Guid="{3AB9F41A-0A2D-4C93-93D2-F98CB60EDB12}">
                 <File Id="StructureMap.dll" KeyPath="yes" Source="$(env.NEST)\StructureMap.dll" />
             </Component>
-            <Component Id="System.Data.SQLite.dll" Guid="{7AD5401C-B6C2-4478-89AE-4DE695D008E1}">
+            <Component Id="System.Data.SQLite.dll" Guid="{CE124DDE-E1BC-459C-B190-BD4669347AAF}">
                 <File Id="System.Data.SQLite.dll" KeyPath="yes" Source="$(env.NEST)\System.Data.SQLite.dll" />
             </Component>
-            <Component Id="System.Windows.Controls.DataVisualization.Toolkit.dll" Guid="{8E7234E1-CD5C-4D4D-BB45-9D7143E95753}">
+            <Component Id="System.Windows.Controls.DataVisualization.Toolkit.dll" Guid="{7F2A94AA-84FB-4E73-9BEA-1BF8DE4EA9AE}">
                 <File Id="System.Windows.Controls.DataVisualization.Toolkit.dll" KeyPath="yes" Source="$(env.NEST)\System.Windows.Controls.DataVisualization.Toolkit.dll" />
             </Component>
-            <Component Id="System.Windows.Controls.Input.Toolkit.dll" Guid="{B628FF67-B08C-4253-ACA3-95FB6AC2BA68}">
+            <Component Id="System.Windows.Controls.Input.Toolkit.dll" Guid="{C14E4DF2-1582-4454-AC38-9B8D732C6D52}">
                 <File Id="System.Windows.Controls.Input.Toolkit.dll" KeyPath="yes" Source="$(env.NEST)\System.Windows.Controls.Input.Toolkit.dll" />
             </Component>
-            <Component Id="System.Windows.Controls.Layout.Toolkit.dll" Guid="{53D8FF0C-EFF2-4BA6-A7F1-A4B5B54045C4}">
+            <Component Id="System.Windows.Controls.Layout.Toolkit.dll" Guid="{DB010485-D70C-47F6-AF2C-9733EFE43F24}">
                 <File Id="System.Windows.Controls.Layout.Toolkit.dll" KeyPath="yes" Source="$(env.NEST)\System.Windows.Controls.Layout.Toolkit.dll" />
             </Component>
-            <Component Id="WPFToolkit.dll" Guid="{34BA940E-5687-4328-81DA-6B58A9E68795}">
+            <Component Id="WPFToolkit.dll" Guid="{5520A6F8-0BA3-4807-9EEA-EDB2BBCE80DC}">
                 <File Id="WPFToolkit.dll" KeyPath="yes" Source="$(env.NEST)\WPFToolkit.dll" />
             </Component>
-            <Component Id="WPFToolkit.Extended.dll" Guid="{74E05AAC-7369-466B-8EF8-EEA160BF4C6C}">
-                <File Id="WPFToolkit.Extended.dll" KeyPath="yes" Source="$(env.NEST)\WPFToolkit.Extended.dll" />
-            </Component>
-            <Component Id="Xceed.Wpf.DataGrid.dll" Guid="{88E323B7-9A6E-45DD-A4BD-FFF872D72C7D}">
+            <Component Id="Xceed.Wpf.DataGrid.dll" Guid="{B1B462B1-1FAA-4A22-94AE-0446A30BD8D0}">
                 <File Id="Xceed.Wpf.DataGrid.dll" KeyPath="yes" Source="$(env.NEST)\Xceed.Wpf.DataGrid.dll" />
             </Component>
+            <Component Id="Xceed.Wpf.Toolkit.dll" Guid="{7E1E0B4E-0466-4D6D-AD43-CF14FA1ECC71}">
+                <File Id="Xceed.Wpf.Toolkit.dll" KeyPath="yes" Source="$(env.NEST)\Xceed.Wpf.Toolkit.dll" />
+            </Component>
             <Directory Id="fr" Name="fr">
-                <Component Id="Probel.Helpers.resources.dll" Guid="{4B6943F3-1157-424A-998B-793C63647D76}">
+                <Component Id="Probel.Helpers.resources.dll" Guid="{913AFED4-0868-48A0-8EA2-CA89B53A7F05}">
                     <File Id="Probel.Helpers.resources.dll" KeyPath="yes" Source="$(env.NEST)\fr\Probel.Helpers.resources.dll" />
                 </Component>
-                <Component Id="Probel.Mvvm.resources.dll" Guid="{F8DCB1F1-EF52-4768-9EE3-FE24CDCB3A1E}">
+                <Component Id="Probel.Mvvm.resources.dll" Guid="{B77691E6-6FB8-4B12-91C6-0EC1DFDC284E}">
                     <File Id="Probel.Mvvm.resources.dll" KeyPath="yes" Source="$(env.NEST)\fr\Probel.Mvvm.resources.dll" />
                 </Component>
-                <Component Id="Probel.NDoctor.Domain.DAL.resources.dll" Guid="{B52E75FC-9E0C-41BA-9853-4DDE41C1215D}">
+                <Component Id="Probel.NDoctor.Domain.DAL.resources.dll" Guid="{B618CACD-263D-497D-B495-247347CF1C04}">
                     <File Id="Probel.NDoctor.Domain.DAL.resources.dll" KeyPath="yes" Source="$(env.NEST)\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
                 </Component>
-                <Component Id="Probel.NDoctor.Domain.DTO.resources.dll" Guid="{6B7792B1-C635-4F9A-9F94-5927312D2BD7}">
+                <Component Id="Probel.NDoctor.Domain.DTO.resources.dll" Guid="{CAC35D53-57A1-4E70-B4E5-3BE787B83AC5}">
                     <File Id="Probel.NDoctor.Domain.DTO.resources.dll" KeyPath="yes" Source="$(env.NEST)\fr\Probel.NDoctor.Domain.DTO.resources.dll" />
                 </Component>
-                <Component Id="Probel.NDoctor.View.Core.resources.dll" Guid="{A4815E84-E311-4844-AF0A-5D3E00B36E92}">
+                <Component Id="Probel.NDoctor.View.Core.resources.dll" Guid="{FE1885F5-1F0F-424D-A456-F0ED6C9B7D7C}">
                     <File Id="Probel.NDoctor.View.Core.resources.dll" KeyPath="yes" Source="$(env.NEST)\fr\Probel.NDoctor.View.Core.resources.dll" />
                 </Component>
-                <Component Id="Probel.NDoctor.View.Plugins.resources.dll" Guid="{A9544CD8-61DB-42E9-A6CF-1738751D7F81}">
+                <Component Id="Probel.NDoctor.View.Plugins.resources.dll" Guid="{89D2CE2C-F04E-40A7-8292-6F9ED50C0932}">
                     <File Id="Probel.NDoctor.View.Plugins.resources.dll" KeyPath="yes" Source="$(env.NEST)\fr\Probel.NDoctor.View.Plugins.resources.dll" />
                 </Component>
-                <Component Id="Probel.NDoctor.View.Toolbox.resources.dll" Guid="{47947EA4-4F25-4DC2-8839-2E89A8BC3F19}">
+                <Component Id="Probel.NDoctor.View.Toolbox.resources.dll" Guid="{F6B8BD8A-DDF1-4015-9242-D58EDFE3CDD8}">
                     <File Id="Probel.NDoctor.View.Toolbox.resources.dll" KeyPath="yes" Source="$(env.NEST)\fr\Probel.NDoctor.View.Toolbox.resources.dll" />
                 </Component>
             </Directory>
             <Directory Id="Plugins" Name="Plugins">
                 <Directory Id="Administration" Name="Administration">
-                    <Component Id="Probel.NDoctor.Plugins.Administration.dll" Guid="{0C7DAC1D-0A20-4A07-98E6-E4ECD79EAA94}">
+                    <Component Id="Probel.NDoctor.Plugins.Administration.dll" Guid="{83FCE773-F90D-47BA-B946-A56D1A56760C}">
                         <File Id="Probel.NDoctor.Plugins.Administration.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\Administration\Probel.NDoctor.Plugins.Administration.dll" />
                     </Component>
                     <Directory Id="fr_1" Name="fr">
-                        <Component Id="Probel.Helpers.resources.dll_1" Guid="{3DDDA55E-643B-416F-BFCB-5B67BF6080D0}">
+                        <Component Id="Probel.Helpers.resources.dll_1" Guid="{597F9AA7-B4B8-4CD1-B6AF-A35D11E8BAC3}">
                             <File Id="Probel.Helpers.resources.dll_1" KeyPath="yes" Source="$(env.NEST)\Plugins\Administration\fr\Probel.Helpers.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_1" Guid="{9C61BA61-4774-4A87-AA33-E0B90B7D3985}">
+                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_1" Guid="{5DA777E0-00B6-4E55-9FCC-373F6F2DE258}">
                             <File Id="Probel.NDoctor.Domain.DAL.resources.dll_1" KeyPath="yes" Source="$(env.NEST)\Plugins\Administration\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Plugins.Administration.resources.dll" Guid="{6CEDAA78-0325-4ECD-9E2A-A72815B5E2E9}">
+                        <Component Id="Probel.NDoctor.Plugins.Administration.resources.dll" Guid="{4D0198B3-7AFF-435B-86FC-1DB0FA2BB54C}">
                             <File Id="Probel.NDoctor.Plugins.Administration.resources.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\Administration\fr\Probel.NDoctor.Plugins.Administration.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Core.resources.dll_1" Guid="{54D78AC4-26E6-4F60-9239-184637A6F9BF}">
+                        <Component Id="Probel.NDoctor.View.Core.resources.dll_1" Guid="{3D0F347B-CABB-4123-A158-921105ED9545}">
                             <File Id="Probel.NDoctor.View.Core.resources.dll_1" KeyPath="yes" Source="$(env.NEST)\Plugins\Administration\fr\Probel.NDoctor.View.Core.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_1" Guid="{6247633F-49E6-4FDB-AF20-9935D65DB640}">
+                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_1" Guid="{D7738532-C824-4517-A829-736B07626275}">
                             <File Id="Probel.NDoctor.View.Plugins.resources.dll_1" KeyPath="yes" Source="$(env.NEST)\Plugins\Administration\fr\Probel.NDoctor.View.Plugins.resources.dll" />
                         </Component>
                     </Directory>
                 </Directory>
                 <Directory Id="Authorisation" Name="Authorisation">
-                    <Component Id="Probel.NDoctor.Plugins.Authorisation.dll" Guid="{BFBD4607-CC5B-4EC8-9EB1-5655B98CECE0}">
+                    <Component Id="Probel.NDoctor.Plugins.Authorisation.dll" Guid="{CC12F9E8-0F0E-4D5F-8248-849189DFBA23}">
                         <File Id="Probel.NDoctor.Plugins.Authorisation.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\Authorisation\Probel.NDoctor.Plugins.Authorisation.dll" />
                     </Component>
                     <Directory Id="fr_2" Name="fr">
-                        <Component Id="Probel.Helpers.resources.dll_2" Guid="{93857522-55B8-4CD6-96E8-05447110611B}">
+                        <Component Id="Probel.Helpers.resources.dll_2" Guid="{C91A5E0F-303F-4CF7-979F-97A809AE50F7}">
                             <File Id="Probel.Helpers.resources.dll_2" KeyPath="yes" Source="$(env.NEST)\Plugins\Authorisation\fr\Probel.Helpers.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_2" Guid="{CF1B2F9A-9147-4A02-B9DF-55B6791A5C2E}">
+                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_2" Guid="{03FAB083-DBFD-42BF-8C8A-5D6295C76D09}">
                             <File Id="Probel.NDoctor.Domain.DAL.resources.dll_2" KeyPath="yes" Source="$(env.NEST)\Plugins\Authorisation\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Plugins.Authorisation.resources.dll" Guid="{1B87AD3B-54B3-41F2-824D-F79ABAC8FBC9}">
+                        <Component Id="Probel.NDoctor.Plugins.Authorisation.resources.dll" Guid="{32E86681-A7A1-4BC8-B288-3A8E7A435E77}">
                             <File Id="Probel.NDoctor.Plugins.Authorisation.resources.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\Authorisation\fr\Probel.NDoctor.Plugins.Authorisation.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Core.resources.dll_2" Guid="{39139086-17A6-4AF5-A2E8-F0B40401062D}">
+                        <Component Id="Probel.NDoctor.View.Core.resources.dll_2" Guid="{B703D3A9-CC18-44BE-B64B-BF212AA16344}">
                             <File Id="Probel.NDoctor.View.Core.resources.dll_2" KeyPath="yes" Source="$(env.NEST)\Plugins\Authorisation\fr\Probel.NDoctor.View.Core.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_2" Guid="{F7858652-A0E3-4C25-B43C-6C612153F39B}">
+                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_2" Guid="{D3572467-9453-4267-B5FC-EF9C64C46C74}">
                             <File Id="Probel.NDoctor.View.Plugins.resources.dll_2" KeyPath="yes" Source="$(env.NEST)\Plugins\Authorisation\fr\Probel.NDoctor.View.Plugins.resources.dll" />
                         </Component>
                     </Directory>
                 </Directory>
                 <Directory Id="BmiRecord" Name="BmiRecord">
-                    <Component Id="Probel.NDoctor.Plugins.BmiRecord.dll" Guid="{210637E7-66C5-49A7-9B90-ACD781C69671}">
+                    <Component Id="Probel.NDoctor.Plugins.BmiRecord.dll" Guid="{2873BD09-886E-4A7E-9555-6D798CA51B31}">
                         <File Id="Probel.NDoctor.Plugins.BmiRecord.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\BmiRecord\Probel.NDoctor.Plugins.BmiRecord.dll" />
                     </Component>
                     <Directory Id="fr_3" Name="fr">
-                        <Component Id="Probel.Helpers.resources.dll_3" Guid="{387E5A20-8222-4F43-AFC2-7755A5254021}">
+                        <Component Id="Probel.Helpers.resources.dll_3" Guid="{460366C0-5515-4A53-881B-066F523870F8}">
                             <File Id="Probel.Helpers.resources.dll_3" KeyPath="yes" Source="$(env.NEST)\Plugins\BmiRecord\fr\Probel.Helpers.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_3" Guid="{1D9B9FEF-E8FB-4E9A-9B55-940108E1513F}">
+                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_3" Guid="{A4C09C7A-0BF5-45F1-9801-FBE65BEC1A2D}">
                             <File Id="Probel.NDoctor.Domain.DAL.resources.dll_3" KeyPath="yes" Source="$(env.NEST)\Plugins\BmiRecord\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Plugins.BmiRecord.resources.dll" Guid="{B74F303B-ADE0-47AF-BAE2-CCF068C02DDA}">
+                        <Component Id="Probel.NDoctor.Plugins.BmiRecord.resources.dll" Guid="{FF31E0D8-01DF-4707-9844-5CE9CB0B7132}">
                             <File Id="Probel.NDoctor.Plugins.BmiRecord.resources.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\BmiRecord\fr\Probel.NDoctor.Plugins.BmiRecord.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Core.resources.dll_3" Guid="{8673EE38-D7AF-4421-96EA-CC5BD078B7BF}">
+                        <Component Id="Probel.NDoctor.View.Core.resources.dll_3" Guid="{53E0ED06-D667-4C11-A594-CCF60C6A6D3F}">
                             <File Id="Probel.NDoctor.View.Core.resources.dll_3" KeyPath="yes" Source="$(env.NEST)\Plugins\BmiRecord\fr\Probel.NDoctor.View.Core.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_3" Guid="{76319241-E576-4560-A7C7-96A4F05761C5}">
+                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_3" Guid="{2C7C117C-F2EE-4D2D-8393-BF47194A5C79}">
                             <File Id="Probel.NDoctor.View.Plugins.resources.dll_3" KeyPath="yes" Source="$(env.NEST)\Plugins\BmiRecord\fr\Probel.NDoctor.View.Plugins.resources.dll" />
                         </Component>
                     </Directory>
                 </Directory>
                 <Directory Id="DbConvert" Name="DbConvert">
-                    <Component Id="Probel.NDoctor.Plugins.DbConvert.dll" Guid="{F060561E-76B3-47FF-B2E6-6BE5FBF89D91}">
+                    <Component Id="Probel.NDoctor.Plugins.DbConvert.dll" Guid="{BE0FB217-CAB6-48F9-9656-D08F33EE5043}">
                         <File Id="Probel.NDoctor.Plugins.DbConvert.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\DbConvert\Probel.NDoctor.Plugins.DbConvert.dll" />
                     </Component>
                     <Directory Id="fr_4" Name="fr">
-                        <Component Id="Probel.Helpers.resources.dll_4" Guid="{F80142FD-CF19-4791-9D03-73B6688A837A}">
+                        <Component Id="Probel.Helpers.resources.dll_4" Guid="{7031EF58-A3DB-4361-963F-C8245D13A2FE}">
                             <File Id="Probel.Helpers.resources.dll_4" KeyPath="yes" Source="$(env.NEST)\Plugins\DbConvert\fr\Probel.Helpers.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_4" Guid="{1CEAF429-894B-4D78-9C6D-137C2CA15AAD}">
+                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_4" Guid="{A5A11B21-981E-488A-A831-C96F347B1166}">
                             <File Id="Probel.NDoctor.Domain.DAL.resources.dll_4" KeyPath="yes" Source="$(env.NEST)\Plugins\DbConvert\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Plugins.DbConvert.resources.dll" Guid="{3F36CA18-6AFE-4D2B-A8DF-F3D71772F025}">
+                        <Component Id="Probel.NDoctor.Plugins.DbConvert.resources.dll" Guid="{D174209A-CF07-48C5-A4C5-D62F1A706748}">
                             <File Id="Probel.NDoctor.Plugins.DbConvert.resources.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\DbConvert\fr\Probel.NDoctor.Plugins.DbConvert.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Core.resources.dll_4" Guid="{2CF23C9B-5F82-44B2-8DE9-5C498397E96C}">
+                        <Component Id="Probel.NDoctor.View.Core.resources.dll_4" Guid="{2382102E-8346-4B68-A443-C3FF041D6061}">
                             <File Id="Probel.NDoctor.View.Core.resources.dll_4" KeyPath="yes" Source="$(env.NEST)\Plugins\DbConvert\fr\Probel.NDoctor.View.Core.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_4" Guid="{91B603A5-F38D-4167-8A5E-77D7CCBA2D88}">
+                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_4" Guid="{93241189-D94C-45E7-BAB4-787D91CD076E}">
                             <File Id="Probel.NDoctor.View.Plugins.resources.dll_4" KeyPath="yes" Source="$(env.NEST)\Plugins\DbConvert\fr\Probel.NDoctor.View.Plugins.resources.dll" />
                         </Component>
                     </Directory>
                 </Directory>
-                <Directory Id="FamilyViewer" Name="FamilyViewer">
-                    <Component Id="Probel.NDoctor.Plugins.FamilyViewer.dll" Guid="{695F31BA-4856-486F-B961-F8B1018499C2}">
-                        <File Id="Probel.NDoctor.Plugins.FamilyViewer.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\FamilyViewer\Probel.NDoctor.Plugins.FamilyViewer.dll" />
+                <Directory Id="DebugTools" Name="DebugTools">
+                    <Component Id="Probel.NDoctor.Plugins.DebugTools.dll" Guid="{8A31B949-AD0C-45E4-8D0A-626D20F8374F}">
+                        <File Id="Probel.NDoctor.Plugins.DebugTools.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\DebugTools\Probel.NDoctor.Plugins.DebugTools.dll" />
                     </Component>
                     <Directory Id="fr_5" Name="fr">
-                        <Component Id="Probel.Helpers.resources.dll_5" Guid="{FF61127B-429C-44DF-BBF2-102E4DC37BD9}">
-                            <File Id="Probel.Helpers.resources.dll_5" KeyPath="yes" Source="$(env.NEST)\Plugins\FamilyViewer\fr\Probel.Helpers.resources.dll" />
+                        <Component Id="Probel.Helpers.resources.dll_5" Guid="{C9670714-05D4-49FC-BE7A-6DA21F086DE1}">
+                            <File Id="Probel.Helpers.resources.dll_5" KeyPath="yes" Source="$(env.NEST)\Plugins\DebugTools\fr\Probel.Helpers.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_5" Guid="{29139F69-6184-4E97-8179-D3518CCF4604}">
-                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_5" KeyPath="yes" Source="$(env.NEST)\Plugins\FamilyViewer\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
+                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_5" Guid="{263BA0C6-9DD9-4FFD-B533-91D3750DECA6}">
+                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_5" KeyPath="yes" Source="$(env.NEST)\Plugins\DebugTools\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Plugins.FamilyViewer.resources.dll" Guid="{115390F6-EFB7-4F85-8FFB-E09C38A8ECFB}">
+                        <Component Id="Probel.NDoctor.Plugins.DebugTools.resources.dll" Guid="{74A710F0-5993-46B3-BE8B-FFA952A37210}">
+                            <File Id="Probel.NDoctor.Plugins.DebugTools.resources.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\DebugTools\fr\Probel.NDoctor.Plugins.DebugTools.resources.dll" />
+                        </Component>
+                        <Component Id="Probel.NDoctor.View.Core.resources.dll_5" Guid="{B67EF77F-64B3-4BEB-8A6B-420137DB863C}">
+                            <File Id="Probel.NDoctor.View.Core.resources.dll_5" KeyPath="yes" Source="$(env.NEST)\Plugins\DebugTools\fr\Probel.NDoctor.View.Core.resources.dll" />
+                        </Component>
+                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_5" Guid="{1BD044C2-35E0-44A9-B282-E32F8B3FD3F5}">
+                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_5" KeyPath="yes" Source="$(env.NEST)\Plugins\DebugTools\fr\Probel.NDoctor.View.Plugins.resources.dll" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="FamilyViewer" Name="FamilyViewer">
+                    <Component Id="Probel.NDoctor.Plugins.FamilyViewer.dll" Guid="{AEDEF2D9-06BF-4DF1-979B-6CD3916447DD}">
+                        <File Id="Probel.NDoctor.Plugins.FamilyViewer.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\FamilyViewer\Probel.NDoctor.Plugins.FamilyViewer.dll" />
+                    </Component>
+                    <Directory Id="fr_6" Name="fr">
+                        <Component Id="Probel.Helpers.resources.dll_6" Guid="{B09F0210-F03B-4AB5-BDD0-D312B816D464}">
+                            <File Id="Probel.Helpers.resources.dll_6" KeyPath="yes" Source="$(env.NEST)\Plugins\FamilyViewer\fr\Probel.Helpers.resources.dll" />
+                        </Component>
+                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_6" Guid="{6CF2AF25-0AB0-451F-8ECA-9D52A943CCF1}">
+                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_6" KeyPath="yes" Source="$(env.NEST)\Plugins\FamilyViewer\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
+                        </Component>
+                        <Component Id="Probel.NDoctor.Plugins.FamilyViewer.resources.dll" Guid="{799F1578-E920-4A1A-917D-F8AC5A1AAA23}">
                             <File Id="Probel.NDoctor.Plugins.FamilyViewer.resources.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\FamilyViewer\fr\Probel.NDoctor.Plugins.FamilyViewer.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Core.resources.dll_5" Guid="{7F09CD3A-4E44-4C1E-9FA3-46B5AA2F2215}">
-                            <File Id="Probel.NDoctor.View.Core.resources.dll_5" KeyPath="yes" Source="$(env.NEST)\Plugins\FamilyViewer\fr\Probel.NDoctor.View.Core.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Core.resources.dll_6" Guid="{2F5FB276-4CA6-44E6-8179-7104F149169F}">
+                            <File Id="Probel.NDoctor.View.Core.resources.dll_6" KeyPath="yes" Source="$(env.NEST)\Plugins\FamilyViewer\fr\Probel.NDoctor.View.Core.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_5" Guid="{A2FE2215-7AA0-469B-9E61-770D269BAAAA}">
-                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_5" KeyPath="yes" Source="$(env.NEST)\Plugins\FamilyViewer\fr\Probel.NDoctor.View.Plugins.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_6" Guid="{7DF98D6A-B590-4588-B04E-145BD1B71070}">
+                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_6" KeyPath="yes" Source="$(env.NEST)\Plugins\FamilyViewer\fr\Probel.NDoctor.View.Plugins.resources.dll" />
                         </Component>
                     </Directory>
                 </Directory>
                 <Directory Id="MedicalRecord" Name="MedicalRecord">
-                    <Component Id="ICSharpCode.AvalonEdit.dll" Guid="{B423ECDE-89BC-44EF-B9F6-56FAC8E05E19}">
+                    <Component Id="ICSharpCode.AvalonEdit.dll" Guid="{53BC3322-0258-43CD-8C45-4C017E533B9D}">
                         <File Id="ICSharpCode.AvalonEdit.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\MedicalRecord\ICSharpCode.AvalonEdit.dll" />
                     </Component>
-                    <Component Id="Probel.NDoctor.Plugins.MedicalRecord.dll" Guid="{51CBDC35-42D7-4436-AB16-40796ADDF26F}">
+                    <Component Id="Probel.NDoctor.Plugins.MedicalRecord.dll" Guid="{F99A6831-84F7-4BCC-8B6F-C0AE80CDE349}">
                         <File Id="Probel.NDoctor.Plugins.MedicalRecord.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\MedicalRecord\Probel.NDoctor.Plugins.MedicalRecord.dll" />
                     </Component>
-                    <Directory Id="fr_6" Name="fr">
-                        <Component Id="Probel.Helpers.resources.dll_6" Guid="{1335C870-91E9-4DA9-89F5-5D3641F1CE0C}">
-                            <File Id="Probel.Helpers.resources.dll_6" KeyPath="yes" Source="$(env.NEST)\Plugins\MedicalRecord\fr\Probel.Helpers.resources.dll" />
+                    <Directory Id="fr_7" Name="fr">
+                        <Component Id="Probel.Helpers.resources.dll_7" Guid="{975767F2-2D94-4DED-986C-A91F1F47BF3E}">
+                            <File Id="Probel.Helpers.resources.dll_7" KeyPath="yes" Source="$(env.NEST)\Plugins\MedicalRecord\fr\Probel.Helpers.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_6" Guid="{B210C0D9-703B-458B-86E4-2AE637306C9C}">
-                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_6" KeyPath="yes" Source="$(env.NEST)\Plugins\MedicalRecord\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
+                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_7" Guid="{56723385-01A9-4F24-A076-1A456540C763}">
+                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_7" KeyPath="yes" Source="$(env.NEST)\Plugins\MedicalRecord\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Plugins.MedicalRecord.resources.dll" Guid="{060607ED-0B1E-4600-8C29-00FD366B443F}">
+                        <Component Id="Probel.NDoctor.Plugins.MedicalRecord.resources.dll" Guid="{9A48FF75-F772-4F9B-91FE-DBCA1B399BAE}">
                             <File Id="Probel.NDoctor.Plugins.MedicalRecord.resources.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\MedicalRecord\fr\Probel.NDoctor.Plugins.MedicalRecord.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Core.resources.dll_6" Guid="{EE26568C-94EA-42F1-AA43-3F31BFEB485E}">
-                            <File Id="Probel.NDoctor.View.Core.resources.dll_6" KeyPath="yes" Source="$(env.NEST)\Plugins\MedicalRecord\fr\Probel.NDoctor.View.Core.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Core.resources.dll_7" Guid="{2FCF04FE-EC55-44D3-A3D4-B029FD6AD013}">
+                            <File Id="Probel.NDoctor.View.Core.resources.dll_7" KeyPath="yes" Source="$(env.NEST)\Plugins\MedicalRecord\fr\Probel.NDoctor.View.Core.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_6" Guid="{BDB01941-4A04-4D61-B2F2-36AC5F897052}">
-                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_6" KeyPath="yes" Source="$(env.NEST)\Plugins\MedicalRecord\fr\Probel.NDoctor.View.Plugins.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_7" Guid="{7201CF1B-44D9-4A5D-947A-858EC2A8EEC5}">
+                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_7" KeyPath="yes" Source="$(env.NEST)\Plugins\MedicalRecord\fr\Probel.NDoctor.View.Plugins.resources.dll" />
                         </Component>
                     </Directory>
                 </Directory>
                 <Directory Id="MeetingManager" Name="MeetingManager">
-                    <Component Id="Probel.NDoctor.Plugins.MeetingManager.dll" Guid="{4AFA98F1-8F42-4902-98D5-25E29DF61A38}">
+                    <Component Id="Probel.NDoctor.Plugins.MeetingManager.dll" Guid="{4C72D054-F1DA-43EF-A36E-5A5373FC83AC}">
                         <File Id="Probel.NDoctor.Plugins.MeetingManager.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\MeetingManager\Probel.NDoctor.Plugins.MeetingManager.dll" />
                     </Component>
-                    <Directory Id="fr_7" Name="fr">
-                        <Component Id="Probel.Helpers.resources.dll_7" Guid="{16F68F90-589B-47D3-BFA8-A25C8A714D7D}">
-                            <File Id="Probel.Helpers.resources.dll_7" KeyPath="yes" Source="$(env.NEST)\Plugins\MeetingManager\fr\Probel.Helpers.resources.dll" />
+                    <Directory Id="fr_8" Name="fr">
+                        <Component Id="Probel.Helpers.resources.dll_8" Guid="{ACD740A6-0E3E-4CB9-8393-E741BDF7B6A1}">
+                            <File Id="Probel.Helpers.resources.dll_8" KeyPath="yes" Source="$(env.NEST)\Plugins\MeetingManager\fr\Probel.Helpers.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_7" Guid="{999330D1-E70F-454B-8E6E-293978317005}">
-                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_7" KeyPath="yes" Source="$(env.NEST)\Plugins\MeetingManager\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
+                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_8" Guid="{B34D71FC-2A91-4C1C-BE2D-7976C4E3866D}">
+                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_8" KeyPath="yes" Source="$(env.NEST)\Plugins\MeetingManager\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Plugins.MeetingManager.resources.dll" Guid="{C9CBEDCD-D3AC-4808-B4EA-370E711D9EE2}">
+                        <Component Id="Probel.NDoctor.Plugins.MeetingManager.resources.dll" Guid="{DEE82BBC-E4B3-4D35-8CA2-E40BB131541E}">
                             <File Id="Probel.NDoctor.Plugins.MeetingManager.resources.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\MeetingManager\fr\Probel.NDoctor.Plugins.MeetingManager.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Core.resources.dll_7" Guid="{15229723-1D33-4082-A198-89900DA6467F}">
-                            <File Id="Probel.NDoctor.View.Core.resources.dll_7" KeyPath="yes" Source="$(env.NEST)\Plugins\MeetingManager\fr\Probel.NDoctor.View.Core.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Core.resources.dll_8" Guid="{F99247C7-2DD9-43BB-8BC5-D9C75112DAE4}">
+                            <File Id="Probel.NDoctor.View.Core.resources.dll_8" KeyPath="yes" Source="$(env.NEST)\Plugins\MeetingManager\fr\Probel.NDoctor.View.Core.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_7" Guid="{2D992A15-BB7F-4D80-9527-4EE936A802BC}">
-                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_7" KeyPath="yes" Source="$(env.NEST)\Plugins\MeetingManager\fr\Probel.NDoctor.View.Plugins.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_8" Guid="{C1B24608-C112-4DA4-ABA1-6578576617E9}">
+                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_8" KeyPath="yes" Source="$(env.NEST)\Plugins\MeetingManager\fr\Probel.NDoctor.View.Plugins.resources.dll" />
                         </Component>
                     </Directory>
                 </Directory>
                 <Directory Id="PathologyManager" Name="PathologyManager">
-                    <Component Id="Probel.NDoctor.Plugins.PathologyManager.dll" Guid="{340ED24B-2753-4313-9F1A-FBFD146393AB}">
+                    <Component Id="Probel.NDoctor.Plugins.PathologyManager.dll" Guid="{54A63FD4-C983-4E9A-B3D6-F4F7563439D1}">
                         <File Id="Probel.NDoctor.Plugins.PathologyManager.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\PathologyManager\Probel.NDoctor.Plugins.PathologyManager.dll" />
                     </Component>
-                    <Directory Id="fr_8" Name="fr">
-                        <Component Id="Probel.Helpers.resources.dll_8" Guid="{BD03187F-A8DA-49AB-AE8F-C7C885BB076A}">
-                            <File Id="Probel.Helpers.resources.dll_8" KeyPath="yes" Source="$(env.NEST)\Plugins\PathologyManager\fr\Probel.Helpers.resources.dll" />
+                    <Directory Id="fr_9" Name="fr">
+                        <Component Id="Probel.Helpers.resources.dll_9" Guid="{37853546-E7DE-4E01-A93E-02CF2A55333E}">
+                            <File Id="Probel.Helpers.resources.dll_9" KeyPath="yes" Source="$(env.NEST)\Plugins\PathologyManager\fr\Probel.Helpers.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_8" Guid="{8654832A-F22D-4B32-B645-9DD730F98CA3}">
-                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_8" KeyPath="yes" Source="$(env.NEST)\Plugins\PathologyManager\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
+                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_9" Guid="{FECBCCEB-0999-4C30-A1AC-B0BBE307F7A1}">
+                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_9" KeyPath="yes" Source="$(env.NEST)\Plugins\PathologyManager\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Plugins.PathologyManager.resources.dll" Guid="{D13BE207-BC6D-459C-AD68-2B48E6EA7351}">
+                        <Component Id="Probel.NDoctor.Plugins.PathologyManager.resources.dll" Guid="{78B2C10A-957F-4BB5-8DEF-E860F55AFAEA}">
                             <File Id="Probel.NDoctor.Plugins.PathologyManager.resources.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\PathologyManager\fr\Probel.NDoctor.Plugins.PathologyManager.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Core.resources.dll_8" Guid="{73A17D4B-A330-49D7-9DBB-19DB891B6368}">
-                            <File Id="Probel.NDoctor.View.Core.resources.dll_8" KeyPath="yes" Source="$(env.NEST)\Plugins\PathologyManager\fr\Probel.NDoctor.View.Core.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Core.resources.dll_9" Guid="{7338365E-BB51-43A6-98EB-067A59841ABE}">
+                            <File Id="Probel.NDoctor.View.Core.resources.dll_9" KeyPath="yes" Source="$(env.NEST)\Plugins\PathologyManager\fr\Probel.NDoctor.View.Core.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_8" Guid="{A1E811DE-1F7D-42B7-8AF8-091C03F4ECC7}">
-                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_8" KeyPath="yes" Source="$(env.NEST)\Plugins\PathologyManager\fr\Probel.NDoctor.View.Plugins.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_9" Guid="{60BE4DB2-2BBF-4931-AC01-E6E462F2ED04}">
+                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_9" KeyPath="yes" Source="$(env.NEST)\Plugins\PathologyManager\fr\Probel.NDoctor.View.Plugins.resources.dll" />
                         </Component>
                     </Directory>
                 </Directory>
                 <Directory Id="PatientData" Name="PatientData">
-                    <Component Id="Probel.NDoctor.Plugins.PatientData.dll" Guid="{CEC07183-3E7E-4C0E-AE14-4B2537CFDB7A}">
+                    <Component Id="Probel.NDoctor.Plugins.PatientData.dll" Guid="{84E72EBE-AB27-4090-B1DD-A03E5235A607}">
                         <File Id="Probel.NDoctor.Plugins.PatientData.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientData\Probel.NDoctor.Plugins.PatientData.dll" />
                     </Component>
-                    <Directory Id="fr_9" Name="fr">
-                        <Component Id="Probel.Helpers.resources.dll_9" Guid="{30549500-65C0-4066-8ACD-DCDF2B30E17A}">
-                            <File Id="Probel.Helpers.resources.dll_9" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientData\fr\Probel.Helpers.resources.dll" />
+                    <Directory Id="fr_10" Name="fr">
+                        <Component Id="Probel.Helpers.resources.dll_10" Guid="{9F670B05-37E0-42DC-9B28-EA1CA3B0BA07}">
+                            <File Id="Probel.Helpers.resources.dll_10" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientData\fr\Probel.Helpers.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_9" Guid="{D9316F2B-EAB9-45B6-9B2F-C710C9D402AE}">
-                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_9" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientData\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
+                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_10" Guid="{42B6E17D-B954-40E0-886C-1AFC0647F435}">
+                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_10" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientData\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Plugins.PatientData.resources.dll" Guid="{8FCA1E5A-806D-4B8C-A22B-6BECD7FE9ABE}">
+                        <Component Id="Probel.NDoctor.Plugins.PatientData.resources.dll" Guid="{A51AE226-FD9E-47DA-B139-E4F232411CE9}">
                             <File Id="Probel.NDoctor.Plugins.PatientData.resources.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientData\fr\Probel.NDoctor.Plugins.PatientData.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Core.resources.dll_9" Guid="{613AAA18-A560-4A64-9392-246B8A9957ED}">
-                            <File Id="Probel.NDoctor.View.Core.resources.dll_9" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientData\fr\Probel.NDoctor.View.Core.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Core.resources.dll_10" Guid="{09E62596-90BD-4F80-A5F6-BD7B09351C46}">
+                            <File Id="Probel.NDoctor.View.Core.resources.dll_10" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientData\fr\Probel.NDoctor.View.Core.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_9" Guid="{4632A530-E9A7-4550-B7CC-B5038C7C0B6F}">
-                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_9" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientData\fr\Probel.NDoctor.View.Plugins.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_10" Guid="{5E50E737-68BD-42BC-A2EE-C49F0F701CF8}">
+                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_10" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientData\fr\Probel.NDoctor.View.Plugins.resources.dll" />
                         </Component>
                     </Directory>
                 </Directory>
                 <Directory Id="PatientOverview" Name="PatientOverview">
-                    <Component Id="Probel.NDoctor.Plugins.PatientOverview.dll" Guid="{BDB59587-9C39-4D17-91E5-5243E99DB2DC}">
+                    <Component Id="Probel.NDoctor.Plugins.PatientOverview.dll" Guid="{403D13CF-6CB1-4D60-A70C-09D0144D8DDC}">
                         <File Id="Probel.NDoctor.Plugins.PatientOverview.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientOverview\Probel.NDoctor.Plugins.PatientOverview.dll" />
                     </Component>
-                    <Directory Id="fr_10" Name="fr">
-                        <Component Id="Probel.Helpers.resources.dll_10" Guid="{FA9DFB6C-1DC3-40B4-A6A7-270D7976F3F5}">
-                            <File Id="Probel.Helpers.resources.dll_10" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientOverview\fr\Probel.Helpers.resources.dll" />
+                    <Directory Id="fr_11" Name="fr">
+                        <Component Id="Probel.Helpers.resources.dll_11" Guid="{6F60694E-42BB-4851-A86D-61B24F925321}">
+                            <File Id="Probel.Helpers.resources.dll_11" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientOverview\fr\Probel.Helpers.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_10" Guid="{1FA6508D-5217-4F95-95FB-2E966052B80B}">
-                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_10" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientOverview\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
+                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_11" Guid="{A58B60CF-9FA1-4726-B898-10428547A629}">
+                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_11" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientOverview\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Plugins.PatientOverview.resources.dll" Guid="{CA7A2056-5D90-450E-98A2-57C887B77C7F}">
+                        <Component Id="Probel.NDoctor.Plugins.PatientOverview.resources.dll" Guid="{D69E6BA2-8854-4994-84BE-0AF3DF657F35}">
                             <File Id="Probel.NDoctor.Plugins.PatientOverview.resources.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientOverview\fr\Probel.NDoctor.Plugins.PatientOverview.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Core.resources.dll_10" Guid="{CD5F7FF3-0DA2-4C05-990A-4247C60A708B}">
-                            <File Id="Probel.NDoctor.View.Core.resources.dll_10" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientOverview\fr\Probel.NDoctor.View.Core.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Core.resources.dll_11" Guid="{E94F605E-C95B-49DB-AC73-6AE670F35416}">
+                            <File Id="Probel.NDoctor.View.Core.resources.dll_11" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientOverview\fr\Probel.NDoctor.View.Core.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_10" Guid="{D47DAB8F-AF22-4626-82BC-28D58228DE15}">
-                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_10" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientOverview\fr\Probel.NDoctor.View.Plugins.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_11" Guid="{10E9D0B8-B5EF-4FF4-89AA-7A788CC09F52}">
+                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_11" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientOverview\fr\Probel.NDoctor.View.Plugins.resources.dll" />
                         </Component>
                     </Directory>
                 </Directory>
                 <Directory Id="PatientSession" Name="PatientSession">
-                    <Component Id="Probel.NDoctor.Plugins.PatientSession.dll" Guid="{2D610730-5F72-43BD-8FEC-C97122080AEC}">
+                    <Component Id="Probel.NDoctor.Plugins.PatientSession.dll" Guid="{69297BB6-F84A-439A-9870-B4686334A660}">
                         <File Id="Probel.NDoctor.Plugins.PatientSession.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientSession\Probel.NDoctor.Plugins.PatientSession.dll" />
                     </Component>
-                    <Directory Id="fr_11" Name="fr">
-                        <Component Id="Probel.Helpers.resources.dll_11" Guid="{2ACDC90D-1B5C-42F0-A6AC-372E05A641FA}">
-                            <File Id="Probel.Helpers.resources.dll_11" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientSession\fr\Probel.Helpers.resources.dll" />
+                    <Directory Id="fr_12" Name="fr">
+                        <Component Id="Probel.Helpers.resources.dll_12" Guid="{7229C696-F2A5-4B8F-B479-ED3B2F25A78D}">
+                            <File Id="Probel.Helpers.resources.dll_12" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientSession\fr\Probel.Helpers.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_11" Guid="{0A38EA32-6BA1-4802-85D8-F70F74EA190A}">
-                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_11" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientSession\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
+                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_12" Guid="{08C77C57-81FF-47E4-9B7D-3F5596527E36}">
+                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_12" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientSession\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Plugins.PatientSession.resources.dll" Guid="{8307AA66-07F7-4386-A74A-BE8C061F551A}">
+                        <Component Id="Probel.NDoctor.Plugins.PatientSession.resources.dll" Guid="{8BC687AA-707A-4A0D-AE25-018776A7B99E}">
                             <File Id="Probel.NDoctor.Plugins.PatientSession.resources.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientSession\fr\Probel.NDoctor.Plugins.PatientSession.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Core.resources.dll_11" Guid="{4C9B3BE0-8AE4-41FD-9C2C-CB6C97A8B205}">
-                            <File Id="Probel.NDoctor.View.Core.resources.dll_11" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientSession\fr\Probel.NDoctor.View.Core.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Core.resources.dll_12" Guid="{0D7E8586-D7F3-45C5-8884-6505E34763F0}">
+                            <File Id="Probel.NDoctor.View.Core.resources.dll_12" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientSession\fr\Probel.NDoctor.View.Core.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_11" Guid="{2A8F963D-C980-4B6E-ADA5-A92CDE16355D}">
-                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_11" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientSession\fr\Probel.NDoctor.View.Plugins.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_12" Guid="{0104E430-E840-45F4-B287-06A694E81D0F}">
+                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_12" KeyPath="yes" Source="$(env.NEST)\Plugins\PatientSession\fr\Probel.NDoctor.View.Plugins.resources.dll" />
                         </Component>
                     </Directory>
                 </Directory>
                 <Directory Id="PictureManager" Name="PictureManager">
-                    <Component Id="Probel.NDoctor.Plugins.PictureManager.dll" Guid="{BD4E85C9-7F57-43BB-B1C2-818A080EE3A2}">
+                    <Component Id="Probel.NDoctor.Plugins.PictureManager.dll" Guid="{9DD0C34A-6165-40FC-9DEA-A7019022DE7F}">
                         <File Id="Probel.NDoctor.Plugins.PictureManager.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\PictureManager\Probel.NDoctor.Plugins.PictureManager.dll" />
                     </Component>
-                    <Directory Id="fr_12" Name="fr">
-                        <Component Id="Probel.Helpers.resources.dll_12" Guid="{D4608EBD-5F96-4EB8-BAD5-75E7803D0B0E}">
-                            <File Id="Probel.Helpers.resources.dll_12" KeyPath="yes" Source="$(env.NEST)\Plugins\PictureManager\fr\Probel.Helpers.resources.dll" />
+                    <Directory Id="fr_13" Name="fr">
+                        <Component Id="Probel.Helpers.resources.dll_13" Guid="{F2201284-32F3-4064-80E3-1C2D50582312}">
+                            <File Id="Probel.Helpers.resources.dll_13" KeyPath="yes" Source="$(env.NEST)\Plugins\PictureManager\fr\Probel.Helpers.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_12" Guid="{E7DE9B23-EF7A-4AC2-BF02-8A4B081513A8}">
-                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_12" KeyPath="yes" Source="$(env.NEST)\Plugins\PictureManager\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
+                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_13" Guid="{1DDE3AFA-FB40-4909-98BD-4624904BA7B6}">
+                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_13" KeyPath="yes" Source="$(env.NEST)\Plugins\PictureManager\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Plugins.PictureManager.resources.dll" Guid="{3E7087FA-E11F-4CCB-875B-F140A6393612}">
+                        <Component Id="Probel.NDoctor.Plugins.PictureManager.resources.dll" Guid="{8610076F-8C08-4FD0-B480-6BC804F457B9}">
                             <File Id="Probel.NDoctor.Plugins.PictureManager.resources.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\PictureManager\fr\Probel.NDoctor.Plugins.PictureManager.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Core.resources.dll_12" Guid="{05AABC8E-5C33-4F15-92FC-2DED5BF236AD}">
-                            <File Id="Probel.NDoctor.View.Core.resources.dll_12" KeyPath="yes" Source="$(env.NEST)\Plugins\PictureManager\fr\Probel.NDoctor.View.Core.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Core.resources.dll_13" Guid="{0517E2AE-D4EB-4788-B197-97624E24E32B}">
+                            <File Id="Probel.NDoctor.View.Core.resources.dll_13" KeyPath="yes" Source="$(env.NEST)\Plugins\PictureManager\fr\Probel.NDoctor.View.Core.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_12" Guid="{CE42FFC8-669B-490F-A3D7-BF990EA06047}">
-                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_12" KeyPath="yes" Source="$(env.NEST)\Plugins\PictureManager\fr\Probel.NDoctor.View.Plugins.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_13" Guid="{94E96566-1069-4844-BCED-AB568C822756}">
+                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_13" KeyPath="yes" Source="$(env.NEST)\Plugins\PictureManager\fr\Probel.NDoctor.View.Plugins.resources.dll" />
                         </Component>
                     </Directory>
                 </Directory>
                 <Directory Id="PrescriptionManager" Name="PrescriptionManager">
-                    <Component Id="Probel.NDoctor.Plugins.PrescriptionManager.dll" Guid="{82C19517-4D24-4D79-87AA-34E5589DE917}">
+                    <Component Id="Probel.NDoctor.Plugins.PrescriptionManager.dll" Guid="{574AEBBE-44D9-42A4-A8C9-316B2ACE26AA}">
                         <File Id="Probel.NDoctor.Plugins.PrescriptionManager.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\PrescriptionManager\Probel.NDoctor.Plugins.PrescriptionManager.dll" />
                     </Component>
-                    <Directory Id="fr_13" Name="fr">
-                        <Component Id="Probel.Helpers.resources.dll_13" Guid="{FF34D05D-64F7-4C28-ACFF-7EE6C93D4449}">
-                            <File Id="Probel.Helpers.resources.dll_13" KeyPath="yes" Source="$(env.NEST)\Plugins\PrescriptionManager\fr\Probel.Helpers.resources.dll" />
+                    <Directory Id="fr_14" Name="fr">
+                        <Component Id="Probel.Helpers.resources.dll_14" Guid="{5F1025C5-9F79-484D-9DF6-6953674C89F0}">
+                            <File Id="Probel.Helpers.resources.dll_14" KeyPath="yes" Source="$(env.NEST)\Plugins\PrescriptionManager\fr\Probel.Helpers.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_13" Guid="{CB9898E3-EFB3-44D3-BF4B-67F548317166}">
-                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_13" KeyPath="yes" Source="$(env.NEST)\Plugins\PrescriptionManager\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
+                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_14" Guid="{3A556B8D-F6E8-43E1-91CE-070C63B261AD}">
+                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_14" KeyPath="yes" Source="$(env.NEST)\Plugins\PrescriptionManager\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Plugins.PrescriptionManager.resources.dll" Guid="{BDEC0585-B853-4EAA-A15D-15BA46DDA86B}">
+                        <Component Id="Probel.NDoctor.Plugins.PrescriptionManager.resources.dll" Guid="{F09E2054-D316-4720-B50A-FFCEADB00D95}">
                             <File Id="Probel.NDoctor.Plugins.PrescriptionManager.resources.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\PrescriptionManager\fr\Probel.NDoctor.Plugins.PrescriptionManager.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Core.resources.dll_13" Guid="{F1F2DE7B-83FC-4648-87DE-16F66B205466}">
-                            <File Id="Probel.NDoctor.View.Core.resources.dll_13" KeyPath="yes" Source="$(env.NEST)\Plugins\PrescriptionManager\fr\Probel.NDoctor.View.Core.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Core.resources.dll_14" Guid="{8CFD65E0-43B5-4F28-BCA5-78B1C317CCB5}">
+                            <File Id="Probel.NDoctor.View.Core.resources.dll_14" KeyPath="yes" Source="$(env.NEST)\Plugins\PrescriptionManager\fr\Probel.NDoctor.View.Core.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_13" Guid="{A0441D65-DD05-4BF6-88E5-8C417E272D08}">
-                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_13" KeyPath="yes" Source="$(env.NEST)\Plugins\PrescriptionManager\fr\Probel.NDoctor.View.Plugins.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_14" Guid="{946BCACD-28B6-4E1A-A5C2-44241C234E7C}">
+                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_14" KeyPath="yes" Source="$(env.NEST)\Plugins\PrescriptionManager\fr\Probel.NDoctor.View.Plugins.resources.dll" />
                         </Component>
                     </Directory>
                 </Directory>
                 <Directory Id="RescueTools" Name="RescueTools">
-                    <Component Id="Probel.NDoctor.Plugins.RescueTools.dll" Guid="{CCE3B916-A729-48A0-96A5-64E346AACB33}">
+                    <Component Id="Probel.NDoctor.Plugins.RescueTools.dll" Guid="{6099CA53-C5C9-4572-A063-BC4CFC4A213C}">
                         <File Id="Probel.NDoctor.Plugins.RescueTools.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\RescueTools\Probel.NDoctor.Plugins.RescueTools.dll" />
                     </Component>
-                    <Directory Id="fr_14" Name="fr">
-                        <Component Id="Probel.Helpers.resources.dll_14" Guid="{2BF2A8CC-FA47-43AC-A1E1-D76BFF2DFB1B}">
-                            <File Id="Probel.Helpers.resources.dll_14" KeyPath="yes" Source="$(env.NEST)\Plugins\RescueTools\fr\Probel.Helpers.resources.dll" />
+                    <Directory Id="fr_15" Name="fr">
+                        <Component Id="Probel.Helpers.resources.dll_15" Guid="{EA8F7559-C064-4BAF-A758-B40661CC79BB}">
+                            <File Id="Probel.Helpers.resources.dll_15" KeyPath="yes" Source="$(env.NEST)\Plugins\RescueTools\fr\Probel.Helpers.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_14" Guid="{9E4E7530-0873-4203-903C-1DC96C0B8094}">
-                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_14" KeyPath="yes" Source="$(env.NEST)\Plugins\RescueTools\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
+                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_15" Guid="{C4F97961-77FF-427C-AD0A-C45CF39681EC}">
+                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_15" KeyPath="yes" Source="$(env.NEST)\Plugins\RescueTools\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Plugins.RescueTools.resources.dll" Guid="{42D44156-FDDE-4111-BB54-ABC6D79D7C75}">
+                        <Component Id="Probel.NDoctor.Plugins.RescueTools.resources.dll" Guid="{F120D5BD-1C1F-4E6A-AA21-0D32674BBF62}">
                             <File Id="Probel.NDoctor.Plugins.RescueTools.resources.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\RescueTools\fr\Probel.NDoctor.Plugins.RescueTools.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Core.resources.dll_14" Guid="{1AD42A67-257D-4E76-A70B-C4B7D33DCB4B}">
-                            <File Id="Probel.NDoctor.View.Core.resources.dll_14" KeyPath="yes" Source="$(env.NEST)\Plugins\RescueTools\fr\Probel.NDoctor.View.Core.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Core.resources.dll_15" Guid="{96362650-10D7-46C9-AC80-100CA538F5EE}">
+                            <File Id="Probel.NDoctor.View.Core.resources.dll_15" KeyPath="yes" Source="$(env.NEST)\Plugins\RescueTools\fr\Probel.NDoctor.View.Core.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_14" Guid="{C9A19A09-5B17-4B71-90FA-CCB9DBD09EAF}">
-                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_14" KeyPath="yes" Source="$(env.NEST)\Plugins\RescueTools\fr\Probel.NDoctor.View.Plugins.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_15" Guid="{4F5F87E6-B1F2-460B-9B25-8A9F9C67D288}">
+                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_15" KeyPath="yes" Source="$(env.NEST)\Plugins\RescueTools\fr\Probel.NDoctor.View.Plugins.resources.dll" />
                         </Component>
                     </Directory>
                 </Directory>
                 <Directory Id="UserSession" Name="UserSession">
-                    <Component Id="Probel.NDoctor.Plugins.UserSession.dll" Guid="{F35297FA-B5A8-49A7-991B-9053F5E71BDC}">
+                    <Component Id="Probel.NDoctor.Plugins.UserSession.dll" Guid="{C808797C-2BCE-4A0B-A3CA-76D97556EF47}">
                         <File Id="Probel.NDoctor.Plugins.UserSession.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\UserSession\Probel.NDoctor.Plugins.UserSession.dll" />
                     </Component>
-                    <Directory Id="fr_15" Name="fr">
-                        <Component Id="Probel.Helpers.resources.dll_15" Guid="{03A320D0-A98E-4C09-9C2D-0DB6A52EAF34}">
-                            <File Id="Probel.Helpers.resources.dll_15" KeyPath="yes" Source="$(env.NEST)\Plugins\UserSession\fr\Probel.Helpers.resources.dll" />
+                    <Directory Id="fr_16" Name="fr">
+                        <Component Id="Probel.Helpers.resources.dll_16" Guid="{7A1F7E4D-7F5E-4985-98F6-2F8A61F32AA2}">
+                            <File Id="Probel.Helpers.resources.dll_16" KeyPath="yes" Source="$(env.NEST)\Plugins\UserSession\fr\Probel.Helpers.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_15" Guid="{31FBE534-A390-4052-81F0-330ECA6F7C14}">
-                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_15" KeyPath="yes" Source="$(env.NEST)\Plugins\UserSession\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
+                        <Component Id="Probel.NDoctor.Domain.DAL.resources.dll_16" Guid="{ADFC1A38-AE16-4D33-A4B5-5E49F66D2C78}">
+                            <File Id="Probel.NDoctor.Domain.DAL.resources.dll_16" KeyPath="yes" Source="$(env.NEST)\Plugins\UserSession\fr\Probel.NDoctor.Domain.DAL.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.Plugins.UserSession.resources.dll" Guid="{F3A66F23-4DE0-4506-A9B8-4AD852812CF6}">
+                        <Component Id="Probel.NDoctor.Plugins.UserSession.resources.dll" Guid="{B3CD12B2-044F-4D45-8B5D-42FE864BD150}">
                             <File Id="Probel.NDoctor.Plugins.UserSession.resources.dll" KeyPath="yes" Source="$(env.NEST)\Plugins\UserSession\fr\Probel.NDoctor.Plugins.UserSession.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Core.resources.dll_15" Guid="{345C07CC-15B7-4B69-AAA0-57BA146291F7}">
-                            <File Id="Probel.NDoctor.View.Core.resources.dll_15" KeyPath="yes" Source="$(env.NEST)\Plugins\UserSession\fr\Probel.NDoctor.View.Core.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Core.resources.dll_16" Guid="{1EEC61A3-0D57-4032-8DCF-4AB9C8C18E03}">
+                            <File Id="Probel.NDoctor.View.Core.resources.dll_16" KeyPath="yes" Source="$(env.NEST)\Plugins\UserSession\fr\Probel.NDoctor.View.Core.resources.dll" />
                         </Component>
-                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_15" Guid="{0A0AA792-731B-4002-A25C-7DD6EA8FF0D1}">
-                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_15" KeyPath="yes" Source="$(env.NEST)\Plugins\UserSession\fr\Probel.NDoctor.View.Plugins.resources.dll" />
+                        <Component Id="Probel.NDoctor.View.Plugins.resources.dll_16" Guid="{8D502B32-1DF5-4813-9953-1F9390730310}">
+                            <File Id="Probel.NDoctor.View.Plugins.resources.dll_16" KeyPath="yes" Source="$(env.NEST)\Plugins\UserSession\fr\Probel.NDoctor.View.Plugins.resources.dll" />
                         </Component>
                     </Directory>
                 </Directory>
