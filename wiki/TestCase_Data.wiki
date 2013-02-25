@@ -24,3 +24,5 @@
  * issue 151.
  * issue 152.
  * issue 157.
+=== version 3.0.4: ===
+ * n.a.
