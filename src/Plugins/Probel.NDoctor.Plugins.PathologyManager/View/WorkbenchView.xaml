@@ -10,14 +10,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="Workbench">
-    <Page.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Probel.NDoctor.Plugins.PathologyManager;component/Themes/Generic.xaml" />
-                <ResourceDictionary Source="/Probel.NDoctor.Plugins.PathologyManager;component/Resources/Resources.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Page.Resources>
 
     <TabControl>
         <TabItem Header="{Binding Source={x:Static Member=text:AddIllnessPeriodText.TitleChart}}">
@@ -36,7 +28,7 @@
                           AutoGenerateColumns="False"
                           CanUserAddRows="False"
                           CanUserDeleteRows="False"
-                          SelectedItem="{Binding SelectedIllnessPeriod}">                          
+                          SelectedItem="{Binding SelectedIllnessPeriod}" GridLinesVisibility="None">                          
                     <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="{Binding Source={x:Static Member=text:AddIllnessPeriodText.BtnRemove}}"
