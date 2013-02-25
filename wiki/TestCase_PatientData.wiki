@@ -35,3 +35,4 @@
  * issue 147.
  * issue 158.
 === version 3.0.4: ===
+ * n.a.
