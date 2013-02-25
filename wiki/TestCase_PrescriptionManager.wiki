@@ -52,3 +52,5 @@
  * issue 112
  * issue 129
  * issue 155
+=== version 3.0.4: ===
+ * n.a.
