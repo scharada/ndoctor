@@ -4,11 +4,17 @@
 
 Here, you can download and test the alpha versions of nDoctor.
 
-Bear in mind that these version are not yet tested! I advise you to make a backup of your database before doing anything!
+Bear in mind that these versions are not tested yet! 
 
-= How make a backup of your database? =
+These versions are under heavy development. I'm adding new features and changing the database structure and it possible that the new security mechanisms to check that no data is lost are not implemented at this level.
 
-The database if in `%APPDATA%\probel\ndoctor\Database.db`
+If you are a daredevil and you have made a backup of your production database, go ahead ;) Otherwise, wait for the official release!
+
+*I advise you to make a backup of your database before doing anything!*
+
+= How to make a backup of your database? =
+
+The database is in `%APPDATA%\probel\ndoctor\Database.db`
 
 To can make a backup using:
  * the file explorer:
@@ -17,8 +23,10 @@ To can make a backup using:
   * Copy the file `Database.db` in a safe place.
  * the command line:
   * Open the Run window (WIN+R) 
-  * Type `powershell`  in the text box then press `ENTER`
-  * Type `cp "$ENV:APPDATA\probel\ndoctor\Database.db" "$ENV:HOMEPATH\Desktop\Database.db - backup"` The quotes are important! This command will copy the database in your desktop.
+  * Type "`powershell`"  in the text box then press `ENTER`
+  * At the prompt type: `cp "$ENV:APPDATA\probel\ndoctor\Database.db" "$ENV:HOMEPATH\Desktop\Database.db - backup"` 
+   * The quotes are important! 
+   * This command will copy the database in your desktop.
 
 
 = Where to download the files? =
