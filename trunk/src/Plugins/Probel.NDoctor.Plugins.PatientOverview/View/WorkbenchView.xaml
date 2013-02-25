@@ -344,10 +344,11 @@
                           Margin="4"
                           Header="{x:Static Member=t:WorkbenchText.Notes}">
                             <TextBox Text="{Binding SelectedPatient.Reason, UpdateSourceTrigger=PropertyChanged}"
-                             Margin="4"
-                             VerticalScrollBarVisibility="Visible"
-                             HorizontalScrollBarVisibility="Auto"
-                             IsReadOnly="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBool}}"/>
+                                     Margin="4"
+                                     VerticalScrollBarVisibility="Visible"
+                                     HorizontalScrollBarVisibility="Auto"
+                                     TextWrapping="Wrap"
+                                     IsReadOnly="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBool}}" />
                         </GroupBox>
                     </DockPanel>
                 </ScrollViewer>

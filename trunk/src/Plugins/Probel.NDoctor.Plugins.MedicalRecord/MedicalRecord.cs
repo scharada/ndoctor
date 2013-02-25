@@ -265,7 +265,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord
                     })
                     .OnClosing(vm =>
                     {
-                        //vm.SaveCommand.TryExecute();
+                        vm.SaveCommand.TryExecute();
                         this.View.As<WorkbenchViewModel>().RefreshCommand.TryExecute();
                     });
 

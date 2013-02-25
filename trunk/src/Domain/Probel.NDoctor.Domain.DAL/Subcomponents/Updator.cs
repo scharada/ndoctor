@@ -296,12 +296,15 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// <param name="item">The item.</param>
         public void Update(MacroDto item)
         {
-            if (!MacroBuilder.IsValidExpression(item.Expression)) { throw new InvalidMacroException(); }
+            if (item == null) { return; }
+            else if (!MacroBuilder.IsValidExpression(item.Expression)) { throw new InvalidMacroException(); }
+            else
+            {
+                var entity = this.Session.Get<Macro>(item.Id);
+                Mapper.Map<MacroDto, Macro>(item, entity);
 
-            var entity = this.Session.Get<Macro>(item.Id);
-            Mapper.Map<MacroDto, Macro>(item, entity);
-
-            this.Session.Update(entity);
+                this.Session.Update(entity);
+            }
         }
 
         /// <summary>

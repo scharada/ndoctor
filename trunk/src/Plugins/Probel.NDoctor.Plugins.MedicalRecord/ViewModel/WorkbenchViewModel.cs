@@ -259,10 +259,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         {
             try
             {
-                // These checks are done in CanRefresh()
-                Assert.IsNotNull(PluginContext.Host, "Host");
-                Assert.IsNotNull(PluginContext.Host.SelectedPatient, "SelectedPatient");
-
                 var result = this.Component.GetMedicalRecordCabinet(PluginContext.Host.SelectedPatient);
                 this.Cabinet = TitledMedicalRecordCabinetDto.CreateFrom(result);
                 this.Tags = this.Component.GetTags(TagCategory.MedicalRecord);
