@@ -35,7 +35,7 @@ namespace Probel.NDoctor.View.Toolbox.Navigation
         private static readonly ILog Logger = LogManager.GetLogger(typeof(Commands));
 
         private static RelayArgCommand closeCommand;
-        private static RelayCommand shutdown = new RelayCommand(() => Application.Current.Shutdown());
+        private static RelayCommand shutdown = new RelayCommand(() => Application.Current.MainWindow.Close());
         private static RelayCommand shutdowWithConfirmation;
 
         #endregion Fields
