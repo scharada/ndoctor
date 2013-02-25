@@ -275,9 +275,13 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
                               where u.Id == item.Id
                               select u).Single();
 
-            var assignedRole = (from r in this.Session.Query<Role>()
+            Role assignedRole = null;
+            if (userEntity.AssignedRole != null)
+            {
+                assignedRole = (from r in this.Session.Query<Role>()
                                 where r.Id == userEntity.AssignedRole.Id
                                 select r).Single();
+            }
 
             var eItem = Mapper.Map<UserDto, User>(item);
             eItem.Password = userEntity.Password;

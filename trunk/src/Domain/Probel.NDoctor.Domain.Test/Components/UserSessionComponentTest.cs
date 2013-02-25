@@ -182,6 +182,20 @@ namespace Probel.NDoctor.Domain.Test.Components
             Assert.Throws<ExistingItemException>(() => this.ComponentUnderTest.Update(users[0]));
         }
 
+        [Test]
+        public void UpdateUserData_WhenAssignedRoleIsNull_UpdateSucceeds()
+        {
+            var newName = Guid.NewGuid().ToString();
+            var user = this.HelperComponent.GetUserById(19); //A user without role (set to NULL)
+            user.FirstName = newName;
+
+            this.WrapInTransaction(() => this.ComponentUnderTest.Update(user));
+
+            var refreshed = this.HelperComponent.GetUserById(19);
+            Assert.AreEqual(newName, refreshed.FirstName);
+            //This code shouldn't throw an exception
+        }
+
         protected override void _Setup()
         {
             this.BuildComponent(session => new UserSessionComponent(session));
