@@ -16,7 +16,7 @@ If you are a daredevil and you have made a backup of your production database, g
 
 The database is in `%APPDATA%\probel\ndoctor\Database.db`
 
-To can make a backup using:
+You can make a backup using:
  * the file explorer:
   * Open the file explorer (WIN+E)
   * In the address bar type `%APPDATA%\probel\ndoctor\`
