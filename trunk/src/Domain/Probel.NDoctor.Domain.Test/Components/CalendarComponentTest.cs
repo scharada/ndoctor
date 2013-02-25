@@ -48,7 +48,7 @@ namespace Probel.NDoctor.Domain.Test.Components
             ObjectFactory.Configure(c => c.For<ICalendarComponent>().Use(this.ComponentUnderTest));
 
             var task = new TaskDto(To.EditCalendar);
-            var user = this.HelperComponent.GetLightUserById(1);
+            var user = this.HelperComponent.GetSecurityUserById(1);
             user.AssignedRole.Tasks.Add(new TaskDto(To.EditCalendar));
 
             this.Factory.ConnectUser(user);
@@ -64,7 +64,7 @@ namespace Probel.NDoctor.Domain.Test.Components
             ObjectFactory.Configure(c => c.For<ICalendarComponent>().Use(this.ComponentUnderTest));
 
             var task = new TaskDto(To.EditCalendar);
-            var user = this.HelperComponent.GetLightUserById(1);
+            var user = this.HelperComponent.GetSecurityUserById(1);
             user.AssignedRole.Tasks.Add(new TaskDto(To.EditCalendar));
 
             this.Factory.ConnectUser(user);
@@ -85,7 +85,7 @@ namespace Probel.NDoctor.Domain.Test.Components
         [Test]
         public void ManageAppointments_AddNewAppointment_PasswordOfUserNotReset()
         {
-            var user = this.HelperComponent.GetLightUserById(1);
+            var user = this.HelperComponent.GetSecurityUserById(1);
 
             // This code should pass
             var patient = this.HelperComponent.GetAllPatientsLight()[0];

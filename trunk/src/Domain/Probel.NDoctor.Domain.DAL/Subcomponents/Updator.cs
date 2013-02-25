@@ -271,12 +271,17 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             this.CheckUserCanBeUpdated(item);
             this.RemoveDefaultUsers(item);
 
-            var pwd = (from u in this.Session.Query<User>()
-                       where u.Id == item.Id
-                       select u).First().Password;
+            var userEntity = (from u in this.Session.Query<User>()
+                              where u.Id == item.Id
+                              select u).Single();
+
+            var assignedRole = (from r in this.Session.Query<Role>()
+                                where r.Id == userEntity.AssignedRole.Id
+                                select r).Single();
 
             var eItem = Mapper.Map<UserDto, User>(item);
-            eItem.Password = pwd;
+            eItem.Password = userEntity.Password;
+            eItem.AssignedRole = assignedRole;
 
             var entity = this.Session.Merge<User>(eItem);
         }

@@ -186,15 +186,15 @@ namespace Probel.NDoctor.Domain.Test.Components
         [Test]
         public void UpdateUser_AssignNewRole_PasswordUnchanged()
         {
-            var user = this.HelperComponent.GetLightUserById(1);
+            var user = this.HelperComponent.GetSecurityUserById(1);
             var role = this.ComponentUnderTest.GetAllRoles()[1];
             user.AssignedRole = role;
 
             this.Session.Clear();
+            var lightuser = this.HelperComponent.GetLightUserById(user.Id);
+            this.WrapInTransaction(() => this.ComponentUnderTest.UpdateRole(lightuser, role));
 
-            this.WrapInTransaction(() => this.ComponentUnderTest.UpdateRole(user, role));
-
-            Assert.AreEqual(role.Id, this.HelperComponent.GetLightUserById(1).AssignedRole.Id);
+            Assert.AreEqual(role.Id, this.HelperComponent.GetSecurityUserById(1).AssignedRole.Id);
             Assert.IsTrue(new UserSessionComponent(this.Session).CanConnect(user, "aze"));
         }
 

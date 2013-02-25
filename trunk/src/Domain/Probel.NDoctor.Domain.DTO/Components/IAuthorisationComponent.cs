@@ -80,6 +80,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         TaskDto GetTaskByReference(string refName);
 
         /// <summary>
+        /// Gets the light user from the security user.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
+        UserDto GetUser(SecurityUserDto user);
+
+        /// <summary>
         /// Determines whether this specified usr is super admin.
         /// </summary>
         /// <param name="user">The user.</param>
@@ -105,7 +112,6 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="role">The role.</param>
         void Update(RoleDto role);
-        #endregion Methods
 
         /// <summary>
         /// Updates the role for the specified user.
@@ -114,11 +120,6 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="role">The role dto.</param>
         void UpdateRole(LightUserDto user, RoleDto role);
 
-        /// <summary>
-        /// Gets the light user from the security user.
-        /// </summary>
-        /// <param name="user">The user.</param>
-        /// <returns></returns>
-        UserDto GetUser(SecurityUserDto user);
+        #endregion Methods
     }
 }

@@ -90,6 +90,22 @@ namespace Probel.NDoctor.Domain.Test.Components
             Assert.Throws<ExistingItemException>(() => this.ComponentUnderTest.Create(user2, "az"));
         }
 
+        [Test]
+        public void UpdateUseData_UpdateValues_AssignedTaskIsNotReset()
+        {
+            var users = this.HelperComponent.GetAllUsers();
+
+            Assert.GreaterOrEqual(users.Count, 2);
+
+            users[0].FirstName = Guid.NewGuid().ToString();
+            users[0].LastName = Guid.NewGuid().ToString();
+
+            this.WrapInTransaction(() => this.ComponentUnderTest.Update(users[0]));
+
+            var u = this.HelperComponent.GetSecurityUserById(users[0].Id);
+            Assert.NotNull(u.AssignedRole);
+        }
+
         /// <summary>
         /// issue 136
         /// </summary>
