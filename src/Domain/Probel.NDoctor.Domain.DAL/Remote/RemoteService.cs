@@ -45,11 +45,11 @@ namespace Probel.NDoctor.Domain.DAL.Remote
 
         static RemoteService()
         {
-#if DEBUG
+            #if DEBUG
             Get = Queries.ForMySql("10.0.0.2", "ndoctor", "ndoctor", "ndoctor");
-#else
+            #else
             Get = Queries.ForMongoDb(DatabaseName, ConnectionString);
-#endif
+            #endif
         }
 
         #endregion Constructors

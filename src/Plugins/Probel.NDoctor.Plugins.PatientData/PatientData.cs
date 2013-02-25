@@ -149,7 +149,7 @@ namespace Probel.NDoctor.Plugins.PatientData
             ViewService.Configure(e =>
             {
                 e.Bind<CreateDoctorView, CreateDoctorViewModel>()
-                 .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
+                    .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
                 e.Bind<AddSpecialisationView, AddSpecialisationViewModel>()
                     .OnClosing(() => this.View.As<WorkbenchViewModel>().Refresh());
                 e.Bind<AddInsuranceView, AddInsuranceViewModel>()

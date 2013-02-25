@@ -191,6 +191,19 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets the user from the specified security user.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
+        public UserDto GetUser(SecurityUserDto user)
+        {
+            var entity = (from u in this.Session.Query<User>()
+                          where u.Id == user.Id
+                          select u).Single();
+            return Mapper.Map<User, UserDto>(entity);
+        }
+
+        /// <summary>
         /// Determines whether this specified usr is super admin.
         /// </summary>
         /// <param name="user">The user.</param>
@@ -259,15 +272,12 @@ namespace Probel.NDoctor.Domain.DAL.Components
             new Updator(this.Session).Update(user);
         }
 
-        #endregion Methods
-
-
         /// <summary>
         /// Updates the role for the specified user.
         /// </summary>
         /// <param name="user">The user.</param>
-        /// <param name="role">The role.</param>
-        public void UpdateRole(SecurityUserDto user, RoleDto role)
+        /// <param name="role">The role dto.</param>
+        public void UpdateRole(LightUserDto user, RoleDto role)
         {
             var userEntity = this.Session.Get<User>(user.Id);
             var roleEntity = this.Session.Get<Role>(role.Id);
@@ -275,23 +285,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
             this.Session.Update(userEntity);
         }
 
-
-        public void UpdateRole(LightUserDto user, RoleDto role)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        /// <summary>
-        /// Gets the user from the specified security user.
-        /// </summary>
-        /// <param name="user">The user.</param>
-        /// <returns></returns>
-        public UserDto GetUser(SecurityUserDto user)
-        {
-            var entity = (from u in this.Session.Query<User>()
-                          where u.Id == user.Id
-                          select u).Single();
-            return Mapper.Map<User, UserDto>(entity);
-        }
+        #endregion Methods
     }
 }

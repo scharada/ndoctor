@@ -109,6 +109,9 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<User, UserDto>()
                 .AfterMap((entity, dto) => Clean(dto))
                 .ConstructUsing(e => new UserDto(e.IsSuperAdmin));
+            Mapper.CreateMap<User, LightUserDto>()
+                .AfterMap((entity, dto) => Clean(dto))
+                .ConstructUsing(e => new UserDto(e.IsSuperAdmin));
 
             Mapper.CreateMap<Task, TaskDto>()
                 .AfterMap((entity, dto) => Clean(dto))
