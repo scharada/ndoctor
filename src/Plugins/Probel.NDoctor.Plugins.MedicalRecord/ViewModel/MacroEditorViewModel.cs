@@ -147,13 +147,14 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 this.ResolvedMacro = string.Format(Messages.Err_InvalidMacro);
             }
         }
-
+        private bool hasWarnedOnInvalidMacro = false;
         private bool CanSave()
         {
             var areValidMacros = this.Component.IsValid(this.Macros);
 
-            if (!areValidMacros)
+            if (!areValidMacros && !this.hasWarnedOnInvalidMacro)
             {
+                this.hasWarnedOnInvalidMacro = true;
                 ViewService.MessageBox.Warning(Messages.Err_InvalidMacros);
             }
 

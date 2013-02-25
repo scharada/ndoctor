@@ -302,8 +302,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
             {
                 var entity = this.Session.Get<Macro>(item.Id);
                 Mapper.Map<MacroDto, Macro>(item, entity);
-
-                this.Session.Update(entity);
+                if (entity != null) { this.Session.Update(entity); }
             }
         }
 
