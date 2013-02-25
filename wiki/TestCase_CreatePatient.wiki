@@ -11,3 +11,5 @@
  * n.a.
 === version 3.0.3: ===
  * issue 121
+=== version 3.0.4: ===
+ * n.a.
