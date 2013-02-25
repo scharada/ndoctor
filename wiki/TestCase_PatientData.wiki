@@ -6,7 +6,7 @@
 == Steps ==
  # Connect into nDoctor with user that has write privileges
  # Open a session for a user
- # Begin edit mode for th patient
+ # Begin edit mode for the patient
  # Try to quit
   # With the red cross
   # By using the "Quit" menu
