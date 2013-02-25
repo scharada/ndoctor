@@ -61,7 +61,8 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
             Mapper.CreateMap<LightPatientDto, Patient>();
             Mapper.CreateMap<PatientFullDto, Patient>();
 
-            Mapper.CreateMap<DoctorDto, Doctor>();
+            Mapper.CreateMap<DoctorDto, Doctor>()
+                .ForMember(dest => dest.Patients, opt => opt.Ignore());
             Mapper.CreateMap<DoctorFullDto, Doctor>();
             Mapper.CreateMap<LightDoctorDto, Doctor>();
 

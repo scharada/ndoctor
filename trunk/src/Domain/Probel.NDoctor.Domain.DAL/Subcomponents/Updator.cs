@@ -158,8 +158,9 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         /// <param name="item">The item.</param>
         public void Update(DoctorDto item)
         {
-            var entity = Mapper.Map<DoctorDto, Doctor>(item);
-            this.Session.Update(entity);
+            var entity = this.Session.Get<Doctor>(item.Id);
+            Mapper.Map<DoctorDto, Doctor>(item, entity);
+            this.Session.Merge(entity);
         }
 
         /// <summary>
