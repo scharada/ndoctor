@@ -8,9 +8,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
 	Title="Workbench">
-    <Page.Resources>
-        <ResourceDictionary x:Key="themes" Source="/Probel.NDoctor.Plugins.PrescriptionManager;component/Themes/Generic.xaml" />
-    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -48,7 +45,7 @@
                           SelectedItem="{Binding SelectedPrescription}"
                           AutoGenerateColumns="False"
                           CanUserAddRows="False"
-                          CanUserDeleteRows="False">
+                          CanUserDeleteRows="False" GridLinesVisibility="None">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=Drug.Name, UpdateSourceTrigger=PropertyChanged}" 
                                             Header="{Binding Source={x:Static Member=text:AddPrescriptionText.ColDrug}}"
