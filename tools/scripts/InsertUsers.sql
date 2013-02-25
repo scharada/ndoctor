@@ -60,6 +60,8 @@ INSERT INTO Person(Id, LastUpdate, Gender, FirstName, LastName, ProMail, ProMobi
 	   VALUES (16,'2007-01-01', 'Male'  , 'Docteur No'     , 'Pazwordz'      , 'some@mail.com', '0476/79.98.97','085/25.58.75', 'box', 'Liege', '4000', 'rue Darchis', '56', 1, 8, 5);
 INSERT INTO Person(Id, LastUpdate, Gender, FirstName, LastName, ProMail, ProMobile, ProPhone, AddressBoxNumber, AddressCity, AddressPostalCode, AddressStreet, AddressStreetNumber, IsComplete, IsImported, Counter) 
 	   VALUES (17,'2007-01-01', 'Male'  , 'Docteur Wiz'     , 'NullPazwordz' , 'some@mail.com', '0476/79.98.97','085/25.58.75', 'box', 'Liege', '4000', 'rue Darchis', '56', 1, 8, 5);
+INSERT INTO Person(Id, LastUpdate, Gender, FirstName, LastName, ProMail, ProMobile, ProPhone, AddressBoxNumber, AddressCity, AddressPostalCode, AddressStreet, AddressStreetNumber, IsComplete, IsImported, Counter) 
+	   VALUES (19,'2007-01-01', 'Male'  , 'Docteur NoRole'  , 'Robert'       , 'some@mail.com', '0476/79.98.97','085/25.58.75', 'box', 'Liege', '4000', 'rue Darchis', '56', 1, 8, 5);
 -- Patients
 INSERT INTO Person(Id, LastUpdate, Gender, FirstName, LastName, ProMail, ProMobile, ProPhone, AddressBoxNumber, AddressCity, AddressPostalCode, AddressStreet, AddressStreetNumber, IsComplete, Tag_id, IsImported, Counter)
  	   VALUES ( 3,'2007-01-01', 'Male'   , 'Robert'         , 'Dupont'    , 'some@mail.com', '0476/79.98.97','085/25.58.75', 'box', 'Liege', '4000', 'rue Darchis', '56', 1, 8, 0, 5);
@@ -95,6 +97,7 @@ INSERT INTO User(person_id, password, Header, Practice_id, AssignedRole_id, IsDe
 INSERT INTO User(person_id, password, Header, Practice_id, AssignedRole_id, IsDefault) VALUES ( 2 , 'aze', 'Some header', 2, 1, 0);
 INSERT INTO User(person_id, password, Header, Practice_id, AssignedRole_id, IsDefault) VALUES (16 , '', 'Some header', 2, 1, 0);
 INSERT INTO User(person_id, password, Header, Practice_id, AssignedRole_id, IsDefault) VALUES (17 , null, 'Some header', 2, 1, 0);
+INSERT INTO User(person_id, password, Header, Practice_id, AssignedRole_id, IsDefault) VALUES (19 , 'aze', 'Some header', 2, null, 0);
 
 
 INSERT INTO Patient(Person_id, Birthdate, Fee, Height, InscriptionDate, PlaceOfBirth, PrivateMail, PrivateMobile, PrivatePhone, Reason, Insurance_Id, Practice_Id, Profession_Id, Reputation_Id)                      

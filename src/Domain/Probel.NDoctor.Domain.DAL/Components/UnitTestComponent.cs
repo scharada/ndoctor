@@ -133,10 +133,10 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="id">The id.</param>
         /// <returns></returns>
-        public LightUserDto GetLightUserById(long id)
+        public UserDto GetUserById(long id)
         {
             var entity = this.Session.Get<User>(id);
-            return Mapper.Map<User, LightUserDto>(entity);
+            return Mapper.Map<User, UserDto>(entity);
         }
 
         public PathologyDto GetPathology(long id)
