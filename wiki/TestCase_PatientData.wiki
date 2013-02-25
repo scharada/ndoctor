@@ -10,7 +10,7 @@
  # Try to quit
   # With the red cross
   # By using the "Quit" menu
-  # By deconnecting the user session
+  # By disconnecting the user session
   # By using the taskbar red cross
 == Expected results ==
  # ...
