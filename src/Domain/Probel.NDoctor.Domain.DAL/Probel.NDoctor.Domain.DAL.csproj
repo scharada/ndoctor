@@ -199,6 +199,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.fr.resx</DependentUpon>
     </Compile>
+    <Compile Include="Remote\Log4netLogger.cs" />
     <Compile Include="Remote\RemoteService.cs" />
     <Compile Include="Remote\RemoteVersion.cs" />
     <Compile Include="Remote\VersionNotifyer.cs" />
