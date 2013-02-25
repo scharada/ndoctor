@@ -26,10 +26,11 @@ namespace Probel.NDoctor.Domain.DAL.Remote
 
     using AutoMapper;
 
+    using log4net;
+
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Statistics;
     using Probel.NDoctor.Statistics.Domain;
-    using log4net;
 
     public class RemoteService
     {
@@ -40,6 +41,7 @@ namespace Probel.NDoctor.Domain.DAL.Remote
 
         private static readonly IFactory Get;
         private static readonly ILog Logger;
+
         #endregion Fields
 
         #region Constructors
@@ -48,11 +50,11 @@ namespace Probel.NDoctor.Domain.DAL.Remote
         {
             Logger = LogManager.GetLogger(typeof(RemoteService));
             Probel.NDoctor.Statistics.Loggers.LoggingService.Configure(new Log4netLogger(Logger));
-#if DEBUG
+            #if DEBUG
             Get = Queries.ForMySql("10.0.0.2", "ndoctor", "ndoctor", "ndoctor");
-#else
+            #else
             Get = Queries.ForMongoDb(DatabaseName, ConnectionString);
-#endif
+            #endif
         }
 
         #endregion Constructors

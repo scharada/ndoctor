@@ -128,17 +128,6 @@ namespace Probel.NDoctor.Domain.DAL.Components
             return Mapper.Map<Patient, LightPatientDto>(result);
         }
 
-        /// <summary>
-        /// Gets the light user by id.
-        /// </summary>
-        /// <param name="id">The id.</param>
-        /// <returns></returns>
-        public UserDto GetUserById(long id)
-        {
-            var entity = this.Session.Get<User>(id);
-            return Mapper.Map<User, UserDto>(entity);
-        }
-
         public PathologyDto GetPathology(long id)
         {
             var found = (from i in this.Session.Query<Pathology>()
@@ -168,6 +157,17 @@ namespace Probel.NDoctor.Domain.DAL.Components
                         where u.Id == id
                         select u).First();
             return Mapper.Map<User, SecurityUserDto>(user);
+        }
+
+        /// <summary>
+        /// Gets the light user by id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns></returns>
+        public UserDto GetUserById(long id)
+        {
+            var entity = this.Session.Get<User>(id);
+            return Mapper.Map<User, UserDto>(entity);
         }
 
         public IList<SecurityUserDto> GetUserByLastName(string criteria)

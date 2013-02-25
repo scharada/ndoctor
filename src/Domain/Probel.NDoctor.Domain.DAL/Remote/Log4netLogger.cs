@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,21 +16,36 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Probel.NDoctor.Statistics.Loggers;
+
+#endregion Header
 
 namespace Probel.NDoctor.Domain.DAL.Remote
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using Probel.NDoctor.Statistics.Loggers;
+
     internal class Log4netLogger : Probel.NDoctor.Statistics.Loggers.ILog
     {
+        #region Fields
+
         private readonly log4net.ILog Logger;
+
+        #endregion Fields
+
+        #region Constructors
+
         public Log4netLogger(log4net.ILog logger)
         {
             this.Logger = logger;
         }
+
+        #endregion Constructors
+
+        #region Methods
 
         public void Debug(object message, Exception exception)
         {
@@ -104,5 +121,7 @@ namespace Probel.NDoctor.Domain.DAL.Remote
         {
             this.Logger.WarnFormat(format, args);
         }
+
+        #endregion Methods
     }
 }

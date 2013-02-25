@@ -56,7 +56,8 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
 
         private static void MapDtoToEntity()
         {
-            Mapper.CreateMap<PatientDto, Patient>();
+            Mapper.CreateMap<PatientDto, Patient>()
+                .ForMember(dest => dest.Doctors, opt => opt.Ignore());
             Mapper.CreateMap<LightPatientDto, Patient>();
             Mapper.CreateMap<PatientFullDto, Patient>();
 

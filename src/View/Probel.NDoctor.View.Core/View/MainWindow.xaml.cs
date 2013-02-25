@@ -17,6 +17,7 @@
 namespace Probel.NDoctor.View.Core.View
 {
     using System;
+    using System.ComponentModel;
     using System.Globalization;
     using System.Linq;
     using System.Reflection;
@@ -41,7 +42,6 @@ namespace Probel.NDoctor.View.Core.View
     using Probel.NDoctor.View.Plugins.Exceptions;
     using Probel.NDoctor.View.Plugins.MenuData;
     using Probel.NDoctor.View.Toolbox;
-    using System.ComponentModel;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -357,7 +357,7 @@ namespace Probel.NDoctor.View.Core.View
                 if (this.LastDestination is ILeaveCheckable)
                 {
                     var wb = LastDestination as ILeaveCheckable;
-                    if (wb.CanLeave() || wb.AskToLeave())
+                    if (wb.CanLeave() || (!wb.CanLeave() && wb.AskToLeave()))
                     {
                         this.Goto(page);
                         result = true;
@@ -540,10 +540,8 @@ namespace Probel.NDoctor.View.Core.View
             if (this.LastDestination is ILeaveCheckable)
             {
                 var wb = LastDestination as ILeaveCheckable;
-                var canleave = wb.CanLeave();
-                var userAllows = wb.AskToLeave();
 
-                if (!canleave || !userAllows)
+                if (!(wb.CanLeave() || (!wb.CanLeave() && wb.AskToLeave())))
                 {
                     e.Cancel = true;
                 }
@@ -552,11 +550,11 @@ namespace Probel.NDoctor.View.Core.View
 
         private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-#if DEBUG
+            #if DEBUG
             this.WindowState = System.Windows.WindowState.Normal;
-#else
+            #else
             this.WindowState = System.Windows.WindowState.Maximized;
-#endif
+            #endif
         }
 
         private void WriteStatus(LightPatientDto value)
