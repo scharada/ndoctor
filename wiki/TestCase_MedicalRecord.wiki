@@ -53,3 +53,4 @@
  * issue 148.
 == Version 3.0.4 ==
  * issue 162.
+ * issue 200.
