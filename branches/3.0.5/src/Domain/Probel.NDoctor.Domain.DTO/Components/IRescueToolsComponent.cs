@@ -89,6 +89,19 @@ namespace Probel.NDoctor.Domain.DTO.Components
         IEnumerable<LightPatientDto> GetOlderThan(int age);
 
         /// <summary>
+        /// Gets the tag with the specified name. If nohting is found, <c>NULL</c> is returned
+        /// </summary>
+        /// <param name="name">The default name.</param>
+        /// <returns>The tag with the specified name if found; otherwise <c>NULL</c></returns>
+        TagDto GetTag(string name);
+
+        /// <summary>
+        /// Gets the untagged patients.
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<LightPatientDto> GetUntaggedPatients();
+
+        /// <summary>
         /// Replaces the specified doubloons with the specified doctor.
         /// </summary>
         /// <param name="doubloons">The doubloons.</param>
@@ -100,6 +113,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="observableCollection">The observable collection.</param>
         void ReplaceWithFirstDoubloon(IEnumerable<LightDoctorDto> observableCollection);
+
+        /// <summary>
+        /// Sets the specified tag to the list of patients.
+        /// </summary>
+        /// <param name="tag">The tag to set.</param>
+        /// <param name="patients">The patients.</param>
+        void SetTag(TagDto tag, IEnumerable<LightPatientDto> patients);
 
         /// <summary>
         /// Updates the deactivation value for the specified patients.

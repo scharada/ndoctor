@@ -72,6 +72,11 @@ namespace Probel.NDoctor.Plugins.RescueTools.Translations
             get { return Messages.Btn_FindDeactivatedPatients; }
         }
 
+        public static string FindUntagged
+        {
+            get { return Messages.Btn_SearchUntagged; }
+        }
+
         public static string FirstName
         {
             get { return Messages.Dgv_FirstName; }
@@ -142,14 +147,29 @@ namespace Probel.NDoctor.Plugins.RescueTools.Translations
             get { return Messages.Db_SearchOnAge; }
         }
 
+        public static string SetDefaultTag
+        {
+            get { return Messages.Btn_SetDedaultTag; }
+        }
+
         public static string TabDoctorDoubloons
         {
             get { return Messages.Tab_DoctorDoubloons; }
         }
 
+        public static string TabNonTagged
+        {
+            get { return Messages.Tab_UntaggedPatients; }
+        }
+
         public static string TabTooOldPatients
         {
             get { return Messages.Tab_Age; }
+        }
+
+        public static string Tag
+        {
+            get { return Messages.Dgv_Tag; }
         }
 
         #endregion Properties
