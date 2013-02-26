@@ -36,6 +36,7 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Toolbox;
+    using Probel.NDoctor.View.Toolbox.Threads;
 
     /// <summary>
     /// Workbench's ViewModel of the plugin
@@ -49,12 +50,14 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
         private readonly IRescueToolsComponent Component = PluginContext.ComponentFactory.GetInstance<IRescueToolsComponent>();
         private readonly ICommand deactivateAllCommand;
         private readonly ICommand findDeactivatedPatientsCommand;
+        private readonly ICommand findUntaggedPatientsCommand;
         private readonly ICommand reactivateAllCommand;
         private readonly ICommand refreshCommand;
         private readonly ICommand replaceCommand;
         private readonly ICommand replaceWithFirstCommand;
         private readonly ICommand searchCommand;
         private readonly ICommand searchOnAgeCommand;
+        private readonly ICommand setDefaultTagCommand;
         private readonly ICommand updateDeactivatedPatientsCommand;
         private readonly ICommand updateOldPatientsCommand;
 
@@ -79,6 +82,7 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             this.DoctorDoubloons = new ObservableCollection<DoubloonDoctorDto>();
             this.DoubloonsOfSelectedDoctor = new ObservableCollection<LightDoctorDto>();
             this.DeactivatedPatients = new ObservableCollection<LightPatientDto>();
+            this.UntaggedPatients = new ObservableCollection<LightPatientDto>();
 
             this.refreshCommand = new RelayCommand(() => this.Refresh(), () => this.CanRefresh());
             this.replaceCommand = new RelayCommand(() => this.Replace(), () => this.CanReplace());
@@ -90,6 +94,8 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             this.findDeactivatedPatientsCommand = new RelayCommand(() => this.FindDeactivatedPatients(), () => this.CanFindDeactivatedPatients());
             this.updateDeactivatedPatientsCommand = new RelayCommand(() => this.UpdateDeactivatedPatients(), () => this.CanUpdateDeactivatedPatients());
             this.reactivateAllCommand = new RelayCommand(() => this.ReactivateAll(), () => this.CanReactivateAll());
+            this.findUntaggedPatientsCommand = new RelayCommand(() => this.FindUntaggedPatients(), () => this.CanFindUntaggedPatients());
+            this.setDefaultTagCommand = new RelayCommand(() => this.SetDefaultTag(), () => this.CanSetDefaultTag());
 
             Countdown.Elapsed += (sender, e) => PluginContext.Host.Invoke(() =>
             {
@@ -148,6 +154,11 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
         public ICommand FindDeactivatedPatientsCommand
         {
             get { return this.findDeactivatedPatientsCommand; }
+        }
+
+        public ICommand FindUntaggedPatientsCommand
+        {
+            get { return this.findUntaggedPatientsCommand; }
         }
 
         public DoctorDto FullReplacementDoctor
@@ -229,6 +240,17 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             }
         }
 
+        public ICommand SetDefaultTagCommand
+        {
+            get { return this.setDefaultTagCommand; }
+        }
+
+        public ObservableCollection<LightPatientDto> UntaggedPatients
+        {
+            get;
+            private set;
+        }
+
         public ICommand UpdateDeactivatedPatientsCommand
         {
             get { return this.updateDeactivatedPatientsCommand; }
@@ -255,6 +277,11 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
         }
 
         private bool CanFindDeactivatedPatients()
+        {
+            return true;
+        }
+
+        private bool CanFindUntaggedPatients()
         {
             return true;
         }
@@ -286,6 +313,11 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
         }
 
         private bool CanSearchOnAge()
+        {
+            return true;
+        }
+
+        private bool CanSetDefaultTag()
         {
             return true;
         }
@@ -326,6 +358,24 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
         }
 
+        private void FindUntaggedPatients()
+        {
+            new AsyncAction(this.Handle).ExecuteAsync<IEnumerable<LightPatientDto>>(
+                () => this.FindUntaggedPatientsAsync(),
+                t => this.FindUntaggedPatientsCallback(t));
+        }
+
+        private IEnumerable<LightPatientDto> FindUntaggedPatientsAsync()
+        {
+            return this.Component.GetUntaggedPatients();
+        }
+
+        private void FindUntaggedPatientsCallback(IEnumerable<LightPatientDto> patients)
+        {
+            this.UntaggedPatients.Refill(patients);
+            ViewService.MessageBox.Information(Messages.Msg_FoundPatients.FormatWith(patients.Count()));
+        }
+
         private void ReactivateAll()
         {
             foreach (var item in this.DeactivatedPatients)
@@ -353,7 +403,7 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
 
             this.DoctorDoubloons.Refill(t.Result);
             this.DoubloonDoctorSearcher = new DoubloonDoctorRefiner(t.Result);
-            if (!InDebugMode && !silently) { ViewService.MessageBox.Information(Messages.Msg_DoubloonsFound.FormatWith(this.DoctorDoubloons.Count)); }
+            if (!silently) { ViewService.MessageBox.Information(Messages.Msg_DoubloonsFound.FormatWith(this.DoctorDoubloons.Count)); }
             this.DoctorDoubloonsCount = string.Format(Messages.Msg_DoubloonsCount, this.DoctorDoubloons.Count);
         }
 
@@ -380,10 +430,7 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             var token = new CancellationTokenSource().Token;
             PluginContext.Host.SetWaitCursor();
 
-            var yes = (!InDebugMode)
-                ? ViewService.MessageBox.Question(Messages.Msg_ConfirmReplacement)
-                : true;
-
+            var yes = ViewService.MessageBox.Question(Messages.Msg_ConfirmReplacement);
             if (yes)
             {
                 var task = Task.Factory
@@ -395,7 +442,7 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
                 task.ContinueWith(t =>
                 {
                     this.RefreshCallback(true, t);
-                    if (!InDebugMode) { ViewService.MessageBox.Information(Messages.Msg_DoubloonsDeleted); }
+                    ViewService.MessageBox.Information(Messages.Msg_DoubloonsDeleted);
                     PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DoubloonsDeleted);
                     PluginContext.Host.SetArrowCursor();
                 }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
@@ -409,10 +456,8 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
             var token = new CancellationTokenSource().Token;
 
-            var yes = (!InDebugMode)
-                ? ViewService.MessageBox.Question(Messages.Msg_ConfirmReplaceWithFirst)
-                : true;
 
+            var yes = ViewService.MessageBox.Question(Messages.Msg_ConfirmReplaceWithFirst);
             if (yes)
             {
                 var task = Task.Factory
@@ -424,7 +469,7 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
                 task.ContinueWith(t =>
                 {
                     this.RefreshCallback(true, t);
-                    if (!InDebugMode) { ViewService.MessageBox.Information(Messages.Msg_DoubloonsDeleted); }
+                    ViewService.MessageBox.Information(Messages.Msg_DoubloonsDeleted);
                     PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_DoubloonsDeleted);
                     PluginContext.Host.SetArrowCursor();
                 }, token, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
@@ -462,6 +507,32 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
                 task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, scheduler);
             }
             catch (Exception ex) { this.Handle.Error(ex); }
+        }
+
+        private void SetDefaultTag()
+        {
+            PluginContext.Host.SetWaitCursor();
+            new AsyncAction(this.Handle).ExecuteAsync(
+                () => this.SetDefaultTagAsync(),
+                t => this.SetDefaultTagCallback(t));
+        }
+
+        private IEnumerable<LightPatientDto> SetDefaultTagAsync()
+        {
+            var defaultName = "Patient";
+            var defaultTag = this.Component.GetTag(defaultName);
+
+            if (defaultTag == null) { defaultTag = new TagDto(TagCategory.Patient) { Name = defaultName }; }
+
+            this.Component.SetTag(defaultTag, this.UntaggedPatients);
+            return this.Component.GetUntaggedPatients();
+        }
+
+        private void SetDefaultTagCallback(IEnumerable<LightPatientDto> patients)
+        {
+            this.UntaggedPatients.Refill(patients);
+            PluginContext.Host.SetArrowCursor();
+            ViewService.MessageBox.Information(Messages.Msg_PatientUpdated);
         }
 
         private void ShowFullDoctor()
@@ -507,6 +578,7 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             {
                 this.Component.UpdateDeactivation(this.OldPatients);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PatientUpdated);
+                ViewService.MessageBox.Information(Messages.Msg_PatientUpdated);
                 this.OldPatients.Refill(this.Component.GetOlderThan(this.AgeCriteria));
             }
             catch (Exception ex) { this.Handle.Error(ex); }

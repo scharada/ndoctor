@@ -115,6 +115,24 @@ namespace Probel.NDoctor.Plugins.RescueTools.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search untagged patients.
+        /// </summary>
+        internal static string Btn_SearchUntagged {
+            get {
+                return ResourceManager.GetString("Btn_SearchUntagged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert default patient tag.
+        /// </summary>
+        internal static string Btn_SetDedaultTag {
+            get {
+                return ResourceManager.GetString("Btn_SetDedaultTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vacuum the database.
         /// </summary>
         internal static string Btn_Vacuum {
@@ -174,6 +192,15 @@ namespace Probel.NDoctor.Plugins.RescueTools.Properties {
         internal static string Dgv_LastName {
             get {
                 return ResourceManager.GetString("Dgv_LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tag.
+        /// </summary>
+        internal static string Dgv_Tag {
+            get {
+                return ResourceManager.GetString("Dgv_Tag", resourceCulture);
             }
         }
         
@@ -367,6 +394,15 @@ namespace Probel.NDoctor.Plugins.RescueTools.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The patients are updated.
+        /// </summary>
+        internal static string Msg_Updated {
+            get {
+                return ResourceManager.GetString("Msg_Updated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Patients too old.
         /// </summary>
         internal static string Tab_Age {
@@ -390,6 +426,15 @@ namespace Probel.NDoctor.Plugins.RescueTools.Properties {
         internal static string Tab_DoctorDoubloons {
             get {
                 return ResourceManager.GetString("Tab_DoctorDoubloons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Non tagged patients.
+        /// </summary>
+        internal static string Tab_UntaggedPatients {
+            get {
+                return ResourceManager.GetString("Tab_UntaggedPatients", resourceCulture);
             }
         }
         
