@@ -1,0 +1,69 @@
+﻿<Window x:Class="Probel.NDoctor.Plugins.PatientSession.View.AddPatientControl"
+        x:Name="this"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PatientSession.Translations"      
+        xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:iw="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:t="clr-namespace:Probel.NDoctor.View.Toolbox.Translations;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Toolbox.Controls;assembly=Probel.NDoctor.View.Toolbox"    
+        xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:txt="clr-namespace:Probel.NDoctor.Plugins.PatientSession.Translations"
+        
+        Title="{Binding Source={x:Static Member=txt:AddPatientText.Title}}" 
+        
+        mc:Ignorable="d"
+        Loaded="this_Loaded" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner"
+        SizeToContent="WidthAndHeight">
+    
+    <Window.InputBindings>
+        <KeyBinding Key="Enter"
+                    Command="{Binding AddCommand}"/>
+        <KeyBinding Key="Escape"
+                    Command="cmd:Commands.CloseView" 
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
+    </Window.InputBindings>
+    
+    <Window.Resources>
+        <Style x:Key="LabelStyle">
+            <Setter Property="Control.Width" Value="100"/>
+        </Style>
+    </Window.Resources>
+
+    <StackPanel HorizontalAlignment="Center"
+                VerticalAlignment="Center" Width="284">
+        <DockPanel LastChildFill="True">
+            <Label Style="{StaticResource LabelStyle}"
+                   Margin="4"
+                   Content="{Binding Source={x:Static Member=text:AddPatientText.TitleLastName}}"/>
+            <TextBox Margin="4"
+                     DockPanel.Dock="Left"
+                     x:Name="focused"
+                     Text="{Binding Path=Patient.LastName,UpdateSourceTrigger=PropertyChanged}"/>
+        </DockPanel>
+        <DockPanel LastChildFill="True">
+            <Label Style="{StaticResource LabelStyle}"
+                   Margin="4"
+                   Content="{Binding Source={x:Static Member=text:AddPatientText.TitleFirstName}}"/>
+            <TextBox DockPanel.Dock="Right"
+                     Margin="4"
+                     Text="{Binding Path=Patient.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
+        </DockPanel>
+        <DockPanel  LastChildFill="True">
+            <Label Style="{StaticResource LabelStyle}"
+                   Margin="4"
+                   Content="{Binding Source={x:Static Member=text:AddPatientText.TitleGender}}"/>
+            <ComboBox DockPanel.Dock="Right"
+                      Margin="4"
+                      ItemsSource="{Binding Path=Genders}"
+                      SelectedIndex="0"
+                      DisplayMemberPath="Item1"
+                      SelectedItem="{Binding Path=SelectedGender}"/>
+        </DockPanel>
+        <ctrl:OKCancelBox OkCommand="{Binding AddCommand}"
+                          ButtonName="{Binding Source={x:Static Member=text:AddPatientText.BtnAdd}}"/>
+    </StackPanel>
+</Window>

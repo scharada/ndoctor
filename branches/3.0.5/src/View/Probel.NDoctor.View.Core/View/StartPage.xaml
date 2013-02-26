@@ -1,0 +1,195 @@
+﻿<Page x:Class="Probel.NDoctor.View.Core.View.StartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:tk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:dv="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+      xmlns:dvc="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+      xmlns:t="clr-namespace:Probel.NDoctor.View.Core.Translations"
+      xmlns:c="clr-namespace:Probel.NDoctor.View.Core.Helpers"
+      xmlns:b="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
+      
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="600"
+      Title="StartPage"
+      b:UIElementBehaviour.IsVisible="{Binding RefreshCommand}">
+    <Page.Resources>
+        <dv:ResourceDictionaryCollection x:Key="MyPalette">
+            <ResourceDictionary>
+                <Style x:Key="DataPointStyle" TargetType="{x:Type Control}">
+                    <Setter Property="Control.Background" Value="Pink" />
+                </Style>
+            </ResourceDictionary>
+            <ResourceDictionary>
+                <Style x:Key="DataPointStyle" TargetType="{x:Type Control}">
+                    <Setter Property="Control.Background" Value="LightBlue" />
+                </Style>
+            </ResourceDictionary>
+        </dv:ResourceDictionaryCollection>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!-- Patient growth -->
+        <tk:BusyIndicator Grid.Column="0" Grid.Row="0" IsBusy="{Binding IsPatientGrowthBusy}" BusyContent="{Binding Source={x:Static Member=t:StartPageText.RefreshingStatistics}}">
+            <dvc:Chart Margin="4" Title="{Binding Source={x:Static Member=t:StartPageText.PatientGrowth}}">
+                <dvc:Chart.Axes>
+                    <dvc:DateTimeAxis Orientation="X" 
+                                      Interval="1"
+                                      IntervalType="Years"                                      
+                                      Title="{Binding Source={x:Static Member=t:StartPageText.AxisDate}}"
+                                      Margin="4"/>
+                    <dvc:LinearAxis Orientation="Y"
+                                    Interval="Auto"
+                                    Title="{Binding Source={x:Static Member=t:StartPageText.AxisPatients}}"/>
+                </dvc:Chart.Axes>
+                <dvc:Chart.LegendStyle>
+                    <Style TargetType="dv:Legend">
+                        <Setter Property="Width" Value="0"/>
+                    </Style>
+                </dvc:Chart.LegendStyle>
+                <dvc:ColumnSeries ItemsSource="{Binding PatientGrowth.Points}"
+                                  IndependentValueBinding="{Binding Path=X}"
+                                  DependentValueBinding="{Binding Path=Y}">
+                </dvc:ColumnSeries>
+            </dvc:Chart>
+        </tk:BusyIndicator>
+
+        <!-- Gender repartition -->
+        <tk:BusyIndicator Grid.Column="0" Grid.Row="1" 
+                          IsBusy="{Binding IsGenderRepartitionBusy}" 
+                          BusyContent="{Binding Source={x:Static Member=t:StartPageText.RefreshingStatistics}}">
+            <dvc:Chart Margin="4" Title="{Binding Source={x:Static Member=t:StartPageText.GenderRepartition}}">
+                <dvc:PieSeries ItemsSource="{Binding GenderRepartition.Points}"
+                               IndependentValueBinding="{Binding Path=X}"
+                               DependentValueBinding="{Binding Path=Y}"
+                               Palette="{StaticResource MyPalette}">
+                </dvc:PieSeries>
+            </dvc:Chart>
+        </tk:BusyIndicator>
+
+        <!-- Age repartition -->
+        <tk:BusyIndicator Grid.Column="1" Grid.Row="0" IsBusy="{Binding IsAgeRepartitionBusy}" BusyContent="{Binding Source={x:Static Member=t:StartPageText.RefreshingStatistics}}">
+            <dvc:Chart Margin="4" 
+                           Title="{Binding Source={x:Static Member=t:StartPageText.AgeRepartition}}">
+                <dvc:Chart.LegendStyle>
+                    <Style TargetType="dv:Legend">
+                        <Setter Property="Width" Value="0"/>
+                    </Style>
+                </dvc:Chart.LegendStyle>
+                <dvc:Chart.Axes>
+                    <dvc:LinearAxis Orientation="X"
+                                    Interval="Auto"
+                                    Title="{Binding Source={x:Static Member=t:StartPageText.AxisAge}}"/>
+                    <dvc:LinearAxis Orientation="Y"
+                                    Interval="Auto"
+                                    Title="{Binding Source={x:Static Member=t:StartPageText.AxisPatients}}"/>
+                </dvc:Chart.Axes>
+                <dvc:LineSeries ItemsSource="{Binding AgeRepartition.Points}"
+                                    IndependentValueBinding="{Binding Path=X}"
+                                    DependentValueBinding="{Binding Path=Y}"
+                                    Margin="4">
+                    <dvc:LineSeries.DataPointStyle>
+                        <Style TargetType="dvc:LineDataPoint">
+                            <Setter Property="Opacity" Value="0"/>
+                        </Style>
+                    </dvc:LineSeries.DataPointStyle>
+                </dvc:LineSeries>
+            </dvc:Chart>
+        </tk:BusyIndicator>
+
+        <!-- Bmi average -->
+        <tk:BusyIndicator Grid.Column="1" Grid.Row="1" IsBusy="{Binding IsBmiAverageBusy}" BusyContent="{Binding Source={x:Static Member=t:StartPageText.RefreshingStatistics}}">
+            <dvc:Chart Margin="4" 
+                       Title="{Binding Source={x:Static Member=t:StartPageText.BmiAverage}}">
+                <dvc:Chart.Resources>
+                    <Style TargetType="dvc:DateTimeAxisLabel" x:Key="axisStyle">
+                        <Setter Property="StringFormat" Value="hello"/>
+                    </Style>
+                </dvc:Chart.Resources>
+                <dvc:Chart.Axes>
+
+                    <dvc:DateTimeAxis x:Name="bmiDateXStyle" Orientation="X" 
+                                      Interval="Auto"
+                                      IntervalType="Months"
+                                      Title="{Binding Source={x:Static Member=t:StartPageText.AxisDate}}"
+                                      Margin="4">
+                        <dvc:DateTimeAxis.AxisLabelStyle>
+                            <Style TargetType="dvc:DateTimeAxisLabel">
+                                <Setter Property="StringFormat" Value="{}{0:MMM yyyy}"/>
+                            </Style>
+                        </dvc:DateTimeAxis.AxisLabelStyle>
+                    </dvc:DateTimeAxis>
+                    <dvc:LinearAxis Orientation="Y"
+                                    Title="{Binding Source={x:Static Member=t:StartPageText.AxisAvgBmiIndex}}"
+                                    Interval="Auto"/>
+                </dvc:Chart.Axes>
+                
+                <!-- History -->
+                <dvc:LineSeries Title="{Binding Source={x:Static Member=t:StartPageText.Current}}"
+                                ItemsSource="{Binding BmiAverage.Points}"
+                                IndependentValueBinding="{Binding Path=X}"
+                                DependentValueBinding="{Binding Path=Y}"
+                                Margin="4">
+                    <dvc:LineSeries.DataPointStyle>
+                        <Style TargetType="dvc:LineDataPoint">
+                            <Setter Property="Opacity" Value="0"/>
+                            <Setter Property="Background" Value="Blue"/>
+                        </Style>
+                    </dvc:LineSeries.DataPointStyle>
+                </dvc:LineSeries>
+                
+                <!-- Obesity -->
+                <dvc:LineSeries Title="{Binding Source={x:Static Member=t:StartPageText.Obesity}}"
+                                ItemsSource="{Binding Obesity.Points}"
+                                IndependentValueBinding="{Binding Path=X}"
+                                DependentValueBinding="{Binding Path=Y}"
+                                Margin="4">
+                    <dvc:LineSeries.DataPointStyle>
+                        <Style TargetType="dvc:LineDataPoint">
+                            <Setter Property="Opacity" Value="0"/>
+                            <Setter Property="Background" Value="Red"/>
+                        </Style>
+                    </dvc:LineSeries.DataPointStyle>
+                </dvc:LineSeries>
+                
+                <!-- Overweight -->
+                <dvc:LineSeries Title="{Binding Source={x:Static Member=t:StartPageText.Overweight}}"
+                                ItemsSource="{Binding Overweight.Points}"
+                                IndependentValueBinding="{Binding Path=X}"
+                                DependentValueBinding="{Binding Path=Y}"
+                                Margin="4">
+                    <dvc:LineSeries.DataPointStyle>
+                        <Style TargetType="dvc:LineDataPoint">
+                            <Setter Property="Opacity" Value="0"/>
+                            <Setter Property="Background" Value="Green"/>
+                        </Style>
+                    </dvc:LineSeries.DataPointStyle>
+                </dvc:LineSeries>
+                
+                <!-- Underweight -->
+                <dvc:LineSeries Title="{Binding Source={x:Static Member=t:StartPageText.Underweight}}"
+                                ItemsSource="{Binding Underweight.Points}"
+                                IndependentValueBinding="{Binding Path=X}"
+                                DependentValueBinding="{Binding Path=Y}"
+                                Margin="4">
+                    <dvc:LineSeries.DataPointStyle>
+                        <Style TargetType="dvc:LineDataPoint">
+                            <Setter Property="Opacity" Value="0"/>
+                            <Setter Property="Background" Value="Green"/>
+                        </Style>
+                    </dvc:LineSeries.DataPointStyle>
+                </dvc:LineSeries>
+
+
+            </dvc:Chart>
+        </tk:BusyIndicator>
+    </Grid>
+</Page>

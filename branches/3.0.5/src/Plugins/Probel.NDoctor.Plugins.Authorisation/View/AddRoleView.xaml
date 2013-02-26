@@ -1,0 +1,62 @@
+﻿<Window x:Class="Probel.NDoctor.Plugins.Authorisation.View.AddRoleView"
+        x:Name="this"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
+        xmlns:iw="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:t="clr-namespace:Probel.NDoctor.View.Toolbox.Translations;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:txt="clr-namespace:Probel.NDoctor.Plugins.Authorisation.Translations"
+        
+        Title="{Binding Source={x:Static Member=txt:AddRoleText.Title}}"        
+        mc:Ignorable="d"
+        Width="300" SizeToContent="Height" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" ShowInTaskbar="False">
+
+    <Window.InputBindings>
+        <KeyBinding Key="Enter"
+                    Command="{Binding AddCommand}"/>
+        <KeyBinding Key="Escape"
+                    Command="cmd:Commands.CloseView" 
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
+    </Window.InputBindings>
+    
+    <DockPanel LastChildFill="True">
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Style="{StaticResource BorderStyle}">
+                <Button Content="{Binding Source={x:Static Member=t:BaseText.Add}}"
+                        Command="{Binding Path=AddCommand}"/>
+            </Border>
+
+            <Border Grid.Column="1" Style="{StaticResource BorderStyle}">
+                <Button Content="{Binding Source={x:Static Member=t:BaseText.Cancel}}"
+                        Command="cmd:Commands.CloseView"
+                        CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
+            </Border>
+        </Grid>
+        <DockPanel DockPanel.Dock="Top"
+                   LastChildFill="True">
+            <Border Style="{StaticResource BorderStyle}">
+                <Label DockPanel.Dock="Left"
+                   Content="{Binding Source={x:Static Member=txt:AddRoleText.RoleName}}"/>
+            </Border>
+            <Border Style="{StaticResource BorderStyle}">
+                <TextBox DockPanel.Dock="Right"
+                         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+            </Border>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top" LastChildFill="True">
+            <Label Content="{Binding Source={x:Static Member=txt:EditRoleText.RoleDescription}}"/>
+            <Border Style="{StaticResource BorderStyle}">
+                <ScrollViewer Height="80">
+                    <TextBox Text="{Binding Description}" TextWrapping="Wrap" />
+                </ScrollViewer>
+            </Border>
+        </DockPanel>
+    </DockPanel>
+</Window>

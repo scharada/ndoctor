@@ -1,0 +1,540 @@
+﻿<Page x:Class="Probel.NDoctor.Plugins.PatientOverview.View.WorkbenchView"
+      
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:t="clr-namespace:Probel.NDoctor.Plugins.PatientOverview.Translations"
+      xmlns:bt="clr-namespace:Probel.NDoctor.View.Toolbox.Translations;assembly=Probel.NDoctor.View.Toolbox"
+      xmlns:conv="clr-namespace:Probel.NDoctor.View.Toolbox.Converters;assembly=Probel.NDoctor.View.Toolbox"
+      xmlns:ctrl="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:behaviours="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
+      xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+      
+      mc:Ignorable="d" 
+      d:DesignHeight="690" 
+      d:DesignWidth="1200"
+      Title="{Binding Source={x:Static Member=t:WorkbenchText.PageTitle}}">
+    <Page.Resources>
+        <conv:InvertVisibilityConverter x:Key="InvertVisibility"/>
+        <conv:GenderToImageConverter x:Key="GenderToImage"/>
+        <conv:ByteArrayToImageConverter x:Key="BytesToImage"/>
+        <conv:InvertBooleanToVisibilityConverter x:Key="InvertBoolToVisibility"/>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+        <conv:InverseBooleanConverter x:Key="InvertBool"/>
+        <conv:StringToVisibilityConverter x:Key="StringToVisibility"/>
+        <conv:IntToVisibilityConverter x:Key="IntToVisibility"/>
+        <conv:NullToVisibilityConverter x:Key="NullToVisibility"/>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+
+        <Style TargetType="Label" x:Key="PresentationLbl">
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+        </Style>
+        <Style TargetType="Label" x:Key="ValueLabel">
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <toolkit:BusyIndicator IsBusy="{Binding IsBusy}" BusyContent="{Binding Source={x:Static bt:BaseText.PleaseWait}}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <DockPanel LastChildFill="True">
+                        <CheckBox DockPanel.Dock="Top" 
+                                  Margin="4"
+                                  Content="Edition mode activated"
+                                  x:Name="CbEdition"
+                                  IsChecked="{Binding IsEditModeActivated}"
+                                  Visibility="Collapsed"/>
+                        <!-- Id of the patient -->
+                        <GroupBox DockPanel.Dock="Top" 
+                                  Margin="4"
+                                  Header="{x:Static Member=t:WorkbenchText.GrpPatient}">
+                            <DockPanel Margin="4">
+                                <!-- Thumbnail -->
+                                <DockPanel DockPanel.Dock="Left" 
+                                           MaxHeight="150"
+                                           Width="150"
+                                           Margin="4"
+                                           HorizontalAlignment="Left">
+                                    <TextBlock DockPanel.Dock="Bottom" 
+                                       HorizontalAlignment="Center"
+                                       Margin="4"
+                                       Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">                        
+                                <Hyperlink Command="{Binding ChangeImageCommand}">
+							    <TextBlock Text="{Binding Source={x:Static Member=t:WorkbenchText.ChangePicture}}"/>
+						    </Hyperlink>
+                            </TextBlock>
+                                    <!-- Image -->
+                                    <Grid DockPanel.Dock="Top"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Center">
+                                        <!-- Drop Shadow -->
+                                        <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="4" Background="#44000000">
+                                            <Border.RenderTransform>
+                                                <TranslateTransform X="5" Y="5" />
+                                            </Border.RenderTransform>
+                                            <Border.BitmapEffect>
+                                                <BlurBitmapEffect Radius="8" />
+                                            </Border.BitmapEffect>
+                                        </Border>
+                                        <!-- Image Template -->
+                                        <Border Padding="4" Background="White" BorderBrush="#22000000" BorderThickness="1">
+                                            <StackPanel Orientation="Vertical">
+                                                <Image Source="{Binding Thumbnail, Converter={StaticResource BytesToImage}}"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </Grid>
+                                </DockPanel>
+
+                                <!-- Deactivation indicator -->
+                                <Label DockPanel.Dock="Top"
+                                       Margin="4"
+                                       HorizontalContentAlignment="Center"
+                                       Visibility="{Binding SelectedPatient.IsDeactivated, Converter={StaticResource BooleanToVisibility}}"
+                                       Content="{Binding Source={x:Static Member=t:WorkbenchText.Deactivated}}" Background="#FFEF2B2B" FontWeight="Bold" />
+
+                                <!-- First, last name and fee -->
+                                <DockPanel DockPanel.Dock="Top" LastChildFill="True">
+                                    <Image Margin="4"
+                                   DockPanel.Dock="Left" Height="20" Width="20" Source="{Binding SelectedPatient.Gender, Converter={StaticResource GenderToImage}}"/>
+                                    <Label Content="{x:Static Member=t:WorkbenchText.Patient}"/>
+                                    <DockPanel LastChildFill="True">
+                                        <Grid>
+                                            <Grid x:Name="FullName" Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <TextBox Grid.Row="0" Grid.Column="0" Margin="4" Text="{Binding SelectedPatient.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
+                                                <TextBox Grid.Row="0" Grid.Column="1" Margin="4" Text="{Binding SelectedPatient.LastName, UpdateSourceTrigger=PropertyChanged}"/>
+                                                <DockPanel Grid.Row="1" Grid.Column="0">
+                                                    <Label Content="{x:Static Member=t:WorkbenchText.Fee}"/>
+                                                    <ctrl:DoubleUpDown Value="{Binding SelectedPatient.Fee, UpdateSourceTrigger=PropertyChanged}" FormatString="C2"/>
+                                                </DockPanel>
+                                            </Grid>
+                                            <StackPanel Orientation="Horizontal">
+
+                                                <Label Style="{StaticResource ValueLabel}" 
+                                                       Content="{Binding SelectedPatient.DisplayedName}" 
+                                                       Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}"/>
+
+                                                <Label Content="("
+                                                       Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}" />
+
+                                                <Label Content="{Binding SelectedPatient.Fee}" 
+                                                       Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}"  
+                                                       Foreground="#FFF30000"                                        
+                                                       ContentStringFormat="C2"                                       
+                                                       FontWeight="Bold" />
+                                                <Label Content=")"
+                                                       Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </DockPanel>
+                                </DockPanel>
+                                <!-- Gender -->
+                                <DockPanel DockPanel.Dock="Top" 
+                                           Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}"
+                                           LastChildFill="True">
+                                    <Label Content="Gender"/>
+                                    <ComboBox Margin="4"
+                                              ItemsSource="{Binding Genders, UpdateSourceTrigger=PropertyChanged}"
+                                              DisplayMemberPath="Item1"
+                                              SelectedItem="{Binding SelectedGender}"/>
+                                </DockPanel>
+                                <!-- Date of birth-->
+                                <Grid x:Name="BirthPanel" DockPanel.Dock="Top"
+                              Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <DockPanel LastChildFill="True" Grid.Column="0">
+                                        <Label Content="{x:Static Member=t:WorkbenchText.PlaceOfBirth}"/>
+                                        <TextBox Margin="4" Text="{Binding SelectedPatient.PlaceOfBirth, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DockPanel>
+                                    <DockPanel LastChildFill="True" Grid.Column="1">
+                                        <Label Content="{x:Static Member=t:WorkbenchText.Birthdate}"/>
+                                        <DatePicker Margin="4" SelectedDate="{Binding SelectedPatient.Birthdate, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DockPanel>
+                                </Grid>
+                                <StackPanel DockPanel.Dock="Top" 
+                            Orientation="Horizontal"
+                            Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}">
+                                    <Label Content="{x:Static Member=t:WorkbenchText.BornOn}" />
+                                    <Label Content="{Binding SelectedPatient.Birthdate}" Style="{StaticResource ValueLabel}"  />
+                                    <Label Content="{x:Static Member=t:WorkbenchText.BornIn}" />
+                                    <Label Content="{Binding SelectedPatient.PlaceOfBirth}" Style="{StaticResource ValueLabel}"  />
+                                    <Label Content="{x:Static Member=t:WorkbenchText.Age}" />
+                                    <Label Content="{Binding SelectedPatient.Age}" Style="{StaticResource ValueLabel}"  />
+                                    <Label Content=")" />
+                                </StackPanel>
+                                <!-- Profession -->
+                                <DockPanel LastChildFill="True" DockPanel.Dock="Top">
+                                    <Label Content="{x:Static Member=t:WorkbenchText.Profession}"/>
+                                    <Label Content="{Binding SelectedPatient.Profession.Name}"   
+                                           Style="{StaticResource ValueLabel}" 
+                                           Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}"/>
+                                    <ComboBox ItemsSource="{Binding Professions}"
+                                              x:Name="CbProfession"
+                                              SelectedItem="{Binding SelectedPatient.Profession, UpdateSourceTrigger=PropertyChanged}"
+                                              DisplayMemberPath="Name"
+                                              Margin="4"
+                                              Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}"/>
+                                </DockPanel>
+                            </DockPanel>
+                        </GroupBox>
+                        <!-- Address of the patient -->
+                        <GroupBox DockPanel.Dock="Top"
+                                  Margin="4"
+                                  Header="{x:Static Member=t:WorkbenchText.GrpAddress}">
+                            <StackPanel>
+                                <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Style="{StaticResource PresentationLbl}"/>
+                                        <Label Content="{Binding SelectedPatient.Address.Street}" Style="{StaticResource ValueLabel}" />
+                                        <Label Content="," Visibility="{Binding SelectedPatient.Address.StreetNumber, Mode=OneWay, Converter={StaticResource StringToVisibility}}"/>
+                                        <Label Content="{Binding SelectedPatient.Address.StreetNumber}" Style="{StaticResource ValueLabel}" />
+                                        <Label Content="/"  Visibility="{Binding SelectedPatient.Address.BoxNumber, Converter={StaticResource StringToVisibility}}"/>
+                                        <Label Content="{Binding SelectedPatient.Address.BoxNumber}" 
+                                       Visibility="{Binding SelectedPatient.Address.BoxNumber, Converter={StaticResource StringToVisibility}}"
+                                       Style="{StaticResource ValueLabel}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Style="{StaticResource PresentationLbl}"/>
+                                        <Label Content="{Binding SelectedPatient.Address.PostalCode}" Style="{StaticResource ValueLabel}" />
+                                        <Label Content="{Binding SelectedPatient.Address.City}" Style="{StaticResource ValueLabel}" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <DockPanel LastChildFill="True">
+                                            <Label Content="{x:Static Member=t:WorkbenchText.Street}"/>
+                                            <TextBox Margin="4"
+                                             Text="{Binding SelectedPatient.Address.Street, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </DockPanel>
+                                        <DockPanel Grid.Column="1">
+                                            <Label Content="{x:Static Member=t:WorkbenchText.Number}"/>
+                                            <TextBox Margin="4"
+                                             Text="{Binding SelectedPatient.Address.StreetNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </DockPanel>
+                                        <DockPanel Grid.Column="2">
+                                            <Label Content="{x:Static Member=t:WorkbenchText.Box}"/>
+                                            <TextBox Margin="4"
+                                             Text="{Binding SelectedPatient.Address.BoxNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </DockPanel>
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <DockPanel LastChildFill="True">
+                                            <Label Content="{x:Static Member=t:WorkbenchText.PostalCode}"/>
+                                            <TextBox Margin="4"
+                                             Text="{Binding SelectedPatient.Address.PostalCode, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </DockPanel>
+                                        <DockPanel Grid.Column="1">
+                                            <Label Content="{x:Static Member=t:WorkbenchText.City}"/>
+                                            <TextBox Margin="4"
+                                             Text="{Binding SelectedPatient.Address.City, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </DockPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <!-- Private contact info -->
+                        <GroupBox DockPanel.Dock="Top"
+                      Margin="4"
+                      Header="{x:Static Member=t:WorkbenchText.GrpPrivateContact}">
+                            <StackPanel>
+                                <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}">
+                                    <DockPanel Visibility="{Binding SelectedPatient.PrivateMobile, Mode=OneWay, Converter={StaticResource StringToVisibility}}">
+                                        <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Mobile}"/>
+                                        <Label Content="{Binding SelectedPatient.PrivateMobile}" Style="{StaticResource ValueLabel}" />
+                                    </DockPanel>
+                                    <DockPanel Visibility="{Binding SelectedPatient.PrivatePhone, Mode=OneWay, Converter={StaticResource StringToVisibility}}">
+                                        <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Phone}"/>
+                                        <Label Content="{Binding SelectedPatient.PrivatePhone}" Style="{StaticResource ValueLabel}" />
+                                    </DockPanel>
+                                    <DockPanel Visibility="{Binding SelectedPatient.PrivateMail, Mode=OneWay, Converter={StaticResource StringToVisibility}}">
+                                        <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Mail}"/>
+                                        <TextBlock DockPanel.Dock="Bottom" 
+                                           HorizontalAlignment="Left"
+                                           Margin="4">
+                                    <Hyperlink Command="{Binding SendPrivateMailCommand}">
+                                        <TextBlock Text="{Binding SelectedPatient.PrivateMail}"/>
+                                    </Hyperlink>
+                                </TextBlock>
+                                    </DockPanel>
+                                </StackPanel>
+                                <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+                                    <DockPanel>
+                                        <Label Width="90" Content="{x:Static Member=t:WorkbenchText.Mobile}"/>
+                                        <TextBox Margin="4" Text="{Binding SelectedPatient.PrivateMobile, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DockPanel>
+                                    <DockPanel>
+                                        <Label Width="90" Content="{x:Static Member=t:WorkbenchText.Phone}"/>
+                                        <TextBox Margin="4" Text="{Binding SelectedPatient.PrivatePhone, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DockPanel>
+                                    <DockPanel Visibility="{Binding HasPrivateMail, Converter={StaticResource BoolToVisibility}}">
+                                        <Label Width="90" Content="{x:Static Member=t:WorkbenchText.Mail}"/>
+                                        <TextBox Margin="4" Text="{Binding SelectedPatient.PrivateMail, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DockPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <!-- Professional contact info -->
+                        <GroupBox DockPanel.Dock="Top"
+                      Margin="4"
+                      Header="{x:Static Member=t:WorkbenchText.GrpProfContact}">
+                            <StackPanel>
+                                <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}">
+                                    <DockPanel Visibility="{Binding SelectedPatient.ProMobile, Mode=OneWay, Converter={StaticResource StringToVisibility}}">
+                                        <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Mobile}"/>
+                                        <Label Content="{Binding SelectedPatient.ProMobile}" Style="{StaticResource ValueLabel}" />
+                                    </DockPanel>
+                                    <DockPanel Visibility="{Binding SelectedPatient.ProPhone, Mode=OneWay, Converter={StaticResource StringToVisibility}}">
+                                        <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Phone}"/>
+                                        <Label Content="{Binding SelectedPatient.ProPhone}" Style="{StaticResource ValueLabel}" />
+                                    </DockPanel>
+                                    <DockPanel Visibility="{Binding SelectedPatient.ProMail, Mode=OneWay, Converter={StaticResource StringToVisibility}}">
+                                        <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Mail}"/>
+                                        <TextBlock DockPanel.Dock="Bottom" 
+                                           HorizontalAlignment="Left"
+                                           Margin="4">
+                                    <Hyperlink Command="{Binding SendProMailCommand}">
+                                        <TextBlock Text="{Binding SelectedPatient.ProMail}"/>
+                                    </Hyperlink>
+                                </TextBlock>
+                                    </DockPanel>
+                                </StackPanel>
+                                <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+                                    <DockPanel>
+                                        <Label Width="90" Content="{x:Static Member=t:WorkbenchText.Mobile}"/>
+                                        <TextBox Margin="4" Text="{Binding SelectedPatient.ProMobile, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DockPanel>
+                                    <DockPanel>
+                                        <Label Width="90" Content="{x:Static Member=t:WorkbenchText.Phone}"/>
+                                        <TextBox Margin="4" Text="{Binding SelectedPatient.ProPhone, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DockPanel>
+                                    <DockPanel Visibility="{Binding HasPrivateMail, Converter={StaticResource BoolToVisibility}}">
+                                        <Label Width="90" Content="{x:Static Member=t:WorkbenchText.Mail}"/>
+                                        <TextBox Margin="4" Text="{Binding SelectedPatient.ProMail, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DockPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <!-- Notes -->
+                        <GroupBox DockPanel.Dock="Top" 
+                          Margin="4"
+                          Header="{x:Static Member=t:WorkbenchText.Notes}">
+                            <TextBox Text="{Binding SelectedPatient.Reason, UpdateSourceTrigger=PropertyChanged}"
+                                     Margin="4"
+                                     VerticalScrollBarVisibility="Visible"
+                                     HorizontalScrollBarVisibility="Auto"
+                                     TextWrapping="Wrap"
+                                     IsReadOnly="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBool}}" />
+                        </GroupBox>
+                    </DockPanel>
+                </ScrollViewer>
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      Grid.Column="1">
+                    <DockPanel LastChildFill="True">
+                        <GroupBox DockPanel.Dock="Top" 
+                          Margin="4"
+                          Header="{x:Static Member=t:WorkbenchText.Insurance}">
+                            <StackPanel>
+                                <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}">
+                                    <DockPanel LastChildFill="True">
+                                        <Label Content="{Binding SelectedPatient.Insurance.Name}"
+                                       Style="{StaticResource ValueLabel}" FontWeight="Bold" />
+                                        <Label/>
+                                    </DockPanel>
+                                    <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Style="{StaticResource PresentationLbl}"/>
+                                            <Label Content="{Binding SelectedInsurance.Address.Street}" Style="{StaticResource ValueLabel}" />
+                                            <Label Content=","/>
+                                            <Label Content="{Binding SelectedInsurance.Address.StreetNumber}" Style="{StaticResource ValueLabel}" />
+                                            <Label Content="/" Visibility="{Binding SelectedInsurance.Address.BoxNumber, Converter={StaticResource StringToVisibility}}"/>
+                                            <Label Content="{Binding SelectedInsurance.Address.BoxNumber}" 
+                                           Visibility="{Binding SelectedInsurance.Address.BoxNumber, Converter={StaticResource StringToVisibility}}"
+                                           Style="{StaticResource ValueLabel}" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Style="{StaticResource PresentationLbl}"/>
+                                            <Label Content="{Binding SelectedInsurance.Address.PostalCode}" Style="{StaticResource ValueLabel}" />
+                                            <Label Content="{Binding SelectedInsurance.Address.City}" Style="{StaticResource ValueLabel}" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <DockPanel Visibility="{Binding SelectedInsurance.Phone, Converter={StaticResource StringToVisibility}}">
+                                        <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Phone}"/>
+                                        <Label Content="{Binding SelectedInsurance.Phone}" Style="{StaticResource ValueLabel}" />
+                                    </DockPanel>
+                                </StackPanel>
+                                <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+                                    <ComboBox Margin="4"
+                                      ItemsSource="{Binding Insurances}"
+                                      SelectedItem="{Binding SelectedPatient.Insurance}"
+                                      DisplayMemberPath="Name"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox DockPanel.Dock="Top" 
+                          Margin="4"
+                          Header="{x:Static Member=t:WorkbenchText.Practice}">
+                            <StackPanel>
+                                <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}">
+                                    <DockPanel LastChildFill="True">
+                                        <Label Content="{Binding SelectedPatient.Practice.Name}"
+                                       Style="{StaticResource ValueLabel}" FontWeight="Bold" />
+                                        <Label/>
+                                    </DockPanel>
+                                    <StackPanel Orientation="Horizontal"
+                                        Visibility="{Binding SelectedPractice.Address, Converter={StaticResource NullToVisibility}}">
+                                        <Label Style="{StaticResource PresentationLbl}"/>
+                                        <Label Content="{Binding SelectedPractice.Address.Street}" Style="{StaticResource ValueLabel}" />
+                                        <Label Content="," Visibility="{Binding SelectedPractice.Address.StreetNumber, Converter={StaticResource StringToVisibility}}"/>
+                                        <Label Content="{Binding SelectedPractice.Address.StreetNumber}" Style="{StaticResource ValueLabel}" />
+                                        <Label Content="/"  Visibility="{Binding SelectedPractice.Address.BoxNumber, Converter={StaticResource StringToVisibility}}"/>
+                                        <Label Content="{Binding SelectedPractice.Address.BoxNumber}" 
+                                       Visibility="{Binding SelectedPractice.Address.BoxNumber, Converter={StaticResource StringToVisibility}}"
+                                       Style="{StaticResource ValueLabel}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Style="{StaticResource PresentationLbl}"/>
+                                        <Label Content="{Binding SelectedPractice.Address.PostalCode}" Style="{StaticResource ValueLabel}" />
+                                        <Label Content="{Binding SelectedPractice.Address.City}" Style="{StaticResource ValueLabel}" />
+                                    </StackPanel>
+                                    <DockPanel Visibility="{Binding SelectedPractice.Phone, Converter={StaticResource StringToVisibility}}">
+                                        <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Phone}"/>
+                                        <Label Content="{Binding SelectedPractice.Phone}" Style="{StaticResource ValueLabel}" />
+                                    </DockPanel>
+                                </StackPanel>
+                                <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+                                    <ComboBox Margin="4"
+                                      ItemsSource="{Binding Practices}"
+                                      SelectedItem="{Binding SelectedPatient.Practice}"
+                                      DisplayMemberPath="Name"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <!-- Miscellaneous -->
+                        <GroupBox DockPanel.Dock="Top"
+                          Margin="4"
+                          Header="{x:Static Member=t:WorkbenchText.Miscellaneous}">
+                            <StackPanel>
+                                <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}">
+                                    <DockPanel>
+                                        <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Inscription}"/>
+                                        <Label Content="{Binding SelectedPatient.InscriptionDate}" Style="{StaticResource ValueLabel}" />
+                                    </DockPanel>
+                                    <DockPanel>
+                                        <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.LastUpdate}"/>
+                                        <Label Content="{Binding SelectedPatient.LastUpdate}" Style="{StaticResource ValueLabel}" />
+                                    </DockPanel>
+                                    <DockPanel>
+                                        <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Reputation}"/>
+                                        <Label Content="{Binding SelectedPatient.Reputation.Name}" Style="{StaticResource ValueLabel}" />
+                                    </DockPanel>
+                                </StackPanel>
+                                <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+                                    <DockPanel>
+                                        <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Inscription}"/>
+                                        <DatePicker SelectedDate="{Binding SelectedPatient.InscriptionDate}"/>
+                                    </DockPanel>
+                                    <DockPanel>
+                                        <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.LastUpdate}"/>
+                                        <Label Content="{Binding SelectedPatient.LastUpdate}" Style="{StaticResource ValueLabel}" />
+                                    </DockPanel>
+                                    <DockPanel LastChildFill="True">
+                                        <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Reputation}"/>
+                                        <ComboBox Margin="4"
+                                          ItemsSource="{Binding Reputations}"
+                                          SelectedItem="{Binding SelectedPatient.Reputation}"
+                                          DisplayMemberPath="Name"/>
+                                    </DockPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox DockPanel.Dock="Top" 
+                          Margin="4"
+                          Header="{x:Static Member=t:WorkbenchText.Doctors}">
+                            <DockPanel LastChildFill="True"
+                               Visibility="{Binding ElementName=Doctors, Path=Count, Converter={StaticResource IntToVisibility}}">
+                                <ScrollViewer>
+                                    <ListView DockPanel.Dock="Left"
+                                              Margin="4"
+                                              Width="200"
+                                              ItemsSource="{Binding Doctors}"
+                                              DisplayMemberPath="DisplayedName"
+                                              SelectedItem="{Binding SelectedDoctor}"
+                                              behaviours:SelectorBehaviour.SelectionChanged="{Binding SetSelectedDoctorCommand}"/>
+                                </ScrollViewer>
+                                <StackPanel DockPanel.Dock="Right"
+                                    Visibility="{Binding SelectedDoctor, Converter={StaticResource NullToVisibility}}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Style="{StaticResource ValueLabel}" Content="{Binding SelectedDoctor.Specialisation.Name}"/>
+                                        <Label Style="{StaticResource ValueLabel}" Content="{Binding SelectedDoctor.DisplayedName}"/>
+                                    </StackPanel>
+                                    <GroupBox DockPanel.Dock="Top"
+                                      Margin="4"
+                                      Header="{x:Static Member=t:WorkbenchText.GrpAddress}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="{Binding SelectedDoctor.Address.Street}" Style="{StaticResource ValueLabel}" />
+                                            <Label Content="," Visibility="{Binding SelectedDoctor.Address.StreetNumber, Mode=OneWay, Converter={StaticResource StringToVisibility}}"/>
+                                            <Label Content="{Binding SelectedDoctor.Address.StreetNumber}" Style="{StaticResource ValueLabel}" />
+                                            <Label Content="/"  Visibility="{Binding SelectedDoctor.Address.BoxNumber, Converter={StaticResource StringToVisibility}}"/>
+                                            <Label Content="{Binding SelectedDoctor.Address.BoxNumber}" 
+                                           Visibility="{Binding SelectedDoctor.Address.BoxNumber, Converter={StaticResource StringToVisibility}}"
+                                           Style="{StaticResource ValueLabel}" />
+                                        </StackPanel>
+                                    </GroupBox>
+                                    <GroupBox DockPanel.Dock="Top"
+                                              Margin="4"
+                                              Header="{x:Static Member=t:WorkbenchText.GrpProfContact}">
+                                        <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}">
+                                            <DockPanel Visibility="{Binding DisplayedDoctor.ProMobile, Mode=OneWay, Converter={StaticResource StringToVisibility}}">
+                                                <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Mobile}"/>
+                                                <Label Content="{Binding DisplayedDoctor.ProMobile}" Style="{StaticResource ValueLabel}" />
+                                            </DockPanel>
+                                            <DockPanel Visibility="{Binding DisplayedDoctor.ProPhone, Mode=OneWay, Converter={StaticResource StringToVisibility}}">
+                                                <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Phone}"/>
+                                                <Label Content="{Binding DisplayedDoctor.ProPhone}" Style="{StaticResource ValueLabel}" />
+                                            </DockPanel>
+                                            <DockPanel Visibility="{Binding DisplayedDoctor.ProMail, Mode=OneWay, Converter={StaticResource StringToVisibility}}">
+                                                <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Mail}"/>
+                                                <TextBlock DockPanel.Dock="Bottom" 
+                                                   HorizontalAlignment="Left"
+                                                   Margin="4">
+                                            <Hyperlink Command="{Binding SendProMailCommand}">
+                                                <TextBlock Text="{Binding DisplayedDoctor.ProMail}"/>
+                                            </Hyperlink>
+                                            </TextBlock>
+                                            </DockPanel>
+                                        </StackPanel>
+                                    </GroupBox>
+                                </StackPanel>
+                            </DockPanel>
+                        </GroupBox>
+                    </DockPanel>
+                </ScrollViewer>
+            </Grid>
+        </toolkit:BusyIndicator>
+    </Grid>
+</Page>

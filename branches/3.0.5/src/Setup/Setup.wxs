@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+	<Product Id="*" Name="nDoctor" Language="1033" Version="99.99.99" UpgradeCode="3F3C4F4D-2FA7-409F-9B45-EECB6D840B56" Manufacturer="Probel">
+		<Package Description="#Description" Comments="Comments" InstallerVersion="200" Compressed="yes" />
+		<!--
+			Source media for the installation. 
+ 			Specifies a single cab file to be embedded in the installer's .msi. 
+		-->
+		<Media Id="1" Cabinet="contents.cab" EmbedCab="yes" CompressionLevel="high" />
+		
+		<MajorUpgrade Schedule="afterInstallInitialize"
+		              DowngradeErrorMessage="A later version of nDoctor is already installed. Setup will now exit"/>
+		
+		<!-- Installation directory and files are defined in Files.wxs -->
+		<!-- the default directory structure -->
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLLOCATION" Name="nDoctor" />
+			</Directory>
+			
+			<Directory Id="ProgramMenuFolder">
+				<Directory Id="ApplicationProgramsFolder" Name="Probel"/>
+			</Directory>
+			
+			<Directory Id="DesktopFolder" Name="Desktop"/>
+		</Directory>
+		
+		<DirectoryRef Id="ApplicationProgramsFolder">
+			<Component Id="ApplicationShortcut" Guid="{3C920A52-6D0E-4A42-B393-D87F4E821CC6}">
+				<Shortcut Id="ApplicationStartMenuShortcut"
+				          Name="nDoctor"
+				          Description="Private medical pratcice management system"
+				          Target="[INSTALLLOCATION]Probel.NDoctor.View.Core.exe"
+				          WorkingDirectory="INSTALLLOCATION"/>
+				
+				<Shortcut Id="UninstallProduct"
+				          Name="Uninstall nDoctor"
+				          Target="[SystemFolder]msiexec.exe"
+				          Arguments="/x [ProductCode]"
+				          Description="Uninstalls nDoctor" />
+				
+				<util:InternetShortcut Id="OnlineDocumentationShortcut"
+					Name="nDoctor website"
+					Target="http://www.phoenixsuite.net/"/>
+				<RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+				<RegistryValue Root="HKCU" Key="Software\Microsoft\nDoctor" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+		
+		<DirectoryRef Id="DesktopFolder">
+			<Component Id="DesktopShortcut" Guid="{86C8E305-CCFC-45B3-A85F-0FD6C18DAF77}">
+				<Shortcut Id="DesktopApplicationShortcut"
+				          Name="nDoctor"
+				          Description="Private medical pratcice management system"
+				          Target="[INSTALLLOCATION]Probel.NDoctor.View.Core.exe"
+				          WorkingDirectory="INSTALLLOCATION"/>
+				<RegistryValue Root="HKCU" Key="Software\Microsoft\nDoctor" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+				<RemoveFolder Id="DesktopFolder" On="uninstall"/>
+			</Component>
+		</DirectoryRef>
+		
+		
+		<!-- Contains the components to install -->
+		<Feature Id="Complete" Title="nDoctor" Description="Private medical pratcice management system" Level="1">
+			<ComponentRef Id="ApplicationShortcut"/>
+			<ComponentRef Id="DesktopShortcut"/>
+			<ComponentRef Id="AutoMapper.dll"/>
+<ComponentRef Id="AvalonDock.dll"/>
+<ComponentRef Id="Castle.Core.dll"/>
+<ComponentRef Id="FluentNHibernate.dll"/>
+<ComponentRef Id="Google.GData.AccessControl.dll"/>
+<ComponentRef Id="Google.GData.Calendar.dll"/>
+<ComponentRef Id="Google.GData.Client.dll"/>
+<ComponentRef Id="Google.GData.Extensions.dll"/>
+<ComponentRef Id="HibernatingRhinos.Profiler.Appender.v4.0.dll"/>
+<ComponentRef Id="Iesi.Collections.dll"/>
+<ComponentRef Id="log4net.dll"/>
+<ComponentRef Id="Microsoft.Windows.Shell.dll"/>
+<ComponentRef Id="MongoDB.Bson.dll"/>
+<ComponentRef Id="MongoDB.Driver.dll"/>
+<ComponentRef Id="Newtonsoft.Json.dll"/>
+<ComponentRef Id="NHibernate.dll"/>
+<ComponentRef Id="Nini.dll"/>
+<ComponentRef Id="Probel.Helpers.dll"/>
+<ComponentRef Id="Probel.Helpers.WPF.dll"/>
+<ComponentRef Id="Probel.Mvvm.dll"/>
+<ComponentRef Id="Probel.NDoctor.Domain.Components.dll"/>
+<ComponentRef Id="Probel.NDoctor.Domain.DAL.dll"/>
+<ComponentRef Id="Probel.NDoctor.Domain.DTO.dll"/>
+<ComponentRef Id="Probel.NDoctor.Statistics.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Core.exe"/>
+<ComponentRef Id="Probel.NDoctor.View.Core.exe.config"/>
+<ComponentRef Id="Probel.NDoctor.View.Core.exe.log4net"/>
+<ComponentRef Id="Probel.NDoctor.View.Plugins.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Toolbox.dll"/>
+<ComponentRef Id="RibbonControlsLibrary.dll"/>
+<ComponentRef Id="StructureMap.dll"/>
+<ComponentRef Id="System.Data.SQLite.dll"/>
+<ComponentRef Id="System.Windows.Controls.DataVisualization.Toolkit.dll"/>
+<ComponentRef Id="System.Windows.Controls.Input.Toolkit.dll"/>
+<ComponentRef Id="System.Windows.Controls.Layout.Toolkit.dll"/>
+<ComponentRef Id="WPFToolkit.dll"/>
+<ComponentRef Id="WPFToolkit.Extended.dll"/>
+<ComponentRef Id="Xceed.Wpf.DataGrid.dll"/>
+<ComponentRef Id="Probel.Helpers.resources.dll"/>
+<ComponentRef Id="Probel.Mvvm.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.Domain.DAL.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.Domain.DTO.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Core.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Plugins.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Toolbox.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.Administration.dll"/>
+<ComponentRef Id="Probel.Helpers.resources.dll_1"/>
+<ComponentRef Id="Probel.NDoctor.Domain.DAL.resources.dll_1"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.Administration.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Core.resources.dll_1"/>
+<ComponentRef Id="Probel.NDoctor.View.Plugins.resources.dll_1"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.Authorisation.dll"/>
+<ComponentRef Id="Probel.Helpers.resources.dll_2"/>
+<ComponentRef Id="Probel.NDoctor.Domain.DAL.resources.dll_2"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.Authorisation.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Core.resources.dll_2"/>
+<ComponentRef Id="Probel.NDoctor.View.Plugins.resources.dll_2"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.BmiRecord.dll"/>
+<ComponentRef Id="Probel.Helpers.resources.dll_3"/>
+<ComponentRef Id="Probel.NDoctor.Domain.DAL.resources.dll_3"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.BmiRecord.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Core.resources.dll_3"/>
+<ComponentRef Id="Probel.NDoctor.View.Plugins.resources.dll_3"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.DbConvert.dll"/>
+<ComponentRef Id="Probel.Helpers.resources.dll_4"/>
+<ComponentRef Id="Probel.NDoctor.Domain.DAL.resources.dll_4"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.DbConvert.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Core.resources.dll_4"/>
+<ComponentRef Id="Probel.NDoctor.View.Plugins.resources.dll_4"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.FamilyViewer.dll"/>
+<ComponentRef Id="Probel.Helpers.resources.dll_5"/>
+<ComponentRef Id="Probel.NDoctor.Domain.DAL.resources.dll_5"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.FamilyViewer.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Core.resources.dll_5"/>
+<ComponentRef Id="Probel.NDoctor.View.Plugins.resources.dll_5"/>
+<ComponentRef Id="ICSharpCode.AvalonEdit.dll"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.MedicalRecord.dll"/>
+<ComponentRef Id="Probel.Helpers.resources.dll_6"/>
+<ComponentRef Id="Probel.NDoctor.Domain.DAL.resources.dll_6"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.MedicalRecord.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Core.resources.dll_6"/>
+<ComponentRef Id="Probel.NDoctor.View.Plugins.resources.dll_6"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.MeetingManager.dll"/>
+<ComponentRef Id="Probel.Helpers.resources.dll_7"/>
+<ComponentRef Id="Probel.NDoctor.Domain.DAL.resources.dll_7"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.MeetingManager.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Core.resources.dll_7"/>
+<ComponentRef Id="Probel.NDoctor.View.Plugins.resources.dll_7"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.PathologyManager.dll"/>
+<ComponentRef Id="Probel.Helpers.resources.dll_8"/>
+<ComponentRef Id="Probel.NDoctor.Domain.DAL.resources.dll_8"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.PathologyManager.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Core.resources.dll_8"/>
+<ComponentRef Id="Probel.NDoctor.View.Plugins.resources.dll_8"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.PatientData.dll"/>
+<ComponentRef Id="Probel.Helpers.resources.dll_9"/>
+<ComponentRef Id="Probel.NDoctor.Domain.DAL.resources.dll_9"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.PatientData.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Core.resources.dll_9"/>
+<ComponentRef Id="Probel.NDoctor.View.Plugins.resources.dll_9"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.PatientOverview.dll"/>
+<ComponentRef Id="Probel.Helpers.resources.dll_10"/>
+<ComponentRef Id="Probel.NDoctor.Domain.DAL.resources.dll_10"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.PatientOverview.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Core.resources.dll_10"/>
+<ComponentRef Id="Probel.NDoctor.View.Plugins.resources.dll_10"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.PatientSession.dll"/>
+<ComponentRef Id="Probel.Helpers.resources.dll_11"/>
+<ComponentRef Id="Probel.NDoctor.Domain.DAL.resources.dll_11"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.PatientSession.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Core.resources.dll_11"/>
+<ComponentRef Id="Probel.NDoctor.View.Plugins.resources.dll_11"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.PictureManager.dll"/>
+<ComponentRef Id="Probel.Helpers.resources.dll_12"/>
+<ComponentRef Id="Probel.NDoctor.Domain.DAL.resources.dll_12"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.PictureManager.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Core.resources.dll_12"/>
+<ComponentRef Id="Probel.NDoctor.View.Plugins.resources.dll_12"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.PrescriptionManager.dll"/>
+<ComponentRef Id="Probel.Helpers.resources.dll_13"/>
+<ComponentRef Id="Probel.NDoctor.Domain.DAL.resources.dll_13"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.PrescriptionManager.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Core.resources.dll_13"/>
+<ComponentRef Id="Probel.NDoctor.View.Plugins.resources.dll_13"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.RescueTools.dll"/>
+<ComponentRef Id="Probel.Helpers.resources.dll_14"/>
+<ComponentRef Id="Probel.NDoctor.Domain.DAL.resources.dll_14"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.RescueTools.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Core.resources.dll_14"/>
+<ComponentRef Id="Probel.NDoctor.View.Plugins.resources.dll_14"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.UserSession.dll"/>
+<ComponentRef Id="Probel.Helpers.resources.dll_15"/>
+<ComponentRef Id="Probel.NDoctor.Domain.DAL.resources.dll_15"/>
+<ComponentRef Id="Probel.NDoctor.Plugins.UserSession.resources.dll"/>
+<ComponentRef Id="Probel.NDoctor.View.Core.resources.dll_15"/>
+<ComponentRef Id="Probel.NDoctor.View.Plugins.resources.dll_15"/>
+
+		</Feature>
+		
+		<!--
+			Using the Wix UI library
+ 
+			WixUI_InstallDir does not allow the user to choose 
+			features but adds a dialog to let the user choose a 
+			directory where the product will be installed
+		-->
+		<Property Id="WIXUI_INSTALLDIR">INSTALLLOCATION</Property>
+		<UIRef Id="WixUI_InstallDir" />
+	</Product>
+</Wix>

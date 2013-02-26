@@ -1,0 +1,36 @@
+﻿<Window x:Class="Probel.NDoctor.Plugins.PrescriptionManager.View.AddDrugView"
+        x:Name="this"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:iw="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:t="clr-namespace:Probel.NDoctor.View.Toolbox.Translations;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:h="clr-namespace:Probel.NDoctor.View.Toolbox.Controls;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Toolbox.Controls;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:txt="clr-namespace:Probel.NDoctor.Plugins.PrescriptionManager.Translations"
+        
+        Title="{Binding Source={x:Static Member=txt:AddDrugText.Title}}" 
+        
+        mc:Ignorable="d"
+        SizeToContent="WidthAndHeight" 
+        ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    
+    <Window.InputBindings>
+        <KeyBinding Key="Enter"
+                    Command="{Binding AddCommand}"/>
+        <KeyBinding Key="Escape"
+                    Command="cmd:Commands.CloseView" 
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
+    </Window.InputBindings>
+    
+    <StackPanel>
+        <h:DrugBox  Drug="{Binding SelectedDrug}"
+                    ButtonName="{Binding Source={x:Static Member=txt:WorkbenchText.BtnAdd}}"
+                    Categories="{Binding Tags}"
+                    OkCommand="{Binding AddCommand}"
+                    TypeEnabled="{Binding IsTypeEnabled}"/>
+    </StackPanel>
+</Window>

@@ -1,0 +1,38 @@
+﻿<Window x:Class="Probel.NDoctor.Plugins.PathologyManager.View.AddPathologyCategoryView"
+        x:Name="this"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:text="clr-namespace:Probel.NDoctor.Plugins.PathologyManager.Translations"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:iw="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:t="clr-namespace:Probel.NDoctor.View.Toolbox.Translations;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:h="clr-namespace:Probel.NDoctor.View.Toolbox.Controls;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Toolbox.Controls;assembly=Probel.NDoctor.View.Toolbox"     
+        xmlns:tt="clr-namespace:Probel.NDoctor.Plugins.PathologyManager.Translations"
+        xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        
+        Title="{Binding Source={x:Static Member=tt:AddPathologyText.TitleCategory}}" 
+        
+        mc:Ignorable="d"
+        Width="250"
+        SizeToContent="Height"
+        Loaded="this_Loaded" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    <Window.InputBindings>
+        <KeyBinding Key="Enter"
+                    Command="{Binding AddCommand}"/>
+        <KeyBinding Key="Escape"
+                    Command="cmd:Commands.CloseView" 
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
+    </Window.InputBindings>
+    <StackPanel>
+        <Border DockPanel.Dock="Top"
+                Style="{StaticResource BorderStyle}">
+            <TextBox x:Name="focused"
+                     Text="{Binding CategoryName,UpdateSourceTrigger=PropertyChanged}"/>
+        </Border>
+        <ctrl:OKCancelBox ButtonName="{Binding Source={x:Static Member=t:BaseText.Add}}"
+                          OkCommand="{Binding AddCommand}"/>
+    </StackPanel>
+</Window>

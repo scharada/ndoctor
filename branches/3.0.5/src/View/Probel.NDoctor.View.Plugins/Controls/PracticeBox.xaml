@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="Probel.NDoctor.View.Plugins.Controls.PracticeBox"
+             x:Name="this"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             
+             xmlns:iw="clr-namespace:Probel.NDoctor.View.Core.Helpers;assembly=Probel.NDoctor.View.Core"
+             xmlns:t="clr-namespace:Probel.NDoctor.View.Plugins.Helpers;assembly=Probel.NDoctor.View.Plugins"
+             xmlns:text="clr-namespace:Probel.NDoctor.View.Core.Translations"
+             xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Core.Controls"
+             
+             mc:Ignorable="d"
+             Width="350"
+             Loaded="this_Loaded">
+    <UserControl.Resources>
+        <!--controlStyle-->
+        <Style x:Key="controlStyle">
+            <Setter Property="Control.Height" Value="26"/>
+            <Setter Property="Control.VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <!--labelStyle-->
+        <Style x:Key="labelStyle" BasedOn="{StaticResource controlStyle}">
+            <Setter Property="Label.HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="Label.Foreground" Value="DarkGray"/>
+            <Setter Property="Label.FontWeight" Value="Bold"/>
+            <Setter Property="Label.HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Label.VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <!--separatorStyle-->
+        <Style x:Key="separatorStyle" BasedOn="{StaticResource labelStyle}">
+            <Setter Property="Label.HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Label.Background" Value="DarkGray"/>
+            <Setter Property="Label.Foreground" Value="Black"/>
+        </Style>
+
+        <!--textBoxStyle-->
+        <Style x:Key="textBoxStyle" BasedOn="{StaticResource controlStyle}">
+            <Setter Property="Control.Foreground" Value="Black"/>
+            <Setter Property="Control.FontFamily" Value="Arial"/>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel>
+        <TabControl>
+            <TabItem Header="{Binding Source={x:Static Member=text:InsuranceText.Data}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Column="0" Grid.Row="1">
+                        <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:InsuranceText.Name}}"/>
+                        <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:InsuranceText.Phone}}"/>
+                        <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:InsuranceText.Notes}}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Grid.Row="1">
+                        <TextBox Name="focused"
+                                 Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Practice.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Practice.Phone, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Practice.Notes, UpdateSourceTrigger=PropertyChanged}"
+                                         TextWrapping="Wrap"
+                                         VerticalScrollBarVisibility="Visible"
+                                         HorizontalContentAlignment="Left"
+                                         VerticalContentAlignment="Top"
+                                 Height="60"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="{Binding Source={x:Static Member=text:InsuranceText.Address}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Column="0" Grid.Row="1">
+                        <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:InsuranceText.Street}}"/>
+                        <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:InsuranceText.StreetNr}}"/>
+                        <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:InsuranceText.PoBox}}"/>
+                        <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:InsuranceText.PostalCode}}"/>
+                        <Label Style="{StaticResource labelStyle}" Content="{Binding Source={x:Static Member=text:InsuranceText.City}}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Grid.Row="1">
+                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Practice.Address.Street, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Practice.Address.StreetNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Practice.Address.BoxNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Practice.Address.PostalCode, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=this, Path=Practice.Address.City, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <ctrl:OKCancelBox OkCommand="{Binding ElementName=this, Path=OkCommand, UpdateSourceTrigger=PropertyChanged}"
+                          ButtonName="{Binding ElementName=this, Path=ButtonName, UpdateSourceTrigger=PropertyChanged}"/>
+    </StackPanel>
+</UserControl>

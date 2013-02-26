@@ -1,0 +1,46 @@
+﻿<Window x:Class="Probel.NDoctor.View.Core.View.SettingsView"
+        x:Name="this"
+             
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:text="clr-namespace:Probel.NDoctor.View.Core.Translations"
+        xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Toolbox.Controls;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:txt="clr-namespace:Probel.NDoctor.View.Core.Translations"
+        xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:settings="clr-namespace:Probel.NDoctor.View.Core.View"
+                
+        mc:Ignorable="d"
+        Width="600"
+        Height="450"
+        Title="{Binding Source={x:Static Member=txt:SettingsText.Title}}"
+        Loaded="this_Loaded" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    
+    <Window.InputBindings>
+        <KeyBinding Key="Enter"
+                    Command="{Binding Path=SaveCommand}"/>
+        <KeyBinding Key="Escape"
+                    Command="cmd:Commands.CloseView" 
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
+    </Window.InputBindings>
+    <DockPanel LastChildFill="True">
+        <ctrl:OKCancelBox DockPanel.Dock="Bottom"  x:Name="focused"
+                          OkCommand="{Binding Path=SaveSettingsCommand}"
+                          ButtonName="{Binding Source={x:Static Member=text:SettingsText.BtnSave}}"/>
+        
+        <DockPanel LastChildFill="True" 
+                   DockPanel.Dock="Top">
+            <ListView x:Name="list" 
+                      MinWidth="120"
+                      DockPanel.Dock="Left"
+                      ItemsSource="{Binding SettingCollection}"  
+                      SelectedItem="{Binding SelectedControl}"
+                      DisplayMemberPath="Name"/>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                <ContentControl DockPanel.Dock="Right"
+                                Content="{Binding SelectedControl.Control}"/>
+            </ScrollViewer>
+        </DockPanel>
+    </DockPanel>
+</Window>

@@ -1,0 +1,230 @@
+﻿<Page x:Class="Probel.NDoctor.Plugins.RescueTools.View.Workbench"
+      
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:t="clr-namespace:Probel.NDoctor.Plugins.RescueTools.Translations"
+      xmlns:bt="clr-namespace:Probel.NDoctor.View.Toolbox.Translations;assembly=Probel.NDoctor.View.Toolbox"
+      xmlns:conv="clr-namespace:Probel.NDoctor.View.Toolbox.Converters;assembly=Probel.NDoctor.View.Toolbox"
+      xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+      
+      mc:Ignorable="d" 
+      d:DesignWidth="1024"
+      d:DesignHeight="768" 
+      Title="{Binding Source={x:Static Member=t:WorkbenchText.PageTitle}}">
+    <Page.Resources>
+        <conv:NullToVisibilityConverter x:Key="NullToVisibility"/>
+        <Style TargetType="Label" x:Key="PresentationLbl">
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+        </Style>
+        <Style TargetType="Label" x:Key="ValueLabel">
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="ListView">
+            <Setter Property="Width" Value="250"/>
+        </Style>
+        <Style TargetType="StackPanel" x:Key="sidePanel">
+            <Setter Property="Width" Value="250"/>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <TabControl TabStripPlacement="Left"
+                    Margin="4">
+            <TabItem Header="{Binding Source={x:Static Member=t:WorkbenchText.TabDoctorDoubloons}}">
+                <DockPanel>
+                    <GroupBox Header="{Binding Source={x:Static Member=t:WorkbenchText.Doubloons}}"
+                              Margin="4">
+                        <DockPanel>
+                            <toolkit:WatermarkTextBox DockPanel.Dock="Top" 
+                                                      Margin="4"
+                                                      Watermark="{Binding Source={x:Static bt:BaseText.Search}}"
+                                                      Text="{Binding SearchCriteria, UpdateSourceTrigger=PropertyChanged}">
+
+                            </toolkit:WatermarkTextBox>
+                            <Label DockPanel.Dock="Bottom" 
+                                   Content="{Binding DoctorDoubloonsCount}"/>
+                            <ListView ItemsSource="{Binding DoctorDoubloons}"
+                                  SelectedItem="{Binding SelectedDoctorDoubloon}"
+                                  DisplayMemberPath="DisplayText"/>
+                        </DockPanel>
+                    </GroupBox>
+                    <GroupBox Header="{Binding Source={x:Static Member=t:WorkbenchText.KeptDoctor}}"
+                              Margin="4">
+                        <ListView ItemsSource="{Binding DoubloonsOfSelectedDoctor}"
+                                  SelectedItem="{Binding ReplacementDoctor}"                                                                    
+                                  DisplayMemberPath="DisplayedName"/>
+                    </GroupBox>
+                    <GroupBox Header="{Binding Source={x:Static t:WorkbenchText.Details}}">
+                        <StackPanel>
+                            <Button Content="{Binding Source={x:Static t:WorkbenchText.Refresh}}"
+                                    Margin="4"
+                                    Command="{Binding RefreshCommand}"/>
+                            <StackPanel DockPanel.Dock="Right"
+                                    Visibility="{Binding FullReplacementDoctor, Converter={StaticResource NullToVisibility}}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource ValueLabel}" Content="{Binding FullReplacementDoctor.Specialisation.Name}"/>
+                                    <Label Style="{StaticResource ValueLabel}" Content="{Binding FullReplacementDoctor.DisplayedName}"/>
+                                </StackPanel>
+                                <GroupBox DockPanel.Dock="Top"
+                                      Margin="4"
+                                      Header="{x:Static Member=t:WorkbenchText.GrpAddress}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="{Binding FullReplacementDoctor.Address.Street}" Style="{StaticResource ValueLabel}" />
+                                        <Label Content="," Visibility="{Binding FullReplacementDoctor.Address.StreetNumber, Mode=OneWay}"/>
+                                        <Label Content="{Binding FullReplacementDoctor.Address.StreetNumber}" Style="{StaticResource ValueLabel}" />
+                                        <Label Content="/"  Visibility="{Binding FullReplacementDoctor.Address.BoxNumber}"/>
+                                        <Label Content="{Binding FullReplacementDoctor.Address.BoxNumber}" 
+                                           Visibility="{Binding FullReplacementDoctor.Address.BoxNumber}"
+                                           Style="{StaticResource ValueLabel}" />
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox DockPanel.Dock="Top"
+                                      Margin="4"
+                                      Header="{x:Static Member=t:WorkbenchText.GrpProfContact}">
+                                    <StackPanel>
+                                        <DockPanel Visibility="{Binding FullReplacementDoctor.ProMobile, Mode=OneWay}">
+                                            <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Mobile}"/>
+                                            <Label Content="{Binding FullReplacementDoctor.ProMobile}" Style="{StaticResource ValueLabel}" />
+                                        </DockPanel>
+                                        <DockPanel Visibility="{Binding FullReplacementDoctor.ProPhone, Mode=OneWay}">
+                                            <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Phone}"/>
+                                            <Label Content="{Binding FullReplacementDoctor.ProPhone}" Style="{StaticResource ValueLabel}" />
+                                        </DockPanel>
+                                        <DockPanel Visibility="{Binding FullReplacementDoctor.ProMail, Mode=OneWay}">
+                                            <Label Style="{StaticResource PresentationLbl}" Content="{x:Static Member=t:WorkbenchText.Mail}"/>
+                                            <TextBlock DockPanel.Dock="Bottom" 
+                                                   HorizontalAlignment="Left"
+                                                   Margin="4">
+                                            <Hyperlink Command="{Binding SendProMailCommand}">
+                                                <TextBlock Text="{Binding FullReplacementDoctor.ProMail}"/>
+                                            </Hyperlink>
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </StackPanel>
+                                </GroupBox>
+                            </StackPanel>
+                            <TextBlock Text="{Binding Source={x:Static t:WorkbenchText.DoctorDoubloonsExplanations}}"
+                                       Margin="4" TextWrapping="Wrap" HorizontalAlignment="Stretch" TextAlignment="Center" Foreground="#FFF60000" FontWeight="Bold" />
+                            <Button Content="{Binding Source={x:Static t:WorkbenchText.Replace}}"
+                                    Margin="4"
+                                    Command="{Binding ReplaceCommand}"/>
+                            <Button Content="{Binding Source={x:Static t:WorkbenchText.ReplaceWithFirst}}"
+                                    Margin="4"
+                                    Command="{Binding ReplaceWithFirstCommand}"/>
+                        </StackPanel>
+                    </GroupBox>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="{Binding Source={x:Static Member=t:WorkbenchText.TabTooOldPatients}}">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Left" Style="{StaticResource sidePanel}">
+                        <GroupBox Header="{Binding Source={x:Static Member=t:WorkbenchText.Actions}}">
+                            <StackPanel>
+                                    <StackPanel>
+                                        <DockPanel>
+                                            <Label Content="{Binding Source={x:Static Member=t:WorkbenchText.SearchOnAge}}"/>
+                                            <toolkit:IntegerUpDown Margin="4"
+                                                                   DockPanel.Dock="Right"
+                                                                   Minimum="0"
+                                                                   Value="{Binding AgeCriteria}"/>
+                                        </DockPanel>
+                                        <Button Margin="4" 
+                                                Content="{Binding Source={x:Static Member=bt:BaseText.Search}}"
+                                                Command="{Binding SearchOnAgeCommand}"/>
+                                    </StackPanel>
+                                <Button Margin="4" 
+                                Content="{Binding Source={x:Static Member=t:WorkbenchText.DeactivateAll}}"
+                                Command="{Binding DeactivateAllCommand}"/>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <Button Margin="4" 
+                                Content="{Binding Source={x:Static Member=bt:BaseText.Update}}"
+                                Command="{Binding UpdateOldPatientsCommand}"/>
+                    </StackPanel>
+                    <DataGrid DockPanel.Dock="Right" Margin="4"
+                              ItemsSource="{Binding OldPatients}" 
+                              VerticalGridLinesBrush="#00000000" 
+                              HorizontalGridLinesBrush="#00000000" 
+                              AutoGenerateColumns="False" 
+                              CanUserReorderColumns="False" 
+                              CanUserSortColumns="False" CanUserAddRows="False" CanUserDeleteRows="False">
+
+                        <DataGrid.Columns>
+                            <DataGridCheckBoxColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.Deactivated}}"
+                                                    Binding="{Binding Path=IsDeactivated,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                    Width="*"/>
+                            <DataGridTextColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.Age}}"
+                                                Binding="{Binding Path=Age,UpdateSourceTrigger=PropertyChanged}"                                                
+                                                Width="*" 
+                                                IsReadOnly="True"/>
+                            <DataGridTextColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.Birthdate}}"
+                                                Binding="{Binding Path=Birthdate, StringFormat={}{0:d}, UpdateSourceTrigger=PropertyChanged}"                                                
+                                                Width="*"
+                                                IsReadOnly="True"/>
+                            <DataGridTextColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.FirstName}}"
+                                                Binding="{Binding Path=FirstName,UpdateSourceTrigger=PropertyChanged}"
+                                                Width="*"
+                                                IsReadOnly="True"/>
+                            <DataGridTextColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.LastName}}"
+                                                Binding="{Binding Path=LastName,UpdateSourceTrigger=PropertyChanged}"
+                                                Width="*"
+                                                IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="{Binding Source={x:Static Member=t:WorkbenchText.DeactivatedPatients}}">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Left" Style="{StaticResource sidePanel}">
+                        <GroupBox Header="{Binding Source={x:Static Member=t:WorkbenchText.Actions}}">
+                            <StackPanel>
+                                <Button Margin="4" 
+                                        Content="{Binding Source={x:Static Member=t:WorkbenchText.FindDeactivatedPatients}}"
+                                        Command="{Binding FindDeactivatedPatientsCommand}"/>
+                                <Button Margin="4"
+                                        Content="{Binding Source={x:Static Member=t:WorkbenchText.ReactivateAll}}"
+                                        Command="{Binding ReactivateAllCommand}"/>
+                            </StackPanel>
+                        </GroupBox>
+                        <Button Margin="4" 
+                                Content="{Binding Source={x:Static Member=bt:BaseText.Update}}"
+                                Command="{Binding UpdateDeactivatedPatientsCommand}"/>
+                    </StackPanel>
+                    <DataGrid DockPanel.Dock="Right" Margin="4"
+                              ItemsSource="{Binding DeactivatedPatients}" 
+                              VerticalGridLinesBrush="#00000000" 
+                              HorizontalGridLinesBrush="#00000000" 
+                              AutoGenerateColumns="False" 
+                              CanUserReorderColumns="False" 
+                              CanUserSortColumns="False" CanUserAddRows="False" CanUserDeleteRows="False">
+
+                        <DataGrid.Columns>
+                            <DataGridCheckBoxColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.Deactivated}}"
+                                                    Binding="{Binding Path=IsDeactivated,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                    Width="*"/>
+                            <DataGridTextColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.Age}}"
+                                                Binding="{Binding Path=Age,UpdateSourceTrigger=PropertyChanged}"                                                
+                                                Width="*" 
+                                                IsReadOnly="True"/>
+                            <DataGridTextColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.Birthdate}}"
+                                                Binding="{Binding Path=Birthdate, StringFormat={}{0:d}, UpdateSourceTrigger=PropertyChanged}"                                                
+                                                Width="*"
+                                                IsReadOnly="True"/>
+                            <DataGridTextColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.FirstName}}"
+                                                Binding="{Binding Path=FirstName,UpdateSourceTrigger=PropertyChanged}"
+                                                Width="*"
+                                                IsReadOnly="True"/>
+                            <DataGridTextColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.LastName}}"
+                                                Binding="{Binding Path=LastName,UpdateSourceTrigger=PropertyChanged}"
+                                                Width="*"
+                                                IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

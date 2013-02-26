@@ -1,0 +1,121 @@
+﻿<Window x:Class="Probel.NDoctor.Plugins.MedicalRecord.View.MacroEditorView"
+        x:Name="this"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"            
+        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+        xmlns:text="clr-namespace:Probel.NDoctor.Plugins.MedicalRecord.Translations"
+        xmlns:converter="clr-namespace:Probel.NDoctor.View.Toolbox.Converters;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:iw="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Toolbox.Controls;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:t="clr-namespace:Probel.NDoctor.View.Toolbox.Translations;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:behaviours="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
+        xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:txt="clr-namespace:Probel.NDoctor.Plugins.MedicalRecord.Translations"
+        
+        Title="{Binding Source={x:Static Member=txt:MacroEditorText.Title}}"
+        behaviours:WindowBehaviour.Closing="{Binding SaveCommand}"
+        
+        mc:Ignorable="d" 
+        Height="456" Width="667" 
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+    
+    <Window.Resources>
+        <converter:NullToBooleanConverter x:Key="NullToBool"/>
+    </Window.Resources>
+
+    <Window.InputBindings>
+        <KeyBinding Key="Escape"
+                    Command="cmd:Commands.CloseView" 
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
+    </Window.InputBindings>
+    
+    <DockPanel LastChildFill="True">
+        
+        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
+            <Border Style="{StaticResource BorderStyle}"
+                    DockPanel.Dock="Right" >
+                <Button Width="100"
+                        Command="cmd:Commands.CloseView"
+                        CommandParameter="{Binding ElementName=this, Path=DataContext}"             
+                        Content="{Binding Source={x:Static Member=t:BaseText.Close}}"/>
+            </Border>
+        </DockPanel>
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Style="{StaticResource BorderStyle}"
+                    Grid.Column="0">
+                <DockPanel LastChildFill="True">
+                    <Border Style="{StaticResource BorderStyle}"
+                            DockPanel.Dock="Top">
+                        <Button Content="{Binding Source={x:Static Member=t:BaseText.New}}"
+                            Command="{Binding CreateCommand}"/>
+                    </Border>
+                    <Label DockPanel.Dock="Top" 
+                       Content="{x:Static Member=text:MacroEditorText.Macro}"
+                       HorizontalAlignment="Center"/>
+                    <ListView Name="list"
+                              ItemsSource="{Binding Macros}"
+                              DisplayMemberPath="Title"
+                              SelectedItem="{Binding SelectedMacro}">
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="{Binding Source={x:Static Member=t:BaseText.Remove}}"
+                                          Command="{Binding RemoveCommand}">
+                                    <MenuItem.Icon>
+                                        <Image Source="\Probel.NDoctor.Plugins.MedicalRecord;component/Images\Delete.png"
+                                               Height="20"
+                                               Width="20"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </ListView.ContextMenu>
+                    </ListView>
+                </DockPanel>
+            </Border>
+
+            <GridSplitter Grid.Column="0"                                                    
+                          HorizontalAlignment="Right" 
+                          Width="4"/>
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0">
+                    <Border Style="{StaticResource BorderStyle}"
+                            DockPanel.Dock="Top">
+                        <DockPanel LastChildFill="True">
+                            <Label DockPanel.Dock="Left" Content="{x:Static Member=text:MacroEditorText.MacroName}"/>
+                            <TextBox Text="{Binding SelectedMacro.Title}"/>
+                        </DockPanel>
+                    </Border>
+                    <Border Style="{StaticResource BorderStyle}">
+                        <avalonEdit:TextEditor Name="textEditor"
+                                               FontFamily="Consolas"
+                                               FontSize="12pt"
+                                               SyntaxHighlighting="Macro Highlighting"
+                                               Document="{Binding TextDocument, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0"
+                                               IsEnabled="{Binding ElementName=textEditor,Path=Document, Converter={StaticResource NullToBool}}"
+                                               TextChanged="textEditor_TextChanged">
+                        </avalonEdit:TextEditor>
+                    </Border>
+                </DockPanel>
+                <Border Style="{StaticResource BorderStyle}"
+                        Grid.Row="1">
+                    <ScrollViewer>
+                        <TextBlock Text="{Binding ResolvedMacro}"/>
+                    </ScrollViewer>
+                </Border>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Window>

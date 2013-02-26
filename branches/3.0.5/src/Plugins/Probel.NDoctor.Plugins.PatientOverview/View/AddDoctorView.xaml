@@ -1,0 +1,149 @@
+﻿<Window x:Class="Probel.NDoctor.Plugins.PatientOverview.View.AddDoctorView"
+        x:Name="this"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:conv="clr-namespace:Probel.NDoctor.View.Toolbox.Converters;assembly=Probel.NDoctor.View.Toolbox" 
+        xmlns:txt="clr-namespace:Probel.NDoctor.Plugins.PatientOverview.Translations"
+        xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Toolbox.Controls;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:t="clr-namespace:Probel.NDoctor.View.Toolbox.Translations;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit" 
+        
+        mc:Ignorable="d"
+        
+        Width="450"
+        Title="{Binding Source={x:Static Member=txt:BoxesText.AddDoctor}}"
+        WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" SizeToContent="Height" ShowInTaskbar="False">
+    <Window.Resources>
+        <Style TargetType="Label" x:Key="PresentationLbl">
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+        </Style>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="Enter"
+                    Command="{Binding AddCommand}"/>
+        <KeyBinding Key="Escape"
+                    Command="{Binding CancelCommand}" />
+    </Window.InputBindings>
+    <StackPanel>
+        <GroupBox Header="{Binding Source={x:Static Member=txt:BoxesText.Doctor}}"
+                  Margin="4">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="4"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <toolkit:WatermarkTextBox Text="{Binding Doctor.FirstName}"
+                                              KeyboardNavigation.TabIndex="1">
+                        <toolkit:WatermarkTextBox.Watermark>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Source={x:Static Member=txt:BoxesText.FirstName}}"
+                                   Margin="4,0,0,0"/>
+                            </StackPanel>
+                        </toolkit:WatermarkTextBox.Watermark>
+                    </toolkit:WatermarkTextBox>
+                    <toolkit:WatermarkTextBox Text="{Binding Doctor.LastName}"
+                                              KeyboardNavigation.TabIndex="2"
+                                              Grid.Column="3">
+                        <toolkit:WatermarkTextBox.Watermark>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Source={x:Static Member=txt:BoxesText.LastName}}"
+                                   Margin="4,0,0,0"/>
+                            </StackPanel>
+                        </toolkit:WatermarkTextBox.Watermark>
+                    </toolkit:WatermarkTextBox>
+                </Grid>
+                <DockPanel LastChildFill="True">
+                    <Label Content="{Binding Source={x:Static Member=txt:BoxesText.Gender}}"
+                           Style="{StaticResource PresentationLbl}"/>
+                    <ComboBox ItemsSource="{Binding Genders}"
+                              DisplayMemberPath="Item1"
+                              Margin="4"
+                              KeyboardNavigation.TabIndex="3"/>
+                </DockPanel>
+                <DockPanel LastChildFill="True">
+                    <Label Content="{Binding Source={x:Static Member=txt:BoxesText.Specialisation}}"
+                           Style="{StaticResource PresentationLbl}"/>
+                    <ComboBox ItemsSource="{Binding Specialisations}"
+                              DisplayMemberPath="Name"
+                              SelectedItem="{Binding Doctor.Specialisation}"
+                              Margin="4"
+                              KeyboardNavigation.TabIndex="4"/>
+                </DockPanel>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="{x:Static Member=txt:WorkbenchText.GrpAddress}"
+                  Margin="4">
+            <StackPanel>
+                <DockPanel>
+                    <DockPanel DockPanel.Dock="Right">
+                        <Label Content="{x:Static Member=txt:WorkbenchText.Box}"/>
+                        <TextBox Margin="4"
+                                 Width="50"
+                                 Text="{Binding Doctor.Address.BoxNumber}"
+                                 KeyboardNavigation.TabIndex="7"/>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Right">
+                        <Label Content="{x:Static Member=txt:WorkbenchText.Number}"/>
+                        <TextBox Margin="4"
+                                 Width="50"
+                                 Text="{Binding Doctor.Address.StreetNumber}"
+                                 KeyboardNavigation.TabIndex="6"/>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Left">
+                        <Label Content="{x:Static Member=txt:WorkbenchText.Street}"/>
+                        <TextBox Margin="4"
+                                 Text="{Binding Doctor.Address.Street}"
+                                 KeyboardNavigation.TabIndex="5"/>
+                    </DockPanel>
+                </DockPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <DockPanel LastChildFill="True">
+                        <Label Content="{x:Static Member=txt:WorkbenchText.PostalCode}"/>
+                        <TextBox Margin="4"
+                                 Text="{Binding Doctor.Address.PostalCode}"
+                                 KeyboardNavigation.TabIndex="8"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1">
+                        <Label Content="{x:Static Member=txt:WorkbenchText.City}"/>
+                        <TextBox Margin="4"
+                                 Text="{Binding Doctor.Address.City}"
+                                 KeyboardNavigation.TabIndex="9"/>
+                    </DockPanel>
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox DockPanel.Dock="Top"
+                      Margin="4"
+                      Header="{x:Static Member=txt:WorkbenchText.GrpProfContact}">
+            <StackPanel>
+                <DockPanel>
+                    <Label Width="90" Content="{x:Static Member=txt:WorkbenchText.Mobile}"/>
+                    <TextBox Margin="4" Text="{Binding Doctor.ProMobile}"
+                             KeyboardNavigation.TabIndex="10"/>
+                </DockPanel>
+                <DockPanel>
+                    <Label Width="90" Content="{x:Static Member=txt:WorkbenchText.Phone}"/>
+                    <TextBox Margin="4" Text="{Binding Doctor.ProPhone}"
+                             KeyboardNavigation.TabIndex="11"/>
+                </DockPanel>
+                <DockPanel>
+                    <Label Width="90" Content="{x:Static Member=txt:WorkbenchText.Mail}"/>
+                    <TextBox Margin="4" Text="{Binding Doctor.ProMail}"
+                             KeyboardNavigation.TabIndex="12"/>
+                </DockPanel>
+            </StackPanel>
+        </GroupBox>
+        <ctrl:OKCancelBox OkCommand="{Binding AddCommand}"
+                          ButtonName="{Binding Source={x:Static Member=t:BaseText.Add}}"/>
+    </StackPanel>
+</Window>

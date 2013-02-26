@@ -1,0 +1,50 @@
+﻿<Window x:Class="Probel.NDoctor.View.Core.View.DebugView"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:t="clr-namespace:Probel.NDoctor.View.Core.Translations"
+        
+        Title="Debug tools" 
+        SizeToContent="Height" 
+        Width="450"
+        ResizeMode="NoResize" 
+        WindowStyle="ToolWindow" 
+        ShowInTaskbar="False" 
+        WindowStartupLocation="CenterOwner">
+    <StackPanel>
+        <TextBlock Margin="4"
+                   TextWrapping="Wrap" 
+                   Text="{Binding Source={x:Static t:DebugText.Warning}}" FontWeight="Bold" TextAlignment="Center" Foreground="#FFF50000"></TextBlock>
+        <GroupBox Header="Configuration"
+                  Margin="4">
+            <StackPanel>
+                <CheckBox Content="{Binding Source={x:Static t:DebugText.IsDebug}}"
+                  IsChecked="{Binding IsDebugModeActivated}"
+                  Margin="4"/>
+                <CheckBox Content="{Binding Source={x:Static t:DebugText.ThumbnailCreated}}"
+                  IsChecked="{Binding AreThumbnailCreated}"
+                  Margin="4"/>
+                <DockPanel>
+                    <Label Content="AppKey:"/>
+                    <Button DockPanel.Dock="Right" 
+                            Content="{Binding Source={x:Static t:DebugText.ResetAppKey}}"
+                            Margin="4"
+                            Command="{Binding NewAppKeyCommand}"/>
+                    <Label DockPanel.Dock="Left"
+                   Content="{Binding AppKey}"/>
+                </DockPanel>
+                <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                    <Button Content="{Binding Source={x:Static t:DebugText.Cancel}}"
+                            Margin="4"
+                            Width="60"
+                            Command="{Binding CancelCommand}"/>
+                    <Button Content="Ok"
+                            Margin="4"
+                            Width="60"
+                    Command="{Binding SaveCommand}"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+    </StackPanel>
+</Window>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<SyntaxDefinition name="Macro Highlighting" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+	<Color name="Comment" foreground="Green" />
+	<Color name="String" foreground="Blue" />
+	
+	<!-- This is the main ruleset. -->
+	<RuleSet>
+		
+		<Span color="String">
+			<Begin>\$</Begin>
+			<End>\$</End>
+		</Span>				
+	</RuleSet>
+</SyntaxDefinition>

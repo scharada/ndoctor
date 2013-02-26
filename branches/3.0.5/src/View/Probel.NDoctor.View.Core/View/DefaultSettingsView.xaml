@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="Probel.NDoctor.View.Core.View.DefaultSettingsView"
+             
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:text="clr-namespace:Probel.NDoctor.View.Core.Translations"
+             
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:behaviour="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
+             
+             mc:Ignorable="d"
+             
+             MinWidth="400"
+             MinHeight="300">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="boolToVisibility"/>
+        <Style x:Key="LabelStyle">
+            <Setter Property="Control.Width" Value="100"/>
+        </Style>
+    </UserControl.Resources>
+
+    <DockPanel DockPanel.Dock="Top">
+        <DockPanel DockPanel.Dock="Top"  LastChildFill="True">
+            <Label DockPanel.Dock="Bottom" 
+                   Content="{Binding Source={x:Static Member=text:SettingsText.NeedRestart}}"
+                   Visibility="{Binding ShowRestart, Converter={StaticResource boolToVisibility}}" Foreground="#FFEF0000" FontWeight="Bold" HorizontalContentAlignment="Center" />
+
+            <Label Style="{StaticResource LabelStyle}"
+                   Content="{Binding Source={x:Static Member=text:SettingsText.TitleLanguage}}"/>
+            <Border Style="{StaticResource BorderStyle}">
+                <ComboBox x:Name="focused" 
+                          ItemsSource="{Binding SupportedLanguages}"
+                          SelectedItem="{Binding SelectedLanguage}"
+                          behaviour:SelectorBehaviour.SelectionChanged="{Binding ChangeLanguageCommand}"/>
+            </Border>
+        </DockPanel>
+        <GroupBox DockPanel.Dock="Top"  Header="{Binding Source={x:Static Member=text:SettingsText.TitleMisc}}">
+            <StackPanel>
+                <CheckBox Content="{Binding Source={x:Static Member=text:SettingsText.AutomaticContextMenu}}"
+                          Margin="4"
+                          VerticalContentAlignment="Center"
+                          IsChecked="{Binding AutomaticContextMenu}"/>
+                <CheckBox Content="{Binding Source={x:Static Member=text:SettingsText.RemoteStatistics}}"
+                          Margin="4"
+                          VerticalContentAlignment="Center"
+                          IsChecked="{Binding RemoteStatisticsActivated}"/>
+                <CheckBox Content="{Binding Source={x:Static Member=text:SettingsText.NotifyOnNewVersion}}"
+                          Margin="4"
+                          IsChecked="{Binding NotifyOnNewVersion}"/>
+                <DockPanel LastChildFill="True">
+                    <Label DockPanel.Dock="Left" VerticalContentAlignment="Center" Content="{x:Static Member=text:SettingsText.TitleSearchType}"/>
+                    <ComboBox Margin="4" ItemsSource="{Binding SearchTypes}" DisplayMemberPath="Item1" SelectedItem="{Binding SelectedSearchType}"/>
+                </DockPanel>
+            </StackPanel>
+        </GroupBox>
+    </DockPanel>
+</UserControl>

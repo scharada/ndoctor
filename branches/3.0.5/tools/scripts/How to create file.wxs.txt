@@ -1,0 +1,6 @@
+ 1- Do: cd c:\User\[UserName]\Desktop
+ 2- Execute that command: 
+	"C:\Program Files (x86)\WiX Toolset v3.6\bin\heat.exe" dir "###Replace with the source repository###" -sfrag -sreg -srd -scom -gg -suid -var env.NEST -dr INSTALLLOCATION -o Files.wxs
+ 3- Replace "SourceDir\" with $(env.NEST)\
+ 4- Copy the content of the created file into the File.wsx of the setup project
+ 5- Commit and execute a release

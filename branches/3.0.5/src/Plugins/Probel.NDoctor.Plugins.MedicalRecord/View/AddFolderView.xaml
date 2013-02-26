@@ -1,0 +1,39 @@
+﻿<Window x:Class="Probel.NDoctor.Plugins.MedicalRecord.View.AddFolderView"
+        x:Name="this"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:text="clr-namespace:Probel.NDoctor.Plugins.MedicalRecord.Translations"
+        xmlns:iw="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:t="clr-namespace:Probel.NDoctor.View.Toolbox.Translations;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:ctrl="clr-namespace:Probel.NDoctor.View.Toolbox.Controls;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:cmd="clr-namespace:Probel.NDoctor.View.Toolbox.Navigation;assembly=Probel.NDoctor.View.Toolbox"
+        xmlns:txt="clr-namespace:Probel.NDoctor.Plugins.MedicalRecord.Translations"
+        
+        Title="{Binding Source={x:Static Member=txt:AddFolderText.Title}}"         
+        
+        mc:Ignorable="d" 
+        SizeToContent="Height"
+        Width="250"
+        Loaded="this_Loaded" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" ShowInTaskbar="False">
+    <Window.InputBindings>
+        <KeyBinding Key="Enter"
+                    Command="{Binding AddFolderCommand}"/>
+        <KeyBinding Key="Escape"
+                    Command="cmd:Commands.CloseView" 
+                    CommandParameter="{Binding ElementName=this, Path=DataContext}"/>
+    </Window.InputBindings>
+    <StackPanel>
+        <Border Style="{StaticResource BorderStyle}"
+                Grid.Column="0">
+            
+            <TextBox x:Name="focused"                 
+                     Text="{Binding Path=TagToAdd.Name, UpdateSourceTrigger=PropertyChanged}" />
+        </Border>
+        <ctrl:OKCancelBox OkCommand="{Binding AddFolderCommand}"
+                          ButtonName="{Binding Source={x:Static Member=text:AddFolderText.TitleBtnAdd}}"/>
+        
+    </StackPanel>
+</Window>

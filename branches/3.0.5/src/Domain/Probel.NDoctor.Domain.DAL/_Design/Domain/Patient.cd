@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.Patient">
+    <Position X="4.25" Y="4.5" Width="2" />
+    <Members>
+      <Method Name="Patient" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AASiAAAARBAACAIlgAAAAAQgQAAIAAAIEgAhAAQAAAA=</HashCode>
+      <FileName>Entities\Patient.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Insurance" />
+      <Property Name="Practice" />
+      <Property Name="Profession" />
+      <Property Name="Reputation" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="MedicalRecords" />
+      <Property Name="PrescriptionDocuments" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.Person">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAEQAAAAgCACEAAAACAAQAQAAAAACAAAAAAAACAg=</HashCode>
+      <FileName>Entities\Person.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Tag" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.Insurance">
+    <Position X="7.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAAIAAAAAA=</HashCode>
+      <FileName>Entities\Insurance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.Profession">
+    <Position X="9" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Profession.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.Reputation">
+    <Position X="8.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Reputation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.Tag">
+    <Position X="13.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Entities\Tag.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.Practice">
+    <Position X="1.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAAIAAAAAA=</HashCode>
+      <FileName>Entities\Practice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.MedicalRecord">
+    <Position X="9.75" Y="1.25" Width="1.5" />
+    <AssociationLine Name="Tag" Type="Probel.NDoctor.Domain.DAL.Entities.Tag" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.109" Y="3.511" />
+        <Point X="11.109" Y="7.25" />
+        <Point X="13.25" Y="7.25" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAgAAAAAAAAAAQQEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\MedicalRecord.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Tag" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.PrescriptionDocument">
+    <Position X="0.75" Y="7.25" Width="1.75" />
+    <AssociationLine Name="Tag" Type="Probel.NDoctor.Domain.DAL.Entities.Tag" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.5" Y="8.5" />
+        <Point X="4" Y="8.5" />
+        <Point X="4" Y="8.867" />
+        <Point X="12.875" Y="8.867" />
+        <Point X="12.875" Y="7.745" />
+        <Point X="13.25" Y="7.745" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QBAAAAAAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\PrescriptionDocument.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Tag" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Prescriptions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.Prescription">
+    <Position X="3.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Prescription.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Drug" />
+      <Property Name="Tag" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.Drug">
+    <Position X="7.25" Y="9.25" Width="1.5" />
+    <AssociationLine Name="Tag" Type="Probel.NDoctor.Domain.DAL.Entities.Tag" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.75" Y="10.019" />
+        <Point X="14.562" Y="10.019" />
+        <Point X="14.562" Y="8.617" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Drug.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Tag" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Probel.NDoctor.View.Core.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Language" Type="System.String" Scope="User">
+      <Value Profile="(Default)">fr</Value>
+    </Setting>
+    <Setting Name="AutomaticContextMenu" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SearchType" Type="Probel.NDoctor.Domain.DTO.Components.SearchOn" Scope="User">
+      <Value Profile="(Default)">FirstAndLastName</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

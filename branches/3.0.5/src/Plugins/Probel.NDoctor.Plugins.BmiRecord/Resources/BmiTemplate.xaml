@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:dto=  "clr-namespace:Probel.NDoctor.Domain.DTO.Objects;assembly=Probel.NDoctor.Domain.DTO"
+                    xmlns:conv= "clr-namespace:Probel.NDoctor.View.Toolbox.Converters;assembly=Probel.NDoctor.View.Toolbox"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <conv:DateTimeToShortStringConverter x:Key="dateTimeToString"/>
+    <DataTemplate x:Key="BmiTemplate" DataType="{x:Type dto:BmiDto}">
+        <TextBlock Text="{Binding Date, Converter={StaticResource dateTimeToString}}"/>
+    </DataTemplate>
+</ResourceDictionary>

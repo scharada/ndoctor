@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="Probel.NDoctor.Plugins.MeetingManager.View.SettingsView"             
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:txt="clr-namespace:Probel.NDoctor.Plugins.MeetingManager.Translations"
+             xmlns:Helpers="clr-namespace:Probel.Helpers.WPF.Behaviours;assembly=Probel.Helpers.WPF"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="400">
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+        </Style>
+    </UserControl.Resources>
+    <DockPanel LastChildFill="True">
+        <GroupBox Header="Google Calendar"
+                  DockPanel.Dock="Top">
+            <StackPanel>
+                <DockPanel LastChildFill="True">
+                    <CheckBox Margin="4"
+                              HorizontalAlignment="Center"
+                              HorizontalContentAlignment="Center"
+                              Content="{Binding Source={x:Static Member=txt:SettingsText.CalendarActivated}}"
+                              IsChecked="{Binding IsGoogleCalendarActivated}"/>
+                </DockPanel>
+                <DockPanel LastChildFill="True">
+                    <Label DockPanel.Dock="Left" 
+                           Content="{Binding Source={x:Static Member=txt:SettingsText.BindedCalendar}}"/>
+                    <TextBox Margin="4"
+                             IsEnabled="{Binding IsGoogleCalendarActivated}"
+                             Text="{Binding BindedCalendar}"/>
+                </DockPanel>
+                <DockPanel LastChildFill="True">
+                    <Label DockPanel.Dock="Left" 
+                           Content="{Binding Source={x:Static Member=txt:SettingsText.UserName}}"/>
+                    <TextBox Margin="4"
+                             IsEnabled="{Binding IsGoogleCalendarActivated}"
+                             Text="{Binding UserName}"/>
+                </DockPanel>
+                <DockPanel LastChildFill="True">
+                    <Label DockPanel.Dock="Left" 
+                           Content="{Binding Source={x:Static Member=txt:SettingsText.Password}}"/>
+                    <PasswordBox Margin="4"
+                                 IsEnabled="{Binding IsGoogleCalendarActivated}"
+                                 Helpers:PasswordBoxBehaviour.BindPassword="True" 
+                                 Helpers:PasswordBoxBehaviour.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="{Binding Source={x:Static Member=txt:SettingsText.TitleWorkday}}">        
+            <StackPanel>
+                <DockPanel LastChildFill="True">
+                    <Label DockPanel.Dock="Left"
+                           Content="{Binding Source={x:Static Member=txt:SettingsText.TitleStart}}"/>
+                        <toolkit:TimePicker Margin="4"
+                                            DockPanel.Dock="Right"
+                                            Value="{Binding Start, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>                    
+                </DockPanel>
+
+                <DockPanel LastChildFill="True">
+                    <Label DockPanel.Dock="Left"
+                           Content="{Binding Source={x:Static Member=txt:SettingsText.TitleEnd}}"/>
+                    <Border DockPanel.Dock="Right"
+                            Style="{StaticResource BorderStyle}">
+                        <toolkit:TimePicker Value="{Binding End, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Border>
+                </DockPanel>
+
+                <DockPanel LastChildFill="True">
+                    <Label DockPanel.Dock="Left"
+                           Content="{Binding Source={x:Static Member=txt:SettingsText.TitleSlotDuration}}"/>
+                    <Border DockPanel.Dock="Right"
+                            Style="{StaticResource BorderStyle}">
+                        <ComboBox ItemsSource="{Binding Path=SlotDurations}"
+                              SelectedItem="{Binding Path=SelectedSlot}"
+                              DisplayMemberPath="Item1"/>
+                    </Border>
+                </DockPanel>
+            </StackPanel>
+        </GroupBox>
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.MedicalRecord">
+    <Position X="4.25" Y="3.25" Width="1.5" />
+    <Members>
+      <Method Name="MedicalRecord" Hidden="true" />
+    </Members>
+    <AssociationLine Name="PreviousStates" Type="Probel.NDoctor.Domain.DAL.Entities.MedicalRecordState">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.4" Y="0.237" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QAAAQAAAAAAgAAAAAAAAAAQQEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\MedicalRecord.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Tag" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="PreviousStates" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.Tag">
+    <Position X="1.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Entities\Tag.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Category" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.Patient">
+    <Position X="7.25" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AASiAAAARBAACAIlgAAAAAQgQAAIAAAIEgAhAAQAAAA=</HashCode>
+      <FileName>Entities\Patient.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="MedicalRecords" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Probel.NDoctor.Domain.DAL.Entities.MedicalRecordState">
+    <Position X="4.25" Y="0.5" Width="1.75" />
+    <Members>
+      <Method Name="MedicalRecordState" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Tag" Type="Probel.NDoctor.Domain.DAL.Entities.Tag" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.25" Y="1.631" />
+        <Point X="3.875" Y="1.631" />
+        <Point X="3.875" Y="3.094" />
+        <Point X="3" Y="3.094" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAgAAAAAAAAAAQQEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\MedicalRecordState.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Tag" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="Probel.NDoctor.Domain.DTO.Objects.TagCategory" Collapsed="true">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
