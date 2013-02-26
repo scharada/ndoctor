@@ -117,6 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Btn_AddTag" xml:space="preserve">
+    <value>Ajouter des étiquettes</value>
+    <comment>Add tag</comment>
+  </data>
+  <data name="Btn_BindTag" xml:space="preserve">
+    <value>Lier une étiquette</value>
+    <comment>Bind a tag</comment>
+  </data>
   <data name="Btn_Deactivate" xml:space="preserve">
     <value>Désactiver</value>
     <comment>Deactivate</comment>
@@ -141,6 +149,10 @@
     <value>Cabinet médical</value>
     <comment>Medical practice</comment>
   </data>
+  <data name="Btn_RemoveTag" xml:space="preserve">
+    <value>Supprimer des étiquettes</value>
+    <comment>Remove tag</comment>
+  </data>
   <data name="Btn_Reputation" xml:space="preserve">
     <value>Réputation</value>
     <comment>Reputation</comment>
@@ -157,6 +169,14 @@
     <value>Spécialisation</value>
     <comment>Specialisation</comment>
   </data>
+  <data name="Dgv_Explanations" xml:space="preserve">
+    <value>Explications</value>
+    <comment>Explanations</comment>
+  </data>
+  <data name="Dgv_Name" xml:space="preserve">
+    <value>Nom</value>
+    <comment>Name</comment>
+  </data>
   <data name="Err_CantSendMail" xml:space="preserve">
     <value>Une erreur est intervenue durant l'envoi du courriel.</value>
     <comment>An error occured when sending the mail.</comment>
@@ -172,6 +192,10 @@
   <data name="Group_LinkedDoctor" xml:space="preserve">
     <value>Médecins liés</value>
     <comment>Linked doctors</comment>
+  </data>
+  <data name="Group_Tag" xml:space="preserve">
+    <value>Etiquettes</value>
+    <comment>Tags</comment>
   </data>
   <data name="GrpProfContact" xml:space="preserve">
     <value>Contact professionnel</value>
@@ -213,6 +237,10 @@
     <value>Contact privé</value>
     <comment>Private contact</comment>
   </data>
+  <data name="Grp_SearchTags" xml:space="preserve">
+    <value>Etiquettes de recherche</value>
+    <comment>Search tags</comment>
+  </data>
   <data name="Lbl_Age" xml:space="preserve">
     <value>Age (</value>
     <comment>Age (</comment>
@@ -240,6 +268,10 @@
   <data name="Lbl_Deactivated" xml:space="preserve">
     <value>Desactivé!</value>
     <comment>Deactivated!</comment>
+  </data>
+  <data name="Lbl_Explanations" xml:space="preserve">
+    <value>Explications</value>
+    <comment>Explanations</comment>
   </data>
   <data name="Lbl_Fee" xml:space="preserve">
     <value>Honoraires:</value>
@@ -272,6 +304,10 @@
   <data name="Lbl_Mobile" xml:space="preserve">
     <value>Gsm:</value>
     <comment>Mobile:</comment>
+  </data>
+  <data name="Lbl_Name" xml:space="preserve">
+    <value>Nom:</value>
+    <comment>Name:</comment>
   </data>
   <data name="Lbl_Number" xml:space="preserve">
     <value>Nr:</value>
@@ -337,6 +373,10 @@ Voulez-vous désactiver ce patient?</value>
     <value>Le patient a bien été desactivé.</value>
     <comment>Patient deactivated</comment>
   </data>
+  <data name="Msg_WarnSearchTagExists" xml:space="preserve">
+    <value>Une étiquette portant le même nom existe déjà!</value>
+    <comment>A search tag with the same name already exists!</comment>
+  </data>
   <data name="Question_LeaveWithoutSaving" xml:space="preserve">
     <value>Voulez-vous annuler les modifications faites sur patient?</value>
     <comment>Do you want to cancel the modification done on the patient?</comment>
@@ -365,6 +405,10 @@ Voulez-vous désactiver ce patient?</value>
     <value>Ajouter une spécialisation...</value>
     <comment>Add a specialisation...</comment>
   </data>
+  <data name="Title_AddTag" xml:space="preserve">
+    <value>Ajouter une étiquette de recherche</value>
+    <comment>Add a search tag</comment>
+  </data>
   <data name="Title_BindDoctor" xml:space="preserve">
     <value>Lier un médecin...</value>
     <comment>Bind a doctor...</comment>
@@ -376,6 +420,10 @@ Voulez-vous désactiver ce patient?</value>
   <data name="Title_PluginName" xml:space="preserve">
     <value>Informations du patient</value>
     <comment>Patient overview</comment>
+  </data>
+  <data name="Title_RemoveTag" xml:space="preserve">
+    <value>Supprimer un tag de recherche</value>
+    <comment>Remove search tag</comment>
   </data>
   <data name="Title_TitleWatermark" xml:space="preserve">
     <value>Chercher un médecin...</value>

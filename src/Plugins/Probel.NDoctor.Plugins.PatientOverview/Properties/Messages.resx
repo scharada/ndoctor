@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-	<!-- 
+  <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,265 +59,301 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="metadata">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" />
-							</xsd:sequence>
-							<xsd:attribute name="name" use="required" type="xsd:string" />
-							<xsd:attribute name="type" type="xsd:string" />
-							<xsd:attribute name="mimetype" type="xsd:string" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="assembly">
-						<xsd:complexType>
-							<xsd:attribute name="alias" type="xsd:string" />
-							<xsd:attribute name="name" type="xsd:string" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>2.0</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<data name="Btn_Deactivate" xml:space="preserve">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Btn_AddTag" xml:space="preserve">
+    <value>Add tag</value>
+    <comment>Add tag</comment>
+  </data>
+  <data name="Btn_BindTag" xml:space="preserve">
+    <value>Bind a tag</value>
+    <comment>Bind a tag</comment>
+  </data>
+  <data name="Btn_Deactivate" xml:space="preserve">
     <value>Deactivate</value>
     <comment>Deactivate</comment>
   </data>
-	<data name="Btn_Doctor" xml:space="preserve">
+  <data name="Btn_Doctor" xml:space="preserve">
     <value>Doctor</value>
     <comment>Doctor</comment>
   </data>
-	<data name="Btn_Edit" xml:space="preserve">
+  <data name="Btn_Edit" xml:space="preserve">
     <value>Edit</value>
     <comment>Edit</comment>
   </data>
-	<data name="Btn_Insurance" xml:space="preserve">
+  <data name="Btn_Insurance" xml:space="preserve">
     <value>Insurance</value>
     <comment>Insurance</comment>
   </data>
-	<data name="Btn_Job" xml:space="preserve">
+  <data name="Btn_Job" xml:space="preserve">
     <value>Profession</value>
     <comment>Profession</comment>
   </data>
-	<data name="Btn_Practice" xml:space="preserve">
+  <data name="Btn_Practice" xml:space="preserve">
     <value>Medical practice</value>
     <comment>Medical practice</comment>
   </data>
-	<data name="Btn_Reputation" xml:space="preserve">
+  <data name="Btn_RemoveTag" xml:space="preserve">
+    <value>Remove tag</value>
+    <comment>Remove tag</comment>
+  </data>
+  <data name="Btn_Reputation" xml:space="preserve">
     <value>Reputation</value>
     <comment>Reputation</comment>
   </data>
-	<data name="Btn_Revert" xml:space="preserve">
+  <data name="Btn_Revert" xml:space="preserve">
     <value>Revert</value>
     <comment>Revert</comment>
   </data>
-	<data name="Btn_Save" xml:space="preserve">
+  <data name="Btn_Save" xml:space="preserve">
     <value>Save</value>
     <comment>Save</comment>
   </data>
-	<data name="Btn_Specialisation" xml:space="preserve">
+  <data name="Btn_Specialisation" xml:space="preserve">
     <value>Specialisation</value>
     <comment>Specialisation</comment>
   </data>
-	<data name="Err_CantSendMail" xml:space="preserve">
-    <value>An error occured when sending the mail.</value>
-    <comment>An error occured when sending the mail.</comment>
+  <data name="Dgv_Explanations" xml:space="preserve">
+    <value>Explanations</value>
+    <comment>Explanations</comment>
   </data>
-	<data name="Female" xml:space="preserve">
-    <value>Female</value>
-    <comment>Female</comment>
-  </data>
-	<data name="Group_Add" xml:space="preserve">
-    <value>Add</value>
-    <comment>Add</comment>
-  </data>
-	<data name="Group_LinkedDoctor" xml:space="preserve">
-    <value>Linked doctors</value>
-    <comment>Linked doctors</comment>
-  </data>
-	<data name="GrpProfContact" xml:space="preserve">
-    <value>Professional contact</value>
-    <comment>Professional contact</comment>
-  </data>
-	<data name="Grp_Address" xml:space="preserve">
-    <value>Address</value>
-    <comment>Address</comment>
-  </data>
-	<data name="Grp_Doctor" xml:space="preserve">
-    <value>Doctor</value>
-    <comment>Doctor</comment>
-  </data>
-	<data name="Grp_Doctors" xml:space="preserve">
-    <value>Doctors</value>
-    <comment>Doctors</comment>
-  </data>
-	<data name="Grp_Insurance" xml:space="preserve">
-    <value>Insurance</value>
-    <comment>Insurance</comment>
-  </data>
-	<data name="Grp_Misc" xml:space="preserve">
-    <value>Miscellaneous</value>
-    <comment>Miscellaneous</comment>
-  </data>
-	<data name="Grp_Notes" xml:space="preserve">
-    <value>Notes:</value>
-    <comment>Notes:</comment>
-  </data>
-	<data name="Grp_Patient" xml:space="preserve">
-    <value>Patient</value>
-    <comment>Patient</comment>
-  </data>
-	<data name="Grp_Practice" xml:space="preserve">
-    <value>Medical practice</value>
-    <comment>Medical practice</comment>
-  </data>
-	<data name="Grp_PrivateContact" xml:space="preserve">
-    <value>Private contact</value>
-    <comment>Private contact</comment>
-  </data>
-	<data name="Lbl_Age" xml:space="preserve">
-    <value>Age (</value>
-    <comment>Age (</comment>
-  </data>
-	<data name="Lbl_Birthdate" xml:space="preserve">
-    <value>Birthdate:</value>
-    <comment>Birthdate:</comment>
-  </data>
-	<data name="Lbl_BornIn" xml:space="preserve">
-    <value>in</value>
-    <comment>in</comment>
-  </data>
-	<data name="Lbl_BornOn" xml:space="preserve">
-    <value>Born on</value>
-    <comment>Born on</comment>
-  </data>
-	<data name="Lbl_Box" xml:space="preserve">
-    <value>Box:</value>
-    <comment>Box:</comment>
-  </data>
-	<data name="Lbl_City" xml:space="preserve">
-    <value>City:</value>
-    <comment>City:</comment>
-  </data>
-	<data name="Lbl_Deactivated" xml:space="preserve">
-    <value>Deactivated!</value>
-    <comment>Deactivated!</comment>
-  </data>
-	<data name="Lbl_Fee" xml:space="preserve">
-    <value>Fee:</value>
-    <comment>Fee:</comment>
-  </data>
-	<data name="Lbl_FirstName" xml:space="preserve">
+  <data name="Dgv_Name" xml:space="preserve">
     <value>Name</value>
     <comment>Name</comment>
   </data>
-	<data name="Lbl_Gender" xml:space="preserve">
+  <data name="Err_CantSendMail" xml:space="preserve">
+    <value>An error occured when sending the mail.</value>
+    <comment>An error occured when sending the mail.</comment>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Female</value>
+    <comment>Female</comment>
+  </data>
+  <data name="Group_Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>Add</comment>
+  </data>
+  <data name="Group_LinkedDoctor" xml:space="preserve">
+    <value>Linked doctors</value>
+    <comment>Linked doctors</comment>
+  </data>
+  <data name="Group_Tag" xml:space="preserve">
+    <value>Tags</value>
+    <comment>Tags</comment>
+  </data>
+  <data name="GrpProfContact" xml:space="preserve">
+    <value>Professional contact</value>
+    <comment>Professional contact</comment>
+  </data>
+  <data name="Grp_Address" xml:space="preserve">
+    <value>Address</value>
+    <comment>Address</comment>
+  </data>
+  <data name="Grp_Doctor" xml:space="preserve">
+    <value>Doctor</value>
+    <comment>Doctor</comment>
+  </data>
+  <data name="Grp_Doctors" xml:space="preserve">
+    <value>Doctors</value>
+    <comment>Doctors</comment>
+  </data>
+  <data name="Grp_Insurance" xml:space="preserve">
+    <value>Insurance</value>
+    <comment>Insurance</comment>
+  </data>
+  <data name="Grp_Misc" xml:space="preserve">
+    <value>Miscellaneous</value>
+    <comment>Miscellaneous</comment>
+  </data>
+  <data name="Grp_Notes" xml:space="preserve">
+    <value>Notes:</value>
+    <comment>Notes:</comment>
+  </data>
+  <data name="Grp_Patient" xml:space="preserve">
+    <value>Patient</value>
+    <comment>Patient</comment>
+  </data>
+  <data name="Grp_Practice" xml:space="preserve">
+    <value>Medical practice</value>
+    <comment>Medical practice</comment>
+  </data>
+  <data name="Grp_PrivateContact" xml:space="preserve">
+    <value>Private contact</value>
+    <comment>Private contact</comment>
+  </data>
+  <data name="Grp_SearchTags" xml:space="preserve">
+    <value>Search tags</value>
+    <comment>Search tags</comment>
+  </data>
+  <data name="Lbl_Age" xml:space="preserve">
+    <value>Age (</value>
+    <comment>Age (</comment>
+  </data>
+  <data name="Lbl_Birthdate" xml:space="preserve">
+    <value>Birthdate:</value>
+    <comment>Birthdate:</comment>
+  </data>
+  <data name="Lbl_BornIn" xml:space="preserve">
+    <value>in</value>
+    <comment>in</comment>
+  </data>
+  <data name="Lbl_BornOn" xml:space="preserve">
+    <value>Born on</value>
+    <comment>Born on</comment>
+  </data>
+  <data name="Lbl_Box" xml:space="preserve">
+    <value>Box:</value>
+    <comment>Box:</comment>
+  </data>
+  <data name="Lbl_City" xml:space="preserve">
+    <value>City:</value>
+    <comment>City:</comment>
+  </data>
+  <data name="Lbl_Deactivated" xml:space="preserve">
+    <value>Deactivated!</value>
+    <comment>Deactivated!</comment>
+  </data>
+  <data name="Lbl_Explanations" xml:space="preserve">
+    <value>Explanations</value>
+    <comment>Explanations</comment>
+  </data>
+  <data name="Lbl_Fee" xml:space="preserve">
+    <value>Fee:</value>
+    <comment>Fee:</comment>
+  </data>
+  <data name="Lbl_FirstName" xml:space="preserve">
+    <value>Name</value>
+    <comment>Name</comment>
+  </data>
+  <data name="Lbl_Gender" xml:space="preserve">
     <value>Gender:</value>
     <comment>Gender:</comment>
   </data>
-	<data name="Lbl_Inscription" xml:space="preserve">
+  <data name="Lbl_Inscription" xml:space="preserve">
     <value>Inscription:</value>
     <comment>Inscription:</comment>
   </data>
-	<data name="Lbl_LastName" xml:space="preserve">
+  <data name="Lbl_LastName" xml:space="preserve">
     <value>Surname</value>
     <comment>Surname</comment>
   </data>
-	<data name="Lbl_LastUpdate" xml:space="preserve">
+  <data name="Lbl_LastUpdate" xml:space="preserve">
     <value>Last update:</value>
     <comment>Last update</comment>
   </data>
-	<data name="Lbl_Mail" xml:space="preserve">
+  <data name="Lbl_Mail" xml:space="preserve">
     <value>Mail:</value>
     <comment>Mail:</comment>
   </data>
-	<data name="Lbl_Mobile" xml:space="preserve">
+  <data name="Lbl_Mobile" xml:space="preserve">
     <value>Mobile:</value>
     <comment>Mobile:</comment>
   </data>
-	<data name="Lbl_Number" xml:space="preserve">
+  <data name="Lbl_Name" xml:space="preserve">
+    <value>Name:</value>
+    <comment>Name:</comment>
+  </data>
+  <data name="Lbl_Number" xml:space="preserve">
     <value>Nr:</value>
     <comment>Nr:</comment>
   </data>
-	<data name="Lbl_Patient" xml:space="preserve">
+  <data name="Lbl_Patient" xml:space="preserve">
     <value>Patient:</value>
     <comment>Patient:</comment>
   </data>
-	<data name="Lbl_Phone" xml:space="preserve">
+  <data name="Lbl_Phone" xml:space="preserve">
     <value>Phone:</value>
     <comment>Phone:</comment>
   </data>
-	<data name="Lbl_PlaceOfBirth" xml:space="preserve">
+  <data name="Lbl_PlaceOfBirth" xml:space="preserve">
     <value>Place of birth:</value>
     <comment>Place of birth:</comment>
   </data>
-	<data name="Lbl_PostalCode" xml:space="preserve">
+  <data name="Lbl_PostalCode" xml:space="preserve">
     <value>Postal code:</value>
     <comment>Postal code:</comment>
   </data>
-	<data name="Lbl_Profession" xml:space="preserve">
+  <data name="Lbl_Profession" xml:space="preserve">
     <value>Profession:</value>
     <comment>Profession:</comment>
   </data>
-	<data name="Lbl_Reputation" xml:space="preserve">
+  <data name="Lbl_Reputation" xml:space="preserve">
     <value>Reputation:</value>
     <comment>Reputation:</comment>
   </data>
-	<data name="Lbl_Specialisation" xml:space="preserve">
+  <data name="Lbl_Specialisation" xml:space="preserve">
     <value>Specialisation:</value>
     <comment>Specialisation:</comment>
   </data>
-	<data name="Lbl_Street" xml:space="preserve">
+  <data name="Lbl_Street" xml:space="preserve">
     <value>Street:</value>
     <comment>Street:</comment>
   </data>
-	<data name="Link_ChangePicture" xml:space="preserve">
+  <data name="Link_ChangePicture" xml:space="preserve">
     <value>Change picture...</value>
     <comment>Change picture...</comment>
   </data>
-	<data name="Male" xml:space="preserve">
+  <data name="Male" xml:space="preserve">
     <value>Male</value>
     <comment>Male</comment>
   </data>
-	<data name="Msg_ConfirmDeactivation" xml:space="preserve">
+  <data name="Msg_ConfirmDeactivation" xml:space="preserve">
     <value>If you deactivate this patient, he/she will remain in the database but nDoctor will behave like if he/she is deleted. To reactivate this patient, go to the database manager (maybe you have to activate this plugin via the settings).
 
  Do you want to deactivate this patient?</value>
@@ -325,67 +361,79 @@
 
  Do you want to deactivate this patient?</comment>
   </data>
-	<data name="Msg_DoubleClick" xml:space="preserve">
+  <data name="Msg_DoubleClick" xml:space="preserve">
     <value>Double click to select the doctor.</value>
     <comment>Double click to select the doctor.</comment>
   </data>
-	<data name="Msg_DoubleClickToUnbind" xml:space="preserve">
+  <data name="Msg_DoubleClickToUnbind" xml:space="preserve">
     <value>Double click to unbind the doctor.</value>
     <comment>Double click to unbind the doctor.</comment>
   </data>
-	<data name="Msg_PatientDeactivated" xml:space="preserve">
+  <data name="Msg_PatientDeactivated" xml:space="preserve">
     <value>Patient deactivated</value>
     <comment>Patient deactivated</comment>
   </data>
-	<data name="Question_LeaveWithoutSaving" xml:space="preserve">
+  <data name="Msg_WarnSearchTagExists" xml:space="preserve">
+    <value>A search tag with the same name already exists!</value>
+    <comment>A search tag with the same name already exists!</comment>
+  </data>
+  <data name="Question_LeaveWithoutSaving" xml:space="preserve">
     <value>Do you want to cancel the modification done on the patient?</value>
     <comment>Do you want to cancel the modification done on the patient?</comment>
   </data>
-	<data name="Title_AddDoctor" xml:space="preserve">
+  <data name="Title_AddDoctor" xml:space="preserve">
     <value>Add a doctor...</value>
     <comment>Add a doctor...</comment>
   </data>
-	<data name="Title_AddInsurance" xml:space="preserve">
+  <data name="Title_AddInsurance" xml:space="preserve">
     <value>Add an insurance...</value>
     <comment>Add an insurance...</comment>
   </data>
-	<data name="Title_AddPractice" xml:space="preserve">
+  <data name="Title_AddPractice" xml:space="preserve">
     <value>Add a medical practice...</value>
     <comment>Add a medical practice...</comment>
   </data>
-	<data name="Title_AddProfession" xml:space="preserve">
+  <data name="Title_AddProfession" xml:space="preserve">
     <value>Add a profession...</value>
     <comment>Add a profession...</comment>
   </data>
-	<data name="Title_AddReputation" xml:space="preserve">
+  <data name="Title_AddReputation" xml:space="preserve">
     <value>Add reputation...</value>
     <comment>Add reputation...</comment>
   </data>
-	<data name="Title_AddSpecialisation" xml:space="preserve">
+  <data name="Title_AddSpecialisation" xml:space="preserve">
     <value>Add a specialisation...</value>
     <comment>Add a specialisation...</comment>
   </data>
-	<data name="Title_BindDoctor" xml:space="preserve">
+  <data name="Title_AddTag" xml:space="preserve">
+    <value>Add a search tag</value>
+    <comment>Add a search tag</comment>
+  </data>
+  <data name="Title_BindDoctor" xml:space="preserve">
     <value>Bind a doctor...</value>
     <comment>Bind a doctor...</comment>
   </data>
-	<data name="Title_Page" xml:space="preserve">
+  <data name="Title_Page" xml:space="preserve">
     <value>Patient overview</value>
     <comment>Patient overview</comment>
   </data>
-	<data name="Title_PluginName" xml:space="preserve">
+  <data name="Title_PluginName" xml:space="preserve">
     <value>Patient overview</value>
     <comment>Patient overview</comment>
   </data>
-	<data name="Title_TitleWatermark" xml:space="preserve">
+  <data name="Title_RemoveTag" xml:space="preserve">
+    <value>Remove search tag</value>
+    <comment>Remove search tag</comment>
+  </data>
+  <data name="Title_TitleWatermark" xml:space="preserve">
     <value>Search a doctor...</value>
     <comment>Search a doctor...</comment>
   </data>
-	<data name="Title_UnbindDoctor" xml:space="preserve">
+  <data name="Title_UnbindDoctor" xml:space="preserve">
     <value>Unbind a doctor...</value>
     <comment>Unbind a doctor...</comment>
   </data>
-	<data name="Warn_ImpossibleToDisplayThumb" xml:space="preserve">
+  <data name="Warn_ImpossibleToDisplayThumb" xml:space="preserve">
     <value>An error occured when displaying the thumbnail of the patient.</value>
     <comment>An error occured when displaying the thumbnail of the patient.</comment>
   </data>
