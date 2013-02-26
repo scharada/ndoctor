@@ -130,6 +130,7 @@
     <Compile Include="Objects\IllnessPeriodDto.cs" />
     <Compile Include="Objects\LightPracticeDto.cs" />
     <Compile Include="Objects\LightInsuranceDto.cs" />
+    <Compile Include="Objects\SearchTagDto.cs" />
     <Compile Include="Objects\SecurityUserDto.cs" />
     <Compile Include="Objects\InsuranceDto.cs" />
     <Compile Include="Objects\LightDoctorDto.cs" />

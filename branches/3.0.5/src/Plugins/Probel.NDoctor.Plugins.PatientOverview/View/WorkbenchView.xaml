@@ -39,10 +39,12 @@
         <toolkit:BusyIndicator IsBusy="{Binding IsBusy}" BusyContent="{Binding Source={x:Static bt:BaseText.PleaseWait}}">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Auto">
                     <DockPanel LastChildFill="True">
                         <CheckBox DockPanel.Dock="Top" 
                                   Margin="4"
@@ -300,8 +302,8 @@
                         </GroupBox>
                         <!-- Professional contact info -->
                         <GroupBox DockPanel.Dock="Top"
-                      Margin="4"
-                      Header="{x:Static Member=t:WorkbenchText.GrpProfContact}">
+                                  Margin="4"
+                                  Header="{x:Static Member=t:WorkbenchText.GrpProfContact}">
                             <StackPanel>
                                 <StackPanel Visibility="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBoolToVisibility}}">
                                     <DockPanel Visibility="{Binding SelectedPatient.ProMobile, Mode=OneWay, Converter={StaticResource StringToVisibility}}">
@@ -339,22 +341,7 @@
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
-                        <!-- Notes -->
-                        <GroupBox DockPanel.Dock="Top" 
-                          Margin="4"
-                          Header="{x:Static Member=t:WorkbenchText.Notes}">
-                            <TextBox Text="{Binding SelectedPatient.Reason, UpdateSourceTrigger=PropertyChanged}"
-                                     Margin="4"
-                                     VerticalScrollBarVisibility="Visible"
-                                     HorizontalScrollBarVisibility="Auto"
-                                     TextWrapping="Wrap"
-                                     IsReadOnly="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBool}}" />
-                        </GroupBox>
-                    </DockPanel>
-                </ScrollViewer>
-                <ScrollViewer VerticalScrollBarVisibility="Auto"
-                      Grid.Column="1">
-                    <DockPanel LastChildFill="True">
+                        <!-- Insurance -->
                         <GroupBox DockPanel.Dock="Top" 
                           Margin="4"
                           Header="{x:Static Member=t:WorkbenchText.Insurance}">
@@ -395,6 +382,7 @@
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
+                        <!-- Medical practice -->
                         <GroupBox DockPanel.Dock="Top" 
                           Margin="4"
                           Header="{x:Static Member=t:WorkbenchText.Practice}">
@@ -434,6 +422,13 @@
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
+                        <Grid></Grid>
+                    </DockPanel>
+                </ScrollViewer>
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Auto"
+                      Grid.Column="1">
+                    <DockPanel LastChildFill="True">
                         <!-- Miscellaneous -->
                         <GroupBox DockPanel.Dock="Top"
                           Margin="4"
@@ -472,11 +467,13 @@
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
+                        <!-- Doctors -->
                         <GroupBox DockPanel.Dock="Top" 
                           Margin="4"
                           Header="{x:Static Member=t:WorkbenchText.Doctors}">
                             <DockPanel LastChildFill="True"
-                               Visibility="{Binding ElementName=Doctors, Path=Count, Converter={StaticResource IntToVisibility}}">
+                                       Visibility="{Binding ElementName=Doctors, Path=Count, Converter={StaticResource IntToVisibility}}"
+                                       Height="220">
                                 <ScrollViewer>
                                     <ListView DockPanel.Dock="Left"
                                               Margin="4"
@@ -493,16 +490,22 @@
                                         <Label Style="{StaticResource ValueLabel}" Content="{Binding SelectedDoctor.DisplayedName}"/>
                                     </StackPanel>
                                     <GroupBox DockPanel.Dock="Top"
-                                      Margin="4"
-                                      Header="{x:Static Member=t:WorkbenchText.GrpAddress}">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Label Content="{Binding SelectedDoctor.Address.Street}" Style="{StaticResource ValueLabel}" />
-                                            <Label Content="," Visibility="{Binding SelectedDoctor.Address.StreetNumber, Mode=OneWay, Converter={StaticResource StringToVisibility}}"/>
-                                            <Label Content="{Binding SelectedDoctor.Address.StreetNumber}" Style="{StaticResource ValueLabel}" />
-                                            <Label Content="/"  Visibility="{Binding SelectedDoctor.Address.BoxNumber, Converter={StaticResource StringToVisibility}}"/>
-                                            <Label Content="{Binding SelectedDoctor.Address.BoxNumber}" 
-                                           Visibility="{Binding SelectedDoctor.Address.BoxNumber, Converter={StaticResource StringToVisibility}}"
-                                           Style="{StaticResource ValueLabel}" />
+                                              Margin="4"
+                                              Header="{x:Static Member=t:WorkbenchText.GrpAddress}">
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="{Binding SelectedDoctor.Address.Street}" Style="{StaticResource ValueLabel}" />
+                                                <Label Content="," Visibility="{Binding SelectedDoctor.Address.StreetNumber, Mode=OneWay, Converter={StaticResource StringToVisibility}}"/>
+                                                <Label Content="{Binding SelectedDoctor.Address.StreetNumber}" Style="{StaticResource ValueLabel}" />
+                                                <Label Content="/"  Visibility="{Binding SelectedDoctor.Address.BoxNumber, Converter={StaticResource StringToVisibility}}"/>
+                                                <Label Content="{Binding SelectedDoctor.Address.BoxNumber}" 
+                                                   Visibility="{Binding SelectedDoctor.Address.BoxNumber, Converter={StaticResource StringToVisibility}}"
+                                                   Style="{StaticResource ValueLabel}" />
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="{Binding SelectedDoctor.Address.PostalCode}" Style="{StaticResource ValueLabel}" />
+                                                <Label Content="{Binding SelectedDoctor.Address.City}" Style="{StaticResource ValueLabel}" />
+                                            </StackPanel>
                                         </StackPanel>
                                     </GroupBox>
                                     <GroupBox DockPanel.Dock="Top"
@@ -532,8 +535,42 @@
                                 </StackPanel>
                             </DockPanel>
                         </GroupBox>
+                        <!-- Notes -->
+                        <GroupBox DockPanel.Dock="Top" 
+                          Margin="4"
+                          Header="{x:Static Member=t:WorkbenchText.Notes}">
+                            <TextBox Text="{Binding SelectedPatient.Reason, UpdateSourceTrigger=PropertyChanged}"
+                                     Margin="4"
+                                     VerticalScrollBarVisibility="Visible"
+                                     HorizontalScrollBarVisibility="Auto"
+                                     TextWrapping="Wrap"
+                                     IsReadOnly="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBool}}" />
+                        </GroupBox>
                     </DockPanel>
                 </ScrollViewer>
+                <Grid Grid.Column="2">
+                    <!-- Search tags -->
+                    <GroupBox DockPanel.Dock="Bottom"
+                                  Margin="4"
+                                  Header="{x:Static Member=t:WorkbenchText.GrpSearchTags}">
+                        <DataGrid DockPanel.Dock="Right" Margin="4"
+                                      ItemsSource="{Binding SearchTags}"
+                                      AutoGenerateColumns="False" 
+                                      CanUserReorderColumns="False" 
+                                      CanUserSortColumns="False" 
+                                      CanUserAddRows="False" 
+                                      CanUserDeleteRows="False"
+                                      GridLinesVisibility="None">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.Name}}"
+                                                    Binding="{Binding Path=Name}"
+                                                    IsReadOnly="True"
+                                                    Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                </Grid>
+                              
             </Grid>
         </toolkit:BusyIndicator>
     </Grid>

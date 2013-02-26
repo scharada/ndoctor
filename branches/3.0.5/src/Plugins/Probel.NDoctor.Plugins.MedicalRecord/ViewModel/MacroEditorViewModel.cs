@@ -42,6 +42,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
         private readonly ICommand removeCommand;
         private readonly ICommand saveCommand;
 
+        private bool hasWarnedOnInvalidMacro = false;
         private string resolvedMacro;
         private MacroDto selectedMacro;
         private TextDocument textDocument;
@@ -147,7 +148,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.ViewModel
                 this.ResolvedMacro = string.Format(Messages.Err_InvalidMacro);
             }
         }
-        private bool hasWarnedOnInvalidMacro = false;
+
         private bool CanSave()
         {
             var areValidMacros = this.Component.IsValid(this.Macros);

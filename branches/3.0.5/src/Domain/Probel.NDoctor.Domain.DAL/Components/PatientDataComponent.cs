@@ -66,6 +66,38 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Adds the specified tag to the specified patient.
+        /// </summary>
+        /// <param name="patient">The light patient dto.</param>
+        /// <param name="tag">The search tag dto.</param>
+        public void AddTagTo(LightPatientDto patient, SearchTagDto tag)
+        {
+            var entity = (from p in this.Session.Query<Patient>()
+                          where p.Id == patient.Id
+                          select p).Single();
+            var eTag = Mapper.Map<SearchTagDto, SearchTag>(tag);
+            entity.SearchTags.Add(eTag);
+            this.Session.Save(entity);
+        }
+
+        /// <summary>
+        /// Binds the specified tags to the specified patient.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <param name="tags">The tags.</param>
+        public void BindTagsTo(LightPatientDto patient, IEnumerable<SearchTagDto> tags)
+        {
+            var ids = tags.Select(e => e.Id).ToList();
+            var ePatient = this.Session.Get<Patient>(patient.Id);
+            var eTags = (from t in this.Session.Query<SearchTag>()
+                         where ids.Contains(t.Id)
+                         select t).ToList();
+
+            foreach (var t in eTags) { ePatient.SearchTags.Add(t); }
+            this.Session.Update(ePatient);
+        }
+
+        /// <summary>
         /// Creates the specified profession.
         /// </summary>
         /// <param name="profession">The profession.</param>
@@ -321,6 +353,20 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets the search tags of the specified patient.
+        /// </summary>
+        /// <param name="patient">The selected patient.</param>
+        /// <returns>
+        /// An enumeration of search tags
+        /// </returns>
+        public IEnumerable<SearchTagDto> GetSearchTagsOf(LightPatientDto patient)
+        {
+            var entity = this.Session.Get<Patient>(patient.Id);
+
+            return Mapper.Map<IEnumerable<SearchTag>, IEnumerable<SearchTagDto>>(entity.SearchTags.ToList());
+        }
+
+        /// <summary>
         /// Gets all the tags with the specified catagory.
         /// </summary>
         /// <param name="category"></param>
@@ -370,6 +416,27 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public void RemoveDoctorFor(LightPatientDto patient, LightDoctorDto doctor)
         {
             new Remover(this.Session).Remove(doctor, patient);
+        }
+
+        /// <summary>
+        /// Removes the specified tasks for the specified patient.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <param name="toRemove">The tasks to remove.</param>
+        public void RemoveTasksFor(LightPatientDto patient, IEnumerable<SearchTagDto> toRemove)
+        {
+            if (toRemove != null)
+            {
+                var ePatient = this.Session.Get<Patient>(patient.Id);
+                var ids = toRemove.Select(e => e.Id);
+
+                var tags = (from t in ePatient.SearchTags
+                            where !ids.Contains(t.Id)
+                            select t).ToList();
+                ePatient.SearchTags = tags;
+                this.Session.Update(ePatient);
+            }
+            else { return; }
         }
 
         /// <summary>
@@ -449,5 +516,41 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         #endregion Methods
+
+
+        /// <summary>
+        /// Gets all the search tags that are not binded to the specified patient
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <returns>The tags that are not assigned to the patient</returns>
+        public IEnumerable<SearchTagDto> GetNotAssignedTagsOf(LightPatientDto patient)
+        {
+            var ids = this.Session
+                .Get<Patient>(patient.Id)
+                .SearchTags
+                .Select(e => e.Id)
+                .ToList();
+
+            var eTags = (from t in this.Session.Query<SearchTag>()
+                         where !ids.Contains(t.Id)
+                         select t).ToList();
+            return Mapper.Map<IEnumerable<SearchTag>, IEnumerable<SearchTagDto>>(eTags);
+        }
+
+
+        /// <summary>
+        /// Checks whether a search task exist with the specified name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns>
+        ///   <c>True</c> if a search tag exists with the specified name; otherwise <c>False</c>
+        /// </returns>
+        public bool CheckSearchTagExist(string name)
+        {
+            name = name.ToLower();
+            return (from t in this.Session.Query<SearchTag>()
+                    where t.Name.ToLower() == name
+                    select t).Count() > 0;
+        }
     }
 }
