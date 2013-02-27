@@ -114,6 +114,12 @@ namespace Probel.NDoctor.Plugins.Administration
             set;
         }
 
+        private SearchTagRefiner SearchTagRefiner
+        {
+            get;
+            set;
+        }
+
         private TagRefiner TagRefiner
         {
             get;
@@ -137,6 +143,7 @@ namespace Probel.NDoctor.Plugins.Administration
                 = this.ViewModel.IsPathologyBusy
                 = this.ViewModel.IsPracticeBusy
                 = this.ViewModel.IsDoctorBusy
+                = this.ViewModel.IsSearchTagBusy
                 = true;
 
             var token = new CancellationTokenSource().Token;
@@ -148,6 +155,7 @@ namespace Probel.NDoctor.Plugins.Administration
             this.RefreshPathologies(token);
             this.RefreshPractices(token);
             this.RefreshDoctors(token);
+            this.RefreshSearchTag(token);
         }
 
         /// <summary>
@@ -266,6 +274,22 @@ namespace Probel.NDoctor.Plugins.Administration
             }
         }
 
+        public void RefreshSearchTagInMemory(string name)
+        {
+            if (this.SearchTagRefiner != null)
+            {
+                var token = new CancellationTokenSource().Token;
+                this.ViewModel.IsSearchTagBusy = true;
+                var task = Task.Factory.StartNew<IEnumerable<SearchTagDto>>(() => this.SearchTagRefiner.GetByName(name));
+                task.ContinueWith(t =>
+                {
+                    this.ViewModel.SearchTags.Refill(t.Result);
+                    this.ViewModel.IsSearchTagBusy = false;
+                }, token, TaskContinuationOptions.OnlyOnRanToCompletion, this.Scheduler);
+                task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, this.Scheduler);
+            }
+        }
+
         public void RefreshTagInMemory(string name)
         {
             if (this.TagRefiner != null)
@@ -366,6 +390,18 @@ namespace Probel.NDoctor.Plugins.Administration
             task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, this.Scheduler);
         }
 
+        private void RefreshSearchTag(CancellationToken token)
+        {
+            var task = Task.Factory.StartNew<SearchTagRefiner>(() => this.Component.GetSearchTagRefiner());
+            task.ContinueWith(t =>
+            {
+                this.SearchTagRefiner = t.Result;
+                this.ViewModel.SearchTags.Refill(t.Result.Items);
+                this.ViewModel.IsSearchTagBusy = false;
+            }, token, TaskContinuationOptions.OnlyOnRanToCompletion, this.Scheduler);
+            task.ContinueWith(t => this.Handle.Error(t.Exception), token, TaskContinuationOptions.OnlyOnFaulted, this.Scheduler);
+        }
+
         private void RefreshTags(CancellationToken token)
         {
             var task = Task.Factory.StartNew<TagRefiner>(() => this.Component.GetTagRefiner());
@@ -380,5 +416,7 @@ namespace Probel.NDoctor.Plugins.Administration
         }
 
         #endregion Methods
+
+        
     }
 }

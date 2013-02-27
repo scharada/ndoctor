@@ -98,6 +98,18 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Checks whether a search task exist with the specified name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns>
+        ///   <c>True</c> if a search tag exists with the specified name; otherwise <c>False</c>
+        /// </returns>
+        public bool CheckSearchTagExist(string name)
+        {
+            return new Query(this.Session).CheckSearchTagExists(name);
+        }
+
+        /// <summary>
         /// Creates the specified profession.
         /// </summary>
         /// <param name="profession">The profession.</param>
@@ -268,6 +280,25 @@ namespace Probel.NDoctor.Domain.DAL.Components
             var result = this.Session.Get<Patient>(id);
             if (result != null) { return Mapper.Map<Patient, LightPatientDto>(result); }
             else { throw new EntityNotFoundException(typeof(Patient)); }
+        }
+
+        /// <summary>
+        /// Gets all the search tags that are not binded to the specified patient
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <returns>The tags that are not assigned to the patient</returns>
+        public IEnumerable<SearchTagDto> GetNotAssignedTagsOf(LightPatientDto patient)
+        {
+            var ids = this.Session
+                .Get<Patient>(patient.Id)
+                .SearchTags
+                .Select(e => e.Id)
+                .ToList();
+
+            var eTags = (from t in this.Session.Query<SearchTag>()
+                         where !ids.Contains(t.Id)
+                         select t).ToList();
+            return Mapper.Map<IEnumerable<SearchTag>, IEnumerable<SearchTagDto>>(eTags);
         }
 
         /// <summary>
@@ -516,41 +547,5 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         #endregion Methods
-
-
-        /// <summary>
-        /// Gets all the search tags that are not binded to the specified patient
-        /// </summary>
-        /// <param name="patient">The patient.</param>
-        /// <returns>The tags that are not assigned to the patient</returns>
-        public IEnumerable<SearchTagDto> GetNotAssignedTagsOf(LightPatientDto patient)
-        {
-            var ids = this.Session
-                .Get<Patient>(patient.Id)
-                .SearchTags
-                .Select(e => e.Id)
-                .ToList();
-
-            var eTags = (from t in this.Session.Query<SearchTag>()
-                         where !ids.Contains(t.Id)
-                         select t).ToList();
-            return Mapper.Map<IEnumerable<SearchTag>, IEnumerable<SearchTagDto>>(eTags);
-        }
-
-
-        /// <summary>
-        /// Checks whether a search task exist with the specified name.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        /// <returns>
-        ///   <c>True</c> if a search tag exists with the specified name; otherwise <c>False</c>
-        /// </returns>
-        public bool CheckSearchTagExist(string name)
-        {
-            name = name.ToLower();
-            return (from t in this.Session.Query<SearchTag>()
-                    where t.Name.ToLower() == name
-                    select t).Count() > 0;
-        }
     }
 }

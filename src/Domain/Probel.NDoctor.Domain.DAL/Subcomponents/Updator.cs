@@ -308,6 +308,21 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         }
 
         /// <summary>
+        /// Updates the specified search tag.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        public void Update(SearchTagDto item)
+        {
+            if (item == null) { return; }
+            else
+            {
+                var entity = this.Session.Get<SearchTag>(item.Id);
+                Mapper.Map<SearchTagDto, SearchTag>(item, entity);
+                if (entity != null) { this.Session.Update(entity); }
+            }
+        }
+
+        /// <summary>
         /// Updates the specified pictures.
         /// </summary>
         /// <param name="pictures">The pictures.</param>

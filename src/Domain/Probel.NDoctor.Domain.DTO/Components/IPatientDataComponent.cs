@@ -46,6 +46,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         void BindTagsTo(LightPatientDto patient, IEnumerable<SearchTagDto> tags);
 
         /// <summary>
+        /// Checks whether a search task exist with the specified name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns><c>True</c> if a search tag exists with the specified name; otherwise <c>False</c></returns>
+        bool CheckSearchTagExist(string name);
+
+        /// <summary>
         /// Creates the specified profession.
         /// </summary>
         /// <param name="profession">The profession.</param>
@@ -143,6 +150,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         LightPatientDto GetLightPatientById(long id);
 
         /// <summary>
+        /// Gets all the search tags that are not binded to the specified patient
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <returns>The tags that are not assigned to the patient</returns>
+        IEnumerable<SearchTagDto> GetNotAssignedTagsOf(LightPatientDto patient);
+
+        /// <summary>
         /// Gets the doctors that can be linked to the specified doctor.
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -235,19 +249,5 @@ namespace Probel.NDoctor.Domain.DTO.Components
         void UpdateThumbnail(LightPatientDto patientDto, byte[] thumbnail);
 
         #endregion Methods
-
-        /// <summary>
-        /// Gets all the search tags that are not binded to the specified patient
-        /// </summary>
-        /// <param name="patient">The patient.</param>
-        /// <returns>The tags that are not assigned to the patient</returns>
-        IEnumerable<SearchTagDto> GetNotAssignedTagsOf(LightPatientDto patient);
-
-        /// <summary>
-        /// Checks whether a search task exist with the specified name.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        /// <returns><c>True</c> if a search tag exists with the specified name; otherwise <c>False</c></returns>
-        bool CheckSearchTagExist(string name);
     }
 }

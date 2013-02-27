@@ -70,11 +70,29 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ajouter.
+        ///   Looks up a localized string similar to Add.
         /// </summary>
         internal static string Group_Add {
             get {
                 return ResourceManager.GetString("Group_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Explanations.
+        /// </summary>
+        internal static string Lbl_SearchTagExplanations {
+            get {
+                return ResourceManager.GetString("Lbl_SearchTagExplanations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        internal static string Lbl_SearchTagName {
+            get {
+                return ResourceManager.GetString("Lbl_SearchTagName", resourceCulture);
             }
         }
         
@@ -124,16 +142,25 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to At least one search module is not loaded.
+        ///   Looks up a localized string similar to A tag with this name already exists!.
         /// </summary>
-        internal static string Msg_SearchModuleNotLoaded {
+        internal static string Msg_WanSearchTagExists {
             get {
-                return ResourceManager.GetString("Msg_SearchModuleNotLoaded", resourceCulture);
+                return ResourceManager.GetString("Msg_WanSearchTagExists", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chercher un médecin sur le nom.
+        ///   Looks up a localized string similar to Etiquettes de recherche.
+        /// </summary>
+        internal static string Tab_SearchTag {
+            get {
+                return ResourceManager.GetString("Tab_SearchTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search....
         /// </summary>
         internal static string Tb_SearchDoctor {
             get {
@@ -232,6 +259,15 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search tag.
+        /// </summary>
+        internal static string Title_AddSearchTag {
+            get {
+                return ResourceManager.GetString("Title_AddSearchTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specialisation.
         /// </summary>
         internal static string Title_AddSpecialisation {
@@ -250,7 +286,7 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Box nr.
+        ///   Looks up a localized string similar to Box.
         /// </summary>
         internal static string Title_BoxNr {
             get {
@@ -304,7 +340,7 @@ namespace Probel.NDoctor.Plugins.Administration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nom.
+        ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string Title_Name {
             get {
