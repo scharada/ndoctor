@@ -120,7 +120,7 @@ namespace Probel.NDoctor.Domain.Components.Statistics
             Statistics.Add(stat);
         }
 
-        private static string GetApplicationVersion()
+        private string GetApplicationVersion()
         {
             return (Assembly.GetEntryAssembly() != null)
                 ? Assembly.GetEntryAssembly().GetName().Version.ToString()
@@ -129,14 +129,10 @@ namespace Probel.NDoctor.Domain.Components.Statistics
 
         private void ExportToRemoteServer(IEnumerable<ApplicationStatistics> toImport, Guid appKey)
         {
-            if (!IsDebug)
-            {
-                Logger.InfoFormat("Exporting {0} entrie(s) into the remote server", toImport.Count());
-                var version = Assembly.GetEntryAssembly().GetName().Version;
+            Logger.InfoFormat("Exporting {0} entrie(s) into the remote server", toImport.Count());
+            var version = Assembly.GetEntryAssembly().GetName().Version;
 
-                new RemoteService().Export(toImport, version, this.SessionDuration, appKey);
-            }
-            else { Logger.Warn("The application is in debug mode, the statistics are not exported. The setting 'IsRemoteStatisticsEnabled' is overriden!"); }
+            new RemoteService().Export(toImport, version, this.SessionDuration, appKey);
         }
 
         private void Flush(ISession session)
@@ -148,22 +144,23 @@ namespace Probel.NDoctor.Domain.Components.Statistics
 
             using (var tx = session.BeginTransaction())
             {
+                var appVersion = this.GetApplicationVersion();
                 foreach (var item in Statistics)
                 {
-                    item.Version = GetApplicationVersion();
+                    item.Version = appVersion;
                     session.Save(item);
                 }
                 tx.Commit();
             }
-            if (this.RemoteStatisticsEnabled)
+            if (!this.IsDebug && this.RemoteStatisticsEnabled)
             {
                 var toImport = this.GetNotImportedStatistics(session);
-                ExportToRemoteServer(toImport, appKey);
-
-                if (!this.IsDebug && !isExportEnabled)
-                {
-                    this.MarkAsExported(session, toImport);
-                }
+                this.ExportToRemoteServer(toImport, appKey);
+                this.MarkAsExported(session, toImport);
+            }
+            else if (this.IsDebug)
+            {
+                Logger.Warn("The application is in debug mode, the statistics are not exported. The setting 'IsRemoteStatisticsEnabled' is overriden!");
             }
 
             Statistics.Clear();
