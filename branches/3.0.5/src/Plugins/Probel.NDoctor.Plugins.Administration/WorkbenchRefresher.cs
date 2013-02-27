@@ -416,7 +416,5 @@ namespace Probel.NDoctor.Plugins.Administration
         }
 
         #endregion Methods
-
-        
     }
 }
