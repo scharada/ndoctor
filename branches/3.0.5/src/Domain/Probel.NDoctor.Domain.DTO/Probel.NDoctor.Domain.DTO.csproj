@@ -100,6 +100,7 @@
     <Compile Include="Memory\PracticeRefiner.cs" />
     <Compile Include="Memory\ProfessionRefiner.cs" />
     <Compile Include="Memory\ReputationRefiner.cs" />
+    <Compile Include="Memory\SearchTagRefiner.cs" />
     <Compile Include="Memory\TagRefiner.cs" />
     <Compile Include="Objects\AvgStatisticsDto.cs" />
     <Compile Include="Objects\DoubloonDoctorDto.cs" />

@@ -27,11 +27,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
     using System.Windows.Input;
 
     using Probel.Mvvm.DataBinding;
+    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Domain.DTO;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.View.Plugins;
-    using Probel.Mvvm.Gui;
     using Probel.NDoctor.Plugins.PatientOverview.Properties;
+    using Probel.NDoctor.View.Plugins;
 
     internal class AddTagViewModel : TagViewModel
     {

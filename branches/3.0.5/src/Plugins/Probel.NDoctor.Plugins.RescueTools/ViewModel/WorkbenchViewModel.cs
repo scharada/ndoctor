@@ -456,7 +456,6 @@ namespace Probel.NDoctor.Plugins.RescueTools.ViewModel
             var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
             var token = new CancellationTokenSource().Token;
 
-
             var yes = ViewService.MessageBox.Question(Messages.Msg_ConfirmReplaceWithFirst);
             if (yes)
             {
