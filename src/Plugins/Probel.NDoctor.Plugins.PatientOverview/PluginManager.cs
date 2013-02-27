@@ -164,10 +164,10 @@ namespace Probel.NDoctor.Plugins.PatientOverview
             var cgroup4 = new RibbonGroupData(Messages.Group_Tag);
             cgroup4.ButtonDataCollection.Add(new RibbonButtonData(Messages.Btn_BindTag, imgUri.FormatWith("TagAdd")
                 , new RelayCommand(() => ViewService.Manager.Show<BindTagViewModel>(), () => this.CanManageTag())));
+            cgroup4.ButtonDataCollection.Add(new RibbonButtonData(Messages.Btn_UnbindTag, imgUri.FormatWith("DoctorRemove")
+                , new RelayCommand(() => ViewService.Manager.Show<RemoveTagViewModel>(), () => this.CanManageTag())));
             cgroup4.ButtonDataCollection.Add(new RibbonButtonData(BaseText.Add, imgUri.FormatWith("DoctorAdd")
                 , new RelayCommand(() => ViewService.Manager.Show<AddTagViewModel>(), () => this.CanManageTag())));
-            cgroup4.ButtonDataCollection.Add(new RibbonButtonData(BaseText.Remove, imgUri.FormatWith("DoctorRemove")
-                , new RelayCommand(() => ViewService.Manager.Show<RemoveTagViewModel>(), () => this.CanManageTag())));
 
             var tab = new RibbonTabData(BaseText.Menu_File) { ContextualTabGroupHeader = Messages.Title_PluginName };
             tab.GroupDataCollection.Add(cgroup1);

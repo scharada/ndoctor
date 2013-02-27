@@ -26,16 +26,16 @@ namespace Probel.NDoctor.Plugins.PatientSession.View
     using Probel.NDoctor.Plugins.PatientSession.ViewModel;
 
     /// <summary>
-    /// Interaction logic for SearchPatientExtendedControl.xaml
+    /// Interaction logic for SearchPatientByTagControl.xaml
     /// </summary>
-    public partial class SearchPatientExtendedControl : Window
+    public partial class SearchPatientByTagView : Window
     {
         #region Constructors
 
-        public SearchPatientExtendedControl()
+        public SearchPatientByTagView()
         {
             InitializeComponent();
-            this.DataContext = new SearchPatientExtendedViewModel();
+            this.DataContext = new SearchPatientByTagViewModel();
         }
 
         #endregion Constructors

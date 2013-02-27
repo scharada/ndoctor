@@ -47,6 +47,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
 
         private readonly ICommand AddCommand;
         private readonly ICommand ExtendedSearchCommand;
+        private readonly ICommand SearchByTagCommand;
         private readonly ICommand SearchCommand;
         private readonly ICommand ShowTopTenCommand;
 
@@ -62,6 +63,7 @@ namespace Probel.NDoctor.Plugins.PatientSession
             this.AddCommand = new RelayCommand(() => this.NavigateAddPatient(), () => this.CanNavigateAddPatient());
             this.ShowTopTenCommand = new RelayCommand(() => this.NavigateTopTen(), () => this.CanSearchPatient());
             this.ExtendedSearchCommand = new RelayCommand(() => this.NavigateExtendedSearch(), () => this.CanSearchPatient());
+            this.SearchByTagCommand = new RelayCommand(() => this.NavigateSearchByTag(), () => this.CanSearchPatient());
             this.ConfigureAutoMapper();
         }
 
@@ -124,13 +126,20 @@ namespace Probel.NDoctor.Plugins.PatientSession
                 Order = 0,
             };
 
+            var searchByTagButton = new RibbonSplitButtonData(Messages.Title_SearchByTag, uriPng.FormatWith("SearchSmall"), this.SearchByTagCommand)
+            {
+                Order = 0,
+            };
+
             var searchSplitButton = new RibbonSplitButtonData(Messages.Title_ButtonSearch, uriIco.FormatWith("Search"), this.SearchCommand)
             {
                 Order = 0,
             };
+
             searchSplitButton.ControlDataCollection.Add(searchButton);
             searchSplitButton.ControlDataCollection.Add(extendedSerchButton);
             searchSplitButton.ControlDataCollection.Add(topTenButton);
+            searchSplitButton.ControlDataCollection.Add(searchByTagButton);
 
             PluginContext.Host.AddInHome(searchSplitButton, Groups.Tools);
             #endregion
@@ -156,11 +165,13 @@ namespace Probel.NDoctor.Plugins.PatientSession
         {
             ViewService.Configure(e =>
             {
-                e.Bind<SearchPatientExtendedControl, SearchPatientExtendedViewModel>()
+                e.Bind<SearchPatientExtendedView, SearchPatientExtendedViewModel>()
                     .OnShow(vm => vm.RefreshCommand.TryExecute());
-                e.Bind<SearchPatientControl, SearchPatientViewModel>();
-                e.Bind<TopTenControl, TopTenViewModel>();
-                e.Bind<AddPatientControl, AddPatientViewModel>();
+                e.Bind<SearchPatientView, SearchPatientViewModel>();
+                e.Bind<TopTenView, TopTenViewModel>();
+                e.Bind<AddPatientView, AddPatientViewModel>();
+                e.Bind<SearchPatientByTagView, SearchPatientByTagViewModel>()
+                    .OnShow(vm => vm.RefreshCommand.TryExecute());
             });
         }
 
@@ -172,6 +183,11 @@ namespace Probel.NDoctor.Plugins.PatientSession
         private void NavigateExtendedSearch()
         {
             ViewService.Manager.ShowDialog<SearchPatientExtendedViewModel>();
+        }
+
+        private void NavigateSearchByTag()
+        {
+            ViewService.Manager.Show<SearchPatientByTagViewModel>();
         }
 
         private void NavigateSearchPatient()

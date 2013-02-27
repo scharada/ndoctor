@@ -208,6 +208,7 @@
     <Compile Include="Subcomponents\Id.cs" />
     <Compile Include="Subcomponents\Query.cs" />
     <Compile Include="Subcomponents\Remover.cs" />
+    <Compile Include="Subcomponents\SearchTagSearcher.cs" />
     <Compile Include="Subcomponents\Selector.cs" />
     <Compile Include="Subcomponents\Updator.cs" />
   </ItemGroup>

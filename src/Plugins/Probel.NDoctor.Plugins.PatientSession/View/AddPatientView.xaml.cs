@@ -24,11 +24,11 @@ namespace Probel.NDoctor.Plugins.PatientSession.View
     /// <summary>
     /// Interaction logic for AddParentView.xaml
     /// </summary>
-    public partial class AddPatientControl : Window
+    public partial class AddPatientView : Window
     {
         #region Constructors
 
-        public AddPatientControl()
+        public AddPatientView()
         {
             InitializeComponent();
             this.DataContext = new AddPatientViewModel();

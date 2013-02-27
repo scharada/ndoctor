@@ -169,6 +169,10 @@
     <value>Spécialisation</value>
     <comment>Specialisation</comment>
   </data>
+  <data name="Btn_UnbindTag" xml:space="preserve">
+    <value>Délier une étiquette</value>
+    <comment>Unbind a tag</comment>
+  </data>
   <data name="Dgv_Explanations" xml:space="preserve">
     <value>Explications</value>
     <comment>Explanations</comment>

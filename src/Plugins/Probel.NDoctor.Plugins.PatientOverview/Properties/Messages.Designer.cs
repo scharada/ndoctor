@@ -178,6 +178,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Délier une étiquette.
+        /// </summary>
+        internal static string Btn_UnbindTag {
+            get {
+                return ResourceManager.GetString("Btn_UnbindTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Explanations.
         /// </summary>
         internal static string Dgv_Explanations {
