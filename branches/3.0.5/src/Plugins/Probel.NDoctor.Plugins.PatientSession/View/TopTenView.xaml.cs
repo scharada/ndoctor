@@ -24,11 +24,11 @@ namespace Probel.NDoctor.Plugins.PatientSession.View
     /// <summary>
     /// Interaction logic for TopTenControl.xaml
     /// </summary>
-    public partial class TopTenControl : Window
+    public partial class TopTenView : Window
     {
         #region Constructors
 
-        public TopTenControl()
+        public TopTenView()
         {
             InitializeComponent();
             this.DataContext = new TopTenViewModel();

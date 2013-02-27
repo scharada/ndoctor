@@ -25,6 +25,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
     using NHibernate;
     using NHibernate.Linq;
 
+    using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DAL.AopConfiguration;
     using Probel.NDoctor.Domain.DAL.Entities;
     using Probel.NDoctor.Domain.DAL.Subcomponents;
@@ -80,6 +81,17 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets all search tags.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<SearchTagDto> GetAllSearchTags()
+        {
+            var entities = (from t in this.Session.Query<SearchTag>()
+                            select t).ToList();
+            return Mapper.Map<IEnumerable<SearchTag>, IEnumerable<SearchTagDto>>(entities);
+        }
+
+        /// <summary>
         /// Gets the count of the specified patient. That's the number of time he/she was selected
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -131,6 +143,26 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public IList<LightPatientDto> GetPatientsByNameLight(string criterium, SearchOn search)
         {
             return new Selector(this.Session).GetPatientByNameLight(criterium, search);
+        }
+
+        public IEnumerable<LightPatientDto> GetPatientsWithTags(IEnumerable<SearchTagDto> tags, Operator @operator)
+        {
+            IEnumerable<LightPatientDto> entities = new List<LightPatientDto>();
+            var searcher = new SearchTagSearcher(this.Session);
+
+            switch (@operator)
+            {
+                case Operator.And:
+                    entities = searcher.GetPatientBySearchTagOperatorAnd(tags);
+                    break;
+                case Operator.Or:
+                    entities = searcher.GetPatientBySearchTagOperatorOr(tags);
+                    break;
+                default:
+                    Assert.FailOnEnumeration(@operator);
+                    break;
+            }
+            return entities;
         }
 
         /// <summary>
@@ -194,9 +226,9 @@ namespace Probel.NDoctor.Domain.DAL.Components
             {
                 var msg = "A query that asks all the patients returned zero results after the execution of the specification pattern. Maybe you have some null properties (Check the SELECT clause)";
                 this.Logger.Warn(msg);
-            #if DEBUG
+#if DEBUG
                 throw new NotImplementedException(msg);
-            #endif
+#endif
             }
         }
 

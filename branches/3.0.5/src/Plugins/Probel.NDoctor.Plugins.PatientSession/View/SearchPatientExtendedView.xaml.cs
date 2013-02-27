@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,35 +16,28 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#endregion Header
+
 namespace Probel.NDoctor.Plugins.PatientSession.View
 {
     using System.Windows;
-    using System.Windows.Input;
 
     using Probel.NDoctor.Plugins.PatientSession.ViewModel;
 
     /// <summary>
-    /// Interaction logic for SearchPatientControl.xaml
+    /// Interaction logic for SearchPatientExtendedControl.xaml
     /// </summary>
-    public partial class SearchPatientControl : Window
+    public partial class SearchPatientExtendedView : Window
     {
         #region Constructors
 
-        public SearchPatientControl()
+        public SearchPatientExtendedView()
         {
             InitializeComponent();
-            this.DataContext = new SearchPatientViewModel();
+            this.DataContext = new SearchPatientExtendedViewModel();
         }
 
         #endregion Constructors
-
-        #region Methods
-
-        private void this_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            Keyboard.Focus(this.focused);
-        }
-
-        #endregion Methods
     }
 }

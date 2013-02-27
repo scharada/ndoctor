@@ -1,4 +1,4 @@
-﻿<Window x:Class="Probel.NDoctor.Plugins.PatientSession.View.TopTenControl"
+﻿<Window x:Class="Probel.NDoctor.Plugins.PatientSession.View.TopTenView"
         x:Name="this"
         
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
