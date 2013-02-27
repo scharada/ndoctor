@@ -425,9 +425,7 @@
                         <Grid></Grid>
                     </DockPanel>
                 </ScrollViewer>
-                <ScrollViewer VerticalScrollBarVisibility="Auto"
-                              HorizontalScrollBarVisibility="Auto"
-                      Grid.Column="1">
+                <Grid Grid.Column="1">
                     <DockPanel LastChildFill="True">
                         <!-- Miscellaneous -->
                         <GroupBox DockPanel.Dock="Top"
@@ -537,17 +535,18 @@
                         </GroupBox>
                         <!-- Notes -->
                         <GroupBox DockPanel.Dock="Top" 
-                          Margin="4"
-                          Header="{x:Static Member=t:WorkbenchText.Notes}">
+                                  Margin="4"
+                                  Header="{x:Static Member=t:WorkbenchText.Notes}">
                             <TextBox Text="{Binding SelectedPatient.Reason, UpdateSourceTrigger=PropertyChanged}"
                                      Margin="4"
                                      VerticalScrollBarVisibility="Visible"
                                      HorizontalScrollBarVisibility="Auto"
                                      TextWrapping="Wrap"
-                                     IsReadOnly="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBool}}" />
+                                     IsReadOnly="{Binding ElementName=CbEdition, Path=IsChecked, Converter={StaticResource InvertBool}}" 
+                                     AcceptsReturn="True" />
                         </GroupBox>
                     </DockPanel>
-                </ScrollViewer>
+                </Grid>
                 <Grid Grid.Column="2">
                     <!-- Search tags -->
                     <GroupBox DockPanel.Dock="Bottom"
