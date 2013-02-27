@@ -52,8 +52,8 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         private static readonly System.Timers.Timer PracticeCountdown = new System.Timers.Timer(INTERVAL) { AutoReset = true };
         private static readonly System.Timers.Timer ProfessionCountdown = new System.Timers.Timer(INTERVAL) { AutoReset = true };
         private static readonly System.Timers.Timer ReputationCountdown = new System.Timers.Timer(INTERVAL) { AutoReset = true };
-        private static readonly System.Timers.Timer TagCountdown = new System.Timers.Timer(INTERVAL) { AutoReset = true };
         private static readonly System.Timers.Timer SearchTagCountdown = new System.Timers.Timer(INTERVAL) { AutoReset = true };
+        private static readonly System.Timers.Timer TagCountdown = new System.Timers.Timer(INTERVAL) { AutoReset = true };
 
         private readonly EditCommands Edit;
         private readonly WorkbenchRefresher Refresher;
