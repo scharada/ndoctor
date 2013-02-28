@@ -40,7 +40,9 @@ https://lh5.googleusercontent.com/-cldLzVDuk1E/US_D3KdVtMI/AAAAAAAAAXE/Oqhyk7eFu
 
  * Select the behaviour of the search
   * *Select if ALL criterion are satisfied*: Means that a patient will appear in the result only if he/she satisfied ALL the specified criterion. In other words it is a *logical AND* search
-  * *Select if AT LEAST one criteria is satisfied*: Means that a patient will appear in the result if he/she satisfies AT LEAST one (or more) criteria.
+  * *Select if AT LEAST one criteria is satisfied*: Means that a patient will appear in the result if he/she satisfies AT LEAST one (or more) criteria. In other words it is a logical OR search
+ * Check the criterion you want to use in the search and specify a search value.
+ * Execute the search by clicking on _Search_
 
 === Remarks ===
 This kind of search is slower than the others because the design is done in such a way that a lot of data should be loaded in memory.
