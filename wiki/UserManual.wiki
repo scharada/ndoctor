@@ -16,4 +16,3 @@
 You can start nDoctor with command line argument to help production debugging. Only use these tools of you know what you are doing!
  * *-hookconsole*: Hook a console to the application to display the logging
  * -*debugtools*: Add statistics and log menus
- * -*admin*: Add a debug menu to modify some internal settings (it should be used with -*debugtools*; otherwise, the menu won't appear)
