@@ -19,4 +19,4 @@ You can start nDoctor with command line argument to help production debugging. O
 
 == Rescue tools ==
 === Find and fix doctor doubloons ===
-[Work in progress]
+[`Work in progress`]
