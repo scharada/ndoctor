@@ -1,3 +1,11 @@
 = How to configure a calendar to be the one nDoctor uses =
 
- * [`Work in progress`]
+Go to *Application menu* => *Settings* => *Calendar*
+
+https://lh3.googleusercontent.com/-tOdYvAJQoFI/US_JZBtn8HI/AAAAAAAAAXk/im43IbZaGns/s600/1.jpg
+
+ # Check the box _Activate Google Calendar binding?_
+ # *Don't* change the value of _Binded calendar_ unless you know what you are doing!
+ # Set your user name
+ # Set you password. This password will be *encrypted* into a config file.
+ # Save and start to use the calendar.
