@@ -9,7 +9,7 @@ To load a session for a patient, you just need to double click on the patient yo
 = The search tools =
 == The ten most used patients ==
 
-Each time you open a session of a patient, nDoctor will increment an internal counter. So this search will find the ten first patients that was opened the most often.
+Each time you open a session of a patient, nDoctor will increment an internal counter. So this search will find the ten first patients that was loaded the most often.
 == The basic search ==
 
 https://lh3.googleusercontent.com/-U8kn5rkj3hU/US_D3Dtb6xI/AAAAAAAAAXA/PzAM9ILOB9U/s450/3.jpg
