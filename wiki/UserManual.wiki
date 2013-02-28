@@ -16,3 +16,7 @@
 You can start nDoctor with command line argument to help production debugging. Only use these tools of you know what you are doing!
  * *-hookconsole*: Hook a console to the application to display the logging
  * -*debugtools*: Add statistics and log menus
+
+== Rescue tools ==
+=== Find and fix doctor doubloons ===
+[Work in progress]
