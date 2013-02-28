@@ -10,29 +10,5 @@
 
  * [`Work in progress`]
 
-== Debugging tools ==
-
-=== Command line arguments ===
-You can start nDoctor with command line argument to help production debugging. Only use these tools of you know what you are doing!
- * *-hookconsole*: Hook a console to the application to display the logging
- * -*debugtools*: Add statistics and log menus
-
-== Rescue tools ==
-=== Find and fix doctor doubloons ===
-==== What is a doctor doubloon? ====
-This is a doctor that is inserted multiple times in the database. For nDoctor such doctors are different event if, from the business point of view they are the same.
-
-This tool will try to spot doubloons flowing this rule: two doctors are suspected to be the same when their name, surname and specialisation have the same spelling (no matter the case).
-
-==== Activate the *Rescue Tools* plugin ====
- * Go to the *Application menu* => *Settings*
-https://lh6.googleusercontent.com/-RPtadVpLcbc/US-1LoRk9TI/AAAAAAAAAVQ/LcLsm8y9HBg/s520/1.jpg
-
- * Activate the plugin
-https://lh6.googleusercontent.com/-X4pCYpgVb3c/US-1Li7Qm4I/AAAAAAAAAVI/ZEOXz4TQZcM/s600/2.jpg
-
- * Restart nDoctor
-
-==== How does it work? ====
- * Open the *Rescue tools*: *Application menu* => *Database management*
-https://lh5.googleusercontent.com/-deeVKg9TO-w/US-4P4Wm5pI/AAAAAAAAAVo/rqrFWylfuVg/s512/3.jpg
+== [DebuggingTools Debugging tools] ==
+== [RescueTools Rescue tools] ==
