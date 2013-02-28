@@ -43,7 +43,7 @@
   * [AdministrationTestSuite Administration]
  * [Deploy Deploy]
  * Support
-  * [UserManual User manual]
+  * User manual
    * [SearchTools Search patients]
    * [RescueTools Rescue Tools]
    * [ConfigureCalendar Calendar]
@@ -51,6 +51,7 @@
   * Install
    * [BetaInstallation the binaries]
    * [Installer with the installer]
-  * [GetGmail Get a Gmail address]
-  * [AskFeature Ask a feature]
-  * [ReportIssue Report an issue]
+  * Contribute
+   * [GetGmail Get a Gmail address]
+   * [AskFeature Ask a feature]
+   * [ReportIssue Report an issue]
