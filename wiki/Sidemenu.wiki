@@ -44,7 +44,7 @@
  * [Deploy Deploy]
  * Support
   * [UserManual User manual]
-   * [RescutTools Rescue Tools]
+   * [RescueTools Rescue Tools]
   * Install
    * [BetaInstallation the binaries]
    * [Installer with the installer]
