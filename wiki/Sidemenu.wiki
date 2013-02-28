@@ -46,7 +46,7 @@
   * [UserManual User manual]
    * [RescueTools Rescue Tools]
    * [ConfigureCalendar Calendar]
-   * [DebugTools Debug tools]
+   * [DebuggingTools Debugging tools]
   * Install
    * [BetaInstallation the binaries]
    * [Installer with the installer]
