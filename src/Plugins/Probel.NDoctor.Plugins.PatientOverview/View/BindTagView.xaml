@@ -16,7 +16,7 @@
         
         Width="250"
         Height="250"
-        Title="{Binding Source={x:Static Member=txt:TagText.RemoveTagTitle}}"
+        Title="{Binding Source={x:Static Member=txt:TagText.BindTagTitle}}"
         WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" ShowInTaskbar="False">
     <Window.Resources>
         <Style TargetType="Button">

@@ -32,6 +32,10 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Translations
     {
         #region Properties
 
+        public static string BindTagTitle
+        {
+            get { return Messages.Title_BindTag; }
+        }
         public static string AddTagTitle
         {
             get { return Messages.Title_AddTag; }

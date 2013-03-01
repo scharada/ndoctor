@@ -729,6 +729,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bind a tag....
+        /// </summary>
+        internal static string Title_BindTag {
+            get {
+                return ResourceManager.GetString("Title_BindTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Patient overview.
         /// </summary>
         internal static string Title_Page {
@@ -747,7 +756,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove search tag.
+        ///   Looks up a localized string similar to Unbind search tag.
         /// </summary>
         internal static string Title_RemoveTag {
             get {
