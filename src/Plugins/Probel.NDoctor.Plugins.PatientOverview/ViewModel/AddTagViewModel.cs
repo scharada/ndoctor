@@ -38,6 +38,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         #region Fields
 
         private readonly ICommand addCommand;
+        private readonly ICommand closeViewCommand;
 
         private SearchTagDto newSearchTag;
 
@@ -49,6 +50,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         {
             this.newSearchTag = new SearchTagDto();
             this.addCommand = new RelayCommand(() => this.Add(), () => this.CanAdd());
+            this.closeViewCommand = new RelayCommand(() => this.Close());
         }
 
         #endregion Constructors
@@ -58,6 +60,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         public ICommand AddCommand
         {
             get { return this.addCommand; }
+        }
+
+        public ICommand CloseViewCommand
+        {
+            get { return this.closeViewCommand; }
         }
 
         public SearchTagDto NewSearchTag

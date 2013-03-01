@@ -29,6 +29,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
     using NHibernate;
     using NHibernate.Linq;
 
+    using Probel.Helpers.Assertion;
     using Probel.NDoctor.Domain.DAL.Entities;
 
     internal class Query
@@ -52,6 +53,7 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
 
         public bool CheckSearchTagExists(string name)
         {
+            Assert.IsNotNull(name, "name");
             name = name.ToLower();
             return (from t in this.Session.Query<SearchTag>()
                     where t.Name.ToLower() == name

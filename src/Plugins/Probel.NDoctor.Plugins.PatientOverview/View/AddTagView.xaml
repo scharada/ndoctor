@@ -14,6 +14,7 @@
         
         mc:Ignorable="d"
         
+        Loaded="this_Loaded"
         Width="450"
         Height="250"
         Title="{Binding Source={x:Static Member=txt:TagText.AddTagTitle}}"
@@ -34,8 +35,9 @@
         <DockPanel DockPanel.Dock="Top">
             <Label Content="{x:Static Member=txt:TagText.Name}"
                    Margin="4"/>
-            <TextBox Margin="4"
-                     Text="{Binding NewSearchTag.Name}" TabIndex="1" />
+            <TextBox x:Name="focused"
+                     Margin="4"
+                     Text="{Binding NewSearchTag.Name, UpdateSourceTrigger=PropertyChanged}" TabIndex="1" />
         </DockPanel>
         <StackPanel DockPanel.Dock="Bottom"
                     Orientation="Horizontal"
