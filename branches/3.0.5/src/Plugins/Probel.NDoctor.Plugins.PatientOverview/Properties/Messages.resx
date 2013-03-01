@@ -417,6 +417,10 @@
     <value>Bind a doctor...</value>
     <comment>Bind a doctor...</comment>
   </data>
+  <data name="Title_BindTag" xml:space="preserve">
+    <value>Bind a tag...</value>
+    <comment>Bind a tag...</comment>
+  </data>
   <data name="Title_Page" xml:space="preserve">
     <value>Patient overview</value>
     <comment>Patient overview</comment>
@@ -426,8 +430,8 @@
     <comment>Patient overview</comment>
   </data>
   <data name="Title_RemoveTag" xml:space="preserve">
-    <value>Remove search tag</value>
-    <comment>Remove search tag</comment>
+    <value>Unbind search tag</value>
+    <comment>Unbind search tag</comment>
   </data>
   <data name="Title_TitleWatermark" xml:space="preserve">
     <value>Search a doctor...</value>

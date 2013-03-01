@@ -417,6 +417,10 @@ Voulez-vous désactiver ce patient?</value>
     <value>Lier un médecin...</value>
     <comment>Bind a doctor...</comment>
   </data>
+  <data name="Title_BindTag" xml:space="preserve">
+    <value>Lier une étiquette...</value>
+    <comment>Bind a tag...</comment>
+  </data>
   <data name="Title_Page" xml:space="preserve">
     <value>Informations du patient</value>
     <comment>Informations du patient</comment>
@@ -426,8 +430,8 @@ Voulez-vous désactiver ce patient?</value>
     <comment>Patient overview</comment>
   </data>
   <data name="Title_RemoveTag" xml:space="preserve">
-    <value>Supprimer un tag de recherche</value>
-    <comment>Remove search tag</comment>
+    <value>Délier un tag de recherche</value>
+    <comment>Unbind search tag</comment>
   </data>
   <data name="Title_TitleWatermark" xml:space="preserve">
     <value>Chercher un médecin...</value>
