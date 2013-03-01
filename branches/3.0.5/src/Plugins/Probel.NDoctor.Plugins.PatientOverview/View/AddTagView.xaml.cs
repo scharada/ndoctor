@@ -21,18 +21,8 @@
 
 namespace Probel.NDoctor.Plugins.PatientOverview.View
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Documents;
     using System.Windows.Input;
-    using System.Windows.Media;
-    using System.Windows.Media.Imaging;
-    using System.Windows.Shapes;
 
     using Probel.NDoctor.Plugins.PatientOverview.ViewModel;
 
@@ -50,5 +40,14 @@ namespace Probel.NDoctor.Plugins.PatientOverview.View
         }
 
         #endregion Constructors
+
+        #region Methods
+
+        private void this_Loaded(object sender, RoutedEventArgs e)
+        {
+            Keyboard.Focus(this.focused);
+        }
+
+        #endregion Methods
     }
 }
