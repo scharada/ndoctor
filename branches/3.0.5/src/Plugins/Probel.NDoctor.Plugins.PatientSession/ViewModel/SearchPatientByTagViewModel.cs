@@ -16,6 +16,7 @@ along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
 namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Threading;
@@ -25,11 +26,10 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.Mvvm.DataBinding;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.Domain.DTO.Objects;
-    using Probel.NDoctor.View.Core.ViewModel;
-    using Probel.NDoctor.View.Plugins;
-    using System;
     using Probel.NDoctor.Domain.DTO.Specifications;
     using Probel.NDoctor.Plugins.PatientSession.Properties;
+    using Probel.NDoctor.View.Core.ViewModel;
+    using Probel.NDoctor.View.Plugins;
 
     internal class SearchPatientByTagViewModel : BaseViewModel
     {
@@ -41,6 +41,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
         private readonly ICommand selectPatientCommand;
 
         private bool isBusy;
+        private Tuple<Operator, string> selectedOperator;
         private LightPatientDto selectedPatient;
 
         #endregion Fields
@@ -62,21 +63,6 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             this.SelectedOperator = this.LogicalOperators[0];
         }
 
-        private Tuple<Operator, string> selectedOperator;
-        public Tuple<Operator, string> SelectedOperator
-        {
-            get { return this.selectedOperator; }
-            set
-            {
-                this.selectedOperator = value;
-                this.OnPropertyChanged(() => SelectedOperator);
-            }
-        }
-        public ObservableCollection<Tuple<Operator, string>> LogicalOperators
-        {
-            get;
-            private set;
-        }
         #endregion Constructors
 
         #region Properties
@@ -103,6 +89,12 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
             }
         }
 
+        public ObservableCollection<Tuple<Operator, string>> LogicalOperators
+        {
+            get;
+            private set;
+        }
+
         public ICommand RefreshCommand
         {
             get { return this.refreshCommand; }
@@ -117,6 +109,16 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
         {
             get;
             private set;
+        }
+
+        public Tuple<Operator, string> SelectedOperator
+        {
+            get { return this.selectedOperator; }
+            set
+            {
+                this.selectedOperator = value;
+                this.OnPropertyChanged(() => SelectedOperator);
+            }
         }
 
         public LightPatientDto SelectedPatient
