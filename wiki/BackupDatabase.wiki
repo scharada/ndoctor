@@ -1,0 +1,31 @@
+#summary Automatically backup the database
+
+= Introduction =
+
+The most important part of nDoctor is its database. IT contains everything about your medical practice. It is therefore VERY important to make backups on a regular basis.
+
+You can manually save the database into a secured place but it is a lot more interesting to let Windows do it for you. Isn't it?
+
+
+= Where is the database =
+
+The database is stored into `%APPDATA%\probel\ndoctor\Database.db`. If your user account is "johndoe", then the file is stored in  `C:\Users\johndoe\AppData\Roaming\Probel\nDoctor\Database.db`
+
+To open the repository, the simplest is to open the "Run Window" (The shortcut is `WIN+R` and type `%APPDATA%\probel\ndoctor`
+
+= What kind of database is it? =
+
+The database is [http://www.sqlite.org/ SQLite] a small local database. It is well known and used in software such as Android or Firefox.
+
+= How do I make a oneshot backup? =
+
+You have a choice between to easy way to do it.
+
+ * Using the file explorer:
+  * Open the _file explorer_ (WIN+D) or simply click on the shortcut
+  * On the address bar, type "`%APPDATA%\probel\ndoctor`"
+  * Find the file "`Database.db`" and copy it in a safe place.
+ * Using the command line
+  * Open the "_Run Window_"
+
+[`Work in progress`]
