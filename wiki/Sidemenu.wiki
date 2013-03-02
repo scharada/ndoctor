@@ -48,6 +48,7 @@
    * [RescueTools Rescue Tools]
    * [ConfigureCalendar Calendar]
    * [DebuggingTools Debugging tools]
+   * [BackupDatabase Automatic database backup]
   * Install
    * [BetaInstallation the binaries]
    * [Installer with the installer]
