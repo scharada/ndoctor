@@ -37,4 +37,4 @@ https://lh6.googleusercontent.com/-vFrbUdTGsCc/UTIvl_JwtbI/AAAAAAAAAYs/Kysagtelt
 
 
 = How to automatise the backup? =
-The simplest thing to do is to make a scheduled task
+[`Work in progress`]
