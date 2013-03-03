@@ -27,5 +27,14 @@ You have a choice between to easy way to do it.
   * Find the file "`Database.db`" and copy it in a safe place.
  * Using the command line
   * Open the "_Run Window_"
+  * Type "`powershell`"
 
-[`Work in progress`]
+https://lh5.googleusercontent.com/-l8hSuiTNT3A/UTIvlOf-gyI/AAAAAAAAAYg/CtKPYWUHyfY/s413/1.jpg
+
+  * At the command prompt, type this command: "`cp $env:APPDATA\probel\ndoctor\Database.db $env:USERPROFILE\Desktop\Database.db`"
+
+https://lh6.googleusercontent.com/-vFrbUdTGsCc/UTIvl_JwtbI/AAAAAAAAAYs/Kysagteltlo/s885/2.jpg
+
+
+= How to automatise the backup? =
+The simplest thing to do is to make a scheduled task
