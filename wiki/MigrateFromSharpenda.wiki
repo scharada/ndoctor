@@ -7,7 +7,7 @@ If you have a database from Sharpenda, you maybe want to import the data into nD
 First of all, make backups of the database. [BackupDatabase Here are the backup explanations]
 
 
-= How to make the backup? =
+= How to activate the importer? =
 
  * Open nDoctor
  * Click on the _Application menu_ => _Settings_
@@ -22,6 +22,9 @@ https://lh5.googleusercontent.com/-PEq41JrSZ3c/UTIvunYww5I/AAAAAAAAAZw/La7YOjgbJ
 https://lh6.googleusercontent.com/-uWHAgUyTWZk/UTIvulT1WdI/AAAAAAAAAZ8/_IkXOseu3jw/s600/2.jpg
 
  * Restart nDoctor
+
+= How to make the backup? =
+
  * Click on the _Application menu_ => _Import data_
 
 https://lh6.googleusercontent.com/-etbVebcbq0c/UTIvuo45p4I/AAAAAAAAAZ4/R7bUmHA353A/s519/3.jpg
