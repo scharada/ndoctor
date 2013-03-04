@@ -22,7 +22,7 @@ The database is [http://www.sqlite.org/ SQLite] a small local database. It is we
 You can choose between two easy ways to do it.
 
  * Using the file explorer:
-  * Open the _file explorer_ (WIN+D) or simply click on the shortcut
+  * Open the _file explorer_ (WIN+E) or simply click on the shortcut
   * On the address bar, type "`%APPDATA%\probel\ndoctor`"
   * Find the file "`Database.db`" and copy it in a safe place.
  * Using the command line
