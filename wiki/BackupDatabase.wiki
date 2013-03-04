@@ -19,7 +19,7 @@ The database is [http://www.sqlite.org/ SQLite] a small local database. It is we
 
 = How do I make a oneshot backup? =
 
-You have can choose between two easy ways to do it.
+You can choose between two easy ways to do it.
 
  * Using the file explorer:
   * Open the _file explorer_ (WIN+D) or simply click on the shortcut
