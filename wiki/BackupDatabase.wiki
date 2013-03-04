@@ -7,7 +7,7 @@ The most important part of nDoctor is its database. It contains everything about
 You can manually save the database into a secured place but it is a lot more interesting to let Windows do it for you. Isn't it?
 
 
-= Where is the database =
+= Where is the database? =
 
 The database is stored into `%APPDATA%\probel\ndoctor\Database.db`. If your user account is "johndoe", then the file is stored in  `C:\Users\johndoe\AppData\Roaming\Probel\nDoctor\Database.db`
 
