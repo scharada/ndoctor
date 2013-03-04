@@ -2,7 +2,7 @@
 
 = Introduction =
 
-The most important part of nDoctor is its database. IT contains everything about your medical practice. It is therefore VERY important to make backups on a regular basis.
+The most important part of nDoctor is its database. It contains everything about your medical practice. It is therefore VERY important to make backups on a regular basis.
 
 You can manually save the database into a secured place but it is a lot more interesting to let Windows do it for you. Isn't it?
 
