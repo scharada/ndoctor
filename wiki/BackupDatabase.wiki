@@ -26,7 +26,7 @@ You can choose between two easy ways to do it.
   * On the address bar, type "`%APPDATA%\probel\ndoctor`"
   * Find the file "`Database.db`" and copy it in a safe place.
  * Using the command line
-  * Open the "_Run Window_"
+  * Open the "_Run Window_" (WIN+R)
   * Type "`powershell`"
 
 https://lh5.googleusercontent.com/-l8hSuiTNT3A/UTIvlOf-gyI/AAAAAAAAAYg/CtKPYWUHyfY/s413/1.jpg
