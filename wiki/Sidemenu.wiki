@@ -44,6 +44,7 @@
  * [Deploy Deploy]
  * Support
   * User manual
+   * [MigrateFromSharpenda Import from Sharpenda]
    * [SearchTools Search patients]
    * [RescueTools Rescue Tools]
    * [ConfigureCalendar Calendar]
