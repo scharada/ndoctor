@@ -63,6 +63,8 @@ https://lh6.googleusercontent.com/--WrTD7L9XMA/UTIvlf3euWI/AAAAAAAAAYI/c0prHuzys
 https://lh6.googleusercontent.com/-rViPo79sQ-Y/UTIvlcK2WcI/AAAAAAAAAYY/L20fB_mqiO8/s997/11.jpg
 
  * Close the prompt
+
+== Configure a scheduled task ==
  * Open the "_Start Menu_", right-click on "_Computer_" and select "_Manage_"
  * Select "_Create Basic Task_"
 
