@@ -84,7 +84,7 @@ https://lh6.googleusercontent.com/-OkyH4_sQ1wo/UTIvnZw-2DI/AAAAAAAAAZI/CI5Af4paQ
 https://lh6.googleusercontent.com/-FvTc5SDwXOc/UTIvnWsCzII/AAAAAAAAAZM/Rv96h7vceSw/s710/7.jpg
 
  * On the text box "_Program/script_" write: "_powershell.exe_" (Point 1)
- * On the text box "_Add arguments (optional)_" specify the path of the created script (For example: "C:\Directory\The_Name_Of_The_Script.ps1". (Point 2)
+ * On the text box "_Add arguments (optional)_" specify the path of the created script (For example: "C:\Path_To_The_File\ndoctorbackup.ps1". (Point 2)
  * Click on "_Next_"
 
 https://lh5.googleusercontent.com/-41PSpMTitbI/UTIvnzkjZ_I/AAAAAAAAAZU/uZiqU1ZUiIE/s710/8.jpg
