@@ -34,7 +34,7 @@ https://lh5.googleusercontent.com/-6TWfwrhT5Ww/UTTwYtjCHeI/AAAAAAAAAao/l5Bvjn_64
 
 https://lh5.googleusercontent.com/-l8hSuiTNT3A/UTIvlOf-gyI/AAAAAAAAAYg/CtKPYWUHyfY/s413/1.jpg
 
-  * At the command prompt, type this command: "`cp $env:APPDATA\probel\ndoctor\Database.db $env:USERPROFILE\Desktop\Database.db`"
+  * At the command prompt, type this command: "`cp $env:APPDATA\probel\ndoctor\Database.db $env:USERPROFILE\Desktop\Database.db`" (It will copy the file into the Desktop)
 
 https://lh6.googleusercontent.com/-vFrbUdTGsCc/UTIvl_JwtbI/AAAAAAAAAYs/Kysagteltlo/s885/2.jpg
 
