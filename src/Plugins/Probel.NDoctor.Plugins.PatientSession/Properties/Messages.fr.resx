@@ -121,6 +121,10 @@
     <value>Ajouter</value>
     <comment>Add</comment>
   </data>
+  <data name="Cb_AutomaticLoad" xml:space="preserve">
+    <value>Charger le patient directement après sa création</value>
+    <comment>Load the patient just after creation</comment>
+  </data>
   <data name="Criteria_ByBirthdata" xml:space="preserve">
     <value>Date de naissance:</value>
     <comment>Birthdate</comment>
@@ -168,6 +172,14 @@
   <data name="Ex_NotNumericValue" xml:space="preserve">
     <value>La valeur spécifiée n'est pas numérique.</value>
     <comment>The specified value is not numeric</comment>
+  </data>
+  <data name="Gb_AdvancedSearch" xml:space="preserve">
+    <value>Recherche avancée</value>
+    <comment>Advanced Search</comment>
+  </data>
+  <data name="Gb_Misc" xml:space="preserve">
+    <value>Divers</value>
+    <comment>Miscellaneous</comment>
   </data>
   <data name="Gb_SearchTags" xml:space="preserve">
     <value>Etiquettes de recherche</value>

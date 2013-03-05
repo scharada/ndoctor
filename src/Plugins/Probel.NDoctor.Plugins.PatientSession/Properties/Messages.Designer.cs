@@ -70,6 +70,15 @@ namespace Probel.NDoctor.Plugins.PatientSession.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Load the patient just after creation.
+        /// </summary>
+        internal static string Cb_AutomaticLoad {
+            get {
+                return ResourceManager.GetString("Cb_AutomaticLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Birthdate:.
         /// </summary>
         internal static string Criteria_ByBirthdata {
@@ -174,6 +183,24 @@ namespace Probel.NDoctor.Plugins.PatientSession.Properties {
         internal static string Ex_NotNumericValue {
             get {
                 return ResourceManager.GetString("Ex_NotNumericValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced Search.
+        /// </summary>
+        internal static string Gb_AdvancedSearch {
+            get {
+                return ResourceManager.GetString("Gb_AdvancedSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Miscellaneous.
+        /// </summary>
+        internal static string Gb_Misc {
+            get {
+                return ResourceManager.GetString("Gb_Misc", resourceCulture);
             }
         }
         

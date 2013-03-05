@@ -19,39 +19,52 @@
     </UserControl.Resources>
     <DockPanel LastChildFill="True">
         <StackPanel>
-            <TextBlock Margin="4"                    
-                   Width="350"
-                   Text="{Binding Source={x:Static Member=t:SettingsText.Explanations}}" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" />
-            
-            <GroupBox Header="{Binding Source={x:Static Member=t:SettingsText.Specifications}}"
-                      x:Name="userControl"
+            <GroupBox Header="{x:Static Member=t:SettingsText.AdvancedSearch}"
                       Margin="4"
                       DockPanel.Dock="Top">
                 <StackPanel>
-                    <CheckBox Margin="4"
+                    <TextBlock Margin="4"     
+                               Width="350"
+                               Text="{Binding Source={x:Static Member=t:SettingsText.Explanations}}" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" />
+
+                    <GroupBox Header="{Binding Source={x:Static Member=t:SettingsText.Specifications}}"
+                              x:Name="userControl"
+                              Margin="4">
+                        <StackPanel>
+                            <CheckBox Margin="4"
                               Content="{Binding Source={x:Static Member=t:SettingsText.Profession}}"
                               IsChecked="{Binding ShowProfession}"/>
-                    
-                    <CheckBox Margin="4"
+
+                            <CheckBox Margin="4"
                               Content="{Binding Source={x:Static Member=t:SettingsText.Birthdate}}"
                               IsChecked="{Binding ShowBirthdate}"/>
-                    
-                    <CheckBox Margin="4"
+
+                            <CheckBox Margin="4"
                               Content="{Binding Source={x:Static Member=t:SettingsText.InscriptionDate}}"
                               IsChecked="{Binding ShowInscriptionDate}"/>
-                    
-                    <CheckBox Margin="4"
+
+                            <CheckBox Margin="4"
                               Content="{Binding Source={x:Static Member=t:SettingsText.LastUpdate}}"
                               IsChecked="{Binding ShowLastUpdate}"/>
-                    
-                    <CheckBox Margin="4"
+
+                            <CheckBox Margin="4"
                               Content="{Binding Source={x:Static Member=t:SettingsText.City}}"
                               IsChecked="{Binding ShowCity}"/>
-                    
-                    <CheckBox Margin="4"
+
+                            <CheckBox Margin="4"
                               Content="{Binding Source={x:Static Member=t:SettingsText.Reason}}"
                               IsChecked="{Binding ShowReason}"/>
+                        </StackPanel>
+
+                    </GroupBox>
                 </StackPanel>
+            </GroupBox>
+            <GroupBox Header="{x:Static Member=t:SettingsText.Miscellaneous}"
+                      Margin="4"
+                      DockPanel.Dock="Top">
+                <CheckBox Margin="4"
+                          Content="{x:Static Member=t:SettingsText.AutomaticLoad}"
+                          IsChecked="{Binding LoadPatientAfterCreation}"/>
             </GroupBox>
         </StackPanel>
     </DockPanel>

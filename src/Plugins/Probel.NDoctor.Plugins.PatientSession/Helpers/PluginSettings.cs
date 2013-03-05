@@ -34,6 +34,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.Helpers
         private const string CITY = "ShowCity";
         private const string INSCRIPTION = "ShowInscriptionDate";
         private const string LAST_UPDATE = "ShowLastUpdate";
+        private const string LOAD_PATIENT_AFTER_CREATION = "LoadPatientAfterCreation";
         private const string PROFESSION = "ShowProfession";
         private const string REASON = "ShowReason";
         private const string SECTION = "Criterion";
@@ -53,6 +54,12 @@ namespace Probel.NDoctor.Plugins.PatientSession.Helpers
         #endregion Constructors
 
         #region Properties
+
+        public bool LoadPatientAfterCreation
+        {
+            get { return this.GetValue(LOAD_PATIENT_AFTER_CREATION); }
+            set { this.SetValue(LOAD_PATIENT_AFTER_CREATION, value); }
+        }
 
         public bool ShowBirthdate
         {
@@ -84,7 +91,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.Helpers
             set { this.SetValue(PROFESSION, value); }
         }
 
-        public bool SHowReason
+        public bool ShowReason
         {
             get { return this.GetValue(REASON); }
             set { this.SetValue(REASON, value); }
