@@ -1,6 +1,11 @@
 = Troubleshooting: =
 Here's the list of some problem you could encounter when installing a development machine.
 
+== This my first checkout and I have compilation errors: "The name "RibbonWindow" does not exist in the namespace "clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"" ==
+
+
+Just [http://www.microsoft.com/download/en/details.aspx?id=11877 download] and install the Ribbon Library
+
 == nAnt is crashing displaying a security error message: ==
 You have to create yourself the `nAnt` directory into `%programfiles%` and copy/paste the nAnt files into the freshly created directory. In this way, Windows 7 doesn't believe these files are untrusted internet files.
 
