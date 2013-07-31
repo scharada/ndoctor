@@ -1,7 +1,7 @@
 = Troubleshooting: =
 Here's the list of some problem you could encounter when installing a development machine.
 
-== This my first checkout and I have compilation errors: "The name "RibbonWindow" does not exist in the namespace "clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"" ==
+== I've made my first checkout and I have compilation errors: `"The name "RibbonWindow" does not exist in the namespace "clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary""` ==
 
 
 Just [http://www.microsoft.com/download/en/details.aspx?id=11877 download] and install the Ribbon Library
