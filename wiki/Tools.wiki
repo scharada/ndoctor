@@ -14,7 +14,9 @@ Here's the list of tools used to develop nDoctor
  * [http://www.voidtools.com/ Everything]
  * [http://getgreenshot.org/ Greenshot]
  * [http://www.7-zip.org/ 7-Zip]
- * [http://sourceforge.net/projects/console/ Console2]
+ * [http://sourceforge.net/projects/console/ Console2] [`Not used anymore`]
+ * [https://code.google.com/p/conemu-maximus5/ ConEmu]
+
 == Developer tools ==
  * [http://www.webresourcesdepot.com/learn-test-regular-expressions-with-the-regulator/ Regulator]
  * [http://nant.sourceforge.net/ nAnt]
@@ -25,6 +27,7 @@ Here's the list of tools used to develop nDoctor
  * [http://www.nunit.org/index.php nUnit]
  * [https://www.virtualbox.org/ Virtual Box]
  * [http://wix.codeplex.com/releases/view/93929 WiX installer]
+
 == Scripting ==
  * [http://www.python.org/download/ Python] [`Not used anymore`]
  * [http://powergui.org/index.jspa PowerGui]
