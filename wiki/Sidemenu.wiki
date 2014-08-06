@@ -44,7 +44,7 @@
  * [Deploy Deploy]
  * Support
   * User manual
-   * [MigrateFromSharpenda Import from Sharpenda]
+   * [MigrateFromSharpenda Import from Phoenix Suite]
    * [SearchTools Search patients]
    * [RescueTools Rescue Tools]
    * [ConfigureCalendar Calendar]
