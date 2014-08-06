@@ -2,7 +2,7 @@
 
 = Introduction =
 
-If you have a database from Sharpenda, you maybe want to import the data into nDoctor. Here's how you have to do
+If you have a database from Phoenix Suite, you maybe want to import the data into nDoctor. Here's how you have to do
 
 First of all, make backups of the database. [BackupDatabase Here are the backup explanations]
 
