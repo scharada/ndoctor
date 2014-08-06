@@ -1,4 +1,4 @@
-#summary Import a Sharpenda's Database
+#summary Import a Phoenix Suite's Database
 
 = Introduction =
 
