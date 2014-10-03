@@ -134,7 +134,7 @@ namespace Probel.NDoctor.Domain.DAL.Components
                 var firstInscription = this.Session.Query<Patient>().Min(e => e.InscriptionDate).Year;
                 var chart = new Chart<DateTime, int>();
 
-                for (int i = firstInscription; i < DateTime.Today.Year; i++)
+                for (int i = firstInscription; i <= DateTime.Today.Year; i++)
                 {
                     var count = (from p in this.Session.Query<Patient>()
                                  where p.InscriptionDate.Year <= i

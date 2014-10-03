@@ -20,6 +20,7 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
     using System.Collections.Generic;
     using System.IO;
     using System.Windows;
+    using System.Windows.Input;
     using System.Xml;
 
     using ICSharpCode.AvalonEdit.CodeCompletion;
@@ -104,7 +105,6 @@ namespace Probel.NDoctor.Plugins.MedicalRecord.View
                         completionWindow = null;
                     };
                 }
-
             };
         }
 

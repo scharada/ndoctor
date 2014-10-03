@@ -25,11 +25,11 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.PatientSession.Helpers;
     using Probel.NDoctor.Plugins.PatientSession.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins;
     using Probel.NDoctor.View.Toolbox;
-    using Probel.NDoctor.Plugins.PatientSession.Helpers;
 
     internal class AddPatientViewModel : BaseViewModel
     {
