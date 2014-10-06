@@ -183,6 +183,15 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
                     select t).Count() == 0;
         }
 
+        public bool CanRemove(SearchTagDto item)
+        {
+            return (from p in this.Session.Query<Patient>()
+                    where (from t in p.SearchTags
+                           where t.Id == item.Id
+                           select t).Count() > 0
+                    select p).Count() == 0;
+        }
+
         /// <summary>
         /// Removes item with the specified id.
         /// </summary>
@@ -382,6 +391,11 @@ namespace Probel.NDoctor.Domain.DAL.Subcomponents
         {
             Assert.IsNotNull(item, "item");
             this.Remove<Macro>(item);
+        }
+
+        public void Remove(SearchTagDto item)
+        {
+            this.Remove<SearchTag>(item);
         }
 
         /// <summary>

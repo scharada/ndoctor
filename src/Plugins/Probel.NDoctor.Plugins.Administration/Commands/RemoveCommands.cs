@@ -51,6 +51,7 @@ namespace Probel.NDoctor.Plugins.Administration.Commands
             this.ReputationCommand = new RelayCommand(() => this.RemoveReputation(), () => this.ViewModel.SelectedReputation != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
             this.TagCommand = new RelayCommand(() => this.RemoveTag(), () => this.ViewModel.SelectedTag != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
             this.DoctorCommand = new RelayCommand(() => this.RemoveDoctor(), () => this.ViewModel.SelectedDoctor != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.SearchTagCommand = new RelayCommand(() => this.RemoveSearchTag(), () => this.ViewModel.SelectedSearchTag != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
         }
 
         #endregion Constructors
@@ -94,6 +95,12 @@ namespace Probel.NDoctor.Plugins.Administration.Commands
         }
 
         public ICommand ReputationCommand
+        {
+            get;
+            private set;
+        }
+
+        public ICommand SearchTagCommand
         {
             get;
             private set;
@@ -225,6 +232,23 @@ namespace Probel.NDoctor.Plugins.Administration.Commands
                 }
                 else { ViewService.MessageBox.Warning(Messages.Msg_CantDelete); }
 
+            }
+            catch (Exception ex) { this.Handle.Error(ex); }
+        }
+
+        private void RemoveSearchTag()
+        {
+            try
+            {
+                if (this.Component.CanRemove(this.ViewModel.SelectedSearchTag))
+                {
+                    if (this.UserAcceptedDeletion())
+                    {
+                        this.Component.Remove(this.ViewModel.SelectedSearchTag);
+                        this.ViewModel.Refresh();
+                    }
+                }
+                else { ViewService.MessageBox.Warning(Messages.Msg_CantDelete); }
             }
             catch (Exception ex) { this.Handle.Error(ex); }
         }

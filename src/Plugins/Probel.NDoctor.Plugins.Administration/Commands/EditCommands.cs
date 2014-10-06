@@ -46,6 +46,7 @@ namespace Probel.NDoctor.Plugins.Administration.Commands
             this.ReputationCommand = new RelayCommand(() => this.EditReputation(), () => this.ViewModel.SelectedReputation != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
             this.TagCommand = new RelayCommand(() => this.EditTag(), () => this.ViewModel.SelectedTag != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
             this.DoctorCommand = new RelayCommand(() => this.EditDoctor(), () => this.ViewModel.SelectedDoctor != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
+            this.SearchTagCommand = new RelayCommand(() => this.EditSearchTag(), () => this.ViewModel.SelectedSearchTag != null && PluginContext.DoorKeeper.IsUserGranted(To.Write));
         }
 
         #endregion Constructors
@@ -89,6 +90,12 @@ namespace Probel.NDoctor.Plugins.Administration.Commands
         }
 
         public ICommand ReputationCommand
+        {
+            get;
+            private set;
+        }
+
+        public ICommand SearchTagCommand
         {
             get;
             private set;
@@ -223,6 +230,23 @@ namespace Probel.NDoctor.Plugins.Administration.Commands
                     catch (Exception ex) { this.Handle.Error(ex); }
                 });
                 vm.BoxItem = this.ViewModel.SelectedReputation;
+            });
+        }
+
+        private void EditSearchTag()
+        {
+            ViewService.Manager.ShowDialog<AddSearchTagViewModel>(vm =>
+            {
+                vm.AddCommand = new RelayCommand(() =>
+                {
+                    try
+                    {
+                        this.Component.Update(this.ViewModel.SelectedSearchTag);
+                        vm.Close();
+                    }
+                    catch (Exception ex) { this.Handle.Error(ex); }
+                });
+                vm.BoxItem = this.ViewModel.SelectedSearchTag;
             });
         }
 

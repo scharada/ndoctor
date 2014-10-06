@@ -69,7 +69,6 @@ namespace Probel.NDoctor.View.Core
         /// <summary>
         /// Initializes a new instance of the <see cref="App"/> class.
         /// </summary>
-        /// <exception cref="T:System.InvalidOperationException">More than one instance of the <see cref="T:System.Windows.Application"/> class is created per <see cref="T:System.AppDomain"/>.</exception>
         public App()
         {
             this.MainWindow = new MainWindow();
@@ -172,6 +171,8 @@ namespace Probel.NDoctor.View.Core
                 //Hook the console to the application to have logging features
                 AllocConsole();
             }
+
+            //Configure Log4Net
             XmlConfigurator.Configure();
 
             base.OnStartup(e);

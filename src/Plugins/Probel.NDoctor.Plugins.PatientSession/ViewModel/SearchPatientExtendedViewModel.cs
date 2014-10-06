@@ -359,10 +359,10 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 
         public bool ShowReason
         {
-            get { return this.Settings.SHowReason; }
+            get { return this.Settings.ShowReason; }
             set
             {
-                this.Settings.SHowReason = value;
+                this.Settings.ShowReason = value;
                 this.OnPropertyChanged(() => ShowReason);
             }
         }

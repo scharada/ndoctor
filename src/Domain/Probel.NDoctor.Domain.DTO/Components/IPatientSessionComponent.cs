@@ -65,6 +65,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         IList<ProfessionDto> GetAllProfessions();
 
         /// <summary>
+        /// Gets all search tags.
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<SearchTagDto> GetAllSearchTags();
+
+        /// <summary>
         /// Gets the count of the specified patient. That's the number of time he/she was selected
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -87,6 +93,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="search">The search should be done on the specified property.</param>
         /// <returns></returns>
         IList<LightPatientDto> GetPatientsByNameLight(string criterium, SearchOn search);
+
+        /// <summary>
+        /// Gets the patients with the specified tags.
+        /// </summary>
+        /// <param name="tags">The tags.</param>
+        /// <returns>An enumeration of patients that have the specified tags</returns>
+        IEnumerable<LightPatientDto> GetPatientsWithTags(IEnumerable<SearchTagDto> tags, Operator @operator);
 
         /// <summary>
         /// Gets all the tags with the specified catagory.

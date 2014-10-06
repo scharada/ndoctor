@@ -74,6 +74,7 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
                 .ForMember(dest => dest.Password, opt => opt.Ignore())
                 .ForMember(dest => dest.Practice, opt => opt.Ignore());
 
+            Mapper.CreateMap<SearchTagDto, SearchTag>();
             Mapper.CreateMap<AddressDto, Address>();
             Mapper.CreateMap<PracticeDto, Practice>();
             Mapper.CreateMap<InsuranceDto, Insurance>();
@@ -119,6 +120,7 @@ namespace Probel.NDoctor.Domain.DAL.Mappings
                 .AfterMap((entity, dto) => Clean(dto))
                 .ConstructUsing(e => new TaskDto(e.RefName));
 
+            Mapper.CreateMap<SearchTag, SearchTagDto>();
             Mapper.CreateMap<Address, AddressDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Practice, PracticeDto>().AfterMap((entity, dto) => Clean(dto));
             Mapper.CreateMap<Insurance, InsuranceDto>().AfterMap((entity, dto) => Clean(dto));

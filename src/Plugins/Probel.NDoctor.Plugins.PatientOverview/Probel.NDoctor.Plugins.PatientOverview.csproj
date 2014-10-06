@@ -95,6 +95,7 @@
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
     <Compile Include="Translations\BoxesText.cs" />
+    <Compile Include="Translations\TagText.cs" />
     <Compile Include="Translations\WorkbenchText.cs" />
     <Compile Include="ViewModel\AddDoctorViewModel.cs" />
     <Compile Include="ViewModel\AddInsuranceViewModel.cs" />
@@ -102,8 +103,12 @@
     <Compile Include="ViewModel\AddProfessionViewModel.cs" />
     <Compile Include="ViewModel\AddReputationViewModel.cs" />
     <Compile Include="ViewModel\AddSpecialisationViewModel.cs" />
+    <Compile Include="ViewModel\AddTagViewModel.cs" />
     <Compile Include="ViewModel\BindDoctorViewModel.cs" />
+    <Compile Include="ViewModel\BindTagViewModel.cs" />
     <Compile Include="ViewModel\InsertionViewModel.cs" />
+    <Compile Include="ViewModel\RemoveTagViewModel.cs" />
+    <Compile Include="ViewModel\TagViewModel.cs" />
     <Compile Include="ViewModel\UnbindDoctorViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
     <Compile Include="View\AddDoctorView.xaml.cs">
@@ -124,8 +129,17 @@
     <Compile Include="View\AddSpecialisationView.xaml.cs">
       <DependentUpon>AddSpecialisationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AddTagView.xaml.cs">
+      <DependentUpon>AddTagView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\BindDoctorView.xaml.cs">
       <DependentUpon>BindDoctorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BindTagView.xaml.cs">
+      <DependentUpon>BindTagView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RemoveTagView.xaml.cs">
+      <DependentUpon>RemoveTagView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UnbindDoctorView.xaml.cs">
       <DependentUpon>UnbindDoctorView.xaml</DependentUpon>
@@ -193,7 +207,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AddTagView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\BindDoctorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BindTagView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RemoveTagView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -255,6 +281,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Deactivate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TagAdd.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

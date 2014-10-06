@@ -195,6 +195,35 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets the tag with the specified name. If nohting is found, <c>NULL</c> is returned
+        /// </summary>
+        /// <param name="name">The default name.</param>
+        /// <returns>
+        /// The tag with the specified name if found; otherwise <c>NULL</c>
+        /// </returns>
+        public TagDto GetTag(string name)
+        {
+            var entity = (from t in this.Session.Query<Tag>()
+                          where t.Name == name
+                          select t).FirstOrDefault();
+            return (entity != null)
+                ? Mapper.Map<Tag, TagDto>(entity)
+                : null;
+        }
+
+        /// <summary>
+        /// Gets the untagged patients.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<LightPatientDto> GetUntaggedPatients()
+        {
+            var entities = (from p in this.Session.Query<Patient>()
+                            where p.Tag == null
+                            select p).ToList();
+            return Mapper.Map<IEnumerable<Patient>, IEnumerable<LightPatientDto>>(entities);
+        }
+
+        /// <summary>
         /// Finds the patients older than the specified age.
         /// </summary>
         /// <param name="age">The age of the patient in years.</param>
@@ -234,6 +263,23 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Sets the specified tag to the list of patients.
+        /// </summary>
+        /// <param name="tag">The tag to set.</param>
+        /// <param name="patients">The patients.</param>
+        public void SetTag(TagDto tag, IEnumerable<LightPatientDto> patients)
+        {
+            var eTag = GetTag(tag);
+
+            var ePatients = this.Load(patients);
+            foreach (var patient in ePatients)
+            {
+                patient.Tag = eTag;
+                this.Session.Update(patient);
+            }
+        }
+
+        /// <summary>
         /// Updates the deactivation value for the specified patients.
         /// </summary>
         /// <param name="patients">The patients.</param>
@@ -270,6 +316,30 @@ namespace Probel.NDoctor.Domain.DAL.Components
                                && doc.Specialisation.Id == specialisation.Id
                             select doc).AsEnumerable();
             return Mapper.Map<IEnumerable<Doctor>, IEnumerable<LightDoctorDto>>(entities);
+        }
+
+        private Tag GetTag(TagDto tag)
+        {
+            var eTag = (from t in this.Session.Query<Tag>()
+                        where t.Id == tag.Id
+                        select t).FirstOrDefault();
+            if (eTag == null)
+            {
+                eTag = Mapper.Map<TagDto, Tag>(tag);
+                var id = this.Session.Save(eTag);
+                eTag = this.Session.Get<Tag>(id);
+            }
+            return eTag;
+        }
+
+        private IEnumerable<Patient> Load(IEnumerable<LightPatientDto> patients)
+        {
+            var ids = (from p in patients
+                       select p.Id).ToList();
+
+            return (from patient in this.Session.Query<Patient>()
+                    where ids.Contains(patient.Id)
+                    select patient).ToList();
         }
 
         private void Replace(IEnumerable<LightDoctorDto> doubloons, LightDoctorDto withDoctor, IEnumerable<Patient> preloadedPatients)

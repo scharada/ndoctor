@@ -50,6 +50,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
 
         private readonly ICommand changeImageCommand;
         private readonly ICommand deactivateCommand;
+        private readonly ICommand refreshTagsCommand;
         private readonly ICommand saveCommand;
         private readonly ICommand sendPrivateMailCommand;
         private readonly ICommand sendProMailCommand;
@@ -83,6 +84,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             this.Insurances = new ObservableCollection<LightInsuranceDto>();
             this.Practices = new ObservableCollection<LightPracticeDto>();
             this.Doctors = new ObservableCollection<LightDoctorDto>();
+            this.SearchTags = new ObservableCollection<SearchTagDto>();
 
             this.Genders = new ObservableCollection<Tuple<string, Gender>>();
             Genders.Add(new Tuple<string, Gender>(Messages.Male, Gender.Male));
@@ -94,6 +96,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             this.changeImageCommand = new RelayCommand(() => this.ChangeImage(), () => this.CanChangeImage());
             this.deactivateCommand = new RelayCommand(() => this.Deactivate(), () => this.CanDeactivate());
             this.setSelectedDoctorCommand = new RelayCommand(() => this.SetSelectedDoctor(), () => this.CanSetSelectedDoctor());
+            this.refreshTagsCommand = new RelayCommand(() => this.RefreshTags(), () => this.CanRefreshTags());
 
             PluginDataContext.Instance.DoctorBinded += (sender, e) => this.Doctors.Add(e.Data);
             PluginDataContext.Instance.DoctorUnbinded += (sender, e) =>
@@ -180,6 +183,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             private set;
         }
 
+        public ICommand RefreshTagsCommand
+        {
+            get { return this.refreshTagsCommand; }
+        }
+
         public ObservableCollection<ReputationDto> Reputations
         {
             get;
@@ -189,6 +197,12 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
         public ICommand SaveCommand
         {
             get { return this.saveCommand; }
+        }
+
+        public ObservableCollection<SearchTagDto> SearchTags
+        {
+            get;
+            private set;
         }
 
         public LightDoctorDto SelectedDoctor
@@ -329,6 +343,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
                 && PluginContext.DoorKeeper.IsUserGranted(To.Administer);
         }
 
+        private bool CanRefreshTags()
+        {
+            return true;
+        }
+
         private bool CanSave()
         {
             return PluginContext.DoorKeeper.IsUserGranted(To.Write);
@@ -383,6 +402,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             ctx.Professions = this.component.GetAllProfessions();
             ctx.SelectedPatient = this.component.GetPatient(selectedPatient);
             ctx.SelectedDoctor = this.component.GetFullDoctorOf(selectedPatient);
+            ctx.SearchTags = this.component.GetSearchTagsOf(selectedPatient);
             ctx.Doctors = this.component.GetFullDoctorOf(selectedPatient);
             if (ctx.SelectedPatient.Insurance != null) { ctx.SelectedInsurance = this.component.GetInsuranceById(ctx.SelectedPatient.Insurance.Id); }
             if (ctx.SelectedPatient.Practice != null) { ctx.SelectedPractice = this.component.GetPracticeById(ctx.SelectedPatient.Practice.Id); }
@@ -430,6 +450,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             this.SelectedPatient.Insurance = ctx.SelectedInsurance;
             this.SelectedPatient.Practice = ctx.SelectedPractice;
             this.RefreshComboBoxes();
+            this.SearchTags.Refill(ctx.SearchTags);
 
             this.IsBusy = false;
         }
@@ -468,6 +489,23 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
                 this.Logger.Warn("Trying to refresh the comboboxes while no patient is selected!");
                 return;
             }
+        }
+
+        private void RefreshTags()
+        {
+            new AsyncAction(this.Handle).ExecuteAsync<IEnumerable<SearchTagDto>>(
+                () => this.RefreshTagsAsync(),
+                t => this.RefreshTagsCallback(t));
+        }
+
+        private IEnumerable<SearchTagDto> RefreshTagsAsync()
+        {
+            return this.component.GetSearchTagsOf(this.SelectedPatient);
+        }
+
+        private void RefreshTagsCallback(IEnumerable<SearchTagDto> tags)
+        {
+            this.SearchTags.Refill(tags);
         }
 
         private void Save()
@@ -566,6 +604,12 @@ namespace Probel.NDoctor.Plugins.PatientOverview.ViewModel
             }
 
             public IEnumerable<ReputationDto> Reputations
+            {
+                get;
+                set;
+            }
+
+            public IEnumerable<SearchTagDto> SearchTags
             {
                 get;
                 set;

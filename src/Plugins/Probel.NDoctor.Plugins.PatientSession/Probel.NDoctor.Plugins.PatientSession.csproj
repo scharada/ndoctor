@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="Helpers\PluginSettings.cs" />
     <Compile Include="Translations\AddPatientText.cs" />
+    <Compile Include="Translations\SearchByTagText.cs" />
     <Compile Include="Translations\SearchPatientExtendedText.cs" />
     <Compile Include="Translations\SettingsText.cs" />
     <Compile Include="Translations\TopTenText.cs" />
@@ -99,24 +100,28 @@
     </Compile>
     <Compile Include="Translations\WorkbenchText.cs" />
     <Compile Include="ViewModel\AddPatientViewModel.cs" />
+    <Compile Include="ViewModel\SearchPatientByTagViewModel.cs" />
     <Compile Include="ViewModel\SearchPatientExtendedViewModel.cs" />
     <Compile Include="ViewModel\SearchPatientViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\TopTenViewModel.cs" />
-    <Compile Include="View\AddPatientControl.xaml.cs">
-      <DependentUpon>AddPatientControl.xaml</DependentUpon>
+    <Compile Include="View\AddPatientView.xaml.cs">
+      <DependentUpon>AddPatientView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SearchPatientControl.xaml.cs">
-      <DependentUpon>SearchPatientControl.xaml</DependentUpon>
+    <Compile Include="View\SearchPatientByTagView.xaml.cs">
+      <DependentUpon>SearchPatientByTagView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SearchPatientExtendedControl.xaml.cs">
-      <DependentUpon>SearchPatientExtendedControl.xaml</DependentUpon>
+    <Compile Include="View\SearchPatienView.xaml.cs">
+      <DependentUpon>SearchPatienView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SearchPatientExtendedView.xaml.cs">
+      <DependentUpon>SearchPatientExtendedView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\TopTenControl.xaml.cs">
-      <DependentUpon>TopTenControl.xaml</DependentUpon>
+    <Compile Include="View\TopTenView.xaml.cs">
+      <DependentUpon>TopTenView.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Messages.fr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -163,15 +168,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="View\AddPatientControl.xaml">
+    <Page Include="View\AddPatientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SearchPatientControl.xaml">
+    <Page Include="View\SearchPatientByTagView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SearchPatientExtendedControl.xaml">
+    <Page Include="View\SearchPatienView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SearchPatientExtendedView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -179,7 +188,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\TopTenControl.xaml">
+    <Page Include="View\TopTenView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -193,19 +193,27 @@ namespace Probel.NDoctor.View.Core.ViewModel
             timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += (sender, e) =>
             {
-                Logger.Debug("Checking new versions...");
-                timer.Stop();
-                var culture = Thread.CurrentThread.CurrentUICulture;
-                var versionNotifyer = new RemoteService().NewVersionNotifyer();
-                versionNotifyer.Checked += (sender1, e1) =>
+                try
                 {
-                    if (PluginContext.DbConfiguration.NotifyOnNewVersion)
+                    Logger.Debug("Checking new versions...");
+                    timer.Stop();
+                    var culture = Thread.CurrentThread.CurrentUICulture;
+                    var versionNotifyer = new RemoteService().NewVersionNotifyer();
+                    versionNotifyer.Checked += (sender1, e1) =>
                     {
-                        new UserInteraction(culture)
-                            .NotifyNewVersion(e1.RemoteVersion);
-                    }
-                };
-                versionNotifyer.Check(PluginContext.Configuration.Version);
+                        if (PluginContext.DbConfiguration.NotifyOnNewVersion)
+                        {
+                            new UserInteraction(culture)
+                                .NotifyNewVersion(e1.RemoteVersion);
+                        }
+                    };
+                    versionNotifyer.Check(PluginContext.Configuration.Version);
+                }
+                catch (Exception ex)
+                {
+                    //I swallow because I don't want to see the application crash because of the version check
+                    this.Logger.Warn("The version check crashed", ex);
+                }
             };
             timer.Start();
         }

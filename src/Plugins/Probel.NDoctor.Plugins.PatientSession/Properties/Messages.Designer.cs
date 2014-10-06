@@ -61,11 +61,20 @@ namespace Probel.NDoctor.Plugins.PatientSession.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add:.
+        ///   Looks up a localized string similar to Add.
         /// </summary>
         internal static string Btn_Add {
             get {
                 return ResourceManager.GetString("Btn_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load the patient just after creation.
+        /// </summary>
+        internal static string Cb_AutomaticLoad {
+            get {
+                return ResourceManager.GetString("Cb_AutomaticLoad", resourceCulture);
             }
         }
         
@@ -124,7 +133,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reason.
+        ///   Looks up a localized string similar to Reason:.
         /// </summary>
         internal static string Criteria_ByReason {
             get {
@@ -178,6 +187,33 @@ namespace Probel.NDoctor.Plugins.PatientSession.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advanced Search.
+        /// </summary>
+        internal static string Gb_AdvancedSearch {
+            get {
+                return ResourceManager.GetString("Gb_AdvancedSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Miscellaneous.
+        /// </summary>
+        internal static string Gb_Misc {
+            get {
+                return ResourceManager.GetString("Gb_Misc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search tags.
+        /// </summary>
+        internal static string Gb_SearchTags {
+            get {
+                return ResourceManager.GetString("Gb_SearchTags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search on....
         /// </summary>
         internal static string Gb_Specifications {
@@ -196,7 +232,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to birthdate.
+        ///   Looks up a localized string similar to the birthdate.
         /// </summary>
         internal static string Lbl_Birthdate {
             get {
@@ -376,7 +412,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Advanced search.
+        ///   Looks up a localized string similar to Advanced search....
         /// </summary>
         internal static string Title_ExtendedSearchPatient {
             get {
@@ -403,7 +439,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last name.
+        ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string Title_LastName {
             get {
@@ -430,7 +466,16 @@ namespace Probel.NDoctor.Plugins.PatientSession.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search patient.
+        ///   Looks up a localized string similar to Search by tags....
+        /// </summary>
+        internal static string Title_SearchByTag {
+            get {
+                return ResourceManager.GetString("Title_SearchByTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search patient....
         /// </summary>
         internal static string Title_SearchPatient {
             get {

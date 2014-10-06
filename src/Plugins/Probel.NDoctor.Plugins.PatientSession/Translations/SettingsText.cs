@@ -27,6 +27,16 @@ namespace Probel.NDoctor.Plugins.PatientSession.Translations
     {
         #region Properties
 
+        public static string AdvancedSearch
+        {
+            get { return Messages.Gb_AdvancedSearch; }
+        }
+
+        public static string AutomaticLoad
+        {
+            get { return Messages.Cb_AutomaticLoad; }
+        }
+
         public static string Birthdate
         {
             get { return Messages.Lbl_Birthdate; }
@@ -50,6 +60,11 @@ namespace Probel.NDoctor.Plugins.PatientSession.Translations
         public static string LastUpdate
         {
             get { return Messages.Lbl_LastUpdate; }
+        }
+
+        public static string Miscellaneous
+        {
+            get { return Messages.Gb_Misc; }
         }
 
         public static string Profession

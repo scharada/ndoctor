@@ -273,4 +273,24 @@
     <value>File</value>
     <comment>File</comment>
   </data>
+  <data name="Tab_UntaggedPatients" xml:space="preserve">
+    <value>Non tagged patients</value>
+    <comment>Non tagged patients</comment>
+  </data>
+  <data name="Btn_SearchUntagged" xml:space="preserve">
+    <value>Search untagged patients</value>
+    <comment>Search untagged patients</comment>
+  </data>
+  <data name="Btn_SetDedaultTag" xml:space="preserve">
+    <value>Insert default patient tag</value>
+    <comment>Insert default patient tag</comment>
+  </data>
+  <data name="Dgv_Tag" xml:space="preserve">
+    <value>Tag</value>
+    <comment>Tag</comment>
+  </data>
+  <data name="Msg_Updated" xml:space="preserve">
+    <value>The patients are updated</value>
+    <comment>The patients are updated</comment>
+  </data>
 </root>

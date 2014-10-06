@@ -35,9 +35,21 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 
         private readonly PluginSettings Settings = new PluginSettings();
 
+        private bool loadPatientAfterCreation = true;
+
         #endregion Fields
 
         #region Properties
+
+        public bool LoadPatientAfterCreation
+        {
+            get { return this.loadPatientAfterCreation; }
+            set
+            {
+                this.loadPatientAfterCreation = value;
+                this.OnPropertyChanged(() => LoadPatientAfterCreation);
+            }
+        }
 
         public bool ShowBirthdate
         {
@@ -91,10 +103,10 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
 
         public bool ShowReason
         {
-            get { return this.Settings.SHowReason; }
+            get { return this.Settings.ShowReason; }
             set
             {
-                this.Settings.SHowReason = value;
+                this.Settings.ShowReason = value;
                 this.OnPropertyChanged(() => ShowReason);
             }
         }

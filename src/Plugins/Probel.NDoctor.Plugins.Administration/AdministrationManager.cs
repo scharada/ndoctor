@@ -40,7 +40,7 @@ namespace Probel.NDoctor.Plugins.Administration
     using Probel.NDoctor.View.Toolbox.Translations;
 
     [Export(typeof(IPlugin))]
-    [PartMetadata(Keys.Constraint, ">3.0.0.0")]
+    [PartMetadata(Keys.Constraint, ">3.0.4.0")]
     [PartMetadata(Keys.PluginId, "{C4706773-CF41-49E9-8F47-6FCEA7A86456}")]
     public class AdministrationManager : Plugin
     {
@@ -154,6 +154,9 @@ namespace Probel.NDoctor.Plugins.Administration
             buttons.Add(new RibbonButtonData(Messages.Title_AddDoctor, imgUri.FormatWith("Doctor")
                 , new RelayCommand(() => ViewService.Manager.ShowDialog<AddDoctorViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
 
+            buttons.Add(new RibbonButtonData(Messages.Title_AddSearchTag, imgUri.FormatWith("SearchTag")
+                , new RelayCommand(() => ViewService.Manager.ShowDialog<AddSearchTagViewModel>(), () => PluginContext.DoorKeeper.IsUserGranted(To.Write))) { Order = i++ });
+
             foreach (var button in buttons) { cgroup.ButtonDataCollection.Add(button); }
         }
 
@@ -198,6 +201,7 @@ namespace Probel.NDoctor.Plugins.Administration
                     .OnShow(vm => vm.Refresh())
                     .OnClosing(() => this.Refresh());
                 e.Bind<EditTagView, EditTagViewModel>();
+                e.Bind<AddSearchTagView, AddSearchTagViewModel>();
             });
         }
 

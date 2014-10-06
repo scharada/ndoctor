@@ -52,6 +52,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         private static readonly System.Timers.Timer PracticeCountdown = new System.Timers.Timer(INTERVAL) { AutoReset = true };
         private static readonly System.Timers.Timer ProfessionCountdown = new System.Timers.Timer(INTERVAL) { AutoReset = true };
         private static readonly System.Timers.Timer ReputationCountdown = new System.Timers.Timer(INTERVAL) { AutoReset = true };
+        private static readonly System.Timers.Timer SearchTagCountdown = new System.Timers.Timer(INTERVAL) { AutoReset = true };
         private static readonly System.Timers.Timer TagCountdown = new System.Timers.Timer(INTERVAL) { AutoReset = true };
 
         private readonly EditCommands Edit;
@@ -65,6 +66,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         private string criteriaPractice;
         private string criteriaProfession;
         private string criteriaReputation;
+        private string criteriaSearchTag;
         private string criteriaTag;
         private bool isDoctorBusy;
         private bool isDrugBusy;
@@ -73,6 +75,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         private bool isPracticeBusy;
         private bool isProfessionBusy;
         private bool isReputationBusy;
+        private bool isSearchTypeBusy;
         private bool isTagBusy;
         private Tuple<string, TagCategory> selectedCategory;
         private DoctorDto selectedDoctor;
@@ -82,6 +85,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         private PracticeDto selectedPractice;
         private ProfessionDto selectedProfession;
         private ReputationDto selectedReputation;
+        private SearchTagDto selectedSearchTag;
         private TagDto selectedTag;
 
         #endregion Fields
@@ -116,7 +120,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
                     = component;
 
             }
-            #region Instanciates collections
+            #region Instanciate collections
             this.Insurances = new ObservableCollection<InsuranceDto>();
             this.Practices = new ObservableCollection<PracticeDto>();
             this.Pathologies = new ObservableCollection<PathologyDto>();
@@ -125,7 +129,7 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             this.Professions = new ObservableCollection<ProfessionDto>();
             this.Tags = new ObservableCollection<TagViewModel>();
             this.Doctors = new ObservableCollection<DoctorDto>();
-
+            this.SearchTags = new ObservableCollection<SearchTagDto>();
             #endregion
         }
 
@@ -210,6 +214,17 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             }
         }
 
+        public string CriteriaSearchTag
+        {
+            get { return this.criteriaSearchTag; }
+            set
+            {
+                this.criteriaSearchTag = value;
+                this.OnPropertyChanged(() => CriteriaSearchTag);
+                SearchTagCountdown.Start();
+            }
+        }
+
         public string CriteriaTag
         {
             get { return this.criteriaTag; }
@@ -287,6 +302,11 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             {
                 return this.Edit.ReputationCommand;
             }
+        }
+
+        public ICommand EditSearchTagCommand
+        {
+            get { return Edit.SearchTagCommand; }
         }
 
         public ICommand EditTagCommand
@@ -370,6 +390,16 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             {
                 this.isReputationBusy = value;
                 this.OnPropertyChanged(() => IsReputationBusy);
+            }
+        }
+
+        public bool IsSearchTagBusy
+        {
+            get { return this.isSearchTypeBusy; }
+            set
+            {
+                this.isSearchTypeBusy = value;
+                this.OnPropertyChanged(() => IsSearchTagBusy);
             }
         }
 
@@ -457,6 +487,11 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             }
         }
 
+        public ICommand RemoveSearchTagCommand
+        {
+            get { return this.Remove.SearchTagCommand; }
+        }
+
         public ICommand RemoveTagCommand
         {
             get
@@ -466,6 +501,12 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
         }
 
         public ObservableCollection<ReputationDto> Reputations
+        {
+            get;
+            private set;
+        }
+
+        public ObservableCollection<SearchTagDto> SearchTags
         {
             get;
             private set;
@@ -551,6 +592,16 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             }
         }
 
+        public SearchTagDto SelectedSearchTag
+        {
+            get { return this.selectedSearchTag; }
+            set
+            {
+                this.selectedSearchTag = value;
+                this.OnPropertyChanged(() => SelectedSearchTag);
+            }
+        }
+
         public TagDto SelectedTag
         {
             get { return this.selectedTag; }
@@ -625,6 +676,11 @@ namespace Probel.NDoctor.Plugins.Administration.ViewModel
             TagCountdown.Elapsed += (sender, e) =>
             {
                 this.Refresher.RefreshTagInMemory(this.CriteriaTag);
+                TagCountdown.Stop();
+            };
+            SearchTagCountdown.Elapsed += (sender, e) =>
+            {
+                this.Refresher.RefreshSearchTagInMemory(this.CriteriaSearchTag);
                 TagCountdown.Stop();
             };
         }

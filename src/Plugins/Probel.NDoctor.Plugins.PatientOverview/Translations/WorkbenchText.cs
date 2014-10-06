@@ -67,6 +67,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Translations
             get { return Messages.Grp_Doctors; }
         }
 
+        public static string Explanations
+        {
+            get { return Messages.Dgv_Explanations; }
+        }
+
         public static string Fee
         {
             get { return Messages.Lbl_Fee; }
@@ -90,6 +95,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Translations
         public static string GrpProfContact
         {
             get { return Messages.GrpProfContact; }
+        }
+
+        public static string GrpSearchTags
+        {
+            get { return Messages.Grp_SearchTags; }
         }
 
         public static string Inscription
@@ -125,6 +135,11 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Translations
         public static string Mobile
         {
             get { return Messages.Lbl_Mobile; }
+        }
+
+        public static string Name
+        {
+            get { return Messages.Dgv_Name; }
         }
 
         public static string Notes

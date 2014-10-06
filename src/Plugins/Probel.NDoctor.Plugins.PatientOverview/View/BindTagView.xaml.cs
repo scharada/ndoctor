@@ -1,4 +1,6 @@
-﻿/*
+﻿#region Header
+
+/*
     This file is part of NDoctor.
 
     NDoctor is free software: you can redistribute it and/or modify
@@ -14,39 +16,28 @@
     You should have received a copy of the GNU General Public License
     along with NDoctor.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace Probel.NDoctor.Plugins.PatientSession.View
+
+#endregion Header
+
+namespace Probel.NDoctor.Plugins.PatientOverview.View
 {
     using System.Windows;
-    using System.Windows.Input;
 
-    using Probel.NDoctor.Plugins.PatientSession.ViewModel;
+    using Probel.NDoctor.Plugins.PatientOverview.ViewModel;
 
     /// <summary>
-    /// Interaction logic for TopTenControl.xaml
+    /// Interaction logic for BindTagView.xaml
     /// </summary>
-    public partial class TopTenControl : Window
+    public partial class BindTagView : Window
     {
         #region Constructors
 
-        public TopTenControl()
+        public BindTagView()
         {
             InitializeComponent();
-            this.DataContext = new TopTenViewModel();
+            this.DataContext = new BindTagViewModel();
         }
 
         #endregion Constructors
-
-        #region Methods
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            Keyboard.Focus(this.focused);
-            if (this.DataContext is SearchPatientViewModel)
-            {
-                (this.DataContext as TopTenViewModel).Refresh();
-            }
-        }
-
-        #endregion Methods
     }
 }

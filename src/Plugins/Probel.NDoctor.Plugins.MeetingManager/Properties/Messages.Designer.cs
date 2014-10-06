@@ -97,7 +97,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occured when creating a appointment.
+        ///   Looks up a localized string similar to An error occured while creating an appointment.
         /// </summary>
         internal static string Error_DuringAppointmentAdd {
             get {
@@ -106,7 +106,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occured when removing a appointment.
+        ///   Looks up a localized string similar to An error occured while removing an appointment.
         /// </summary>
         internal static string Error_DuringAppointmentRemove {
             get {
@@ -120,6 +120,15 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Properties {
         internal static string Error_ErrorSearching {
             get {
                 return ResourceManager.GetString("Error_ErrorSearching", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occured when loading the calendar..
+        /// </summary>
+        internal static string Error_FailToLoadCalendar {
+            get {
+                return ResourceManager.GetString("Error_FailToLoadCalendar", resourceCulture);
             }
         }
         
@@ -277,7 +286,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An appointment has just been added.
+        ///   Looks up a localized string similar to An appointment has been added..
         /// </summary>
         internal static string Msg_AppointmentAdded {
             get {
@@ -322,7 +331,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occured during the loading of the calendar.
+        ///   Looks up a localized string similar to Failed to load the calendar.
         /// </summary>
         internal static string Msg_FailToLoadCalendar {
             get {
@@ -430,7 +439,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First or last name.
+        ///   Looks up a localized string similar to Chercher....
         /// </summary>
         internal static string Title_SearchWatermark {
             get {
@@ -484,7 +493,7 @@ namespace Probel.NDoctor.Plugins.MeetingManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to L&apos;heure de début de la journée de travail doit être plus petite que l&apos;heure de fin.
+        ///   Looks up a localized string similar to The working days start should be before the end..
         /// </summary>
         internal static string Warn_CalendarSettingsNotSaved {
             get {

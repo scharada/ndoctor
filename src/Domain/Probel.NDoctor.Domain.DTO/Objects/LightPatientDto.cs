@@ -34,6 +34,7 @@ namespace Probel.NDoctor.Domain.DTO.Objects
         private DateTime lastUpdate = DateTime.Today;
         private ProfessionDto profession;
         private string reason;
+        private TagDto tag;
 
         #endregion Fields
 
@@ -195,6 +196,16 @@ namespace Probel.NDoctor.Domain.DTO.Objects
             {
                 this.reason = value;
                 this.OnPropertyChanged(() => Reason);
+            }
+        }
+
+        public TagDto Tag
+        {
+            get { return this.tag; }
+            set
+            {
+                this.tag = value;
+                this.OnPropertyChanged(() => Tag);
             }
         }
 

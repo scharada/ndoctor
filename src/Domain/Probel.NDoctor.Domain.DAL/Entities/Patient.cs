@@ -192,7 +192,8 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         /// </value>
         public virtual bool IsDeactivated
         {
-            get; set;
+            get;
+            set;
         }
 
         /// <summary>
@@ -337,6 +338,17 @@ namespace Probel.NDoctor.Domain.DAL.Entities
         {
             get;
             set;
+        }
+
+        /// <summary>
+        /// Gets or sets the list of tags used for search.
+        /// </summary>
+        /// <value>
+        /// The search tags.
+        /// </value>
+        public virtual IList<SearchTag> SearchTags
+        {
+            get; set;
         }
 
         #endregion Properties

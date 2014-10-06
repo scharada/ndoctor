@@ -42,6 +42,21 @@ namespace Probel.NDoctor.Plugins.Administration.Translations
             get { return Messages.Tb_SearchDoctor; }
         }
 
+        public static string SearchTagExplanation
+        {
+            get { return Messages.Lbl_SearchTagExplanations; }
+        }
+
+        public static string SearchTagName
+        {
+            get { return Messages.Lbl_SearchTagName; }
+        }
+
+        public static string TitleAddSearchTag
+        {
+            get { return Messages.Title_AddSearchTag; }
+        }
+
         public static string TitleBoxNr
         {
             get { return Messages.Title_BoxNr; }
@@ -60,6 +75,11 @@ namespace Probel.NDoctor.Plugins.Administration.Translations
         public static string TitleDrug
         {
             get { return Messages.Title_Drug; }
+        }
+
+        public static string TitleExplanations
+        {
+            get { return Messages.Lbl_SearchTagExplanations; }
         }
 
         public static string TitleInsurance
@@ -105,6 +125,11 @@ namespace Probel.NDoctor.Plugins.Administration.Translations
         public static string TitleReputation
         {
             get { return Messages.Title_Reputation; }
+        }
+
+        public static string TitleSearchTag
+        {
+            get { return Messages.Tab_SearchTag; }
         }
 
         public static string TitleSpecialisation

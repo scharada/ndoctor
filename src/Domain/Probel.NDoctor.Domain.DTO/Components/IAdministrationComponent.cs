@@ -98,6 +98,22 @@ namespace Probel.NDoctor.Domain.DTO.Components
         bool CanRemove(DoctorDto item);
 
         /// <summary>
+        /// Determines whether this instance can remove the specified search tag.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can remove the specified item; otherwise, <c>false</c>.
+        /// </returns>
+        bool CanRemove(SearchTagDto item);
+
+        /// <summary>
+        /// Checks whether a search task exist with the specified name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns><c>True</c> if a search tag exists with the specified name; otherwise <c>False</c></returns>
+        bool CheckSearchTagExist(string name);
+
+        /// <summary>
         /// Creates the specified profession.
         /// </summary>
         /// <param name="profession">The tag.</param>
@@ -146,6 +162,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="item">The item to add in the database</param>
         /// <returns>The id of the just created item</returns>
         long Create(TagDto item);
+
+        /// <summary>
+        /// Creates the specified search tag.
+        /// </summary>
+        /// <param name="searchTagDto">The search tag dto.</param>
+        void Create(SearchTagDto searchTagDto);
 
         /// <summary>
         /// Gets all doctors.
@@ -238,6 +260,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         ReputationRefiner GetReputationRefiner();
 
         /// <summary>
+        /// Gets the search tag refiner.
+        /// </summary>
+        /// <returns></returns>
+        SearchTagRefiner GetSearchTagRefiner();
+
+        /// <summary>
         /// Gets a memory searcher filled with all the tags.
         /// </summary>
         /// <returns>A memory searcher</returns>
@@ -298,6 +326,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         void Remove(DoctorDto item);
 
         /// <summary>
+        /// Removes the specified search tag.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        void Remove(SearchTagDto item);
+
+        /// <summary>
         /// Updates the specified tag.
         /// </summary>
         /// <param name="tag">The tag.</param>
@@ -344,6 +378,12 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// </summary>
         /// <param name="item">The item.</param>
         void Update(DoctorDto item);
+
+        /// <summary>
+        /// Updates the specified search tag.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        void Update(SearchTagDto item);
 
         #endregion Methods
     }
