@@ -464,5 +464,53 @@
                 </DockPanel>
             </toolkit:BusyIndicator>
         </TabItem>
+        <TabItem Header="{x:Static Member=text:WorkbenchText.TitleSearchTag}">
+
+            <toolkit:BusyIndicator BusyContent="{Binding Source={x:Static Member=t:BaseText.PleaseWait}}"
+                                   IsBusy="{Binding IsSearchTypeBusy}">
+                <DockPanel>
+                    <toolkit:WatermarkTextBox DockPanel.Dock="Top" 
+                                              Watermark="{Binding Source={x:Static Member=t:BaseText.Search}}"
+                                              Margin="4"
+                                              Text="{Binding CriteriaSearchTag, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Label DockPanel.Dock="Bottom"
+                           Content="{Binding ElementName=searchTags,Path=Items.Count}"
+                           ContentStringFormat="{Binding Source={x:Static Member=t:BaseText.ElementCount}}"/>
+                    <DataGrid x:Name="searchTags"
+                              ItemsSource="{Binding Path=SearchTags}"
+                              SelectedItem="{Binding SelectedSearchTag}">
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Remove}}"
+                                      Command="{Binding RemoveSearchTagCommand}">
+                                    <MenuItem.Icon>
+                                        <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Delete.png"
+                                           Height="20"
+                                           Width="20"
+                                           IsEnabled="False"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <MenuItem Header="{Binding Source={x:Static text:WorkbenchText.Edit}}" 
+                                      Command="{Binding EditSearchTagCommand}">
+                                    <MenuItem.Icon>
+                                        <Image Source="\Probel.NDoctor.Plugins.Administration;component/Images\Edit.png"
+                                           Height="20"
+                                           Width="20"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleName}}"
+                                        Binding="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                            <DataGridTextColumn Header="{Binding Source={x:Static Member=text:WorkbenchText.TitleExplanations}}"
+                                        Binding="{Binding Path=Explanations, UpdateSourceTrigger=PropertyChanged}"
+                                        Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </toolkit:BusyIndicator>
+        </TabItem>
     </TabControl>
 </Page>

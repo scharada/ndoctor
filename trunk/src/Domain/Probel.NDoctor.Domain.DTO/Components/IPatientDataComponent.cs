@@ -32,6 +32,27 @@ namespace Probel.NDoctor.Domain.DTO.Components
         void AddDoctorTo(LightPatientDto patient, LightDoctorDto doctor);
 
         /// <summary>
+        /// Adds the specified tag to the specified patient.
+        /// </summary>
+        /// <param name="patient">The light patient dto.</param>
+        /// <param name="tag">The search tag dto.</param>
+        void AddTagTo(LightPatientDto patient, SearchTagDto tag);
+
+        /// <summary>
+        /// Binds the specified tags to the specified patient.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <param name="tags">The tags.</param>
+        void BindTagsTo(LightPatientDto patient, IEnumerable<SearchTagDto> tags);
+
+        /// <summary>
+        /// Checks whether a search task exist with the specified name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns><c>True</c> if a search tag exists with the specified name; otherwise <c>False</c></returns>
+        bool CheckSearchTagExist(string name);
+
+        /// <summary>
         /// Creates the specified profession.
         /// </summary>
         /// <param name="profession">The profession.</param>
@@ -129,6 +150,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         LightPatientDto GetLightPatientById(long id);
 
         /// <summary>
+        /// Gets all the search tags that are not binded to the specified patient
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <returns>The tags that are not assigned to the patient</returns>
+        IEnumerable<SearchTagDto> GetNotAssignedTagsOf(LightPatientDto patient);
+
+        /// <summary>
         /// Gets the doctors that can be linked to the specified doctor.
         /// </summary>
         /// <param name="patient">The patient.</param>
@@ -163,6 +191,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         PracticeDto GetPracticeById(long id);
 
         /// <summary>
+        /// Gets the search tags of the specified patient.
+        /// </summary>
+        /// <param name="patient">The selected patient.</param>
+        /// <returns>An enumeration of search tags</returns>
+        IEnumerable<SearchTagDto> GetSearchTagsOf(LightPatientDto patient);
+
+        /// <summary>
         /// Gets all the tags with the specified catagory.
         /// </summary>
         /// <returns></returns>
@@ -192,6 +227,13 @@ namespace Probel.NDoctor.Domain.DTO.Components
         /// <param name="patient">The patient.</param>
         /// <param name="doctor">The doctor.</param>
         void RemoveDoctorFor(LightPatientDto patient, LightDoctorDto doctor);
+
+        /// <summary>
+        /// Removes the specified tasks for the specified patient.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        /// <param name="toRemove">The tasks to remove.</param>
+        void RemoveTasksFor(LightPatientDto patient, IEnumerable<SearchTagDto> toRemove);
 
         /// <summary>
         /// Updates the patient with the new data.

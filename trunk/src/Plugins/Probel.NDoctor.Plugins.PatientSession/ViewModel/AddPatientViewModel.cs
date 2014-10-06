@@ -25,6 +25,7 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
     using Probel.NDoctor.Domain.DTO.Exceptions;
     using Probel.NDoctor.Domain.DTO.Helpers;
     using Probel.NDoctor.Domain.DTO.Objects;
+    using Probel.NDoctor.Plugins.PatientSession.Helpers;
     using Probel.NDoctor.Plugins.PatientSession.Properties;
     using Probel.NDoctor.View.Core.ViewModel;
     using Probel.NDoctor.View.Plugins;
@@ -101,6 +102,10 @@ namespace Probel.NDoctor.Plugins.PatientSession.ViewModel
                 this.component.Create(this.Patient);
                 PluginContext.Host.WriteStatus(StatusType.Info, Messages.Msg_PatientAdded);
                 this.Close();
+                if (new PluginSettings().LoadPatientAfterCreation)
+                {
+                    PluginContext.Host.SelectedPatient = this.Patient;
+                }
             }
             catch (ExistingItemException ex) { this.Handle.Warning(ex, ex.TranslatedMessage); }
             catch (Exception ex) { this.Handle.Error(ex, Messages.Error_AddPatient); }

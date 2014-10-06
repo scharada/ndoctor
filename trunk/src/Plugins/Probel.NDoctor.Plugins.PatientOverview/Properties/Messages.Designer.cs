@@ -61,6 +61,24 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add tag.
+        /// </summary>
+        internal static string Btn_AddTag {
+            get {
+                return ResourceManager.GetString("Btn_AddTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bind a tag.
+        /// </summary>
+        internal static string Btn_BindTag {
+            get {
+                return ResourceManager.GetString("Btn_BindTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deactivate.
         /// </summary>
         internal static string Btn_Deactivate {
@@ -115,6 +133,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove tag.
+        /// </summary>
+        internal static string Btn_RemoveTag {
+            get {
+                return ResourceManager.GetString("Btn_RemoveTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reputation.
         /// </summary>
         internal static string Btn_Reputation {
@@ -151,6 +178,33 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Délier une étiquette.
+        /// </summary>
+        internal static string Btn_UnbindTag {
+            get {
+                return ResourceManager.GetString("Btn_UnbindTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Explanations.
+        /// </summary>
+        internal static string Dgv_Explanations {
+            get {
+                return ResourceManager.GetString("Dgv_Explanations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string Dgv_Name {
+            get {
+                return ResourceManager.GetString("Dgv_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occured when sending the mail..
         /// </summary>
         internal static string Err_CantSendMail {
@@ -183,6 +237,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         internal static string Group_LinkedDoctor {
             get {
                 return ResourceManager.GetString("Group_LinkedDoctor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tags.
+        /// </summary>
+        internal static string Group_Tag {
+            get {
+                return ResourceManager.GetString("Group_Tag", resourceCulture);
             }
         }
         
@@ -268,6 +331,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search tags.
+        /// </summary>
+        internal static string Grp_SearchTags {
+            get {
+                return ResourceManager.GetString("Grp_SearchTags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Professional contact.
         /// </summary>
         internal static string GrpProfContact {
@@ -340,6 +412,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Explanations.
+        /// </summary>
+        internal static string Lbl_Explanations {
+            get {
+                return ResourceManager.GetString("Lbl_Explanations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fee:.
         /// </summary>
         internal static string Lbl_Fee {
@@ -376,7 +457,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nom.
+        ///   Looks up a localized string similar to Surname.
         /// </summary>
         internal static string Lbl_LastName {
             get {
@@ -408,6 +489,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         internal static string Lbl_Mobile {
             get {
                 return ResourceManager.GetString("Lbl_Mobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        internal static string Lbl_Name {
+            get {
+                return ResourceManager.GetString("Lbl_Name", resourceCulture);
             }
         }
         
@@ -511,7 +601,7 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Si you deactivate this patient, he/she will remain in the database but nDoctor will behave like if he/she is deleted. To reactivate this patient, go to the database manager (maybe you have to activate this plugin via the settings).
+        ///   Looks up a localized string similar to If you deactivate this patient, he/she will remain in the database but nDoctor will behave like if he/she is deleted. To reactivate this patient, go to the database manager (maybe you have to activate this plugin via the settings).
         ///
         /// Do you want to deactivate this patient?.
         /// </summary>
@@ -545,6 +635,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         internal static string Msg_PatientDeactivated {
             get {
                 return ResourceManager.GetString("Msg_PatientDeactivated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A search tag with the same name already exists!.
+        /// </summary>
+        internal static string Msg_WarnSearchTagExists {
+            get {
+                return ResourceManager.GetString("Msg_WarnSearchTagExists", resourceCulture);
             }
         }
         
@@ -612,11 +711,29 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add a search tag.
+        /// </summary>
+        internal static string Title_AddTag {
+            get {
+                return ResourceManager.GetString("Title_AddTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bind a doctor....
         /// </summary>
         internal static string Title_BindDoctor {
             get {
                 return ResourceManager.GetString("Title_BindDoctor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bind a tag....
+        /// </summary>
+        internal static string Title_BindTag {
+            get {
+                return ResourceManager.GetString("Title_BindTag", resourceCulture);
             }
         }
         
@@ -635,6 +752,15 @@ namespace Probel.NDoctor.Plugins.PatientOverview.Properties {
         internal static string Title_PluginName {
             get {
                 return ResourceManager.GetString("Title_PluginName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unbind search tag.
+        /// </summary>
+        internal static string Title_RemoveTag {
+            get {
+                return ResourceManager.GetString("Title_RemoveTag", resourceCulture);
             }
         }
         

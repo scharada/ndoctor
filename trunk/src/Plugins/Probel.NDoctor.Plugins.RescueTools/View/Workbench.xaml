@@ -122,18 +122,18 @@
                     <StackPanel DockPanel.Dock="Left" Style="{StaticResource sidePanel}">
                         <GroupBox Header="{Binding Source={x:Static Member=t:WorkbenchText.Actions}}">
                             <StackPanel>
-                                    <StackPanel>
-                                        <DockPanel>
-                                            <Label Content="{Binding Source={x:Static Member=t:WorkbenchText.SearchOnAge}}"/>
-                                            <toolkit:IntegerUpDown Margin="4"
+                                <StackPanel>
+                                    <DockPanel>
+                                        <Label Content="{Binding Source={x:Static Member=t:WorkbenchText.SearchOnAge}}"/>
+                                        <toolkit:IntegerUpDown Margin="4"
                                                                    DockPanel.Dock="Right"
                                                                    Minimum="0"
                                                                    Value="{Binding AgeCriteria}"/>
-                                        </DockPanel>
-                                        <Button Margin="4" 
+                                    </DockPanel>
+                                    <Button Margin="4" 
                                                 Content="{Binding Source={x:Static Member=bt:BaseText.Search}}"
                                                 Command="{Binding SearchOnAgeCommand}"/>
-                                    </StackPanel>
+                                </StackPanel>
                                 <Button Margin="4" 
                                 Content="{Binding Source={x:Static Member=t:WorkbenchText.DeactivateAll}}"
                                 Command="{Binding DeactivateAllCommand}"/>
@@ -219,6 +219,46 @@
                                                 IsReadOnly="True"/>
                             <DataGridTextColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.LastName}}"
                                                 Binding="{Binding Path=LastName,UpdateSourceTrigger=PropertyChanged}"
+                                                Width="*"
+                                                IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="{Binding Source={x:Static Member=t:WorkbenchText.TabNonTagged}}">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Left" Style="{StaticResource sidePanel}">
+                        <GroupBox Header="{Binding Source={x:Static Member=t:WorkbenchText.Actions}}">
+                            <StackPanel>
+                                <Button Margin="4" 
+                                        Content="{Binding Source={x:Static Member=t:WorkbenchText.FindUntagged}}"
+                                        Command="{Binding FindUntaggedPatientsCommand}"/>
+                                <Button Margin="4"
+                                        Content="{Binding Source={x:Static Member=t:WorkbenchText.SetDefaultTag}}"
+                                        Command="{Binding SetDefaultTagCommand}"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                    <DataGrid DockPanel.Dock="Right" Margin="4"
+                              ItemsSource="{Binding UntaggedPatients}"
+                              AutoGenerateColumns="False" 
+                              CanUserReorderColumns="False" 
+                              CanUserSortColumns="False" 
+                              CanUserAddRows="False" 
+                              CanUserDeleteRows="False"
+                              GridLinesVisibility="None">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.FirstName}}"
+                                                Binding="{Binding Path=FirstName,UpdateSourceTrigger=PropertyChanged}"
+                                                Width="*"
+                                                IsReadOnly="True"/>
+                            <DataGridTextColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.LastName}}"
+                                                Binding="{Binding Path=LastName,UpdateSourceTrigger=PropertyChanged}"
+                                                Width="*"
+                                                IsReadOnly="True"/>
+                            <DataGridTextColumn Header="{Binding Source={x:Static Member=t:WorkbenchText.Birthdate}}"
+                                                Binding="{Binding Path=Birthdate, StringFormat={}{0:d}, UpdateSourceTrigger=PropertyChanged}"                                                
                                                 Width="*"
                                                 IsReadOnly="True"/>
                         </DataGrid.Columns>

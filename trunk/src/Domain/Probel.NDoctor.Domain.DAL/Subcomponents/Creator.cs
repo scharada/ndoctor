@@ -532,6 +532,12 @@
             this.Session.Save(entity);
         }
 
+        public void Create(SearchTagDto item)
+        {
+            var entity = Mapper.Map<SearchTagDto, SearchTag>(item);
+            this.Session.Save(entity);
+        }
+
         private bool IsFirstUser()
         {
             var result = (from u in this.Session.Query<User>()

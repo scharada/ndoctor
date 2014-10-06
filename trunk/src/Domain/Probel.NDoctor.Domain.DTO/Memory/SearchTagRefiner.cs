@@ -19,23 +19,26 @@
 
 #endregion Header
 
-namespace Probel.NDoctor.Plugins.PatientSession.View
+namespace Probel.NDoctor.Domain.DTO.Memory
 {
-    using System.Windows;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
-    using Probel.NDoctor.Plugins.PatientSession.ViewModel;
+    using Probel.NDoctor.Domain.DTO.Objects;
 
-    /// <summary>
-    /// Interaction logic for SearchPatientExtendedControl.xaml
-    /// </summary>
-    public partial class SearchPatientExtendedControl : Window
+    public class SearchTagRefiner : MemoryRefinerWithNameProperty<SearchTagDto>
     {
         #region Constructors
 
-        public SearchPatientExtendedControl()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SearchTagRefiner"/> class.
+        /// </summary>
+        /// <param name="items">The items.</param>
+        public SearchTagRefiner(IEnumerable<SearchTagDto> items)
+            : base(items)
         {
-            InitializeComponent();
-            this.DataContext = new SearchPatientExtendedViewModel();
         }
 
         #endregion Constructors

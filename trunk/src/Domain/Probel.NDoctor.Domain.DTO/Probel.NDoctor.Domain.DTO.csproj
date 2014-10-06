@@ -100,6 +100,7 @@
     <Compile Include="Memory\PracticeRefiner.cs" />
     <Compile Include="Memory\ProfessionRefiner.cs" />
     <Compile Include="Memory\ReputationRefiner.cs" />
+    <Compile Include="Memory\SearchTagRefiner.cs" />
     <Compile Include="Memory\TagRefiner.cs" />
     <Compile Include="Objects\AvgStatisticsDto.cs" />
     <Compile Include="Objects\DoubloonDoctorDto.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Objects\IllnessPeriodDto.cs" />
     <Compile Include="Objects\LightPracticeDto.cs" />
     <Compile Include="Objects\LightInsuranceDto.cs" />
+    <Compile Include="Objects\SearchTagDto.cs" />
     <Compile Include="Objects\SecurityUserDto.cs" />
     <Compile Include="Objects\InsuranceDto.cs" />
     <Compile Include="Objects\LightDoctorDto.cs" />

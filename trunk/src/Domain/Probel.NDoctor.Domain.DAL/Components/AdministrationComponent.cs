@@ -150,6 +150,30 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Determines whether this instance can remove the specified search tag.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can remove the specified item; otherwise, <c>false</c>.
+        /// </returns>
+        public bool CanRemove(SearchTagDto item)
+        {
+            return new Remover(this.Session).CanRemove(item);
+        }
+
+        /// <summary>
+        /// Checks whether a search task exist with the specified name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns>
+        ///   <c>True</c> if a search tag exists with the specified name; otherwise <c>False</c>
+        /// </returns>
+        public bool CheckSearchTagExist(string name)
+        {
+            return new Query(this.Session).CheckSearchTagExists(name);
+        }
+
+        /// <summary>
         /// Creates the specified tag.
         /// </summary>
         /// <param name="tag">The tag.</param>
@@ -223,6 +247,15 @@ namespace Probel.NDoctor.Domain.DAL.Components
         public long Create(DrugDto item)
         {
             return new Creator(this.Session).Create(item);
+        }
+
+        /// <summary>
+        /// Creates the specified search tag into the repository.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        public void Create(SearchTagDto item)
+        {
+            new Creator(this.Session).Create(item);
         }
 
         /// <summary>
@@ -391,6 +424,18 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Gets the search tag refiner.
+        /// </summary>
+        /// <returns></returns>
+        public SearchTagRefiner GetSearchTagRefiner()
+        {
+            var entities = (from t in this.Session.Query<SearchTag>()
+                            select t).ToList();
+            var dto = Mapper.Map<IEnumerable<SearchTag>, IEnumerable<SearchTagDto>>(entities);
+            return new SearchTagRefiner(dto);
+        }
+
+        /// <summary>
         /// Gets a memory searcher filled with all the tags.
         /// </summary>
         /// <returns>
@@ -484,6 +529,15 @@ namespace Probel.NDoctor.Domain.DAL.Components
         }
 
         /// <summary>
+        /// Removes the specified search tag.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        public void Remove(SearchTagDto item)
+        {
+            new Remover(this.Session).Remove(item);
+        }
+
+        /// <summary>
         /// Updates the specified tag.
         /// </summary>
         /// <param name="tag">The tag.</param>
@@ -551,6 +605,15 @@ namespace Probel.NDoctor.Domain.DAL.Components
         /// </summary>
         /// <param name="item">The item.</param>
         public void Update(DoctorDto item)
+        {
+            new Updator(this.Session).Update(item);
+        }
+
+        /// <summary>
+        /// Updates the specified search tag.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        public void Update(SearchTagDto item)
         {
             new Updator(this.Session).Update(item);
         }
