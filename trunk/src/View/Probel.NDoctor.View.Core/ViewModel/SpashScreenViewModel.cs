@@ -35,6 +35,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.Domain.DAL.Cfg;
     using Probel.NDoctor.Domain.DTO.Components;
     using Probel.NDoctor.View;
+    using Probel.NDoctor.View.Core.Helpers;
     using Probel.NDoctor.View.Core.Properties;
     using Probel.NDoctor.View.Core.View;
     using Probel.NDoctor.View.Plugins;
@@ -43,6 +44,7 @@ namespace Probel.NDoctor.View.Core.ViewModel
     using Probel.NDoctor.View.Toolbox.Navigation;
 
     using StructureMap;
+    using Probel.NDoctor.View.Core.ServiceReference;
 
     internal class SpashScreenViewModel : BaseViewModel
     {
@@ -120,6 +122,9 @@ namespace Probel.NDoctor.View.Core.ViewModel
         public void Start()
         {
             this.Logger.InfoFormat("Current culture: '{0}'", this.cultureInfo.ToString());
+
+            this.SetupNetStat();
+
             var thread = new BackgroundWorker();
 
             thread.DoWork += (sender, e) =>
@@ -299,6 +304,47 @@ namespace Probel.NDoctor.View.Core.ViewModel
         {
             if (this.Loaded != null)
                 this.Loaded(this, EventArgs.Empty);
+        }
+
+        private void SetupNetStat()
+        {
+            var version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            var os = SysInfo.Load();
+
+            var serial = os.Serial;
+
+#if DEBUG
+		 var application = "Debug nDoctor" ;
+#else
+            var application = "nDoctor" ;
+#endif
+
+            var thread = new BackgroundWorker();
+
+            thread.DoWork += (sender, e) =>
+            {
+                try
+                {
+                    Logger.Debug("Sending statistics to the server...");
+                    try
+                    {
+                        using (var proxy = new StatLoggerClient())
+                        {
+                            proxy.Register(serial, os.Version, application );
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Warn("Failed to send statistics!", ex);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //Swallow the exception as Statistics are not really important. Log it anyways ;-)
+                    this.Logger.Error("Error occured during statistics management.", ex);
+                }
+            }; 
+            thread.RunWorkerAsync();
         }
 
         #endregion Methods

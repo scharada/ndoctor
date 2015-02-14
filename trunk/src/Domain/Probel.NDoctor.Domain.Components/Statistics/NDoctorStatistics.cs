@@ -120,13 +120,6 @@ namespace Probel.NDoctor.Domain.Components.Statistics
             Statistics.Add(stat);
         }
 
-        private string GetApplicationVersion()
-        {
-            return (Assembly.GetEntryAssembly() != null)
-                ? Assembly.GetEntryAssembly().GetName().Version.ToString()
-                : "999.999.999.999"; //GetEntryAssembly returns null when executing unit tests
-        }
-
         private void ExportToRemoteServer(IEnumerable<ApplicationStatistics> toImport, Guid appKey)
         {
             Logger.InfoFormat("Exporting {0} entrie(s) into the remote server", toImport.Count());
@@ -164,6 +157,13 @@ namespace Probel.NDoctor.Domain.Components.Statistics
             }
 
             Statistics.Clear();
+        }
+
+        private string GetApplicationVersion()
+        {
+            return (Assembly.GetEntryAssembly() != null)
+                ? Assembly.GetEntryAssembly().GetName().Version.ToString()
+                : "999.999.999.999"; //GetEntryAssembly returns null when executing unit tests
         }
 
         private IEnumerable<ApplicationStatistics> GetNotImportedStatistics(ISession session)
