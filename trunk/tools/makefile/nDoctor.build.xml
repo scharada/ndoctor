@@ -54,7 +54,7 @@
 		<delete dir="${nest-dir}"/>
 		
 		<echo message="Checkout the code..."/>
-		<exec program="svn.exe"
+		<exec program="C:\Program Files\TortoiseSVN\bin\svn.exe"
 		      commandline="export &quot;${svn-repository}&quot; &quot;${code-dir}&quot; -q"/>
 		
 		<echo message="Get the revision number"/>

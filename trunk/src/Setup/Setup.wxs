@@ -72,12 +72,12 @@
 <ComponentRef Id="Google.GData.Calendar.dll"/>
 <ComponentRef Id="Google.GData.Client.dll"/>
 <ComponentRef Id="Google.GData.Extensions.dll"/>
-<ComponentRef Id="HibernatingRhinos.Profiler.Appender.v4.0.dll"/>
 <ComponentRef Id="Iesi.Collections.dll"/>
 <ComponentRef Id="log4net.dll"/>
 <ComponentRef Id="Microsoft.Windows.Shell.dll"/>
 <ComponentRef Id="MongoDB.Bson.dll"/>
 <ComponentRef Id="MongoDB.Driver.dll"/>
+<ComponentRef Id="MySql.Data.dll"/>
 <ComponentRef Id="Newtonsoft.Json.dll"/>
 <ComponentRef Id="NHibernate.dll"/>
 <ComponentRef Id="Nini.dll"/>
@@ -100,8 +100,8 @@
 <ComponentRef Id="System.Windows.Controls.Input.Toolkit.dll"/>
 <ComponentRef Id="System.Windows.Controls.Layout.Toolkit.dll"/>
 <ComponentRef Id="WPFToolkit.dll"/>
-<ComponentRef Id="WPFToolkit.Extended.dll"/>
 <ComponentRef Id="Xceed.Wpf.DataGrid.dll"/>
+<ComponentRef Id="Xceed.Wpf.Toolkit.dll"/>
 <ComponentRef Id="Probel.Helpers.resources.dll"/>
 <ComponentRef Id="Probel.Mvvm.resources.dll"/>
 <ComponentRef Id="Probel.NDoctor.Domain.DAL.resources.dll"/>
