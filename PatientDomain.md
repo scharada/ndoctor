@@ -1,0 +1,2 @@
+# Class Diagram #
+![https://lh6.googleusercontent.com/-yaf2KDUvxXM/Tl_5135zpcI/AAAAAAAAAFQ/kq46-7JqaCA/Patient%252520Domain.jpg](https://lh6.googleusercontent.com/-yaf2KDUvxXM/Tl_5135zpcI/AAAAAAAAAFQ/kq46-7JqaCA/Patient%252520Domain.jpg)
